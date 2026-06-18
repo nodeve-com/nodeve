@@ -1,0 +1,16 @@
+# Git hooks via lefthook. Currently a no-op stub — hooks are wired but do nothing.
+# Fill in real commands (lint, typecheck, test) when ready, e.g.:
+#
+# pre-commit:
+#   parallel: true
+#   commands:
+#     lint:
+#       glob: "*.{ts,js,json}"
+#       run: pnpm lint
+#     typecheck:
+#       run: pnpm typecheck
+
+pre-commit:
+  commands:
+    noop:
+      run: 'true'

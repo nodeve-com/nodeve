@@ -1,0 +1,3 @@
+{
+  "extends": "@nodeve/config/tsconfig"
+}

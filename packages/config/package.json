@@ -1,0 +1,35 @@
+{
+  "name": "@nodeve/config",
+  "version": "0.0.0",
+  "description": "Shared TypeScript and Prettier configuration for nodeve and sister projects.",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "tsconfig.json",
+    "prettier"
+  ],
+  "exports": {
+    "./tsconfig": "./tsconfig.json",
+    "./prettier": "./prettier/index.js",
+    "./prettier/base": "./prettier/base.js"
+  },
+  "peerDependencies": {
+    "prettier": ">=3.0.0",
+    "prettier-plugin-svelte": ">=3.5.1",
+    "prettier-plugin-tailwindcss": ">=0.7.2",
+    "typescript": ">=5.5.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier-plugin-svelte": {
+      "optional": true
+    },
+    "prettier-plugin-tailwindcss": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  }
+}
