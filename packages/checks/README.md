@@ -33,7 +33,7 @@ fall back to org defaults. See the example for the full shape.
 | --- | --- | --- |
 | `nodeve-check-doc-tokens` | markdown over a line/token budget | on (`CLAUDE.md`, `guide/`, `docs/`) |
 | `nodeve-check-reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (`apps/`, `packages/`) |
-| `nodeve-check-inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`) |
+| `nodeve-check-inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`, `packages/`) |
 | `nodeve-check-helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
 | `nodeve-check-page-size` | files over a per-glob line budget | **opt-in** (no rules → no-op) |
 | `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
@@ -56,6 +56,20 @@ deliberately with `catalog: { enforce: false }`.
 All blocking checks accept `--warn` (report-only, exit 0); `doc-tokens` accepts
 `--report` to list the whole backlog without failing. Pass explicit paths to
 scope a run (lefthook passes `{staged_files}`).
+
+### Running ad hoc
+
+These are **bins**, not package scripts, so `pnpm run` / `bun run` won't find
+them — those run `package.json#scripts`. Invoke a bin through `exec` instead,
+which resolves `node_modules/.bin` for you (no hardcoded path needed):
+
+```sh
+pnpm exec nodeve-check-doc-tokens 'README.md'   # or: pnpm nodeve-check-doc-tokens ...
+bunx nodeve-check-doc-tokens 'README.md'         # Bun repos
+```
+
+Quote globs so your shell doesn't expand them before the bin sees them. Day to
+day you shouldn't need this — the bins run through lefthook on commit.
 
 ## Generators
 

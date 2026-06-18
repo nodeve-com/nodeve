@@ -14,28 +14,26 @@
  * Workspace discovery is shared with the catalog gate (pnpm-workspace.yaml or
  * package.json#workspaces), so it gates pnpm and Bun repos alike.
  */
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { readWorkspace, repoRoot } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
+import { readWorkspace } from '../lib/repo.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).requireDeps;
-const { warn, verbose } = parseArgs(process.argv.slice(2));
+const { root, cfg, warn, verbose } = await loadGate('requireDeps');
 
 if (cfg.deps.length === 0) {
 	if (verbose) console.log('require-deps: no required deps configured — nothing to enforce');
 	process.exit(0);
 }
 
-const ws = readWorkspace(root);
-if (!ws) {
+const workspace = readWorkspace(root);
+if (!workspace) {
 	if (verbose) console.log('require-deps: no workspace manifest found — nothing to enforce');
 	process.exit(0);
 }
 
 // A dep is satisfied if any catalog (default or a named group) defines it.
 const catalogued = new Set([
-	...Object.keys(ws.catalog),
-	...Object.values(ws.catalogs).flatMap((group) => Object.keys(group)),
+	...Object.keys(workspace.catalog),
+	...Object.values(workspace.catalogs).flatMap((group) => Object.keys(group)),
 ]);
 const missing = cfg.deps.filter((dep) => !catalogued.has(dep));
 

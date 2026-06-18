@@ -4,28 +4,25 @@
  * appears in 2+ tracked source files — a sign it should live in a shared
  * package and be imported instead.
  *
- * BLOCKS by default: any non-allowlisted finding exits 1. Clear by extracting
- * the name to a package, or — for a confirmed false positive — adding it to
- * `inlineDupes.allowlist` with a WHY comment. `--warn` downgrades to report-only.
+ * BLOCKS by default: any non-allowlisted finding exits 1. Clear it by:
+ *   - a uniform SET of names recurring together (a shared prologue, the same
+ *     handful of locals) → extract them into one shared module and give the
+ *     bundle a TS type/interface, then import it (see `lib/bin.ts#Gate`);
+ *   - a single helper duplicated → move it to a shared package and import;
+ *   - a confirmed false positive → add the name to `inlineDupes.allowlist`
+ *     with a WHY comment.
+ * `--warn` downgrades to report-only.
  *
- * Scope: `inlineDupes.globs` (default `apps/*.ts`). Note this always scans the
- * full configured scope, not just staged files — a dupe is a relationship
- * between two files, so the second file landing must see the first.
+ * Scope: `inlineDupes.globs` (default `apps/`, `packages/`). Note this always
+ * scans the full configured scope, not just staged files — a dupe is a
+ * relationship between two files, so the second file landing must see the first.
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
+import { loadGate, tsSources } from '../lib/bin.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).inlineDupes;
-const { warn, verbose } = parseArgs(process.argv.slice(2));
-const ALLOWLIST = new Set(cfg.allowlist);
-
-function sourceFiles(): string[] {
-	return gitFiles(root, cfg.globs).filter((f) => !/\.(d|test|spec)\.ts$/.test(f));
-}
+const { root, cfg, warn, verbose, allowlist } = await loadGate('inlineDupes');
 
 /**
  * Non-exported top-level names in a source file: private `const` and
@@ -59,10 +56,11 @@ function topLevelNames(absPath: string): string[] {
 
 const nameToFiles = new Map<string, Set<string>>();
 
-for (const rel of sourceFiles()) {
+// paths `[]`: always scan full scope (see header) regardless of staged files.
+for (const rel of tsSources(root, cfg.globs)) {
 	const abs = join(root, rel);
 	for (const name of topLevelNames(abs)) {
-		if (ALLOWLIST.has(name)) continue;
+		if (allowlist.has(name)) continue;
 		const files = nameToFiles.get(name) ?? new Set();
 		files.add(rel);
 		nameToFiles.set(name, files);
@@ -80,7 +78,8 @@ if (dupes.length === 0) {
 
 console.log(
 	`inline-dupes: ${dupes.length} name(s) declared in multiple files.\n` +
-		`Extract to a shared package and import, or allowlist with a WHY comment:\n`,
+		`Extract to a shared package and import — if several names recur together,\n` +
+		`pull them into one module with a shared TS type — or allowlist with a WHY comment:\n`,
 );
 for (const [name, files] of dupes) {
 	console.log(`  ${name}  (${files.size} files)`);

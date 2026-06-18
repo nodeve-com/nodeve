@@ -22,18 +22,9 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
+import { loadGate, tsSources } from '../lib/bin.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).reshape;
-const { paths, warn, verbose } = parseArgs(process.argv.slice(2));
-const ALLOWLIST = new Set(cfg.allowlist);
-
-function sourceFiles(): string[] {
-	const scope = paths.length > 0 ? paths : gitFiles(root, cfg.globs);
-	return scope.filter((f) => f.endsWith('.ts') && !/\.(d|test|spec|test-d)\.ts$/.test(f));
-}
+const { root, cfg, paths, warn, verbose, allowlist } = await loadGate('reshape');
 
 /** Strip `!` and parens so `item.href!` reads as the bare property access. */
 function unwrap(node: ts.Expression): ts.Expression {
@@ -134,13 +125,13 @@ function classify(
 type Finding = { rel: string; line: number; kind: Kind; keys: string };
 const findings: Finding[] = [];
 
-for (const rel of sourceFiles()) {
+for (const rel of tsSources(root, cfg.globs, paths)) {
 	const abs = join(root, rel);
 	const src = ts.createSourceFile(abs, readFileSync(abs, 'utf8'), ts.ScriptTarget.Latest, true);
 	const visit = (node: ts.Node): void => {
 		if (ts.isArrowFunction(node) || ts.isFunctionExpression(node)) {
 			const hit = classify(node);
-			if (hit && !ALLOWLIST.has(`${rel}::${hit.kind}::${hit.keys}`)) {
+			if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
 				const { line } = src.getLineAndCharacterOfPosition(node.getStart());
 				findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
 			}

@@ -18,13 +18,9 @@ import { identifierSimilarity } from '@nodeve/text/similarity';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
+import { loadGate, tsSources } from '../lib/bin.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).helperCollisions;
-const { paths, warn, verbose } = parseArgs(process.argv.slice(2));
-const ALLOWLIST = new Set(cfg.allowlist);
+const { root, cfg, paths, warn, verbose, allowlist } = await loadGate('helperCollisions');
 
 type LibFn = { lib: string; name: string };
 
@@ -35,11 +31,6 @@ function loadLibIndex(): LibFn[] {
 	if (!existsSync(path)) return [];
 	const { names } = JSON.parse(readFileSync(path, 'utf8')) as { names: Record<string, string[]> };
 	return Object.entries(names).flatMap(([lib, list]) => list.map((name) => ({ lib, name })));
-}
-
-function sourceFiles(): string[] {
-	const scope = paths.length > 0 ? paths : gitFiles(root, cfg.globs);
-	return scope.filter((f) => f.endsWith('.ts') && !/\.(d|test|spec)\.ts$/.test(f));
 }
 
 /** Top-level `function` / arrow-const declaration names in a source file. */
@@ -75,23 +66,23 @@ function bestMatch(name: string, libIndex: LibFn[]): { lib: LibFn; score: number
 }
 
 const libIndex = loadLibIndex();
-type Finding = { name: string; lib: LibFn; score: number; files: Set<string> };
-const findings = new Map<string, Finding>();
+type Collision = { name: string; lib: LibFn; score: number; files: Set<string> };
+const collisions = new Map<string, Collision>();
 
-for (const rel of sourceFiles()) {
+for (const rel of tsSources(root, cfg.globs, paths)) {
 	const abs = join(root, rel);
 	for (const name of declaredFunctionNames(abs)) {
 		const m = bestMatch(name, libIndex);
 		if (!m) continue;
 		const pairKey = `${name}→${m.lib.name}`;
-		if (ALLOWLIST.has(`${rel}::${pairKey}`)) continue;
-		const found = findings.get(pairKey) ?? { name, lib: m.lib, score: m.score, files: new Set() };
+		if (allowlist.has(`${rel}::${pairKey}`)) continue;
+		const found = collisions.get(pairKey) ?? { name, lib: m.lib, score: m.score, files: new Set() };
 		found.files.add(rel);
-		findings.set(pairKey, found);
+		collisions.set(pairKey, found);
 	}
 }
 
-const sorted = [...findings.values()].sort((a, b) => b.score - a.score);
+const sorted = [...collisions.values()].sort((a, b) => b.score - a.score);
 if (sorted.length === 0) {
 	if (verbose) console.log(`helper-collisions: clean (${libIndex.length} lib fns checked)`);
 	process.exit(0);

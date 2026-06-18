@@ -20,12 +20,11 @@
 import { getEncoding } from 'js-tiktoken';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { loadConfig, parseArgs, type Budget } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
+import { type Budget } from '../lib/config.js';
+import { gitFiles } from '../lib/repo.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).docTokens;
-const { paths, report } = parseArgs(process.argv.slice(2));
+const { root, cfg, paths, report } = await loadGate('docTokens');
 
 const DEFAULT: Budget = { maxLines: cfg.maxLines, maxTokens: cfg.maxTokens };
 const enc = getEncoding('o200k_base');
@@ -57,24 +56,24 @@ function formatRow({ path, lines, tokens, limit }: Measured): string {
 }
 
 const scope = paths.length > 0 ? paths : gitFiles(root, cfg.enforce);
-const offenders = scope
+const oversized = scope
 	.map(measure)
 	.filter(overBudget)
 	.sort((a, b) => b.tokens - a.tokens);
 
 if (report) {
 	console.log(
-		`Doc-size backlog (limit ${DEFAULT.maxLines}L / ${DEFAULT.maxTokens}T) — ${offenders.length} over:`,
+		`Doc-size backlog (limit ${DEFAULT.maxLines}L / ${DEFAULT.maxTokens}T) — ${oversized.length} over:`,
 	);
-	for (const o of offenders) console.log(formatRow(o));
+	for (const o of oversized) console.log(formatRow(o));
 	process.exit(0);
 }
 
-if (offenders.length > 0) {
+if (oversized.length > 0) {
 	console.error(
 		`\n✖ markdown over budget (${DEFAULT.maxLines} lines / ${DEFAULT.maxTokens} tokens) — split into a dir with an index:\n`,
 	);
-	for (const o of offenders) console.error(formatRow(o));
+	for (const o of oversized) console.error(formatRow(o));
 	console.error('');
 	process.exit(1);
 }

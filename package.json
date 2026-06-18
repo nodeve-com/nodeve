@@ -13,7 +13,12 @@
     "lint": "pnpm -r --if-present lint",
     "typecheck": "pnpm -r --if-present typecheck",
     "clean": "pnpm -r --if-present clean",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "check": "pnpm check:docs && pnpm check:reshape && pnpm check:catalog && pnpm check:require-deps",
+    "check:docs": "nodeve-check-doc-tokens",
+    "check:reshape": "nodeve-check-reshape",
+    "check:catalog": "nodeve-check-catalog",
+    "check:require-deps": "nodeve-check-require-deps"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",

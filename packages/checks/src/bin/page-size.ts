@@ -13,12 +13,10 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
+import { gitFiles } from '../lib/repo.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).pageSize;
-const { paths } = parseArgs(process.argv.slice(2));
+const { root, cfg, paths } = await loadGate('pageSize');
 
 if (cfg.rules.length === 0) process.exit(0);
 

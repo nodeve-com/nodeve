@@ -13,11 +13,9 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
-import { loadConfig } from '../lib/config.js';
-import { repoRoot } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).helperCollisions;
+const { root, cfg } = await loadGate('helperCollisions');
 const output = join(root, cfg.libNamesPath);
 
 const names: Record<string, string[]> = {};

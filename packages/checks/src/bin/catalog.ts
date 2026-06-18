@@ -22,12 +22,10 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { loadConfig, parseArgs } from '../lib/config.js';
-import { type Catalog, readWorkspace, repoRoot, workspaceManifests } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
+import { type Catalog, readWorkspace, workspaceManifests } from '../lib/repo.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).catalog;
-const { verbose } = parseArgs(process.argv.slice(2));
+const { root, cfg, verbose } = await loadGate('catalog');
 
 if (!cfg.enforce) process.exit(0);
 

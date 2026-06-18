@@ -17,11 +17,9 @@ import { trimText } from '@nodeve/text/trim';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import ts from 'typescript';
-import { loadConfig } from '../lib/config.js';
-import { repoRoot } from '../lib/repo.js';
+import { loadGate } from '../lib/bin.js';
 
-const root = repoRoot();
-const cfg = (await loadConfig(root)).helperManifest;
+const { root, cfg } = await loadGate('helperManifest');
 
 if (cfg.packages.length === 0) process.exit(0);
 

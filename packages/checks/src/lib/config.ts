@@ -113,7 +113,7 @@ export const DEFAULTS: Config = {
 		allowlist: [],
 	},
 	inlineDupes: {
-		globs: ['apps/*.ts'],
+		globs: ['apps/*.ts', 'packages/*.ts'],
 		allowlist: [],
 	},
 	helperCollisions: {
