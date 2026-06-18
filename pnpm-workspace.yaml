@@ -1,2 +1,5 @@
 packages:
   - "packages/*"
+# esbuild (via vitest) ships a postinstall; allow it to build its native binary.
+onlyBuiltDependencies:
+  - esbuild

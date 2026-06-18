@@ -1,0 +1,12 @@
+{
+  "extends": "@nodeve/config/tsconfig",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    // Ported algorithmic code (DL matrix) indexes provably-in-bounds; the shared
+    // config turns this on, but asserting every access would only add noise here.
+    "noUncheckedIndexedAccess": false
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}

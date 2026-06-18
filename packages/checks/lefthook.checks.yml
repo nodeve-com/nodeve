@@ -1,0 +1,38 @@
+# Shared nodeve commit-gate checks, consumed via lefthook's `extends`:
+#
+#   # lefthook.yml (consumer repo)
+#   extends:
+#     - node_modules/@nodeve/checks/lefthook.checks.yml
+#
+# Each job shells a published bin via its node_modules/.bin path — portable across
+# pnpm and bun, and resolvable since lefthook runs from the repo root (lefthook
+# does NOT add node_modules/.bin to PATH). Bins read the repo's optional
+# `nodeve.checks.js` for budgets/globs/allowlists and derive the repo root from
+# git, so they behave the same whatever cwd lefthook uses.
+#
+# `{staged_files}` scopes path-aware checks to what's being committed; the dup
+# job scans its full configured scope because a duplicate is a property of the
+# whole tree, not one file. Bypass with `git commit --no-verify`. Run a single
+# check by hand any time, e.g. `node_modules/.bin/nodeve-check-doc-tokens --report`.
+pre-commit:
+  parallel: true
+  jobs:
+    - name: doc-tokens
+      glob: "*.md"
+      run: node_modules/.bin/nodeve-check-doc-tokens {staged_files}
+
+    - name: reshape
+      glob: "*.ts"
+      run: node_modules/.bin/nodeve-check-reshape {staged_files}
+
+    - name: page-size
+      run: node_modules/.bin/nodeve-check-page-size {staged_files}
+
+    # Whole-tree relationships — scan the full configured scope, not just staged.
+    - name: inline-dupes
+      glob: "*.ts"
+      run: node_modules/.bin/nodeve-check-inline-dupes
+
+    - name: helper-collisions
+      glob: "*.ts"
+      run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}

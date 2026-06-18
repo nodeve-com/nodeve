@@ -1,16 +1,7 @@
-# Git hooks via lefthook. Currently a no-op stub — hooks are wired but do nothing.
-# Fill in real commands (lint, typecheck, test) when ready, e.g.:
+# Git hooks via lefthook. Activate once per clone with `lefthook install` (the
+# root `prepare` script does this on install). Bypass with `git commit --no-verify`.
 #
-# pre-commit:
-#   parallel: true
-#   commands:
-#     lint:
-#       glob: "*.{ts,js,json}"
-#       run: pnpm lint
-#     typecheck:
-#       run: pnpm typecheck
-
-pre-commit:
-  commands:
-    noop:
-      run: 'true'
+# The pre-commit gate is the shared @nodeve/checks config — the same checks every
+# org repo runs. Per-repo budgets/globs/allowlists live in `nodeve.checks.js`.
+extends:
+  - node_modules/@nodeve/checks/lefthook.checks.yml

@@ -1,0 +1,37 @@
+{
+  "name": "@nodeve/text",
+  "version": "0.1.0",
+  "description": "Small, dependency-free text utilities shared across nodeve tooling: fuzzy identifier matching and boundary-aware trimming.",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./damerau-levenshtein": {
+      "types": "./dist/damerau-levenshtein.d.ts",
+      "default": "./dist/damerau-levenshtein.js"
+    },
+    "./similarity": {
+      "types": "./dist/similarity.d.ts",
+      "default": "./dist/similarity.js"
+    },
+    "./trim": {
+      "types": "./dist/trim.d.ts",
+      "default": "./dist/trim.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@nodeve/config": "workspace:*",
+    "typescript": "^5.5.0",
+    "vitest": "^3.0.0"
+  }
+}
