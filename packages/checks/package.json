@@ -1,6 +1,6 @@
 {
   "name": "@nodeve/checks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Org-wide commit-gate checks (doc budgets, reshape/dup/helper smells, page size) and helper-index generators, driven by a per-repo config file and wired through lefthook.",
   "type": "module",
   "publishConfig": {
