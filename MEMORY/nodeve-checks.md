@@ -40,6 +40,25 @@ See [[nodeve-ecosystem]].
 `lefthook.yml`. Jobs invoke bins via the `node_modules/.bin/<name>` path
 (portable across pnpm AND bun; lefthook does NOT add node_modules/.bin to PATH).
 
+**As of @nodeve/checks 0.1.1 the shared file wraps all bins in a pre-commit job
+group named `checks`** (was: top-level `parallel: true` jobs). This is the
+integration seam: lefthook MERGES same-named group jobs, so a consumer whose own
+`lefthook.yml` already has a `checks` group (e.g. familiar runs index-mutating
+fixers piped first, then a parallel `checks` group with typecheck/test) gets the
+shared bins merged INTO that group from the one `extends` line — fixers stay
+ahead, no piped/parallel conflict. The OLD 0.1.0 top-level form merged the bins
+OUTSIDE the consumer's group and set BOTH parallel+piped (broken for piped gates);
+verify any consumer is on >=0.1.1. A repo with no `checks` group just gets the
+group as-is. Confirm the merged result with `lefthook dump`.
+
+**familiar adopted this (0.1.1):** single `extends` line; its old
+`scripts/guard-catalog.ts` + `guard-catalog` npm script deleted (the shared
+`catalog` bin replaces them — note that bin scans only workspace-MEMBER manifests,
+not the repo-root package.json, so root literal pins like `@nodeve/config` are not
+gated). Its repo-root `nodeve.checks.js` starts narrow: docTokens.enforce scoped
+to `CLAUDE.md` only, `.ts` check globs add `:!apps/nori/**` (nori is outside the
+bun workspace), helper-collisions no-ops until `.nodeve/lib-names.json` is built.
+
 **Gotchas:** inline-dupes/helper-collisions are `apps/`-scoped by design — don't
 point them at a CLI tool package's parallel bins (false positives on `root`,
 `cfg`, `sourceFiles`). nodeve dogfoods only doc-tokens + reshape for that reason.

@@ -1,8 +1,17 @@
-# Shared nodeve commit-gate checks, consumed via lefthook's `extends`:
+# Shared nodeve commit-gate checks, consumed with a single line from a consumer's
+# lefthook.yml:
 #
 #   # lefthook.yml (consumer repo)
 #   extends:
 #     - node_modules/@nodeve/checks/lefthook.checks.yml
+#
+# The checks live inside a pre-commit job named `checks` (a parallel group). That
+# name is the integration seam: lefthook merges same-named group jobs, so a repo
+# that already has its own `checks` group (e.g. to add a typecheck or test job, or
+# to run after index-mutating fixers) gets the shared bins merged INTO that group
+# rather than appended at the top level. A repo with no `checks` group just gets
+# this one as-is. Either way it's one `extends` line and all the standard checks
+# come along together.
 #
 # Each job shells a published bin via its node_modules/.bin path — portable across
 # pnpm and bun, and resolvable since lefthook runs from the repo root (lefthook
@@ -10,35 +19,39 @@
 # `nodeve.checks.js` for budgets/globs/allowlists and derive the repo root from
 # git, so they behave the same whatever cwd lefthook uses.
 #
-# `{staged_files}` scopes path-aware checks to what's being committed; the dup
-# job scans its full configured scope because a duplicate is a property of the
-# whole tree, not one file. Bypass with `git commit --no-verify`. Run a single
-# check by hand any time, e.g. `node_modules/.bin/nodeve-check-doc-tokens --report`.
+# `{staged_files}` scopes path-aware checks to what's being committed; the dup and
+# catalog jobs scan their full configured scope because a duplicate (or an
+# un-cataloged pin) is a property of the whole tree, not one file. Bypass with
+# `git commit --no-verify`. Run a single check by hand any time, e.g.
+# `node_modules/.bin/nodeve-check-doc-tokens --report`.
 pre-commit:
-  parallel: true
   jobs:
-    - name: doc-tokens
-      glob: "*.md"
-      run: node_modules/.bin/nodeve-check-doc-tokens {staged_files}
+    - name: checks
+      group:
+        parallel: true
+        jobs:
+          - name: doc-tokens
+            glob: "*.md"
+            run: node_modules/.bin/nodeve-check-doc-tokens {staged_files}
 
-    - name: reshape
-      glob: "*.ts"
-      run: node_modules/.bin/nodeve-check-reshape {staged_files}
+          - name: reshape
+            glob: "*.ts"
+            run: node_modules/.bin/nodeve-check-reshape {staged_files}
 
-    - name: page-size
-      run: node_modules/.bin/nodeve-check-page-size {staged_files}
+          - name: page-size
+            run: node_modules/.bin/nodeve-check-page-size {staged_files}
 
-    # Whole-tree property — every manifest's deps must single-source from a
-    # catalog. No-ops on repos without one, so it's safe to always run.
-    - name: catalog
-      glob: "**/package.json"
-      run: node_modules/.bin/nodeve-check-catalog
+          # Whole-tree property — every manifest's deps must single-source from a
+          # catalog. No-ops on repos without one, so it's safe to always run.
+          - name: catalog
+            glob: "**/package.json"
+            run: node_modules/.bin/nodeve-check-catalog
 
-    # Whole-tree relationships — scan the full configured scope, not just staged.
-    - name: inline-dupes
-      glob: "*.ts"
-      run: node_modules/.bin/nodeve-check-inline-dupes
+          # Whole-tree relationships — scan the full configured scope, not just staged.
+          - name: inline-dupes
+            glob: "*.ts"
+            run: node_modules/.bin/nodeve-check-inline-dupes
 
-    - name: helper-collisions
-      glob: "*.ts"
-      run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}
+          - name: helper-collisions
+            glob: "*.ts"
+            run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}
