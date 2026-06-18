@@ -24,6 +24,14 @@ export default {
 		rules: [{ glob: '*+page.svelte', maxLines: 280 }],
 	},
 
+	// TS line budget (default ON: warn >225, fail >300 across apps/ + packages/).
+	// Override the thresholds, or allowlist files that are one responsibility but
+	// legitimately long (the allowlist array REPLACES the default — restate all):
+	fileSize: {
+		maxLines: 350,
+		allowlist: ['packages/foo/src/schema.ts'], // WHY: single zod schema
+	},
+
 	// Deliberately opt a repo out of the (default-on) catalog gate:
 	catalog: { enforce: false },
 

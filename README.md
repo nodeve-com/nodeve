@@ -1,6 +1,6 @@
 # nodeve
 
-Org-scoped npm packages, published publicly.
+Org-scoped npm packages, published publicly. The packages live in `packages/` — start there.
 
 ## Toolchain
 

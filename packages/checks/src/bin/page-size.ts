@@ -11,20 +11,12 @@
  * `{staged_files}`) to scope; a path is checked under every rule whose glob it
  * would match via `git ls-files`.
  */
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { loadGate } from '../lib/bin.js';
-import { gitFiles } from '../lib/repo.js';
+import { gitFiles, lineCount } from '../lib/repo.js';
 
 const { root, cfg, paths } = await loadGate('pageSize');
 
 if (cfg.rules.length === 0) process.exit(0);
-
-function lineCount(path: string): number {
-	// Matches `wc -l`; prettier-formatted files end with a trailing newline,
-	// so this equals the editor's visible line count.
-	return readFileSync(join(root, path), 'utf8').split('\n').length - 1;
-}
 
 type Offender = { path: string; lines: number; max: number };
 const offenders: Offender[] = [];
@@ -39,7 +31,7 @@ for (const rule of cfg.rules) {
 		const key = `${path}::${rule.maxLines}`;
 		if (seen.has(key)) continue;
 		seen.add(key);
-		const lines = lineCount(path);
+		const lines = lineCount(root, path);
 		if (lines > rule.maxLines) offenders.push({ path, lines, max: rule.maxLines });
 	}
 }

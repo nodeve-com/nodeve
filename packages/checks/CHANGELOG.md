@@ -1,5 +1,15 @@
 # @nodeve/checks
 
+## 0.4.0
+
+### Minor Changes
+
+- Add the `file-size` check (on by default): TS sources in `apps/` and `packages/` get a line budget — a non-blocking nudge past 225 lines, a hard fail past 300. Size is the cheapest proxy for a file that has taken on more than one job; the failure message reframes it as a step-back (name the distinct responsibilities, give each its own module, group related files in a directory without adding call-site friction) rather than a mechanical "split." Unlike the other `.ts` checks it does not auto-skip tests or `.d.ts` — a long file is a long file; genuinely single-responsibility files that run long (a schema, a lookup table, a table-driven test) go in `fileSize.allowlist`. Tune per repo via `fileSize: { warnLines, maxLines, globs, allowlist }`.
+
+  Note for existing consumers: a repo with TS files over 300 lines in `apps/`/`packages/` will newly fail the commit gate until they're split, allowlisted, or the budget is raised.
+
+  Internal: extracted the helper-manifest generator's source-parsing layer into `lib/manifest-ast.ts`, dogfooding the new budget.
+
 ## 0.3.0
 
 ### Minor Changes

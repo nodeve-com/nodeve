@@ -55,6 +55,21 @@ export type PageSizeConfig = {
 };
 
 /**
+ * On by default: a line budget for TS sources in `apps/`/`packages/`. Over
+ * `warnLines` is a non-blocking nudge; over `maxLines` blocks the commit. Unlike
+ * `pageSize` this scans ALL `.ts` in scope (tests and `.d.ts` included) — long
+ * files that are genuinely one responsibility go in `allowlist`. Set a generous
+ * `maxLines` (or list no globs) to effectively opt out.
+ */
+export type FileSizeConfig = {
+	globs: string[];
+	warnLines: number;
+	maxLines: number;
+	/** Repo-root-relative paths exempt from the budget (each with a WHY comment). */
+	allowlist: string[];
+};
+
+/**
  * Opt-in: every dependency version must be single-sourced from a workspace
  * catalog — no literal version pins in workspace packages. Works with both
  * pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in the root
@@ -96,6 +111,7 @@ export type Config = {
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;
 	pageSize: PageSizeConfig;
+	fileSize: FileSizeConfig;
 	catalog: CatalogConfig;
 	requireDeps: RequireDepsConfig;
 	helperManifest: HelperManifestConfig;
@@ -125,6 +141,13 @@ export const DEFAULTS: Config = {
 	},
 	// Opt-in: empty rules → no-op until a repo declares its own.
 	pageSize: { rules: [] },
+	// On by default: warn past 225 lines, block past 300 (override per repo).
+	fileSize: {
+		globs: ['apps/*.ts', 'packages/*.ts'],
+		warnLines: 225,
+		maxLines: 300,
+		allowlist: [],
+	},
 	// On by default: a workspace must declare a catalog (set enforce:false to opt out).
 	catalog: { enforce: true, allowlist: [] },
 	// On by default: the workspace catalog must define remeda (set deps:[] to opt out).

@@ -23,6 +23,15 @@ export function gitFiles(root: string, globs: string[]): string[] {
 	return out.split('\n').filter(Boolean);
 }
 
+/**
+ * Visible line count of a repo-root-relative file — matches `wc -l` and the
+ * editor's line count, since prettier writes a trailing newline so the final
+ * split segment is empty. Shared by the line-budget gates.
+ */
+export function lineCount(root: string, path: string): number {
+	return readFileSync(join(root, path), 'utf8').split('\n').length - 1;
+}
+
 export type Catalog = Record<string, string>;
 export type Workspace = {
 	packages: string[];

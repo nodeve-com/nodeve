@@ -36,6 +36,7 @@ fall back to org defaults. See the example for the full shape.
 | `nodeve-check-inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`, `packages/`) |
 | `nodeve-check-helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
 | `nodeve-check-page-size` | files over a per-glob line budget | **opt-in** (no rules → no-op) |
+| `nodeve-check-file-size` | TS sources over a line budget (warn >225, fail >300) | on (`apps/`, `packages/`) |
 | `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
 | `nodeve-check-require-deps` | org-required deps missing from the workspace catalog | on (`remeda`; set `deps: []` to opt out) |
 
