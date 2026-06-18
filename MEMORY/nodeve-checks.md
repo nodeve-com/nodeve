@@ -25,10 +25,15 @@ See [[nodeve-ecosystem]].
     workspace catalog (no literal pins; `workspace:`/`link:`/`file:` exempt).
     One bin handles BOTH layouts — pnpm (`pnpm-workspace.yaml` catalog/catalogs)
     and bun (`package.json#workspaces`) — auto-detecting which the repo uses.
-    Opt-OUT (`catalog.enforce`, default true) but no-ops when the workspace
-    defines no catalog, so non-catalog repos (incl. nodeve itself) aren't flagged.
-    Needs the `yaml` dep. familiar's other two guards (grimoire-agnostic,
-    interval-naming) are grimoire-specific prose guards, NOT ported.
+    Default-on; a workspace is REQUIRED to declare a catalog — no catalog at all
+    FAILS the gate (alignment is the point). `catalog.enforce: false` is the only
+    deliberate opt-out. Checks deps, devDeps AND peerDependencies. Needs `yaml` dep.
+    nodeve dogfoods it: pnpm-workspace.yaml now carries a `catalog:` and all three
+    packages (incl. @nodeve/config's peers) reference `catalog:`; pnpm rewrites
+    catalog:/workspace: to concrete versions at publish. familiar's other two
+    guards (grimoire-agnostic, interval-naming) are grimoire-specific, NOT ported.
+    NOTE: pnpm 11.4 migrated `onlyBuiltDependencies` → `allowBuilds: { esbuild: true }`
+    in pnpm-workspace.yaml (an undecided placeholder → ERR_PNPM_IGNORED_BUILDS).
 
 **Wiring is lefthook, not the old bash gate.** Consumers add
 `extends: [node_modules/@nodeve/checks/lefthook.checks.yml]` to their

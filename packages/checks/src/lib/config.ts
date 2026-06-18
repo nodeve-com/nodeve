@@ -61,9 +61,8 @@ export type PageSizeConfig = {
  */
 export type CatalogConfig = {
 	/**
-	 * Master switch (default `true`). The check still no-ops when the workspace
-	 * defines no catalog, so non-catalog repos aren't flagged — set this `false`
-	 * to opt a catalog-using repo out entirely.
+	 * Master switch (default `true`). A workspace with no catalog at all FAILS —
+	 * declaring one is mandatory. Set this `false` to deliberately opt a repo out.
 	 */
 	enforce: boolean;
 	/** `manifest::name` entries — confirmed exceptions allowed to pin literally. */
@@ -112,7 +111,7 @@ export const DEFAULTS: Config = {
 	},
 	// Opt-in: empty rules → no-op until a repo declares its own.
 	pageSize: { rules: [] },
-	// Opt-out: on by default, but no-ops on repos without a catalog.
+	// On by default: a workspace must declare a catalog (set enforce:false to opt out).
 	catalog: { enforce: true, allowlist: [] },
 	// Opt-in: no packages → no-op.
 	helperManifest: { packages: [], output: '.nodeve/helper-manifest.txt' },

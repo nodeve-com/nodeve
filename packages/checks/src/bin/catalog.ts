@@ -16,9 +16,9 @@
  * in the root `package.json#workspaces` (Bun). This auto-detects whichever the
  * repo uses, so it gates familiar (bun), nodeve, and platform (pnpm) alike.
  *
- * On by default (opt-out): no-ops on repos that define no catalog, so it only
- * gates where catalogs are actually in use. Set `catalog.enforce: false` in
- * nodeve.checks.js to disable it for a catalog-using repo.
+ * On by default. A workspace is REQUIRED to declare a catalog — a workspace with
+ * no catalog at all fails, since the whole point is keeping versions aligned.
+ * Set `catalog.enforce: false` in nodeve.checks.js to deliberately opt a repo out.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -76,11 +76,19 @@ if (!ws) {
 	process.exit(0);
 }
 
-// Opt-out semantics: a repo with no catalog at all isn't trying to single-source
-// versions, so don't flag its literal pins. Only gate once a catalog exists.
+// A workspace must declare a catalog — alignment is the point, so "no catalog"
+// is itself a failure, not a free pass. Opt a repo out deliberately with
+// `catalog.enforce: false` rather than by omitting the catalog.
 if (Object.keys(ws.catalog).length === 0 && Object.keys(ws.catalogs).length === 0) {
-	if (verbose) console.log('catalog: no catalog defined in the workspace — nothing to enforce');
-	process.exit(0);
+	console.error(
+		'\n✖ this workspace declares no catalog.\n\n' +
+			'  Every workspace must single-source its dependency versions through a\n' +
+			'  catalog. Add a `catalog:` block to pnpm-workspace.yaml (or\n' +
+			'  `workspaces.catalog` in package.json for Bun), move your versions into\n' +
+			'  it, and reference them with "catalog:".\n\n' +
+			'  To deliberately opt out, set `catalog: { enforce: false }` in nodeve.checks.js.\n',
+	);
+	process.exit(1);
 }
 
 // Mirror the workspace globs (their `*` matches `/` in git pathspecs, same as

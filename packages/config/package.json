@@ -16,10 +16,10 @@
     "./prettier/base": "./prettier/base.js"
   },
   "peerDependencies": {
-    "prettier": ">=3.0.0",
-    "prettier-plugin-svelte": ">=3.5.1",
-    "prettier-plugin-tailwindcss": ">=0.7.2",
-    "typescript": ">=5.5.0"
+    "prettier": "catalog:",
+    "prettier-plugin-svelte": "catalog:",
+    "prettier-plugin-tailwindcss": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependenciesMeta": {
     "prettier-plugin-svelte": {

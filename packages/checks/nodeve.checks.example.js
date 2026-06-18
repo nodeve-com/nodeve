@@ -45,9 +45,10 @@ export default {
 		],
 	},
 
-	// On by default; no-ops on repos without a catalog. Every dependency must
-	// single-source its version through a workspace catalog (pnpm-workspace.yaml
-	// or package.json#workspaces) — no literal pins.
+	// On by default. Every workspace MUST declare a catalog (pnpm-workspace.yaml
+	// or package.json#workspaces), and every dependency — deps, devDeps, peers —
+	// must reference it via `catalog:` rather than a literal pin. A repo with no
+	// catalog fails. Set `enforce: false` to deliberately opt out.
 	catalog: {
 		enforce: true,
 		// `manifest::name` — confirmed exceptions allowed to pin literally.

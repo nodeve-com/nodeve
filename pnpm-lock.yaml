@@ -4,6 +4,33 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/node':
+      specifier: ^22.0.0
+      version: 22.19.21
+    js-tiktoken:
+      specifier: ^1.0.0
+      version: 1.0.21
+    prettier:
+      specifier: ^3.0.0
+      version: 3.8.4
+    prettier-plugin-svelte:
+      specifier: ^3.5.1
+      version: 3.5.2
+    prettier-plugin-tailwindcss:
+      specifier: ^0.7.2
+      version: 0.7.4
+    typescript:
+      specifier: ^5.5.0
+      version: 5.9.3
+    vitest:
+      specifier: ^3.0.0
+      version: 3.2.6
+    yaml:
+      specifier: ^2.5.0
+      version: 2.9.0
+
 importers:
 
   .:
@@ -30,35 +57,35 @@ importers:
         specifier: workspace:*
         version: link:../text
       js-tiktoken:
-        specifier: ^1.0.0
+        specifier: 'catalog:'
         version: 1.0.21
       typescript:
-        specifier: ^5.5.0
+        specifier: 'catalog:'
         version: 5.9.3
       yaml:
-        specifier: ^2.5.0
+        specifier: 'catalog:'
         version: 2.9.0
     devDependencies:
       '@nodeve/config':
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: ^22.0.0
+        specifier: 'catalog:'
         version: 22.19.21
 
   packages/config:
     dependencies:
       prettier:
-        specifier: '>=3.0.0'
+        specifier: 'catalog:'
         version: 3.8.4
       prettier-plugin-svelte:
-        specifier: '>=3.5.1'
-        version: 4.1.1(prettier@3.8.4)(svelte@5.56.3)
+        specifier: 'catalog:'
+        version: 3.5.2(prettier@3.8.4)(svelte@5.56.3)
       prettier-plugin-tailwindcss:
-        specifier: '>=0.7.2'
-        version: 0.8.0(prettier-plugin-svelte@4.1.1(prettier@3.8.4)(svelte@5.56.3))(prettier@3.8.4)
+        specifier: 'catalog:'
+        version: 0.7.4(prettier-plugin-svelte@3.5.2(prettier@3.8.4)(svelte@5.56.3))(prettier@3.8.4)
       typescript:
-        specifier: '>=5.5.0'
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/text:
@@ -67,10 +94,10 @@ importers:
         specifier: workspace:*
         version: link:../config
       typescript:
-        specifier: ^5.5.0
+        specifier: 'catalog:'
         version: 5.9.3
       vitest:
-        specifier: ^3.0.0
+        specifier: 'catalog:'
         version: 3.2.6(@types/node@22.19.21)(yaml@2.9.0)
 
 packages:
@@ -857,15 +884,14 @@ packages:
     resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier-plugin-svelte@4.1.1:
-    resolution: {integrity: sha512-wXvbXMjSvb4C9ENWTHXyd+ihakKCsJ6rJhLP6/8HFNj4GkZr48jqL9PoKsl2sk7SyCZRTnJ7O2TTowUpOxP/KA==}
-    engines: {node: '>=20'}
+  prettier-plugin-svelte@3.5.2:
+    resolution: {integrity: sha512-ItFouLvzSFE3ulNl4DKoWM3BGcbDCNVpIyy/Y3F2gC3aNiGLxtFUdffVqO5Z5hhYG+DFT5KULWaxmeFFpdbvaQ==}
     peerDependencies:
       prettier: ^3.0.0
-      svelte: ^5.0.0
+      svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
 
-  prettier-plugin-tailwindcss@0.8.0:
-    resolution: {integrity: sha512-V8ITGH87yuBDF6JpEZTOVlUz/saAwqb8f3HRgUj8Lh+tGCcrmorhsLpYqzygwFwK0PE2Ib6Mv3M7T/uE2tZV1g==}
+  prettier-plugin-tailwindcss@0.7.4:
+    resolution: {integrity: sha512-UKii4RjY05SNt/WQi6/NcOn/LsT0/ILLXsxygjbRg5/YZelsSu5jTqorYHPDGq4nZy5q5hpCu+XdGZ1xaJEQgw==}
     engines: {node: '>=20.19'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -1856,16 +1882,16 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier-plugin-svelte@4.1.1(prettier@3.8.4)(svelte@5.56.3):
+  prettier-plugin-svelte@3.5.2(prettier@3.8.4)(svelte@5.56.3):
     dependencies:
       prettier: 3.8.4
       svelte: 5.56.3
 
-  prettier-plugin-tailwindcss@0.8.0(prettier-plugin-svelte@4.1.1(prettier@3.8.4)(svelte@5.56.3))(prettier@3.8.4):
+  prettier-plugin-tailwindcss@0.7.4(prettier-plugin-svelte@3.5.2(prettier@3.8.4)(svelte@5.56.3))(prettier@3.8.4):
     dependencies:
       prettier: 3.8.4
     optionalDependencies:
-      prettier-plugin-svelte: 4.1.1(prettier@3.8.4)(svelte@5.56.3)
+      prettier-plugin-svelte: 3.5.2(prettier@3.8.4)(svelte@5.56.3)
 
   prettier@2.8.8: {}
 
