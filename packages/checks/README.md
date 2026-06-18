@@ -36,6 +36,12 @@ fall back to org defaults. See the example for the full shape.
 | `nodeve-check-inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`) |
 | `nodeve-check-helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
 | `nodeve-check-page-size` | files over a per-glob line budget | **opt-in** (no rules → no-op) |
+| `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (no-ops without a catalog) |
+
+`catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun
+(catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses,
+and no-ops on repos that define no catalog. Disable per repo with
+`catalog: { enforce: false }`.
 
 All blocking checks accept `--warn` (report-only, exit 0); `doc-tokens` accepts
 `--report` to list the whole backlog without failing. Pass explicit paths to

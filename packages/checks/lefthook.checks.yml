@@ -28,6 +28,12 @@ pre-commit:
     - name: page-size
       run: node_modules/.bin/nodeve-check-page-size {staged_files}
 
+    # Whole-tree property — every manifest's deps must single-source from a
+    # catalog. No-ops on repos without one, so it's safe to always run.
+    - name: catalog
+      glob: "**/package.json"
+      run: node_modules/.bin/nodeve-check-catalog
+
     # Whole-tree relationships — scan the full configured scope, not just staged.
     - name: inline-dupes
       glob: "*.ts"

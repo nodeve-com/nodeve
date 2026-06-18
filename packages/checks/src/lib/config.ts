@@ -53,6 +53,23 @@ export type PageSizeConfig = {
 	rules: { glob: string; maxLines: number }[];
 };
 
+/**
+ * Opt-in: every dependency version must be single-sourced from a workspace
+ * catalog — no literal version pins in workspace packages. Works with both
+ * pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in the root
+ * `package.json#workspaces`); the check auto-detects whichever the repo uses.
+ */
+export type CatalogConfig = {
+	/**
+	 * Master switch (default `true`). The check still no-ops when the workspace
+	 * defines no catalog, so non-catalog repos aren't flagged — set this `false`
+	 * to opt a catalog-using repo out entirely.
+	 */
+	enforce: boolean;
+	/** `manifest::name` entries — confirmed exceptions allowed to pin literally. */
+	allowlist: string[];
+};
+
 /** Opt-in: index the public export surface of the listed packages. */
 export type HelperManifestConfig = {
 	/** Repo-root-relative package dirs to scan (each must have a package.json `exports`). */
@@ -67,6 +84,7 @@ export type Config = {
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;
 	pageSize: PageSizeConfig;
+	catalog: CatalogConfig;
 	helperManifest: HelperManifestConfig;
 };
 
@@ -94,6 +112,8 @@ export const DEFAULTS: Config = {
 	},
 	// Opt-in: empty rules → no-op until a repo declares its own.
 	pageSize: { rules: [] },
+	// Opt-out: on by default, but no-ops on repos without a catalog.
+	catalog: { enforce: true, allowlist: [] },
 	// Opt-in: no packages → no-op.
 	helperManifest: { packages: [], output: '.nodeve/helper-manifest.txt' },
 };
@@ -115,6 +135,7 @@ export async function loadConfig(root: string): Promise<Config> {
 			inlineDupes: { ...DEFAULTS.inlineDupes, ...user.inlineDupes },
 			helperCollisions: { ...DEFAULTS.helperCollisions, ...user.helperCollisions },
 			pageSize: { ...DEFAULTS.pageSize, ...user.pageSize },
+			catalog: { ...DEFAULTS.catalog, ...user.catalog },
 			helperManifest: { ...DEFAULTS.helperManifest, ...user.helperManifest },
 		};
 	}

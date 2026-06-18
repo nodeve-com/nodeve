@@ -24,6 +24,7 @@
     "nodeve-check-inline-dupes": "./dist/bin/inline-dupes.js",
     "nodeve-check-helper-collisions": "./dist/bin/helper-collisions.js",
     "nodeve-check-page-size": "./dist/bin/page-size.js",
+    "nodeve-check-catalog": "./dist/bin/catalog.js",
     "nodeve-build-lib-names": "./dist/bin/build-lib-names.js",
     "nodeve-build-helper-manifest": "./dist/bin/build-helper-manifest.js"
   },
@@ -35,7 +36,8 @@
   "dependencies": {
     "@nodeve/text": "workspace:*",
     "js-tiktoken": "^1.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "yaml": "^2.5.0"
   },
   "devDependencies": {
     "@nodeve/config": "workspace:*",

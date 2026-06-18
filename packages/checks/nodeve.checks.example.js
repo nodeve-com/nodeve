@@ -45,6 +45,15 @@ export default {
 		],
 	},
 
+	// On by default; no-ops on repos without a catalog. Every dependency must
+	// single-source its version through a workspace catalog (pnpm-workspace.yaml
+	// or package.json#workspaces) — no literal pins.
+	catalog: {
+		enforce: true,
+		// `manifest::name` — confirmed exceptions allowed to pin literally.
+		allowlist: [],
+	},
+
 	// Opt-in: list package dirs to index their public export surface for grepping.
 	helperManifest: {
 		packages: [

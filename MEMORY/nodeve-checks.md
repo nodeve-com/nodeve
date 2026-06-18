@@ -20,6 +20,15 @@ See [[nodeve-ecosystem]].
   helper-collisions (always-on defaults); page-size + build-helper-manifest are
   opt-in (no-op until configured); build-lib-names generates the committed
   `.nodeve/lib-names.json` index helper-collisions matches against.
+  - **catalog** (`nodeve-check-catalog`) — ported from familiar's bun
+    `scripts/guard-catalog.ts`: every dep version must single-source through a
+    workspace catalog (no literal pins; `workspace:`/`link:`/`file:` exempt).
+    One bin handles BOTH layouts — pnpm (`pnpm-workspace.yaml` catalog/catalogs)
+    and bun (`package.json#workspaces`) — auto-detecting which the repo uses.
+    Opt-OUT (`catalog.enforce`, default true) but no-ops when the workspace
+    defines no catalog, so non-catalog repos (incl. nodeve itself) aren't flagged.
+    Needs the `yaml` dep. familiar's other two guards (grimoire-agnostic,
+    interval-naming) are grimoire-specific prose guards, NOT ported.
 
 **Wiring is lefthook, not the old bash gate.** Consumers add
 `extends: [node_modules/@nodeve/checks/lefthook.checks.yml]` to their
