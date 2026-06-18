@@ -20,49 +20,10 @@
  * no catalog at all fails, since the whole point is keeping versions aligned.
  * Set `catalog.enforce: false` in nodeve.checks.js to deliberately opt a repo out.
  */
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { loadConfig, parseArgs } from '../lib/config.js';
-import { gitFiles, repoRoot } from '../lib/repo.js';
-
-type Catalog = Record<string, string>;
-type Workspace = {
-	packages: string[];
-	catalog: Catalog;
-	catalogs: Record<string, Catalog>;
-};
-
-/**
- * Resolve the workspace definition from whichever manifest the repo uses:
- * `pnpm-workspace.yaml` (pnpm) takes precedence, else the root
- * `package.json#workspaces` (Bun, where `workspaces` may be a bare array of
- * globs or an object carrying the catalogs).
- */
-function readWorkspace(root: string): Workspace | null {
-	const pnpm = join(root, 'pnpm-workspace.yaml');
-	if (existsSync(pnpm)) {
-		const ws = parseYaml(readFileSync(pnpm, 'utf8')) ?? {};
-		return {
-			packages: ws.packages ?? [],
-			catalog: ws.catalog ?? {},
-			catalogs: ws.catalogs ?? {},
-		};
-	}
-	const pkgPath = join(root, 'package.json');
-	if (existsSync(pkgPath)) {
-		const ws = JSON.parse(readFileSync(pkgPath, 'utf8')).workspaces;
-		if (Array.isArray(ws)) return { packages: ws, catalog: {}, catalogs: {} };
-		if (ws && typeof ws === 'object') {
-			return {
-				packages: ws.packages ?? [],
-				catalog: ws.catalog ?? {},
-				catalogs: ws.catalogs ?? {},
-			};
-		}
-	}
-	return null;
-}
+import { type Catalog, readWorkspace, repoRoot, workspaceManifests } from '../lib/repo.js';
 
 const root = repoRoot();
 const cfg = (await loadConfig(root)).catalog;
@@ -91,21 +52,7 @@ if (Object.keys(ws.catalog).length === 0 && Object.keys(ws.catalogs).length === 
 	process.exit(1);
 }
 
-// Mirror the workspace globs (their `*` matches `/` in git pathspecs, same as
-// pnpm/bun resolution) and their `!` negations, so the guard sees exactly the
-// set the package manager installs — no more, no less.
-const positives = ws.packages.filter((p) => !p.startsWith('!'));
-const negatives = ws.packages
-	.filter((p) => p.startsWith('!'))
-	.map((p) => p.slice(1).replace(/\/\*+$/, ''));
-
-const manifests = gitFiles(
-	root,
-	positives.map((p) => `${p}/package.json`),
-).filter((manifest) => {
-	const dir = dirname(manifest);
-	return !negatives.some((n) => dir === n || dir.startsWith(n + '/'));
-});
+const manifests = workspaceManifests(root, ws);
 
 const DEP_FIELDS = [
 	'dependencies',

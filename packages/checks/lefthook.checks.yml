@@ -47,6 +47,12 @@ pre-commit:
             glob: "**/package.json"
             run: node_modules/.bin/nodeve-check-catalog
 
+          # Whole-tree property — the workspace catalog must define the org-required
+          # deps (remeda by default). No-ops where deps aren't configured.
+          - name: require-deps
+            glob: "{**/package.json,pnpm-workspace.yaml}"
+            run: node_modules/.bin/nodeve-check-require-deps
+
           # Whole-tree relationships — scan the full configured scope, not just staged.
           - name: inline-dupes
             glob: "*.ts"

@@ -11,8 +11,8 @@
  * and differs, so this is a stable *proxy* for budgeting, not an exact count —
  * good enough to catch bloat, consistent run-to-run.
  *
- * Scope: `docTokens.enforce` globs (default CLAUDE.md + guide/ + docs/) is what
- * the gate fails on. `--report` lists every over-budget file without failing —
+ * Scope: the `docTokens.enforce` pathspecs are what the gate fails on.
+ * `--report` lists every over-budget file without failing —
  * the backlog worklist. Pass explicit paths to check only those (lefthook
  * `{staged_files}`). Scoping is via `git ls-files` — gitignored paths are never
  * measured unless passed explicitly.

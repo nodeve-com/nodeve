@@ -1,65 +1,37 @@
-// Copy to your repo root as `nodeve.checks.js` and trim to taste. Every section
-// is optional — omitted keys fall back to the org defaults baked into
-// @nodeve/checks. Shown values ARE the defaults unless noted.
+// Copy to your repo root as `nodeve.checks.js` and keep ONLY what you change.
+// Every section is optional; omitted keys fall back to the org defaults baked
+// into @nodeve/checks (see the `Config` type / `DEFAULTS` in the package for the
+// authoritative values). The user config is deep-merged over those defaults:
+// nested records merge key-by-key, but ARRAYS REPLACE — so if you set an array
+// field (e.g. `docTokens.enforce`) you must restate the entries you want to keep,
+// not just the ones you're adding.
+//
+// The blocks below are illustrative overrides, not the defaults. Delete any you
+// don't need.
 export default {
+	// Widen the enforced doc set (this array REPLACES the default list — the
+	// default is CLAUDE.md + READMEs + guide/ + docs/, restated here plus adr/):
 	docTokens: {
-		maxLines: 150,
-		maxTokens: 3000,
-		// Globs the gate fails on (git pathspecs; `*` recurses).
-		enforce: ['CLAUDE.md', 'guide/*.md', 'docs/*.md'],
-		// Per-file budget overrides, keyed by repo-root-relative path.
+		enforce: ['CLAUDE.md', 'README.md', '*/README.md', 'guide/*.md', 'docs/*.md', 'adr/*.md'],
+		// Per-file budget bumps, keyed by repo-root-relative path (merges with defaults):
 		overrides: {
-			// 'CLAUDE.md': { maxTokens: 3500 },
+			'CLAUDE.md': { maxTokens: 3500 },
 		},
 	},
 
-	reshape: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
-		// `relPath::kind::keys` — confirmed boundaries where the identical-shape
-		// reshape IS the point (kind ∈ identity|spread-clone|projection|passthrough).
-		allowlist: [],
-	},
-
-	inlineDupes: {
-		globs: ['apps/*.ts'],
-		// Bare names that legitimately recur across files.
-		allowlist: [],
-	},
-
-	helperCollisions: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
-		// Dependency surfaces you don't want reinvented inline.
-		libs: ['remeda'],
-		// Committed index, regenerated with `nodeve-build-lib-names`.
-		libNamesPath: '.nodeve/lib-names.json',
-		threshold: 0.8,
-		// `relPath::local→lib` — confirmed false positives.
-		allowlist: [],
-	},
-
-	// Opt-in: empty by default → the check no-ops. Each rule fails a file matching
-	// `glob` that exceeds `maxLines`.
+	// Opt in to a per-glob page-size budget (default: no rules → no-op):
 	pageSize: {
-		rules: [
-			// { glob: '*+page.svelte', maxLines: 280 },
-		],
+		rules: [{ glob: '*+page.svelte', maxLines: 280 }],
 	},
 
-	// On by default. Every workspace MUST declare a catalog (pnpm-workspace.yaml
-	// or package.json#workspaces), and every dependency — deps, devDeps, peers —
-	// must reference it via `catalog:` rather than a literal pin. A repo with no
-	// catalog fails. Set `enforce: false` to deliberately opt out.
-	catalog: {
-		enforce: true,
-		// `manifest::name` — confirmed exceptions allowed to pin literally.
-		allowlist: [],
-	},
+	// Deliberately opt a repo out of the (default-on) catalog gate:
+	catalog: { enforce: false },
 
-	// Opt-in: list package dirs to index their public export surface for grepping.
+	// Change the org-required catalog deps (default: ['remeda']; [] to opt out):
+	requireDeps: { deps: ['remeda'] },
+
+	// Opt in to the helper-manifest index by listing package dirs to scan:
 	helperManifest: {
-		packages: [
-			// 'packages/utils', 'packages/server',
-		],
-		output: '.nodeve/helper-manifest.txt',
+		packages: ['packages/utils'],
 	},
 };

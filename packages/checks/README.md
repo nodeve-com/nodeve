@@ -37,6 +37,14 @@ fall back to org defaults. See the example for the full shape.
 | `nodeve-check-helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
 | `nodeve-check-page-size` | files over a per-glob line budget | **opt-in** (no rules → no-op) |
 | `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
+| `nodeve-check-require-deps` | org-required deps missing from the workspace catalog | on (`remeda`; set `deps: []` to opt out) |
+
+`require-deps` keeps the org's blessed libraries single-sourced and visibly
+expected: it fails when the workspace catalog (default or a named group) doesn't
+define a required name. It checks the catalog, not each package's deps — so it
+doesn't force the dep on packages that don't use it, it just guarantees the
+version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set
+`requireDeps: { deps: [] }` to opt out.
 
 `catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun
 (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses.

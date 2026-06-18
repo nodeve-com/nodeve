@@ -13,13 +13,14 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { mergeDeep } from 'remeda';
 
 export type Budget = { maxLines: number; maxTokens: number };
 
 export type DocTokensConfig = {
 	maxLines: number;
 	maxTokens: number;
-	/** Globs the gate FAILS on (and `--report` lists). */
+	/** Git pathspecs the gate FAILS on (and `--report` lists); `*` matches `/`. */
 	enforce: string[];
 	/** Per-file budget overrides, keyed by repo-root-relative path. */
 	overrides: Record<string, Partial<Budget>>;
@@ -77,6 +78,18 @@ export type HelperManifestConfig = {
 	output: string;
 };
 
+/**
+ * On by default: the workspace catalog must define each listed dependency, so the
+ * version is blessed and ready to adopt with `catalog:` anywhere. The org
+ * standardizes on `remeda` for functional helpers — cataloguing it makes that
+ * expectation explicit without forcing every package to take the dep. Set
+ * `deps: []` to opt out.
+ */
+export type RequireDepsConfig = {
+	/** Bare package names the workspace catalog must define. */
+	deps: string[];
+};
+
 export type Config = {
 	docTokens: DocTokensConfig;
 	reshape: ReshapeConfig;
@@ -84,6 +97,7 @@ export type Config = {
 	helperCollisions: HelperCollisionsConfig;
 	pageSize: PageSizeConfig;
 	catalog: CatalogConfig;
+	requireDeps: RequireDepsConfig;
 	helperManifest: HelperManifestConfig;
 };
 
@@ -91,7 +105,7 @@ export const DEFAULTS: Config = {
 	docTokens: {
 		maxLines: 150,
 		maxTokens: 3000,
-		enforce: ['CLAUDE.md', 'guide/*.md', 'docs/*.md'],
+		enforce: ['CLAUDE.md', 'README.md', '*/README.md', 'guide/*.md', 'docs/*.md'],
 		overrides: {},
 	},
 	reshape: {
@@ -113,6 +127,8 @@ export const DEFAULTS: Config = {
 	pageSize: { rules: [] },
 	// On by default: a workspace must declare a catalog (set enforce:false to opt out).
 	catalog: { enforce: true, allowlist: [] },
+	// On by default: the workspace catalog must define remeda (set deps:[] to opt out).
+	requireDeps: { deps: ['remeda'] },
 	// Opt-in: no packages → no-op.
 	helperManifest: { packages: [], output: '.nodeve/helper-manifest.txt' },
 };
@@ -121,22 +137,19 @@ const CONFIG_FILES = ['nodeve.checks.js', 'nodeve.checks.mjs', 'nodeve.checks.co
 
 type DeepPartial<T> = { [K in keyof T]?: Partial<T[K]> };
 
-/** Load `nodeve.checks.*` from the repo root, shallow-merging each section over DEFAULTS. */
+/**
+ * Load `nodeve.checks.*` from the repo root, deep-merging the user config over
+ * DEFAULTS. Nested records (e.g. `docTokens.overrides`) merge key-by-key; arrays
+ * (e.g. `docTokens.enforce`) are REPLACED wholesale, so a repo that sets `enforce`
+ * must restate the full list.
+ */
 export async function loadConfig(root: string): Promise<Config> {
 	for (const name of CONFIG_FILES) {
 		const path = join(root, name);
 		if (!existsSync(path)) continue;
 		const mod = (await import(pathToFileURL(path).href)) as { default?: DeepPartial<Config> };
 		const user = mod.default ?? (mod as DeepPartial<Config>);
-		return {
-			docTokens: { ...DEFAULTS.docTokens, ...user.docTokens },
-			reshape: { ...DEFAULTS.reshape, ...user.reshape },
-			inlineDupes: { ...DEFAULTS.inlineDupes, ...user.inlineDupes },
-			helperCollisions: { ...DEFAULTS.helperCollisions, ...user.helperCollisions },
-			pageSize: { ...DEFAULTS.pageSize, ...user.pageSize },
-			catalog: { ...DEFAULTS.catalog, ...user.catalog },
-			helperManifest: { ...DEFAULTS.helperManifest, ...user.helperManifest },
-		};
+		return mergeDeep(DEFAULTS, user) as Config;
 	}
 	return DEFAULTS;
 }
