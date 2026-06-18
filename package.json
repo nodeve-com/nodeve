@@ -7,11 +7,11 @@
   },
   "packageManager": "pnpm@11.4.0",
   "scripts": {
-    "build": "pnpm -r build",
-    "test": "pnpm -r test",
-    "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck",
-    "clean": "pnpm -r clean",
+    "build": "pnpm -r --if-present build",
+    "test": "pnpm -r --if-present test",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "clean": "pnpm -r --if-present clean",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
