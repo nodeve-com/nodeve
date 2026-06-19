@@ -1,5 +1,11 @@
 # @nodeve/encoding
 
+## 0.2.0
+
+### Minor Changes
+
+- Add a `short-code` CLI bin. Each argument prints its short-code on its own line; with no arguments, stdin is hashed as a single value (pipe-friendly).
+
 ## 0.1.0
 
 ### Minor Changes

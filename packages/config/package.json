@@ -2,6 +2,7 @@
   "name": "@nodeve/config",
   "version": "0.1.0",
   "description": "Shared TypeScript and Prettier configuration for nodeve and sister projects.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodeve-com/nodeve.git",

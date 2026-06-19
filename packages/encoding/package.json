@@ -1,7 +1,8 @@
 {
   "name": "@nodeve/encoding",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cross-runtime encoding and hashing helpers shared across nodeve tooling: stable short-codes and more.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodeve-com/nodeve.git",
@@ -14,6 +15,9 @@
   "files": [
     "dist"
   ],
+  "bin": {
+    "short-code": "./dist/cli.js"
+  },
   "exports": {
     "./short-code": {
       "types": "./dist/short-code.d.ts",

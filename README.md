@@ -16,5 +16,3 @@ These keep the pnpm/Bun split safe for published packages:
 1. **Correctness tests run on Node** in CI, across the supported `engines` range. Bun may be an additional matrix entry, never a replacement — this prevents "passes in Bun, breaks for a Node consumer" bugs.
 2. **No Bun-isms in published code.** No `bun:*` imports or Bun globals in anything a package ships. Fine in app code and scripts.
 3. **CI installs with pnpm, not Bun.** Use Bun to *execute* (`bun run`, `bun test`), but let pnpm install the publishable packages' deps so the strictness guarantee holds.
-
-make bin for id maker so easy to call
