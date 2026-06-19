@@ -1,0 +1,34 @@
+{
+  "name": "@nodeve/utils",
+  "version": "0.1.0",
+  "description": "Small, cross-runtime utilities shared across nodeve tooling: stable short-codes and more.",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./short-code": {
+      "types": "./dist/short-code.d.ts",
+      "default": "./dist/short-code.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@noble/hashes": "catalog:",
+    "@scure/base": "catalog:"
+  },
+  "devDependencies": {
+    "@nodeve/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
