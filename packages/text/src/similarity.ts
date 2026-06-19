@@ -45,6 +45,19 @@ export function tokenizeIdentifier(name: string): string[] {
 // absorbs a single typo (`recieve`/`receive`) without merging distinct words.
 const NEAR_TOKEN_SIMILARITY = 0.85;
 
+// Conversion affixes that carry no domain meaning, so they shouldn't dilute the
+// score: a local `titleCase` reinvents remeda `toTitleCase` (and `camelCase` etc.
+// reinvent `toCamelCase`). Dropped symmetrically before comparison — but only when
+// that leaves a token on each side, so an identifier that is *only* the affix
+// (`to`) still compares. (`is`/`as` would belong here too, but the stemmer's
+// trailing-`s` rule rewrites them to `i`/`a` first, so they never reach this set.)
+const AFFIX_STOPWORDS = new Set(['to']);
+
+function withoutAffixes(tokens: string[]): string[] {
+	const stripped = tokens.filter((t) => !AFFIX_STOPWORDS.has(t));
+	return stripped.length ? stripped : tokens;
+}
+
 /**
  * 0..1 similarity of two identifiers by token set. Returns 1 when their stemmed
  * token *multisets* are equal regardless of order (the `groupBy`/`byGroup` /
@@ -54,8 +67,8 @@ const NEAR_TOKEN_SIMILARITY = 0.85;
  * threshold against a generic lib export (`groupBy`).
  */
 export function identifierSimilarity(a: string, b: string): number {
-	const at = tokenizeIdentifier(a);
-	const bt = tokenizeIdentifier(b);
+	const at = withoutAffixes(tokenizeIdentifier(a));
+	const bt = withoutAffixes(tokenizeIdentifier(b));
 	if (at.length === 0 || bt.length === 0) return 0;
 
 	const NUL = ' ';

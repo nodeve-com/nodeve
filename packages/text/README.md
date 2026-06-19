@@ -75,13 +75,13 @@ replaceLoneSurrogates('cut\uD83D&rest'); // → 'cut�&rest'
 
 ## `@nodeve/text/text-format`
 
-Identifier and number display helpers: `titleCase` (camel/snake/kebab →
-Title Case), `formatSigned` (explicit leading sign, zero-aligned), and the
-`isIsoDateString` guard.
+Number and date display helpers: `formatSigned` (explicit leading sign,
+zero-aligned) and the `isIsoDateString` guard. For Title Case use remeda's
+`toTitleCase` (`createdAt` → `Created At`).
 
 ```ts
-import { titleCase, formatSigned, isIsoDateString } from '@nodeve/text/text-format';
+import { formatSigned, isIsoDateString } from '@nodeve/text/text-format';
 
-titleCase('createdAt'); // → 'Created At'
 formatSigned(1.5); // → '+1.500'
+isIsoDateString('2026-06-19T00:00:00Z'); // → true
 ```

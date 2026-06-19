@@ -21,9 +21,10 @@ describe('identifierSimilarity', () => {
 		expect(identifierSimilarity('uniqueBy', 'uniqBy')).toBe(1);
 	});
 
-	it('keeps a partial overlap below the flag threshold', () => {
-		// title+case shared, `to` is not — 2/3. A real but non-identical neighbour.
-		expect(identifierSimilarity('titleCase', 'toTitleCase')).toBeCloseTo(2 / 3);
+	it('ignores the `to` conversion affix so a coercion reinvention scores identical', () => {
+		// `to` carries no domain meaning: local `titleCase` reinvents remeda `toTitleCase`.
+		expect(identifierSimilarity('titleCase', 'toTitleCase')).toBe(1);
+		expect(identifierSimilarity('camelCase', 'toCamelCase')).toBe(1);
 	});
 
 	it('lets domain tokens dilute a generic-lib collision', () => {

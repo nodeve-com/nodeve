@@ -1,19 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatSigned, isIsoDateString, titleCase } from './text-format.ts';
-
-describe('titleCase', () => {
-	it('splits camelCase, snake_case, and kebab-case into Title Case', () => {
-		expect(titleCase('camelCase')).toBe('Camel Case');
-		expect(titleCase('snake_case')).toBe('Snake Case');
-		expect(titleCase('kebab-case')).toBe('Kebab Case');
-		expect(titleCase('email_verified')).toBe('Email Verified');
-		expect(titleCase('createdAt')).toBe('Created At');
-	});
-
-	it('does not preserve acronyms', () => {
-		expect(titleCase('mongoOid')).toBe('Mongo Oid');
-	});
-});
+import { formatSigned, isIsoDateString } from './text-format.ts';
 
 describe('isIsoDateString', () => {
 	it('matches ISO-8601 datetime strings (with T)', () => {

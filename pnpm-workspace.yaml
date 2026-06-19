@@ -13,6 +13,7 @@ catalog:
   "@noble/hashes": ^2.0.0
   "@scure/base": ^2.0.0
   "@types/node": ^22.0.0
+  date-fns: ^4.0.0
   js-tiktoken: ^1.0.0
   prettier: ^3.0.0
   prettier-plugin-svelte: ^3.5.1
