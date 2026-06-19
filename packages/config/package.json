@@ -2,6 +2,11 @@
   "name": "@nodeve/config",
   "version": "0.1.0",
   "description": "Shared TypeScript and Prettier configuration for nodeve and sister projects.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodeve-com/nodeve.git",
+    "directory": "packages/config"
+  },
   "type": "module",
   "publishConfig": {
     "access": "public"
