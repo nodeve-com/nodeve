@@ -1,6 +1,6 @@
 # @nodeve/text
 
-Small, dependency-free text utilities shared across nodeve tooling.
+Small text utilities shared across nodeve tooling.
 
 ## `@nodeve/text/similarity`
 
@@ -35,4 +35,53 @@ preferring a sentence boundary and falling back to a word boundary.
 import { trimText } from '@nodeve/text/trim';
 
 trimText(longDocstring, { max: 120, ellipsis: '...' });
+```
+
+## `@nodeve/text/slugify`
+
+URL-safe slugs with charmap transliteration (accents, currency, cyrillic, …),
+plus a `uniqueSlug` helper that dedupes against a `seen` set with a
+caller-supplied deterministic suffix.
+
+```ts
+import { slugify, uniqueSlug } from '@nodeve/text/slugify';
+
+slugify('café Latte'); // → 'cafe-latte'
+uniqueSlug('Hello World', 'abc123', seen); // → 'hello-world' (then 'hello-world-abc123' on collision)
+```
+
+## `@nodeve/text/wrap-text`
+
+Greedy word-wrap to a character budget. Collapses whitespace, never splits a
+word mid-character (long words overflow their own line).
+
+```ts
+import { wrapText } from '@nodeve/text/wrap-text';
+
+wrapText('Kitchen Sockets', 8); // → ['Kitchen', 'Sockets']
+```
+
+## `@nodeve/text/lone-surrogates`
+
+Replace unpaired UTF-16 surrogates with U+FFFD so values are valid Unicode and
+safe for a Postgres `jsonb` boundary. `replaceLoneSurrogatesDeep` walks arrays
+and plain objects.
+
+```ts
+import { replaceLoneSurrogates, replaceLoneSurrogatesDeep } from '@nodeve/text/lone-surrogates';
+
+replaceLoneSurrogates('cut\uD83D&rest'); // → 'cut�&rest'
+```
+
+## `@nodeve/text/text-format`
+
+Identifier and number display helpers: `titleCase` (camel/snake/kebab →
+Title Case), `formatSigned` (explicit leading sign, zero-aligned), and the
+`isIsoDateString` guard.
+
+```ts
+import { titleCase, formatSigned, isIsoDateString } from '@nodeve/text/text-format';
+
+titleCase('createdAt'); // → 'Created At'
+formatSigned(1.5); // → '+1.500'
 ```

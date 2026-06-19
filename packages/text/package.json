@@ -1,7 +1,7 @@
 {
   "name": "@nodeve/text",
-  "version": "0.1.0",
-  "description": "Small, dependency-free text utilities shared across nodeve tooling: fuzzy identifier matching and boundary-aware trimming.",
+  "version": "1.0.0",
+  "description": "Small text utilities shared across nodeve tooling: fuzzy identifier matching, boundary-aware trimming, slugifying, word-wrap, and string sanitizing.",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -14,20 +14,39 @@
       "types": "./dist/damerau-levenshtein.d.ts",
       "default": "./dist/damerau-levenshtein.js"
     },
+    "./lone-surrogates": {
+      "types": "./dist/lone-surrogates.d.ts",
+      "default": "./dist/lone-surrogates.js"
+    },
     "./similarity": {
       "types": "./dist/similarity.d.ts",
       "default": "./dist/similarity.js"
     },
+    "./slugify": {
+      "types": "./dist/slugify.d.ts",
+      "default": "./dist/slugify.js"
+    },
+    "./text-format": {
+      "types": "./dist/text-format.d.ts",
+      "default": "./dist/text-format.js"
+    },
     "./trim": {
       "types": "./dist/trim.d.ts",
       "default": "./dist/trim.js"
+    },
+    "./wrap-text": {
+      "types": "./dist/wrap-text.d.ts",
+      "default": "./dist/wrap-text.js"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && cp src/charmap.json dist/charmap.json",
     "clean": "rm -rf dist",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
+  },
+  "dependencies": {
+    "remeda": "catalog:"
   },
   "devDependencies": {
     "@nodeve/config": "workspace:*",
