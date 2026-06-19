@@ -1,6 +1,6 @@
 {
   "name": "@nodeve/text",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Small text utilities shared across nodeve tooling: fuzzy identifier matching, boundary-aware trimming, slugifying, word-wrap, and string sanitizing.",
   "repository": {
     "type": "git",

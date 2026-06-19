@@ -1,5 +1,12 @@
 # @nodeve/checks
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [63bcd90]
+  - @nodeve/text@2.0.0
+
 ## 0.4.1
 
 ### Patch Changes
