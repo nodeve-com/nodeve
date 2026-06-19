@@ -100,19 +100,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  packages/text:
-    devDependencies:
-      '@nodeve/config':
-        specifier: workspace:*
-        version: link:../config
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
-      vitest:
-        specifier: 'catalog:'
-        version: 3.2.6(@types/node@22.19.21)(yaml@2.9.0)
-
-  packages/utils:
+  packages/encoding:
     dependencies:
       '@noble/hashes':
         specifier: 'catalog:'
@@ -127,6 +115,18 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 22.19.21
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+      vitest:
+        specifier: 'catalog:'
+        version: 3.2.6(@types/node@22.19.21)(yaml@2.9.0)
+
+  packages/text:
+    devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
       typescript:
         specifier: 'catalog:'
         version: 5.9.3

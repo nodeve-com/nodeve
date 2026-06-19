@@ -1,7 +1,7 @@
 {
-  "name": "@nodeve/utils",
+  "name": "@nodeve/encoding",
   "version": "0.1.0",
-  "description": "Small, cross-runtime utilities shared across nodeve tooling: stable short-codes and more.",
+  "description": "Cross-runtime encoding and hashing helpers shared across nodeve tooling: stable short-codes and more.",
   "type": "module",
   "publishConfig": {
     "access": "public"
