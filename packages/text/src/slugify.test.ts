@@ -57,6 +57,12 @@ describe('slugify', () => {
 		expect(slugify('5Tips For Pumping')).toBe('5tips-for-pumping');
 	});
 
+	// Dots are not dropped like apostrophes — they fall through to the
+	// non-alphanumeric catch-all and become word-separating hyphens.
+	it('treats dots as separators', () => {
+		expect(slugify('v1.2.3')).toBe('v1-2-3');
+	});
+
 	it('expands @ to "at" when mid-string', () => {
 		expect(slugify('Pumping @ Work')).toBe('pumping-at-work');
 	});
