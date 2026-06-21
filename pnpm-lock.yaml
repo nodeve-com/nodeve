@@ -74,6 +74,9 @@ importers:
       js-tiktoken:
         specifier: 'catalog:'
         version: 1.0.21
+      prettier:
+        specifier: 'catalog:'
+        version: 3.8.4
       remeda:
         specifier: 'catalog:'
         version: 2.39.0

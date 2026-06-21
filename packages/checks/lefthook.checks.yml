@@ -26,6 +26,17 @@
 # `node_modules/.bin/nodeve-check-doc-tokens --report`.
 pre-commit:
   jobs:
+    # Fixer, runs before the `checks` group so the gates see formatted, re-staged
+    # content. Prettier-formats staged markdown in place; `stage_fixed` re-adds
+    # whatever it touched. The bin bundles its own prettier (portable across pnpm
+    # and bun, needs nothing on PATH) and honors the repo's prettier config and
+    # `.prettierignore`. It skips symlinked docs itself, so no `file_types` filter
+    # is needed here.
+    - name: format-markdown
+      glob: "*.md"
+      run: node_modules/.bin/nodeve-format-markdown {staged_files}
+      stage_fixed: true
+
     - name: checks
       group:
         parallel: true

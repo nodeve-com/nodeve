@@ -1,5 +1,13 @@
 # @nodeve/checks
 
+## 0.5.0
+
+### Minor Changes
+
+- format-markdown: new `nodeve-format-markdown` fixer, wired into the shared lefthook config by default. It prettier-formats staged `*.md` in place and re-stages them (`stage_fixed`), so docs land formatted without a manual `prettier --write`. The bin bundles its own prettier — portable across pnpm and bun, nothing needed on PATH — while still honoring the repo's prettier config, `.prettierignore`, and plugins. Symlinked docs are skipped. Runs before the `checks` group so the gates see formatted content.
+
+  page-size: enable the SvelteKit page budget by default. `pageSize` now ships a default rule of `{ glob: '*+page.svelte', maxLines: 280 }` instead of an empty rules list, so any `+page.svelte` over 280 lines fails the commit gate out of the box. The glob is a no-op in repos with no SvelteKit pages. The failure message now tells you to rip inline components out into their own files. Override or clear `pageSize.rules` in `nodeve.checks.js` to opt out or retune (the array replaces the default).
+
 ## 0.4.2
 
 ### Patch Changes

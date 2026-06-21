@@ -139,8 +139,10 @@ export const DEFAULTS: Config = {
 		threshold: 0.8,
 		allowlist: [],
 	},
-	// Opt-in: empty rules → no-op until a repo declares its own.
-	pageSize: { rules: [] },
+	// On by default: SvelteKit pages over 280 lines should rip inline components
+	// out into their own files. The `*+page.svelte` glob is a no-op in repos with
+	// no SvelteKit pages, so this stays harmless org-wide. Override per repo.
+	pageSize: { rules: [{ glob: '*+page.svelte', maxLines: 280 }] },
 	// On by default: warn past 225 lines, block past 300 (override per repo).
 	fileSize: {
 		globs: ['apps/*.ts', 'packages/*.ts'],

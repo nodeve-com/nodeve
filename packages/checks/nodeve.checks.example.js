@@ -19,9 +19,14 @@ export default {
 		},
 	},
 
-	// Opt in to a per-glob page-size budget (default: no rules → no-op):
+	// Per-glob page-size budget (default ON: `*+page.svelte` >280 lines → rip
+	// inline components out into their own files). This array REPLACES the
+	// default, so restate the SvelteKit rule if you only mean to add others:
 	pageSize: {
-		rules: [{ glob: '*+page.svelte', maxLines: 280 }],
+		rules: [
+			{ glob: '*+page.svelte', maxLines: 280 },
+			{ glob: '*+layout.svelte', maxLines: 200 },
+		],
 	},
 
 	// TS line budget (default ON: warn >225, fail >300 across apps/ + packages/).
