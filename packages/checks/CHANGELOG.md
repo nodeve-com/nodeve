@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.2.1
+
+### Patch Changes
+
+- e337361: The clone-detection gate now uses jscpd's `consoleFull` reporter, so a failing run prints each duplicated block with both file locations and the offending code inline instead of just a summary table.
+
 ## 1.2.0
 
 ### Minor Changes
