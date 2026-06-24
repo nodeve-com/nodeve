@@ -8,9 +8,10 @@
  *
  * jscpd does the detection, the reporting, AND the pass/fail (its `--threshold`),
  * so this bin just shells it and surfaces its output — quiet on a clean run,
- * printing jscpd's own clone listing when it fails. Escape hatches are jscpd's
- * own: narrow scope with `clones.ignore` globs, or `--warn` to downgrade the
- * whole gate to report-only.
+ * printing jscpd's `consoleFull` listing when it fails: each duplicated block with
+ * both file locations and the offending code inline, not just a summary table.
+ * Escape hatches are jscpd's own: narrow scope with `clones.ignore` globs, or
+ * `--warn` to downgrade the whole gate to report-only.
  *
  * jscpd's platform binary ships as an optionalDependency, so a partial or offline
  * install can leave it absent — then this no-ops (exit 0) rather than blocking the
@@ -44,7 +45,7 @@ const jscpdRun = spawnSync(
 		'--mode', cfg.mode,
 		'--format', cfg.formats.join(','),
 		'--ignore', cfg.ignore.join(','),
-		'--reporters', 'console',
+		'--reporters', 'consoleFull',
 		'--threshold', String(cfg.threshold),
 	],
 	{ cwd: root, encoding: 'utf8' },
