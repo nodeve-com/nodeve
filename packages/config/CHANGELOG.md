@@ -1,5 +1,11 @@
 # @nodeve/config
 
+## 0.4.0
+
+### Minor Changes
+
+- Add `@nodeve/config/vite`: `vitestProjects()`, the SvelteKit browser/node vitest project split that `sv create` scaffolds identically into every app. Centralizing it keeps the two projects in lockstep and removes the copy-paste each app's vite config otherwise carries. `@vitest/browser-playwright` is an optional peer.
+
 ## 0.3.0
 
 ### Minor Changes

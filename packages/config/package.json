@@ -1,6 +1,6 @@
 {
 	"name": "@nodeve/config",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Shared TypeScript, Prettier, and ESLint configuration for nodeve and sister projects.",
 	"license": "MIT",
 	"repository": {
@@ -15,7 +15,8 @@
 	"files": [
 		"tsconfig.json",
 		"prettier",
-		"eslint"
+		"eslint",
+		"vite"
 	],
 	"exports": {
 		"./tsconfig": "./tsconfig.json",
@@ -23,7 +24,8 @@
 		"./prettier/base": "./prettier/base.js",
 		"./eslint": "./eslint/index.js",
 		"./eslint/base": "./eslint/base.js",
-		"./eslint/svelte": "./eslint/svelte.js"
+		"./eslint/svelte": "./eslint/svelte.js",
+		"./vite": "./vite/index.js"
 	},
 	"devDependencies": {
 		"@eslint/compat": "catalog:",
@@ -40,9 +42,13 @@
 		"prettier-plugin-svelte": "catalog:",
 		"prettier-plugin-tailwindcss": "catalog:",
 		"typescript": "catalog:",
-		"typescript-eslint": "catalog:"
+		"typescript-eslint": "catalog:",
+		"@vitest/browser-playwright": "catalog:"
 	},
 	"peerDependenciesMeta": {
+		"@vitest/browser-playwright": {
+			"optional": true
+		},
 		"@eslint/compat": {
 			"optional": true
 		},
