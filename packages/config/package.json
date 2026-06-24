@@ -25,7 +25,10 @@
 		"./eslint": "./eslint/index.js",
 		"./eslint/base": "./eslint/base.js",
 		"./eslint/svelte": "./eslint/svelte.js",
-		"./vite": "./vite/index.js"
+		"./vite": {
+			"types": "./vite/index.d.ts",
+			"default": "./vite/index.js"
+		}
 	},
 	"devDependencies": {
 		"@eslint/compat": "catalog:",
