@@ -1,7 +1,7 @@
 {
   "name": "@nodeve/config",
-  "version": "0.1.0",
-  "description": "Shared TypeScript and Prettier configuration for nodeve and sister projects.",
+  "version": "0.2.0",
+  "description": "Shared TypeScript, Prettier, and ESLint configuration for nodeve and sister projects.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,20 +14,40 @@
   },
   "files": [
     "tsconfig.json",
-    "prettier"
+    "prettier",
+    "eslint"
   ],
   "exports": {
     "./tsconfig": "./tsconfig.json",
     "./prettier": "./prettier/index.js",
-    "./prettier/base": "./prettier/base.js"
+    "./prettier/base": "./prettier/base.js",
+    "./eslint": "./eslint/index.js",
+    "./eslint/base": "./eslint/base.js"
   },
   "peerDependencies": {
+    "@eslint/js": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "globals": "catalog:",
     "prettier": "catalog:",
     "prettier-plugin-svelte": "catalog:",
     "prettier-plugin-tailwindcss": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:"
   },
   "peerDependenciesMeta": {
+    "@eslint/js": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "eslint-config-prettier": {
+      "optional": true
+    },
+    "globals": {
+      "optional": true
+    },
     "prettier-plugin-svelte": {
       "optional": true
     },
@@ -35,6 +55,9 @@
       "optional": true
     },
     "typescript": {
+      "optional": true
+    },
+    "typescript-eslint": {
       "optional": true
     }
   }
