@@ -1,6 +1,6 @@
 {
   "name": "@nodeve/checks",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Org-wide commit-gate checks (doc budgets, reshape/dup/helper smells, page size) and helper-index generators, driven by a per-repo config file and wired through lefthook.",
   "license": "MIT",
   "repository": {
@@ -33,6 +33,7 @@
     "nodeve-check-reshape": "./dist/bin/reshape.js",
     "nodeve-check-inline-dupes": "./dist/bin/inline-dupes.js",
     "nodeve-check-helper-collisions": "./dist/bin/helper-collisions.js",
+    "nodeve-check-clones": "./dist/bin/clones.js",
     "nodeve-check-page-size": "./dist/bin/page-size.js",
     "nodeve-check-file-size": "./dist/bin/file-size.js",
     "nodeve-check-catalog": "./dist/bin/catalog.js",
@@ -49,6 +50,7 @@
   "dependencies": {
     "@nodeve/text": "workspace:*",
     "js-tiktoken": "catalog:",
+    "jscpd": "catalog:",
     "prettier": "catalog:",
     "remeda": "catalog:",
     "typescript": "catalog:",

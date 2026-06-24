@@ -1,5 +1,18 @@
 # @nodeve/checks
 
+## 1.1.0
+
+### Minor Changes
+
+- Add `nodeve-check-clones`, a structural copy-paste gate backed by jscpd v5 (the Rust `cpd` binary): it flags duplicated code blocks living in function bodies that the name-based gates can't see, scanning the full configured scope and no-op'ing cleanly when the jscpd binary isn't installed. On by default (`apps/`, `packages/`), strict (`threshold: 0`, `minTokens: 50`).
+
+  Also add `helperCollisions.aliases` — a map from a real lib export to the other names it's known by, seeded with the common lodash→remeda renames — so a reinvention whose name shares no tokens with the export still flags (e.g. local `upperFirst` ≈ remeda `capitalize`). Adds `jscpd` as a dependency.
+
+### Patch Changes
+
+- Updated dependencies
+  - @nodeve/text@2.1.0
+
 ## 1.0.0
 
 ### Major Changes

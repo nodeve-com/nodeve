@@ -73,6 +73,13 @@ pre-commit:
             glob: "*.ts"
             run: node_modules/.bin/nodeve-check-inline-dupes
 
+          # Whole-tree property — structural copy-paste (jscpd). A clone is a
+          # relationship between two places, so it scans the full configured scope.
+          # No-ops if the jscpd binary isn't installed.
+          - name: clones
+            glob: "*.{ts,js}"
+            run: node_modules/.bin/nodeve-check-clones
+
           - name: helper-collisions
             glob: "*.ts"
             run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}

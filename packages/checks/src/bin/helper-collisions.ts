@@ -14,15 +14,16 @@
  * regen with `nodeve-build-lib-names`). The index is committed so the gate has no
  * runtime dependency on the libs being installed.
  */
-import { identifierSimilarity } from '@nodeve/text/similarity';
+import { identifierSimilarityMatch } from '@nodeve/text/similarity';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
+import { parseSource } from '../lib/ast.js';
 import { loadGate, tsSources } from '../lib/bin.js';
 
 const { root, cfg, paths, warn, verbose, allowlist } = await loadGate('helperCollisions');
 
-type LibFn = { lib: string; name: string };
+type LibFn = { lib: string; name: string; matchedAs?: string };
 
 function loadLibIndex(): LibFn[] {
 	const path = join(root, cfg.libNamesPath);
@@ -35,12 +36,7 @@ function loadLibIndex(): LibFn[] {
 
 /** Top-level `function` / arrow-const declaration names in a source file. */
 function declaredFunctionNames(absPath: string): string[] {
-	const src = ts.createSourceFile(
-		absPath,
-		readFileSync(absPath, 'utf8'),
-		ts.ScriptTarget.Latest,
-		true,
-	);
+	const src = parseSource(absPath);
 	const out: string[] = [];
 	for (const stmt of src.statements) {
 		if (ts.isFunctionDeclaration(stmt) && stmt.name) out.push(stmt.name.text);
@@ -59,8 +55,13 @@ function declaredFunctionNames(absPath: string): string[] {
 function bestMatch(name: string, libIndex: LibFn[]): { lib: LibFn; score: number } | null {
 	let best: { lib: LibFn; score: number } | null = null;
 	for (const lib of libIndex) {
-		const score = identifierSimilarity(name, lib.name);
-		if (!best || score > best.score) best = { lib, score };
+		const match = identifierSimilarityMatch(name, lib.name, {
+			keywords: cfg.libKeywords[lib.lib],
+			aliases: cfg.aliases[lib.name],
+		});
+		const matched = match.matchedAs === lib.name ? lib : { ...lib, matchedAs: match.matchedAs };
+		const score = match.score;
+		if (!best || score > best.score) best = { lib: matched, score };
 	}
 	return best && best.score >= cfg.threshold ? best : null;
 }
@@ -93,7 +94,8 @@ console.log(
 		`Resolve per case — delete + import, wrap the lib, rename for specificity, or allowlist:\n`,
 );
 for (const f of sorted) {
-	console.log(`  ${f.score.toFixed(2)}  ${f.name}  ≈  ${f.lib.lib}.${f.lib.name}`);
+	const matchedAs = f.lib.matchedAs ? ` (matched ${f.lib.matchedAs})` : '';
+	console.log(`  ${f.score.toFixed(2)}  ${f.name}  ≈  ${f.lib.lib}.${f.lib.name}${matchedAs}`);
 	for (const file of f.files) console.log(`            ${file}`);
 }
 

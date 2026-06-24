@@ -29,6 +29,7 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 | `nodeve-check-reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (`apps/`, `packages/`) |
 | `nodeve-check-inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`, `packages/`) |
 | `nodeve-check-helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
+| `nodeve-check-clones` | structural copy-paste (duplicated code blocks) via jscpd v5 | on (`apps/`, `packages/`; no-op if the jscpd binary isn't installed) |
 | `nodeve-check-page-size` | files over a per-glob line budget | on (`*+page.svelte` >280; no-op where the glob matches nothing) |
 | `nodeve-check-file-size` | TS sources over a line budget (warn >225, fail >300) | on (`apps/`, `packages/`) |
 | `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
@@ -37,6 +38,23 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps — so it doesn't force the dep on packages that don't use it, it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
 
 `catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses. A workspace is **required** to declare a catalog: a repo with none fails the gate, since the point is keeping versions aligned. Every dependency (deps, devDeps, and peers alike) must reference `catalog:` rather than a literal pin. Opt a repo out deliberately with `catalog: { enforce: false }`.
+
+`helper-collisions` compares local helper declarations to dependency function exports in `.nodeve/lib-names.json`. Some libraries expose generic function names whose domain is implied by the package name, such as `date-fns.format`; configure `helperCollisions.libKeywords` to also match each real export with those domain words appended/prepended:
+
+```js
+export default {
+	helperCollisions: {
+		libs: ['remeda', 'date-fns'],
+		libKeywords: { 'date-fns': ['Date'] },
+	},
+};
+```
+
+With that config, `formatDate` reports as a collision with `date-fns.format`, while the recommended function remains the real dependency export.
+
+A reinvention often borrows a _different_ library's name, which shares no tokens with the blessed export — lodash's `upperFirst` is remeda's `capitalize`. `helperCollisions.aliases` maps each real export to the other names it's known by, so those still match; the defaults seed the common lodash→remeda renames (`capitalize: ['upperFirst']`, `fromEntries: ['fromPairs']`, …).
+
+`clones` is the structural counterpart to the name-based gates: it shells [jscpd v5](https://jscpd.dev) (a fast Rust copy-paste detector) over `clones.paths` and fails on any duplicated block past `clones.minTokens`/`minLines`. It catches reuse hiding in function _bodies_ that `inline-dupes`/`helper-collisions` can't see by name. Tune `minTokens`/`threshold`, narrow with `clones.ignore` globs, or `--warn` to downgrade. jscpd's native binary is an optional dependency, so the gate cleanly no-ops where it isn't installed rather than blocking a commit.
 
 All blocking checks accept `--warn` (report-only, exit 0); `doc-tokens` accepts `--report` to list the whole backlog without failing. Pass explicit paths to scope a run (lefthook passes `{staged_files}`).
 

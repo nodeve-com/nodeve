@@ -5,6 +5,7 @@
  * multisets they're identical. Used to flag a local helper that reinvents a
  * dependency's export — e.g. local `clamp255` ≈ remeda `clamp`.
  */
+import { capitalize } from 'remeda';
 import { damerauLevenshtein } from './damerau-levenshtein.js';
 
 // Folded so a local using a common shorthand still matches the lib's full word.
@@ -58,15 +59,32 @@ function withoutAffixes(tokens: string[]): string[] {
 	return stripped.length ? stripped : tokens;
 }
 
-/**
- * 0..1 similarity of two identifiers by token set. Returns 1 when their stemmed
- * token *multisets* are equal regardless of order (the `groupBy`/`byGroup` /
- * `clamp255`-vs-`clamp` case); otherwise a fuzzy Jaccard where near-identical
- * tokens still count as shared. Domain tokens dilute the score, so a
- * domain-specific name (`groupSpotsByZone`) naturally falls below any useful
- * threshold against a generic lib export (`groupBy`).
- */
-export function identifierSimilarity(a: string, b: string): number {
+export type IdentifierSimilarityOptions = {
+	/**
+	 * Domain words to also compare as if they were prepended/appended to `b`.
+	 * Useful for library exports whose domain is implied by the package name:
+	 * `formatDate` can match `format` with keyword `date`.
+	 */
+	keywords?: string[];
+	/**
+	 * Alternate complete spellings of `b` to also compare against `a`, keeping the
+	 * best score. Unlike `keywords` (affixes folded into `b`), each alias is a
+	 * whole substitute name — for a library export another library names
+	 * differently, so a local helper using the *other* library's vocabulary still
+	 * matches. remeda's `capitalize` is lodash's `upperFirst`: pass
+	 * `aliases: ['upperFirst']` and a local `upperFirst` scores against it.
+	 */
+	aliases?: string[];
+};
+
+export type IdentifierSimilarityMatch = {
+	/** Best 0..1 similarity score. */
+	score: number;
+	/** Candidate spelling that produced the best score, including keyword if used. */
+	matchedAs: string;
+};
+
+function identifierSimilarityBase(a: string, b: string): number {
 	const at = withoutAffixes(tokenizeIdentifier(a));
 	const bt = withoutAffixes(tokenizeIdentifier(b));
 	if (at.length === 0 || bt.length === 0) return 0;
@@ -86,4 +104,49 @@ export function identifierSimilarity(a: string, b: string): number {
 		}
 	}
 	return shared / (at.length + bt.length - shared);
+}
+
+/**
+ * 0..1 similarity of two identifiers by token set. Returns 1 when their stemmed
+ * token *multisets* are equal regardless of order (the `groupBy`/`byGroup` /
+ * `clamp255`-vs-`clamp` case); otherwise a fuzzy Jaccard where near-identical
+ * tokens still count as shared. Domain tokens dilute the score, so a
+ * domain-specific name (`groupSpotsByZone`) naturally falls below any useful
+ * threshold against a generic lib export (`groupBy`).
+ *
+ * Pass `keywords` when the second identifier has an implied domain word. With
+ * keyword `date`, `formatDate` matches `format` and `formatDateDistance`
+ * matches `formatDistance`.
+ */
+export function identifierSimilarity(
+	a: string,
+	b: string,
+	options: IdentifierSimilarityOptions = {},
+): number {
+	return identifierSimilarityMatch(a, b, options).score;
+}
+
+/**
+ * Like `identifierSimilarity`, but also returns which keyword-expanded or
+ * aliased spelling produced the best score.
+ */
+export function identifierSimilarityMatch(
+	a: string,
+	b: string,
+	options: IdentifierSimilarityOptions = {},
+): IdentifierSimilarityMatch {
+	let best: IdentifierSimilarityMatch = { score: identifierSimilarityBase(a, b), matchedAs: b };
+
+	for (const alias of options.aliases ?? []) {
+		const score = identifierSimilarityBase(a, alias);
+		if (score > best.score) best = { score, matchedAs: alias };
+	}
+
+	for (const keyword of options.keywords ?? []) {
+		for (const matchedAs of [`${b}${capitalize(keyword)}`, `${keyword}${capitalize(b)}`]) {
+			const score = identifierSimilarityBase(a, matchedAs);
+			if (score > best.score) best = { score, matchedAs };
+		}
+	}
+	return best;
 }

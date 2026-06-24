@@ -9,6 +9,7 @@ import { trimText } from '@nodeve/text/trim';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
+import { parseSource } from './ast.js';
 
 export type Kind = 'fn' | 'const' | 'class' | 'component';
 
@@ -77,8 +78,7 @@ function fnSignature(
 /** Map every top-level declared name in a source file to its kind/signature/summary. */
 export function declarationsOf(sourcePath: string): Map<string, Decl> {
 	const out = new Map<string, Decl>();
-	const text = readFileSync(sourcePath, 'utf8');
-	const source = ts.createSourceFile(sourcePath, text, ts.ScriptTarget.Latest, true);
+	const source = parseSource(sourcePath);
 
 	for (const stmt of source.statements) {
 		if (ts.isFunctionDeclaration(stmt) && stmt.name) {
@@ -126,8 +126,7 @@ export function resolveSource(barrelDir: string, spec: string): string | null {
 
 /** Parse a barrel's `export { … } from './…'` declarations into re-export records. */
 export function reExportsOf(barrelPath: string): ReExport[] {
-	const text = readFileSync(barrelPath, 'utf8');
-	const source = ts.createSourceFile(barrelPath, text, ts.ScriptTarget.Latest, true);
+	const source = parseSource(barrelPath);
 	const out: ReExport[] = [];
 
 	for (const stmt of source.statements) {

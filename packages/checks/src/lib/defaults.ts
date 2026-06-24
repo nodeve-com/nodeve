@@ -34,9 +34,31 @@ export default {
 	helperCollisions: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
 		libs: ['remeda'],
+		libKeywords: {},
+		// Seeded with the lodash→remeda renames (keyed by the remeda export). The org
+		// standardizes on remeda, but reinventions often borrow lodash's names, which
+		// share no tokens with remeda's — so without these the fuzzy match misses them.
+		aliases: {
+			capitalize: ['upperFirst'],
+			uncapitalize: ['lowerFirst'],
+			first: ['head'],
+			flat: ['flatten', 'flattenDeep'],
+			fromEntries: ['fromPairs'],
+		},
 		libNamesPath: '.nodeve/lib-names.json',
 		threshold: 0.8,
 		allowlist: [],
+	},
+	// On by default: structural copy-paste detection (jscpd v5). No-ops if the
+	// jscpd binary isn't installed. `apps/` is skipped when absent.
+	clones: {
+		paths: ['apps', 'packages'],
+		formats: ['typescript', 'javascript'],
+		ignore: ['**/node_modules/**', '**/dist/**', '**/*.d.ts', '**/*.test.ts', '**/*.spec.ts'],
+		minTokens: 50,
+		minLines: 5,
+		mode: 'mild',
+		threshold: 0,
 	},
 	// On by default: SvelteKit pages over 280 lines should rip inline components
 	// out into their own files. The `*+page.svelte` glob is a no-op in repos with

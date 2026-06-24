@@ -43,11 +43,45 @@ export type HelperCollisionsConfig = {
 	globs: string[];
 	/** Dependency packages whose exports shouldn't be reinvented inline. */
 	libs: string[];
+	/** Domain words to append/prepend to each lib export during collision matching. */
+	libKeywords: Record<string, string[]>;
+	/**
+	 * Alternate names a lib export is known by under *other* libraries, keyed by the
+	 * real export name. Catches a reinvention that borrows a different library's
+	 * vocabulary even though the names share no tokens — e.g. lodash's `upperFirst`
+	 * is remeda's `capitalize`: `{ capitalize: ['upperFirst'] }`.
+	 */
+	aliases: Record<string, string[]>;
 	/** Repo-root-relative path to the committed lib-names index. */
 	libNamesPath: string;
 	threshold: number;
 	/** `relPath::local→lib` entries — confirmed false positives. */
 	allowlist: string[];
+};
+
+/**
+ * On by default: a structural copy-paste detector over the repo's own sources,
+ * backed by jscpd v5 (the Rust `cpd` binary). Catches duplicated *blocks* —
+ * clones living in function bodies that the name-based gates (`inline-dupes`,
+ * `helper-collisions`) can't see. A whole-tree property, so it scans `paths` in
+ * full rather than just staged files. jscpd itself does the gating via
+ * `--threshold`; no-ops if the jscpd binary isn't installed.
+ */
+export type ClonesConfig = {
+	/** Repo-root-relative dirs to scan (missing dirs are tolerated). */
+	paths: string[];
+	/** jscpd formats to tokenize (its `--format`). */
+	formats: string[];
+	/** Glob patterns jscpd ignores (its `--ignore`) — the file-level escape hatch. */
+	ignore: string[];
+	/** Minimum duplicated tokens to report a clone (jscpd `--min-tokens`). */
+	minTokens: number;
+	/** Minimum duplicated lines to report a clone (jscpd `--min-lines`). */
+	minLines: number;
+	/** jscpd detection mode: `mild` | `weak` | `strict`. */
+	mode: string;
+	/** Max duplication % jscpd tolerates before failing (its `--threshold`); 0 = any clone fails. */
+	threshold: number;
 };
 
 /** Opt-in: each rule fails when a file matching `glob` exceeds `maxLines`. */
@@ -111,6 +145,7 @@ export type Config = {
 	reshape: ReshapeConfig;
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;
+	clones: ClonesConfig;
 	pageSize: PageSizeConfig;
 	fileSize: FileSizeConfig;
 	catalog: CatalogConfig;

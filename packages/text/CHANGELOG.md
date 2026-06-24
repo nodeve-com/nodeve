@@ -1,5 +1,11 @@
 # @nodeve/text
 
+## 2.1.0
+
+### Minor Changes
+
+- `similarity`: `identifierSimilarity` and `identifierSimilarityMatch` gain an `aliases` option — alternate complete spellings of the compared name, kept at the best score. Lets a helper that borrows a different library's vocabulary still match an export whose name shares no tokens with it (e.g. lodash `upperFirst` ≈ remeda `capitalize`). Internally, the local `upperFirst` helper is now remeda's `capitalize`.
+
 ## 2.0.0
 
 ### Major Changes

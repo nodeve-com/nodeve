@@ -17,9 +17,9 @@
  * scans the full configured scope, not just staged files — a dupe is a
  * relationship between two files, so the second file landing must see the first.
  */
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
+import { parseSource } from '../lib/ast.js';
 import { loadGate, tsSources } from '../lib/bin.js';
 
 const { root, cfg, warn, verbose, allowlist } = await loadGate('inlineDupes');
@@ -30,12 +30,7 @@ const { root, cfg, warn, verbose, allowlist } = await loadGate('inlineDupes');
  * HTTP verbs, etc.) are skipped — they're legitimately repeated per route.
  */
 function topLevelNames(absPath: string): string[] {
-	const src = ts.createSourceFile(
-		absPath,
-		readFileSync(absPath, 'utf8'),
-		ts.ScriptTarget.Latest,
-		true,
-	);
+	const src = parseSource(absPath);
 	const out: string[] = [];
 	for (const stmt of src.statements) {
 		const isExported =

@@ -6,3 +6,4 @@ dist/
 coverage/
 .turbo/
 .direnv/
+.pnpm-store
