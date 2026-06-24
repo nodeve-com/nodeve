@@ -32,6 +32,22 @@ export function lineCount(root: string, path: string): number {
 	return readFileSync(join(root, path), 'utf8').split('\n').length - 1;
 }
 
+/**
+ * Total changed lines (insertions + deletions) across the staged diff — what a
+ * commit is about to record. Binary files report `-`/`-` in numstat and count as
+ * zero. Used by the commit-msg gate to size a change before deciding a body is owed.
+ */
+export function stagedDiffLines(root: string): number {
+	const out = execFileSync('git', ['diff', '--cached', '--numstat'], { cwd: root, encoding: 'utf8' });
+	let total = 0;
+	for (const line of out.split('\n')) {
+		if (!line) continue;
+		const [added, deleted] = line.split('\t');
+		total += (Number(added) || 0) + (Number(deleted) || 0);
+	}
+	return total;
+}
+
 export type Catalog = Record<string, string>;
 export type Workspace = {
 	packages: string[];

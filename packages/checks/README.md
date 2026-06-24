@@ -34,6 +34,9 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 | `nodeve-check-file-size` | TS sources over a line budget (warn >225, fail >300) | on (`apps/`, `packages/`) |
 | `nodeve-check-catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
 | `nodeve-check-require-deps` | org-required deps missing from the workspace catalog | on (`remeda`; set `deps: []` to opt out) |
+| `nodeve-check-commit-msg` | commit message off Conventional Commits, or a sizeable change with no body | on (`commit-msg` hook; body required past 50 changed lines) |
+
+`commit-msg` is the one gate that runs on the `commit-msg` hook rather than `pre-commit`: lefthook hands it the message file (`{1}`). It validates the header against Conventional Commits — `<type>(<scope>)!: <subject>`, where `type` must be one of `commitMsg.types` (the standard set) and the subject stays under `maxSubjectLength`. Past `commitMsg.bodyRequiredOverLines` changed lines — measured from the **staged** diff, not the commit type — a body becomes mandatory, because at that size the subject alone can't carry the "why". Merge, revert, and `fixup!`/`squash!`/`amend!` messages are skipped (git or rebase owns those). Set `commitMsg: { enforce: false }` to opt out, or `requireScope: true` to also mandate a scope.
 
 `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps — so it doesn't force the dep on packages that don't use it, it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
 

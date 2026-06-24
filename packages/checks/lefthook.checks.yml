@@ -83,3 +83,12 @@ pre-commit:
           - name: helper-collisions
             glob: "*.ts"
             run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}
+
+# The commit-msg hook fires after pre-commit, once a message exists. lefthook
+# passes the message file path as `{1}`. The gate gives it Conventional-Commits
+# structure and requires a body once the staged diff grows past the configured
+# size (see `commitMsg` in nodeve.checks.js). Bypass with `git commit --no-verify`.
+commit-msg:
+  jobs:
+    - name: commit-msg
+      run: node_modules/.bin/nodeve-check-commit-msg {1}

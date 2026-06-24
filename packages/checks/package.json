@@ -30,6 +30,7 @@
   },
   "bin": {
     "nodeve-check-doc-tokens": "./dist/bin/doc-tokens.js",
+    "nodeve-check-commit-msg": "./dist/bin/commit-msg.js",
     "nodeve-check-reshape": "./dist/bin/reshape.js",
     "nodeve-check-inline-dupes": "./dist/bin/inline-dupes.js",
     "nodeve-check-helper-collisions": "./dist/bin/helper-collisions.js",

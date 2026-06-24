@@ -140,8 +140,30 @@ export type RequireDepsConfig = {
 	deps: string[];
 };
 
+/**
+ * On by default: the commit message must follow Conventional Commits, and a
+ * non-trivial change must carry a body. Runs on the `commit-msg` hook. The
+ * header is matched against `<type>(<scope>)!: <subject>`; `type` must be one of
+ * `types` and the subject is length-capped. A body becomes mandatory once the
+ * STAGED diff changes more than `bodyRequiredOverLines` lines — size, not type,
+ * decides when the "why" needs spelling out. Set `enforce: false` to opt out.
+ */
+export type CommitMsgConfig = {
+	/** Master switch (default `true`). Set `false` to opt a repo out entirely. */
+	enforce: boolean;
+	/** Allowed Conventional Commit types; an empty list accepts any `word:` type. */
+	types: string[];
+	/** Require a `(scope)` in the header. */
+	requireScope: boolean;
+	/** Max length of the subject (the text after `type(scope): `). */
+	maxSubjectLength: number;
+	/** A body is required once the staged diff changes more than this many lines. */
+	bodyRequiredOverLines: number;
+};
+
 export type Config = {
 	docTokens: DocTokensConfig;
+	commitMsg: CommitMsgConfig;
 	reshape: ReshapeConfig;
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;

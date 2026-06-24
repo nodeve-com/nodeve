@@ -23,6 +23,16 @@ export default {
 		// Per-file budget bumps, keyed by repo-root-relative path.
 		overrides: {},
 	},
+	// On by default: Conventional Commits header + a body for non-trivial changes.
+	// Runs on the commit-msg hook. `bodyRequiredOverLines` measures the STAGED diff
+	// (insertions + deletions), so a commit only owes a "why" once it's sizeable.
+	commitMsg: {
+		enforce: true,
+		types: ['feat', 'fix', 'docs', 'style', 'refactor', 'perf', 'test', 'build', 'ci', 'chore', 'revert'],
+		requireScope: false,
+		maxSubjectLength: 72,
+		bodyRequiredOverLines: 50,
+	},
 	reshape: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
 		allowlist: [],
