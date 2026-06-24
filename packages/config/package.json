@@ -1,6 +1,6 @@
 {
 	"name": "@nodeve/config",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Shared TypeScript, Prettier, and ESLint configuration for nodeve and sister projects.",
 	"license": "MIT",
 	"repository": {
