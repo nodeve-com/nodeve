@@ -1,5 +1,5 @@
 packages:
-  - "packages/*"
+  - 'packages/*'
 
 # esbuild (via vitest) ships a postinstall; allow it to build its native binary.
 allowBuilds:
@@ -10,13 +10,15 @@ allowBuilds:
 # Peer ranges in @nodeve/config resolve from here too, so the published floor tracks
 # what nodeve itself builds against.
 catalog:
-  "@eslint/js": ^10.0.1
-  "@noble/hashes": ^2.0.0
-  "@scure/base": ^2.0.0
-  "@types/node": ^22.0.0
+  '@eslint/compat': ^2.1.0
+  '@eslint/js': ^10.0.1
+  '@noble/hashes': ^2.0.0
+  '@scure/base': ^2.0.0
+  '@types/node': ^22.0.0
   date-fns: ^4.0.0
   eslint: ^10.5.0
   eslint-config-prettier: ^10.1.8
+  eslint-plugin-svelte: ^3.19.0
   globals: ^17.7.0
   js-tiktoken: ^1.0.0
   jscpd: ^5.0.0

@@ -1,64 +1,77 @@
 {
-  "name": "@nodeve/config",
-  "version": "0.2.0",
-  "description": "Shared TypeScript, Prettier, and ESLint configuration for nodeve and sister projects.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodeve-com/nodeve.git",
-    "directory": "packages/config"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "tsconfig.json",
-    "prettier",
-    "eslint"
-  ],
-  "exports": {
-    "./tsconfig": "./tsconfig.json",
-    "./prettier": "./prettier/index.js",
-    "./prettier/base": "./prettier/base.js",
-    "./eslint": "./eslint/index.js",
-    "./eslint/base": "./eslint/base.js"
-  },
-  "peerDependencies": {
-    "@eslint/js": "catalog:",
-    "eslint": "catalog:",
-    "eslint-config-prettier": "catalog:",
-    "globals": "catalog:",
-    "prettier": "catalog:",
-    "prettier-plugin-svelte": "catalog:",
-    "prettier-plugin-tailwindcss": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:"
-  },
-  "peerDependenciesMeta": {
-    "@eslint/js": {
-      "optional": true
-    },
-    "eslint": {
-      "optional": true
-    },
-    "eslint-config-prettier": {
-      "optional": true
-    },
-    "globals": {
-      "optional": true
-    },
-    "prettier-plugin-svelte": {
-      "optional": true
-    },
-    "prettier-plugin-tailwindcss": {
-      "optional": true
-    },
-    "typescript": {
-      "optional": true
-    },
-    "typescript-eslint": {
-      "optional": true
-    }
-  }
+	"name": "@nodeve/config",
+	"version": "0.2.0",
+	"description": "Shared TypeScript, Prettier, and ESLint configuration for nodeve and sister projects.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/config"
+	},
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"tsconfig.json",
+		"prettier",
+		"eslint"
+	],
+	"exports": {
+		"./tsconfig": "./tsconfig.json",
+		"./prettier": "./prettier/index.js",
+		"./prettier/base": "./prettier/base.js",
+		"./eslint": "./eslint/index.js",
+		"./eslint/base": "./eslint/base.js",
+		"./eslint/svelte": "./eslint/svelte.js"
+	},
+	"devDependencies": {
+		"@eslint/compat": "catalog:",
+		"eslint-plugin-svelte": "catalog:"
+	},
+	"peerDependencies": {
+		"@eslint/compat": "catalog:",
+		"@eslint/js": "catalog:",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"eslint-plugin-svelte": "catalog:",
+		"globals": "catalog:",
+		"prettier": "catalog:",
+		"prettier-plugin-svelte": "catalog:",
+		"prettier-plugin-tailwindcss": "catalog:",
+		"typescript": "catalog:",
+		"typescript-eslint": "catalog:"
+	},
+	"peerDependenciesMeta": {
+		"@eslint/compat": {
+			"optional": true
+		},
+		"@eslint/js": {
+			"optional": true
+		},
+		"eslint": {
+			"optional": true
+		},
+		"eslint-config-prettier": {
+			"optional": true
+		},
+		"eslint-plugin-svelte": {
+			"optional": true
+		},
+		"globals": {
+			"optional": true
+		},
+		"prettier-plugin-svelte": {
+			"optional": true
+		},
+		"prettier-plugin-tailwindcss": {
+			"optional": true
+		},
+		"typescript": {
+			"optional": true
+		},
+		"typescript-eslint": {
+			"optional": true
+		}
+	}
 }
