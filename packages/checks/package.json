@@ -15,12 +15,16 @@
   "files": [
     "dist",
     "lefthook.checks.yml",
-    "nodeve.checks.example.js"
+    "nodeve.checks.defaults.js"
   ],
   "exports": {
     "./config": {
       "types": "./dist/lib/config.d.ts",
       "default": "./dist/lib/config.js"
+    },
+    "./defaults": {
+      "types": "./dist/lib/defaults.d.ts",
+      "default": "./dist/lib/defaults.js"
     },
     "./lefthook": "./lefthook.checks.yml"
   },
@@ -38,7 +42,7 @@
     "nodeve-build-helper-manifest": "./dist/bin/build-helper-manifest.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && cp dist/lib/defaults.js nodeve.checks.defaults.js",
     "clean": "rm -rf dist",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

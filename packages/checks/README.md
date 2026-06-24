@@ -19,7 +19,7 @@ Then activate hooks once per clone with `lefthook install` (familiar/nodeve do t
 
 ## Configure
 
-Copy `node_modules/@nodeve/checks/nodeve.checks.example.js` to your repo root as `nodeve.checks.js` and trim to taste. Every section is optional; omitted keys fall back to org defaults. See the example for the full shape.
+Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root as `nodeve.checks.js` and keep ONLY the keys you change. That file is the org defaults verbatim — a valid `nodeve.checks.js` in the exact shape your config takes — so it doubles as the reference for every section and its default value. Omitted keys fall back to those defaults (deep-merged; arrays replace wholesale). It's importable too: `import DEFAULTS from '@nodeve/checks/defaults'`.
 
 ## Checks
 
