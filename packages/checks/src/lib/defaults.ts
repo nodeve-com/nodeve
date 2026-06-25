@@ -11,17 +11,17 @@ import type { Config } from './config.js';
  *
  * Merge semantics (see `loadConfig`): your config is deep-merged OVER these
  * defaults. Nested records merge key-by-key, but ARRAYS REPLACE wholesale — so
- * if you set an array field (e.g. `docTokens.enforce`) you must restate every
- * entry you want to keep, not just the ones you're adding.
+ * if you set an array field (e.g. `docTokens.globs` or any `overrides`) you must
+ * restate every entry you want to keep, not just the ones you're adding.
  */
 export default {
+	// Guarded markdown (CLAUDE.md + READMEs + guide/ + docs/) bounded on both lines
+	// and tokens. No default `warn` tier — add one per repo to nudge before the
+	// hard fail. Per-path bumps go in `overrides` (glob → tiers).
 	docTokens: {
-		maxLines: 150,
-		maxTokens: 3000,
-		// Git pathspecs the gate FAILS on: CLAUDE.md + READMEs + guide/ + docs/.
-		enforce: ['CLAUDE.md', 'README.md', '*/README.md', 'guide/*.md', 'docs/*.md'],
-		// Per-file budget bumps, keyed by repo-root-relative path.
-		overrides: {},
+		globs: ['CLAUDE.md', 'README.md', '*/README.md', 'guide/*.md', 'docs/*.md'],
+		fail: { maxLines: 150, maxTokens: 3000 },
+		overrides: [],
 	},
 	// On by default: Conventional Commits header + a body for non-trivial changes.
 	// Runs on the commit-msg hook. `bodyRequiredOverLines` measures the STAGED diff
@@ -70,16 +70,18 @@ export default {
 		mode: 'mild',
 		threshold: 0,
 	},
-	// On by default: SvelteKit pages over 280 lines should rip inline components
-	// out into their own files. The `*+page.svelte` glob is a no-op in repos with
-	// no SvelteKit pages, so this stays harmless org-wide. Override per repo.
-	pageSize: { rules: [{ glob: '*+page.svelte', maxLines: 280 }] },
-	// On by default: warn past 225 lines, block past 300 (override per repo).
+	// Opt-in (empty `globs` → scope comes only from override globs): SvelteKit
+	// pages over 280 lines should rip inline components out into their own files.
+	// The `*+page.svelte` glob is a no-op in repos with no SvelteKit pages, so this
+	// stays harmless org-wide. Override per repo.
+	pageSize: { globs: [], overrides: [{ glob: '*+page.svelte', tiers: { fail: { maxLines: 280 } } }] },
+	// On by default: warn past 225 lines, block past 300. Give a long-but-cohesive
+	// file a bigger budget (or `tiers: 'exempt'`) via `overrides`, per repo.
 	fileSize: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
-		warnLines: 225,
-		maxLines: 300,
-		allowlist: [],
+		warn: { maxLines: 225 },
+		fail: { maxLines: 300 },
+		overrides: [],
 	},
 	// On by default: a workspace must declare a catalog (set enforce:false to opt out).
 	catalog: { enforce: true, allowlist: [] },

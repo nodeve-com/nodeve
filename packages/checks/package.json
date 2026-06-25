@@ -29,6 +29,7 @@
     "./lefthook": "./lefthook.checks.yml"
   },
   "bin": {
+    "nodeve-check": "./dist/bin/check.js",
     "nodeve-check-doc-tokens": "./dist/bin/doc-tokens.js",
     "nodeve-check-commit-msg": "./dist/bin/commit-msg.js",
     "nodeve-check-reshape": "./dist/bin/reshape.js",

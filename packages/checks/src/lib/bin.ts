@@ -20,17 +20,29 @@ export type Gate<K extends keyof Config> = {
 	report: boolean;
 	/** `--verbose`: print on a clean run too. */
 	verbose: boolean;
+	/** `--explain`: expand the check's full remediation prose. */
+	explain: boolean;
 	/** `cfg.allowlist` as a Set; empty for sections that have none. */
 	allowlist: Set<string>;
 };
 
-/** Load the shared context for one check section. */
-export async function loadGate<K extends keyof Config>(section: K): Promise<Gate<K>> {
+/**
+ * Load the shared context for one check section. `argv` defaults to the process
+ * args (how a per-check bin is invoked); the `nodeve-check` dispatcher passes the
+ * args left after it strips the subcommand, so the check name never leaks in as a
+ * path.
+ */
+export async function loadGate<K extends keyof Config>(
+	section: K,
+	argv: string[] = process.argv.slice(2),
+): Promise<Gate<K>> {
 	const root = repoRoot();
 	const cfg = (await loadConfig(root))[section];
-	const { paths, warn, report, verbose } = parseArgs(process.argv.slice(2));
-	const allowlist = new Set<string>('allowlist' in cfg ? (cfg as { allowlist: string[] }).allowlist : []);
-	return { root, cfg, paths, warn, report, verbose, allowlist };
+	const { paths, warn, report, verbose, explain } = parseArgs(argv);
+	const allowlist = new Set<string>(
+		'allowlist' in cfg ? (cfg as { allowlist: string[] }).allowlist : [],
+	);
+	return { root, cfg, paths, warn, report, verbose, explain, allowlist };
 }
 
 /**

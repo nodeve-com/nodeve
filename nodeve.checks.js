@@ -8,7 +8,7 @@
 // blessed-lib function.
 export default {
 	docTokens: {
-		enforce: ['README.md', 'packages/*/README.md'],
+		globs: ['README.md', 'packages/*/README.md'],
 	},
 	reshape: {
 		globs: ['packages/*.ts'],

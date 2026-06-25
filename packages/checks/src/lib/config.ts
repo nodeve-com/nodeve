@@ -6,26 +6,22 @@
  *
  *   // nodeve.checks.js
  *   export default {
- *     docTokens: { maxTokens: 3500, overrides: { 'CLAUDE.md': { maxTokens: 4000 } } },
- *     pageSize: { rules: [{ glob: '*+page.svelte', maxLines: 280 }] }, // opt-in
+ *     docTokens: { overrides: [{ glob: 'CLAUDE.md', tiers: { fail: { maxTokens: 4000 } } }] },
+ *     pageSize: { overrides: [{ glob: '*+page.svelte', tiers: { fail: { maxLines: 280 } } }] },
  *   };
  */
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { mergeDeep } from 'remeda';
+import { type LengthConfig } from './length.js';
 import DEFAULTS from './defaults.js';
 
-export type Budget = { maxLines: number; maxTokens: number };
-
-export type DocTokensConfig = {
-	maxLines: number;
-	maxTokens: number;
-	/** Git pathspecs the gate FAILS on (and `--report` lists); `*` matches `/`. */
-	enforce: string[];
-	/** Per-file budget overrides, keyed by repo-root-relative path. */
-	overrides: Record<string, Partial<Budget>>;
-};
+// The length checks (doc-tokens, page-size, file-size) all read the one
+// `LengthConfig` shape — scope `globs`, default `warn`/`fail` tiers, and per-glob
+// `overrides`. Re-exported here so the `@nodeve/checks/config` surface still
+// carries the budgeting types.
+export { type Budget, type Tiers, type Override, type LengthConfig } from './length.js';
 
 export type ReshapeConfig = {
 	globs: string[];
@@ -82,26 +78,6 @@ export type ClonesConfig = {
 	mode: string;
 	/** Max duplication % jscpd tolerates before failing (its `--threshold`); 0 = any clone fails. */
 	threshold: number;
-};
-
-/** Opt-in: each rule fails when a file matching `glob` exceeds `maxLines`. */
-export type PageSizeConfig = {
-	rules: { glob: string; maxLines: number }[];
-};
-
-/**
- * On by default: a line budget for TS sources in `apps/`/`packages/`. Over
- * `warnLines` is a non-blocking nudge; over `maxLines` blocks the commit. Unlike
- * `pageSize` this scans ALL `.ts` in scope (tests and `.d.ts` included) — long
- * files that are genuinely one responsibility go in `allowlist`. Set a generous
- * `maxLines` (or list no globs) to effectively opt out.
- */
-export type FileSizeConfig = {
-	globs: string[];
-	warnLines: number;
-	maxLines: number;
-	/** Repo-root-relative paths exempt from the budget (each with a WHY comment). */
-	allowlist: string[];
 };
 
 /**
@@ -162,14 +138,14 @@ export type CommitMsgConfig = {
 };
 
 export type Config = {
-	docTokens: DocTokensConfig;
+	docTokens: LengthConfig;
 	commitMsg: CommitMsgConfig;
 	reshape: ReshapeConfig;
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;
 	clones: ClonesConfig;
-	pageSize: PageSizeConfig;
-	fileSize: FileSizeConfig;
+	pageSize: LengthConfig;
+	fileSize: LengthConfig;
 	catalog: CatalogConfig;
 	requireDeps: RequireDepsConfig;
 	helperManifest: HelperManifestConfig;
@@ -187,9 +163,9 @@ type DeepPartial<T> = { [K in keyof T]?: Partial<T[K]> };
 
 /**
  * Load `nodeve.checks.*` from the repo root, deep-merging the user config over
- * DEFAULTS. Nested records (e.g. `docTokens.overrides`) merge key-by-key; arrays
- * (e.g. `docTokens.enforce`) are REPLACED wholesale, so a repo that sets `enforce`
- * must restate the full list.
+ * DEFAULTS. Nested records (e.g. a length check's `fail` tier) merge key-by-key;
+ * arrays (e.g. `globs`, `overrides`) are REPLACED wholesale, so a repo that sets
+ * one must restate the full list.
  */
 export async function loadConfig(root: string): Promise<Config> {
 	for (const name of CONFIG_FILES) {
@@ -208,11 +184,13 @@ export function parseArgs(argv: string[]): {
 	warn: boolean;
 	report: boolean;
 	verbose: boolean;
+	explain: boolean;
 } {
 	return {
 		paths: argv.filter((a) => !a.startsWith('--')),
 		warn: argv.includes('--warn'),
 		report: argv.includes('--report'),
 		verbose: argv.includes('--verbose'),
+		explain: argv.includes('--explain'),
 	};
 }

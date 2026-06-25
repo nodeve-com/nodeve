@@ -13,17 +13,23 @@
 # this one as-is. Either way it's one `extends` line and all the standard checks
 # come along together.
 #
-# Each job shells a published bin via its node_modules/.bin path — portable across
-# pnpm and bun, and resolvable since lefthook runs from the repo root (lefthook
-# does NOT add node_modules/.bin to PATH). Bins read the repo's optional
-# `nodeve.checks.js` for budgets/globs/allowlists and derive the repo root from
-# git, so they behave the same whatever cwd lefthook uses.
+# Each job shells the `nodeve-check` dispatcher with the check's name via its
+# node_modules/.bin path — portable across pnpm and bun, and resolvable since
+# lefthook runs from the repo root (lefthook does NOT add node_modules/.bin to
+# PATH). Every check renders the SAME uniform block (`<glyph> <name> — <summary>`
+# + indented rows + an `--explain` pointer), so when the parallel group surfaces a
+# failure the captured output is scannable instead of a wall of per-check formats.
+# The dispatcher reads the repo's optional `nodeve.checks.js` for
+# budgets/globs/allowlists and derives the repo root from git, so a check behaves
+# the same whatever cwd lefthook uses.
 #
 # `{staged_files}` scopes path-aware checks to what's being committed; the dup and
 # catalog jobs scan their full configured scope because a duplicate (or an
 # un-cataloged pin) is a property of the whole tree, not one file. Bypass with
 # `git commit --no-verify`. Run a single check by hand any time, e.g.
-# `node_modules/.bin/nodeve-check-doc-tokens --report`.
+# `node_modules/.bin/nodeve-check doc-tokens --report`, or the whole suite at once
+# with `nodeve-check` (summary-first). The per-check `nodeve-check-<name>` bins
+# remain for direct invocation.
 pre-commit:
   jobs:
     # Fixer, runs before the `checks` group so the gates see formatted, re-staged
@@ -33,7 +39,7 @@ pre-commit:
     # `.prettierignore`. It skips symlinked docs itself, so no `file_types` filter
     # is needed here.
     - name: format-markdown
-      glob: "*.md"
+      glob: '*.md'
       run: node_modules/.bin/nodeve-format-markdown {staged_files}
       stage_fixed: true
 
@@ -42,47 +48,47 @@ pre-commit:
         parallel: true
         jobs:
           - name: doc-tokens
-            glob: "*.md"
-            run: node_modules/.bin/nodeve-check-doc-tokens {staged_files}
+            glob: '*.md'
+            run: node_modules/.bin/nodeve-check doc-tokens {staged_files}
 
           - name: reshape
-            glob: "*.ts"
-            run: node_modules/.bin/nodeve-check-reshape {staged_files}
+            glob: '*.ts'
+            run: node_modules/.bin/nodeve-check reshape {staged_files}
 
           - name: page-size
-            run: node_modules/.bin/nodeve-check-page-size {staged_files}
+            run: node_modules/.bin/nodeve-check page-size {staged_files}
 
           - name: file-size
-            glob: "*.ts"
-            run: node_modules/.bin/nodeve-check-file-size {staged_files}
+            glob: '*.ts'
+            run: node_modules/.bin/nodeve-check file-size {staged_files}
 
           # Whole-tree property — every manifest's deps must single-source from a
           # catalog. No-ops on repos without one, so it's safe to always run.
           - name: catalog
-            glob: "**/package.json"
-            run: node_modules/.bin/nodeve-check-catalog
+            glob: '**/package.json'
+            run: node_modules/.bin/nodeve-check catalog
 
           # Whole-tree property — the workspace catalog must define the org-required
           # deps (remeda by default). No-ops where deps aren't configured.
           - name: require-deps
-            glob: "{**/package.json,pnpm-workspace.yaml}"
-            run: node_modules/.bin/nodeve-check-require-deps
+            glob: '{**/package.json,pnpm-workspace.yaml}'
+            run: node_modules/.bin/nodeve-check require-deps
 
           # Whole-tree relationships — scan the full configured scope, not just staged.
           - name: inline-dupes
-            glob: "*.ts"
-            run: node_modules/.bin/nodeve-check-inline-dupes
+            glob: '*.ts'
+            run: node_modules/.bin/nodeve-check inline-dupes
 
           # Whole-tree property — structural copy-paste (jscpd). A clone is a
           # relationship between two places, so it scans the full configured scope.
           # No-ops if the jscpd binary isn't installed.
           - name: clones
-            glob: "*.{ts,js}"
-            run: node_modules/.bin/nodeve-check-clones
+            glob: '*.{ts,js}'
+            run: node_modules/.bin/nodeve-check clones
 
           - name: helper-collisions
-            glob: "*.ts"
-            run: node_modules/.bin/nodeve-check-helper-collisions {staged_files}
+            glob: '*.ts'
+            run: node_modules/.bin/nodeve-check helper-collisions {staged_files}
 
 # The commit-msg hook fires after pre-commit, once a message exists. lefthook
 # passes the message file path as `{1}`. The gate gives it Conventional-Commits
@@ -91,4 +97,4 @@ pre-commit:
 commit-msg:
   jobs:
     - name: commit-msg
-      run: node_modules/.bin/nodeve-check-commit-msg {1}
+      run: node_modules/.bin/nodeve-check commit-msg {1}
