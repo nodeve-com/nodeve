@@ -42,8 +42,16 @@ const indent = (text: string, pad = '  ') => text.replace(/^/gm, pad).replace(/\
 export function render(name: string, r: CheckResult, opts: { explain?: string } = {}): string {
 	const lines = [`${GLYPH[r.status]} ${name} — ${r.summary}`];
 	for (const row of r.rows ?? []) lines.push(indent(row));
-	if ((r.status === 'fail' || r.status === 'warn') && opts.explain)
-		lines.push('', indent(opts.explain.trim()));
+	if (r.status === 'fail' || r.status === 'warn') {
+		if (opts.explain) lines.push('', indent(opts.explain.trim()));
+		// Name-specific rerun pointer, so a developer hitting the gate can
+		// reproduce just this check by hand — both package managers, since the
+		// bin isn't a script and needs the resolver.
+		lines.push(
+			'',
+			indent(`Run just this check:  pnpm exec nodeve-check ${name}  ·  bunx nodeve-check ${name}`),
+		);
+	}
 	return lines.join('\n');
 }
 

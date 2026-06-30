@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.5.0
+
+### Minor Changes
+
+- Failing/warning check blocks now end with a name-specific rerun pointer (`Run just this check: pnpm exec nodeve-check <name> · bunx nodeve-check <name>`), so a developer who hits a gate can reproduce just that check by hand. Both package managers are shown since the bin is not a script and needs the resolver.
+
 ## 1.4.0
 
 ### Minor Changes
