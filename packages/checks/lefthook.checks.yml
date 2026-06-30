@@ -80,10 +80,15 @@ pre-commit:
             run: node_modules/.bin/nodeve-check inline-dupes
 
           # Whole-tree property — structural copy-paste (jscpd). A clone is a
-          # relationship between two places, so it scans the full configured scope.
-          # No-ops if the jscpd binary isn't installed.
+          # relationship between two places, so it scans the full configured scope
+          # (it ignores {staged_files}). Deliberately UN-globbed: a trigger glob
+          # would gate the job on staged file extensions, silently skipping the
+          # scan on a commit that stages only a language the glob didn't list. The
+          # languages it scans are owned by `clones.formats` in nodeve.checks.js,
+          # so adding one there is all a repo needs. Cost: the scan fires on every
+          # commit — cheap (jscpd is fast, exits 0 with no clones, runs in this
+          # parallel group), and it no-ops if the jscpd binary isn't installed.
           - name: clones
-            glob: '*.{ts,js}'
             run: node_modules/.bin/nodeve-check clones
 
           - name: helper-collisions

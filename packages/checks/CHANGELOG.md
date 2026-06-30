@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.4.0
+
+### Minor Changes
+
+- clones: remove the `*.{ts,js}` lefthook trigger glob so the gate fires on every commit. The glob only gated whether the job ran based on staged file extensions, but `clones` ignores `{staged_files}` and scans its full configured scope — so a commit staging only a non-listed language (e.g. Rust) silently skipped the scan. The set of languages scanned is now owned solely by `clones.formats` in `nodeve.checks.js`, so opting a language in takes one config change and no lefthook override.
+
 ## 1.3.0
 
 ### Minor Changes
