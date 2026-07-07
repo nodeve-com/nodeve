@@ -17,9 +17,6 @@ type LibFn = { lib: string; name: string; matchedAs?: string };
 
 function loadLibIndex(root: string, cfg: Config['helperCollisions']): LibFn[] {
 	const path = join(root, cfg.libNamesPath);
-	// Missing index → no-op (clean), not a crash: a repo that hasn't run
-	// `nodeve-build-lib-names` yet shouldn't fail the commit on this advisory gate.
-	if (!existsSync(path)) return [];
 	const { names } = JSON.parse(readFileSync(path, 'utf8')) as { names: Record<string, string[]> };
 	return Object.entries(names).flatMap(([lib, list]) => list.map((name) => ({ lib, name })));
 }
@@ -74,6 +71,20 @@ Matching is against the committed lib-names index (helperCollisions.libNamesPath
 regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 
 	run({ root, cfg, paths, allowlist }) {
+		// A repo opts into this gate by listing `libs`. Once opted in, a missing
+		// index is a setup error, not a pass: silently no-opping means the gate
+		// looks green while checking nothing. Fail loudly so the index gets built.
+		if (cfg.libs.length > 0 && !existsSync(join(root, cfg.libNamesPath)))
+			return {
+				status: 'fail',
+				summary: `lib-names index missing (${cfg.libNamesPath}) — this gate is checking nothing`,
+				rows: [
+					`libs configured: ${cfg.libs.join(', ')}`,
+					`regenerate and commit it: nodeve-build-lib-names`,
+					`or opt out by setting helperCollisions.libs: [] in nodeve.checks.js`,
+				],
+			};
+
 		const libIndex = loadLibIndex(root, cfg);
 		type Collision = { name: string; lib: LibFn; score: number; files: Set<string> };
 		const collisions = new Map<string, Collision>();
