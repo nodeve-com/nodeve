@@ -87,7 +87,8 @@ pre-commit:
           # languages it scans are owned by `clones.formats` in nodeve.checks.js,
           # so adding one there is all a repo needs. Cost: the scan fires on every
           # commit — cheap (jscpd is fast, exits 0 with no clones, runs in this
-          # parallel group), and it no-ops if the jscpd binary isn't installed.
+          # parallel group). jscpd is a hard dep; if it can't be resolved the check
+          # FAILS loudly (a silently-skipped copy-paste gate is worse than none).
           - name: clones
             run: node_modules/.bin/nodeve-check clones
 

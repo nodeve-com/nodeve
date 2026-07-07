@@ -8,9 +8,10 @@
  * buries the one thing that matters — *where* the duplicated blocks are. So we
  * run it `--silent` with the `json` reporter and parse that, surfacing each
  * clone's two locations by default (the bulky shared fragment only under
- * `--explain`, so a multi-clone repo doesn't bury the gate). jscpd's binary ships
- * as an optionalDependency, so a partial/offline install can leave it absent —
- * then this skips rather than blocking the commit.
+ * `--explain`, so a multi-clone repo doesn't bury the gate). jscpd is a hard
+ * dependency: if its binary can't be resolved the install is broken, so this
+ * FAILS loudly rather than skipping — a silently-skipped copy-paste gate is worse
+ * than none, since the repo believes it's covered when it isn't.
  */
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
@@ -40,7 +41,15 @@ can't see. Extract the shared logic, or narrow scope with clones.ignore globs.
 		try {
 			launcher = createRequire(import.meta.url).resolve('jscpd/run-jscpd.js');
 		} catch {
-			return { status: 'skip', summary: 'jscpd binary not installed — skipping' };
+			return {
+				status: 'fail',
+				summary: 'jscpd not resolvable — copy-paste gate is DOWN, not skipped',
+				rows: [
+					'jscpd is a hard dependency of @nodeve/checks but its binary could not be resolved.',
+					'The install is broken; the clones gate is blind. Fix, do not bypass:',
+					'  reinstall deps (pnpm install / bun install) so jscpd/run-jscpd.js resolves.',
+				],
+			};
 		}
 
 		// jscpd's `json` reporter writes `<output>/jscpd-report.json`; `--silent`
