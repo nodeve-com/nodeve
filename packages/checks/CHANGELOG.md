@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.5.2
+
+### Patch Changes
+
+- aa732e3: clones: fail loudly when jscpd can't be resolved instead of silently skipping. jscpd is a hard dependency, so an unresolvable binary means the install is broken and the copy-paste gate is blind — surfacing that is safer than a silent skip that leaves a repo believing it's covered.
+
 ## 1.5.1
 
 ### Patch Changes
