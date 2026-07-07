@@ -21,6 +21,9 @@ catalogs:
     '@types/node':
       specifier: ^22.0.0
       version: 22.19.21
+    '@types/pluralize':
+      specifier: ^0.0.33
+      version: 0.0.33
     '@vitest/browser-playwright':
       specifier: ^4.1.9
       version: 4.1.9
@@ -45,6 +48,9 @@ catalogs:
     jscpd:
       specifier: ^5.0.0
       version: 5.0.11
+    pluralize:
+      specifier: ^8.0.0
+      version: 8.0.0
     prettier:
       specifier: ^3.0.0
       version: 3.8.4
@@ -104,6 +110,9 @@ importers:
       jscpd:
         specifier: 'catalog:'
         version: 5.0.11
+      pluralize:
+        specifier: 'catalog:'
+        version: 8.0.0
       prettier:
         specifier: 'catalog:'
         version: 3.8.4
@@ -123,6 +132,9 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 22.19.21
+      '@types/pluralize':
+        specifier: 'catalog:'
+        version: 0.0.33
 
   packages/config:
     dependencies:
@@ -709,6 +721,9 @@ packages:
 
   '@types/node@22.19.21':
     resolution: {integrity: sha512-VMeFBSCKQKmm2swI2kW51SFusDqekC6q9trBCvJ/JliDchFSuoYYKN7yVNjPthP1HKZcx3U1gI/wTcEBjEFKTA==}
+
+  '@types/pluralize@0.0.33':
+    resolution: {integrity: sha512-JOqsl+ZoCpP4e8TDke9W79FDcSgPAR0l6pixx2JHkhnRjvShyYiAYw2LVsnA7K08Y6DeOnaU6ujmENO4os/cYg==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -1432,6 +1447,10 @@ packages:
     resolution: {integrity: sha512-Z+7BeeqQPRRzklHsVFP4KTGIyMxKUmfeRA4WisM6G3/XW6nwGeX6fX9qYaDa+CiUqpOkb2f6X3nar05R3kSuJQ==}
     engines: {node: '>=18'}
     hasBin: true
+
+  pluralize@8.0.0:
+    resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
+    engines: {node: '>=4'}
 
   pngjs@7.0.0:
     resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
@@ -2328,6 +2347,8 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  '@types/pluralize@0.0.33': {}
+
   '@types/trusted-types@2.0.7': {}
 
   '@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.5.0)(typescript@5.9.3))(eslint@10.5.0)(typescript@5.9.3)':
@@ -3074,6 +3095,8 @@ snapshots:
       playwright-core: 1.61.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  pluralize@8.0.0: {}
 
   pngjs@7.0.0: {}
 

@@ -87,7 +87,7 @@ regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 
 		const libIndex = loadLibIndex(root, cfg);
 		type Collision = { name: string; lib: LibFn; score: number; files: Set<string> };
-		const collisions = new Map<string, Collision>();
+		const collisionByPair = new Map<string, Collision>();
 
 		for (const rel of tsSources(root, cfg.globs, paths)) {
 			const abs = join(root, rel);
@@ -96,18 +96,18 @@ regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 				if (!m) continue;
 				const pairKey = `${name}→${m.lib.name}`;
 				if (allowlist.has(`${rel}::${pairKey}`)) continue;
-				const found = collisions.get(pairKey) ?? {
+				const found = collisionByPair.get(pairKey) ?? {
 					name,
 					lib: m.lib,
 					score: m.score,
 					files: new Set(),
 				};
 				found.files.add(rel);
-				collisions.set(pairKey, found);
+				collisionByPair.set(pairKey, found);
 			}
 		}
 
-		const sorted = [...collisions.values()].sort((a, b) => b.score - a.score);
+		const sorted = [...collisionByPair.values()].sort((a, b) => b.score - a.score);
 		if (sorted.length === 0)
 			return { status: 'pass', summary: `clean (${libIndex.length} lib fns checked)` };
 

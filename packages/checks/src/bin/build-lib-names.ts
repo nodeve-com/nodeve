@@ -18,7 +18,7 @@ import { loadGate } from '../lib/bin.js';
 const { root, cfg } = await loadGate('helperCollisions');
 const output = join(root, cfg.libNamesPath);
 
-const names: Record<string, string[]> = {};
+const namesByLib: Record<string, string[]> = {};
 const skipped: string[] = [];
 
 for (const lib of cfg.libs) {
@@ -27,7 +27,7 @@ for (const lib of cfg.libs) {
 		const fns = Object.keys(mod)
 			.filter((k) => typeof mod[k] === 'function')
 			.sort();
-		if (fns.length) names[lib] = fns;
+		if (fns.length) namesByLib[lib] = fns;
 		else skipped.push(`${lib} (no function exports)`);
 	} catch {
 		skipped.push(lib);
@@ -36,14 +36,14 @@ for (const lib of cfg.libs) {
 
 const out = {
 	$generatedBy: 'nodeve-build-lib-names',
-	libs: Object.keys(names),
-	names,
+	libs: Object.keys(namesByLib),
+	names: namesByLib,
 };
 mkdirSync(dirname(output), { recursive: true });
 writeFileSync(output, JSON.stringify(out, null, '\t') + '\n');
 
-const total = Object.values(names).flat().length;
+const total = Object.values(namesByLib).flat().length;
 console.log(
-	`Wrote ${total} names from ${Object.keys(names).join(', ') || '(none)'} to ${relative(root, output)}` +
+	`Wrote ${total} names from ${Object.keys(namesByLib).join(', ') || '(none)'} to ${relative(root, output)}` +
 		(skipped.length ? `\nSkipped (not installed): ${skipped.join(', ')}` : ''),
 );

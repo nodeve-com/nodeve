@@ -13,6 +13,7 @@ import { fileSize } from '../checks/file-size.js';
 import { helperCollisions } from '../checks/helper-collisions.js';
 import { inlineDupes } from '../checks/inline-dupes.js';
 import { pageSize } from '../checks/page-size.js';
+import { pluralArrays } from '../checks/plural-arrays.js';
 import { requireDeps } from '../checks/require-deps.js';
 import { reshape } from '../checks/reshape.js';
 import { type Check } from './runner.js';
@@ -20,6 +21,7 @@ import { type Check } from './runner.js';
 export const CHECKS: Check[] = [
 	docTokens,
 	reshape,
+	pluralArrays,
 	fileSize,
 	pageSize,
 	inlineDupes,

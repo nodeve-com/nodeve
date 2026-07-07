@@ -8,18 +8,10 @@
  *   x => ({ a: x.a, b: x.b })    projection    (reinvents remeda.pick)
  *   ({ a, b }) => ({ a, b })     passthrough   (destructure-rebuild = pick / no-op)
  */
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import ts from 'typescript';
-import { tsSources } from '../lib/bin.js';
+import { forEachTsNode, unwrap } from '../lib/ast.js';
+import { locationRows } from '../lib/report.js';
 import { type Check } from '../lib/runner.js';
-
-/** Strip `!` and parens so `item.href!` reads as the bare property access. */
-function unwrap(node: ts.Expression): ts.Expression {
-	let n = node;
-	while (ts.isNonNullExpression(n) || ts.isParenthesizedExpression(n)) n = n.expression;
-	return n;
-}
 
 type Kind = 'identity' | 'spread-clone' | 'projection' | 'passthrough';
 
@@ -124,31 +116,21 @@ match keeps the smell. --warn downgrades this to report-only.`,
 	run({ root, cfg, paths, allowlist }) {
 		const findings: Finding[] = [];
 
-		for (const rel of tsSources(root, cfg.globs, paths)) {
-			const abs = join(root, rel);
-			const src = ts.createSourceFile(abs, readFileSync(abs, 'utf8'), ts.ScriptTarget.Latest, true);
-			const visit = (node: ts.Node): void => {
-				if (ts.isArrowFunction(node) || ts.isFunctionExpression(node)) {
-					const hit = classify(node);
-					if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
-						const { line } = src.getLineAndCharacterOfPosition(node.getStart());
-						findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
-					}
-				}
-				ts.forEachChild(node, visit);
-			};
-			visit(src);
-		}
+		forEachTsNode(root, cfg.globs, paths, (node, rel, src) => {
+			if (!ts.isArrowFunction(node) && !ts.isFunctionExpression(node)) return;
+			const hit = classify(node);
+			if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
+				const { line } = src.getLineAndCharacterOfPosition(node.getStart());
+				findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
+			}
+		});
 
 		if (findings.length === 0) return { status: 'pass', summary: 'clean' };
 
-		findings.sort((a, b) => a.rel.localeCompare(b.rel) || a.line - b.line);
-		const pad = Math.max(...findings.map((f) => f.kind.length));
-		const rows = findings.map((f) => `${f.kind.padEnd(pad)}  { ${f.keys} }  ${f.rel}:${f.line}`);
 		return {
 			status: 'fail',
 			summary: `${findings.length} reshape(s) reproduce the input shape (no-op / pick / clone)`,
-			rows,
+			rows: locationRows(findings, (f) => f.kind, (f) => `{ ${f.keys} }`),
 		};
 	},
 };

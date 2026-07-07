@@ -9,7 +9,7 @@ import { capitalize } from 'remeda';
 import { damerauLevenshtein } from './damerau-levenshtein.js';
 
 // Folded so a local using a common shorthand still matches the lib's full word.
-const ABBREVIATIONS: Record<string, string> = {
+const EXPANSION_BY_ABBREVIATION: Record<string, string> = {
 	uniq: 'unique',
 	obj: 'object',
 	arr: 'array',
@@ -26,7 +26,7 @@ const ABBREVIATIONS: Record<string, string> = {
  * over-stem can't create a one-sided false match.
  */
 function stemToken(token: string): string {
-	const expanded = ABBREVIATIONS[token] ?? token;
+	const expanded = EXPANSION_BY_ABBREVIATION[token] ?? token;
 	return expanded.replace(/ies$/, 'y').replace(/(ed|ing|s)$/, '');
 }
 

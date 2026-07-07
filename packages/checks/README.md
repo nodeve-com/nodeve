@@ -38,6 +38,7 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 | --- | --- | --- |
 | `doc-tokens` | markdown over a line/token budget | on (`CLAUDE.md`, `guide/`, `docs/`) |
 | `reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (`apps/`, `packages/`) |
+| `plural-arrays` | count-plural names bound to a map/object instead of an array | on (`apps/`, `packages/`) |
 | `inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`, `packages/`) |
 | `helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
 | `clones` | structural copy-paste (duplicated code blocks) via jscpd v5 | on (`apps/`, `packages/`; no-op if the jscpd binary isn't installed) |
@@ -68,6 +69,18 @@ export default {
 `page-size` is the opt-in member: its default `globs` is empty, so only files a configured override glob matches get a budget. `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps — so it doesn't force the dep on packages that don't use it, it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
 
 `catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses. A workspace is **required** to declare a catalog: a repo with none fails the gate, since the point is keeping versions aligned. Every dependency (deps, devDeps, and peers alike) must reference `catalog:` rather than a literal pin. Opt a repo out deliberately with `catalog: { enforce: false }`.
+
+`plural-arrays` reads a count-plural variable name as a promise of a list, and fails when the binding provably isn't one — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. A `Set` is left alone on purpose: it's array-like (ordered, iterable, spreads to an array with `[...set]`), so a plural name over it reads fine. It only flags what it can prove from the declaration's type or initializer; a plural bound to an array, a `.map()` chain, an opaque call, or nothing is left alone. [`pluralize`](https://www.npmjs.com/package/pluralize) decides what reads as plural (so `status`, irregulars like `children`/`people`, and `xById`/`xMap`/`xToY` names are handled), and two word lists correct its domain misses — `plural` forces a word to count (`plural: ['props']`), `singular` exempts an `-s` noun it over-counts (seeded with `data`, `metadata`, `series`, `news`):
+
+```js
+export default {
+	pluralArrays: {
+		plural: ['props', 'attrs'], // force-count these even if pluralize disagrees
+		singular: ['data', 'series'], // never count these
+		allowlist: ['src/store.ts::sessions'], // a confirmed intentional map, as relPath::name
+	},
+};
+```
 
 `helper-collisions` compares local helper declarations to dependency function exports in `.nodeve/lib-names.json`. Some libraries expose generic function names whose domain is implied by the package name, such as `date-fns.format`; configure `helperCollisions.libKeywords` to also match each real export with those domain words appended/prepended:
 

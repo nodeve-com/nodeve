@@ -55,6 +55,10 @@ pre-commit:
             glob: '*.ts'
             run: node_modules/.bin/nodeve-check reshape {staged_files}
 
+          - name: plural-arrays
+            glob: '*.ts'
+            run: node_modules/.bin/nodeve-check plural-arrays {staged_files}
+
           - name: page-size
             run: node_modules/.bin/nodeve-check page-size {staged_files}
 

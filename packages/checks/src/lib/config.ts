@@ -29,6 +29,22 @@ export type ReshapeConfig = {
 	allowlist: string[];
 };
 
+/**
+ * On by default: a count-plural variable name must hold an array, not a keyed
+ * collection (map/object). `pluralize` decides what reads as plural; the two word lists
+ * correct its domain misses — `plural` forces a word plural, `singular` exempts
+ * an `-s` noun it over-counts (e.g. `data`, `series`).
+ */
+export type PluralArraysConfig = {
+	globs: string[];
+	/** Words to always treat as count-plurals, even if `pluralize` disagrees. */
+	plural: string[];
+	/** Words to never treat as plural (non-count `-s` nouns `pluralize` over-counts). */
+	singular: string[];
+	/** `relPath::name` entries — confirmed intentional non-array bindings. */
+	allowlist: string[];
+};
+
 export type InlineDupesConfig = {
 	globs: string[];
 	/** Bare names that legitimately recur across files. */
@@ -141,6 +157,7 @@ export type Config = {
 	docTokens: LengthConfig;
 	commitMsg: CommitMsgConfig;
 	reshape: ReshapeConfig;
+	pluralArrays: PluralArraysConfig;
 	inlineDupes: InlineDupesConfig;
 	helperCollisions: HelperCollisionsConfig;
 	clones: ClonesConfig;

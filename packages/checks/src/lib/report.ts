@@ -59,3 +59,20 @@ export function render(name: string, r: CheckResult, opts: { explain?: string } 
 export function exitCode(r: CheckResult, warn: boolean): number {
 	return r.status === 'fail' && !warn ? 1 : 0;
 }
+
+/**
+ * Build aligned detail rows for a check that lists findings by source location.
+ * Sorts by file then line, left-pads the `label` column to its widest entry, and
+ * lays each row out as `<label>  <rest>  <rel>:<line>`. Shared by the per-finding
+ * listing checks (`reshape`, `plural-arrays`) so they don't each re-roll the same
+ * sort/pad/format tail.
+ */
+export function locationRows<T extends { rel: string; line: number }>(
+	findings: T[],
+	label: (f: T) => string,
+	rest: (f: T) => string,
+): string[] {
+	const sorted = [...findings].sort((a, b) => a.rel.localeCompare(b.rel) || a.line - b.line);
+	const pad = Math.max(...sorted.map((f) => label(f).length));
+	return sorted.map((f) => `${label(f).padEnd(pad)}  ${rest(f)}  ${f.rel}:${f.line}`);
+}

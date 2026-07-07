@@ -37,6 +37,17 @@ export default {
 		globs: ['apps/*.ts', 'packages/*.ts'],
 		allowlist: [],
 	},
+	// On by default: a count-plural name must hold an array, not a map/object (a
+	// Set is array-like, so it's fine). `pluralize` scores the name;
+	// `plural`/`singular` correct its domain misses.
+	// `singular` is seeded with `-s` nouns pluralize over-counts that are almost
+	// never arrays (payloads/values, not lists).
+	pluralArrays: {
+		globs: ['apps/*.ts', 'packages/*.ts'],
+		plural: [],
+		singular: ['data', 'metadata', 'series', 'news'],
+		allowlist: [],
+	},
 	inlineDupes: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
 		allowlist: [],

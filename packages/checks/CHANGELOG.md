@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.6.0
+
+### Minor Changes
+
+- Add the `plural-arrays` check: fails when a count-plural variable name (`users`, `tags`) is bound to a map/object rather than an array — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. A `Set` is treated as array-like and left alone. `pluralize` decides what reads as plural (so `status`, irregulars, and `xById`/`xMap`/`xToY` names are handled); the `pluralArrays.plural` / `pluralArrays.singular` word lists correct its domain misses, and `pluralArrays.allowlist` (as `relPath::name`) exempts a confirmed intentional binding. On by default over `apps/` and `packages/`.
+
 ## 1.5.2
 
 ### Patch Changes

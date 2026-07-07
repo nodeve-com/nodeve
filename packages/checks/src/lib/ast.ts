@@ -6,9 +6,40 @@
  * caller parses once and differs only in what it extracts.
  */
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import ts from 'typescript';
+import { tsSources } from './bin.js';
+
+/** Strip `!` and parens so `item.href!` / `(x)` read as the bare underlying expression. */
+export function unwrap(node: ts.Expression): ts.Expression {
+	let n = node;
+	while (ts.isNonNullExpression(n) || ts.isParenthesizedExpression(n)) n = n.expression;
+	return n;
+}
 
 /** Parse a source file into a full-AST `SourceFile` (positions kept, so callers can `getText`). */
 export function parseSource(absPath: string): ts.SourceFile {
 	return ts.createSourceFile(absPath, readFileSync(absPath, 'utf8'), ts.ScriptTarget.Latest, true);
+}
+
+/**
+ * Walk every in-scope TS source depth-first, calling `onNode` for each node with
+ * its file's rel path and parsed `SourceFile`. Folds the read → parse → recursive
+ * `forEachChild` scaffold that the node-scanning gates (`reshape`, `plural-arrays`)
+ * would otherwise each re-roll — so a caller supplies only what it extracts.
+ */
+export function forEachTsNode(
+	root: string,
+	globs: string[],
+	paths: string[],
+	onNode: (node: ts.Node, rel: string, src: ts.SourceFile) => void,
+): void {
+	for (const rel of tsSources(root, globs, paths)) {
+		const src = parseSource(join(root, rel));
+		const visit = (node: ts.Node): void => {
+			onNode(node, rel, src);
+			ts.forEachChild(node, visit);
+		};
+		visit(src);
+	}
 }
