@@ -1,0 +1,12 @@
+{
+	"languages": {
+		"Markdown": {
+			"format_on_save": "on",
+			"formatter": "prettier"
+		},
+		"YAML": {
+			"hard_tabs": false,
+			"tab_size": 2
+		}
+	}
+}
