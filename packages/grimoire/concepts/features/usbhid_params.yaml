@@ -1,0 +1,13 @@
+concept_settings:
+  # One CONFIGURATION PARAMETER — a named device setting addressed by an `index`, read and/or written
+  # via the config exchange (usbhid_config). Distinct from a diag field: a field decodes a fixed
+  # offset in a streamed telemetry frame; a parameter is fetched/set BY INDEX in a request/response,
+  # typically writable. Same scale + firmware-profile model as a field. `name` = the lowercased
+  # device field name (M4-ATX IGN_HIGH => ign_high), the derived MQTT sub-topic. `sentinel` maps a
+  # reserved raw value to a categorical meaning (0xffff => never).
+  compose: [ numeric_decode, usbhid_numeric ]
+prop:
+  name: {}
+  index: {}
+  access: {}
+  sentinel: {}

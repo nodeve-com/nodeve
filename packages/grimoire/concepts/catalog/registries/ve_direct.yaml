@@ -1,0 +1,13 @@
+# VE.Direct — Victron's vendor-proprietary serial protocol, published as a document (no per-term
+# resolvable IRIs, so no iri_template). `term` is the field/spec name, e.g. "PID". Recorded as a ref
+# because it IS a documented, identifiable protocol — just one owned by a vendor (see the `victron`
+# organization) rather than a standards body. In Stage 2 this registry gains `published_by: victron`.
+title:
+  en: VE.Direct Protocol
+  pt: Protocolo VE.Direct
+identity:
+  slug: ve_direct
+  code: 3X30NQ0F
+  url: https://www.victronenergy.com/support-and-downloads/technical-information
+registry_publication:
+  published_by: victron

@@ -1,0 +1,6 @@
+prop:
+  temperature: {}
+  relative_humidity: {}
+  dew_point: {}
+    # - atmospheric_pressure
+    # - heat_index

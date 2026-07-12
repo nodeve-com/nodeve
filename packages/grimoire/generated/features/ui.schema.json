@@ -1,0 +1,14 @@
+{
+  "$defs": {
+    "mono": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "mono": {
+      "$ref": "#/$defs/mono"
+    }
+  },
+  "type": "object"
+}

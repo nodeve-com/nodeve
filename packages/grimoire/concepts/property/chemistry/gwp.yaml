@@ -1,0 +1,4 @@
+title: { en: GWP, pt: GWP }
+description:
+  en: "Global warming potential, IPCC AR5 100-year basis (CO₂ = 1). Dimensionless."
+schema: { type: number, minimum: 0 }

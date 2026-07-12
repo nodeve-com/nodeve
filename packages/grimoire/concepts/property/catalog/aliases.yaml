@@ -1,0 +1,3 @@
+title: { en: Aliases }
+description: { en: Former tree paths this catalog leaf moved from (the inline changelog). loadDevice resolves them with a deprecation warning. Authored in the leaf YAML; omitted when empty. }
+schema: { type: array, items: { type: string, minLength: 1 } }

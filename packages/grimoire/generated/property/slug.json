@@ -1,0 +1,14 @@
+{
+  "description": {
+    "en": "Machine identifier — the wire form of a code/key; names a whole thing on the bus. Never human text (that is i18n_text).",
+    "pt": "Identificador de máquina — a forma de fio de um código/chave; nomeia uma coisa inteira no barramento. Nunca texto humano (isso é i18n_text)."
+  },
+  "schema": {
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "type": "string"
+  },
+  "title": {
+    "en": "Slug",
+    "pt": "Slug"
+  }
+}

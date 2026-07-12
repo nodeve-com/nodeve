@@ -1,0 +1,10 @@
+# The emit contract — where a value is published, how often a fresh point is
+# expected, and when to publish. Medium-neutral: every decoder->MQTT medium (modbus, ve.direct,
+# NMEA 0183) publishes under a topic root at some cadence, so this is owned by no single medium
+# and composed by each. update_interval_ms is required in the catalog contract, optional where a
+# downstream consumer (site adapter) overrides the default.
+prop:
+  topic_prefix: {}
+  update_interval_ms: {}
+  publish: {}
+  format: {}

@@ -1,0 +1,9 @@
+{
+  "additionalProperties": {
+    "type": "number"
+  },
+  "propertyNames": {
+    "pattern": "^[a-z][a-z0-9_]*$"
+  },
+  "type": "object"
+}

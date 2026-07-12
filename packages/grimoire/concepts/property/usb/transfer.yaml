@@ -1,0 +1,3 @@
+title: { en: Transfer }
+description: { en: "USB transfer type the exchange uses: interrupt endpoints (M4-ATX) or control pipe (HID Get/Set_Report)." }
+schema: { type: string, enum: [interrupt, control] }

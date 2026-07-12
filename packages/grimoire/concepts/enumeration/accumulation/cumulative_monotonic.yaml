@@ -1,0 +1,7 @@
+# A total that only ever rises and resets to 0 (a lifetime kWh meter).
+title:
+  en: Cumulative (monotonic)
+  pt: Cumulativo (monotónico)
+refs:
+  - { registry_id: ha_state_class, term: total_increasing, match: exact }
+  - { registry_id: prometheus, term: counter, match: exact }

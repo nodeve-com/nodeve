@@ -1,0 +1,7 @@
+title:
+  en: Series count
+description:
+  en: Number of panels wired in series on one MPPT input (install fact, never a datasheet fact).
+schema:
+  type: integer
+  exclusiveMinimum: 0

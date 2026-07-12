@@ -1,0 +1,3 @@
+title: { en: MAC address }
+description: { en: "The interface's IEEE 802 hardware address (EUI-48), colon-separated hex — the L2 identity burned into (or assigned to) the NIC." }
+schema: { type: string, pattern: "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$" }

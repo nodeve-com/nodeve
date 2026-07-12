@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Local address a listener binds to (e.g. 0.0.0.0, 127.0.0.1). Mirror of host (remote/dial side). No default — 0.0.0.0 exposes the listener to the whole network, a real security boundary, so the choice is authored explicitly, never inherited."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Bind address"
+  }
+}

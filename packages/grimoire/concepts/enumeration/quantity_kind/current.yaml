@@ -1,0 +1,9 @@
+title:
+  en: Current
+  pt: Corrente
+refs:
+  - { registry_id: qudt_quantity_kind, term: ElectricCurrent, match: exact }
+  - { registry_id: ha_device_class, term: current, match: exact }
+measurand:
+  si_unit: A
+  accumulation: instantaneous

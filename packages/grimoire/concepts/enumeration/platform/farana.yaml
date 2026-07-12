@@ -1,0 +1,6 @@
+title:
+  en: Farana
+description:
+  en: Decoder platform — the adapter runs as the site's gateway daemon, reaching the device across
+    a network proxy (ser2net, a Modbus-TCP gateway, or similar). Direct-attached serial is legacy;
+    dedicated hardware adapter services or on-board decoder boards are preferred.

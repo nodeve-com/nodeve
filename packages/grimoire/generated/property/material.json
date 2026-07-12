@@ -1,0 +1,11 @@
+{
+  "description": {
+    "en": "incoloy, copper, titanium, cotton, concerete, stainless"
+  },
+  "schema": {
+    "type": "string"
+  },
+  "title": {
+    "en": "Material"
+  }
+}

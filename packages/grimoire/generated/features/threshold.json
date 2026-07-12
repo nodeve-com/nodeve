@@ -1,0 +1,48 @@
+{
+  "prop": {
+    "bound": {
+      "$ref": "../property/bound.json",
+      "description": {
+        "en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude."
+      },
+      "schema": {
+        "type": "number"
+      },
+      "title": {
+        "en": "Bound",
+        "pt": "Limite"
+      }
+    },
+    "direction": {
+      "$ref": "../property/direction.json",
+      "description": {
+        "en": "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)."
+      },
+      "schema": {
+        "enum": [
+          "above",
+          "below"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Direction",
+        "pt": "Direção"
+      }
+    },
+    "hysteresis": {
+      "$ref": "../property/hysteresis.json",
+      "description": {
+        "en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Hysteresis",
+        "pt": "Histerese"
+      }
+    }
+  }
+}

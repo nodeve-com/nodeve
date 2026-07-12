@@ -1,0 +1,83 @@
+{
+  "prop": {
+    "alt_setting": {
+      "$ref": "../property/alt_setting.json",
+      "description": {
+        "en": "USB alternate setting (standard USB descriptor)."
+      },
+      "schema": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Alt setting"
+      }
+    },
+    "configuration": {
+      "$ref": "../property/configuration.json",
+      "description": {
+        "en": "USB configuration index (standard USB descriptor)."
+      },
+      "schema": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Configuration"
+      }
+    },
+    "detach_kernel_driver": {
+      "$ref": "../property/detach_kernel_driver.json",
+      "description": {
+        "en": "Linux fact that the in-kernel usbhid driver usually owns the device, so a userspace reader must detach it first (m4api does exactly this)."
+      },
+      "schema": {
+        "type": "boolean"
+      },
+      "title": {
+        "en": "Detach kernel driver"
+      }
+    },
+    "interface": {
+      "$ref": "../property/interface.json",
+      "description": {
+        "en": "USB interface number the host claims (standard USB descriptor)."
+      },
+      "schema": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Interface"
+      }
+    },
+    "product_id": {
+      "$ref": "../property/product_id.json",
+      "description": {
+        "en": "USB product id (authored as hex in YAML)."
+      },
+      "schema": {
+        "maximum": 65535,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Product ID"
+      }
+    },
+    "vendor_id": {
+      "$ref": "../property/vendor_id.json",
+      "description": {
+        "en": "USB vendor id (authored as hex in YAML, e.g. 0x04d8)."
+      },
+      "schema": {
+        "maximum": 65535,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Vendor ID"
+      }
+    }
+  }
+}

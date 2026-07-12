@@ -1,0 +1,510 @@
+# FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole
+# box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it
+# is talked to (its modbus slot). This single file replaces the former split between the
+# inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is
+# inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.
+identity:
+  slug: foxess_h3_ps10sh
+  code: S2P331EC
+
+product:
+  model: H3-10.0-Smart # box reports Inv.H3_SMART
+
+# Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.ts): each feature status carries that
+# feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE,
+# applying to every expanded instance. `measurement:` is a map statusED BY quantity_kind that realizes
+# the offered measurands with concrete VIM ranges — validated against the projected tree (offered
+# kinds only, intervals within envelope). One kind per status (range-multiplicity lives in `ranges`).
+
+# Commissioning settings — the grid the box is wired for. Each gates a nominal band below via a
+# `condition: [{ setting: …, equals: … }]`. Two SEPARATE knobs (220 V/60 Hz grids exist), raw
+# JSON-schema; the site fixes them once at install.
+settings_schema:
+  type: object
+  required: [grid_region, grid_frequency]
+  properties:
+    grid_region: { enum: [220, 230] }
+    grid_frequency: { enum: [50, 60] }
+  additionalProperties: false
+
+# feature_spec direction (docs/feature-model.md): `combined` = the whole AC-side total, `default` =
+# the per-phase template. Nested under `feature_spec` so the def can later carry the agnostic bands.
+ac_phase_three_grid:
+  identity:
+    slug: ac_grid
+  feature_spec:
+    # combined: the three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
+    # (it isn't: a 10 kW box can't sustain 3×3.3 kW). Authored because it's not derivable.
+    combined:
+      active_power:
+        # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
+        # With no nominal the symmetric export/import rows collapse to one signed range per tier.
+        intervals:
+          - identity: { slug: rated_continuous }
+            interval: { rating: operating, min: -11000, max: 10000 } # rated continuous, either direction
+            condition:
+              # Holds below the 45 °C derate onset — points at the enclosure's `below_derate` band.
+              - interval_item: { feature: enclosure, property: temperature, interval: below_derate }
+              # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a spec-carrying
+              # altitude band to point at — pending a generic altitude/elevation feature (the site
+              # supplies the install altitude; geo-fence is undesigned). Deferred, not dropped.
+          - identity: { slug: peak }
+            interval: { rating: operating, min: 10000, max: 11000 } # short-term "peak", same limit class
+            # TODO(duration-gate): sustained ≤30 s. A self-referential duration gate has no
+            # interval_item target in the new model yet; the device self-protects beyond. Deferred.
+          - identity: { slug: thermal_derate }
+            interval: { rating: operating, max: 9000 } # thermal derate 45–60 °C
+            condition:
+              - interval_item: { feature: enclosure, property: temperature, interval: derate_zone }
+    # default: KIND-keyed base every part of that kind starts from — the emit fills part.<name> as
+    # default.<kind> overlaid by any authored part.<name> patch. The power block below is PER-PHASE.
+    default:
+      ac_phase:
+        voltage:
+          # 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the
+          # single-valued grid_region setting, so the site sets it once and one interval resolves.
+          intervals:
+            - interval: { rating: operating, nominal: 220 }
+              condition: [{ setting: grid_region, equals: 220 }]
+            - interval: { rating: operating, nominal: 230 }
+              condition: [{ setting: grid_region, equals: 230 }]
+            - interval: { rating: measurable, min: 0, max: 250, resolution: 0.1 }
+        frequency:
+          intervals:
+            - interval: { rating: operating, nominal: 50, tolerance: 0.05 }
+              condition: [{ setting: grid_frequency, equals: 50 }]
+            - interval: { rating: operating, nominal: 60, tolerance: 0.05 }
+              condition: [{ setting: grid_frequency, equals: 60 }]
+        current:
+          intervals:
+            - interval: { rating: operating, max: 15.2 }
+            - interval: { rating: survival, max: 16.7 }
+            - interval: { rating: protection_required, max: 25 }
+        active_power:
+          intervals:
+            - interval: { rating: operating, nominal: 3333, max: 3666 }
+              condition:
+                - interval_item: { feature: enclosure, property: temperature, interval: below_derate }
+                # TODO(altitude-derate): per-phase full power only below 2000 m — same deferred
+                # altitude band as the combined total above.
+            - interval: { rating: measurable, min: 0, max: 5, unit: kW }
+
+# feature_spec direction (docs/feature-model.md): `count` is grammar → `concept_settings`; the
+# `combined` / `default` / `instances` spec body nests under `feature_spec`.
+pv_tracker:
+  concept_settings:
+    count: 3
+  feature_spec:
+    # `rating:` is the UNIVERSAL rated-envelope property (operating/survival/startup/protection_required)
+    # shared by every archetype; `mode:` is this archetype's OWN operational-state property (mppt,
+    # mppt_fullpower) for bands the universal set can't name. Both axes co-occur on one interval. Use
+    # `rating:` whenever a universal class fits; reserve `mode:` for the archetype-specific states.
+    combined:
+      active_power:
+        intervals:
+          - interval: { rating: survival, max: 20000 }
+          - interval: { rating: operating, max: 18000 }
+    default:
+      voltage:
+        intervals:
+          - interval: { rating: operating, min: 90, nominal: 620 }
+          - interval: { rating: survival, max: 1000 }
+          - interval: { rating: startup, min: 140 }
+          - interval: { mode: mppt, min: 120, max: 950 }
+          - interval: { mode: mppt_fullpower, min: 175, max: 850 }
+          - interval: { rating: measurable, min: 0, max: 1000, resolution: 0.1 }
+      current:
+        intervals:
+          - interval: { rating: survival, max: 25 }
+          - interval: { rating: operating, max: 20 }
+          - interval: { rating: measurable, min: 0, max: 30, resolution: 0.01 }
+      active_power:
+        intervals:
+          - interval: { rating: operating, max: 10000 }
+    # instances: SPARSE array of per-string overrides, each tagged with its 1-based `ordinal`
+    # (the join key), overlaid ROW-level onto `default`: this row replaces only the `operating`
+    # interval (same rating); survival/startup/mppt rows, current and measurable span stay inherited.
+    instances:
+      - ordinal: 3
+        voltage:
+          intervals:
+            - interval: { rating: operating, min: 60, nominal: 480 }
+
+# NB no `ac_export` feature_id: export/import is the SIGN of ac_phase_three_grid.combined.active_power above
+# (export +, import / grid-charge −) — the rated range and thermal derate live there, not duplicated.
+
+ac_phase_three_eps: # separate EPS port — export only; its own per-phase telemetry
+  identity:
+    slug: ac_eps
+  feature_spec:
+    # combined: the three legs as ONE — the box's whole-EPS-side total, NOT 3×per-phase.
+    combined:
+      active_power:
+        intervals:
+          - interval: { rating: operating, max: 10000 } # rated EPS export, all legs together
+    # default: the per-phase values every leg gets — the power block below is PER-PHASE.
+    default:
+      ac_phase:
+        voltage:
+          intervals:
+            - interval: { rating: operating, nominal: 230, min: 200, max: 260 }
+            - interval: { rating: measurable, min: 0, max: 300, resolution: 0.1 }
+        frequency:
+          intervals:
+            - interval: { rating: operating, nominal: 50 }
+        current:
+          intervals:
+            - interval: { rating: measurable, min: 0, max: 50, resolution: 0.01 }
+        active_power:
+          intervals:
+            - interval: { rating: measurable, min: -3.3, max: 3.3, unit: kW, resolution: 0.001 } # unit override — canonical is W
+
+ac_phase_three_load: # total household load the box meters (foxess load_power) — a concrete feature-of-interest
+  identity:
+    slug: ac_load
+  # whole-house active power; a single TOTAL (not per-phase), so no count/instances. The box reads it
+  # downstream of its own AC port; it's the inverter's view of the home, so it lives on this entry.
+  # Partless feature → its columns live under `feature_spec.combined` (the whole).
+  feature_spec:
+    combined:
+      active_power:
+        intervals:
+          - interval: { rating: measurable, min: 0, max: 15, unit: kW, resolution: 0.001 }
+
+enclosure: # internal temperature is the enclosure's — a concrete feature-of-interest, not dangling
+  # Partless feature → its columns live under `feature_spec.combined` (the whole).
+  feature_spec:
+    combined:
+      temperature:
+        # operating/survival are the box's thermal rating; below_derate/derate_zone are the sub-bands the
+        # grid-power thermal derate points at; measurable is what the sensor reads. Numbers in °C (unit
+        # override — canonical is K) per interval.
+        intervals:
+          - interval: { rating: operating, min: -25, max: 60, unit: °C }
+          - interval: { rating: survival, min: -40, max: 80, unit: °C }
+          - identity: { slug: below_derate } # ≤45 °C: full-power thermal headroom (derate onset)
+            interval: { rating: operating, max: 45, unit: °C }
+          - identity: { slug: derate_zone } # 45–60 °C: thermal derate region
+            interval: { rating: operating, min: 45, max: 60, unit: °C }
+          - interval: { rating: measurable, min: -40, max: 120, unit: °C, resolution: 0.1 }
+
+# Each NIC is one `network_interfaces` archetype instance (is_array): its own identity.slug handle
+# plus the network_link datasheet block. The box ships a WiFi radio and a 100 Mb Ethernet port.
+network_interfaces:
+  - identity: { slug: wlan0 }
+    network_link:
+      interface_type: ieee80211
+  - identity: { slug: eth0 }
+    network_link:
+      interface_type: ethernet_csmacd
+      link_speed: 100
+
+# Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the
+# registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host
+# resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the
+# built-in web UI (https on 443).
+services:
+  - identity: { slug: modbus_tcp }
+    service_binding:
+      service_protocol: modbus_tcp
+      network_interface_id: eth0
+      port: 502
+  - identity: { slug: web_ui }
+    service_binding:
+      service_protocol: https
+      network_interface_id: eth0
+      port: 443
+
+# How to TALK to the box: the modbus connectivity medium (the "decoder/master" stage in
+# docs/sensors-control.md). DECODE ONLY — scale raw numbers to engineering units and map raw
+# enum/bitfield registers to machine-code strings; no filtering, no combining (that is
+# eKuiper's job). Grid/meter telemetry is NOT here — it comes off the Chint DTSU666.
+# Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the
+# registers backing entities we consume today (write/control registers out of scope — see
+# docs/solar/inverter.md).
+modbus:
+  # The reachable surface (modbus_tcp on port 502, its NIC binding) is declared in `services` above —
+  # this medium is the DECODE contract (framing + register map), not the network transport.
+  modbus_link:
+    unit_id: 247 # Modbus slave id (FoxESS H3 AUX default); overridable downstream
+    # All H3_SMART data registers are HOLDING. 32-bit values span two registers, high word at
+    # the LOWER address (word_order: high_first); 16-bit registers are big-endian (Modbus std).
+    register_type: holding
+    word_order: high_first
+  # PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim
+  # from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to
+  # github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT,
+  # not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a
+  # hard split boundary around these until a live probe confirms the hazard:
+  #   mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?
+  #   mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
+  # invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual
+  #   control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding
+  #   around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS
+  #   battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.
+  modbus_constraints:
+    invalid_ranges:
+      - range: [41001, 41006]
+        note: unspecified 410xx (foxess_modbus copy); unverified, no register we read is near it
+      - range: [41012, 41013]
+        note: unspecified 410xx (foxess_modbus copy); unverified
+      - range: [41015, 41015]
+        note: unspecified 410xx (foxess_modbus copy); unverified
+    individual_read_ranges:
+      - range: [37609, 37620]
+        note: battery + BMS telemetry (V, I, SoC, temp, cell temps/mV); unverified, not read today
+      - range: [37632, 37636]
+        note: BMS energy registers (kWh remaining); unverified, not read today
+  # Each register LINKS to a measurand the projected feature tree offers: (feature, ordinal,
+  # quantity_kind). The topic is DERIVED from that link downstream — not authored here. `unit`
+  # appears ONLY when it isn't the kind's SI/coherent unit (V/A/W/K are SI ⇒ omitted; kW, °C kept).
+  modbus_registers:
+    # --- PV string 1 (foxess pv1_*) ---
+    - {
+        feature_id: pv_tracker,
+        ordinal: 1,
+        quantity_kind: voltage,
+        address: 39070,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 1,
+        quantity_kind: current,
+        address: 39071,
+        type: uint16,
+        scale: 0.01,
+        decimals: 2,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 1,
+        quantity_kind: active_power,
+        address: 39279,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39280
+    # --- PV string 2 (foxess pv2_*) ---
+    - {
+        feature_id: pv_tracker,
+        ordinal: 2,
+        quantity_kind: voltage,
+        address: 39072,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 2,
+        quantity_kind: current,
+        address: 39073,
+        type: uint16,
+        scale: 0.01,
+        decimals: 2,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 2,
+        quantity_kind: active_power,
+        address: 39281,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39282
+    # --- PV string 3 (foxess pv3_*) — the box's third tracker (ordinal 3 override in feature_spec) ---
+    - {
+        feature_id: pv_tracker,
+        ordinal: 3,
+        quantity_kind: voltage,
+        address: 39074,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 3,
+        quantity_kind: current,
+        address: 39075,
+        type: uint16,
+        scale: 0.01,
+        decimals: 2,
+      }
+    - {
+        feature_id: pv_tracker,
+        ordinal: 3,
+        quantity_kind: active_power,
+        address: 39283,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39284
+    # --- Inverter AC output, per phase (foxess inv_power_R/S/T → legs L1/L2/L3) ---
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: active_power,
+        address: 39248,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39249
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: active_power,
+        address: 39250,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39251
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: active_power,
+        address: 39252,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39253
+    # --- Grid AC output, per-phase voltage (foxess grid_voltage_R/S/T) ---
+    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: voltage, address: 39123, type: uint16, scale: 0.1, decimals: 1 }
+    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: voltage, address: 39124, type: uint16, scale: 0.1, decimals: 1 }
+    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: voltage, address: 39125, type: uint16, scale: 0.1, decimals: 1 }
+    # --- Grid AC output, per-phase current (foxess inv_current_R/S/T) ---
+    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: current, address: 39126, type: int32, scale: 0.001, decimals: 3 } # high word; low 39127
+    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: current, address: 39128, type: int32, scale: 0.001, decimals: 3 } # high word; low 39129
+    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: current, address: 39130, type: int32, scale: 0.001, decimals: 3 } # high word; low 39131
+    # --- Grid AC output, per-phase reactive power (foxess inv_power_Q_R/S/T) ---
+    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: reactive_power, address: 39256, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39257
+    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: reactive_power, address: 39258, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39259
+    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: reactive_power, address: 39260, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39261
+    # --- Grid AC output, per-phase apparent power (foxess rpower_S_R/S/T) ---
+    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: apparent_power, address: 39264, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39265
+    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: apparent_power, address: 39266, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39267
+    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: apparent_power, address: 39268, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39269
+    # --- EPS (backup) output, per phase (foxess eps_rvolt/eps_rcurrent/eps_power R/S/T) ---
+    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: voltage, address: 39201, type: uint16, scale: 0.1, decimals: 1 }
+    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: voltage, address: 39202, type: uint16, scale: 0.1, decimals: 1 }
+    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: voltage, address: 39203, type: uint16, scale: 0.1, decimals: 1 }
+    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: current, address: 39204, type: int32, scale: 0.001, decimals: 3 } # high word; low 39205
+    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: current, address: 39206, type: int32, scale: 0.001, decimals: 3 } # high word; low 39207
+    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: current, address: 39208, type: int32, scale: 0.001, decimals: 3 } # high word; low 39209
+    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: active_power, address: 39212, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39213
+    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: active_power, address: 39214, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39215
+    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: active_power, address: 39216, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39217
+    # --- House load, total (foxess load_power, holding 39226/39225 on H3_SMART) ---
+    - {
+        feature_id: ac_phase_three_load,
+        quantity_kind: active_power,
+        address: 39225,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39226
+    # --- Inverter temperature (foxess invtemp, holding 39141 on H3_SMART) ---
+    - {
+        feature_id: enclosure,
+        quantity_kind: temperature,
+        address: 39141,
+        type: int16,
+        scale: 0.1,
+        decimals: 1,
+        unit: °C,
+      }
+  # Categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter
+  # root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns
+  # them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a
+  # quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
+  modbus_decodes:
+    # Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at
+    # 39063/39064/39065, reported HONESTLY as a SET: the decoder emits EVERY set bit across the
+    # group and does NOT collapse to one (priority/"first wins" is a downstream display concern,
+    # not the gateway's job — decode-only). Bits stay in the group the device puts them in — the
+    # word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the
+    # separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is
+    # read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].
+    - kind: flags
+      feature_id: inverter
+      state: run_state
+      addresses: [39063, 39064, 39065]
+      empty: unknown
+      join: '; '
+      labels:
+        - [standby, null, on_grid, null, null, null, fault] # 39063 word1: bit0 standby, bit2 on_grid, bit6 fault
+        - [] # 39064 word2: in the group, bits not yet identified
+        - [off_grid] # 39065 word3: bit0 off_grid
+    # Inverter fault code (foxess inverter_fault_code). Collect every set bit's slug across all
+    # three words and join; none set → `none`. labels[i] is the bit map for addresses[i].
+    - kind: flags
+      feature_id: inverter
+      fault: fault_code
+      addresses: [39067, 39068, 39069]
+      empty: none
+      join: '; '
+      labels:
+        - [
+            fault_pv_voltage_over,
+            fault_dc_arc,
+            fault_pv_string_connection_reverse,
+            null,
+            null,
+            null,
+            null,
+            fault_grid_lost,
+            fault_grid_voltage,
+            null,
+            null,
+            fault_grid_frequency,
+            null,
+            null,
+            fault_output_current_over,
+            fault_output_dc_current_over,
+          ]
+        - [
+            fault_residual_current_consistency,
+            fault_ground_connection,
+            fault_insulation_resistance_low,
+            fault_inverter_temperature_over,
+            null,
+            null,
+            null,
+            null,
+            null,
+            fault_energy_storage_equipment_abnormal,
+            fault_island_isolated,
+            null,
+            null,
+            null,
+            fault_off_grid_output_overload,
+            null,
+          ]
+        - [
+            null,
+            null,
+            null,
+            fault_fan_external,
+            fault_energy_storage_connection_reverse,
+            null,
+            null,
+            null,
+            null,
+            fault_meter_lost,
+            fault_bms_lost,
+            null,
+            null,
+            null,
+            null,
+            null,
+          ]

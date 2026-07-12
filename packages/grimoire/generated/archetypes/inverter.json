@@ -1,0 +1,283 @@
+{
+  "description": {
+    "en": "A grid-tied PV/storage inverter (AC output + MPPT window + connectivity)"
+  },
+  "prop": {
+    "ac_phase": {
+      "$ref": "../features/ac_phase.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "seas",
+          "term": "AlternatingCurrentConnectionPoint"
+        },
+        {
+          "match": "related",
+          "registry_id": "cim",
+          "term": "PhaseCode.A"
+        },
+        {
+          "match": "related",
+          "registry_id": "sunspec",
+          "term": "203"
+        }
+      ],
+      "title": {
+        "en": "AC phase",
+        "pt": "Fase CA"
+      }
+    },
+    "ac_phase_three_eps": {
+      "$ref": "../features/ac_phase_three_eps.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "seas",
+          "term": "AlternatingCurrentConnectionPoint"
+        }
+      ],
+      "title": {
+        "en": "EPS phase",
+        "pt": "Fase EPS"
+      }
+    },
+    "ac_phase_three_grid": {
+      "$ref": "../features/ac_phase_three_grid.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "cim",
+          "term": "ExternalNetworkInjection"
+        },
+        {
+          "match": "close",
+          "registry_id": "seas",
+          "term": "AlternatingCurrentConnectionPoint"
+        },
+        {
+          "match": "broad",
+          "registry_id": "saref4grid",
+          "term": "PowerLine"
+        }
+      ],
+      "title": {
+        "en": "AC 3-Phase Grid"
+      }
+    },
+    "ac_phase_three_load": {
+      "$ref": "../features/ac_phase_three_load.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "related",
+          "registry_id": "brick",
+          "term": "Electrical_Meter"
+        }
+      ],
+      "title": {
+        "en": "AC 3-Phase Load",
+        "pt": "Carga CA trifásica"
+      }
+    },
+    "description": {
+      "$ref": "../features/description.json",
+      "description": {
+        "en": "Optional localized blurb for a term (i18n text)."
+      },
+      "title": {
+        "en": "Description",
+        "pt": "Descrição"
+      }
+    },
+    "enclosure": {
+      "$ref": "../features/enclosure.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "broad",
+          "registry_id": "cim",
+          "term": "AssetContainer"
+        },
+        {
+          "match": "related",
+          "registry_id": "sunspec",
+          "term": "TmpCab"
+        }
+      ],
+      "title": {
+        "en": "Enclosure",
+        "pt": "Invólucro"
+      }
+    },
+    "identity": {
+      "$ref": "../features/identity.json"
+    },
+    "location": {
+      "$ref": "../features/location.json",
+      "description": {
+        "en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level).",
+        "pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)."
+      },
+      "title": {
+        "en": "Location",
+        "pt": "Local"
+      }
+    },
+    "modbus": {
+      "$ref": "./modbus.json",
+      "description": {
+        "en": "A Modbus connectivity medium — Layer-7 application protocol (transport + emit + register map + decode + read-batching constraints)."
+      },
+      "refs": [
+        {
+          "match": "exact",
+          "registry_id": "modbus_org",
+          "term": "Modbus Application Protocol"
+        }
+      ],
+      "title": {
+        "en": "Modbus medium"
+      }
+    },
+    "network_interfaces": {
+      "$ref": "./network_interfaces.json",
+      "description": {
+        "en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)."
+      },
+      "title": {
+        "en": "Network interface"
+      }
+    },
+    "product": {
+      "$ref": "../features/product.json",
+      "description": {
+        "en": "Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec.",
+        "pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso."
+      },
+      "title": {
+        "en": "Product",
+        "pt": "Produto"
+      }
+    },
+    "pv_tracker": {
+      "$ref": "../features/pv_tracker.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "sunspec",
+          "term": "160"
+        },
+        {
+          "match": "broad",
+          "registry_id": "cim",
+          "term": "PhotovoltaicUnit"
+        },
+        {
+          "match": "broad",
+          "registry_id": "brick",
+          "term": "PV_Array"
+        },
+        {
+          "match": "broad",
+          "registry_id": "iec_61850",
+          "term": "DPVA"
+        }
+      ],
+      "title": {
+        "en": "PV tracker",
+        "pt": "Rastreador FV"
+      }
+    },
+    "refs": {
+      "$ref": "../features/refs.json",
+      "title": {
+        "en": "References",
+        "pt": "Referências"
+      }
+    },
+    "services": {
+      "$ref": "./services.json",
+      "description": {
+        "en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses."
+      },
+      "title": {
+        "en": "Service"
+      }
+    },
+    "title": {
+      "$ref": "../features/title.json",
+      "description": {
+        "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes.",
+        "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
+      },
+      "title": {
+        "en": "Title - friendly name",
+        "pt": "Nome amigável"
+      }
+    }
+  },
+  "refs": [
+    {
+      "match": "broad",
+      "registry_id": "sosa",
+      "term": "FeatureOfInterest"
+    },
+    {
+      "match": "exact",
+      "registry_id": "cim",
+      "term": "PowerElectronicsConnection"
+    },
+    {
+      "match": "exact",
+      "registry_id": "iec_61850",
+      "term": "ZINV"
+    },
+    {
+      "match": "exact",
+      "registry_id": "brick",
+      "term": "Inverter"
+    },
+    {
+      "match": "close",
+      "registry_id": "seas",
+      "term": "Inverter"
+    },
+    {
+      "match": "close",
+      "registry_id": "sunspec",
+      "term": "103"
+    }
+  ],
+  "title": {
+    "en": "Inverter",
+    "pt": "Inversor"
+  }
+}

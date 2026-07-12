@@ -1,0 +1,23 @@
+# SITE concept (schema-only; instances live in sites/<name>/ambient-tank.yaml): the thermal
+# operating bands of one install's ambient tank — the central thermal flywheel. Holds ONLY site
+# TUNING: the °C bands depend on this install's climate, soil, and loads. The tank's physical SPEC
+# (capacity, a quantity-value of kind volume) is a catalog/datasheet fact, never here — specs and
+# tuning are different layers. Composed entirely from the temp_band feature; invents no value shapes.
+# Physical meaning: docs/hvac/tank-ambient.md.
+
+title:
+  en: Ambient tank
+  pt: Tanque ambiente
+description:
+  en: An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands.
+
+feature:
+  target_temp_band:
+    schema:
+      required: true
+  operating_temp_band:
+    schema:
+      required: true
+  ground_temp_band:
+    schema:
+      required: true

@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "OBSERVED interval between the foreign master's polls, integer ms — measured from real bus activity, never commanded (a passive tap doesn't own the poll clock; distinct from the commanded update_interval_ms). Lets codegen pin sample-relative filters (EMA α = 1 − e^(−Δt/τ)); omitted = unknown, only wall-clock/value-defined filters valid."
+  },
+  "schema": {
+    "minimum": 1,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Observed interval (ms)",
+    "pt": "Intervalo observado (ms)"
+  }
+}

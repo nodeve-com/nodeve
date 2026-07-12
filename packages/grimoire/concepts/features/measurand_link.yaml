@@ -1,0 +1,17 @@
+concept_settings:
+  # The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place
+  # feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers,
+  # USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected
+  # feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet
+  # attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link
+  # downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind;
+  # a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key
+  # feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming
+  # gateway applies); the `combined` aggregate is linked with both ABSENT.
+  compose:
+    - instance_key
+enums:
+  - quantity_kind # LINKED value: which quantity of the feature this reads
+prop:
+  feature_id: {}
+  raw_name: {}

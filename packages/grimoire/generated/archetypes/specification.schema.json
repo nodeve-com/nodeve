@@ -1,0 +1,356 @@
+{
+  "$defs": {
+    "archetype": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "broader": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "channel": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "code": {
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{8}$",
+      "type": "string"
+    },
+    "condition": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "equals": {
+            "$ref": "#/$defs/equals"
+          },
+          "interval_item": {
+            "$ref": "#/$defs/interval_item"
+          },
+          "setting": {
+            "$ref": "#/$defs/setting"
+          },
+          "test_condition": {
+            "enum": [
+              "bnpi",
+              "bsi",
+              "stc"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "description": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "pt": {
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "equals": {
+      "type": [
+        "string",
+        "number",
+        "boolean"
+      ]
+    },
+    "fraction_lower": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "fraction_upper": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "identity": {
+      "additionalProperties": false,
+      "properties": {
+        "archetype": {
+          "$ref": "#/$defs/archetype"
+        },
+        "broader": {
+          "$ref": "#/$defs/broader"
+        },
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "iri_template": {
+          "$ref": "#/$defs/iri_template"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug_qualified": {
+          "$ref": "#/$defs/slug_qualified"
+        },
+        "symbol": {
+          "$ref": "#/$defs/symbol"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        }
+      },
+      "type": "object"
+    },
+    "interval": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "$ref": "#/$defs/channel"
+        },
+        "fraction_lower": {
+          "$ref": "#/$defs/fraction_lower"
+        },
+        "fraction_upper": {
+          "$ref": "#/$defs/fraction_upper"
+        },
+        "margin": {
+          "$ref": "#/$defs/margin"
+        },
+        "max": {
+          "$ref": "#/$defs/max"
+        },
+        "max_permissible_error": {
+          "$ref": "#/$defs/max_permissible_error"
+        },
+        "min": {
+          "$ref": "#/$defs/min"
+        },
+        "mode": {
+          "$ref": "#/$defs/mode"
+        },
+        "nominal": {
+          "$ref": "#/$defs/nominal"
+        },
+        "rating": {
+          "enum": [
+            "measurable",
+            "operating",
+            "protection_required",
+            "startup",
+            "survival"
+          ],
+          "type": "string"
+        },
+        "resolution": {
+          "$ref": "#/$defs/resolution"
+        },
+        "tolerance": {
+          "$ref": "#/$defs/tolerance"
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        }
+      },
+      "type": "object"
+    },
+    "interval_item": {
+      "additionalProperties": false,
+      "properties": {
+        "feature": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "interval": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "property": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "intervals": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "condition": {
+            "$ref": "#/$defs/condition"
+          },
+          "description": {
+            "$ref": "#/$defs/description"
+          },
+          "identity": {
+            "$ref": "#/$defs/identity"
+          },
+          "interval": {
+            "$ref": "#/$defs/interval"
+          },
+          "refs": {
+            "$ref": "#/$defs/refs"
+          },
+          "title": {
+            "$ref": "#/$defs/title"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "iri_template": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "margin": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "match": {
+      "enum": [
+        "exact",
+        "close",
+        "broad",
+        "narrow",
+        "related"
+      ]
+    },
+    "max": {
+      "type": "number"
+    },
+    "max_permissible_error": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "measurand": {
+      "additionalProperties": false,
+      "properties": {
+        "accumulation": {
+          "enum": [
+            "cumulative",
+            "cumulative_monotonic",
+            "instantaneous"
+          ],
+          "type": "string"
+        },
+        "si_unit": {
+          "$ref": "#/$defs/si_unit"
+        },
+        "unit": {
+          "$ref": "#/$defs/unit"
+        }
+      },
+      "type": "object"
+    },
+    "min": {
+      "type": "number"
+    },
+    "mode": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "nominal": {
+      "type": "number"
+    },
+    "refs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "match": {
+            "$ref": "#/$defs/match"
+          },
+          "registry_id": {
+            "$ref": "#/$defs/registry_id"
+          },
+          "term": {
+            "$ref": "#/$defs/term"
+          }
+        },
+        "required": [
+          "match",
+          "registry_id",
+          "term"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "registry_id": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "resolution": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "setting": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "si_unit": {
+      "type": "string"
+    },
+    "slug": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "slug_qualified": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "symbol": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "term": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "title": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "pt": {
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tolerance": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "url": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "identity": {
+      "$ref": "#/$defs/identity"
+    },
+    "intervals": {
+      "$ref": "#/$defs/intervals"
+    },
+    "measurand": {
+      "$ref": "#/$defs/measurand"
+    }
+  },
+  "type": "object"
+}

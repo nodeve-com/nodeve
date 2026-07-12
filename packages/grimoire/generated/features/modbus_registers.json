@@ -1,0 +1,189 @@
+{
+  "array": {
+    "prop": {
+      "address": {
+        "$ref": "../property/address.json",
+        "description": {
+          "en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules."
+        },
+        "schema": {
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "title": {
+          "en": "Register address"
+        }
+      },
+      "decimals": {
+        "$ref": "../property/decimals.json",
+        "description": {
+          "en": "Decimal places the sensor actually resolves; the published value is rounded to it. Source-side honesty — decoding leaks precision the sensor never measured (nearest float32 to 1.675 is 1.6749999523162842; a scale like 0.1 adds its own IEEE-754 tail). Omit only when scale already lands on the real resolution.",
+          "pt": "Casas decimais que o sensor realmente resolve; o valor publicado é arredondado para elas. Omita apenas quando a escala já chega à resolução real."
+        },
+        "schema": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "title": {
+          "en": "Resolved decimals",
+          "pt": "Casas decimais resolvidas"
+        }
+      },
+      "feature_id": {
+        "$ref": "../property/feature_id.json",
+        "description": {
+          "en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree."
+        },
+        "refs": [
+          {
+            "match": "close",
+            "registry_id": "sosa",
+            "term": "FeatureOfInterest"
+          }
+        ],
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": {
+          "en": "Feature ID"
+        }
+      },
+      "ordinal": {
+        "$ref": "../property/ordinal.json",
+        "description": {
+          "en": "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on."
+        },
+        "schema": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "title": {
+          "en": "Ordinal",
+          "pt": "Ordinal"
+        }
+      },
+      "part_id": {
+        "$ref": "../property/part_id.json",
+        "description": {
+          "en": "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead."
+        },
+        "schema": {
+          "pattern": "^(a|b|c|n|ab|bc|ca)$",
+          "type": "string"
+        },
+        "title": {
+          "en": "Part id"
+        }
+      },
+      "quantity_kind": {
+        "schema": {
+          "enum": [
+            "active_energy",
+            "active_power",
+            "altitude",
+            "apparent_energy",
+            "apparent_power",
+            "cooling_capacity",
+            "current",
+            "dew_point",
+            "electric_charge",
+            "frequency",
+            "phase_angle",
+            "power",
+            "power_factor",
+            "reactive_energy",
+            "reactive_power",
+            "relative_humidity",
+            "resistance",
+            "temperature",
+            "voltage",
+            "volume",
+            "volume_flow_rate"
+          ],
+          "type": "string"
+        }
+      },
+      "raw_name": {
+        "$ref": "../property/raw_name.json",
+        "description": {
+          "en": "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label."
+        },
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": {
+          "en": "Raw name"
+        }
+      },
+      "scale": {
+        "$ref": "../property/scale.json",
+        "description": {
+          "en": "Published value = raw × scale (raw → engineering units). Optional where omitting means 1 (VE.Direct).",
+          "pt": "Valor publicado = bruto × escala (bruto → unidades de engenharia)."
+        },
+        "schema": {
+          "type": "number"
+        },
+        "title": {
+          "en": "Scale",
+          "pt": "Escala"
+        }
+      },
+      "type": {
+        "$ref": "../property/type.json",
+        "description": {
+          "en": "On-the-wire encoding of the raw value (e.g. uint16, float32). Value set is medium-specific — modbus has no uint8; VE.Direct is int/hex/bool/string.",
+          "pt": "Codificação do valor bruto no barramento (ex. uint16, float32)."
+        },
+        "schema": {
+          "type": "string"
+        },
+        "title": {
+          "en": "Encoding",
+          "pt": "Codificação"
+        }
+      },
+      "unit": {
+        "$ref": "../property/unit.json",
+        "description": {
+          "en": "Non-SI unit override of a published/stated value — stated only when the value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, °C vs K). Omit ⇒ canonical SI unit.",
+          "pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica."
+        },
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": {
+          "en": "Unit",
+          "pt": "Unidade"
+        }
+      },
+      "value_type": {
+        "$ref": "../property/value_type.json",
+        "description": {
+          "en": "On-the-wire encoding of a register value. Determines how many 16-bit registers to read (uint16/int16 = 1, 32-bit types = 2) and how to decode the raw bytes. The only field reflecting on-the-wire truth — display concerns (rounding) are downstream and absent. Authored as the `type` key."
+        },
+        "schema": {
+          "enum": [
+            "uint16",
+            "int16",
+            "uint32",
+            "int32",
+            "float32"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "en": "Value type"
+        }
+      }
+    }
+  },
+  "title": {
+    "en": "Modbus registers",
+    "pt": "Registros Modbus"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Chemical formula, code-like (C3H8). Not i18n."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Formula",
+    "pt": "Fórmula"
+  }
+}

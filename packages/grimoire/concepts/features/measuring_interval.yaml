@@ -1,0 +1,10 @@
+# A MEASURING INTERVAL (VIM 4.7, JCGM 200:2012; a.k.a. measuring range / working interval) — the
+# closed span an instrument channel reads with its stated metrological properties. Unit-agnostic
+# (unit carried once by the enclosing measurement). The {min,max} shape is the generic range
+# feature — composed, never restated. Same shape as temp_band, deliberately a DIFFERENT concept
+# (temp_band is a CONTROL band; this is what an INSTRUMENT can read). Authored sealed.
+refs:
+  - { registry_id: vim, term: '4.7', match: exact }
+concept_settings:
+  compose:
+    - range

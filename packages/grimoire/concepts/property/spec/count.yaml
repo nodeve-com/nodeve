@@ -1,0 +1,3 @@
+title: { en: Count }
+description: { en: "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of." }
+schema: { type: integer, minimum: 1 }

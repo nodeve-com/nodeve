@@ -1,0 +1,16 @@
+# An external Class: a named vocabulary whose rows live ELSEWHERE — the external analog of an archetype
+# (docs/reference-model.md). A crosswalk ref points at (registry, term): `registry_id` is an FK to one of
+# these entries, `term` an id within it. Each registry carries its resolver + publisher via the
+# `registry_publication` feature (iri_template | base_url + published_by → organization); grained to the
+# IRI NAMESPACE (QUDT quantity-kinds vs units are separate registries — their iri_template differs).
+# Entries are INSTANCES under catalog/registries/ (were enumeration/registry/ before stage 2).
+title:
+  en: Registry
+  pt: Registro
+description:
+  en: An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher.
+  pt: Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor.
+concept_settings:
+  compose: [ thing ]
+feature:
+  registry_publication: {}

@@ -1,0 +1,6 @@
+title:
+  en: English
+  pt: inglês
+schema:
+  type: string
+  minLength: 1

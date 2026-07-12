@@ -1,0 +1,23 @@
+# An INTERVAL-ITEM reference — names ONE interval of a quantity: which feature-of-interest
+# (`feature`), which of its properties (`property`: a quantity_kind slug or a settings key), and
+# WHICH interval of that property (`interval`: the target interval's own `code` handle). All three
+# are SLUGS — the same by-slug lookup `catalog_item` ({archetype, slug}) uses; no `_id`/`_slug`
+# suffix. All three required: a fully-qualified pointer, no self-referential shorthand (a self-dwell
+# gate names its own enclosing feature explicitly). The interval it names carries the actual
+# region/value — a condition holds NO bounds of its own, it is a pure pointer. `interval` is unique
+# within the target property's `intervals` array (bake-validated, not draft-07) and must resolve to
+# an existing coded interval.
+title: { en: Interval item }
+description:
+  en: "A by-slug pointer to one interval of a feature's property — {feature, property, interval}.
+    The named interval carries the region/value; a condition is an instance of this reference."
+refs:
+  - { registry_id: sosa, term: FeatureOfInterest, match: close }
+schema:
+  type: object
+  required: [feature, property, interval]
+  properties:
+    feature: { type: string, minLength: 1 }
+    property: { type: string, minLength: 1 }
+    interval: { type: string, minLength: 1 } # the target interval's `code` handle
+  additionalProperties: false

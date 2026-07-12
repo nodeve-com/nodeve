@@ -1,0 +1,18 @@
+{
+  "description": {
+    "en": "On-the-wire encoding of a register value. Determines how many 16-bit registers to read (uint16/int16 = 1, 32-bit types = 2) and how to decode the raw bytes. The only field reflecting on-the-wire truth — display concerns (rounding) are downstream and absent. Authored as the `type` key."
+  },
+  "schema": {
+    "enum": [
+      "uint16",
+      "int16",
+      "uint32",
+      "int32",
+      "float32"
+    ],
+    "type": "string"
+  },
+  "title": {
+    "en": "Value type"
+  }
+}

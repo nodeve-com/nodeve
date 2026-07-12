@@ -1,0 +1,40 @@
+{
+  "$defs": {
+    "fraction_lower": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "fraction_upper": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    },
+    "max": {
+      "type": "number"
+    },
+    "min": {
+      "type": "number"
+    },
+    "nominal": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "fraction_lower": {
+      "$ref": "#/$defs/fraction_lower"
+    },
+    "fraction_upper": {
+      "$ref": "#/$defs/fraction_upper"
+    },
+    "max": {
+      "$ref": "#/$defs/max"
+    },
+    "min": {
+      "$ref": "#/$defs/min"
+    },
+    "nominal": {
+      "$ref": "#/$defs/nominal"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "The field index the get/set command carries to address this parameter (m4ConfigField.index)."
+  },
+  "schema": {
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Index"
+  }
+}

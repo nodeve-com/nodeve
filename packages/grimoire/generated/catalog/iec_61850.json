@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "X0XZE4CV",
+    "slug": "iec_61850"
+  },
+  "registry_publication": {
+    "published_by": "iec"
+  },
+  "title": {
+    "en": "IEC 61850 logical nodes (power utility automation)",
+    "pt": "Nós lógicos IEC 61850 (automação de serviços de energia)"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "prop": {
+    "en": {
+      "$ref": "../property/en.json",
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "English",
+        "pt": "inglês"
+      }
+    },
+    "pt": {
+      "$ref": "../property/pt.json",
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      }
+    }
+  },
+  "title": {
+    "en": "Translations"
+  }
+}

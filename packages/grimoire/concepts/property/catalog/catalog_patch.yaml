@@ -1,0 +1,11 @@
+# A sparse OVERLAY onto the referenced catalog device's measurand tree — the site-computed half of
+# the reference (`catalog_item` is the pointer; this is what the site adds to it). Mirrors the
+# device's `{feature}.{combined|part.<id>|instances[n]}.{quantity_kind}` shape, each leaf carrying
+# the deterministic on-bus `slug` (the site bake stamps it — PLANS/deterministic-sensor-ids.md) plus
+# any `si_unit` override. Consumers DEEP-MERGE it onto the loaded device; the merge is deliberately
+# NOT materialised into site.generated.json — only the patch travels. Free-form here: its shape is
+# the referenced device's, which no static schema can know.
+title: { en: Catalog patch }
+schema:
+  type: object
+  additionalProperties: true

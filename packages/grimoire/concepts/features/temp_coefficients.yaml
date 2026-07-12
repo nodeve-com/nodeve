@@ -1,0 +1,5 @@
+# Temperature coefficients of a PV module's datasheet ratings — how nameplate values drift with
+# cell temperature. Separate from the panel's `dc` STC ratings: modules often list coefficients on
+# a different page / not at all, and cold-morning Voc-rise modelling wants only these.
+prop:
+  voc_temp_coeff_pct_per_c: {}

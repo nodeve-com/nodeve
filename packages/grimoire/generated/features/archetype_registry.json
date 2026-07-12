@@ -1,0 +1,13 @@
+{
+  "prop": {
+    "archetype_kind": {
+      "schema": {
+        "enum": [
+          "catalog",
+          "schema_only"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}

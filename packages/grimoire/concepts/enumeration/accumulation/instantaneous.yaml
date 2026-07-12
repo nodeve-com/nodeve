@@ -1,0 +1,7 @@
+# A sample of the value as it is right now (power, voltage, temperature, flow rate).
+title:
+  en: Instantaneous
+  pt: Instantâneo
+refs:
+  - { registry_id: ha_state_class, term: measurement, match: exact }
+  - { registry_id: prometheus, term: gauge, match: exact }

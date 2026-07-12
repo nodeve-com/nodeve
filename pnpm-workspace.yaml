@@ -14,9 +14,11 @@ catalog:
   '@eslint/js': ^10.0.1
   '@noble/hashes': ^2.0.0
   '@scure/base': ^2.0.0
+  '@sinclair/typebox': ^0.34.50
   '@types/node': ^22.0.0
   '@types/pluralize': ^0.0.33
   '@vitest/browser-playwright': ^4.1.9
+  ajv: ^8.17.1
   date-fns: ^4.0.0
   eslint: ^10.5.0
   eslint-config-prettier: ^10.1.8
@@ -29,6 +31,7 @@ catalog:
   prettier-plugin-svelte: ^3.5.1
   prettier-plugin-tailwindcss: ^0.7.2
   remeda: ^2.0.0
+  remeda-humps: ^4.1.0
   typescript: ^5.5.0
   typescript-eslint: ^8.62.0
   vitest: ^3.0.0

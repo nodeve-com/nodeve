@@ -1,0 +1,7 @@
+{
+  "enum": [
+    "grouped",
+    "per_value"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,4 @@
+title: { en: Formula, pt: Fórmula }
+description:
+  en: "Chemical formula, code-like (C3H8). Not i18n."
+schema: { type: string, minLength: 1 }

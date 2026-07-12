@@ -1,0 +1,5 @@
+title:
+  en: USB
+  pt: USB
+refs:
+  - { registry_id: iana_iftype, term: usb, match: exact } # IANA ifType 160

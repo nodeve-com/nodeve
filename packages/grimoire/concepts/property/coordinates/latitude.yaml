@@ -1,0 +1,13 @@
+title:
+  en: Latitude
+  pt: Latitude
+refs:
+  - { registry_id: wgs84_geo, term: lat, match: exact }
+  - { registry_id: qudt_quantity_kind, term: Angle, match: broad } # underlying kind: plane angle
+measurand:
+  si_unit: "°"
+  accumulation: instantaneous
+schema:
+  type: number
+  minimum: -90 # WGS 84 decimal degrees, N positive
+  maximum: 90

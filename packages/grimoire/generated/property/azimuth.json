@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Plane orientation as compass degrees, 0° = N."
+  },
+  "schema": {
+    "type": "number"
+  },
+  "title": {
+    "en": "Azimuth",
+    "pt": "Azimute"
+  }
+}

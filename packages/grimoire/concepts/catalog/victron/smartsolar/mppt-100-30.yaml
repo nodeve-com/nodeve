@@ -1,0 +1,44 @@
+# Victron SmartSolar MPPT 100/30 — one catalog entry: its identity (the `charge_controller`
+# archetype, inherited from ./_defaults.yaml) AND how it's read (its full VE.Direct field list).
+# `manufacturer` is inherited from ../_defaults.yaml; everything about DECODE lives here on the one
+# product — no brand cascade merges into it.
+#
+# The reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list,
+# the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity.
+# Single MPP tracker. `pv_*` link to the `pv_tracker` MPPT-input (ordinal 1); `battery_*` to the
+# `battery` DC-output port; CS/MPPT/ERR codes stay integers (decode downstream). H19–H23 yields are
+# 0.01 kWh counters. Each row's `key` is the VE.Direct wire label; RAW rows carry `raw_name`.
+product:
+  model: SmartSolar MPPT 100/30
+
+pv_tracker:
+  concept_settings:
+    count: 1 # single MPPT input
+
+vedirect_fields:
+  # --- VE.Direct common header (every VE.Direct device emits these) ---
+  - { key: PID, type: hex, raw_name: product_id } # Victron product id (e.g. 0xA07D)
+  - { key: 'SER#', type: string, raw_name: serial } # unit serial number
+  - { key: FW, type: string, raw_name: firmware } # firmware version
+  - { key: V, feature_id: battery, quantity_kind: voltage, scale: 0.001, decimals: 3 } # mV → V
+  - { key: I, feature_id: battery, quantity_kind: current, scale: 0.001, decimals: 3 } # mA → A
+  # --- SmartSolar MPPT fields ---
+  - { key: VPV, feature_id: pv_tracker, ordinal: 1, quantity_kind: voltage, scale: 0.001, decimals: 3 } # mV → V
+  - { key: PPV, feature_id: pv_tracker, ordinal: 1, quantity_kind: active_power } # already W
+  - { key: IL, scale: 0.001, decimals: 3, raw_name: load_current } # load output current, mA → A
+  - { key: CS, raw_name: charge_state } # operation state code (0 off, 3 bulk, 4 absorption, 5 float…)
+  - { key: MPPT, raw_name: tracker_state } # tracker state code (0 off, 1 limited, 2 active)
+  - { key: ERR, raw_name: error_code } # error code (0 = no error)
+  - { key: OR, type: hex, raw_name: off_reason } # off-reason bitmask
+  - { key: LOAD, type: bool, raw_name: load_on } # load output ON/OFF
+  - { key: H19, scale: 0.01, decimals: 2, raw_name: yield_total } # total yield, 0.01 kWh
+  - { key: H20, scale: 0.01, decimals: 2, raw_name: yield_today } # today's yield, 0.01 kWh
+  - { key: H21, raw_name: max_power_today } # max power today, W
+  - { key: H22, scale: 0.01, decimals: 2, raw_name: yield_yesterday } # yesterday's yield, 0.01 kWh
+  - { key: H23, raw_name: max_power_yesterday } # max power yesterday, W
+  - { key: HSDS, raw_name: day_sequence } # day sequence number (0…364)
+
+# Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
+identity:
+  slug: mppt_100_30
+  code: 1SCV4M25

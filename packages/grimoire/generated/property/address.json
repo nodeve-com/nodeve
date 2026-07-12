@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules."
+  },
+  "schema": {
+    "maximum": 65535,
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Register address"
+  }
+}

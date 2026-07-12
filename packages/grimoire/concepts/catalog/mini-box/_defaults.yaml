@@ -1,0 +1,5 @@
+# Mini-Box makes the M4-ATX family of DC-DC vehicle/embedded power supplies. Brand + archetype
+# declared once; models below fill the atoms.
+archetype: power_supply
+product:
+  manufacturer_id: mini_box

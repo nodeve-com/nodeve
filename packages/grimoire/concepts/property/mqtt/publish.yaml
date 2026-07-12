@@ -1,0 +1,3 @@
+title: { en: Publish policy }
+description: { en: "When to publish: on change only, or every sample." }
+schema: { type: string, enum: [changed, always] }

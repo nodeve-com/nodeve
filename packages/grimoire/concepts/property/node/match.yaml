@@ -1,0 +1,2 @@
+schema:
+  enum: [exact, close, broad, narrow, related]

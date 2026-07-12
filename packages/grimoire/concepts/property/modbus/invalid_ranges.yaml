@@ -1,0 +1,3 @@
+title: { en: Invalid ranges }
+description: { en: "Inclusive [lo, hi] address ranges a gateway must never bulk-read across, each with a human note of what's generally inside." }
+schema: { type: array, items: { type: object, additionalProperties: false, properties: { range: { type: array, minItems: 2, maxItems: 2, items: { type: integer, minimum: 0, maximum: 65535 } }, note: { type: string, minLength: 1 } }, required: [range, note] } }

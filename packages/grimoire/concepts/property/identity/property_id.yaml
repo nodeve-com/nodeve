@@ -1,0 +1,3 @@
+title: { en: Property ID }
+description: { en: "Which property of the referenced feature is meant — a quantity_kind slug (temperature, altitude), a settings key (grid_region), or `duration` (the band's own dwell). Pairs with `feature_id` inside value_ref; never stands alone." }
+schema: { type: string, minLength: 1 }

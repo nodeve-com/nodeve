@@ -1,0 +1,6 @@
+# The standards crosswalk rows a Term (or any thing) carries — "coin a term → document its
+# crosswalk" (package README). A LIST of ref rows; the array-ness is this feature's own fact.
+title: { en: References, pt: Referências }
+concept_settings:
+  compose: ref
+  is_array: true

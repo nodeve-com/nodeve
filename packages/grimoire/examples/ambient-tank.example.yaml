@@ -1,0 +1,8 @@
+# EXAMPLE / illustrative only — NOT bundled, NOT exported. A site concept ships schema, not
+# instances: the authoritative bands live in the deploying repo (sites/<name>/ambient-tank.yaml)
+# and validate against schema.ts. This file is here purely as terse documentation of the shape
+# (the guard allows `*.example.yaml` under site/ for exactly this). Values mirror the real Lounge
+# tank — see docs/hvac/tank-ambient.md for what each band means physically.
+target: { min: 10, max: 25 } # AW trim + slab loops actively hold the tank here
+range: { min: 8, max: 30 } # operational envelope incl. peak-summer drift; size tank-fed equipment for 30°C
+ground_temp: { min: 15, max: 18 } # Azores soil, year-round — passive ground-coupling equilibrium

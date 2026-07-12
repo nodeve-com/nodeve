@@ -1,0 +1,4 @@
+title: { en: Repeated, pt: Repetido }
+description:
+  en: "The feature's intrinsic cardinality: true = countable instances of this feature's shape, wrapped in an envelope `{count, combined?, default?, instances?}` — NOT a bare list (that is `array`). The envelope carries a `count`, an optional `combined` aggregate over all instances, a `default` applied to each, and optional per-instance `instances` joined by `ordinal`; a metered collection may state count/combined with no `instances` enumerated at all. Exclusive with `part` (a fixed named-parts map) and with `array` (a bare list)."
+schema: { type: boolean }

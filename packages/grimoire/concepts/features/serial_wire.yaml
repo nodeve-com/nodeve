@@ -1,0 +1,15 @@
+concept_settings:
+  # A SERIAL WIRE — the one canonical description of an async-serial physical link (device-catalog
+  # wire AND a gateway adapter's owned hardware): the PORT (serial_port), the LINE DISCIPLINE
+  # (parity/data_bits/stop_bits — the UART framing), and the PHYSICAL layer (rs485/rs232/ttl_*, from
+  # property/physical_layer/). `interface_type` is deliberately NOT a field — on this feature it is
+  # always the constant async_serial (IANA ifType 33); the `serial` key itself is the serial-vs-
+  # usb/socket discriminator. `read_mode` (modbus_tap/master) is excluded — a read-behavior axis
+  # composed by the adapter that reads the wire, not a wire property.
+  compose: [ serial_port ]
+enums:
+  - physical_layer
+prop:
+  parity: {}
+  data_bits: {}
+  stop_bits: {}

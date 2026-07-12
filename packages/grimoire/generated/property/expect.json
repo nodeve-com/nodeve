@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts."
+  },
+  "schema": {
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Expected byte"
+  }
+}

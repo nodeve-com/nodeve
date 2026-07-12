@@ -1,0 +1,49 @@
+{
+  "name": "@nodeve/grimoire",
+  "version": "3.0.0",
+  "description": "Hardware + site schema/validation: agnostic equipment catalogs (Modbus device profiles, PV panels) and installation-config schemas (solar array), one source of truth projected to JSON Schema + TS types.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodeve-com/nodeve.git",
+    "directory": "packages/grimoire"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "generated"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./generated/*": "./generated/*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "check": "pnpm run guards && pnpm run typecheck && pnpm run test",
+    "generate": "bun generate.ts",
+    "guards": "bun scripts/guard-concept-dupes.ts && bun scripts/guard-feature-dupes.ts && bun scripts/guard-feature-props.ts && bun scripts/guard-archetype-features.ts && bun scripts/guard-refs.ts && bun scripts/guard-vocab-collision.ts && bun scripts/guard-register-links.ts"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "catalog:",
+    "remeda": "catalog:",
+    "remeda-humps": "catalog:",
+    "yaml": "catalog:"
+  },
+  "devDependencies": {
+    "@nodeve/config": "workspace:*",
+    "@nodeve/encoding": "workspace:*",
+    "@types/node": "catalog:",
+    "ajv": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

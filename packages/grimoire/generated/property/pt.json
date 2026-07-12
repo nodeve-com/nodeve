@@ -1,0 +1,6 @@
+{
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  }
+}

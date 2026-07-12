@@ -1,0 +1,14 @@
+{
+  "$defs": {
+    "material": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "material": {
+      "$ref": "#/$defs/material"
+    }
+  },
+  "type": "object"
+}

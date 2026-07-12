@@ -1,0 +1,14 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "meaning": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "raw": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

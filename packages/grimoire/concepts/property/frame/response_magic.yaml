@@ -1,0 +1,4 @@
+title: { en: Response magic }
+description:
+  en: 'A leading sanity byte-check a device stamps on a valid frame/response, as { offset, expect }. Shared by the usbhid diag read and config exchange.'
+schema: { type: object }

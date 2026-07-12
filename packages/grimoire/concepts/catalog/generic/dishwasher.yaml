@@ -1,0 +1,29 @@
+# Generic dishwasher — a nominal `appliance` class stand-in (no real make/model). Its active-power
+# draw is stated as rated `active_power` intervals on the `ac_phase` (the AC it draws from). The two
+# draw regimes are the unit's own program states — each is an IDENTIFIED intervals band (its
+# own identity.slug + title naming the state), so a control loop can reference the band by
+# {feature, property, interval} rather than the old free-form `condition` gate. A deployment binds its
+# own power sensor + per-band binary sensors and refits the envelopes from that unit's measured
+# history (SITE data, in ha-config); these are the nominal class figures.
+product:
+  model: dishwasher
+archetype: appliance
+
+ac_phase:
+  feature_spec:
+    combined:
+      active_power:
+        intervals:
+          # A program is in progress — the whole-unit active draw envelope (38 ± 33 W).
+          - identity: { slug: running }
+            title: { en: Program running }
+            interval: { rating: operating, nominal: 38, margin: 33 }
+          # The heating element engaged (1500 ± 200 W).
+          - identity: { slug: heating }
+            title: { en: Heating element engaged }
+            interval: { rating: operating, nominal: 1500, margin: 200 }
+
+# Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
+identity:
+  slug: dishwasher
+  code: VF2TSKQD

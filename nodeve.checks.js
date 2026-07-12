@@ -13,6 +13,14 @@ export default {
 	reshape: {
 		globs: ['packages/*.ts'],
 	},
+	// TEMPORARY: grimoire's generated/ still has codegen-inherent clones jscpd flags — compose-merge
+	// field runs (a view reusing a sibling's columns) + identical atom-import runs. The data-tree
+	// de-normalization is done (inverter.json 6.3MB→7KB, referential); making `compose` emit
+	// referentially is the deferred "if/when needed" step in docs/data-tree-normalization.md. Remove
+	// this ignore once compose is referential.
+	clones: {
+		ignore: ['packages/grimoire/generated/**'],
+	},
 	helperCollisions: {
 		libs: ['remeda', 'date-fns'],
 	},

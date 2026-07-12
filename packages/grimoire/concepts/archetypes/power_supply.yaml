@@ -1,0 +1,18 @@
+# A DC-DC / ATX power supply that reports its own diagnostics (input + rail voltages,
+# temperature). Identity + connectivity (required: a power supply we catalog for its telemetry has
+# connectivity; usbhid medium). Feature/measurand blocks deliberately NOT modelled yet — the
+# M4-ATX's diagnostics ride as RAW/labelled fields in its usbhid medium (same interim path as
+# chint/dtsu666's un-attributed registers), pending a DC-rail feature atom.
+
+concept_settings:
+  compose: [ appliance ] # base: product + supply draw (usbhid added directly below)
+
+title:
+  en: Power supply
+  pt: Fonte de alimentação
+description:
+  en: A DC-DC/ATX power supply reporting its own diagnostics (identity +
+    connectivity).
+
+archetype:
+  usbhid: {} # how it's talked to — USB-HID (required: a PSU we catalog is one we read telemetry from)

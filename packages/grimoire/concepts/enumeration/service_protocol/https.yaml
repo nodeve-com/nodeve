@@ -1,0 +1,6 @@
+# HTTP over TLS — its own registered scheme, not a modifier on `http`.
+title:
+  en: HTTPS
+  pt: HTTPS
+refs:
+  - { registry_id: iana_uri_scheme, term: https, match: exact }

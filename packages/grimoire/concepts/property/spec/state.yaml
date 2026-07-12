@@ -1,0 +1,3 @@
+title: { en: State, pt: Estado }
+description: { en: "A categorical-observable state group slug (run_state, operating_mode, fault_code), as opposed to a numeric quantity_kind. Declared by a categorical decode entry, referenced by a categorical condition gate — two sides of one channel." }
+schema: { type: string, pattern: '^[a-z][a-z0-9_]*$' }

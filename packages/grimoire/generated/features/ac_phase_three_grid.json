@@ -1,0 +1,1452 @@
+{
+  "prop": {
+    "feature_spec": {
+      "prop": {
+        "combined": {
+          "prop": {
+            "active_energy": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "cumulative_monotonic",
+                "si_unit": "J"
+              },
+              "refs": [
+                {
+                  "match": "broad",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Energy"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "energy"
+                }
+              ],
+              "title": {
+                "en": "Active energy",
+                "pt": "Energia ativa"
+              }
+            },
+            "active_power": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "W"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "ActivePower"
+                },
+                {
+                  "match": "broad",
+                  "registry_id": "ha_device_class",
+                  "term": "power"
+                }
+              ],
+              "title": {
+                "en": "Active power",
+                "pt": "Potência ativa"
+              }
+            },
+            "apparent_energy": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "cumulative_monotonic",
+                "si_unit": "VA·s"
+              },
+              "refs": [
+                {
+                  "match": "broad",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Energy"
+                }
+              ],
+              "title": {
+                "en": "Apparent energy",
+                "pt": "Energia aparente"
+              }
+            },
+            "apparent_power": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "VA"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "ApparentPower"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "apparent_power"
+                }
+              ],
+              "title": {
+                "en": "Apparent power",
+                "pt": "Potência aparente"
+              }
+            },
+            "current": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "A"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "ElectricCurrent"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "current"
+                }
+              ],
+              "title": {
+                "en": "Current",
+                "pt": "Corrente"
+              }
+            },
+            "frequency": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "Hz"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Frequency"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "frequency"
+                }
+              ],
+              "title": {
+                "en": "Frequency",
+                "pt": "Frequência"
+              }
+            },
+            "phase_angle": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "rad"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "PhaseAngle"
+                }
+              ],
+              "title": {
+                "en": "Phase angle",
+                "pt": "Ângulo de fase"
+              }
+            },
+            "power_factor": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "1"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "PowerFactor"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "power_factor"
+                }
+              ],
+              "title": {
+                "en": "Power factor",
+                "pt": "Fator de potência"
+              }
+            },
+            "reactive_energy": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "cumulative_monotonic",
+                "si_unit": "var·s"
+              },
+              "refs": [
+                {
+                  "match": "broad",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Energy"
+                }
+              ],
+              "title": {
+                "en": "Reactive energy",
+                "pt": "Energia reativa"
+              }
+            },
+            "reactive_power": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "var"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "ReactivePower"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "reactive_power"
+                }
+              ],
+              "title": {
+                "en": "Reactive power",
+                "pt": "Potência reativa"
+              }
+            },
+            "resistance": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "Ω"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Resistance"
+                }
+              ],
+              "title": {
+                "en": "Resistance",
+                "pt": "Resistência"
+              }
+            },
+            "voltage": {
+              "$ref": "../archetypes/specification.json",
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "V"
+              },
+              "refs": [
+                {
+                  "match": "exact",
+                  "registry_id": "qudt_quantity_kind",
+                  "term": "Voltage"
+                },
+                {
+                  "match": "exact",
+                  "registry_id": "ha_device_class",
+                  "term": "voltage"
+                }
+              ],
+              "title": {
+                "en": "Voltage",
+                "pt": "Tensão"
+              }
+            }
+          }
+        },
+        "default": {
+          "prop": {
+            "ac_line": {
+              "prop": {
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "ac_phase": {
+              "prop": {
+                "active_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "J"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active energy",
+                    "pt": "Energia ativa"
+                  }
+                },
+                "active_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "W"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ActivePower"
+                    },
+                    {
+                      "match": "broad",
+                      "registry_id": "ha_device_class",
+                      "term": "power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active power",
+                    "pt": "Potência ativa"
+                  }
+                },
+                "apparent_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "VA·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent energy",
+                    "pt": "Energia aparente"
+                  }
+                },
+                "apparent_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "VA"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ApparentPower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "apparent_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent power",
+                    "pt": "Potência aparente"
+                  }
+                },
+                "current": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "A"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ElectricCurrent"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "current"
+                    }
+                  ],
+                  "title": {
+                    "en": "Current",
+                    "pt": "Corrente"
+                  }
+                },
+                "frequency": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Hz"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Frequency"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "frequency"
+                    }
+                  ],
+                  "title": {
+                    "en": "Frequency",
+                    "pt": "Frequência"
+                  }
+                },
+                "phase_angle": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "rad"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PhaseAngle"
+                    }
+                  ],
+                  "title": {
+                    "en": "Phase angle",
+                    "pt": "Ângulo de fase"
+                  }
+                },
+                "power_factor": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "1"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PowerFactor"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "power_factor"
+                    }
+                  ],
+                  "title": {
+                    "en": "Power factor",
+                    "pt": "Fator de potência"
+                  }
+                },
+                "reactive_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "var·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive energy",
+                    "pt": "Energia reativa"
+                  }
+                },
+                "reactive_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "var"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ReactivePower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "reactive_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive power",
+                    "pt": "Potência reativa"
+                  }
+                },
+                "resistance": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Ω"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Resistance"
+                    }
+                  ],
+                  "title": {
+                    "en": "Resistance",
+                    "pt": "Resistência"
+                  }
+                },
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "part": {
+          "prop": {
+            "a": {
+              "prop": {
+                "active_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "J"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active energy",
+                    "pt": "Energia ativa"
+                  }
+                },
+                "active_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "W"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ActivePower"
+                    },
+                    {
+                      "match": "broad",
+                      "registry_id": "ha_device_class",
+                      "term": "power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active power",
+                    "pt": "Potência ativa"
+                  }
+                },
+                "apparent_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "VA·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent energy",
+                    "pt": "Energia aparente"
+                  }
+                },
+                "apparent_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "VA"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ApparentPower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "apparent_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent power",
+                    "pt": "Potência aparente"
+                  }
+                },
+                "current": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "A"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ElectricCurrent"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "current"
+                    }
+                  ],
+                  "title": {
+                    "en": "Current",
+                    "pt": "Corrente"
+                  }
+                },
+                "frequency": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Hz"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Frequency"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "frequency"
+                    }
+                  ],
+                  "title": {
+                    "en": "Frequency",
+                    "pt": "Frequência"
+                  }
+                },
+                "phase_angle": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "rad"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PhaseAngle"
+                    }
+                  ],
+                  "title": {
+                    "en": "Phase angle",
+                    "pt": "Ângulo de fase"
+                  }
+                },
+                "power_factor": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "1"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PowerFactor"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "power_factor"
+                    }
+                  ],
+                  "title": {
+                    "en": "Power factor",
+                    "pt": "Fator de potência"
+                  }
+                },
+                "reactive_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "var·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive energy",
+                    "pt": "Energia reativa"
+                  }
+                },
+                "reactive_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "var"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ReactivePower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "reactive_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive power",
+                    "pt": "Potência reativa"
+                  }
+                },
+                "resistance": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Ω"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Resistance"
+                    }
+                  ],
+                  "title": {
+                    "en": "Resistance",
+                    "pt": "Resistência"
+                  }
+                },
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "ab": {
+              "prop": {
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "b": {
+              "prop": {
+                "active_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "J"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active energy",
+                    "pt": "Energia ativa"
+                  }
+                },
+                "active_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "W"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ActivePower"
+                    },
+                    {
+                      "match": "broad",
+                      "registry_id": "ha_device_class",
+                      "term": "power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active power",
+                    "pt": "Potência ativa"
+                  }
+                },
+                "apparent_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "VA·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent energy",
+                    "pt": "Energia aparente"
+                  }
+                },
+                "apparent_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "VA"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ApparentPower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "apparent_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent power",
+                    "pt": "Potência aparente"
+                  }
+                },
+                "current": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "A"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ElectricCurrent"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "current"
+                    }
+                  ],
+                  "title": {
+                    "en": "Current",
+                    "pt": "Corrente"
+                  }
+                },
+                "frequency": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Hz"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Frequency"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "frequency"
+                    }
+                  ],
+                  "title": {
+                    "en": "Frequency",
+                    "pt": "Frequência"
+                  }
+                },
+                "phase_angle": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "rad"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PhaseAngle"
+                    }
+                  ],
+                  "title": {
+                    "en": "Phase angle",
+                    "pt": "Ângulo de fase"
+                  }
+                },
+                "power_factor": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "1"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PowerFactor"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "power_factor"
+                    }
+                  ],
+                  "title": {
+                    "en": "Power factor",
+                    "pt": "Fator de potência"
+                  }
+                },
+                "reactive_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "var·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive energy",
+                    "pt": "Energia reativa"
+                  }
+                },
+                "reactive_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "var"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ReactivePower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "reactive_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive power",
+                    "pt": "Potência reativa"
+                  }
+                },
+                "resistance": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Ω"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Resistance"
+                    }
+                  ],
+                  "title": {
+                    "en": "Resistance",
+                    "pt": "Resistência"
+                  }
+                },
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "bc": {
+              "prop": {
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "c": {
+              "prop": {
+                "active_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "J"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active energy",
+                    "pt": "Energia ativa"
+                  }
+                },
+                "active_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "W"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ActivePower"
+                    },
+                    {
+                      "match": "broad",
+                      "registry_id": "ha_device_class",
+                      "term": "power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Active power",
+                    "pt": "Potência ativa"
+                  }
+                },
+                "apparent_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "VA·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent energy",
+                    "pt": "Energia aparente"
+                  }
+                },
+                "apparent_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "VA"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ApparentPower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "apparent_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Apparent power",
+                    "pt": "Potência aparente"
+                  }
+                },
+                "current": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "A"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ElectricCurrent"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "current"
+                    }
+                  ],
+                  "title": {
+                    "en": "Current",
+                    "pt": "Corrente"
+                  }
+                },
+                "frequency": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Hz"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Frequency"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "frequency"
+                    }
+                  ],
+                  "title": {
+                    "en": "Frequency",
+                    "pt": "Frequência"
+                  }
+                },
+                "phase_angle": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "rad"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PhaseAngle"
+                    }
+                  ],
+                  "title": {
+                    "en": "Phase angle",
+                    "pt": "Ângulo de fase"
+                  }
+                },
+                "power_factor": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "1"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "PowerFactor"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "power_factor"
+                    }
+                  ],
+                  "title": {
+                    "en": "Power factor",
+                    "pt": "Fator de potência"
+                  }
+                },
+                "reactive_energy": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "cumulative_monotonic",
+                    "si_unit": "var·s"
+                  },
+                  "refs": [
+                    {
+                      "match": "broad",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Energy"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive energy",
+                    "pt": "Energia reativa"
+                  }
+                },
+                "reactive_power": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "var"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "ReactivePower"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "reactive_power"
+                    }
+                  ],
+                  "title": {
+                    "en": "Reactive power",
+                    "pt": "Potência reativa"
+                  }
+                },
+                "resistance": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "Ω"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Resistance"
+                    }
+                  ],
+                  "title": {
+                    "en": "Resistance",
+                    "pt": "Resistência"
+                  }
+                },
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            },
+            "ca": {
+              "prop": {
+                "voltage": {
+                  "$ref": "../archetypes/specification.json",
+                  "measurand": {
+                    "accumulation": "instantaneous",
+                    "si_unit": "V"
+                  },
+                  "refs": [
+                    {
+                      "match": "exact",
+                      "registry_id": "qudt_quantity_kind",
+                      "term": "Voltage"
+                    },
+                    {
+                      "match": "exact",
+                      "registry_id": "ha_device_class",
+                      "term": "voltage"
+                    }
+                  ],
+                  "title": {
+                    "en": "Voltage",
+                    "pt": "Tensão"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "identity": {
+      "$ref": "./identity.json"
+    }
+  },
+  "refs": [
+    {
+      "match": "broad",
+      "registry_id": "sosa",
+      "term": "FeatureOfInterest"
+    },
+    {
+      "match": "close",
+      "registry_id": "cim",
+      "term": "ExternalNetworkInjection"
+    },
+    {
+      "match": "close",
+      "registry_id": "seas",
+      "term": "AlternatingCurrentConnectionPoint"
+    },
+    {
+      "match": "broad",
+      "registry_id": "saref4grid",
+      "term": "PowerLine"
+    }
+  ],
+  "title": {
+    "en": "AC 3-Phase Grid"
+  }
+}

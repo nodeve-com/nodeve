@@ -1,0 +1,19 @@
+title:
+  en: House load
+  pt: Consumo da casa
+# Whole-home consumption. CIM EnergyConsumer and SEAS ElectricPowerConsumer are the load classes
+# (close: they name the consuming entity, our feature is its metered aggregate). Brick's closest is the
+# whole-building meter, not a load entity, so only `related`.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: EnergyConsumer
+    match: close
+  - registry_id: seas
+    term: ElectricPowerConsumer
+    match: close
+  - registry_id: brick
+    term: Building_Electrical_Meter
+    match: related

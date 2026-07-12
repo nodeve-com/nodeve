@@ -1,0 +1,5 @@
+# Brand-wide default, deep-merged into every Equation model below (leaf wins on conflict).
+# Equation is the Leroy Merlin / Adeo own-brand. `manufacturer` sits under the `product:` slot
+# so it deep-merges into the leaf's product block.
+product:
+  manufacturer_id: equation

@@ -1,0 +1,3 @@
+title: { en: Emit string }
+description: { en: The string published when a priority rule matches. Named emit (not value) to keep `value` from naming five different things across atoms. Authored as the `emit` key. }
+schema: { type: string, minLength: 1 }

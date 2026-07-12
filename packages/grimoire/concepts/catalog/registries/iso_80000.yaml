@@ -1,0 +1,11 @@
+# No iri_template: ISO clauses are not freely web-resolvable (like ha_device_class, a bare token).
+# `id` is a part/item reference, e.g. "6-11.3" (electric potential difference, ISO 80000-6).
+title:
+  en: ISO 80000 (Quantities and units)
+  pt: ISO 80000 (Grandezas e unidades)
+identity:
+  slug: iso_80000
+  code: GYAQ1ZBS
+  url: https://www.iso.org/standard/76921.html
+registry_publication:
+  published_by: iso

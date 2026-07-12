@@ -1,0 +1,8 @@
+# A registry's OTHER resolver: a base URL under which an external DATABASE record resolves (a NetBox
+# install, a Home Assistant instance) — the alternative to `iri_template` for registries whose rows are
+# database records rather than IRI-anchored ontology terms. `base_url` + a term id → the record URL.
+title: { en: Base URL, pt: URL base }
+description:
+  en: Base URL under which an external database record resolves — a registry's alternative to iri_template.
+  pt: URL base sob a qual um registro de base de dados externo resolve — a alternativa da iri_template de um registro.
+schema: { type: string, minLength: 1 }

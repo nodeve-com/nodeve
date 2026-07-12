@@ -1,0 +1,59 @@
+{
+  "prop": {
+    "catalog_item": {
+      "$ref": "../property/catalog_item.json",
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "archetype": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "slug": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "archetype",
+          "slug"
+        ],
+        "type": "object"
+      },
+      "title": {
+        "en": "Site Catalog Item"
+      }
+    },
+    "ingest_kind": {
+      "schema": {
+        "enum": [
+          "modbus_tap"
+        ],
+        "type": "string"
+      }
+    },
+    "platform": {
+      "schema": {
+        "enum": [
+          "esphome",
+          "farana",
+          "telegraf"
+        ],
+        "type": "string"
+      }
+    },
+    "service_id": {
+      "$ref": "../property/service_id.json",
+      "description": {
+        "en": "Slug of a service the metered device offers, naming which surface this adapter polls (the runtime resolves it against that device's own services). A slug value but a distinct key — it names a relationship, not this object's own id."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Service"
+      }
+    }
+  }
+}

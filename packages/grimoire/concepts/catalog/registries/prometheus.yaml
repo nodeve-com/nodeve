@@ -1,0 +1,9 @@
+title:
+  en: Prometheus / OpenMetrics metric type
+  pt: "Tipo de métrica Prometheus / OpenMetrics"
+identity:
+  slug: prometheus
+  code: 304ZFK8C
+  url: https://prometheus.io/docs/concepts/metric_types/
+registry_publication:
+  published_by: cncf

@@ -1,0 +1,3 @@
+title: { en: Topic prefix }
+description: { en: MQTT topic root a decoded value is published under. }
+schema: { type: string, minLength: 1 }

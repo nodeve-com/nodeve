@@ -1,0 +1,6 @@
+# signal_form: digital
+title:
+  en: RS-485
+  pt: RS-485
+refs:
+  - { registry_id: tia_standard, term: 485-A, match: exact } # ANSI/TIA/EIA-485-A

@@ -1,0 +1,6 @@
+# An enumeration's members validate as `property` by default — a member is a single named literal
+# (title + crosswalk refs). A richer enumeration overrides this in its own `_defaults.yaml`
+# (quantity_kind → quantity_kind, registry → registry, refrigerant → refrigerant), where each
+# member carries more than a bare literal.
+identity:
+  archetype: property

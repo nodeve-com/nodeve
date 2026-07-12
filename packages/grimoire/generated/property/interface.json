@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "USB interface number the host claims (standard USB descriptor)."
+  },
+  "schema": {
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Interface"
+  }
+}

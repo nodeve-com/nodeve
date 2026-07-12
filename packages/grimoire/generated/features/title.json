@@ -1,0 +1,28 @@
+{
+  "description": {
+    "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes.",
+    "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
+  },
+  "prop": {
+    "en": {
+      "schema": {
+        "minLength": 3,
+        "type": "string"
+      },
+      "title": {
+        "en": "English",
+        "pt": "inglês"
+      }
+    },
+    "pt": {
+      "schema": {
+        "minLength": 3,
+        "type": "string"
+      }
+    }
+  },
+  "title": {
+    "en": "Title - friendly name",
+    "pt": "Nome amigável"
+  }
+}

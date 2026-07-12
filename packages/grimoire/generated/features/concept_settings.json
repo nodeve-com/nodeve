@@ -1,0 +1,113 @@
+{
+  "prop": {
+    "compose": {
+      "$ref": "../property/compose.json",
+      "description": {
+        "en": "FLATTEN the named shapes' props into this def — a single slug or a list. The old `alias` (a same-shape rename) is just a one-element compose. Each target must be an object shape; a def groups props, never IS a scalar."
+      },
+      "schema": {
+        "anyOf": [
+          {
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "type": "string"
+          },
+          {
+            "items": {
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        ]
+      },
+      "title": {
+        "en": "Compose",
+        "pt": "Compor"
+      }
+    },
+    "count": {
+      "$ref": "../property/count.json",
+      "description": {
+        "en": "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of."
+      },
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Count"
+      }
+    },
+    "is_array": {
+      "$ref": "../property/is_array.json",
+      "description": {
+        "en": "The feature's intrinsic cardinality: true = the value IS a bare LIST of its shape, `[shape, shape, …]`, with nothing wrapping it (refs rows, register maps, per-string install facts). Every member is enumerated; there is no count or aggregate envelope — that is `repeated`. Plural slug = array, per the naming rule. Exclusive with `map` (a slug-keyed record) and with `repeated` (the counted-instance envelope)."
+      },
+      "schema": {
+        "type": "boolean"
+      },
+      "title": {
+        "en": "Is array",
+        "pt": "É lista"
+      }
+    },
+    "is_specification": {
+      "$ref": "../property/is_specification.json",
+      "description": {
+        "en": "Flag: true marks a feature as a SPECIFICATION carrier — each quantity_kind field becomes a `specification` (identity + measurand + `intervals`, the one list of rated bands) — regions covering both the thing's own behaviour envelope) AND the sensor's readable span (a `rating: measurable` interval), told apart by axis, not split into separate slots. The first-class replacement for the quantity_kind→spec binding: a spec-carrying feature declares this instead of relying on its props happening to be quantity_kinds. Independent of cardinality (array/map/repeated): a specification feature may itself be a list/map of spec-carrying shapes."
+      },
+      "schema": {
+        "type": "boolean"
+      },
+      "title": {
+        "en": "Is specification",
+        "pt": "É especificação"
+      }
+    },
+    "map": {
+      "$ref": "../property/map.json",
+      "description": {
+        "en": "The feature's intrinsic cardinality: true = the feature is a slug-keyed RECORD of its shape (vedirect_fields). Exclusive with array."
+      },
+      "schema": {
+        "type": "boolean"
+      },
+      "title": {
+        "en": "Map",
+        "pt": "Mapa"
+      }
+    },
+    "part": {
+      "$ref": "../property/part.json",
+      "description": {
+        "en": "The def-language fixed-parts expansion: names a parts/<slug>.yaml map (e.g. electrical_ac_phase_three) whose kinds become the feature's {combined, default, part} breakdown. Exclusive with `repeated` (a counted instance set)."
+      },
+      "schema": {
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "type": "string"
+      },
+      "title": {
+        "en": "Part",
+        "pt": "Parte"
+      }
+    },
+    "repeated": {
+      "$ref": "../property/repeated.json",
+      "description": {
+        "en": "The feature's intrinsic cardinality: true = countable instances of this feature's shape, wrapped in an envelope `{count, combined?, default?, instances?}` — NOT a bare list (that is `array`). The envelope carries a `count`, an optional `combined` aggregate over all instances, a `default` applied to each, and optional per-instance `instances` joined by `ordinal`; a metered collection may state count/combined with no `instances` enumerated at all. Exclusive with `part` (a fixed named-parts map) and with `array` (a bare list)."
+      },
+      "schema": {
+        "type": "boolean"
+      },
+      "title": {
+        "en": "Repeated",
+        "pt": "Repetido"
+      }
+    }
+  },
+  "title": {
+    "en": "Concept settings",
+    "pt": "Configurações de conceito"
+  }
+}

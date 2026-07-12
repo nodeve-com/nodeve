@@ -1,0 +1,49 @@
+{
+  "array": {
+    "prop": {
+      "description": {
+        "$ref": "../features/description.json",
+        "description": {
+          "en": "Optional localized blurb for a term (i18n text)."
+        },
+        "title": {
+          "en": "Description",
+          "pt": "Descrição"
+        }
+      },
+      "identity": {
+        "$ref": "../features/identity.json"
+      },
+      "ip_binding": {
+        "$ref": "../features/ip_binding.json",
+        "title": {
+          "en": "IP binding"
+        }
+      },
+      "refs": {
+        "$ref": "../features/refs.json",
+        "title": {
+          "en": "References",
+          "pt": "Referências"
+        }
+      },
+      "title": {
+        "$ref": "../features/title.json",
+        "description": {
+          "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes.",
+          "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
+        },
+        "title": {
+          "en": "Title - friendly name",
+          "pt": "Nome amigável"
+        }
+      }
+    }
+  },
+  "description": {
+    "en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)."
+  },
+  "title": {
+    "en": "IP address"
+  }
+}

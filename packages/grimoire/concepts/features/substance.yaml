@@ -1,0 +1,16 @@
+# The facts of a chemical SUBSTANCE — general to any compound, not one use. `formula` is the
+# chemical formula (C3H8, code-like); `gwp` its IPCC AR5 100-year global-warming potential (any
+# greenhouse gas carries one, CO₂ = 1); `safety_class` its safety classification (here the ASHRAE
+# 34 toxicity×flammability code — the scheme refrigerants use; a member's own scheme rides its
+# `refs`). Grouped so refrigerant — and any future substance (a foam agent, a process gas) — nests
+# these once rather than restating them. Fill only known values, never fabricate.
+title:
+  en: Substance
+  pt: Substância
+description:
+  en: Chemical-substance facts — formula, global-warming potential, safety classification.
+  pt: Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança.
+prop:
+  formula: {}
+  gwp: {}
+  safety_class: {}

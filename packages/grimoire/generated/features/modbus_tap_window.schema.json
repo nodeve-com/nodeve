@@ -1,0 +1,53 @@
+{
+  "$defs": {
+    "address": {
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "name": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "observed_interval_ms": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "register_type": {
+      "enum": [
+        "holding",
+        "input"
+      ],
+      "type": "string"
+    },
+    "retain": {
+      "type": "boolean"
+    }
+  },
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "address": {
+        "$ref": "#/$defs/address"
+      },
+      "name": {
+        "$ref": "#/$defs/name"
+      },
+      "observed_interval_ms": {
+        "$ref": "#/$defs/observed_interval_ms"
+      },
+      "register_type": {
+        "$ref": "#/$defs/register_type"
+      },
+      "retain": {
+        "$ref": "#/$defs/retain"
+      }
+    },
+    "required": [
+      "address",
+      "name"
+    ],
+    "type": "object"
+  },
+  "type": "array"
+}

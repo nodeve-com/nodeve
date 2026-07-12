@@ -1,0 +1,15 @@
+{
+  "$defs": {
+    "offset": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "offset": {
+      "$ref": "#/$defs/offset"
+    }
+  },
+  "type": "object"
+}

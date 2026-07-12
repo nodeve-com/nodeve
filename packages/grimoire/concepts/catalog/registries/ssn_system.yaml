@@ -1,0 +1,12 @@
+# Separate registry from `ssn`: distinct IRI namespace. Terms by local name, e.g. SystemCapability,
+# OperatingRange, SurvivalRange, MeasurementRange, Resolution, Accuracy.
+title:
+  en: "W3C SSN systems module (system capabilities, operating & survival ranges)"
+  pt: "Módulo de sistemas da W3C SSN (capacidades de sistema, faixas operacional e de sobrevivência)"
+identity:
+  slug: ssn_system
+  code: H74DHXRP
+  url: https://www.w3.org/TR/property-ssn/
+registry_publication:
+  published_by: w3c
+  iri_template: "http://www.w3.org/ns/ssn/systems/{id}"

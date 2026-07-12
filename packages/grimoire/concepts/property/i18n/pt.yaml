@@ -1,0 +1,4 @@
+# ISO 639-1
+schema:
+  type: string
+  minLength: 1

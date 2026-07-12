@@ -1,0 +1,24 @@
+{
+  "description": {
+    "en": "Quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14). Omit when the datasheet doesn't state it; never fabricate."
+  },
+  "refs": [
+    {
+      "match": "exact",
+      "registry_id": "vim",
+      "term": "4.14"
+    },
+    {
+      "match": "exact",
+      "registry_id": "ssn_system",
+      "term": "Resolution"
+    }
+  ],
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Resolution"
+  }
+}

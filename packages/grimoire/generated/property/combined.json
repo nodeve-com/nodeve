@@ -1,0 +1,11 @@
+{
+  "description": {
+    "en": "The whole-feature aggregate as ONE (the box's whole-AC-side total), a spec-map. Authored because it is NOT derivable from per-instance values (a 10 kW box != 3x3.3 kW per phase). May carry quantities no single instance has and drop per-instance ones."
+  },
+  "schema": {
+    "type": "object"
+  },
+  "title": {
+    "en": "Combined"
+  }
+}

@@ -1,0 +1,11 @@
+# Terms by local name, e.g. System, hasSubSystem, hasProperty.
+title:
+  en: W3C Semantic Sensor Network ontology (SSN core)
+  pt: "Ontologia W3C de Rede de Sensores Semântica (núcleo SSN)"
+identity:
+  slug: ssn
+  code: XYJZYZQF
+  url: https://www.w3.org/TR/property-ssn/
+registry_publication:
+  published_by: w3c
+  iri_template: "http://www.w3.org/ns/ssn/{id}"

@@ -1,0 +1,3 @@
+title: { en: Configuration }
+description: { en: USB configuration index (standard USB descriptor). }
+schema: { type: integer, minimum: 0 }

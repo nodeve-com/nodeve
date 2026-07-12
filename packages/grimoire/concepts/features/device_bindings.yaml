@@ -1,0 +1,6 @@
+# A gateway deployment's logical endpoints — a LIST of device_binding entries; each names a
+# declared ingest link (referential integrity enforced at parse).
+title: { en: Device bindings, pt: Vinculações de dispositivos }
+concept_settings:
+  compose: device_binding
+  is_array: true

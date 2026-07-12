@@ -1,0 +1,4 @@
+title: { en: Label, pt: Rótulo }
+description:
+  en: "Human name of a term, localized (i18n text) — never a machine identifier."
+schema: { type: object }

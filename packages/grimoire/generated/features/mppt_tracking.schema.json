@@ -1,0 +1,14 @@
+{
+  "$defs": {
+    "mppt_window": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "mppt_window": {
+      "$ref": "#/$defs/mppt_window"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,7 @@
+# An AF_UNIX socket address — a Unix-domain (local) socket, addressed by a filesystem `path` (the
+# shared os/path property). Unlike an AF_INET endpoint (bind-vs-host by role), the SAME path serves
+# both binder and connector, so one feature serves both sides. No port, no L4 protocol: AF_UNIX is its
+# own address family below the IP stack (POSIX / IEEE Std 1003.1). The AF_UNIX crosswalk rides the
+# slot override below — it's a fact about this socket use of the path, not about paths in general.
+prop:
+  path: { description: { en: Filesystem path of a Unix-domain (AF_UNIX) socket — same string whether a process binds or connects. }, refs: [ { registry_id: posix, term: AF_UNIX, match: exact } ] }

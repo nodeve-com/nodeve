@@ -1,0 +1,6 @@
+# WebSocket over TLS — its own registered scheme, not a modifier on `ws`.
+title:
+  en: WebSocket (TLS)
+  pt: WebSocket (TLS)
+refs:
+  - { registry_id: iana_uri_scheme, term: wss, match: exact }

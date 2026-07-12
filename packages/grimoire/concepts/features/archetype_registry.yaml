@@ -1,0 +1,16 @@
+# The archetype registry, from archetype_registry.ts: every concrete schema the catalog tree
+# validates against (the device archetypes a leaf's `archetype:` selector names) plus the
+# connectivity mediums and site/installation shapes. One grouping the cascade loader, the codegen,
+# and the drift test all loop over.
+#
+# Each archetype declares itself in its own archetypes/<name>.yaml — no text or per-archetype
+# detail lives in this index. Adding an archetype = a new archetypes/<name>.yaml; its class along
+# the one axis that matters downstream ("is this a catalog device a leaf may `archetype:`-select?")
+# is the `archetype_kind` enum (property/archetype_kind/: catalog vs schema_only), which replaces
+# the former two-list membership (catalogArchetypes / schemaOnlyArchetypes).
+#
+# Dropped TS plumbing (generation-side, not concept data): resolveArchetype mapping, generated/
+# output path builders (schemaJsonPath, langJsonPath, uiJsonPath, typeImportPath,
+# catalogBundlePath, catalogIndexPath, catalogJsonPath).
+enums:
+  - archetype_kind

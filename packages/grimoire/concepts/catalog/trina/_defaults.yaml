@@ -1,0 +1,4 @@
+# Trinasolar makes PV modules. Brand + archetype declared once; models below fill the atoms.
+archetype: pv_module
+product:
+  manufacturer_id: trina

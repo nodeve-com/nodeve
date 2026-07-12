@@ -1,0 +1,3 @@
+title: { en: Request length }
+description: { en: "Fixed length of every config command/response buffer (M4-ATX: 24)." }
+schema: { type: integer, exclusiveMinimum: 0 }

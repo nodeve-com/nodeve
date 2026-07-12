@@ -1,0 +1,9 @@
+title:
+  en: Active energy
+  pt: Energia ativa
+refs:
+  - { registry_id: qudt_quantity_kind, term: Energy, match: broad }
+  - { registry_id: ha_device_class, term: energy, match: exact }
+measurand:
+  si_unit: J
+  accumulation: cumulative_monotonic

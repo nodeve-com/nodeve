@@ -1,0 +1,5 @@
+title: { en: Encoding, pt: Codificação }
+description:
+  en: On-the-wire encoding of the raw value (e.g. uint16, float32). Value set is medium-specific — modbus has no uint8; VE.Direct is int/hex/bool/string.
+  pt: Codificação do valor bruto no barramento (ex. uint16, float32).
+schema: { type: string }

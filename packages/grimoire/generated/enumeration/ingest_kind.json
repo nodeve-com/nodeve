@@ -1,0 +1,17 @@
+{
+  "modbus_tap": {
+    "description": {
+      "en": "Ingest kind — passive sniff of an existing master's Modbus traffic; the adapter republishes windows of the observed poll cycle."
+    },
+    "refs": [
+      {
+        "match": "broad",
+        "registry_id": "modbus_org",
+        "term": "Modbus"
+      }
+    ],
+    "title": {
+      "en": "Modbus passive tap"
+    }
+  }
+}

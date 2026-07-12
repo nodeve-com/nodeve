@@ -1,0 +1,4 @@
+title: { en: Thickness (mm), pt: Espessura (mm) }
+description:
+  en: "Physical thickness/depth of an enclosure/part, millimetres."
+schema: { type: number, exclusiveMinimum: 0 }

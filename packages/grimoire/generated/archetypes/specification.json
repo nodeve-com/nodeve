@@ -1,0 +1,31 @@
+{
+  "description": {
+    "en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands."
+  },
+  "prop": {
+    "identity": {
+      "$ref": "../features/identity.json"
+    },
+    "intervals": {
+      "$ref": "./intervals.json",
+      "description": {
+        "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."
+      },
+      "title": {
+        "en": "Intervals"
+      }
+    },
+    "measurand": {
+      "$ref": "../features/measurand.json",
+      "description": {
+        "en": "The metrology facts of a quantity kind — its unit, SI unit, and default accumulation. The kind's enum member carries the site-agnostic defaults; a `specification` composes measurand so a device/site can OVERRIDE them. The deterministic on-bus `slug` lives on the specification's `identity`, not here."
+      },
+      "title": {
+        "en": "Measurand"
+      }
+    }
+  },
+  "title": {
+    "en": "Specification"
+  }
+}

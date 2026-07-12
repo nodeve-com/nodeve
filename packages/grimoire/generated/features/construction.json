@@ -1,0 +1,20 @@
+{
+  "prop": {
+    "material": {
+      "$ref": "../property/material.json",
+      "description": {
+        "en": "incoloy, copper, titanium, cotton, concerete, stainless"
+      },
+      "schema": {
+        "type": "string"
+      },
+      "title": {
+        "en": "Material"
+      }
+    }
+  },
+  "title": {
+    "en": "Construction",
+    "pt": "Construção"
+  }
+}

@@ -1,0 +1,17 @@
+# An appliance with a resistive heat source: appliance base (which owns the full `ac_phase` connection
+# + draw, and — via electrical_quantity — the element `resistance` a consumer needs for P = V²/R) plus
+# `construction` (sheath/element material). Parallel to dehumidifier — the extra feature is what makes
+# the schema distinct from a plain appliance. A heat-pump source is future; the resistive element is
+# the source modeled today.
+
+concept_settings:
+  compose: [ appliance ]
+
+title:
+  en: Water heater
+  pt: Aquecedor de água
+description:
+  en: An appliance with a resistive heat source (+ its rated AC supply).
+
+feature:
+  construction: {} # the sheath/element material

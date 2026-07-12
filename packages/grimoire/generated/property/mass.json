@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Physical mass of a part/module, kilograms."
+  },
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Mass (kg)",
+    "pt": "Massa (kg)"
+  }
+}

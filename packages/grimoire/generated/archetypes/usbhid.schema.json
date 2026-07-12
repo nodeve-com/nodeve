@@ -1,0 +1,385 @@
+{
+  "$defs": {
+    "alt_setting": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "byte_order": {
+      "enum": [
+        "big_first",
+        "little_first"
+      ],
+      "type": "string"
+    },
+    "configuration": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "decimals": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "detach_kernel_driver": {
+      "type": "boolean"
+    },
+    "emit": {
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "$ref": "#/$defs/format"
+        },
+        "publish": {
+          "$ref": "#/$defs/publish"
+        },
+        "topic_prefix": {
+          "$ref": "#/$defs/topic_prefix"
+        },
+        "update_interval_ms": {
+          "$ref": "#/$defs/update_interval_ms"
+        }
+      },
+      "type": "object"
+    },
+    "expect": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "feature_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "firmware": {
+      "type": "object"
+    },
+    "format": {
+      "enum": [
+        "grouped",
+        "per_value"
+      ],
+      "type": "string"
+    },
+    "get_command": {
+      "items": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "index_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "interface": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "length_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ordinal": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "parameters": {
+      "minItems": 1,
+      "type": "array"
+    },
+    "part_id": {
+      "pattern": "^(a|b|c|n|ab|bc|ca)$",
+      "type": "string"
+    },
+    "poll_command": {
+      "items": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "product_id": {
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "publish": {
+      "enum": [
+        "changed",
+        "always"
+      ],
+      "type": "string"
+    },
+    "raw_name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "read_endpoint": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "request_length": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "response_length": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "response_magic": {
+      "type": "object"
+    },
+    "scale": {
+      "type": "number"
+    },
+    "scale_overrides": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "type": "object"
+    },
+    "set_command": {
+      "items": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "timeout_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "topic_prefix": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "transfer": {
+      "enum": [
+        "interrupt",
+        "control"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "update_interval_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "usb_wire": {
+      "additionalProperties": false,
+      "properties": {
+        "alt_setting": {
+          "$ref": "#/$defs/alt_setting"
+        },
+        "configuration": {
+          "$ref": "#/$defs/configuration"
+        },
+        "detach_kernel_driver": {
+          "$ref": "#/$defs/detach_kernel_driver"
+        },
+        "interface": {
+          "$ref": "#/$defs/interface"
+        },
+        "product_id": {
+          "$ref": "#/$defs/product_id"
+        },
+        "vendor_id": {
+          "$ref": "#/$defs/vendor_id"
+        }
+      },
+      "type": "object"
+    },
+    "usbhid_config": {
+      "additionalProperties": false,
+      "properties": {
+        "expect": {
+          "$ref": "#/$defs/expect"
+        },
+        "get_command": {
+          "$ref": "#/$defs/get_command"
+        },
+        "index_offset": {
+          "$ref": "#/$defs/index_offset"
+        },
+        "length_offset": {
+          "$ref": "#/$defs/length_offset"
+        },
+        "offset": {
+          "$ref": "#/$defs/offset"
+        },
+        "parameters": {
+          "$ref": "#/$defs/parameters"
+        },
+        "request_length": {
+          "$ref": "#/$defs/request_length"
+        },
+        "response_magic": {
+          "$ref": "#/$defs/response_magic"
+        },
+        "set_command": {
+          "$ref": "#/$defs/set_command"
+        },
+        "value_offset": {
+          "$ref": "#/$defs/value_offset"
+        }
+      },
+      "type": "object"
+    },
+    "usbhid_fields": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "byte_order": {
+            "$ref": "#/$defs/byte_order"
+          },
+          "decimals": {
+            "$ref": "#/$defs/decimals"
+          },
+          "feature_id": {
+            "$ref": "#/$defs/feature_id"
+          },
+          "offset": {
+            "$ref": "#/$defs/offset"
+          },
+          "ordinal": {
+            "$ref": "#/$defs/ordinal"
+          },
+          "part_id": {
+            "$ref": "#/$defs/part_id"
+          },
+          "quantity_kind": {
+            "enum": [
+              "active_energy",
+              "active_power",
+              "altitude",
+              "apparent_energy",
+              "apparent_power",
+              "cooling_capacity",
+              "current",
+              "dew_point",
+              "electric_charge",
+              "frequency",
+              "phase_angle",
+              "power",
+              "power_factor",
+              "reactive_energy",
+              "reactive_power",
+              "relative_humidity",
+              "resistance",
+              "temperature",
+              "voltage",
+              "volume",
+              "volume_flow_rate"
+            ],
+            "type": "string"
+          },
+          "raw_name": {
+            "$ref": "#/$defs/raw_name"
+          },
+          "scale": {
+            "$ref": "#/$defs/scale"
+          },
+          "scale_overrides": {
+            "$ref": "#/$defs/scale_overrides"
+          },
+          "type": {
+            "$ref": "#/$defs/type"
+          },
+          "unit": {
+            "$ref": "#/$defs/unit"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "usbhid_link": {
+      "additionalProperties": false,
+      "properties": {
+        "expect": {
+          "$ref": "#/$defs/expect"
+        },
+        "firmware": {
+          "$ref": "#/$defs/firmware"
+        },
+        "offset": {
+          "$ref": "#/$defs/offset"
+        },
+        "poll_command": {
+          "$ref": "#/$defs/poll_command"
+        },
+        "read_endpoint": {
+          "$ref": "#/$defs/read_endpoint"
+        },
+        "response_length": {
+          "$ref": "#/$defs/response_length"
+        },
+        "response_magic": {
+          "$ref": "#/$defs/response_magic"
+        },
+        "timeout_ms": {
+          "$ref": "#/$defs/timeout_ms"
+        },
+        "transfer": {
+          "$ref": "#/$defs/transfer"
+        },
+        "write_endpoint": {
+          "$ref": "#/$defs/write_endpoint"
+        }
+      },
+      "type": "object"
+    },
+    "value_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "vendor_id": {
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "write_endpoint": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "emit": {
+      "$ref": "#/$defs/emit"
+    },
+    "usb_wire": {
+      "$ref": "#/$defs/usb_wire"
+    },
+    "usbhid_config": {
+      "$ref": "#/$defs/usbhid_config"
+    },
+    "usbhid_fields": {
+      "$ref": "#/$defs/usbhid_fields"
+    },
+    "usbhid_link": {
+      "$ref": "#/$defs/usbhid_link"
+    }
+  },
+  "type": "object"
+}

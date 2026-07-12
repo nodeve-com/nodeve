@@ -1,0 +1,12 @@
+# W3C SKOS — the mapping-strength vocabulary crosswalk refs themselves borrow (exactMatch,
+# closeMatch, broadMatch, …) and intra-vocabulary relations (broader).
+title:
+  en: W3C SKOS (Simple Knowledge Organization System)
+  pt: "W3C SKOS (Sistema Simples de Organização do Conhecimento)"
+identity:
+  slug: skos
+  code: 364GPCB3
+  url: https://www.w3.org/TR/skos-reference/
+registry_publication:
+  published_by: w3c
+  iri_template: "http://www.w3.org/2004/02/skos/core#{id}"

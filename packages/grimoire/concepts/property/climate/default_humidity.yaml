@@ -1,0 +1,3 @@
+title: { en: Default humidity }
+description: { en: Designed/factory default setpoint. }
+schema: { type: number, minimum: 0, maximum: 100 }

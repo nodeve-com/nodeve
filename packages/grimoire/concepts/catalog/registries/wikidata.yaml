@@ -1,0 +1,11 @@
+# Wikidata — the general-purpose entity registry; Q-ids for concepts no domain standard names.
+title:
+  en: Wikidata
+  pt: Wikidata
+identity:
+  slug: wikidata
+  code: JDV86GJS
+  url: https://www.wikidata.org/
+registry_publication:
+  published_by: wikimedia
+  iri_template: "https://www.wikidata.org/wiki/{id}"

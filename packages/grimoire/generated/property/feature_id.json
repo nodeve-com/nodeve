@@ -1,0 +1,19 @@
+{
+  "description": {
+    "en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree."
+  },
+  "refs": [
+    {
+      "match": "close",
+      "registry_id": "sosa",
+      "term": "FeatureOfInterest"
+    }
+  ],
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Feature ID"
+  }
+}

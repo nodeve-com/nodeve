@@ -1,0 +1,4 @@
+title: { en: Serve }
+description:
+  en: "A local adapter's listening faces, keyed by POSIX address family — af_unix (co-located hop) and/or af_inet (off-host consumers); independent siblings, at least one present."
+schema: { type: object }

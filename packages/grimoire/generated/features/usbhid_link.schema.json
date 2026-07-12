@@ -1,0 +1,87 @@
+{
+  "$defs": {
+    "expect": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "firmware": {
+      "type": "object"
+    },
+    "offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "poll_command": {
+      "items": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "read_endpoint": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "response_length": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "response_magic": {
+      "type": "object"
+    },
+    "timeout_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "transfer": {
+      "enum": [
+        "interrupt",
+        "control"
+      ],
+      "type": "string"
+    },
+    "write_endpoint": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expect": {
+      "$ref": "#/$defs/expect"
+    },
+    "firmware": {
+      "$ref": "#/$defs/firmware"
+    },
+    "offset": {
+      "$ref": "#/$defs/offset"
+    },
+    "poll_command": {
+      "$ref": "#/$defs/poll_command"
+    },
+    "read_endpoint": {
+      "$ref": "#/$defs/read_endpoint"
+    },
+    "response_length": {
+      "$ref": "#/$defs/response_length"
+    },
+    "response_magic": {
+      "$ref": "#/$defs/response_magic"
+    },
+    "timeout_ms": {
+      "$ref": "#/$defs/timeout_ms"
+    },
+    "transfer": {
+      "$ref": "#/$defs/transfer"
+    },
+    "write_endpoint": {
+      "$ref": "#/$defs/write_endpoint"
+    }
+  },
+  "type": "object"
+}

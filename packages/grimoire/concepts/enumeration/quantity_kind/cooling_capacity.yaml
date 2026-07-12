@@ -1,0 +1,5 @@
+title: { en: Cooling capacity }
+description: { en: Rated cooling output — a thermal power. An air conditioner's defining quantity. }
+measurand:
+  si_unit: W
+  accumulation: instantaneous

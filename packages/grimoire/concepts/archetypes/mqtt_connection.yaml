@@ -1,0 +1,62 @@
+# DEPLOYMENT concept (schema-only; instances live in sites/<name>/mqtt.yaml): how a deployment
+# connects to its MQTT broker. Every field lives inside a feature (an archetype never adds props):
+#   authentication — username/password.
+#   endpoint — the connection's reachability: shared defaults at the feature level (`host` the
+#     default every scheme shares, `version` negotiated on CONNECT — 5.0 the deployed default,
+#     3.1.1 the baseline, reconnect/connect timeouts) plus one scheme-keyed override block per
+#     broker listener — the endpoint feature's service_protocol parts, FILTERED here to the broker
+#     schemes (mqtt/mqtts/ws/wss — TLS is the scheme, never a boolean). Well-known ports ride each
+#     scheme as `default`; 8884 is the broker's OWN TLS-WebSocket listener — a TLS-proxy
+#     deployment overrides via env.
+# Env-var names travel WITH each field as `x-env-var` (schema.env-var overrides below); the flat
+# MQTT_ENV name map is DERIVED from the compiled schema, never hand-kept.
+description:
+  en: How a deployment connects to its MQTT broker (auth, shared endpoint defaults, and one scheme-keyed endpoint block per broker listener — mqtt/mqtts/ws/wss).
+
+feature:
+  # the site's shared publish contract — the topic root (`topic_prefix`) every adapter's own
+  # prefix derives off as `<topic_prefix>/<slug>`, plus the default cadence/sinks/format each
+  # adapter's own `emit` overrides. The topic root names the consuming gateway, so it is a SITE
+  # value (authored under the site's own `mqtt_connection.emit`), never a default here — grimoire
+  # stays consumer-agnostic.
+  emit: {}
+  authentication:
+    username:
+      schema:
+        env-var: MQTT_USER
+    password:
+      schema:
+        env-var: MQTT_PASSWORD
+  endpoint:
+    # Instance-keyed by service_protocol, FILTERED to the broker listeners — a narrowing of the
+    # category (validated against enumeration/service_protocol/ members; a stale id fails the build),
+    # never a second member list. http(s)/modbus_tcp are other service protocols, not broker listeners.
+    parts: { service_protocol: [ mqtt, mqtts, ws, wss ] }
+    schema:
+      required: true
+    host:
+      schema: { required: true, env-var: MQTT_BROKER }
+    version:
+      schema: { enum: [ '3.1.1', '5.0' ], default: '5.0', env-var: MQTT_VERSION }
+    reconnect_period_ms:
+      schema: { default: 5000, env-var: MQTT_RECONNECT_PERIOD_MS }
+    connect_timeout_ms:
+      schema: { default: 10000, env-var: MQTT_CONNECT_TIMEOUT_MS }
+    mqtt:
+      port:
+        schema: { default: 1883, env-var: MQTT_PORT }
+    mqtts:
+      port:
+        schema: { default: 8883, env-var: MQTT_MQTTS_PORT }
+    ws:
+      port:
+        schema: { default: 1884, env-var: MQTT_WS_PORT }
+      pathname:
+        schema:
+          env-var: MQTT_WS_PATHNAME
+    wss:
+      port:
+        schema: { default: 8884, env-var: MQTT_WSS_PORT }
+      pathname:
+        schema:
+          env-var: MQTT_WSS_PATHNAME

@@ -1,0 +1,14 @@
+# IP ADDRESSES — the L3 addresses bound to ONE network interface (an interface may carry several: an
+# IPv4 lease AND an IPv6 address). `is_array: true` so a NIC's `ip_addresses` slot is a LIST of these
+# (same cardinality model as network_interfaces — cardinality lives on the target class, no ref-site
+# marker). Modelling each address as an archetype (not a bare feature) buys it its identity/title/
+# description — above all the referenceable `identity.slug`, so a site can name each binding. The
+# address datasheet itself lives in the `ip_binding` feature.
+concept_settings:
+  compose: [ thing ] # identity (the slug handle) + title + description + refs
+  is_array: true
+title: { en: IP address }
+description:
+  en: One L3 address bound to a network interface — its identity plus address datasheet (ip_address).
+feature:
+  ip_binding: {} # ip_address / ip_family / fqdn

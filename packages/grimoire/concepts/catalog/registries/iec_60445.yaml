@@ -1,0 +1,12 @@
+# No iri_template: IEC standards are not freely web-resolvable (like iec_60381 / iso_80000), a bare
+# token. `term` is the conductor designation this standard fixes: line conductors L1/L2/L3, neutral N,
+# protective earth PE — the wire markings a European installation carries on the box.
+title:
+  en: IEC 60445 (Identification of equipment terminals and conductors)
+  pt: "IEC 60445 (Identificação de terminais de equipamento e condutores)"
+identity:
+  slug: iec_60445
+  code: FRT4790C
+  url: https://webstore.iec.ch/publication/26662
+registry_publication:
+  published_by: iec

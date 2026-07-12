@@ -1,0 +1,9 @@
+title:
+  en: Product id (PID)
+description:
+  en: The expected VE.Direct product id (e.g. 0xA07D), carried as the device's published hex string, verbatim — an optional identity sanity hint.
+refs:
+  - { registry_id: ve_direct, term: PID, match: exact }
+schema:
+  type: string
+  pattern: '^0x[0-9A-Fa-f]+$'

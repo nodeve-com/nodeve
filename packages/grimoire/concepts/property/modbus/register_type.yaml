@@ -1,0 +1,4 @@
+title: { en: Register type }
+description:
+  en: "Which Modbus register space a read targets — holding = function 03, input = function 04. Composed by a device's link and a tap window."
+schema: { type: string, enum: [holding, input] }

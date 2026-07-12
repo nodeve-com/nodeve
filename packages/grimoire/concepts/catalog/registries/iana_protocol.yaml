@@ -1,0 +1,11 @@
+# No iri_template: IANA publishes the assignments as a table, not per-protocol resolvable IRIs (like
+# iso_80000 / ha_device_class, a bare token). `term` is the registry's keyword, e.g. "TCP" (decimal 6).
+title:
+  en: IANA Protocol Numbers
+  pt: "Números de Protocolo IANA"
+identity:
+  slug: iana_protocol
+  code: KXBNG3ZN
+  url: https://www.iana.org/assignments/protocol-numbers/
+registry_publication:
+  published_by: iana

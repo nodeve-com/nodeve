@@ -1,0 +1,17 @@
+# VIM 2.3, JCGM 200:2012
+# self: [
+# 	{ registry_id: 'vim', term: '2.3', match: 'exact' }, // VIM 2.3 measurand
+# 	{ registry_id: 'sosa', term: 'ObservableProperty', match: 'close' },
+# ],
+
+title: { en: Measurand }
+description:
+  en: The metrology facts of a quantity kind — its unit, SI unit, and default accumulation. The
+    kind's enum member carries the site-agnostic defaults; a `specification` composes measurand so a
+    device/site can OVERRIDE them. The deterministic on-bus `slug` lives on the specification's
+    `identity`, not here.
+enums:
+  - accumulation # (instantaneous/cumulative_monotonic)
+prop:
+  unit: {}
+  si_unit: {}

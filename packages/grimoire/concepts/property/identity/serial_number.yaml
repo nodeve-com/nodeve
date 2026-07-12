@@ -1,0 +1,7 @@
+# The manufacturer's per-unit serial — the physical unit's identity at a site (distinct from the
+# catalog `slug`/`code`, which identify the model). Free-form string; format varies by vendor.
+title:
+  en: Serial Number
+schema:
+  type: string
+  minLength: 1

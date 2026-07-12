@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "equals": {
+      "type": [
+        "string",
+        "number",
+        "boolean"
+      ]
+    },
+    "interval_item": {
+      "additionalProperties": false,
+      "properties": {
+        "feature": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "interval": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "property": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "setting": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "equals": {
+        "$ref": "#/$defs/equals"
+      },
+      "interval_item": {
+        "$ref": "#/$defs/interval_item"
+      },
+      "setting": {
+        "$ref": "#/$defs/setting"
+      },
+      "test_condition": {
+        "enum": [
+          "bnpi",
+          "bsi",
+          "stc"
+        ],
+        "type": "string"
+      }
+    },
+    "type": "object"
+  },
+  "type": "array"
+}

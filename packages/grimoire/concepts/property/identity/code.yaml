@@ -1,0 +1,8 @@
+# Stable short code — 8-char Crockford base32, minted once at entry creation and authored into
+# the def (never derived on emit, so it survives re-filing and slug renames). Distinct from `id`,
+# the database uuid.
+title:
+  en: Short code
+schema:
+  type: string
+  pattern: '^[0-9A-HJKMNP-TV-Z]{8}$'

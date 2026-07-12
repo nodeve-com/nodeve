@@ -1,0 +1,4 @@
+title: { en: Vendor ID }
+description:
+  en: "USB vendor id (authored as hex in YAML, e.g. 0x04d8)."
+schema: { type: integer, minimum: 0, maximum: 65535 }

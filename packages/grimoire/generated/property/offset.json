@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Zero-based byte offset into a request/response frame. The single place the key is defined — diag byte-fields, magic-byte checks and firmware-version bytes all compose it."
+  },
+  "schema": {
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Byte offset"
+  }
+}

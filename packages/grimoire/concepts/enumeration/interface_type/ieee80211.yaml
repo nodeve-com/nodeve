@@ -1,0 +1,5 @@
+title:
+  en: WiFi
+  pt: WiFi
+refs:
+  - { registry_id: iana_iftype, term: ieee80211, match: exact } # IANA ifType 71

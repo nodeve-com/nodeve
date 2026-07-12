@@ -1,0 +1,16 @@
+{
+  "description": {
+    "en": "UART data bits per frame."
+  },
+  "schema": {
+    "enum": [
+      7,
+      8
+    ],
+    "type": "integer"
+  },
+  "title": {
+    "en": "Data bits",
+    "pt": "Bits de dados"
+  }
+}

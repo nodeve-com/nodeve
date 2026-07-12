@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "address": {
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "decimals": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "feature_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "ordinal": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "part_id": {
+      "pattern": "^(a|b|c|n|ab|bc|ca)$",
+      "type": "string"
+    },
+    "raw_name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "scale": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string"
+    },
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "value_type": {
+      "enum": [
+        "uint16",
+        "int16",
+        "uint32",
+        "int32",
+        "float32"
+      ],
+      "type": "string"
+    }
+  },
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "address": {
+        "$ref": "#/$defs/address"
+      },
+      "decimals": {
+        "$ref": "#/$defs/decimals"
+      },
+      "feature_id": {
+        "$ref": "#/$defs/feature_id"
+      },
+      "ordinal": {
+        "$ref": "#/$defs/ordinal"
+      },
+      "part_id": {
+        "$ref": "#/$defs/part_id"
+      },
+      "quantity_kind": {
+        "enum": [
+          "active_energy",
+          "active_power",
+          "altitude",
+          "apparent_energy",
+          "apparent_power",
+          "cooling_capacity",
+          "current",
+          "dew_point",
+          "electric_charge",
+          "frequency",
+          "phase_angle",
+          "power",
+          "power_factor",
+          "reactive_energy",
+          "reactive_power",
+          "relative_humidity",
+          "resistance",
+          "temperature",
+          "voltage",
+          "volume",
+          "volume_flow_rate"
+        ],
+        "type": "string"
+      },
+      "raw_name": {
+        "$ref": "#/$defs/raw_name"
+      },
+      "scale": {
+        "$ref": "#/$defs/scale"
+      },
+      "type": {
+        "$ref": "#/$defs/type"
+      },
+      "unit": {
+        "$ref": "#/$defs/unit"
+      },
+      "value_type": {
+        "$ref": "#/$defs/value_type"
+      }
+    },
+    "type": "object"
+  },
+  "type": "array"
+}

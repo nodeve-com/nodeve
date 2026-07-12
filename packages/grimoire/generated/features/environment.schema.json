@@ -1,0 +1,15 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dew_point": {
+      "type": "number"
+    },
+    "relative_humidity": {
+      "type": "number"
+    },
+    "temperature": {
+      "type": "number"
+    }
+  },
+  "type": "object"
+}

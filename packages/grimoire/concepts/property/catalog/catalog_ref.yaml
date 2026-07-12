@@ -1,0 +1,4 @@
+title: { en: Catalog reference }
+description:
+  en: "Grimoire catalog reference (path or stable id) whose register map decodes this device. Omit to make the binding a raw passthrough — frames republished verbatim, no decode. Named catalog_ref (not profile) — it points at a catalog entry, distinct from usbhid_link's firmware-to-scale profile."
+schema: { type: string, minLength: 1 }

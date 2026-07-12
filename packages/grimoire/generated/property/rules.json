@@ -1,0 +1,15 @@
+{
+  "description": {
+    "en": "Evaluated in order: first rule whose (register at address & mask) is non-zero wins; its emit string is published. Each rule = { address, mask, emit }."
+  },
+  "schema": {
+    "items": {
+      "type": "object"
+    },
+    "minItems": 1,
+    "type": "array"
+  },
+  "title": {
+    "en": "Priority rules"
+  }
+}

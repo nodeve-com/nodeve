@@ -1,0 +1,3 @@
+title: { en: Read endpoint }
+description: { en: IN endpoint the response frame is read from (0x81 is IN 1). Authored as hex. }
+schema: { type: integer, minimum: 0, maximum: 255 }

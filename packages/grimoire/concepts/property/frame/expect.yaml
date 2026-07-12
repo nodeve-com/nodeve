@@ -1,0 +1,4 @@
+title: { en: Expected byte }
+description:
+  en: "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts."
+schema: { type: integer, minimum: 0, maximum: 255 }

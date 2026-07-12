@@ -1,0 +1,12 @@
+# A pointable entity: a named body other entries reference by slug — a device's maker
+# (`product.manufacturer_id`), a standards body that publishes a registry (`registry.published_by`).
+# Not restated as a free string on every model. Identity + display name + crosswalks; homepage lives
+# on `identity.url`. Entries are INSTANCES under catalog/organizations/.
+concept_settings:
+  compose: [ thing ]
+title:
+  en: Organization
+  pt: Organização
+description:
+  en: "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks."
+  pt: "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências."

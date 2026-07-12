@@ -1,0 +1,26 @@
+{
+  "description": {
+    "en": "A reserved raw value with a categorical meaning instead of a number (M4-ATX timers use 0xffff for never). raw == reading ⇒ emit the meaning slug rather than scaling; a writer maps back. The reserved reading is named raw, not value."
+  },
+  "schema": {
+    "additionalProperties": false,
+    "properties": {
+      "meaning": {
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "type": "string"
+      },
+      "raw": {
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    "required": [
+      "raw",
+      "meaning"
+    ],
+    "type": "object"
+  },
+  "title": {
+    "en": "Sentinel"
+  }
+}

@@ -1,0 +1,6 @@
+# The serial PORT — which OS device the wire is, at what baud. The single place the port's `path`
+# (the shared os/path property) + `baud_rate` are defined; serial_wire composes this into the full
+# serial-wire description. The serial-device caveat rides the slot override below, not the property.
+prop:
+  path: { title: { en: Device }, description: { en: "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." } }
+  baud_rate: {}

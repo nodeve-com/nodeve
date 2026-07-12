@@ -1,0 +1,123 @@
+{
+  "description": {
+    "en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides."
+  },
+  "prop": {
+    "catalog_ref": {
+      "$ref": "../property/catalog_ref.json",
+      "description": {
+        "en": "Grimoire catalog reference (path or stable id) whose register map decodes this device. Omit to make the binding a raw passthrough — frames republished verbatim, no decode. Named catalog_ref (not profile) — it points at a catalog entry, distinct from usbhid_link's firmware-to-scale profile."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Catalog reference"
+      }
+    },
+    "format": {
+      "$ref": "../property/format.json",
+      "description": {
+        "en": "Wire layout for decoded points. grouped (default when absent): one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, ...values}. per_value: one retained bare-value topic per point at <topic_prefix>/<group>/<key> (no envelope) — the flat layout legacy per-value subscribers expect. Medium-neutral so any decoder-to-MQTT medium can offer either contract."
+      },
+      "schema": {
+        "enum": [
+          "grouped",
+          "per_value"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Wire format"
+      }
+    },
+    "link": {
+      "$ref": "../property/link.json",
+      "description": {
+        "en": "The ingest link this device runs on, by its slug (the runtime resolves the reference). A slug value but a distinct key — it names a relationship, not this object's own id."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Link"
+      }
+    },
+    "publish": {
+      "$ref": "../property/publish.json",
+      "description": {
+        "en": "When to publish: on change only, or every sample."
+      },
+      "schema": {
+        "enum": [
+          "changed",
+          "always"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Publish policy"
+      }
+    },
+    "slug": {
+      "$ref": "../property/slug.json",
+      "description": {
+        "en": "Machine identifier — the wire form of a code/key; names a whole thing on the bus. Never human text (that is i18n_text).",
+        "pt": "Identificador de máquina — a forma de fio de um código/chave; nomeia uma coisa inteira no barramento. Nunca texto humano (isso é i18n_text)."
+      },
+      "schema": {
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "type": "string"
+      },
+      "title": {
+        "en": "Slug",
+        "pt": "Slug"
+      }
+    },
+    "topic_prefix": {
+      "$ref": "../property/topic_prefix.json",
+      "description": {
+        "en": "MQTT topic root a decoded value is published under."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Topic prefix"
+      }
+    },
+    "unit_id": {
+      "$ref": "../property/unit_id.json",
+      "description": {
+        "en": "Modbus slave/unit id — addressing, the same on whichever wire reaches the device. A known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)."
+      },
+      "schema": {
+        "maximum": 247,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Unit id"
+      }
+    },
+    "update_interval_ms": {
+      "$ref": "../property/update_interval_ms.json",
+      "description": {
+        "en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Update interval (ms)"
+      }
+    }
+  },
+  "title": {
+    "en": "Device binding"
+  }
+}

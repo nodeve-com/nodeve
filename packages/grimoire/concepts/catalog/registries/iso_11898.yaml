@@ -1,0 +1,12 @@
+# No iri_template: ISO standards are not freely web-resolvable (like iso_80000 / tia, a bare token).
+# `term` is the part designation, e.g. "11898-1" (data link layer + physical signalling sublayer) or
+# "11898-2" (high-speed medium access unit — the differential PHY).
+title:
+  en: "ISO 11898 (Road vehicles — Controller area network)"
+  pt: "ISO 11898 (Veículos rodoviários — Rede de área do controlador)"
+identity:
+  slug: iso_11898
+  code: MPS7TEXB
+  url: https://www.iso.org/standard/63648.html
+registry_publication:
+  published_by: iso

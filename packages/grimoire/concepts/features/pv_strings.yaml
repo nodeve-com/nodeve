@@ -1,0 +1,5 @@
+# An array installation's per-string install facts — a LIST of pv_string entries (min 1).
+title: { en: PV strings, pt: Strings fotovoltaicas }
+concept_settings:
+  compose: pv_string
+  is_array: true

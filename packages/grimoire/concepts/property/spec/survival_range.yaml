@@ -1,0 +1,5 @@
+title: { en: Survival range, pt: Faixa de sobrevivência }
+description: { en: The band the feature endures without damage (⊇ operating; a measuring_interval shape). }
+schema: { type: object }
+refs:
+  - { registry_id: ssn_system, term: SurvivalRange, match: exact }

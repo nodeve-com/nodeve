@@ -1,0 +1,46 @@
+{
+  "$defs": {
+    "catalog_item": {
+      "additionalProperties": false,
+      "properties": {
+        "archetype": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "slug": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "service_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "catalog_item": {
+      "$ref": "#/$defs/catalog_item"
+    },
+    "ingest_kind": {
+      "enum": [
+        "modbus_tap"
+      ],
+      "type": "string"
+    },
+    "platform": {
+      "enum": [
+        "esphome",
+        "farana",
+        "telegraf"
+      ],
+      "type": "string"
+    },
+    "service_id": {
+      "$ref": "#/$defs/service_id"
+    }
+  },
+  "type": "object"
+}

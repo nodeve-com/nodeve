@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Machine identifier unique across an entire instance/site/install — the wire form of `slug` (same snake_case shape) but qualified so no two things on one deployment share it. The addressable name on the bus. Scoped `slug` names a thing within its archetype; this names it install-wide."
+  },
+  "schema": {
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "type": "string"
+  },
+  "title": {
+    "en": "Qualified slug"
+  }
+}

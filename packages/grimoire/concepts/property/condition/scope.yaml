@@ -1,0 +1,3 @@
+title: { en: Scope }
+description: { en: "Where the gating feature-of-interest lives: this catalog entry (device, the default) or bound by the install (site — the location's altitude, an ambient sensor)." }
+schema: { type: string, enum: [device, site] }

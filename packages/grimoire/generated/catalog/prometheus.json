@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "304ZFK8C",
+    "slug": "prometheus"
+  },
+  "registry_publication": {
+    "published_by": "cncf"
+  },
+  "title": {
+    "en": "Prometheus / OpenMetrics metric type",
+    "pt": "Tipo de métrica Prometheus / OpenMetrics"
+  }
+}

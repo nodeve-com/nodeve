@@ -1,0 +1,3 @@
+title: { en: Empty }
+description: { en: String published when no flag bit is active; default "None". }
+schema: { type: string }

@@ -1,0 +1,8 @@
+title:
+  en: Apparent energy
+  pt: Energia aparente
+refs:
+  - { registry_id: qudt_quantity_kind, term: Energy, match: broad }
+measurand:
+  si_unit: VA·s
+  accumulation: cumulative_monotonic

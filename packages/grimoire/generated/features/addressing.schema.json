@@ -1,0 +1,23 @@
+{
+  "$defs": {
+    "password": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "wifi_ssid": {
+      "maxLength": 32,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "password": {
+      "$ref": "#/$defs/password"
+    },
+    "wifi_ssid": {
+      "$ref": "#/$defs/wifi_ssid"
+    }
+  },
+  "type": "object"
+}

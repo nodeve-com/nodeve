@@ -1,0 +1,32 @@
+# Three-phase energy meter: identity + connectivity + the ac_phase_three_point feature (whole
+# connection + per-phase/per-line parts from parts/electrical_ac_phase_three.yaml). Deployment-
+# NEUTRAL: measures whatever it's clamped onto — the role (grid/solar/load) is a SITE binding.
+
+concept_settings:
+  compose: [appliance] # base: product + supply draw (modbus added directly below)
+
+title:
+  en: Three-phase Meter
+  pt: Medidor trifásico
+description:
+  en: A three-phase energy/quantity meter (identity + connectivity + whole/per-phase/per-line quantities).
+
+refs:
+  - registry_id: sosa
+    term: Sensor
+    match: broad
+  - registry_id: brick
+    term: Electrical_Meter
+    match: close
+  - registry_id: sunspec
+    term: '203'
+    match: close
+  - registry_id: cim
+    term: Meter
+    match: close
+
+feature:
+  ac_phase_three_point: {}
+
+archetype:
+  modbus: {} # how it's talked to — Modbus (required in practice: a meter we catalog is one we read)

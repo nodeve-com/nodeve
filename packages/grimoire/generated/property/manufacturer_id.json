@@ -1,0 +1,17 @@
+{
+  "column": {
+    "references": "organization"
+  },
+  "description": {
+    "en": "Slug of the organization catalog entry that made this thing.",
+    "pt": "Slug da entrada de catálogo da organização que fez esta coisa."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Manufacturer",
+    "pt": "Fabricante"
+  }
+}

@@ -1,0 +1,7 @@
+title:
+  en: Catalog path
+description:
+  en: Grimoire catalog tree path of a model (e.g. foxess/h3/ps-10.0-sh) — the human-stable key; persisted references use the stable id instead.
+schema:
+  type: string
+  minLength: 1

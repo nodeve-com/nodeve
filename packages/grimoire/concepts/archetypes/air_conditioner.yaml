@@ -1,0 +1,15 @@
+title:
+  en: Air conditioner
+  pt: Ar-condicionado
+description:
+  en: An appliance whose defining feature is rated cooling output (+ its
+    vapor-compression compressor circuit).
+  pt: Um aparelho cuja característica definidora é a capacidade nominal de
+    refrigeração (+ seu circuito compressor de compressão de vapor).
+concept_settings:
+  # Nearly the dehumidifier's shape with a different defining feature; reuses the same `compressor`
+  # feature. Only the defining feature differs: rated cooling output.
+  compose: [ appliance ] # base: product + supply draw (no medium — pure spec unless a specific model reads back)
+feature:
+  cooling: {} # defining feature — rated cooling output
+  compressor: {} # same vapor-compression circuit as the dehumidifier — always present on an A/C

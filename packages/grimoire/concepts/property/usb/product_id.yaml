@@ -1,0 +1,3 @@
+title: { en: Product ID }
+description: { en: USB product id (authored as hex in YAML). }
+schema: { type: integer, minimum: 0, maximum: 65535 }

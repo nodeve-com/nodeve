@@ -1,0 +1,11 @@
+# Terms by local name, e.g. FeatureOfInterest, ObservableProperty, Observation.
+title:
+  en: "W3C SOSA ontology (Sensor, Observation, Sample, Actuator)"
+  pt: "Ontologia W3C SOSA (Sensor, Observation, Sample, Actuator)"
+identity:
+  slug: sosa
+  code: X0ZGH6ZW
+  url: https://www.w3.org/TR/property-ssn/
+registry_publication:
+  published_by: w3c
+  iri_template: "http://www.w3.org/ns/sosa/{id}"

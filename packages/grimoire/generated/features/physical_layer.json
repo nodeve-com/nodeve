@@ -1,0 +1,18 @@
+{
+  "prop": {
+    "physical_layer": {
+      "schema": {
+        "enum": [
+          "can_hs",
+          "current_loop_4_20ma",
+          "rs232",
+          "rs485",
+          "ttl_3v3",
+          "ttl_5v",
+          "voltage_0_10v"
+        ],
+        "type": "string"
+      }
+    }
+  }
+}

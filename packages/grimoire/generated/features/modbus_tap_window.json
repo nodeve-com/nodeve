@@ -1,0 +1,80 @@
+{
+  "array": {
+    "prop": {
+      "address": {
+        "$ref": "../property/address.json",
+        "description": {
+          "en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules."
+        },
+        "schema": {
+          "maximum": 65535,
+          "minimum": 0,
+          "required": true,
+          "type": "integer"
+        },
+        "title": {
+          "en": "Register address"
+        }
+      },
+      "name": {
+        "$ref": "../property/name.json",
+        "description": {
+          "en": "Machine identifier scoped INSIDE an enclosing concept's list (a config parameter, a tap window). Same nature as slug, but names one member within a thing rather than the whole thing.",
+          "pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira."
+        },
+        "schema": {
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "required": true,
+          "type": "string"
+        },
+        "title": {
+          "en": "Name",
+          "pt": "Nome"
+        }
+      },
+      "observed_interval_ms": {
+        "$ref": "../property/observed_interval_ms.json",
+        "description": {
+          "en": "OBSERVED interval between the foreign master's polls, integer ms — measured from real bus activity, never commanded (a passive tap doesn't own the poll clock; distinct from the commanded update_interval_ms). Lets codegen pin sample-relative filters (EMA α = 1 − e^(−Δt/τ)); omitted = unknown, only wall-clock/value-defined filters valid."
+        },
+        "schema": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "title": {
+          "en": "Observed interval (ms)",
+          "pt": "Intervalo observado (ms)"
+        }
+      },
+      "register_type": {
+        "$ref": "../property/register_type.json",
+        "description": {
+          "en": "Which Modbus register space a read targets — holding = function 03, input = function 04. Composed by a device's link and a tap window."
+        },
+        "schema": {
+          "enum": [
+            "holding",
+            "input"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "en": "Register type"
+        }
+      },
+      "retain": {
+        "$ref": "../property/retain.json",
+        "description": {
+          "en": "Retain the message on the broker. Retain slow accumulating windows (a late subscriber gets the last cycle); leave fast instantaneous ones unretained (the next ~Hz sample supersedes it)."
+        },
+        "schema": {
+          "type": "boolean"
+        },
+        "title": {
+          "en": "Retain",
+          "pt": "Reter"
+        }
+      }
+    }
+  }
+}

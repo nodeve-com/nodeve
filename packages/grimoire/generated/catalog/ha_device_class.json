@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "9ZHPEFGX",
+    "slug": "ha_device_class"
+  },
+  "registry_publication": {
+    "published_by": "home_assistant"
+  },
+  "title": {
+    "en": "Home Assistant sensor device_class",
+    "pt": "device_class de sensor do Home Assistant"
+  }
+}

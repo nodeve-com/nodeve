@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "3X30NQ0F",
+    "slug": "ve_direct"
+  },
+  "registry_publication": {
+    "published_by": "victron"
+  },
+  "title": {
+    "en": "VE.Direct Protocol",
+    "pt": "Protocolo VE.Direct"
+  }
+}

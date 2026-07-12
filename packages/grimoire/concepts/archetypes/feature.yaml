@@ -1,0 +1,36 @@
+# The FEATURE-OF-INTEREST — a named thing whose readings a value/gate/decode belongs to
+# (pv_tracker, enclosure, grid, battery, ...). Two shapes (same split as quantity_kind):
+#   definition — a feature IS a Term (coded id + i18n label + refs); the features themselves are
+#     INSTANCES authored as data under property/feature/; a point's display label DERIVES from
+#     the referenced feature's label (+ ordinal + quantity_kind label), never stored per-link.
+#     A feature-of-interest is a sosa:FeatureOfInterest; grimoire owns the per-feature
+#     identities (no external registry enumerates `grid`).
+#   reference — the `feature` slug key, defined ONCE (property/identity/feature): measurand
+#     links, condition gates and categorical decode entries all compose it. Loose slug (open set).
+title:
+  en: Feature of Interest
+
+refs:
+  - { registry_id: sosa, term: FeatureOfInterest, match: close }
+concept_settings:
+  compose:
+    - thing # the definition shape: a feature IS a Term
+
+# A feature IS a `thing` (title / description / identity — the unique slug) PLUS the two def-language
+# slots below. `compose: [thing]` above flattens the thing fields in; these two are the feature's own
+# grammar + spec body. DIRECTION (docs/feature-model.md): a feature def, not just a catalog instance,
+# may carry a `feature_spec` — its agnostic default bands — gated by `concept_settings.is_specification`.
+feature:
+  concept_settings: {} # the def-language grammar block (compose / repeated / part / array / map / count / is_specification)
+  feature_spec: {} # the specification body {combined, default, part, instances} (features/feature_spec.yaml)
+  # schema: {} # Needs to be defined as a literal JSON-schema "feature"
+
+# The REST of the definition-language shape (enums/props/prop maps a def may carry) is still the
+# COMPILER's contract (kit/compile.ts) — deferred until the def language itself is schema'd.
+#
+# CROSS-FIELD CONSTRAINTS are NOT deferred and NOT a def-language job: author raw draft-07 keywords
+# (if/then/else, oneOf, dependentRequired) in the feature's own `schema:` slot — kit/project.ts merges
+# an object node's `schema:` into its emitted object schema (same passthrough properties use; it's a
+# projection key in kit/compile.ts `instructionKeys`, so doc validation permits it). NEVER coin a
+# concept_settings primitive for a rule JSON
+# Schema already expresses (see inet_socket.yaml: transport==tcp ⇒ reconnect fields required).

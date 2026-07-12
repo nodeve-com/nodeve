@@ -1,0 +1,59 @@
+{
+  "description": {
+    "en": "A registry's publisher and term resolver — published_by plus iri_template or base_url.",
+    "pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url."
+  },
+  "prop": {
+    "base_url": {
+      "$ref": "../property/base_url.json",
+      "description": {
+        "en": "Base URL under which an external database record resolves — a registry's alternative to iri_template.",
+        "pt": "URL base sob a qual um registro de base de dados externo resolve — a alternativa da iri_template de um registro."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Base URL",
+        "pt": "URL base"
+      }
+    },
+    "iri_template": {
+      "$ref": "../property/iri_template.json",
+      "description": {
+        "en": "Template resolving a term id to its full IRI, with {id} as the placeholder."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "IRI template"
+      }
+    },
+    "published_by": {
+      "$ref": "../property/published_by.json",
+      "column": {
+        "references": "organization"
+      },
+      "description": {
+        "en": "Slug of the organization catalog entry that publishes this registry's id-space.",
+        "pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro."
+      },
+      "schema": {
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      },
+      "title": {
+        "en": "Published by",
+        "pt": "Publicado por"
+      }
+    }
+  },
+  "title": {
+    "en": "Registry publication",
+    "pt": "Publicação de registro"
+  }
+}

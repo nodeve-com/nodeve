@@ -1,0 +1,192 @@
+{
+  "description": {
+    "en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input)."
+  },
+  "prop": {
+    "ac_phase": {
+      "$ref": "../features/ac_phase.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "seas",
+          "term": "AlternatingCurrentConnectionPoint"
+        },
+        {
+          "match": "related",
+          "registry_id": "cim",
+          "term": "PhaseCode.A"
+        },
+        {
+          "match": "related",
+          "registry_id": "sunspec",
+          "term": "203"
+        }
+      ],
+      "title": {
+        "en": "AC phase",
+        "pt": "Fase CA"
+      }
+    },
+    "battery": {
+      "$ref": "../features/battery.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "exact",
+          "registry_id": "cim",
+          "term": "BatteryUnit"
+        },
+        {
+          "match": "exact",
+          "registry_id": "seas",
+          "term": "Battery"
+        },
+        {
+          "match": "exact",
+          "registry_id": "brick",
+          "term": "Battery"
+        },
+        {
+          "match": "exact",
+          "registry_id": "iec_61850",
+          "term": "ZBAT"
+        },
+        {
+          "match": "close",
+          "registry_id": "sunspec",
+          "term": "802"
+        }
+      ],
+      "title": {
+        "en": "Battery",
+        "pt": "Bateria"
+      }
+    },
+    "description": {
+      "$ref": "../features/description.json",
+      "description": {
+        "en": "Optional localized blurb for a term (i18n text)."
+      },
+      "title": {
+        "en": "Description",
+        "pt": "Descrição"
+      }
+    },
+    "enclosure": {
+      "$ref": "../features/enclosure.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "broad",
+          "registry_id": "cim",
+          "term": "AssetContainer"
+        },
+        {
+          "match": "related",
+          "registry_id": "sunspec",
+          "term": "TmpCab"
+        }
+      ],
+      "title": {
+        "en": "Enclosure",
+        "pt": "Invólucro"
+      }
+    },
+    "identity": {
+      "$ref": "../features/identity.json"
+    },
+    "mppt_tracking": {
+      "$ref": "../features/mppt_tracking.json"
+    },
+    "product": {
+      "$ref": "../features/product.json",
+      "description": {
+        "en": "Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec.",
+        "pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso."
+      },
+      "title": {
+        "en": "Product",
+        "pt": "Produto"
+      }
+    },
+    "pv_tracker": {
+      "$ref": "../features/pv_tracker.json",
+      "refs": [
+        {
+          "match": "broad",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        },
+        {
+          "match": "close",
+          "registry_id": "sunspec",
+          "term": "160"
+        },
+        {
+          "match": "broad",
+          "registry_id": "cim",
+          "term": "PhotovoltaicUnit"
+        },
+        {
+          "match": "broad",
+          "registry_id": "brick",
+          "term": "PV_Array"
+        },
+        {
+          "match": "broad",
+          "registry_id": "iec_61850",
+          "term": "DPVA"
+        }
+      ],
+      "title": {
+        "en": "PV tracker",
+        "pt": "Rastreador FV"
+      }
+    },
+    "refs": {
+      "$ref": "../features/refs.json",
+      "title": {
+        "en": "References",
+        "pt": "Referências"
+      }
+    },
+    "title": {
+      "$ref": "../features/title.json",
+      "description": {
+        "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes.",
+        "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
+      },
+      "title": {
+        "en": "Title - friendly name",
+        "pt": "Nome amigável"
+      }
+    },
+    "vedirect_fields": {
+      "$ref": "../features/vedirect_fields.json",
+      "description": {
+        "en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)."
+      },
+      "title": {
+        "en": "VE.Direct fields",
+        "pt": "Campos VE.Direct"
+      }
+    }
+  },
+  "title": {
+    "en": "Charge controller",
+    "pt": "Controlador de carga"
+  }
+}

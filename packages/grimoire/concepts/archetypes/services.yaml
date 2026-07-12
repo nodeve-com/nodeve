@@ -1,0 +1,18 @@
+# A SERVICE a node OFFERS — one listening surface it exposes (its Modbus-TCP server, a web UI, an
+# MQTT broker): identity/title/description plus the local socket it serves on (`service_binding`).
+# `is_array: true` so a device's `services` slot is a LIST of these (same cardinality model as
+# network_interfaces/ip_addresses — cardinality lives on the target class, no ref-site marker).
+# Modelled as an archetype (not a bare feature) for the referenceable `identity.slug`, so an adapter
+# can name WHICH offered service it polls (`ingest.service_id`). The DEVICE declares what it offers —
+# that device-declaration IS the service registry; you read the device, not each surface. The listen
+# address is named by REFERENCE into the device's OWN network topology (service_binding's
+# network_interface_id / ip_address_id), so the site's overlaid address resolves the host — never
+# restated. Serve side only; a service that also DIALS out composes `endpoint` (the reach side).
+concept_settings:
+  compose: [ thing ] # identity (the slug handle) + title + description + refs
+  is_array: true
+title: { en: Service }
+description:
+  en: One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses.
+feature:
+  service_binding: {} # protocol it speaks + which local NIC/IP + port the listener binds to

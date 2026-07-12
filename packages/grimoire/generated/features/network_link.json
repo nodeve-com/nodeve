@@ -1,0 +1,75 @@
+{
+  "prop": {
+    "duplex": {
+      "$ref": "../property/duplex.json",
+      "description": {
+        "en": "Duplex mode of the link: full transmits and receives simultaneously; half shares one channel (CSMA/CD collision domain)."
+      },
+      "schema": {
+        "enum": [
+          "half",
+          "full"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Duplex"
+      }
+    },
+    "interface_type": {
+      "schema": {
+        "enum": [
+          "async_serial",
+          "can",
+          "ethernet_csmacd",
+          "ieee80211",
+          "usb"
+        ],
+        "type": "string"
+      }
+    },
+    "link_speed": {
+      "$ref": "../property/link_speed.json",
+      "description": {
+        "en": "Negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)."
+      },
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Link speed"
+      }
+    },
+    "mac_address": {
+      "$ref": "../property/mac_address.json",
+      "description": {
+        "en": "The interface's IEEE 802 hardware address (EUI-48), colon-separated hex — the L2 identity burned into (or assigned to) the NIC."
+      },
+      "schema": {
+        "pattern": "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$",
+        "type": "string"
+      },
+      "title": {
+        "en": "MAC address"
+      }
+    },
+    "mtu": {
+      "$ref": "../property/mtu.json",
+      "description": {
+        "en": "Maximum transmission unit — the largest L3 payload (bytes) the interface carries in one frame. 1500 is standard Ethernet; up to ~9000 for jumbo frames; 68 is the IPv4 floor."
+      },
+      "schema": {
+        "maximum": 65535,
+        "minimum": 68,
+        "type": "integer"
+      },
+      "title": {
+        "en": "MTU"
+      }
+    }
+  },
+  "title": {
+    "en": "Network link"
+  }
+}

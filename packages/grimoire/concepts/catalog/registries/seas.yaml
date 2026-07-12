@@ -1,0 +1,11 @@
+# Terms by class local name, e.g. Battery, AlternatingCurrentConnectionPoint, ElectricPowerConsumer.
+title:
+  en: SEAS ontology (Smart Energy Aware Systems)
+  pt: Ontologia SEAS (Sistemas Inteligentes Conscientes de Energia)
+identity:
+  slug: seas
+  code: FPNE87JF
+  url: https://w3id.org/seas/
+registry_publication:
+  published_by: w3c
+  iri_template: "https://w3id.org/seas/{id}"

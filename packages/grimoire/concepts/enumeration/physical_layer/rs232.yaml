@@ -1,0 +1,6 @@
+# signal_form: digital
+title:
+  en: RS-232
+  pt: RS-232
+refs:
+  - { registry_id: tia_standard, term: 232-F, match: exact } # TIA-232-F

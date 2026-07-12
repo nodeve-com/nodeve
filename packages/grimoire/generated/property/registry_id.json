@@ -1,0 +1,16 @@
+{
+  "column": {
+    "references": "registry"
+  },
+  "description": {
+    "en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from."
+  },
+  "schema": {
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "type": "string"
+  },
+  "title": {
+    "en": "Registry",
+    "pt": "Registro"
+  }
+}

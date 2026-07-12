@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Where the addressed parameter's index byte sits in the command (M4-ATX: 2)."
+  },
+  "schema": {
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Index offset"
+  }
+}

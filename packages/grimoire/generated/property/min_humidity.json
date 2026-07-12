@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Lowest settable target RH the unit supports."
+  },
+  "schema": {
+    "maximum": 100,
+    "minimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Minimum humidity"
+  }
+}

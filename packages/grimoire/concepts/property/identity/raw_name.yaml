@@ -1,0 +1,4 @@
+title: { en: Raw name }
+description:
+  en: "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label."
+schema: { type: string, minLength: 1 }

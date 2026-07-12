@@ -1,0 +1,30 @@
+{
+  "$defs": {
+    "byte_order": {
+      "enum": [
+        "big_first",
+        "little_first"
+      ],
+      "type": "string"
+    },
+    "scale_overrides": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "byte_order": {
+      "$ref": "#/$defs/byte_order"
+    },
+    "scale_overrides": {
+      "$ref": "#/$defs/scale_overrides"
+    }
+  },
+  "type": "object"
+}

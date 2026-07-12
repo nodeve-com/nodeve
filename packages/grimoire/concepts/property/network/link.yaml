@@ -1,0 +1,4 @@
+title: { en: Link }
+description:
+  en: "The ingest link this device runs on, by its slug (the runtime resolves the reference). A slug value but a distinct key — it names a relationship, not this object's own id."
+schema: { type: string, minLength: 1 }

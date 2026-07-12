@@ -1,0 +1,8 @@
+title:
+  en: Neutral
+  pt: Neutro
+identity: { symbol: 'N' }
+# The neutral conductor — the phase-to-neutral reference, not a live leg. IEC 60445 designates it N.
+refs:
+  - { registry_id: cim, term: PhaseCode.N, match: exact }
+  - { registry_id: iec_60445, term: 'N', match: exact }

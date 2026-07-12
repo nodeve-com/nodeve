@@ -1,0 +1,4 @@
+title: { en: Detach kernel driver }
+description:
+  en: "Linux fact that the in-kernel usbhid driver usually owns the device, so a userspace reader must detach it first (m4api does exactly this)."
+schema: { type: boolean }

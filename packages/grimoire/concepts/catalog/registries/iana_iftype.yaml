@@ -1,0 +1,12 @@
+# No iri_template: IANA publishes the ifType assignments as a MIB table, not per-type resolvable IRIs
+# (like iana_protocol, a bare token). `term` is the ifType name, e.g. "rs232" (decimal 33), "usb" (160),
+# "ethernetCsmacd" (6).
+title:
+  en: IANA Interface Types (IANAifType-MIB)
+  pt: Tipos de Interface IANA (IANAifType-MIB)
+identity:
+  slug: iana_iftype
+  code: WADM3J8F
+  url: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib
+registry_publication:
+  published_by: iana

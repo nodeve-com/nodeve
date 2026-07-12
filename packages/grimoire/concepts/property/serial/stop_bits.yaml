@@ -1,0 +1,3 @@
+title: { en: Stop bits, pt: Bits de parada }
+description: { en: UART stop bits per frame. }
+schema: { type: integer, enum: [1, 2] }

@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Physical thickness/depth of an enclosure/part, millimetres."
+  },
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Thickness (mm)",
+    "pt": "Espessura (mm)"
+  }
+}

@@ -1,0 +1,6 @@
+# MQTT over TLS — its own registered scheme, not a modifier on `mqtt`.
+title:
+  en: MQTT (TLS)
+  pt: MQTT (TLS)
+refs:
+  - { registry_id: iana_uri_scheme, term: mqtts, match: exact }

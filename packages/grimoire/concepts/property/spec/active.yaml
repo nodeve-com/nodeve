@@ -1,0 +1,3 @@
+title: { en: Active, pt: Ativo }
+description: { en: "Whether this member is currently in service. `false` keeps the record (wiring still exists) while excluding it from derived output." }
+schema: { type: boolean }

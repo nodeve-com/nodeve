@@ -1,0 +1,5 @@
+# Not a real make — marks representative CLASS entries (nominal spec stand-ins), not a specific datasheet.
+title: { en: Generic }
+identity:
+  slug: generic
+  code: 78Q8JN5Y

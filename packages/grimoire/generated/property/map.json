@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "The feature's intrinsic cardinality: true = the feature is a slug-keyed RECORD of its shape (vedirect_fields). Exclusive with array."
+  },
+  "schema": {
+    "type": "boolean"
+  },
+  "title": {
+    "en": "Map",
+    "pt": "Mapa"
+  }
+}

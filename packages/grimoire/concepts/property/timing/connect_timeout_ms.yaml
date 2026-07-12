@@ -1,0 +1,4 @@
+title: { en: Connect timeout (ms), pt: Timeout de conexão (ms) }
+description:
+  en: "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+schema: { type: integer, exclusiveMinimum: 0 }

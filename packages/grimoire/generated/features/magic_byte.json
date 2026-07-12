@@ -1,0 +1,43 @@
+{
+  "prop": {
+    "expect": {
+      "$ref": "../property/expect.json",
+      "description": {
+        "en": "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts."
+      },
+      "schema": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Expected byte"
+      }
+    },
+    "offset": {
+      "$ref": "../property/offset.json",
+      "description": {
+        "en": "Zero-based byte offset into a request/response frame. The single place the key is defined — diag byte-fields, magic-byte checks and firmware-version bytes all compose it."
+      },
+      "schema": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Byte offset"
+      }
+    },
+    "response_magic": {
+      "$ref": "../property/response_magic.json",
+      "description": {
+        "en": "A leading sanity byte-check a device stamps on a valid frame/response, as { offset, expect }. Shared by the usbhid diag read and config exchange."
+      },
+      "schema": {
+        "type": "object"
+      },
+      "title": {
+        "en": "Response magic"
+      }
+    }
+  }
+}

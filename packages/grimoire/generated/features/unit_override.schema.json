@@ -1,0 +1,15 @@
+{
+  "$defs": {
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "unit": {
+      "$ref": "#/$defs/unit"
+    }
+  },
+  "type": "object"
+}

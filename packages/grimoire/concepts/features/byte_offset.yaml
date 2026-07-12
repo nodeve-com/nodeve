@@ -1,0 +1,5 @@
+# The `offset` slot — a zero-based BYTE offset into a request/response frame. Single place the
+# key is defined: usbhid diag byte-fields, the magic-byte check and the firmware-version byte
+# all compose this.
+prop:
+  offset: {}

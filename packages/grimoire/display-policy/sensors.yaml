@@ -1,0 +1,85 @@
+# DISPLAY POLICY — the authored per-quantity filter/publish policy for the HA-facing per-sensor
+# path, validated by display-policy/policy.ts (docs/esphome-ha-filters.md). Keyed by
+# (feature, quantity_kind) on the CANONICAL feature slug (the device tree's, e.g.
+# ac_phase_three_point), or raw_name for still-unattributed registers. One entry per
+# (feature, quantity_kind) applies to EVERY coordinate of that feature — combined and each part
+# (a/b/c/ab/bc/ca) alike; the feature's on-bus `identity.slug` handle is applied later, only at slug
+# render, so the policy keys off the canonical feature slug. Expressed in frequency-robust terms (throttle_average / delta /
+# throttle) so it survives passive taps; exponential_moving_average is the opt-in Δt-dependent calm
+# path — codegen pins α from the tap window's observed_interval_ms, or falls back to
+# throttle_average over the same window.
+#
+# Fan-in entries (filter_copy) pair a calm smoothed heartbeat with a delta fast path: capture
+# large changes as fast as possible, otherwise emit a steady smoothed value. Their final `filters`
+# chain stays non-blocking (no throttle — the parser rejects it). Entries a dashboard is unlikely
+# to need carry disabled_by_default: the value still publishes; the HA entity starts disabled.
+
+# --- Instantaneous electrical state: calm EMA heartbeat OR'd with a fast delta trip. The fast
+#     path is never rate-limited (its whole job is immediacy), so each delta threshold must sit
+#     ABOVE the signal's idle noise — a threshold inside the noise band publishes every sample.
+#     Deltas on zero-crossing / low-magnitude quantities are ABSOLUTE (a % of a near-zero value
+#     degenerates the same way). Tune against a live watch: `bun run mqtt-sub`. ---
+- feature: ac_phase_three_point
+  quantity_kind: voltage
+  accuracy_decimals: 1
+  filter_copy:
+    - exponential_moving_average: 2s
+    # 1% ≈ 2.3 V — real sag/swell territory; sub-volt regulation wobble stays on the calm path.
+    - delta: 1%
+- feature: ac_phase_three_point
+  quantity_kind: current
+  accuracy_decimals: 1
+  filter_copy:
+    - exponential_moving_average: 2s
+    # 0.5 A ≈ 115 W on a 230 V phase — a real load switching, not inverter regulation ripple.
+    - delta: 0.5
+# The old policy split active_power into grid (combined, delta 0.3) vs ac_phase (per-phase, delta
+# 0.1); one entry per (feature, quantity_kind) now covers both, so the finer 0.1 wins (immediacy
+# path — the tighter threshold trips for both the total and each phase).
+- feature: ac_phase_three_point
+  quantity_kind: active_power
+  accuracy_decimals: 2
+  filter_copy:
+    - exponential_moving_average: 2s
+    - delta: 0.3
+# --- Slow-moving quality-of-supply values: a steady time-window mean is enough ---
+# power_factor was enabled on grid (combined) but disabled per-phase; merged, it stays ENABLED so
+# the dashboard-worthy combined PF keeps publishing (the per-phase entities come along enabled too).
+- feature: ac_phase_three_point
+  quantity_kind: power_factor
+  filters:
+    - throttle_average: 5s
+- feature: ac_phase_three_point
+  quantity_kind: frequency
+  accuracy_decimals: 1
+  filters:
+    - throttle_average: 5s
+# --- Unlikely to be dashboarded: publish calmly, register the HA entity disabled ---
+- feature: ac_phase_three_point
+  quantity_kind: reactive_power
+  disabled_by_default: true
+  filters:
+    - throttle_average: 5s
+- feature: ac_phase_three_point
+  quantity_kind: apparent_power
+  disabled_by_default: true
+  filters:
+    - throttle_average: 5s
+# --- Monotonic energy counters (now LINKED measurands, slow window): publish on count change only.
+#     The counters step in 0.01-unit increments (decimals: 2); 0.005 passes every real increment
+#     and suppresses identical republishes. No smoothing — never average an accumulator. Active
+#     energy is the dashboard counter; apparent/reactive energy start disabled like their powers. ---
+- feature: ac_phase_three_point
+  quantity_kind: active_energy
+  filters:
+    - delta: 0.005
+- feature: ac_phase_three_point
+  quantity_kind: apparent_energy
+  disabled_by_default: true
+  filters:
+    - delta: 0.005
+- feature: ac_phase_three_point
+  quantity_kind: reactive_energy
+  disabled_by_default: true
+  filters:
+    - delta: 0.005

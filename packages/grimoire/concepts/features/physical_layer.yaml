@@ -1,0 +1,5 @@
+# A PHYSICAL LAYER — how a signal is electrically represented on the medium (RS-485, RS-232, TTL,
+# CAN HS PHY, 4-20 mA, 0-10 V). Just a Term (identity + i18n label + crosswalks); its standards
+# identity (TIA / JEDEC / ISO 11898 / IEC 60381) rides refs. Members live in property/physical_layer/.
+enums:
+  - physical_layer

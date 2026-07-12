@@ -1,0 +1,29 @@
+title:
+  en: PV tracker
+  pt: Rastreador FV
+# One MPPT DC input / string. The DC production unit is a class in CIM (PhotovoltaicUnit) and Brick
+# (PV_Array) at ARRAY granularity (broader than one MPPT input); SunSpec 160 (Multiple MPPT Extension)
+# is the standard that models per-MPPT-input DC measurement exactly, so it is the closest match.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: sunspec
+    term: '160'
+    match: close
+  - registry_id: cim
+    term: PhotovoltaicUnit
+    match: broad
+  - registry_id: brick
+    term: PV_Array
+    match: broad
+  - registry_id: iec_61850
+    term: DPVA
+    match: broad
+concept_settings:
+  compose: electrical_quantity
+  # One PV MPPT TRACKER — a maximum-power-point tracker input, which IS a DC port (the inverter's /
+  # charge controller's DC connection to the panels). Its quantities are exactly the shared `dc` body,
+  # so this composes that feature rather than re-listing them. When a tracker gains a tracker-specific
+  # quantity, add it here as a prop. Each quantity is OPTIONAL — fill only what the datasheet states.
+  repeated: true # countable MPPT inputs — the body wraps as {count, combined?, default?, instances?}

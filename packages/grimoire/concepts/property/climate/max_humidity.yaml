@@ -1,0 +1,3 @@
+title: { en: Maximum humidity }
+description: { en: Highest settable target RH the unit supports. }
+schema: { type: number, minimum: 0, maximum: 100 }

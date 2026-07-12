@@ -1,0 +1,3 @@
+title: { en: Direction, pt: Direção }
+description: { en: "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)." }
+schema: { type: string, enum: [above, below] }

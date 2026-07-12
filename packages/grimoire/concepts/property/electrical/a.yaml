@@ -1,0 +1,11 @@
+title:
+  en: Phase A
+  pt: Fase A
+identity: { symbol: L1 }
+# One phase (leg) of a polyphase AC connection — the phase-to-neutral view. Machine `code` follows the
+# measurement standards (CIM PhaseCode / IEC 61850 MMXU phsA); the `symbol` is the IEC 60445 wire
+# designation L1 a European installation carries on the box.
+refs:
+  - { registry_id: cim, term: PhaseCode.A, match: exact }
+  - { registry_id: iec_61850, term: MMXU.phsA, match: close }
+  - { registry_id: iec_60445, term: L1, match: exact }

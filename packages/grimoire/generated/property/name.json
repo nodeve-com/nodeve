@@ -1,0 +1,14 @@
+{
+  "description": {
+    "en": "Machine identifier scoped INSIDE an enclosing concept's list (a config parameter, a tap window). Same nature as slug, but names one member within a thing rather than the whole thing.",
+    "pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira."
+  },
+  "schema": {
+    "pattern": "^[a-z][a-z0-9_]*$",
+    "type": "string"
+  },
+  "title": {
+    "en": "Name",
+    "pt": "Nome"
+  }
+}

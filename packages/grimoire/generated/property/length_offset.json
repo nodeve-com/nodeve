@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Where the parameter's byte-length sits in the command (M4-ATX: 3) — the device echoes the width it should read/write."
+  },
+  "schema": {
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Length offset"
+  }
+}

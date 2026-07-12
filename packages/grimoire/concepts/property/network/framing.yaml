@@ -1,0 +1,3 @@
+title: { en: Framing }
+description: { en: "Discipline the reader applies to carve frames off a network socket: framemsg/mbap are length-prefix varieties; lines is CR/LF-delimited text (NMEA 0183). No direct (a local adapter always frames framemsg live at the wire) and no catch-all raw." }
+schema: { type: string, enum: [framemsg, mbap, lines] }

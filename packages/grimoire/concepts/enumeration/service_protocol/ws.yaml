@@ -1,0 +1,6 @@
+# RFC 6455 WebSocket; `wss` is its TLS variant.
+title:
+  en: WebSocket
+  pt: WebSocket
+refs:
+  - { registry_id: iana_uri_scheme, term: ws, match: exact }

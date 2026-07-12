@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "GYAQ1ZBS",
+    "slug": "iso_80000"
+  },
+  "registry_publication": {
+    "published_by": "iso"
+  },
+  "title": {
+    "en": "ISO 80000 (Quantities and units)",
+    "pt": "ISO 80000 (Grandezas e unidades)"
+  }
+}

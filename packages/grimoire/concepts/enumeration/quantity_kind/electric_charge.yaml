@@ -1,0 +1,8 @@
+title:
+  en: Electric charge
+  pt: Carga elétrica
+refs:
+  - { registry_id: qudt_quantity_kind, term: ElectricCharge, match: exact }
+measurand:
+  si_unit: C
+  accumulation: instantaneous

@@ -1,0 +1,8 @@
+title:
+  en: Phase B
+  pt: Fase B
+identity: { symbol: L2 }
+refs:
+  - { registry_id: cim, term: PhaseCode.B, match: exact }
+  - { registry_id: iec_61850, term: MMXU.phsB, match: close }
+  - { registry_id: iec_60445, term: L2, match: exact }

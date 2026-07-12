@@ -1,0 +1,8 @@
+# The span a SENSOR can read this quantity over — the instrument side (VIM 4.7 measuring interval /
+# ssn-system MeasurementRange), not the thing's own behaviour. An interval rated `measurable`
+# carries the instrument-only fields (resolution, max_permissible_error, channel).
+title: { en: Measurable, pt: Mensurável }
+description: { en: "The span a SENSOR can read this quantity over — the instrument side (VIM 4.7 measuring interval / ssn-system MeasurementRange), not the thing's own behaviour." }
+refs:
+  - { registry_id: vim, term: '4.7', match: close }
+  - { registry_id: ssn_system, term: MeasurementRange, match: exact }

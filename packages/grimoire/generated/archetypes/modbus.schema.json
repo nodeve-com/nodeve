@@ -1,0 +1,419 @@
+{
+  "$defs": {
+    "address": {
+      "maximum": 65535,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "addresses": {
+      "items": {
+        "maximum": 65535,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "baud_rate": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "data_bits": {
+      "enum": [
+        7,
+        8
+      ],
+      "type": "integer"
+    },
+    "decimals": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "default": {
+      "type": "object"
+    },
+    "emit_string": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "empty": {
+      "type": "string"
+    },
+    "fault": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "feature_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "individual_read_ranges": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "note": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "range": {
+            "items": {
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "range",
+          "note"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "invalid_ranges": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "note": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "range": {
+            "items": {
+              "maximum": 65535,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          }
+        },
+        "required": [
+          "range",
+          "note"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "join": {
+      "type": "string"
+    },
+    "kind": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "labels": {
+      "items": {
+        "items": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxItems": 16,
+        "type": "array"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "mask": {
+      "maximum": 65535,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "modbus_constraints": {
+      "additionalProperties": false,
+      "properties": {
+        "individual_read_ranges": {
+          "$ref": "#/$defs/individual_read_ranges"
+        },
+        "invalid_ranges": {
+          "$ref": "#/$defs/invalid_ranges"
+        }
+      },
+      "type": "object"
+    },
+    "modbus_decodes": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "$ref": "#/$defs/address"
+          },
+          "addresses": {
+            "$ref": "#/$defs/addresses"
+          },
+          "default": {
+            "$ref": "#/$defs/default"
+          },
+          "emit_string": {
+            "$ref": "#/$defs/emit_string"
+          },
+          "empty": {
+            "$ref": "#/$defs/empty"
+          },
+          "fault": {
+            "$ref": "#/$defs/fault"
+          },
+          "feature_id": {
+            "$ref": "#/$defs/feature_id"
+          },
+          "join": {
+            "$ref": "#/$defs/join"
+          },
+          "kind": {
+            "$ref": "#/$defs/kind"
+          },
+          "labels": {
+            "$ref": "#/$defs/labels"
+          },
+          "mask": {
+            "$ref": "#/$defs/mask"
+          },
+          "rules": {
+            "$ref": "#/$defs/rules"
+          },
+          "state": {
+            "$ref": "#/$defs/state"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "modbus_link": {
+      "additionalProperties": false,
+      "properties": {
+        "register_type": {
+          "$ref": "#/$defs/register_type"
+        },
+        "unit_id": {
+          "$ref": "#/$defs/unit_id"
+        },
+        "word_order": {
+          "$ref": "#/$defs/word_order"
+        }
+      },
+      "type": "object"
+    },
+    "modbus_registers": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "$ref": "#/$defs/address"
+          },
+          "decimals": {
+            "$ref": "#/$defs/decimals"
+          },
+          "feature_id": {
+            "$ref": "#/$defs/feature_id"
+          },
+          "ordinal": {
+            "$ref": "#/$defs/ordinal"
+          },
+          "part_id": {
+            "$ref": "#/$defs/part_id"
+          },
+          "quantity_kind": {
+            "enum": [
+              "active_energy",
+              "active_power",
+              "altitude",
+              "apparent_energy",
+              "apparent_power",
+              "cooling_capacity",
+              "current",
+              "dew_point",
+              "electric_charge",
+              "frequency",
+              "phase_angle",
+              "power",
+              "power_factor",
+              "reactive_energy",
+              "reactive_power",
+              "relative_humidity",
+              "resistance",
+              "temperature",
+              "voltage",
+              "volume",
+              "volume_flow_rate"
+            ],
+            "type": "string"
+          },
+          "raw_name": {
+            "$ref": "#/$defs/raw_name"
+          },
+          "scale": {
+            "$ref": "#/$defs/scale"
+          },
+          "type": {
+            "$ref": "#/$defs/type"
+          },
+          "unit": {
+            "$ref": "#/$defs/unit"
+          },
+          "value_type": {
+            "$ref": "#/$defs/value_type"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "ordinal": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "parity": {
+      "enum": [
+        "none",
+        "even",
+        "odd"
+      ],
+      "type": "string"
+    },
+    "part_id": {
+      "pattern": "^(a|b|c|n|ab|bc|ca)$",
+      "type": "string"
+    },
+    "path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "raw_name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "register_type": {
+      "enum": [
+        "holding",
+        "input"
+      ],
+      "type": "string"
+    },
+    "rules": {
+      "items": {
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "scale": {
+      "type": "number"
+    },
+    "serial_port": {
+      "additionalProperties": false,
+      "properties": {
+        "baud_rate": {
+          "$ref": "#/$defs/baud_rate"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        }
+      },
+      "type": "object"
+    },
+    "serial_wire": {
+      "additionalProperties": false,
+      "properties": {
+        "baud_rate": {
+          "$ref": "#/$defs/baud_rate"
+        },
+        "data_bits": {
+          "$ref": "#/$defs/data_bits"
+        },
+        "parity": {
+          "$ref": "#/$defs/parity"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "physical_layer": {
+          "enum": [
+            "can_hs",
+            "current_loop_4_20ma",
+            "rs232",
+            "rs485",
+            "ttl_3v3",
+            "ttl_5v",
+            "voltage_0_10v"
+          ],
+          "type": "string"
+        },
+        "stop_bits": {
+          "$ref": "#/$defs/stop_bits"
+        }
+      },
+      "type": "object"
+    },
+    "state": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "stop_bits": {
+      "enum": [
+        1,
+        2
+      ],
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "unit_id": {
+      "maximum": 247,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "value_type": {
+      "enum": [
+        "uint16",
+        "int16",
+        "uint32",
+        "int32",
+        "float32"
+      ],
+      "type": "string"
+    },
+    "word_order": {
+      "enum": [
+        "high_first",
+        "low_first"
+      ],
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "modbus_constraints": {
+      "$ref": "#/$defs/modbus_constraints"
+    },
+    "modbus_decodes": {
+      "$ref": "#/$defs/modbus_decodes"
+    },
+    "modbus_link": {
+      "$ref": "#/$defs/modbus_link"
+    },
+    "modbus_registers": {
+      "$ref": "#/$defs/modbus_registers"
+    },
+    "serial_port": {
+      "$ref": "#/$defs/serial_port"
+    },
+    "serial_wire": {
+      "$ref": "#/$defs/serial_wire"
+    }
+  },
+  "type": "object"
+}

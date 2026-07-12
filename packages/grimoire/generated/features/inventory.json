@@ -1,0 +1,52 @@
+{
+  "prop": {
+    "catalog_item": {
+      "$ref": "../property/catalog_item.json",
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "archetype": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "slug": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "archetype",
+          "slug"
+        ],
+        "type": "object"
+      },
+      "title": {
+        "en": "Catalog item",
+        "pt": "Item de catálogo"
+      }
+    },
+    "catalog_patch": {
+      "$ref": "../property/catalog_patch.json",
+      "schema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": {
+        "en": "Catalog patch"
+      }
+    },
+    "serial_number": {
+      "$ref": "../property/serial_number.json",
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Serial Number"
+      }
+    }
+  },
+  "title": {
+    "en": "Inventory Item"
+  }
+}

@@ -1,0 +1,6 @@
+# Read-batching constraints (modbus-specific, optional) — address ranges a gateway must not
+# bulk-read across, or must read one register at a time. A hint for masters that batch
+# contiguous reads. Composed (optionally) by the modbus archetype.
+prop:
+  invalid_ranges: {}
+  individual_read_ranges: {}

@@ -1,0 +1,4 @@
+title: { en: Height (mm), pt: Altura (mm) }
+description:
+  en: "Physical height of an enclosure/part, millimetres."
+schema: { type: number, exclusiveMinimum: 0 }

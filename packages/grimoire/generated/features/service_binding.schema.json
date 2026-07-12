@@ -1,0 +1,55 @@
+{
+  "$defs": {
+    "bind": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "ip_address_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "network_interface_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "port": {
+      "maximum": 65535,
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "not": {
+    "required": [
+      "network_interface_id",
+      "ip_address_id"
+    ]
+  },
+  "properties": {
+    "bind": {
+      "$ref": "#/$defs/bind"
+    },
+    "ip_address_id": {
+      "$ref": "#/$defs/ip_address_id"
+    },
+    "network_interface_id": {
+      "$ref": "#/$defs/network_interface_id"
+    },
+    "port": {
+      "$ref": "#/$defs/port"
+    },
+    "service_protocol": {
+      "enum": [
+        "http",
+        "https",
+        "modbus_tcp",
+        "mqtt",
+        "mqtts",
+        "ws",
+        "wss"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

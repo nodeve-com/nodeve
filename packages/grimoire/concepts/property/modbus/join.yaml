@@ -1,0 +1,3 @@
+title: { en: Join }
+description: { en: Separator between active labels of a flags decode; default "; ". }
+schema: { type: string }

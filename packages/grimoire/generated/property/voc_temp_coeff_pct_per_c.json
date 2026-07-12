@@ -1,0 +1,11 @@
+{
+  "description": {
+    "en": "Temperature coefficient of Voc, %/°C (negative). Drives the cold-morning Voc rise."
+  },
+  "schema": {
+    "type": "number"
+  },
+  "title": {
+    "en": "Voc temperature coefficient (%/°C)"
+  }
+}

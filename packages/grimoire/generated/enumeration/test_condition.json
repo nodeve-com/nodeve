@@ -1,0 +1,29 @@
+{
+  "bnpi": {
+    "description": {
+      "en": "Bifacial Nameplate Irradiance — front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Bifacial rating reference (IEC TS 60904-1-2)."
+    },
+    "title": {
+      "en": "BNPI",
+      "pt": "BNPI"
+    }
+  },
+  "bsi": {
+    "description": {
+      "en": "Bifacial Stress Irradiance — front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. High-rear-contribution reference for worst-case Isc (IEC TS 60904-1-2)."
+    },
+    "title": {
+      "en": "BSI",
+      "pt": "BSI"
+    }
+  },
+  "stc": {
+    "description": {
+      "en": "Standard Test Conditions — front 1000 W/m², AM1.5G, 25 °C cell temp, no rear irradiance. The default PV nameplate reference (IEC 61215 / IEC 60904-3)."
+    },
+    "title": {
+      "en": "STC",
+      "pt": "STC"
+    }
+  }
+}

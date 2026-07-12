@@ -1,0 +1,12 @@
+# No iri_template: Modbus specs are published as documents, not per-term resolvable IRIs. `term` is the
+# spec name, e.g. "Modbus Application Protocol" (the MODBUS Application Protocol Specification). Modbus is
+# also standardised in IEC 61158 (Type 15) / IEC 61784.
+title:
+  en: Modbus Organization
+  pt: Modbus Organization
+identity:
+  slug: modbus_org
+  code: PRDSCV1G
+  url: https://www.modbus.org/specs.php
+registry_publication:
+  published_by: modbus_organization

@@ -1,0 +1,10 @@
+title:
+  en: QUDT QuantityKind
+  pt: QUDT QuantityKind
+identity:
+  slug: qudt_quantity_kind
+  code: 8G96T0S1
+  url: http://qudt.org/
+registry_publication:
+  published_by: qudt
+  iri_template: "http://qudt.org/property/quantitykind/{id}"

@@ -1,0 +1,27 @@
+# EXAMPLE / illustrative only — NOT bundled, NOT exported. A site concept ships schema, not
+# instances: the authoritative adapter list lives in the deploying repo (sites/<name>/adapters.yaml)
+# and validates against archetypes/adapters.ts. This file is here purely as terse documentation of
+# the shape. The block authors ONE `pathname` (the site's own naming); each adapter's topic root
+# DERIVES as `<pathname>/<slug>` (parse materializes it as `topicPrefix`); a tap window's grouped
+# cycle rides `<pathname>/<slug>/modbus_tap/<window name>` — the ingest-kind segment nested
+# ESPHome-platform-style, like `<prefix>/sensor/<name>`.
+pathname: meters # shared namespace: each adapter publishes under meters/<slug>
+adapters:
+  - slug: main_meter
+    friendly_name: Main Meter # human label — the generated ESPHome device's friendly_name
+    platform: esphome # decoder runs on an ESPHome board, not the site's gateway daemon
+    device: ZD3MKNDW # grimoire catalog stable id (loadDeviceById) of the decoded hardware
+    host: '192.0.2.10'
+    ingest_kind: modbus_tap # passive sniff of a master's read windows
+    modbus_tap:
+      windows:
+        - name: telemetry # fast snapshot → meters/main_meter/modbus_tap/telemetry, not retained
+          address: 5392
+        - name: energy # slow counters → meters/main_meter/modbus_tap/energy, retained
+          address: 4096
+          retain: true
+  - slug: inverter
+    friendly_name: Inverter
+    device: 4WC23EJ5
+    host: '192.0.2.11'
+    ingest_kind: modbus_tcp # polled master (the gateway daemon), no tap windows

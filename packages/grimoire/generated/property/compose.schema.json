@@ -1,0 +1,16 @@
+{
+  "anyOf": [
+    {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    {
+      "items": {
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  ]
+}

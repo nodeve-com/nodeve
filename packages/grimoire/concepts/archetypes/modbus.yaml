@@ -1,0 +1,30 @@
+# CONNECTIVITY MEDIUM, not a device: a composition assigning atoms to named slots. `transport`
+# (the wire) and `emit` (the MQTT output) are SHARED with every other decoder→MQTT medium; the
+# rest is modbus framing. Slot names are the medium's local property (`link`, not `modbus_link`) —
+# atoms define contents, the archetype names the slot. IS a device's `connectivity` block,
+# keyed by its `modbus` slot on the device archetype — that slot key IS the discriminator (no
+# in-band field repeats it). Ships a standalone schema.json for non-TS gateways; no catalog
+# instances of its own.
+#
+# OSI: Modbus is a true Layer-7 APPLICATION protocol, transport-independent (rides RS-485 serial or
+# TCP — `transport` picks). The `refs` crosswalk records that identity. FUTURE (layer-honest model,
+# docs/communication_protocol_standards.md): a lower-layer axis (interface_type async_serial, the
+# transport already carries physical_layer) could be pinned here — Modbus RTU vs TCP framing lives
+# in the transport, so add it there, not as a fake application-layer enum.
+
+title:
+  en: Modbus medium
+description:
+  en: A Modbus connectivity medium — Layer-7 application protocol (transport + emit + register map + decode + read-batching constraints).
+
+# Standards identity (moved off the deleted application_protocol enum; keep the crosswalk with the def).
+refs:
+  - { registry_id: modbus_org, term: Modbus Application Protocol, match: exact }
+
+feature:
+  serial_port: {}
+  serial_wire: {}
+  modbus_link: {} # modbus framing/addressing
+  modbus_registers: {} # the register map — a LIST of register rows
+  modbus_decodes: {} # optional categorical decode
+  modbus_constraints: {} # optional read-batching hints

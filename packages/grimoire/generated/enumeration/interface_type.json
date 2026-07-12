@@ -1,0 +1,67 @@
+{
+  "async_serial": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_iftype",
+        "term": "rs232"
+      }
+    ],
+    "title": {
+      "en": "Asynchronous serial port",
+      "pt": "Porta serial assíncrona"
+    }
+  },
+  "can": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iso_11898",
+        "term": "11898-1"
+      }
+    ],
+    "title": {
+      "en": "CAN bus",
+      "pt": "Barramento CAN"
+    }
+  },
+  "ethernet_csmacd": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_iftype",
+        "term": "ethernetCsmacd"
+      }
+    ],
+    "title": {
+      "en": "Ethernet",
+      "pt": "Ethernet"
+    }
+  },
+  "ieee80211": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_iftype",
+        "term": "ieee80211"
+      }
+    ],
+    "title": {
+      "en": "WiFi",
+      "pt": "WiFi"
+    }
+  },
+  "usb": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_iftype",
+        "term": "usb"
+      }
+    ],
+    "title": {
+      "en": "USB",
+      "pt": "USB"
+    }
+  }
+}

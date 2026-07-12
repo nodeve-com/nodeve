@@ -1,0 +1,14 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "archetype": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "slug": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

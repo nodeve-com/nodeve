@@ -1,0 +1,3 @@
+title: { en: Ordinal, pt: Ordinal }
+description: { en: "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on." }
+schema: { type: integer, exclusiveMinimum: 0 }

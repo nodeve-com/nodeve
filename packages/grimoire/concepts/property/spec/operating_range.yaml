@@ -1,0 +1,5 @@
+title: { en: Operating range, pt: Faixa de operação }
+description: { en: The band the feature works WITHIN SPEC (a measuring_interval shape). }
+schema: { type: object }
+refs:
+  - { registry_id: ssn_system, term: OperatingRange, match: exact }

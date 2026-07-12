@@ -1,0 +1,3 @@
+title: { en: Parity, pt: Paridade }
+description: { en: UART parity bit of the line discipline. }
+schema: { type: string, enum: [none, even, odd] }

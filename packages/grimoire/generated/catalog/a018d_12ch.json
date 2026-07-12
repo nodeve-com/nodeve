@@ -1,0 +1,84 @@
+{
+  "ac_phase": {
+    "feature_spec": {
+      "combined": {
+        "active_power": {
+          "intervals": [
+            {
+              "identity": {
+                "slug": "cooling"
+              },
+              "interval": {
+                "nominal": 1391,
+                "rating": "operating"
+              },
+              "title": {
+                "en": "Cooling"
+              }
+            },
+            {
+              "identity": {
+                "slug": "heating"
+              },
+              "interval": {
+                "nominal": 1346,
+                "rating": "operating"
+              },
+              "title": {
+                "en": "Heating"
+              }
+            }
+          ]
+        },
+        "frequency": {
+          "intervals": [
+            {
+              "interval": {
+                "nominal": 50,
+                "rating": "operating"
+              }
+            }
+          ]
+        },
+        "voltage": {
+          "intervals": [
+            {
+              "interval": {
+                "max": 240,
+                "min": 220,
+                "rating": "operating"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "compressor": {
+    "refrigerant": "r290"
+  },
+  "cooling": {
+    "feature_spec": {
+      "combined": {
+        "cooling_capacity": {
+          "intervals": [
+            {
+              "interval": {
+                "nominal": 2638
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "identity": {
+    "archetype": "air_conditioner",
+    "code": "T3HGXKDC",
+    "slug": "a018d_12ch"
+  },
+  "product": {
+    "manufacturer_id": "equation",
+    "model": "A018D-12CH"
+  }
+}

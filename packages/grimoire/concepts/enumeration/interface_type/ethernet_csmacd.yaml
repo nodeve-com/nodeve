@@ -1,0 +1,5 @@
+title:
+  en: Ethernet
+  pt: Ethernet
+refs:
+  - { registry_id: iana_iftype, term: ethernetCsmacd, match: exact } # IANA ifType 6

@@ -1,0 +1,3 @@
+title: { en: Byte order, pt: Ordem de bytes }
+description: { en: Byte order for multi-byte types; omit ⇒ big_first (the network/HID default). Ignored for single-byte types. }
+schema: { type: string, enum: [big_first, little_first] }

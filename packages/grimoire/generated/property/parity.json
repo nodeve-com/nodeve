@@ -1,0 +1,17 @@
+{
+  "description": {
+    "en": "UART parity bit of the line discipline."
+  },
+  "schema": {
+    "enum": [
+      "none",
+      "even",
+      "odd"
+    ],
+    "type": "string"
+  },
+  "title": {
+    "en": "Parity",
+    "pt": "Paridade"
+  }
+}

@@ -1,0 +1,3 @@
+title: { en: Serial }
+description: { en: USB serial string — disambiguates two identical units on one host; no sensible default. }
+schema: { type: string, minLength: 1 }

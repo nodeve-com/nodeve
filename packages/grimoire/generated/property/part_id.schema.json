@@ -1,0 +1,4 @@
+{
+  "pattern": "^(a|b|c|n|ab|bc|ca)$",
+  "type": "string"
+}

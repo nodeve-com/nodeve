@@ -1,0 +1,10 @@
+# The NUMERIC-DECODE core — how a raw value becomes an engineering NUMBER; shared by the modbus
+# register map, USB-HID byte/config maps, and the VE.Direct field map (published = raw * scale,
+# rounded to `decimals`, in `unit`). Only the on-the-wire `type` value set is medium-specific —
+# each medium supplies its own encoding union (and required-vs-optional scale). `unit` states a
+# non-SI unit only (V/A/W/K are SI ⇒ omit; kW, °C kept).
+prop:
+  type: {}
+  scale: {}
+  decimals: {}
+  unit: {}

@@ -1,0 +1,12 @@
+# No iri_template: TIA publishes standards as documents behind a catalog, not per-standard resolvable
+# IRIs (like iso_80000 / ha_device_class, a bare token). `term` is the standard designation, e.g.
+# "485-A" (ANSI/TIA/EIA-485-A, the RS-485 standard; the EIA designation is the legacy lineage).
+title:
+  en: "TIA standards (ANSI/TIA, formerly EIA)"
+  pt: "Normas TIA (ANSI/TIA, antes EIA)"
+identity:
+  slug: tia_standard
+  code: 54TYQCN6
+  url: https://tiaonline.org/
+registry_publication:
+  published_by: tia

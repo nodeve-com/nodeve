@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "NZDG0ZPE",
+    "slug": "jedec_standard"
+  },
+  "registry_publication": {
+    "published_by": "jedec"
+  },
+  "title": {
+    "en": "JEDEC interface standards (JESD8 family)",
+    "pt": "Normas de interface JEDEC (família JESD8)"
+  }
+}

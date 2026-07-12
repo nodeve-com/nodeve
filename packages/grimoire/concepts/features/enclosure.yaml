@@ -1,0 +1,22 @@
+title:
+  en: Enclosure
+  pt: Invólucro
+# The device cabinet whose internal temperature is the reading. No property has an exact
+# enclosure/cabinet class: CIM AssetContainer is the generic container (broad); SunSpec's TmpCab
+# (cabinet temperature) point is the standard signal that the cabinet is the measured thing (related).
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: AssetContainer
+    match: broad
+  - registry_id: sunspec
+    term: TmpCab
+    match: related
+# The cabinet temperature is a SPECIFICATION carrier — its value holds `intervals` (rated bands +
+# the sensor's readable span, and the derate sub-bands a power-derate condition points at).
+concept_settings:
+  is_specification: true
+prop:
+  temperature: {}

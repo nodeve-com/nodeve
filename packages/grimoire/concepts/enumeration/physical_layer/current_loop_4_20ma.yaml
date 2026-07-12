@@ -1,0 +1,7 @@
+# signal_form: analog
+# Analog DC current loop — magnitude IS the value, no digital framing. IEC 60381-1.
+title:
+  en: 4-20 mA current loop
+  pt: Laço de corrente 4-20 mA
+refs:
+  - { registry_id: iec_60381, term: 60381-1, match: exact }

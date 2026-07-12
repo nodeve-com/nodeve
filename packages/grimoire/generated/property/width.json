@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Physical width of an enclosure/part, millimetres."
+  },
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Width (mm)",
+    "pt": "Largura (mm)"
+  }
+}

@@ -1,0 +1,3 @@
+title: { en: Username }
+description: { en: Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password. }
+schema: { type: string, minLength: 1 }

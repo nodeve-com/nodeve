@@ -1,0 +1,3 @@
+# Brand-wide default, deep-merged into every Emelson model below (leaf wins on conflict).
+product:
+  manufacturer_id: emelson

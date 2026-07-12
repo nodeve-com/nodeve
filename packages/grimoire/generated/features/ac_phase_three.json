@@ -1,0 +1,33 @@
+{
+  "description": {
+    "en": "A three-phase AC connection as one whole — the fixed, mandatory set of phases A, B and C (CIM PhaseCode.ABC).",
+    "pt": "Uma ligação CA trifásica como um todo — o conjunto fixo e obrigatório de fases A, B e C (CIM PhaseCode.ABC)."
+  },
+  "prop": {},
+  "refs": [
+    {
+      "match": "broad",
+      "registry_id": "sosa",
+      "term": "FeatureOfInterest"
+    },
+    {
+      "match": "close",
+      "registry_id": "seas",
+      "term": "AlternatingCurrentConnectionPoint"
+    },
+    {
+      "match": "close",
+      "registry_id": "cim",
+      "term": "PhaseCode.ABC"
+    },
+    {
+      "match": "related",
+      "registry_id": "sunspec",
+      "term": "203"
+    }
+  ],
+  "title": {
+    "en": "Three-phase AC",
+    "pt": "CA trifásica"
+  }
+}

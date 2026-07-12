@@ -1,0 +1,3 @@
+title: { en: Upper fraction }
+description: { en: "Asymmetric FRACTIONAL upper bound as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `lower_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free." }
+schema: { type: number, exclusiveMinimum: 0 }

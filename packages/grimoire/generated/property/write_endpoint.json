@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "OUT endpoint the poll command is written to (8-bit address; high bit encodes direction — 0x01 is OUT 1). Authored as hex."
+  },
+  "schema": {
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Write endpoint"
+  }
+}

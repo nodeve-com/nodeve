@@ -1,0 +1,15 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "FPNE87JF",
+    "slug": "seas"
+  },
+  "registry_publication": {
+    "iri_template": "https://w3id.org/seas/{id}",
+    "published_by": "w3c"
+  },
+  "title": {
+    "en": "SEAS ontology (Smart Energy Aware Systems)",
+    "pt": "Ontologia SEAS (Sistemas Inteligentes Conscientes de Energia)"
+  }
+}

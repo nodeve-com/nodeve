@@ -1,0 +1,4 @@
+title: { en: Width (mm), pt: Largura (mm) }
+description:
+  en: "Physical width of an enclosure/part, millimetres."
+schema: { type: number, exclusiveMinimum: 0 }

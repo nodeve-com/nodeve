@@ -1,0 +1,8 @@
+# Grimoire's own RECORD metadata for a catalog leaf — the envelope wrapped around the device,
+# distinct from the device's own features (how grimoire FILES it, not what it is). `id` is the
+# stable 8-char short-code of the leaf's tree path (derived, not authored) — the key a consumer
+# persists: it survives re-filing, unlike the path. The `archetype` discriminant is NOT here (it
+# lives on each union member); the `path` is the bundle's map KEY, not duplicated into the value.
+prop:
+  id: {}
+  aliases: {}

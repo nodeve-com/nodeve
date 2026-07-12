@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "PRDSCV1G",
+    "slug": "modbus_org"
+  },
+  "registry_publication": {
+    "published_by": "modbus_organization"
+  },
+  "title": {
+    "en": "Modbus Organization",
+    "pt": "Modbus Organization"
+  }
+}

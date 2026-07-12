@@ -1,0 +1,10 @@
+title:
+  en: Model
+  pt: Modelo
+
+description:
+  en: What the thing is called — the model designation on the nameplate.
+  pt: Como a coisa se chama — a designação de modelo na placa de identificação.
+
+schema:
+  type: string

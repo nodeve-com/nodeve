@@ -1,0 +1,6 @@
+title:
+  en: Material
+description:
+  en: incoloy, copper, titanium, cotton, concerete, stainless
+schema:
+  type: string

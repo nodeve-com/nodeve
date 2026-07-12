@@ -1,0 +1,9 @@
+title:
+  en: Altitude
+  pt: Altitude
+refs:
+  - { registry_id: qudt_quantity_kind, term: Altitude, match: exact }
+  - { registry_id: wgs84_geo, term: alt, match: exact }
+measurand:
+  si_unit: m
+  accumulation: instantaneous

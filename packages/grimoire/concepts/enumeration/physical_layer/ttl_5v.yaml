@@ -1,0 +1,8 @@
+# signal_form: digital
+# 5 V logic-level (TTL) UART — async serial at 5 V logic levels. Base JEDEC JESD8 defines the
+# nominal 5 V TTL-compatible interface levels (V_IH 2.0 V / V_IL 0.8 V).
+title:
+  en: 5 V TTL serial (logic-level UART)
+  pt: Serial TTL 5 V (UART em nível lógico)
+refs:
+  - { registry_id: jedec_standard, term: JESD8, match: exact }

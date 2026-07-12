@@ -1,0 +1,5 @@
+# A device's USB-HID byte-field map — a LIST of usbhid_field rows.
+title: { en: USB-HID fields, pt: Campos USB-HID }
+concept_settings:
+  compose: usbhid_field
+  is_array: true

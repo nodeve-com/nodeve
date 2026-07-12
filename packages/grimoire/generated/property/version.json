@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Protocol version"
+  }
+}

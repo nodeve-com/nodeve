@@ -1,0 +1,11 @@
+# POSIX (IEEE Std 1003.1 / The Open Group Base Specifications). No iri_template: a document authority;
+# `term` is a bare token, e.g. AF_UNIX (the Unix-domain socket address family).
+title:
+  en: POSIX (IEEE Std 1003.1)
+  pt: POSIX (IEEE Std 1003.1)
+identity:
+  slug: posix
+  code: 4W6ZNFMX
+  url: https://pubs.opengroup.org/onlinepubs/9699919799/
+registry_publication:
+  published_by: open_group

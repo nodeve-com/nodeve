@@ -1,0 +1,29 @@
+title:
+  en: Three-phase AC
+  pt: CA trifásica
+description:
+  en: A three-phase AC connection as one whole — the fixed, mandatory set of phases A, B and C (CIM PhaseCode.ABC).
+  pt: Uma ligação CA trifásica como um todo — o conjunto fixo e obrigatório de fases A, B e C (CIM PhaseCode.ABC).
+
+# Feature identity crosswalk (the connection AS A WHOLE — all three phases). Standards don't coin a
+# standalone three-phase noun: they qualify a connection with a phase code. PhaseCode.ABC is that exact
+# "all three" literal (vs single-phase ac_phase's PhaseCode.A). The phase is the repeated INSTANCE.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: seas
+    term: AlternatingCurrentConnectionPoint
+    match: close
+  - registry_id: cim
+    term: PhaseCode.ABC
+    match: close
+  - registry_id: sunspec
+    term: '203'
+    match: related
+
+# Keys are feature slugs (features/electrical/ac_phase.yaml, ac_line.yaml) — the feature carries the
+# quantity props; this map fixes WHICH instances a three-phase connection has.
+parts:
+  ac_phase: [a, b, c]
+  ac_line: [ab, bc, ca]

@@ -1,0 +1,14 @@
+{
+  "items": {
+    "items": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "maxItems": 16,
+    "type": "array"
+  },
+  "minItems": 1,
+  "type": "array"
+}

@@ -1,0 +1,4 @@
+# The band AW trim + slab loops actively hold the tank within.
+title: { en: Target temperature band, pt: Faixa de temperatura alvo }
+concept_settings:
+  compose: temp_band

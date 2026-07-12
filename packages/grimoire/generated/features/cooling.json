@@ -1,0 +1,28 @@
+{
+  "prop": {
+    "feature_spec": {
+      "prop": {
+        "combined": {
+          "prop": {
+            "cooling_capacity": {
+              "$ref": "../archetypes/specification.json",
+              "description": {
+                "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity."
+              },
+              "measurand": {
+                "accumulation": "instantaneous",
+                "si_unit": "W"
+              },
+              "title": {
+                "en": "Cooling capacity"
+              }
+            }
+          }
+        }
+      }
+    },
+    "identity": {
+      "$ref": "./identity.json"
+    }
+  }
+}

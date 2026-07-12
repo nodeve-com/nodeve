@@ -1,0 +1,6 @@
+#uuid
+title:
+  en: UUID
+schema:
+  type: string
+  minLength: 1

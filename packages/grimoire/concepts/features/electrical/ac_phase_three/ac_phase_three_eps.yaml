@@ -1,0 +1,15 @@
+concept_settings:
+  part: electrical_ac_phase_three
+title:
+  en: EPS phase
+  pt: Fase EPS
+# The backup / emergency-power-supply (islanded, off-grid) AC output port, per phase. This is the ONE
+# feature no standard enumerates: SEAS AlternatingCurrentConnectionPoint fits the AC-connection-point
+# shape (close), but the backup/islanded ROLE is grimoire-owned — an honest gap, not a coined synonym.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: seas
+    term: AlternatingCurrentConnectionPoint
+    match: close

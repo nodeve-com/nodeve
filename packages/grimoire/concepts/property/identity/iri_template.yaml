@@ -1,0 +1,3 @@
+title: { en: IRI template }
+description: { en: 'Template resolving a term id to its full IRI, with {id} as the placeholder.' }
+schema: { type: string, minLength: 1 }

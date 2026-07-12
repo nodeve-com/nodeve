@@ -1,0 +1,20 @@
+# SITE concept (schema-only; instances live in the deploying repo): how one installation's PV
+# array is laid out — location and the per-string wiring/orientation. Each string references the
+# panel MODEL by catalog key, and adds only the install facts datasheets can't know. Model facts
+# are NOT restated: per-string electrical truth is DERIVED downstream (vmp = panel dc.voltage
+# mpp-band nominal × series_count, capacity = panel dc.active_power mpp-band nominal ×
+# series_count). `location` is OPTIONAL: a co-located array
+# inherits the site location (restating would violate define-once); supply it only when the array
+# genuinely sits elsewhere. `voc_eff` is the as-deployed open-circuit voltage fitted per string
+# from measured data; omit until fitted — falls back to spec downstream.
+
+title:
+  en: Solar array
+  pt: Matriz solar
+description:
+  en: A PV array installation (location, inverter, per-string wiring/orientation).
+
+feature:
+  location: {} # optional — only when the array sits elsewhere than the site
+  pv_strings: # array (min 1) of per-string install facts
+    schema: { minItems: 1, required: true }

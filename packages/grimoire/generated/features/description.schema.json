@@ -1,0 +1,14 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "en": {
+      "minLength": 3,
+      "type": "string"
+    },
+    "pt": {
+      "minLength": 3,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

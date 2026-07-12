@@ -1,0 +1,10 @@
+# Install-unique machine identifier — same wire form as `slug`, but its uniqueness scope is the
+# WHOLE instance/site/install, not one archetype/feature tree. The single addressable name a
+# deployment can't collide on. Distinct from `slug` (scoped) and `id` (the database uuid).
+title:
+  en: Qualified slug
+description:
+  en: "Machine identifier unique across an entire instance/site/install — the wire form of `slug` (same snake_case shape) but qualified so no two things on one deployment share it. The addressable name on the bus. Scoped `slug` names a thing within its archetype; this names it install-wide."
+schema:
+  type: string
+  pattern: '^[a-z][a-z0-9_]*$'

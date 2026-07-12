@@ -1,0 +1,4 @@
+title: { en: Unit id }
+description:
+  en: "Modbus slave/unit id — addressing, the same on whichever wire reaches the device. A known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)."
+schema: { type: integer, minimum: 0, maximum: 247 }

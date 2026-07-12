@@ -1,0 +1,8 @@
+# signal_form: digital
+# 3.3 V logic-level (LVTTL/LVCMOS) UART — async serial at 3.3 V logic levels. JEDEC JESD8C.01
+# defines the nominal 3.0 V/3.3 V supply digital IC interface levels.
+title:
+  en: 3.3 V LVTTL serial (logic-level UART)
+  pt: Serial LVTTL 3,3 V (UART em nível lógico)
+refs:
+  - { registry_id: jedec_standard, term: JESD8C.01, match: exact }

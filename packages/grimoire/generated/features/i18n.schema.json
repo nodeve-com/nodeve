@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "en": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "pt": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "en": {
+      "$ref": "#/$defs/en"
+    },
+    "pt": {
+      "$ref": "#/$defs/pt"
+    }
+  },
+  "type": "object"
+}

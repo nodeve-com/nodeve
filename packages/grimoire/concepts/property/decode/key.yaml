@@ -1,0 +1,3 @@
+title: { en: Wire key, pt: Chave no fio }
+description: { en: "The VE.Direct wire LABEL this field reads (V, VPV, SER#, H19, AC_OUT_V) — the protocol's case-sensitive key, carried as a preserved string value (not the map key, which codegen would camelCase)." }
+schema: { type: string, pattern: '^[A-Za-z0-9_#]+$' }

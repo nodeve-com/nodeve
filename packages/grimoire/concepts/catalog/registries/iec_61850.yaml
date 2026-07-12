@@ -1,0 +1,11 @@
+# No public IRI namespace, so no iri_template — a document authority. `term` is a logical-node or
+# data name from IEC 61850-7-4 / 7-420, e.g. ZBAT, ZINV, DPVA, MMXU.PPV.
+title:
+  en: IEC 61850 logical nodes (power utility automation)
+  pt: "Nós lógicos IEC 61850 (automação de serviços de energia)"
+identity:
+  slug: iec_61850
+  code: X0XZE4CV
+  url: https://www.iec.ch/
+registry_publication:
+  published_by: iec

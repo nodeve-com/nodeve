@@ -1,0 +1,1 @@
+- JSON-schema goes into the `schema` prop — and only there. A JSON-Schema keyword authored bare on a doc or a `prop:` overlay (`min_length: 3` instead of `schema: { minLength: 3 }`) is not merged into the field's shape; author it under `schema:`, spelled in JSON-Schema's own camelCase (`minLength`, `maxLength`, `minItems`, …), never snake_case.

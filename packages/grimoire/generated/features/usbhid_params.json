@@ -1,0 +1,171 @@
+{
+  "prop": {
+    "access": {
+      "$ref": "../property/access.json",
+      "description": {
+        "en": "Read, write-only (an action like factory RESET), or both. Most settings are read_write."
+      },
+      "schema": {
+        "enum": [
+          "read",
+          "write",
+          "read_write"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Access"
+      }
+    },
+    "byte_order": {
+      "$ref": "../property/byte_order.json",
+      "description": {
+        "en": "Byte order for multi-byte types; omit ⇒ big_first (the network/HID default). Ignored for single-byte types."
+      },
+      "schema": {
+        "enum": [
+          "big_first",
+          "little_first"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Byte order",
+        "pt": "Ordem de bytes"
+      }
+    },
+    "decimals": {
+      "$ref": "../property/decimals.json",
+      "description": {
+        "en": "Decimal places the sensor actually resolves; the published value is rounded to it. Source-side honesty — decoding leaks precision the sensor never measured (nearest float32 to 1.675 is 1.6749999523162842; a scale like 0.1 adds its own IEEE-754 tail). Omit only when scale already lands on the real resolution.",
+        "pt": "Casas decimais que o sensor realmente resolve; o valor publicado é arredondado para elas. Omita apenas quando a escala já chega à resolução real."
+      },
+      "schema": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Resolved decimals",
+        "pt": "Casas decimais resolvidas"
+      }
+    },
+    "index": {
+      "$ref": "../property/index.json",
+      "description": {
+        "en": "The field index the get/set command carries to address this parameter (m4ConfigField.index)."
+      },
+      "schema": {
+        "maximum": 255,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Index"
+      }
+    },
+    "name": {
+      "$ref": "../property/name.json",
+      "description": {
+        "en": "Machine identifier scoped INSIDE an enclosing concept's list (a config parameter, a tap window). Same nature as slug, but names one member within a thing rather than the whole thing.",
+        "pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira."
+      },
+      "schema": {
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "type": "string"
+      },
+      "title": {
+        "en": "Name",
+        "pt": "Nome"
+      }
+    },
+    "scale": {
+      "$ref": "../property/scale.json",
+      "description": {
+        "en": "Published value = raw × scale (raw → engineering units). Optional where omitting means 1 (VE.Direct).",
+        "pt": "Valor publicado = bruto × escala (bruto → unidades de engenharia)."
+      },
+      "schema": {
+        "type": "number"
+      },
+      "title": {
+        "en": "Scale",
+        "pt": "Escala"
+      }
+    },
+    "scale_overrides": {
+      "$ref": "../property/scale_overrides.json",
+      "description": {
+        "en": "Per-firmware-profile scale overrides, keyed by the profile a link firmware rule selects. When the resolved profile has an entry, it replaces `scale`; otherwise `scale` stands."
+      },
+      "schema": {
+        "additionalProperties": {
+          "type": "number"
+        },
+        "propertyNames": {
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "type": "object"
+      },
+      "title": {
+        "en": "Scale overrides",
+        "pt": "Escalas por firmware"
+      }
+    },
+    "sentinel": {
+      "$ref": "../property/sentinel.json",
+      "description": {
+        "en": "A reserved raw value with a categorical meaning instead of a number (M4-ATX timers use 0xffff for never). raw == reading ⇒ emit the meaning slug rather than scaling; a writer maps back. The reserved reading is named raw, not value."
+      },
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "meaning": {
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "type": "string"
+          },
+          "raw": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "raw",
+          "meaning"
+        ],
+        "type": "object"
+      },
+      "title": {
+        "en": "Sentinel"
+      }
+    },
+    "type": {
+      "$ref": "../property/type.json",
+      "description": {
+        "en": "On-the-wire encoding of the raw value (e.g. uint16, float32). Value set is medium-specific — modbus has no uint8; VE.Direct is int/hex/bool/string.",
+        "pt": "Codificação do valor bruto no barramento (ex. uint16, float32)."
+      },
+      "schema": {
+        "type": "string"
+      },
+      "title": {
+        "en": "Encoding",
+        "pt": "Codificação"
+      }
+    },
+    "unit": {
+      "$ref": "../property/unit.json",
+      "description": {
+        "en": "Non-SI unit override of a published/stated value — stated only when the value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, °C vs K). Omit ⇒ canonical SI unit.",
+        "pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Unit",
+        "pt": "Unidade"
+      }
+    }
+  }
+}

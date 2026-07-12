@@ -1,0 +1,14 @@
+{
+  "description": {
+    "en": "Sparse per-instance overrides, each tagged with its phase leg/pair (the join key); only instances that DIFFER from default appear, deep-merged over it (UPDATE ... WHERE phase=ab)."
+  },
+  "schema": {
+    "items": {
+      "type": "object"
+    },
+    "type": "array"
+  },
+  "title": {
+    "en": "Instances"
+  }
+}

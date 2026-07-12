@@ -1,0 +1,15 @@
+{
+  "description": {
+    "en": "When to publish: on change only, or every sample."
+  },
+  "schema": {
+    "enum": [
+      "changed",
+      "always"
+    ],
+    "type": "string"
+  },
+  "title": {
+    "en": "Publish policy"
+  }
+}

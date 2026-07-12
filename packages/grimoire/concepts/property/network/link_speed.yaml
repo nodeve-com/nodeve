@@ -1,0 +1,3 @@
+title: { en: Link speed }
+description: { en: "Negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)." }
+schema: { type: integer, minimum: 1 }

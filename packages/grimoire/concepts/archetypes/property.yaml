@@ -1,0 +1,4 @@
+concept_settings:
+  compose: [ thing ]
+feature:
+  column: {} # relational metadata (foreign key, …) — a property may declare its DB-column facts

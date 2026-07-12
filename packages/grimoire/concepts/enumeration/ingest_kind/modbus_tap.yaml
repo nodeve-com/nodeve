@@ -1,0 +1,6 @@
+title:
+  en: Modbus passive tap
+description:
+  en: Ingest kind — passive sniff of an existing master's Modbus traffic; the adapter republishes windows of the observed poll cycle.
+refs:
+  - { registry_id: modbus_org, term: Modbus, match: broad }

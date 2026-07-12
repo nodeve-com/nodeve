@@ -1,0 +1,4 @@
+# Brand-wide defaults, deep-merged into every FoxESS model below (leaf wins on conflict).
+# `manufacturer` sits under the `product:` slot so it deep-merges into the leaf's product block.
+product:
+  manufacturer_id: foxess

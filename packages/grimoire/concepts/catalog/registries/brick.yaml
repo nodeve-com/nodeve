@@ -1,0 +1,11 @@
+# Terms by class local name, e.g. Battery, PV_Array, Inverter, Electrical_Meter.
+title:
+  en: Brick Schema (building/energy equipment ontology)
+  pt: "Brick Schema (ontologia de equipamentos de edifícios/energia)"
+identity:
+  slug: brick
+  code: RXH861T1
+  url: https://brickschema.org/
+registry_publication:
+  published_by: brickschema
+  iri_template: "https://brickschema.org/schema/Brick#{id}"

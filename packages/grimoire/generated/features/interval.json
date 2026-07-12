@@ -1,0 +1,213 @@
+{
+  "description": {
+    "en": "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope."
+  },
+  "prop": {
+    "channel": {
+      "$ref": "../property/channel.json",
+      "description": {
+        "en": "Stable channel slug when one instrument exposes several ranges of the same quantity (high, low). Omit for a single channel. Named channel, not id — a slug naming the sub-channel, not an opaque record identifier."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Channel"
+      }
+    },
+    "fraction_lower": {
+      "$ref": "../property/fraction_lower.json",
+      "description": {
+        "en": "Asymmetric FRACTIONAL lower bound as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `upper_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Lower fraction"
+      }
+    },
+    "fraction_upper": {
+      "$ref": "../property/fraction_upper.json",
+      "description": {
+        "en": "Asymmetric FRACTIONAL upper bound as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `lower_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Upper fraction"
+      }
+    },
+    "margin": {
+      "$ref": "../property/margin.json",
+      "description": {
+        "en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Margin"
+      }
+    },
+    "max": {
+      "$ref": "../property/max.json",
+      "description": {
+        "en": "Inclusive high end of a closed interval, in the enclosing concept's unit."
+      },
+      "schema": {
+        "required": false,
+        "type": "number"
+      },
+      "title": {
+        "en": "Maximum",
+        "pt": "Máximo"
+      }
+    },
+    "max_permissible_error": {
+      "$ref": "../property/max_permissible_error.json",
+      "description": {
+        "en": "VIM 4.26, the honest coarse accuracy figure (a channel that RESOLVES to 0.01 may only be ACCURATE to ±0.5). Optional datasheet extra; never derived from resolution."
+      },
+      "refs": [
+        {
+          "match": "exact",
+          "registry_id": "vim",
+          "term": "4.26"
+        },
+        {
+          "match": "close",
+          "registry_id": "ssn_system",
+          "term": "Accuracy"
+        }
+      ],
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Maximum permissible error"
+      }
+    },
+    "min": {
+      "$ref": "../property/min.json",
+      "description": {
+        "en": "Inclusive low end of a closed interval, in the enclosing concept's unit."
+      },
+      "schema": {
+        "required": false,
+        "type": "number"
+      },
+      "title": {
+        "en": "Minimum",
+        "pt": "Mínimo"
+      }
+    },
+    "mode": {
+      "$ref": "../property/mode.json",
+      "description": {
+        "en": "The intrinsic-region axis: a region of THIS quantity's own axis named by the archetype's operating-state property — an MPPT window (mppt, mppt_fullpower), a circuit operating point (mpp, open_circuit, short_circuit). Open, domain-specific slug. NOT for external drivers that merely gate validity (a run mode) — those are categorical conditions."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Mode"
+      }
+    },
+    "nominal": {
+      "$ref": "../property/nominal.json",
+      "description": {
+        "en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around."
+      },
+      "schema": {
+        "type": "number"
+      },
+      "title": {
+        "en": "Nominal",
+        "pt": "Nominal"
+      }
+    },
+    "rating": {
+      "description": {
+        "en": "The rated-envelope axis: how far the quantity is rated/permitted to range. Closed, universal — shared by every archetype, so a consumer reasons about 'the operating interval' without archetype knowledge. Datasheet sense of a rating; operating is a rated region, not a limit (hence rating, not limit). The instrument side is `rating: measurable` (VIM 4.7 measuring interval) — the ONE list holds both a thing's own behaviour bands and a sensor's readable span, told apart by this axis."
+      },
+      "schema": {
+        "enum": [
+          "measurable",
+          "operating",
+          "protection_required",
+          "startup",
+          "survival"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Rating"
+      }
+    },
+    "resolution": {
+      "$ref": "../property/resolution.json",
+      "description": {
+        "en": "Quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14). Omit when the datasheet doesn't state it; never fabricate."
+      },
+      "refs": [
+        {
+          "match": "exact",
+          "registry_id": "vim",
+          "term": "4.14"
+        },
+        {
+          "match": "exact",
+          "registry_id": "ssn_system",
+          "term": "Resolution"
+        }
+      ],
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Resolution"
+      }
+    },
+    "tolerance": {
+      "$ref": "../property/tolerance.json",
+      "description": {
+        "en": "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "number"
+      },
+      "title": {
+        "en": "Tolerance"
+      }
+    },
+    "unit": {
+      "$ref": "../property/unit.json",
+      "description": {
+        "en": "Non-SI unit override of a published/stated value — stated only when the value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, °C vs K). Omit ⇒ canonical SI unit.",
+        "pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Unit",
+        "pt": "Unidade"
+      }
+    }
+  },
+  "title": {
+    "en": "Intervals",
+    "pt": "Intervalos"
+  }
+}

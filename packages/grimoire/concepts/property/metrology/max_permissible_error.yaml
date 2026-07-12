@@ -1,0 +1,7 @@
+title: { en: Maximum permissible error }
+description:
+  en: "VIM 4.26, the honest coarse accuracy figure (a channel that RESOLVES to 0.01 may only be ACCURATE to ±0.5). Optional datasheet extra; never derived from resolution."
+schema: { type: number, exclusiveMinimum: 0 }
+refs:
+  - { registry_id: vim, term: '4.26', match: exact }
+  - { registry_id: ssn_system, term: Accuracy, match: close }

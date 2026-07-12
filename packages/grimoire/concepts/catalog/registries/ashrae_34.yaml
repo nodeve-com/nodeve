@@ -1,0 +1,10 @@
+# ASHRAE 34 designations are bare tokens (R-290)
+title:
+  en: "ASHRAE Standard 34 — Refrigerant designations & safety classification"
+  pt: "ASHRAE Standard 34 — Designações e classificação de segurança de refrigerantes"
+identity:
+  slug: ashrae_34
+  code: 802GA2X4
+  url: https://www.ashrae.org/technical-resources/standards-and-guidelines
+registry_publication:
+  published_by: ashrae

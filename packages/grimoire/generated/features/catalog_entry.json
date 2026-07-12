@@ -1,0 +1,30 @@
+{
+  "prop": {
+    "aliases": {
+      "$ref": "../property/aliases.json",
+      "description": {
+        "en": "Former tree paths this catalog leaf moved from (the inline changelog). loadDevice resolves them with a deprecation warning. Authored in the leaf YAML; omitted when empty."
+      },
+      "schema": {
+        "items": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": {
+        "en": "Aliases"
+      }
+    },
+    "id": {
+      "$ref": "../property/id.json",
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "UUID"
+      }
+    }
+  }
+}

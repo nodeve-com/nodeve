@@ -1,0 +1,92 @@
+{
+  "http": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "http"
+      }
+    ],
+    "title": {
+      "en": "HTTP",
+      "pt": "HTTP"
+    }
+  },
+  "https": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "https"
+      }
+    ],
+    "title": {
+      "en": "HTTPS",
+      "pt": "HTTPS"
+    }
+  },
+  "modbus_tcp": {
+    "refs": [
+      {
+        "match": "broad",
+        "registry_id": "modbus_org",
+        "term": "Modbus TCP"
+      }
+    ],
+    "title": {
+      "en": "Modbus TCP"
+    }
+  },
+  "mqtt": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "mqtt"
+      }
+    ],
+    "title": {
+      "en": "MQTT",
+      "pt": "MQTT"
+    }
+  },
+  "mqtts": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "mqtts"
+      }
+    ],
+    "title": {
+      "en": "MQTT (TLS)",
+      "pt": "MQTT (TLS)"
+    }
+  },
+  "ws": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "ws"
+      }
+    ],
+    "title": {
+      "en": "WebSocket",
+      "pt": "WebSocket"
+    }
+  },
+  "wss": {
+    "refs": [
+      {
+        "match": "exact",
+        "registry_id": "iana_uri_scheme",
+        "term": "wss"
+      }
+    ],
+    "title": {
+      "en": "WebSocket (TLS)",
+      "pt": "WebSocket (TLS)"
+    }
+  }
+}

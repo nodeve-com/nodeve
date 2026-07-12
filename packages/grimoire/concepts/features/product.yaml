@@ -1,0 +1,12 @@
+title:
+  en: Product
+  pt: Produto
+description:
+  en: Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec.
+  pt: Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso.
+# The smallest reusable field bundle: manufacturer reference + model (identity owned by property/identity/*).
+# `manufacturer_id` points at an `organization` catalog entry by slug; it may cascade from the catalog dir
+# tree (<brand>/<family>/<model>.yaml + _defaults.yaml).
+prop:
+  manufacturer_id: { schema: { required: true, minLength: 1 } }
+  model: { schema: { required: true, minLength: 1 } }

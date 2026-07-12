@@ -1,0 +1,8 @@
+title:
+  en: Phase C
+  pt: Fase C
+identity: { symbol: L3 }
+refs:
+  - { registry_id: cim, term: PhaseCode.C, match: exact }
+  - { registry_id: iec_61850, term: MMXU.phsC, match: close }
+  - { registry_id: iec_60445, term: L3, match: exact }

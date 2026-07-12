@@ -1,0 +1,13 @@
+title: { en: Select }
+description: { en: "Firmware-version → scale-profile rules; first matching rule wins. Range gate on the decoded major version: lt exclusive upper, gte inclusive lower; omit a bound for an open side. No match ⇒ no profile ⇒ base scale." }
+schema:
+  type: array
+  minItems: 1
+  items:
+    type: object
+    additionalProperties: false
+    required: [profile]
+    properties:
+      lt: { type: integer }
+      gte: { type: integer }
+      profile: { type: string, pattern: '^[a-z][a-z0-9_]*$' }

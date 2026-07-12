@@ -1,0 +1,13 @@
+# A reference to ONE catalog entry by its identity — `archetype` (the class) + `slug` (the
+# globally-unique entry id, catalog.generated.json's key). THE lookup shape every cross-tree
+# reference uses (a site device names its hardware this way); never a filing tree path. A pure
+# foreign key — nothing but the pointer. On-bus name shortening is a CATALOG fact — a feature's own
+# `identity.slug` (e.g. `ac_phase_three_point → ac`), not a site overlay on this pointer.
+title: { en: Catalog item, pt: Item de catálogo }
+schema:
+  type: object
+  required: [archetype, slug]
+  properties:
+    archetype: { type: string, minLength: 1 }
+    slug: { type: string, minLength: 1 }
+  additionalProperties: false

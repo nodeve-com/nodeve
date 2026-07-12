@@ -1,0 +1,17 @@
+{
+  "description": {
+    "en": "Command prefix that requests a parameter's current value (M4-ATX: [0xa4, 0xa1]); index/length bytes overlaid at their offsets, rest zero-padded to request_length."
+  },
+  "schema": {
+    "items": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "minItems": 1,
+    "type": "array"
+  },
+  "title": {
+    "en": "Get command"
+  }
+}

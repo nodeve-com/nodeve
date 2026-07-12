@@ -1,0 +1,19 @@
+# Spec-group ATOM (SHARED): a geographic point — the WGS 84 lat/long/altitude a thing sits at. The
+# single place the pair is defined: a solar array's site, a weather-of-interest location, a device's
+# install position all name the same coordinate, composed here, never re-declared inline. ISO 6709 /
+# GeoJSON sense (decimal degrees; GeoJSON orders lon-then-lat but we key by name so order is moot).
+# altitude is the OPTIONAL third coordinate — ground height above sea level in metres (ISO 6709
+# elevation; HA `elevation`), NOT a panel's per-string mounting height.
+
+title:
+  en: Location
+  pt: Local
+
+description:
+  en: "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level)."
+  pt: "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)."
+
+prop:
+  latitude: { schema: { required: true } }
+  longitude: { schema: { required: true } }
+  altitude: {}

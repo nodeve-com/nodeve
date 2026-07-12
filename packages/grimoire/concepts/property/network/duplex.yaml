@@ -1,0 +1,3 @@
+title: { en: Duplex }
+description: { en: "Duplex mode of the link: full transmits and receives simultaneously; half shares one channel (CSMA/CD collision domain)." }
+schema: { type: string, enum: [half, full] }

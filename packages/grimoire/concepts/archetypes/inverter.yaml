@@ -1,0 +1,42 @@
+concept_settings:
+  compose: [appliance]
+
+title:
+  en: Inverter
+  pt: Inversor
+description:
+  en: A grid-tied PV/storage inverter (AC output + MPPT window + connectivity)
+
+# The whole-device converter (categorical state/fault FoI). CIM PowerElectronicsConnection = the AC-side
+# converter; IEC 61850 ZINV = the inverter logical node; SunSpec 103 = the 3-phase inverter model.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: PowerElectronicsConnection
+    match: exact
+  - registry_id: iec_61850
+    term: ZINV
+    match: exact
+  - registry_id: brick
+    term: Inverter
+    match: exact
+  - registry_id: seas
+    term: Inverter
+    match: close
+  - registry_id: sunspec
+    term: '103'
+    match: close
+feature:
+  ac_phase_three_eps: {}
+  ac_phase_three_grid: {}
+  pv_tracker: {}
+  ac_phase_three_load: {}
+  enclosure: {}
+  location: {} # install position (site-filled); its altitude gates the high-altitude power derate
+
+archetype:
+  network_interfaces: {} # a LIST of NICs (network_interfaces is is_array) — each with its own identity.slug
+  services: {} # a LIST of offered surfaces (services is is_array) — each binds to one of the NICs above
+  modbus: {} # how it's talked to — the Modbus connectivity medium (nested sibling class, not a feature)

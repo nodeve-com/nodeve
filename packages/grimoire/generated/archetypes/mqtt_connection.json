@@ -1,0 +1,823 @@
+{
+  "description": {
+    "en": "How a deployment connects to its MQTT broker (auth, shared endpoint defaults, and one scheme-keyed endpoint block per broker listener — mqtt/mqtts/ws/wss)."
+  },
+  "prop": {
+    "authentication": {
+      "prop": {
+        "password": {
+          "description": {
+            "en": "Secret presented alongside username when a connection authenticates. A deployment secret — supplied downstream, never a catalog default."
+          },
+          "schema": {
+            "minLength": 1,
+            "type": "string",
+            "x-env-var": "MQTT_PASSWORD"
+          },
+          "title": {
+            "en": "Password"
+          }
+        },
+        "username": {
+          "description": {
+            "en": "Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password."
+          },
+          "schema": {
+            "minLength": 1,
+            "type": "string",
+            "x-env-var": "MQTT_USER"
+          },
+          "title": {
+            "en": "Username"
+          }
+        }
+      }
+    },
+    "emit": {
+      "$ref": "../features/emit.json"
+    },
+    "endpoint": {
+      "description": {
+        "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+      },
+      "prop": {
+        "connect_timeout_ms": {
+          "description": {
+            "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+          },
+          "schema": {
+            "default": 10000,
+            "exclusiveMinimum": 0,
+            "type": "integer",
+            "x-env-var": "MQTT_CONNECT_TIMEOUT_MS"
+          },
+          "title": {
+            "en": "Connect timeout (ms)",
+            "pt": "Timeout de conexão (ms)"
+          }
+        },
+        "host": {
+          "description": {
+            "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
+          },
+          "schema": {
+            "minLength": 1,
+            "required": true,
+            "type": "string",
+            "x-env-var": "MQTT_BROKER"
+          },
+          "title": {
+            "en": "Host"
+          }
+        },
+        "mqtt": {
+          "description": {
+            "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+          },
+          "prop": {
+            "connect_timeout_ms": {
+              "$ref": "../property/connect_timeout_ms.json",
+              "description": {
+                "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Connect timeout (ms)",
+                "pt": "Timeout de conexão (ms)"
+              }
+            },
+            "host": {
+              "$ref": "../property/host.json",
+              "description": {
+                "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Host"
+              }
+            },
+            "pathname": {
+              "$ref": "../property/pathname.json",
+              "description": {
+                "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Pathname"
+              }
+            },
+            "port": {
+              "description": {
+                "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
+              },
+              "schema": {
+                "default": 1883,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer",
+                "x-env-var": "MQTT_PORT"
+              },
+              "title": {
+                "en": "Port"
+              }
+            },
+            "reconnect_period_ms": {
+              "$ref": "../property/reconnect_period_ms.json",
+              "description": {
+                "en": "Delay before a dropped connection is retried, integer milliseconds."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Reconnect period (ms)",
+                "pt": "Período de reconexão (ms)"
+              }
+            },
+            "transport_protocol": {
+              "schema": {
+                "enum": [
+                  "tcp",
+                  "udp"
+                ],
+                "type": "string"
+              }
+            },
+            "version": {
+              "$ref": "../property/version.json",
+              "description": {
+                "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Protocol version"
+              }
+            }
+          },
+          "schema": {
+            "allOf": [
+              {
+                "if": {
+                  "required": [
+                    "service_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "connect_timeout_ms",
+                    "reconnect_period_ms"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "udp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "connect_timeout_ms": false,
+                    "reconnect_period_ms": false
+                  }
+                }
+              }
+            ]
+          },
+          "title": {
+            "en": "Endpoint"
+          }
+        },
+        "mqtts": {
+          "description": {
+            "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+          },
+          "prop": {
+            "connect_timeout_ms": {
+              "$ref": "../property/connect_timeout_ms.json",
+              "description": {
+                "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Connect timeout (ms)",
+                "pt": "Timeout de conexão (ms)"
+              }
+            },
+            "host": {
+              "$ref": "../property/host.json",
+              "description": {
+                "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Host"
+              }
+            },
+            "pathname": {
+              "$ref": "../property/pathname.json",
+              "description": {
+                "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Pathname"
+              }
+            },
+            "port": {
+              "description": {
+                "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
+              },
+              "schema": {
+                "default": 8883,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer",
+                "x-env-var": "MQTT_MQTTS_PORT"
+              },
+              "title": {
+                "en": "Port"
+              }
+            },
+            "reconnect_period_ms": {
+              "$ref": "../property/reconnect_period_ms.json",
+              "description": {
+                "en": "Delay before a dropped connection is retried, integer milliseconds."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Reconnect period (ms)",
+                "pt": "Período de reconexão (ms)"
+              }
+            },
+            "transport_protocol": {
+              "schema": {
+                "enum": [
+                  "tcp",
+                  "udp"
+                ],
+                "type": "string"
+              }
+            },
+            "version": {
+              "$ref": "../property/version.json",
+              "description": {
+                "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Protocol version"
+              }
+            }
+          },
+          "schema": {
+            "allOf": [
+              {
+                "if": {
+                  "required": [
+                    "service_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "connect_timeout_ms",
+                    "reconnect_period_ms"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "udp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "connect_timeout_ms": false,
+                    "reconnect_period_ms": false
+                  }
+                }
+              }
+            ]
+          },
+          "title": {
+            "en": "Endpoint"
+          }
+        },
+        "pathname": {
+          "$ref": "../property/pathname.json",
+          "description": {
+            "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+          },
+          "schema": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": {
+            "en": "Pathname"
+          }
+        },
+        "port": {
+          "$ref": "../property/port.json",
+          "description": {
+            "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
+          },
+          "schema": {
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "title": {
+            "en": "Port"
+          }
+        },
+        "reconnect_period_ms": {
+          "description": {
+            "en": "Delay before a dropped connection is retried, integer milliseconds."
+          },
+          "schema": {
+            "default": 5000,
+            "exclusiveMinimum": 0,
+            "type": "integer",
+            "x-env-var": "MQTT_RECONNECT_PERIOD_MS"
+          },
+          "title": {
+            "en": "Reconnect period (ms)",
+            "pt": "Período de reconexão (ms)"
+          }
+        },
+        "transport_protocol": {
+          "schema": {
+            "enum": [
+              "tcp",
+              "udp"
+            ],
+            "type": "string"
+          }
+        },
+        "version": {
+          "description": {
+            "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+          },
+          "schema": {
+            "default": "5.0",
+            "enum": [
+              "3.1.1",
+              "5.0"
+            ],
+            "minLength": 1,
+            "type": "string",
+            "x-env-var": "MQTT_VERSION"
+          },
+          "title": {
+            "en": "Protocol version"
+          }
+        },
+        "ws": {
+          "description": {
+            "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+          },
+          "prop": {
+            "connect_timeout_ms": {
+              "$ref": "../property/connect_timeout_ms.json",
+              "description": {
+                "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Connect timeout (ms)",
+                "pt": "Timeout de conexão (ms)"
+              }
+            },
+            "host": {
+              "$ref": "../property/host.json",
+              "description": {
+                "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Host"
+              }
+            },
+            "pathname": {
+              "description": {
+                "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string",
+                "x-env-var": "MQTT_WS_PATHNAME"
+              },
+              "title": {
+                "en": "Pathname"
+              }
+            },
+            "port": {
+              "description": {
+                "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
+              },
+              "schema": {
+                "default": 1884,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer",
+                "x-env-var": "MQTT_WS_PORT"
+              },
+              "title": {
+                "en": "Port"
+              }
+            },
+            "reconnect_period_ms": {
+              "$ref": "../property/reconnect_period_ms.json",
+              "description": {
+                "en": "Delay before a dropped connection is retried, integer milliseconds."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Reconnect period (ms)",
+                "pt": "Período de reconexão (ms)"
+              }
+            },
+            "transport_protocol": {
+              "schema": {
+                "enum": [
+                  "tcp",
+                  "udp"
+                ],
+                "type": "string"
+              }
+            },
+            "version": {
+              "$ref": "../property/version.json",
+              "description": {
+                "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Protocol version"
+              }
+            }
+          },
+          "schema": {
+            "allOf": [
+              {
+                "if": {
+                  "required": [
+                    "service_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "connect_timeout_ms",
+                    "reconnect_period_ms"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "udp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "connect_timeout_ms": false,
+                    "reconnect_period_ms": false
+                  }
+                }
+              }
+            ]
+          },
+          "title": {
+            "en": "Endpoint"
+          }
+        },
+        "wss": {
+          "description": {
+            "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+          },
+          "prop": {
+            "connect_timeout_ms": {
+              "$ref": "../property/connect_timeout_ms.json",
+              "description": {
+                "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Connect timeout (ms)",
+                "pt": "Timeout de conexão (ms)"
+              }
+            },
+            "host": {
+              "$ref": "../property/host.json",
+              "description": {
+                "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Host"
+              }
+            },
+            "pathname": {
+              "description": {
+                "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string",
+                "x-env-var": "MQTT_WSS_PATHNAME"
+              },
+              "title": {
+                "en": "Pathname"
+              }
+            },
+            "port": {
+              "description": {
+                "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
+              },
+              "schema": {
+                "default": 8884,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer",
+                "x-env-var": "MQTT_WSS_PORT"
+              },
+              "title": {
+                "en": "Port"
+              }
+            },
+            "reconnect_period_ms": {
+              "$ref": "../property/reconnect_period_ms.json",
+              "description": {
+                "en": "Delay before a dropped connection is retried, integer milliseconds."
+              },
+              "schema": {
+                "exclusiveMinimum": 0,
+                "type": "integer"
+              },
+              "title": {
+                "en": "Reconnect period (ms)",
+                "pt": "Período de reconexão (ms)"
+              }
+            },
+            "transport_protocol": {
+              "schema": {
+                "enum": [
+                  "tcp",
+                  "udp"
+                ],
+                "type": "string"
+              }
+            },
+            "version": {
+              "$ref": "../property/version.json",
+              "description": {
+                "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
+              },
+              "schema": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "title": {
+                "en": "Protocol version"
+              }
+            }
+          },
+          "schema": {
+            "allOf": [
+              {
+                "if": {
+                  "required": [
+                    "service_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "tcp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "connect_timeout_ms",
+                    "reconnect_period_ms"
+                  ]
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "transport_protocol": {
+                      "const": "udp"
+                    }
+                  },
+                  "required": [
+                    "transport_protocol"
+                  ]
+                },
+                "then": {
+                  "properties": {
+                    "connect_timeout_ms": false,
+                    "reconnect_period_ms": false
+                  }
+                }
+              }
+            ]
+          },
+          "title": {
+            "en": "Endpoint"
+          }
+        }
+      },
+      "schema": {
+        "allOf": [
+          {
+            "if": {
+              "required": [
+                "service_protocol"
+              ]
+            },
+            "then": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "tcp"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "tcp"
+                }
+              },
+              "required": [
+                "transport_protocol"
+              ]
+            },
+            "then": {
+              "required": [
+                "connect_timeout_ms",
+                "reconnect_period_ms"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "udp"
+                }
+              },
+              "required": [
+                "transport_protocol"
+              ]
+            },
+            "then": {
+              "properties": {
+                "connect_timeout_ms": false,
+                "reconnect_period_ms": false
+              }
+            }
+          }
+        ],
+        "required": true
+      },
+      "title": {
+        "en": "Endpoint"
+      }
+    }
+  }
+}

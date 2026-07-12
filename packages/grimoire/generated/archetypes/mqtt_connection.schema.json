@@ -1,0 +1,548 @@
+{
+  "$defs": {
+    "connect_timeout_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "emit": {
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "$ref": "#/$defs/format"
+        },
+        "publish": {
+          "$ref": "#/$defs/publish"
+        },
+        "topic_prefix": {
+          "$ref": "#/$defs/topic_prefix"
+        },
+        "update_interval_ms": {
+          "$ref": "#/$defs/update_interval_ms"
+        }
+      },
+      "type": "object"
+    },
+    "format": {
+      "enum": [
+        "grouped",
+        "per_value"
+      ],
+      "type": "string"
+    },
+    "host": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "pathname": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "port": {
+      "maximum": 65535,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "publish": {
+      "enum": [
+        "changed",
+        "always"
+      ],
+      "type": "string"
+    },
+    "reconnect_period_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "topic_prefix": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "update_interval_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "authentication": {
+      "additionalProperties": false,
+      "properties": {
+        "password": {
+          "minLength": 1,
+          "type": "string",
+          "x-env-var": "MQTT_PASSWORD"
+        },
+        "username": {
+          "minLength": 1,
+          "type": "string",
+          "x-env-var": "MQTT_USER"
+        }
+      },
+      "type": "object"
+    },
+    "emit": {
+      "$ref": "#/$defs/emit"
+    },
+    "endpoint": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "service_protocol"
+            ]
+          },
+          "then": {
+            "properties": {
+              "transport_protocol": {
+                "const": "tcp"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "transport_protocol": {
+                "const": "tcp"
+              }
+            },
+            "required": [
+              "transport_protocol"
+            ]
+          },
+          "then": {
+            "required": [
+              "connect_timeout_ms",
+              "reconnect_period_ms"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "transport_protocol": {
+                "const": "udp"
+              }
+            },
+            "required": [
+              "transport_protocol"
+            ]
+          },
+          "then": {
+            "properties": {
+              "connect_timeout_ms": false,
+              "reconnect_period_ms": false
+            }
+          }
+        }
+      ],
+      "properties": {
+        "connect_timeout_ms": {
+          "default": 10000,
+          "exclusiveMinimum": 0,
+          "type": "integer",
+          "x-env-var": "MQTT_CONNECT_TIMEOUT_MS"
+        },
+        "host": {
+          "minLength": 1,
+          "type": "string",
+          "x-env-var": "MQTT_BROKER"
+        },
+        "mqtt": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "service_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "required": [
+                  "connect_timeout_ms",
+                  "reconnect_period_ms"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "udp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "connect_timeout_ms": false,
+                  "reconnect_period_ms": false
+                }
+              }
+            }
+          ],
+          "properties": {
+            "connect_timeout_ms": {
+              "$ref": "#/$defs/connect_timeout_ms"
+            },
+            "host": {
+              "$ref": "#/$defs/host"
+            },
+            "pathname": {
+              "$ref": "#/$defs/pathname"
+            },
+            "port": {
+              "default": 1883,
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer",
+              "x-env-var": "MQTT_PORT"
+            },
+            "reconnect_period_ms": {
+              "$ref": "#/$defs/reconnect_period_ms"
+            },
+            "transport_protocol": {
+              "enum": [
+                "tcp",
+                "udp"
+              ],
+              "type": "string"
+            },
+            "version": {
+              "$ref": "#/$defs/version"
+            }
+          },
+          "type": "object"
+        },
+        "mqtts": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "service_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "required": [
+                  "connect_timeout_ms",
+                  "reconnect_period_ms"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "udp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "connect_timeout_ms": false,
+                  "reconnect_period_ms": false
+                }
+              }
+            }
+          ],
+          "properties": {
+            "connect_timeout_ms": {
+              "$ref": "#/$defs/connect_timeout_ms"
+            },
+            "host": {
+              "$ref": "#/$defs/host"
+            },
+            "pathname": {
+              "$ref": "#/$defs/pathname"
+            },
+            "port": {
+              "default": 8883,
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer",
+              "x-env-var": "MQTT_MQTTS_PORT"
+            },
+            "reconnect_period_ms": {
+              "$ref": "#/$defs/reconnect_period_ms"
+            },
+            "transport_protocol": {
+              "enum": [
+                "tcp",
+                "udp"
+              ],
+              "type": "string"
+            },
+            "version": {
+              "$ref": "#/$defs/version"
+            }
+          },
+          "type": "object"
+        },
+        "pathname": {
+          "$ref": "#/$defs/pathname"
+        },
+        "port": {
+          "$ref": "#/$defs/port"
+        },
+        "reconnect_period_ms": {
+          "default": 5000,
+          "exclusiveMinimum": 0,
+          "type": "integer",
+          "x-env-var": "MQTT_RECONNECT_PERIOD_MS"
+        },
+        "transport_protocol": {
+          "enum": [
+            "tcp",
+            "udp"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "default": "5.0",
+          "enum": [
+            "3.1.1",
+            "5.0"
+          ],
+          "minLength": 1,
+          "type": "string",
+          "x-env-var": "MQTT_VERSION"
+        },
+        "ws": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "service_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "required": [
+                  "connect_timeout_ms",
+                  "reconnect_period_ms"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "udp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "connect_timeout_ms": false,
+                  "reconnect_period_ms": false
+                }
+              }
+            }
+          ],
+          "properties": {
+            "connect_timeout_ms": {
+              "$ref": "#/$defs/connect_timeout_ms"
+            },
+            "host": {
+              "$ref": "#/$defs/host"
+            },
+            "pathname": {
+              "minLength": 1,
+              "type": "string",
+              "x-env-var": "MQTT_WS_PATHNAME"
+            },
+            "port": {
+              "default": 1884,
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer",
+              "x-env-var": "MQTT_WS_PORT"
+            },
+            "reconnect_period_ms": {
+              "$ref": "#/$defs/reconnect_period_ms"
+            },
+            "transport_protocol": {
+              "enum": [
+                "tcp",
+                "udp"
+              ],
+              "type": "string"
+            },
+            "version": {
+              "$ref": "#/$defs/version"
+            }
+          },
+          "type": "object"
+        },
+        "wss": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "required": [
+                  "service_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "tcp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "required": [
+                  "connect_timeout_ms",
+                  "reconnect_period_ms"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "transport_protocol": {
+                    "const": "udp"
+                  }
+                },
+                "required": [
+                  "transport_protocol"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "connect_timeout_ms": false,
+                  "reconnect_period_ms": false
+                }
+              }
+            }
+          ],
+          "properties": {
+            "connect_timeout_ms": {
+              "$ref": "#/$defs/connect_timeout_ms"
+            },
+            "host": {
+              "$ref": "#/$defs/host"
+            },
+            "pathname": {
+              "minLength": 1,
+              "type": "string",
+              "x-env-var": "MQTT_WSS_PATHNAME"
+            },
+            "port": {
+              "default": 8884,
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer",
+              "x-env-var": "MQTT_WSS_PORT"
+            },
+            "reconnect_period_ms": {
+              "$ref": "#/$defs/reconnect_period_ms"
+            },
+            "transport_protocol": {
+              "enum": [
+                "tcp",
+                "udp"
+              ],
+              "type": "string"
+            },
+            "version": {
+              "$ref": "#/$defs/version"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "host"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "endpoint"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,3 @@
+title: { en: URL }
+description: { en: Homepage / documentation URL }
+schema: { type: string, minLength: 1 }

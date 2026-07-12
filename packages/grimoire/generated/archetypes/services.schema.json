@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "archetype": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "bind": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "broader": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "code": {
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{8}$",
+      "type": "string"
+    },
+    "description": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "pt": {
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "identity": {
+      "additionalProperties": false,
+      "properties": {
+        "archetype": {
+          "$ref": "#/$defs/archetype"
+        },
+        "broader": {
+          "$ref": "#/$defs/broader"
+        },
+        "code": {
+          "$ref": "#/$defs/code"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "iri_template": {
+          "$ref": "#/$defs/iri_template"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug_qualified": {
+          "$ref": "#/$defs/slug_qualified"
+        },
+        "symbol": {
+          "$ref": "#/$defs/symbol"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        }
+      },
+      "type": "object"
+    },
+    "ip_address_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "iri_template": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "match": {
+      "enum": [
+        "exact",
+        "close",
+        "broad",
+        "narrow",
+        "related"
+      ]
+    },
+    "network_interface_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "port": {
+      "maximum": 65535,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "refs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "match": {
+            "$ref": "#/$defs/match"
+          },
+          "registry_id": {
+            "$ref": "#/$defs/registry_id"
+          },
+          "term": {
+            "$ref": "#/$defs/term"
+          }
+        },
+        "required": [
+          "match",
+          "registry_id",
+          "term"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "registry_id": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "service_binding": {
+      "additionalProperties": false,
+      "not": {
+        "required": [
+          "network_interface_id",
+          "ip_address_id"
+        ]
+      },
+      "properties": {
+        "bind": {
+          "$ref": "#/$defs/bind"
+        },
+        "ip_address_id": {
+          "$ref": "#/$defs/ip_address_id"
+        },
+        "network_interface_id": {
+          "$ref": "#/$defs/network_interface_id"
+        },
+        "port": {
+          "$ref": "#/$defs/port"
+        },
+        "service_protocol": {
+          "enum": [
+            "http",
+            "https",
+            "modbus_tcp",
+            "mqtt",
+            "mqtts",
+            "ws",
+            "wss"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "slug": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "slug_qualified": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "symbol": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "term": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "title": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "minLength": 3,
+          "type": "string"
+        },
+        "pt": {
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "url": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "items": {
+    "additionalProperties": false,
+    "properties": {
+      "description": {
+        "$ref": "#/$defs/description"
+      },
+      "identity": {
+        "$ref": "#/$defs/identity"
+      },
+      "refs": {
+        "$ref": "#/$defs/refs"
+      },
+      "service_binding": {
+        "$ref": "#/$defs/service_binding"
+      },
+      "title": {
+        "$ref": "#/$defs/title"
+      }
+    },
+    "type": "object"
+  },
+  "type": "array"
+}

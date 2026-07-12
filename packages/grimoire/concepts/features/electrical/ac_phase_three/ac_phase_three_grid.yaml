@@ -1,0 +1,19 @@
+title:
+  en: AC 3-Phase Grid
+
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: ExternalNetworkInjection
+    match: close
+  - registry_id: seas
+    term: AlternatingCurrentConnectionPoint
+    match: close
+  - registry_id: saref4grid
+    term: PowerLine
+    match: broad
+concept_settings:
+  # Fixed three-phase instance set (a/b/c + ab/bc/ca) — same parts map as the point/eps features.
+  part: electrical_ac_phase_three

@@ -1,0 +1,10 @@
+prop:
+  archetype: {}
+  slug: {}
+  slug_qualified: {}
+  id: {}
+  code: {}
+  symbol: {}
+  broader: {}
+  url: {}
+  iri_template: {}

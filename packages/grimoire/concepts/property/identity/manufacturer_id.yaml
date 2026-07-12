@@ -1,0 +1,11 @@
+# Reference to the maker: the `slug` of an `organization` catalog entry (catalog/organizations/). The
+# field name is the ROLE (who made this thing); the target Class is `organization` (a maker is one kind
+# of organization). A cross-tree pointer, but the archetype is fixed, so it collapses to the bare slug —
+# a `*_id` like feature_id/property_id, not the full catalog_item {archetype, slug} shape.
+title: { en: Manufacturer, pt: Fabricante }
+description:
+  en: Slug of the organization catalog entry that made this thing.
+  pt: Slug da entrada de catálogo da organização que fez esta coisa.
+column:
+  references: organization # FK: value MUST be identity.slug of an `organization` catalog entry (guard-refs)
+schema: { type: string, minLength: 1 }

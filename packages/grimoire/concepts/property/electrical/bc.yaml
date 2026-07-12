@@ -1,0 +1,7 @@
+title:
+  en: Line B–C
+  pt: Linha B–C
+identity: { symbol: L2–L3 }
+refs:
+  - { registry_id: cim, term: PhaseCode.BC, match: exact }
+  - { registry_id: iec_61850, term: MMXU.PPV.phsBC, match: close }

@@ -1,0 +1,17 @@
+{
+  "description": {
+    "en": "Request bytes written to fetch one diagnostics frame (M4-ATX: [0x81, 0x00])."
+  },
+  "schema": {
+    "items": {
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "minItems": 1,
+    "type": "array"
+  },
+  "title": {
+    "en": "Poll command"
+  }
+}

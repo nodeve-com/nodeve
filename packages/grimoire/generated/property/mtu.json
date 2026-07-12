@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Maximum transmission unit — the largest L3 payload (bytes) the interface carries in one frame. 1500 is standard Ethernet; up to ~9000 for jumbo frames; 68 is the IPv4 floor."
+  },
+  "schema": {
+    "maximum": 65535,
+    "minimum": 68,
+    "type": "integer"
+  },
+  "title": {
+    "en": "MTU"
+  }
+}

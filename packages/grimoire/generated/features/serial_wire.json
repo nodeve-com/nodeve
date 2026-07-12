@@ -1,0 +1,97 @@
+{
+  "prop": {
+    "baud_rate": {
+      "$ref": "../property/baud_rate.json",
+      "description": {
+        "en": "Serial line speed in baud."
+      },
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Baud rate",
+        "pt": "Taxa de transmissão"
+      }
+    },
+    "data_bits": {
+      "$ref": "../property/data_bits.json",
+      "description": {
+        "en": "UART data bits per frame."
+      },
+      "schema": {
+        "enum": [
+          7,
+          8
+        ],
+        "type": "integer"
+      },
+      "title": {
+        "en": "Data bits",
+        "pt": "Bits de dados"
+      }
+    },
+    "parity": {
+      "$ref": "../property/parity.json",
+      "description": {
+        "en": "UART parity bit of the line discipline."
+      },
+      "schema": {
+        "enum": [
+          "none",
+          "even",
+          "odd"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Parity",
+        "pt": "Paridade"
+      }
+    },
+    "path": {
+      "$ref": "../property/path.json",
+      "description": {
+        "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Device"
+      }
+    },
+    "physical_layer": {
+      "schema": {
+        "enum": [
+          "can_hs",
+          "current_loop_4_20ma",
+          "rs232",
+          "rs485",
+          "ttl_3v3",
+          "ttl_5v",
+          "voltage_0_10v"
+        ],
+        "type": "string"
+      }
+    },
+    "stop_bits": {
+      "$ref": "../property/stop_bits.json",
+      "description": {
+        "en": "UART stop bits per frame."
+      },
+      "schema": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer"
+      },
+      "title": {
+        "en": "Stop bits",
+        "pt": "Bits de parada"
+      }
+    }
+  }
+}

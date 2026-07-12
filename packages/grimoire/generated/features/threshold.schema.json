@@ -1,0 +1,31 @@
+{
+  "$defs": {
+    "bound": {
+      "type": "number"
+    },
+    "direction": {
+      "enum": [
+        "above",
+        "below"
+      ],
+      "type": "string"
+    },
+    "hysteresis": {
+      "exclusiveMinimum": 0,
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "bound": {
+      "$ref": "#/$defs/bound"
+    },
+    "direction": {
+      "$ref": "#/$defs/direction"
+    },
+    "hysteresis": {
+      "$ref": "#/$defs/hysteresis"
+    }
+  },
+  "type": "object"
+}

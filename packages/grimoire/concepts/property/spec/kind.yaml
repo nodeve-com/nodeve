@@ -1,0 +1,3 @@
+title: { en: Kind }
+description: { en: Generic character/discriminant slug — a measurement's channel character (e.g. continuous; reserved) or a decode's kind discriminant. Per-feature overrides refine title/description. }
+schema: { type: string, minLength: 1 }

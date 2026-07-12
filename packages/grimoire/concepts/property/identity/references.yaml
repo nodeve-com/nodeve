@@ -1,0 +1,8 @@
+# FOREIGN KEY (SQL `REFERENCES`) — the archetype whose `identity.slug` this field's value must match.
+# Declares the FK once, in data; `guard-refs` resolves every field carrying it against the baked
+# catalog. Value is an archetype slug (e.g. `manufacturer`). Lives under the `column` feature.
+title: { en: References, pt: Referencia }
+description:
+  en: Archetype whose identity.slug this field's value must be — the field's foreign-key target.
+  pt: Arquétipo cujo identity.slug o valor deste campo deve ser — o alvo de chave estrangeira do campo.
+schema: { type: string, minLength: 1 }

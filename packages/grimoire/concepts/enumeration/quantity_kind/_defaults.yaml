@@ -1,0 +1,8 @@
+identity:
+  archetype: quantity_kind
+# A quantity_kind is a COLUMN name — used as a prop on a feature. It binds to nothing itself; the
+# enclosing feature's `concept_settings: { is_specification: true }` gives every such field its
+# specification value ({intervals, measurements}).
+# Every kind is a numeric measurand — as a field it holds a number. A kind needing a different
+# value type overrides `schema` in its own file.
+schema: { type: number }

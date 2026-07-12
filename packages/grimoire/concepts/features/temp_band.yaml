@@ -1,0 +1,6 @@
+concept_settings:
+  # A closed temperature interval, degC, inclusive ends — a CONTROL band a setpoint loop should hold
+  # (ambient tank target/operational/ground bands, a hygrostat's RH-paired temp range, a dew-point
+  # zone). The {min,max} SHAPE is the generic `range` feature, composed never restated; this adds the
+  # DOMAIN meaning, distinct from measuring_interval (what an instrument can read).
+  compose: [ range ]

@@ -1,0 +1,8 @@
+{
+  "schema": {
+    "type": "string"
+  },
+  "title": {
+    "en": "SI symbol"
+  }
+}

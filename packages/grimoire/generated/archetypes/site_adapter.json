@@ -1,0 +1,113 @@
+{
+  "prop": {
+    "addressing": {
+      "$ref": "../features/addressing.json",
+      "title": {
+        "en": "Addressing"
+      }
+    },
+    "description": {
+      "$ref": "../features/description.json",
+      "description": {
+        "en": "Optional localized blurb for a term (i18n text)."
+      },
+      "title": {
+        "en": "Description",
+        "pt": "Descrição"
+      }
+    },
+    "emit": {
+      "$ref": "../features/emit.json"
+    },
+    "endpoint": {
+      "$ref": "../features/endpoint.json",
+      "description": {
+        "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
+      },
+      "schema": {
+        "allOf": [
+          {
+            "if": {
+              "required": [
+                "service_protocol"
+              ]
+            },
+            "then": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "tcp"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "tcp"
+                }
+              },
+              "required": [
+                "transport_protocol"
+              ]
+            },
+            "then": {
+              "required": [
+                "connect_timeout_ms",
+                "reconnect_period_ms"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "transport_protocol": {
+                  "const": "udp"
+                }
+              },
+              "required": [
+                "transport_protocol"
+              ]
+            },
+            "then": {
+              "properties": {
+                "connect_timeout_ms": false,
+                "reconnect_period_ms": false
+              }
+            }
+          }
+        ]
+      },
+      "title": {
+        "en": "Endpoint"
+      }
+    },
+    "identity": {
+      "$ref": "../features/identity.json"
+    },
+    "ingest": {
+      "$ref": "../features/ingest.json"
+    },
+    "modbus_tap_window": {
+      "$ref": "../features/modbus_tap_window.json"
+    },
+    "refs": {
+      "$ref": "../features/refs.json",
+      "title": {
+        "en": "References",
+        "pt": "Referências"
+      }
+    },
+    "title": {
+      "$ref": "../features/title.json",
+      "description": {
+        "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes.",
+        "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
+      },
+      "title": {
+        "en": "Title - friendly name",
+        "pt": "Nome amigável"
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# A part's mechanical block: spatial extent + mass, as a datasheet states it.
+prop:
+  width: {}
+  height: {}
+  thickness: {}
+  mass: {}

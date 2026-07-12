@@ -1,0 +1,21 @@
+# A device's VE.Direct field decode map — a LIST of field rows, the VE.Direct analogue of
+# modbus_registers. Each row names a wire `key` and how to map it: the numeric-decode core
+# (type/scale/decimals/unit) + a measurand link (feature_id/quantity_kind/part_id/ordinal) or, when
+# not yet attributable, a `raw_name` (RAW/unlinked, same split as modbus). The derived MQTT topic
+# comes from the link, falling back to the lowercased wire key.
+#
+# `key` is the case-sensitive VE.Direct wire LABEL (V, VPV, SER#, AC_OUT_V) — the analogue of a
+# register `address`. A LIST (not a slug-keyed map) so decode is pure per-device data living in ONE
+# place on the product: nothing to deep-merge, so nothing can leak product identity into a shared
+# brand cascade (the old keyed-map failure). `type` value set is VE.Direct's (int/hex/bool/string),
+# left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers — decode to slugs is
+# eKuiper's job downstream (TRANSLATE ONLY here).
+title: { en: VE.Direct fields, pt: Campos VE.Direct }
+description:
+  en: The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers).
+
+concept_settings:
+  compose: [measurand_link, numeric_decode]
+  is_array: true
+prop:
+  key: {}

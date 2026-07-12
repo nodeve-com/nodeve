@@ -1,0 +1,3 @@
+title: { en: Retain, pt: Reter }
+description: { en: Retain the message on the broker. Retain slow accumulating windows (a late subscriber gets the last cycle); leave fast instantaneous ones unretained (the next ~Hz sample supersedes it). }
+schema: { type: boolean }

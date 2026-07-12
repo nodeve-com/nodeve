@@ -1,0 +1,100 @@
+{
+  "array": {
+    "prop": {
+      "equals": {
+        "$ref": "../property/equals.json",
+        "description": {
+          "en": "The value a gated `setting` must hold for the band to apply — a scalar matching the setting's type as declared in the device's `settings_schema` (a grid_region enum member, a mode slug, a boolean flag). One value per gate; a band valid for several values is several bands (OR = separate bands)."
+        },
+        "schema": {
+          "type": [
+            "string",
+            "number",
+            "boolean"
+          ]
+        },
+        "title": {
+          "en": "Equals"
+        }
+      },
+      "interval_item": {
+        "$ref": "../property/interval_item.json",
+        "description": {
+          "en": "A by-slug pointer to one interval of a feature's property — {feature, property, interval}. The named interval carries the region/value; a condition is an instance of this reference."
+        },
+        "refs": [
+          {
+            "match": "close",
+            "registry_id": "sosa",
+            "term": "FeatureOfInterest"
+          }
+        ],
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "feature": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "interval": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "property": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "feature",
+            "property",
+            "interval"
+          ],
+          "type": "object"
+        },
+        "title": {
+          "en": "Interval item"
+        }
+      },
+      "setting": {
+        "$ref": "../property/setting.json",
+        "schema": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": {
+          "en": "Setting"
+        }
+      },
+      "test_condition": {
+        "description": {
+          "en": "The standardised measurement reference (STC / BNPI / BSI …) the band was rated at — fixes the environment (irradiance, spectrum, cell temp) external to the band's own quantity. Omit for the implicit STC reference."
+        },
+        "schema": {
+          "enum": [
+            "bnpi",
+            "bsi",
+            "stc"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "en": "Test condition"
+        }
+      }
+    }
+  },
+  "description": {
+    "en": "Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands."
+  },
+  "refs": [
+    {
+      "match": "exact",
+      "registry_id": "ssn_system",
+      "term": "Condition"
+    }
+  ],
+  "title": {
+    "en": "Conditions"
+  }
+}

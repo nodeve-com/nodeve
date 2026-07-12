@@ -1,0 +1,17 @@
+# The vapor-compression refrigerant circuit — owned by no single device: an air conditioner, a
+# refrigerator, a compressor dehumidifier, and a heat-pump water heater all have one, so the
+# refrigerant fact lives here once and each archetype composes it. The value is a vocabulary CODE
+# into enumeration/refrigerant/ (e.g. r290 -> Propane), NEVER a free string — so the gas carries its
+# ASHRAE 34 designation, safety class, and GWP once. Future fields: compressor facts, heat-pump flag.
+enums:
+  - refrigerant
+prop:
+  refrigerant:
+    title:
+      en: Refrigerant
+      pt: Refrigerante
+    description:
+      en: Refrigerant gas, e.g. r290.
+      pt: "Gás refrigerante, ex. r290."
+    ui:
+      mono: true # a refrigerant code is code-like content, not prose

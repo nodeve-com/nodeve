@@ -1,0 +1,39 @@
+# Emelson EMLDH20DFR29 — compressor dehumidifier datasheet. `manufacturer: Emelson` is inherited
+# from ../../_defaults.yaml, `archetype: dehumidifier` from ../_defaults.yaml. Model facts only: a
+# deployment's per-unit fitted Fan/Compressor draw bands and the chosen hygrostat setpoints + tuning
+# are SITE data in ha-config, not here.
+product:
+  model: EMLDH20DFR29
+
+# Moisture output as a flow rate (QUDT VolumeFlowRate); L/day is a non-SI override (canonical m³/s).
+# Partless feature → its columns live under `feature_spec.combined` (the whole).
+dehumidification:
+  feature_spec:
+    combined:
+      volume_flow_rate:
+        intervals:
+          - interval: { nominal: 20, unit: L/day } # rated water extraction
+
+# The AC phase the unit runs on — accepted voltage plus its running/survival draw (active_power). The
+# connection is the archetype's, not the compressor's. The fitted idle/running draw bands (measured
+# per unit) are SITE data, not here.
+ac_phase:
+  feature_spec:
+    combined:
+      voltage:
+        intervals:
+          - interval: { rating: operating, nominal: 230 } # 220–240 V single phase; sole option, no gate needed
+      active_power:
+        intervals:
+          - interval: { rating: operating, nominal: 265 } # rated running draw
+          - interval: { rating: survival, max: 440 } # datasheet peak draw (W; canonical, no unit override)
+
+# Vapor-compression circuit — working gas only. `refrigerant` is a property code
+# (enumeration/refrigerant/r290 → Propane, A3, GWP 3). No separate `refrigeration:` sibling.
+compressor:
+  refrigerant: r290
+
+# Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
+identity:
+  slug: emldh20dfr29
+  code: 352XWTV8

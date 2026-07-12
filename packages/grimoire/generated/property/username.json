@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Username"
+  }
+}

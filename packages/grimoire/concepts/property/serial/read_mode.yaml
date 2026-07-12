@@ -1,0 +1,4 @@
+title: { en: Read mode }
+description:
+  en: "How the reader carves frames off local hardware — modbus_tap (passive sniff; serial-only, framed live at the wire: its inter-frame silence dies in a buffer) or master. Adapter behavior, not a wire property."
+schema: { type: string, enum: [modbus_tap, master] }

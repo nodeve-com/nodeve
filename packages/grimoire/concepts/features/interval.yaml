@@ -1,0 +1,34 @@
+# An INTERVAL — one rated/characterised interval of a single quantity on a feature, the item
+# type of a specification's `intervals` list. A RATING interval: a class-named region of the THING's own
+# behaviour — distinct from measuring-interval (VIM 4.7, what an INSTRUMENT can read) and bare
+# `range` ({min,max}, no class/nameplate/conditions).
+# Band class = two ORTHOGONAL, co-occurrable axes (two fields, not one merged slug — e.g.
+# { rating: operating, mode: mppt, min: 175, max: 850 }): universal `rating`, domain-own `mode`.
+# Bounds: nominal/min/max come from nominal_range (partial — one-sided or nominal-only legal);
+# symmetric bands: fractional `tolerance` or absolute `margin`. Numbers in the kind's canonical
+# SI unit unless `unit` overrides. `conditions` gate the interval (none = reference/nameplate);
+# a commissioning choice is intervals gated on one single-valued settings property — the site
+# sets it once and every interval conditioned on it resolves (no separate `variant` grouping).
+title: { en: Intervals, pt: Intervalos }
+description: { en: "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope." }
+concept_settings:
+  compose:
+    - nominal_range # partial: nominal/min/max, defined once
+enums:
+  - rating # the rated-envelope axis (enumeration/rating): operating/survival/startup/protection_required/measurable
+prop:
+  unit: {} # non-SI override for this interval's numbers (omit => canonical SI)
+  rating: # overlay the enum-introduced field with its docs (closed, universal axis)
+    title: { en: Rating }
+    description:
+      en: "The rated-envelope axis: how far the quantity is rated/permitted to range. Closed, universal — shared by every archetype, so a consumer reasons about 'the operating interval' without archetype knowledge. Datasheet sense of a rating; operating is a rated region, not a limit (hence rating, not limit). The instrument side is `rating: measurable` (VIM 4.7 measuring interval) — the ONE list holds both a thing's own behaviour bands and a sensor's readable span, told apart by this axis."
+  mode: {}
+  tolerance: {}
+  margin: {}
+  # Instrument-only fields — the metrology of a `rating: measurable` interval (VIM 4.7 measuring
+  # interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band
+  # (the fold of the dissolved `measurement` feature — a measuring range is a rating member, not a
+  # separate slot). Omit on a behaviour band (operating/survival/…).
+  resolution: {} # VIM 4.14 quantization step
+  max_permissible_error: {} # VIM 4.26 coarse accuracy figure
+  channel: {} # sub-channel slug when one instrument exposes several ranges of the same quantity

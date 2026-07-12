@@ -1,0 +1,8 @@
+title:
+  en: Power
+  pt: Potência
+refs:
+  - { registry_id: qudt_quantity_kind, term: Power, match: exact }
+measurand:
+  si_unit: W
+  accumulation: instantaneous

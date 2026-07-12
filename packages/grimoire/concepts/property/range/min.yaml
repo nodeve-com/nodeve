@@ -1,0 +1,4 @@
+title: { en: Minimum, pt: Mínimo }
+description:
+  en: "Inclusive low end of a closed interval, in the enclosing concept's unit."
+schema: { type: number }

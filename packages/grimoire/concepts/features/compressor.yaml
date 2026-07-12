@@ -1,0 +1,7 @@
+concept_settings:
+  # The COMPRESSOR — a vapor-compression circuit as the cooling/heating archetypes characterise it.
+  # It carries only its working gas (refrigeration feature, optional). The AC power connection is NOT
+  # the compressor's: the archetype (air_conditioner / dehumidifier / heat-pump water_heater) owns the
+  # `ac_phase` connection + draw, and the compressor is one load on it. Composed by those archetypes.
+  compose:
+    - refrigeration # optional (Type.Partial in the TS original)

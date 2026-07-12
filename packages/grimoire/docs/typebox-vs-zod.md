@@ -1,0 +1,7 @@
+# TypeBox for JSON-schema output, zod for validation
+
+Use TypeBox **only** where the schema must be output to JSON Schema; use zod (or ajv) for normal validation that just checks an input. Before reaching for TypeBox, ask **"does this emit JSON schema?"** — if no, use zod/ajv.
+
+The two cases have different jobs: grimoire's `schema.ts` emits `schema.json`, so it's TypeBox + `Value.Check`; the consuming gateway's config loader only validates a loaded YAML file and emits nothing, so it's the normal-validation case → zod `.parse()`. (Relates to the [consumer-agnostic guard](../../../scripts/guard-grimoire-agnostic.sh).)
+
+**TypeBox stays snake_case; grimoire layers camelCase on top.** TypeBox's whole job is to BE the JSON Schema — `schema.json` is the schema object serialized verbatim (`{...InverterSchema}` + sorted keys). So **never re-case the TypeBox schema** to get camelCase TS types — authoring it in camelCase and snake-ifying keys on emit means TypeBox is no longer the generator (you're post-processing its output). Keep the schema snake*case and layer camelCase \_on top*, derived from it: export types as `Camelize<Static<typeof Schema>>` and have the loader's `validateAndCamelize` `humps()` the validated object (baked into `catalog.generated.ts` at build time, so runtime pays nothing). `Camelize`/typed `humps` come from `remeda-humps` ≥4.1.0. Result: snake at the wire (YAML + schema.json), camelCase in TS, one schema. See [snake-case at the boundary](../../../MEMORY/snake-case-at-boundary-camelcase-in-ts.md).

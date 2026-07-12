@@ -1,0 +1,5 @@
+title: { en: Broader, pt: Mais amplo }
+description: { en: Intra-vocabulary generalization (skos:broader) — the code of a more general concept in the same vocabulary this one specializes (active_power → power). Distinct from refs (cross-vocabulary crosswalks). }
+schema: { type: string, pattern: '^[a-z][a-z0-9_]*$' }
+refs:
+  - { registry_id: skos, term: broader, match: exact }

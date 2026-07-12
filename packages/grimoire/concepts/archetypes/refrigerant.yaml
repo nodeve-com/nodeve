@@ -1,0 +1,8 @@
+concept_settings:
+  # A REFRIGERANT — the working gas of a vapor-compression cycle. A Term (identity + i18n label +
+  # crosswalks) plus the facts that drive decisions: ASHRAE Standard 34 designation + safety class,
+  # IPCC AR5 100-year GWP, chemical formula. The refrigerants (r290, ...) are INSTANCES under
+  # enumeration/refrigerant/, each crosswalked to ASHRAE 34. Fill only known values — never fabricate.
+  compose: [ thing ]
+feature:
+  substance: {} # formula / gwp / safety_class — general chemical facts, grouped once

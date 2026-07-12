@@ -1,0 +1,24 @@
+concept_settings:
+  # The HID EXCHANGE — what makes a read a USB-HID read, the analogue of modbus_link. Distinct from
+  # transport's usb props (the wire) and emit (the MQTT output): this is the request/response framing
+  # on the endpoints — a poll writes poll_command to the OUT endpoint and reads response_length bytes
+  # from the IN endpoint; response_magic (optional, shared magic_byte slot; M4-ATX: byte 0 == 0x21)
+  # is the leading-byte sanity check.
+  #
+  # Standards note (USB-IF HID): interrupt/control transfers, endpoints, report-sized reads are
+  # standard HID transport — a compliant device would describe its reports via a Report Descriptor +
+  # the Power Device usage page (0x84). The M4-ATX's diagnostics protocol is VENDOR-defined, so the
+  # exchange + field map are carried explicitly — borrow the standard; carry the crosswalk.
+  #
+  # `firmware` = the firmware-version -> scale-profile selector (offset into the poll response +
+  # nibble + select rules); a field then picks its scale via scale_overrides[<profile>]. Omit for a
+  # device whose scaling is fixed across firmware.
+  compose: [ magic_byte ]
+prop:
+  transfer: {}
+  write_endpoint: {}
+  read_endpoint: {}
+  timeout_ms: {}
+  poll_command: {}
+  response_length: {}
+  firmware: {} # { offset, nibble, select } — see usbhid property files

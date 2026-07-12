@@ -1,0 +1,65 @@
+{
+  "$defs": {
+    "compose": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "type": "string"
+        },
+        {
+          "items": {
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      ]
+    },
+    "count": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "is_array": {
+      "type": "boolean"
+    },
+    "is_specification": {
+      "type": "boolean"
+    },
+    "map": {
+      "type": "boolean"
+    },
+    "part": {
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "type": "string"
+    },
+    "repeated": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "compose": {
+      "$ref": "#/$defs/compose"
+    },
+    "count": {
+      "$ref": "#/$defs/count"
+    },
+    "is_array": {
+      "$ref": "#/$defs/is_array"
+    },
+    "is_specification": {
+      "$ref": "#/$defs/is_specification"
+    },
+    "map": {
+      "$ref": "#/$defs/map"
+    },
+    "part": {
+      "$ref": "#/$defs/part"
+    },
+    "repeated": {
+      "$ref": "#/$defs/repeated"
+    }
+  },
+  "type": "object"
+}

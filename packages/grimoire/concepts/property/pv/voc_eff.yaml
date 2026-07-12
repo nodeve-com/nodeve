@@ -1,0 +1,7 @@
+title:
+  en: Effective open-circuit voltage
+description:
+  en: As-deployed string open-circuit voltage, fitted from measured data. Omit until fitted; spec fallback is panel dc.voltage open_circuit-band nominal × series_count.
+schema:
+  type: number
+  exclusiveMinimum: 0

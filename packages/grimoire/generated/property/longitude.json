@@ -1,0 +1,27 @@
+{
+  "measurand": {
+    "accumulation": "instantaneous",
+    "si_unit": "°"
+  },
+  "refs": [
+    {
+      "match": "exact",
+      "registry_id": "wgs84_geo",
+      "term": "long"
+    },
+    {
+      "match": "broad",
+      "registry_id": "qudt_quantity_kind",
+      "term": "Angle"
+    }
+  ],
+  "schema": {
+    "maximum": 180,
+    "minimum": -180,
+    "type": "number"
+  },
+  "title": {
+    "en": "Longitude",
+    "pt": "Longitude"
+  }
+}

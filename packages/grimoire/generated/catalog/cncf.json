@@ -1,0 +1,10 @@
+{
+  "identity": {
+    "archetype": "organization",
+    "code": "5XGMZEAT",
+    "slug": "cncf"
+  },
+  "title": {
+    "en": "Cloud Native Computing Foundation"
+  }
+}

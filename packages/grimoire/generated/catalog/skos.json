@@ -1,0 +1,15 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "364GPCB3",
+    "slug": "skos"
+  },
+  "registry_publication": {
+    "iri_template": "http://www.w3.org/2004/02/skos/core#{id}",
+    "published_by": "w3c"
+  },
+  "title": {
+    "en": "W3C SKOS (Simple Knowledge Organization System)",
+    "pt": "W3C SKOS (Sistema Simples de Organização do Conhecimento)"
+  }
+}

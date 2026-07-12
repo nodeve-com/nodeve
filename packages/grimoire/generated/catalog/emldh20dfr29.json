@@ -1,0 +1,62 @@
+{
+  "ac_phase": {
+    "feature_spec": {
+      "combined": {
+        "active_power": {
+          "intervals": [
+            {
+              "interval": {
+                "nominal": 265,
+                "rating": "operating"
+              }
+            },
+            {
+              "interval": {
+                "max": 440,
+                "rating": "survival"
+              }
+            }
+          ]
+        },
+        "voltage": {
+          "intervals": [
+            {
+              "interval": {
+                "nominal": 230,
+                "rating": "operating"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "compressor": {
+    "refrigerant": "r290"
+  },
+  "dehumidification": {
+    "feature_spec": {
+      "combined": {
+        "volume_flow_rate": {
+          "intervals": [
+            {
+              "interval": {
+                "nominal": 20,
+                "unit": "L/day"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "identity": {
+    "archetype": "dehumidifier",
+    "code": "352XWTV8",
+    "slug": "emldh20dfr29"
+  },
+  "product": {
+    "manufacturer_id": "emelson",
+    "model": "EMLDH20DFR29"
+  }
+}

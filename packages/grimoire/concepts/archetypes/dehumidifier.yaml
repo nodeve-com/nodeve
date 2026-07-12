@@ -1,0 +1,18 @@
+# An appliance whose defining feature is moisture removal. dehumidification's presence is what
+# makes it a dehumidifier, not a plain appliance; compressor is absent on a desiccant unit and
+# carries both draw (active_power) and working gas (refrigerant) in one block.
+
+concept_settings:
+  compose: [ appliance ] # base: product + supply draw (no medium — pure spec unless a specific model reads back)
+
+title:
+  en: Dehumidifier
+  pt: Desumidificador
+description:
+  en: An appliance whose model fact is moisture removal (+ optional
+    refrigeration/humidity capability).
+
+feature:
+  dehumidification: {} # defining feature — moisture output as volume_flow_rate (REQUIRED)
+  compressor: {} # vapor-compression circuit (absent on desiccant units)
+  humidity_control: {} # settable RH range + designed default

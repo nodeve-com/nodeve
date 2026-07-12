@@ -1,0 +1,4 @@
+title: { en: Default }
+description:
+  en: "The per-instance spec-map every instance gets. Desugars to count instance rows, copied verbatim, then patched by instances (desugar + deep-merge projection deferred)."
+schema: { type: object }

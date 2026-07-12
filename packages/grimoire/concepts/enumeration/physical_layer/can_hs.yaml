@@ -1,0 +1,7 @@
+# signal_form: digital
+# CAN high-speed differential PHY — the electrical layer beneath interface_type:can.
+title:
+  en: CAN high-speed (differential)
+  pt: CAN alta velocidade (diferencial)
+refs:
+  - { registry_id: iso_11898, term: 11898-2, match: exact }

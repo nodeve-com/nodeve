@@ -1,0 +1,13 @@
+{
+  "description": {
+    "en": "Bit mask ANDed with the register value in a priority rule."
+  },
+  "schema": {
+    "maximum": 65535,
+    "minimum": 1,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Mask"
+  }
+}

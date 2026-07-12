@@ -1,0 +1,12 @@
+# Terms are referenced by clause number (e.g. 4.7 measuring interval, 4.14 resolution,
+# 4.26 maximum permissible error); the online VIM resolves each to its own page.
+title:
+  en: "International Property of Metrology (VIM, JCGM 200:2012)"
+  pt: "Propertyulário Internacional de Metrologia (VIM, JCGM 200:2012)"
+identity:
+  slug: vim
+  code: 1WQDKRSX
+  url: https://jcgm.bipm.org/vim/en/
+registry_publication:
+  published_by: bipm
+  iri_template: "https://jcgm.bipm.org/vim/en/{id}.html"

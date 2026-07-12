@@ -1,0 +1,3 @@
+title: { en: Response length }
+description: { en: "How many bytes one response frame occupies (M4-ATX: 24)." }
+schema: { type: integer, exclusiveMinimum: 0 }

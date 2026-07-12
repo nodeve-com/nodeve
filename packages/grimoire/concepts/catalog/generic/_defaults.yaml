@@ -1,0 +1,8 @@
+# Generic, brand-agnostic appliance archetypes: the NOMINAL draw/spec shape of a class of
+# load, not a specific datasheet. A deployment references one of these for the nominal class
+# figures / control defaults and supplies its own per-unit fitted watts + HA entity bindings as
+# site data (these override the nominal). `manufacturer: generic` marks the entry as a representative
+# class rather than a real make. Each file declares its own archetype (this subtree is not
+# single-archetype).
+product:
+  manufacturer_id: generic

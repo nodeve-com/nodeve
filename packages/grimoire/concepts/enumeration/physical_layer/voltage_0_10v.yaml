@@ -1,0 +1,7 @@
+# signal_form: analog
+# Analog DC voltage signal — magnitude IS the value, no digital framing. IEC 60381-2.
+title:
+  en: 0-10 V analog
+  pt: Tensão analógica 0-10 V
+refs:
+  - { registry_id: iec_60381, term: 60381-2, match: exact }

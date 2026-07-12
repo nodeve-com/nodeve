@@ -1,0 +1,9 @@
+title:
+  en: Home Assistant sensor device_class
+  pt: device_class de sensor do Home Assistant
+identity:
+  slug: ha_device_class
+  code: 9ZHPEFGX
+  url: https://www.home-assistant.io/integrations/sensor/#device-class
+registry_publication:
+  published_by: home_assistant

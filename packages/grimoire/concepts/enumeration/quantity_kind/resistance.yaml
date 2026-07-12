@@ -1,0 +1,8 @@
+title:
+  en: Resistance
+  pt: Resistência
+refs:
+  - { registry_id: qudt_quantity_kind, term: Resistance, match: exact }
+measurand:
+  si_unit: "Ω" # ohm (Ω); SI symbol per ISO 80000-6 / BIPM
+  accumulation: instantaneous

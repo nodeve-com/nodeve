@@ -1,0 +1,20 @@
+{
+  "catalog": {
+    "description": {
+      "en": "Device archetype a catalog leaf may select; instances bundle into the generated catalog."
+    },
+    "title": {
+      "en": "Catalog archetype",
+      "pt": "Arquétipo de catálogo"
+    }
+  },
+  "schema_only": {
+    "description": {
+      "en": "Archetype shipping a schema contract with no catalog instances (mediums, site shapes, deployment config)."
+    },
+    "title": {
+      "en": "Schema-only archetype",
+      "pt": "Arquétipo apenas-esquema"
+    }
+  }
+}

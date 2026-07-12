@@ -1,0 +1,11 @@
+# Asynchronous serial (start-stop) interface — the link discipline for a UART framing bytes,
+# covering TTL UART / RS-485 / RS-232 alike. A management-layer classification, NOT a physical
+# claim: the electrical layer (rs232/rs485/ttl_*) rides `physical_layer`, which varies
+# independently (async serial runs over any of them). Code is the universal descriptor
+# `async_serial`; the standards lineage rides `refs` — IANA ifType 33 (named `rs232`, a
+# misnomer for the class), ≡ ISO 1177 start-stop character transmission.
+title:
+  en: Asynchronous serial port
+  pt: Porta serial assíncrona
+refs:
+  - { registry_id: iana_iftype, term: rs232, match: exact } # IANA ifType 33

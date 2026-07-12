@@ -1,0 +1,3 @@
+title: { en: Fault }
+description: { en: Slug naming the fault-set slug group a categorical decode publishes into (fault_code). Exclusive with `state` (a run-state slug group) — an entry is one or the other. }
+schema: { type: string, minLength: 1 }

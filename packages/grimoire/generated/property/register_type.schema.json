@@ -1,0 +1,7 @@
+{
+  "enum": [
+    "holding",
+    "input"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,11 @@
+# Terms by local name: lat, long, alt (WGS 84 decimal degrees / metres).
+title:
+  en: W3C Basic Geo (WGS84 lat/long) vocabulary
+  pt: "Vocabulário W3C Basic Geo (WGS84 lat/long)"
+identity:
+  slug: wgs84_geo
+  code: M74T17ZA
+  url: https://www.w3.org/2003/01/geo/
+registry_publication:
+  published_by: w3c
+  iri_template: "http://www.w3.org/2003/01/geo/wgs84_pos#{id}"

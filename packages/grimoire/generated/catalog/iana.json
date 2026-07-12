@@ -1,0 +1,10 @@
+{
+  "identity": {
+    "archetype": "organization",
+    "code": "CSFHAYWJ",
+    "slug": "iana"
+  },
+  "title": {
+    "en": "Internet Assigned Numbers Authority"
+  }
+}

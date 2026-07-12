@@ -1,0 +1,42 @@
+title:
+  en: AC phase
+  pt: Fase CA
+
+concept_settings:
+  # features/electrical_ac.yaml — an AC connection: the shared electrical triple PLUS line frequency.
+  # The AC analogue of `dc` (dc.ts): where a DC port simply IS the triple (voltage/current/active_power,
+  # features/electrical.yaml), an AC connection is that triple + the one AC-only quantity a plain supply
+  # carries, line `frequency`. It COMPOSES electrical — it never re-adds voltage; only one atom owns a
+  # prop (§Provenance), and electrical owns the triple. It adds only `frequency`; the meter quantities
+  # (reactive/apparent power, power factor) are the richer `ac_phase` atom's job, not a plain supply's.
+  # All measured quantity-kinds, so flat: `intervals`/`measurements` are authored on the catalog entry.
+  compose: [electrical_quantity]
+  is_specification: true # adds its own quantity_kind fields below (frequency, reactive/apparent power, …)
+
+prop:
+  frequency: {}
+  reactive_power: {} # meter quantity (var)
+  apparent_power: {} # meter quantity (VA)
+  power_factor: {} # meter quantity (dimensionless)
+  phase_angle: {} # meter quantity — per-phase displacement angle φ (deg)
+  reactive_energy: {}
+  apparent_energy: {}
+
+# The role-neutral AC connection. SEAS
+# AlternatingCurrentConnectionPoint is the exact-shaped, role-neutral AC connection point. NOTE the
+# crosswalk names the CONNECTION, not the phase: the phase is the repeated INSTANCE (CIM PhaseCode is
+# an enum qualifier on a connection, not a feature of its own) — a signal the feature identity is the
+# connection and `phase` belongs on the ordinal.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: seas
+    term: AlternatingCurrentConnectionPoint
+    match: close
+  - registry_id: cim
+    term: PhaseCode.A
+    match: related
+  - registry_id: sunspec
+    term: '203'
+    match: related

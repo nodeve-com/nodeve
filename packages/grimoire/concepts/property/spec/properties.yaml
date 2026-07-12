@@ -1,0 +1,5 @@
+title: { en: Properties, pt: Propriedades }
+description: { en: "Rated magnitudes (quantity_value items) that hold under this capability's conditions (ssn-system:hasSystemProperty)." }
+schema: { type: array }
+refs:
+  - { registry_id: ssn_system, term: hasSystemProperty, match: exact }

@@ -1,0 +1,34 @@
+{
+  "$defs": {
+    "decimals": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "scale": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string"
+    },
+    "unit": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "decimals": {
+      "$ref": "#/$defs/decimals"
+    },
+    "scale": {
+      "$ref": "#/$defs/scale"
+    },
+    "type": {
+      "$ref": "#/$defs/type"
+    },
+    "unit": {
+      "$ref": "#/$defs/unit"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+# DEHUMIDIFICATION — a dehumidifier's defining feature, its rated moisture-extraction output. One
+# quantity, volume_flow_rate (a QUDT VolumeFlowRate; catalog overrides the unit to L/day, canonical
+# m³/s). `is_specification: true` — its value is a spec (rated intervals), authored on the catalog entry.
+title:
+  en: Dehumidification
+  pt: Desumidificação
+description:
+  en: Rated moisture-extraction output of a dehumidifier (a volume flow rate; catalog overrides the unit).
+concept_settings:
+  is_specification: true
+prop:
+  volume_flow_rate: {}

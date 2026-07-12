@@ -1,0 +1,5 @@
+concept_settings:
+  compose: [ thing ]
+
+feature:
+  location: {}

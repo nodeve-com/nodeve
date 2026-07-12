@@ -1,0 +1,4 @@
+title: { en: Access }
+description:
+  en: "Read, write-only (an action like factory RESET), or both. Most settings are read_write."
+schema: { type: string, enum: [read, write, read_write] }

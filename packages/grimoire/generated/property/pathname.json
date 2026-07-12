@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Pathname"
+  }
+}

@@ -1,0 +1,18 @@
+# A SPECIFICATION — the value a quantity_kind field carries once its feature is marked
+# `concept_settings: { is_specification: true }`. The shape that used to be assembled inline in the
+# compiler (kit/shape-finish.ts), now an authored archetype so it validates like any other:
+#   • identity — the deterministic on-bus handle; `identity.slug` is stamped per-site by the site
+#     bake (PLANS/deterministic-sensor-ids.md), empty in the agnostic catalog.
+#   • measurand — the metrology override slots (unit / si_unit / accumulation); the kind's enum
+#     member carries the defaults, a device/site overrides here.
+#   • intervals — the one list of rated/characterised bands (archetypes/intervals, `array: true`):
+#     the thing's own behaviour envelope AND the sensor's readable span, told apart by `rating`.
+title: { en: Specification }
+description:
+  en: "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity,
+    measurand metrology, and the `intervals` list of rated/characterised bands."
+feature:
+  identity: {} # the deterministic on-bus handle — identity.slug stamped per-site
+  measurand: {} # metrology override slots: unit / si_unit / accumulation
+archetype:
+  intervals: {} # array of rated/measurable bands (archetypes/intervals, array: true)

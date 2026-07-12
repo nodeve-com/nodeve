@@ -1,0 +1,14 @@
+# EXAMPLE / illustrative only — NOT bundled, NOT exported. A site concept ships schema, not
+# instances: the authoritative array config lives in the deploying repo and validates against
+# schema.ts. This file is here purely as terse documentation of the shape (and the guard
+# allows `*.example.yaml` under site/ for exactly this). Values mirror the real Azores array.
+location:
+  latitude: 37.7435364
+  longitude: -25.6689629
+inverter: foxess/h3/ps-10.0-sh  # catalog inverter path; capacity/MPPT floor live there
+strings:
+  # East plane: ten panels in series. vmp/capacity are derived from the panel datasheet
+  # × series_count downstream, never restated here.
+  - { ordinal: 1, active: true, panel: trina/tsm-625neg19rc-20, series_count: 10, azimuth: 78, tilt: 38 }
+  # West plane: voc_eff fitted from measured data (bun run solar-avail, 2026-06-12).
+  - { ordinal: 2, active: true, panel: trina/tsm-625neg19rc-20, series_count: 10, azimuth: 258, tilt: 38, voc_eff: 469 }

@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "register_type": {
+      "enum": [
+        "holding",
+        "input"
+      ],
+      "type": "string"
+    },
+    "unit_id": {
+      "maximum": 247,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "word_order": {
+      "enum": [
+        "high_first",
+        "low_first"
+      ],
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "register_type": {
+      "$ref": "#/$defs/register_type"
+    },
+    "unit_id": {
+      "$ref": "#/$defs/unit_id"
+    },
+    "word_order": {
+      "$ref": "#/$defs/word_order"
+    }
+  },
+  "type": "object"
+}

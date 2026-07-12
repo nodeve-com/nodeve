@@ -1,0 +1,4 @@
+# Expected operational range incl. seasonal excursions; size tank-fed equipment for the warm end.
+title: { en: Operating temperature band, pt: Faixa de temperatura operacional }
+concept_settings:
+  compose: temp_band

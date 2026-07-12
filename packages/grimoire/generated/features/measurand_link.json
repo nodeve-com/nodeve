@@ -1,0 +1,92 @@
+{
+  "prop": {
+    "feature_id": {
+      "$ref": "../property/feature_id.json",
+      "description": {
+        "en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree."
+      },
+      "refs": [
+        {
+          "match": "close",
+          "registry_id": "sosa",
+          "term": "FeatureOfInterest"
+        }
+      ],
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Feature ID"
+      }
+    },
+    "ordinal": {
+      "$ref": "../property/ordinal.json",
+      "description": {
+        "en": "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Ordinal",
+        "pt": "Ordinal"
+      }
+    },
+    "part_id": {
+      "$ref": "../property/part_id.json",
+      "description": {
+        "en": "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead."
+      },
+      "schema": {
+        "pattern": "^(a|b|c|n|ab|bc|ca)$",
+        "type": "string"
+      },
+      "title": {
+        "en": "Part id"
+      }
+    },
+    "quantity_kind": {
+      "schema": {
+        "enum": [
+          "active_energy",
+          "active_power",
+          "altitude",
+          "apparent_energy",
+          "apparent_power",
+          "cooling_capacity",
+          "current",
+          "dew_point",
+          "electric_charge",
+          "frequency",
+          "phase_angle",
+          "power",
+          "power_factor",
+          "reactive_energy",
+          "reactive_power",
+          "relative_humidity",
+          "resistance",
+          "temperature",
+          "voltage",
+          "volume",
+          "volume_flow_rate"
+        ],
+        "type": "string"
+      }
+    },
+    "raw_name": {
+      "$ref": "../property/raw_name.json",
+      "description": {
+        "en": "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Raw name"
+      }
+    }
+  }
+}

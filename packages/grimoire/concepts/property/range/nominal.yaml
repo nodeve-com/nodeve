@@ -1,0 +1,4 @@
+title: { en: Nominal, pt: Nominal }
+description:
+  en: "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around."
+schema: { type: number }

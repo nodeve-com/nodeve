@@ -1,0 +1,39 @@
+{
+  "$defs": {
+    "catalog_item": {
+      "additionalProperties": false,
+      "properties": {
+        "archetype": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "slug": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "catalog_patch": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "serial_number": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "catalog_item": {
+      "$ref": "#/$defs/catalog_item"
+    },
+    "catalog_patch": {
+      "$ref": "#/$defs/catalog_patch"
+    },
+    "serial_number": {
+      "$ref": "#/$defs/serial_number"
+    }
+  },
+  "type": "object"
+}

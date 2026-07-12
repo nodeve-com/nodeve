@@ -1,0 +1,4 @@
+# Passive ground-coupling equilibrium — local soil temperature, year-round.
+title: { en: Ground temperature band, pt: Faixa de temperatura do solo }
+concept_settings:
+  compose: temp_band

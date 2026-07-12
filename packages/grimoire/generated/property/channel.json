@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Stable channel slug when one instrument exposes several ranges of the same quantity (high, low). Omit for a single channel. Named channel, not id — a slug naming the sub-channel, not an opaque record identifier."
+  },
+  "schema": {
+    "minLength": 1,
+    "type": "string"
+  },
+  "title": {
+    "en": "Channel"
+  }
+}

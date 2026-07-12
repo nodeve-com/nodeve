@@ -1,0 +1,46 @@
+{
+  "description": {
+    "en": "Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec.",
+    "pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso."
+  },
+  "prop": {
+    "manufacturer_id": {
+      "$ref": "../property/manufacturer_id.json",
+      "column": {
+        "references": "organization"
+      },
+      "description": {
+        "en": "Slug of the organization catalog entry that made this thing.",
+        "pt": "Slug da entrada de catálogo da organização que fez esta coisa."
+      },
+      "schema": {
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      },
+      "title": {
+        "en": "Manufacturer",
+        "pt": "Fabricante"
+      }
+    },
+    "model": {
+      "description": {
+        "en": "What the thing is called — the model designation on the nameplate.",
+        "pt": "Como a coisa se chama — a designação de modelo na placa de identificação."
+      },
+      "schema": {
+        "minLength": 1,
+        "required": true,
+        "type": "string"
+      },
+      "title": {
+        "en": "Model",
+        "pt": "Modelo"
+      }
+    }
+  },
+  "title": {
+    "en": "Product",
+    "pt": "Produto"
+  }
+}

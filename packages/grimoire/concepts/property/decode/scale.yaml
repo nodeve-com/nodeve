@@ -1,0 +1,5 @@
+title: { en: Scale, pt: Escala }
+description:
+  en: Published value = raw × scale (raw → engineering units). Optional where omitting means 1 (VE.Direct).
+  pt: Valor publicado = bruto × escala (bruto → unidades de engenharia).
+schema: { type: number }

@@ -1,0 +1,12 @@
+# Terms by class or enum-literal local name, e.g. BatteryUnit, PowerElectronicsConnection,
+# EnergyConsumer, ExternalNetworkInjection, PhaseCode.A. CIM100 is the current canonical base.
+title:
+  en: "IEC CIM (Common Information Model, IEC 61970/61968)"
+  pt: "IEC CIM (Modelo de Informação Comum, IEC 61970/61968)"
+identity:
+  slug: cim
+  code: HGW34KA8
+  url: https://cim.ucaiug.io/
+registry_publication:
+  published_by: iec
+  iri_template: "http://iec.ch/TC57/CIM100#{id}"

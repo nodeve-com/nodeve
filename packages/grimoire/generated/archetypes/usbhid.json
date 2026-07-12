@@ -1,0 +1,36 @@
+{
+  "description": {
+    "en": "A USB-HID connectivity medium — a USB device-class/transport framework, not an application protocol (transport + emit + HID exchange + byte-field map)."
+  },
+  "prop": {
+    "emit": {
+      "$ref": "../features/emit.json"
+    },
+    "usb_wire": {
+      "$ref": "../features/usb_wire.json"
+    },
+    "usbhid_config": {
+      "$ref": "../features/usbhid_config.json"
+    },
+    "usbhid_fields": {
+      "$ref": "../features/usbhid_fields.json",
+      "title": {
+        "en": "USB-HID fields",
+        "pt": "Campos USB-HID"
+      }
+    },
+    "usbhid_link": {
+      "$ref": "../features/usbhid_link.json"
+    }
+  },
+  "refs": [
+    {
+      "match": "exact",
+      "registry_id": "usb_class",
+      "term": "HID"
+    }
+  ],
+  "title": {
+    "en": "USB-HID medium"
+  }
+}

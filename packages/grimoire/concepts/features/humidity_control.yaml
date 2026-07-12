@@ -1,0 +1,9 @@
+# The humidity-setpoint CAPABILITY of a hygrostat-controlled unit — the settable target-RH
+# range the hardware supports and its designed default. The catalog states RANGE + DEFAULT; a
+# deployment picks operating values within it; control-loop tuning (tolerances, min-cycle,
+# away/stale) is SITE data in ha-config — how YOU run it, not a datasheet fact. Composed
+# (optionally) by the dehumidifier archetype.
+prop:
+  min_humidity: {}
+  max_humidity: {}
+  default_humidity: {}

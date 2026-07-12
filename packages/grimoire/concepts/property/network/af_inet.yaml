@@ -1,0 +1,3 @@
+title: { en: AF_INET serve socket }
+description: { en: The AF_INET face of serve — where an off-host consumer connects in; a listen endpoint (bind + port + protocol). }
+schema: { type: object }

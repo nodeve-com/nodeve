@@ -1,0 +1,5 @@
+# A device's categorical Modbus decodes — a LIST of modbus_decode entries (optional).
+title: { en: Modbus decodes, pt: Decodificações Modbus }
+concept_settings:
+  compose: modbus_decode
+  is_array: true

@@ -1,0 +1,16 @@
+# NETWORK INTERFACE — one L2/L3 NIC of a node (a node may carry several: an Ethernet port AND a WiFi
+# radio). `is_array: true` so a device's `network_interfaces` slot is a LIST of these (the same
+# cardinality model as archetypes/intervals — cardinality lives on the target class, there is no
+# ref-site marker). Modelling the NIC as an archetype (not a bare feature) buys each interface its
+# identity/title/description — above all the referenceable `identity.slug`, so a site can name its
+# WiFi vs Ethernet ports. The link datasheet itself lives in the `network_link` feature.
+concept_settings:
+  compose: [ thing ] # identity (the slug handle) + title + description + refs
+  is_array: true
+title: { en: Network interface }
+description:
+  en: One of a node's network interface controllers — its identity plus link datasheet (network_link).
+feature:
+  network_link: {} # mac_address / mtu / duplex / link_speed + interface_type discriminator
+archetype:
+  ip_addresses: {} # a LIST of L3 addresses (ip_addresses is is_array) — each with its own identity.slug

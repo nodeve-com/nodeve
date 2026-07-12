@@ -1,0 +1,4 @@
+title: { en: Maximum, pt: Máximo }
+description:
+  en: "Inclusive high end of a closed interval, in the enclosing concept's unit."
+schema: { type: number }

@@ -1,0 +1,5 @@
+title:
+  en: UDP
+  pt: UDP
+refs:
+  - { registry_id: iana_protocol, term: UDP, match: exact } # IANA protocol number 17

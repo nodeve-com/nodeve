@@ -1,0 +1,3 @@
+title: { en: Part id }
+description: { en: "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead." }
+schema: { type: string, pattern: '^(a|b|c|n|ab|bc|ca)$' }

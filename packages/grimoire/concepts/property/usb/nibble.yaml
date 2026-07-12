@@ -1,0 +1,4 @@
+title: { en: Nibble }
+description:
+  en: "Whether the firmware major version is the high nibble, the low nibble, or the whole version byte."
+schema: { type: string, enum: [high, low, whole] }

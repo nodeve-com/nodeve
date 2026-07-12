@@ -1,0 +1,3 @@
+title: { en: Individual read ranges }
+description: { en: "Inclusive [lo, hi] address ranges to read one register at a time, each with a human note." }
+schema: { type: array, items: { type: object, additionalProperties: false, properties: { range: { type: array, minItems: 2, maxItems: 2, items: { type: integer, minimum: 0, maximum: 65535 } }, note: { type: string, minLength: 1 } }, required: [range, note] } }

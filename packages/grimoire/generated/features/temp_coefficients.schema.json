@@ -1,0 +1,14 @@
+{
+  "$defs": {
+    "voc_temp_coeff_pct_per_c": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "voc_temp_coeff_pct_per_c": {
+      "$ref": "#/$defs/voc_temp_coeff_pct_per_c"
+    }
+  },
+  "type": "object"
+}

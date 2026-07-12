@@ -1,0 +1,11 @@
+# No canonical IRI namespace (SunSpec is not published as RDF), so no iri_template — a document
+# authority. `term` is a model number or model/point, e.g. `160`, `802`, `160/DCW`, `TmpCab`.
+title:
+  en: SunSpec Modbus information models
+  pt: "Modelos de informação Modbus SunSpec"
+identity:
+  slug: sunspec
+  code: W929N8DK
+  url: https://sunspec.org/
+registry_publication:
+  published_by: sunspec_alliance

@@ -1,0 +1,22 @@
+{
+  "$defs": {
+    "connect_timeout_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    },
+    "reconnect_period_ms": {
+      "exclusiveMinimum": 0,
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "connect_timeout_ms": {
+      "$ref": "#/$defs/connect_timeout_ms"
+    },
+    "reconnect_period_ms": {
+      "$ref": "#/$defs/reconnect_period_ms"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,3 @@
+title: { en: Value offset }
+description: { en: "Where the VALUE bytes sit — in the GET response (decode from here) and the SET request (encode to here), big-endian per the parameter's byte_order (M4-ATX: 4)." }
+schema: { type: integer, minimum: 0 }

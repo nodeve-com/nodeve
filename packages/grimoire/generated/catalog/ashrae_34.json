@@ -1,0 +1,14 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "802GA2X4",
+    "slug": "ashrae_34"
+  },
+  "registry_publication": {
+    "published_by": "ashrae"
+  },
+  "title": {
+    "en": "ASHRAE Standard 34 — Refrigerant designations & safety classification",
+    "pt": "ASHRAE Standard 34 — Designações e classificação de segurança de refrigerantes"
+  }
+}

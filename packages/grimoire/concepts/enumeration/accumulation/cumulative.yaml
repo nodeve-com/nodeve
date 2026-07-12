@@ -1,0 +1,7 @@
+# A running total that may rise, fall, or reset (net / bidirectional energy). Prometheus has no
+# distinct type for a resettable signed total (a counter is monotonic) — HA-only crosswalk.
+title:
+  en: Cumulative
+  pt: Cumulativo
+refs:
+  - { registry_id: ha_state_class, term: total, match: exact }

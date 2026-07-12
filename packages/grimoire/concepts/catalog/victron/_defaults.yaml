@@ -1,0 +1,8 @@
+# Victron Energy — the VE.Direct device family (SmartSolar MPPT chargers, BMV/SmartShunt battery
+# monitors, Phoenix inverters/chargers). Brand identity ONLY: how to DECODE VE.Direct is per-model
+# data (the model's `vedirect_fields` list), NOT a brand default — decode and product identity are
+# two different things and no longer share this file. (For now the shared VE.Direct common header —
+# PID/SER#/FW/battery V,I — is restated on each model's list; a future medium composition, shared
+# with modbus, will factor it out.)
+product:
+  manufacturer_id: victron

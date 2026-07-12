@@ -1,0 +1,3 @@
+title: { en: Alt setting }
+description: { en: USB alternate setting (standard USB descriptor). }
+schema: { type: integer, minimum: 0 }

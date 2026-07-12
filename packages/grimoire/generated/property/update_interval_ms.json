@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default."
+  },
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "integer"
+  },
+  "title": {
+    "en": "Update interval (ms)"
+  }
+}

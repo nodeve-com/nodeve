@@ -1,0 +1,4 @@
+title:
+  en: Telegraf
+description:
+  en: Decoder platform — the adapter runs as a generated Telegraf `inputs.modbus` (TCP) master, polling the device's offered modbus_tcp service and republishing each register to MQTT. The config is projected from grimoire (`bun run generate-telegraf`) and imported by the nix flake (`modules/telegraf/`). Numeric registers only; bit/word decode stays downstream (eKuiper).

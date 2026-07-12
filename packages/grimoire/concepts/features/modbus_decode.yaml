@@ -1,0 +1,25 @@
+# Categorical decode (modbus-specific, optional) — the non-numeric side of "decode": one or more
+# raw uint16 registers -> a STRING (enum state, fault list) via a bit/value map. Same decoder
+# layer, same MQTT contract — the published value is already a stable machine code (snake slug),
+# so no subscriber carries the lookup table. Each entry carries a CATEGORICAL link instead of an
+# authored key/topic: the `feature` plus EITHER `state` (run-state slug group) OR `fault`
+# (fault-set slug group) — exclusive; topic derived from (feature, state|fault) downstream.
+# Two kinds, discriminated by `kind`:
+#   flags    — read each of `addresses`, collect every set bit's non-null label (labels[i]
+#              parallel), `join` them (default "; "); none set => `empty` (default "None").
+#   priority — first rule { address, mask, emit } whose (register & mask) is non-zero wins; no
+#              match => `default` (omitted = unavailable).
+prop:
+  feature_id: {}
+  state: {}
+  fault: {}
+  kind: { title: { en: Decode kind }, description: { en: The decode discriminant — flags or priority. } }
+  addresses: {}
+  labels: {}
+  join: {}
+  empty: {}
+  rules: {}
+  mask: {}
+  emit_string: {} # authored as `emit` on the wire
+  default: { title: { en: Default }, description: { en: String published when no priority rule matches; omitted = no value / unavailable. } } # authored as `default`: the fallback string when no priority rule matches
+  address: {} # shared register-address slot, composed into each priority rule

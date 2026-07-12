@@ -1,0 +1,4 @@
+title: { en: Monospace }
+description:
+  en: "UI hint — render this value as code-like content (monospace), not prose. For machine codes and identifiers displayed to a human."
+schema: { type: boolean }

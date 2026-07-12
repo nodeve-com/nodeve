@@ -1,0 +1,10 @@
+# Reference to the L3 address a service listens on: the `identity.slug` of an `ip_addresses` instance
+# (nested under one of this node's `network_interfaces`). An intra-site pointer — the target is a site
+# instance, not a catalog entry, so it's a plain slug the runtime resolves against the node's own
+# addresses, NOT a `column.references` catalog FK (mirror of `link`). The MORE SPECIFIC binding: it
+# pins one address (which implies its NIC), so the listen address never restates the IP — the
+# referenced ip_addresses instance already owns `ip_address`.
+title: { en: IP address }
+description:
+  en: "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id."
+schema: { type: string, minLength: 1 }

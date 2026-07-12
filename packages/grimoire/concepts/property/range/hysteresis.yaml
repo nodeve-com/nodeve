@@ -1,0 +1,4 @@
+title: { en: Hysteresis, pt: Histerese }
+description:
+  en: "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate."
+schema: { type: number, exclusiveMinimum: 0 }

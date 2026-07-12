@@ -1,0 +1,10 @@
+# // The kind's coherent SI unit, as the SI symbol string (ISO 80000-1 / BIPM). Optional: a few kinds
+# // have no clean single SI unit (unknown) — omit rather than fabricate. NOT i18n: a unit symbol is
+# // language-neutral. A unit's per-registry dialect ids (qudt_unit, ucum) are NOT here — they belong
+# // to the UNIT as crosswalks, which would make units first-class (property/unit/); deferred until a
+# // consumer needs unit IRIs. The existing ExternalRef.id already carries such a dialect id.
+title:
+  en: SI symbol
+
+schema:
+  type: string

@@ -1,0 +1,6 @@
+# OASIS MQTT over TCP; registered URI scheme. `mqtts` is its TLS variant.
+title:
+  en: MQTT
+  pt: MQTT
+refs:
+  - { registry_id: iana_uri_scheme, term: mqtt, match: exact }

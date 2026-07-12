@@ -1,0 +1,6 @@
+# CONSTRUCTION — what a physical component is made of. Generic build facts (starting with
+# `material`), reusable by any archetype with a physical body (heating elements, tanks, panels,
+# sheaths). Not a specification: `material` is a plain categorical attribute, not a rated quantity.
+title: { en: Construction, pt: Construção }
+prop:
+  material: {} # incoloy, copper, titanium, stainless, concrete, cotton, …

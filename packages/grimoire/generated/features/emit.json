@@ -1,0 +1,62 @@
+{
+  "prop": {
+    "format": {
+      "$ref": "../property/format.json",
+      "description": {
+        "en": "Wire layout for decoded points. grouped (default when absent): one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, ...values}. per_value: one retained bare-value topic per point at <topic_prefix>/<group>/<key> (no envelope) — the flat layout legacy per-value subscribers expect. Medium-neutral so any decoder-to-MQTT medium can offer either contract."
+      },
+      "schema": {
+        "enum": [
+          "grouped",
+          "per_value"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Wire format"
+      }
+    },
+    "publish": {
+      "$ref": "../property/publish.json",
+      "description": {
+        "en": "When to publish: on change only, or every sample."
+      },
+      "schema": {
+        "enum": [
+          "changed",
+          "always"
+        ],
+        "type": "string"
+      },
+      "title": {
+        "en": "Publish policy"
+      }
+    },
+    "topic_prefix": {
+      "$ref": "../property/topic_prefix.json",
+      "description": {
+        "en": "MQTT topic root a decoded value is published under."
+      },
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": {
+        "en": "Topic prefix"
+      }
+    },
+    "update_interval_ms": {
+      "$ref": "../property/update_interval_ms.json",
+      "description": {
+        "en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default."
+      },
+      "schema": {
+        "exclusiveMinimum": 0,
+        "type": "integer"
+      },
+      "title": {
+        "en": "Update interval (ms)"
+      }
+    }
+  }
+}

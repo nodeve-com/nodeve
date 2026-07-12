@@ -1,0 +1,3 @@
+title: { en: Baud rate, pt: Taxa de transmissão }
+description: { en: Serial line speed in baud. }
+schema: { type: integer, minimum: 1 }

@@ -1,0 +1,14 @@
+# features/electrical.yaml — the electrical-measurement quantities EVERY electrical connection
+# carries, AC or DC: voltage, current, active_power, active_energy, resistance. The single place
+# these travel together — a DC port composes exactly this, an AC phase composes this PLUS the
+# AC-only quantities. All quantity_kinds → `is_specification: true`: every field is a spec (its rated
+# intervals + sensor-channel measurements). Each optional — a feature/instance fills only what its
+# datasheet/telemetry states.
+concept_settings:
+  is_specification: true
+prop:
+  voltage: {}
+  current: {}
+  active_power: {} # signed where directional (export +, import −)
+  active_energy: {}
+  resistance: {} # e.g. a heating element's resistance (P = V²/R)

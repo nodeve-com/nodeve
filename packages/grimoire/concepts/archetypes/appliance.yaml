@@ -1,0 +1,11 @@
+concept_settings:
+  compose: [ thing ]
+title:
+  en: Appliance
+  pt: Eletrodoméstico
+description:
+  en: A metered electrical load (identity + AC supply draw).
+  pt: Uma carga elétrica medida (identidade + consumo de alimentação CA).
+feature:
+  product: {}
+  ac_phase: {} # the AC connection the whole load accepts + its own draw (generic appliances state draw here)

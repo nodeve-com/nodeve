@@ -1,0 +1,7 @@
+# The KEY of a commissioning setting a band is gated on — a property name in the device's own
+# `settings_schema` (the entry-level raw JSON-schema of its configurable knobs). A `setting_gate`
+# pairs this with `equals`: "this band holds when setting <key> == <value>". Distinct from a
+# `condition` (which gates on another QUANTITY's interval via interval_item); a setting is external
+# config the site fixes at commissioning, not a measured region.
+title: { en: Setting }
+schema: { type: string, minLength: 1 }

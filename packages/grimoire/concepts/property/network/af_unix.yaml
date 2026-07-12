@@ -1,0 +1,4 @@
+title: { en: AF_UNIX serve socket }
+description:
+  en: "The AF_UNIX face of serve — the co-located adapter-to-gateway hop, a filesystem path (unix_socket)."
+schema: { type: object }

@@ -1,0 +1,3 @@
+title: { en: Port }
+description: { en: TCP/UDP port number. Omit to fall back to the scheme's well-known default. }
+schema: { type: integer, minimum: 1, maximum: 65535 }

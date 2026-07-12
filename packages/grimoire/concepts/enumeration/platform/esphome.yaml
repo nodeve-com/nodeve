@@ -1,0 +1,4 @@
+title:
+  en: ESPHome
+description:
+  en: Decoder platform — the adapter runs as a generated ESPHome device rather than the site's gateway daemon.

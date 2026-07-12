@@ -1,0 +1,36 @@
+# The FEATURE_SPEC slot — the authored specification body of an `is_specification` feature, held
+# under a `feature_spec:` key (archetypes/feature.yaml assembles `feature: {concept_settings,
+# feature_spec}`). This is where "the things defined today" live: the `{combined, default, part,
+# instances}` breakdown. `count` is NOT here — it moved to `concept_settings` (the grammar layer).
+#
+# DIRECTION (see docs/feature-model.md "feature_spec direction"): today this body is authored ONLY at
+# the catalog-instance level (e.g. dtsu666.yaml's bare `ac_phase_three_point: {combined, default}`).
+# The target is to HOIST it onto the feature DEFINITION too, so a feature carries its own agnostic
+# default bands, and a catalog instance only states deltas. Gated by `concept_settings.is_specification`.
+#
+# Field roles (the SAME quantity whether authored on a def or a catalog instance):
+#   combined  — the feature's OWN whole/aggregate spec. A PARTLESS is_specification feature
+#               (electrical_quantity, ac_phase, enclosure) puts its columns HERE — there are no
+#               instances of itself to break down. A parted/counted feature uses it for the
+#               non-derivable whole (a three-phase point's system `frequency`).
+#   default   — the per-part / per-instance TEMPLATE. Only meaningful once a parent parts or counts
+#               this feature. Cascade: part.<name> ⊕ parent default.<kind> ⊕ <kind-feature>.combined
+#               (the kind feature's own `feature_spec.combined` is the base the parent's default
+#               refines — so a parent no longer restates the per-phase bands, it overrides deltas).
+#   part      — NAME-keyed sparse overrides (parted features; the parts/<slug>.yaml map fixes the set).
+#   instances — ordinal-tagged sparse overrides (counted features; one row per `concept_settings.count`).
+#
+# `default` is AUTHORING-ONLY and never leaves the package — the emit resolves each part/instance to
+# its filled node (part.<name> / instances[n]); a single feature emits its `combined` columns.
+title:
+  en: Feature specification body
+
+prop:
+  combined: {} # the feature's own whole/aggregate spec (partless features author their columns here)
+  default: {} # per-part / per-instance template (authoring-only; resolved away in the emit)
+  part: {} # name-keyed sparse overrides (parted)
+  instances: {} # ordinal-tagged sparse overrides (counted)
+
+concept_settings:
+  compose:
+    - instance_key # the per-instance join keys (part | ordinal)

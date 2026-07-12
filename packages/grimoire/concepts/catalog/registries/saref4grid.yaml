@@ -1,0 +1,11 @@
+# Terms by class local name, e.g. GridMeter, PowerLine.
+title:
+  en: SAREF4GRID (ETSI SAREF smart-grid extension)
+  pt: "SAREF4GRID (extensão de rede inteligente ETSI SAREF)"
+identity:
+  slug: saref4grid
+  code: JGG774A6
+  url: https://saref.etsi.org/saref4grid/
+registry_publication:
+  published_by: etsi
+  iri_template: "https://saref.etsi.org/saref4grid/{id}"

@@ -1,0 +1,4 @@
+title: { en: Duration (ms), pt: Duração (ms) }
+description:
+  en: "How long a condition must hold before its band applies, integer milliseconds — the dwell/debounce on a gate."
+schema: { type: integer, minimum: 0 }

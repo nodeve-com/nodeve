@@ -1,0 +1,7 @@
+title: { en: Compose, pt: Compor }
+description:
+  en: "FLATTEN the named shapes' props into this def — a single slug or a list. The old `alias` (a same-shape rename) is just a one-element compose. Each target must be an object shape; a def groups props, never IS a scalar."
+schema:
+  anyOf:
+    - { type: string, pattern: '^[a-z][a-z0-9_]*$' }
+    - { type: array, items: { type: string, pattern: '^[a-z][a-z0-9_]*$' }, minItems: 1 }

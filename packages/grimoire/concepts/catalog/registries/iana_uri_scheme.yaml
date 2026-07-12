@@ -1,0 +1,11 @@
+# No iri_template: IANA publishes the schemes as a table, not per-scheme resolvable IRIs (like
+# iana_protocol). `term` is the registry's scheme token, e.g. "mqtt", "https".
+title:
+  en: IANA Uniform Resource Identifier (URI) Schemes
+  pt: Esquemas de URI da IANA
+identity:
+  slug: iana_uri_scheme
+  code: 7SZ1K04W
+  url: https://www.iana.org/assignments/uri-schemes/
+registry_publication:
+  published_by: iana

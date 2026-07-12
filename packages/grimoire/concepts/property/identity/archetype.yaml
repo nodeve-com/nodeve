@@ -1,0 +1,4 @@
+title: { en: Archetype }
+description:
+  en: "The class a catalogued/instantiable thing is an instance of — a property/archetype/ slug (inverter, meter, dehumidifier, ...). Selects the closed feature menu the entry fills."
+schema: { type: string, pattern: '^[a-z][a-z0-9_]*$' }

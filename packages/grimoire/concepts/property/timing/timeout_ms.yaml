@@ -1,0 +1,3 @@
+title: { en: Timeout (ms), pt: Timeout (ms) }
+description: { en: Per-transfer timeout in integer milliseconds. }
+schema: { type: integer, exclusiveMinimum: 0 }

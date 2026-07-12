@@ -1,0 +1,3 @@
+title: { en: Variant }
+description: { en: "Commissioning-choice group: intervals sharing a variant slug are a SINGLE pick resolved at the site (grid-region 220 vs 230 V), not simultaneous limits. Omit for an unconditional interval." }
+schema: { type: string, minLength: 1 }

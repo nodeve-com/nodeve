@@ -1,0 +1,9 @@
+# A known/common short designation for the thing — a language-neutral symbol string borrowed from a
+# standard (IEC 60445 wire designation `L1`/`N`, a unit-style token), NOT human prose (that is the
+# i18n `title`) and NOT a machine key (that is `slug`/`code`). Like a unit symbol: same token in
+# every locale. Optional — only where a recognized short form exists.
+title:
+  en: Symbol
+schema:
+  type: string
+  minLength: 1

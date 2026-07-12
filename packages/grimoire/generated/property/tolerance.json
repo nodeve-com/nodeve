@@ -1,0 +1,12 @@
+{
+  "description": {
+    "en": "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage."
+  },
+  "schema": {
+    "exclusiveMinimum": 0,
+    "type": "number"
+  },
+  "title": {
+    "en": "Tolerance"
+  }
+}

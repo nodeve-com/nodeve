@@ -1,0 +1,11 @@
+# No iri_template: USB-IF publishes class specs as documents, not per-term resolvable IRIs. `term` is
+# the spec name, e.g. "HID" (Device Class Definition for Human Interface Devices).
+title:
+  en: USB Implementers Forum
+  pt: USB Implementers Forum
+identity:
+  slug: usb_class
+  code: G2S5S3WC
+  url: https://www.usb.org/
+registry_publication:
+  published_by: usb_if

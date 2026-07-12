@@ -1,0 +1,7 @@
+title:
+  en: Azimuth
+  pt: Azimute
+description:
+  en: Plane orientation as compass degrees, 0° = N.
+schema:
+  type: number

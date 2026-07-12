@@ -1,0 +1,8 @@
+title:
+  en: Phase angle
+  pt: Ângulo de fase
+refs:
+  - { registry_id: qudt_quantity_kind, term: PhaseAngle, match: exact }
+measurand:
+  si_unit: rad
+  accumulation: instantaneous

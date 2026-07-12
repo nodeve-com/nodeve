@@ -1,0 +1,27 @@
+{
+  "description": {
+    "en": "Optional localized blurb for a term (i18n text)."
+  },
+  "prop": {
+    "en": {
+      "schema": {
+        "minLength": 3,
+        "type": "string"
+      },
+      "title": {
+        "en": "English",
+        "pt": "inglês"
+      }
+    },
+    "pt": {
+      "schema": {
+        "minLength": 3,
+        "type": "string"
+      }
+    }
+  },
+  "title": {
+    "en": "Description",
+    "pt": "Descrição"
+  }
+}

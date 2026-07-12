@@ -1,0 +1,27 @@
+title:
+  en: Battery
+  pt: Bateria
+# Battery-as-storage is a first-class class in every energy property — exact matches all round.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: BatteryUnit
+    match: exact
+  - registry_id: seas
+    term: Battery
+    match: exact
+  - registry_id: brick
+    term: Battery
+    match: exact
+  - registry_id: iec_61850
+    term: ZBAT
+    match: exact
+  - registry_id: sunspec
+    term: '802'
+    match: close
+concept_settings:
+  compose: [ electrical_quantity ]
+prop:
+  electric_charge: {}

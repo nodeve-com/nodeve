@@ -1,0 +1,4 @@
+title: { en: Reconnect period (ms), pt: Período de reconexão (ms) }
+description:
+  en: "Delay before a dropped connection is retried, integer milliseconds."
+schema: { type: integer, exclusiveMinimum: 0 }

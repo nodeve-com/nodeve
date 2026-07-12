@@ -1,0 +1,4 @@
+title: { en: IP address }
+description:
+  en: "An L3 address assigned to the interface — an IPv4 dotted-quad (192.0.2.10) or IPv6 (2001:db8::1). The `ip_family` sibling records which. No sensible default — deployment-specific, supplied downstream."
+schema: { type: string, minLength: 1 }

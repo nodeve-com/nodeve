@@ -1,0 +1,11 @@
+{
+  "description": {
+    "en": "Firmware-driven scale selection (offset + nibble + select); omit for a device whose scaling is fixed across firmware. Named firmware, not version: it's a decode-config selector, not a protocol-version value."
+  },
+  "schema": {
+    "type": "object"
+  },
+  "title": {
+    "en": "Firmware"
+  }
+}

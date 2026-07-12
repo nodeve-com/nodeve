@@ -1,0 +1,15 @@
+{
+  "identity": {
+    "archetype": "registry",
+    "code": "8G96T0S1",
+    "slug": "qudt_quantity_kind"
+  },
+  "registry_publication": {
+    "iri_template": "http://qudt.org/property/quantitykind/{id}",
+    "published_by": "qudt"
+  },
+  "title": {
+    "en": "QUDT QuantityKind",
+    "pt": "QUDT QuantityKind"
+  }
+}

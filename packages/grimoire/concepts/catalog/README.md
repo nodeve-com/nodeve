@@ -1,0 +1,1 @@
+- `slug` is an identity. Unique across entire archetype; it keys the generated catalog, and every derived sensor id starts from it. `identity.code` is the authored short-code (stable across re-filing and slug renames); `id` stays free for the future database uuid. Tree path is currently filing only.
