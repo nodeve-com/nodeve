@@ -1,6 +1,6 @@
 {
   "name": "@nodeve/schema-case",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Casing projections of a snake_case JSON Schema: generate the camelCase sibling schema with a stored key map, rename instances by that map, and point camel paths back at snake sources.",
   "license": "MIT",
   "repository": {

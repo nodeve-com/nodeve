@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.7.0
+
+### Minor Changes
+
+- Add the `find-similar-svelte` bin: structural-similarity scan over `.svelte` files, surfacing near-duplicate components by shape.
+
 ## 1.6.0
 
 ### Minor Changes
