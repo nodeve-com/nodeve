@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.0.1
+
+### Patch Changes
+
+- `ac_phase_three` is now the canonical parted three-phase shape; `_eps`/`_grid`/`_point`/`_load` reuse it via single-slug `compose:` instead of each restating the parts map. Single-slug compose of a shape-less def now reuses the sibling's whole resolved node (folding to a `$ref` spread of its `Data`), and `featureNature`/`featureCombined` follow the compose chain so catalog part-expansion is unaffected. Generated schema and resolved data are behaviorally identical.
+
 ## 4.0.0
 
 ### Major Changes
