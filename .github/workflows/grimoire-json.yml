@@ -19,6 +19,9 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # grimoire's codegen imports its workspace deps (@nodeve/schema-case, encoding) from their
+      # built dist/ — build them (and any sibling) before baking.
+      - run: pnpm -r --if-present build
       - run: pnpm --filter @nodeve/grimoire generate
       - run: tar -czf grimoire-json.tar.gz -C packages/grimoire artifacts
       - run: gh release create "$GITHUB_REF_NAME" --notes "JSON artifacts for $GITHUB_REF_NAME" grimoire-json.tar.gz
