@@ -1,5 +1,6 @@
 concept_settings:
-  part: electrical_ac_phase_three
+  # Same shape as ac_phase_three (whole + a/b/c + ab/bc/ca) under a new name — pure reuse spreads it.
+  compose: ac_phase_three
 title:
   en: EPS phase
   pt: Fase EPS

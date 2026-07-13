@@ -387,7 +387,8 @@ export default {
 						}
 					]
 				}
-			}
+			},
+			"part": {}
 		},
 		"identity": {
 			"slug": "ac_load"

@@ -1,3 +1,10 @@
+# The CANONICAL three-phase AC connection shape: the whole plus per-phase (a/b/c) and per-line
+# (ab/bc/ca) parts (parts/electrical_ac_phase_three.yaml). Every concrete three-phase feature-of-
+# interest — connection point, EPS output, grid injection — is THIS shape under a new name:
+# `compose: ac_phase_three` (kit/resolve.ts pure reuse), restating only its own title/refs. The
+# parted spec lives HERE, once.
+concept_settings:
+  part: electrical_ac_phase_three
 title:
   en: Three-phase AC
   pt: CA trifásica

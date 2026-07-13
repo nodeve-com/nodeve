@@ -15,5 +15,5 @@ refs:
     term: PowerLine
     match: broad
 concept_settings:
-  # Fixed three-phase instance set (a/b/c + ab/bc/ca) — same parts map as the point/eps features.
-  part: electrical_ac_phase_three
+  # Same shape as ac_phase_three (whole + a/b/c + ab/bc/ca) under a new name — pure reuse spreads it.
+  compose: ac_phase_three

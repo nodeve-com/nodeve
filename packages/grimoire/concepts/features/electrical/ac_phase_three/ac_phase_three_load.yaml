@@ -1,6 +1,7 @@
 # The whole-load AC feature-of-interest a box meters downstream of its own port (foxess
-# load_power: the home's total draw as the inverter sees it). SINGLE (count-less): one whole,
-# no instances — its body is the electrical spec-map directly.
+# load_power: the home's total draw as the inverter sees it). Same three-phase shape as its
+# siblings — a device fills only what it meters (fox reports the combined total), the per-phase
+# parts stay optional.
 title:
   en: AC 3-Phase Load
   pt: Carga CA trifásica
@@ -12,4 +13,5 @@ refs:
     term: Electrical_Meter
     match: related
 concept_settings:
-  compose: electrical_quantity
+  # Same shape as ac_phase_three (whole + a/b/c + ab/bc/ca) under a new name — pure reuse spreads it.
+  compose: ac_phase_three

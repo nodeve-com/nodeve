@@ -16,7 +16,11 @@ function featureNature(slug: string): { parts?: Record<string, string[]>; counte
 		if (!partsPath) throw new Error(`grimoire generate: no parts/${settings.part}.yaml (feature ${slug})`);
 		return { parts: readYaml(partsPath).parts as Record<string, string[]> };
 	}
-	return settings.repeated === true ? { counted: true } : {};
+	if (settings.repeated === true) return { counted: true };
+	// A pure-reuse feature (`compose: <sibling>`, no own shape — kit/resolve.ts) IS its sibling's shape:
+	// follow the single-slug compose chain so its parted/counted nature is discoverable here too.
+	if (typeof settings.compose === 'string') return featureNature(settings.compose);
+	return {};
 }
 
 /** A part-kind feature's OWN agnostic default bands — its def-level `feature_spec.combined` (empty
@@ -25,8 +29,12 @@ function featureNature(slug: string): { parts?: Record<string, string[]>; counte
 function featureCombined(slug: string): Obj {
 	const path = layerIndex('features').get(slug);
 	if (!path) return {};
-	const fs = readYaml(path).feature_spec;
-	return isPlainObject(fs) && isPlainObject((fs as Obj).combined) ? ((fs as Obj).combined as Obj) : {};
+	const doc = readYaml(path);
+	const fs = doc.feature_spec;
+	if (isPlainObject(fs) && isPlainObject((fs as Obj).combined)) return (fs as Obj).combined as Obj;
+	// Pure-reuse feature: its own bands live on the composed sibling (kit/resolve.ts).
+	const settings = (doc.concept_settings ?? {}) as Record<string, unknown>;
+	return typeof settings.compose === 'string' ? featureCombined(settings.compose) : {};
 }
 
 // A spec-row's identity: the band axes of an interval (rating + mode, `interval:`-nested or flat).

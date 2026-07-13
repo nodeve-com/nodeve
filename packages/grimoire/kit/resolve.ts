@@ -171,6 +171,22 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	if (composeSlugs.length > 0 && layer === undefined) {
 		throw new Error(`grimoire compile: cannot resolve \`compose:\` without a known layer (via ${stack.join(' → ')})`);
 	}
+	// PURE REUSE (README "same-shape reuse under a new name"): a def composing ONE sibling and adding no
+	// own shape IS that sibling renamed. Reuse its WHOLE resolved node (feature_spec/part intact, not the
+	// `combined` columns the generic loop digs out), overlaying own data; `$composes` folds to a `$ref`.
+	const noOwnShape = !isPlainObject(def.prop) && def.feature === undefined && def.archetype === undefined && def.enums === undefined
+		&& settings.is_specification !== true && settings.part === undefined && settings.repeated !== true && settings.is_array !== true && settings.map !== true;
+	if (composeSlugs.length === 1 && noOwnShape) {
+		const composed = resolveSiblingBySlug(composeSlugs[0]!, layer as Layer, stack);
+		if (!isPlainObject(composed.prop)) {
+			throw new Error(`grimoire compile: compose target "${composeSlugs[0]}" is a scalar, not an object shape — a feature groups props (via ${stack.join(' → ')})`);
+		}
+		const { $composes: _c, ...composedNode } = composed;
+		const ownData: Obj = {};
+		for (const [k, v] of Object.entries(def)) if (!consumed.has(k) && k !== 'identity' && k !== 'slug') ownData[k] = clone(v);
+		return { ...clone(composedNode), ...ownData, $composes: [composeSlugs[0]] };
+	}
+
 	let composedData: Obj = {};
 	for (const slug of composeSlugs) {
 		const composed = resolveSiblingBySlug(slug, layer as Layer, stack);
