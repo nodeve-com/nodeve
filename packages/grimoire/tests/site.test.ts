@@ -27,7 +27,7 @@ describe('parseConcept', () => {
 	test('validates against the baked schema and camelizes', () => {
 		const loc = parseConcept('location', { latitude: 37.8, longitude: -25.5, altitude: 250 });
 		expect(loc).toEqual({ latitude: 37.8, longitude: -25.5, altitude: 250 });
-		expect(parseConcept('site_adapter', ADAPTER).identity?.slug).toBe('grid_meter');
+		expect(parseConcept('siteAdapter', ADAPTER).identity?.slug).toBe('grid_meter');
 	});
 	test('throws an aggregated error on invalid data', () => {
 		expect(() => parseConcept('location', { latitude: 137.8 })).toThrow(/Invalid location config:/);

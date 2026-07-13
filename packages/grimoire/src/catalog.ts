@@ -14,8 +14,8 @@ export interface CatalogIdentity {
 	slug: string;
 }
 
-/** One baked catalog entry (snake_case, as emitted). Identity is guaranteed; the archetype body
- *  varies by archetype — access its `modbus` etc. by key, or camelCase at your parse edge. */
+/** One baked catalog entry (camelCase keys, as emitted — the snake wire shape is the .json twin).
+ *  Identity is guaranteed; the archetype body varies by archetype — access its `modbus` etc. by key. */
 export interface CatalogDevice {
 	identity: CatalogIdentity & { code?: string };
 	[key: string]: unknown;
@@ -43,38 +43,38 @@ export function loadDevice(identity: CatalogIdentity): CatalogDevice {
 	return device;
 }
 
-/** One decoded register of a modbus device (snake, as emitted): its address + wire type/scale, and
- *  EITHER a measurand link (`feature_id` + `quantity_kind`, optional `part_id`/`ordinal`) OR a bare
- *  `raw_name` when still unattributed. `unit`/`decimals` present only when authored. */
+/** One decoded register of a modbus device (camelCase, as emitted): its address + wire type/scale,
+ *  and EITHER a measurand link (`featureId` + `quantityKind`, optional `partId`/`ordinal`) OR a bare
+ *  `rawName` when still unattributed. `unit`/`decimals` present only when authored. */
 export interface ModbusRegister {
 	address: number;
 	type: string;
 	scale?: number;
 	unit?: string;
 	decimals?: number;
-	feature_id?: string;
-	part_id?: string;
+	featureId?: string;
+	partId?: string;
 	ordinal?: number;
-	quantity_kind?: string;
-	raw_name?: string;
+	quantityKind?: string;
+	rawName?: string;
 	[key: string]: unknown;
 }
 
-/** A device's modbus medium — the register map + how the bus is talked to (`serial_port`,
- *  `serial_wire`, `modbus_link`), exactly as emitted. The one accessor a gateway/codegen reads to
+/** A device's modbus medium — the register map + how the bus is talked to (`serialPort`,
+ *  `serialWire`, `modbusLink`), exactly as emitted. The one accessor a gateway/codegen reads to
  *  decode this device (README "Using the catalog"). */
 export interface ModbusMedium {
-	modbus_registers: ModbusRegister[];
-	serial_port?: { baud_rate?: number; [key: string]: unknown };
-	serial_wire?: Record<string, unknown>;
-	modbus_link?: Record<string, unknown>;
+	modbusRegisters: ModbusRegister[];
+	serialPort?: { baudRate?: number; [key: string]: unknown };
+	serialWire?: Record<string, unknown>;
+	modbusLink?: Record<string, unknown>;
 	[key: string]: unknown;
 }
 
 /** The modbus medium of a device, or throw if it exposes none (a spec-only catalog entry). */
 export function modbusMediumOf(device: CatalogDevice): ModbusMedium {
 	const modbus = device.modbus as ModbusMedium | undefined;
-	if (!modbus?.modbus_registers)
+	if (!modbus?.modbusRegisters)
 		throw new Error(`catalog device \`${refOf(device.identity)}\` has no modbus register map`);
 	return modbus;
 }

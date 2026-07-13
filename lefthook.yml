@@ -17,3 +17,11 @@ pre-commit:
   jobs:
     - name: build-checks
       run: pnpm --filter @nodeve/checks build
+
+    # grimoire's README promise made real: a commit touching grimoire regenerates src/generated/,
+    # re-stages it, and runs the guards (incl. guard-generated-camel — NO snake on the TS surface).
+    # Without this the guard only ran in `pnpm check`, and stale/snake generated files kept landing.
+    - name: grimoire-generate
+      glob: 'packages/grimoire/**'
+      run: pnpm --filter @nodeve/grimoire generate && pnpm --filter @nodeve/grimoire guards
+      stage_fixed: true

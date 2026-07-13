@@ -12,7 +12,9 @@ import { isPlainObject } from 'remeda';
 
 export type Obj = Record<string, unknown>;
 
-const QUANTITY_KIND = new Set(Object.keys(quantityKinds));
+// Wire codes (the trees here are snake wire data) — the generated dict keys camelCase, so the
+// membership set derives from each member's authoritative `code`, not the TS keys.
+const QUANTITY_KIND = new Set<string>(Object.values(quantityKinds).map((t) => t.code));
 
 /** Is this feature node a measurand feature — does it carry a `feature_spec` spec body (the
  *  {combined, part, instances} breakdown of its quantity columns)? */

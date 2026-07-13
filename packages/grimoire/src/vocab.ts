@@ -30,6 +30,8 @@ export interface Term {
 export interface Vocab<Name extends string, Code extends string> {
 	readonly enumeration: Name;
 	readonly codes: readonly Code[];
+	/** Wire `code` → member. The generated dicts key camelCase (TS surface); this re-keys by each
+	 *  member's `code`, the wire spelling runtime lookups arrive in. */
 	readonly dict: Record<Code, Term>;
 	/** Resolve a member's crosswalk to an external `registry` → that registry's term, or
 	 *  `undefined` when the member has no ref to it. The single, uniform projection of an
@@ -40,14 +42,15 @@ export interface Vocab<Name extends string, Code extends string> {
 /** The member-code union of a vocab (`VocabCode<typeof ACCUMULATION>` = `'instantaneous' | …`). */
 export type VocabCode<V> = V extends Vocab<string, infer Code> ? Code : never;
 
-function makeVocab<const Name extends string, const Code extends string>(
+function makeVocab<const Name extends string, const T extends Record<string, Term>>(
 	enumeration: Name,
-	dict: Record<Code, Term>,
-): Vocab<Name, Code> {
-	const codes = Object.keys(dict) as Code[];
+	generated: T,
+): Vocab<Name, T[keyof T]['code']> {
+	type Code = T[keyof T]['code'];
+	const dict = Object.fromEntries(Object.values(generated).map((t) => [t.code, t])) as Record<Code, Term>;
 	return {
 		enumeration,
-		codes,
+		codes: Object.keys(dict) as Code[],
 		dict,
 		crosswalk: (code, registry) => dict[code]?.refs?.find((r) => r.registryId === registry)?.term,
 	};

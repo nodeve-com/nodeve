@@ -27,7 +27,8 @@ import { type Obj, layerIndex } from '../src/concept-sources.ts';
 import { assertFeatureDocsValid, assertLeafDocsValid } from './validate-docs.ts';
 import { catalogEntries, renderCatalogEntry, renderCatalogIndex } from './emit-catalog.ts';
 import { conceptDataTree, inlineSchemaOf, layerOf } from './data-tree.ts';
-import { renderConceptModule, renderConceptsIndex } from './emit-types.ts';
+import { renderArchetypeIndex, renderConceptsIndex } from './emit-index.ts';
+import { renderConceptModule } from './emit-types.ts';
 import { enumerationMemberData, enumerations, renderVocabModule } from './emit-enumeration.ts';
 import { renderJson } from './json-schema.ts';
 import { parseDisplayPolicy } from '../src/display-policy.ts';
@@ -107,7 +108,7 @@ export function outputs(): Record<string, string> {
 	const slugs = Object.keys(entries).sort();
 	for (const slug of slugs) {
 		out[join(ARTIFACTS, 'catalog', `${slug}.json`)] = renderJson(entries[slug]);
-		out[join(GENERATED, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]);
+		out[join(GENERATED, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]!);
 	}
 	// The JS/TS reader's grain: catalog/index.ts composes the per-slug modules into one array — code,
 	// no fs/JSON import, so `loadDevice` bundles into a serverless build (kit/catalog.ts keys by identity).

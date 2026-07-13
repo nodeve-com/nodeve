@@ -9,6 +9,7 @@
 // single schema check below catches them; nothing here special-cases a concept.
 
 import { type ValidateFunction } from 'ajv';
+import { toCamelCase } from 'remeda';
 import { camelizeInstance, snakePath } from '@nodeve/schema-case';
 import { ajv } from './ajv.ts';
 import { conceptSchema } from './generated/index.ts';
@@ -24,7 +25,13 @@ const checkByConcept = new Map<Concept, ValidateFunction>();
 const checkerFor = (concept: Concept): ValidateFunction =>
   checkByConcept.get(concept) ?? checkByConcept.set(concept, ajv.compile(conceptSchema[concept])).get(concept)!;
 
-export const isConcept = (key: string): key is Concept => key in conceptSchema;
+/** A wire (snake) bundle key → its `conceptSchema` key (camelized slug), or undefined when no
+ *  concept carries that name — the ONE snake→camel rename on the concept-lookup edge. */
+export const conceptOf = (key: string): Concept | undefined => {
+	const camel = toCamelCase(key);
+	return camel in conceptSchema ? (camel as Concept) : undefined;
+};
+export const isConcept = (key: string): boolean => conceptOf(key) !== undefined;
 const slugOf = (item: unknown): string | undefined =>
   item && typeof item === 'object' ? (item as { identity?: { slug?: string } }).identity?.slug : undefined;
 
@@ -44,12 +51,13 @@ function checkBlock(concept: Concept, data: unknown, label: string): string[] {
 export function validateSite(bundle: Record<string, unknown>, siteLabel: string): void {
   const errors: string[] = [];
   for (const [key, value] of Object.entries(bundle)) {
-    if (!isConcept(key)) {
+    const concept = conceptOf(key);
+    if (concept === undefined) {
       errors.push(`${siteLabel}/${key}: no grimoire concept named \`${key}\``);
     } else if (Array.isArray(value)) {
-      value.forEach((item, i) => errors.push(...checkBlock(key, item, `${siteLabel}/${key}[${slugOf(item) ?? i}]`)));
+      value.forEach((item, i) => errors.push(...checkBlock(concept, item, `${siteLabel}/${key}[${slugOf(item) ?? i}]`)));
     } else {
-      errors.push(...checkBlock(key, value, `${siteLabel}/${key}`));
+      errors.push(...checkBlock(concept, value, `${siteLabel}/${key}`));
     }
   }
   if (errors.length > 0) throw new Error(`Invalid site bundle:\n${errors.join('\n')}`);

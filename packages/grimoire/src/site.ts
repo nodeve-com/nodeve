@@ -21,27 +21,27 @@ export function parseConcept<K extends keyof ConceptTypes>(concept: K, data: unk
 // --- The site concepts consumers parse today (thin named wrappers, keeping call sites stable) ---
 
 export type SiteLocation = ConceptTypes['location'];
-export type AmbientTank = ConceptTypes['ambient_tank'];
-export type SolarArray = ConceptTypes['solar_array'];
+export type AmbientTank = ConceptTypes['ambientTank'];
+export type SolarArray = ConceptTypes['solarArray'];
 export type SolarString = SolarArray['pvStrings'][number];
-export type MqttConnection = ConceptTypes['mqtt_connection'];
+export type MqttConnection = ConceptTypes['mqttConnection'];
 
 export const parseLocation = (data: unknown): SiteLocation => parseConcept('location', data);
-export const parseAmbientTank = (data: unknown): AmbientTank => parseConcept('ambient_tank', data);
-export const parseSolarArray = (data: unknown): SolarArray => parseConcept('solar_array', data);
-export const parseMqttConnection = (data: unknown): MqttConnection => parseConcept('mqtt_connection', data);
+export const parseAmbientTank = (data: unknown): AmbientTank => parseConcept('ambientTank', data);
+export const parseSolarArray = (data: unknown): SolarArray => parseConcept('solarArray', data);
+export const parseMqttConnection = (data: unknown): MqttConnection => parseConcept('mqttConnection', data);
 
 // --- Site adapters: the install's decoder peers. A `site_adapter` is an ordinary concept parsed
 //     through `parseConcept` like every other; nothing bespoke. What IS shared lives in the topic
 //     layer below — every published path roots at the connection's `emit.topic_prefix`, extended by
 //     the adapter's own slug (`<topic_prefix>/<slug>/…`). ---
 
-export type SiteAdapter = ConceptTypes['site_adapter'];
+export type SiteAdapter = ConceptTypes['siteAdapter'];
 export type TapWindow = NonNullable<SiteAdapter['modbusTapWindow']>[number];
 
 /** Validate + camelCase one adapter. The `modbus_tap`-windows-iff-modbus_tap cross-field rule is
  *  enforced once at bake by `validateSite` (kit/validate-site.ts), not re-checked per read. */
-export const parseSiteAdapter = (data: unknown): SiteAdapter => parseConcept('site_adapter', data);
+export const parseSiteAdapter = (data: unknown): SiteAdapter => parseConcept('siteAdapter', data);
 
 /** The site-wide sensor-data topic root: the connection's `emit.topic_prefix` — the ONE prefix every
  *  published sensor path roots at, before any adapter slug. Extracted HERE so no consumer re-reaches
@@ -98,7 +98,7 @@ function collectEnvVars(schema: unknown, prefix: readonly string[] = []): Record
 
 // The CANONICAL env-var names a deployment supplies each connection field under — DERIVED from
 // the schema's `x-env-var` annotations, so the names live in ONE place and can't drift.
-export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(conceptSchema.mqtt_connection);
+export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(conceptSchema.mqttConnection);
 
 /** Every canonical MQTT_* env var name (guard-mqtt-env.sh's allow-list). */
 export const MQTT_ENV_NAMES: readonly string[] = [...new Set(Object.values(MQTT_ENV))];
