@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { describe, expect, it } from 'vitest';
-import { displayPolicyFor, parseDisplayPolicy } from '../display-policy/policy.ts';
+import { displayPolicyFor, parseDisplayPolicy } from '../src/display-policy.ts';
 
 const voltage = {
   feature: 'ac_phase',

@@ -1,9 +1,0 @@
-{
-  "items": {
-    "maximum": 65535,
-    "minimum": 0,
-    "type": "integer"
-  },
-  "minItems": 1,
-  "type": "array"
-}

@@ -1,8 +1,6 @@
 # Mini-Box M4-ATX intelligent DC-DC ATX power supply — one catalog entry: its identity (the
 # `power_supply` archetype) AND how it is talked to (its usbhid slot). `manufacturer: Mini-Box`
-# and `archetype: power_supply` are inherited from ./_defaults.yaml. The "decoder/master" stage of
-# docs/sensors-control.md: poll the device, scale raw bytes to engineering units, publish to MQTT —
-# TRANSLATE ONLY; any derived signal (rail under-voltage flags, thermal trends) is eKuiper's job.
+# and `archetype: power_supply` are inherited from ./_defaults.yaml.
 #
 # This medium is the COMPLETE protocol, as data: a gateway in any language reads it to drive the
 # device — which USB device to open (transport.usb), how to poll it (link), and how to decode the

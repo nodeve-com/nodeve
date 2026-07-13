@@ -2,7 +2,7 @@
 // authoring-only and never leaves the package — the emit fills `part.<name>` / `instances[n]`
 // from it. BUILD- AND TEST-ONLY (reads the concept YAML via kit/concept-sources).
 
-import { type Obj, isObj, layerIndex, readYaml } from './concept-sources.ts';
+import { type Obj, isObj, layerIndex, readYaml } from '../src/concept-sources.ts';
 
 /** A features/<slug> def's repeated nature: a parts map (kind → part names), counted, or single. */
 function featureNature(slug: string): { parts?: Record<string, string[]>; counted?: boolean } {

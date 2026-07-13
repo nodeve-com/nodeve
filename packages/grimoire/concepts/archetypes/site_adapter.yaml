@@ -1,10 +1,7 @@
 # One SITE ADAPTER — a physical decoder peer of the bus topology (a gateway-daemon link, a
 # passive-tap board): identity, host, ingest kind, and the tap windows it republishes.
 # Its topic root DERIVES as <pathname>/<slug> (never authored — root and identity can't drift);
-# every published path nests the ingest-kind segment under it. Cross-field rules a schema can't
-# express are enforced once at bake by validateSite (kit/validate-site.ts): `modbus_tap` windows
-# present iff ingest_kind is modbus_tap. (A discriminated union on ingest_kind would make it
-# structural — pending emitter support for oneOf.)
+# every published path nests the ingest-kind segment under it.
 concept_settings:
   compose: thing # identity (the slug), title (the human label), description, refs
 
@@ -14,3 +11,15 @@ feature:
   addressing: {} # optional — the WiFi network the board joins (L2); on-board decoder platforms only
   endpoint: {} # how the decoder is reached — a raw tcp/udp socket (host + port + transport_protocol) or, with a scheme, a URL
   modbus_tap_window: {} # the master-poll windows a passive tap republishes (modbus_tap only)
+
+# The tap-window block travels with — and ONLY with — a modbus_tap ingest. `ingest_kind` names the
+# mode (modbus_tap = passive tap, modbus_tcp = polling master), so the modbus_tap VALUE is the
+# discriminator: windows present iff ingest_kind is modbus_tap.
+# A cross-field invariant, but a structural one — draft-07 if/then/else on the resolved shape,
+# merged by kit/project.ts (same passthrough as endpoint.yaml's transport rules), so every
+# consumer inherits it from the emitted schema. No bake-time special-casing.
+schema:
+  allOf:
+    - if: { required: [ingest], properties: { ingest: { properties: { ingest_kind: { const: modbus_tap } }, required: [ingest_kind] } } }
+      then: { required: [modbus_tap_window] }
+      else: { properties: { modbus_tap_window: false } }

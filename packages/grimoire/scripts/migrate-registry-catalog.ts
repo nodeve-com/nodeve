@@ -9,8 +9,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { join } from 'node:path';
 import { shortCode } from '@nodeve/encoding/short-code';
 import { parse as parseYaml } from 'yaml';
+import { CONCEPTS } from '../src/concept-sources.ts';
 
-const CONCEPTS = join(import.meta.dir, '../concepts');
 const ENUM_REGISTRY = join(CONCEPTS, 'enumeration/registry');
 const CATALOG_REGISTRIES = join(CONCEPTS, 'catalog/registries');
 const CATALOG_ORGS = join(CONCEPTS, 'catalog/organizations');
@@ -35,7 +35,7 @@ const REGISTRY_RENAME: Record<string, string> = {
 };
 
 // New organization entries (the standards bodies + vendors that publish the registries above).
-const NEW_ORGS: Record<string, { title: string; url: string }> = {
+const NEW_ORG_BY_SLUG: Record<string, { title: string; url: string }> = {
 	qudt: { title: 'QUDT.org', url: 'http://qudt.org/' },
 	iso: { title: 'International Organization for Standardization', url: 'https://www.iso.org/' },
 	iec: { title: 'International Electrotechnical Commission', url: 'https://www.iec.ch/' },
@@ -107,11 +107,11 @@ writeFileSync(join(CATALOG_REGISTRIES, 'posix.yaml'), registryEntry(
 ));
 
 // 3. Publishing organizations.
-for (const [slug, { title, url }] of Object.entries(NEW_ORGS)) {
+for (const [slug, { title, url }] of Object.entries(NEW_ORG_BY_SLUG)) {
 	writeFileSync(join(CATALOG_ORGS, `${slug}.yaml`),
 		`title: { en: ${yamlStr(title)} }\nidentity:\n  slug: ${slug}\n  code: ${shortCode(slug)}\n  url: ${url}\n`);
 }
-console.log(`wrote ${Object.keys(NEW_ORGS).length} organization entries + posix registry`);
+console.log(`wrote ${Object.keys(NEW_ORG_BY_SLUG).length} organization entries + posix registry`);
 
 // 4. Flip every crosswalk row: `registry:` key → `registry_id:` FK, and rename the 3 clashing values.
 function rewriteRefs(dir: string): number {

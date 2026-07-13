@@ -3,8 +3,8 @@
 // even while its emit is off (generate.ts EMIT_CATALOG).
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { outputs } from '../generate.ts';
-import { ACCUMULATION, quantityKindCrosswalk } from '../kit/vocab.ts';
+import { outputs } from '../kit/generate.ts';
+import { ACCUMULATION, QUANTITY_KIND } from '../src/vocab.ts';
 
 describe('grimoire-generate mirrors', () => {
 	it('every emitted file matches its committed contents', () => {
@@ -22,7 +22,7 @@ describe('baked vocab dicts', () => {
 	});
 
 	it('quantity kinds crosswalk to HA device_class', () => {
-		expect(quantityKindCrosswalk('active_power', 'ha_device_class')).toBe('power');
-		expect(quantityKindCrosswalk('voltage', 'ha_device_class')).toBe('voltage');
+		expect(QUANTITY_KIND.crosswalk('active_power', 'ha_device_class')).toBe('power');
+		expect(QUANTITY_KIND.crosswalk('voltage', 'ha_device_class')).toBe('voltage');
 	});
 });

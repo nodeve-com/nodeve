@@ -1,10 +1,10 @@
 # Catalog generation pipeline (`bun run grimoire-generate`)
 
-How a `concepts/catalog/<brand>/…yaml` becomes `generated/catalog/<slug>.json`. Entry point `generate.ts`; helpers in `kit/`.
+How a `concepts/catalog/<brand>/…yaml` becomes `artifacts/catalog/<slug>.json` + `src/generated/catalog/<slug>.ts`. Entry point `kit/generate.ts`.
 
 ## Flow (`generate.ts`)
 
-- `outputs()` (the emit map `{path→contents}`) → `assertLeafDocsValid()` + `assertFeatureDocsValid()` + `catalogEntries()`, then writes one `generated/catalog/<slug>.json` per entry (**no committed all-in-one** — the gateway assembles the bundle).
+- `outputs()` (the emit map `{path→contents}`) → `assertLeafDocsValid()` + `assertFeatureDocsValid()` + `catalogEntries()`, then writes one `artifacts/catalog/<slug>.json` (+ `.ts` twin under `src/generated/catalog/`) per entry (**no committed all-in-one** — the gateway assembles the bundle).
 - `catalogEntries()` — walks `loadCascade(CATALOG_DIR)`, validates each cascade-merged leaf against its archetype schema (`assertDocValid` = Ajv over `projectSchema(resolveConcept(archetype))`, the emit gate), enforces slug + `identity.code` uniqueness, then per entry: `{ ...aliases, ...resolveRepeatedFeatures(leaf.data), identity: {archetype, slug, code} }`.
 - `import.meta.filename === process.argv[1]` block does the `writeFileSync`. `tests/generate.test.ts` asserts committed mirrors match (drift test).
 

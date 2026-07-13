@@ -10,5 +10,5 @@ strings:
   # East plane: ten panels in series. vmp/capacity are derived from the panel datasheet
   # × series_count downstream, never restated here.
   - { ordinal: 1, active: true, panel: trina/tsm-625neg19rc-20, series_count: 10, azimuth: 78, tilt: 38 }
-  # West plane: voc_eff fitted from measured data (bun run solar-avail, 2026-06-12).
+  # West plane: voc_eff fitted from measured data (pnpm solar-avail, 2026-06-12).
   - { ordinal: 2, active: true, panel: trina/tsm-625neg19rc-20, series_count: 10, azimuth: 258, tilt: 38, voc_eff: 469 }

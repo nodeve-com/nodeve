@@ -1,7 +1,0 @@
-{
-  "enum": [
-    "big_first",
-    "little_first"
-  ],
-  "type": "string"
-}

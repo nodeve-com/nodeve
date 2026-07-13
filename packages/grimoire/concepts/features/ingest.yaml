@@ -1,15 +1,10 @@
-# How a site adapter INGESTS — one of two disjoint modes:
-#   * PASSIVE TAP — `ingest_kind: modbus_tap`: the adapter sniffs an existing master's traffic and
-#     republishes windows (its `modbus_tap_window` block; the enum member doubles as the path segment).
-#   * POLLED MASTER — `service_id`: the adapter dials one of the metered DEVICE's offered services
-#     (its `services` list — e.g. the inverter's modbus_tcp surface) and reads it. The surface
-#     (protocol/port/binding) lives ONCE on that service, never restated here.
-# Both share the metered thing (`catalog_item`) and the decoder `platform` (see the platform enum).
-# `ingest_kind` is now modbus_tap-only + OPTIONAL — absent on a master (its mode is `service_id`).
+# How a site adapter INGESTS the metered thing (`catalog_item`) via its decoder `platform`.
+# `ingest_kind` names the mode: modbus_tap = PASSIVE TAP (sniff an existing master's traffic, republish
+# its `modbus_tap_window` windows — the member doubles as the path segment); modbus_tcp = POLLED MASTER
+# (dial the device's Modbus-TCP surface, read it directly). Add enum members here as more modes appear.
 enums:
-  - ingest_kind # modbus_tap — the passive-tap discriminator (absent on a polled master)
+  - ingest_kind # modbus_tap (passive tap) | modbus_tcp (polling master)
   - platform # which decoder platform runs the adapter (see the platform enum)
 prop:
-  ingest_kind: {} # optional — present iff this is a passive tap (see the modbus_tap_window cross-field rule)
-  service_id: {} # the served surface a master polls, by its `service` slug (absent on a tap)
+  ingest_kind: { schema: { required: true } } # names the mode; site_adapter ties modbus_tap_window to the modbus_tap value
   catalog_item: { title: { en: 'Site Catalog Item' } }

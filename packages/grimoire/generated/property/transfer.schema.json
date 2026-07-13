@@ -1,7 +1,0 @@
-{
-  "enum": [
-    "interrupt",
-    "control"
-  ],
-  "type": "string"
-}

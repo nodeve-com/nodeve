@@ -1,0 +1,6 @@
+title:
+  en: Modbus-TCP poll
+description:
+  en: Ingest kind — the adapter is the polling master, dialing the metered device's Modbus-TCP surface and reading it directly (no tap windows).
+refs:
+  - { registry_id: modbus_org, term: Modbus, match: broad }

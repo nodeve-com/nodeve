@@ -9,12 +9,11 @@
 // each file's declared props, and fails on any pair sharing 2+ of them.
 //
 // A pair that legitimately shares a group (a deliberate, documented exception) goes in ALLOW below
-// with a WHY. Run standalone any time: `bun run guard:feature-dupes` (root alias).
+// with a WHY. Run standalone any time: `node scripts/guard-feature-dupes.ts`.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { parse as parseYaml } from 'yaml';
-
-const FEATURES_DIR = join(import.meta.dir, '../concepts/features');
+import { FEATURES_DIR } from '../src/concept-sources.ts';
 
 // Unordered `a|b` file-pair keys accepted despite sharing a prop group, each with the reason the
 // overlap is not extractable duplication.

@@ -8,11 +8,11 @@
 //   - same stem in two directories: features/refs.yaml + features/vocab/refs.yaml          (name reused)
 //
 // Companion files (`condition.refs.ts`, `numeric_decode.lang.ts`) carry distinct stems and don't
-// collide. Run standalone any time: `bun run guard:concept-dupes` (root alias).
+// collide. Run standalone any time: `node scripts/guard-concept-dupes.ts`.
 import { readdirSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-const CONCEPTS_DIR = join(import.meta.dir, '../concepts');
+const CONCEPTS_DIR = join(import.meta.dirname, '../concepts');
 
 /** Every `.ts`/`.yaml` file under concepts/, as [stem, path] pairs. */
 function* walk(dir: string): Generator<{ stem: string; path: string }> {
@@ -36,17 +36,17 @@ function isDeepFeatureVariant(rel: string): boolean {
 }
 
 // Key each concept by its stem; collect every file claiming that name.
-const owners = new Map<string, string[]>();
+const pathsByStem = new Map<string, string[]>();
 for (const { stem, path } of walk(CONCEPTS_DIR)) {
 	const rel = relative(CONCEPTS_DIR, path);
 	if (isDeepFeatureVariant(rel)) continue;
 	// `_defaults.yaml` is a cascade file, not a concept — one legitimately sits in
 	// many directories, each scoped to its own subtree. Never a name collision.
 	if (stem === '_defaults') continue;
-	(owners.get(stem) ?? owners.set(stem, []).get(stem)!).push(rel);
+	(pathsByStem.get(stem) ?? pathsByStem.set(stem, []).get(stem)!).push(rel);
 }
 
-const dups = [...owners.entries()]
+const dups = [...pathsByStem.entries()]
 	.filter(([, paths]) => paths.length > 1)
 	.map(([stem, paths]) => [stem, paths.sort()] as const)
 	.sort(([a], [b]) => a.localeCompare(b));

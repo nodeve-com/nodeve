@@ -1,9 +1,0 @@
-# Reference to WHICH offered service a master polls: the `identity.slug` of a `services` entry on the
-# device this adapter meters (the device's own `services` list — that device-declaration IS the
-# registry). An intra-reference — resolved against the referenced device's services, not a catalog
-# FK (mirror of `link` / `network_interface_id`). The surface's protocol/port/binding live ONCE on
-# that service (and the host resolves through its bound NIC's site-overlaid address) — never restated.
-title: { en: Service }
-description:
-  en: "Slug of a service the metered device offers, naming which surface this adapter polls (the runtime resolves it against that device's own services). A slug value but a distinct key — it names a relationship, not this object's own id."
-schema: { type: string, minLength: 1 }

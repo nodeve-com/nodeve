@@ -6,7 +6,7 @@
 // emitted schema).
 
 import { clone, mergeDeep } from 'remeda';
-import { type Obj, isObj } from './concept-sources.ts';
+import { type Obj, isObj } from '../src/concept-sources.ts';
 
 /** A field node marks itself mandatory via `schema.required: true` (authored, kept verbatim in the
  *  data tree). Its parent object reads this to build its draft-07 `required` array. */

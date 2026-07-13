@@ -215,10 +215,8 @@ services:
       network_interface_id: eth0
       port: 443
 
-# How to TALK to the box: the modbus connectivity medium (the "decoder/master" stage in
-# docs/sensors-control.md). DECODE ONLY — scale raw numbers to engineering units and map raw
-# enum/bitfield registers to machine-code strings; no filtering, no combining (that is
-# eKuiper's job). Grid/meter telemetry is NOT here — it comes off the Chint DTSU666.
+# How to TALK to the box: the modbus connectivity medium.
+# Grid/meter telemetry is NOT here — it comes off the Chint DTSU666.
 # Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the
 # registers backing entities we consume today (write/control registers out of scope — see
 # docs/solar/inverter.md).
@@ -429,9 +427,8 @@ modbus:
   # quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
   modbus_decodes:
     # Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at
-    # 39063/39064/39065, reported HONESTLY as a SET: the decoder emits EVERY set bit across the
-    # group and does NOT collapse to one (priority/"first wins" is a downstream display concern,
-    # not the gateway's job — decode-only). Bits stay in the group the device puts them in — the
+    # 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one.
+    # Bits stay in the group the device puts them in — the
     # word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the
     # separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is
     # read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].

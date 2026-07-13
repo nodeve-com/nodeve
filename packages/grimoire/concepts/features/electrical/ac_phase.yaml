@@ -8,7 +8,7 @@ concept_settings:
   # features/electrical.yaml), an AC connection is that triple + the one AC-only quantity a plain supply
   # carries, line `frequency`. It COMPOSES electrical — it never re-adds voltage; only one atom owns a
   # prop (§Provenance), and electrical owns the triple. It adds only `frequency`; the meter quantities
-  # (reactive/apparent power, power factor) are the richer `ac_phase` atom's job, not a plain supply's.
+  # (reactive/apparent power, power factor) belong to the richer `ac_phase` atom, not a plain supply.
   # All measured quantity-kinds, so flat: `intervals`/`measurements` are authored on the catalog entry.
   compose: [electrical_quantity]
   is_specification: true # adds its own quantity_kind fields below (frequency, reactive/apparent power, …)

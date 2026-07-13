@@ -6,13 +6,12 @@
 //   - `feature_settings: {alias, …}`       → concept_settings: {compose, …}   (alias IS a compose)
 // Comment-preserving (yaml Document API — moves nodes, never re-serializes from scratch) and
 // idempotent (a file already migrated is left untouched). Reusable: re-run after adding files.
-// Run: `bun run grimoire-migrate-settings` (root alias) or `bun scripts/migrate-concept-settings.ts`.
+// Run: `node scripts/migrate-concept-settings.ts`.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { type Pair, type YAMLMap, isMap, parseDocument } from 'yaml';
-import { yamlFiles } from '../kit/concept-sources.ts';
+import { CONCEPTS, yamlFiles } from '../src/concept-sources.ts';
 
-const CONCEPTS = join(import.meta.dir, '../concepts');
 const DIRS = ['features', 'archetypes'];
 
 const keyOf = (pair: Pair): string => (pair.key as { value?: unknown })?.value as string;

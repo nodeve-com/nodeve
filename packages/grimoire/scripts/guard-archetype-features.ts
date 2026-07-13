@@ -12,39 +12,41 @@
 // `prop:`/`enums:` along (vedirect_medium.pid; the application_protocol enum on the modbus/usbhid/
 // vedirect media). This guard walks every archetype YAML and fails on any top-level key outside the
 // allowed set — which catches `prop:`, `enums:`, AND bare property keys in one sweep. Run standalone:
-// `bun run guard:archetype-features` (root alias).
+// `node scripts/guard-archetype-features.ts`.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
+import { CONCEPTS } from '../src/concept-sources.ts';
+import { GuardReport } from './guard-report.ts';
 
-const CONCEPTS = join(import.meta.dir, '../concepts');
 const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
 
 // The ONLY top-level keys an archetype may carry. Everything else — `prop:`, `enums:`, or a bare
-// property key — is a field/enum that belongs on a feature, not on the class.
-const ALLOWED = new Set(['identity', 'title', 'description', 'refs', 'concept_settings', 'feature', 'archetype']);
+// property key — is a field/enum that belongs on a feature, not on the class. `schema:` is the
+// cross-field projection passthrough (kit/project.ts merges it into the root object schema) — the
+// archetype-level analog of a feature's own `schema:` slot, for invariants that span feature slots.
+const ALLOWED = new Set(['identity', 'title', 'description', 'refs', 'concept_settings', 'feature', 'archetype', 'schema']);
 
-const violations: Array<{ file: string; key: string }> = [];
+const report = new GuardReport();
 
 for (const path of yamlFiles(ARCHETYPES_DIR)) {
 	const rel = path.slice(CONCEPTS.length + 1);
 	const doc = parseYaml(readFileSync(path, 'utf8'));
 	if (doc === null || typeof doc !== 'object' || Array.isArray(doc)) continue;
 	for (const key of Object.keys(doc as Record<string, unknown>)) {
-		if (!ALLOWED.has(key)) violations.push({ file: rel, key });
+		if (!ALLOWED.has(key)) report.fail(`${key}  —  ${rel}`);
 	}
 }
 
-if (violations.length === 0) process.exit(0);
-
-console.error(`\n✖ archetype(s) carrying a key that isn't a feature:\n`);
-for (const { file, key } of violations) console.error(`  ${key}  —  ${file}`);
-console.error(`
+report.done(
+	'',
+	() => `\n✖ archetype(s) carrying a key that isn't a feature:\n`,
+	`
 An archetype assembles FEATURES ONLY. The allowed top-level keys are:
   ${[...ALLOWED].join(' / ')}
 A \`prop:\` map, a bare property key, or an \`enums:\` list is a field/enum — re-home it onto a
 FEATURE first (a feature's \`prop:\` map, or a feature's own \`enums:\`), then reference/compose that
 feature from the archetype. See concepts/README.md ("Archetype").
-`);
-process.exit(1);
+`,
+);

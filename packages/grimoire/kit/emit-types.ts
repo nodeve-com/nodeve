@@ -8,7 +8,7 @@
 // Keys stay snake_case here (the schema IS the snake_case wire contract); the `Camelize<Static<>>`
 // type is the camelCase surface consumers code against, humped once at the parse boundary.
 
-import type { Obj } from './concept-sources.ts';
+import { type Obj, isObj } from '../src/concept-sources.ts';
 
 // Identifiers the generated modules already bind — TypeBox's `Type`/`TSchema` and the TS built-ins the
 // type emitter names (`Record`, `Array`). A concept slug whose PascalCase lands on one gets a `_` so its
@@ -20,18 +20,15 @@ const pascal = (slug: string): string => {
 	return RESERVED.has(p) ? `${p}_` : p;
 };
 
-// The structural keywords the emitter consumes as `Type.*` shape; everything else a node states is
-// a constraint/annotation (minLength, pattern, minimum, minItems, x-env-var, …) that rides into the
-// constructor's options object verbatim.
-const STRUCTURAL = new Set(['type', 'properties', 'required', 'items', 'anyOf', 'enum', 'const', 'additionalProperties']);
-
-/** The non-structural keywords as a TypeBox options-object literal (`{ … }`), or null when none —
- *  so single-arg constructors stay bare. Keys sorted for deterministic output. `extra` overlays
- *  keywords the caller reintroduces (e.g. a closed object's `additionalProperties: false`). */
-function optionsLiteral(node: Obj, extra?: Obj): string | null {
+/** The keywords a node still states once its branch has consumed the shape ones, as a TypeBox
+ *  options-object literal (`{ … }`), or null when none — so single-arg constructors stay bare. These
+ *  are the constraints/annotations (minLength, pattern, minimum, minItems, x-env-var, …) that ride
+ *  into the constructor verbatim. `rest` is what the branch didn't read; `extra` overlays keywords the
+ *  caller reintroduces (e.g. a closed object's `additionalProperties: false`). Keys sorted, deterministic. */
+function optionsLiteral(rest: Obj, extra?: Obj): string | null {
+	const merged: Obj = extra ? { ...rest, ...extra } : rest;
 	const opts: Obj = {};
-	for (const key of Object.keys(node).sort()) if (!STRUCTURAL.has(key)) opts[key] = node[key];
-	if (extra) Object.assign(opts, extra);
+	for (const key of Object.keys(merged).sort()) opts[key] = merged[key];
 	return Object.keys(opts).length > 0 ? JSON.stringify(opts) : null;
 }
 
@@ -47,39 +44,49 @@ const refName = (ref: string): string => ref.split('/').pop()!;
  *  restated, so a 301× shape appears once and TS keeps the inferred type small. */
 function typeBox(node: Obj): string {
 	if (typeof node.$ref === 'string') return `${pascal(refName(node.$ref))}Schema`;
-	if (Array.isArray(node.anyOf)) return `Type.Union([${(node.anyOf as Obj[]).map(typeBox).join(', ')}]${tail(optionsLiteral(node))})`;
-	if (Array.isArray(node.enum)) {
-		const literals = node.enum.map((v) => `Type.Literal(${JSON.stringify(v)})`);
-		return literals.length === 1 ? literals[0]! : `Type.Union([${literals.join(', ')}]${tail(optionsLiteral(node))})`;
+	if (Array.isArray(node.anyOf)) {
+		const { anyOf, ...rest } = node;
+		return `Type.Union([${(anyOf as Obj[]).map(typeBox).join(', ')}]${tail(optionsLiteral(rest))})`;
 	}
-	if ('const' in node) return `Type.Literal(${JSON.stringify(node.const)}${tail(optionsLiteral(node))})`;
+	if (Array.isArray(node.enum)) {
+		const { enum: members, ...rest } = node;
+		const literals = (members as unknown[]).map((v) => `Type.Literal(${JSON.stringify(v)})`);
+		return literals.length === 1 ? literals[0]! : `Type.Union([${literals.join(', ')}]${tail(optionsLiteral(rest))})`;
+	}
+	if ('const' in node) {
+		const { const: literal, ...rest } = node;
+		return `Type.Literal(${JSON.stringify(literal)}${tail(optionsLiteral(rest))})`;
+	}
 	switch (node.type) {
 		case 'object': {
-			const props = node.properties as Record<string, Obj> | undefined;
-			const closed = node.additionalProperties === false ? { additionalProperties: false } : undefined;
+			const { type: _t, properties, required, additionalProperties, ...rest } = node;
+			const props = properties as Record<string, Obj> | undefined;
+			const closed = additionalProperties === false ? { additionalProperties: false } : undefined;
 			if (props && Object.keys(props).length > 0) {
-				const required = new Set((node.required as string[] | undefined) ?? []);
+				const req = new Set((required as string[] | undefined) ?? []);
 				const fields = Object.entries(props).map(([key, sub]) => {
 					const t = typeBox(sub);
-					return `${JSON.stringify(key)}: ${required.has(key) ? t : `Type.Optional(${t})`}`;
+					return `${JSON.stringify(key)}: ${req.has(key) ? t : `Type.Optional(${t})`}`;
 				});
-				return `Type.Object({ ${fields.join(', ')} }${tail(optionsLiteral(node, closed))})`;
+				return `Type.Object({ ${fields.join(', ')} }${tail(optionsLiteral(rest, closed))})`;
 			}
 			// A slug-keyed record (map node): additionalProperties carries the value schema.
-			if (node.additionalProperties && typeof node.additionalProperties === 'object')
-				return `Type.Record(Type.String(), ${typeBox(node.additionalProperties as Obj)}${tail(optionsLiteral(node))})`;
-			return `Type.Object({}${tail(optionsLiteral(node, closed))})`;
+			if (additionalProperties && typeof additionalProperties === 'object')
+				return `Type.Record(Type.String(), ${typeBox(additionalProperties as Obj)}${tail(optionsLiteral(rest))})`;
+			return `Type.Object({}${tail(optionsLiteral(rest, closed))})`;
 		}
-		case 'array':
-			return `Type.Array(${node.items ? typeBox(node.items as Obj) : 'Type.Unknown()'}${tail(optionsLiteral(node))})`;
+		case 'array': {
+			const { type: _t, items, ...rest } = node;
+			return `Type.Array(${items ? typeBox(items as Obj) : 'Type.Unknown()'}${tail(optionsLiteral(rest))})`;
+		}
 		case 'integer':
-			return `Type.Integer(${optionsLiteral(node) ?? ''})`;
 		case 'number':
-			return `Type.Number(${optionsLiteral(node) ?? ''})`;
 		case 'boolean':
-			return `Type.Boolean(${optionsLiteral(node) ?? ''})`;
-		case 'string':
-			return `Type.String(${optionsLiteral(node) ?? ''})`;
+		case 'string': {
+			const { type, ...rest } = node;
+			const ctor = (type as string)[0]!.toUpperCase() + (type as string).slice(1);
+			return `Type.${ctor}(${optionsLiteral(rest) ?? ''})`;
+		}
 		default:
 			// A slot placeholder or annotation-only node — no value contract to pin.
 			return 'Type.Unknown()';
@@ -129,28 +136,114 @@ export interface EmittedConcept {
 	layer: string;
 	/** Direct concept refs this module composes (`$ref` slots) — imported as sibling `<Name>Schema`. */
 	imports?: Array<{ name: string; layer: string }>;
+	/** The referentialized DATA tree (labels/refs/ui + `$ref` slots) — emitted as the module's
+	 *  `export default` so the .ts twin carries everything the sibling .json does, not just the schema. */
+	data?: unknown;
 }
 
 /** The relative import path from one concept module to another (both under generated/<layer>/). */
 const importPath = (from: string, dep: { name: string; layer: string }): string =>
 	dep.layer === from ? `./${dep.name}.ts` : `../${dep.layer}/${dep.name}.ts`;
 
+/** A data-tree `$ref` (`../features/ac_phase.json` | `./x.json`) → its concept slug + layer. */
+function parseDataRef(ref: string, fromLayer: string): { name: string; layer: string } {
+	const name = refName(ref).replace(/\.json$/, '');
+	const m = /\.\.\/([^/]+)\//.exec(ref);
+	return { name, layer: m ? m[1]! : fromLayer };
+}
+
+/** The local const a data `$ref` composes — the sibling module's default export, imported here. */
+const dataLocal = (name: string): string => `${pascal(name)}Data`;
+
+/** Every distinct `$ref` slot a data tree composes, so the emit imports each sibling default once. */
+function collectDataRefs(node: unknown, fromLayer: string, out: Map<string, { name: string; layer: string }>): void {
+	if (Array.isArray(node)) return void node.forEach((n) => collectDataRefs(n, fromLayer, out));
+	if (!isObj(node)) return;
+	if (typeof node.$ref === 'string') out.set(node.$ref, parseDataRef(node.$ref, fromLayer));
+	for (const v of Object.values(node)) collectDataRefs(v, fromLayer, out);
+}
+
+/** One data node as its precise TS TYPE — the twin of `dataLiteral`. A `$ref` slot is the sibling's
+ *  exported `<Name>DataT` (by name, so the alias stays small and never re-expands → no TS7056); its
+ *  overlay `Omit`s the overridden keys off the base and intersects the local ones. Annotating the
+ *  `export default` with this keeps it precisely typed without the compiler serializing a giant literal. */
+function dataType(node: unknown, fromLayer: string): string {
+	if (Array.isArray(node)) return node.length === 0 ? 'readonly []' : `readonly [${node.map((c) => dataType(c, fromLayer)).join(', ')}]`;
+	if (isObj(node)) {
+		if (typeof node.$ref === 'string') {
+			const base = `${pascal(parseDataRef(node.$ref, fromLayer).name)}DataT`;
+			const overlay = Object.keys(node).filter((k) => k !== '$ref').sort();
+			if (overlay.length === 0) return base;
+			const omit = overlay.map((k) => JSON.stringify(k)).join(' | ');
+			const fields = overlay.map((k) => `readonly ${JSON.stringify(k)}: ${dataType(node[k], fromLayer)}`);
+			return `Omit<${base}, ${omit}> & { ${fields.join('; ')} }`;
+		}
+		const keys = Object.keys(node).sort();
+		if (keys.length === 0) return 'Record<string, never>';
+		return `{ ${keys.map((k) => `readonly ${JSON.stringify(k)}: ${dataType(node[k], fromLayer)}`).join('; ')} }`;
+	}
+	return JSON.stringify(node);
+}
+
+/** One data node as a TS literal. A `$ref` slot renders as the imported sibling default (`AcPhaseData`),
+ *  its authored overlay (title/refs/…) spread on top so the shared shape lives once. */
+function dataLiteral(node: unknown, indent: string, fromLayer: string): string {
+	const inner = indent + '\t';
+	if (Array.isArray(node)) {
+		if (node.length === 0) return '[]';
+		return `[\n${node.map((c) => inner + dataLiteral(c, inner, fromLayer)).join(',\n')}\n${indent}]`;
+	}
+	if (isObj(node)) {
+		if (typeof node.$ref === 'string') {
+			const base = dataLocal(parseDataRef(node.$ref, fromLayer).name);
+			const overlay = Object.keys(node).filter((k) => k !== '$ref').sort();
+			if (overlay.length === 0) return base;
+			const fields = overlay.map((k) => `${inner}${JSON.stringify(k)}: ${dataLiteral(node[k], inner, fromLayer)}`);
+			return `{\n${inner}...${base},\n${fields.join(',\n')}\n${indent}}`;
+		}
+		const keys = Object.keys(node).sort();
+		if (keys.length === 0) return '{}';
+		return `{\n${keys.map((k) => `${inner}${JSON.stringify(k)}: ${dataLiteral(node[k], inner, fromLayer)}`).join(',\n')}\n${indent}}`;
+	}
+	return JSON.stringify(node);
+}
+
 /** One concept's generated/<layer>/<name>.ts: the live TypeBox schema VALUE (the validator + the
  *  JSON-Schema contract in one object) and its camelCase `Static` type. No .json is imported — the
  *  schema is code, so the runtime path stays fs-free. Composed concept slots import their sibling
  *  `<Name>Schema` const rather than restating the shape. */
-export function renderConceptModule({ name, schema, layer, imports = [] }: EmittedConcept): string {
+export function renderConceptModule({ name, schema, layer, imports = [], data }: EmittedConcept): string {
 	const Type = pascal(name);
-	const deps = [...new Map(imports.map((d) => [d.name, d])).values()].sort((a, b) => a.name.localeCompare(b.name));
+	// Merge the schema-composed deps (need `{ <Name>Schema, type <Name> }`) with the data-composed
+	// `$ref` slots (need the sibling `default`, imported as `<Name>Data`) — one import line per module.
+	const merged = new Map<string, { name: string; layer: string; schema: boolean; data: boolean }>();
+	for (const d of imports) merged.set(d.name, { ...d, schema: true, data: merged.get(d.name)?.data ?? false });
+	const refByPath = new Map<string, { name: string; layer: string }>();
+	if (data !== undefined) collectDataRefs(data, layer, refByPath);
+	for (const d of refByPath.values()) {
+		const e = merged.get(d.name);
+		if (e) e.data = true;
+		else merged.set(d.name, { ...d, schema: false, data: true });
+	}
+	const deps = [...merged.values()].sort((a, b) => a.name.localeCompare(b.name));
+	const importLine = (d: { name: string; layer: string; schema: boolean; data: boolean }): string => {
+		const P = pascal(d.name);
+		// Composed slot needs the sibling default VALUE (`<P>Data`) + its data TYPE (`<P>DataT`); a
+		// schema-composed slot needs `<P>Schema` + parsed type `<P>`. `<P>Data`/`<P>DataT` never collide.
+		const named = [d.schema ? `${P}Schema` : '', d.schema ? `type ${P}` : '', d.data ? `type ${P}DataT` : ''].filter(Boolean).join(', ');
+		const parts = [d.data ? `${P}Data` : '', named ? `{ ${named} }` : ''].filter(Boolean).join(', ');
+		return `import ${parts} from '${importPath(layer, d)}';`;
+	};
 	return [
 		`// GENERATED by \`pnpm generate\` from concepts/${layer}/ via kit/compile.ts +`,
 		'// kit/emit-types.ts. Do not edit by hand — edit the YAML and regenerate. The snake_case',
 		'// TypeBox schema transcribed from the compiled draft-07 projection (its own <name>.schema.json);',
 		'// `Value.Check(<Name>Schema, …)` validates, the camelCase type is the surface consumers code',
-		'// against. Composed concept slots reference their sibling `<Name>Schema` const / type by name.',
+		'// against. The `export default` is the full DATA tree (labels/refs/ui) — the .ts twin of the',
+		'// sibling .json; composed slots spread their sibling `<Name>Data` default so a shape lives once.',
 		'',
 		"import { type TSchema, Type } from '@sinclair/typebox';",
-		...deps.map((d) => `import { ${pascal(d.name)}Schema, type ${pascal(d.name)} } from '${importPath(layer, d)}';`),
+		...deps.map(importLine),
 		'',
 		// `: TSchema` — the schema VALUE composes sibling consts, whose inferred TypeBox type re-expands
 		// the whole graph (TS7056 on a big device). The annotation keeps the const opaque; the precise
@@ -159,6 +252,17 @@ export function renderConceptModule({ name, schema, layer, imports = [] }: Emitt
 		'',
 		`export type ${Type} = ${tsType(schema)};`,
 		'',
+		// The `export default` is the DATA tree, annotated with its own `${Type}DataT` so the composed
+		// literal is precisely typed WITHOUT the compiler serializing a giant inferred type (TS7056).
+		...(data !== undefined
+			? [
+					`export type ${Type}DataT = ${dataType(data, layer)};`,
+					'',
+					`const _data: ${Type}DataT = ${dataLiteral(data, '', layer)};`,
+					'export default _data;',
+					'',
+				]
+			: []),
 	].join('\n');
 }
 

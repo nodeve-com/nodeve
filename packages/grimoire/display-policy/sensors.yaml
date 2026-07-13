@@ -18,7 +18,7 @@
 #     path is never rate-limited (its whole job is immediacy), so each delta threshold must sit
 #     ABOVE the signal's idle noise — a threshold inside the noise band publishes every sample.
 #     Deltas on zero-crossing / low-magnitude quantities are ABSOLUTE (a % of a near-zero value
-#     degenerates the same way). Tune against a live watch: `bun run mqtt-sub`. ---
+#     degenerates the same way). Tune against a live watch: `pnpm mqtt-sub`. ---
 - feature: ac_phase_three_point
   quantity_kind: voltage
   accuracy_decimals: 1

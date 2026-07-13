@@ -13,20 +13,16 @@
 // finds each mapping KEY that is a known enumeration name, and fails when its subtree declares an
 // inline enum (`enum:` list, or `schema: { enum: … }`) rather than merely referencing the enumeration.
 // A field that genuinely needs a local literal set must be NAMED for what it is, not for an
-// enumeration. Run standalone: `bun run guard:vocab-collision` (root alias).
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+// enumeration. Run standalone: `node scripts/guard-vocab-collision.ts`.
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
+import { CONCEPTS, enumerationDirNames } from '../src/concept-sources.ts';
 
-const CONCEPTS = join(import.meta.dir, '../concepts');
-const ENUMERATION_DIR = join(CONCEPTS, 'enumeration');
 const SCAN_DIRS = [join(CONCEPTS, 'property'), join(CONCEPTS, 'features'), join(CONCEPTS, 'archetypes')];
 
-/** Every enumeration name — a directory under concepts/enumeration/. */
-const enumerationNames = new Set(
-	readdirSync(ENUMERATION_DIR).filter((n) => statSync(join(ENUMERATION_DIR, n)).isDirectory()),
-);
+const enumDirs = enumerationDirNames();
 
 /** True when a node declares an inline literal value set: a bare `enum:` list or `schema.enum`. */
 function declaresInlineEnum(node: unknown): boolean {
@@ -52,7 +48,7 @@ for (const dir of SCAN_DIRS) {
 				return;
 			}
 			for (const [key, value] of Object.entries(node as Record<string, unknown>)) {
-				if (enumerationNames.has(key) && declaresInlineEnum(value)) hits.push({ file: rel, key });
+				if (enumDirs.has(key) && declaresInlineEnum(value)) hits.push({ file: rel, key });
 				visit(value);
 			}
 		};

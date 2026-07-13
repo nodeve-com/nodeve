@@ -8,7 +8,7 @@ Single source of truth for **describing things**: one validated definition per c
 
 ```
                        ┌─ JSON Schema ($defs/$ref, $id = standard IRI) ── the wire/contract
-                       ├─ flat / bundled JSON Schema ─────────────────── ref-blind consumers (eKuiper)
+                       ├─ flat / bundled JSON Schema ─────────────────── ref-blind consumers
    ONE concept def ───►├─ camelCase TS type + runtime validator ──────── in-process code
     (the source)       ├─ labels / hints / ui ────────────────────────── i18n + forms, inline in the def
                        ├─ standards crosswalk (QUDT / ISO / HA) ───────── travels WITH the def, as a field
@@ -46,11 +46,13 @@ concepts/                 # SCHEMA ONLY — the composed layers (concepts/README
   features/                #   groupings of props
   archetypes/              #   classes (cataloguable / instantiable)
   catalog/<brand>/…        #   agnostic instances of archetypes + _defaults.yaml cascade
-generated/                # every generated artifact — never hand-edited
+src/                      # the npm-surfaced runtime: index.ts entry + loaders (catalog, site,
+  generated/              #   vocab, sensor-id, display-policy) and the committed generated TS
+artifacts/                # generated JSON (data trees, .schema.json, catalog entries) — gitignored;
+                          #   `pnpm generate` bakes it, CI attaches it to the GitHub release
+kit/                      # codegen only: generate.ts entry + compile/project/emit helpers
+scripts/                  # validation guards
 tests/                    # schema-behavior + example-drift tests
-kit/                      # shared helpers: cascade, seal, parse, json-schema, bundle
-scripts/                  # validation helpers
-index.ts                  # public entry: archetype schemas/types + loadDevice(path)
 ```
 
 - **[`concepts/README.md`](concepts/README.md)** — the composable model: atoms, archetypes, the `catalog/<brand>/…` tree + `_defaults.yaml` cascade, inline labels/hints/ui.
@@ -75,7 +77,7 @@ A device's key is its **identity** — `archetype` + `slug` (`catalog_item: { ar
 - [site overlay](docs/site-overlay.md) — a `site_catalog` entry patches its device via `catalog_patch`: author device facts (mac_address…) at top level, the bake folds them in, the reader merges arrays by `identity.slug` (not index)
 - [cadence field is `update_interval_ms`](docs/cadence-field.md) — integer ms, fetch-neutral
 - [holds every sensible default](docs/device-defaults.md) — known defaults live here; only the default-less TCP host (and site instances) go downstream
-- [TypeBox vs zod](docs/typebox-vs-zod.md) — TypeBox because `schema.json` is a shipped contract; schema stays snake, camelCase layered on
+- [TypeBox vs zod](docs/typebox-vs-zod.md) — TypeBox because `schema.json` is a shipped contract; JSON emits snake, TS emits camel wall-to-wall — rename at the parse edge, before validation, via stored alias
 - [translations & labels](docs/translations-and-labels.md) — author labels/hints/ui inline per locale in the concept YAML; the bake carries them into the generated artifacts
 - **Borrow before coining** — prefer a standard vocabulary; any coined term carries a crosswalk (callout above)
-- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat (everything under `generated/` is a concept projection — no redundant `generated/concepts/` wrapper): `generated/<layer>/<slug>.json` (the resolved data tree per concept — labels/ui/refs at every node) with its TS module (`<slug>.ts`: camelCase type + schema const, tree-shakeable; `generated/index.ts` is the opt-in all-concepts module) and, for archetypes, the standalone `<slug>.schema.json` wire contract; `generated/enumeration/<name>.json` (member data per enumeration, `<name>.ts` beside it where a TS consumer needs the vocab); `generated/catalog/<slug>.json` (one file per catalog entry — no committed all-in-one; the consuming gateway assembles the bundle in its own build step). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**
+- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target: **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase type + schema const, tree-shakeable; `index.ts` the opt-in all-concepts module; `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules) and **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, for archetypes, the standalone `<slug>.schema.json` wire contract; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**

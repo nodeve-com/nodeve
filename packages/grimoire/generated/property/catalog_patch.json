@@ -1,9 +1,0 @@
-{
-  "schema": {
-    "additionalProperties": true,
-    "type": "object"
-  },
-  "title": {
-    "en": "Catalog patch"
-  }
-}

@@ -1,9 +1,6 @@
 # Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: its identity
 # (the `meter` archetype) AND how it is talked to (its modbus slot). `manufacturer: Chint` and
-# `archetype: meter` are inherited from ./_defaults.yaml. The "decoder/master" stage in
-# docs/sensors-control.md: read holding registers, scale to engineering units, publish to MQTT.
-# TRANSLATE ONLY — every derived quantity (import/export split of active power, neutral current,
-# energy-counter rates) is eKuiper's job downstream.
+# `archetype: meter` are inherited from ./_defaults.yaml.
 #
 # This unit serves the SAME physical quantities in (at least) TWO register banks. The map below
 # documents both; it is NOT a poll script and does not say which bank to read — the gateway picks
@@ -304,8 +301,7 @@ modbus:
 
     # === BANK B — 0x1510 fast / 0x1000 slow (what the inverter polls; passive-tap map). ===
     # Floats ALREADY in engineering units (scale 1.0), NOT divisor-scaled. Bank B power is native
-    # kW/kVAR/kVA (unit kept — non-SI); the decoder reconciles the two banks onto one measurand —
-    # no gratuitous ×1000 (that's eKuiper's). Same (feature, phase, quantity_kind) link as bank A.
+    # kW/kVAR/kVA (unit kept — non-SI). Same (feature, phase, quantity_kind) link as bank A.
     # Phase-neutral voltages (sniff idx 0–2, 0x1510/12/14)
     - {
         feature_id: ac_phase_three_point,
@@ -522,7 +518,7 @@ modbus:
     # Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ,
     # rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the
     # FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor
-    # is TRUE PF (P/S, harmonics included); their gap is a free distortion signal (eKuiper's job).
+    # is TRUE PF (P/S, harmonics included).
     # `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).
     - {
         feature_id: ac_phase_three_point,
@@ -567,7 +563,7 @@ modbus:
     # here, so a passive tap recovers them. THREE DISTINCT quantity kinds — active (kWh), apparent
     # (kVAh), reactive (kvarh) — each linked to its own `combined` measurand, so no topic/key
     # collision (the earlier raw/import-export framing was wrong: these are separate quantity kinds,
-    # not a directional import/export pair — a real import/export split stays eKuiper's job). scale
+    # not a directional import/export pair). scale
     # 1.0 + decimals provisional (uncalibrated). `unit` kept — none is the kind's SI unit (J / VA·s /
     # var·s). They publish on the slow `energy` group (by address window), not the 5 Hz `state` group.
     - {
@@ -600,4 +596,4 @@ modbus:
 # Deliberately NOT polled: bank A energy totals at 0x401E/0x4028 + Q1–Q4 (0x4000 block returns
 # "Illegal data address" on this firmware — energy is via bank B + the inverter); bank B energy
 # quadrants (SNIFF.md); neutral current = |Ia+Ib+Ic|; active-energy import/export split + counter
-# rates (all derived — eKuiper's job).
+# rates (all derived, not register-backed).

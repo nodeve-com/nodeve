@@ -8,8 +8,7 @@
 # register `address`. A LIST (not a slug-keyed map) so decode is pure per-device data living in ONE
 # place on the product: nothing to deep-merge, so nothing can leak product identity into a shared
 # brand cascade (the old keyed-map failure). `type` value set is VE.Direct's (int/hex/bool/string),
-# left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers — decode to slugs is
-# eKuiper's job downstream (TRANSLATE ONLY here).
+# left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers, left undecoded.
 title: { en: VE.Direct fields, pt: Campos VE.Direct }
 description:
   en: The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers).

@@ -4,7 +4,7 @@
 
 ## Rule
 
-`generated/<layer>/<slug>.json` is a **clean, slim JSON of the YAML** — one file per concept, same shape as the source, sugar resolved, nested concepts kept as references. NOT a fully-resolved tree. It's the "clean version" outside projects read instead of the sugared YAML; keep it close to the YAML so it stays cheap to change as the concept model evolves.
+`artifacts/<layer>/<slug>.json` is a **clean, slim JSON of the YAML** — one file per concept, same shape as the source, sugar resolved, nested concepts kept as references. NOT a fully-resolved tree. It's the "clean version" outside projects read instead of the sugared YAML; keep it close to the YAML so it stays cheap to change as the concept model evolves.
 
 Materializing the full joined tree (every nested concept spliced in) is a read-time job, not a build artifact.
 
@@ -62,4 +62,4 @@ Agents inline because the def-language is described as **flattening**. Reword so
 - Readers still return correct values (resolving on read where needed).
 - Reference validation + size checks in the suite; `tests/generate.test.ts` asserts the slim output.
 - FLATTEN language reworded.
-- `generated/` safe to commit, then a full version bump across affected packages.
+- generated output safe to bake, then a full version bump across affected packages.

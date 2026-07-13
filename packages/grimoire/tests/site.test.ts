@@ -10,8 +10,8 @@ import {
 	parseSiteAdapter,
 	sensorStateTopic,
 	tapWindowTopic,
-} from '../kit/site.ts';
-import { validateSite } from '../kit/validate-site.ts';
+} from '../src/site.ts';
+import { validateSite } from '../src/validate-site.ts';
 
 // One adapter instance — an ordinary `site_adapter` concept. The shared topic root lives on the
 // connection (`mqtt_connection.emit.topic_prefix`), passed to the derivations below.

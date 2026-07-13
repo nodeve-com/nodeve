@@ -2,9 +2,9 @@
   "extends": "@nodeve/config/tsconfig",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "dist",
+    "noEmit": true,
     "rewriteRelativeImportExtensions": true
   },
-  "include": ["index.ts", "kit", "display-policy", "generated"],
+  "include": ["src", "kit", "scripts"],
   "exclude": ["node_modules", "dist", "tests", "**/*.test.ts"]
 }

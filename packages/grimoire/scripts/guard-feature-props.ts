@@ -10,16 +10,11 @@
 // This guard walks every feature YAML, collects each `prop:` name (the map keys MINUS any slot — a prop
 // whose overlay rebinds to another layer via `feature:`/`feature:`) and each enum value, and fails on
 // any that the property layer doesn't back. `prop` must be a map; an array is a shape error. Run
-// standalone: `bun run guard:feature-props` (root alias).
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+// standalone: `node scripts/guard-feature-props.ts`.
+import { readFileSync } from 'node:fs';
 import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
-
-const CONCEPTS = join(import.meta.dir, '../concepts');
-const FEATURES_DIR = join(CONCEPTS, 'features');
-const PROPERTY_DIR = join(CONCEPTS, 'property');
-const ENUMERATION_DIR = join(CONCEPTS, 'enumeration');
+import { CONCEPTS, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames } from '../src/concept-sources.ts';
 
 // The property layer: the set of defined property slugs (basenames, globally unique) and the set of
 // category directories (the `enums:` targets).
@@ -29,9 +24,7 @@ const propertySlugs = new Set(
 	[...yamlFiles(PROPERTY_DIR), ...yamlFiles(ENUMERATION_DIR)].map((p) => p.slice(0, -'.yaml'.length).split('/').pop()!),
 );
 // An `enums:` value points to an `enumeration/<name>/` directory.
-const enumerationNames = new Set(
-	readdirSync(ENUMERATION_DIR).filter((n) => statSync(join(ENUMERATION_DIR, n)).isDirectory()),
-);
+const enumCategories = enumerationDirNames();
 
 /** Prop names a feature declares as property-backed — the `prop:` map keys that are OWN scalar fields.
  *  `prop` must be a MAP of `<name>: overlay`; an array is a shape error. Excluded (they aren't
@@ -72,7 +65,7 @@ for (const path of yamlFiles(FEATURES_DIR)) {
 		if (!propertySlugs.has(slug)) missingProps.push({ file: rel, slug });
 	}
 	for (const category of featureEnums(doc)) {
-		if (!enumerationNames.has(category)) missingEnums.push({ file: rel, category });
+		if (!enumCategories.has(category)) missingEnums.push({ file: rel, category });
 	}
 }
 

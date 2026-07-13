@@ -3,7 +3,7 @@
 // non-slug so its entry's schema (slug.yaml pattern) rejects it. See `effectiveSlug` in kit/cascade.ts.
 
 import { describe, expect, it } from 'vitest';
-import { effectiveSlug } from '../kit/cascade.ts';
+import { effectiveSlug } from '../src/cascade.ts';
 
 describe('effectiveSlug', () => {
   it('prefers an authored identity.slug over the stem', () => {

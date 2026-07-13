@@ -1,11 +1,11 @@
-// The CARDINALITY/SPECIFICATION tail of the compiler: once resolveShapeDef (compile.ts) has
+// The CARDINALITY/SPECIFICATION tail of the compiler: once resolveShapeDef (kit/resolve.ts) has
 // assembled a def's flat `shape.prop`, this turns that shape into its final node — wrapping spec
 // columns, expanding repeated/parts features, and applying array/map cardinality. Split out so
-// compile.ts stays one responsibility (assembly); this owns shape FINISHING. The four resolvers it
-// needs all recurse back into resolveShapeDef, so they're passed in rather than imported (compile.ts
+// resolve.ts stays one responsibility (assembly); this owns shape FINISHING. The four resolvers it
+// needs all recurse back into resolveShapeDef, so they're passed in rather than imported (resolve.ts
 // owns them).
 import { clone, omit } from 'remeda';
-import { type Obj, isObj, layerIndex, readYaml } from './concept-sources.ts';
+import { type Obj, isObj, layerIndex, readYaml } from '../src/concept-sources.ts';
 import type { Shape } from './overrides.ts';
 
 const FILING = new Set(['identity', 'slug']);

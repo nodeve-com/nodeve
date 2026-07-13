@@ -18,11 +18,11 @@
 //   • quantity_kind is a key of the resolved body (the offered menu).
 //
 // Runs against the generated catalog — the same JSON every consumer reads. Run standalone:
-// `bun run guard:register-links` (root alias).
+// `node scripts/guard-register-links.ts`.
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-
-const CATALOG_DIR = join(import.meta.dir, '../generated/catalog');
+import { ARTIFACTS_CATALOG_DIR } from '../src/concept-sources.ts';
+import { GuardReport } from './guard-report.ts';
 
 // Keys that ride a feature body alongside its quantity_kinds — never a kind themselves. A menu's
 // remaining keys ARE the offered kinds.
@@ -40,31 +40,30 @@ type Decode = { feature_id?: string; state?: string; fault?: string };
 type Body = Record<string, unknown>;
 type Spec = { combined?: Body; part?: Record<string, Body>; instances?: Body[] } & Body;
 
-type Violation = { entry: string; msg: string };
-const violations: Violation[] = [];
-const fail = (entry: string, msg: string): void => void violations.push({ entry, msg });
+const report = new GuardReport();
+const fail = (entry: string, msg: string): void => report.fail(`${entry}: ${msg}`);
 
 /** The offered quantity_kinds of a feature body — its own keys minus the structural riders. */
 const kindsOf = (body: Body | undefined): Set<string> =>
 	new Set(Object.keys(body ?? {}).filter((k) => !NON_KIND.has(k)));
 
-for (const file of readdirSync(CATALOG_DIR).filter((f) => f.endsWith('.json'))) {
-	const entry = JSON.parse(readFileSync(join(CATALOG_DIR, file), 'utf8')) as Record<string, unknown>;
+for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((f) => f.endsWith('.json'))) {
+	const entry = JSON.parse(readFileSync(join(ARTIFACTS_CATALOG_DIR, file), 'utf8')) as Record<string, unknown>;
 	const modbus = entry.modbus as { modbus_registers?: Reg[]; modbus_decodes?: Decode[] } | undefined;
 	if (!modbus) continue; // no register map — nothing to resolve
 
 	const slug = (entry.identity as { slug?: string })?.slug ?? file.replace(/\.json$/, '');
 	const archetype = (entry.identity as { archetype?: string })?.archetype;
 	// Feature slots = every top-level key whose value carries a baked `feature_spec`.
-	const specs = new Map<string, Spec>();
+	const specByFeature = new Map<string, Spec>();
 	for (const [key, value] of Object.entries(entry)) {
 		const spec = (value as { feature_spec?: Spec })?.feature_spec;
-		if (spec && typeof spec === 'object') specs.set(key, spec);
+		if (spec && typeof spec === 'object') specByFeature.set(key, spec);
 	}
 	// A repeated feature's instance count — the ordinal bound.
 	const countOf = (feature: string): number => {
 		const cs = (entry[feature] as { concept_settings?: { count?: number } })?.concept_settings;
-		return specs.get(feature)?.instances?.length ?? cs?.count ?? 0;
+		return specByFeature.get(feature)?.instances?.length ?? cs?.count ?? 0;
 	};
 
 	for (const reg of modbus.modbus_registers ?? []) {
@@ -76,9 +75,9 @@ for (const file of readdirSync(CATALOG_DIR).filter((f) => f.endsWith('.json'))) 
 			continue;
 		}
 		if (raw_name) fail(slug, `${at} is both linked (${feature_id}) and raw (${raw_name})`);
-		const spec = specs.get(feature_id);
+		const spec = specByFeature.get(feature_id);
 		if (!spec) {
-			fail(slug, `${at} feature_id '${feature_id}' is not a feature slot (slots: ${[...specs.keys()].join(', ') || 'none'})`);
+			fail(slug, `${at} feature_id '${feature_id}' is not a feature slot (slots: ${[...specByFeature.keys()].join(', ') || 'none'})`);
 			continue;
 		}
 		// Resolve the offered menu by cardinality: part → instance → combined.
@@ -114,22 +113,18 @@ for (const file of readdirSync(CATALOG_DIR).filter((f) => f.endsWith('.json'))) 
 	for (const dec of modbus.modbus_decodes ?? []) {
 		const label = dec.state ?? dec.fault ?? '?';
 		// A decode is a whole-device categorical: its feature is a real slot OR the archetype root.
-		if (dec.feature_id && dec.feature_id !== archetype && !specs.has(dec.feature_id)) {
+		if (dec.feature_id && dec.feature_id !== archetype && !specByFeature.has(dec.feature_id)) {
 			fail(slug, `decode '${label}' feature_id '${dec.feature_id}' is not a feature slot or the archetype root '${archetype}'`);
 		}
 	}
 }
 
-if (violations.length === 0) {
-	console.log('✓ grimoire register/decode links all resolve against the baked feature tree');
-	process.exit(0);
-}
-
-console.error(`\n✖ ${violations.length} grimoire register/decode link(s) do not resolve against the baked feature tree:\n`);
-for (const { entry, msg } of violations) console.error(`  ${entry}: ${msg}`);
-console.error(`
+report.done(
+	'✓ grimoire register/decode links all resolve against the baked feature tree',
+	(count) => `\n✖ ${count} grimoire register/decode link(s) do not resolve against the baked feature tree:\n`,
+	`
 A link's (feature_id, part_id | ordinal, quantity_kind) is a POINTER; the baked \`feature_spec\` on
 the catalog entry is the source of truth for what the device offers. Fix the LINK to name a real
 feature slot + part/ordinal + offered kind — do NOT coin a code to match a datasheet string.
-`);
-process.exit(1);
+`,
+);

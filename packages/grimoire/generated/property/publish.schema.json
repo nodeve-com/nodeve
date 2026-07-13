@@ -1,7 +1,0 @@
-{
-  "enum": [
-    "changed",
-    "always"
-  ],
-  "type": "string"
-}

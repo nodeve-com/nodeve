@@ -13,28 +13,26 @@
 // offline, so where the registry carries an `iri_template` we validate the term by SHAPE — it must be
 // a single substitutable token (no whitespace), i.e. it fits `{id}` in the template.
 //
-// Root alias: `bun run guard:refs`.
+// Root alias: `node scripts/guard-refs.ts`.
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { type Obj, isObj, layerIndex, propertyDoc } from '../kit/concept-sources.ts';
-
-const GENERATED_DIR = join(import.meta.dir, '../generated');
-const CATALOG_DIR = join(GENERATED_DIR, 'catalog');
+import { ARTIFACTS_CATALOG_DIR, ARTIFACTS_DIR, type Obj, isObj, layerIndex, propertyDoc } from '../src/concept-sources.ts';
+import { GuardReport } from './guard-report.ts';
 
 // FK map: property slug → referenced archetype, read from each property's `column.references`.
-const fkProps = new Map<string, string>();
+const fkByProp = new Map<string, string>();
 for (const slug of layerIndex('property').keys()) {
 	const column = propertyDoc(slug).doc.column;
 	const target = isObj(column) ? column.references : undefined;
-	if (typeof target === 'string') fkProps.set(slug, target);
+	if (typeof target === 'string') fkByProp.set(slug, target);
 }
 
 // Valid slugs per archetype, from the baked catalog (identity.archetype → set of identity.slug), plus
 // each registry's iri_template (for the term shape-check).
 const validByArchetype = new Map<string, Set<string>>();
 const registryIri = new Map<string, string>();
-for (const file of readdirSync(CATALOG_DIR).filter((f) => f.endsWith('.json'))) {
-	const data = JSON.parse(readFileSync(join(CATALOG_DIR, file), 'utf8')) as Obj;
+for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((f) => f.endsWith('.json'))) {
+	const data = JSON.parse(readFileSync(join(ARTIFACTS_CATALOG_DIR, file), 'utf8')) as Obj;
 	const identity = data.identity;
 	if (!isObj(identity) || typeof identity.archetype !== 'string' || typeof identity.slug !== 'string') continue;
 	(validByArchetype.get(identity.archetype) ?? validByArchetype.set(identity.archetype, new Set()).get(identity.archetype)!).add(
@@ -57,8 +55,7 @@ function dataDocs(dir: string): string[] {
 	return out;
 }
 
-type Violation = { file: string; where: string; msg: string };
-const violations: Violation[] = [];
+const report = new GuardReport();
 const knows = (archetype: string, slug: string): boolean => validByArchetype.get(archetype)?.has(slug) ?? false;
 const validSet = (archetype: string): string =>
 	[...(validByArchetype.get(archetype) ?? [])].sort().join(', ') || '(no entries of this archetype)';
@@ -74,29 +71,27 @@ function walk(file: string, node: unknown, where: string): void {
 	if (typeof node.registry_id === 'string' && typeof node.term === 'string') {
 		const tmpl = registryIri.get(node.registry_id);
 		if (tmpl && /\s/.test(node.term))
-			violations.push({ file, where: `${where}.term`, msg: `term "${node.term}" has whitespace — cannot fill {id} in ${node.registry_id} (${tmpl})` });
+			report.fail(`${file} at ${where}.term: term "${node.term}" has whitespace — cannot fill {id} in ${node.registry_id} (${tmpl})`);
 	}
 	for (const [key, value] of Object.entries(node)) {
 		const at = where ? `${where}.${key}` : key;
 		// catalog_item — target archetype rides the value.
 		if (key === 'catalog_item' && isObj(value) && typeof value.archetype === 'string' && typeof value.slug === 'string') {
 			if (!knows(value.archetype, value.slug))
-				violations.push({ file, where: at, msg: `catalog_item → ${value.archetype}/${value.slug} — no such entry (have: ${validSet(value.archetype)})` });
+				report.fail(`${file} at ${at}: catalog_item → ${value.archetype}/${value.slug} — no such entry (have: ${validSet(value.archetype)})`);
 		}
 		// A property-declared FK — target archetype is fixed by the property.
-		const target = fkProps.get(key);
+		const target = fkByProp.get(key);
 		if (target && typeof value === 'string' && !knows(target, value))
-			violations.push({ file, where: at, msg: `${key} → ${target}/${value} — no such ${target} (have: ${validSet(target)})` });
+			report.fail(`${file} at ${at}: ${key} → ${target}/${value} — no such ${target} (have: ${validSet(target)})`);
 		walk(file, value, at);
 	}
 }
 
-const docs = dataDocs(GENERATED_DIR);
-for (const file of docs) walk(file.slice(GENERATED_DIR.length + 1), JSON.parse(readFileSync(file, 'utf8')), '');
+const docs = dataDocs(ARTIFACTS_DIR);
+for (const file of docs) walk(file.slice(ARTIFACTS_DIR.length + 1), JSON.parse(readFileSync(file, 'utf8')), '');
 
-if (violations.length) {
-	console.error(`guard-refs: ${violations.length} dangling reference(s):`);
-	for (const v of violations) console.error(`  ${v.file} at ${v.where}: ${v.msg}`);
-	process.exit(1);
-}
-console.log(`guard-refs: ${docs.length} docs, ${fkProps.size} FK field(s), ${registryIri.size} templated registries — all references resolve.`);
+report.done(
+	`guard-refs: ${docs.length} docs, ${fkByProp.size} FK field(s), ${registryIri.size} templated registries — all references resolve.`,
+	(count) => `guard-refs: ${count} dangling reference(s):`,
+);

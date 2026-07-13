@@ -20,7 +20,7 @@
 // The resolver is INJECTED (`Resolver`) — this module never reads the concept tree itself.
 
 import { clone, mergeDeep } from 'remeda';
-import { type Obj, asList, enumerationMembers, isObj } from './concept-sources.ts';
+import { type Obj, asList, enumerationMembers, isObj } from '../src/concept-sources.ts';
 
 /** Object-node scaffold every resolved shape starts from (kit/compile.ts builds these). Authoring
  *  vocabulary: the props map is `prop`, verbatim from the YAML — no synthesized `fields`/`required`.

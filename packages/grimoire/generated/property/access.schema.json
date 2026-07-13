@@ -1,8 +1,0 @@
-{
-  "enum": [
-    "read",
-    "write",
-    "read_write"
-  ],
-  "type": "string"
-}

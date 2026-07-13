@@ -6,7 +6,7 @@
 # The reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list,
 # the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity.
 # Single MPP tracker. `pv_*` link to the `pv_tracker` MPPT-input (ordinal 1); `battery_*` to the
-# `battery` DC-output port; CS/MPPT/ERR codes stay integers (decode downstream). H19–H23 yields are
+# `battery` DC-output port; CS/MPPT/ERR codes stay integers, left undecoded. H19–H23 yields are
 # 0.01 kWh counters. Each row's `key` is the VE.Direct wire label; RAW rows carry `raw_name`.
 product:
   model: SmartSolar MPPT 100/30

@@ -1,7 +1,0 @@
-{
-  "enum": [
-    "half",
-    "full"
-  ],
-  "type": "string"
-}

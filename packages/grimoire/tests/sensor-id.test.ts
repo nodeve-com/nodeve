@@ -6,8 +6,8 @@ import { describe, expect, test } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
-import { sensorId } from '../kit/sensor-id.ts';
-import { measurandSubTopic } from '../kit/measurand-tree.ts';
+import { sensorId } from '../src/sensor-id.ts';
+import { measurandSubTopic } from '../src/measurand-tree.ts';
 
 const instance = 'grid_meter_live'; // site file stem overrides catalog slug chint_dtsu666_4wire
 

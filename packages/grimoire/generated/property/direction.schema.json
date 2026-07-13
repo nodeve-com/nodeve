@@ -1,7 +1,0 @@
-{
-  "enum": [
-    "above",
-    "below"
-  ],
-  "type": "string"
-}
