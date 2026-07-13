@@ -1,6 +1,6 @@
 {
   "name": "@nodeve/grimoire",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Hardware + site schema/validation: agnostic equipment catalogs (Modbus device profiles, PV panels) and installation-config schemas (solar array), one source of truth projected to JSON Schema + TS types.",
   "license": "MIT",
   "repository": {
