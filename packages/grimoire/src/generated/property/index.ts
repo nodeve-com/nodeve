@@ -128,6 +128,7 @@ import * as scaleOverrides_ from './scale_overrides.ts';
 import * as sentinel_ from './sentinel.ts';
 import * as serialNumber_ from './serial_number.ts';
 import * as seriesCount_ from './series_count.ts';
+import * as serviceId_ from './service_id.ts';
 import * as setCommand_ from './set_command.ts';
 import * as setting_ from './setting.ts';
 import * as siUnit_ from './si_unit.ts';
@@ -288,6 +289,7 @@ export const property = {
 	sentinel: sentinel_,
 	serialNumber: serialNumber_,
 	seriesCount: seriesCount_,
+	serviceId: serviceId_,
 	setCommand: setCommand_,
 	setting: setting_,
 	siUnit: siUnit_,

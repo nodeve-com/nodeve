@@ -8,12 +8,13 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as catalogItem_ from '../property/catalog_item.ts';
+import * as serviceId_ from '../property/service_id.ts';
 
-export const schema: TSchema = Type.Object({ "ingestKind": Type.Union([Type.Literal("modbus_poll"), Type.Literal("modbus_tap")], {"type":"string"}), "platform": Type.Optional(Type.Union([Type.Literal("esphome"), Type.Literal("farana"), Type.Literal("telegraf")], {"type":"string"})), "catalogItem": Type.Optional(catalogItem_.schema) }, {"additionalProperties":false,"x-key-map":{"ingest_kind":"ingestKind","catalog_item":"catalogItem"}});
+export const schema: TSchema = Type.Object({ "ingestKind": Type.Union([Type.Literal("modbus_poll"), Type.Literal("modbus_tap")], {"type":"string"}), "platform": Type.Optional(Type.Union([Type.Literal("esphome"), Type.Literal("farana"), Type.Literal("telegraf")], {"type":"string"})), "catalogItem": Type.Optional(catalogItem_.schema), "serviceId": Type.Optional(serviceId_.schema) }, {"additionalProperties":false,"x-key-map":{"ingest_kind":"ingestKind","catalog_item":"catalogItem","service_id":"serviceId"}});
 
-export type Ingest = { "ingestKind": "modbus_poll" | "modbus_tap"; "platform"?: "esphome" | "farana" | "telegraf"; "catalogItem"?: catalogItem_.CatalogItem };
+export type Ingest = { "ingestKind": "modbus_poll" | "modbus_tap"; "platform"?: "esphome" | "farana" | "telegraf"; "catalogItem"?: catalogItem_.CatalogItem; "serviceId"?: serviceId_.ServiceId };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } }; readonly "serviceId": typeof serviceId_ } };
 
 const _data: DataT = {
 	"identity": {
@@ -26,7 +27,8 @@ const _data: DataT = {
 			"title": {
 				"en": "Site Catalog Item"
 			}
-		}
+		},
+		"serviceId": serviceId_
 	}
 };
 export const { identity, prop } = _data;

@@ -8,3 +8,4 @@ enums:
 prop:
   ingest_kind: { schema: { required: true } } # names the mode; site_adapter ties modbus_tap_window to the modbus_tap value
   catalog_item: { title: { en: 'Site Catalog Item' } }
+  service_id: {} # polled-master modes: which of the device's OFFERED services the adapter dials
