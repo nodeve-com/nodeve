@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "connectTimeoutMs": Type.Optional(c
 
 export type Reconnect = { "connectTimeoutMs"?: connectTimeoutMs_.ConnectTimeoutMs; "reconnectPeriodMs"?: reconnectPeriodMs_.ReconnectPeriodMs };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "reconnect" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "reconnect" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "reconnect"
 	},
 	"prop": {

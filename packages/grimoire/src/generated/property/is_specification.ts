@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type IsSpecification = boolean;
 
-type DataT = { readonly "description": { readonly "en": "Flag: true marks a feature as a SPECIFICATION carrier — each quantity_kind field becomes a `specification` (identity + measurand + `intervals`, the one list of rated bands) — regions covering both the thing's own behaviour envelope) AND the sensor's readable span (a `rating: measurable` interval), told apart by axis, not split into separate slots. The first-class replacement for the quantity_kind→spec binding: a spec-carrying feature declares this instead of relying on its props happening to be quantity_kinds. Independent of cardinality (array/map/repeated): a specification feature may itself be a list/map of spec-carrying shapes." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "is_specification" }; readonly "title": { readonly "en": "Is specification"; readonly "pt": "É especificação" } };
+type DataT = { readonly "description": { readonly "en": "Flag: true marks a feature as a SPECIFICATION carrier — each quantity_kind field becomes a `specification` (identity + measurand + `intervals`, the one list of rated bands) — regions covering both the thing's own behaviour envelope) AND the sensor's readable span (a `rating: measurable` interval), told apart by axis, not split into separate slots. The first-class replacement for the quantity_kind→spec binding: a spec-carrying feature declares this instead of relying on its props happening to be quantity_kinds. Independent of cardinality (array/map/repeated): a specification feature may itself be a list/map of spec-carrying shapes." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "is_specification" }; readonly "title": { readonly "en": "Is specification"; readonly "pt": "É especificação" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Flag: true marks a feature as a SPECIFICATION carrier — each quantity_kind field becomes a `specification` (identity + measurand + `intervals`, the one list of rated bands) — regions covering both the thing's own behaviour envelope) AND the sensor's readable span (a `rating: measurable` interval), told apart by axis, not split into separate slots. The first-class replacement for the quantity_kind→spec binding: a spec-carrying feature declares this instead of relying on its props happening to be quantity_kinds. Independent of cardinality (array/map/repeated): a specification feature may itself be a list/map of spec-carrying shapes."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "is_specification"
 	},
 	"title": {

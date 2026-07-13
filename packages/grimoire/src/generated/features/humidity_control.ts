@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "minHumidity": Type.Optional(minHum
 
 export type HumidityControl = { "minHumidity"?: minHumidity_.MinHumidity; "maxHumidity"?: maxHumidity_.MaxHumidity; "defaultHumidity"?: defaultHumidity_.DefaultHumidity };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "humidity_control" }; readonly "prop": { readonly "defaultHumidity": typeof defaultHumidity_; readonly "maxHumidity": typeof maxHumidity_; readonly "minHumidity": typeof minHumidity_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "humidity_control" }; readonly "prop": { readonly "defaultHumidity": typeof defaultHumidity_; readonly "maxHumidity": typeof maxHumidity_; readonly "minHumidity": typeof minHumidity_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "humidity_control"
 	},
 	"prop": {

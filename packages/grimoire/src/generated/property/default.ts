@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({});
 
 export type Default = Record<string, never>;
 
-type DataT = { readonly "description": { readonly "en": "The per-instance spec-map every instance gets. Desugars to count instance rows, copied verbatim, then patched by instances (desugar + deep-merge projection deferred)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "default" }; readonly "title": { readonly "en": "Default" } };
+type DataT = { readonly "description": { readonly "en": "The per-instance spec-map every instance gets. Desugars to count instance rows, copied verbatim, then patched by instances (desugar + deep-merge projection deferred)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "default" }; readonly "title": { readonly "en": "Default" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The per-instance spec-map every instance gets. Desugars to count instance rows, copied verbatim, then patched by instances (desugar + deep-merge projection deferred)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "default"
 	},
 	"title": {

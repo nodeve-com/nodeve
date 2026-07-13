@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "304ZFK8C",
 		"slug": "prometheus"
 	},

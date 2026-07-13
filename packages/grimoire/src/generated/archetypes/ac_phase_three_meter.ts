@@ -21,7 +21,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type AcPhaseThreeMeter = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "acPhaseThreePoint"?: acPhaseThreePoint_.AcPhaseThreePoint; "modbus"?: modbus_.Modbus };
 
-type DataT = { readonly "description": { readonly "en": "A three-phase energy/quantity meter (identity + connectivity + whole/per-phase/per-line quantities)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "ac_phase_three_meter" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "acPhaseThreePoint": typeof acPhaseThreePoint_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "modbus": typeof modbus_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "Sensor" }, { readonly "match": "close"; readonly "registryId": "brick"; readonly "term": "Electrical_Meter" }, { readonly "match": "close"; readonly "registryId": "sunspec"; readonly "term": "203" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "Meter" }]; readonly "title": { readonly "en": "Three-phase Meter"; readonly "pt": "Medidor trifásico" } };
+type DataT = { readonly "description": { readonly "en": "A three-phase energy/quantity meter (identity + connectivity + whole/per-phase/per-line quantities)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ac_phase_three_meter" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "acPhaseThreePoint": typeof acPhaseThreePoint_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "modbus": typeof modbus_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "Sensor" }, { readonly "match": "close"; readonly "registryId": "brick"; readonly "term": "Electrical_Meter" }, { readonly "match": "close"; readonly "registryId": "sunspec"; readonly "term": "203" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "Meter" }]; readonly "title": { readonly "en": "Three-phase Meter"; readonly "pt": "Medidor trifásico" } };
 
 const _data: DataT = {
 	"description": {
@@ -29,7 +29,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "ac_phase_three_meter"
 	},
 	"prop": {

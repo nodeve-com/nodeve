@@ -17,11 +17,11 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type MeasurandLink = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "rawName"?: rawName_.RawName };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "measurand_link"
 	},
 	"prop": {

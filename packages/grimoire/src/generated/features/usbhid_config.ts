@@ -23,11 +23,11 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type UsbhidConfig = { "offset"?: offset_.Offset; "expect"?: expect_.Expect; "responseMagic"?: responseMagic_.ResponseMagic; "requestLength"?: requestLength_.RequestLength; "indexOffset"?: indexOffset_.IndexOffset; "lengthOffset"?: lengthOffset_.LengthOffset; "valueOffset"?: valueOffset_.ValueOffset; "getCommand"?: getCommand_.GetCommand; "setCommand"?: setCommand_.SetCommand; "parameters"?: parameters_.Parameters };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usbhid_config" }; readonly "prop": { readonly "expect": typeof expect_; readonly "getCommand": typeof getCommand_; readonly "indexOffset": typeof indexOffset_; readonly "lengthOffset": typeof lengthOffset_; readonly "offset": typeof offset_; readonly "parameters": typeof parameters_; readonly "requestLength": typeof requestLength_; readonly "responseMagic": typeof responseMagic_; readonly "setCommand": typeof setCommand_; readonly "valueOffset": typeof valueOffset_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_config" }; readonly "prop": { readonly "expect": typeof expect_; readonly "getCommand": typeof getCommand_; readonly "indexOffset": typeof indexOffset_; readonly "lengthOffset": typeof lengthOffset_; readonly "offset": typeof offset_; readonly "parameters": typeof parameters_; readonly "requestLength": typeof requestLength_; readonly "responseMagic": typeof responseMagic_; readonly "setCommand": typeof setCommand_; readonly "valueOffset": typeof valueOffset_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usbhid_config"
 	},
 	"prop": {

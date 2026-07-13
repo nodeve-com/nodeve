@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Term = string;
 
-type DataT = { readonly "description": { readonly "en": "The identifier of an entry WITHIN a registry — the code that, resolved through the registry's IRI template, names the external concept a crosswalk ref points at (e.g. Temperature in qudt_quantity_kind, 2.3 in vim)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "term" }; readonly "title": { readonly "en": "Term"; readonly "pt": "Termo" } };
+type DataT = { readonly "description": { readonly "en": "The identifier of an entry WITHIN a registry — the code that, resolved through the registry's IRI template, names the external concept a crosswalk ref points at (e.g. Temperature in qudt_quantity_kind, 2.3 in vim)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "term" }; readonly "title": { readonly "en": "Term"; readonly "pt": "Termo" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The identifier of an entry WITHIN a registry — the code that, resolved through the registry's IRI template, names the external concept a crosswalk ref points at (e.g. Temperature in qudt_quantity_kind, 2.3 in vim)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "term"
 	},
 	"title": {

@@ -78,7 +78,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "air_conditioner",
+		"archetypeId": "air_conditioner",
 		"code": "T3HGXKDC",
 		"slug": "a018d_12ch"
 	},

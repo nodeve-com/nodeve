@@ -15,14 +15,14 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Specification = { "identity"?: identity_.Identity; "measurand"?: measurand_.Measurand; "intervals"?: intervals_.Intervals };
 
-type DataT = { readonly "description": { readonly "en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "specification" }; readonly "prop": { readonly "identity": typeof identity_; readonly "intervals": typeof intervals_; readonly "measurand": typeof measurand_ }; readonly "title": { readonly "en": "Specification" } };
+type DataT = { readonly "description": { readonly "en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "specification" }; readonly "prop": { readonly "identity": typeof identity_; readonly "intervals": typeof intervals_; readonly "measurand": typeof measurand_ }; readonly "title": { readonly "en": "Specification" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "specification"
 	},
 	"prop": {

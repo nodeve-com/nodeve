@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type MaxPermissibleError = number;
 
-type DataT = { readonly "description": { readonly "en": "VIM 4.26, the honest coarse accuracy figure (a channel that RESOLVES to 0.01 may only be ACCURATE to ±0.5). Optional datasheet extra; never derived from resolution." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "max_permissible_error" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.26" }, { readonly "match": "close"; readonly "registryId": "ssn_system"; readonly "term": "Accuracy" }]; readonly "title": { readonly "en": "Maximum permissible error" } };
+type DataT = { readonly "description": { readonly "en": "VIM 4.26, the honest coarse accuracy figure (a channel that RESOLVES to 0.01 may only be ACCURATE to ±0.5). Optional datasheet extra; never derived from resolution." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "max_permissible_error" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.26" }, { readonly "match": "close"; readonly "registryId": "ssn_system"; readonly "term": "Accuracy" }]; readonly "title": { readonly "en": "Maximum permissible error" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "VIM 4.26, the honest coarse accuracy figure (a channel that RESOLVES to 0.01 may only be ACCURATE to ±0.5). Optional datasheet extra; never derived from resolution."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "max_permissible_error"
 	},
 	"refs": [

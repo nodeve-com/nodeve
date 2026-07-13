@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type ValueOffset = number;
 
-type DataT = { readonly "description": { readonly "en": "Where the VALUE bytes sit — in the GET response (decode from here) and the SET request (encode to here), big-endian per the parameter's byte_order (M4-ATX: 4)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "value_offset" }; readonly "title": { readonly "en": "Value offset" } };
+type DataT = { readonly "description": { readonly "en": "Where the VALUE bytes sit — in the GET response (decode from here) and the SET request (encode to here), big-endian per the parameter's byte_order (M4-ATX: 4)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "value_offset" }; readonly "title": { readonly "en": "Value offset" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Where the VALUE bytes sit — in the GET response (decode from here) and the SET request (encode to here), big-endian per the parameter's byte_order (M4-ATX: 4)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "value_offset"
 	},
 	"title": {

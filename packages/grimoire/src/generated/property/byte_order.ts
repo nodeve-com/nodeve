@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("big_first"), Type.Liter
 
 export type ByteOrder = "big_first" | "little_first";
 
-type DataT = { readonly "description": { readonly "en": "Byte order for multi-byte types; omit ⇒ big_first (the network/HID default). Ignored for single-byte types." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "byte_order" }; readonly "title": { readonly "en": "Byte order"; readonly "pt": "Ordem de bytes" } };
+type DataT = { readonly "description": { readonly "en": "Byte order for multi-byte types; omit ⇒ big_first (the network/HID default). Ignored for single-byte types." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "byte_order" }; readonly "title": { readonly "en": "Byte order"; readonly "pt": "Ordem de bytes" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Byte order for multi-byte types; omit ⇒ big_first (the network/HID default). Ignored for single-byte types."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "byte_order"
 	},
 	"title": {

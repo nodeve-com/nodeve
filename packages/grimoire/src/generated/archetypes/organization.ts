@@ -17,7 +17,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Organization = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "description": { readonly "en": "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks."; readonly "pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "organization" }; readonly "title": { readonly "en": "Organization"; readonly "pt": "Organização" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "description": { readonly "en": "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks."; readonly "pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "organization" }; readonly "title": { readonly "en": "Organization"; readonly "pt": "Organização" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -26,7 +26,7 @@ const _data: DataT = {
 		"pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "organization"
 	},
 	"title": {

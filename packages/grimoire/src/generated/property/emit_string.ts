@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type EmitString = string;
 
-type DataT = { readonly "description": { readonly "en": "The string published when a priority rule matches. Named emit (not value) to keep `value` from naming five different things across atoms. Authored as the `emit` key." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "emit_string" }; readonly "title": { readonly "en": "Emit string" } };
+type DataT = { readonly "description": { readonly "en": "The string published when a priority rule matches. Named emit (not value) to keep `value` from naming five different things across atoms. Authored as the `emit` key." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "emit_string" }; readonly "title": { readonly "en": "Emit string" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The string published when a priority rule matches. Named emit (not value) to keep `value` from naming five different things across atoms. Authored as the `emit` key."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "emit_string"
 	},
 	"title": {

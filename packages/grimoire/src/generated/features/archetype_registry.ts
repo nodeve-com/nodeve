@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({ "archetypeKind": Type.Optional(Type
 
 export type ArchetypeRegistry = { "archetypeKind"?: "catalog" | "schema_only" };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "archetype_registry" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "archetype_registry" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "archetype_registry"
 	}
 };

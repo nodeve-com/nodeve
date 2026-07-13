@@ -20,7 +20,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "ordinal": ordinal_.sche
 
 export type PvStrings = Array<{ "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": azimuth_.Azimuth; "tilt": tilt_.Tilt; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem }>;
 
-type DataT = { readonly "description": (typeof pvString_)["description"]; readonly "prop": (typeof pvString_)["prop"]; readonly "array": { readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "pv_strings" }; readonly "title": { readonly "en": "PV strings"; readonly "pt": "Strings fotovoltaicas" } };
+type DataT = { readonly "description": (typeof pvString_)["description"]; readonly "prop": (typeof pvString_)["prop"]; readonly "array": { readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_strings" }; readonly "title": { readonly "en": "PV strings"; readonly "pt": "Strings fotovoltaicas" } };
 
 const _data: DataT = {
 	"description": pvString_["description"],
@@ -37,7 +37,7 @@ const _data: DataT = {
 		}
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "pv_strings"
 	},
 	"title": {

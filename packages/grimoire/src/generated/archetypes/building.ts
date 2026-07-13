@@ -18,11 +18,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Building = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "location"?: location_.Location };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "building" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "location": typeof location_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "A built structure locating the things it houses (identity + location)."; readonly "pt": "Uma estrutura construída que localiza as coisas que alberga (identidade + localização)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "building" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "location": typeof location_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Building"; readonly "pt": "Edifício" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A built structure locating the things it houses (identity + location).",
+		"pt": "Uma estrutura construída que localiza as coisas que alberga (identidade + localização)."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "building"
 	},
 	"prop": {
@@ -31,6 +35,10 @@ const _data: DataT = {
 		"location": location_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Building",
+		"pt": "Edifício"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

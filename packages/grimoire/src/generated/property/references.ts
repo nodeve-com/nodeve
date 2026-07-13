@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type References = string;
 
-type DataT = { readonly "description": { readonly "en": "Archetype whose identity.slug this field's value must be — the field's foreign-key target."; readonly "pt": "Arquétipo cujo identity.slug o valor deste campo deve ser — o alvo de chave estrangeira do campo." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "references" }; readonly "title": { readonly "en": "References"; readonly "pt": "Referencia" } };
+type DataT = { readonly "description": { readonly "en": "Archetype whose identity.slug this field's value must be — the field's foreign-key target."; readonly "pt": "Arquétipo cujo identity.slug o valor deste campo deve ser — o alvo de chave estrangeira do campo." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "references" }; readonly "title": { readonly "en": "References"; readonly "pt": "Referencia" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Arquétipo cujo identity.slug o valor deste campo deve ser — o alvo de chave estrangeira do campo."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "references"
 	},
 	"title": {

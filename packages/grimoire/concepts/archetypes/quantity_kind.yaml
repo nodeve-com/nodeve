@@ -1,3 +1,9 @@
+title:
+  en: Quantity kind
+  pt: Tipo de grandeza
+description:
+  en: A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation.
+  pt: Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão.
 concept_settings:
   # A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a
   # valued qudt:Quantity. A kind IS a Term — its QUDT identity and HA device_class are refs, its

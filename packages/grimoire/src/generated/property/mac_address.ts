@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^([0-9A-Fa-f]{2}:){5}[0-9
 
 export type MacAddress = string;
 
-type DataT = { readonly "description": { readonly "en": "The interface's IEEE 802 hardware address (EUI-48), colon-separated hex — the L2 identity burned into (or assigned to) the NIC." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mac_address" }; readonly "title": { readonly "en": "MAC address" } };
+type DataT = { readonly "description": { readonly "en": "The interface's IEEE 802 hardware address (EUI-48), colon-separated hex — the L2 identity burned into (or assigned to) the NIC." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mac_address" }; readonly "title": { readonly "en": "MAC address" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The interface's IEEE 802 hardware address (EUI-48), colon-separated hex — the L2 identity burned into (or assigned to) the NIC."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mac_address"
 	},
 	"title": {

@@ -1,3 +1,9 @@
+title:
+  en: Site catalog entry
+  pt: Entrada do catálogo do local
+description:
+  en: A site's owned instance of a catalogued device — its site-local identity plus the inventory reference to the device it is.
+  pt: Uma instância detida pelo local de um dispositivo catalogado — a identidade local mais a referência de inventário ao dispositivo.
 concept_settings:
   compose: thing
 feature:

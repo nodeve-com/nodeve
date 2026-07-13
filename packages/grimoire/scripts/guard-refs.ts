@@ -43,16 +43,16 @@ for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((f) => f.endsWith('
 	const identity = data.identity;
 	if (
 		!isPlainObject(identity) ||
-		typeof identity.archetype !== 'string' ||
+		typeof identity.archetype_id !== 'string' ||
 		typeof identity.slug !== 'string'
 	)
 		continue;
 	(
-		validByArchetype.get(identity.archetype) ??
-		validByArchetype.set(identity.archetype, new Set()).get(identity.archetype)!
+		validByArchetype.get(identity.archetype_id) ??
+		validByArchetype.set(identity.archetype_id, new Set()).get(identity.archetype_id)!
 	).add(identity.slug);
 	const pub = data.registry_publication;
-	if (identity.archetype === 'registry' && isPlainObject(pub) && typeof pub.iri_template === 'string')
+	if (identity.archetype_id === 'registry' && isPlainObject(pub) && typeof pub.iri_template === 'string')
 		registryIri.set(identity.slug, pub.iri_template);
 }
 

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Nominal = number;
 
-type DataT = { readonly "description": { readonly "en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "nominal" }; readonly "title": { readonly "en": "Nominal"; readonly "pt": "Nominal" } };
+type DataT = { readonly "description": { readonly "en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "nominal" }; readonly "title": { readonly "en": "Nominal"; readonly "pt": "Nominal" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "nominal"
 	},
 	"title": {

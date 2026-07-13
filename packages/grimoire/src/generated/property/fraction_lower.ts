@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type FractionLower = number;
 
-type DataT = { readonly "description": { readonly "en": "Asymmetric FRACTIONAL lower bound as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `upper_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "fraction_lower" }; readonly "title": { readonly "en": "Lower fraction" } };
+type DataT = { readonly "description": { readonly "en": "Asymmetric FRACTIONAL lower bound as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `upper_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fraction_lower" }; readonly "title": { readonly "en": "Lower fraction" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Asymmetric FRACTIONAL lower bound as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `upper_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "fraction_lower"
 	},
 	"title": {

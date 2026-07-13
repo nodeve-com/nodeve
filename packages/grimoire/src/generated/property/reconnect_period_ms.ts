@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type ReconnectPeriodMs = number;
 
-type DataT = { readonly "description": { readonly "en": "Delay before a dropped connection is retried, integer milliseconds." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "reconnect_period_ms" }; readonly "title": { readonly "en": "Reconnect period (ms)"; readonly "pt": "Período de reconexão (ms)" } };
+type DataT = { readonly "description": { readonly "en": "Delay before a dropped connection is retried, integer milliseconds." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "reconnect_period_ms" }; readonly "title": { readonly "en": "Reconnect period (ms)"; readonly "pt": "Período de reconexão (ms)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Delay before a dropped connection is retried, integer milliseconds."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "reconnect_period_ms"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Bound = number;
 
-type DataT = { readonly "description": { readonly "en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "bound" }; readonly "title": { readonly "en": "Bound"; readonly "pt": "Limite" } };
+type DataT = { readonly "description": { readonly "en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "bound" }; readonly "title": { readonly "en": "Bound"; readonly "pt": "Limite" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "bound"
 	},
 	"title": {

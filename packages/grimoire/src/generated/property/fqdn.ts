@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"maxLength":253,"minLength":1});
 
 export type Fqdn = string;
 
-type DataT = { readonly "description": { readonly "en": "Fully qualified domain name resolving to this address (host + domain, e.g. inverter.lan). No trailing dot. Optional — an address need not have a name." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "fqdn" }; readonly "title": { readonly "en": "FQDN" } };
+type DataT = { readonly "description": { readonly "en": "Fully qualified domain name resolving to this address (host + domain, e.g. inverter.lan). No trailing dot. Optional — an address need not have a name." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fqdn" }; readonly "title": { readonly "en": "FQDN" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Fully qualified domain name resolving to this address (host + domain, e.g. inverter.lan). No trailing dot. Optional — an address need not have a name."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "fqdn"
 	},
 	"title": {

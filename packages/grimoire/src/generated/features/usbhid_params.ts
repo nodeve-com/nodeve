@@ -22,11 +22,11 @@ export const schema: TSchema = Type.Object({ "type": Type.Optional(type_.schema)
 
 export type UsbhidParams = { "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "name"?: name_.Name; "fieldIndex"?: fieldIndex_.FieldIndex; "access"?: access_.Access; "sentinel"?: sentinel_.Sentinel };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usbhid_params" }; readonly "prop": { readonly "access": typeof access_; readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "fieldIndex": typeof fieldIndex_; readonly "name": typeof name_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "sentinel": typeof sentinel_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_params" }; readonly "prop": { readonly "access": typeof access_; readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "fieldIndex": typeof fieldIndex_; readonly "name": typeof name_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "sentinel": typeof sentinel_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usbhid_params"
 	},
 	"prop": {

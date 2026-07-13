@@ -18,11 +18,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type SiteCatalog = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "inventory"?: inventory_.Inventory };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "site_catalog" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "inventory": typeof inventory_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "A site's owned instance of a catalogued device — its site-local identity plus the inventory reference to the device it is."; readonly "pt": "Uma instância detida pelo local de um dispositivo catalogado — a identidade local mais a referência de inventário ao dispositivo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "site_catalog" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "inventory": typeof inventory_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Site catalog entry"; readonly "pt": "Entrada do catálogo do local" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A site's owned instance of a catalogued device — its site-local identity plus the inventory reference to the device it is.",
+		"pt": "Uma instância detida pelo local de um dispositivo catalogado — a identidade local mais a referência de inventário ao dispositivo."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "site_catalog"
 	},
 	"prop": {
@@ -31,6 +35,10 @@ const _data: DataT = {
 		"inventory": inventory_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Site catalog entry",
+		"pt": "Entrada do catálogo do local"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

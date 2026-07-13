@@ -19,7 +19,7 @@ Two SHAPES carry it — same target vocabulary, same resolver, different cardina
 - **scalar typed FK** — a single required 1:1 relation, an ATTRIBUTE of the thing (`manufacturer_id`). [`column.references`](../concepts/features/column.yaml) fixes the Class on the column; the value is the bare id.
 - **`refs` list** — N crosswalks/links ([`features/refs.yaml`](../concepts/features/refs.yaml)), each row `{registry, term, match}`.
 
-`catalog_item {archetype, slug}` ([`property/catalog/catalog_item.yaml`](../concepts/property/catalog/catalog_item.yaml)) is the same FK with the Class chosen AT THE ROW instead of pinned on the column. `manufacturer_id` and `catalog_item` are not two mechanisms — they are the general two-column (compound) FK and its class-fixed specialization.
+`catalog_item {archetype_id, slug}` ([`property/catalog/catalog_item.yaml`](../concepts/property/catalog/catalog_item.yaml)) is the same FK with the Class chosen AT THE ROW instead of pinned on the column. `manufacturer_id` and `catalog_item` are not two mechanisms — they are the general two-column (compound) FK and its class-fixed specialization.
 
 ## A Class is why the layers are flat
 
@@ -30,7 +30,7 @@ The concept layers ARE relational normalization ([`concepts/README.md`](../conce
 | property | column | one field + its `schema` |
 | feature | table | flat `prop:` map — tables don't nest, so features don't |
 | archetype | view / class | joins its feature-tables — composes features, never props directly |
-| catalog entry | row | identity `(archetype, slug)` = `(view, PK)` |
+| catalog entry | row | identity `(archetype_id, slug)` = `(view, PK)` |
 
 So the only internal thing you point AT is an **archetype** — the formal Class. You never reference a feature or a prop; those are a table and a column, not an addressable entity.
 

@@ -12,17 +12,17 @@ import { backfillRegisterSpecNodes, resolveRepeatedFeatures } from './repeated-e
 import { renderHoistedConst } from './hoist.ts';
 
 export interface CatalogEntryJson {
-	identity: { archetype: string; slug: string; code: string };
+	identity: { archetype_id: string; slug: string; code: string };
 	aliases?: string[];
 	[key: string]: unknown;
 }
 
 /** The cascade-merged catalog, snake_case and enveloped, keyed by SLUG (globally unique across
  *  archetypes — a collision is an authoring error). Everything identifying lives under
- *  `identity`: `archetype` + `slug` + `code` (AUTHORED short-code minted at entry creation — the
+ *  `identity`: `archetype_id` + `slug` + `code` (AUTHORED short-code minted at entry creation — the
  *  stable reference consumers persist; it survives file moves and slug renames, so the emit
- *  never derives it); the filing path stays out of the emit. The authored `archetype` selector
- *  may sit top-level or under `identity.archetype` (both forms); the emit canonicalizes.
+ *  never derives it); the filing path stays out of the emit. The authored `archetype_id` selector
+ *  may sit top-level or under `identity.archetype_id` (both forms); the emit canonicalizes.
  *  The emit gate itself (assertDocValid + the leaf/feature sweeps) lives in kit/validate-docs.ts. */
 export function catalogEntries(): Record<string, CatalogEntryJson> {
 	const out: Record<string, CatalogEntryJson> = {};
@@ -30,7 +30,7 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 	const claimedByCode = new Map<string, string>(); // code -> path that claimed it (authored, so dupes possible)
 	for (const leaf of loadCascade(CATALOG_DIR)) {
 		const identity = (leaf.data.identity ?? {}) as Record<string, unknown>;
-		const archetype = typeof identity.archetype === 'string' ? identity.archetype : leaf.archetype;
+		const archetype = typeof identity.archetype_id === 'string' ? identity.archetype_id : leaf.archetype;
 		// `settings_schema` is the ONE sanctioned break from "an archetype assembles features": a device
 		// declares its commissioning knobs as a RAW JSON-schema (its own `required`/`properties`), not a
 		// modelled feature. Lift it out before the archetype check (whose additionalProperties:false would
@@ -40,7 +40,7 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 		const slug = effectiveSlug(leaf.path, identity);
 		// Validate the DE-SUGARED doc — identity.{archetype, slug} is required (features/identity.yaml),
 		// filled from the cascade + file stem exactly as the emit envelope will carry them.
-		assertDocValid(`catalog ${leaf.path}`, archetype, { ...forSchema, identity: { ...identity, archetype, slug } });
+		assertDocValid(`catalog ${leaf.path}`, archetype, { ...forSchema, identity: { ...identity, archetype_id: archetype, slug } });
 		const prior = claimed.get(slug);
 		if (prior) throw new Error(`grimoire catalog: slug "${slug}" is claimed by both ${prior} and ${leaf.path}`);
 		claimed.set(slug, leaf.path);
@@ -59,7 +59,7 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 		out[slug] = {
 			...aliases,
 			...resolved,
-			identity: { archetype, slug, code },
+			identity: { archetype_id: archetype, slug, code },
 		};
 	}
 	return out;

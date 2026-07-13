@@ -19,14 +19,14 @@ export const schema: TSchema = Type.Object({ "ordinal": ordinal_.schema, "active
 
 export type PvString = { "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": azimuth_.Azimuth; "tilt": tilt_.Tilt; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem };
 
-type DataT = { readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } };
+type DataT = { readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } };
 
 const _data: DataT = {
 	"description": {
 		"en": "PV String instance of on a site install."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "pv_string"
 	},
 	"prop": {

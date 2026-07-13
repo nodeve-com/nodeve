@@ -18,11 +18,11 @@ export const schema: TSchema = Type.Object({ "vendorId": Type.Optional(vendorId_
 
 export type UsbWire = { "vendorId"?: vendorId_.VendorId; "productId"?: productId_.ProductId; "interface"?: interface_.Interface; "configuration"?: configuration_.Configuration; "altSetting"?: altSetting_.AltSetting; "detachKernelDriver"?: detachKernelDriver_.DetachKernelDriver };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usb_wire" }; readonly "prop": { readonly "altSetting": typeof altSetting_; readonly "configuration": typeof configuration_; readonly "detachKernelDriver": typeof detachKernelDriver_; readonly "interface": typeof interface_; readonly "productId": typeof productId_; readonly "vendorId": typeof vendorId_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usb_wire" }; readonly "prop": { readonly "altSetting": typeof altSetting_; readonly "configuration": typeof configuration_; readonly "detachKernelDriver": typeof detachKernelDriver_; readonly "interface": typeof interface_; readonly "productId": typeof productId_; readonly "vendorId": typeof vendorId_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usb_wire"
 	},
 	"prop": {

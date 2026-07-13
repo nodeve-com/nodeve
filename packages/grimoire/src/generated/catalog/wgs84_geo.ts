@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "M74T17ZA",
 		"slug": "wgs84_geo"
 	},

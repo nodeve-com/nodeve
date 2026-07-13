@@ -17,7 +17,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "name": name_.schema, "a
 
 export type ModbusTapWindow = Array<{ "name": name_.Name; "address": address_.Address; "registerType"?: registerType_.RegisterType; "retain"?: retain_.Retain; "observedIntervalMs"?: observedIntervalMs_.ObservedIntervalMs }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "name": typeof name_; readonly "observedIntervalMs": typeof observedIntervalMs_; readonly "registerType": typeof registerType_; readonly "retain": typeof retain_ } }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "modbus_tap_window" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "name": typeof name_; readonly "observedIntervalMs": typeof observedIntervalMs_; readonly "registerType": typeof registerType_; readonly "retain": typeof retain_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_tap_window" } };
 
 const _data: DataT = {
 	"array": {
@@ -30,7 +30,7 @@ const _data: DataT = {
 		}
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "modbus_tap_window"
 	}
 };

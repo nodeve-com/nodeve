@@ -7,7 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
-import * as archetype_ from '../property/archetype.ts';
+import * as archetypeId_ from '../property/archetype_id.ts';
 import * as broader_ from '../property/broader.ts';
 import * as code_ from '../property/code.ts';
 import * as id_ from '../property/id.ts';
@@ -17,19 +17,19 @@ import * as slugQualified_ from '../property/slug_qualified.ts';
 import * as symbol_ from '../property/symbol.ts';
 import * as url_ from '../property/url.ts';
 
-export const schema: TSchema = Type.Object({ "archetype": Type.Optional(archetype_.schema), "slug": slug_.schema, "slugQualified": Type.Optional(slugQualified_.schema), "id": Type.Optional(id_.schema), "code": Type.Optional(code_.schema), "symbol": Type.Optional(symbol_.schema), "broader": Type.Optional(broader_.schema), "url": Type.Optional(url_.schema), "iriTemplate": Type.Optional(iriTemplate_.schema) }, {"additionalProperties":false,"x-key-map":{"slug_qualified":"slugQualified","iri_template":"iriTemplate"}});
+export const schema: TSchema = Type.Object({ "archetypeId": Type.Optional(archetypeId_.schema), "slug": slug_.schema, "slugQualified": Type.Optional(slugQualified_.schema), "id": Type.Optional(id_.schema), "code": Type.Optional(code_.schema), "symbol": Type.Optional(symbol_.schema), "broader": Type.Optional(broader_.schema), "url": Type.Optional(url_.schema), "iriTemplate": Type.Optional(iriTemplate_.schema) }, {"additionalProperties":false,"x-key-map":{"archetype_id":"archetypeId","slug_qualified":"slugQualified","iri_template":"iriTemplate"}});
 
-export type Identity = { "archetype"?: archetype_.Archetype; "slug": slug_.Slug; "slugQualified"?: slugQualified_.SlugQualified; "id"?: id_.Id; "code"?: code_.Code; "symbol"?: symbol_.Symbol; "broader"?: broader_.Broader; "url"?: url_.Url; "iriTemplate"?: iriTemplate_.IriTemplate };
+export type Identity = { "archetypeId"?: archetypeId_.ArchetypeId; "slug": slug_.Slug; "slugQualified"?: slugQualified_.SlugQualified; "id"?: id_.Id; "code"?: code_.Code; "symbol"?: symbol_.Symbol; "broader"?: broader_.Broader; "url"?: url_.Url; "iriTemplate"?: iriTemplate_.IriTemplate };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "identity" }; readonly "prop": { readonly "archetype": typeof archetype_; readonly "broader": typeof broader_; readonly "code": typeof code_; readonly "id": typeof id_; readonly "iriTemplate": typeof iriTemplate_; readonly "slug": typeof slug_; readonly "slugQualified": typeof slugQualified_; readonly "symbol": typeof symbol_; readonly "url": typeof url_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "identity" }; readonly "prop": { readonly "archetypeId": typeof archetypeId_; readonly "broader": typeof broader_; readonly "code": typeof code_; readonly "id": typeof id_; readonly "iriTemplate": typeof iriTemplate_; readonly "slug": typeof slug_; readonly "slugQualified": typeof slugQualified_; readonly "symbol": typeof symbol_; readonly "url": typeof url_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "identity"
 	},
 	"prop": {
-		"archetype": archetype_,
+		"archetypeId": archetypeId_,
 		"broader": broader_,
 		"code": code_,
 		"id": id_,

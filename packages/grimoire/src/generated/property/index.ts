@@ -8,7 +8,7 @@ import * as address_ from './address.ts';
 import * as addresses_ from './addresses.ts';
 import * as aliases_ from './aliases.ts';
 import * as altSetting_ from './alt_setting.ts';
-import * as archetype_ from './archetype.ts';
+import * as archetypeId_ from './archetype_id.ts';
 import * as azimuth_ from './azimuth.ts';
 import * as baseUrl_ from './base_url.ts';
 import * as baudRate_ from './baud_rate.ts';
@@ -168,7 +168,7 @@ export const property = {
 	addresses: addresses_,
 	aliases: aliases_,
 	altSetting: altSetting_,
-	archetype: archetype_,
+	archetypeId: archetypeId_,
 	azimuth: azimuth_,
 	baseUrl: baseUrl_,
 	baudRate: baudRate_,

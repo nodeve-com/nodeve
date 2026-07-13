@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^[A-Za-z0-9_#]+$"});
 
 export type Key = string;
 
-type DataT = { readonly "description": { readonly "en": "The VE.Direct wire LABEL this field reads (V, VPV, SER#, H19, AC_OUT_V) — the protocol's case-sensitive key, carried as a preserved string value (not the map key, which codegen would camelCase)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "key" }; readonly "title": { readonly "en": "Wire key"; readonly "pt": "Chave no fio" } };
+type DataT = { readonly "description": { readonly "en": "The VE.Direct wire LABEL this field reads (V, VPV, SER#, H19, AC_OUT_V) — the protocol's case-sensitive key, carried as a preserved string value (not the map key, which codegen would camelCase)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "key" }; readonly "title": { readonly "en": "Wire key"; readonly "pt": "Chave no fio" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The VE.Direct wire LABEL this field reads (V, VPV, SER#, H19, AC_OUT_V) — the protocol's case-sensitive key, carried as a preserved string value (not the map key, which codegen would camelCase)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "key"
 	},
 	"title": {

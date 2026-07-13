@@ -18,14 +18,14 @@ export const schema: TSchema = Type.Object({ "transportProtocol": Type.Optional(
 
 export type Endpoint = { "transportProtocol"?: "tcp" | "udp"; "host"?: host_.Host; "port"?: port_.Port; "connectTimeoutMs"?: connectTimeoutMs_.ConnectTimeoutMs; "reconnectPeriodMs"?: reconnectPeriodMs_.ReconnectPeriodMs; "serviceProtocol"?: "mqtt" | "mqtts" | "http" | "https" | "ws" | "wss"; "pathname"?: pathname_.Pathname; "version"?: version_.Version };
 
-type DataT = { readonly "description": { readonly "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "endpoint" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "host": typeof host_; readonly "pathname": typeof pathname_; readonly "port": typeof port_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_; readonly "version": typeof version_ }; readonly "title": { readonly "en": "Endpoint" } };
+type DataT = { readonly "description": { readonly "en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "endpoint" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "host": typeof host_; readonly "pathname": typeof pathname_; readonly "port": typeof port_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_; readonly "version": typeof version_ }; readonly "title": { readonly "en": "Endpoint" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "endpoint"
 	},
 	"prop": {

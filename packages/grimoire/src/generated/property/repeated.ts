@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type Repeated = boolean;
 
-type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = countable instances of this feature's shape, wrapped in an envelope `{count, combined?, default?, instances?}` — NOT a bare list (that is `array`). The envelope carries a `count`, an optional `combined` aggregate over all instances, a `default` applied to each, and optional per-instance `instances` joined by `ordinal`; a metered collection may state count/combined with no `instances` enumerated at all. Exclusive with `part` (a fixed named-parts map) and with `array` (a bare list)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "repeated" }; readonly "title": { readonly "en": "Repeated"; readonly "pt": "Repetido" } };
+type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = countable instances of this feature's shape, wrapped in an envelope `{count, combined?, default?, instances?}` — NOT a bare list (that is `array`). The envelope carries a `count`, an optional `combined` aggregate over all instances, a `default` applied to each, and optional per-instance `instances` joined by `ordinal`; a metered collection may state count/combined with no `instances` enumerated at all. Exclusive with `part` (a fixed named-parts map) and with `array` (a bare list)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "repeated" }; readonly "title": { readonly "en": "Repeated"; readonly "pt": "Repetido" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The feature's intrinsic cardinality: true = countable instances of this feature's shape, wrapped in an envelope `{count, combined?, default?, instances?}` — NOT a bare list (that is `array`). The envelope carries a `count`, an optional `combined` aggregate over all instances, a `default` applied to each, and optional per-instance `instances` joined by `ordinal`; a metered collection may state count/combined with no `instances` enumerated at all. Exclusive with `part` (a fixed named-parts map) and with `array` (a bare list)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "repeated"
 	},
 	"title": {

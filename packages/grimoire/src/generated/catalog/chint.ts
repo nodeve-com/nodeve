@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "organization",
+		"archetypeId": "organization",
 		"code": "S6KEV7ZF",
 		"slug": "chint"
 	},

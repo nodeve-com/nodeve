@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({}, {"additionalProperties":false});
 
 export type EnergyConsumer = Record<string, never>;
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "energy_consumer" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "EnergyConsumer" }, { readonly "match": "close"; readonly "registryId": "seas"; readonly "term": "ElectricPowerConsumer" }, { readonly "match": "related"; readonly "registryId": "brick"; readonly "term": "Building_Electrical_Meter" }]; readonly "title": { readonly "en": "House load"; readonly "pt": "Consumo da casa" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "energy_consumer" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "EnergyConsumer" }, { readonly "match": "close"; readonly "registryId": "seas"; readonly "term": "ElectricPowerConsumer" }, { readonly "match": "related"; readonly "registryId": "brick"; readonly "term": "Building_Electrical_Meter" }]; readonly "title": { readonly "en": "House load"; readonly "pt": "Consumo da casa" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "energy_consumer"
 	},
 	"refs": [

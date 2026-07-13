@@ -1,3 +1,9 @@
+title:
+  en: Thing
+  pt: Coisa
+description:
+  en: The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry.
+  pt: A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar.
 feature:
   title: {}
   description: {}

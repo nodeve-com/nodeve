@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "ipFamily": Type.Optional(Type.Unio
 
 export type IpBinding = { "ipFamily"?: "ipv4" | "ipv6"; "ipAddress"?: ipAddress_.IpAddress; "fqdn"?: fqdn_.Fqdn };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "ip_binding" }; readonly "prop": { readonly "fqdn": typeof fqdn_; readonly "ipAddress": typeof ipAddress_ }; readonly "title": { readonly "en": "IP binding" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ip_binding" }; readonly "prop": { readonly "fqdn": typeof fqdn_; readonly "ipAddress": typeof ipAddress_ }; readonly "title": { readonly "en": "IP binding" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "ip_binding"
 	},
 	"prop": {

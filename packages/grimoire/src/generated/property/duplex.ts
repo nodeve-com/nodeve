@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("half"), Type.Literal("f
 
 export type Duplex = "half" | "full";
 
-type DataT = { readonly "description": { readonly "en": "Duplex mode of the link: full transmits and receives simultaneously; half shares one channel (CSMA/CD collision domain)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "duplex" }; readonly "title": { readonly "en": "Duplex" } };
+type DataT = { readonly "description": { readonly "en": "Duplex mode of the link: full transmits and receives simultaneously; half shares one channel (CSMA/CD collision domain)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "duplex" }; readonly "title": { readonly "en": "Duplex" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Duplex mode of the link: full transmits and receives simultaneously; half shares one channel (CSMA/CD collision domain)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "duplex"
 	},
 	"title": {

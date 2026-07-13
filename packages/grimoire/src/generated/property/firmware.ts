@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({});
 
 export type Firmware = Record<string, never>;
 
-type DataT = { readonly "description": { readonly "en": "Firmware-driven scale selection (offset + nibble + select); omit for a device whose scaling is fixed across firmware. Named firmware, not version: it's a decode-config selector, not a protocol-version value." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "firmware" }; readonly "title": { readonly "en": "Firmware" } };
+type DataT = { readonly "description": { readonly "en": "Firmware-driven scale selection (offset + nibble + select); omit for a device whose scaling is fixed across firmware. Named firmware, not version: it's a decode-config selector, not a protocol-version value." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "firmware" }; readonly "title": { readonly "en": "Firmware" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Firmware-driven scale selection (offset + nibble + select); omit for a device whose scaling is fixed across firmware. Named firmware, not version: it's a decode-config selector, not a protocol-version value."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "firmware"
 	},
 	"title": {

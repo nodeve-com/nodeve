@@ -1,4 +1,4 @@
 # Organization catalog entries — referenceable bodies (product.manufacturer_id points here by slug;
 # registry.published_by names the standards body). Identity-only: no register maps, no specs. Single
 # archetype for the whole subtree.
-archetype: organization
+archetype_id: organization

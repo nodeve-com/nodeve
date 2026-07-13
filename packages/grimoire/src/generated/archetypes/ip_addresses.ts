@@ -18,7 +18,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(t
 
 export type IpAddresses = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ipBinding"?: ipBinding_.IpBinding }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipBinding": typeof ipBinding_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "ip_addresses" }; readonly "title": { readonly "en": "IP address" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipBinding": typeof ipBinding_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ip_addresses" }; readonly "title": { readonly "en": "IP address"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -32,14 +32,16 @@ const _data: DataT = {
 		}
 	},
 	"description": {
-		"en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)."
+		"en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address).",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "ip_addresses"
 	},
 	"title": {
-		"en": "IP address"
+		"en": "IP address",
+		"pt": "Coisa"
 	}
 };
 export const { array, description, identity, prop, title } = _data;

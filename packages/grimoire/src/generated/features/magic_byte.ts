@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type MagicByte = { "offset"?: offset_.Offset; "expect"?: expect_.Expect; "responseMagic"?: responseMagic_.ResponseMagic };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "magic_byte" }; readonly "prop": { readonly "expect": typeof expect_; readonly "offset": typeof offset_; readonly "responseMagic": typeof responseMagic_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "magic_byte" }; readonly "prop": { readonly "expect": typeof expect_; readonly "offset": typeof offset_; readonly "responseMagic": typeof responseMagic_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "magic_byte"
 	},
 	"prop": {

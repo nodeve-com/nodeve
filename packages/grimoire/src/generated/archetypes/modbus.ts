@@ -18,14 +18,14 @@ export const schema: TSchema = Type.Object({ "serialPort": Type.Optional(serialP
 
 export type Modbus = { "serialPort"?: serialPort_.SerialPort; "serialWire"?: serialWire_.SerialWire; "modbusLink"?: modbusLink_.ModbusLink; "modbusRegisters"?: modbusRegisters_.ModbusRegisters; "modbusDecodes"?: modbusDecodes_.ModbusDecodes; "modbusConstraints"?: modbusConstraints_.ModbusConstraints };
 
-type DataT = { readonly "description": { readonly "en": "A Modbus connectivity medium — Layer-7 application protocol (transport + emit + register map + decode + read-batching constraints)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "modbus" }; readonly "prop": { readonly "modbusConstraints": typeof modbusConstraints_; readonly "modbusDecodes": typeof modbusDecodes_; readonly "modbusLink": typeof modbusLink_; readonly "modbusRegisters": typeof modbusRegisters_; readonly "serialPort": typeof serialPort_; readonly "serialWire": typeof serialWire_ }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "modbus_org"; readonly "term": "Modbus Application Protocol" }]; readonly "title": { readonly "en": "Modbus medium" } };
+type DataT = { readonly "description": { readonly "en": "A Modbus connectivity medium — Layer-7 application protocol (transport + emit + register map + decode + read-batching constraints)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "modbus" }; readonly "prop": { readonly "modbusConstraints": typeof modbusConstraints_; readonly "modbusDecodes": typeof modbusDecodes_; readonly "modbusLink": typeof modbusLink_; readonly "modbusRegisters": typeof modbusRegisters_; readonly "serialPort": typeof serialPort_; readonly "serialWire": typeof serialWire_ }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "modbus_org"; readonly "term": "Modbus Application Protocol" }]; readonly "title": { readonly "en": "Modbus medium" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A Modbus connectivity medium — Layer-7 application protocol (transport + emit + register map + decode + read-batching constraints)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "modbus"
 	},
 	"prop": {

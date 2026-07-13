@@ -50,7 +50,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "water_heater",
+		"archetypeId": "water_heater",
 		"code": "QXM34AJD",
 		"slug": "water_heater"
 	},

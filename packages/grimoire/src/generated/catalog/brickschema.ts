@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "organization",
+		"archetypeId": "organization",
 		"code": "WKZ4WV1Y",
 		"slug": "brickschema"
 	},

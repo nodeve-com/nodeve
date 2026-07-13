@@ -15,12 +15,12 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Dc = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification } } };
 
-type DataT = { readonly "prop": (typeof electricalQuantity_)["prop"]; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "dc" } };
+type DataT = { readonly "prop": (typeof electricalQuantity_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "dc" } };
 
 const _data: DataT = {
 	"prop": electricalQuantity_["prop"],
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "dc"
 	}
 };

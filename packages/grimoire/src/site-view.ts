@@ -6,13 +6,13 @@
 // grain are snake) — no reshape. Consumers that want camelCase parse a block separately.
 //
 // The two indirections this untangles:
-//   • catalog_item — an adapter (or anything) names its metered thing by `{archetype, slug}`. The
+//   • catalog_item — an adapter (or anything) names its metered thing by `{archetype_id, slug}`. The
 //     ref resolves EITHER to a site_catalog entry (the site-local indirection: `<device
 //     archetype>/<entry slug>`) or, failing that, straight to a grimoire device.
 //   • catalog_patch — the site_catalog entry carries the sparse slug patch `generate-site` baked;
 //     merged onto the loaded grimoire device it puts each measurand column's `slug` in place.
 
-import { type CatalogDevice, type CatalogIdentity, loadDevice } from './catalog.ts';
+import { type CatalogDevice, loadDevice } from './catalog.ts';
 import { isPlainObject } from 'remeda';
 import { type MeasurandCell, type Obj, measurandCells, specSlug, specSlugQualified } from './measurand-tree.ts';
 
@@ -39,8 +39,10 @@ export interface ResolvedDevice {
 
 const asObj = (v: unknown): Obj => (isPlainObject(v) ? v : {});
 // Named identityOf (not identity) — extracts an identity object, unlike remeda.identity.
-const identityOf = (v: unknown): { archetype?: string; slug?: string } => asObj(v) as never;
-const refKey = ({ archetype, slug }: CatalogIdentity): string => `${archetype}/${slug}`;
+const identityOf = (v: unknown): { archetype_id?: string; slug?: string } => asObj(v) as never;
+/** A wire `catalog_item` ref, as authored in a site bundle (snake — this reader never reshapes). */
+export type CatalogItemRef = { archetype_id: string; slug: string };
+const refKey = ({ archetype_id, slug }: CatalogItemRef): string => `${archetype_id}/${slug}`;
 
 // The `identity.slug` handle of an array element, or undefined for a positionally-keyed one.
 const slugKey = (el: unknown): string | undefined => (isPlainObject(el) && isPlainObject(el.identity) ? ((el.identity as Obj).slug as string | undefined) : undefined);
@@ -85,7 +87,7 @@ export function openSite(bundle: SiteBundle) {
 	const bySiteRef = new Map<string, Obj>();
 	for (const entry of catalog) {
 		const item = identityOf(asObj(entry.inventory).catalog_item);
-		bySiteRef.set(`${item.archetype}/${identityOf(entry.identity).slug}`, entry);
+		bySiteRef.set(`${item.archetype_id}/${identityOf(entry.identity).slug}`, entry);
 	}
 	const byAdapterSlug = new Map<string, Obj>(adapters.map((a) => [identityOf(a.identity).slug as string, a]));
 
@@ -93,22 +95,23 @@ export function openSite(bundle: SiteBundle) {
 	 *  that matches a site_catalog entry resolves through it (carrying baked slugs); one
 	 *  that doesn't loads the grimoire device directly (no patch, no slugs). Throws (via `loadDevice`)
 	 *  on a dangling ref, naming the bad ref + the valid set. */
-	function resolve(ref: CatalogIdentity): ResolvedDevice {
+	function resolve(ref: CatalogItemRef): ResolvedDevice {
 		const entry = bySiteRef.get(refKey(ref));
 		if (entry) {
 			const inventory = asObj(entry.inventory);
-			const device = loadDevice(identityOf(inventory.catalog_item) as CatalogIdentity);
+			const item = identityOf(inventory.catalog_item);
+			const device = loadDevice({ archetypeId: item.archetype_id as string, slug: item.slug as string });
 			const patch = asObj(inventory.catalog_patch);
 			return { device, patch, merged: overlayPatch(device, patch) as CatalogDevice, siteLocal: true };
 		}
-		const device = loadDevice(ref);
+		const device = loadDevice({ archetypeId: ref.archetype_id, slug: ref.slug });
 		return { device, patch: {}, merged: device, siteLocal: false };
 	}
 
 	/** Every sensor of a resolved metered thing — the flat, slug-bearing list a generator iterates.
 	 *  Throws if a column lacks a slug (a metered device reached other than through a site_catalog
 	 *  entry has no baked ids — route it through one). */
-	function sensors(ref: CatalogIdentity): SiteSensor[] {
+	function sensors(ref: CatalogItemRef): SiteSensor[] {
 		const { merged, siteLocal } = resolve(ref);
 		return measurandCells(merged).map((cell) => {
 			const slug = specSlug(cell.node);
@@ -137,8 +140,8 @@ export function openSite(bundle: SiteBundle) {
 		/** The sensors an adapter meters — `sensors(adapter.ingest.catalog_item)`. */
 		adapterSensors(adapter: Obj): SiteSensor[] {
 			const ref = identityOf(asObj(adapter.ingest).catalog_item);
-			if (!ref.archetype || !ref.slug) throw new Error(`site_adapter "${identityOf(adapter.identity).slug}" has no ingest.catalog_item`);
-			return sensors(ref as CatalogIdentity);
+			if (!ref.archetype_id || !ref.slug) throw new Error(`site_adapter "${identityOf(adapter.identity).slug}" has no ingest.catalog_item`);
+			return sensors(ref as CatalogItemRef);
 		},
 	};
 }

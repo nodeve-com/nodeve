@@ -12,7 +12,7 @@ export const schema: TSchema = Type.Number();
 
 export type Scale = number;
 
-type DataT = { readonly "description": { readonly "en": "Published value = raw × scale (raw → engineering units). Optional where omitting means 1 (VE.Direct)."; readonly "pt": "Valor publicado = bruto × escala (bruto → unidades de engenharia)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "scale" }; readonly "title": { readonly "en": "Scale"; readonly "pt": "Escala" } };
+type DataT = { readonly "description": { readonly "en": "Published value = raw × scale (raw → engineering units). Optional where omitting means 1 (VE.Direct)."; readonly "pt": "Valor publicado = bruto × escala (bruto → unidades de engenharia)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "scale" }; readonly "title": { readonly "en": "Scale"; readonly "pt": "Escala" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Valor publicado = bruto × escala (bruto → unidades de engenharia)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "scale"
 	},
 	"title": {

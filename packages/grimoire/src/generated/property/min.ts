@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Min = number;
 
-type DataT = { readonly "description": { readonly "en": "Inclusive low end of a closed interval, in the enclosing concept's unit." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "min" }; readonly "title": { readonly "en": "Minimum"; readonly "pt": "Mínimo" } };
+type DataT = { readonly "description": { readonly "en": "Inclusive low end of a closed interval, in the enclosing concept's unit." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "min" }; readonly "title": { readonly "en": "Minimum"; readonly "pt": "Mínimo" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Inclusive low end of a closed interval, in the enclosing concept's unit."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "min"
 	},
 	"title": {

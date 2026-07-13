@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("holding"), Type.Literal
 
 export type RegisterType = "holding" | "input";
 
-type DataT = { readonly "description": { readonly "en": "Which Modbus register space a read targets — holding = function 03, input = function 04. Composed by a device's link and a tap window." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "register_type" }; readonly "title": { readonly "en": "Register type" } };
+type DataT = { readonly "description": { readonly "en": "Which Modbus register space a read targets — holding = function 03, input = function 04. Composed by a device's link and a tap window." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "register_type" }; readonly "title": { readonly "en": "Register type" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Which Modbus register space a read targets — holding = function 03, input = function 04. Composed by a device's link and a tap window."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "register_type"
 	},
 	"title": {

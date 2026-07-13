@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"maxLength":32,"minLength":1});
 
 export type WifiSsid = string;
 
-type DataT = { readonly "description": { readonly "en": "The service set identifier (802.11) of the wireless network a station joins — data-link (L2) addressing: which named network, not how we reach the station. No sensible default — deployment-specific." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "wifi_ssid" }; readonly "title": { readonly "en": "WiFi SSID" } };
+type DataT = { readonly "description": { readonly "en": "The service set identifier (802.11) of the wireless network a station joins — data-link (L2) addressing: which named network, not how we reach the station. No sensible default — deployment-specific." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "wifi_ssid" }; readonly "title": { readonly "en": "WiFi SSID" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The service set identifier (802.11) of the wireless network a station joins — data-link (L2) addressing: which named network, not how we reach the station. No sensible default — deployment-specific."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "wifi_ssid"
 	},
 	"title": {

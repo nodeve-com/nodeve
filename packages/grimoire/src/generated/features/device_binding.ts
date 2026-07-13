@@ -21,14 +21,14 @@ export const schema: TSchema = Type.Object({ "topicPrefix": Type.Optional(topicP
 
 export type DeviceBinding = { "topicPrefix"?: topicPrefix_.TopicPrefix; "updateIntervalMs"?: updateIntervalMs_.UpdateIntervalMs; "publish"?: publish_.Publish; "format"?: format_.Format; "slug"?: slug_.Slug; "link"?: link_.Link; "catalogRef"?: catalogRef_.CatalogRef; "unitId"?: unitId_.UnitId };
 
-type DataT = { readonly "description": { readonly "en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "device_binding" }; readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ }; readonly "title": { readonly "en": "Device binding" } };
+type DataT = { readonly "description": { readonly "en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "device_binding" }; readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ }; readonly "title": { readonly "en": "Device binding" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "device_binding"
 	},
 	"prop": {

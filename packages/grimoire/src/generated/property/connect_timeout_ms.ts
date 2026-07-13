@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type ConnectTimeoutMs = number;
 
-type DataT = { readonly "description": { readonly "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "connect_timeout_ms" }; readonly "title": { readonly "en": "Connect timeout (ms)"; readonly "pt": "Timeout de conexão (ms)" } };
+type DataT = { readonly "description": { readonly "en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "connect_timeout_ms" }; readonly "title": { readonly "en": "Connect timeout (ms)"; readonly "pt": "Timeout de conexão (ms)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "How long a connection attempt waits before giving up, integer milliseconds. Distinct from the per-transfer timeout_ms."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "connect_timeout_ms"
 	},
 	"title": {

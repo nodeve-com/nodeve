@@ -16,11 +16,11 @@ export const schema: TSchema = Type.Object({ "topicPrefix": Type.Optional(topicP
 
 export type Emit = { "topicPrefix"?: topicPrefix_.TopicPrefix; "updateIntervalMs"?: updateIntervalMs_.UpdateIntervalMs; "publish"?: publish_.Publish; "format"?: format_.Format };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "emit" }; readonly "prop": { readonly "format": typeof format_; readonly "publish": typeof publish_; readonly "topicPrefix": typeof topicPrefix_; readonly "updateIntervalMs": typeof updateIntervalMs_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "emit" }; readonly "prop": { readonly "format": typeof format_; readonly "publish": typeof publish_; readonly "topicPrefix": typeof topicPrefix_; readonly "updateIntervalMs": typeof updateIntervalMs_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "emit"
 	},
 	"prop": {

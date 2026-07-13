@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("above"), Type.Literal("
 
 export type Direction = "above" | "below";
 
-type DataT = { readonly "description": { readonly "en": "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "direction" }; readonly "title": { readonly "en": "Direction"; readonly "pt": "Direção" } };
+type DataT = { readonly "description": { readonly "en": "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "direction" }; readonly "title": { readonly "en": "Direction"; readonly "pt": "Direção" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "direction"
 	},
 	"title": {

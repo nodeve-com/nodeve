@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "JDV86GJS",
 		"slug": "wikidata"
 	},

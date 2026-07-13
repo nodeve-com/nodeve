@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "byteOrder": Type.Optional(byteOrde
 
 export type UsbhidNumeric = { "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usbhid_numeric" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "scaleOverrides": typeof scaleOverrides_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_numeric" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "scaleOverrides": typeof scaleOverrides_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usbhid_numeric"
 	},
 	"prop": {

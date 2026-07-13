@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "9ZHPEFGX",
 		"slug": "ha_device_class"
 	},

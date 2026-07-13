@@ -18,11 +18,11 @@ export const schema: TSchema = Type.Object({ "min": Type.Optional(min_.schema), 
 
 export type NominalRange = { "min"?: min_.Min; "max"?: max_.Max; "nominal"?: nominal_.Nominal; "fractionLower"?: fractionLower_.FractionLower; "fractionUpper"?: fractionUpper_.FractionUpper };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "nominal_range" }; readonly "prop": { readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "max": typeof max_; readonly "min": typeof min_; readonly "nominal": typeof nominal_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "nominal_range" }; readonly "prop": { readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "max": typeof max_; readonly "min": typeof min_; readonly "nominal": typeof nominal_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "nominal_range"
 	},
 	"prop": {

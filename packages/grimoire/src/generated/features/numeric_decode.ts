@@ -16,11 +16,11 @@ export const schema: TSchema = Type.Object({ "type": Type.Optional(type_.schema)
 
 export type NumericDecode = { "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "numeric_decode" }; readonly "prop": { readonly "decimals": typeof decimals_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "numeric_decode" }; readonly "prop": { readonly "decimals": typeof decimals_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "numeric_decode"
 	},
 	"prop": {

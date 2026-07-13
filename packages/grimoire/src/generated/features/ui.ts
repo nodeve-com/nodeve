@@ -13,11 +13,11 @@ export const schema: TSchema = Type.Object({ "mono": Type.Optional(mono_.schema)
 
 export type Ui = { "mono"?: mono_.Mono };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "ui" }; readonly "prop": { readonly "mono": typeof mono_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ui" }; readonly "prop": { readonly "mono": typeof mono_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "ui"
 	},
 	"prop": {

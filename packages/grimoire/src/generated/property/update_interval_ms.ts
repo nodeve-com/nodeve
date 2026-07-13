@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type UpdateIntervalMs = number;
 
-type DataT = { readonly "description": { readonly "en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "update_interval_ms" }; readonly "title": { readonly "en": "Update interval (ms)" } };
+type DataT = { readonly "description": { readonly "en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "update_interval_ms" }; readonly "title": { readonly "en": "Update interval (ms)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Cadence at which a fresh point is expected/emitted, integer milliseconds (industrial Modbus-master convention). Named for the RATE, not a fetch strategy — a polling driver reads at this interval, a push/discovered driver throttles to it. Required in the catalog emit contract; optional where a downstream consumer overrides the catalog default."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "update_interval_ms"
 	},
 	"title": {

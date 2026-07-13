@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "en": Type.Optional(Type.String({"m
 
 export type Title = { "en"?: string; "pt"?: string };
 
-type DataT = { readonly "description": { readonly "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes."; readonly "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "title" }; readonly "prop": { readonly "en": { readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } } }; readonly "title": { readonly "en": "Title - friendly name"; readonly "pt": "Nome amigável" } };
+type DataT = { readonly "description": { readonly "en": "Human display title/label, consumed by the runtime that surfaces the thing to people. A single string, not i18n_text — a device label handed to a single-string config slot, not stored prose the system localizes."; readonly "pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "title" }; readonly "prop": { readonly "en": { readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } } }; readonly "title": { readonly "en": "Title - friendly name"; readonly "pt": "Nome amigável" } };
 
 const _data: DataT = {
 	"description": {
@@ -21,7 +21,7 @@ const _data: DataT = {
 		"pt": "Rótulo de exibição humano emparelhado com um slug, consumido LITERALMENTE pelo runtime que apresenta a coisa às pessoas (friendly_name do HA). Uma única string, não i18n_text — um rótulo de dispositivo entregue a um slot de config de string única, não prosa armazenada que o sistema localiza."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "title"
 	},
 	"prop": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Margin = number;
 
-type DataT = { readonly "description": { readonly "en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "margin" }; readonly "title": { readonly "en": "Margin" } };
+type DataT = { readonly "description": { readonly "en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "margin" }; readonly "title": { readonly "en": "Margin" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "margin"
 	},
 	"title": {

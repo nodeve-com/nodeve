@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Union([Type.Literal("exact"), Type.Literal("
 
 export type Match = "exact" | "close" | "broad" | "narrow" | "related";
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "match" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "match" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "match"
 	}
 };

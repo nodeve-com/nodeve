@@ -1,3 +1,9 @@
+title:
+  en: Building
+  pt: Edifício
+description:
+  en: A built structure locating the things it houses (identity + location).
+  pt: Uma estrutura construída que localiza as coisas que alberga (identidade + localização).
 concept_settings:
   compose: [ thing ]
 

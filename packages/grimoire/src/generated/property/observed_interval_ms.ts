@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":1});
 
 export type ObservedIntervalMs = number;
 
-type DataT = { readonly "description": { readonly "en": "OBSERVED interval between the foreign master's polls, integer ms — measured from real bus activity, never commanded (a passive tap doesn't own the poll clock; distinct from the commanded update_interval_ms). Lets codegen pin sample-relative filters (EMA α = 1 − e^(−Δt/τ)); omitted = unknown, only wall-clock/value-defined filters valid." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "observed_interval_ms" }; readonly "title": { readonly "en": "Observed interval (ms)"; readonly "pt": "Intervalo observado (ms)" } };
+type DataT = { readonly "description": { readonly "en": "OBSERVED interval between the foreign master's polls, integer ms — measured from real bus activity, never commanded (a passive tap doesn't own the poll clock; distinct from the commanded update_interval_ms). Lets codegen pin sample-relative filters (EMA α = 1 − e^(−Δt/τ)); omitted = unknown, only wall-clock/value-defined filters valid." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "observed_interval_ms" }; readonly "title": { readonly "en": "Observed interval (ms)"; readonly "pt": "Intervalo observado (ms)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "OBSERVED interval between the foreign master's polls, integer ms — measured from real bus activity, never commanded (a passive tap doesn't own the poll clock; distinct from the commanded update_interval_ms). Lets codegen pin sample-relative filters (EMA α = 1 − e^(−Δt/τ)); omitted = unknown, only wall-clock/value-defined filters valid."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "observed_interval_ms"
 	},
 	"title": {

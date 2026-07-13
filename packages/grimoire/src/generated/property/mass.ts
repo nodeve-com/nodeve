@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Mass = number;
 
-type DataT = { readonly "description": { readonly "en": "Physical mass of a part/module, kilograms." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mass" }; readonly "title": { readonly "en": "Mass (kg)"; readonly "pt": "Massa (kg)" } };
+type DataT = { readonly "description": { readonly "en": "Physical mass of a part/module, kilograms." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mass" }; readonly "title": { readonly "en": "Mass (kg)"; readonly "pt": "Massa (kg)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Physical mass of a part/module, kilograms."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mass"
 	},
 	"title": {

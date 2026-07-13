@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type Slug = string;
 
-type DataT = { readonly "description": { readonly "en": "Machine identifier — the wire form of a code/key; names a whole thing on the bus. Never human text (that is i18n_text)."; readonly "pt": "Identificador de máquina — a forma de fio de um código/chave; nomeia uma coisa inteira no barramento. Nunca texto humano (isso é i18n_text)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "slug" }; readonly "title": { readonly "en": "Slug"; readonly "pt": "Slug" } };
+type DataT = { readonly "description": { readonly "en": "Machine identifier — the wire form of a code/key; names a whole thing on the bus. Never human text (that is i18n_text)."; readonly "pt": "Identificador de máquina — a forma de fio de um código/chave; nomeia uma coisa inteira no barramento. Nunca texto humano (isso é i18n_text)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "slug" }; readonly "title": { readonly "en": "Slug"; readonly "pt": "Slug" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Identificador de máquina — a forma de fio de um código/chave; nomeia uma coisa inteira no barramento. Nunca texto humano (isso é i18n_text)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "slug"
 	},
 	"title": {

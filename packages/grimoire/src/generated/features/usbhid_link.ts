@@ -23,11 +23,11 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type UsbhidLink = { "offset"?: offset_.Offset; "expect"?: expect_.Expect; "responseMagic"?: responseMagic_.ResponseMagic; "transfer"?: transfer_.Transfer; "writeEndpoint"?: writeEndpoint_.WriteEndpoint; "readEndpoint"?: readEndpoint_.ReadEndpoint; "timeoutMs"?: timeoutMs_.TimeoutMs; "pollCommand"?: pollCommand_.PollCommand; "responseLength"?: responseLength_.ResponseLength; "firmware"?: firmware_.Firmware };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usbhid_link" }; readonly "prop": { readonly "expect": typeof expect_; readonly "firmware": typeof firmware_; readonly "offset": typeof offset_; readonly "pollCommand": typeof pollCommand_; readonly "readEndpoint": typeof readEndpoint_; readonly "responseLength": typeof responseLength_; readonly "responseMagic": typeof responseMagic_; readonly "timeoutMs": typeof timeoutMs_; readonly "transfer": typeof transfer_; readonly "writeEndpoint": typeof writeEndpoint_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_link" }; readonly "prop": { readonly "expect": typeof expect_; readonly "firmware": typeof firmware_; readonly "offset": typeof offset_; readonly "pollCommand": typeof pollCommand_; readonly "readEndpoint": typeof readEndpoint_; readonly "responseLength": typeof responseLength_; readonly "responseMagic": typeof responseMagic_; readonly "timeoutMs": typeof timeoutMs_; readonly "transfer": typeof transfer_; readonly "writeEndpoint": typeof writeEndpoint_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usbhid_link"
 	},
 	"prop": {

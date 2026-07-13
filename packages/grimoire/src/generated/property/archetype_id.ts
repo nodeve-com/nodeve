@@ -10,17 +10,17 @@ import { type TSchema, Type } from '@sinclair/typebox';
 
 export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
-export type Archetype = string;
+export type ArchetypeId = string;
 
-type DataT = { readonly "description": { readonly "en": "The class a catalogued/instantiable thing is an instance of — a property/archetype/ slug (inverter, meter, dehumidifier, ...). Selects the closed feature menu the entry fills." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "archetype" }; readonly "title": { readonly "en": "Archetype" } };
+type DataT = { readonly "description": { readonly "en": "The class a catalogued/instantiable thing is an instance of — a property/archetype/ slug (inverter, meter, dehumidifier, ...). Selects the closed feature menu the entry fills." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "archetype_id" }; readonly "title": { readonly "en": "Archetype" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The class a catalogued/instantiable thing is an instance of — a property/archetype/ slug (inverter, meter, dehumidifier, ...). Selects the closed feature menu the entry fills."
 	},
 	"identity": {
-		"archetype": "property",
-		"slug": "archetype"
+		"archetypeId": "property",
+		"slug": "archetype_id"
 	},
 	"title": {
 		"en": "Archetype"

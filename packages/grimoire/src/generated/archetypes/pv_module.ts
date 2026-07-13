@@ -21,14 +21,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type PvModule = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "dc"?: dc_.Dc; "tempCoefficients"?: tempCoefficients_.TempCoefficients; "physical"?: physical_.Physical };
 
-type DataT = { readonly "description": { readonly "en": "A PV module datasheet (per-panel STC ratings + temperature coefficients)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "pv_module" }; readonly "prop": { readonly "dc": typeof dc_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "physical": typeof physical_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "tempCoefficients": typeof tempCoefficients_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "PV module"; readonly "pt": "Módulo fotovoltaico" } };
+type DataT = { readonly "description": { readonly "en": "A PV module datasheet (per-panel STC ratings + temperature coefficients)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "pv_module" }; readonly "prop": { readonly "dc": typeof dc_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "physical": typeof physical_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "tempCoefficients": typeof tempCoefficients_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "PV module"; readonly "pt": "Módulo fotovoltaico" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "A PV module datasheet (per-panel STC ratings + temperature coefficients)."
+		"en": "A PV module datasheet (per-panel STC ratings + temperature coefficients).",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "pv_module"
 	},
 	"prop": {

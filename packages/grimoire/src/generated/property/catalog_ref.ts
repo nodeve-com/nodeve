@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type CatalogRef = string;
 
-type DataT = { readonly "description": { readonly "en": "Grimoire catalog reference (path or stable id) whose register map decodes this device. Omit to make the binding a raw passthrough — frames republished verbatim, no decode. Named catalog_ref (not profile) — it points at a catalog entry, distinct from usbhid_link's firmware-to-scale profile." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "catalog_ref" }; readonly "title": { readonly "en": "Catalog reference" } };
+type DataT = { readonly "description": { readonly "en": "Grimoire catalog reference (path or stable id) whose register map decodes this device. Omit to make the binding a raw passthrough — frames republished verbatim, no decode. Named catalog_ref (not profile) — it points at a catalog entry, distinct from usbhid_link's firmware-to-scale profile." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_ref" }; readonly "title": { readonly "en": "Catalog reference" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Grimoire catalog reference (path or stable id) whose register map decodes this device. Omit to make the binding a raw passthrough — frames republished verbatim, no decode. Named catalog_ref (not profile) — it points at a catalog entry, distinct from usbhid_link's firmware-to-scale profile."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "catalog_ref"
 	},
 	"title": {

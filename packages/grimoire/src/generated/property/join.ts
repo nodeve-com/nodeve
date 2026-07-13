@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String();
 
 export type Join = string;
 
-type DataT = { readonly "description": { readonly "en": "Separator between active labels of a flags decode; default \"; \"." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "join" }; readonly "title": { readonly "en": "Join" } };
+type DataT = { readonly "description": { readonly "en": "Separator between active labels of a flags decode; default \"; \"." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "join" }; readonly "title": { readonly "en": "Join" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Separator between active labels of a flags decode; default \"; \"."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "join"
 	},
 	"title": {

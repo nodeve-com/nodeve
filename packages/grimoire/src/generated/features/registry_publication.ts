@@ -15,7 +15,7 @@ export const schema: TSchema = Type.Object({ "publishedBy": publishedBy_.schema,
 
 export type RegistryPublication = { "publishedBy": publishedBy_.PublishedBy; "iriTemplate"?: iriTemplate_.IriTemplate; "baseUrl"?: baseUrl_.BaseUrl };
 
-type DataT = { readonly "description": { readonly "en": "A registry's publisher and term resolver — published_by plus iri_template or base_url."; readonly "pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "registry_publication" }; readonly "prop": { readonly "baseUrl": typeof baseUrl_; readonly "iriTemplate": typeof iriTemplate_; readonly "publishedBy": typeof publishedBy_ }; readonly "title": { readonly "en": "Registry publication"; readonly "pt": "Publicação de registro" } };
+type DataT = { readonly "description": { readonly "en": "A registry's publisher and term resolver — published_by plus iri_template or base_url."; readonly "pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "registry_publication" }; readonly "prop": { readonly "baseUrl": typeof baseUrl_; readonly "iriTemplate": typeof iriTemplate_; readonly "publishedBy": typeof publishedBy_ }; readonly "title": { readonly "en": "Registry publication"; readonly "pt": "Publicação de registro" } };
 
 const _data: DataT = {
 	"description": {
@@ -23,7 +23,7 @@ const _data: DataT = {
 		"pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "registry_publication"
 	},
 	"prop": {

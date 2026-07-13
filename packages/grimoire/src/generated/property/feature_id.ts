@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type FeatureId = string;
 
-type DataT = { readonly "description": { readonly "en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "feature_id" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Feature ID" } };
+type DataT = { readonly "description": { readonly "en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "feature_id" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Feature ID" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Feature naming the feature-of-interest whose reading is meant (a property/feature/ code: pv_tracker, enclosure, grid, battery, ...). A value/gate/decode roots in a feature-of-interest, never a bare quantity (temperature of WHICH feature?). Validated against the archetype's projected feature tree."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "feature_id"
 	},
 	"refs": [

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({ "raw": Type.Optional(Type.Integer({
 
 export type Sentinel = { "raw"?: number; "meaning"?: string };
 
-type DataT = { readonly "description": { readonly "en": "A reserved raw value with a categorical meaning instead of a number (M4-ATX timers use 0xffff for never). raw == reading ⇒ emit the meaning slug rather than scaling; a writer maps back. The reserved reading is named raw, not value." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "sentinel" }; readonly "title": { readonly "en": "Sentinel" } };
+type DataT = { readonly "description": { readonly "en": "A reserved raw value with a categorical meaning instead of a number (M4-ATX timers use 0xffff for never). raw == reading ⇒ emit the meaning slug rather than scaling; a writer maps back. The reserved reading is named raw, not value." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "sentinel" }; readonly "title": { readonly "en": "Sentinel" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A reserved raw value with a categorical meaning instead of a number (M4-ATX timers use 0xffff for never). raw == reading ⇒ emit the meaning slug rather than scaling; a writer maps back. The reserved reading is named raw, not value."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "sentinel"
 	},
 	"title": {

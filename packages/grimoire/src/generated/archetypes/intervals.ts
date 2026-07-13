@@ -19,7 +19,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(t
 
 export type Intervals = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "interval"?: interval_.Interval; "condition"?: condition_.Condition }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -34,14 +34,16 @@ const _data: DataT = {
 		}
 	},
 	"description": {
-		"en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."
+		"en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list.",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "intervals"
 	},
 	"title": {
-		"en": "Intervals"
+		"en": "Intervals",
+		"pt": "Coisa"
 	}
 };
 export const { array, description, identity, prop, title } = _data;

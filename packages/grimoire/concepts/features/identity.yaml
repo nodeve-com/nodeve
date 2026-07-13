@@ -3,7 +3,7 @@
 # archetype stays gate-enforced only — a NESTED identity, e.g. a feature's on-bus slug handle,
 # legitimately carries none).
 prop:
-  archetype: {}
+  archetype_id: {}
   slug: { schema: { required: true } }
   slug_qualified: {}
   id: {}

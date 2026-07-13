@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type DetachKernelDriver = boolean;
 
-type DataT = { readonly "description": { readonly "en": "Linux fact that the in-kernel usbhid driver usually owns the device, so a userspace reader must detach it first (m4api does exactly this)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "detach_kernel_driver" }; readonly "title": { readonly "en": "Detach kernel driver" } };
+type DataT = { readonly "description": { readonly "en": "Linux fact that the in-kernel usbhid driver usually owns the device, so a userspace reader must detach it first (m4api does exactly this)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "detach_kernel_driver" }; readonly "title": { readonly "en": "Detach kernel driver" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Linux fact that the in-kernel usbhid driver usually owns the device, so a userspace reader must detach it first (m4api does exactly this)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "detach_kernel_driver"
 	},
 	"title": {

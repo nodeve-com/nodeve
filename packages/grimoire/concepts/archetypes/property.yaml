@@ -1,3 +1,9 @@
+title:
+  en: Property
+  pt: Propriedade
+description:
+  en: A single field — one scalar (or one composite-key value) and its schema, plus optional DB-column facts.
+  pt: Um campo único — um escalar (ou valor de chave composta) e o seu schema, mais factos de coluna de BD opcionais.
 concept_settings:
   compose: [ thing ]
 feature:

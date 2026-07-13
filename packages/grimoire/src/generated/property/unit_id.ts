@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":247,"minimum":0});
 
 export type UnitId = number;
 
-type DataT = { readonly "description": { readonly "en": "Modbus slave/unit id — addressing, the same on whichever wire reaches the device. A known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "unit_id" }; readonly "title": { readonly "en": "Unit id" } };
+type DataT = { readonly "description": { readonly "en": "Modbus slave/unit id — addressing, the same on whichever wire reaches the device. A known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "unit_id" }; readonly "title": { readonly "en": "Unit id" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Modbus slave/unit id — addressing, the same on whichever wire reaches the device. A known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "unit_id"
 	},
 	"title": {

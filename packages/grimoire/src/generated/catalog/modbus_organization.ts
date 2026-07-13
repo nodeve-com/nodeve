@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "organization",
+		"archetypeId": "organization",
 		"code": "CV6CYC6F",
 		"slug": "modbus_organization"
 	},

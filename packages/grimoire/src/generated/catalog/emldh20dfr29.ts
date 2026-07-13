@@ -56,7 +56,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "dehumidifier",
+		"archetypeId": "dehumidifier",
 		"code": "352XWTV8",
 		"slug": "emldh20dfr29"
 	},

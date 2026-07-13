@@ -25,7 +25,7 @@ import { isConcept, validateSite } from './validate-site.ts';
 const readYaml = (path: string): unknown => parseYaml(readFileSync(path, 'utf8'));
 const stemKey = (file: string): string => basename(file, '.yaml').replace(/-/g, '_');
 
-const asIdentity = (v: unknown): { archetype?: string; slug?: string } =>
+const asIdentity = (v: unknown): { archetype_id?: string; slug?: string } =>
 	(v && typeof v === 'object' ? v : {}) as never;
 
 /** Bake a site's source YAML tree into its validated `site.generated.json` bundle. `siteDir` is the
@@ -60,10 +60,10 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 	// device archetype (`inventory.catalog_item`) is the reference target adapters name; build that
 	// lookup as we bake.
 	const catalog = bakeCascade('catalog');
-	const inventoryItem = (e: Record<string, unknown>): { archetype?: string; slug?: string } =>
+	const inventoryItem = (e: Record<string, unknown>): { archetype_id?: string; slug?: string } =>
 		asIdentity((asIdentity(e.inventory) as { catalog_item?: unknown }).catalog_item);
 	const catalogRefs = new Set(
-		catalog.map((e) => `${inventoryItem(e).archetype}/${asIdentity(e.identity).slug}`),
+		catalog.map((e) => `${inventoryItem(e).archetype_id}/${asIdentity(e.identity).slug}`),
 	);
 	// Sensor-slug projection: THE one place a measurand's on-bus name is derived. For every site_catalog
 	// entry we load its grimoire device, walk its SPECIFICATION measurand tree (the quantity columns —
@@ -81,7 +81,8 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 			: feature;
 	const catalogPatch = (entry: Record<string, unknown>): Obj => {
 		const instance = asIdentity(entry.identity).slug as string;
-		const device = loadDevice(inventoryItem(entry) as { archetype: string; slug: string });
+		const item = inventoryItem(entry);
+		const device = loadDevice({ archetypeId: item.archetype_id as string, slug: item.slug as string });
 		const features = Object.entries(device).filter(([, node]) => isMeasurandFeature(node)) as [string, Obj][];
 		// The feature-segment slugs must not collide — two features rendering to one on-bus handle would
 		// mint the same sensor id for distinct measurands.
@@ -148,9 +149,9 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 		for (const [key, value] of Object.entries(node)) {
 			if (key === 'catalog_item') {
 				const ref = asIdentity(value);
-				if (!catalogRefs.has(`${ref.archetype}/${ref.slug}`)) {
+				if (!catalogRefs.has(`${ref.archetype_id}/${ref.slug}`)) {
 					try {
-						loadDevice(ref as { archetype: string; slug: string });
+						loadDevice({ archetypeId: ref.archetype_id as string, slug: ref.slug as string });
 					} catch (e) {
 						throw new Error(`${label} at ${where}.catalog_item: ${(e as Error).message}`);
 					}

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({});
 
 export type Combined = Record<string, never>;
 
-type DataT = { readonly "description": { readonly "en": "The whole-feature aggregate as ONE (the box's whole-AC-side total), a spec-map. Authored because it is NOT derivable from per-instance values (a 10 kW box != 3x3.3 kW per phase). May carry quantities no single instance has and drop per-instance ones." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "combined" }; readonly "title": { readonly "en": "Combined" } };
+type DataT = { readonly "description": { readonly "en": "The whole-feature aggregate as ONE (the box's whole-AC-side total), a spec-map. Authored because it is NOT derivable from per-instance values (a 10 kW box != 3x3.3 kW per phase). May carry quantities no single instance has and drop per-instance ones." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "combined" }; readonly "title": { readonly "en": "Combined" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The whole-feature aggregate as ONE (the box's whole-AC-side total), a spec-map. Authored because it is NOT derivable from per-instance values (a 10 kW box != 3x3.3 kW per phase). May carry quantities no single instance has and drop per-instance ones."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "combined"
 	},
 	"title": {

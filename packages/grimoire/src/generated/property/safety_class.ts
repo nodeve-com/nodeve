@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("A1"), Type.Literal("A2L
 
 export type SafetyClass = "A1" | "A2L" | "A2" | "A3" | "B1" | "B2L" | "B2" | "B3";
 
-type DataT = { readonly "description": { readonly "en": "ASHRAE Standard 34 safety classification — toxicity (A/B) × flammability (1 / 2L / 2 / 3); A3 = low-toxicity, highly flammable (propane)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "safety_class" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "ashrae_34"; readonly "term": "safety_classification" }]; readonly "title": { readonly "en": "Safety class"; readonly "pt": "Classe de segurança" } };
+type DataT = { readonly "description": { readonly "en": "ASHRAE Standard 34 safety classification — toxicity (A/B) × flammability (1 / 2L / 2 / 3); A3 = low-toxicity, highly flammable (propane)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "safety_class" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "ashrae_34"; readonly "term": "safety_classification" }]; readonly "title": { readonly "en": "Safety class"; readonly "pt": "Classe de segurança" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "ASHRAE Standard 34 safety classification — toxicity (A/B) × flammability (1 / 2L / 2 / 3); A3 = low-toxicity, highly flammable (propane)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "safety_class"
 	},
 	"refs": [

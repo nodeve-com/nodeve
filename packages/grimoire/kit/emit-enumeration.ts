@@ -23,10 +23,10 @@ export function enumerationMemberData(name: string): Record<string, unknown> {
 		const code = file.slice(0, -'.yaml'.length);
 		const doc = { ...defaults, ...((parseYaml(readFileSync(join(dir, file), 'utf8')) ?? {}) as Record<string, unknown>) };
 		// `identity` is real member data (symbol, url, iri_template, broader). Strip only the filing
-		// SELECTOR: `archetype` (the schema selector — compiler plumbing) and the reserved `id` (DB uuid).
+		// SELECTOR: `archetype_id` (the schema selector — compiler plumbing) and the reserved `id` (DB uuid).
 		if (isPlainObject(doc.identity)) {
 			const identity = { ...doc.identity };
-			delete identity.archetype;
+			delete identity.archetype_id;
 			delete identity.id;
 			if (Object.keys(identity).length > 0) doc.identity = identity;
 			else delete doc.identity;

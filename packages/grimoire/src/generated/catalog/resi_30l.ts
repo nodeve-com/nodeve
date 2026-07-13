@@ -21,7 +21,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "dehumidifier",
+		"archetypeId": "dehumidifier",
 		"code": "FD7Y1Z4Z",
 		"slug": "resi_30l"
 	},

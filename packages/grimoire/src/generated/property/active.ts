@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type Active = boolean;
 
-type DataT = { readonly "description": { readonly "en": "Whether this member is currently in service. `false` keeps the record (wiring still exists) while excluding it from derived output." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "active" }; readonly "title": { readonly "en": "Active"; readonly "pt": "Ativo" } };
+type DataT = { readonly "description": { readonly "en": "Whether this member is currently in service. `false` keeps the record (wiring still exists) while excluding it from derived output." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "active" }; readonly "title": { readonly "en": "Active"; readonly "pt": "Ativo" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Whether this member is currently in service. `false` keeps the record (wiring still exists) while excluding it from derived output."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "active"
 	},
 	"title": {

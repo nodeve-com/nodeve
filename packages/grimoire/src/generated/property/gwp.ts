@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"minimum":0});
 
 export type Gwp = number;
 
-type DataT = { readonly "description": { readonly "en": "Global warming potential, IPCC AR5 100-year basis (CO₂ = 1). Dimensionless." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "gwp" }; readonly "title": { readonly "en": "GWP"; readonly "pt": "GWP" } };
+type DataT = { readonly "description": { readonly "en": "Global warming potential, IPCC AR5 100-year basis (CO₂ = 1). Dimensionless." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "gwp" }; readonly "title": { readonly "en": "GWP"; readonly "pt": "GWP" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Global warming potential, IPCC AR5 100-year basis (CO₂ = 1). Dimensionless."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "gwp"
 	},
 	"title": {

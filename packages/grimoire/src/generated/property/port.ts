@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":65535,"minimum":1});
 
 export type Port = number;
 
-type DataT = { readonly "description": { readonly "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "port" }; readonly "title": { readonly "en": "Port" } };
+type DataT = { readonly "description": { readonly "en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "port" }; readonly "title": { readonly "en": "Port" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "TCP/UDP port number. Omit to fall back to the scheme's well-known default."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "port"
 	},
 	"title": {

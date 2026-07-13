@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type IpAddressId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "ip_address_id" }; readonly "title": { readonly "en": "IP address" } };
+type DataT = { readonly "description": { readonly "en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "ip_address_id" }; readonly "title": { readonly "en": "IP address" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "ip_address_id"
 	},
 	"title": {

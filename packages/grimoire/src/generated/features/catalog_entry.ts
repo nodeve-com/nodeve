@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "id": Type.Optional(id_.schema), "a
 
 export type CatalogEntry = { "id"?: id_.Id; "aliases"?: aliases_.Aliases };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "catalog_entry" }; readonly "prop": { readonly "aliases": typeof aliases_; readonly "id": typeof id_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "catalog_entry" }; readonly "prop": { readonly "aliases": typeof aliases_; readonly "id": typeof id_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "catalog_entry"
 	},
 	"prop": {

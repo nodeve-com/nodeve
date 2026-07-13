@@ -7,17 +7,38 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as description_ from '../features/description.ts';
+import * as identity_ from '../features/identity.ts';
+import * as product_ from '../features/product.ts';
+import * as refs_ from '../features/refs.ts';
+import * as thing_ from './thing.ts';
+import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({}, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema) }, {"additionalProperties":false});
 
-export type BatteryCharger = Record<string, never>;
+export type BatteryCharger = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "battery_charger" } };
+type DataT = { readonly "description": { readonly "en": "A mains-powered battery charger (identity + product facts; specs as catalogued)."; readonly "pt": "Um carregador de baterias alimentado pela rede (identidade + factos do produto)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "battery_charger" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Battery charger"; readonly "pt": "Carregador de baterias" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A mains-powered battery charger (identity + product facts; specs as catalogued).",
+		"pt": "Um carregador de baterias alimentado pela rede (identidade + factos do produto)."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "battery_charger"
+	},
+	"prop": {
+		"description": description_,
+		"identity": identity_,
+		"product": product_,
+		"refs": refs_,
+		"title": title_
+	},
+	"title": {
+		"en": "Battery charger",
+		"pt": "Carregador de baterias"
 	}
 };
-export const { identity } = _data;
+export const { description, identity, prop, title } = _data;

@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({ "physicalLayer": Type.Optional(Type
 
 export type PhysicalLayer = { "physicalLayer"?: "can_hs" | "current_loop_4_20ma" | "rs232" | "rs485" | "ttl_3v3" | "ttl_5v" | "voltage_0_10v" };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "physical_layer" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "physical_layer" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "physical_layer"
 	}
 };

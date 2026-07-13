@@ -20,7 +20,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type PowerSupply = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "usbhid"?: usbhid_.Usbhid };
 
-type DataT = { readonly "description": { readonly "en": "A DC-DC/ATX power supply reporting its own diagnostics (identity + connectivity)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "power_supply" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "usbhid": typeof usbhid_ }; readonly "title": { readonly "en": "Power supply"; readonly "pt": "Fonte de alimentação" } };
+type DataT = { readonly "description": { readonly "en": "A DC-DC/ATX power supply reporting its own diagnostics (identity + connectivity)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "power_supply" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "usbhid": typeof usbhid_ }; readonly "title": { readonly "en": "Power supply"; readonly "pt": "Fonte de alimentação" } };
 
 const _data: DataT = {
 	"description": {
@@ -28,7 +28,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "power_supply"
 	},
 	"prop": {

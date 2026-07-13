@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Unit = string;
 
-type DataT = { readonly "description": { readonly "en": "Non-SI unit override of a published/stated value — stated only when the value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, °C vs K). Omit ⇒ canonical SI unit."; readonly "pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "unit" }; readonly "title": { readonly "en": "Unit"; readonly "pt": "Unidade" } };
+type DataT = { readonly "description": { readonly "en": "Non-SI unit override of a published/stated value — stated only when the value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, °C vs K). Omit ⇒ canonical SI unit."; readonly "pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "unit" }; readonly "title": { readonly "en": "Unit"; readonly "pt": "Unidade" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Unidade não-SI de um valor publicado/declarado — declarada apenas quando o valor não está na unidade SI canônica do seu tipo de grandeza. Omitir ⇒ unidade SI canônica."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "unit"
 	},
 	"title": {

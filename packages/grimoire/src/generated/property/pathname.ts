@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Pathname = string;
 
-type DataT = { readonly "description": { readonly "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "pathname" }; readonly "title": { readonly "en": "Pathname" } };
+type DataT = { readonly "description": { readonly "en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "pathname" }; readonly "title": { readonly "en": "Pathname" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A slash-delimited path a resource is reached or published under (like URL.pathname): the URL path an endpoint serves on (WebSocket schemes use it, TCP omit it — bare / when absent), or the shared root a set of publishers nest their paths beneath (<pathname>/<slug>)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "pathname"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("read"), Type.Literal("w
 
 export type Access = "read" | "write" | "read_write";
 
-type DataT = { readonly "description": { readonly "en": "Read, write-only (an action like factory RESET), or both. Most settings are read_write." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "access" }; readonly "title": { readonly "en": "Access" } };
+type DataT = { readonly "description": { readonly "en": "Read, write-only (an action like factory RESET), or both. Most settings are read_write." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "access" }; readonly "title": { readonly "en": "Access" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Read, write-only (an action like factory RESET), or both. Most settings are read_write."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "access"
 	},
 	"title": {

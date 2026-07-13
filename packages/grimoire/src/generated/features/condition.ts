@@ -15,7 +15,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "testCondition": Type.Op
 
 export type Condition = Array<{ "testCondition"?: "bnpi" | "bsi" | "stc"; "intervalItem"?: intervalItem_.IntervalItem; "setting"?: setting_.Setting; "equals"?: equals_.Equals }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "equals": typeof equals_; readonly "intervalItem": typeof intervalItem_; readonly "setting": typeof setting_; readonly "testCondition": { readonly "description": { readonly "en": "The standardised measurement reference (STC / BNPI / BSI …) the band was rated at — fixes the environment (irradiance, spectrum, cell temp) external to the band's own quantity. Omit for the implicit STC reference." }; readonly "title": { readonly "en": "Test condition" } } } }; readonly "description": { readonly "en": "Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "condition" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "ssn_system"; readonly "term": "Condition" }]; readonly "title": { readonly "en": "Conditions" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "equals": typeof equals_; readonly "intervalItem": typeof intervalItem_; readonly "setting": typeof setting_; readonly "testCondition": { readonly "description": { readonly "en": "The standardised measurement reference (STC / BNPI / BSI …) the band was rated at — fixes the environment (irradiance, spectrum, cell temp) external to the band's own quantity. Omit for the implicit STC reference." }; readonly "title": { readonly "en": "Test condition" } } } }; readonly "description": { readonly "en": "Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "condition" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "ssn_system"; readonly "term": "Condition" }]; readonly "title": { readonly "en": "Conditions" } };
 
 const _data: DataT = {
 	"array": {
@@ -37,7 +37,7 @@ const _data: DataT = {
 		"en": "Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "condition"
 	},
 	"refs": [

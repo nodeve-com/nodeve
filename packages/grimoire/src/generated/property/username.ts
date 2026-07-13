@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Username = string;
 
-type DataT = { readonly "description": { readonly "en": "Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "username" }; readonly "title": { readonly "en": "Username" } };
+type DataT = { readonly "description": { readonly "en": "Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "username" }; readonly "title": { readonly "en": "Username" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Login name presented when a connection authenticates to a broker/server. Omit for anonymous connections. Paired with password."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "username"
 	},
 	"title": {

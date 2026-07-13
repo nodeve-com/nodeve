@@ -12,7 +12,7 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type Decimals = number;
 
-type DataT = { readonly "description": { readonly "en": "Decimal places the sensor actually resolves; the published value is rounded to it. Source-side honesty — decoding leaks precision the sensor never measured (nearest float32 to 1.675 is 1.6749999523162842; a scale like 0.1 adds its own IEEE-754 tail). Omit only when scale already lands on the real resolution."; readonly "pt": "Casas decimais que o sensor realmente resolve; o valor publicado é arredondado para elas. Omita apenas quando a escala já chega à resolução real." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "decimals" }; readonly "title": { readonly "en": "Resolved decimals"; readonly "pt": "Casas decimais resolvidas" } };
+type DataT = { readonly "description": { readonly "en": "Decimal places the sensor actually resolves; the published value is rounded to it. Source-side honesty — decoding leaks precision the sensor never measured (nearest float32 to 1.675 is 1.6749999523162842; a scale like 0.1 adds its own IEEE-754 tail). Omit only when scale already lands on the real resolution."; readonly "pt": "Casas decimais que o sensor realmente resolve; o valor publicado é arredondado para elas. Omita apenas quando a escala já chega à resolução real." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "decimals" }; readonly "title": { readonly "en": "Resolved decimals"; readonly "pt": "Casas decimais resolvidas" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Casas decimais que o sensor realmente resolve; o valor publicado é arredondado para elas. Omita apenas quando a escala já chega à resolução real."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "decimals"
 	},
 	"title": {

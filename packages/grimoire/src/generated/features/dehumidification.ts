@@ -14,14 +14,14 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Dehumidification = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "volumeFlowRate"?: specification_.Specification } } };
 
-type DataT = { readonly "description": { readonly "en": "Rated moisture-extraction output of a dehumidifier (a volume flow rate; catalog overrides the unit)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "dehumidification" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "volumeFlowRate": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m³/s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "VolumeFlowRate" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "volume_flow_rate" }]; readonly "title": { readonly "en": "Volume flow rate"; readonly "pt": "Caudal volumétrico" } } } } } }; readonly "identity": typeof identity_ }; readonly "title": { readonly "en": "Dehumidification"; readonly "pt": "Desumidificação" } };
+type DataT = { readonly "description": { readonly "en": "Rated moisture-extraction output of a dehumidifier (a volume flow rate; catalog overrides the unit)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "dehumidification" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "volumeFlowRate": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m³/s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "VolumeFlowRate" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "volume_flow_rate" }]; readonly "title": { readonly "en": "Volume flow rate"; readonly "pt": "Caudal volumétrico" } } } } } }; readonly "identity": typeof identity_ }; readonly "title": { readonly "en": "Dehumidification"; readonly "pt": "Desumidificação" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Rated moisture-extraction output of a dehumidifier (a volume flow rate; catalog overrides the unit)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "dehumidification"
 	},
 	"prop": {

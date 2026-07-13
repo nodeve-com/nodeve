@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":255,"minimum":0});
 
 export type ReadEndpoint = number;
 
-type DataT = { readonly "description": { readonly "en": "IN endpoint the response frame is read from (0x81 is IN 1). Authored as hex." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "read_endpoint" }; readonly "title": { readonly "en": "Read endpoint" } };
+type DataT = { readonly "description": { readonly "en": "IN endpoint the response frame is read from (0x81 is IN 1). Authored as hex." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "read_endpoint" }; readonly "title": { readonly "en": "Read endpoint" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "IN endpoint the response frame is read from (0x81 is IN 1). Authored as hex."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "read_endpoint"
 	},
 	"title": {

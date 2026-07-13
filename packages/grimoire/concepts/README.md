@@ -52,7 +52,7 @@ External tenant/user. Assembly of defined features and catalog instances.
 ```
 title: { en, pt },
 description: { en, pt },
-identity: {archetype, slug, code?, symbol?, broader?, url?, iri_template?},  # DE-SUGARED: archetype (the layer/cascade class) + slug (file-stem default) required on every doc, stamped into the emit; `id` = filing selector, stripped; the rest is data
+identity: {archetype_id, slug, code?, symbol?, broader?, url?, iri_template?},  # DE-SUGARED: archetype_id (the layer/cascade class) + slug (file-stem default) required on every doc, stamped into the emit; `id` = filing selector, stripped; the rest is data
 features: [{feature, variant?, ordinal?, part_id?}],
 refs: [{ registry, term, match: (exact|close) }]
 ```
@@ -63,7 +63,7 @@ refs: [{ registry, term, match: (exact|close) }]
 - Cascade file `_defaults.yaml` applies to directory siblings and children.
 - `.ts` files do not belong in the concepts dir.
 - **Emit is DATA FIRST.** `kit/compile.ts` resolves a full data tree per concept (`artifacts/<layer>/<slug>.json` + `src/generated/<layer>/<slug>.ts`, mirroring `concepts/` flat); the draft-07 schema is a _projection_ of that tree. Generated JSON is **snake_case always**; TS emits are **camelCase always** — the rename is a stored per-prop alias in the data tree, applied at the parse edge before validation ([casing rule](../docs/typebox-vs-zod.md)). The emit gate validates every property/feature/catalog doc against its archetype before writing.
-- **`identity.code`** is the 8-char Crockford short-code, minted ONCE at entry creation and AUTHORED in the leaf YAML — the generator requires it and suggests `shortCode(slug)` when missing but NEVER derives it, so it survives re-filing / slug renames. `identity.id` stays reserved for the future database uuid. Cross-tree catalog references are `catalog_item: {archetype, slug}` — never tree paths.
+- **`identity.code`** is the 8-char Crockford short-code, minted ONCE at entry creation and AUTHORED in the leaf YAML — the generator requires it and suggests `shortCode(slug)` when missing but NEVER derives it, so it survives re-filing / slug renames. `identity.id` stays reserved for the future database uuid. Cross-tree catalog references are `catalog_item: {archetype_id, slug}` — never tree paths.
 
 Possible generated id/path builders, from one ordered segment list — `[catalog_slug, instance, feature, variant, ordinal|part_id, prop]`:
 

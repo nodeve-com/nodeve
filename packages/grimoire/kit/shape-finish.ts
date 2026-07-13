@@ -14,7 +14,7 @@ const FILING = new Set(['slug']);
  *  keys that ship with the def (slug/code/symbol/…), or undefined when nothing remains. */
 export function identityData(v: unknown): Obj | undefined {
 	if (!isPlainObject(v)) return undefined;
-	const { archetype: _a, id: _i, ...identity } = v;
+	const { archetype_id: _a, id: _i, ...identity } = v;
 	return Object.keys(identity).length > 0 ? identity : undefined;
 }
 

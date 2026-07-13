@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type IndexOffset = number;
 
-type DataT = { readonly "description": { readonly "en": "Where the addressed parameter's index byte sits in the command (M4-ATX: 2)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "index_offset" }; readonly "title": { readonly "en": "Index offset" } };
+type DataT = { readonly "description": { readonly "en": "Where the addressed parameter's index byte sits in the command (M4-ATX: 2)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "index_offset" }; readonly "title": { readonly "en": "Index offset" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Where the addressed parameter's index byte sits in the command (M4-ATX: 2)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "index_offset"
 	},
 	"title": {

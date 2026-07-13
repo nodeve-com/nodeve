@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type Range = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "range" }; readonly "prop": { readonly "max": typeof max_; readonly "min": typeof min_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "range" }; readonly "prop": { readonly "max": typeof max_; readonly "min": typeof min_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "range"
 	},
 	"prop": {

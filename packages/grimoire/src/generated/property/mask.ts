@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":65535,"minimum":1});
 
 export type Mask = number;
 
-type DataT = { readonly "description": { readonly "en": "Bit mask ANDed with the register value in a priority rule." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mask" }; readonly "title": { readonly "en": "Mask" } };
+type DataT = { readonly "description": { readonly "en": "Bit mask ANDed with the register value in a priority rule." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mask" }; readonly "title": { readonly "en": "Mask" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Bit mask ANDed with the register value in a priority rule."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mask"
 	},
 	"title": {

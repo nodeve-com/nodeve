@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":65535,"minimum":0});
 
 export type VendorId = number;
 
-type DataT = { readonly "description": { readonly "en": "USB vendor id (authored as hex in YAML, e.g. 0x04d8)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "vendor_id" }; readonly "title": { readonly "en": "Vendor ID" } };
+type DataT = { readonly "description": { readonly "en": "USB vendor id (authored as hex in YAML, e.g. 0x04d8)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "vendor_id" }; readonly "title": { readonly "en": "Vendor ID" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "USB vendor id (authored as hex in YAML, e.g. 0x04d8)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "vendor_id"
 	},
 	"title": {

@@ -1,0 +1,10 @@
+concept_settings:
+  compose: [ thing ]
+title:
+  en: Battery charger
+  pt: Carregador de baterias
+description:
+  en: A mains-powered battery charger (identity + product facts; specs as catalogued).
+  pt: Um carregador de baterias alimentado pela rede (identidade + factos do produto).
+feature:
+  product: {}

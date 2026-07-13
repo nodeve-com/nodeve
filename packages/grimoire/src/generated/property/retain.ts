@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type Retain = boolean;
 
-type DataT = { readonly "description": { readonly "en": "Retain the message on the broker. Retain slow accumulating windows (a late subscriber gets the last cycle); leave fast instantaneous ones unretained (the next ~Hz sample supersedes it)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "retain" }; readonly "title": { readonly "en": "Retain"; readonly "pt": "Reter" } };
+type DataT = { readonly "description": { readonly "en": "Retain the message on the broker. Retain slow accumulating windows (a late subscriber gets the last cycle); leave fast instantaneous ones unretained (the next ~Hz sample supersedes it)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "retain" }; readonly "title": { readonly "en": "Retain"; readonly "pt": "Reter" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Retain the message on the broker. Retain slow accumulating windows (a late subscriber gets the last cycle); leave fast instantaneous ones unretained (the next ~Hz sample supersedes it)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "retain"
 	},
 	"title": {

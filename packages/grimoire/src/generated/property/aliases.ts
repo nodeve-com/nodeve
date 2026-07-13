@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.String({"minLength":1}));
 
 export type Aliases = Array<string>;
 
-type DataT = { readonly "description": { readonly "en": "Former tree paths this catalog leaf moved from (the inline changelog). loadDevice resolves them with a deprecation warning. Authored in the leaf YAML; omitted when empty." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "aliases" }; readonly "title": { readonly "en": "Aliases" } };
+type DataT = { readonly "description": { readonly "en": "Former tree paths this catalog leaf moved from (the inline changelog). loadDevice resolves them with a deprecation warning. Authored in the leaf YAML; omitted when empty." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "aliases" }; readonly "title": { readonly "en": "Aliases" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Former tree paths this catalog leaf moved from (the inline changelog). loadDevice resolves them with a deprecation warning. Authored in the leaf YAML; omitted when empty."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "aliases"
 	},
 	"title": {

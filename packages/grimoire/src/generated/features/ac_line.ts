@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type AcLine = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification } } };
 
-type DataT = { readonly "description": { readonly "en": "Line-to-line voltage of a polyphase AC connection, one instance per line pair (U_AB / U_BC / U_CA)."; readonly "pt": "Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "ac_line" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "iec_61850"; readonly "term": "MMXU.PPV" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "PPVphAB" }, { readonly "match": "related"; readonly "registryId": "cim"; readonly "term": "PhaseCode.AB" }]; readonly "title": { readonly "en": "AC line"; readonly "pt": "Linha CA" } };
+type DataT = { readonly "description": { readonly "en": "Line-to-line voltage of a polyphase AC connection, one instance per line pair (U_AB / U_BC / U_CA)."; readonly "pt": "Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ac_line" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "iec_61850"; readonly "term": "MMXU.PPV" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "PPVphAB" }, { readonly "match": "related"; readonly "registryId": "cim"; readonly "term": "PhaseCode.AB" }]; readonly "title": { readonly "en": "AC line"; readonly "pt": "Linha CA" } };
 
 const _data: DataT = {
 	"description": {
@@ -22,7 +22,7 @@ const _data: DataT = {
 		"pt": "Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "ac_line"
 	},
 	"prop": {

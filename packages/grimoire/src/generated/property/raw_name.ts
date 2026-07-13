@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type RawName = string;
 
-type DataT = { readonly "description": { readonly "en": "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "raw_name" }; readonly "title": { readonly "en": "Raw name" } };
+type DataT = { readonly "description": { readonly "en": "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "raw_name" }; readonly "title": { readonly "en": "Raw name" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A stable name for a RAW / unlinked value — traceability + the derived topic when there is no measurand link. Normally omitted on a linked value. Named raw_name (not label) — the raw register/field's own name, distinct from a term's i18n display label."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "raw_name"
 	},
 	"title": {

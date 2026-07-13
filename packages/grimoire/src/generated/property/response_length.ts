@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type ResponseLength = number;
 
-type DataT = { readonly "description": { readonly "en": "How many bytes one response frame occupies (M4-ATX: 24)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "response_length" }; readonly "title": { readonly "en": "Response length" } };
+type DataT = { readonly "description": { readonly "en": "How many bytes one response frame occupies (M4-ATX: 24)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "response_length" }; readonly "title": { readonly "en": "Response length" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "How many bytes one response frame occupies (M4-ATX: 24)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "response_length"
 	},
 	"title": {

@@ -68,7 +68,7 @@ feature slot + part/ordinal + offered kind — do NOT coin a code to match a dat
 			if (!modbus) continue; // no register map — nothing to resolve
 
 			const slug = (entry.identity as { slug?: string })?.slug ?? file.replace(/\.json$/, '');
-			const archetype = (entry.identity as { archetype?: string })?.archetype;
+			const archetype = (entry.identity as { archetype_id?: string })?.archetype_id;
 			// Feature slots = every top-level key whose value carries a baked `feature_spec`.
 			const specByFeature = new Map<string, Spec>();
 			for (const [key, value] of Object.entries(entry)) {

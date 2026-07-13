@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type VocTempCoeffPctPerC = number;
 
-type DataT = { readonly "description": { readonly "en": "Temperature coefficient of Voc, %/°C (negative). Drives the cold-morning Voc rise." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "voc_temp_coeff_pct_per_c" }; readonly "title": { readonly "en": "Voc temperature coefficient (%/°C)" } };
+type DataT = { readonly "description": { readonly "en": "Temperature coefficient of Voc, %/°C (negative). Drives the cold-morning Voc rise." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "voc_temp_coeff_pct_per_c" }; readonly "title": { readonly "en": "Voc temperature coefficient (%/°C)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Temperature coefficient of Voc, %/°C (negative). Drives the cold-morning Voc rise."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "voc_temp_coeff_pct_per_c"
 	},
 	"title": {

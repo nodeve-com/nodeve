@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type Name = string;
 
-type DataT = { readonly "description": { readonly "en": "Machine identifier scoped INSIDE an enclosing concept's list (a config parameter, a tap window). Same nature as slug, but names one member within a thing rather than the whole thing."; readonly "pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "name" }; readonly "title": { readonly "en": "Name"; readonly "pt": "Nome" } };
+type DataT = { readonly "description": { readonly "en": "Machine identifier scoped INSIDE an enclosing concept's list (a config parameter, a tap window). Same nature as slug, but names one member within a thing rather than the whole thing."; readonly "pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "name" }; readonly "title": { readonly "en": "Name"; readonly "pt": "Nome" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Identificador de máquina no escopo DENTRO da lista de um conceito envolvente (um parâmetro de config, uma janela de tap). Mesma natureza que slug, mas nomeia um membro dentro de uma coisa, não a coisa inteira."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "name"
 	},
 	"title": {

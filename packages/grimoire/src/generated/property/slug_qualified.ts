@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type SlugQualified = string;
 
-type DataT = { readonly "description": { readonly "en": "Machine identifier unique across an entire instance/site/install — the wire form of `slug` (same snake_case shape) but qualified so no two things on one deployment share it. The addressable name on the bus. Scoped `slug` names a thing within its archetype; this names it install-wide." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "slug_qualified" }; readonly "title": { readonly "en": "Qualified slug" } };
+type DataT = { readonly "description": { readonly "en": "Machine identifier unique across an entire instance/site/install — the wire form of `slug` (same snake_case shape) but qualified so no two things on one deployment share it. The addressable name on the bus. Scoped `slug` names a thing within its archetype; this names it install-wide." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "slug_qualified" }; readonly "title": { readonly "en": "Qualified slug" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Machine identifier unique across an entire instance/site/install — the wire form of `slug` (same snake_case shape) but qualified so no two things on one deployment share it. The addressable name on the bus. Scoped `slug` names a thing within its archetype; this names it install-wide."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "slug_qualified"
 	},
 	"title": {

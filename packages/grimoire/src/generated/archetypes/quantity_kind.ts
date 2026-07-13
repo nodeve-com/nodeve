@@ -19,11 +19,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type QuantityKind = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column; "measurand"?: measurand_.Measurand };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "quantity_kind" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "measurand": typeof measurand_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation."; readonly "pt": "Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "quantity_kind" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "measurand": typeof measurand_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Quantity kind"; readonly "pt": "Tipo de grandeza" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation.",
+		"pt": "Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "quantity_kind"
 	},
 	"prop": {
@@ -33,6 +37,10 @@ const _data: DataT = {
 		"measurand": measurand_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Quantity kind",
+		"pt": "Tipo de grandeza"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

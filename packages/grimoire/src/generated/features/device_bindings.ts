@@ -21,7 +21,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "topicPrefix": Type.Opti
 
 export type DeviceBindings = Array<{ "topicPrefix"?: topicPrefix_.TopicPrefix; "updateIntervalMs"?: updateIntervalMs_.UpdateIntervalMs; "publish"?: publish_.Publish; "format"?: format_.Format; "slug"?: slug_.Slug; "link"?: link_.Link; "catalogRef"?: catalogRef_.CatalogRef; "unitId"?: unitId_.UnitId }>;
 
-type DataT = { readonly "description": (typeof deviceBinding_)["description"]; readonly "prop": (typeof deviceBinding_)["prop"]; readonly "array": { readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ } }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "device_bindings" }; readonly "title": { readonly "en": "Device bindings"; readonly "pt": "Vinculações de dispositivos" } };
+type DataT = { readonly "description": (typeof deviceBinding_)["description"]; readonly "prop": (typeof deviceBinding_)["prop"]; readonly "array": { readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "device_bindings" }; readonly "title": { readonly "en": "Device bindings"; readonly "pt": "Vinculações de dispositivos" } };
 
 const _data: DataT = {
 	"description": deviceBinding_["description"],
@@ -39,7 +39,7 @@ const _data: DataT = {
 		}
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "device_bindings"
 	},
 	"title": {

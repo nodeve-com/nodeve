@@ -19,7 +19,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(t
 
 export type NetworkInterfaces = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "networkLink"?: networkLink_.NetworkLink; "ipAddresses"?: ipAddresses_.IpAddresses }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipAddresses": typeof ipAddresses_; readonly "networkLink": typeof networkLink_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "network_interfaces" }; readonly "title": { readonly "en": "Network interface" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipAddresses": typeof ipAddresses_; readonly "networkLink": typeof networkLink_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "network_interfaces" }; readonly "title": { readonly "en": "Network interface"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -34,14 +34,16 @@ const _data: DataT = {
 		}
 	},
 	"description": {
-		"en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)."
+		"en": "One of a node's network interface controllers — its identity plus link datasheet (network_link).",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "network_interfaces"
 	},
 	"title": {
-		"en": "Network interface"
+		"en": "Network interface",
+		"pt": "Coisa"
 	}
 };
 export const { array, description, identity, prop, title } = _data;

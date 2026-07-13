@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Formula = string;
 
-type DataT = { readonly "description": { readonly "en": "Chemical formula, code-like (C3H8). Not i18n." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "formula" }; readonly "title": { readonly "en": "Formula"; readonly "pt": "Fórmula" } };
+type DataT = { readonly "description": { readonly "en": "Chemical formula, code-like (C3H8). Not i18n." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "formula" }; readonly "title": { readonly "en": "Formula"; readonly "pt": "Fórmula" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Chemical formula, code-like (C3H8). Not i18n."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "formula"
 	},
 	"title": {

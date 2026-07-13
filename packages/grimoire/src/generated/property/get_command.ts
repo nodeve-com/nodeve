@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Integer({"maximum":255,"minimum":
 
 export type GetCommand = Array<number>;
 
-type DataT = { readonly "description": { readonly "en": "Command prefix that requests a parameter's current value (M4-ATX: [0xa4, 0xa1]); index/length bytes overlaid at their offsets, rest zero-padded to request_length." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "get_command" }; readonly "title": { readonly "en": "Get command" } };
+type DataT = { readonly "description": { readonly "en": "Command prefix that requests a parameter's current value (M4-ATX: [0xa4, 0xa1]); index/length bytes overlaid at their offsets, rest zero-padded to request_length." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "get_command" }; readonly "title": { readonly "en": "Get command" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Command prefix that requests a parameter's current value (M4-ATX: [0xa4, 0xa1]); index/length bytes overlaid at their offsets, rest zero-padded to request_length."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "get_command"
 	},
 	"title": {

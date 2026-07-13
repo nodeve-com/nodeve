@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("high_first"), Type.Lite
 
 export type WordOrder = "high_first" | "low_first";
 
-type DataT = { readonly "description": { readonly "en": "Word order for 32-bit values: high_first puts the high word at the lower address. 16-bit registers are always big-endian (Modbus standard)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "word_order" }; readonly "title": { readonly "en": "Word order" } };
+type DataT = { readonly "description": { readonly "en": "Word order for 32-bit values: high_first puts the high word at the lower address. 16-bit registers are always big-endian (Modbus standard)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "word_order" }; readonly "title": { readonly "en": "Word order" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Word order for 32-bit values: high_first puts the high word at the lower address. 16-bit registers are always big-endian (Modbus standard)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "word_order"
 	},
 	"title": {

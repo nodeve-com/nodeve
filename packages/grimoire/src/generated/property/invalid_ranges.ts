@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Object({ "range": Type.Array(Type
 
 export type InvalidRanges = Array<{ "range": Array<number>; "note": string }>;
 
-type DataT = { readonly "description": { readonly "en": "Inclusive [lo, hi] address ranges a gateway must never bulk-read across, each with a human note of what's generally inside." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "invalid_ranges" }; readonly "title": { readonly "en": "Invalid ranges" } };
+type DataT = { readonly "description": { readonly "en": "Inclusive [lo, hi] address ranges a gateway must never bulk-read across, each with a human note of what's generally inside." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "invalid_ranges" }; readonly "title": { readonly "en": "Invalid ranges" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Inclusive [lo, hi] address ranges a gateway must never bulk-read across, each with a human note of what's generally inside."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "invalid_ranges"
 	},
 	"title": {

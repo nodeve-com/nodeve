@@ -2,4 +2,4 @@
 # blocks its children contain" rule) means every model in this subtree validates against the
 # `inverter` archetype and need not restate it. The shared register map could also live here
 # if the family grows more variants; with one model today it stays on the leaf.
-archetype: inverter
+archetype_id: inverter

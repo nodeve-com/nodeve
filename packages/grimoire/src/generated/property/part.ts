@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type Part = string;
 
-type DataT = { readonly "description": { readonly "en": "The def-language fixed-parts expansion: names a parts/<slug>.yaml map (e.g. electrical_ac_phase_three) whose kinds become the feature's {combined, default, part} breakdown. Exclusive with `repeated` (a counted instance set)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "part" }; readonly "title": { readonly "en": "Part"; readonly "pt": "Parte" } };
+type DataT = { readonly "description": { readonly "en": "The def-language fixed-parts expansion: names a parts/<slug>.yaml map (e.g. electrical_ac_phase_three) whose kinds become the feature's {combined, default, part} breakdown. Exclusive with `repeated` (a counted instance set)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "part" }; readonly "title": { readonly "en": "Part"; readonly "pt": "Parte" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The def-language fixed-parts expansion: names a parts/<slug>.yaml map (e.g. electrical_ac_phase_three) whose kinds become the feature's {combined, default, part} breakdown. Exclusive with `repeated` (a counted instance set)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "part"
 	},
 	"title": {

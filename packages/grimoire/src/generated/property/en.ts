@@ -12,11 +12,11 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type En = string;
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "en" }; readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "en" }; readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "en"
 	},
 	"title": {

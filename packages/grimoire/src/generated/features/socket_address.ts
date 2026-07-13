@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "transportProtocol": Type.Optional(
 
 export type SocketAddress = { "transportProtocol"?: "tcp" | "udp"; "host"?: host_.Host; "port"?: port_.Port };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "socket_address" }; readonly "prop": { readonly "host": typeof host_; readonly "port": typeof port_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "socket_address" }; readonly "prop": { readonly "host": typeof host_; readonly "port": typeof port_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "socket_address"
 	},
 	"prop": {

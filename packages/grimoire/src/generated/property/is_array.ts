@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type IsArray = boolean;
 
-type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = the value IS a bare LIST of its shape, `[shape, shape, …]`, with nothing wrapping it (refs rows, register maps, per-string install facts). Every member is enumerated; there is no count or aggregate envelope — that is `repeated`. Plural slug = array, per the naming rule. Exclusive with `map` (a slug-keyed record) and with `repeated` (the counted-instance envelope)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "is_array" }; readonly "title": { readonly "en": "Is array"; readonly "pt": "É lista" } };
+type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = the value IS a bare LIST of its shape, `[shape, shape, …]`, with nothing wrapping it (refs rows, register maps, per-string install facts). Every member is enumerated; there is no count or aggregate envelope — that is `repeated`. Plural slug = array, per the naming rule. Exclusive with `map` (a slug-keyed record) and with `repeated` (the counted-instance envelope)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "is_array" }; readonly "title": { readonly "en": "Is array"; readonly "pt": "É lista" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The feature's intrinsic cardinality: true = the value IS a bare LIST of its shape, `[shape, shape, …]`, with nothing wrapping it (refs rows, register maps, per-string install facts). Every member is enumerated; there is no count or aggregate envelope — that is `repeated`. Plural slug = array, per the naming rule. Exclusive with `map` (a slug-keyed record) and with `repeated` (the counted-instance envelope)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "is_array"
 	},
 	"title": {

@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "organization",
+		"archetypeId": "organization",
 		"code": "FY7AJJHZ",
 		"slug": "usb_if"
 	},

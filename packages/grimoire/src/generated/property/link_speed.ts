@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":1});
 
 export type LinkSpeed = number;
 
-type DataT = { readonly "description": { readonly "en": "Negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "link_speed" }; readonly "title": { readonly "en": "Link speed" } };
+type DataT = { readonly "description": { readonly "en": "Negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "link_speed" }; readonly "title": { readonly "en": "Link speed" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "link_speed"
 	},
 	"title": {

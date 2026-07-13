@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "NZDG0ZPE",
 		"slug": "jedec_standard"
 	},

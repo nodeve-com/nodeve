@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Unknown();
 
 export type Equals = unknown;
 
-type DataT = { readonly "description": { readonly "en": "The value a gated `setting` must hold for the band to apply — a scalar matching the setting's type as declared in the device's `settings_schema` (a grid_region enum member, a mode slug, a boolean flag). One value per gate; a band valid for several values is several bands (OR = separate bands)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "equals" }; readonly "title": { readonly "en": "Equals" } };
+type DataT = { readonly "description": { readonly "en": "The value a gated `setting` must hold for the band to apply — a scalar matching the setting's type as declared in the device's `settings_schema` (a grid_region enum member, a mode slug, a boolean flag). One value per gate; a band valid for several values is several bands (OR = separate bands)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "equals" }; readonly "title": { readonly "en": "Equals" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The value a gated `setting` must hold for the band to apply — a scalar matching the setting's type as declared in the device's `settings_schema` (a grid_region enum member, a mode slug, a boolean flag). One value per gate; a band valid for several values is several bands (OR = separate bands)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "equals"
 	},
 	"title": {

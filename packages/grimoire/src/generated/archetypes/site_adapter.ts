@@ -22,11 +22,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type SiteAdapter = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ingest"?: ingest_.Ingest; "emit"?: emit_.Emit; "addressing"?: addressing_.Addressing; "endpoint"?: endpoint_.Endpoint; "modbusTapWindow"?: modbusTapWindow_.ModbusTapWindow };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "site_adapter" }; readonly "prop": { readonly "addressing": typeof addressing_; readonly "description": typeof description_; readonly "emit": typeof emit_; readonly "endpoint": typeof endpoint_; readonly "identity": typeof identity_; readonly "ingest": typeof ingest_; readonly "modbusTapWindow": typeof modbusTapWindow_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes."; readonly "pt": "Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "site_adapter" }; readonly "prop": { readonly "addressing": typeof addressing_; readonly "description": typeof description_; readonly "emit": typeof emit_; readonly "endpoint": typeof endpoint_; readonly "identity": typeof identity_; readonly "ingest": typeof ingest_; readonly "modbusTapWindow": typeof modbusTapWindow_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Site adapter"; readonly "pt": "Adaptador do local" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes.",
+		"pt": "Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "site_adapter"
 	},
 	"prop": {
@@ -39,6 +43,10 @@ const _data: DataT = {
 		"modbusTapWindow": modbusTapWindow_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Site adapter",
+		"pt": "Adaptador do local"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

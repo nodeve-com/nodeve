@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Number({"maximum":180,"minimum":-180});
 
 export type Longitude = number;
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "longitude" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "°" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "long" }, { readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Angle" }]; readonly "title": { readonly "en": "Longitude"; readonly "pt": "Longitude" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "longitude" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "°" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "long" }, { readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Angle" }]; readonly "title": { readonly "en": "Longitude"; readonly "pt": "Longitude" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "longitude"
 	},
 	"measurand": {

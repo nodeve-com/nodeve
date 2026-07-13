@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String();
 
 export type Type_ = string;
 
-type DataT = { readonly "description": { readonly "en": "On-the-wire encoding of the raw value (e.g. uint16, float32). Value set is medium-specific — modbus has no uint8; VE.Direct is int/hex/bool/string."; readonly "pt": "Codificação do valor bruto no barramento (ex. uint16, float32)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "type" }; readonly "title": { readonly "en": "Encoding"; readonly "pt": "Codificação" } };
+type DataT = { readonly "description": { readonly "en": "On-the-wire encoding of the raw value (e.g. uint16, float32). Value set is medium-specific — modbus has no uint8; VE.Direct is int/hex/bool/string."; readonly "pt": "Codificação do valor bruto no barramento (ex. uint16, float32)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "type" }; readonly "title": { readonly "en": "Encoding"; readonly "pt": "Codificação" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "Codificação do valor bruto no barramento (ex. uint16, float32)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "type"
 	},
 	"title": {

@@ -24,7 +24,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(
 
 export type UsbhidFields = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset }>;
 
-type DataT = { readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
+type DataT = { readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
 
 const _data: DataT = {
 	"prop": usbhidField_["prop"],
@@ -44,7 +44,7 @@ const _data: DataT = {
 		}
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "usbhid_fields"
 	},
 	"title": {

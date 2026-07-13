@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type InstanceKey = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "instance_key" }; readonly "prop": { readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "instance_key" }; readonly "prop": { readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "instance_key"
 	},
 	"prop": {

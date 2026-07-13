@@ -12,11 +12,11 @@ export const schema: TSchema = Type.String({"pattern":"^[0-9A-HJKMNP-TV-Z]{8}$"}
 
 export type Code = string;
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "code" }; readonly "title": { readonly "en": "Short code" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "code" }; readonly "title": { readonly "en": "Short code" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "code"
 	},
 	"title": {

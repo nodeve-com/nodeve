@@ -1,3 +1,3 @@
 # Victron SmartSolar — the MPPT solar charge-controller family. Declares only the archetype; each
 # model carries its own full VE.Direct field list (envelope + decode live on the product, not here).
-archetype: charge_controller
+archetype_id: charge_controller

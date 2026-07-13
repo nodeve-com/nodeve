@@ -7,7 +7,7 @@
 # the supply voltage — with resistance_ohms a consumer can compute true output at the actual voltage).
 product:
   model: water-heater
-archetype: water_heater
+archetype_id: water_heater
 
 # The AC phase the element runs on — the voltage plus its nameplate DRAW (active_power, rated at that
 # voltage). The connection is the archetype's, not the element's. With resistance a consumer computes

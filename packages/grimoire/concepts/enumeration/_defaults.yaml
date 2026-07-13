@@ -3,4 +3,4 @@
 # (quantity_kind → quantity_kind, registry → registry, refrigerant → refrigerant), where each
 # member carries more than a bare literal.
 identity:
-  archetype: property
+  archetype_id: property

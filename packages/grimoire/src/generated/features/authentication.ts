@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "username": Type.Optional(username_
 
 export type Authentication = { "username"?: username_.Username; "password"?: password_.Password };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "authentication" }; readonly "prop": { readonly "password": typeof password_; readonly "username": typeof username_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "authentication" }; readonly "prop": { readonly "password": typeof password_; readonly "username": typeof username_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "authentication"
 	},
 	"prop": {

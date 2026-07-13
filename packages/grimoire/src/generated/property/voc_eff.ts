@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type VocEff = number;
 
-type DataT = { readonly "description": { readonly "en": "As-deployed string open-circuit voltage, fitted from measured data. Omit until fitted; spec fallback is panel dc.voltage open_circuit-band nominal × series_count." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "voc_eff" }; readonly "title": { readonly "en": "Effective open-circuit voltage" } };
+type DataT = { readonly "description": { readonly "en": "As-deployed string open-circuit voltage, fitted from measured data. Omit until fitted; spec fallback is panel dc.voltage open_circuit-band nominal × series_count." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "voc_eff" }; readonly "title": { readonly "en": "Effective open-circuit voltage" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "As-deployed string open-circuit voltage, fitted from measured data. Omit until fitted; spec fallback is panel dc.voltage open_circuit-band nominal × series_count."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "voc_eff"
 	},
 	"title": {

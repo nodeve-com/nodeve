@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type Mono = boolean;
 
-type DataT = { readonly "description": { readonly "en": "UI hint — render this value as code-like content (monospace), not prose. For machine codes and identifiers displayed to a human." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mono" }; readonly "title": { readonly "en": "Monospace" } };
+type DataT = { readonly "description": { readonly "en": "UI hint — render this value as code-like content (monospace), not prose. For machine codes and identifiers displayed to a human." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mono" }; readonly "title": { readonly "en": "Monospace" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "UI hint — render this value as code-like content (monospace), not prose. For machine codes and identifiers displayed to a human."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mono"
 	},
 	"title": {

@@ -18,11 +18,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Refrigerant = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "substance"?: substance_.Substance };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "refrigerant" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "substance": typeof substance_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula."; readonly "pt": "O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "refrigerant" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "substance": typeof substance_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula.",
+		"pt": "O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "refrigerant"
 	},
 	"prop": {
@@ -31,6 +35,10 @@ const _data: DataT = {
 		"refs": refs_,
 		"substance": substance_,
 		"title": title_
+	},
+	"title": {
+		"en": "Refrigerant",
+		"pt": "Refrigerante"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

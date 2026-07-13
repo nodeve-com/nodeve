@@ -42,7 +42,7 @@ describe('ambient_tank', () => {
 });
 
 describe('solar_array', () => {
-	const string = { ordinal: 1, active: true, catalog_item: { archetype: 'pv_module', slug: 'tsm_625neg19rc_20' }, series_count: 10, azimuth: 78, tilt: 38 };
+	const string = { ordinal: 1, active: true, catalog_item: { archetype_id: 'pv_module', slug: 'tsm_625neg19rc_20' }, series_count: 10, azimuth: 78, tilt: 38 };
 	test('accepts/rejects per the pinned fixtures', () => {
 		verdicts('solar_array', [
 			{ data: { pv_strings: [string] }, valid: true, why: 'minimal array' },

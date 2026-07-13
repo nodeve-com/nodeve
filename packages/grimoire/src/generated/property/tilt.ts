@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Tilt = number;
 
-type DataT = { readonly "description": { readonly "en": "Plane tilt in degrees from horizontal." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "tilt" }; readonly "title": { readonly "en": "Tilt"; readonly "pt": "Inclinação" } };
+type DataT = { readonly "description": { readonly "en": "Plane tilt in degrees from horizontal." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "tilt" }; readonly "title": { readonly "en": "Tilt"; readonly "pt": "Inclinação" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Plane tilt in degrees from horizontal."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "tilt"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type IriTemplate = string;
 
-type DataT = { readonly "description": { readonly "en": "Template resolving a term id to its full IRI, with {id} as the placeholder." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "iri_template" }; readonly "title": { readonly "en": "IRI template" } };
+type DataT = { readonly "description": { readonly "en": "Template resolving a term id to its full IRI, with {id} as the placeholder." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "iri_template" }; readonly "title": { readonly "en": "IRI template" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Template resolving a term id to its full IRI, with {id} as the placeholder."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "iri_template"
 	},
 	"title": {

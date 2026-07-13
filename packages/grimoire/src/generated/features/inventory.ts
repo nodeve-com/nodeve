@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "serialNumber": Type.Optional(seria
 
 export type Inventory = { "serialNumber"?: serialNumber_.SerialNumber; "catalogItem"?: catalogItem_.CatalogItem; "catalogPatch"?: catalogPatch_.CatalogPatch };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "inventory" }; readonly "prop": { readonly "catalogItem": typeof catalogItem_; readonly "catalogPatch": typeof catalogPatch_; readonly "serialNumber": typeof serialNumber_ }; readonly "title": { readonly "en": "Inventory Item" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "inventory" }; readonly "prop": { readonly "catalogItem": typeof catalogItem_; readonly "catalogPatch": typeof catalogPatch_; readonly "serialNumber": typeof serialNumber_ }; readonly "title": { readonly "en": "Inventory Item" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "inventory"
 	},
 	"prop": {

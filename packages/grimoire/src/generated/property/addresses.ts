@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Integer({"maximum":65535,"minimum
 
 export type Addresses = Array<number>;
 
-type DataT = { readonly "description": { readonly "en": "Addresses read by a flags decode; labels[i] is the bit map for addresses[i], parallel." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "addresses" }; readonly "title": { readonly "en": "Register addresses" } };
+type DataT = { readonly "description": { readonly "en": "Addresses read by a flags decode; labels[i] is the bit map for addresses[i], parallel." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "addresses" }; readonly "title": { readonly "en": "Register addresses" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Addresses read by a flags decode; labels[i] is the bit map for addresses[i], parallel."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "addresses"
 	},
 	"title": {

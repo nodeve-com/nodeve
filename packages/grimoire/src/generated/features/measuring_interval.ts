@@ -15,12 +15,12 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type MeasuringInterval = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "measuring_interval" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.7" }] };
+type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measuring_interval" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.7" }] };
 
 const _data: DataT = {
 	"prop": range_["prop"],
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "measuring_interval"
 	},
 	"refs": [

@@ -21,7 +21,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type AirConditioner = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "cooling"?: cooling_.Cooling; "compressor"?: compressor_.Compressor };
 
-type DataT = { readonly "description": { readonly "en": "An appliance whose defining feature is rated cooling output (+ its vapor-compression compressor circuit)."; readonly "pt": "Um aparelho cuja característica definidora é a capacidade nominal de refrigeração (+ seu circuito compressor de compressão de vapor)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "air_conditioner" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "compressor": typeof compressor_; readonly "cooling": typeof cooling_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Air conditioner"; readonly "pt": "Ar-condicionado" } };
+type DataT = { readonly "description": { readonly "en": "An appliance whose defining feature is rated cooling output (+ its vapor-compression compressor circuit)."; readonly "pt": "Um aparelho cuja característica definidora é a capacidade nominal de refrigeração (+ seu circuito compressor de compressão de vapor)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "air_conditioner" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "compressor": typeof compressor_; readonly "cooling": typeof cooling_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Air conditioner"; readonly "pt": "Ar-condicionado" } };
 
 const _data: DataT = {
 	"description": {
@@ -29,7 +29,7 @@ const _data: DataT = {
 		"pt": "Um aparelho cuja característica definidora é a capacidade nominal de refrigeração (+ seu circuito compressor de compressão de vapor)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "air_conditioner"
 	},
 	"prop": {

@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type ManufacturerId = string;
 
-type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that made this thing."; readonly "pt": "Slug da entrada de catálogo da organização que fez esta coisa." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "manufacturer_id" }; readonly "title": { readonly "en": "Manufacturer"; readonly "pt": "Fabricante" } };
+type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that made this thing."; readonly "pt": "Slug da entrada de catálogo da organização que fez esta coisa." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "manufacturer_id" }; readonly "title": { readonly "en": "Manufacturer"; readonly "pt": "Fabricante" } };
 
 const _data: DataT = {
 	"column": {
@@ -23,7 +23,7 @@ const _data: DataT = {
 		"pt": "Slug da entrada de catálogo da organização que fez esta coisa."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "manufacturer_id"
 	},
 	"title": {

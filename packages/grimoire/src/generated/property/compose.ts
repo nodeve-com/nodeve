@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.String({"pattern":"^[a-z][a-z0-9
 
 export type Compose = string | Array<string>;
 
-type DataT = { readonly "description": { readonly "en": "LITERAL overlay: merge the named siblings' whole resolved defs (props + node data) under this def — a single slug or a list; the outer def wins. The old `alias` (a same-shape rename) is just a one-element compose. Each target must be an object shape; a def groups props, never IS a scalar." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "compose" }; readonly "title": { readonly "en": "Compose"; readonly "pt": "Compor" } };
+type DataT = { readonly "description": { readonly "en": "LITERAL overlay: merge the named siblings' whole resolved defs (props + node data) under this def — a single slug or a list; the outer def wins. The old `alias` (a same-shape rename) is just a one-element compose. Each target must be an object shape; a def groups props, never IS a scalar." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "compose" }; readonly "title": { readonly "en": "Compose"; readonly "pt": "Compor" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "LITERAL overlay: merge the named siblings' whole resolved defs (props + node data) under this def — a single slug or a list; the outer def wins. The old `alias` (a same-shape rename) is just a one-element compose. Each target must be an object shape; a def groups props, never IS a scalar."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "compose"
 	},
 	"title": {

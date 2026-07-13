@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type LengthOffset = number;
 
-type DataT = { readonly "description": { readonly "en": "Where the parameter's byte-length sits in the command (M4-ATX: 3) — the device echoes the width it should read/write." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "length_offset" }; readonly "title": { readonly "en": "Length offset" } };
+type DataT = { readonly "description": { readonly "en": "Where the parameter's byte-length sits in the command (M4-ATX: 3) — the device echoes the width it should read/write." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "length_offset" }; readonly "title": { readonly "en": "Length offset" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Where the parameter's byte-length sits in the command (M4-ATX: 3) — the device echoes the width it should read/write."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "length_offset"
 	},
 	"title": {

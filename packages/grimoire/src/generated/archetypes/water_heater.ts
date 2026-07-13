@@ -20,7 +20,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type WaterHeater = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "construction"?: construction_.Construction };
 
-type DataT = { readonly "description": { readonly "en": "An appliance with a resistive heat source (+ its rated AC supply)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "water_heater" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "construction": typeof construction_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Water heater"; readonly "pt": "Aquecedor de água" } };
+type DataT = { readonly "description": { readonly "en": "An appliance with a resistive heat source (+ its rated AC supply)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "water_heater" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "construction": typeof construction_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Water heater"; readonly "pt": "Aquecedor de água" } };
 
 const _data: DataT = {
 	"description": {
@@ -28,7 +28,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "water_heater"
 	},
 	"prop": {

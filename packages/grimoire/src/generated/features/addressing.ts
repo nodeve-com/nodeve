@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "wifiSsid": Type.Optional(wifiSsid_
 
 export type Addressing = { "wifiSsid"?: wifiSsid_.WifiSsid; "password"?: password_.Password };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "addressing" }; readonly "prop": { readonly "password": Omit<typeof password_, "description" | "title"> & { readonly "description": { readonly "en": "The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default." }; readonly "title": { readonly "en": "WiFi password" } }; readonly "wifiSsid": typeof wifiSsid_ }; readonly "title": { readonly "en": "Addressing" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "addressing" }; readonly "prop": { readonly "password": Omit<typeof password_, "description" | "title"> & { readonly "description": { readonly "en": "The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default." }; readonly "title": { readonly "en": "WiFi password" } }; readonly "wifiSsid": typeof wifiSsid_ }; readonly "title": { readonly "en": "Addressing" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "addressing"
 	},
 	"prop": {

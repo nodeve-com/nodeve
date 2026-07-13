@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("uint16"), Type.Literal(
 
 export type ValueType = "uint16" | "int16" | "uint32" | "int32" | "float32";
 
-type DataT = { readonly "description": { readonly "en": "On-the-wire encoding of a register value. Determines how many 16-bit registers to read (uint16/int16 = 1, 32-bit types = 2) and how to decode the raw bytes. The only field reflecting on-the-wire truth — display concerns (rounding) are not part of it. Authored as the `type` key." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "value_type" }; readonly "title": { readonly "en": "Value type" } };
+type DataT = { readonly "description": { readonly "en": "On-the-wire encoding of a register value. Determines how many 16-bit registers to read (uint16/int16 = 1, 32-bit types = 2) and how to decode the raw bytes. The only field reflecting on-the-wire truth — display concerns (rounding) are not part of it. Authored as the `type` key." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "value_type" }; readonly "title": { readonly "en": "Value type" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "On-the-wire encoding of a register value. Determines how many 16-bit registers to read (uint16/int16 = 1, 32-bit types = 2) and how to decode the raw bytes. The only field reflecting on-the-wire truth — display concerns (rounding) are not part of it. Authored as the `type` key."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "value_type"
 	},
 	"title": {

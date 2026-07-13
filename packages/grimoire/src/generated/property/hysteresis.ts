@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Hysteresis = number;
 
-type DataT = { readonly "description": { readonly "en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "hysteresis" }; readonly "title": { readonly "en": "Hysteresis"; readonly "pt": "Histerese" } };
+type DataT = { readonly "description": { readonly "en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "hysteresis" }; readonly "title": { readonly "en": "Hysteresis"; readonly "pt": "Histerese" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "hysteresis"
 	},
 	"title": {

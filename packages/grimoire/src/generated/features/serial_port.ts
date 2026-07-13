@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type SerialPort = { "path"?: path_.Path; "baudRate"?: baudRate_.BaudRate };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "serial_port" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_port" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } } } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "serial_port"
 	},
 	"prop": {

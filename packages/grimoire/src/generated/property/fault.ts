@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Fault = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug naming the fault-set slug group a categorical decode publishes into (fault_code). Exclusive with `state` (a run-state slug group) — an entry is one or the other." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "fault" }; readonly "title": { readonly "en": "Fault" } };
+type DataT = { readonly "description": { readonly "en": "Slug naming the fault-set slug group a categorical decode publishes into (fault_code). Exclusive with `state` (a run-state slug group) — an entry is one or the other." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fault" }; readonly "title": { readonly "en": "Fault" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Slug naming the fault-set slug group a categorical decode publishes into (fault_code). Exclusive with `state` (a run-state slug group) — an entry is one or the other."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "fault"
 	},
 	"title": {

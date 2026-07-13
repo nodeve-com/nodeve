@@ -15,6 +15,7 @@ import * as addressing_ from './features/addressing.ts';
 import * as airConditioner_ from './archetypes/air_conditioner.ts';
 import * as ambientTank_ from './archetypes/ambient_tank.ts';
 import * as appliance_ from './archetypes/appliance.ts';
+import * as archetype_ from './archetypes/archetype.ts';
 import * as archetypeRegistry_ from './features/archetype_registry.ts';
 import * as authentication_ from './features/authentication.ts';
 import * as battery_ from './features/battery.ts';
@@ -43,7 +44,6 @@ import * as energyConsumer_ from './features/energy_consumer.ts';
 import * as environment_ from './features/environment.ts';
 import * as feature_ from './archetypes/feature.ts';
 import * as featureSpec_ from './features/feature_spec.ts';
-import * as field_ from './features/field.ts';
 import * as gridElectricalNetwork_ from './features/grid_electrical_network.ts';
 import * as groundTempBand_ from './features/ground_temp_band.ts';
 import * as humidityControl_ from './features/humidity_control.ts';
@@ -142,6 +142,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	airConditioner: airConditioner_.schema,
 	ambientTank: ambientTank_.schema,
 	appliance: appliance_.schema,
+	archetype: archetype_.schema,
 	archetypeRegistry: archetypeRegistry_.schema,
 	authentication: authentication_.schema,
 	battery: battery_.schema,
@@ -170,7 +171,6 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	environment: environment_.schema,
 	feature: feature_.schema,
 	featureSpec: featureSpec_.schema,
-	field: field_.schema,
 	gridElectricalNetwork: gridElectricalNetwork_.schema,
 	groundTempBand: groundTempBand_.schema,
 	humidityControl: humidityControl_.schema,
@@ -267,6 +267,7 @@ export interface ConceptTypes {
 	airConditioner: airConditioner_.AirConditioner;
 	ambientTank: ambientTank_.AmbientTank;
 	appliance: appliance_.Appliance;
+	archetype: archetype_.Archetype;
 	archetypeRegistry: archetypeRegistry_.ArchetypeRegistry;
 	authentication: authentication_.Authentication;
 	battery: battery_.Battery;
@@ -295,7 +296,6 @@ export interface ConceptTypes {
 	environment: environment_.Environment;
 	feature: feature_.Feature;
 	featureSpec: featureSpec_.FeatureSpec;
-	field: field_.Field;
 	gridElectricalNetwork: gridElectricalNetwork_.GridElectricalNetwork;
 	groundTempBand: groundTempBand_.GroundTempBand;
 	humidityControl: humidityControl_.HumidityControl;

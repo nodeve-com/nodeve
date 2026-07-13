@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({});
 
 export type MpptWindow = Record<string, never>;
 
-type DataT = { readonly "description": { readonly "en": "The MPPT tracking window, in volts (min = the floor where the converter parks a string once engaged but light is too low to track a real MPP; max = top of the hunt range). A property of the TRACKER, not of any single string — may be narrower than a string's rated voltage envelope. A bare range, not a voltage nominal-range: an MPP window has no rated point to nominate." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mppt_window" }; readonly "title": { readonly "en": "MPPT window" } };
+type DataT = { readonly "description": { readonly "en": "The MPPT tracking window, in volts (min = the floor where the converter parks a string once engaged but light is too low to track a real MPP; max = top of the hunt range). A property of the TRACKER, not of any single string — may be narrower than a string's rated voltage envelope. A bare range, not a voltage nominal-range: an MPP window has no rated point to nominate." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mppt_window" }; readonly "title": { readonly "en": "MPPT window" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The MPPT tracking window, in volts (min = the floor where the converter parks a string once engaged but light is too low to track a real MPP; max = top of the hunt range). A property of the TRACKER, not of any single string — may be narrower than a string's rated voltage envelope. A bare range, not a voltage nominal-range: an MPP window has no rated point to nominate."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mppt_window"
 	},
 	"title": {

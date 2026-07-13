@@ -8,15 +8,15 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 
-export const schema: TSchema = Type.Object({ "archetype": Type.Optional(Type.String({"minLength":1})), "slug": Type.Optional(Type.String({"minLength":1})) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "archetypeId": Type.Optional(Type.String({"minLength":1})), "slug": Type.Optional(Type.String({"minLength":1})) }, {"additionalProperties":false,"x-key-map":{"archetype_id":"archetypeId"}});
 
-export type CatalogItem = { "archetype"?: string; "slug"?: string };
+export type CatalogItem = { "archetypeId"?: string; "slug"?: string };
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "catalog_item" }; readonly "title": { readonly "en": "Catalog item"; readonly "pt": "Item de catálogo" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_item" }; readonly "title": { readonly "en": "Catalog item"; readonly "pt": "Item de catálogo" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "catalog_item"
 	},
 	"title": {

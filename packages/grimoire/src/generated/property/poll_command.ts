@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Integer({"maximum":255,"minimum":
 
 export type PollCommand = Array<number>;
 
-type DataT = { readonly "description": { readonly "en": "Request bytes written to fetch one diagnostics frame (M4-ATX: [0x81, 0x00])." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "poll_command" }; readonly "title": { readonly "en": "Poll command" } };
+type DataT = { readonly "description": { readonly "en": "Request bytes written to fetch one diagnostics frame (M4-ATX: [0x81, 0x00])." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "poll_command" }; readonly "title": { readonly "en": "Poll command" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Request bytes written to fetch one diagnostics frame (M4-ATX: [0x81, 0x00])."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "poll_command"
 	},
 	"title": {

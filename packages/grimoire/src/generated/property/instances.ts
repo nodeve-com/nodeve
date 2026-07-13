@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Object({}));
 
 export type Instances = Array<Record<string, never>>;
 
-type DataT = { readonly "description": { readonly "en": "Sparse per-instance overrides, each tagged with its phase leg/pair (the join key); only instances that DIFFER from default appear, deep-merged over it (UPDATE ... WHERE phase=ab)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "instances" }; readonly "title": { readonly "en": "Instances" } };
+type DataT = { readonly "description": { readonly "en": "Sparse per-instance overrides, each tagged with its phase leg/pair (the join key); only instances that DIFFER from default appear, deep-merged over it (UPDATE ... WHERE phase=ab)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "instances" }; readonly "title": { readonly "en": "Instances" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Sparse per-instance overrides, each tagged with its phase leg/pair (the join key); only instances that DIFFER from default appear, deep-merged over it (UPDATE ... WHERE phase=ab)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "instances"
 	},
 	"title": {

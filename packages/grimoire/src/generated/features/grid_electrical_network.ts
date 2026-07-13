@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({}, {"additionalProperties":false});
 
 export type GridElectricalNetwork = Record<string, never>;
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "grid" }; readonly "title": { readonly "en": "Grid"; readonly "pt": "Rede" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "grid" }; readonly "title": { readonly "en": "Grid"; readonly "pt": "Rede" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "grid"
 	},
 	"title": {

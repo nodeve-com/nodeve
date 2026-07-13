@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":65535,"minimum":68});
 
 export type Mtu = number;
 
-type DataT = { readonly "description": { readonly "en": "Maximum transmission unit — the largest L3 payload (bytes) the interface carries in one frame. 1500 is standard Ethernet; up to ~9000 for jumbo frames; 68 is the IPv4 floor." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mtu" }; readonly "title": { readonly "en": "MTU" } };
+type DataT = { readonly "description": { readonly "en": "Maximum transmission unit — the largest L3 payload (bytes) the interface carries in one frame. 1500 is standard Ethernet; up to ~9000 for jumbo frames; 68 is the IPv4 floor." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mtu" }; readonly "title": { readonly "en": "MTU" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Maximum transmission unit — the largest L3 payload (bytes) the interface carries in one frame. 1500 is standard Ethernet; up to ~9000 for jumbo frames; 68 is the IPv4 floor."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mtu"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":65535,"minimum":0});
 
 export type Address = number;
 
-type DataT = { readonly "description": { readonly "en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "address" }; readonly "title": { readonly "en": "Register address" } };
+type DataT = { readonly "description": { readonly "en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "address" }; readonly "title": { readonly "en": "Register address" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A holding/input register address; Modbus addresses are 16-bit (0-65535). For 32-bit types, the LOWER of the two addresses (see word_order). Composed by scalar registers and categorical priority rules."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "address"
 	},
 	"title": {

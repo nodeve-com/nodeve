@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "invalidRanges": Type.Optional(inva
 
 export type ModbusConstraints = { "invalidRanges"?: invalidRanges_.InvalidRanges; "individualReadRanges"?: individualReadRanges_.IndividualReadRanges };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "modbus_constraints" }; readonly "prop": { readonly "individualReadRanges": typeof individualReadRanges_; readonly "invalidRanges": typeof invalidRanges_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_constraints" }; readonly "prop": { readonly "individualReadRanges": typeof individualReadRanges_; readonly "invalidRanges": typeof invalidRanges_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "modbus_constraints"
 	},
 	"prop": {

@@ -19,11 +19,11 @@ export const schema: TSchema = Type.Object({ "compose": Type.Optional(compose_.s
 
 export type ConceptSettings = { "compose"?: compose_.Compose; "repeated"?: repeated_.Repeated; "part"?: part_.Part; "isArray"?: isArray_.IsArray; "map"?: map_.Map; "count"?: count_.Count; "isSpecification"?: isSpecification_.IsSpecification };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "concept_settings" }; readonly "prop": { readonly "compose": typeof compose_; readonly "count": typeof count_; readonly "isArray": typeof isArray_; readonly "isSpecification": typeof isSpecification_; readonly "map": typeof map_; readonly "part": typeof part_; readonly "repeated": typeof repeated_ }; readonly "title": { readonly "en": "Concept settings"; readonly "pt": "Configurações de conceito" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "concept_settings" }; readonly "prop": { readonly "compose": typeof compose_; readonly "count": typeof count_; readonly "isArray": typeof isArray_; readonly "isSpecification": typeof isSpecification_; readonly "map": typeof map_; readonly "part": typeof part_; readonly "repeated": typeof repeated_ }; readonly "title": { readonly "en": "Concept settings"; readonly "pt": "Configurações de conceito" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "concept_settings"
 	},
 	"prop": {

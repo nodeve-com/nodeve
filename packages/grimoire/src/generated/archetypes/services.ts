@@ -18,7 +18,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(t
 
 export type Services = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "serviceBinding"?: serviceBinding_.ServiceBinding }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "serviceBinding": typeof serviceBinding_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "services" }; readonly "title": { readonly "en": "Service" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "serviceBinding": typeof serviceBinding_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "services" }; readonly "title": { readonly "en": "Service"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -32,14 +32,16 @@ const _data: DataT = {
 		}
 	},
 	"description": {
-		"en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses."
+		"en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses.",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "services"
 	},
 	"title": {
-		"en": "Service"
+		"en": "Service",
+		"pt": "Coisa"
 	}
 };
 export const { array, description, identity, prop, title } = _data;

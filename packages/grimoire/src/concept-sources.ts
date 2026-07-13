@@ -15,6 +15,7 @@ export const CONCEPTS = join(import.meta.dirname, '..', 'concepts');
 export const PROPERTY_DIR = join(CONCEPTS, 'property');
 export const ENUMERATION_DIR = join(CONCEPTS, 'enumeration');
 export const FEATURES_DIR = join(CONCEPTS, 'features');
+export const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
 export const CATALOG_DIR = join(CONCEPTS, 'catalog');
 
 /** The `artifacts/` JSON output tree and its baked catalog — what JSON readers (and the guards)

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Array(Type.Unknown(), {"maxItems"
 
 export type Labels = Array<Array<unknown>>;
 
-type DataT = { readonly "description": { readonly "en": "One label per bit, index = bit position (matched as value & (1 << index)); null marks a reserved/unused bit. 0-16 entries per register word; may be shorter than 16 (trailing unmapped bits omitted) or empty. Outer array parallel to addresses." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "labels" }; readonly "title": { readonly "en": "Bit labels" } };
+type DataT = { readonly "description": { readonly "en": "One label per bit, index = bit position (matched as value & (1 << index)); null marks a reserved/unused bit. 0-16 entries per register word; may be shorter than 16 (trailing unmapped bits omitted) or empty. Outer array parallel to addresses." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "labels" }; readonly "title": { readonly "en": "Bit labels" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "One label per bit, index = bit position (matched as value & (1 << index)); null marks a reserved/unused bit. 0-16 entries per register word; may be shorter than 16 (trailing unmapped bits omitted) or empty. Outer array parallel to addresses."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "labels"
 	},
 	"title": {

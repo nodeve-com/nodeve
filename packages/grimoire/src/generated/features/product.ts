@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "manufacturerId": manufacturerId_.s
 
 export type Product = { "manufacturerId": manufacturerId_.ManufacturerId; "model": string };
 
-type DataT = { readonly "description": { readonly "en": "Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec."; readonly "pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "product" }; readonly "prop": { readonly "manufacturerId": typeof manufacturerId_; readonly "model": { readonly "description": { readonly "en": "What the thing is called — the model designation on the nameplate."; readonly "pt": "Como a coisa se chama — a designação de modelo na placa de identificação." }; readonly "title": { readonly "en": "Model"; readonly "pt": "Modelo" } } }; readonly "title": { readonly "en": "Product"; readonly "pt": "Produto" } };
+type DataT = { readonly "description": { readonly "en": "Product identity — who made the thing and what it's called; lives under its own `product` slot, not a feature spec."; readonly "pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "product" }; readonly "prop": { readonly "manufacturerId": typeof manufacturerId_; readonly "model": { readonly "description": { readonly "en": "What the thing is called — the model designation on the nameplate."; readonly "pt": "Como a coisa se chama — a designação de modelo na placa de identificação." }; readonly "title": { readonly "en": "Model"; readonly "pt": "Modelo" } } }; readonly "title": { readonly "en": "Product"; readonly "pt": "Produto" } };
 
 const _data: DataT = {
 	"description": {
@@ -21,7 +21,7 @@ const _data: DataT = {
 		"pt": "Identidade do produto — quem o fez e como se chama; vive sob o seu próprio slot `product`, não é uma especificação de recurso."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "product"
 	},
 	"prop": {

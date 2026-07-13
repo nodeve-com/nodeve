@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Width = number;
 
-type DataT = { readonly "description": { readonly "en": "Physical width of an enclosure/part, millimetres." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "width" }; readonly "title": { readonly "en": "Width (mm)"; readonly "pt": "Largura (mm)" } };
+type DataT = { readonly "description": { readonly "en": "Physical width of an enclosure/part, millimetres." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "width" }; readonly "title": { readonly "en": "Width (mm)"; readonly "pt": "Largura (mm)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Physical width of an enclosure/part, millimetres."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "width"
 	},
 	"title": {

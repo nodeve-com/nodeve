@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Object({ "range": Type.Array(Type
 
 export type IndividualReadRanges = Array<{ "range": Array<number>; "note": string }>;
 
-type DataT = { readonly "description": { readonly "en": "Inclusive [lo, hi] address ranges to read one register at a time, each with a human note." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "individual_read_ranges" }; readonly "title": { readonly "en": "Individual read ranges" } };
+type DataT = { readonly "description": { readonly "en": "Inclusive [lo, hi] address ranges to read one register at a time, each with a human note." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "individual_read_ranges" }; readonly "title": { readonly "en": "Individual read ranges" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Inclusive [lo, hi] address ranges to read one register at a time, each with a human note."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "individual_read_ranges"
 	},
 	"title": {

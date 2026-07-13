@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^(a|b|c|n|ab|bc|ca)$"});
 
 export type PartId = string;
 
-type DataT = { readonly "description": { readonly "en": "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "part_id" }; readonly "title": { readonly "en": "Part id" } };
+type DataT = { readonly "description": { readonly "en": "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "part_id" }; readonly "title": { readonly "en": "Part id" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Fixed part-instance id of a repeated electrical feature — the leg or line-pair a value/instance belongs to (a parts-map id: a, b, c, n, ab, bc, ca). Absent on a feature's combined aggregate; countable (non-fixed) instances join by `ordinal` instead."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "part_id"
 	},
 	"title": {

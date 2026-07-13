@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "3X30NQ0F",
 		"slug": "ve_direct"
 	},

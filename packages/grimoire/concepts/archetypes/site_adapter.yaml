@@ -1,3 +1,9 @@
+title:
+  en: Site adapter
+  pt: Adaptador do local
+description:
+  en: One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes.
+  pt: Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica.
 # One SITE ADAPTER — a physical decoder peer of the bus topology (a gateway-daemon link, a
 # passive-tap board): identity, host, ingest kind, and the tap windows it republishes.
 # Its topic root DERIVES as <pathname>/<slug> (never authored — root and identity can't drift);

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Password = string;
 
-type DataT = { readonly "description": { readonly "en": "Secret presented alongside username when a connection authenticates. A deployment secret — supplied downstream, never a catalog default." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "password" }; readonly "title": { readonly "en": "Password" } };
+type DataT = { readonly "description": { readonly "en": "Secret presented alongside username when a connection authenticates. A deployment secret — supplied downstream, never a catalog default." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "password" }; readonly "title": { readonly "en": "Password" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Secret presented alongside username when a connection authenticates. A deployment secret — supplied downstream, never a catalog default."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "password"
 	},
 	"title": {

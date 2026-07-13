@@ -17,14 +17,14 @@ export const schema: TSchema = Type.Object({ "usbWire": Type.Optional(usbWire_.s
 
 export type Usbhid = { "usbWire"?: usbWire_.UsbWire; "emit"?: emit_.Emit; "usbhidLink"?: usbhidLink_.UsbhidLink; "usbhidFields"?: usbhidFields_.UsbhidFields; "usbhidConfig"?: usbhidConfig_.UsbhidConfig };
 
-type DataT = { readonly "description": { readonly "en": "A USB-HID connectivity medium — a USB device-class/transport framework, not an application protocol (transport + emit + HID exchange + byte-field map)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "usbhid" }; readonly "prop": { readonly "emit": typeof emit_; readonly "usbWire": typeof usbWire_; readonly "usbhidConfig": typeof usbhidConfig_; readonly "usbhidFields": typeof usbhidFields_; readonly "usbhidLink": typeof usbhidLink_ }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "usb_class"; readonly "term": "HID" }]; readonly "title": { readonly "en": "USB-HID medium" } };
+type DataT = { readonly "description": { readonly "en": "A USB-HID connectivity medium — a USB device-class/transport framework, not an application protocol (transport + emit + HID exchange + byte-field map)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "usbhid" }; readonly "prop": { readonly "emit": typeof emit_; readonly "usbWire": typeof usbWire_; readonly "usbhidConfig": typeof usbhidConfig_; readonly "usbhidFields": typeof usbhidFields_; readonly "usbhidLink": typeof usbhidLink_ }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "usb_class"; readonly "term": "HID" }]; readonly "title": { readonly "en": "USB-HID medium" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A USB-HID connectivity medium — a USB device-class/transport framework, not an application protocol (transport + emit + HID exchange + byte-field map)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "usbhid"
 	},
 	"prop": {

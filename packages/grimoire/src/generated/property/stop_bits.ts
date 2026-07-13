@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal(1), Type.Literal(2)], {"
 
 export type StopBits = 1 | 2;
 
-type DataT = { readonly "description": { readonly "en": "UART stop bits per frame." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "stop_bits" }; readonly "title": { readonly "en": "Stop bits"; readonly "pt": "Bits de parada" } };
+type DataT = { readonly "description": { readonly "en": "UART stop bits per frame." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "stop_bits" }; readonly "title": { readonly "en": "Stop bits"; readonly "pt": "Bits de parada" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "UART stop bits per frame."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "stop_bits"
 	},
 	"title": {

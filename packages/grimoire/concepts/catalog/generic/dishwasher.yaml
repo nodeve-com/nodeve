@@ -7,7 +7,7 @@
 # history (SITE data, in ha-config); these are the nominal class figures.
 product:
   model: dishwasher
-archetype: appliance
+archetype_id: appliance
 
 ac_phase:
   feature_spec:

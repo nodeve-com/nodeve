@@ -57,13 +57,13 @@ function walkCascade(dir: string, segments: string[], inherited: Obj, out: Casca
       walkCascade(join(dir, entry.name), [...segments, entry.name], ctx, out);
     } else if (isLeaf(entry.name)) {
       const merged = mergeDeep(ctx, readYaml(join(dir, entry.name))) as Obj;
-      const { archetype: topLevel, aliases, ...data } = merged;
-      // The archetype selector's two authored forms: legacy top-level `archetype:` or the newer
-      // `identity.archetype:` (identity stays in the data — it carries the slug and is device fact).
-      const archetype = topLevel ?? (isPlainObject(data.identity) ? data.identity.archetype : undefined);
+      const { archetype_id: topLevel, aliases, ...data } = merged;
+      // The archetype selector's two authored forms: top-level `archetype_id:` or the newer
+      // `identity.archetype_id:` (identity stays in the data — it carries the slug and is device fact).
+      const archetype = topLevel ?? (isPlainObject(data.identity) ? data.identity.archetype_id : undefined);
       const path = [...segments, entry.name.replace(/\.yaml$/, '')].join('/');
       if (typeof archetype !== 'string') {
-        throw new Error(`grimoire catalog leaf ${join(dir, entry.name)} has no \`archetype\` (declare it in a _defaults.yaml)`);
+        throw new Error(`grimoire catalog leaf ${join(dir, entry.name)} has no \`archetype_id\` (declare it in a _defaults.yaml)`);
       }
       // The path is FILING only — its stem needn't be a slug (catalog uses hyphens/dots, e.g.
       // `ps-10.0-sh`). The identity slug is DERIVED (effectiveSlug) + validated against the

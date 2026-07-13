@@ -19,11 +19,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Feature = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "conceptSettings"?: conceptSettings_.ConceptSettings; "featureSpec"?: featureSpec_.FeatureSpec };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "feature" }; readonly "prop": { readonly "conceptSettings": typeof conceptSettings_; readonly "description": typeof description_; readonly "featureSpec": typeof featureSpec_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Feature of Interest" } };
+type DataT = { readonly "description": { readonly "en": "A named thing whose readings a value/gate/decode belongs to (pv_tracker, enclosure, grid, battery, ...) — a sosa:FeatureOfInterest; also the layer's def shape (a grouping of props)."; readonly "pt": "Uma coisa nomeada a que pertencem leituras (pv_tracker, enclosure, grid, battery, ...) — um sosa:FeatureOfInterest; também a forma de def da camada (um agrupamento de props)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "feature" }; readonly "prop": { readonly "conceptSettings": typeof conceptSettings_; readonly "description": typeof description_; readonly "featureSpec": typeof featureSpec_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Feature of Interest"; readonly "pt": "Elemento de interesse" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A named thing whose readings a value/gate/decode belongs to (pv_tracker, enclosure, grid, battery, ...) — a sosa:FeatureOfInterest; also the layer's def shape (a grouping of props).",
+		"pt": "Uma coisa nomeada a que pertencem leituras (pv_tracker, enclosure, grid, battery, ...) — um sosa:FeatureOfInterest; também a forma de def da camada (um agrupamento de props)."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "feature"
 	},
 	"prop": {
@@ -42,7 +46,8 @@ const _data: DataT = {
 		}
 	],
 	"title": {
-		"en": "Feature of Interest"
+		"en": "Feature of Interest",
+		"pt": "Elemento de interesse"
 	}
 };
-export const { identity, prop, refs, title } = _data;
+export const { description, identity, prop, refs, title } = _data;

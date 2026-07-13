@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Tolerance = number;
 
-type DataT = { readonly "description": { readonly "en": "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "tolerance" }; readonly "title": { readonly "en": "Tolerance" } };
+type DataT = { readonly "description": { readonly "en": "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "tolerance" }; readonly "title": { readonly "en": "Tolerance" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "tolerance"
 	},
 	"title": {

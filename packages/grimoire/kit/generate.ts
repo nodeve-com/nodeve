@@ -24,7 +24,7 @@ import { camelizeSchema } from '@nodeve/schema-case';
 import { resolveConcept } from './compile.ts';
 import { type RefContext, projectSchema } from './project.ts';
 import { type Obj, layerIndex } from '../src/concept-sources.ts';
-import { assertFeatureDocsValid, assertLeafDocsValid } from './validate-docs.ts';
+import { assertArchetypeDocsValid, assertFeatureDocsValid, assertLeafDocsValid } from './validate-docs.ts';
 import { catalogEntries, renderCatalogEntry, renderCatalogIndex } from './emit-catalog.ts';
 import { conceptDataTree, inlineSchemaOf, layerOf } from './data-tree.ts';
 import { renderConceptsIndex, renderLayerIndex } from './emit-index.ts';
@@ -98,6 +98,7 @@ function schemaWithDefs(data: Record<string, unknown>): { json: Obj; body: Obj; 
 export function outputs(): Record<string, string> {
 	assertLeafDocsValid();
 	assertFeatureDocsValid();
+	assertArchetypeDocsValid();
 	const entries = catalogEntries();
 	const concepts = compiledConcepts();
 	const out: Record<string, string> = {
@@ -131,7 +132,7 @@ export function outputs(): Record<string, string> {
 	const CLASS_OF: Record<string, string> = { archetypes: 'archetype', features: 'feature', property: 'property' };
 	const stampIdentity = (tree: Obj, name: string, layer: string): Obj => {
 		const authored = isPlainObject(tree.identity) ? (tree.identity as Obj) : {};
-		return { ...tree, identity: { archetype: CLASS_OF[layer], slug: name, ...authored } };
+		return { ...tree, identity: { archetype_id: CLASS_OF[layer], slug: name, ...authored } };
 	};
 	// A concept's top-level data field names, its composed base's included (`$ref` chased through the
 	// chain) — what renderConceptModule projects when a module's data composes a base at the top.
@@ -193,9 +194,10 @@ if (import.meta.filename === process.argv[1]) {
 	// Wipe both output roots first so no stale file (renamed/deleted concept) survives the bake.
 	rmSync(GENERATED, { recursive: true, force: true });
 	rmSync(ARTIFACTS, { recursive: true, force: true });
-	for (const [path, contents] of Object.entries(outputs())) {
+	const files = Object.entries(outputs());
+	for (const [path, contents] of files) {
 		mkdirSync(dirname(path), { recursive: true });
 		writeFileSync(path, contents);
-		console.log(`grimoire: wrote ${path}`);
 	}
+	console.log(`grimoire: wrote ${files.length} files to src/generated + artifacts`);
 }

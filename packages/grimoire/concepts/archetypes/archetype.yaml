@@ -1,0 +1,15 @@
+# The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml
+# validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting
+# gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description
+# can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.
+concept_settings:
+  compose: [ thing ]
+title:
+  en: Archetype
+  pt: Arquétipo
+description:
+  en: The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries.
+  pt: A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo.
+feature:
+  title: { schema: { required: true } }
+  description: { schema: { required: true } }

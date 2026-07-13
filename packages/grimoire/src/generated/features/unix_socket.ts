@@ -13,11 +13,11 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type UnixSocket = { "path"?: path_.Path };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "unix_socket" }; readonly "prop": { readonly "path": Omit<typeof path_, "description" | "refs"> & { readonly "description": { readonly "en": "Filesystem path of a Unix-domain (AF_UNIX) socket — same string whether a process binds or connects." }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "posix"; readonly "term": "AF_UNIX" }] } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unix_socket" }; readonly "prop": { readonly "path": Omit<typeof path_, "description" | "refs"> & { readonly "description": { readonly "en": "Filesystem path of a Unix-domain (AF_UNIX) socket — same string whether a process binds or connects." }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "posix"; readonly "term": "AF_UNIX" }] } } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "unix_socket"
 	},
 	"prop": {

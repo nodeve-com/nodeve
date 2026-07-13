@@ -19,7 +19,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Appliance = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase };
 
-type DataT = { readonly "description": { readonly "en": "A metered electrical load (identity + AC supply draw)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "appliance" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Appliance"; readonly "pt": "Eletrodoméstico" } };
+type DataT = { readonly "description": { readonly "en": "A metered electrical load (identity + AC supply draw)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "appliance" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Appliance"; readonly "pt": "Eletrodoméstico" } };
 
 const _data: DataT = {
 	"description": {
@@ -27,7 +27,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "appliance"
 	},
 	"prop": {

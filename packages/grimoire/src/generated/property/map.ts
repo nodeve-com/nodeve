@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Boolean();
 
 export type Map = boolean;
 
-type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = the feature is a slug-keyed RECORD of its shape (vedirect_fields). Exclusive with array." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "map" }; readonly "title": { readonly "en": "Map"; readonly "pt": "Mapa" } };
+type DataT = { readonly "description": { readonly "en": "The feature's intrinsic cardinality: true = the feature is a slug-keyed RECORD of its shape (vedirect_fields). Exclusive with array." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "map" }; readonly "title": { readonly "en": "Map"; readonly "pt": "Mapa" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The feature's intrinsic cardinality: true = the feature is a slug-keyed RECORD of its shape (vedirect_fields). Exclusive with array."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "map"
 	},
 	"title": {

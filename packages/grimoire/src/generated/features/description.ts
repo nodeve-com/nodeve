@@ -13,14 +13,14 @@ export const schema: TSchema = Type.Object({ "en": Type.Optional(Type.String({"m
 
 export type Description = { "en"?: string; "pt"?: string };
 
-type DataT = { readonly "description": { readonly "en": "Optional localized blurb for a term (i18n text)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "description" }; readonly "prop": { readonly "en": { readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } } }; readonly "title": { readonly "en": "Description"; readonly "pt": "Descrição" } };
+type DataT = { readonly "description": { readonly "en": "Optional localized blurb for a term (i18n text)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "description" }; readonly "prop": { readonly "en": { readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } } }; readonly "title": { readonly "en": "Description"; readonly "pt": "Descrição" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Optional localized blurb for a term (i18n text)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "description"
 	},
 	"prop": {

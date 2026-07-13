@@ -16,11 +16,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Thing = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "thing" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "thing" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Thing"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry.",
+		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "thing"
 	},
 	"prop": {
@@ -28,6 +32,10 @@ const _data: DataT = {
 		"identity": identity_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Thing",
+		"pt": "Coisa"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type Ordinal = number;
 
-type DataT = { readonly "description": { readonly "en": "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "ordinal" }; readonly "title": { readonly "en": "Ordinal"; readonly "pt": "Ordinal" } };
+type DataT = { readonly "description": { readonly "en": "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "ordinal" }; readonly "title": { readonly "en": "Ordinal"; readonly "pt": "Ordinal" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "1-based position of one member in a repeated feature's list (string 1, string 2) — the stable join key a site and its derived config agree on."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "ordinal"
 	},
 	"title": {

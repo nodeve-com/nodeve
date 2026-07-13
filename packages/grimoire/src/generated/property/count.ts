@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":1});
 
 export type Count = number;
 
-type DataT = { readonly "description": { readonly "en": "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "count" }; readonly "title": { readonly "en": "Count" } };
+type DataT = { readonly "description": { readonly "en": "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "count" }; readonly "title": { readonly "en": "Count" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "count"
 	},
 	"title": {

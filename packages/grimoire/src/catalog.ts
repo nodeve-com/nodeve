@@ -8,9 +8,10 @@
 
 import { catalogEntries } from './generated/catalog/index.ts';
 
-/** A device's stable reference — archetype + slug, exactly as a site `catalog_item` names it. */
+/** A device's stable reference — archetypeId + slug (camel surface of the wire `catalog_item`
+ *  `{archetype_id, slug}` pair). */
 export interface CatalogIdentity {
-	archetype: string;
+	archetypeId: string;
 	slug: string;
 }
 
@@ -21,16 +22,16 @@ export interface CatalogDevice {
 	[key: string]: unknown;
 }
 
-const refOf = ({ archetype, slug }: CatalogIdentity): string => `${archetype}/${slug}`;
+const refOf = ({ archetypeId, slug }: CatalogIdentity): string => `${archetypeId}/${slug}`;
 
-// Index every entry once, keyed by `archetype/slug`.
+// Index every entry once, keyed by `archetypeId/slug`.
 const index = new Map<string, CatalogDevice>(
 	(catalogEntries as readonly CatalogDevice[]).map((d) => [refOf(d.identity), d]),
 );
 
 /** Every baked device's identity — the valid `catalog_item` reference targets. */
 export const listDevices = (): CatalogIdentity[] =>
-	[...index.values()].map((d) => ({ archetype: d.identity.archetype, slug: d.identity.slug }));
+	[...index.values()].map((d) => ({ archetypeId: d.identity.archetypeId, slug: d.identity.slug }));
 
 /** The catalog device an identity-shaped ref names, or throw naming the bad ref + the valid set. */
 export function loadDevice(identity: CatalogIdentity): CatalogDevice {

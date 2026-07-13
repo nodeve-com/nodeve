@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type TopicPrefix = string;
 
-type DataT = { readonly "description": { readonly "en": "MQTT topic root a decoded value is published under." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "topic_prefix" }; readonly "title": { readonly "en": "Topic prefix" } };
+type DataT = { readonly "description": { readonly "en": "MQTT topic root a decoded value is published under." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "topic_prefix" }; readonly "title": { readonly "en": "Topic prefix" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "MQTT topic root a decoded value is published under."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "topic_prefix"
 	},
 	"title": {

@@ -18,11 +18,15 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Property = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column };
 
-type DataT = { readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "property" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ } };
+type DataT = { readonly "description": { readonly "en": "A single field — one scalar (or one composite-key value) and its schema, plus optional DB-column facts."; readonly "pt": "Um campo único — um escalar (ou valor de chave composta) e o seu schema, mais factos de coluna de BD opcionais." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "property" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Property"; readonly "pt": "Propriedade" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "A single field — one scalar (or one composite-key value) and its schema, plus optional DB-column facts.",
+		"pt": "Um campo único — um escalar (ou valor de chave composta) e o seu schema, mais factos de coluna de BD opcionais."
+	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "property"
 	},
 	"prop": {
@@ -31,6 +35,10 @@ const _data: DataT = {
 		"identity": identity_,
 		"refs": refs_,
 		"title": title_
+	},
+	"title": {
+		"en": "Property",
+		"pt": "Propriedade"
 	}
 };
-export const { identity, prop } = _data;
+export const { description, identity, prop, title } = _data;

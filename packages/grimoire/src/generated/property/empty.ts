@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String();
 
 export type Empty = string;
 
-type DataT = { readonly "description": { readonly "en": "String published when no flag bit is active; default \"None\"." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "empty" }; readonly "title": { readonly "en": "Empty" } };
+type DataT = { readonly "description": { readonly "en": "String published when no flag bit is active; default \"None\"." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "empty" }; readonly "title": { readonly "en": "Empty" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "String published when no flag bit is active; default \"None\"."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "empty"
 	},
 	"title": {

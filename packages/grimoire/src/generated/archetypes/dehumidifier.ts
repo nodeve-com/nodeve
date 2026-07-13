@@ -22,7 +22,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Dehumidifier = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "dehumidification"?: dehumidification_.Dehumidification; "compressor"?: compressor_.Compressor; "humidityControl"?: humidityControl_.HumidityControl };
 
-type DataT = { readonly "description": { readonly "en": "An appliance whose model fact is moisture removal (+ optional refrigeration/humidity capability)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "dehumidifier" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "compressor": typeof compressor_; readonly "dehumidification": typeof dehumidification_; readonly "description": typeof description_; readonly "humidityControl": typeof humidityControl_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Dehumidifier"; readonly "pt": "Desumidificador" } };
+type DataT = { readonly "description": { readonly "en": "An appliance whose model fact is moisture removal (+ optional refrigeration/humidity capability)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "dehumidifier" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "compressor": typeof compressor_; readonly "dehumidification": typeof dehumidification_; readonly "description": typeof description_; readonly "humidityControl": typeof humidityControl_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Dehumidifier"; readonly "pt": "Desumidificador" } };
 
 const _data: DataT = {
 	"description": {
@@ -30,7 +30,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "dehumidifier"
 	},
 	"prop": {

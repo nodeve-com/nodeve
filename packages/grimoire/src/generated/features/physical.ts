@@ -16,11 +16,11 @@ export const schema: TSchema = Type.Object({ "width": Type.Optional(width_.schem
 
 export type Physical = { "width"?: width_.Width; "height"?: height_.Height; "thickness"?: thickness_.Thickness; "mass"?: mass_.Mass };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "physical" }; readonly "prop": { readonly "height": typeof height_; readonly "mass": typeof mass_; readonly "thickness": typeof thickness_; readonly "width": typeof width_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "physical" }; readonly "prop": { readonly "height": typeof height_; readonly "mass": typeof mass_; readonly "thickness": typeof thickness_; readonly "width": typeof width_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "physical"
 	},
 	"prop": {

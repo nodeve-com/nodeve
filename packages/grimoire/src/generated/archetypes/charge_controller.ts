@@ -24,7 +24,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type ChargeController = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "vedirectFields"?: vedirectFields_.VedirectFields; "pvTracker"?: pvTracker_.PvTracker; "battery"?: battery_.Battery; "mpptTracking"?: mpptTracking_.MpptTracking; "enclosure"?: enclosure_.Enclosure };
 
-type DataT = { readonly "description": { readonly "en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "charge_controller" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "battery": typeof battery_; readonly "description": typeof description_; readonly "enclosure": typeof enclosure_; readonly "identity": typeof identity_; readonly "mpptTracking": typeof mpptTracking_; readonly "product": typeof product_; readonly "pvTracker": typeof pvTracker_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "vedirectFields": typeof vedirectFields_ }; readonly "title": { readonly "en": "Charge controller"; readonly "pt": "Controlador de carga" } };
+type DataT = { readonly "description": { readonly "en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "charge_controller" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "battery": typeof battery_; readonly "description": typeof description_; readonly "enclosure": typeof enclosure_; readonly "identity": typeof identity_; readonly "mpptTracking": typeof mpptTracking_; readonly "product": typeof product_; readonly "pvTracker": typeof pvTracker_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "vedirectFields": typeof vedirectFields_ }; readonly "title": { readonly "en": "Charge controller"; readonly "pt": "Controlador de carga" } };
 
 const _data: DataT = {
 	"description": {
@@ -32,7 +32,7 @@ const _data: DataT = {
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "charge_controller"
 	},
 	"prop": {

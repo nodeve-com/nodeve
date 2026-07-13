@@ -18,11 +18,11 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type SerialWire = { "path"?: path_.Path; "baudRate"?: baudRate_.BaudRate; "physicalLayer"?: "can_hs" | "current_loop_4_20ma" | "rs232" | "rs485" | "ttl_3v3" | "ttl_5v" | "voltage_0_10v"; "parity"?: parity_.Parity; "dataBits"?: dataBits_.DataBits; "stopBits"?: stopBits_.StopBits };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "serial_wire" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "dataBits": typeof dataBits_; readonly "parity": typeof parity_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } }; readonly "stopBits": typeof stopBits_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_wire" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "dataBits": typeof dataBits_; readonly "parity": typeof parity_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } }; readonly "stopBits": typeof stopBits_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "serial_wire"
 	},
 	"prop": {

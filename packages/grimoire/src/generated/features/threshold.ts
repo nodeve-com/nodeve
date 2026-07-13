@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "bound": Type.Optional(bound_.schem
 
 export type Threshold = { "bound"?: bound_.Bound; "direction"?: direction_.Direction; "hysteresis"?: hysteresis_.Hysteresis };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "threshold" }; readonly "prop": { readonly "bound": typeof bound_; readonly "direction": typeof direction_; readonly "hysteresis": typeof hysteresis_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "threshold" }; readonly "prop": { readonly "bound": typeof bound_; readonly "direction": typeof direction_; readonly "hysteresis": typeof hysteresis_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "threshold"
 	},
 	"prop": {

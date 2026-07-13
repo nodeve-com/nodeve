@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "organization",
+		"archetypeId": "organization",
 		"code": "3ZKP8HHB",
 		"slug": "mini_box"
 	},

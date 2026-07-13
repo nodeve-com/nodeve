@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "7SZ1K04W",
 		"slug": "iana_uri_scheme"
 	},

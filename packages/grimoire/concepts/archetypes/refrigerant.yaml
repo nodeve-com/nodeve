@@ -1,3 +1,9 @@
+title:
+  en: Refrigerant
+  pt: Refrigerante
+description:
+  en: The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula.
+  pt: O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química.
 concept_settings:
   # A REFRIGERANT — the working gas of a vapor-compression cycle. A Term (identity + i18n label +
   # crosswalks) plus the facts that drive decisions: ASHRAE Standard 34 designation + safety class,

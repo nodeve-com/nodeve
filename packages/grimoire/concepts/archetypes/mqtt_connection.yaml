@@ -10,6 +10,9 @@
 #     deployment overrides via env.
 # Env-var names travel WITH each field as `x-env-var` (schema.env-var overrides below); the flat
 # MQTT_ENV name map is DERIVED from the compiled schema, never hand-kept.
+title:
+  en: MQTT connection
+  pt: Ligação MQTT
 description:
   en: How a deployment connects to its MQTT broker (auth, shared endpoint defaults, and one scheme-keyed endpoint block per broker listener — mqtt/mqtts/ws/wss).
 

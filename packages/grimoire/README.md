@@ -60,14 +60,13 @@ tests/                    # schema-behavior + example-drift tests
 ## Using the catalog
 
 ```ts
-import { loadDevice, loadDeviceAs, modbusMediumOf, listDevices } from '@nodeve/grimoire';
+import { loadDevice, modbusMediumOf, listDevices } from '@nodeve/grimoire';
 
-loadDevice('foxess/h3/ps-10.0-sh'); // CatalogEntry (discriminated by `archetype`)
-loadDeviceAs('foxess/h3/ps-10.0-sh', 'inverter'); // narrowed to the Inverter variant
-modbusMediumOf(loadDevice('chint/dtsu666')); // register map + transport + emit (goal 2)
+loadDevice({ archetypeId: 'inverter', slug: 'foxess_h3_ps10sh' }); // CatalogDevice (identity guaranteed)
+modbusMediumOf(loadDevice({ archetypeId: 'ac_phase_three_meter', slug: 'chint_dtsu666_4wire' })); // register map + transport + emit (goal 2)
 ```
 
-A device's key is its **identity** — `archetype` + `slug` (`catalog_item: { archetype: inverter, slug: foxess_h3_ps10sh }`), the stable reference downstream configs use. The tree path (`foxess/h3/ps-10.0-sh`) is filing only.
+A device's key is its **identity** — `archetype_id` + `slug` (`catalog_item: { archetype_id: inverter, slug: foxess_h3_ps10sh }`), the stable reference downstream configs use. The tree path (`foxess/h3/ps-10.0-sh`) is filing only.
 
 ## Using the concepts
 

@@ -24,7 +24,7 @@ export { displayPolicy } from './generated/display-policy.ts';
 // --- Env overlay: schema-annotation-driven (`x-env-var`) env override/fill for deployment config ---
 export { overlayEnvVars } from './env.ts';
 
-// --- Catalog loader: resolve a baked device by its identity (archetype + slug) — the reference a
+// --- Catalog loader: resolve a baked device by its identity (archetype_id + slug) — the reference a
 //     site's `catalog_item` names. THE one way JS/TS reads the generated/catalog/ grain ---
 export {
 	loadDevice,
@@ -41,6 +41,7 @@ export {
 //     slug-bearing sensor list ha-config / esphome codegen iterate. No reshape; stays snake ---
 export {
 	openSite,
+	type CatalogItemRef,
 	type SiteView,
 	type SiteBundle,
 	type SiteSensor,

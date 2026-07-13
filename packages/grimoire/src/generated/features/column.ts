@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "references": Type.Optional(referen
 
 export type Column = { "references"?: references_.References };
 
-type DataT = { readonly "description": { readonly "en": "Relational metadata a property projects to as a DB column (foreign key, …)."; readonly "pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "column" }; readonly "prop": { readonly "references": typeof references_ }; readonly "title": { readonly "en": "Column"; readonly "pt": "Coluna" } };
+type DataT = { readonly "description": { readonly "en": "Relational metadata a property projects to as a DB column (foreign key, …)."; readonly "pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "column" }; readonly "prop": { readonly "references": typeof references_ }; readonly "title": { readonly "en": "Column"; readonly "pt": "Coluna" } };
 
 const _data: DataT = {
 	"description": {
@@ -21,7 +21,7 @@ const _data: DataT = {
 		"pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "column"
 	},
 	"prop": {

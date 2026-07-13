@@ -6,6 +6,7 @@ import * as acPhaseThreeMeter_ from './ac_phase_three_meter.ts';
 import * as airConditioner_ from './air_conditioner.ts';
 import * as ambientTank_ from './ambient_tank.ts';
 import * as appliance_ from './appliance.ts';
+import * as archetype_ from './archetype.ts';
 import * as batteryCharger_ from './battery_charger.ts';
 import * as building_ from './building.ts';
 import * as chargeController_ from './charge_controller.ts';
@@ -39,6 +40,7 @@ export const archetype = {
 	airConditioner: airConditioner_,
 	ambientTank: ambientTank_,
 	appliance: appliance_,
+	archetype: archetype_,
 	batteryCharger: batteryCharger_,
 	building: building_,
 	chargeController: chargeController_,

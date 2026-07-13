@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Path = string;
 
-type DataT = { readonly "description": { readonly "en": "An OS filesystem path — the string the kernel resolves to a node (a serial device, a Unix-domain socket, a regular file). Which kind of node, and any usage caveats, belong to the slot that composes this." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "path" }; readonly "title": { readonly "en": "Path"; readonly "pt": "Caminho" } };
+type DataT = { readonly "description": { readonly "en": "An OS filesystem path — the string the kernel resolves to a node (a serial device, a Unix-domain socket, a regular file). Which kind of node, and any usage caveats, belong to the slot that composes this." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "path" }; readonly "title": { readonly "en": "Path"; readonly "pt": "Caminho" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "An OS filesystem path — the string the kernel resolves to a node (a serial device, a Unix-domain socket, a regular file). Which kind of node, and any usage caveats, belong to the slot that composes this."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "path"
 	},
 	"title": {

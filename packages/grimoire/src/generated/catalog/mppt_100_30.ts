@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "charge_controller",
+		"archetypeId": "charge_controller",
 		"code": "1SCV4M25",
 		"slug": "mppt_100_30"
 	},

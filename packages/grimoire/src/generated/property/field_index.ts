@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":255,"minimum":0});
 
 export type FieldIndex = number;
 
-type DataT = { readonly "description": { readonly "en": "The field index the get/set command carries to address this parameter (m4ConfigField.index)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "field_index" }; readonly "title": { readonly "en": "Field index" } };
+type DataT = { readonly "description": { readonly "en": "The field index the get/set command carries to address this parameter (m4ConfigField.index)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "field_index" }; readonly "title": { readonly "en": "Field index" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The field index the get/set command carries to address this parameter (m4ConfigField.index)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "field_index"
 	},
 	"title": {

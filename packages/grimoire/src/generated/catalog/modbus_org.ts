@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "PRDSCV1G",
 		"slug": "modbus_org"
 	},

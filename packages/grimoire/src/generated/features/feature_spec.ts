@@ -19,11 +19,11 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type FeatureSpec = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "combined"?: combined_.Combined; "default"?: default_.Default; "part"?: part_.Part; "instances"?: instances_.Instances };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "feature_spec" }; readonly "prop": { readonly "combined": typeof combined_; readonly "default": typeof default_; readonly "instances": typeof instances_; readonly "ordinal": typeof ordinal_; readonly "part": typeof part_; readonly "partId": typeof partId_ }; readonly "title": { readonly "en": "Feature specification body" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "feature_spec" }; readonly "prop": { readonly "combined": typeof combined_; readonly "default": typeof default_; readonly "instances": typeof instances_; readonly "ordinal": typeof ordinal_; readonly "part": typeof part_; readonly "partId": typeof partId_ }; readonly "title": { readonly "en": "Feature specification body" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "feature_spec"
 	},
 	"prop": {

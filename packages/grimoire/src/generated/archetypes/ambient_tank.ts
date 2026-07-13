@@ -15,14 +15,14 @@ export const schema: TSchema = Type.Object({ "targetTempBand": targetTempBand_.s
 
 export type AmbientTank = { "targetTempBand": targetTempBand_.TargetTempBand; "operatingTempBand": operatingTempBand_.OperatingTempBand; "groundTempBand": groundTempBand_.GroundTempBand };
 
-type DataT = { readonly "description": { readonly "en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "ambient_tank" }; readonly "prop": { readonly "groundTempBand": typeof groundTempBand_; readonly "operatingTempBand": typeof operatingTempBand_; readonly "targetTempBand": typeof targetTempBand_ }; readonly "title": { readonly "en": "Ambient tank"; readonly "pt": "Tanque ambiente" } };
+type DataT = { readonly "description": { readonly "en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ambient_tank" }; readonly "prop": { readonly "groundTempBand": typeof groundTempBand_; readonly "operatingTempBand": typeof operatingTempBand_; readonly "targetTempBand": typeof targetTempBand_ }; readonly "title": { readonly "en": "Ambient tank"; readonly "pt": "Tanque ambiente" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "ambient_tank"
 	},
 	"prop": {

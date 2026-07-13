@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Host = string;
 
-type DataT = { readonly "description": { readonly "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "host" }; readonly "title": { readonly "en": "Host" } };
+type DataT = { readonly "description": { readonly "en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "host" }; readonly "title": { readonly "en": "Host" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Hostname or IP an endpoint is reached at (the remote address a dialer connects out to). No sensible default — deployment-specific, supplied downstream."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "host"
 	},
 	"title": {

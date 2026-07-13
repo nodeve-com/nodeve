@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type Offset = number;
 
-type DataT = { readonly "description": { readonly "en": "Zero-based byte offset into a request/response frame. The single place the key is defined — diag byte-fields, magic-byte checks and firmware-version bytes all compose it." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "offset" }; readonly "title": { readonly "en": "Byte offset" } };
+type DataT = { readonly "description": { readonly "en": "Zero-based byte offset into a request/response frame. The single place the key is defined — diag byte-fields, magic-byte checks and firmware-version bytes all compose it." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "offset" }; readonly "title": { readonly "en": "Byte offset" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Zero-based byte offset into a request/response frame. The single place the key is defined — diag byte-fields, magic-byte checks and firmware-version bytes all compose it."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "offset"
 	},
 	"title": {

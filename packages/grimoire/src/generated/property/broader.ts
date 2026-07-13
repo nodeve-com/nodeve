@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type Broader = string;
 
-type DataT = { readonly "description": { readonly "en": "Intra-vocabulary generalization (skos:broader) — the code of a more general concept in the same vocabulary this one specializes (active_power → power). Distinct from refs (cross-vocabulary crosswalks)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "broader" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "skos"; readonly "term": "broader" }]; readonly "title": { readonly "en": "Broader"; readonly "pt": "Mais amplo" } };
+type DataT = { readonly "description": { readonly "en": "Intra-vocabulary generalization (skos:broader) — the code of a more general concept in the same vocabulary this one specializes (active_power → power). Distinct from refs (cross-vocabulary crosswalks)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "broader" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "skos"; readonly "term": "broader" }]; readonly "title": { readonly "en": "Broader"; readonly "pt": "Mais amplo" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Intra-vocabulary generalization (skos:broader) — the code of a more general concept in the same vocabulary this one specializes (active_power → power). Distinct from refs (cross-vocabulary crosswalks)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "broader"
 	},
 	"refs": [

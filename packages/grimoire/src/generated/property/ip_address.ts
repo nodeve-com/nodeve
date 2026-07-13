@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type IpAddress = string;
 
-type DataT = { readonly "description": { readonly "en": "An L3 address assigned to the interface — an IPv4 dotted-quad (192.0.2.10) or IPv6 (2001:db8::1). The `ip_family` sibling records which. No sensible default — deployment-specific, supplied downstream." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "ip_address" }; readonly "title": { readonly "en": "IP address" } };
+type DataT = { readonly "description": { readonly "en": "An L3 address assigned to the interface — an IPv4 dotted-quad (192.0.2.10) or IPv6 (2001:db8::1). The `ip_family` sibling records which. No sensible default — deployment-specific, supplied downstream." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "ip_address" }; readonly "title": { readonly "en": "IP address" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "An L3 address assigned to the interface — an IPv4 dotted-quad (192.0.2.10) or IPv6 (2001:db8::1). The `ip_family` sibling records which. No sensible default — deployment-specific, supplied downstream."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "ip_address"
 	},
 	"title": {

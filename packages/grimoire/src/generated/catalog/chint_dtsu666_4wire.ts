@@ -133,7 +133,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "ac_phase_three_meter",
+		"archetypeId": "ac_phase_three_meter",
 		"code": "RR9DBA8D",
 		"slug": "chint_dtsu666_4wire"
 	},

@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "registryId": registryId_.schema, "
 
 export type Ref = { "registryId": registryId_.RegistryId; "term": term_.Term; "match": match_.Match };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "ref" }; readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ }; readonly "title": { readonly "en": "Crosswalk reference"; readonly "pt": "Referência de crosswalk" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ref" }; readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ }; readonly "title": { readonly "en": "Crosswalk reference"; readonly "pt": "Referência de crosswalk" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "ref"
 	},
 	"prop": {

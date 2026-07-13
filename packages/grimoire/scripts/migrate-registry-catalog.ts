@@ -77,7 +77,7 @@ if (existsSync(ENUM_REGISTRY)) {
 	mkdirSync(CATALOG_REGISTRIES, { recursive: true });
 	writeFileSync(join(CATALOG_REGISTRIES, '_defaults.yaml'),
 		'# Registry catalog entries — external Classes a crosswalk points into (ref.registry_id FKs here).\n' +
-		'# Each carries its resolver + publisher via registry_publication. Single archetype for the subtree.\narchetype: registry\n');
+		'# Each carries its resolver + publisher via registry_publication. Single archetype for the subtree.\narchetype_id: registry\n');
 	for (const f of readdirSync(ENUM_REGISTRY)) {
 		if (!f.endsWith('.yaml') || f === '_defaults.yaml') continue;
 		const raw = readFileSync(join(ENUM_REGISTRY, f), 'utf8');

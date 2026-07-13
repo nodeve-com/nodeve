@@ -15,11 +15,11 @@ export const schema: TSchema = Type.Object({ "registerType": Type.Optional(regis
 
 export type ModbusLink = { "registerType"?: registerType_.RegisterType; "unitId"?: unitId_.UnitId; "wordOrder"?: wordOrder_.WordOrder };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "modbus_link" }; readonly "prop": { readonly "registerType": typeof registerType_; readonly "unitId": typeof unitId_; readonly "wordOrder": typeof wordOrder_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_link" }; readonly "prop": { readonly "registerType": typeof registerType_; readonly "unitId": typeof unitId_; readonly "wordOrder": typeof wordOrder_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "modbus_link"
 	},
 	"prop": {

@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type BaseUrl = string;
 
-type DataT = { readonly "description": { readonly "en": "Base URL under which an external database record resolves — a registry's alternative to iri_template."; readonly "pt": "URL base sob a qual um registro de base de dados externo resolve — a alternativa da iri_template de um registro." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "base_url" }; readonly "title": { readonly "en": "Base URL"; readonly "pt": "URL base" } };
+type DataT = { readonly "description": { readonly "en": "Base URL under which an external database record resolves — a registry's alternative to iri_template."; readonly "pt": "URL base sob a qual um registro de base de dados externo resolve — a alternativa da iri_template de um registro." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "base_url" }; readonly "title": { readonly "en": "Base URL"; readonly "pt": "URL base" } };
 
 const _data: DataT = {
 	"description": {
@@ -20,7 +20,7 @@ const _data: DataT = {
 		"pt": "URL base sob a qual um registro de base de dados externo resolve — a alternativa da iri_template de um registro."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "base_url"
 	},
 	"title": {

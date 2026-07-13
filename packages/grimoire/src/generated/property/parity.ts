@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("none"), Type.Literal("e
 
 export type Parity = "none" | "even" | "odd";
 
-type DataT = { readonly "description": { readonly "en": "UART parity bit of the line discipline." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "parity" }; readonly "title": { readonly "en": "Parity"; readonly "pt": "Paridade" } };
+type DataT = { readonly "description": { readonly "en": "UART parity bit of the line discipline." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "parity" }; readonly "title": { readonly "en": "Parity"; readonly "pt": "Paridade" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "UART parity bit of the line discipline."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "parity"
 	},
 	"title": {

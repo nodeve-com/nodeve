@@ -10,16 +10,23 @@ import { isPlainObject, mergeDeep } from 'remeda';
 import { instructionKeys, resolveConcept } from './compile.ts';
 import { projectSchema } from './project.ts';
 import { ajv } from '../src/ajv.ts';
-import { type Obj, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR } from '../src/concept-sources.ts';
+import { type Obj, ARCHETYPES_DIR, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR } from '../src/concept-sources.ts';
 
 const schemaByArchetype = new Map<string, ValidateFunction>();
 
-/** The identity de-sugar: EVERY doc validates carrying `identity.{archetype, slug}` (required by
+/** Parse one def file; an EMPTY def is a hard failure — a def earns its file by saying something. */
+function parseDoc(path: string): Obj {
+	const doc = parseYaml(readFileSync(path, 'utf8'));
+	if (doc == null) throw new Error(`grimoire ${path}: empty def — author it or delete the file`);
+	return doc as Obj;
+}
+
+/** The identity de-sugar: EVERY doc validates carrying `identity.{archetype_id, slug}` (required by
  *  features/identity.yaml) — archetype from the layer/cascade, slug defaulting to the FILE STEM —
  *  so authored YAML never restates its own filename. Authored identity keys win. */
 export function desugarIdentity(data: Obj, archetype: string, stem: string): Obj {
 	const identity = isPlainObject(data.identity) ? data.identity : {};
-	return { ...data, identity: { archetype, slug: stem, ...identity } };
+	return { ...data, identity: { archetype_id: archetype, slug: stem, ...identity } };
 }
 
 export function assertDocValid(label: string, archetype: string, data: unknown): void {
@@ -43,7 +50,7 @@ export function assertMetaSchema(label: string, schema: unknown): void {
 }
 
 /** Validate every leaf doc — concepts/property/** (single fields) + concepts/enumeration/** (members)
- *  — against its declared archetype (`identity.archetype`), the same gate catalog leaves pass.
+ *  — against its declared archetype (`identity.archetype_id`), the same gate catalog leaves pass.
  *  Def-language keys (`schema:`, `feature:`) are compiler plumbing, stripped before validating. */
 export function assertLeafDocsValid(): void {
 	const failures: string[] = [];
@@ -57,13 +64,13 @@ export function assertLeafDocsValid(): void {
 				walk(root, join(dir, entry.name), defaults);
 			} else if (entry.name.endsWith('.yaml') && entry.name !== '_defaults.yaml') {
 				const path = join(dir, entry.name);
-				const data = mergeDeep(defaults, (parseYaml(readFileSync(path, 'utf8')) ?? {}) as Record<string, unknown>) as Record<string, unknown>;
+				const data = mergeDeep(defaults, parseDoc(path)) as Record<string, unknown>;
 				delete data.schema; // def-language field shape — the compiler's contract, not member data
 				delete data.feature; // def-language field binding
 				const identity = (data.identity ?? {}) as Record<string, unknown>;
-				if (typeof identity.archetype !== 'string') throw new Error(`grimoire ${path} declares no identity.archetype (cascade _defaults.yaml)`);
+				if (typeof identity.archetype_id !== 'string') throw new Error(`grimoire ${path} declares no identity.archetype_id (cascade _defaults.yaml)`);
 				try {
-					assertDocValid(path.slice(root.length + 1), identity.archetype, desugarIdentity(data as Obj, identity.archetype, entry.name.slice(0, -'.yaml'.length)));
+					assertDocValid(path.slice(root.length + 1), identity.archetype_id, desugarIdentity(data as Obj, identity.archetype_id, entry.name.slice(0, -'.yaml'.length)));
 				} catch (e) {
 					failures.push(e instanceof Error ? e.message : String(e));
 				}
@@ -90,7 +97,7 @@ export function assertFeatureDocsValid(): void {
 			if (entry.isDirectory()) {
 				walk(path);
 			} else if (entry.name.endsWith('.yaml')) {
-				const doc = (parseYaml(readFileSync(path, 'utf8')) ?? {}) as Record<string, unknown>;
+				const doc = parseDoc(path) as Record<string, unknown>;
 				const instr = instructionKeys(doc as Obj);
 				const data = Object.fromEntries(
 					Object.entries(doc).filter(([k]) => !(instr.has(k) && !declared.has(k))),
@@ -105,4 +112,26 @@ export function assertFeatureDocsValid(): void {
 	};
 	walk(FEATURES_DIR);
 	if (failures.length > 0) throw new Error(`${failures.length} feature docs fail validation:\n${failures.join('\n')}`);
+}
+
+/** Validate every concepts/archetypes/** def against the `archetype` meta-def — the same
+ *  self-hosting gate feature defs pass. Requires the labels every class must carry (title,
+ *  description — archetypes/archetype.yaml); an empty def fails in parseDoc. */
+export function assertArchetypeDocsValid(): void {
+	const archetypeSchema = projectSchema(resolveConcept('archetype'));
+	const declared = new Set(Object.keys((archetypeSchema.properties ?? {}) as Record<string, unknown>));
+	const failures: string[] = [];
+	for (const entry of readdirSync(ARCHETYPES_DIR, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+		if (!entry.name.endsWith('.yaml') || entry.name.startsWith('_')) continue;
+		const path = join(ARCHETYPES_DIR, entry.name);
+		try {
+			const doc = parseDoc(path) as Record<string, unknown>;
+			const instr = instructionKeys(doc as Obj);
+			const data = Object.fromEntries(Object.entries(doc).filter(([k]) => !((instr.has(k) || k === 'archetype') && !declared.has(k))));
+			assertDocValid(`archetype ${entry.name}`, 'archetype', desugarIdentity(data as Obj, 'archetype', entry.name.slice(0, -'.yaml'.length)));
+		} catch (e) {
+			failures.push(e instanceof Error ? e.message : String(e));
+		}
+	}
+	if (failures.length > 0) throw new Error(`${failures.length} archetype defs fail validation:\n${failures.join('\n')}`);
 }

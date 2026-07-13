@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type RequestLength = number;
 
-type DataT = { readonly "description": { readonly "en": "Fixed length of every config command/response buffer (M4-ATX: 24)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "request_length" }; readonly "title": { readonly "en": "Request length" } };
+type DataT = { readonly "description": { readonly "en": "Fixed length of every config command/response buffer (M4-ATX: 24)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "request_length" }; readonly "title": { readonly "en": "Request length" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Fixed length of every config command/response buffer (M4-ATX: 24)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "request_length"
 	},
 	"title": {

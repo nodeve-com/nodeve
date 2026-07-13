@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Kind = string;
 
-type DataT = { readonly "description": { readonly "en": "Generic character/discriminant slug — a measurement's channel character (e.g. continuous; reserved) or a decode's kind discriminant. Per-feature overrides refine title/description." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "kind" }; readonly "title": { readonly "en": "Kind" } };
+type DataT = { readonly "description": { readonly "en": "Generic character/discriminant slug — a measurement's channel character (e.g. continuous; reserved) or a decode's kind discriminant. Per-feature overrides refine title/description." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "kind" }; readonly "title": { readonly "en": "Kind" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Generic character/discriminant slug — a measurement's channel character (e.g. continuous; reserved) or a decode's kind discriminant. Per-feature overrides refine title/description."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "kind"
 	},
 	"title": {

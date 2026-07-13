@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Link = string;
 
-type DataT = { readonly "description": { readonly "en": "The ingest link this device runs on, by its slug (the runtime resolves the reference). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "link" }; readonly "title": { readonly "en": "Link" } };
+type DataT = { readonly "description": { readonly "en": "The ingest link this device runs on, by its slug (the runtime resolves the reference). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "link" }; readonly "title": { readonly "en": "Link" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The ingest link this device runs on, by its slug (the runtime resolves the reference). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "link"
 	},
 	"title": {

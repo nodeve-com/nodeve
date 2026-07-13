@@ -452,7 +452,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "inverter",
+		"archetypeId": "inverter",
 		"code": "S2P331EC",
 		"slug": "foxess_h3_ps10sh"
 	},

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Resolution = number;
 
-type DataT = { readonly "description": { readonly "en": "Quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14). Omit when the datasheet doesn't state it; never fabricate." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "resolution" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.14" }, { readonly "match": "exact"; readonly "registryId": "ssn_system"; readonly "term": "Resolution" }]; readonly "title": { readonly "en": "Resolution" } };
+type DataT = { readonly "description": { readonly "en": "Quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14). Omit when the datasheet doesn't state it; never fabricate." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "resolution" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.14" }, { readonly "match": "exact"; readonly "registryId": "ssn_system"; readonly "term": "Resolution" }]; readonly "title": { readonly "en": "Resolution" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14). Omit when the datasheet doesn't state it; never fabricate."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "resolution"
 	},
 	"refs": [

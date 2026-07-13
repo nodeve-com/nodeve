@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({ "refrigerant": Type.Optional(Type.L
 
 export type Refrigeration = { "refrigerant"?: "r290" };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "refrigeration" }; readonly "prop": { readonly "refrigerant": { readonly "description": { readonly "en": "Refrigerant gas, e.g. r290."; readonly "pt": "Gás refrigerante, ex. r290." }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" }; readonly "ui": { readonly "mono": true } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "refrigeration" }; readonly "prop": { readonly "refrigerant": { readonly "description": { readonly "en": "Refrigerant gas, e.g. r290."; readonly "pt": "Gás refrigerante, ex. r290." }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" }; readonly "ui": { readonly "mono": true } } } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "refrigeration"
 	},
 	"prop": {

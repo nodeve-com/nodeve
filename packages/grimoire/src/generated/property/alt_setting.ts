@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type AltSetting = number;
 
-type DataT = { readonly "description": { readonly "en": "USB alternate setting (standard USB descriptor)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "alt_setting" }; readonly "title": { readonly "en": "Alt setting" } };
+type DataT = { readonly "description": { readonly "en": "USB alternate setting (standard USB descriptor)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "alt_setting" }; readonly "title": { readonly "en": "Alt setting" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "USB alternate setting (standard USB descriptor)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "alt_setting"
 	},
 	"title": {

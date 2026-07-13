@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Object({});
 
 export type CatalogPatch = Record<string, never>;
 
-type DataT = { readonly "identity": { readonly "archetype": "property"; readonly "slug": "catalog_patch" }; readonly "title": { readonly "en": "Catalog patch" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_patch" }; readonly "title": { readonly "en": "Catalog patch" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "catalog_patch"
 	},
 	"title": {

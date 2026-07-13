@@ -37,7 +37,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "pv_module",
+		"archetypeId": "pv_module",
 		"code": "C4PBSBEF",
 		"slug": "twmnh_66hd640"
 	},

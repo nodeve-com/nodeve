@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "latitude": latitude_.schema, "long
 
 export type Location = { "latitude": latitude_.Latitude; "longitude": longitude_.Longitude; "altitude"?: number };
 
-type DataT = { readonly "description": { readonly "en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level)."; readonly "pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "location" }; readonly "prop": { readonly "altitude": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Altitude" }, { readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "alt" }]; readonly "title": { readonly "en": "Altitude"; readonly "pt": "Altitude" } }; readonly "latitude": typeof latitude_; readonly "longitude": typeof longitude_ }; readonly "title": { readonly "en": "Location"; readonly "pt": "Local" } };
+type DataT = { readonly "description": { readonly "en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level)."; readonly "pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "location" }; readonly "prop": { readonly "altitude": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Altitude" }, { readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "alt" }]; readonly "title": { readonly "en": "Altitude"; readonly "pt": "Altitude" } }; readonly "latitude": typeof latitude_; readonly "longitude": typeof longitude_ }; readonly "title": { readonly "en": "Location"; readonly "pt": "Local" } };
 
 const _data: DataT = {
 	"description": {
@@ -22,7 +22,7 @@ const _data: DataT = {
 		"pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "location"
 	},
 	"prop": {

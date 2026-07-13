@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Max = number;
 
-type DataT = { readonly "description": { readonly "en": "Inclusive high end of a closed interval, in the enclosing concept's unit." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "max" }; readonly "title": { readonly "en": "Maximum"; readonly "pt": "Máximo" } };
+type DataT = { readonly "description": { readonly "en": "Inclusive high end of a closed interval, in the enclosing concept's unit." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "max" }; readonly "title": { readonly "en": "Maximum"; readonly "pt": "Máximo" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Inclusive high end of a closed interval, in the enclosing concept's unit."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "max"
 	},
 	"title": {

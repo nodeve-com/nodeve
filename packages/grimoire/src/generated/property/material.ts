@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String();
 
 export type Material = string;
 
-type DataT = { readonly "description": { readonly "en": "incoloy, copper, titanium, cotton, concerete, stainless" }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "material" }; readonly "title": { readonly "en": "Material" } };
+type DataT = { readonly "description": { readonly "en": "incoloy, copper, titanium, cotton, concerete, stainless" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "material" }; readonly "title": { readonly "en": "Material" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "incoloy, copper, titanium, cotton, concerete, stainless"
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "material"
 	},
 	"title": {

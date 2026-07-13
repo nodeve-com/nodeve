@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type NetworkInterfaceId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "network_interface_id" }; readonly "title": { readonly "en": "Network interface" } };
+type DataT = { readonly "description": { readonly "en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "network_interface_id" }; readonly "title": { readonly "en": "Network interface" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "network_interface_id"
 	},
 	"title": {

@@ -106,7 +106,7 @@ export default {
 		"en": "N-Type i-TOPCon Bifacial dual glass monocrystalline module"
 	},
 	"identity": {
-		"archetype": "pv_module",
+		"archetypeId": "pv_module",
 		"code": "T9S7TRDX",
 		"slug": "tsm_625neg19rc_20"
 	},

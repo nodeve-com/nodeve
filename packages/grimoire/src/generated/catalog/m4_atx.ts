@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "power_supply",
+		"archetypeId": "power_supply",
 		"code": "05SCNF2G",
 		"slug": "m4_atx"
 	},

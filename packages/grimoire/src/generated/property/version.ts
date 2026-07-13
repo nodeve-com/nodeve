@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Version = string;
 
-type DataT = { readonly "description": { readonly "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "version" }; readonly "title": { readonly "en": "Protocol version" } };
+type DataT = { readonly "description": { readonly "en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "version" }; readonly "title": { readonly "en": "Protocol version" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Wire-protocol version an endpoint speaks (e.g. MQTT 5 vs 3.1.1). Omit to fall back to the scheme's default."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "version"
 	},
 	"title": {

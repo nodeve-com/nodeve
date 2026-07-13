@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Object({});
 
 export type ResponseMagic = Record<string, never>;
 
-type DataT = { readonly "description": { readonly "en": "A leading sanity byte-check a device stamps on a valid frame/response, as { offset, expect }. Shared by the usbhid diag read and config exchange." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "response_magic" }; readonly "title": { readonly "en": "Response magic" } };
+type DataT = { readonly "description": { readonly "en": "A leading sanity byte-check a device stamps on a valid frame/response, as { offset, expect }. Shared by the usbhid diag read and config exchange." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "response_magic" }; readonly "title": { readonly "en": "Response magic" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A leading sanity byte-check a device stamps on a valid frame/response, as { offset, expect }. Shared by the usbhid diag read and config exchange."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "response_magic"
 	},
 	"title": {

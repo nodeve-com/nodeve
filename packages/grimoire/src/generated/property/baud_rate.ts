@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":1});
 
 export type BaudRate = number;
 
-type DataT = { readonly "description": { readonly "en": "Serial line speed in baud." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "baud_rate" }; readonly "title": { readonly "en": "Baud rate"; readonly "pt": "Taxa de transmissão" } };
+type DataT = { readonly "description": { readonly "en": "Serial line speed in baud." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "baud_rate" }; readonly "title": { readonly "en": "Baud rate"; readonly "pt": "Taxa de transmissão" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Serial line speed in baud."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "baud_rate"
 	},
 	"title": {

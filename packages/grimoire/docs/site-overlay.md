@@ -4,7 +4,7 @@ A `site_catalog` entry names a grimoire device (`inventory.catalog_item`) and ad
 
 ## The two halves of a reference
 
-- `catalog_item` — the POINTER: `{archetype, slug}` naming the grimoire device (or a site-local entry).
+- `catalog_item` — the POINTER: `{archetype_id, slug}` naming the grimoire device (or a site-local entry).
 - `catalog_patch` — what the SITE ADDS to it: a sparse tree mirroring the device's own shape, each leaf a value the site supplies. Free-form by design (`additionalProperties: true`) — its shape is the referenced device's, which no static schema can know.
 
 ## Authoring — write device facts at the top level
@@ -15,7 +15,7 @@ A `site_catalog` entry owns exactly its `thing` identity + the `inventory` featu
 # sites/<name>/catalog/grid_inverter.yaml
 inventory:
   serial_number: 60P11030588M005
-  catalog_item: { slug: foxess_h3_ps10sh, archetype: inverter }
+  catalog_item: { slug: foxess_h3_ps10sh, archetype_id: inverter }
 
 network_interfaces: # a device feature (is_array) — overlay, not a site_catalog key
   - identity: { slug: eth0 } # matched to the device's NIC by identity.slug

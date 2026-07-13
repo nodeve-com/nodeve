@@ -33,7 +33,6 @@ import * as endpoint_ from './endpoint.ts';
 import * as energyConsumer_ from './energy_consumer.ts';
 import * as environment_ from './environment.ts';
 import * as featureSpec_ from './feature_spec.ts';
-import * as field_ from './field.ts';
 import * as gridElectricalNetwork_ from './grid_electrical_network.ts';
 import * as groundTempBand_ from './ground_temp_band.ts';
 import * as humidityControl_ from './humidity_control.ts';
@@ -127,7 +126,6 @@ export const feature = {
 	energyConsumer: energyConsumer_,
 	environment: environment_,
 	featureSpec: featureSpec_,
-	field: field_,
 	gridElectricalNetwork: gridElectricalNetwork_,
 	groundTempBand: groundTempBand_,
 	humidityControl: humidityControl_,

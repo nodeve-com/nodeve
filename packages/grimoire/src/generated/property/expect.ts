@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":255,"minimum":0});
 
 export type Expect = number;
 
-type DataT = { readonly "description": { readonly "en": "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "expect" }; readonly "title": { readonly "en": "Expected byte" } };
+type DataT = { readonly "description": { readonly "en": "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "expect" }; readonly "title": { readonly "en": "Expected byte" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The byte expected at offset in the frame (reject the frame otherwise). Named expect, not value — it's the byte the frame must carry, distinct from the many other value concepts."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "expect"
 	},
 	"title": {

@@ -15,7 +15,7 @@ export const schema: TSchema = Type.Object({ "formula": Type.Optional(formula_.s
 
 export type Substance = { "formula"?: formula_.Formula; "gwp"?: gwp_.Gwp; "safetyClass"?: safetyClass_.SafetyClass };
 
-type DataT = { readonly "description": { readonly "en": "Chemical-substance facts — formula, global-warming potential, safety classification."; readonly "pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "substance" }; readonly "prop": { readonly "formula": typeof formula_; readonly "gwp": typeof gwp_; readonly "safetyClass": typeof safetyClass_ }; readonly "title": { readonly "en": "Substance"; readonly "pt": "Substância" } };
+type DataT = { readonly "description": { readonly "en": "Chemical-substance facts — formula, global-warming potential, safety classification."; readonly "pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "substance" }; readonly "prop": { readonly "formula": typeof formula_; readonly "gwp": typeof gwp_; readonly "safetyClass": typeof safetyClass_ }; readonly "title": { readonly "en": "Substance"; readonly "pt": "Substância" } };
 
 const _data: DataT = {
 	"description": {
@@ -23,7 +23,7 @@ const _data: DataT = {
 		"pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "substance"
 	},
 	"prop": {

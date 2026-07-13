@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Record(Type.String(), Type.Number(), {"prope
 
 export type ScaleOverrides = Record<string, number>;
 
-type DataT = { readonly "description": { readonly "en": "Per-firmware-profile scale overrides, keyed by the profile a link firmware rule selects. When the resolved profile has an entry, it replaces `scale`; otherwise `scale` stands." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "scale_overrides" }; readonly "title": { readonly "en": "Scale overrides"; readonly "pt": "Escalas por firmware" } };
+type DataT = { readonly "description": { readonly "en": "Per-firmware-profile scale overrides, keyed by the profile a link firmware rule selects. When the resolved profile has an entry, it replaces `scale`; otherwise `scale` stands." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "scale_overrides" }; readonly "title": { readonly "en": "Scale overrides"; readonly "pt": "Escalas por firmware" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Per-firmware-profile scale overrides, keyed by the profile a link firmware rule selects. When the resolved profile has an entry, it replaces `scale`; otherwise `scale` stands."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "scale_overrides"
 	},
 	"title": {

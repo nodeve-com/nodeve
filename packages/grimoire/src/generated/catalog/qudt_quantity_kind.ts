@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "8G96T0S1",
 		"slug": "qudt_quantity_kind"
 	},

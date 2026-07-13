@@ -13,11 +13,11 @@ export const schema: TSchema = Type.Object({ "unit": Type.Optional(unit_.schema)
 
 export type UnitOverride = { "unit"?: unit_.Unit };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "unit_override" }; readonly "prop": { readonly "unit": typeof unit_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unit_override" }; readonly "prop": { readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "unit_override"
 	},
 	"prop": {

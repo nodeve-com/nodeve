@@ -5,7 +5,7 @@
 
 export default {
 	"identity": {
-		"archetype": "registry",
+		"archetypeId": "registry",
 		"code": "GYAQ1ZBS",
 		"slug": "iso_80000"
 	},

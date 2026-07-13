@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type TimeoutMs = number;
 
-type DataT = { readonly "description": { readonly "en": "Per-transfer timeout in integer milliseconds." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "timeout_ms" }; readonly "title": { readonly "en": "Timeout (ms)"; readonly "pt": "Timeout (ms)" } };
+type DataT = { readonly "description": { readonly "en": "Per-transfer timeout in integer milliseconds." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "timeout_ms" }; readonly "title": { readonly "en": "Timeout (ms)"; readonly "pt": "Timeout (ms)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Per-transfer timeout in integer milliseconds."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "timeout_ms"
 	},
 	"title": {

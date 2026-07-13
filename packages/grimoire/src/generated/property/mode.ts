@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Mode = string;
 
-type DataT = { readonly "description": { readonly "en": "The intrinsic-region axis: a region of THIS quantity's own axis named by the archetype's operating-state property — an MPPT window (mppt, mppt_fullpower), a circuit operating point (mpp, open_circuit, short_circuit). Open, domain-specific slug. NOT for external drivers that merely gate validity (a run mode) — those are categorical conditions." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "mode" }; readonly "title": { readonly "en": "Mode" } };
+type DataT = { readonly "description": { readonly "en": "The intrinsic-region axis: a region of THIS quantity's own axis named by the archetype's operating-state property — an MPPT window (mppt, mppt_fullpower), a circuit operating point (mpp, open_circuit, short_circuit). Open, domain-specific slug. NOT for external drivers that merely gate validity (a run mode) — those are categorical conditions." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "mode" }; readonly "title": { readonly "en": "Mode" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The intrinsic-region axis: a region of THIS quantity's own axis named by the archetype's operating-state property — an MPPT window (mppt, mppt_fullpower), a circuit operating point (mpp, open_circuit, short_circuit). Open, domain-specific slug. NOT for external drivers that merely gate validity (a run mode) — those are categorical conditions."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "mode"
 	},
 	"title": {

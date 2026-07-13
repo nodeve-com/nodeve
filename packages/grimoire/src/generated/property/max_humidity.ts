@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"maximum":100,"minimum":0});
 
 export type MaxHumidity = number;
 
-type DataT = { readonly "description": { readonly "en": "Highest settable target RH the unit supports." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "max_humidity" }; readonly "title": { readonly "en": "Maximum humidity" } };
+type DataT = { readonly "description": { readonly "en": "Highest settable target RH the unit supports." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "max_humidity" }; readonly "title": { readonly "en": "Maximum humidity" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Highest settable target RH the unit supports."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "max_humidity"
 	},
 	"title": {

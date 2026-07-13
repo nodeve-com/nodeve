@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type PublishedBy = string;
 
-type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that publishes this registry's id-space."; readonly "pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "published_by" }; readonly "title": { readonly "en": "Published by"; readonly "pt": "Publicado por" } };
+type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that publishes this registry's id-space."; readonly "pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "published_by" }; readonly "title": { readonly "en": "Published by"; readonly "pt": "Publicado por" } };
 
 const _data: DataT = {
 	"column": {
@@ -23,7 +23,7 @@ const _data: DataT = {
 		"pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "published_by"
 	},
 	"title": {

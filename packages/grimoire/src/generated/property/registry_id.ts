@@ -12,7 +12,7 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type RegistryId = string;
 
-type DataT = { readonly "column": { readonly "references": "registry" }; readonly "description": { readonly "en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "registry_id" }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
+type DataT = { readonly "column": { readonly "references": "registry" }; readonly "description": { readonly "en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "registry_id" }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
 
 const _data: DataT = {
 	"column": {
@@ -22,7 +22,7 @@ const _data: DataT = {
 		"en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "registry_id"
 	},
 	"title": {

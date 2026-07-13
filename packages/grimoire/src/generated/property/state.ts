@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type State = string;
 
-type DataT = { readonly "description": { readonly "en": "A categorical-observable state group slug (run_state, operating_mode, fault_code), as opposed to a numeric quantity_kind. Declared by a categorical decode entry, referenced by a categorical condition gate — two sides of one channel." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "state" }; readonly "title": { readonly "en": "State"; readonly "pt": "Estado" } };
+type DataT = { readonly "description": { readonly "en": "A categorical-observable state group slug (run_state, operating_mode, fault_code), as opposed to a numeric quantity_kind. Declared by a categorical decode entry, referenced by a categorical condition gate — two sides of one channel." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "state" }; readonly "title": { readonly "en": "State"; readonly "pt": "Estado" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "A categorical-observable state group slug (run_state, operating_mode, fault_code), as opposed to a numeric quantity_kind. Declared by a categorical decode entry, referenced by a categorical condition gate — two sides of one channel."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "state"
 	},
 	"title": {

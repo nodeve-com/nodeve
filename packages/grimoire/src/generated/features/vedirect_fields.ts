@@ -21,7 +21,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(
 
 export type VedirectFields = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "key"?: key_.Key }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "key": typeof key_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "description": { readonly "en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "vedirect_fields" }; readonly "title": { readonly "en": "VE.Direct fields"; readonly "pt": "Campos VE.Direct" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "key": typeof key_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "description": { readonly "en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "vedirect_fields" }; readonly "title": { readonly "en": "VE.Direct fields"; readonly "pt": "Campos VE.Direct" } };
 
 const _data: DataT = {
 	"array": {
@@ -41,7 +41,7 @@ const _data: DataT = {
 		"en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "vedirect_fields"
 	},
 	"title": {

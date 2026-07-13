@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Unknown(), {"minItems":1});
 
 export type Parameters = Array<unknown>;
 
-type DataT = { readonly "description": { readonly "en": "The addressable settings — array of usbhid_params items." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "parameters" }; readonly "title": { readonly "en": "Parameters" } };
+type DataT = { readonly "description": { readonly "en": "The addressable settings — array of usbhid_params items." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "parameters" }; readonly "title": { readonly "en": "Parameters" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The addressable settings — array of usbhid_params items."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "parameters"
 	},
 	"title": {

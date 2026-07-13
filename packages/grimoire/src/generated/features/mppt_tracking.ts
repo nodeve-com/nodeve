@@ -13,11 +13,11 @@ export const schema: TSchema = Type.Object({ "mpptWindow": Type.Optional(mpptWin
 
 export type MpptTracking = { "mpptWindow"?: mpptWindow_.MpptWindow };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "mppt_tracking" }; readonly "prop": { readonly "mpptWindow": typeof mpptWindow_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mppt_tracking" }; readonly "prop": { readonly "mpptWindow": typeof mpptWindow_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "mppt_tracking"
 	},
 	"prop": {

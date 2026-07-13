@@ -13,12 +13,12 @@ export const schema: TSchema = Type.Object({ "refrigerant": Type.Optional(Type.L
 
 export type Compressor = { "refrigerant"?: "r290" };
 
-type DataT = { readonly "prop": (typeof refrigeration_)["prop"]; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "compressor" } };
+type DataT = { readonly "prop": (typeof refrigeration_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "compressor" } };
 
 const _data: DataT = {
 	"prop": refrigeration_["prop"],
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "compressor"
 	}
 };

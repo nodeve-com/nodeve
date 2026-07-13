@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("changed"), Type.Literal
 
 export type Publish = "changed" | "always";
 
-type DataT = { readonly "description": { readonly "en": "When to publish: on change only, or every sample." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "publish" }; readonly "title": { readonly "en": "Publish policy" } };
+type DataT = { readonly "description": { readonly "en": "When to publish: on change only, or every sample." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "publish" }; readonly "title": { readonly "en": "Publish policy" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "When to publish: on change only, or every sample."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "publish"
 	},
 	"title": {

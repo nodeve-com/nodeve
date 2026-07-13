@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Array(Type.Object({}), {"minItems":1});
 
 export type Rules = Array<Record<string, never>>;
 
-type DataT = { readonly "description": { readonly "en": "Evaluated in order: first rule whose (register at address & mask) is non-zero wins; its emit string is published. Each rule = { address, mask, emit }." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "rules" }; readonly "title": { readonly "en": "Priority rules" } };
+type DataT = { readonly "description": { readonly "en": "Evaluated in order: first rule whose (register at address & mask) is non-zero wins; its emit string is published. Each rule = { address, mask, emit }." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "rules" }; readonly "title": { readonly "en": "Priority rules" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Evaluated in order: first rule whose (register at address & mask) is non-zero wins; its emit string is published. Each rule = { address, mask, emit }."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "rules"
 	},
 	"title": {

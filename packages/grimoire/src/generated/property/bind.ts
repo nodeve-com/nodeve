@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Bind = string;
 
-type DataT = { readonly "description": { readonly "en": "Local address a listener binds to (e.g. 0.0.0.0, 127.0.0.1). Mirror of host (remote/dial side). No default — 0.0.0.0 exposes the listener to the whole network, a real security boundary, so the choice is authored explicitly, never inherited." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "bind" }; readonly "title": { readonly "en": "Bind address" } };
+type DataT = { readonly "description": { readonly "en": "Local address a listener binds to (e.g. 0.0.0.0, 127.0.0.1). Mirror of host (remote/dial side). No default — 0.0.0.0 exposes the listener to the whole network, a real security boundary, so the choice is authored explicitly, never inherited." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "bind" }; readonly "title": { readonly "en": "Bind address" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Local address a listener binds to (e.g. 0.0.0.0, 127.0.0.1). Mirror of host (remote/dial side). No default — 0.0.0.0 exposes the listener to the whole network, a real security boundary, so the choice is authored explicitly, never inherited."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "bind"
 	},
 	"title": {

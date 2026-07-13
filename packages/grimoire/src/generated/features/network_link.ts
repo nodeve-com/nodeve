@@ -16,11 +16,11 @@ export const schema: TSchema = Type.Object({ "interfaceType": Type.Optional(Type
 
 export type NetworkLink = { "interfaceType"?: "async_serial" | "can" | "ethernet_csmacd" | "ieee80211" | "usb"; "macAddress"?: macAddress_.MacAddress; "mtu"?: mtu_.Mtu; "duplex"?: duplex_.Duplex; "linkSpeed"?: linkSpeed_.LinkSpeed };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "network_link" }; readonly "prop": { readonly "duplex": typeof duplex_; readonly "linkSpeed": typeof linkSpeed_; readonly "macAddress": typeof macAddress_; readonly "mtu": typeof mtu_ }; readonly "title": { readonly "en": "Network link" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "network_link" }; readonly "prop": { readonly "duplex": typeof duplex_; readonly "linkSpeed": typeof linkSpeed_; readonly "macAddress": typeof macAddress_; readonly "mtu": typeof mtu_ }; readonly "title": { readonly "en": "Network link" } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "network_link"
 	},
 	"prop": {

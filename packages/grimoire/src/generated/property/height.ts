@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Height = number;
 
-type DataT = { readonly "description": { readonly "en": "Physical height of an enclosure/part, millimetres." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "height" }; readonly "title": { readonly "en": "Height (mm)"; readonly "pt": "Altura (mm)" } };
+type DataT = { readonly "description": { readonly "en": "Physical height of an enclosure/part, millimetres." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "height" }; readonly "title": { readonly "en": "Height (mm)"; readonly "pt": "Altura (mm)" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Physical height of an enclosure/part, millimetres."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "height"
 	},
 	"title": {

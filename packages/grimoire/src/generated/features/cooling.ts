@@ -14,11 +14,11 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Cooling = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "coolingCapacity"?: specification_.Specification } } };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "cooling" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "coolingCapacity": Omit<typeof specification_, "description" | "measurand" | "title"> & { readonly "description": { readonly "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity." }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "title": { readonly "en": "Cooling capacity" } } } } } }; readonly "identity": typeof identity_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "cooling" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "coolingCapacity": Omit<typeof specification_, "description" | "measurand" | "title"> & { readonly "description": { readonly "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity." }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "title": { readonly "en": "Cooling capacity" } } } } } }; readonly "identity": typeof identity_ } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "cooling"
 	},
 	"prop": {

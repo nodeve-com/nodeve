@@ -9,6 +9,10 @@
 #     links, condition gates and categorical decode entries all compose it. Loose slug (open set).
 title:
   en: Feature of Interest
+  pt: Elemento de interesse
+description:
+  en: A named thing whose readings a value/gate/decode belongs to (pv_tracker, enclosure, grid, battery, ...) — a sosa:FeatureOfInterest; also the layer's def shape (a grouping of props).
+  pt: Uma coisa nomeada a que pertencem leituras (pv_tracker, enclosure, grid, battery, ...) — um sosa:FeatureOfInterest; também a forma de def da camada (um agrupamento de props).
 
 refs:
   - { registry_id: sosa, term: FeatureOfInterest, match: close }

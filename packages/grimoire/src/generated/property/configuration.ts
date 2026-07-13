@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"minimum":0});
 
 export type Configuration = number;
 
-type DataT = { readonly "description": { readonly "en": "USB configuration index (standard USB descriptor)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "configuration" }; readonly "title": { readonly "en": "Configuration" } };
+type DataT = { readonly "description": { readonly "en": "USB configuration index (standard USB descriptor)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "configuration" }; readonly "title": { readonly "en": "Configuration" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "USB configuration index (standard USB descriptor)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "configuration"
 	},
 	"title": {

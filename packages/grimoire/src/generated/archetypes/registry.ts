@@ -18,7 +18,7 @@ export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schem
 
 export type Registry = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "registryPublication"?: registryPublication_.RegistryPublication };
 
-type DataT = { readonly "description": { readonly "en": "An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher."; readonly "pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor." }; readonly "identity": { readonly "archetype": "archetype"; readonly "slug": "registry" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "registryPublication": typeof registryPublication_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
+type DataT = { readonly "description": { readonly "en": "An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher."; readonly "pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "registry" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "registryPublication": typeof registryPublication_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
 
 const _data: DataT = {
 	"description": {
@@ -26,7 +26,7 @@ const _data: DataT = {
 		"pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor."
 	},
 	"identity": {
-		"archetype": "archetype",
+		"archetypeId": "archetype",
 		"slug": "registry"
 	},
 	"prop": {

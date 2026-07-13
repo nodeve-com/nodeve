@@ -41,7 +41,7 @@ export default {
 		}
 	},
 	"identity": {
-		"archetype": "appliance",
+		"archetypeId": "appliance",
 		"code": "VF2TSKQD",
 		"slug": "dishwasher"
 	},

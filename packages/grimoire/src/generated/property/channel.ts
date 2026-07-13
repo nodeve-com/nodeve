@@ -12,14 +12,14 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Channel = string;
 
-type DataT = { readonly "description": { readonly "en": "Stable channel slug when one instrument exposes several ranges of the same quantity (high, low). Omit for a single channel. Named channel, not id — a slug naming the sub-channel, not an opaque record identifier." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "channel" }; readonly "title": { readonly "en": "Channel" } };
+type DataT = { readonly "description": { readonly "en": "Stable channel slug when one instrument exposes several ranges of the same quantity (high, low). Omit for a single channel. Named channel, not id — a slug naming the sub-channel, not an opaque record identifier." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "channel" }; readonly "title": { readonly "en": "Channel" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Stable channel slug when one instrument exposes several ranges of the same quantity (high, low). Omit for a single channel. Named channel, not id — a slug naming the sub-channel, not an opaque record identifier."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "channel"
 	},
 	"title": {

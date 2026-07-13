@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("grouped"), Type.Literal
 
 export type Format = "grouped" | "per_value";
 
-type DataT = { readonly "description": { readonly "en": "Wire layout for decoded points. grouped (default when absent): one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, ...values}. per_value: one retained bare-value topic per point at <topic_prefix>/<group>/<key> (no envelope) — the flat layout legacy per-value subscribers expect. Medium-neutral so any decoder-to-MQTT medium can offer either contract." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "format" }; readonly "title": { readonly "en": "Wire format" } };
+type DataT = { readonly "description": { readonly "en": "Wire layout for decoded points. grouped (default when absent): one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, ...values}. per_value: one retained bare-value topic per point at <topic_prefix>/<group>/<key> (no envelope) — the flat layout legacy per-value subscribers expect. Medium-neutral so any decoder-to-MQTT medium can offer either contract." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "format" }; readonly "title": { readonly "en": "Wire format" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Wire layout for decoded points. grouped (default when absent): one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, ...values}. per_value: one retained bare-value topic per point at <topic_prefix>/<group>/<key> (no envelope) — the flat layout legacy per-value subscribers expect. Medium-neutral so any decoder-to-MQTT medium can offer either contract."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "format"
 	},
 	"title": {

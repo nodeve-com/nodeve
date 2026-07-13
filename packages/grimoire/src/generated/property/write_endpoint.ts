@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"maximum":255,"minimum":0});
 
 export type WriteEndpoint = number;
 
-type DataT = { readonly "description": { readonly "en": "OUT endpoint the poll command is written to (8-bit address; high bit encodes direction — 0x01 is OUT 1). Authored as hex." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "write_endpoint" }; readonly "title": { readonly "en": "Write endpoint" } };
+type DataT = { readonly "description": { readonly "en": "OUT endpoint the poll command is written to (8-bit address; high bit encodes direction — 0x01 is OUT 1). Authored as hex." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "write_endpoint" }; readonly "title": { readonly "en": "Write endpoint" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "OUT endpoint the poll command is written to (8-bit address; high bit encodes direction — 0x01 is OUT 1). Authored as hex."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "write_endpoint"
 	},
 	"title": {

@@ -16,14 +16,14 @@ export const schema: TSchema = Type.Object({ "serviceProtocol": Type.Optional(Ty
 
 export type ServiceBinding = { "serviceProtocol"?: "http" | "https" | "modbus_tcp" | "mqtt" | "mqtts" | "ws" | "wss"; "networkInterfaceId"?: networkInterfaceId_.NetworkInterfaceId; "ipAddressId"?: ipAddressId_.IpAddressId; "port"?: port_.Port; "bind"?: bind_.Bind };
 
-type DataT = { readonly "description": { readonly "en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint." }; readonly "identity": { readonly "archetype": "feature"; readonly "slug": "service_binding" }; readonly "prop": { readonly "bind": typeof bind_; readonly "ipAddressId": typeof ipAddressId_; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "port": typeof port_ }; readonly "title": { readonly "en": "Service binding" } };
+type DataT = { readonly "description": { readonly "en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "service_binding" }; readonly "prop": { readonly "bind": typeof bind_; readonly "ipAddressId": typeof ipAddressId_; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "port": typeof port_ }; readonly "title": { readonly "en": "Service binding" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint."
 	},
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "service_binding"
 	},
 	"prop": {

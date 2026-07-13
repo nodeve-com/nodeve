@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Number();
 
 export type Azimuth = number;
 
-type DataT = { readonly "description": { readonly "en": "Plane orientation as compass degrees, 0° = N." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "azimuth" }; readonly "title": { readonly "en": "Azimuth"; readonly "pt": "Azimute" } };
+type DataT = { readonly "description": { readonly "en": "Plane orientation as compass degrees, 0° = N." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "azimuth" }; readonly "title": { readonly "en": "Azimuth"; readonly "pt": "Azimute" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Plane orientation as compass degrees, 0° = N."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "azimuth"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Union([Type.Literal("interrupt"), Type.Liter
 
 export type Transfer = "interrupt" | "control";
 
-type DataT = { readonly "description": { readonly "en": "USB transfer type the exchange uses: interrupt endpoints (M4-ATX) or control pipe (HID Get/Set_Report)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "transfer" }; readonly "title": { readonly "en": "Transfer" } };
+type DataT = { readonly "description": { readonly "en": "USB transfer type the exchange uses: interrupt endpoints (M4-ATX) or control pipe (HID Get/Set_Report)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "transfer" }; readonly "title": { readonly "en": "Transfer" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "USB transfer type the exchange uses: interrupt endpoints (M4-ATX) or control pipe (HID Get/Set_Report)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "transfer"
 	},
 	"title": {

@@ -12,14 +12,14 @@ export const schema: TSchema = Type.Integer({"exclusiveMinimum":0});
 
 export type SeriesCount = number;
 
-type DataT = { readonly "description": { readonly "en": "Number of panels wired in series on one MPPT input (install fact, never a datasheet fact)." }; readonly "identity": { readonly "archetype": "property"; readonly "slug": "series_count" }; readonly "title": { readonly "en": "Series count" } };
+type DataT = { readonly "description": { readonly "en": "Number of panels wired in series on one MPPT input (install fact, never a datasheet fact)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "series_count" }; readonly "title": { readonly "en": "Series count" } };
 
 const _data: DataT = {
 	"description": {
 		"en": "Number of panels wired in series on one MPPT input (install fact, never a datasheet fact)."
 	},
 	"identity": {
-		"archetype": "property",
+		"archetypeId": "property",
 		"slug": "series_count"
 	},
 	"title": {

@@ -13,11 +13,11 @@ export const schema: TSchema = Type.Object({ "ingestKind": Type.Union([Type.Lite
 
 export type Ingest = { "ingestKind": "modbus_poll" | "modbus_tap"; "platform"?: "esphome" | "farana" | "telegraf"; "catalogItem"?: catalogItem_.CatalogItem };
 
-type DataT = { readonly "identity": { readonly "archetype": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } } } };
 
 const _data: DataT = {
 	"identity": {
-		"archetype": "feature",
+		"archetypeId": "feature",
 		"slug": "ingest"
 	},
 	"prop": {
