@@ -13,7 +13,8 @@
     "access": "public"
   },
   "files": [
-    "dist"
+    "dist",
+    "artifacts/catalog"
   ],
   "exports": {
     ".": {
@@ -54,7 +55,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node kit/generate.ts && tsc -p tsconfig.build.json",
     "clean": "rm -rf dist artifacts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
