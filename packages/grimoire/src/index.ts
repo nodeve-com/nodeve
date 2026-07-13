@@ -60,8 +60,8 @@ export { bakeSite } from './bake-site.ts';
 
 // --- Concept parsing (src/site.ts over generated/ — the baked compiled schemas): ONE generic
 //     parse per concept + the topic/env derivations every consumer shares. Per-concept types/
-//     schemas/data come via `ConceptTypes` or the `./generated/*` subpath (e.g.
-//     `@nodeve/grimoire/generated/archetypes/inverter`); `generated/<layer>/index` lists a layer ---
+//     schemas/data come via `ConceptTypes` or the layer subpaths (e.g.
+//     `@nodeve/grimoire/archetypes/inverter`); `@nodeve/grimoire/<layer>` lists a layer ---
 export {
 	conceptSchema,
 	type ConceptTypes,

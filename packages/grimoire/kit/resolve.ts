@@ -45,29 +45,13 @@
 //                 child descent) — kit/overrides.ts. Outer def wins over composed source.
 
 import { clone, isPlainObject, mergeDeep } from 'remeda';
-import { type Obj, asList, fieldSource, layerIndex, propertyDoc, readYaml } from '../src/concept-sources.ts';
+import { type Obj, asList, fieldSource, instructionKeys, layerIndex, propertyDoc, readYaml } from '../src/concept-sources.ts';
 import { enumFields } from './enum-fields.ts';
 import { type Resolver, type Shape, applyOverride, overridesOf } from './overrides.ts';
-import { finishShape, specColumns } from './shape-finish.ts';
+import { finishShape, identityData, specColumns } from './shape-finish.ts';
 
 const LAYER_DIRS = ['features', 'archetypes'] as const;
 type Layer = (typeof LAYER_DIRS)[number];
-
-/** The def-language keys the pipeline consumes off a `def`, computed from the def itself — the SINGLE
- *  definition of the instruction vocabulary, shared by the resolver (seeds its `consumed` set, which
- *  dataOf drops) and generate.ts (strips them before validating a doc's DATA against the archetype).
- *  Replaces a hand-kept keyword table that duplicated the resolver's branches. `prop` is always
- *  consumed (own-field overlays); `schema` is the projection passthrough (kit/project.ts merges an
- *  object node's `schema:` block) — an instruction for the VALIDATOR, but the resolver keeps it as
- *  node data (dataOf must not drop it), so the resolver removes `schema` from its own `consumed`. */
-export function instructionKeys(def: Obj): Set<string> {
-	const keys = new Set<string>(['prop']);
-	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0) keys.add('concept_settings');
-	for (const verb of ['enums', 'feature', 'archetype', 'schema'] as const) {
-		if (def[verb] !== undefined) keys.add(verb);
-	}
-	return keys;
-}
 
 /** Resolve a slug: features/ → archetypes/ → property (a scalar field). */
 function resolveConceptBySlug(slug: string, stack: string[]): Obj {
@@ -111,8 +95,9 @@ function resolveSiblingBySlug(slug: string, layer: Layer, stack: string[]): Obj 
  *  `_defaults.yaml`) — that feature's resolved shape with the member's data overlaid. */
 function resolveFieldBySlug(slug: string, stack: string[]): Obj {
 	const { doc, path } = propertyDoc(slug);
-	const { feature, ...data } = doc;
-	delete data.identity; // filing metadata (the archetype selector), not field data
+	const { feature, identity: rawIdentity, ...data } = doc;
+	const identity = identityData(rawIdentity); // filing selectors stripped; the data keys ship
+	if (identity) data.identity = identity;
 	// An authored `schema:` wins over a (category-default) `feature:` binding — the member is more specific.
 	if (typeof feature === 'string' && !isPlainObject(data.schema)) {
 		return { ...resolveConceptBySlug(feature, [...stack, `property/${slug}`]), ...clone(data) };
@@ -183,7 +168,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 		}
 		const { $composes: _c, ...composedNode } = composed;
 		const ownData: Obj = {};
-		for (const [k, v] of Object.entries(def)) if (!consumed.has(k) && k !== 'identity' && k !== 'slug') ownData[k] = clone(v);
+		for (const [k, v] of Object.entries(def)) if (!consumed.has(k) && k !== 'slug') ownData[k] = clone(v);
 		return { ...clone(composedNode), ...ownData, $composes: [composeSlugs[0]] };
 	}
 

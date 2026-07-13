@@ -11,7 +11,7 @@
 // parse edge, before validation). This module only transcribes; it never respells anything.
 
 import { type Obj } from '../src/concept-sources.ts';
-import { isPlainObject } from 'remeda';
+import { isPlainObject, toCamelCase } from 'remeda';
 
 // Identifiers the generated modules already bind — TypeBox's `Type`/`TSchema` and the TS built-ins the
 // type emitter names (`Record`, `Array`). A concept slug whose PascalCase lands on one gets a `_` so its
@@ -22,6 +22,11 @@ export const pascal = (slug: string): string => {
 	const p = slug.split('_').map((s) => s[0]!.toUpperCase() + s.slice(1)).join('');
 	return RESERVED.has(p) ? `${p}_` : p;
 };
+
+/** The local binding a sibling module's namespace import gets (`import * as ac_phase → acPhase_`).
+ *  Trailing `_` keeps it off every other binding class: data keys never end in `_`, types are Pascal,
+ *  the module's own exports are `schema`/field names. Shared by every emit that references a sibling. */
+export const nsLocal = (slug: string): string => `${toCamelCase(slug)}_`;
 
 /** The keywords a node still states once its branch has consumed the shape ones, as a TypeBox
  *  options-object literal (`{ … }`), or null when none — so single-arg constructors stay bare. These
@@ -46,7 +51,7 @@ const refName = (ref: string): string => ref.split('/').pop()!;
  *  A `$ref` node references its concept's sibling `<Name>Schema` const (imported) — composed, not
  *  restated, so a 301× shape appears once and TS keeps the inferred type small. */
 function typeBox(node: Obj): string {
-	if (typeof node.$ref === 'string') return `${pascal(refName(node.$ref))}Schema`;
+	if (typeof node.$ref === 'string') return `${nsLocal(refName(node.$ref))}.schema`;
 	if (Array.isArray(node.anyOf)) {
 		const { anyOf, ...rest } = node;
 		return `Type.Union([${(anyOf as Obj[]).map(typeBox).join(', ')}]${tail(optionsLiteral(rest))})`;
@@ -101,7 +106,10 @@ function typeBox(node: Obj): string {
  *  parts by name instead of re-expanding them — the whole reference graph never materialises in one
  *  type (which is what tips `Static<>` over TS7056 on a big device). */
 function tsType(node: Obj): string {
-	if (typeof node.$ref === 'string') return pascal(refName(node.$ref));
+	if (typeof node.$ref === 'string') {
+		const name = refName(node.$ref);
+		return `${nsLocal(name)}.${pascal(name)}`;
+	}
 	if (Array.isArray(node.anyOf)) return (node.anyOf as Obj[]).map(tsType).join(' | ') || 'never';
 	if (Array.isArray(node.enum)) return (node.enum as unknown[]).map((v) => JSON.stringify(v)).join(' | ');
 	if ('const' in node) return JSON.stringify(node.const);
@@ -136,9 +144,13 @@ export interface EmittedConcept {
 	layer: string;
 	/** Direct concept refs this module composes (`$ref` slots) — imported as sibling `<Name>Schema`. */
 	imports?: Array<{ name: string; layer: string }>;
-	/** The referentialized DATA tree (labels/refs/ui + `$ref` slots) — emitted as the module's
-	 *  `export default` so the .ts twin carries everything the sibling .json does, not just the schema. */
+	/** The referentialized DATA tree (labels/refs/ui + `$ref` slots) — emitted as one named export
+	 *  per top-level field so the .ts twin carries everything the sibling .json does, not just the schema. */
 	data?: unknown;
+	/** A concept's top-level data FIELD names (its own keys ∪ its composed base's, `$ref`-chased) —
+	 *  needed when `data` itself composes a base (`$ref` at the top): the emit projects the base's
+	 *  fields explicitly instead of spreading its namespace (which would drag in the BASE's `schema`). */
+	fieldsOf?: (name: string) => string[];
 }
 
 /** The relative import path from one concept module to another (both under generated/<layer>/). */
@@ -152,8 +164,6 @@ function parseDataRef(ref: string, fromLayer: string): { name: string; layer: st
 	return { name, layer: m ? m[1]! : fromLayer };
 }
 
-/** The local const a data `$ref` composes — the sibling module's default export, imported here. */
-const dataLocal = (name: string): string => `${pascal(name)}Data`;
 
 /** Every distinct `$ref` slot a data tree composes, so the emit imports each sibling default once. */
 function collectDataRefs(node: unknown, fromLayer: string, out: Map<string, { name: string; layer: string }>): void {
@@ -163,15 +173,15 @@ function collectDataRefs(node: unknown, fromLayer: string, out: Map<string, { na
 	for (const v of Object.values(node)) collectDataRefs(v, fromLayer, out);
 }
 
-/** One data node as its precise TS TYPE — the twin of `dataLiteral`. A `$ref` slot is the sibling's
- *  exported `<Name>DataT` (by name, so the alias stays small and never re-expands → no TS7056); its
- *  overlay `Omit`s the overridden keys off the base and intersects the local ones. Annotating the
- *  `export default` with this keeps it precisely typed without the compiler serializing a giant literal. */
+/** One data node as its precise TS TYPE — the twin of `dataLiteral`. A `$ref` slot is `typeof` the
+ *  sibling's namespace (a small named alias that never re-expands → no TS7056); its overlay `Omit`s
+ *  the overridden keys off the base and intersects the local ones. Annotating `_data` with this
+ *  keeps it precisely typed without the compiler serializing a giant literal. */
 function dataType(node: unknown, fromLayer: string): string {
 	if (Array.isArray(node)) return node.length === 0 ? 'readonly []' : `readonly [${node.map((c) => dataType(c, fromLayer)).join(', ')}]`;
 	if (isPlainObject(node)) {
 		if (typeof node.$ref === 'string') {
-			const base = `${pascal(parseDataRef(node.$ref, fromLayer).name)}DataT`;
+			const base = `typeof ${nsLocal(parseDataRef(node.$ref, fromLayer).name)}`;
 			const overlay = Object.keys(node).filter((k) => k !== '$ref').sort();
 			if (overlay.length === 0) return base;
 			const omit = overlay.map((k) => JSON.stringify(k)).join(' | ');
@@ -185,8 +195,9 @@ function dataType(node: unknown, fromLayer: string): string {
 	return JSON.stringify(node);
 }
 
-/** One data node as a TS literal. A `$ref` slot renders as the imported sibling default (`AcPhaseData`),
- *  its authored overlay (title/refs/…) spread on top so the shared shape lives once. */
+/** One data node as a TS literal. A `$ref` slot renders as the sibling's spread namespace
+ *  (`...acPhase_` — the def node: fields + `schema`), its authored overlay (title/refs/…) spread on
+ *  top so the shared shape lives once. */
 function dataLiteral(node: unknown, indent: string, fromLayer: string): string {
 	const inner = indent + '\t';
 	if (Array.isArray(node)) {
@@ -195,7 +206,7 @@ function dataLiteral(node: unknown, indent: string, fromLayer: string): string {
 	}
 	if (isPlainObject(node)) {
 		if (typeof node.$ref === 'string') {
-			const base = dataLocal(parseDataRef(node.$ref, fromLayer).name);
+			const base = nsLocal(parseDataRef(node.$ref, fromLayer).name);
 			const overlay = Object.keys(node).filter((k) => k !== '$ref').sort();
 			if (overlay.length === 0) return base;
 			const fields = overlay.map((k) => `${inner}${JSON.stringify(k)}: ${dataLiteral(node[k], inner, fromLayer)}`);
@@ -208,62 +219,76 @@ function dataLiteral(node: unknown, indent: string, fromLayer: string): string {
 	return JSON.stringify(node);
 }
 
-/** One concept's generated/<layer>/<name>.ts: the live TypeBox schema VALUE (the validator + the
- *  JSON-Schema contract in one object) and its camelCase `Static` type. No .json is imported — the
- *  schema is code, so the runtime path stays fs-free. Composed concept slots import their sibling
- *  `<Name>Schema` const rather than restating the shape. */
-export function renderConceptModule({ name, schema, layer, imports = [], data }: EmittedConcept): string {
+/** One concept's generated/<layer>/<name>.ts — the module IS the def node: each top-level authored
+ *  field a named export (`title`, `description`, `prop`, …) beside the live TypeBox `schema` and the
+ *  parsed-instance `type <Name>`. `import * as x` is the whole node; `import { title, schema }` picks
+ *  fields. No .json is imported — the schema is code, so the runtime path stays fs-free. Composed
+ *  slots reference/spread the sibling's namespace rather than restating the shape. */
+export function renderConceptModule({ name, schema, layer, imports = [], data, fieldsOf }: EmittedConcept): string {
 	const Type = pascal(name);
-	// Merge the schema-composed deps (need `{ <Name>Schema, type <Name> }`) with the data-composed
-	// `$ref` slots (need the sibling `default`, imported as `<Name>Data`) — one import line per module.
-	const merged = new Map<string, { name: string; layer: string; schema: boolean; data: boolean }>();
-	for (const d of imports) merged.set(d.name, { ...d, schema: true, data: merged.get(d.name)?.data ?? false });
+	// One namespace import per referenced sibling — serves schema refs (`x_.schema`), type refs
+	// (`x_.X`), and data spreads (`...x_`) alike.
+	const depByName = new Map<string, { name: string; layer: string }>();
+	for (const d of imports) depByName.set(d.name, d);
 	const refByPath = new Map<string, { name: string; layer: string }>();
 	if (data !== undefined) collectDataRefs(data, layer, refByPath);
-	for (const d of refByPath.values()) {
-		const e = merged.get(d.name);
-		if (e) e.data = true;
-		else merged.set(d.name, { ...d, schema: false, data: true });
-	}
-	const deps = [...merged.values()].sort((a, b) => a.name.localeCompare(b.name));
-	const importLine = (d: { name: string; layer: string; schema: boolean; data: boolean }): string => {
-		const P = pascal(d.name);
-		// Composed slot needs the sibling default VALUE (`<P>Data`) + its data TYPE (`<P>DataT`); a
-		// schema-composed slot needs `<P>Schema` + parsed type `<P>`. `<P>Data`/`<P>DataT` never collide.
-		const named = [d.schema ? `${P}Schema` : '', d.schema ? `type ${P}` : '', d.data ? `type ${P}DataT` : ''].filter(Boolean).join(', ');
-		const parts = [d.data ? `${P}Data` : '', named ? `{ ${named} }` : ''].filter(Boolean).join(', ');
-		return `import ${parts} from '${importPath(layer, d)}';`;
-	};
+	for (const d of refByPath.values()) depByName.set(d.name, { name: d.name, layer: d.layer });
+	const sorted = [...depByName.values()].sort((a, b) => a.name.localeCompare(b.name));
+	// The top-level field set + its literal/type. A top-level `$ref` (concept_settings.compose)
+	// projects the base's fields EXPLICITLY (never `...ns_` — that would drag in the base's `schema`),
+	// authored overlay keys winning; a plain top level renders as-is.
+	const tree = isPlainObject(data) ? data : undefined;
+	const baseRef = typeof tree?.$ref === 'string' ? parseDataRef(tree.$ref, layer) : undefined;
+	const overlay = tree ? Object.keys(tree).filter((k) => k !== '$ref').sort() : [];
+	const inherited = baseRef ? fieldsOf!(baseRef.name).filter((f) => !overlay.includes(f)).sort() : [];
+	const fields = [...inherited, ...overlay].sort();
+	const ns = baseRef ? nsLocal(baseRef.name) : '';
+	const dataLines = tree && fields.length > 0
+		? [
+				`type DataT = ${
+					baseRef
+						? `{ ${[
+								...inherited.map((f) => `readonly ${JSON.stringify(f)}: (typeof ${ns})[${JSON.stringify(f)}]`),
+								...overlay.map((f) => `readonly ${JSON.stringify(f)}: ${dataType(tree[f], layer)}`),
+							].join('; ')} }`
+						: dataType(tree, layer)
+				};`,
+				'',
+				`const _data: DataT = ${
+					baseRef
+						? `{\n${[
+								...inherited.map((f) => `\t${JSON.stringify(f)}: ${ns}[${JSON.stringify(f)}]`),
+								...overlay.map((f) => `\t${JSON.stringify(f)}: ${dataLiteral(tree[f], '\t', layer)}`),
+							].join(',\n')}\n}`
+						: dataLiteral(tree, '', layer)
+				};`,
+				`export const { ${fields.join(', ')} } = _data;`,
+				'',
+			]
+		: [];
 	return [
 		`// GENERATED by \`pnpm generate\` from concepts/${layer}/ via kit/compile.ts +`,
-		'// kit/emit-types.ts. Do not edit by hand — edit the YAML and regenerate. The camelCase',
-		'// TypeBox schema (@nodeve/schema-case projection of the draft-07; `x-key-map` carries the',
-		'// snake aliases); `Value.Check(<Name>Schema, …)` validates data already renamed at the parse',
-		'// edge (src/parse.ts). The `export default` is the AUTHORED data tree (labels/refs/ui) — the',
-		"// sibling .json's content, camelCase keys (snake never enters a .ts emit); composed slots spread",
-		'// their sibling `<Name>Data` so a shape lives once.',
+		'// kit/emit-types.ts. Do not edit by hand — edit the YAML and regenerate. The module IS the',
+		'// def node: the authored fields (labels/refs/ui) as named exports beside the live camelCase',
+		'// TypeBox `schema` (@nodeve/schema-case projection of the draft-07; `x-key-map` carries the',
+		'// snake aliases — `Value.Check(schema, …)` validates data renamed at the parse edge,',
+		"// src/parse.ts) and the parsed-instance type. Composed slots spread the sibling's namespace",
+		'// (fields + `schema`) so a shape lives once; snake never enters a .ts emit.',
 		'',
 		"import { type TSchema, Type } from '@sinclair/typebox';",
-		...deps.map(importLine),
+		...sorted.map((d) => `import * as ${nsLocal(d.name)} from '${importPath(layer, d)}';`),
 		'',
 		// `: TSchema` — the schema VALUE composes sibling consts, whose inferred TypeBox type re-expands
 		// the whole graph (TS7056 on a big device). The annotation keeps the const opaque; the precise
 		// camelCase surface is the separately-composed `${Type}` type below, not `Static<typeof>`.
-		`export const ${Type}Schema: TSchema = ${typeBox(schema)};`,
+		`export const schema: TSchema = ${typeBox(schema)};`,
 		'',
 		`export type ${Type} = ${tsType(schema)};`,
 		'',
-		// The `export default` is the DATA tree, annotated with its own `${Type}DataT` so the composed
-		// literal is precisely typed WITHOUT the compiler serializing a giant inferred type (TS7056).
-		...(data !== undefined
-			? [
-					`export type ${Type}DataT = ${dataType(data, layer)};`,
-					'',
-					`const _data: ${Type}DataT = ${dataLiteral(data, '', layer)};`,
-					'export default _data;',
-					'',
-				]
-			: []),
+		// The authored data tree, annotated with its own `DataT` so the composed literal is precisely
+		// typed WITHOUT the compiler serializing a giant inferred type (TS7056), then destructured to
+		// one named export per top-level field.
+		...dataLines,
 	].join('\n');
 }
 

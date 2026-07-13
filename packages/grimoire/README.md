@@ -71,23 +71,23 @@ A device's key is its **identity** — `archetype` + `slug` (`catalog_item: { ar
 
 ## Using the concepts
 
-Every generated module is importable via the `./generated/*` subpath — one concept, or a whole layer:
+Every generated module is a layer subpath — one concept, or the whole layer:
 
 ```ts
-// One concept: data default + camelCase TypeBox schema + type
-import inverter, {
-	InverterSchema,
-	type Inverter,
-} from '@nodeve/grimoire/generated/archetypes/inverter';
+// One concept — the module IS the def node: authored fields + live TypeBox schema + parsed type
+import { title, schema, type Inverter } from '@nodeve/grimoire/archetypes/inverter';
+import * as inverter from '@nodeve/grimoire/archetypes/inverter'; // …or the whole node
 
-// A layer: camel slug → authored data tree (title/description/slots)
-import { archetype } from '@nodeve/grimoire/generated/archetypes';
-import { feature } from '@nodeve/grimoire/generated/features';
-import { property } from '@nodeve/grimoire/generated/property';
+// A layer: camel slug → authored data tree, live TypeBox schema riding along as `schema`
+import { archetype } from '@nodeve/grimoire/archetypes';
+import { feature } from '@nodeve/grimoire/features';
+import { property } from '@nodeve/grimoire/property';
 Object.keys(archetype); // ['acPhaseThreeMeter', 'airConditioner', 'ambientTank', …]
+archetype.inverter.title.en; // 'Inverter'
+Value.Check(archetype.inverter.schema, candidate); // or parseConcept('inverter', data) from the root
 
 // A vocabulary
-import rating from '@nodeve/grimoire/generated/enumeration/rating';
+import rating from '@nodeve/grimoire/enumeration/rating';
 ```
 
 Validating an instance goes through the root API: `parseConcept('solarArray', data)` (renames snake → camel at the edge, then checks the baked schema).
@@ -100,7 +100,7 @@ Validating an instance goes through the root API: `parseConcept('solarArray', da
 - [site overlay](docs/site-overlay.md) — a `site_catalog` entry patches its device via `catalog_patch`: author device facts (mac_address…) at top level, the bake folds them in, the reader merges arrays by `identity.slug` (not index)
 - [cadence field is `update_interval_ms`](docs/cadence-field.md) — integer ms, fetch-neutral
 - [holds every sensible default](docs/device-defaults.md) — known defaults live here; only the default-less TCP host (and site instances) go downstream
-- [TypeBox vs zod](docs/typebox-vs-zod.md) — TypeBox because `schema.json` is a shipped contract; JSON emits snake (+ a `.camel.schema.json` sibling), TS emits camel wall-to-wall — schema, type, AND data default export; snake in a `.ts` emit is a generator bug — rename at the parse edge, before validation, via `@nodeve/schema-case`'s stored alias
+- [TypeBox vs zod](docs/typebox-vs-zod.md) — TypeBox because `schema.json` is a shipped contract; JSON emits snake (+ a `.camel.schema.json` sibling), TS emits camel wall-to-wall — schema, type, AND authored data fields as named exports; snake in a `.ts` emit is a generator bug — rename at the parse edge, before validation, via `@nodeve/schema-case`'s stored alias
 - [translations & labels](docs/translations-and-labels.md) — author labels/hints/ui inline per locale in the concept YAML; the bake carries them into the generated artifacts
 - **Borrow before coining** — prefer a standard vocabulary; any coined term carries a crosswalk (callout above)
-- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target: **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase **everywhere** — type, schema const, and data `export default`; the npm surface never shows a snake key; tree-shakeable; `index.ts` the opt-in all-concepts module; every module a `./generated/*` subpath export, `generated/<layer>.ts` the per-layer aggregate — see [Using the concepts](#using-the-concepts); `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules) and **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, per concept, the standalone `<slug>.schema.json` wire contract and its `<slug>.camel.schema.json` sibling; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**
+- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target: **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase **everywhere** — type, `schema` const, and authored data fields as named exports — the module IS the def node; the npm surface never shows a snake key; tree-shakeable; `index.ts` the opt-in all-concepts module; every module a layer subpath export, `<layer>/index.ts` the per-layer aggregate — see [Using the concepts](#using-the-concepts); `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules) and **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, per concept, the standalone `<slug>.schema.json` wire contract and its `<slug>.camel.schema.json` sibling; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**

@@ -1,5 +1,5 @@
 concept_settings:
-  # One CONFIGURATION PARAMETER — a named device setting addressed by an `index`, read and/or written
+  # One CONFIGURATION PARAMETER — a named device setting addressed by a `field_index`, read and/or written
   # via the config exchange (usbhid_config). Distinct from a diag field: a field decodes a fixed
   # offset in a streamed telemetry frame; a parameter is fetched/set BY INDEX in a request/response,
   # typically writable. Same scale + firmware-profile model as a field. `name` = the lowercased
@@ -8,6 +8,6 @@ concept_settings:
   compose: [ numeric_decode, usbhid_numeric ]
 prop:
   name: {}
-  index: {}
+  field_index: {}
   access: {}
   sentinel: {}

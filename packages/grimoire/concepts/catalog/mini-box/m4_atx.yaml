@@ -78,63 +78,63 @@ usbhid:
     set_command: [0xa4, 0xa0]
     parameters:
       # Ignition (M4_VLT_12_11 / M4_MSC_10_1)
-      - { name: ign_high, index: 0x00, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
-      - { name: ign_low, index: 0x01, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
-      - { name: ign_dbc, index: 0x02, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
-      - { name: psu_delay, index: 0x03, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
+      - { name: ign_high, field_index: 0x00, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: ign_low, field_index: 0x01, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: ign_dbc, field_index: 0x02, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: psu_delay, field_index: 0x03, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
       # Input-voltage thresholds (M4_VLT_12_11)
-      - { name: vin_min_start, index: 0x04, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
-      - { name: vin_min_on, index: 0x05, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
-      - { name: vin_min_5v, index: 0x06, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
-      - { name: vin_max, index: 0x07, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: vin_min_start, field_index: 0x04, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: vin_min_on, field_index: 0x05, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: vin_min_5v, field_index: 0x06, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
+      - { name: vin_max, field_index: 0x07, type: uint8, access: read_write, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 }
       # Rail voltage limits (M4_VLT_12_07 / M4_VLT_5_03 / M4_VLT_33_01)
-      - { name: v12_max, index: 0x08, type: uint8, access: read_write, scale: 0.1165, scale_overrides: { legacy: 0.076625 }, decimals: 2 }
-      - { name: v12_min, index: 0x09, type: uint8, access: read_write, scale: 0.1165, scale_overrides: { legacy: 0.076625 }, decimals: 2 }
-      - { name: v5_max, index: 0x0a, type: uint8, access: read_write, scale: 0.0389, scale_overrides: { legacy: 0.0375 }, decimals: 2 }
-      - { name: v5_min, index: 0x0b, type: uint8, access: read_write, scale: 0.0389, scale_overrides: { legacy: 0.0375 }, decimals: 2 }
-      - { name: v33_max, index: 0x0c, type: uint8, access: read_write, scale: 0.0195, scale_overrides: { legacy: 0.0188136 }, decimals: 2 }
-      - { name: v33_min, index: 0x0d, type: uint8, access: read_write, scale: 0.0195, scale_overrides: { legacy: 0.0188136 }, decimals: 2 }
+      - { name: v12_max, field_index: 0x08, type: uint8, access: read_write, scale: 0.1165, scale_overrides: { legacy: 0.076625 }, decimals: 2 }
+      - { name: v12_min, field_index: 0x09, type: uint8, access: read_write, scale: 0.1165, scale_overrides: { legacy: 0.076625 }, decimals: 2 }
+      - { name: v5_max, field_index: 0x0a, type: uint8, access: read_write, scale: 0.0389, scale_overrides: { legacy: 0.0375 }, decimals: 2 }
+      - { name: v5_min, field_index: 0x0b, type: uint8, access: read_write, scale: 0.0389, scale_overrides: { legacy: 0.0375 }, decimals: 2 }
+      - { name: v33_max, field_index: 0x0c, type: uint8, access: read_write, scale: 0.0195, scale_overrides: { legacy: 0.0188136 }, decimals: 2 }
+      - { name: v33_min, field_index: 0x0d, type: uint8, access: read_write, scale: 0.0195, scale_overrides: { legacy: 0.0188136 }, decimals: 2 }
       # Rail startup times (M4_MSC_1_1, ms)
-      - { name: v12_time, index: 0x0e, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: ms }
-      - { name: v33_time, index: 0x0f, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: ms }
+      - { name: v12_time, field_index: 0x0e, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: ms }
+      - { name: v33_time, field_index: 0x0f, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: ms }
       # Power sequencing (M4_MSC_10_2 / M4_TRY / M4_SEC)
-      - { name: pwrsw, index: 0x10, type: uint16, byte_order: big_first, access: read_write, scale: 10.0, decimals: 0, unit: ms }
-      - { name: psu_on_time, index: 0x12, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: tries }
-      - { name: on_delay, index: 0x13, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
-      - { name: psu_off_time, index: 0x14, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: tries }
-      - { name: off_delay, index: 0x15, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
+      - { name: pwrsw, field_index: 0x10, type: uint16, byte_order: big_first, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: psu_on_time, field_index: 0x12, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: tries }
+      - { name: on_delay, field_index: 0x13, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
+      - { name: psu_off_time, field_index: 0x14, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: tries }
+      - { name: off_delay, field_index: 0x15, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
       # Emergency shutdown timers (M4_SEC)
-      - { name: emg_time_5vsb, index: 0x16, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
-      - { name: emg_timer, index: 0x17, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
+      - { name: emg_time_5vsb, field_index: 0x16, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
+      - { name: emg_timer, field_index: 0x17, type: uint8, access: read_write, scale: 1.0, decimals: 0, unit: s }
       # PS_ON thresholds + anti-thump (M4_MSC_10_1 / M4_MSC_10_2, ms)
-      - { name: ps_on_0, index: 0x18, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
-      - { name: ps_on_1, index: 0x19, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
-      - { name: thump, index: 0x1a, type: uint16, byte_order: big_first, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: ps_on_0, field_index: 0x18, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: ps_on_1, field_index: 0x19, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: thump, field_index: 0x1a, type: uint16, byte_order: big_first, access: read_write, scale: 10.0, decimals: 0, unit: ms }
       # Temperature limits (M4_DEG, signed °C)
-      - { name: temp_max, index: 0x1c, type: int8, access: read_write, scale: 1.0, decimals: 0, unit: degC }
-      - { name: temp_min, index: 0x1d, type: int8, access: read_write, scale: 1.0, decimals: 0, unit: degC }
+      - { name: temp_max, field_index: 0x1c, type: int8, access: read_write, scale: 1.0, decimals: 0, unit: degC }
+      - { name: temp_min, field_index: 0x1d, type: int8, access: read_write, scale: 1.0, decimals: 0, unit: degC }
       # Emergency-off mode selector + 5V standby delay (M4_BYT / M4_MSC_10_1)
-      - { name: emg_off_mode, index: 0x1e, type: uint8, access: read_write, scale: 1.0, decimals: 0 }
-      - { name: v5_sby_dly, index: 0x1f, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
+      - { name: emg_off_mode, field_index: 0x1e, type: uint8, access: read_write, scale: 1.0, decimals: 0 }
+      - { name: v5_sby_dly, field_index: 0x1f, type: uint8, access: read_write, scale: 10.0, decimals: 0, unit: ms }
       # Per-mode shutdown timers (M4_TIM, seconds; 0xffff = never)
-      - { name: off_delay_0, index: 0x20, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_0, index: 0x22, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_1, index: 0x24, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_1, index: 0x26, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_2, index: 0x28, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_2, index: 0x2a, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_3, index: 0x2c, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_3, index: 0x2e, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_4, index: 0x30, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_4, index: 0x32, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_5, index: 0x34, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_5, index: 0x36, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_6, index: 0x38, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_6, index: 0x3a, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_delay_7, index: 0x3c, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
-      - { name: off_hard_7, index: 0x3e, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_0, field_index: 0x20, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_0, field_index: 0x22, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_1, field_index: 0x24, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_1, field_index: 0x26, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_2, field_index: 0x28, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_2, field_index: 0x2a, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_3, field_index: 0x2c, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_3, field_index: 0x2e, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_4, field_index: 0x30, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_4, field_index: 0x32, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_5, field_index: 0x34, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_5, field_index: 0x36, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_6, field_index: 0x38, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_6, field_index: 0x3a, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_delay_7, field_index: 0x3c, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
+      - { name: off_hard_7, field_index: 0x3e, type: uint16, byte_order: big_first, access: read_write, scale: 1.0, decimals: 0, unit: s, sentinel: { raw: 0xffff, meaning: never } }
       # Factory reset — a write-only action (M4_BYT, index 0xff)
-      - { name: reset, index: 0xff, type: uint8, access: write, scale: 1.0, decimals: 0 }
+      - { name: reset, field_index: 0xff, type: uint8, access: write, scale: 1.0, decimals: 0 }
 
 # Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
 identity:

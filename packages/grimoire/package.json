@@ -20,9 +20,37 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./generated/*": {
-      "types": "./dist/generated/*.d.ts",
-      "default": "./dist/generated/*.js"
+    "./archetypes": {
+      "types": "./dist/generated/archetypes/index.d.ts",
+      "default": "./dist/generated/archetypes/index.js"
+    },
+    "./features": {
+      "types": "./dist/generated/features/index.d.ts",
+      "default": "./dist/generated/features/index.js"
+    },
+    "./property": {
+      "types": "./dist/generated/property/index.d.ts",
+      "default": "./dist/generated/property/index.js"
+    },
+    "./archetypes/*": {
+      "types": "./dist/generated/archetypes/*.d.ts",
+      "default": "./dist/generated/archetypes/*.js"
+    },
+    "./features/*": {
+      "types": "./dist/generated/features/*.d.ts",
+      "default": "./dist/generated/features/*.js"
+    },
+    "./property/*": {
+      "types": "./dist/generated/property/*.d.ts",
+      "default": "./dist/generated/property/*.js"
+    },
+    "./enumeration/*": {
+      "types": "./dist/generated/enumeration/*.d.ts",
+      "default": "./dist/generated/enumeration/*.js"
+    },
+    "./catalog/*": {
+      "types": "./dist/generated/catalog/*.d.ts",
+      "default": "./dist/generated/catalog/*.js"
     }
   },
   "scripts": {

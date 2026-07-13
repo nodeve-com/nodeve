@@ -52,7 +52,7 @@ External tenant/user. Assembly of defined features and catalog instances.
 ```
 title: { en, pt },
 description: { en, pt },
-identity: {archetype, slug, code?, symbol?, broader?, url?, iri_template?},  # archetype/id = filing selector, stripped from emit; the rest is data
+identity: {archetype, slug, code?, symbol?, broader?, url?, iri_template?},  # DE-SUGARED: archetype (the layer/cascade class) + slug (file-stem default) required on every doc, stamped into the emit; `id` = filing selector, stripped; the rest is data
 features: [{feature, variant?, ordinal?, part_id?}],
 refs: [{ registry, term, match: (exact|close) }]
 ```

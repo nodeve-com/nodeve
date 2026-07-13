@@ -3,377 +3,377 @@
 // camelized-slug→type dict; for a single concept import its own module. All imports are code, no JSON.
 
 import type { TSchema } from '@sinclair/typebox';
-import { AcLineSchema, type AcLine } from './features/ac_line.ts';
-import { AcPhaseSchema, type AcPhase } from './features/ac_phase.ts';
-import { AcPhaseThreeSchema, type AcPhaseThree } from './features/ac_phase_three.ts';
-import { AcPhaseThreeEpsSchema, type AcPhaseThreeEps } from './features/ac_phase_three_eps.ts';
-import { AcPhaseThreeGridSchema, type AcPhaseThreeGrid } from './features/ac_phase_three_grid.ts';
-import { AcPhaseThreeLoadSchema, type AcPhaseThreeLoad } from './features/ac_phase_three_load.ts';
-import { AcPhaseThreeMeterSchema, type AcPhaseThreeMeter } from './archetypes/ac_phase_three_meter.ts';
-import { AcPhaseThreePointSchema, type AcPhaseThreePoint } from './features/ac_phase_three_point.ts';
-import { AddressingSchema, type Addressing } from './features/addressing.ts';
-import { AirConditionerSchema, type AirConditioner } from './archetypes/air_conditioner.ts';
-import { AmbientTankSchema, type AmbientTank } from './archetypes/ambient_tank.ts';
-import { ApplianceSchema, type Appliance } from './archetypes/appliance.ts';
-import { ArchetypeRegistrySchema, type ArchetypeRegistry } from './features/archetype_registry.ts';
-import { AuthenticationSchema, type Authentication } from './features/authentication.ts';
-import { BatterySchema, type Battery } from './features/battery.ts';
-import { BatteryChargerSchema, type BatteryCharger } from './archetypes/battery_charger.ts';
-import { BuildingSchema, type Building } from './archetypes/building.ts';
-import { ByteOffsetSchema, type ByteOffset } from './features/byte_offset.ts';
-import { CatalogEntrySchema, type CatalogEntry } from './features/catalog_entry.ts';
-import { ChargeControllerSchema, type ChargeController } from './archetypes/charge_controller.ts';
-import { ColumnSchema, type Column } from './features/column.ts';
-import { CompressorSchema, type Compressor } from './features/compressor.ts';
-import { ConceptSettingsSchema, type ConceptSettings } from './features/concept_settings.ts';
-import { ConditionSchema, type Condition } from './features/condition.ts';
-import { ConstructionSchema, type Construction } from './features/construction.ts';
-import { CoolingSchema, type Cooling } from './features/cooling.ts';
-import { DcSchema, type Dc } from './features/dc.ts';
-import { DehumidificationSchema, type Dehumidification } from './features/dehumidification.ts';
-import { DehumidifierSchema, type Dehumidifier } from './archetypes/dehumidifier.ts';
-import { DescriptionSchema, type Description } from './features/description.ts';
-import { DeviceBindingSchema, type DeviceBinding } from './features/device_binding.ts';
-import { DeviceBindingsSchema, type DeviceBindings } from './features/device_bindings.ts';
-import { ElectricalQuantitySchema, type ElectricalQuantity } from './features/electrical_quantity.ts';
-import { EmitSchema, type Emit } from './features/emit.ts';
-import { EnclosureSchema, type Enclosure } from './features/enclosure.ts';
-import { EndpointSchema, type Endpoint } from './features/endpoint.ts';
-import { EnergyConsumerSchema, type EnergyConsumer } from './features/energy_consumer.ts';
-import { EnvironmentSchema, type Environment } from './features/environment.ts';
-import { FeatureSchema, type Feature } from './archetypes/feature.ts';
-import { FeatureSpecSchema, type FeatureSpec } from './features/feature_spec.ts';
-import { FieldSchema, type Field } from './features/field.ts';
-import { GridElectricalNetworkSchema, type GridElectricalNetwork } from './features/grid_electrical_network.ts';
-import { GroundTempBandSchema, type GroundTempBand } from './features/ground_temp_band.ts';
-import { HumidityControlSchema, type HumidityControl } from './features/humidity_control.ts';
-import { I18nSchema, type I18n } from './features/i18n.ts';
-import { IdentitySchema, type Identity } from './features/identity.ts';
-import { IngestSchema, type Ingest } from './features/ingest.ts';
-import { InstanceKeySchema, type InstanceKey } from './features/instance_key.ts';
-import { IntervalSchema, type Interval } from './features/interval.ts';
-import { IntervalsSchema, type Intervals } from './archetypes/intervals.ts';
-import { InventorySchema, type Inventory } from './features/inventory.ts';
-import { InverterSchema, type Inverter } from './archetypes/inverter.ts';
-import { IpAddressesSchema, type IpAddresses } from './archetypes/ip_addresses.ts';
-import { IpBindingSchema, type IpBinding } from './features/ip_binding.ts';
-import { LocationSchema, type Location } from './features/location.ts';
-import { MagicByteSchema, type MagicByte } from './features/magic_byte.ts';
-import { MeasurandSchema, type Measurand } from './features/measurand.ts';
-import { MeasurandLinkSchema, type MeasurandLink } from './features/measurand_link.ts';
-import { MeasuringIntervalSchema, type MeasuringInterval } from './features/measuring_interval.ts';
-import { ModbusSchema, type Modbus } from './archetypes/modbus.ts';
-import { ModbusConstraintsSchema, type ModbusConstraints } from './features/modbus_constraints.ts';
-import { ModbusDecodeSchema, type ModbusDecode } from './features/modbus_decode.ts';
-import { ModbusDecodesSchema, type ModbusDecodes } from './features/modbus_decodes.ts';
-import { ModbusLinkSchema, type ModbusLink } from './features/modbus_link.ts';
-import { ModbusRegistersSchema, type ModbusRegisters } from './features/modbus_registers.ts';
-import { ModbusTapWindowSchema, type ModbusTapWindow } from './features/modbus_tap_window.ts';
-import { MpptTrackingSchema, type MpptTracking } from './features/mppt_tracking.ts';
-import { MqttConnectionSchema, type MqttConnection } from './archetypes/mqtt_connection.ts';
-import { NetworkInterfacesSchema, type NetworkInterfaces } from './archetypes/network_interfaces.ts';
-import { NetworkLinkSchema, type NetworkLink } from './features/network_link.ts';
-import { NominalRangeSchema, type NominalRange } from './features/nominal_range.ts';
-import { NumericDecodeSchema, type NumericDecode } from './features/numeric_decode.ts';
-import { OperatingTempBandSchema, type OperatingTempBand } from './features/operating_temp_band.ts';
-import { OrganizationSchema, type Organization } from './archetypes/organization.ts';
-import { PhysicalSchema, type Physical } from './features/physical.ts';
-import { PhysicalLayerSchema, type PhysicalLayer } from './features/physical_layer.ts';
-import { PowerSupplySchema, type PowerSupply } from './archetypes/power_supply.ts';
-import { ProductSchema, type Product } from './features/product.ts';
-import { PropertySchema, type Property } from './archetypes/property.ts';
-import { PvModuleSchema, type PvModule } from './archetypes/pv_module.ts';
-import { PvStringSchema, type PvString } from './features/pv_string.ts';
-import { PvStringsSchema, type PvStrings } from './features/pv_strings.ts';
-import { PvTrackerSchema, type PvTracker } from './features/pv_tracker.ts';
-import { QuantityKindSchema, type QuantityKind } from './archetypes/quantity_kind.ts';
-import { RangeSchema, type Range } from './features/range.ts';
-import { ReconnectSchema, type Reconnect } from './features/reconnect.ts';
-import { RefSchema, type Ref } from './features/ref.ts';
-import { RefrigerantSchema, type Refrigerant } from './archetypes/refrigerant.ts';
-import { RefrigerationSchema, type Refrigeration } from './features/refrigeration.ts';
-import { RefsSchema, type Refs } from './features/refs.ts';
-import { RegistrySchema, type Registry } from './archetypes/registry.ts';
-import { RegistryPublicationSchema, type RegistryPublication } from './features/registry_publication.ts';
-import { SerialPortSchema, type SerialPort } from './features/serial_port.ts';
-import { SerialWireSchema, type SerialWire } from './features/serial_wire.ts';
-import { ServiceBindingSchema, type ServiceBinding } from './features/service_binding.ts';
-import { ServicesSchema, type Services } from './archetypes/services.ts';
-import { SiteAdapterSchema, type SiteAdapter } from './archetypes/site_adapter.ts';
-import { SiteCatalogSchema, type SiteCatalog } from './archetypes/site_catalog.ts';
-import { SocketAddressSchema, type SocketAddress } from './features/socket_address.ts';
-import { SolarArraySchema, type SolarArray } from './archetypes/solar_array.ts';
-import { SpecificationSchema, type Specification } from './archetypes/specification.ts';
-import { SubstanceSchema, type Substance } from './features/substance.ts';
-import { TargetTempBandSchema, type TargetTempBand } from './features/target_temp_band.ts';
-import { TempBandSchema, type TempBand } from './features/temp_band.ts';
-import { TempCoefficientsSchema, type TempCoefficients } from './features/temp_coefficients.ts';
-import { ThingSchema, type Thing } from './archetypes/thing.ts';
-import { ThresholdSchema, type Threshold } from './features/threshold.ts';
-import { TitleSchema, type Title } from './features/title.ts';
-import { UiSchema, type Ui } from './features/ui.ts';
-import { UnitOverrideSchema, type UnitOverride } from './features/unit_override.ts';
-import { UnixSocketSchema, type UnixSocket } from './features/unix_socket.ts';
-import { UsbWireSchema, type UsbWire } from './features/usb_wire.ts';
-import { UsbhidSchema, type Usbhid } from './archetypes/usbhid.ts';
-import { UsbhidConfigSchema, type UsbhidConfig } from './features/usbhid_config.ts';
-import { UsbhidFieldSchema, type UsbhidField } from './features/usbhid_field.ts';
-import { UsbhidFieldsSchema, type UsbhidFields } from './features/usbhid_fields.ts';
-import { UsbhidLinkSchema, type UsbhidLink } from './features/usbhid_link.ts';
-import { UsbhidNumericSchema, type UsbhidNumeric } from './features/usbhid_numeric.ts';
-import { UsbhidParamsSchema, type UsbhidParams } from './features/usbhid_params.ts';
-import { VedirectFieldsSchema, type VedirectFields } from './features/vedirect_fields.ts';
-import { WaterHeaterSchema, type WaterHeater } from './archetypes/water_heater.ts';
+import * as acLine_ from './features/ac_line.ts';
+import * as acPhase_ from './features/ac_phase.ts';
+import * as acPhaseThree_ from './features/ac_phase_three.ts';
+import * as acPhaseThreeEps_ from './features/ac_phase_three_eps.ts';
+import * as acPhaseThreeGrid_ from './features/ac_phase_three_grid.ts';
+import * as acPhaseThreeLoad_ from './features/ac_phase_three_load.ts';
+import * as acPhaseThreeMeter_ from './archetypes/ac_phase_three_meter.ts';
+import * as acPhaseThreePoint_ from './features/ac_phase_three_point.ts';
+import * as addressing_ from './features/addressing.ts';
+import * as airConditioner_ from './archetypes/air_conditioner.ts';
+import * as ambientTank_ from './archetypes/ambient_tank.ts';
+import * as appliance_ from './archetypes/appliance.ts';
+import * as archetypeRegistry_ from './features/archetype_registry.ts';
+import * as authentication_ from './features/authentication.ts';
+import * as battery_ from './features/battery.ts';
+import * as batteryCharger_ from './archetypes/battery_charger.ts';
+import * as building_ from './archetypes/building.ts';
+import * as byteOffset_ from './features/byte_offset.ts';
+import * as catalogEntry_ from './features/catalog_entry.ts';
+import * as chargeController_ from './archetypes/charge_controller.ts';
+import * as column_ from './features/column.ts';
+import * as compressor_ from './features/compressor.ts';
+import * as conceptSettings_ from './features/concept_settings.ts';
+import * as condition_ from './features/condition.ts';
+import * as construction_ from './features/construction.ts';
+import * as cooling_ from './features/cooling.ts';
+import * as dc_ from './features/dc.ts';
+import * as dehumidification_ from './features/dehumidification.ts';
+import * as dehumidifier_ from './archetypes/dehumidifier.ts';
+import * as description_ from './features/description.ts';
+import * as deviceBinding_ from './features/device_binding.ts';
+import * as deviceBindings_ from './features/device_bindings.ts';
+import * as electricalQuantity_ from './features/electrical_quantity.ts';
+import * as emit_ from './features/emit.ts';
+import * as enclosure_ from './features/enclosure.ts';
+import * as endpoint_ from './features/endpoint.ts';
+import * as energyConsumer_ from './features/energy_consumer.ts';
+import * as environment_ from './features/environment.ts';
+import * as feature_ from './archetypes/feature.ts';
+import * as featureSpec_ from './features/feature_spec.ts';
+import * as field_ from './features/field.ts';
+import * as gridElectricalNetwork_ from './features/grid_electrical_network.ts';
+import * as groundTempBand_ from './features/ground_temp_band.ts';
+import * as humidityControl_ from './features/humidity_control.ts';
+import * as i18N_ from './features/i18n.ts';
+import * as identity_ from './features/identity.ts';
+import * as ingest_ from './features/ingest.ts';
+import * as instanceKey_ from './features/instance_key.ts';
+import * as interval_ from './features/interval.ts';
+import * as intervals_ from './archetypes/intervals.ts';
+import * as inventory_ from './features/inventory.ts';
+import * as inverter_ from './archetypes/inverter.ts';
+import * as ipAddresses_ from './archetypes/ip_addresses.ts';
+import * as ipBinding_ from './features/ip_binding.ts';
+import * as location_ from './features/location.ts';
+import * as magicByte_ from './features/magic_byte.ts';
+import * as measurand_ from './features/measurand.ts';
+import * as measurandLink_ from './features/measurand_link.ts';
+import * as measuringInterval_ from './features/measuring_interval.ts';
+import * as modbus_ from './archetypes/modbus.ts';
+import * as modbusConstraints_ from './features/modbus_constraints.ts';
+import * as modbusDecode_ from './features/modbus_decode.ts';
+import * as modbusDecodes_ from './features/modbus_decodes.ts';
+import * as modbusLink_ from './features/modbus_link.ts';
+import * as modbusRegisters_ from './features/modbus_registers.ts';
+import * as modbusTapWindow_ from './features/modbus_tap_window.ts';
+import * as mpptTracking_ from './features/mppt_tracking.ts';
+import * as mqttConnection_ from './archetypes/mqtt_connection.ts';
+import * as networkInterfaces_ from './archetypes/network_interfaces.ts';
+import * as networkLink_ from './features/network_link.ts';
+import * as nominalRange_ from './features/nominal_range.ts';
+import * as numericDecode_ from './features/numeric_decode.ts';
+import * as operatingTempBand_ from './features/operating_temp_band.ts';
+import * as organization_ from './archetypes/organization.ts';
+import * as physical_ from './features/physical.ts';
+import * as physicalLayer_ from './features/physical_layer.ts';
+import * as powerSupply_ from './archetypes/power_supply.ts';
+import * as product_ from './features/product.ts';
+import * as property_ from './archetypes/property.ts';
+import * as pvModule_ from './archetypes/pv_module.ts';
+import * as pvString_ from './features/pv_string.ts';
+import * as pvStrings_ from './features/pv_strings.ts';
+import * as pvTracker_ from './features/pv_tracker.ts';
+import * as quantityKind_ from './archetypes/quantity_kind.ts';
+import * as range_ from './features/range.ts';
+import * as reconnect_ from './features/reconnect.ts';
+import * as ref_ from './features/ref.ts';
+import * as refrigerant_ from './archetypes/refrigerant.ts';
+import * as refrigeration_ from './features/refrigeration.ts';
+import * as refs_ from './features/refs.ts';
+import * as registry_ from './archetypes/registry.ts';
+import * as registryPublication_ from './features/registry_publication.ts';
+import * as serialPort_ from './features/serial_port.ts';
+import * as serialWire_ from './features/serial_wire.ts';
+import * as serviceBinding_ from './features/service_binding.ts';
+import * as services_ from './archetypes/services.ts';
+import * as siteAdapter_ from './archetypes/site_adapter.ts';
+import * as siteCatalog_ from './archetypes/site_catalog.ts';
+import * as socketAddress_ from './features/socket_address.ts';
+import * as solarArray_ from './archetypes/solar_array.ts';
+import * as specification_ from './archetypes/specification.ts';
+import * as substance_ from './features/substance.ts';
+import * as targetTempBand_ from './features/target_temp_band.ts';
+import * as tempBand_ from './features/temp_band.ts';
+import * as tempCoefficients_ from './features/temp_coefficients.ts';
+import * as thing_ from './archetypes/thing.ts';
+import * as threshold_ from './features/threshold.ts';
+import * as title_ from './features/title.ts';
+import * as ui_ from './features/ui.ts';
+import * as unitOverride_ from './features/unit_override.ts';
+import * as unixSocket_ from './features/unix_socket.ts';
+import * as usbWire_ from './features/usb_wire.ts';
+import * as usbhid_ from './archetypes/usbhid.ts';
+import * as usbhidConfig_ from './features/usbhid_config.ts';
+import * as usbhidField_ from './features/usbhid_field.ts';
+import * as usbhidFields_ from './features/usbhid_fields.ts';
+import * as usbhidLink_ from './features/usbhid_link.ts';
+import * as usbhidNumeric_ from './features/usbhid_numeric.ts';
+import * as usbhidParams_ from './features/usbhid_params.ts';
+import * as vedirectFields_ from './features/vedirect_fields.ts';
+import * as waterHeater_ from './archetypes/water_heater.ts';
 
 /** Every compiled concept schema (live TypeBox), keyed by camelized slug — the runtime source
  *  (no fs); rename a wire slug at the lookup edge (src/validate-site.ts). Explicitly typed
  *  `Record<keyof ConceptTypes, TSchema>` — the inferred union is too large for TS to serialize
  *  (TS7056); per-concept modules keep their precise schema type. */
 export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
-	acLine: AcLineSchema,
-	acPhase: AcPhaseSchema,
-	acPhaseThree: AcPhaseThreeSchema,
-	acPhaseThreeEps: AcPhaseThreeEpsSchema,
-	acPhaseThreeGrid: AcPhaseThreeGridSchema,
-	acPhaseThreeLoad: AcPhaseThreeLoadSchema,
-	acPhaseThreeMeter: AcPhaseThreeMeterSchema,
-	acPhaseThreePoint: AcPhaseThreePointSchema,
-	addressing: AddressingSchema,
-	airConditioner: AirConditionerSchema,
-	ambientTank: AmbientTankSchema,
-	appliance: ApplianceSchema,
-	archetypeRegistry: ArchetypeRegistrySchema,
-	authentication: AuthenticationSchema,
-	battery: BatterySchema,
-	batteryCharger: BatteryChargerSchema,
-	building: BuildingSchema,
-	byteOffset: ByteOffsetSchema,
-	catalogEntry: CatalogEntrySchema,
-	chargeController: ChargeControllerSchema,
-	column: ColumnSchema,
-	compressor: CompressorSchema,
-	conceptSettings: ConceptSettingsSchema,
-	condition: ConditionSchema,
-	construction: ConstructionSchema,
-	cooling: CoolingSchema,
-	dc: DcSchema,
-	dehumidification: DehumidificationSchema,
-	dehumidifier: DehumidifierSchema,
-	description: DescriptionSchema,
-	deviceBinding: DeviceBindingSchema,
-	deviceBindings: DeviceBindingsSchema,
-	electricalQuantity: ElectricalQuantitySchema,
-	emit: EmitSchema,
-	enclosure: EnclosureSchema,
-	endpoint: EndpointSchema,
-	energyConsumer: EnergyConsumerSchema,
-	environment: EnvironmentSchema,
-	feature: FeatureSchema,
-	featureSpec: FeatureSpecSchema,
-	field: FieldSchema,
-	gridElectricalNetwork: GridElectricalNetworkSchema,
-	groundTempBand: GroundTempBandSchema,
-	humidityControl: HumidityControlSchema,
-	i18N: I18nSchema,
-	identity: IdentitySchema,
-	ingest: IngestSchema,
-	instanceKey: InstanceKeySchema,
-	interval: IntervalSchema,
-	intervals: IntervalsSchema,
-	inventory: InventorySchema,
-	inverter: InverterSchema,
-	ipAddresses: IpAddressesSchema,
-	ipBinding: IpBindingSchema,
-	location: LocationSchema,
-	magicByte: MagicByteSchema,
-	measurand: MeasurandSchema,
-	measurandLink: MeasurandLinkSchema,
-	measuringInterval: MeasuringIntervalSchema,
-	modbus: ModbusSchema,
-	modbusConstraints: ModbusConstraintsSchema,
-	modbusDecode: ModbusDecodeSchema,
-	modbusDecodes: ModbusDecodesSchema,
-	modbusLink: ModbusLinkSchema,
-	modbusRegisters: ModbusRegistersSchema,
-	modbusTapWindow: ModbusTapWindowSchema,
-	mpptTracking: MpptTrackingSchema,
-	mqttConnection: MqttConnectionSchema,
-	networkInterfaces: NetworkInterfacesSchema,
-	networkLink: NetworkLinkSchema,
-	nominalRange: NominalRangeSchema,
-	numericDecode: NumericDecodeSchema,
-	operatingTempBand: OperatingTempBandSchema,
-	organization: OrganizationSchema,
-	physical: PhysicalSchema,
-	physicalLayer: PhysicalLayerSchema,
-	powerSupply: PowerSupplySchema,
-	product: ProductSchema,
-	property: PropertySchema,
-	pvModule: PvModuleSchema,
-	pvString: PvStringSchema,
-	pvStrings: PvStringsSchema,
-	pvTracker: PvTrackerSchema,
-	quantityKind: QuantityKindSchema,
-	range: RangeSchema,
-	reconnect: ReconnectSchema,
-	ref: RefSchema,
-	refrigerant: RefrigerantSchema,
-	refrigeration: RefrigerationSchema,
-	refs: RefsSchema,
-	registry: RegistrySchema,
-	registryPublication: RegistryPublicationSchema,
-	serialPort: SerialPortSchema,
-	serialWire: SerialWireSchema,
-	serviceBinding: ServiceBindingSchema,
-	services: ServicesSchema,
-	siteAdapter: SiteAdapterSchema,
-	siteCatalog: SiteCatalogSchema,
-	socketAddress: SocketAddressSchema,
-	solarArray: SolarArraySchema,
-	specification: SpecificationSchema,
-	substance: SubstanceSchema,
-	targetTempBand: TargetTempBandSchema,
-	tempBand: TempBandSchema,
-	tempCoefficients: TempCoefficientsSchema,
-	thing: ThingSchema,
-	threshold: ThresholdSchema,
-	title: TitleSchema,
-	ui: UiSchema,
-	unitOverride: UnitOverrideSchema,
-	unixSocket: UnixSocketSchema,
-	usbWire: UsbWireSchema,
-	usbhid: UsbhidSchema,
-	usbhidConfig: UsbhidConfigSchema,
-	usbhidField: UsbhidFieldSchema,
-	usbhidFields: UsbhidFieldsSchema,
-	usbhidLink: UsbhidLinkSchema,
-	usbhidNumeric: UsbhidNumericSchema,
-	usbhidParams: UsbhidParamsSchema,
-	vedirectFields: VedirectFieldsSchema,
-	waterHeater: WaterHeaterSchema,
+	acLine: acLine_.schema,
+	acPhase: acPhase_.schema,
+	acPhaseThree: acPhaseThree_.schema,
+	acPhaseThreeEps: acPhaseThreeEps_.schema,
+	acPhaseThreeGrid: acPhaseThreeGrid_.schema,
+	acPhaseThreeLoad: acPhaseThreeLoad_.schema,
+	acPhaseThreeMeter: acPhaseThreeMeter_.schema,
+	acPhaseThreePoint: acPhaseThreePoint_.schema,
+	addressing: addressing_.schema,
+	airConditioner: airConditioner_.schema,
+	ambientTank: ambientTank_.schema,
+	appliance: appliance_.schema,
+	archetypeRegistry: archetypeRegistry_.schema,
+	authentication: authentication_.schema,
+	battery: battery_.schema,
+	batteryCharger: batteryCharger_.schema,
+	building: building_.schema,
+	byteOffset: byteOffset_.schema,
+	catalogEntry: catalogEntry_.schema,
+	chargeController: chargeController_.schema,
+	column: column_.schema,
+	compressor: compressor_.schema,
+	conceptSettings: conceptSettings_.schema,
+	condition: condition_.schema,
+	construction: construction_.schema,
+	cooling: cooling_.schema,
+	dc: dc_.schema,
+	dehumidification: dehumidification_.schema,
+	dehumidifier: dehumidifier_.schema,
+	description: description_.schema,
+	deviceBinding: deviceBinding_.schema,
+	deviceBindings: deviceBindings_.schema,
+	electricalQuantity: electricalQuantity_.schema,
+	emit: emit_.schema,
+	enclosure: enclosure_.schema,
+	endpoint: endpoint_.schema,
+	energyConsumer: energyConsumer_.schema,
+	environment: environment_.schema,
+	feature: feature_.schema,
+	featureSpec: featureSpec_.schema,
+	field: field_.schema,
+	gridElectricalNetwork: gridElectricalNetwork_.schema,
+	groundTempBand: groundTempBand_.schema,
+	humidityControl: humidityControl_.schema,
+	i18N: i18N_.schema,
+	identity: identity_.schema,
+	ingest: ingest_.schema,
+	instanceKey: instanceKey_.schema,
+	interval: interval_.schema,
+	intervals: intervals_.schema,
+	inventory: inventory_.schema,
+	inverter: inverter_.schema,
+	ipAddresses: ipAddresses_.schema,
+	ipBinding: ipBinding_.schema,
+	location: location_.schema,
+	magicByte: magicByte_.schema,
+	measurand: measurand_.schema,
+	measurandLink: measurandLink_.schema,
+	measuringInterval: measuringInterval_.schema,
+	modbus: modbus_.schema,
+	modbusConstraints: modbusConstraints_.schema,
+	modbusDecode: modbusDecode_.schema,
+	modbusDecodes: modbusDecodes_.schema,
+	modbusLink: modbusLink_.schema,
+	modbusRegisters: modbusRegisters_.schema,
+	modbusTapWindow: modbusTapWindow_.schema,
+	mpptTracking: mpptTracking_.schema,
+	mqttConnection: mqttConnection_.schema,
+	networkInterfaces: networkInterfaces_.schema,
+	networkLink: networkLink_.schema,
+	nominalRange: nominalRange_.schema,
+	numericDecode: numericDecode_.schema,
+	operatingTempBand: operatingTempBand_.schema,
+	organization: organization_.schema,
+	physical: physical_.schema,
+	physicalLayer: physicalLayer_.schema,
+	powerSupply: powerSupply_.schema,
+	product: product_.schema,
+	property: property_.schema,
+	pvModule: pvModule_.schema,
+	pvString: pvString_.schema,
+	pvStrings: pvStrings_.schema,
+	pvTracker: pvTracker_.schema,
+	quantityKind: quantityKind_.schema,
+	range: range_.schema,
+	reconnect: reconnect_.schema,
+	ref: ref_.schema,
+	refrigerant: refrigerant_.schema,
+	refrigeration: refrigeration_.schema,
+	refs: refs_.schema,
+	registry: registry_.schema,
+	registryPublication: registryPublication_.schema,
+	serialPort: serialPort_.schema,
+	serialWire: serialWire_.schema,
+	serviceBinding: serviceBinding_.schema,
+	services: services_.schema,
+	siteAdapter: siteAdapter_.schema,
+	siteCatalog: siteCatalog_.schema,
+	socketAddress: socketAddress_.schema,
+	solarArray: solarArray_.schema,
+	specification: specification_.schema,
+	substance: substance_.schema,
+	targetTempBand: targetTempBand_.schema,
+	tempBand: tempBand_.schema,
+	tempCoefficients: tempCoefficients_.schema,
+	thing: thing_.schema,
+	threshold: threshold_.schema,
+	title: title_.schema,
+	ui: ui_.schema,
+	unitOverride: unitOverride_.schema,
+	unixSocket: unixSocket_.schema,
+	usbWire: usbWire_.schema,
+	usbhid: usbhid_.schema,
+	usbhidConfig: usbhidConfig_.schema,
+	usbhidField: usbhidField_.schema,
+	usbhidFields: usbhidFields_.schema,
+	usbhidLink: usbhidLink_.schema,
+	usbhidNumeric: usbhidNumeric_.schema,
+	usbhidParams: usbhidParams_.schema,
+	vedirectFields: vedirectFields_.schema,
+	waterHeater: waterHeater_.schema,
 };
 
 /** camelized slug → parsed (camelCase) type — what a generic parse over `conceptSchema` keys on. */
 export interface ConceptTypes {
-	acLine: AcLine;
-	acPhase: AcPhase;
-	acPhaseThree: AcPhaseThree;
-	acPhaseThreeEps: AcPhaseThreeEps;
-	acPhaseThreeGrid: AcPhaseThreeGrid;
-	acPhaseThreeLoad: AcPhaseThreeLoad;
-	acPhaseThreeMeter: AcPhaseThreeMeter;
-	acPhaseThreePoint: AcPhaseThreePoint;
-	addressing: Addressing;
-	airConditioner: AirConditioner;
-	ambientTank: AmbientTank;
-	appliance: Appliance;
-	archetypeRegistry: ArchetypeRegistry;
-	authentication: Authentication;
-	battery: Battery;
-	batteryCharger: BatteryCharger;
-	building: Building;
-	byteOffset: ByteOffset;
-	catalogEntry: CatalogEntry;
-	chargeController: ChargeController;
-	column: Column;
-	compressor: Compressor;
-	conceptSettings: ConceptSettings;
-	condition: Condition;
-	construction: Construction;
-	cooling: Cooling;
-	dc: Dc;
-	dehumidification: Dehumidification;
-	dehumidifier: Dehumidifier;
-	description: Description;
-	deviceBinding: DeviceBinding;
-	deviceBindings: DeviceBindings;
-	electricalQuantity: ElectricalQuantity;
-	emit: Emit;
-	enclosure: Enclosure;
-	endpoint: Endpoint;
-	energyConsumer: EnergyConsumer;
-	environment: Environment;
-	feature: Feature;
-	featureSpec: FeatureSpec;
-	field: Field;
-	gridElectricalNetwork: GridElectricalNetwork;
-	groundTempBand: GroundTempBand;
-	humidityControl: HumidityControl;
-	i18N: I18n;
-	identity: Identity;
-	ingest: Ingest;
-	instanceKey: InstanceKey;
-	interval: Interval;
-	intervals: Intervals;
-	inventory: Inventory;
-	inverter: Inverter;
-	ipAddresses: IpAddresses;
-	ipBinding: IpBinding;
-	location: Location;
-	magicByte: MagicByte;
-	measurand: Measurand;
-	measurandLink: MeasurandLink;
-	measuringInterval: MeasuringInterval;
-	modbus: Modbus;
-	modbusConstraints: ModbusConstraints;
-	modbusDecode: ModbusDecode;
-	modbusDecodes: ModbusDecodes;
-	modbusLink: ModbusLink;
-	modbusRegisters: ModbusRegisters;
-	modbusTapWindow: ModbusTapWindow;
-	mpptTracking: MpptTracking;
-	mqttConnection: MqttConnection;
-	networkInterfaces: NetworkInterfaces;
-	networkLink: NetworkLink;
-	nominalRange: NominalRange;
-	numericDecode: NumericDecode;
-	operatingTempBand: OperatingTempBand;
-	organization: Organization;
-	physical: Physical;
-	physicalLayer: PhysicalLayer;
-	powerSupply: PowerSupply;
-	product: Product;
-	property: Property;
-	pvModule: PvModule;
-	pvString: PvString;
-	pvStrings: PvStrings;
-	pvTracker: PvTracker;
-	quantityKind: QuantityKind;
-	range: Range;
-	reconnect: Reconnect;
-	ref: Ref;
-	refrigerant: Refrigerant;
-	refrigeration: Refrigeration;
-	refs: Refs;
-	registry: Registry;
-	registryPublication: RegistryPublication;
-	serialPort: SerialPort;
-	serialWire: SerialWire;
-	serviceBinding: ServiceBinding;
-	services: Services;
-	siteAdapter: SiteAdapter;
-	siteCatalog: SiteCatalog;
-	socketAddress: SocketAddress;
-	solarArray: SolarArray;
-	specification: Specification;
-	substance: Substance;
-	targetTempBand: TargetTempBand;
-	tempBand: TempBand;
-	tempCoefficients: TempCoefficients;
-	thing: Thing;
-	threshold: Threshold;
-	title: Title;
-	ui: Ui;
-	unitOverride: UnitOverride;
-	unixSocket: UnixSocket;
-	usbWire: UsbWire;
-	usbhid: Usbhid;
-	usbhidConfig: UsbhidConfig;
-	usbhidField: UsbhidField;
-	usbhidFields: UsbhidFields;
-	usbhidLink: UsbhidLink;
-	usbhidNumeric: UsbhidNumeric;
-	usbhidParams: UsbhidParams;
-	vedirectFields: VedirectFields;
-	waterHeater: WaterHeater;
+	acLine: acLine_.AcLine;
+	acPhase: acPhase_.AcPhase;
+	acPhaseThree: acPhaseThree_.AcPhaseThree;
+	acPhaseThreeEps: acPhaseThreeEps_.AcPhaseThreeEps;
+	acPhaseThreeGrid: acPhaseThreeGrid_.AcPhaseThreeGrid;
+	acPhaseThreeLoad: acPhaseThreeLoad_.AcPhaseThreeLoad;
+	acPhaseThreeMeter: acPhaseThreeMeter_.AcPhaseThreeMeter;
+	acPhaseThreePoint: acPhaseThreePoint_.AcPhaseThreePoint;
+	addressing: addressing_.Addressing;
+	airConditioner: airConditioner_.AirConditioner;
+	ambientTank: ambientTank_.AmbientTank;
+	appliance: appliance_.Appliance;
+	archetypeRegistry: archetypeRegistry_.ArchetypeRegistry;
+	authentication: authentication_.Authentication;
+	battery: battery_.Battery;
+	batteryCharger: batteryCharger_.BatteryCharger;
+	building: building_.Building;
+	byteOffset: byteOffset_.ByteOffset;
+	catalogEntry: catalogEntry_.CatalogEntry;
+	chargeController: chargeController_.ChargeController;
+	column: column_.Column;
+	compressor: compressor_.Compressor;
+	conceptSettings: conceptSettings_.ConceptSettings;
+	condition: condition_.Condition;
+	construction: construction_.Construction;
+	cooling: cooling_.Cooling;
+	dc: dc_.Dc;
+	dehumidification: dehumidification_.Dehumidification;
+	dehumidifier: dehumidifier_.Dehumidifier;
+	description: description_.Description;
+	deviceBinding: deviceBinding_.DeviceBinding;
+	deviceBindings: deviceBindings_.DeviceBindings;
+	electricalQuantity: electricalQuantity_.ElectricalQuantity;
+	emit: emit_.Emit;
+	enclosure: enclosure_.Enclosure;
+	endpoint: endpoint_.Endpoint;
+	energyConsumer: energyConsumer_.EnergyConsumer;
+	environment: environment_.Environment;
+	feature: feature_.Feature;
+	featureSpec: featureSpec_.FeatureSpec;
+	field: field_.Field;
+	gridElectricalNetwork: gridElectricalNetwork_.GridElectricalNetwork;
+	groundTempBand: groundTempBand_.GroundTempBand;
+	humidityControl: humidityControl_.HumidityControl;
+	i18N: i18N_.I18n;
+	identity: identity_.Identity;
+	ingest: ingest_.Ingest;
+	instanceKey: instanceKey_.InstanceKey;
+	interval: interval_.Interval;
+	intervals: intervals_.Intervals;
+	inventory: inventory_.Inventory;
+	inverter: inverter_.Inverter;
+	ipAddresses: ipAddresses_.IpAddresses;
+	ipBinding: ipBinding_.IpBinding;
+	location: location_.Location;
+	magicByte: magicByte_.MagicByte;
+	measurand: measurand_.Measurand;
+	measurandLink: measurandLink_.MeasurandLink;
+	measuringInterval: measuringInterval_.MeasuringInterval;
+	modbus: modbus_.Modbus;
+	modbusConstraints: modbusConstraints_.ModbusConstraints;
+	modbusDecode: modbusDecode_.ModbusDecode;
+	modbusDecodes: modbusDecodes_.ModbusDecodes;
+	modbusLink: modbusLink_.ModbusLink;
+	modbusRegisters: modbusRegisters_.ModbusRegisters;
+	modbusTapWindow: modbusTapWindow_.ModbusTapWindow;
+	mpptTracking: mpptTracking_.MpptTracking;
+	mqttConnection: mqttConnection_.MqttConnection;
+	networkInterfaces: networkInterfaces_.NetworkInterfaces;
+	networkLink: networkLink_.NetworkLink;
+	nominalRange: nominalRange_.NominalRange;
+	numericDecode: numericDecode_.NumericDecode;
+	operatingTempBand: operatingTempBand_.OperatingTempBand;
+	organization: organization_.Organization;
+	physical: physical_.Physical;
+	physicalLayer: physicalLayer_.PhysicalLayer;
+	powerSupply: powerSupply_.PowerSupply;
+	product: product_.Product;
+	property: property_.Property;
+	pvModule: pvModule_.PvModule;
+	pvString: pvString_.PvString;
+	pvStrings: pvStrings_.PvStrings;
+	pvTracker: pvTracker_.PvTracker;
+	quantityKind: quantityKind_.QuantityKind;
+	range: range_.Range;
+	reconnect: reconnect_.Reconnect;
+	ref: ref_.Ref;
+	refrigerant: refrigerant_.Refrigerant;
+	refrigeration: refrigeration_.Refrigeration;
+	refs: refs_.Refs;
+	registry: registry_.Registry;
+	registryPublication: registryPublication_.RegistryPublication;
+	serialPort: serialPort_.SerialPort;
+	serialWire: serialWire_.SerialWire;
+	serviceBinding: serviceBinding_.ServiceBinding;
+	services: services_.Services;
+	siteAdapter: siteAdapter_.SiteAdapter;
+	siteCatalog: siteCatalog_.SiteCatalog;
+	socketAddress: socketAddress_.SocketAddress;
+	solarArray: solarArray_.SolarArray;
+	specification: specification_.Specification;
+	substance: substance_.Substance;
+	targetTempBand: targetTempBand_.TargetTempBand;
+	tempBand: tempBand_.TempBand;
+	tempCoefficients: tempCoefficients_.TempCoefficients;
+	thing: thing_.Thing;
+	threshold: threshold_.Threshold;
+	title: title_.Title;
+	ui: ui_.Ui;
+	unitOverride: unitOverride_.UnitOverride;
+	unixSocket: unixSocket_.UnixSocket;
+	usbWire: usbWire_.UsbWire;
+	usbhid: usbhid_.Usbhid;
+	usbhidConfig: usbhidConfig_.UsbhidConfig;
+	usbhidField: usbhidField_.UsbhidField;
+	usbhidFields: usbhidFields_.UsbhidFields;
+	usbhidLink: usbhidLink_.UsbhidLink;
+	usbhidNumeric: usbhidNumeric_.UsbhidNumeric;
+	usbhidParams: usbhidParams_.UsbhidParams;
+	vedirectFields: vedirectFields_.VedirectFields;
+	waterHeater: waterHeater_.WaterHeater;
 }

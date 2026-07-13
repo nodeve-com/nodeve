@@ -37,8 +37,10 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 		// reject it), meta-validate it is a real schema, and let it flow verbatim into the emitted entry.
 		const { settings_schema, ...forSchema } = leaf.data as Record<string, unknown>;
 		if (settings_schema !== undefined) assertMetaSchema(leaf.path, settings_schema);
-		assertDocValid(`catalog ${leaf.path}`, archetype, forSchema);
 		const slug = effectiveSlug(leaf.path, identity);
+		// Validate the DE-SUGARED doc — identity.{archetype, slug} is required (features/identity.yaml),
+		// filled from the cascade + file stem exactly as the emit envelope will carry them.
+		assertDocValid(`catalog ${leaf.path}`, archetype, { ...forSchema, identity: { ...identity, archetype, slug } });
 		const prior = claimed.get(slug);
 		if (prior) throw new Error(`grimoire catalog: slug "${slug}" is claimed by both ${prior} and ${leaf.path}`);
 		claimed.set(slug, leaf.path);

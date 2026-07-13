@@ -1,3 +1,3 @@
-title: { en: Index }
+title: { en: Field index }
 description: { en: The field index the get/set command carries to address this parameter (m4ConfigField.index). }
 schema: { type: integer, minimum: 0, maximum: 255 }

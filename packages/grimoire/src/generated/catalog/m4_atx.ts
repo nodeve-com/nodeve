@@ -39,7 +39,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 0,
+					"fieldIndex": 0,
 					"name": "ign_high",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -50,7 +50,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 1,
+					"fieldIndex": 1,
 					"name": "ign_low",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -61,7 +61,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 2,
+					"fieldIndex": 2,
 					"name": "ign_dbc",
 					"scale": 10,
 					"type": "uint8",
@@ -70,7 +70,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 3,
+					"fieldIndex": 3,
 					"name": "psu_delay",
 					"scale": 1,
 					"type": "uint8",
@@ -79,7 +79,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 4,
+					"fieldIndex": 4,
 					"name": "vin_min_start",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -90,7 +90,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 5,
+					"fieldIndex": 5,
 					"name": "vin_min_on",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -101,7 +101,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 6,
+					"fieldIndex": 6,
 					"name": "vin_min_5v",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -112,7 +112,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 7,
+					"fieldIndex": 7,
 					"name": "vin_max",
 					"scale": 0.1552,
 					"scaleOverrides": {
@@ -123,7 +123,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 8,
+					"fieldIndex": 8,
 					"name": "v12_max",
 					"scale": 0.1165,
 					"scaleOverrides": {
@@ -134,7 +134,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 9,
+					"fieldIndex": 9,
 					"name": "v12_min",
 					"scale": 0.1165,
 					"scaleOverrides": {
@@ -145,7 +145,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 10,
+					"fieldIndex": 10,
 					"name": "v5_max",
 					"scale": 0.0389,
 					"scaleOverrides": {
@@ -156,7 +156,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 11,
+					"fieldIndex": 11,
 					"name": "v5_min",
 					"scale": 0.0389,
 					"scaleOverrides": {
@@ -167,7 +167,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 12,
+					"fieldIndex": 12,
 					"name": "v33_max",
 					"scale": 0.0195,
 					"scaleOverrides": {
@@ -178,7 +178,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 2,
-					"index": 13,
+					"fieldIndex": 13,
 					"name": "v33_min",
 					"scale": 0.0195,
 					"scaleOverrides": {
@@ -189,7 +189,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 14,
+					"fieldIndex": 14,
 					"name": "v12_time",
 					"scale": 1,
 					"type": "uint8",
@@ -198,7 +198,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 15,
+					"fieldIndex": 15,
 					"name": "v33_time",
 					"scale": 1,
 					"type": "uint8",
@@ -208,7 +208,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 16,
+					"fieldIndex": 16,
 					"name": "pwrsw",
 					"scale": 10,
 					"type": "uint16",
@@ -217,7 +217,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 18,
+					"fieldIndex": 18,
 					"name": "psu_on_time",
 					"scale": 1,
 					"type": "uint8",
@@ -226,7 +226,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 19,
+					"fieldIndex": 19,
 					"name": "on_delay",
 					"scale": 1,
 					"type": "uint8",
@@ -235,7 +235,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 20,
+					"fieldIndex": 20,
 					"name": "psu_off_time",
 					"scale": 1,
 					"type": "uint8",
@@ -244,7 +244,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 21,
+					"fieldIndex": 21,
 					"name": "off_delay",
 					"scale": 1,
 					"type": "uint8",
@@ -253,7 +253,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 22,
+					"fieldIndex": 22,
 					"name": "emg_time_5vsb",
 					"scale": 1,
 					"type": "uint8",
@@ -262,7 +262,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 23,
+					"fieldIndex": 23,
 					"name": "emg_timer",
 					"scale": 1,
 					"type": "uint8",
@@ -271,7 +271,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 24,
+					"fieldIndex": 24,
 					"name": "ps_on_0",
 					"scale": 10,
 					"type": "uint8",
@@ -280,7 +280,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 25,
+					"fieldIndex": 25,
 					"name": "ps_on_1",
 					"scale": 10,
 					"type": "uint8",
@@ -290,7 +290,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 26,
+					"fieldIndex": 26,
 					"name": "thump",
 					"scale": 10,
 					"type": "uint16",
@@ -299,7 +299,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 28,
+					"fieldIndex": 28,
 					"name": "temp_max",
 					"scale": 1,
 					"type": "int8",
@@ -308,7 +308,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 29,
+					"fieldIndex": 29,
 					"name": "temp_min",
 					"scale": 1,
 					"type": "int8",
@@ -317,7 +317,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 30,
+					"fieldIndex": 30,
 					"name": "emg_off_mode",
 					"scale": 1,
 					"type": "uint8"
@@ -325,7 +325,7 @@ export default {
 				{
 					"access": "read_write",
 					"decimals": 0,
-					"index": 31,
+					"fieldIndex": 31,
 					"name": "v5_sby_dly",
 					"scale": 10,
 					"type": "uint8",
@@ -335,7 +335,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 32,
+					"fieldIndex": 32,
 					"name": "off_delay_0",
 					"scale": 1,
 					"sentinel": {
@@ -349,7 +349,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 34,
+					"fieldIndex": 34,
 					"name": "off_hard_0",
 					"scale": 1,
 					"sentinel": {
@@ -363,7 +363,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 36,
+					"fieldIndex": 36,
 					"name": "off_delay_1",
 					"scale": 1,
 					"sentinel": {
@@ -377,7 +377,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 38,
+					"fieldIndex": 38,
 					"name": "off_hard_1",
 					"scale": 1,
 					"sentinel": {
@@ -391,7 +391,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 40,
+					"fieldIndex": 40,
 					"name": "off_delay_2",
 					"scale": 1,
 					"sentinel": {
@@ -405,7 +405,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 42,
+					"fieldIndex": 42,
 					"name": "off_hard_2",
 					"scale": 1,
 					"sentinel": {
@@ -419,7 +419,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 44,
+					"fieldIndex": 44,
 					"name": "off_delay_3",
 					"scale": 1,
 					"sentinel": {
@@ -433,7 +433,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 46,
+					"fieldIndex": 46,
 					"name": "off_hard_3",
 					"scale": 1,
 					"sentinel": {
@@ -447,7 +447,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 48,
+					"fieldIndex": 48,
 					"name": "off_delay_4",
 					"scale": 1,
 					"sentinel": {
@@ -461,7 +461,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 50,
+					"fieldIndex": 50,
 					"name": "off_hard_4",
 					"scale": 1,
 					"sentinel": {
@@ -475,7 +475,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 52,
+					"fieldIndex": 52,
 					"name": "off_delay_5",
 					"scale": 1,
 					"sentinel": {
@@ -489,7 +489,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 54,
+					"fieldIndex": 54,
 					"name": "off_hard_5",
 					"scale": 1,
 					"sentinel": {
@@ -503,7 +503,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 56,
+					"fieldIndex": 56,
 					"name": "off_delay_6",
 					"scale": 1,
 					"sentinel": {
@@ -517,7 +517,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 58,
+					"fieldIndex": 58,
 					"name": "off_hard_6",
 					"scale": 1,
 					"sentinel": {
@@ -531,7 +531,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 60,
+					"fieldIndex": 60,
 					"name": "off_delay_7",
 					"scale": 1,
 					"sentinel": {
@@ -545,7 +545,7 @@ export default {
 					"access": "read_write",
 					"byteOrder": "big_first",
 					"decimals": 0,
-					"index": 62,
+					"fieldIndex": 62,
 					"name": "off_hard_7",
 					"scale": 1,
 					"sentinel": {
@@ -558,7 +558,7 @@ export default {
 				{
 					"access": "write",
 					"decimals": 0,
-					"index": 255,
+					"fieldIndex": 255,
 					"name": "reset",
 					"scale": 1,
 					"type": "uint8"

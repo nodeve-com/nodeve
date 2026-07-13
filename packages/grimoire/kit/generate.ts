@@ -124,12 +124,31 @@ export function outputs(): Record<string, string> {
 	// - BOTH casings are projections of the one snake draft-07, via @nodeve/schema-case: the TS module
 	//   transcribes the camel sibling (x-key-map aliases in place); <name>.camel.schema.json is the same
 	//   camel schema for JSON consumers ($defs keys / $ref targets are slugs — identity, so they stay).
+	// The identity de-sugar on the EMIT side: every concept's data tree ships
+	// `identity.{archetype, slug}` — archetype = the def's class (its layer), slug = the file stem —
+	// authored identity keys (symbol/code/an explicit slug…) winning. The twin of the validation-side
+	// de-sugar (kit/validate-docs.ts).
+	const CLASS_OF: Record<string, string> = { archetypes: 'archetype', features: 'feature', property: 'property' };
+	const stampIdentity = (tree: Obj, name: string, layer: string): Obj => {
+		const authored = isPlainObject(tree.identity) ? (tree.identity as Obj) : {};
+		return { ...tree, identity: { archetype: CLASS_OF[layer], slug: name, ...authored } };
+	};
+	// A concept's top-level data field names, its composed base's included (`$ref` chased through the
+	// chain) — what renderConceptModule projects when a module's data composes a base at the top.
+	const topFields = (name: string): string[] => {
+		const { $composes, ...def } = resolveConcept(name);
+		const layer = layerOf(name);
+		const tree = humps(stampIdentity(conceptDataTree(def, layer, $composes), name, layer)) as Record<string, unknown>;
+		const own = Object.keys(tree).filter((k) => k !== '$ref');
+		const base = typeof tree.$ref === 'string' ? topFields(tree.$ref.split('/').pop()!.replace(/\.json$/, '')) : [];
+		return [...new Set([...base, ...own])];
+	};
 	const emitConcept = (name: string, data: Record<string, unknown>, layer: string): Array<{ name: string; layer: string }> => {
 		const { $composes, ...def } = data;
 		const { json, body, imports } = schemaWithDefs(def);
-		const dataTree = conceptDataTree(def, layer, $composes);
+		const dataTree = stampIdentity(conceptDataTree(def, layer, $composes), name, layer);
 		out[join(ARTIFACTS, layer, `${name}.json`)] = renderJson(dataTree);
-		out[join(GENERATED, layer, `${name}.ts`)] = renderConceptModule({ name, schema: camelizeSchema(body) as Obj, layer, imports, data: humps(dataTree) });
+		out[join(GENERATED, layer, `${name}.ts`)] = renderConceptModule({ name, schema: camelizeSchema(body) as Obj, layer, imports, data: humps(dataTree), fieldsOf: topFields });
 		out[join(ARTIFACTS, layer, `${name}.schema.json`)] = renderJson(json);
 		out[join(ARTIFACTS, layer, `${name}.camel.schema.json`)] = renderJson(camelizeSchema(json));
 		return imports;
@@ -149,11 +168,14 @@ export function outputs(): Record<string, string> {
 		emittedProps.add(name);
 		queueProps(emitConcept(name, resolveConcept(name), 'property'));
 	}
-	// Per-layer data aggregates: generated/<layer>.ts answers "list the layer" — reachable to
-	// consumers via the `./generated/*` subpath export, like every per-concept module.
+	// Per-layer data aggregates: generated/<layer>/index.ts answers "list the layer" — published as
+	// `@nodeve/grimoire/<layer>`, beside the per-concept `@nodeve/grimoire/<layer>/<slug>` subpaths.
+	// A concept named `index` would clobber its layer's aggregate — refuse the bake outright.
+	const clobber = [...concepts.map((c) => c.name), ...emittedProps].filter((n) => n === 'index');
+	if (clobber.length > 0) throw new Error('a concept named "index" would clobber its layer aggregate — rename it');
 	for (const layer of ['archetypes', 'features'])
-		out[join(GENERATED, `${layer}.ts`)] = renderLayerIndex(layer, concepts.filter((c) => c.layer === layer).map((c) => c.name));
-	out[join(GENERATED, 'property.ts')] = renderLayerIndex('property', [...emittedProps]);
+		out[join(GENERATED, layer, 'index.ts')] = renderLayerIndex(layer, concepts.filter((c) => c.layer === layer).map((c) => c.name));
+	out[join(GENERATED, 'property', 'index.ts')] = renderLayerIndex('property', [...emittedProps]);
 	// Member data per enumeration — every enumeration, tree-driven: .json wire shape + .ts vocab twin.
 	for (const name of enumerations()) {
 		out[join(ARTIFACTS, 'enumeration', `${name}.json`)] = renderJson(enumerationMemberData(name));

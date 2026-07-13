@@ -14,6 +14,14 @@ import { type Obj, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR } from '../src/co
 
 const schemaByArchetype = new Map<string, ValidateFunction>();
 
+/** The identity de-sugar: EVERY doc validates carrying `identity.{archetype, slug}` (required by
+ *  features/identity.yaml) — archetype from the layer/cascade, slug defaulting to the FILE STEM —
+ *  so authored YAML never restates its own filename. Authored identity keys win. */
+export function desugarIdentity(data: Obj, archetype: string, stem: string): Obj {
+	const identity = isPlainObject(data.identity) ? data.identity : {};
+	return { ...data, identity: { archetype, slug: stem, ...identity } };
+}
+
 export function assertDocValid(label: string, archetype: string, data: unknown): void {
 	let check = schemaByArchetype.get(archetype);
 	if (!check) schemaByArchetype.set(archetype, (check = ajv.compile(projectSchema(resolveConcept(archetype)))));
@@ -55,7 +63,7 @@ export function assertLeafDocsValid(): void {
 				const identity = (data.identity ?? {}) as Record<string, unknown>;
 				if (typeof identity.archetype !== 'string') throw new Error(`grimoire ${path} declares no identity.archetype (cascade _defaults.yaml)`);
 				try {
-					assertDocValid(path.slice(root.length + 1), identity.archetype, data);
+					assertDocValid(path.slice(root.length + 1), identity.archetype, desugarIdentity(data as Obj, identity.archetype, entry.name.slice(0, -'.yaml'.length)));
 				} catch (e) {
 					failures.push(e instanceof Error ? e.message : String(e));
 				}
@@ -88,7 +96,7 @@ export function assertFeatureDocsValid(): void {
 					Object.entries(doc).filter(([k]) => !(instr.has(k) && !declared.has(k))),
 				);
 				try {
-					assertDocValid(`feature ${path.slice(FEATURES_DIR.length + 1)}`, 'feature', data);
+					assertDocValid(`feature ${path.slice(FEATURES_DIR.length + 1)}`, 'feature', desugarIdentity(data as Obj, 'feature', entry.name.slice(0, -'.yaml'.length)));
 				} catch (e) {
 					failures.push(e instanceof Error ? e.message : String(e));
 				}

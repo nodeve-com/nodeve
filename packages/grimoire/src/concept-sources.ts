@@ -4,6 +4,7 @@
 
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { isPlainObject } from 'remeda';
 import { parse as parseYaml } from 'yaml';
 
 export type Obj = Record<string, unknown>;
@@ -86,6 +87,22 @@ export function asList(v: unknown, field: string, stack: string[]): string[] {
  *  as a field (a quantity_kind kind bound via `feature: spec_block`). The two layers share one flat
  *  slug space (stems globally unique), so a prop resolves from whichever defines it. */
 export const fieldSource = (slug: string): string | undefined => layerIndex('property').get(slug) ?? layerIndex('enumeration').get(slug);
+
+/** The def-language keys the pipeline consumes off a `def`, computed from the def itself — the SINGLE
+ *  definition of the instruction vocabulary, shared by the resolver (seeds its `consumed` set, which
+ *  dataOf drops) and generate.ts (strips them before validating a doc's DATA against the archetype).
+ *  Replaces a hand-kept keyword table that duplicated the resolver's branches. `prop` is always
+ *  consumed (own-field overlays); `schema` is the projection passthrough (kit/project.ts merges an
+ *  object node's `schema:` block) — an instruction for the VALIDATOR, but the resolver keeps it as
+ *  node data (dataOf must not drop it), so the resolver removes `schema` from its own `consumed`. */
+export function instructionKeys(def: Obj): Set<string> {
+	const keys = new Set<string>(['prop']);
+	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0) keys.add('concept_settings');
+	for (const verb of ['enums', 'feature', 'archetype', 'schema'] as const) {
+		if (def[verb] !== undefined) keys.add(verb);
+	}
+	return keys;
+}
 
 /** A field's source doc with its immediate dir `_defaults.yaml` merged under it (member wins) —
  *  the same cascade the enumeration bake applies, so a dir-wide fact (e.g. quantity_kind's

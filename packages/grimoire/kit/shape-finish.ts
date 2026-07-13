@@ -8,7 +8,15 @@ import { clone, isPlainObject, omit } from 'remeda';
 import { type Obj, layerIndex, readYaml } from '../src/concept-sources.ts';
 import type { Shape } from './overrides.ts';
 
-const FILING = new Set(['identity', 'slug']);
+const FILING = new Set(['slug']);
+
+/** An authored `identity` minus the filing selectors (archetype/id — concepts/README.md): the data
+ *  keys that ship with the def (slug/code/symbol/…), or undefined when nothing remains. */
+export function identityData(v: unknown): Obj | undefined {
+	if (!isPlainObject(v)) return undefined;
+	const { archetype: _a, id: _i, ...identity } = v;
+	return Object.keys(identity).length > 0 ? identity : undefined;
+}
 
 /** Slug→node resolvers borrowed from the compiler (each recurses into resolveShapeDef). */
 export interface FinishResolvers {
@@ -25,6 +33,11 @@ function dataOf(def: Obj, consumed: Set<string>): Obj {
 	const out: Obj = {};
 	for (const [key, v] of Object.entries(def)) {
 		if (consumed.has(key) || FILING.has(key)) continue;
+		if (key === 'identity') {
+			const identity = identityData(v);
+			if (identity) out.identity = clone(identity);
+			continue;
+		}
 		out[key] = clone(v);
 	}
 	return out;

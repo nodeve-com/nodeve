@@ -6,7 +6,8 @@ import type { Obj } from '../src/concept-sources.ts';
 import { projectSchema } from './project.ts';
 import { resolveConcept } from './resolve.ts';
 
-export { instructionKeys, resolveConcept } from './resolve.ts';
+export { resolveConcept } from './resolve.ts';
+export { instructionKeys } from '../src/concept-sources.ts';
 
 /** A named concept's standalone draft-07 schema — the validation projection of its data tree. */
 export function compileConcept(slug: string): Obj {
