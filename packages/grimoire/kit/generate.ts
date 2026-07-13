@@ -27,7 +27,7 @@ import { type Obj, layerIndex } from '../src/concept-sources.ts';
 import { assertFeatureDocsValid, assertLeafDocsValid } from './validate-docs.ts';
 import { catalogEntries, renderCatalogEntry, renderCatalogIndex } from './emit-catalog.ts';
 import { conceptDataTree, inlineSchemaOf, layerOf } from './data-tree.ts';
-import { renderArchetypeIndex, renderConceptsIndex } from './emit-index.ts';
+import { renderConceptsIndex, renderLayerIndex } from './emit-index.ts';
 import { renderConceptModule } from './emit-types.ts';
 import { enumerationMemberData, enumerations, renderVocabModule } from './emit-enumeration.ts';
 import { renderJson } from './json-schema.ts';
@@ -149,6 +149,11 @@ export function outputs(): Record<string, string> {
 		emittedProps.add(name);
 		queueProps(emitConcept(name, resolveConcept(name), 'property'));
 	}
+	// Per-layer data aggregates: generated/<layer>.ts answers "list the layer" — reachable to
+	// consumers via the `./generated/*` subpath export, like every per-concept module.
+	for (const layer of ['archetypes', 'features'])
+		out[join(GENERATED, `${layer}.ts`)] = renderLayerIndex(layer, concepts.filter((c) => c.layer === layer).map((c) => c.name));
+	out[join(GENERATED, 'property.ts')] = renderLayerIndex('property', [...emittedProps]);
 	// Member data per enumeration — every enumeration, tree-driven: .json wire shape + .ts vocab twin.
 	for (const name of enumerations()) {
 		out[join(ARTIFACTS, 'enumeration', `${name}.json`)] = renderJson(enumerationMemberData(name));

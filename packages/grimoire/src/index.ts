@@ -58,19 +58,14 @@ export { validateSite } from './validate-site.ts';
 export { loadSiteBundle, resolveSite, siteConfigPath, SITE_BUNDLE_FILE } from './site-load.ts';
 export { bakeSite } from './bake-site.ts';
 
-// --- Concept parsing (kit/site.ts over generated/ — the baked compiled
-//     schemas): ONE generic parse per concept + the topic/env derivations every consumer shares ---
+// --- Concept parsing (src/site.ts over generated/ — the baked compiled schemas): ONE generic
+//     parse per concept + the topic/env derivations every consumer shares. Per-concept types/
+//     schemas/data come via `ConceptTypes` or the `./generated/*` subpath (e.g.
+//     `@nodeve/grimoire/generated/archetypes/inverter`); `generated/<layer>/index` lists a layer ---
 export {
 	conceptSchema,
 	type ConceptTypes,
 	parseConcept,
-	type SiteLocation,
-	parseLocation,
-	type AmbientTank,
-	parseAmbientTank,
-	type SolarArray,
-	type SolarString,
-	parseSolarArray,
 	type SiteAdapter,
 	type TapWindow,
 	parseSiteAdapter,

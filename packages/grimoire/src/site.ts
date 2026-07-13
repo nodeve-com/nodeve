@@ -18,17 +18,7 @@ export function parseConcept<K extends keyof ConceptTypes>(concept: K, data: unk
 	return parseSnake<ConceptTypes[K]>(conceptSchema[concept], data, `${concept} config`);
 }
 
-// --- The site concepts consumers parse today (thin named wrappers, keeping call sites stable) ---
-
-export type SiteLocation = ConceptTypes['location'];
-export type AmbientTank = ConceptTypes['ambientTank'];
-export type SolarArray = ConceptTypes['solarArray'];
-export type SolarString = SolarArray['pvStrings'][number];
 export type MqttConnection = ConceptTypes['mqttConnection'];
-
-export const parseLocation = (data: unknown): SiteLocation => parseConcept('location', data);
-export const parseAmbientTank = (data: unknown): AmbientTank => parseConcept('ambientTank', data);
-export const parseSolarArray = (data: unknown): SolarArray => parseConcept('solarArray', data);
 export const parseMqttConnection = (data: unknown): MqttConnection => parseConcept('mqttConnection', data);
 
 // --- Site adapters: the install's decoder peers. A `site_adapter` is an ordinary concept parsed
