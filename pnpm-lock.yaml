@@ -215,6 +215,9 @@ importers:
       '@sinclair/typebox':
         specifier: 'catalog:'
         version: 0.34.51
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
       remeda:
         specifier: 'catalog:'
         version: 2.39.0
@@ -234,9 +237,6 @@ importers:
       '@types/node':
         specifier: 'catalog:'
         version: 22.19.21
-      ajv:
-        specifier: 'catalog:'
-        version: 8.20.0
       typescript:
         specifier: 'catalog:'
         version: 5.9.3

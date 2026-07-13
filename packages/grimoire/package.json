@@ -65,6 +65,7 @@
   "dependencies": {
     "@nodeve/schema-case": "workspace:*",
     "@sinclair/typebox": "catalog:",
+    "ajv": "catalog:",
     "remeda": "catalog:",
     "remeda-humps": "catalog:",
     "yaml": "catalog:"
@@ -73,7 +74,6 @@
     "@nodeve/config": "workspace:*",
     "@nodeve/encoding": "workspace:*",
     "@types/node": "catalog:",
-    "ajv": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
