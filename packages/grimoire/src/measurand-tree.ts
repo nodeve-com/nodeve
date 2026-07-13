@@ -12,16 +12,23 @@ import { isPlainObject } from 'remeda';
 
 export type Obj = Record<string, unknown>;
 
-// Wire codes (the trees here are snake wire data) — the generated dict keys camelCase, so the
-// membership set derives from each member's authoritative `code`, not the TS keys.
-const QUANTITY_KIND = new Set<string>(Object.values(quantityKinds).map((t) => t.code));
+// The trees here are the CAMEL generated device grain (loadDevice / the emitted TS catalog), so
+// column keys are the camelCase dict keys; each member's authoritative snake `code` is the on-bus
+// spelling ids/coordinates carry. One map holds both: camel key → wire code.
+const QUANTITY_CODE = new Map<string, string>(Object.entries(quantityKinds).map(([k, t]) => [k, t.code]));
 
-/** Is this feature node a measurand feature — does it carry a `feature_spec` spec body (the
+/** Is this feature node a measurand feature — does it carry a `featureSpec` spec body (the
  *  {combined, part, instances} breakdown of its quantity columns)? */
-export const isMeasurandFeature = (node: unknown): node is Obj => isPlainObject(node) && isPlainObject(node.feature_spec);
+export const isMeasurandFeature = (node: unknown): node is Obj => isPlainObject(node) && isPlainObject(node.featureSpec);
 
-/** The quantity_kind keys directly on a node (its measured-quantity columns). */
-export const quantityCols = (node: Obj): string[] => Object.keys(node).filter((k) => QUANTITY_KIND.has(k));
+/** The quantity-kind keys directly on a node (its measured-quantity columns) — the CAMEL tree keys. */
+export const quantityCols = (node: Obj): string[] => Object.keys(node).filter((k) => QUANTITY_CODE.has(k));
+
+/** A column key's wire `code` — the snake on-bus spelling every id/coordinate carries. */
+export const quantityCode = (camelKey: string): string => QUANTITY_CODE.get(camelKey) ?? camelKey;
+
+/** A camel tree key's snake wire spelling (feature keys camelize their authored slug). */
+export const snakeKey = (camelKey: string): string => camelKey.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
 
 // Where a column's deterministic on-bus id lives inside its `specification` value: the
 // `identity.slug` handle (archetypes/specification composes the `identity` feature). The writer
@@ -30,13 +37,13 @@ export const quantityCols = (node: Obj): string[] => Object.keys(node).filter((k
 /** Build the sparse patch that plants a column's baked slugs at its specification's id handle: the
  *  SCOPED `slug` (device-local, for a producer that already namespaces) + the QUALIFIED
  *  `slug_qualified` (instance-prefixed, globally unique — HA's entity id). */
-export const specSlugPatch = (slug: string, slugQualified: string): Obj => ({ identity: { slug, slug_qualified: slugQualified } });
-const idString = (node: Obj, key: 'slug' | 'slug_qualified'): string | undefined =>
+export const specSlugPatch = (slug: string, slugQualified: string): Obj => ({ identity: { slug, slugQualified } });
+const idString = (node: Obj, key: 'slug' | 'slugQualified'): string | undefined =>
 	isPlainObject(node.identity) && typeof node.identity[key] === 'string' ? (node.identity[key] as string) : undefined;
 /** Read a column node's baked SCOPED slug back from its specification's id handle (undefined if unbaked). */
 export const specSlug = (node: Obj): string | undefined => idString(node, 'slug');
 /** Read a column node's baked QUALIFIED slug back from its specification's id handle (undefined if unbaked). */
-export const specSlugQualified = (node: Obj): string | undefined => idString(node, 'slug_qualified');
+export const specSlugQualified = (node: Obj): string | undefined => idString(node, 'slugQualified');
 
 /** One measured column located in the tree: its feature, its instance coordinate (`combined` → both
  *  absent; `part` → partId; `instances` → 1-based ordinal), its quantity_kind, and the column node. */
@@ -52,11 +59,12 @@ export interface MeasurandCell {
  *  patch's nested `{feature}.{combined|part.<id>|instances[n]}.{quantity_kind}` mirrors. */
 export function measurandCells(device: Obj): MeasurandCell[] {
 	const cells: MeasurandCell[] = [];
-	for (const [feature, node] of Object.entries(device)) {
+	for (const [featureKey, node] of Object.entries(device)) {
 		if (!isMeasurandFeature(node)) continue;
-		const fs = node.feature_spec as Obj;
+		const feature = snakeKey(featureKey); // cells carry the snake wire spelling, like every coordinate
+		const fs = node.featureSpec as Obj;
 		const push = (src: Obj, coord: { partId?: string; ordinal?: number }): void => {
-			for (const quantityKind of quantityCols(src)) cells.push({ feature, quantityKind, node: src[quantityKind] as Obj, ...coord });
+			for (const col of quantityCols(src)) cells.push({ feature, quantityKind: quantityCode(col), node: src[col] as Obj, ...coord });
 		};
 		if (isPlainObject(fs.combined)) push(fs.combined, {}); // the whole / aggregate (incl. a single spec feature's columns)
 		if (isPlainObject(fs.part)) for (const [partId, p] of Object.entries(fs.part as Obj)) push(p as Obj, { partId });

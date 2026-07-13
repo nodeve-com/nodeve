@@ -2,8 +2,9 @@
 // and the esphome codegen don't re-implement the site_adapter → site_catalog → device →
 // `catalog_patch` chain each time they need a sensor's `slug`; they `openSite(bundle)` and ask.
 //
-// Everything here stays in the bundle's own SNAKE shape (the generated JSON + generated device
-// grain are snake) — no reshape. Consumers that want camelCase parse a block separately.
+// Authored bundle blocks stay in their SNAKE wire shape — no reshape; consumers that want
+// camelCase parse a block separately. The resolved DEVICE grain (loadDevice + catalog_patch)
+// is the camel generated-TS catalog; measurand-tree owns that grammar for both sides.
 //
 // The two indirections this untangles:
 //   • catalog_item — an adapter (or anything) names its metered thing by `{archetype_id, slug}`. The

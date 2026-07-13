@@ -19,7 +19,7 @@ import { parse as parseYaml } from 'yaml';
 import { effectiveSlug, loadCascade } from './cascade.ts';
 import { loadDevice } from './catalog.ts';
 import { scopedSensorId, sensorId } from './sensor-id.ts';
-import { type Obj, isMeasurandFeature, quantityCols, specSlugPatch } from './measurand-tree.ts';
+import { type Obj, isMeasurandFeature, quantityCode, quantityCols, snakeKey, specSlugPatch } from './measurand-tree.ts';
 import { isConcept, validateSite } from './validate-site.ts';
 
 const readYaml = (path: string): unknown => parseYaml(readFileSync(path, 'utf8'));
@@ -75,10 +75,12 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 	// entry's `inventory.catalog_patch`. Only the patch travels in site.generated.json; consumers deep-
 	// merge it onto the loaded device themselves (PLANS/deterministic-sensor-ids.md). The structural
 	// grammar (isMeasurandFeature/quantityCols) is shared with the reader in kit/measurand-tree.ts.
+	// `feature` is the CAMEL device-tree key; the unauthored fallback is its snake wire spelling
+	// (on-bus handles are snake — matching the authored identity.slug values).
 	const featureSlug = (node: Obj, feature: string): string =>
 		isPlainObject(node.identity) && typeof (node.identity as Obj).slug === 'string'
 			? ((node.identity as Obj).slug as string)
-			: feature;
+			: snakeKey(feature);
 	const catalogPatch = (entry: Record<string, unknown>): Obj => {
 		const instance = asIdentity(entry.identity).slug as string;
 		const item = inventoryItem(entry);
@@ -100,14 +102,16 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 				const parts = { instance, feature: featureSlug(node, feature), partId, ordinal, quantityKind };
 				return specSlugPatch(scopedSensorId(parts), sensorId(parts));
 			};
+			// Patch keys mirror the CAMEL device tree (so the reader's overlay lands on the right
+			// nodes); the id parts fed to sensorId are the snake wire codes.
 			const cols = (src: Obj, partId?: string, ordinal?: number): Obj =>
-				Object.fromEntries(quantityCols(src).map((qk) => [qk, slugAt(partId, ordinal, qk)]));
-			const fs = node.feature_spec as Obj;
+				Object.fromEntries(quantityCols(src).map((qk) => [qk, slugAt(partId, ordinal, quantityCode(qk))]));
+			const fs = node.featureSpec as Obj;
 			const fp: Obj = {};
 			if (isPlainObject(fs.combined)) fp.combined = cols(fs.combined); // the whole / a single spec feature's columns
 			if (isPlainObject(fs.part)) fp.part = Object.fromEntries(Object.entries(fs.part as Obj).map(([pid, p]) => [pid, cols(p as Obj, pid)]));
 			if (Array.isArray(fs.instances)) fp.instances = (fs.instances as Obj[]).map((inst, i) => cols(inst, undefined, i + 1));
-			patch[feature] = { feature_spec: fp };
+			patch[feature] = { featureSpec: fp };
 		}
 		return patch;
 	};
@@ -119,11 +123,19 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 	// slugs and strip them from the entry, so it validates as a pure site_catalog and the reader
 	// (kit/site-view `overlayPatch`) merges the whole patch onto the device. See docs/site-overlay.md.
 	const SITE_CATALOG_KEYS = new Set(['identity', 'title', 'description', 'refs', 'inventory']);
+	// The author writes the overlay in snake wire keys; the device it merges onto is the camel
+	// generated grain, so camelize KEYS throughout (values — slugs, macs, ips — untouched).
+	const camelKey = (k: string): string => k.replace(/_([a-z0-9])/g, (_, c: string) => c.toUpperCase());
+	const camelKeys = (v: unknown): unknown => {
+		if (Array.isArray(v)) return v.map(camelKeys);
+		if (isPlainObject(v)) return Object.fromEntries(Object.entries(v).map(([k, val]) => [camelKey(k), camelKeys(val)]));
+		return v;
+	};
 	for (const entry of catalog) {
 		const patch = catalogPatch(entry);
 		for (const key of Object.keys(entry)) {
 			if (SITE_CATALOG_KEYS.has(key)) continue;
-			patch[key] = entry[key];
+			patch[camelKey(key)] = camelKeys(entry[key]);
 			delete entry[key];
 		}
 		if (Object.keys(patch).length > 0) {
