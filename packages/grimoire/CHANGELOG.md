@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.0.3
+
+### Patch Changes
+
+- Archetype meta-def gate; rename identity.archetype_id.
+
 ## 4.0.2
 
 ### Patch Changes
