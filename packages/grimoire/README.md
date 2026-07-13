@@ -69,6 +69,29 @@ modbusMediumOf(loadDevice('chint/dtsu666')); // register map + transport + emit 
 
 A device's key is its **identity** — `archetype` + `slug` (`catalog_item: { archetype: inverter, slug: foxess_h3_ps10sh }`), the stable reference downstream configs use. The tree path (`foxess/h3/ps-10.0-sh`) is filing only.
 
+## Using the concepts
+
+Every generated module is importable via the `./generated/*` subpath — one concept, or a whole layer:
+
+```ts
+// One concept: data default + camelCase TypeBox schema + type
+import inverter, {
+	InverterSchema,
+	type Inverter,
+} from '@nodeve/grimoire/generated/archetypes/inverter';
+
+// A layer: camel slug → authored data tree (title/description/slots)
+import { archetype } from '@nodeve/grimoire/generated/archetypes';
+import { feature } from '@nodeve/grimoire/generated/features';
+import { property } from '@nodeve/grimoire/generated/property';
+Object.keys(archetype); // ['acPhaseThreeMeter', 'airConditioner', 'ambientTank', …]
+
+// A vocabulary
+import rating from '@nodeve/grimoire/generated/enumeration/rating';
+```
+
+Validating an instance goes through the root API: `parseConcept('solarArray', data)` (renames snake → camel at the edge, then checks the baked schema).
+
 ## Conventions
 
 - [catalog generation pipeline](docs/catalog-generation-pipeline.md) — `generate.ts` flow, `resolveRepeatedFeatures` (default→part/instances; nature from `concept_settings`), register→measurement backfill
@@ -80,4 +103,4 @@ A device's key is its **identity** — `archetype` + `slug` (`catalog_item: { ar
 - [TypeBox vs zod](docs/typebox-vs-zod.md) — TypeBox because `schema.json` is a shipped contract; JSON emits snake (+ a `.camel.schema.json` sibling), TS emits camel wall-to-wall — schema, type, AND data default export; snake in a `.ts` emit is a generator bug — rename at the parse edge, before validation, via `@nodeve/schema-case`'s stored alias
 - [translations & labels](docs/translations-and-labels.md) — author labels/hints/ui inline per locale in the concept YAML; the bake carries them into the generated artifacts
 - **Borrow before coining** — prefer a standard vocabulary; any coined term carries a crosswalk (callout above)
-- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target: **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase **everywhere** — type, schema const, and data `export default`; the npm surface never shows a snake key; tree-shakeable; `index.ts` the opt-in all-concepts module; every generated module is a `./generated/*` subpath export (`@nodeve/grimoire/generated/archetypes/inverter`); `generated/<layer>.ts` — `archetypes`/`features`/`property` — the per-layer data aggregate (`Object.keys` lists the layer); `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules) and **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, per concept, the standalone `<slug>.schema.json` wire contract and its `<slug>.camel.schema.json` sibling; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**
+- **Generation** — `pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target: **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase **everywhere** — type, schema const, and data `export default`; the npm surface never shows a snake key; tree-shakeable; `index.ts` the opt-in all-concepts module; every module a `./generated/*` subpath export, `generated/<layer>.ts` the per-layer aggregate — see [Using the concepts](#using-the-concepts); `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules) and **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, per concept, the standalone `<slug>.schema.json` wire contract and its `<slug>.camel.schema.json` sibling; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle). Every property/feature/catalog doc validates against its archetype before the bake emits anything. Pre-commit regenerates + re-stages; `tests/generate.test.ts` asserts committed mirrors match. **Don't edit generated files.**
