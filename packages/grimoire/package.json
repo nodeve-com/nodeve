@@ -28,7 +28,7 @@
     "test": "vitest run",
     "check": "pnpm run generate && pnpm run guards && pnpm run typecheck && pnpm run test",
     "generate": "node kit/generate.ts",
-    "guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-archetype-features.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts"
+    "guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-archetype-features.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts && node scripts/guard-generated-camel.ts"
   },
   "dependencies": {
     "@nodeve/schema-case": "workspace:*",
