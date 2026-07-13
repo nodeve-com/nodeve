@@ -4,10 +4,11 @@
 // (no restated block for a copy-paste gate to flag). BUILD-ONLY (generate.ts). Keys sort like the
 // JSON emit so an identical subtree always renders identically (its structural identity, stableStringify).
 
-import { type Obj, isObj } from '../src/concept-sources.ts';
+import { type Obj } from '../src/concept-sources.ts';
+import { isPlainObject } from 'remeda';
 import { stableStringify } from './project.ts';
 
-const isColl = (v: unknown): v is Obj | unknown[] => isObj(v) || Array.isArray(v);
+const isColl = (v: unknown): v is Obj | unknown[] => isPlainObject(v) || Array.isArray(v);
 const children = (node: Obj | unknown[]): unknown[] =>
 	Array.isArray(node) ? node : Object.keys(node).sort().map((k) => node[k]);
 
@@ -15,14 +16,14 @@ const children = (node: Obj | unknown[]): unknown[] =>
  *  flags sizable blocks, and hoisting every `{}` would bury the file in one-liners. */
 const MIN_LEN = 60;
 
-/** Tally every collection subtree by its canonical form, so a shape repeated across parts is seen once. */
-function tally(node: unknown, tallyByForm: Map<string, { n: number; node: unknown }>): void {
+/** Count every collection subtree by its canonical form, so a shape repeated across parts is seen once. */
+function countForms(node: unknown, countByForm: Map<string, { n: number; node: unknown }>): void {
 	if (!isColl(node)) return;
 	const key = stableStringify(node);
-	const e = tallyByForm.get(key);
+	const e = countByForm.get(key);
 	if (e) e.n++;
-	else tallyByForm.set(key, { n: 1, node });
-	for (const c of children(node)) tally(c, tallyByForm);
+	else countByForm.set(key, { n: 1, node });
+	for (const c of children(node)) countForms(c, countByForm);
 }
 
 /** One value as a TS literal, indented; a hoisted subtree (other than `self`, the const being defined)
@@ -39,7 +40,7 @@ function render(node: unknown, indent: string, constByForm: Map<string, string>,
 		if (node.length === 0) return '[]';
 		return `[\n${node.map((c) => inner + render(c, inner, constByForm, self)).join(',\n')}\n${indent}]`;
 	}
-	if (isObj(node)) {
+	if (isPlainObject(node)) {
 		const keys = Object.keys(node).sort();
 		if (keys.length === 0) return '{}';
 		return `{\n${keys.map((k) => `${inner}${JSON.stringify(k)}: ${render(node[k], inner, constByForm, self)}`).join(',\n')}\n${indent}}`;
@@ -51,9 +52,9 @@ function render(node: unknown, indent: string, constByForm: Map<string, string>,
  *  (deepest/shortest declared first so a nested reference resolves). The reconstructed object graph
  *  equals the input — only the source is deduplicated. */
 export function renderHoistedConst(value: unknown): string {
-	const tallyByForm = new Map<string, { n: number; node: unknown }>();
-	tally(value, tallyByForm);
-	const chosen = [...tallyByForm.values()]
+	const countByForm = new Map<string, { n: number; node: unknown }>();
+	countForms(value, countByForm);
+	const chosen = [...countByForm.values()]
 		.filter((e) => e.n >= 2 && stableStringify(e.node).length >= MIN_LEN)
 		.sort((a, b) => stableStringify(a.node).length - stableStringify(b.node).length);
 	const constByForm = new Map<string, string>();

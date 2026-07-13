@@ -5,11 +5,13 @@
 // YAML, e.g. archetypes/mqtt_connection.yaml), so this walk is a pure projection of the baked
 // schema — add a field with an annotation and every consumer's overlay picks it up.
 //
-// Operates on the SNAKE_CASE value (the schema's shape, pre-`parse*`): overlay first, then the
-// concept's parser validates + camelCases the merged result — so an env-supplied value faces the
-// exact same contract as a file-supplied one.
+// Operates on the SNAKE_CASE value (pre-`parse*`): overlay first, then the concept's parser
+// renames + validates the merged result — so an env-supplied value faces the exact same contract
+// as a file-supplied one. The baked schema is camelCase; each node's `x-key-map` gives back the
+// snake spelling this walk addresses the value under.
 
 import type { TSchema } from '@sinclair/typebox';
+import { snakeKeyByCamel } from '@nodeve/schema-case';
 
 /** The slice of a baked schema node this walk reads. A TypeBox schema (the baked concept schema)
  *  IS a JSON-Schema object, so it satisfies this structurally after the boundary cast below. */
@@ -33,15 +35,17 @@ export function overlayEnvVars(schema: TSchema, value: unknown, env: Record<stri
 function overlay(schema: SchemaNode, value: unknown, env: Record<string, string | undefined>): unknown {
   const props = schema.properties;
   if (!props) return value;
+  const snakeOf = snakeKeyByCamel(schema);
   const out: Record<string, unknown> = { ...((value as Record<string, unknown>) ?? {}) };
   for (const [key, sub] of Object.entries(props)) {
+    const at = snakeOf[key] ?? key; // the value is snake — address it by the field's source spelling
     const name = sub['x-env-var'];
     const raw = name ? env[name] : undefined;
     if (raw !== undefined && raw !== '') {
-      out[key] = coerce(sub, raw);
+      out[at] = coerce(sub, raw);
     } else if (sub.properties) {
-      const nested = overlay(sub, out[key], env);
-      if (nested !== undefined) out[key] = nested;
+      const nested = overlay(sub, out[at], env);
+      if (nested !== undefined) out[at] = nested;
     }
   }
   if (value === undefined && Object.keys(out).length === 0) return undefined;

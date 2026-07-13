@@ -5,10 +5,9 @@
 // timeouts under `endpoint:` — sites/*/mqtt.yaml migrate with the consumer swap).
 
 import { describe, expect, test } from 'vitest';
-import Ajv from 'ajv';
 import { compileConcept } from '../kit/compile.ts';
+import { ajv } from '../src/ajv.ts';
 
-const ajv = new Ajv({ strict: false }); // x-env-var etc. are annotations, not keywords
 const compiled = (name: string) => ajv.compile(compileConcept(name));
 
 function verdicts(name: string, fixtures: Array<{ data: unknown; valid: boolean; why: string }>) {

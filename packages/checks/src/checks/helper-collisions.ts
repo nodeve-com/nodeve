@@ -9,7 +9,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
 import { parseSource } from '../lib/ast.js';
-import { tsSources } from '../lib/bin.js';
+import { scopedTsSources } from '../lib/bin.js';
 import { type Config } from '../lib/config.js';
 import { type Check } from '../lib/runner.js';
 
@@ -70,7 +70,8 @@ call — resolve per case:
 Matching is against the committed lib-names index (helperCollisions.libNamesPath);
 regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 
-	run({ root, cfg, paths, allowlist }) {
+	run(gate) {
+		const { root, cfg, allowlist } = gate;
 		// A repo opts into this gate by listing `libs`. Once opted in, a missing
 		// index is a setup error, not a pass: silently no-opping means the gate
 		// looks green while checking nothing. Fail loudly so the index gets built.
@@ -89,7 +90,7 @@ regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 		type Collision = { name: string; lib: LibFn; score: number; files: Set<string> };
 		const collisionByPair = new Map<string, Collision>();
 
-		for (const rel of tsSources(root, cfg.globs, paths)) {
+		for (const rel of scopedTsSources(gate, true)) {
 			const abs = join(root, rel);
 			for (const name of declaredFunctionNames(abs)) {
 				const m = bestMatch(name, libIndex, cfg);

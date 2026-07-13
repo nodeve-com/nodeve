@@ -11,7 +11,7 @@ import { join } from 'node:path';
 import ts from 'typescript';
 import { type Check } from '../lib/runner.js';
 import { parseSource } from '../lib/ast.js';
-import { tsSources } from '../lib/bin.js';
+import { scopedTsSources } from '../lib/bin.js';
 
 /**
  * Non-exported top-level names in a source file: private `const` and
@@ -51,11 +51,12 @@ and be imported instead. Clear it by:
     with a WHY comment.
 --warn downgrades this to report-only.`,
 
-	run({ root, cfg, allowlist, explain }) {
+	run(gate) {
+		const { root, allowlist, explain } = gate;
 		const nameToFiles = new Map<string, Set<string>>();
 
-		// paths ignored: always scan full scope (see header) regardless of staged files.
-		for (const rel of tsSources(root, cfg.globs)) {
+		// staged omitted → full scope (see header): a dupe needs both files, even if one isn't staged.
+		for (const rel of scopedTsSources(gate)) {
 			const abs = join(root, rel);
 			for (const name of topLevelNames(abs)) {
 				if (allowlist.has(name)) continue;
@@ -71,13 +72,16 @@ and be imported instead. Clear it by:
 
 		if (dupes.length === 0) return { status: 'pass', summary: 'clean' };
 
-		// One row per duplicated name + its file count; the per-name file list is the
-		// bulk (a 30-name repo = hundreds of paths), so it only expands under
-		// --explain, which the failure's pointer advertises.
+		// One row per duplicated name, then WHERE it's declared — the file list IS the finding
+		// (you can't act on a name without its files), so it prints by default. Capped so a
+		// name in dozens of files can't wall the output; --explain lifts the cap.
+		const CAP = 6;
 		const rows: string[] = [];
 		for (const [name, files] of dupes) {
 			rows.push(`${name}  (${files.size} files)`);
-			if (explain) for (const file of files) rows.push(`  ${file}`);
+			const list = [...files];
+			for (const file of explain ? list : list.slice(0, CAP)) rows.push(`  ${file}`);
+			if (!explain && list.length > CAP) rows.push(`  … +${list.length - CAP} more (--explain)`);
 		}
 		return {
 			status: 'fail',

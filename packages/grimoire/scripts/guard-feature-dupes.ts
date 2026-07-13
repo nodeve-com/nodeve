@@ -14,6 +14,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { FEATURES_DIR } from '../src/concept-sources.ts';
+import { runGuard } from './guard-report.ts';
 
 // Unordered `a|b` file-pair keys accepted despite sharing a prop group, each with the reason the
 // overlap is not extractable duplication.
@@ -38,19 +39,29 @@ function featureFiles(dir: string): string[] {
 }
 
 type FeatureDoc = { prop?: unknown; concept_settings?: { compose?: unknown } } | null;
-const readDoc = (rel: string): FeatureDoc => parseYaml(readFileSync(join(FEATURES_DIR, rel), 'utf8')) as FeatureDoc;
+const readDoc = (rel: string): FeatureDoc =>
+	parseYaml(readFileSync(join(FEATURES_DIR, rel), 'utf8')) as FeatureDoc;
 const ownPropKeys = (doc: FeatureDoc): string[] =>
-	doc?.prop && typeof doc.prop === 'object' && !Array.isArray(doc.prop) ? Object.keys(doc.prop) : [];
+	doc?.prop && typeof doc.prop === 'object' && !Array.isArray(doc.prop)
+		? Object.keys(doc.prop)
+		: [];
 
 // slug (file stem) → path, for resolving `concept_settings.compose` targets to their prop shape.
-const byStem = new Map<string, string>(featureFiles(FEATURES_DIR).map((rel) => [rel.split('/').pop()!.slice(0, -'.yaml'.length), rel]));
+const byStem = new Map<string, string>(
+	featureFiles(FEATURES_DIR).map((rel) => [rel.split('/').pop()!.slice(0, -'.yaml'.length), rel]),
+);
 
 /** Prop names a feature's `concept_settings.compose` pulls in (recursively) — shared BY COMPOSITION,
  *  so an own `prop:` entry that merely refines one of these is an overlay, not a re-declaration. */
 function composedProps(doc: FeatureDoc, seen = new Set<string>()): Set<string> {
 	const out = new Set<string>();
 	const raw = doc?.concept_settings?.compose;
-	const slugs = typeof raw === 'string' ? [raw] : Array.isArray(raw) ? raw.filter((s): s is string => typeof s === 'string') : [];
+	const slugs =
+		typeof raw === 'string'
+			? [raw]
+			: Array.isArray(raw)
+				? raw.filter((s): s is string => typeof s === 'string')
+				: [];
 	for (const slug of slugs) {
 		const rel = byStem.get(slug);
 		if (!rel || seen.has(rel)) continue;
@@ -70,30 +81,28 @@ function declaredProps(rel: string): Set<string> {
 	return new Set(ownPropKeys(doc).filter((k) => !inherited.has(k)));
 }
 
-const files = featureFiles(FEATURES_DIR);
-const props = files.map((f) => [f, declaredProps(f)] as const);
-
-const dups: Array<{ pair: [string, string]; shared: string[] }> = [];
-for (let i = 0; i < props.length; i++) {
-	for (let j = i + 1; j < props.length; j++) {
-		const [a, aKeys] = props[i]!;
-		const [b, bKeys] = props[j]!;
-		if (ALLOW.has([a, b].sort().join('|'))) continue;
-		const shared = [...aKeys].filter((k) => bKeys.has(k)).sort();
-		if (shared.length >= 2) dups.push({ pair: [a, b], shared });
-	}
-}
-
-if (dups.length === 0) process.exit(0);
-
-console.error(`\n✖ grimoire feature pair(s) re-declaring a prop GROUP (≥2 own-declared props):\n`);
-for (const { pair, shared } of dups) {
-	console.error(`  ${pair.join(' + ')}  —  { ${shared.join(', ')} }`);
-}
-console.error(`
+runGuard(
+	{
+		header: () =>
+			`\n✖ grimoire feature pair(s) re-declaring a prop GROUP (≥2 own-declared props):\n`,
+		hint: `
 A single shared prop is a vocab citation and fine; a shared group of 2+ props is a shape that travels
 together. Extract those props into a smaller feature and have both files \`compose:\` it instead of
 re-listing them. If a pair genuinely shares a group by coincidence, add its \`a|b\` key (files sorted)
 to ALLOW in packages/grimoire/scripts/guard-feature-dupes.ts with a WHY.
-`);
-process.exit(1);
+`,
+	},
+	(fail) => {
+		const props = featureFiles(FEATURES_DIR).map((f) => [f, declaredProps(f)] as const);
+		for (let i = 0; i < props.length; i++) {
+			for (let j = i + 1; j < props.length; j++) {
+				const [a, aKeys] = props[i]!;
+				const [b, bKeys] = props[j]!;
+				if (ALLOW.has([a, b].sort().join('|'))) continue;
+				const shared = [...aKeys].filter((k) => bKeys.has(k)).sort();
+				if (shared.length >= 2) fail(`${a} + ${b}  —  { ${shared.join(', ')} }`);
+			}
+		}
+		return '';
+	},
+);

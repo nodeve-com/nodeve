@@ -13,7 +13,8 @@
 //     merged onto the loaded grimoire device it puts each measurand column's `slug` in place.
 
 import { type CatalogDevice, type CatalogIdentity, loadDevice } from './catalog.ts';
-import { type MeasurandCell, type Obj, isObj, measurandCells, specSlug, specSlugQualified } from './measurand-tree.ts';
+import { isPlainObject } from 'remeda';
+import { type MeasurandCell, type Obj, measurandCells, specSlug, specSlugQualified } from './measurand-tree.ts';
 
 /** A baked site bundle, as read from `site.generated.json` (snake_case, pre-validated by the bake). */
 export type SiteBundle = Record<string, unknown>;
@@ -36,13 +37,13 @@ export interface ResolvedDevice {
 	siteLocal: boolean;
 }
 
-const asObj = (v: unknown): Obj => (isObj(v) ? v : {});
+const asObj = (v: unknown): Obj => (isPlainObject(v) ? v : {});
 // Named identityOf (not identity) — extracts an identity object, unlike remeda.identity.
 const identityOf = (v: unknown): { archetype?: string; slug?: string } => asObj(v) as never;
 const refKey = ({ archetype, slug }: CatalogIdentity): string => `${archetype}/${slug}`;
 
 // The `identity.slug` handle of an array element, or undefined for a positionally-keyed one.
-const slugKey = (el: unknown): string | undefined => (isObj(el) && isObj(el.identity) ? ((el.identity as Obj).slug as string | undefined) : undefined);
+const slugKey = (el: unknown): string | undefined => (isPlainObject(el) && isPlainObject(el.identity) ? ((el.identity as Obj).slug as string | undefined) : undefined);
 
 // Overlay the sparse patch onto the device tree. Not remeda.mergeDeep: that REPLACES arrays, but a
 // patch array is sparse and must merge element-wise onto the device's. Two array shapes coexist:
@@ -64,7 +65,7 @@ function overlayPatch(base: unknown, patch: unknown): unknown {
 		}
 		return base.map((el, i) => overlayPatch(el, patch[i]));
 	}
-	if (isObj(base) && isObj(patch)) {
+	if (isPlainObject(base) && isPlainObject(patch)) {
 		const out: Obj = { ...base };
 		for (const [k, v] of Object.entries(patch)) out[k] = overlayPatch(base[k], v);
 		return out;

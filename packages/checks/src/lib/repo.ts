@@ -16,11 +16,41 @@ export function repoRoot(): string {
  * Tracked files matching any of `globs` (git pathspecs, repo-root-relative).
  * git pathspec `*` matches `/`, so `apps/*.ts` recurses into subdirs. Returns
  * `[]` for an empty glob list — an unconfigured opt-in check then no-ops.
+ * `git ls-files` still lists index-tracked paths deleted from the working tree
+ * (an unstaged delete — e.g. a regen dropped a generated file); those are gone
+ * on disk, so a working-tree scan skips them rather than crashing on the read.
  */
-export function gitFiles(root: string, globs: string[]): string[] {
+export function gitFiles(root: string, globs: string[], ignore: string[] = []): string[] {
 	if (globs.length === 0) return [];
 	const out = execFileSync('git', ['ls-files', ...globs], { cwd: root, encoding: 'utf8' });
-	return out.split('\n').filter(Boolean);
+	const drop = globMatcher(ignore);
+	return out.split('\n').filter((f) => f && !drop(f) && existsSync(join(root, f)));
+}
+
+/**
+ * A predicate matching a repo-relative path against any of `patterns`. `**` spans path
+ * separators (`generated/**` drops the whole subtree), `*`/`?` stay within one segment. The
+ * single `ignore`-glob semantics every scoped check shares — defined once, used by every
+ * file-listing path (`gitFiles`, `tsSources`, the length engine).
+ */
+export function globMatcher(patterns: string[]): (rel: string) => boolean {
+	if (patterns.length === 0) return () => false;
+	const res = patterns.map((p) => {
+		let out = '';
+		for (let i = 0; i < p.length; i++) {
+			const c = p[i]!;
+			if (c === '*') {
+				if (p[i + 1] === '*') {
+					i++;
+					if (p[i + 1] === '/') i++;
+					out += '.*';
+				} else out += '[^/]*';
+			} else if (c === '?') out += '[^/]';
+			else out += /[.+^${}()|[\]\\]/.test(c) ? `\\${c}` : c;
+		}
+		return new RegExp(`^${out}$`);
+	});
+	return (rel) => res.some((r) => r.test(rel));
 }
 
 /**

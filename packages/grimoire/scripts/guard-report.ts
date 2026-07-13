@@ -1,29 +1,28 @@
-// Shared by the guards: accumulate failure lines, then emit a pass/fail summary and exit.
-// A guard's only variable is how it FORMATS one failure line — collection, printing, and exit
-// codes are identical, so they live here once.
+// Shared by the guards: collect failure lines, emit a pass/fail summary, exit.
+// A guard's only variables are how it FORMATS a failure line and what it says on pass/fail —
+// collection, printing, and exit codes are identical, so they live here once.
 
-export class GuardReport {
-	private readonly lines: string[] = [];
+export type GuardOutput = {
+	/** Failure header, given the failure count. */
+	header: (count: number) => string;
+	/** Optional remediation hint printed under the failure lines. */
+	hint?: string;
+};
 
-	/** Record one pre-formatted failure line. */
-	fail(line: string): void {
-		this.lines.push(line);
+/** Run a guard: `collect` records failures via `fail` and returns the pass message ('' = silent).
+ *  No failures → print the pass message and exit 0; else print header + indented lines + hint, exit 1. */
+export function runGuard(
+	out: GuardOutput,
+	collect: (fail: (line: string) => void) => string,
+): never {
+	const lines: string[] = [];
+	const pass = collect((line) => lines.push(line));
+	if (lines.length === 0) {
+		if (pass) console.log(pass);
+		process.exit(0);
 	}
-
-	get count(): number {
-		return this.lines.length;
-	}
-
-	/** No failures → print `pass` (if any) and exit 0; else print `header(count)`, each indented
-	 *  line, an optional `hint`, and exit 1. */
-	done(pass: string, header: (count: number) => string, hint = ''): never {
-		if (this.lines.length === 0) {
-			if (pass) console.log(pass);
-			process.exit(0);
-		}
-		console.error(header(this.lines.length));
-		for (const line of this.lines) console.error(`  ${line}`);
-		if (hint) console.error(hint);
-		process.exit(1);
-	}
+	console.error(out.header(lines.length));
+	for (const line of lines) console.error(`  ${line}`);
+	if (out.hint) console.error(out.hint);
+	process.exit(1);
 }

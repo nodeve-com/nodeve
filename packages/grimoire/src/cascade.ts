@@ -13,8 +13,10 @@
 
 import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { mergeDeep } from 'remeda';
+import { isPlainObject, mergeDeep } from 'remeda';
 import { readYaml } from './concept-sources.ts';
+
+type Obj = Record<string, unknown>;
 
 /** A raw, merged catalog leaf before schema validation: its tree path, declared archetype, the
  *  deep-merged snake_case data (with `archetype`/`aliases` filing metadata stripped out), and any
@@ -26,8 +28,6 @@ export interface CascadeEntry {
   data: Record<string, unknown>; // merged snake_case device data (no `archetype`/`aliases` keys)
 }
 
-type Obj = Record<string, unknown>;
-const isObj = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
 
 /** An entry's effective slug — `identity.slug` when authored, else the file stem verbatim. THE
  *  identity a consumer references and every derived sensor id starts from
@@ -46,7 +46,7 @@ const isDefaults = (f: string): boolean => f === '_defaults.yaml';
 const isLeaf = (f: string): boolean => f.endsWith('.yaml') && !isDefaults(f) && !f.endsWith('.example.yaml');
 
 /** Walk `dir`, accumulating the cascaded `_defaults.yaml` from the root down. */
-function walk(dir: string, segments: string[], inherited: Obj, out: CascadeEntry[]): void {
+function walkCascade(dir: string, segments: string[], inherited: Obj, out: CascadeEntry[]): void {
   const names = readdirSync(dir, { withFileTypes: true });
   // Fold this level's _defaults.yaml into the inherited context before descending/leafing.
   const defaultsFile = names.find((e) => e.isFile() && isDefaults(e.name));
@@ -54,13 +54,13 @@ function walk(dir: string, segments: string[], inherited: Obj, out: CascadeEntry
 
   for (const entry of names.sort((a, b) => a.name.localeCompare(b.name))) {
     if (entry.isDirectory()) {
-      walk(join(dir, entry.name), [...segments, entry.name], ctx, out);
+      walkCascade(join(dir, entry.name), [...segments, entry.name], ctx, out);
     } else if (isLeaf(entry.name)) {
       const merged = mergeDeep(ctx, readYaml(join(dir, entry.name))) as Obj;
       const { archetype: topLevel, aliases, ...data } = merged;
       // The archetype selector's two authored forms: legacy top-level `archetype:` or the newer
       // `identity.archetype:` (identity stays in the data — it carries the slug and is device fact).
-      const archetype = topLevel ?? (isObj(data.identity) ? data.identity.archetype : undefined);
+      const archetype = topLevel ?? (isPlainObject(data.identity) ? data.identity.archetype : undefined);
       const path = [...segments, entry.name.replace(/\.yaml$/, '')].join('/');
       if (typeof archetype !== 'string') {
         throw new Error(`grimoire catalog leaf ${join(dir, entry.name)} has no \`archetype\` (declare it in a _defaults.yaml)`);
@@ -76,6 +76,6 @@ function walk(dir: string, segments: string[], inherited: Obj, out: CascadeEntry
 /** Load every catalog leaf under `root`, deep-merging the `_defaults.yaml` cascade, sorted by path. */
 export function loadCascade(root: string): CascadeEntry[] {
   const out: CascadeEntry[] = [];
-  walk(root, [], {}, out);
+  walkCascade(root, [], {}, out);
   return out.sort((a, b) => a.path.localeCompare(b.path));
 }

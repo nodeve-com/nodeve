@@ -3,18 +3,19 @@
 // from the YAML layers by `pnpm generate`; no YAML on the runtime path), plus the
 // topic/env derivations every consumer shares.
 
-import { type ConceptTypes, conceptSchemas } from './generated/index.ts';
-import { validateAndCamelize } from './parse.ts';
+import { snakeKeyByCamel } from '@nodeve/schema-case';
+import { type ConceptTypes, conceptSchema } from './generated/index.ts';
+import { parseSnake } from './parse.ts';
 import type { SiteBundle } from './site-view.ts';
 
 export type { ConceptTypes };
-export { conceptSchemas };
+export { conceptSchema };
 
-/** Validate snake_case `data` against a concept's baked TypeBox schema, then camelCase it to the
- *  generated type — THE one parse every consumer of a concept instance goes through. The schema is
- *  a live `Type.*` value (no fs), so this is the same TypeBox `Value.Check` the whole package uses. */
+/** Rename snake_case `data` to camel (mapping-driven, BEFORE validation), validate against the
+ *  concept's baked camelCase TypeBox schema — THE one parse every consumer of a concept instance
+ *  goes through. The schema is a live `Type.*` value (no fs). */
 export function parseConcept<K extends keyof ConceptTypes>(concept: K, data: unknown): ConceptTypes[K] {
-	return validateAndCamelize<ConceptTypes[K]>(conceptSchemas[concept], data, `${concept} config`);
+	return parseSnake<ConceptTypes[K]>(conceptSchema[concept], data, `${concept} config`);
 }
 
 // --- The site concepts consumers parse today (thin named wrappers, keeping call sites stable) ---
@@ -78,14 +79,16 @@ export const sensorStateTopic = (topicPrefix: string, adapter: SiteAdapter, name
 
 // --- MQTT env-var names: derived from the baked schema's `x-env-var` annotations ---
 
-// Walk a schema's `properties` tree and collect every `x-env-var`, keyed by the field path joined
-// with `_` — the projection that turns the self-describing schema into a flat name map.
+// Walk a schema's `properties` tree and collect every `x-env-var`, keyed by the SNAKE field path
+// joined with `_` (the schema is camel; each node's `x-key-map` gives the source spelling back) —
+// the projection that turns the self-describing schema into a flat name map, stable across casings.
 function collectEnvVars(schema: unknown, prefix: readonly string[] = []): Record<string, string> {
 	const props = (schema as { properties?: Record<string, unknown> }).properties;
 	if (!props) return {};
+	const snakeOf = snakeKeyByCamel(schema);
 	const out: Record<string, string> = {};
 	for (const [key, sub] of Object.entries(props)) {
-		const path = [...prefix, key];
+		const path = [...prefix, snakeOf[key] ?? key];
 		const name = (sub as { 'x-env-var'?: string })['x-env-var'];
 		if (typeof name === 'string') out[path.join('_')] = name;
 		Object.assign(out, collectEnvVars(sub, path));
@@ -95,7 +98,7 @@ function collectEnvVars(schema: unknown, prefix: readonly string[] = []): Record
 
 // The CANONICAL env-var names a deployment supplies each connection field under — DERIVED from
 // the schema's `x-env-var` annotations, so the names live in ONE place and can't drift.
-export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(conceptSchemas.mqtt_connection);
+export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(conceptSchema.mqtt_connection);
 
 /** Every canonical MQTT_* env var name (guard-mqtt-env.sh's allow-list). */
 export const MQTT_ENV_NAMES: readonly string[] = [...new Set(Object.values(MQTT_ENV))];

@@ -18,7 +18,7 @@ import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
 import { CONCEPTS } from '../src/concept-sources.ts';
-import { GuardReport } from './guard-report.ts';
+import { runGuard } from './guard-report.ts';
 
 const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
 
@@ -26,27 +26,37 @@ const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
 // property key — is a field/enum that belongs on a feature, not on the class. `schema:` is the
 // cross-field projection passthrough (kit/project.ts merges it into the root object schema) — the
 // archetype-level analog of a feature's own `schema:` slot, for invariants that span feature slots.
-const ALLOWED = new Set(['identity', 'title', 'description', 'refs', 'concept_settings', 'feature', 'archetype', 'schema']);
+const ALLOWED = new Set([
+	'identity',
+	'title',
+	'description',
+	'refs',
+	'concept_settings',
+	'feature',
+	'archetype',
+	'schema',
+]);
 
-const report = new GuardReport();
-
-for (const path of yamlFiles(ARCHETYPES_DIR)) {
-	const rel = path.slice(CONCEPTS.length + 1);
-	const doc = parseYaml(readFileSync(path, 'utf8'));
-	if (doc === null || typeof doc !== 'object' || Array.isArray(doc)) continue;
-	for (const key of Object.keys(doc as Record<string, unknown>)) {
-		if (!ALLOWED.has(key)) report.fail(`${key}  —  ${rel}`);
-	}
-}
-
-report.done(
-	'',
-	() => `\n✖ archetype(s) carrying a key that isn't a feature:\n`,
-	`
+runGuard(
+	{
+		header: () => `\n✖ archetype(s) carrying a key that isn't a feature:\n`,
+		hint: `
 An archetype assembles FEATURES ONLY. The allowed top-level keys are:
   ${[...ALLOWED].join(' / ')}
 A \`prop:\` map, a bare property key, or an \`enums:\` list is a field/enum — re-home it onto a
 FEATURE first (a feature's \`prop:\` map, or a feature's own \`enums:\`), then reference/compose that
 feature from the archetype. See concepts/README.md ("Archetype").
 `,
+	},
+	(fail) => {
+		for (const path of yamlFiles(ARCHETYPES_DIR)) {
+			const rel = path.slice(CONCEPTS.length + 1);
+			const doc = parseYaml(readFileSync(path, 'utf8'));
+			if (doc === null || typeof doc !== 'object' || Array.isArray(doc)) continue;
+			for (const key of Object.keys(doc as Record<string, unknown>)) {
+				if (!ALLOWED.has(key)) fail(`${key}  —  ${rel}`);
+			}
+		}
+		return '';
+	},
 );

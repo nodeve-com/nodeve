@@ -31,6 +31,7 @@
     "guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-archetype-features.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts"
   },
   "dependencies": {
+    "@nodeve/schema-case": "workspace:*",
     "@sinclair/typebox": "catalog:",
     "remeda": "catalog:",
     "remeda-humps": "catalog:",

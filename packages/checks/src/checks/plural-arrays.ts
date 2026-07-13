@@ -92,12 +92,13 @@ array. \`pluralize\` decides what counts as plural: add a domain word it misread
 confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::name\`.
 --warn downgrades this to report-only.`,
 
-	run({ root, cfg, paths, allowlist }) {
+	run(gate) {
+		const { cfg, allowlist } = gate;
 		const plural = new Set(cfg.plural);
 		const singular = new Set(cfg.singular);
 		const findings: Finding[] = [];
 
-		forEachTsNode(root, cfg.globs, paths, (node, rel, src) => {
+		forEachTsNode(gate, (node, rel, src) => {
 			if (
 				!ts.isVariableDeclaration(node) ||
 				!ts.isIdentifier(node.name) ||
@@ -115,7 +116,7 @@ confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::n
 				const { line } = src.getLineAndCharacterOfPosition(node.name.getStart());
 				findings.push({ rel, line: line + 1, name: node.name.text, reason });
 			}
-		});
+		}, true);
 
 		if (findings.length === 0) return { status: 'pass', summary: 'clean' };
 

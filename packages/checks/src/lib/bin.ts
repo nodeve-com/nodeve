@@ -5,7 +5,8 @@
  * lives here once, typed, so a bin destructures what it needs instead.
  */
 import { loadConfig, parseArgs, type Config } from './config.js';
-import { gitFiles, repoRoot } from './repo.js';
+import { type Scoped } from './length.js';
+import { gitFiles, globMatcher, repoRoot } from './repo.js';
 
 export type Gate<K extends keyof Config> = {
 	/** Absolute git work-tree root; every check resolves scope against it. */
@@ -48,9 +49,24 @@ export async function loadGate<K extends keyof Config>(
 /**
  * Tracked `.ts` sources in scope, minus declaration and test files. Explicit
  * `paths` (staged files) override the configured globs; pass `[]` to always
- * scan the full configured scope regardless of what's staged.
+ * scan the full configured scope regardless of what's staged. `ignore` globs
+ * drop matches from either scope (generated output, vendored trees).
  */
-export function tsSources(root: string, globs: string[], paths: string[] = []): string[] {
-	const scope = paths.length > 0 ? paths : gitFiles(root, globs);
+export function tsSources(root: string, globs: string[], paths: string[] = [], ignore: string[] = []): string[] {
+	const drop = globMatcher(ignore);
+	const scope = paths.length > 0 ? paths.filter((f) => !drop(f)) : gitFiles(root, globs, ignore);
 	return scope.filter((f) => f.endsWith('.ts') && !/\.(d|test|spec|test-d)\.ts$/.test(f));
 }
+
+/** The Gate fields the scope resolver reads — any `Gate<K>` whose section is `Scoped` satisfies it. */
+export type ScopedGate = { root: string; cfg: Scoped; paths: string[] };
+
+/**
+ * In-scope TS sources for a check, straight from its gate — the one place a check turns config
+ * into a file list, so no call restates `root`/`globs`/`ignore`/`paths`. `staged` honors the
+ * argv paths (lefthook's staged files) to narrow the run; the default scans the FULL configured
+ * scope, which the whole-tree checks (`inline-dupes`) require — a relation needs both files present.
+ * `forEachTsNode` walks these; name-list checks iterate them directly.
+ */
+export const scopedTsSources = ({ root, cfg, paths }: ScopedGate, staged = false): string[] =>
+	tsSources(root, cfg.globs, staged ? paths : [], cfg.ignore);

@@ -8,15 +8,15 @@
 // measurand metadata (intervals / si_unit …) and, once the patch is merged on, its `slug`.
 
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
+import { isPlainObject } from 'remeda';
 
 export type Obj = Record<string, unknown>;
-export const isObj = (v: unknown): v is Obj => Boolean(v) && typeof v === 'object' && !Array.isArray(v);
 
 const QUANTITY_KIND = new Set(Object.keys(quantityKinds));
 
 /** Is this feature node a measurand feature — does it carry a `feature_spec` spec body (the
  *  {combined, part, instances} breakdown of its quantity columns)? */
-export const isMeasurandFeature = (node: unknown): node is Obj => isObj(node) && isObj(node.feature_spec);
+export const isMeasurandFeature = (node: unknown): node is Obj => isPlainObject(node) && isPlainObject(node.feature_spec);
 
 /** The quantity_kind keys directly on a node (its measured-quantity columns). */
 export const quantityCols = (node: Obj): string[] => Object.keys(node).filter((k) => QUANTITY_KIND.has(k));
@@ -30,7 +30,7 @@ export const quantityCols = (node: Obj): string[] => Object.keys(node).filter((k
  *  `slug_qualified` (instance-prefixed, globally unique — HA's entity id). */
 export const specSlugPatch = (slug: string, slugQualified: string): Obj => ({ identity: { slug, slug_qualified: slugQualified } });
 const idString = (node: Obj, key: 'slug' | 'slug_qualified'): string | undefined =>
-	isObj(node.identity) && typeof node.identity[key] === 'string' ? (node.identity[key] as string) : undefined;
+	isPlainObject(node.identity) && typeof node.identity[key] === 'string' ? (node.identity[key] as string) : undefined;
 /** Read a column node's baked SCOPED slug back from its specification's id handle (undefined if unbaked). */
 export const specSlug = (node: Obj): string | undefined => idString(node, 'slug');
 /** Read a column node's baked QUALIFIED slug back from its specification's id handle (undefined if unbaked). */
@@ -56,8 +56,8 @@ export function measurandCells(device: Obj): MeasurandCell[] {
 		const push = (src: Obj, coord: { partId?: string; ordinal?: number }): void => {
 			for (const quantityKind of quantityCols(src)) cells.push({ feature, quantityKind, node: src[quantityKind] as Obj, ...coord });
 		};
-		if (isObj(fs.combined)) push(fs.combined, {}); // the whole / aggregate (incl. a single spec feature's columns)
-		if (isObj(fs.part)) for (const [partId, p] of Object.entries(fs.part as Obj)) push(p as Obj, { partId });
+		if (isPlainObject(fs.combined)) push(fs.combined, {}); // the whole / aggregate (incl. a single spec feature's columns)
+		if (isPlainObject(fs.part)) for (const [partId, p] of Object.entries(fs.part as Obj)) push(p as Obj, { partId });
 		if (Array.isArray(fs.instances)) (fs.instances as Obj[]).forEach((inst, i) => push(inst, { ordinal: i + 1 }));
 	}
 	return cells;

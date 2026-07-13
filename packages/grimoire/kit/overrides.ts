@@ -11,7 +11,8 @@
 //   parts: <category> | {<category>: [ids]} — instance-key the field by a property category its
 //                                  feature cites via `enums:`; a subset is a validated FILTER of
 //                                  the category, never a second member list.
-//   compose: [slug…]             — flatten the named features' props into the field's object shape.
+//   compose: [slug…]             — literal overlay: merge the named siblings' whole resolved nodes
+//                                  in (props + node data); the outer def wins.
 //   schema: {…}                  — deep-merge into the field's `schema:` block. `required: true`
 //                                  stays on the field (the schema projection reads it into the
 //                                  parent's `required`); `env-var` is normalized to `x-env-var`.
@@ -19,8 +20,8 @@
 //   anything else (an object)    — descend into that child field (through an `array` wrapper).
 // The resolver is INJECTED (`Resolver`) — this module never reads the concept tree itself.
 
-import { clone, mergeDeep } from 'remeda';
-import { type Obj, asList, enumerationMembers, isObj } from '../src/concept-sources.ts';
+import { clone, isPlainObject, mergeDeep } from 'remeda';
+import { type Obj, asList, enumerationMembers } from '../src/concept-sources.ts';
 
 /** Object-node scaffold every resolved shape starts from (kit/compile.ts builds these). Authoring
  *  vocabulary: the props map is `prop`, verbatim from the YAML — no synthesized `fields`/`required`.
@@ -37,7 +38,7 @@ export interface Resolver {
 
 /** A def's `prop:` map — one `<name>: overlay` entry per field it contributes or refines. */
 export function overridesOf(def: Obj): Obj {
-	return isObj(def.prop) ? clone(def.prop) : {};
+	return isPlainObject(def.prop) ? clone(def.prop) : {};
 }
 
 /** Apply one field's overlay to its resolved node. Each overlay key is CONSUMED as it's handled;
@@ -63,7 +64,7 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// `parts: <enumeration>` keys by every member; `parts: {<enumeration>: [ids]}` NARROWS to a
 	// validated subset. Each part block (and the shared level) is the field's own shape minus
 	// the enumeration field (the KEY carries that identity).
-	if (typeof o.parts === 'string' || isObj(o.parts)) {
+	if (typeof o.parts === 'string' || isPlainObject(o.parts)) {
 		consumed.add('parts');
 		const partMap: Obj = typeof o.parts === 'string' ? { [o.parts]: null } : o.parts;
 		for (const [enumeration, idsRaw] of Object.entries(partMap)) {
@@ -74,23 +75,24 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 				throw new Error(`grimoire compile: parts filter on "${key}" names non-members of enumeration/${enumeration}/: ${stale.join(', ')} (via ${stack.join(' → ')})`);
 			}
 			const value = clone(out);
-			if (isObj(value.prop)) delete (value.prop as Obj)[enumeration];
+			if (isPlainObject(value.prop)) delete (value.prop as Obj)[enumeration];
 			out = clone(out);
-			if (isObj(out.prop)) {
+			if (isPlainObject(out.prop)) {
 				delete (out.prop as Obj)[enumeration];
 				for (const id of ids) (out.prop as Obj)[id] = clone(value);
 			}
 		}
 	}
 
-	// compose: overlay — flatten the named features' props into the field's object shape (shared
-	// level only, never into part blocks). Each prop keeps its own `schema.required`, so required-ness
-	// travels with the field — no separate array to merge.
+	// compose: a LITERAL overlay — the named sibling's whole resolved node merges in (shared level
+	// only, never into part blocks): its props onto the shape, its node data UNDER the field's own.
+	// Each prop keeps its own `schema.required`, so required-ness travels with the field.
 	if (Array.isArray(o.compose)) {
 		consumed.add('compose');
 		for (const slug of o.compose.map(String)) {
-			const composed = resolve.concept(slug, stack);
-			Object.assign(out.prop as Obj, clone(composed.prop as Obj));
+			const { prop, ...data } = resolve.concept(slug, stack);
+			Object.assign(out.prop as Obj, clone(prop as Obj));
+			out = mergeDeep(clone(data), out) as Obj;
 		}
 	}
 
@@ -106,7 +108,7 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 
 	// schema: deep-merge into the node's `schema:` block (a leaf's block, or an object node's patch
 	// the projection overlays last).
-	if (isObj(o.schema)) {
+	if (isPlainObject(o.schema)) {
 		consumed.add('schema');
 		const patch = clone(o.schema);
 		if ('env-var' in patch) {
@@ -125,9 +127,9 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// not by a keyword list here.
 	for (const [childKey, childO] of Object.entries(o)) {
 		if (consumed.has(childKey)) continue;
-		const target = isObj(out.array) ? (out.array as Obj) : out;
+		const target = isPlainObject(out.array) ? (out.array as Obj) : out;
 		const prop = target.prop as Obj | undefined;
-		if (isObj(childO) && prop && childKey in prop) {
+		if (isPlainObject(childO) && prop && childKey in prop) {
 			prop[childKey] = applyOverride(prop[childKey] as Obj, childO, childKey, stack, resolve);
 		} else {
 			out = { ...out, [childKey]: clone(childO) };

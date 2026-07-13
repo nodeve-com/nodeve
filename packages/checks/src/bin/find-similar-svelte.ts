@@ -1,15 +1,14 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 /**
  * Finds structurally similar Svelte components that could potentially be consolidated.
  *
- * Usage: bun scripts/find-similar-components.ts [directory] [threshold]
- *   directory: Path to scan (default: src/lib/components)
- *   threshold: Similarity threshold 0-1 (default: 0.7)
- *
- * Example: bun scripts/find-similar-components.ts src/lib/components/ui 0.8
+ * Usage: nodeve-check-find-similar-svelte [directory] [threshold]
+ *   directory: Path to scan (default: src/lib)
+ *   threshold: Similarity threshold 0-1 (default: 0.6)
  */
 
-import { Glob } from 'bun'
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 const DEFAULT_DIR = 'src/lib'
 const DEFAULT_THRESHOLD = 0.6
@@ -157,9 +156,9 @@ function calculateSimilarity(a: ComponentInfo, b: ComponentInfo): number {
 }
 
 /** Analyze a single Svelte file */
-async function analyzeComponent(filePath: string): Promise<ComponentInfo | null> {
+function analyzeComponent(filePath: string): ComponentInfo | null {
 	try {
-		const source = await Bun.file(filePath).text()
+		const source = readFileSync(filePath, 'utf8');
 		const template = extractTemplate(source)
 		const script = extractScript(source)
 
@@ -180,19 +179,16 @@ async function findSimilarComponents(
 	directory: string,
 	threshold: number
 ): Promise<Array<{ fileA: string; fileB: string; similarity: number }>> {
-	const glob = new Glob('**/*.svelte')
-	const files: string[] = []
-
-	for await (const file of glob.scan(directory)) {
-		files.push(`${directory}/${file}`)
-	}
+	const files = readdirSync(directory, { recursive: true, encoding: 'utf8' })
+		.filter((f) => f.endsWith('.svelte'))
+		.map((f) => join(directory, f))
 
 	console.log(`Scanning ${files.length} Svelte components in ${directory}...\n`)
 
 	// Analyze all components
 	const components: ComponentInfo[] = []
 	for (const file of files) {
-		const info = await analyzeComponent(file)
+		const info = analyzeComponent(file)
 		if (info && info.templateTokens.length > 0) {
 			components.push(info)
 		}
@@ -225,8 +221,7 @@ function shortPath(fullPath: string): string {
 	return fullPath.replace(process.cwd() + '/', '')
 }
 
-/** Main entry point */
-async function main() {
+async function reportSimilarComponents() {
 	const args = process.argv.slice(2)
 	const directory = args[0] || DEFAULT_DIR
 	const threshold = parseFloat(args[1]) || DEFAULT_THRESHOLD
@@ -257,4 +252,4 @@ async function main() {
 	console.log('Consider reviewing these pairs for potential consolidation.')
 }
 
-main().catch(console.error)
+reportSimilarComponents().catch(console.error)

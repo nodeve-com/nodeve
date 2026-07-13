@@ -8,7 +8,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import ts from 'typescript';
-import { tsSources } from './bin.js';
+import { scopedTsSources, type ScopedGate } from './bin.js';
 
 /** Strip `!` and parens so `item.href!` / `(x)` read as the bare underlying expression. */
 export function unwrap(node: ts.Expression): ts.Expression {
@@ -29,13 +29,12 @@ export function parseSource(absPath: string): ts.SourceFile {
  * would otherwise each re-roll — so a caller supplies only what it extracts.
  */
 export function forEachTsNode(
-	root: string,
-	globs: string[],
-	paths: string[],
+	gate: ScopedGate,
 	onNode: (node: ts.Node, rel: string, src: ts.SourceFile) => void,
+	staged = false,
 ): void {
-	for (const rel of tsSources(root, globs, paths)) {
-		const src = parseSource(join(root, rel));
+	for (const rel of scopedTsSources(gate, staged)) {
+		const src = parseSource(join(gate.root, rel));
 		const visit = (node: ts.Node): void => {
 			onNode(node, rel, src);
 			ts.forEachChild(node, visit);

@@ -13,16 +13,14 @@
 // deploying repo owns *where* sites live and *writing* the artifact (grimoire never resolves a sites
 // path from its own installed location); it drives this via `bakeSite` from a thin wrapper.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { isPlainObject } from 'remeda';
 import { basename, join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { effectiveSlug, loadCascade } from './cascade.ts';
-import { conceptSchemas } from './generated/index.ts';
 import { loadDevice } from './catalog.ts';
 import { scopedSensorId, sensorId } from './sensor-id.ts';
-import { type Obj, isMeasurandFeature, isObj, quantityCols, specSlugPatch } from './measurand-tree.ts';
-import { validateSite } from './validate-site.ts';
-
-const isConcept = (name: string): boolean => name in conceptSchemas;
+import { type Obj, isMeasurandFeature, quantityCols, specSlugPatch } from './measurand-tree.ts';
+import { isConcept, validateSite } from './validate-site.ts';
 
 const readYaml = (path: string): unknown => parseYaml(readFileSync(path, 'utf8'));
 const stemKey = (file: string): string => basename(file, '.yaml').replace(/-/g, '_');
@@ -78,7 +76,7 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 	// merge it onto the loaded device themselves (PLANS/deterministic-sensor-ids.md). The structural
 	// grammar (isMeasurandFeature/quantityCols) is shared with the reader in kit/measurand-tree.ts.
 	const featureSlug = (node: Obj, feature: string): string =>
-		isObj(node.identity) && typeof (node.identity as Obj).slug === 'string'
+		isPlainObject(node.identity) && typeof (node.identity as Obj).slug === 'string'
 			? ((node.identity as Obj).slug as string)
 			: feature;
 	const catalogPatch = (entry: Record<string, unknown>): Obj => {
@@ -105,8 +103,8 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 				Object.fromEntries(quantityCols(src).map((qk) => [qk, slugAt(partId, ordinal, qk)]));
 			const fs = node.feature_spec as Obj;
 			const fp: Obj = {};
-			if (isObj(fs.combined)) fp.combined = cols(fs.combined); // the whole / a single spec feature's columns
-			if (isObj(fs.part)) fp.part = Object.fromEntries(Object.entries(fs.part as Obj).map(([pid, p]) => [pid, cols(p as Obj, pid)]));
+			if (isPlainObject(fs.combined)) fp.combined = cols(fs.combined); // the whole / a single spec feature's columns
+			if (isPlainObject(fs.part)) fp.part = Object.fromEntries(Object.entries(fs.part as Obj).map(([pid, p]) => [pid, cols(p as Obj, pid)]));
 			if (Array.isArray(fs.instances)) fp.instances = (fs.instances as Obj[]).map((inst, i) => cols(inst, undefined, i + 1));
 			patch[feature] = { feature_spec: fp };
 		}
@@ -128,7 +126,7 @@ export function bakeSite(siteDir: string, label: string = basename(siteDir)): Re
 			delete entry[key];
 		}
 		if (Object.keys(patch).length > 0) {
-			const inventory = (isObj(entry.inventory) ? entry.inventory : (entry.inventory = {})) as Obj;
+			const inventory = (isPlainObject(entry.inventory) ? entry.inventory : (entry.inventory = {})) as Obj;
 			inventory.catalog_patch = patch;
 		}
 	}

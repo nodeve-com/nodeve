@@ -2,10 +2,11 @@
 // dir into its merged member-data dict, and render the TS vocab modules a code consumer imports.
 // DATA FIRST — the .json is the wire shape (snake_case); the .ts vocab modules camelCase on top.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { isPlainObject } from 'remeda';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import humps from 'remeda-humps';
-import { ENUMERATION_DIR, isObj } from '../src/concept-sources.ts';
+import { ENUMERATION_DIR } from '../src/concept-sources.ts';
 import { renderJson } from './json-schema.ts';
 
 /** One enumeration's `code → member data` dict from its enumeration/<name>/*.yaml files (`code` =
@@ -23,7 +24,7 @@ export function enumerationMemberData(name: string): Record<string, unknown> {
 		const doc = { ...defaults, ...((parseYaml(readFileSync(join(dir, file), 'utf8')) ?? {}) as Record<string, unknown>) };
 		// `identity` is real member data (symbol, url, iri_template, broader). Strip only the filing
 		// SELECTOR: `archetype` (the schema selector — compiler plumbing) and the reserved `id` (DB uuid).
-		if (isObj(doc.identity)) {
+		if (isPlainObject(doc.identity)) {
 			const identity = { ...doc.identity };
 			delete identity.archetype;
 			delete identity.id;

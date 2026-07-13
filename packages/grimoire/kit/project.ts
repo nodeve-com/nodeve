@@ -5,12 +5,12 @@
 // and an object node collects those into its draft-07 `required` (the flag never survives into the
 // emitted schema).
 
-import { clone, mergeDeep } from 'remeda';
-import { type Obj, isObj } from '../src/concept-sources.ts';
+import { clone, isPlainObject, mergeDeep } from 'remeda';
+import { type Obj } from '../src/concept-sources.ts';
 
 /** A field node marks itself mandatory via `schema.required: true` (authored, kept verbatim in the
  *  data tree). Its parent object reads this to build its draft-07 `required` array. */
-const isRequired = (node: Obj): boolean => isObj(node.schema) && (node.schema as Obj).required === true;
+const isRequired = (node: Obj): boolean => isPlainObject(node.schema) && (node.schema as Obj).required === true;
 
 /** A node's `schema:` block minus the field-level `required` flag — that boolean is the PARENT's
  *  signal (a `true` is projected into the parent's `required` array; a `false` relaxes a required
@@ -26,7 +26,7 @@ function patch(schema: Obj): Obj {
  *  be compared regardless of key order. */
 export function stableStringify(v: unknown): string {
 	if (Array.isArray(v)) return `[${v.map(stableStringify).join(',')}]`;
-	if (isObj(v)) return `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${stableStringify(v[k])}`).join(',')}}`;
+	if (isPlainObject(v)) return `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${stableStringify(v[k])}`).join(',')}}`;
 	return JSON.stringify(v);
 }
 
@@ -51,7 +51,7 @@ export function projectSchema(node: Obj, ref?: RefContext): Obj {
 	let out: Obj;
 	if (Array.isArray(node.anyOf)) {
 		out = { anyOf: (node.anyOf as Obj[]).map((n) => projectSchema(n, ref)) };
-	} else if (isObj(node.prop)) {
+	} else if (isPlainObject(node.prop)) {
 		const properties: Obj = {};
 		const required: string[] = [];
 		for (const [key, child] of Object.entries(node.prop as Obj)) {
@@ -64,13 +64,13 @@ export function projectSchema(node: Obj, ref?: RefContext): Obj {
 			...(required.length > 0 ? { required: required.sort() } : {}),
 			additionalProperties: false,
 		};
-	} else if (isObj(node.array)) {
+	} else if (isPlainObject(node.array)) {
 		out = { type: 'array', items: projectSchema(node.array as Obj, ref) };
-	} else if (isObj(node.map)) {
+	} else if (isPlainObject(node.map)) {
 		out = { type: 'object', additionalProperties: projectSchema(node.map as Obj, ref) };
 	} else {
 		// A leaf field (its `schema:` block verbatim, sans the `required` flag) or a slot placeholder.
-		return isObj(node.schema) ? patch(node.schema as Obj) : {};
+		return isPlainObject(node.schema) ? patch(node.schema as Obj) : {};
 	}
-	return isObj(node.schema) ? mergeDeep(out, patch(node.schema as Obj)) : out;
+	return isPlainObject(node.schema) ? mergeDeep(out, patch(node.schema as Obj)) : out;
 }

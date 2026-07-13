@@ -1,0 +1,39 @@
+{
+  "name": "@nodeve/schema-case",
+  "version": "0.0.0",
+  "description": "Casing projections of a snake_case JSON Schema: generate the camelCase sibling schema with a stored key map, rename instances by that map, and point camel paths back at snake sources.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodeve-com/nodeve.git",
+    "directory": "packages/schema-case"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "remeda": "catalog:"
+  },
+  "devDependencies": {
+    "@nodeve/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -2,7 +2,8 @@
 // authoring-only and never leaves the package — the emit fills `part.<name>` / `instances[n]`
 // from it. BUILD- AND TEST-ONLY (reads the concept YAML via kit/concept-sources).
 
-import { type Obj, isObj, layerIndex, readYaml } from '../src/concept-sources.ts';
+import { type Obj, layerIndex, readYaml } from '../src/concept-sources.ts';
+import { isPlainObject } from 'remeda';
 
 /** A features/<slug> def's repeated nature: a parts map (kind → part names), counted, or single. */
 function featureNature(slug: string): { parts?: Record<string, string[]>; counted?: boolean } {
@@ -25,14 +26,14 @@ function featureCombined(slug: string): Obj {
 	const path = layerIndex('features').get(slug);
 	if (!path) return {};
 	const fs = readYaml(path).feature_spec;
-	return isObj(fs) && isObj((fs as Obj).combined) ? ((fs as Obj).combined as Obj) : {};
+	return isPlainObject(fs) && isPlainObject((fs as Obj).combined) ? ((fs as Obj).combined as Obj) : {};
 }
 
 // A spec-row's identity: the band axes of an interval (rating + mode, `interval:`-nested or flat).
 // Rows in `default` and an instance/part override join on this key. A measuring range is just a
 // `rating: measurable` interval, so it joins here too — there is no separate measurement channel.
 const bandKey = (row: Obj): string => {
-	const r = isObj(row.interval) ? row.interval : row;
+	const r = isPlainObject(row.interval) ? row.interval : row;
 	return `${String(r.rating ?? '')}|${String(r.mode ?? '')}`;
 };
 
@@ -52,14 +53,14 @@ function overlaySpec(base: Obj, over: Obj): Obj {
 	const out = { ...base };
 	for (const [k, v] of Object.entries(over)) {
 		const prev = out[k];
-		if (isObj(prev) && isObj(v)) out[k] = overlaySpec(prev, v);
+		if (isPlainObject(prev) && isPlainObject(v)) out[k] = overlaySpec(prev, v);
 		else if (Array.isArray(prev) && Array.isArray(v) && k === 'intervals') out[k] = overlayRows(prev, v, bandKey);
 		else out[k] = v;
 	}
 	return out;
 }
 
-const childObj = (o: Obj, key: string): Obj => (isObj(o[key]) ? (o[key] as Obj) : (o[key] = {}));
+const childObj = (o: Obj, key: string): Obj => (isPlainObject(o[key]) ? (o[key] as Obj) : (o[key] = {}));
 
 /** The spec-map node a measurand link addresses within its feature's `feature_spec` body, per the
  *  feature's repeated nature: a parts feature keys `part.<part_id>` (or `combined` when unset — the
@@ -74,7 +75,7 @@ function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
 		if (reg.ordinal === undefined) return childObj(fs, 'combined');
 		const instances = Array.isArray(fs.instances) ? fs.instances : (fs.instances = []);
 		const i = Number(reg.ordinal) - 1;
-		if (!isObj(instances[i])) instances[i] = {};
+		if (!isPlainObject(instances[i])) instances[i] = {};
 		return instances[i] as Obj;
 	}
 	return childObj(fs, 'combined');
@@ -89,11 +90,11 @@ function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
  *  resolveRepeatedFeatures so the part/instance nodes a link targets already exist. */
 export function backfillRegisterSpecNodes(entry: Obj): void {
 	const medium = entry.modbus;
-	if (!isObj(medium) || !Array.isArray(medium.modbus_registers)) return;
+	if (!isPlainObject(medium) || !Array.isArray(medium.modbus_registers)) return;
 	for (const reg of medium.modbus_registers) {
-		if (!isObj(reg) || reg.feature_id === undefined || reg.quantity_kind === undefined) continue;
+		if (!isPlainObject(reg) || reg.feature_id === undefined || reg.quantity_kind === undefined) continue;
 		const feature = entry[String(reg.feature_id)];
-		if (!isObj(feature)) continue; // unresolvable link — a separate link-validation concern, not ours to invent
+		if (!isPlainObject(feature)) continue; // unresolvable link — a separate link-validation concern, not ours to invent
 		childObj(measurandNode(feature, String(reg.feature_id), reg), String(reg.quantity_kind));
 	}
 }
@@ -105,11 +106,11 @@ export function backfillRegisterSpecNodes(entry: Obj): void {
 export function resolveRepeatedFeatures(data: Obj): Obj {
 	const out = { ...data };
 	for (const [key, value] of Object.entries(out)) {
-		if (!isObj(value)) continue;
+		if (!isPlainObject(value)) continue;
 		const nature = featureNature(key);
 		if (!nature.parts && !nature.counted) continue;
 		// The spec body lives under `feature_spec` now; `count` under `concept_settings` (the grammar).
-		const fs = isObj(value.feature_spec) ? (value.feature_spec as Obj) : {};
+		const fs = isPlainObject(value.feature_spec) ? (value.feature_spec as Obj) : {};
 		if (nature.parts) {
 			const { default: base = {}, part: overrides = {}, ...fsRest } = fs as Record<string, Record<string, Obj>>;
 			const part: Obj = {};
@@ -124,7 +125,7 @@ export function resolveRepeatedFeatures(data: Obj): Obj {
 			out[key] = { ...value, feature_spec: { ...fsRest, part } };
 		} else {
 			const { default: base = {}, instances = [], ...fsRest } = fs as { default?: Obj; instances?: Obj[] };
-			const count = Number((isObj(value.concept_settings) ? (value.concept_settings as Obj).count : undefined) ?? 0);
+			const count = Number((isPlainObject(value.concept_settings) ? (value.concept_settings as Obj).count : undefined) ?? 0);
 			const rows = Array.from({ length: count }, (_, i) => {
 				const { ordinal, ...override } = instances.find((r) => r.ordinal === i + 1) ?? {};
 				void ordinal; // the join key — position encodes it in the emitted dense array

@@ -61,7 +61,7 @@ export { bakeSite } from './bake-site.ts';
 // --- Concept parsing (kit/site.ts over generated/ — the baked compiled
 //     schemas): ONE generic parse per concept + the topic/env derivations every consumer shares ---
 export {
-	conceptSchemas,
+	conceptSchema,
 	type ConceptTypes,
 	parseConcept,
 	type SiteLocation,

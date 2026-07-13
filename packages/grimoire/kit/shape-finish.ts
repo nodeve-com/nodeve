@@ -4,8 +4,8 @@
 // resolve.ts stays one responsibility (assembly); this owns shape FINISHING. The four resolvers it
 // needs all recurse back into resolveShapeDef, so they're passed in rather than imported (resolve.ts
 // owns them).
-import { clone, omit } from 'remeda';
-import { type Obj, isObj, layerIndex, readYaml } from '../src/concept-sources.ts';
+import { clone, isPlainObject, omit } from 'remeda';
+import { type Obj, layerIndex, readYaml } from '../src/concept-sources.ts';
 import type { Shape } from './overrides.ts';
 
 const FILING = new Set(['identity', 'slug']);
@@ -36,11 +36,11 @@ const objectNode = (data: Obj, shape: Shape): Obj => ({ ...data, prop: shape.pro
  *  composing or parting it must reuse its `combined` COLUMNS, not nest its wrapper — dig them back
  *  out. A non-wrapped (non-spec) shape returns its own `prop`. */
 export function specColumns(node: Obj): Obj {
-	const prop = isObj(node.prop) ? (node.prop as Obj) : {};
+	const prop = isPlainObject(node.prop) ? (node.prop as Obj) : {};
 	const fs = prop.feature_spec;
-	if (isObj(fs) && isObj(fs.prop)) {
+	if (isPlainObject(fs) && isPlainObject(fs.prop)) {
 		const combined = (fs.prop as Obj).combined;
-		if (isObj(combined) && isObj(combined.prop)) return combined.prop as Obj;
+		if (isPlainObject(combined) && isPlainObject(combined.prop)) return combined.prop as Obj;
 	}
 	return prop;
 }
@@ -58,7 +58,7 @@ export function finishShape(def: Obj, settings: Obj, shape: Shape, consumed: Set
 		const specProps = (r.archetype('specification', stack).prop ?? {}) as Obj;
 		for (const name of Object.keys(shape.prop)) {
 			const field = shape.prop[name] as Obj;
-			if (!isObj(field.schema)) continue; // composed spec column — already { prop: { intervals, … } }
+			if (!isPlainObject(field.schema)) continue; // composed spec column — already { prop: { intervals, … } }
 			// drop the scalar `schema` — the field becomes the specification node ($concept-tagged so the
 			// projection $refs it, not restates it 301×), its authored data kept as docs
 			shape.prop[name] = { ...omit(field, ['schema']), prop: clone(specProps), $concept: 'specification' };
@@ -73,7 +73,7 @@ export function finishShape(def: Obj, settings: Obj, shape: Shape, consumed: Set
 	if (typeof settings.part === 'string' && settings.repeated === true) {
 		throw new Error(`grimoire compile: parts XOR instances — a def declares \`part:\` or \`repeated: true\`, never both (via ${stack.join(' → ')})`);
 	}
-	const hasSpecCol = Object.values(shape.prop).some((v) => isObj(v) && (v as Obj).$concept === 'specification');
+	const hasSpecCol = Object.values(shape.prop).some((v) => isPlainObject(v) && (v as Obj).$concept === 'specification');
 	const isSpec = settings.is_specification === true || typeof settings.part === 'string' || settings.repeated === true || hasSpecCol;
 	if (isSpec) {
 		const data = dataOf(def, consumed);
@@ -94,7 +94,7 @@ export function finishShape(def: Obj, settings: Obj, shape: Shape, consumed: Set
 			const path = layerIndex('parts').get(settings.part);
 			if (!path) throw new Error(`grimoire compile: no parts/${settings.part}.yaml (via ${stack.join(' → ')})`);
 			const parts = readYaml(path).parts;
-			if (!isObj(parts)) throw new Error(`grimoire compile: parts/${settings.part}.yaml has no \`parts:\` map`);
+			if (!isPlainObject(parts)) throw new Error(`grimoire compile: parts/${settings.part}.yaml has no \`parts:\` map`);
 			const combinedProp: Obj = { ...shape.prop };
 			const defaultFields: Obj = {}; // kind-keyed
 			const partFields: Obj = {}; // name-keyed

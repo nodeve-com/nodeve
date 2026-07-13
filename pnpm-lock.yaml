@@ -209,6 +209,9 @@ importers:
 
   packages/grimoire:
     dependencies:
+      '@nodeve/schema-case':
+        specifier: workspace:*
+        version: link:../schema-case
       '@sinclair/typebox':
         specifier: 'catalog:'
         version: 0.34.51
@@ -234,6 +237,25 @@ importers:
       ajv:
         specifier: 'catalog:'
         version: 8.20.0
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+      vitest:
+        specifier: 'catalog:'
+        version: 3.2.6(@types/node@22.19.21)(yaml@2.9.0)
+
+  packages/schema-case:
+    dependencies:
+      remeda:
+        specifier: 'catalog:'
+        version: 2.39.0
+    devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 22.19.21
       typescript:
         specifier: 'catalog:'
         version: 5.9.3

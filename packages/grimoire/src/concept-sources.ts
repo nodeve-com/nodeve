@@ -7,7 +7,6 @@ import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 
 export type Obj = Record<string, unknown>;
-export const isObj = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
 
 /** The `concepts/` source tree and its layer dirs — single-sourced here so every generator/guard
  *  imports them instead of re-deriving the same `join(root, 'concepts', …)` per file. */

@@ -31,13 +31,22 @@ export type Severity = 'warn' | 'fail';
 export type Override = { glob: string; tiers: Tiers | 'exempt' };
 
 /**
- * The uniform config every length check reads. `globs` is the scope; `warn`/`fail`
- * are the default tiers (omit an axis to leave it unbounded, omit a whole tier to
- * drop it). A check with no default `fail` and `globs: []` is opt-in: only files
- * matched by an override glob get a budget (page-size).
+ * The file scope EVERY check shares — defined once, intersected into each check's config.
+ * `globs` is what to include (a git pathspec, so `*` matches `/`); `ignore` drops matches back
+ * out of that scope — generated output, vendored trees — where `**` spans path separators.
  */
-export type LengthConfig = {
+export type Scoped = {
 	globs: string[];
+	ignore?: string[];
+};
+
+/**
+ * The uniform config every length check reads. Scope (`globs`/`ignore`) plus `warn`/`fail`
+ * default tiers (omit an axis to leave it unbounded, omit a whole tier to drop it). A check
+ * with no default `fail` and `globs: []` is opt-in: only files an override glob matches get a
+ * budget (page-size).
+ */
+export type LengthConfig = Scoped & {
 	warn?: Budget;
 	fail?: Budget;
 	overrides?: Override[];
@@ -69,7 +78,7 @@ function resolveTargets(root: string, config: LengthConfig): { path: string; tie
 		tiers: o.tiers,
 	}));
 
-	const scope = new Set(gitFiles(root, config.globs));
+	const scope = new Set(gitFiles(root, config.globs, config.ignore));
 	for (const o of overrides) for (const path of o.match) scope.add(path);
 
 	const out: { path: string; tiers: Tiers }[] = [];

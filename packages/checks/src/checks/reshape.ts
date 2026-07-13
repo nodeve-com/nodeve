@@ -113,17 +113,18 @@ genuinely the point. If a confirmed boundary needs the shape, allowlist it in
 reshape.allowlist as \`relPath::kind::keys\`. A rename that only dodges the
 match keeps the smell. --warn downgrades this to report-only.`,
 
-	run({ root, cfg, paths, allowlist }) {
+	run(gate) {
+		const { allowlist } = gate;
 		const findings: Finding[] = [];
 
-		forEachTsNode(root, cfg.globs, paths, (node, rel, src) => {
+		forEachTsNode(gate, (node, rel, src) => {
 			if (!ts.isArrowFunction(node) && !ts.isFunctionExpression(node)) return;
 			const hit = classify(node);
 			if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
 				const { line } = src.getLineAndCharacterOfPosition(node.getStart());
 				findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
 			}
-		});
+		}, true);
 
 		if (findings.length === 0) return { status: 'pass', summary: 'clean' };
 

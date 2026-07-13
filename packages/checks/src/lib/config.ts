@@ -21,10 +21,10 @@ import DEFAULTS from './defaults.js';
 // `LengthConfig` shape — scope `globs`, default `warn`/`fail` tiers, and per-glob
 // `overrides`. Re-exported here so the `@nodeve/checks/config` surface still
 // carries the budgeting types.
-export { type Budget, type Tiers, type Override, type LengthConfig } from './length.js';
+export { type Budget, type Tiers, type Override, type LengthConfig, type Scoped } from './length.js';
+import { type Scoped } from './length.js';
 
-export type ReshapeConfig = {
-	globs: string[];
+export type ReshapeConfig = Scoped & {
 	/** `relPath::kind::keys` entries — confirmed boundaries the gate should ignore. */
 	allowlist: string[];
 };
@@ -35,8 +35,7 @@ export type ReshapeConfig = {
  * correct its domain misses — `plural` forces a word plural, `singular` exempts
  * an `-s` noun it over-counts (e.g. `data`, `series`).
  */
-export type PluralArraysConfig = {
-	globs: string[];
+export type PluralArraysConfig = Scoped & {
 	/** Words to always treat as count-plurals, even if `pluralize` disagrees. */
 	plural: string[];
 	/** Words to never treat as plural (non-count `-s` nouns `pluralize` over-counts). */
@@ -45,14 +44,12 @@ export type PluralArraysConfig = {
 	allowlist: string[];
 };
 
-export type InlineDupesConfig = {
-	globs: string[];
+export type InlineDupesConfig = Scoped & {
 	/** Bare names that legitimately recur across files. */
 	allowlist: string[];
 };
 
-export type HelperCollisionsConfig = {
-	globs: string[];
+export type HelperCollisionsConfig = Scoped & {
 	/** Dependency packages whose exports shouldn't be reinvented inline. */
 	libs: string[];
 	/** Domain words to append/prepend to each lib export during collision matching. */

@@ -5,14 +5,14 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
-import { Ajv } from 'ajv';
-import { mergeDeep } from 'remeda';
+import { type ValidateFunction } from 'ajv';
+import { isPlainObject, mergeDeep } from 'remeda';
 import { instructionKeys, resolveConcept } from './compile.ts';
 import { projectSchema } from './project.ts';
-import { type Obj, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, isObj } from '../src/concept-sources.ts';
+import { ajv } from '../src/ajv.ts';
+import { type Obj, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR } from '../src/concept-sources.ts';
 
-const ajv = new Ajv({ strict: false, allErrors: true });
-const schemaByArchetype = new Map<string, ReturnType<Ajv['compile']>>();
+const schemaByArchetype = new Map<string, ValidateFunction>();
 
 export function assertDocValid(label: string, archetype: string, data: unknown): void {
 	let check = schemaByArchetype.get(archetype);
@@ -30,7 +30,7 @@ export function assertDocValid(label: string, archetype: string, data: unknown):
 /** Meta-validate a raw JSON-schema authored inline (a catalog's `settings_schema` — the ONE sanctioned
  *  break from "an archetype assembles features"): it must be an object AND a valid draft schema. */
 export function assertMetaSchema(label: string, schema: unknown): void {
-	if (!isObj(schema)) throw new Error(`grimoire catalog ${label}: settings_schema must be a JSON-schema object`);
+	if (!isPlainObject(schema)) throw new Error(`grimoire catalog ${label}: settings_schema must be a JSON-schema object`);
 	if (!ajv.validateSchema(schema)) throw new Error(`grimoire catalog ${label}: settings_schema is not a valid JSON schema:\n${ajv.errorsText(ajv.errors)}`);
 }
 

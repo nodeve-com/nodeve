@@ -44,8 +44,9 @@
 //                 `feature:` map). `{}` includes it unchanged; the overlay refines it (schema patch,
 //                 child descent) — kit/overrides.ts. Outer def wins over composed source.
 
-import { clone } from 'remeda';
-import { type Obj, asList, enumerationMembers, fieldSource, isObj, layerIndex, propertyDoc, readYaml } from '../src/concept-sources.ts';
+import { clone, isPlainObject, mergeDeep } from 'remeda';
+import { type Obj, asList, fieldSource, layerIndex, propertyDoc, readYaml } from '../src/concept-sources.ts';
+import { enumFields } from './enum-fields.ts';
 import { type Resolver, type Shape, applyOverride, overridesOf } from './overrides.ts';
 import { finishShape, specColumns } from './shape-finish.ts';
 
@@ -61,7 +62,7 @@ type Layer = (typeof LAYER_DIRS)[number];
  *  node data (dataOf must not drop it), so the resolver removes `schema` from its own `consumed`. */
 export function instructionKeys(def: Obj): Set<string> {
 	const keys = new Set<string>(['prop']);
-	if (isObj(def.concept_settings) && Object.keys(def.concept_settings).length > 0) keys.add('concept_settings');
+	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0) keys.add('concept_settings');
 	for (const verb of ['enums', 'feature', 'archetype', 'schema'] as const) {
 		if (def[verb] !== undefined) keys.add(verb);
 	}
@@ -113,10 +114,10 @@ function resolveFieldBySlug(slug: string, stack: string[]): Obj {
 	const { feature, ...data } = doc;
 	delete data.identity; // filing metadata (the archetype selector), not field data
 	// An authored `schema:` wins over a (category-default) `feature:` binding — the member is more specific.
-	if (typeof feature === 'string' && !isObj(data.schema)) {
+	if (typeof feature === 'string' && !isPlainObject(data.schema)) {
 		return { ...resolveConceptBySlug(feature, [...stack, `property/${slug}`]), ...clone(data) };
 	}
-	if (!isObj(data.schema)) throw new Error(`grimoire compile: property "${slug}" (${path}) has no \`schema:\` block — a prop used as a field must declare one`);
+	if (!isPlainObject(data.schema)) throw new Error(`grimoire compile: property "${slug}" (${path}) has no \`schema:\` block — a prop used as a field must declare one`);
 	return clone(data);
 }
 
@@ -124,7 +125,7 @@ function resolveFieldBySlug(slug: string, stack: string[]): Obj {
  *  (kit/project.ts) can emit it as a `$ref` — composed, not restated — when its shape is unchanged.
  *  Rides in the resolved concept tree only; stripped before the data emit (generate.ts). */
 function tagConcept(node: Obj, slug: string): Obj {
-	if (isObj(node)) node.$concept = slug;
+	if (isPlainObject(node)) node.$concept = slug;
 	return node;
 }
 
@@ -138,7 +139,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 
 	// An archetype ASSEMBLES features (`feature:` map); it never authors a bare field. `prop:` is the
 	// FEATURE-level verb (a feature groups props) — on an archetype it's a miscategorised feature.
-	if (layer === 'archetypes' && isObj(def.prop)) {
+	if (layer === 'archetypes' && isPlainObject(def.prop)) {
 		throw new Error(`grimoire compile: archetype declares \`prop:\` — a field is a feature; move it under \`feature:\` (via ${stack.join(' → ')})`);
 	}
 
@@ -156,10 +157,12 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	//             old `alias`, a same-shape rename, is just a one-element compose).
 	//   repeated / part           — the countable / fixed-parts expansions (handled below).
 	//   array / map               — the def's intrinsic cardinality.
-	const settings = isObj(def.concept_settings) ? def.concept_settings : {};
+	const settings = isPlainObject(def.concept_settings) ? def.concept_settings : {};
 
-	// compose: REUSE the named tables' columns, first-listed first (later + own fields win). A compose
-	// target MUST be an object shape — a feature groups props, it never IS a scalar prop.
+	// compose: a LITERAL overlay — the named sibling's WHOLE resolved node merges in, first-listed
+	// first (later + own def win): its columns into the shape, its node DATA (title/description/
+	// refs/ui…) under the composer's own. A compose target MUST be an object shape — a feature
+	// groups props, it never IS a scalar prop.
 	const composeSlugs = settings.compose === undefined
 		? []
 		: typeof settings.compose === 'string'
@@ -168,60 +171,41 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	if (composeSlugs.length > 0 && layer === undefined) {
 		throw new Error(`grimoire compile: cannot resolve \`compose:\` without a known layer (via ${stack.join(' → ')})`);
 	}
+	let composedData: Obj = {};
 	for (const slug of composeSlugs) {
 		const composed = resolveSiblingBySlug(slug, layer as Layer, stack);
-		if (!isObj(composed.prop)) {
+		if (!isPlainObject(composed.prop)) {
 			throw new Error(`grimoire compile: compose target "${slug}" is a scalar, not an object shape — a feature groups props (via ${stack.join(' → ')})`);
 		}
-		// REUSE the sibling's columns. A spec sibling resolves feature_spec-wrapped — reuse its
+		// The sibling's columns. A spec sibling resolves feature_spec-wrapped — reuse its
 		// `combined` COLUMNS (specColumns), so the composer re-homes them under its OWN feature_spec.
 		Object.assign(shape.prop, clone(specColumns(composed)));
+		// The sibling's node data — everything but the shape — rides too; own def overlays it below.
+		const { prop: _prop, $composes: _c, ...data } = composed;
+		composedData = mergeDeep(composedData, clone(data)) as Obj;
 	}
 
-	// enums: one field per enumeration, valued by that enumeration's member (literal) stems. A bare
-	// slug takes every member; a `{ <enumeration>: [ids] }` entry NARROWS to a validated subset (a
-	// stale id fails the build) — the same filter `parts:` applies, never a re-authored member list.
-	// The field is keyed by the enumeration name in both forms.
-	if (def.enums !== undefined && !Array.isArray(def.enums)) {
-		throw new Error(`grimoire compile: \`enums:\` must be an array (via ${stack.join(' → ')})`);
-	}
-	for (const entry of (def.enums ?? []) as unknown[]) {
-		if (typeof entry === 'string') {
-			shape.prop[entry] = { schema: { type: 'string', enum: enumerationMembers(entry) } };
-			continue;
-		}
-		if (!isObj(entry)) {
-			throw new Error(`grimoire compile: \`enums:\` entries are a bare slug or a { <enumeration>: [ids] } filter — got ${JSON.stringify(entry)} (via ${stack.join(' → ')})`);
-		}
-		for (const [enumeration, idsRaw] of Object.entries(entry)) {
-			const members = enumerationMembers(enumeration);
-			const ids = asList(idsRaw, `enums.${enumeration}`, stack);
-			const stale = ids.filter((id) => !members.includes(id));
-			if (stale.length > 0) {
-				throw new Error(`grimoire compile: enums filter on "${enumeration}" names non-members of enumeration/${enumeration}/: ${stale.join(', ')} (via ${stack.join(' → ')})`);
-			}
-			shape.prop[enumeration] = { schema: { type: 'string', enum: ids } };
-		}
-	}
+	// enums: one enum-valued field per named enumeration (kit/enum-fields.ts).
+	Object.assign(shape.prop, enumFields(def.enums, stack));
 
 	// feature: nested feature fields — a `<slug>: overlay` MAP, the archetype-level analog of `prop:`
 	// (same no-rename rule: the key IS the feature slug). `<slug>: {}` includes the feature unchanged;
 	// the overlay refines its resolved shape (kit/overrides.ts). This is how a feature is added to a
 	// shape — never via `compose:`, which reuses a same-layer sibling's columns instead.
-	if (def.feature !== undefined && !isObj(def.feature)) {
+	if (def.feature !== undefined && !isPlainObject(def.feature)) {
 		throw new Error(`grimoire compile: \`feature:\` must be a \`<slug>: overlay\` map (like \`prop:\`), not ${Array.isArray(def.feature) ? 'an array' : typeof def.feature} (via ${stack.join(' → ')})`);
 	}
-	const featureEntries = Object.entries(isObj(def.feature) ? def.feature : {});
+	const featureEntries = Object.entries(isPlainObject(def.feature) ? def.feature : {});
 
 	// archetype: nested archetype fields — a `<slug>: overlay` MAP, the exact analog of `feature:`
 	// but the slot's shape is a SIBLING ARCHETYPE (a connectivity medium like `modbus`), resolved
 	// STRICTLY within archetypes/. The key IS the archetype slug (same no-rename rule); a
 	// `{ archetype: <slug> }` overlay rebinds the slot's shape, letting the slot name differ. This is
 	// how a class nests another class as a named slot — never via `compose:`, which reuses columns.
-	if (def.archetype !== undefined && !isObj(def.archetype)) {
+	if (def.archetype !== undefined && !isPlainObject(def.archetype)) {
 		throw new Error(`grimoire compile: \`archetype:\` must be a \`<slug>: overlay\` map (like \`feature:\`), not ${Array.isArray(def.archetype) ? 'an array' : typeof def.archetype} (via ${stack.join(' → ')})`);
 	}
-	const archetypeEntries = Object.entries(isObj(def.archetype) ? def.archetype : {});
+	const archetypeEntries = Object.entries(isPlainObject(def.archetype) ? def.archetype : {});
 
 	// Slot names (features + nested archetypes) a `prop:` entry must defer behind, so an overlay on a
 	// slot lands after the slot itself is bound.
@@ -237,7 +221,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	// the field order the projected TS interfaces carry.
 	const propEntries = Object.entries(overridesOf(def));
 	const applyProp = (name: string, body: unknown): void => {
-		const overlay = isObj(body) ? body : {};
+		const overlay = isPlainObject(body) ? body : {};
 		if ('feature' in overlay) {
 			throw new Error(`grimoire compile: prop "${name}" declares a \`feature:\` rebind — a \`prop:\` entry references a property, never a feature slot; add features via the \`feature:\` map (via ${stack.join(' → ')})`);
 		}
@@ -261,7 +245,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	// does one layer down. A `{ feature: <slug> }` overlay is a SLOT rebind — the key is a slot name,
 	// the overlay's `feature:` supplies the shape — so the base is empty and the key need not resolve.
 	for (const [name, body] of featureEntries) {
-		const overlay = isObj(body) ? body : {};
+		const overlay = isPlainObject(body) ? body : {};
 		const base = 'feature' in overlay ? {} : resolveFeatureBySlug(name, stack);
 		shape.prop[name] = tagConcept(applyOverride(base, overlay, name, stack, resolver), typeof overlay.feature === 'string' ? overlay.feature : name);
 	}
@@ -272,7 +256,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	// name, the overlay's `archetype:` supplies the shape — so the base is empty and the key need not
 	// resolve.
 	for (const [name, body] of archetypeEntries) {
-		const overlay = isObj(body) ? body : {};
+		const overlay = isPlainObject(body) ? body : {};
 		const base = 'archetype' in overlay ? {} : resolveArchetypeBySlug(name, stack);
 		shape.prop[name] = tagConcept(applyOverride(base, overlay, name, stack, resolver), typeof overlay.archetype === 'string' ? overlay.archetype : name);
 	}
@@ -281,12 +265,17 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	for (const [name, body] of propEntries) if (deferred.has(name)) applyProp(name, body);
 
 	// Finish: specification wrap, part/repeated expansion, array/map cardinality (kit/shape-finish.ts).
-	return finishShape(def, settings, shape, consumed, stack, {
+	const node = finishShape(def, settings, shape, consumed, stack, {
 		archetype: resolveArchetypeBySlug,
 		feature: resolveFeatureBySlug,
 		concept: resolveConceptBySlug,
 		field: resolveFieldBySlug,
 	});
+	// compose is a literal overlay: the composed data sits UNDER the finished node (own def wins).
+	// `$composes` records the provenance so the emit can render the root composed, not restated
+	// (generate.ts folds it to a `$ref` overlay); stripped like `$concept` wherever it doesn't fold.
+	if (composeSlugs.length === 0) return node;
+	return { ...(mergeDeep(composedData, node) as Obj), $composes: composeSlugs };
 }
 
 /** Resolve a named concept (archetype / feature) to its full data tree. */

@@ -8,30 +8,34 @@
 // if/then/else in the concept's own `schema:` slot (e.g. site_adapter's tap-window rule), so the
 // single schema check below catches them; nothing here special-cases a concept.
 
-import { Ajv, type ValidateFunction } from 'ajv';
-import { conceptSchemas } from './generated/index.ts';
+import { type ValidateFunction } from 'ajv';
+import { camelizeInstance, snakePath } from '@nodeve/schema-case';
+import { ajv } from './ajv.ts';
+import { conceptSchema } from './generated/index.ts';
 
-type Concept = keyof typeof conceptSchemas;
+type Concept = keyof typeof conceptSchema;
 
 // ajv, not TypeBox Value.Check: a concept schema's cross-field invariants are authored as draft-07
 // if/then/else in its `schema:` slot, which TypeBox Value.Check silently ignores but ajv enforces
-// (the same engine kit/validate-docs.ts gates docs with).
-const ajv = new Ajv({ strict: false, allErrors: true });
+// (the same engine kit/validate-docs.ts gates docs with — src/ajv.ts, the ONE instance). The
+// baked schema is camelCase, so each snake block renames (mapping-driven, BEFORE validation —
+// src/parse.ts's edge) and error paths map back to the snake source the author wrote.
 const checkByConcept = new Map<Concept, ValidateFunction>();
 const checkerFor = (concept: Concept): ValidateFunction =>
-  checkByConcept.get(concept) ?? checkByConcept.set(concept, ajv.compile(conceptSchemas[concept])).get(concept)!;
+  checkByConcept.get(concept) ?? checkByConcept.set(concept, ajv.compile(conceptSchema[concept])).get(concept)!;
 
-const isConcept = (key: string): key is Concept => key in conceptSchemas;
+export const isConcept = (key: string): key is Concept => key in conceptSchema;
 const slugOf = (item: unknown): string | undefined =>
   item && typeof item === 'object' ? (item as { identity?: { slug?: string } }).identity?.slug : undefined;
 
 /** Check one block against a concept schema; return its aggregated errors (empty when it conforms). */
 function checkBlock(concept: Concept, data: unknown, label: string): string[] {
+  const schema = conceptSchema[concept];
   const check = checkerFor(concept);
-  if (check(data)) return [];
+  if (check(camelizeInstance(schema, data))) return [];
   return [
     `${label} (against \`${concept}\`):`,
-    ...(check.errors ?? []).map((e) => `  ${e.instancePath || '/'}: ${e.message}`),
+    ...(check.errors ?? []).map((e) => `  ${snakePath(schema, e.instancePath) || '/'}: ${e.message}`),
   ];
 }
 

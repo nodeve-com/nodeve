@@ -20,16 +20,18 @@
 //  - With a fast-change (`delta`) copy present, the final chain must not `throttle` — a trip
 //    landing inside a heartbeat-opened window would be silently dropped (enforced in the parser).
 
-import { type Static, Type } from '@sinclair/typebox';
+import { type Static, type TSchema, Type } from '@sinclair/typebox';
+import { camelizeSchema } from '@nodeve/schema-case';
 import type { Camelize } from 'remeda-humps';
-import { validateAndCamelize } from './parse.ts';
+import { parseSnake } from './parse.ts';
 
 // A smoothing/throttle constant, authored as time (e.g. '1.5s', '500ms').
 const DurationSchema = Type.String({ pattern: '^\\d+(\\.\\d+)?(ms|s|min)$' });
 
 // One filter — a single-key map, YAML-authored as `- throttle_average: 1.5s`. `delta` takes a
 // relative '0.5%' or an absolute number in the sensor's own unit.
-export const DisplayFilterSchema = Type.Object(
+// Authored ONCE, snake (the YAML contract); the exported camel validators + types are projections.
+const displayFilterWire = Type.Object(
 	{
 		throttle: Type.Optional(DurationSchema),
 		throttle_average: Type.Optional(DurationSchema),
@@ -41,13 +43,13 @@ export const DisplayFilterSchema = Type.Object(
 
 // One policy entry: the join key (feature+quantity_kind XOR raw_name — enforced in the parser),
 // the filter model, and the HA entity passthroughs.
-export const DisplayPolicyEntrySchema = Type.Object(
+const displayPolicyEntryWire = Type.Object(
 	{
 		feature: Type.Optional(Type.String({ minLength: 1 })),
 		quantity_kind: Type.Optional(Type.String({ minLength: 1 })),
 		raw_name: Type.Optional(Type.String({ minLength: 1 })),
-		filters: Type.Optional(Type.Array(DisplayFilterSchema, { minItems: 1 })),
-		filter_copy: Type.Optional(Type.Array(DisplayFilterSchema, { minItems: 1 })),
+		filters: Type.Optional(Type.Array(displayFilterWire, { minItems: 1 })),
+		filter_copy: Type.Optional(Type.Array(displayFilterWire, { minItems: 1 })),
 		// Passthrough to the HA entity: registered but disabled until someone opts in.
 		disabled_by_default: Type.Optional(Type.Boolean()),
 		// Display precision on the HA-facing sensor — overrides the decoded register's own decimals
@@ -57,18 +59,23 @@ export const DisplayPolicyEntrySchema = Type.Object(
 	{ additionalProperties: false },
 );
 
-export const DisplayPolicySchema = Type.Array(DisplayPolicyEntrySchema, { minItems: 1 });
+const displayPolicyWire = Type.Array(displayPolicyEntryWire, { minItems: 1 });
 
-export type DisplayFilter = Camelize<Static<typeof DisplayFilterSchema>>;
-export type DisplayPolicyEntry = Camelize<Static<typeof DisplayPolicyEntrySchema>>;
-export type DisplayPolicy = Camelize<Static<typeof DisplayPolicySchema>>;
+// The camel siblings (@nodeve/schema-case): what parseSnake validates against, x-key-map in place.
+export const DisplayFilterSchema = camelizeSchema(displayFilterWire) as TSchema;
+export const DisplayPolicyEntrySchema = camelizeSchema(displayPolicyEntryWire) as TSchema;
+export const DisplayPolicySchema = camelizeSchema(displayPolicyWire) as TSchema;
 
-/** Validate against the (snake_case) schema, camelCase it, then enforce the cross-field rules the
+export type DisplayFilter = Camelize<Static<typeof displayFilterWire>>;
+export type DisplayPolicyEntry = Camelize<Static<typeof displayPolicyEntryWire>>;
+export type DisplayPolicy = Camelize<Static<typeof displayPolicyWire>>;
+
+/** Rename (mapping-driven, before validation) + validate, then enforce the cross-field rules the
  *  JSON Schema can't express: each entry is keyed by (feature + quantity_kind) XOR raw_name, keys
  *  are unique, and a fast-change (`delta`) copy forbids a `throttle` on the final chain (the
  *  silent-drop configuration the plan's caveat names). */
 export const parseDisplayPolicy = (data: unknown): DisplayPolicy => {
-	const policy = validateAndCamelize<DisplayPolicy>(DisplayPolicySchema, data, 'display policy');
+	const policy = parseSnake<DisplayPolicy>(DisplayPolicySchema, data, 'display policy');
 	const keys = policy.map((entry) => {
 		const linked = entry.feature !== undefined && entry.quantityKind !== undefined;
 		const half = entry.feature !== undefined || entry.quantityKind !== undefined;

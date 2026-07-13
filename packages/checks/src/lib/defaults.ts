@@ -65,6 +65,10 @@ export default {
 			first: ['head'],
 			flat: ['flatten', 'flattenDeep'],
 			fromEntries: ['fromPairs'],
+			// lodash's object guards. remeda's `isObjectType` carries an extra token
+			// (`type`) that dilutes the fuzzy score below threshold, so the `isObject`
+			// alias is what lands a local `isObj` (stems to `is object` → 1.0).
+			isObjectType: ['isObject', 'isObjectLike'],
 		},
 		libNamesPath: '.nodeve/lib-names.json',
 		threshold: 0.8,

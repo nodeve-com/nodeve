@@ -5,3 +5,15 @@
 # org repo runs. Per-repo budgets/globs/allowlists live in `nodeve.checks.js`.
 extends:
   - node_modules/@nodeve/checks/lefthook.checks.yml
+
+# This repo IS the source of @nodeve/checks, but the gate runs the built `dist/`
+# (the shared config is written for consumer repos, which only have the artifact).
+# So a source edit to a check is invisible to its own commit until dist rebuilds.
+# Rebuild it first, here, so the gate always reflects working-tree source — no one
+# has to remember `pnpm build`. Kept local (not in the exported yml) so consumers,
+# who have no src/, never see it.
+pre-commit:
+  piped: true
+  jobs:
+    - name: build-checks
+      run: pnpm --filter @nodeve/checks build

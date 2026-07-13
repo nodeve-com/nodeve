@@ -38,7 +38,7 @@ type Entry = {
 	symbol: string;
 } & Decl;
 
-function collect(): Entry[] {
+function collectExports(): Entry[] {
 	const entries: Entry[] = [];
 	const declCache = new Map<string, Map<string, Decl>>();
 	const declsFor = (p: string) => {
@@ -92,7 +92,7 @@ function collect(): Entry[] {
 	);
 }
 
-function render(entries: Entry[]): string {
+function renderManifest(entries: Entry[]): string {
 	const packages = new Set(entries.map((e) => e.importPath.split('/').slice(0, 2).join('/')));
 	const lines: string[] = [
 		'# Helper manifest — public surface of the configured packages',
@@ -125,7 +125,7 @@ function render(entries: Entry[]): string {
 	return lines.join('\n');
 }
 
-const entries = collect();
+const entries = collectExports();
 mkdirSync(dirname(OUTPUT), { recursive: true });
-writeFileSync(OUTPUT, render(entries));
+writeFileSync(OUTPUT, renderManifest(entries));
 console.log(`Wrote ${entries.length} symbols to ${relative(root, OUTPUT)}`);

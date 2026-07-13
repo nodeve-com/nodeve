@@ -128,7 +128,7 @@ import { WaterHeaterSchema, type WaterHeater } from './archetypes/water_heater.t
 /** Every compiled concept schema (live TypeBox), keyed by slug — the runtime source (no fs).
  *  Explicitly typed `Record<keyof ConceptTypes, TSchema>` — the inferred union is too large for
  *  TS to serialize (TS7056); per-concept modules keep their precise schema type. */
-export const conceptSchemas: Record<keyof ConceptTypes, TSchema> = {
+export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	ac_line: AcLineSchema,
 	ac_phase: AcPhaseSchema,
 	ac_phase_three: AcPhaseThreeSchema,
@@ -252,7 +252,7 @@ export const conceptSchemas: Record<keyof ConceptTypes, TSchema> = {
 	water_heater: WaterHeaterSchema,
 };
 
-/** slug → parsed (camelCase) type — what a generic parse over `conceptSchemas` keys on. */
+/** slug → parsed (camelCase) type — what a generic parse over `conceptSchema` keys on. */
 export interface ConceptTypes {
 	ac_line: AcLine;
 	ac_phase: AcPhase;
