@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.8.0
+
+### Minor Changes
+
+- Add the `require-eslint` gate: fail commits in packages that have adopted eslint org-wide but lack a resolvable eslint config, keeping the org's lint baseline enforced.
+
 ## 1.7.0
 
 ### Minor Changes
