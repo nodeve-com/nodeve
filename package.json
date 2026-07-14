@@ -28,9 +28,9 @@
     "eslint": "catalog:",
     "eslint-config-prettier": "catalog:",
     "globals": "catalog:",
-    "prettier": "^3.3.0",
+    "prettier": "^3.9.5",
     "remeda-humps": "catalog:",
-    "typescript": "^5.5.0",
+    "typescript": "^6.0.3",
     "typescript-eslint": "catalog:"
   }
 }

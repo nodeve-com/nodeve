@@ -9,4 +9,5 @@
 - [no eager commits](no-eager-commits.md) — don't commit per sub-task; user says when it's done
 - [never allowlist](never-allowlist.md) — never add check-allowlist entries yourself; surface the finding, make the user do it
 - [grimoire TS camel-only](grimoire-ts-camel-only.md) — TS emits camel wall-to-wall incl. data default export; snake in .ts is a generator bug, never style
+- [typescript major upgrade](typescript-major-upgrade.md) — TS7 blocked by typescript-eslint; TS6 needs types:["node"] per node package + @types/node ^24
 - [no inline string vocab](no-inline-string-vocab.md) — inline string-array/Set vocabularies in code are a total failure; derive from the authoritative source

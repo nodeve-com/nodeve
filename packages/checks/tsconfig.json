@@ -5,7 +5,8 @@
     "outDir": "dist",
     // The AST walkers index TS node arrays at provably-valid positions; the shared
     // config turns this on, but asserting every access would only add noise here.
-    "noUncheckedIndexedAccess": false
+    "noUncheckedIndexedAccess": false,
+    "types": ["node"]
   },
   "include": ["src"]
 }
