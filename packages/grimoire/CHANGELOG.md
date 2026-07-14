@@ -1,5 +1,17 @@
 # @nodeve/grimoire
 
+## 4.1.0
+
+### Minor Changes
+
+- 62b3d26: `ingest.service_id`: new optional pointer naming which of the ingested device's offered `services` a polled-master adapter dials (slug into that device's own `services`, mirroring `network_interface_id`). Unblocks `platform: telegraf` site adapters, whose bundles carried `service_id` from before the schema gate.
+
+### Patch Changes
+
+- 80a57e1: Declare `ajv` as a runtime dependency — `dist/ajv.js` imports it, but it was only a devDependency, so consumers resolved whatever ajv their tree hoisted (e.g. eslint's ajv@6, which has no named `Ajv` export).
+- 968b7be: Ship the baked catalog JSON grain (`artifacts/catalog/<slug>.json`) in the npm package, and run the generate step in `build` so publishes always carry fresh artifacts. Non-JS consumers (the Rust farana gateway's build.rs) read the register maps from the installed package instead of a GitHub-release download.
+- 25e09b0: Fix the site-bake/site-view measurand path for the camel generated grain: `isMeasurandFeature`/`quantityCols` walk `featureSpec` and camel column keys (cells still carry the snake wire codes for ids/coordinates), baked patches mirror the camel device tree (`featureSpec`, `slugQualified`), and the authored snake site overlay is key-camelized before merging onto the device. The camel TS-catalog cutover had left `bakeSite` silently minting empty patches.
+
 ## 4.0.3
 
 ### Patch Changes
