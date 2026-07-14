@@ -2,7 +2,8 @@
 	"$generatedBy": "nodeve-build-lib-names",
 	"libs": [
 		"remeda",
-		"date-fns"
+		"date-fns",
+		"remeda-humps"
 	],
 	"names": {
 		"remeda": [
@@ -417,6 +418,9 @@
 			"yearsToDays",
 			"yearsToMonths",
 			"yearsToQuarters"
+		],
+		"remeda-humps": [
+			"humps"
 		]
 	}
 }

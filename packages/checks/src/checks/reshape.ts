@@ -14,6 +14,7 @@ import { locationRows } from '../lib/report.js';
 import { type Check } from '../lib/runner.js';
 
 type Kind = 'identity' | 'spread-clone' | 'projection' | 'passthrough';
+type Hit = { kind: Kind; keys: string };
 
 /** The single returned expression of a concise arrow or a `return`-only body. */
 function returnExpr(fn: ts.ArrowFunction | ts.FunctionExpression): ts.Expression | null {
@@ -36,10 +37,50 @@ function isMapCallback(fn: ts.Node): boolean {
 	);
 }
 
+function projectionKeys(param: ts.Identifier, props: ts.NodeArray<ts.ObjectLiteralElementLike>) {
+	const keys: string[] = [];
+	for (const prop of props) {
+		if (!ts.isPropertyAssignment(prop) || !ts.isIdentifier(prop.name)) return null;
+		const value = unwrap(prop.initializer);
+		if (
+			!ts.isPropertyAccessExpression(value) ||
+			!ts.isIdentifier(value.expression) ||
+			value.expression.text !== param.text ||
+			value.name.text !== prop.name.text
+		)
+			return null;
+		keys.push(prop.name.text);
+	}
+	return keys.sort().join(', ');
+}
+
+function passthroughKeys(
+	param: ts.ObjectBindingPattern,
+	props: ts.NodeArray<ts.ObjectLiteralElementLike>,
+): string | null {
+	const bound = new Set<string>();
+	for (const element of param.elements) {
+		if (
+			element.dotDotDotToken ||
+			element.propertyName ||
+			element.initializer ||
+			!ts.isIdentifier(element.name)
+		)
+			return null;
+		bound.add(element.name.text);
+	}
+	const keys = props.map((prop) =>
+		ts.isShorthandPropertyAssignment(prop) ? prop.name.text : null,
+	);
+	if (keys.some((key) => key === null)) return null;
+	const names = keys as string[];
+	return names.length === bound.size && names.every((key) => bound.has(key))
+		? names.sort().join(', ')
+		: null;
+}
+
 /** Classify a reshape callback, or null if it does real work. */
-function classify(
-	fn: ts.ArrowFunction | ts.FunctionExpression,
-): { kind: Kind; keys: string } | null {
+function classify(fn: ts.ArrowFunction | ts.FunctionExpression): Hit | null {
 	if (fn.parameters.length !== 1) return null; // (x, i) => ... uses the index — not a pure reshape
 	const param = fn.parameters[0].name;
 	const body = returnExpr(fn);
@@ -65,38 +106,14 @@ function classify(
 
 	// x => ({ a: x.a, b: x.b })  — every prop is `name: param.name`, same name
 	if (ts.isIdentifier(param)) {
-		const keys: string[] = [];
-		for (const p of props) {
-			if (!ts.isPropertyAssignment(p) || !ts.isIdentifier(p.name)) return null;
-			const val = unwrap(p.initializer);
-			if (
-				!ts.isPropertyAccessExpression(val) ||
-				!ts.isIdentifier(val.expression) ||
-				val.expression.text !== param.text ||
-				val.name.text !== p.name.text
-			)
-				return null;
-			keys.push(p.name.text);
-		}
-		return { kind: 'projection', keys: keys.sort().join(', ') };
+		const keys = projectionKeys(param, props);
+		return keys === null ? null : { kind: 'projection', keys };
 	}
 
 	// ({ a, b }) => ({ a, b })  — destructure, rebuild the identical shorthand set
 	if (ts.isObjectBindingPattern(param)) {
-		const bound = new Set<string>();
-		for (const el of param.elements) {
-			// rename / default / rest changes meaning — not a pure passthrough
-			if (el.dotDotDotToken || el.propertyName || el.initializer || !ts.isIdentifier(el.name))
-				return null;
-			bound.add(el.name.text);
-		}
-		const keys: string[] = [];
-		for (const p of props) {
-			if (!ts.isShorthandPropertyAssignment(p)) return null;
-			keys.push(p.name.text);
-		}
-		if (keys.length !== bound.size || !keys.every((k) => bound.has(k))) return null;
-		return { kind: 'passthrough', keys: keys.sort().join(', ') };
+		const keys = passthroughKeys(param, props);
+		return keys === null ? null : { kind: 'passthrough', keys };
 	}
 
 	return null;
@@ -117,21 +134,29 @@ match keeps the smell. --warn downgrades this to report-only.`,
 		const { allowlist } = gate;
 		const findings: Finding[] = [];
 
-		forEachTsNode(gate, (node, rel, src) => {
-			if (!ts.isArrowFunction(node) && !ts.isFunctionExpression(node)) return;
-			const hit = classify(node);
-			if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
-				const { line } = src.getLineAndCharacterOfPosition(node.getStart());
-				findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
-			}
-		}, true);
+		forEachTsNode(
+			gate,
+			(node, rel, src) => {
+				if (!ts.isArrowFunction(node) && !ts.isFunctionExpression(node)) return;
+				const hit = classify(node);
+				if (hit && !allowlist.has(`${rel}::${hit.kind}::${hit.keys}`)) {
+					const { line } = src.getLineAndCharacterOfPosition(node.getStart());
+					findings.push({ rel, line: line + 1, kind: hit.kind, keys: hit.keys });
+				}
+			},
+			true,
+		);
 
 		if (findings.length === 0) return { status: 'pass', summary: 'clean' };
 
 		return {
 			status: 'fail',
 			summary: `${findings.length} reshape(s) reproduce the input shape (no-op / pick / clone)`,
-			rows: locationRows(findings, (f) => f.kind, (f) => `{ ${f.keys} }`),
+			rows: locationRows(
+				findings,
+				(f) => f.kind,
+				(f) => `{ ${f.keys} }`,
+			),
 		};
 	},
 };

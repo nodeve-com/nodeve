@@ -15,6 +15,7 @@ import { inlineDupes } from '../checks/inline-dupes.js';
 import { pageSize } from '../checks/page-size.js';
 import { pluralArrays } from '../checks/plural-arrays.js';
 import { requireDeps } from '../checks/require-deps.js';
+import { requireEslint } from '../checks/require-eslint.js';
 import { reshape } from '../checks/reshape.js';
 import { type Check } from './runner.js';
 
@@ -29,6 +30,7 @@ export const CHECKS: Check[] = [
 	clones,
 	catalog,
 	requireDeps,
+	requireEslint,
 	commitMsg,
 ];
 

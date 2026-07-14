@@ -24,6 +24,32 @@ import { readFileSync } from 'node:fs';
 import { type Check } from '../lib/runner.js';
 import { stagedDiffLines } from '../lib/repo.js';
 
+function messageLines(raw: string): string[] {
+	const scissors = raw.indexOf('\n# ------------------------ >8');
+	return (scissors === -1 ? raw : raw.slice(0, scissors))
+		.split('\n')
+		.filter((line) => !line.startsWith('#'));
+}
+
+function validateHeader(
+	header: string,
+	cfg: { types: string[]; requireScope: boolean; maxSubjectLength: number },
+): string[] {
+	const match = header.match(/^(?<type>\w+)(?:\((?<scope>[^)]+)\))?(?<bang>!)?: (?<subject>.+)$/);
+	if (!match?.groups)
+		return [`header doesn't match "<type>(<scope>): <subject>" — got ${JSON.stringify(header)}`];
+	const { type, scope, subject } = match.groups;
+	const problems: string[] = [];
+	if (cfg.types.length > 0 && !cfg.types.includes(type))
+		problems.push(`type "${type}" is not allowed — use one of: ${cfg.types.join(', ')}`);
+	if (cfg.requireScope && !scope) problems.push('a scope is required: <type>(<scope>): <subject>');
+	if (subject.length > cfg.maxSubjectLength)
+		problems.push(
+			`subject is ${subject.length} chars, over the ${cfg.maxSubjectLength}-char limit`,
+		);
+	return problems;
+}
+
 export const commitMsg: Check<'commitMsg'> = {
 	name: 'commit-msg',
 	section: 'commitMsg',
@@ -48,10 +74,7 @@ explain WHY the change is needed.`,
 		// git ignores comment lines and everything after the `# >8` scissors line
 		// (added by `commit --verbose`), so strip both before reading — otherwise the
 		// diff dump would read as a body and the comment hints would skew the header.
-		const scissors = raw.indexOf('\n# ------------------------ >8');
-		const lines = (scissors === -1 ? raw : raw.slice(0, scissors))
-			.split('\n')
-			.filter((l) => !l.startsWith('#'));
+		const lines = messageLines(raw);
 
 		const headerIdx = lines.findIndex((l) => l.trim().length > 0);
 		const header = headerIdx === -1 ? '' : lines[headerIdx].trim();
@@ -66,24 +89,7 @@ explain WHY the change is needed.`,
 				summary: 'generated message (merge/revert/autosquash) — not gated',
 			};
 
-		const problems: string[] = [];
-
-		const m = header.match(/^(?<type>\w+)(?:\((?<scope>[^)]+)\))?(?<bang>!)?: (?<subject>.+)$/);
-		if (!m?.groups) {
-			problems.push(
-				`header doesn't match "<type>(<scope>): <subject>" — got ${JSON.stringify(header)}`,
-			);
-		} else {
-			const { type, scope, subject } = m.groups;
-			if (cfg.types.length > 0 && !cfg.types.includes(type))
-				problems.push(`type "${type}" is not allowed — use one of: ${cfg.types.join(', ')}`);
-			if (cfg.requireScope && !scope)
-				problems.push('a scope is required: <type>(<scope>): <subject>');
-			if (subject.length > cfg.maxSubjectLength)
-				problems.push(
-					`subject is ${subject.length} chars, over the ${cfg.maxSubjectLength}-char limit`,
-				);
-		}
+		const problems = validateHeader(header, cfg);
 
 		// A body is any non-empty content separated from the header by a blank line.
 		const after = lines.slice(headerIdx + 1);

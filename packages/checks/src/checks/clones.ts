@@ -29,6 +29,89 @@ type Duplicate = {
 	secondFile: Loc;
 };
 
+function jscpdLauncher(): string | null {
+	try {
+		return createRequire(import.meta.url).resolve('jscpd/run-jscpd.js');
+	} catch {
+		return null;
+	}
+}
+
+function jscpdArgs(launcher: string, cfg: Parameters<typeof runJscpd>[2]): string[] {
+	return [
+		launcher,
+		...cfg.paths,
+		'--absolute',
+		'--min-tokens',
+		String(cfg.minTokens),
+		'--min-lines',
+		String(cfg.minLines),
+		'--mode',
+		cfg.mode,
+		'--format',
+		cfg.formats.join(','),
+		'--ignore',
+		cfg.ignore.join(','),
+		'--reporters',
+		'json',
+		'--output',
+		cfg.output,
+		'--silent',
+		'--threshold',
+		String(cfg.threshold),
+	];
+}
+
+function runJscpd(
+	root: string,
+	launcher: string,
+	cfg: {
+		paths: string[];
+		minTokens: number;
+		minLines: number;
+		mode: string;
+		formats: string[];
+		ignore: string[];
+		output: string;
+		threshold: number;
+	},
+) {
+	return spawnSync(process.execPath, jscpdArgs(launcher, cfg), {
+		cwd: root,
+		encoding: 'utf8',
+	});
+}
+
+function readDuplicates(outDir: string): Duplicate[] | null {
+	try {
+		const report = JSON.parse(readFileSync(join(outDir, 'jscpd-report.json'), 'utf8'));
+		return report.duplicates ?? [];
+	} catch {
+		return null;
+	}
+}
+
+function processOutput(run: ReturnType<typeof runJscpd>): string[] {
+	return [run.stdout ?? '', run.stderr ?? '']
+		.filter((line) => line.length > 0)
+		.join('\n')
+		.split('\n')
+		.filter((line) => line.length > 0);
+}
+
+function duplicateRows(root: string, duplicates: Duplicate[], explain: boolean): string[] {
+	return duplicates.flatMap((duplicate) => {
+		const first = relative(root, duplicate.firstFile.name);
+		const second = relative(root, duplicate.secondFile.name);
+		const location =
+			`${first}:${duplicate.firstFile.start}-${duplicate.firstFile.end}\n` +
+			`↔ ${second}:${duplicate.secondFile.start}-${duplicate.secondFile.end}` +
+			`  (${duplicate.lines} lines, ${duplicate.format})`;
+		const fragment = duplicate.fragment?.replace(/^/gm, '  ').replace(/\s+$/, '');
+		return explain && fragment ? [location, fragment] : [location];
+	});
+}
+
 export const clones: Check<'clones'> = {
 	name: 'clones',
 	section: 'clones',
@@ -37,10 +120,8 @@ can't see. Extract the shared logic, or narrow scope with clones.ignore globs.
 --warn downgrades the gate to report-only.`,
 
 	run({ root, cfg, explain }) {
-		let launcher: string;
-		try {
-			launcher = createRequire(import.meta.url).resolve('jscpd/run-jscpd.js');
-		} catch {
+		const launcher = jscpdLauncher();
+		if (!launcher)
 			return {
 				status: 'fail',
 				summary: 'jscpd not resolvable — copy-paste gate is DOWN, not skipped',
@@ -50,39 +131,13 @@ can't see. Extract the shared logic, or narrow scope with clones.ignore globs.
 					'  reinstall deps (pnpm install / bun install) so jscpd/run-jscpd.js resolves.',
 				],
 			};
-		}
 
 		// jscpd's `json` reporter writes `<output>/jscpd-report.json`; `--silent`
 		// keeps its progress bar, stats table, and footer off our stdout. Missing
 		// dirs are tolerated, so the configured paths go through as-is. `--absolute`
 		// makes report paths unambiguous; we re-relativize them for the listing.
 		const outDir = mkdtempSync(join(tmpdir(), 'nodeve-clones-'));
-		const jscpdRun = spawnSync(
-			process.execPath,
-			[
-				launcher,
-				...cfg.paths,
-				'--absolute',
-				'--min-tokens',
-				String(cfg.minTokens),
-				'--min-lines',
-				String(cfg.minLines),
-				'--mode',
-				cfg.mode,
-				'--format',
-				cfg.formats.join(','),
-				'--ignore',
-				cfg.ignore.join(','),
-				'--reporters',
-				'json',
-				'--output',
-				outDir,
-				'--silent',
-				'--threshold',
-				String(cfg.threshold),
-			],
-			{ cwd: root, encoding: 'utf8' },
-		);
+		const jscpdRun = runJscpd(root, launcher, { ...cfg, output: outDir });
 
 		// jscpd exits non-zero only when duplication crosses `--threshold`.
 		if (jscpdRun.status === 0) {
@@ -90,40 +145,20 @@ can't see. Extract the shared logic, or narrow scope with clones.ignore globs.
 			return { status: 'pass', summary: 'no duplicated blocks over threshold' };
 		}
 
-		const rel = (p: string) => relative(root, p);
 		try {
-			let duplicates: Duplicate[];
-			try {
-				const report = JSON.parse(readFileSync(join(outDir, 'jscpd-report.json'), 'utf8'));
-				duplicates = report.duplicates ?? [];
-			} catch {
+			const duplicates = readDuplicates(outDir);
+			if (!duplicates)
 				// No report written → jscpd failed before detection (bad args, crash).
 				// Surface its own output so the failure isn't swallowed.
-				const out = [jscpdRun.stdout ?? '', jscpdRun.stderr ?? '']
-					.filter((s) => s.length > 0)
-					.join('\n')
-					.split('\n')
-					.filter((l) => l.length > 0);
-				return { status: 'fail', summary: 'jscpd failed before detection', rows: out };
-			}
-
-			const rows: string[] = [];
-			for (const d of duplicates) {
-				rows.push(
-					`${rel(d.firstFile.name)}:${d.firstFile.start}-${d.firstFile.end}\n` +
-						`↔ ${rel(d.secondFile.name)}:${d.secondFile.start}-${d.secondFile.end}` +
-						`  (${d.lines} lines, ${d.format})`,
-				);
-				// The shared code fragment is the bulky part (one clone can be 60+
-				// lines); a repo with several clones would bury the whole gate in code.
-				// Default to just the two locations + size; surface the fragments only
-				// under --explain, which the failure's pointer already advertises.
-				if (explain && d.fragment) rows.push(d.fragment.replace(/^/gm, '  ').replace(/\s+$/, ''));
-			}
+				return {
+					status: 'fail',
+					summary: 'jscpd failed before detection',
+					rows: processOutput(jscpdRun),
+				};
 			return {
 				status: 'fail',
 				summary: `${duplicates.length} duplicated block(s) — extract the shared logic`,
-				rows,
+				rows: duplicateRows(root, duplicates, explain),
 			};
 		} finally {
 			rmSync(outDir, { recursive: true, force: true });

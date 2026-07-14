@@ -78,6 +78,13 @@ pre-commit:
             glob: '{**/package.json,pnpm-workspace.yaml}'
             run: node_modules/.bin/nodeve-check require-deps
 
+          # Whole-tree property — eslint is a hard org requirement, so a repo must
+          # ship a root eslint flat config. Un-globbed: it's a repo-level fact, not
+          # a staged-file one, and a config-less repo would never stage a file that
+          # triggers a glob. No-ops (skip) where `requireEslint.enforce` is false.
+          - name: require-eslint
+            run: node_modules/.bin/nodeve-check require-eslint
+
           # Whole-tree relationships — scan the full configured scope, not just staged.
           - name: inline-dupes
             glob: '*.ts'
@@ -99,6 +106,16 @@ pre-commit:
           - name: helper-collisions
             glob: '*.ts'
             run: node_modules/.bin/nodeve-check helper-collisions {staged_files}
+
+          # eslint is a hard org requirement (see the `require-eslint` gate). The
+          # org rule set — function naming, max-params, max-lines-per-function —
+          # only bites where eslint actually runs, so it runs here, on the staged
+          # code files, resolving each repo's own flat config. Not a `nodeve-check`:
+          # it's eslint itself on node_modules/.bin. Repos opt individual rules
+          # in/out through their eslint config, not by dropping this job.
+          - name: eslint
+            glob: '*.{ts,tsx,js,jsx,mjs,cjs,svelte}'
+            run: node_modules/.bin/eslint {staged_files}
 
 # The commit-msg hook fires after pre-commit, once a message exists. lefthook
 # passes the message file path as `{1}`. The gate gives it Conventional-Commits

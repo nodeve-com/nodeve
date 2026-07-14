@@ -38,9 +38,9 @@ export default {
 		allowlist: ['packages/grimoire/src/bake-site.ts::parts'],
 	},
 	helperCollisions: {
-		libs: ['remeda', 'date-fns'],
+		libs: ['remeda', 'date-fns', 'remeda-humps'],
 	},
 	requireDeps: {
-		deps: ['remeda', 'date-fns'],
+		deps: ['remeda', 'date-fns', 'remeda-humps'],
 	},
 };

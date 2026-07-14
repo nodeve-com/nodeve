@@ -28,7 +28,19 @@ const base = [
 			// function () {}` → name it). Note: does NOT govern arrow functions (no
 			// ESLint option does); inline callback arrows stay legal.
 			'func-names': ['error', 'always'],
+			'max-depth': ["error", 3],
+			// >3 params must collapse into a single typed options object — past three
+			// positional args the call site stops reading and every reorder is a silent bug.
+			'max-params': ['error', 3],
+			'max-lines-per-function': ['error', { max: 35, skipBlankLines: true, skipComments: true }],
 		},
+	},
+	{
+		// Test files: a `describe`/`it` callback is a suite, not a unit of logic — its
+		// length tracks the number of cases, not a split-worthy responsibility. The
+		// length budget doesn't apply; everything else (naming, params) still does.
+		files: ['**/*.{test,spec}.{ts,tsx,js,jsx,mts,cts}', '**/*.test-d.ts'],
+		rules: { 'max-lines-per-function': 'off' },
 	},
 ];
 

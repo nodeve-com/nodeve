@@ -41,6 +41,7 @@
     "nodeve-check-file-size": "./dist/bin/file-size.js",
     "nodeve-check-catalog": "./dist/bin/catalog.js",
     "nodeve-check-require-deps": "./dist/bin/require-deps.js",
+    "nodeve-check-require-eslint": "./dist/bin/require-eslint.js",
     "nodeve-format-markdown": "./dist/bin/format-markdown.js",
     "nodeve-build-lib-names": "./dist/bin/build-lib-names.js",
     "nodeve-build-helper-manifest": "./dist/bin/build-helper-manifest.js"
@@ -51,12 +52,14 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@ast-grep/napi": "catalog:",
     "@nodeve/text": "workspace:*",
     "js-tiktoken": "catalog:",
     "jscpd": "catalog:",
     "pluralize": "catalog:",
     "prettier": "catalog:",
     "remeda": "catalog:",
+    "ts-morph": "catalog:",
     "typescript": "catalog:",
     "yaml": "catalog:"
   },

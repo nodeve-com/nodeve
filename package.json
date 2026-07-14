@@ -11,19 +11,26 @@
     "prepare": "lefthook install || true",
     "build": "pnpm -r --if-present build",
     "test": "pnpm -r --if-present test",
-    "lint": "pnpm -r --if-present lint",
+    "lint": "eslint .",
     "typecheck": "pnpm -r --if-present typecheck",
     "clean": "pnpm -r --if-present clean",
     "release": "pnpm build && changeset publish",
-    "check": "nodeve-check",
+    "check": "nodeve-check && eslint .",
     "check:gate": "lefthook run pre-commit"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
+    "@eslint/compat": "catalog:",
+    "@eslint/js": "catalog:",
     "@nodeve/checks": "workspace:*",
     "@nodeve/config": "workspace:*",
     "date-fns": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "globals": "catalog:",
     "prettier": "^3.3.0",
-    "typescript": "^5.5.0"
+    "remeda-humps": "catalog:",
+    "typescript": "^5.5.0",
+    "typescript-eslint": "catalog:"
   }
 }

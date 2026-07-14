@@ -24,8 +24,13 @@ const skipped: string[] = [];
 for (const lib of cfg.libs) {
 	try {
 		const mod = (await import(lib)) as Record<string, unknown>;
+		// A default-only export (e.g. remeda-humps' `humps`) carries its identity in the
+		// function's runtime `.name`, not the `default` key — index it under that name.
+		const nameOf = (k: string): string =>
+			k === 'default' ? (mod.default as { name?: string }).name || k : k;
 		const fns = Object.keys(mod)
 			.filter((k) => typeof mod[k] === 'function')
+			.map(nameOf)
 			.sort();
 		if (fns.length) namesByLib[lib] = fns;
 		else skipped.push(`${lib} (no function exports)`);

@@ -46,6 +46,7 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 | `file-size` | TS sources over a line budget (warn >225, fail >300) | on (`apps/`, `packages/`) |
 | `catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
 | `require-deps` | org-required deps missing from the workspace catalog | on (`remeda`; set `deps: []` to opt out) |
+| `require-eslint` | repo ships no root eslint flat config (eslint is org-mandatory) | on (set `requireEslint: { enforce: false }` to opt out) |
 | `commit-msg` | commit message off Conventional Commits, or a sizeable change with no body | on (`commit-msg` hook; body required past 50 changed lines) |
 
 Run any of them as `nodeve-check <name>`. Each also has a standalone `nodeve-check-<name>` bin (identical behavior) for direct invocation.

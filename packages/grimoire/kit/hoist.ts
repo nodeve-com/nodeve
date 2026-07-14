@@ -10,7 +10,11 @@ import { stableStringify } from './project.ts';
 
 const isColl = (v: unknown): v is Obj | unknown[] => isPlainObject(v) || Array.isArray(v);
 const children = (node: Obj | unknown[]): unknown[] =>
-	Array.isArray(node) ? node : Object.keys(node).sort().map((k) => node[k]);
+	Array.isArray(node)
+		? node
+		: Object.keys(node)
+				.sort()
+				.map((k) => node[k]);
 
 /** Canonical length below which a duplicated subtree isn't worth a const — a copy-paste gate only
  *  flags sizable blocks, and hoisting every `{}` would bury the file in one-liners. */
@@ -29,7 +33,11 @@ function countForms(node: unknown, countByForm: Map<string, { n: number; node: u
 /** One value as a TS literal, indented; a hoisted subtree (other than `self`, the const being defined)
  *  collapses to its const name. Children always substitute, so a hoisted node nested in another is
  *  referenced — the deeper const is shorter, so it's declared first. */
-function render(node: unknown, indent: string, constByForm: Map<string, string>, self: string): string {
+function render(
+	node: unknown,
+	options: { indent: string; constByForm: Map<string, string>; self: string },
+): string {
+	const { indent, constByForm, self } = options;
 	if (isColl(node)) {
 		const key = stableStringify(node);
 		const name = constByForm.get(key);
@@ -38,12 +46,12 @@ function render(node: unknown, indent: string, constByForm: Map<string, string>,
 	const inner = indent + '\t';
 	if (Array.isArray(node)) {
 		if (node.length === 0) return '[]';
-		return `[\n${node.map((c) => inner + render(c, inner, constByForm, self)).join(',\n')}\n${indent}]`;
+		return `[\n${node.map((child) => inner + render(child, { ...options, indent: inner })).join(',\n')}\n${indent}]`;
 	}
 	if (isPlainObject(node)) {
 		const keys = Object.keys(node).sort();
 		if (keys.length === 0) return '{}';
-		return `{\n${keys.map((k) => `${inner}${JSON.stringify(k)}: ${render(node[k], inner, constByForm, self)}`).join(',\n')}\n${indent}}`;
+		return `{\n${keys.map((key) => `${inner}${JSON.stringify(key)}: ${render(node[key], { ...options, indent: inner })}`).join(',\n')}\n${indent}}`;
 	}
 	return JSON.stringify(node);
 }
@@ -61,8 +69,8 @@ export function renderHoistedConst(value: unknown): string {
 	chosen.forEach((e, i) => constByForm.set(stableStringify(e.node), `_s${i}`));
 	const defs = chosen.map((e) => {
 		const key = stableStringify(e.node);
-		return `const ${constByForm.get(key)!} = ${render(e.node, '', constByForm, key)} as const;`;
+		return `const ${constByForm.get(key)!} = ${render(e.node, { indent: '', constByForm, self: key })} as const;`;
 	});
-	const body = render(value, '', constByForm, stableStringify(value));
+	const body = render(value, { indent: '', constByForm, self: stableStringify(value) });
 	return `${defs.length > 0 ? `${defs.join('\n')}\n\n` : ''}export default ${body} as const;\n`;
 }

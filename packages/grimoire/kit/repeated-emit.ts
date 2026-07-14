@@ -13,7 +13,8 @@ function featureNature(slug: string): { parts?: Record<string, string[]>; counte
 	const settings = (readYaml(path).concept_settings ?? {}) as Record<string, unknown>;
 	if (typeof settings.part === 'string') {
 		const partsPath = layerIndex('parts').get(settings.part);
-		if (!partsPath) throw new Error(`grimoire generate: no parts/${settings.part}.yaml (feature ${slug})`);
+		if (!partsPath)
+			throw new Error(`grimoire generate: no parts/${settings.part}.yaml (feature ${slug})`);
 		return { parts: readYaml(partsPath).parts as Record<string, string[]> };
 	}
 	if (settings.repeated === true) return { counted: true };
@@ -62,13 +63,15 @@ function overlaySpec(base: Obj, over: Obj): Obj {
 	for (const [k, v] of Object.entries(over)) {
 		const prev = out[k];
 		if (isPlainObject(prev) && isPlainObject(v)) out[k] = overlaySpec(prev, v);
-		else if (Array.isArray(prev) && Array.isArray(v) && k === 'intervals') out[k] = overlayRows(prev, v, bandKey);
+		else if (Array.isArray(prev) && Array.isArray(v) && k === 'intervals')
+			out[k] = overlayRows(prev, v, bandKey);
 		else out[k] = v;
 	}
 	return out;
 }
 
-const childObj = (o: Obj, key: string): Obj => (isPlainObject(o[key]) ? (o[key] as Obj) : (o[key] = {}));
+const childObj = (o: Obj, key: string): Obj =>
+	isPlainObject(o[key]) ? (o[key] as Obj) : (o[key] = {});
 
 /** The spec-map node a measurand link addresses within its feature's `feature_spec` body, per the
  *  feature's repeated nature: a parts feature keys `part.<part_id>` (or `combined` when unset — the
@@ -78,7 +81,10 @@ const childObj = (o: Obj, key: string): Obj => (isPlainObject(o[key]) ? (o[key] 
 function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
 	const fs = childObj(feature, 'feature_spec');
 	const nature = featureNature(slug);
-	if (nature.parts) return reg.part_id === undefined ? childObj(fs, 'combined') : childObj(childObj(fs, 'part'), String(reg.part_id));
+	if (nature.parts)
+		return reg.part_id === undefined
+			? childObj(fs, 'combined')
+			: childObj(childObj(fs, 'part'), String(reg.part_id));
 	if (nature.counted) {
 		if (reg.ordinal === undefined) return childObj(fs, 'combined');
 		const instances = Array.isArray(fs.instances) ? fs.instances : (fs.instances = []);
@@ -100,11 +106,47 @@ export function backfillRegisterSpecNodes(entry: Obj): void {
 	const medium = entry.modbus;
 	if (!isPlainObject(medium) || !Array.isArray(medium.modbus_registers)) return;
 	for (const reg of medium.modbus_registers) {
-		if (!isPlainObject(reg) || reg.feature_id === undefined || reg.quantity_kind === undefined) continue;
+		if (!isPlainObject(reg) || reg.feature_id === undefined || reg.quantity_kind === undefined)
+			continue;
 		const feature = entry[String(reg.feature_id)];
 		if (!isPlainObject(feature)) continue; // unresolvable link — a separate link-validation concern, not ours to invent
 		childObj(measurandNode(feature, String(reg.feature_id), reg), String(reg.quantity_kind));
 	}
+}
+
+function resolvePartsFeature(value: Obj, fs: Obj, parts: Record<string, string[]>): Obj {
+	const {
+		default: base = {},
+		part: overrides = {},
+		...rest
+	} = fs as Record<string, Record<string, Obj>>;
+	const resolved: Obj = {};
+	for (const [kind, names] of Object.entries(parts)) {
+		const kindBase = overlaySpec(featureCombined(kind), base[kind] ?? {});
+		for (const name of names) {
+			const node = overlaySpec(kindBase, overrides[name] ?? {});
+			if (Object.keys(node).length > 0) resolved[name] = node;
+		}
+	}
+	return { ...value, feature_spec: { ...rest, part: resolved } };
+}
+
+function resolveCountedFeature(value: Obj, fs: Obj): Obj {
+	const {
+		default: base = {},
+		instances = [],
+		...rest
+	} = fs as {
+		default?: Obj;
+		instances?: Obj[];
+	};
+	const settings = isPlainObject(value.concept_settings) ? (value.concept_settings as Obj) : {};
+	const rows = Array.from({ length: Number(settings.count ?? 0) }, (_, index) => {
+		const match = instances.find((row) => row.ordinal === index + 1) ?? {};
+		const override = Object.fromEntries(Object.entries(match).filter(([key]) => key !== 'ordinal'));
+		return overlaySpec(base, override);
+	});
+	return { ...value, feature_spec: { ...rest, instances: rows } };
 }
 
 /** Resolve an entry's repeated features for the emit — `default` is authoring-only and never
@@ -119,28 +161,9 @@ export function resolveRepeatedFeatures(data: Obj): Obj {
 		if (!nature.parts && !nature.counted) continue;
 		// The spec body lives under `feature_spec` now; `count` under `concept_settings` (the grammar).
 		const fs = isPlainObject(value.feature_spec) ? (value.feature_spec as Obj) : {};
-		if (nature.parts) {
-			const { default: base = {}, part: overrides = {}, ...fsRest } = fs as Record<string, Record<string, Obj>>;
-			const part: Obj = {};
-			for (const [kind, names] of Object.entries(nature.parts)) {
-				// part.<name> = the kind feature's own def bands ⊕ this device's default.<kind> ⊕ its part.<name>.
-				const kindBase = overlaySpec(featureCombined(kind), base[kind] ?? {});
-				for (const name of names) {
-					const node = overlaySpec(kindBase, overrides[name] ?? {});
-					if (Object.keys(node).length > 0) part[name] = node;
-				}
-			}
-			out[key] = { ...value, feature_spec: { ...fsRest, part } };
-		} else {
-			const { default: base = {}, instances = [], ...fsRest } = fs as { default?: Obj; instances?: Obj[] };
-			const count = Number((isPlainObject(value.concept_settings) ? (value.concept_settings as Obj).count : undefined) ?? 0);
-			const rows = Array.from({ length: count }, (_, i) => {
-				const { ordinal, ...override } = instances.find((r) => r.ordinal === i + 1) ?? {};
-				void ordinal; // the join key — position encodes it in the emitted dense array
-				return overlaySpec(base, override);
-			});
-			out[key] = { ...value, feature_spec: { ...fsRest, instances: rows } };
-		}
+		out[key] = nature.parts
+			? resolvePartsFeature(value, fs, nature.parts)
+			: resolveCountedFeature(value, fs);
 	}
 	return out;
 }

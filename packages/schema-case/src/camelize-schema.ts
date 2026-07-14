@@ -12,12 +12,53 @@ export const KEY_MAP = 'x-key-map';
 
 type Obj = Record<string, unknown>;
 
-
 // Positions holding one subschema, a list of subschemas, or a name-keyed / free-keyed map of them.
 const one = (v: unknown): unknown => camelizeSchema(v);
 const listOrOne = (v: unknown): unknown => (Array.isArray(v) ? v.map(one) : one(v));
 const camelizeValues = (v: unknown): unknown =>
 	isPlainObject(v) ? Object.fromEntries(Object.entries(v).map(([k, s]) => [k, one(s)])) : v;
+
+function camelizeProperties(properties: Record<string, unknown>): {
+	properties: Obj;
+	keyMap: Record<string, string>;
+} {
+	const keyMap: Record<string, string> = {};
+	const entries = Object.entries(properties).map(([name, schema]) => {
+		const camel = toCamelCase(name);
+		if (camel !== name) keyMap[name] = camel;
+		return [camel, one(schema)];
+	});
+	return { properties: Object.fromEntries(entries), keyMap };
+}
+
+function camelizeDependencies(dependencies: Record<string, unknown>): Obj {
+	return Object.fromEntries(
+		Object.entries(dependencies).map(([name, dependency]) => [
+			toCamelCase(name),
+			Array.isArray(dependency)
+				? dependency.map((member) => (typeof member === 'string' ? toCamelCase(member) : member))
+				: one(dependency),
+		]),
+	);
+}
+
+function camelizeSubschemas(out: Obj): void {
+	for (const key of [
+		'additionalItems',
+		'additionalProperties',
+		'contains',
+		'propertyNames',
+		'not',
+		'if',
+		'then',
+		'else',
+	])
+		if (out[key] !== undefined) out[key] = one(out[key]);
+	for (const key of ['allOf', 'anyOf', 'oneOf'])
+		if (Array.isArray(out[key])) out[key] = out[key].map(one);
+	for (const key of ['patternProperties', 'definitions', '$defs'])
+		if (out[key] !== undefined) out[key] = camelizeValues(out[key]);
+}
 
 /**
  * A snake_case draft-07 schema as its camelCase sibling. Declared property names rename —
@@ -31,40 +72,17 @@ export function camelizeSchema(schema: unknown): unknown {
 	const out: Obj = { ...schema };
 
 	if (out.properties !== undefined && isPlainObject(out.properties)) {
-		const keyMap: Record<string, string> = {};
-		out.properties = Object.fromEntries(
-			Object.entries(out.properties).map(([name, s]) => {
-				const camel = toCamelCase(name);
-				if (camel !== name) keyMap[name] = camel;
-				return [camel, one(s)];
-			}),
-		);
+		const { properties, keyMap } = camelizeProperties(out.properties);
+		out.properties = properties;
 		if (Object.keys(keyMap).length > 0) out[KEY_MAP] = keyMap;
 	}
-	if (Array.isArray(out.required)) out.required = out.required.map((m) => (typeof m === 'string' ? toCamelCase(m) : m));
+	if (Array.isArray(out.required))
+		out.required = out.required.map((m) => (typeof m === 'string' ? toCamelCase(m) : m));
 	if (out.dependencies !== undefined && isPlainObject(out.dependencies))
-		out.dependencies = Object.fromEntries(
-			Object.entries(out.dependencies).map(([name, dep]) => [
-				toCamelCase(name),
-				Array.isArray(dep) ? dep.map((m) => (typeof m === 'string' ? toCamelCase(m) : m)) : one(dep),
-			]),
-		);
+		out.dependencies = camelizeDependencies(out.dependencies);
 
 	if (out.items !== undefined) out.items = listOrOne(out.items);
-	if (out.additionalItems !== undefined) out.additionalItems = one(out.additionalItems);
-	if (out.additionalProperties !== undefined) out.additionalProperties = one(out.additionalProperties);
-	if (out.contains !== undefined) out.contains = one(out.contains);
-	if (out.propertyNames !== undefined) out.propertyNames = one(out.propertyNames);
-	if (out.not !== undefined) out.not = one(out.not);
-	if (out.if !== undefined) out.if = one(out.if);
-	if (out.then !== undefined) out.then = one(out.then);
-	if (out.else !== undefined) out.else = one(out.else);
-	if (Array.isArray(out.allOf)) out.allOf = out.allOf.map(one);
-	if (Array.isArray(out.anyOf)) out.anyOf = out.anyOf.map(one);
-	if (Array.isArray(out.oneOf)) out.oneOf = out.oneOf.map(one);
-	if (out.patternProperties !== undefined) out.patternProperties = camelizeValues(out.patternProperties);
-	if (out.definitions !== undefined) out.definitions = camelizeValues(out.definitions);
-	if (out.$defs !== undefined) out.$defs = camelizeValues(out.$defs);
+	camelizeSubschemas(out);
 
 	return out;
 }

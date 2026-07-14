@@ -35,22 +35,23 @@ export function gitFiles(root: string, globs: string[], ignore: string[] = []): 
  */
 export function globMatcher(patterns: string[]): (rel: string) => boolean {
 	if (patterns.length === 0) return () => false;
-	const res = patterns.map((p) => {
-		let out = '';
-		for (let i = 0; i < p.length; i++) {
-			const c = p[i]!;
-			if (c === '*') {
-				if (p[i + 1] === '*') {
-					i++;
-					if (p[i + 1] === '/') i++;
-					out += '.*';
-				} else out += '[^/]*';
-			} else if (c === '?') out += '[^/]';
-			else out += /[.+^${}()|[\]\\]/.test(c) ? `\\${c}` : c;
-		}
-		return new RegExp(`^${out}$`);
-	});
+	const res = patterns.map(globRegex);
 	return (rel) => res.some((r) => r.test(rel));
+}
+
+function globRegex(pattern: string): RegExp {
+	let source = '';
+	for (let i = 0; i < pattern.length; i++) {
+		const char = pattern[i]!;
+		if (char === '*' && pattern[i + 1] === '*') {
+			i++;
+			if (pattern[i + 1] === '/') i++;
+			source += '.*';
+		} else if (char === '*') source += '[^/]*';
+		else if (char === '?') source += '[^/]';
+		else source += /[.+^${}()|[\]\\]/.test(char) ? `\\${char}` : char;
+	}
+	return new RegExp(`^${source}$`);
 }
 
 /**
@@ -68,7 +69,10 @@ export function lineCount(root: string, path: string): number {
  * zero. Used by the commit-msg gate to size a change before deciding a body is owed.
  */
 export function stagedDiffLines(root: string): number {
-	const out = execFileSync('git', ['diff', '--cached', '--numstat'], { cwd: root, encoding: 'utf8' });
+	const out = execFileSync('git', ['diff', '--cached', '--numstat'], {
+		cwd: root,
+		encoding: 'utf8',
+	});
 	let total = 0;
 	for (const line of out.split('\n')) {
 		if (!line) continue;
@@ -102,7 +106,11 @@ export function readWorkspace(root: string): Workspace | null {
 		const ws = JSON.parse(readFileSync(pkgPath, 'utf8')).workspaces;
 		if (Array.isArray(ws)) return { packages: ws, catalog: {}, catalogs: {} };
 		if (ws && typeof ws === 'object') {
-			return { packages: ws.packages ?? [], catalog: ws.catalog ?? {}, catalogs: ws.catalogs ?? {} };
+			return {
+				packages: ws.packages ?? [],
+				catalog: ws.catalog ?? {},
+				catalogs: ws.catalogs ?? {},
+			};
 		}
 	}
 	return null;

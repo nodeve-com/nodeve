@@ -16,7 +16,12 @@ export type Kind = 'fn' | 'const' | 'class' | 'component';
 /** A declared symbol's kind/signature/summary, before barrel context is attached. */
 export type Decl = { kind: Kind; signature: string; summary: string };
 
-export type ReExport = { exportedName: string; localName: string; module: string; typeOnly: boolean };
+export type ReExport = {
+	exportedName: string;
+	localName: string;
+	module: string;
+	typeOnly: boolean;
+};
 
 export type Barrel = { importPath: string; barrelPath: string };
 
@@ -64,15 +69,71 @@ export function moduleDocOf(sourcePath: string): string {
 	return doc;
 }
 
-function fnSignature(
-	name: string,
-	params: ts.NodeArray<ts.ParameterDeclaration>,
-	returnType: ts.TypeNode | undefined,
-	source: ts.SourceFile,
-): string {
+function fnSignature(options: {
+	name: string;
+	params: ts.NodeArray<ts.ParameterDeclaration>;
+	returnType: ts.TypeNode | undefined;
+	source: ts.SourceFile;
+}): string {
+	const { name, params, returnType, source } = options;
 	const args = params.map((p) => p.getText(source).replace(/\s+/g, ' ')).join(', ');
 	const ret = returnType ? `: ${returnType.getText(source).replace(/\s+/g, ' ')}` : '';
 	return `${name}(${args})${ret}`;
+}
+
+function variableDeclarations(
+	statement: ts.VariableStatement,
+	source: ts.SourceFile,
+): [string, Decl][] {
+	const summary = jsDocSummary(statement);
+	return statement.declarationList.declarations.flatMap((declaration) => {
+		if (!ts.isIdentifier(declaration.name)) return [];
+		const name = declaration.name.text;
+		const init = declaration.initializer;
+		if (init && (ts.isArrowFunction(init) || ts.isFunctionExpression(init)))
+			return [
+				[
+					name,
+					{
+						kind: 'fn',
+						signature: fnSignature({
+							name,
+							params: init.parameters,
+							returnType: init.type,
+							source,
+						}),
+						summary,
+					},
+				] as [string, Decl],
+			];
+		const type = declaration.type?.getText(source).replace(/\s+/g, ' ');
+		return [[name, { kind: 'const', signature: `${name}${type ? `: ${type}` : ''}`, summary }]];
+	});
+}
+
+function declarationEntries(statement: ts.Statement, source: ts.SourceFile): [string, Decl][] {
+	if (ts.isFunctionDeclaration(statement) && statement.name) {
+		const name = statement.name.text;
+		return [
+			[
+				name,
+				{
+					kind: 'fn',
+					signature: fnSignature({
+						name,
+						params: statement.parameters,
+						returnType: statement.type,
+						source,
+					}),
+					summary: jsDocSummary(statement),
+				},
+			],
+		];
+	}
+	if (ts.isVariableStatement(statement)) return variableDeclarations(statement, source);
+	if (!ts.isClassDeclaration(statement) || !statement.name) return [];
+	const name = statement.name.text;
+	return [[name, { kind: 'class', signature: name, summary: jsDocSummary(statement) }]];
 }
 
 /** Map every top-level declared name in a source file to its kind/signature/summary. */
@@ -80,47 +141,22 @@ export function declarationsOf(sourcePath: string): Map<string, Decl> {
 	const out = new Map<string, Decl>();
 	const source = parseSource(sourcePath);
 
-	for (const stmt of source.statements) {
-		if (ts.isFunctionDeclaration(stmt) && stmt.name) {
-			const name = stmt.name.text;
-			if (out.has(name)) continue; // first overload signature wins
-			out.set(name, {
-				kind: 'fn',
-				signature: fnSignature(name, stmt.parameters, stmt.type, source),
-				summary: jsDocSummary(stmt),
-			});
-		} else if (ts.isVariableStatement(stmt)) {
-			const summary = jsDocSummary(stmt);
-			for (const decl of stmt.declarationList.declarations) {
-				if (!ts.isIdentifier(decl.name)) continue;
-				const name = decl.name.text;
-				const init = decl.initializer;
-				if (init && (ts.isArrowFunction(init) || ts.isFunctionExpression(init))) {
-					out.set(name, {
-						kind: 'fn',
-						signature: fnSignature(name, init.parameters, init.type, source),
-						summary,
-					});
-				} else {
-					const typeText = decl.type ? `: ${decl.type.getText(source).replace(/\s+/g, ' ')}` : '';
-					out.set(name, { kind: 'const', signature: `${name}${typeText}`, summary });
-				}
-			}
-		} else if (ts.isClassDeclaration(stmt) && stmt.name) {
-			out.set(stmt.name.text, {
-				kind: 'class',
-				signature: stmt.name.text,
-				summary: jsDocSummary(stmt),
-			});
-		}
-	}
+	for (const statement of source.statements)
+		for (const [name, declaration] of declarationEntries(statement, source))
+			if (!out.has(name)) out.set(name, declaration); // first overload signature wins
 	return out;
 }
 
 /** Resolve a barrel module specifier to an on-disk source path. */
 export function resolveSource(barrelDir: string, spec: string): string | null {
 	const base = join(barrelDir, spec);
-	const candidates = [base, base.replace(/\.js$/, '.ts'), `${base}.ts`, `${base}.svelte`, join(base, 'index.ts')];
+	const candidates = [
+		base,
+		base.replace(/\.js$/, '.ts'),
+		`${base}.ts`,
+		`${base}.svelte`,
+		join(base, 'index.ts'),
+	];
 	return candidates.find((c) => existsSync(c)) ?? null;
 }
 

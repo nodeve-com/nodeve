@@ -20,7 +20,9 @@ const findPair = (map: YAMLMap, key: string): Pair | undefined =>
 
 /** Move a top-level `pair` into `settings` under `asKey` (renaming its key), removing it from the
  *  document root. Preserves the pair's own comments; only the key scalar is renamed. */
-function moveInto(root: YAMLMap, settings: YAMLMap, pair: Pair, asKey: string): void {
+
+function moveInto(options: { root: YAMLMap; settings: YAMLMap; pair: Pair; asKey: string }): void {
+	const { root, settings, pair, asKey } = options;
 	(pair.key as { value: string }).value = asKey;
 	root.items.splice(root.items.indexOf(pair), 1);
 	settings.items.push(pair as (typeof settings.items)[number]);
@@ -41,56 +43,77 @@ function tidy(settings: YAMLMap): void {
 
 let changed = 0;
 const migrated: string[] = [];
+
+function tidyExisting(
+	doc: ReturnType<typeof parseDocument>,
+	path: string,
+	existing: Pair | undefined,
+) {
+	if (!existing || !isMap(existing.value)) return false;
+	const before = doc.toString();
+	tidy(existing.value);
+	if (doc.toString() === before) return false;
+	writeFileSync(path, doc.toString());
+	return true;
+}
+
+function settingsMap(options: {
+	doc: ReturnType<typeof parseDocument>;
+	root: YAMLMap;
+	path: string;
+	featureSettings: Pair | undefined;
+	legacy: Pair[];
+}): YAMLMap {
+	const { doc, root, path, featureSettings, legacy } = options;
+	if (!featureSettings || !isMap(featureSettings.value)) {
+		const settings = doc.createNode({}) as YAMLMap;
+		const pair = doc.createPair(
+			'concept_settings',
+			settings,
+		) as unknown as (typeof root.items)[number];
+		root.items.splice(root.items.indexOf(legacy[0] as (typeof root.items)[number]), 0, pair);
+		return settings;
+	}
+	(featureSettings.key as { value: string }).value = 'concept_settings';
+	const settings = featureSettings.value;
+	const alias = findPair(settings, 'alias');
+	if (alias && legacy.some((pair) => keyOf(pair) === 'compose'))
+		throw new Error(
+			`${path}: has both feature_settings.alias and top-level compose — reconcile by hand`,
+		);
+	if (alias) (alias.key as { value: string }).value = 'compose';
+	return settings;
+}
+
+function migrate(path: string): boolean {
+	const doc = parseDocument(readFileSync(path, 'utf8'));
+	const root = doc.contents;
+	if (!isMap(root)) return false;
+
+	const fs = findPair(root, 'feature_settings');
+	const topCompose = findPair(root, 'compose');
+	const topRepeated = findPair(root, 'repeated');
+	const topPart = findPair(root, 'part');
+	const existing = findPair(root, 'concept_settings');
+	if (!fs && !topCompose && !topRepeated && !topPart) {
+		return tidyExisting(doc, path, existing);
+	}
+
+	const legacy = [topCompose, topRepeated, topPart].filter((pair): pair is Pair => !!pair);
+	const settings = settingsMap({ doc, root, path, featureSettings: fs, legacy });
+
+	if (topCompose) moveInto({ root, settings, pair: topCompose, asKey: 'compose' });
+	if (topRepeated) moveInto({ root, settings, pair: topRepeated, asKey: 'repeated' });
+	if (topPart) moveInto({ root, settings, pair: topPart, asKey: 'part' });
+	tidy(settings);
+
+	writeFileSync(path, doc.toString());
+	return true;
+}
+
 for (const dir of DIRS) {
 	for (const path of yamlFiles(join(CONCEPTS, dir))) {
-		const doc = parseDocument(readFileSync(path, 'utf8'));
-		const root = doc.contents;
-		if (!isMap(root)) continue;
-
-		const fs = findPair(root, 'feature_settings');
-		const topCompose = findPair(root, 'compose');
-		const topRepeated = findPair(root, 'repeated');
-		const topPart = findPair(root, 'part');
-		const existing = findPair(root, 'concept_settings');
-		if (!fs && !topCompose && !topRepeated && !topPart) {
-			// Already migrated — still tidy any stray blank lines from an earlier run.
-			if (existing && isMap(existing.value)) {
-				const before = doc.toString();
-				tidy(existing.value);
-				if (doc.toString() !== before) {
-					writeFileSync(path, doc.toString());
-					changed++;
-					migrated.push(path.slice(CONCEPTS.length + 1));
-				}
-			}
-			continue;
-		}
-
-		// The settings map: reuse the old feature_settings body (renamed), else a fresh map placed
-		// where the first legacy key sat.
-		let settings: YAMLMap;
-		if (fs && isMap(fs.value)) {
-			(fs.key as { value: string }).value = 'concept_settings';
-			settings = fs.value;
-			// alias IS a single compose value.
-			const alias = findPair(settings, 'alias');
-			if (alias) {
-				if (topCompose) throw new Error(`${path}: has both feature_settings.alias and top-level compose — reconcile by hand`);
-				(alias.key as { value: string }).value = 'compose';
-			}
-		} else {
-			settings = doc.createNode({}) as YAMLMap;
-			const anchor = (topCompose ?? topRepeated ?? topPart!) as (typeof root.items)[number];
-			const pair = doc.createPair('concept_settings', settings) as unknown as (typeof root.items)[number];
-			root.items.splice(root.items.indexOf(anchor), 0, pair);
-		}
-
-		if (topCompose) moveInto(root, settings, topCompose, 'compose');
-		if (topRepeated) moveInto(root, settings, topRepeated, 'repeated');
-		if (topPart) moveInto(root, settings, topPart, 'part');
-		tidy(settings);
-
-		writeFileSync(path, doc.toString());
+		if (!migrate(path)) continue;
 		changed++;
 		migrated.push(path.slice(CONCEPTS.length + 1));
 	}

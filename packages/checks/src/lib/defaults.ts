@@ -69,6 +69,9 @@ export default {
 			// (`type`) that dilutes the fuzzy score below threshold, so the `isObject`
 			// alias is what lands a local `isObj` (stems to `is object` → 1.0).
 			isObjectType: ['isObject', 'isObjectLike'],
+			// remeda-humps' default `humps` deep-camelCases object keys; a local key-camelizer
+			// (camelKey/camelKeys) reinvents it under names sharing no tokens.
+			humps: ['camelizeKeys', 'camelKeys', 'camelKey'],
 		},
 		libNamesPath: '.nodeve/lib-names.json',
 		threshold: 0.8,
@@ -102,6 +105,9 @@ export default {
 	catalog: { enforce: true, allowlist: [] },
 	// On by default: the workspace catalog must define remeda (set deps:[] to opt out).
 	requireDeps: { deps: ['remeda'] },
+	// On by default: every project must ship a root eslint flat config (set
+	// enforce:false to opt out). The rules live in @nodeve/config/eslint.
+	requireEslint: { enforce: true },
 	// Opt-in: no packages → no-op.
 	helperManifest: { packages: [], output: '.nodeve/helper-manifest.txt' },
 } satisfies Config;

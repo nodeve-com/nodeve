@@ -15,7 +15,13 @@
 
 import { type CatalogDevice, loadDevice } from './catalog.ts';
 import { isPlainObject } from 'remeda';
-import { type MeasurandCell, type Obj, measurandCells, specSlug, specSlugQualified } from './measurand-tree.ts';
+import {
+	type MeasurandCell,
+	type Obj,
+	measurandCells,
+	specSlug,
+	specSlugQualified,
+} from './measurand-tree.ts';
 
 /** A baked site bundle, as read from `site.generated.json` (snake_case, pre-validated by the bake). */
 export type SiteBundle = Record<string, unknown>;
@@ -46,7 +52,20 @@ export type CatalogItemRef = { archetype_id: string; slug: string };
 const refKey = ({ archetype_id, slug }: CatalogItemRef): string => `${archetype_id}/${slug}`;
 
 // The `identity.slug` handle of an array element, or undefined for a positionally-keyed one.
-const slugKey = (el: unknown): string | undefined => (isPlainObject(el) && isPlainObject(el.identity) ? ((el.identity as Obj).slug as string | undefined) : undefined);
+const slugKey = (el: unknown): string | undefined =>
+	isPlainObject(el) && isPlainObject(el.identity)
+		? ((el.identity as Obj).slug as string | undefined)
+		: undefined;
+
+function overlayIdentityArray(base: unknown[], patch: unknown[]): unknown[] {
+	const merged = base.map((element) => {
+		const matching = patch.find((candidate) => slugKey(candidate) === slugKey(element));
+		return matching === undefined ? element : overlayPatch(element, matching);
+	});
+	for (const element of patch)
+		if (!base.some((candidate) => slugKey(candidate) === slugKey(element))) merged.push(element);
+	return merged;
+}
 
 // Overlay the sparse patch onto the device tree. Not remeda.mergeDeep: that REPLACES arrays, but a
 // patch array is sparse and must merge element-wise onto the device's. Two array shapes coexist:
@@ -58,14 +77,8 @@ const slugKey = (el: unknown): string | undefined => (isPlainObject(el) && isPla
 // The patch only ever ADDS leaves; objects recurse, leaves overlay.
 function overlayPatch(base: unknown, patch: unknown): unknown {
 	if (Array.isArray(base) && Array.isArray(patch)) {
-		if (base.length > 0 && base.every((el) => slugKey(el) !== undefined)) {
-			const merged = base.map((el) => {
-				const p = patch.find((pe) => slugKey(pe) === slugKey(el));
-				return p === undefined ? el : overlayPatch(el, p);
-			});
-			for (const p of patch) if (!base.some((el) => slugKey(el) === slugKey(p))) merged.push(p);
-			return merged;
-		}
+		if (base.length > 0 && base.every((el) => slugKey(el) !== undefined))
+			return overlayIdentityArray(base, patch);
 		return base.map((el, i) => overlayPatch(el, patch[i]));
 	}
 	if (isPlainObject(base) && isPlainObject(patch)) {
@@ -76,54 +89,73 @@ function overlayPatch(base: unknown, patch: unknown): unknown {
 	return patch === undefined ? base : patch;
 }
 
-/** Open a baked site bundle for reading. Indexes its site_catalog + site_adapter once; every lookup
- *  below reads those indexes. */
-export function openSite(bundle: SiteBundle) {
+function siteIndexes(bundle: SiteBundle) {
 	const catalog = (Array.isArray(bundle.site_catalog) ? bundle.site_catalog : []) as Obj[];
 	const adapters = (Array.isArray(bundle.site_adapter) ? bundle.site_adapter : []) as Obj[];
-
-	// site_catalog is referenced as `<its device's archetype>/<its own slug>` — the same key
-	// `generate-site` validates against (the device archetype is what a catalog_item names, the slug
-	// is the site-local one). Build that lookup once.
 	const bySiteRef = new Map<string, Obj>();
 	for (const entry of catalog) {
 		const item = identityOf(asObj(entry.inventory).catalog_item);
 		bySiteRef.set(`${item.archetype_id}/${identityOf(entry.identity).slug}`, entry);
 	}
-	const byAdapterSlug = new Map<string, Obj>(adapters.map((a) => [identityOf(a.identity).slug as string, a]));
+	const byAdapterSlug = new Map<string, Obj>(
+		adapters.map((adapter) => [identityOf(adapter.identity).slug as string, adapter]),
+	);
+	return { adapters, bySiteRef, byAdapterSlug };
+}
+
+function resolveDevice(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): ResolvedDevice {
+	const entry = bySiteRef.get(refKey(ref));
+	if (!entry) {
+		const device = loadDevice({ archetypeId: ref.archetype_id, slug: ref.slug });
+		return { device, patch: {}, merged: device, siteLocal: false };
+	}
+	const inventory = asObj(entry.inventory);
+	const item = identityOf(inventory.catalog_item);
+	const device = loadDevice({
+		archetypeId: item.archetype_id as string,
+		slug: item.slug as string,
+	});
+	const patch = asObj(inventory.catalog_patch);
+	return { device, patch, merged: overlayPatch(device, patch) as CatalogDevice, siteLocal: true };
+}
+
+function sensorsFor(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): SiteSensor[] {
+	const { merged, siteLocal } = resolveDevice(bySiteRef, ref);
+	return measurandCells(merged).map((cell) => {
+		const slug = specSlug(cell.node);
+		const slugQualified = specSlugQualified(cell.node);
+		if (typeof slug !== 'string' || typeof slugQualified !== 'string')
+			throw new Error(
+				`no slug for ${refKey(ref)} ${cell.feature}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.quantityKind}` +
+					(siteLocal
+						? ''
+						: ' (ref does not resolve to a site_catalog entry — give the metered device one)'),
+			);
+		return { ...cell, slug, slugQualified };
+	});
+}
+
+/** Open a baked site bundle for reading. Indexes its site_catalog + site_adapter once; every lookup
+ *  below reads those indexes. */
+export function openSite(bundle: SiteBundle) {
+	// site_catalog is referenced as `<its device's archetype>/<its own slug>` — the same key
+	// `generate-site` validates against (the device archetype is what a catalog_item names, the slug
+	// is the site-local one). Build that lookup once.
+	const { adapters, bySiteRef, byAdapterSlug } = siteIndexes(bundle);
 
 	/** Resolve a `catalog_item` ref to its device, the site's slug patch, and the two merged. A ref
 	 *  that matches a site_catalog entry resolves through it (carrying baked slugs); one
 	 *  that doesn't loads the grimoire device directly (no patch, no slugs). Throws (via `loadDevice`)
 	 *  on a dangling ref, naming the bad ref + the valid set. */
 	function resolve(ref: CatalogItemRef): ResolvedDevice {
-		const entry = bySiteRef.get(refKey(ref));
-		if (entry) {
-			const inventory = asObj(entry.inventory);
-			const item = identityOf(inventory.catalog_item);
-			const device = loadDevice({ archetypeId: item.archetype_id as string, slug: item.slug as string });
-			const patch = asObj(inventory.catalog_patch);
-			return { device, patch, merged: overlayPatch(device, patch) as CatalogDevice, siteLocal: true };
-		}
-		const device = loadDevice({ archetypeId: ref.archetype_id, slug: ref.slug });
-		return { device, patch: {}, merged: device, siteLocal: false };
+		return resolveDevice(bySiteRef, ref);
 	}
 
 	/** Every sensor of a resolved metered thing — the flat, slug-bearing list a generator iterates.
 	 *  Throws if a column lacks a slug (a metered device reached other than through a site_catalog
 	 *  entry has no baked ids — route it through one). */
 	function sensors(ref: CatalogItemRef): SiteSensor[] {
-		const { merged, siteLocal } = resolve(ref);
-		return measurandCells(merged).map((cell) => {
-			const slug = specSlug(cell.node);
-			const slugQualified = specSlugQualified(cell.node);
-			if (typeof slug !== 'string' || typeof slugQualified !== 'string')
-				throw new Error(
-					`no slug for ${refKey(ref)} ${cell.feature}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.quantityKind}` +
-						(siteLocal ? '' : ' (ref does not resolve to a site_catalog entry — give the metered device one)'),
-				);
-			return { ...cell, slug, slugQualified };
-		});
+		return sensorsFor(bySiteRef, ref);
 	}
 
 	return {
@@ -133,7 +165,10 @@ export function openSite(bundle: SiteBundle) {
 		/** One adapter by its `identity.slug`, or throw. */
 		adapter(slug: string): Obj {
 			const a = byAdapterSlug.get(slug);
-			if (!a) throw new Error(`no site_adapter "${slug}" (have: ${[...byAdapterSlug.keys()].sort().join(', ')})`);
+			if (!a)
+				throw new Error(
+					`no site_adapter "${slug}" (have: ${[...byAdapterSlug.keys()].sort().join(', ')})`,
+				);
 			return a;
 		},
 		resolve,
@@ -141,7 +176,10 @@ export function openSite(bundle: SiteBundle) {
 		/** The sensors an adapter meters — `sensors(adapter.ingest.catalog_item)`. */
 		adapterSensors(adapter: Obj): SiteSensor[] {
 			const ref = identityOf(asObj(adapter.ingest).catalog_item);
-			if (!ref.archetype_id || !ref.slug) throw new Error(`site_adapter "${identityOf(adapter.identity).slug}" has no ingest.catalog_item`);
+			if (!ref.archetype_id || !ref.slug)
+				throw new Error(
+					`site_adapter "${identityOf(adapter.identity).slug}" has no ingest.catalog_item`,
+				);
 			return sensors(ref as CatalogItemRef);
 		},
 	};

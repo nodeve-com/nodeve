@@ -52,7 +52,11 @@ for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((f) => f.endsWith('
 		validByArchetype.set(identity.archetype_id, new Set()).get(identity.archetype_id)!
 	).add(identity.slug);
 	const pub = data.registry_publication;
-	if (identity.archetype_id === 'registry' && isPlainObject(pub) && typeof pub.iri_template === 'string')
+	if (
+		identity.archetype_id === 'registry' &&
+		isPlainObject(pub) &&
+		typeof pub.iri_template === 'string'
+	)
 		registryIri.set(identity.slug, pub.iri_template);
 }
 
@@ -74,48 +78,59 @@ const validSet = (archetype: string): string =>
 	[...(validByArchetype.get(archetype) ?? [])].sort().join(', ') ||
 	'(no entries of this archetype)';
 
-runGuard({ header: (count) => `guard-refs: ${count} dangling reference(s):` }, (fail) => {
-	// Walk a node, checking any FK field / catalog_item ref / crosswalk term against the catalog.
-	function walk(file: string, node: unknown, where: string): void {
-		if (Array.isArray(node)) {
-			node.forEach((v, i) => walk(file, v, `${where}[${i}]`));
-			return;
-		}
-		if (!isPlainObject(node)) return;
-		// A crosswalk row: registry_id resolves as an FK (below); its term must fit the registry's template.
-		if (typeof node.registry_id === 'string' && typeof node.term === 'string') {
-			const tmpl = registryIri.get(node.registry_id);
-			if (tmpl && /\s/.test(node.term))
-				fail(
-					`${file} at ${where}.term: term "${node.term}" has whitespace — cannot fill {id} in ${node.registry_id} (${tmpl})`,
-				);
-		}
-		for (const [key, value] of Object.entries(node)) {
-			const at = where ? `${where}.${key}` : key;
-			// catalog_item — target archetype rides the value.
-			if (
-				key === 'catalog_item' &&
-				isPlainObject(value) &&
-				typeof value.archetype === 'string' &&
-				typeof value.slug === 'string'
-			) {
-				if (!knows(value.archetype, value.slug))
-					fail(
-						`${file} at ${at}: catalog_item → ${value.archetype}/${value.slug} — no such entry (have: ${validSet(value.archetype)})`,
-					);
-			}
-			// A property-declared FK — target archetype is fixed by the property.
-			const target = fkByProp.get(key);
-			if (target && typeof value === 'string' && !knows(target, value))
-				fail(
-					`${file} at ${at}: ${key} → ${target}/${value} — no such ${target} (have: ${validSet(target)})`,
-				);
-			walk(file, value, at);
-		}
+function walk(options: {
+	file: string;
+	node: unknown;
+	where: string;
+	fail: (line: string) => void;
+}): void {
+	const { file, node, where, fail } = options;
+	if (Array.isArray(node)) {
+		node.forEach((value, index) => walk({ ...options, node: value, where: `${where}[${index}]` }));
+		return;
 	}
+	if (!isPlainObject(node)) return;
+	if (typeof node.registry_id === 'string' && typeof node.term === 'string') {
+		const template = registryIri.get(node.registry_id);
+		if (template && /\s/.test(node.term))
+			fail(
+				`${file} at ${where}.term: term "${node.term}" has whitespace — cannot fill {id} in ${node.registry_id} (${template})`,
+			);
+	}
+	for (const [key, value] of Object.entries(node)) {
+		const at = where ? `${where}.${key}` : key;
+		if (key === 'catalog_item' && isPlainObject(value)) checkCatalogItem({ file, at, value, fail });
+		const target = fkByProp.get(key);
+		if (target && typeof value === 'string' && !knows(target, value))
+			fail(
+				`${file} at ${at}: ${key} → ${target}/${value} — no such ${target} (have: ${validSet(target)})`,
+			);
+		walk({ file, node: value, where: at, fail });
+	}
+}
 
+function checkCatalogItem(options: {
+	file: string;
+	at: string;
+	value: Record<string, unknown>;
+	fail: (line: string) => void;
+}) {
+	const { file, at, value, fail } = options;
+	if (typeof value.archetype !== 'string' || typeof value.slug !== 'string') return;
+	if (!knows(value.archetype, value.slug))
+		fail(
+			`${file} at ${at}: catalog_item → ${value.archetype}/${value.slug} — no such entry (have: ${validSet(value.archetype)})`,
+		);
+}
+
+runGuard({ header: (count) => `guard-refs: ${count} dangling reference(s):` }, (fail) => {
 	const docs = dataDocs(ARTIFACTS_DIR);
 	for (const file of docs)
-		walk(file.slice(ARTIFACTS_DIR.length + 1), JSON.parse(readFileSync(file, 'utf8')), '');
+		walk({
+			file: file.slice(ARTIFACTS_DIR.length + 1),
+			node: JSON.parse(readFileSync(file, 'utf8')),
+			where: '',
+			fail,
+		});
 	return `guard-refs: ${docs.length} docs, ${fkByProp.size} FK field(s), ${registryIri.size} templated registries — all references resolve.`;
 });

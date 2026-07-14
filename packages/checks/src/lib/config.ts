@@ -130,6 +130,16 @@ export type RequireDepsConfig = {
 };
 
 /**
+ * On by default: eslint is a hard org requirement, so a repo with no root eslint
+ * flat config fails. Enforces the config's PRESENCE only — the rules live in
+ * `@nodeve/config/eslint`. Set `enforce: false` to opt a repo out.
+ */
+export type RequireEslintConfig = {
+	/** Master switch (default `true`). Set `false` to opt a repo out entirely. */
+	enforce: boolean;
+};
+
+/**
  * On by default: the commit message must follow Conventional Commits, and a
  * non-trivial change must carry a body. Runs on the `commit-msg` hook. The
  * header is matched against `<type>(<scope>)!: <subject>`; `type` must be one of
@@ -162,6 +172,7 @@ export type Config = {
 	fileSize: LengthConfig;
 	catalog: CatalogConfig;
 	requireDeps: RequireDepsConfig;
+	requireEslint: RequireEslintConfig;
 	helperManifest: HelperManifestConfig;
 };
 

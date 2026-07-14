@@ -31,6 +31,65 @@ const DEP_FIELDS = [
 	'optionalDependencies',
 ] as const;
 
+function missingCatalogFailure() {
+	return {
+		status: 'fail' as const,
+		summary: 'this workspace declares no catalog',
+		rows: [
+			'Every workspace must single-source its dependency versions through a',
+			'catalog. Add a `catalog:` block to pnpm-workspace.yaml (or',
+			'`workspaces.catalog` in package.json for Bun), move your versions into',
+			'it, and reference them with "catalog:".',
+			'',
+			'To deliberately opt out, set `catalog: { enforce: false }` in nodeve.checks.js.',
+		],
+	};
+}
+
+type Workspace = NonNullable<ReturnType<typeof readWorkspace>>;
+
+function catalogEntryError({
+	manifest,
+	name,
+	version,
+	ws,
+}: {
+	manifest: string;
+	name: string;
+	version: string;
+	ws: Workspace;
+}) {
+	if (!version.startsWith('catalog:'))
+		return `${manifest}: "${name}": "${version}" — pin it in a root catalog and use "catalog:" (or "catalog:<group>")`;
+	const group = version.slice('catalog:'.length);
+	const table = group === '' ? ws.catalog : ws.catalogs[group];
+	if (!table)
+		return `${manifest}: "${name}": "${version}" — no catalog group named "${group}" in the workspace`;
+	if (name in table) return null;
+	const where = group === '' ? 'the default catalog' : `catalog "${group}"`;
+	return `${manifest}: "${name}": "${version}" — ${where} does not define "${name}"`;
+}
+
+function catalogErrors(options: {
+	root: string;
+	manifests: string[];
+	ws: Workspace;
+	allowlist: Set<string>;
+}): string[] {
+	const { root, manifests, ws, allowlist } = options;
+	return manifests.flatMap((manifest) => {
+		const pkg = JSON.parse(readFileSync(join(root, manifest), 'utf8'));
+		return DEP_FIELDS.flatMap((field) =>
+			Object.entries((pkg[field] ?? {}) as Catalog).flatMap(([name, version]) => {
+				if (allowlist.has(`${manifest}::${name}`) || /^(workspace|link|file):/.test(version))
+					return [];
+				const error = catalogEntryError({ manifest, name, version, ws });
+				return error ? [error] : [];
+			}),
+		);
+	});
+}
+
 export const catalog: Check<'catalog'> = {
 	name: 'catalog',
 	section: 'catalog',
@@ -47,55 +106,11 @@ reference it with "catalog:", then reinstall.`,
 		// A workspace must declare a catalog — alignment is the point, so "no catalog"
 		// is itself a failure, not a free pass. Opt a repo out deliberately with
 		// `catalog.enforce: false` rather than by omitting the catalog.
-		if (Object.keys(ws.catalog).length === 0 && Object.keys(ws.catalogs).length === 0) {
-			return {
-				status: 'fail',
-				summary: 'this workspace declares no catalog',
-				rows: [
-					'Every workspace must single-source its dependency versions through a',
-					'catalog. Add a `catalog:` block to pnpm-workspace.yaml (or',
-					'`workspaces.catalog` in package.json for Bun), move your versions into',
-					'it, and reference them with "catalog:".',
-					'',
-					'To deliberately opt out, set `catalog: { enforce: false }` in nodeve.checks.js.',
-				],
-			};
-		}
+		if (Object.keys(ws.catalog).length === 0 && Object.keys(ws.catalogs).length === 0)
+			return missingCatalogFailure();
 
 		const manifests = workspaceManifests(root, ws);
-		const errors: string[] = [];
-
-		for (const manifest of manifests) {
-			const pkg = JSON.parse(readFileSync(join(root, manifest), 'utf8'));
-			for (const field of DEP_FIELDS) {
-				const deps: Catalog = pkg[field] ?? {};
-				for (const [name, version] of Object.entries(deps)) {
-					if (allowlist.has(`${manifest}::${name}`)) continue;
-					// Local references, not version pins — single-sourcing doesn't apply.
-					if (/^(workspace|link|file):/.test(version)) continue;
-					if (!version.startsWith('catalog:')) {
-						// Rule 1: literal version pin — every dependency must go through a catalog.
-						errors.push(
-							`${manifest}: "${name}": "${version}" — pin it in a root catalog and use "catalog:" (or "catalog:<group>")`,
-						);
-						continue;
-					}
-					// Rule 2: the referenced catalog must actually define this dependency.
-					const group = version.slice('catalog:'.length); // "" → the default catalog
-					const table = group === '' ? ws.catalog : ws.catalogs[group];
-					if (!table) {
-						errors.push(
-							`${manifest}: "${name}": "${version}" — no catalog group named "${group}" in the workspace`,
-						);
-					} else if (!(name in table)) {
-						const where = group === '' ? 'the default catalog' : `catalog "${group}"`;
-						errors.push(
-							`${manifest}: "${name}": "${version}" — ${where} does not define "${name}"`,
-						);
-					}
-				}
-			}
-		}
+		const errors = catalogErrors({ root, manifests, ws, allowlist });
 
 		if (errors.length > 0)
 			return {

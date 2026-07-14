@@ -3,39 +3,60 @@
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { isPlainObject } from 'remeda';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const genArch = join(here, '..', 'src', 'generated', 'archetypes');
 
-const en = (v: any): string | undefined =>
-	v && typeof v === 'object' ? v.en ?? Object.values(v)[0] as string : undefined;
+type DemoEntry = {
+	name: string;
+	title?: string;
+	description?: string;
+	unit?: unknown;
+	props?: DemoEntry[];
+};
+type DemoArchetype = {
+	slug: string;
+	title: string;
+	description?: string;
+	features: DemoEntry[];
+};
+
+const en = (value: unknown): string | undefined => {
+	if (!isPlainObject(value)) return undefined;
+	const translated = value.en ?? Object.values(value)[0];
+	return typeof translated === 'string' ? translated : undefined;
+};
 
 // A feature entry's own props: keys under its `.prop`, with title/desc where present.
-function propsOf(featureData: any) {
-	const bag = featureData?.prop;
-	if (!bag || typeof bag !== 'object') return [];
-	return Object.entries(bag).map(([name, v]: [string, any]) => ({
+function propsOf(featureData: unknown): DemoEntry[] {
+	const bag = isPlainObject(featureData) ? featureData.prop : undefined;
+	if (!isPlainObject(bag)) return [];
+	return Object.entries(bag).map(([name, value]) => ({
 		name,
-		title: en(v?.title),
-		description: en(v?.description),
-		unit: v?.measurand?.siUnit,
+		title: en(isPlainObject(value) ? value.title : undefined),
+		description: en(isPlainObject(value) ? value.description : undefined),
+		unit:
+			isPlainObject(value) && isPlainObject(value.measurand) ? value.measurand.siUnit : undefined,
 	}));
 }
 
-const archetypes: any[] = [];
-for (const file of readdirSync(genArch).filter((f) => f.endsWith('.ts')).sort()) {
+const archetypes: DemoArchetype[] = [];
+for (const file of readdirSync(genArch)
+	.filter((f) => f.endsWith('.ts'))
+	.sort()) {
 	const slug = file.replace(/\.ts$/, '');
 	const mod = await import(join(genArch, file));
 	const data = mod.default;
-	if (!data || typeof data !== 'object') continue;
+	if (!isPlainObject(data)) continue;
 	const title = en(data.title);
 	const description = en(data.description);
-	const propBag = data.prop && typeof data.prop === 'object' ? data.prop : {};
-	const features = Object.entries(propBag).map(([name, fd]: [string, any]) => ({
+	const propBag = isPlainObject(data.prop) ? data.prop : {};
+	const features = Object.entries(propBag).map(([name, feature]) => ({
 		name,
-		title: en(fd?.title),
-		description: en(fd?.description),
-		props: propsOf(fd),
+		title: en(isPlainObject(feature) ? feature.title : undefined),
+		description: en(isPlainObject(feature) ? feature.description : undefined),
+		props: propsOf(feature),
 	}));
 	archetypes.push({ slug, title: title ?? slug, description, features });
 }

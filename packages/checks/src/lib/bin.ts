@@ -52,7 +52,14 @@ export async function loadGate<K extends keyof Config>(
  * scan the full configured scope regardless of what's staged. `ignore` globs
  * drop matches from either scope (generated output, vendored trees).
  */
-export function tsSources(root: string, globs: string[], paths: string[] = [], ignore: string[] = []): string[] {
+// Positional signature retained for compatibility; migrate only in a major release.
+// eslint-disable-next-line max-params
+export function tsSources(
+	root: string,
+	globs: string[],
+	paths: string[] = [],
+	ignore: string[] = [],
+): string[] {
 	const drop = globMatcher(ignore);
 	const scope = paths.length > 0 ? paths.filter((f) => !drop(f)) : gitFiles(root, globs, ignore);
 	return scope.filter((f) => f.endsWith('.ts') && !/\.(d|test|spec|test-d)\.ts$/.test(f));

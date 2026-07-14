@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { camelizeInstance, camelizeSchema, snakePath } from './index.ts';
 
+type Node = { [key: string]: Node; [key: number]: Node };
+
 // The real shape that motivated this package: grimoire's site_adapter — camel props beside an
 // authored draft-07 cross-field rule (if/then/else) whose NAMES must move and VALUES must not.
 const adapter = {
@@ -11,11 +13,22 @@ const adapter = {
 			properties: { ingest_kind: { type: 'string', enum: ['modbus_tap', 'master'] } },
 			required: ['ingest_kind'],
 		},
-		modbus_tap_window: { type: 'array', items: { type: 'object', properties: { window_name: { type: 'string' } } } },
+		modbus_tap_window: {
+			type: 'array',
+			items: { type: 'object', properties: { window_name: { type: 'string' } } },
+		},
 	},
 	allOf: [
 		{
-			if: { required: ['ingest'], properties: { ingest: { properties: { ingest_kind: { const: 'modbus_tap' } }, required: ['ingest_kind'] } } },
+			if: {
+				required: ['ingest'],
+				properties: {
+					ingest: {
+						properties: { ingest_kind: { const: 'modbus_tap' } },
+						required: ['ingest_kind'],
+					},
+				},
+			},
 			then: { required: ['modbus_tap_window'] },
 			else: { properties: { modbus_tap_window: false } },
 		},
@@ -23,7 +36,7 @@ const adapter = {
 } as const;
 
 describe('camelizeSchema', () => {
-	const camel = camelizeSchema(adapter) as any;
+	const camel = camelizeSchema(adapter) as Node;
 
 	it('renames property keys and stamps x-key-map, at every depth', () => {
 		expect(Object.keys(camel.properties)).toEqual(['ingest', 'modbusTapWindow']);
@@ -47,7 +60,7 @@ describe('camelizeSchema', () => {
 			properties: { the_field: { type: 'string', default: 'a_b', pattern: '^a_b$' } },
 			patternProperties: { '^x_': { type: 'object', properties: { deep_key: {} } } },
 			$defs: { some_def: { type: 'object', properties: { def_key: {} } } },
-		}) as any;
+		}) as Node;
 		expect(s.properties.theField.default).toBe('a_b');
 		expect(s.properties.theField.pattern).toBe('^a_b$');
 		expect(Object.keys(s.patternProperties)).toEqual(['^x_']); // regex keys stay
@@ -57,7 +70,10 @@ describe('camelizeSchema', () => {
 	});
 
 	it('renames dependencies keys and name-list members', () => {
-		const s = camelizeSchema({ type: 'object', dependencies: { a_b: ['c_d'], e_f: { required: ['g_h'] } } }) as any;
+		const s = camelizeSchema({
+			type: 'object',
+			dependencies: { a_b: ['c_d'], e_f: { required: ['g_h'] } },
+		}) as Node;
 		expect(s.dependencies).toEqual({ aB: ['cD'], eF: { required: ['gH'] } });
 	});
 
@@ -75,19 +91,27 @@ describe('camelizeInstance', () => {
 		const out = camelizeInstance(camel, {
 			ingest: { ingest_kind: 'modbus_tap' },
 			modbus_tap_window: [{ window_name: 'telemetry' }],
-		}) as any;
-		expect(out).toEqual({ ingest: { ingestKind: 'modbus_tap' }, modbusTapWindow: [{ windowName: 'telemetry' }] });
+		}) as Node;
+		expect(out).toEqual({
+			ingest: { ingestKind: 'modbus_tap' },
+			modbusTapWindow: [{ windowName: 'telemetry' }],
+		});
 	});
 
 	it('leaves undeclared and data-bearing keys untouched', () => {
 		const recordSchema = camelizeSchema({
 			type: 'object',
-			properties: { by_slug: { type: 'object', additionalProperties: { type: 'object', properties: { some_field: {} } } } },
+			properties: {
+				by_slug: {
+					type: 'object',
+					additionalProperties: { type: 'object', properties: { some_field: {} } },
+				},
+			},
 		});
 		const out = camelizeInstance(recordSchema, {
 			by_slug: { my_device_slug: { some_field: 1 } },
 			unknown_key: true,
-		}) as any;
+		}) as Node;
 		expect(out.bySlug.my_device_slug.someField).toBe(1); // record key (data) stays snake
 		expect(out.unknown_key).toBe(true); // undeclared passes through for validation to name
 	});
@@ -97,7 +121,9 @@ describe('snakePath', () => {
 	it('maps a camel error path back to its snake source', () => {
 		const camel = camelizeSchema(adapter);
 		expect(snakePath(camel, '/ingest/ingestKind')).toBe('/ingest/ingest_kind');
-		expect(snakePath(camel, '/modbusTapWindow/0/windowName')).toBe('/modbus_tap_window/0/window_name');
+		expect(snakePath(camel, '/modbusTapWindow/0/windowName')).toBe(
+			'/modbus_tap_window/0/window_name',
+		);
 		expect(snakePath(camel, '')).toBe('');
 	});
 });

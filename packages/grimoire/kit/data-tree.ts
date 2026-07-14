@@ -5,7 +5,7 @@
 // .schema.json / <Name>Schema projection).
 
 import { resolveConcept } from './compile.ts';
-import { isPlainObject } from 'remeda';
+import { isPlainObject, omit } from 'remeda';
 import { projectSchema, stableStringify } from './project.ts';
 import { type Obj, layerIndex } from '../src/concept-sources.ts';
 
@@ -14,7 +14,8 @@ import { type Obj, layerIndex } from '../src/concept-sources.ts';
 const inlineSchemaCache = new Map<string, string>();
 export const inlineSchemaOf = (name: string): string => {
 	let s = inlineSchemaCache.get(name);
-	if (s === undefined) inlineSchemaCache.set(name, (s = stableStringify(projectSchema(resolveConcept(name)))));
+	if (s === undefined)
+		inlineSchemaCache.set(name, (s = stableStringify(projectSchema(resolveConcept(name)))));
 	return s;
 };
 
@@ -25,7 +26,11 @@ const STRUCTURAL = new Set(['prop', 'array', 'map', 'anyOf']);
 /** The generated/ layer a concept slug's module lives under: features shadow archetypes shadow the
  *  property atoms — the same resolution order kit/compile.ts walks. */
 export const layerOf = (name: string): string =>
-	layerIndex('features').has(name) ? 'features' : layerIndex('archetypes').has(name) ? 'archetypes' : 'property';
+	layerIndex('features').has(name)
+		? 'features'
+		: layerIndex('archetypes').has(name)
+			? 'archetypes'
+			: 'property';
 
 /** The cross-file `$ref` a slot in `fromLayer` uses to point at concept `name`'s own generated data
  *  file — a sibling in the flat generated/ tree (`./x.json` same layer, `../features/x.json` across). */
@@ -45,7 +50,10 @@ function refPath(fromLayer: string, name: string): string {
 function referentialize(node: unknown, fromLayer: string): unknown {
 	if (Array.isArray(node)) return node.map((n) => referentialize(n, fromLayer));
 	if (!isPlainObject(node)) return node;
-	if (typeof node.$concept === 'string' && stableStringify(projectSchema(node)) === inlineSchemaOf(node.$concept)) {
+	if (
+		typeof node.$concept === 'string' &&
+		stableStringify(projectSchema(node)) === inlineSchemaOf(node.$concept)
+	) {
 		const base = rawDataTree(node.$concept);
 		const rest = Object.entries(node)
 			.filter(([k]) => k !== '$concept' && k !== '$composes' && !STRUCTURAL.has(k))
@@ -53,7 +61,11 @@ function referentialize(node: unknown, fromLayer: string): unknown {
 			.filter(([k, v]) => stableStringify(v) !== stableStringify(base[k]));
 		return { ...Object.fromEntries(rest), $ref: refPath(fromLayer, node.$concept) };
 	}
-	return Object.fromEntries(Object.entries(node).filter(([k]) => k !== '$concept' && k !== '$composes').map(([k, v]) => [k, referentialize(v, fromLayer)]));
+	return Object.fromEntries(
+		Object.entries(node)
+			.filter(([k]) => k !== '$concept' && k !== '$composes')
+			.map(([k, v]) => [k, referentialize(v, fromLayer)]),
+	);
 }
 
 /** A concept's own referentialized tree (unstripped), memoized — the diff base a use site's
@@ -62,7 +74,7 @@ const rawTreeCache = new Map<string, Obj>();
 function rawDataTree(name: string): Obj {
 	let t = rawTreeCache.get(name);
 	if (t === undefined) {
-		const { $composes: _c, ...def } = resolveConcept(name);
+		const def = omit(resolveConcept(name), ['$composes']);
 		rawTreeCache.set(name, (t = referentialize(def, layerOf(name)) as Obj));
 	}
 	return t;
@@ -91,7 +103,9 @@ export function conceptDataTree(def: Obj, layer: string, composes: unknown): Obj
 	if (!Array.isArray(composes) || composes.length !== 1) return tree;
 	const base = stripSchemaLeaves(rawDataTree(String(composes[0]))) as Obj;
 	return {
-		...Object.fromEntries(Object.entries(tree).filter(([k, v]) => stableStringify(v) !== stableStringify(base[k]))),
+		...Object.fromEntries(
+			Object.entries(tree).filter(([k, v]) => stableStringify(v) !== stableStringify(base[k])),
+		),
 		$ref: refPath(layer, String(composes[0])),
 	};
 }

@@ -27,15 +27,16 @@ function topLevelNames(absPath: string): string[] {
 			(ts.getModifiers(stmt)?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) ?? false);
 		if (isExported) continue;
 
-		if (ts.isFunctionDeclaration(stmt) && stmt.name) {
-			out.push(stmt.name.text);
-		} else if (ts.isVariableStatement(stmt)) {
-			for (const d of stmt.declarationList.declarations) {
-				if (ts.isIdentifier(d.name)) out.push(d.name.text);
-			}
-		}
+		if (ts.isFunctionDeclaration(stmt) && stmt.name) out.push(stmt.name.text);
+		else if (ts.isVariableStatement(stmt)) out.push(...variableNames(stmt));
 	}
 	return out;
+}
+
+function variableNames(statement: ts.VariableStatement): string[] {
+	return statement.declarationList.declarations.flatMap((declaration) =>
+		ts.isIdentifier(declaration.name) ? [declaration.name.text] : [],
+	);
 }
 
 export const inlineDupes: Check<'inlineDupes'> = {

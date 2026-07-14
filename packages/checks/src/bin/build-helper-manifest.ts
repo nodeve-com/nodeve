@@ -23,6 +23,8 @@ import {
 	reExportsOf,
 	resolveSource,
 	type Decl,
+	type Barrel,
+	type ReExport,
 } from '../lib/manifest-ast.js';
 
 const { root, cfg } = await loadGate('helperManifest');
@@ -38,50 +40,52 @@ type Entry = {
 	symbol: string;
 } & Decl;
 
+function exportedEntry(options: {
+	pkgDir: string;
+	barrel: Barrel;
+	reExport: ReExport;
+	declarations: (path: string) => Map<string, Decl>;
+}): Entry | null {
+	const { pkgDir, barrel, reExport, declarations } = options;
+	if (reExport.typeOnly) return null;
+	const sourcePath = resolveSource(dirname(barrel.barrelPath), reExport.module);
+	if (!sourcePath) return null;
+	const context = {
+		importPath: barrel.importPath,
+		file: relative(pkgDir, sourcePath),
+		srcPath: sourcePath,
+		symbol: reExport.exportedName,
+	};
+	if (sourcePath.endsWith('.svelte'))
+		return { ...context, kind: 'component', signature: reExport.exportedName, summary: '' };
+	const declaration = declarations(sourcePath).get(reExport.localName);
+	return declaration ? { ...context, ...declaration } : null;
+}
+
+function barrelEntries(
+	pkgDir: string,
+	barrel: Barrel,
+	declarations: (path: string) => Map<string, Decl>,
+): Entry[] {
+	if (!existsSync(barrel.barrelPath)) return [];
+	return reExportsOf(barrel.barrelPath).flatMap((reExport) => {
+		const entry = exportedEntry({ pkgDir, barrel, reExport, declarations });
+		return entry ? [entry] : [];
+	});
+}
+
 function collectExports(): Entry[] {
 	const entries: Entry[] = [];
 	const declCache = new Map<string, Map<string, Decl>>();
-	const declsFor = (p: string) => {
-		if (!declCache.has(p)) declCache.set(p, declarationsOf(p));
-		return declCache.get(p)!;
+	const declarations = (path: string) => {
+		if (!declCache.has(path)) declCache.set(path, declarationsOf(path));
+		return declCache.get(path)!;
 	};
 
 	for (const pkgRel of cfg.packages) {
 		const pkgDir = join(root, pkgRel);
-		for (const barrel of barrelsOf(pkgDir)) {
-			if (!existsSync(barrel.barrelPath)) continue;
-			const barrelDir = dirname(barrel.barrelPath);
-
-			for (const re of reExportsOf(barrel.barrelPath)) {
-				if (re.typeOnly) continue; // types are out of scope for v1
-				const sourcePath = resolveSource(barrelDir, re.module);
-				if (!sourcePath) continue;
-				const file = relative(pkgDir, sourcePath);
-
-				if (sourcePath.endsWith('.svelte')) {
-					entries.push({
-						importPath: barrel.importPath,
-						file,
-						srcPath: sourcePath,
-						symbol: re.exportedName,
-						kind: 'component',
-						signature: re.exportedName,
-						summary: '',
-					});
-					continue;
-				}
-
-				const decl = declsFor(sourcePath).get(re.localName);
-				if (!decl) continue;
-				entries.push({
-					importPath: barrel.importPath,
-					file,
-					srcPath: sourcePath,
-					symbol: re.exportedName,
-					...decl,
-				});
-			}
-		}
+		for (const barrel of barrelsOf(pkgDir))
+			entries.push(...barrelEntries(pkgDir, barrel, declarations));
 	}
 
 	return entries.sort(

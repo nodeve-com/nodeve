@@ -24,7 +24,11 @@ import { camelizeSchema } from '@nodeve/schema-case';
 import { resolveConcept } from './compile.ts';
 import { type RefContext, projectSchema } from './project.ts';
 import { type Obj, layerIndex } from '../src/concept-sources.ts';
-import { assertArchetypeDocsValid, assertFeatureDocsValid, assertLeafDocsValid } from './validate-docs.ts';
+import {
+	assertArchetypeDocsValid,
+	assertFeatureDocsValid,
+	assertLeafDocsValid,
+} from './validate-docs.ts';
 import { catalogEntries, renderCatalogEntry, renderCatalogIndex } from './emit-catalog.ts';
 import { conceptDataTree, inlineSchemaOf, layerOf } from './data-tree.ts';
 import { renderConceptsIndex, renderLayerIndex } from './emit-index.ts';
@@ -75,7 +79,11 @@ function toJsonRefs(node: unknown): unknown {
 
 /** The self-contained draft-07 schema for a concept: its ref-hoisted body plus a `$defs` block
  *  carrying every concept it (transitively) references, each itself ref-hoisted. */
-function schemaWithDefs(data: Record<string, unknown>): { json: Obj; body: Obj; imports: Array<{ name: string; layer: string }> } {
+function schemaWithDefs(data: Record<string, unknown>): {
+	json: Obj;
+	body: Obj;
+	imports: Array<{ name: string; layer: string }>;
+} {
 	const deps = new Set<string>();
 	const body = toJsonRefs(projectSchema(data, { schemaOf: inlineSchemaOf, deps })) as Obj;
 	const direct = [...deps];
@@ -95,6 +103,84 @@ function schemaWithDefs(data: Record<string, unknown>): { json: Obj; body: Obj; 
 	return { json, body, imports: direct.map((name) => ({ name, layer: layerOf(name) })) };
 }
 
+const CLASS_OF: Record<string, string> = {
+	archetypes: 'archetype',
+	features: 'feature',
+	property: 'property',
+};
+
+function stampIdentity(tree: Obj, name: string, layer: string): Obj {
+	const authored = isPlainObject(tree.identity) ? (tree.identity as Obj) : {};
+	return { ...tree, identity: { archetype_id: CLASS_OF[layer], slug: name, ...authored } };
+}
+
+function topFields(name: string): string[] {
+	const { $composes, ...def } = resolveConcept(name);
+	const layer = layerOf(name);
+	const tree = humps(stampIdentity(conceptDataTree(def, layer, $composes), name, layer)) as Obj;
+	const own = Object.keys(tree).filter((key) => key !== '$ref');
+	const base =
+		typeof tree.$ref === 'string'
+			? topFields(
+					tree.$ref
+						.split('/')
+						.pop()!
+						.replace(/\.json$/, ''),
+				)
+			: [];
+	return [...new Set([...base, ...own])];
+}
+
+function emitConcept(options: {
+	out: Record<string, string>;
+	name: string;
+	data: Record<string, unknown>;
+	layer: string;
+}) {
+	const { out, name, data, layer } = options;
+	const { $composes, ...def } = data;
+	const { json, body, imports } = schemaWithDefs(def);
+	const dataTree = stampIdentity(conceptDataTree(def, layer, $composes), name, layer);
+	out[join(ARTIFACTS, layer, `${name}.json`)] = renderJson(dataTree);
+	out[join(GENERATED, layer, `${name}.ts`)] = renderConceptModule({
+		name,
+		schema: camelizeSchema(body) as Obj,
+		layer,
+		imports,
+		data: humps(dataTree),
+		fieldsOf: topFields,
+	});
+	out[join(ARTIFACTS, layer, `${name}.schema.json`)] = renderJson(json);
+	out[join(ARTIFACTS, layer, `${name}.camel.schema.json`)] = renderJson(camelizeSchema(json));
+	return imports;
+}
+
+function emitConcepts(out: Record<string, string>, concepts: ReturnType<typeof compiledConcepts>) {
+	const queue: string[] = [];
+	const queueProperties = (imports: Array<{ name: string; layer: string }>) => {
+		for (const dependency of imports)
+			if (dependency.layer === 'property') queue.push(dependency.name);
+	};
+	for (const concept of concepts) queueProperties(emitConcept({ out, ...concept }));
+	const emitted = new Set<string>();
+	while (queue.length > 0) {
+		const name = queue.shift()!;
+		if (emitted.has(name)) continue;
+		emitted.add(name);
+		queueProperties(emitConcept({ out, name, data: resolveConcept(name), layer: 'property' }));
+	}
+	return emitted;
+}
+
+function emitCatalog(out: Record<string, string>, entries: ReturnType<typeof catalogEntries>) {
+	const slugs = Object.keys(entries).sort();
+	for (const slug of slugs) {
+		out[join(ARTIFACTS, 'catalog', `${slug}.json`)] = renderJson(entries[slug]);
+		out[join(GENERATED, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]!);
+	}
+	out[join(GENERATED, 'catalog', 'index.ts')] = renderCatalogIndex(slugs);
+}
+
 export function outputs(): Record<string, string> {
 	assertLeafDocsValid();
 	assertFeatureDocsValid();
@@ -106,14 +192,9 @@ export function outputs(): Record<string, string> {
 	};
 	// Per catalog entry, keyed by slug: the committed JSON grain a JSON reader assembles, and its
 	// TS-const twin — the isolated part the JS/TS reader path imports (code, no fs/JSON import).
-	const slugs = Object.keys(entries).sort();
-	for (const slug of slugs) {
-		out[join(ARTIFACTS, 'catalog', `${slug}.json`)] = renderJson(entries[slug]);
-		out[join(GENERATED, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]!);
-	}
+	emitCatalog(out, entries);
 	// The JS/TS reader's grain: catalog/index.ts composes the per-slug modules into one array — code,
 	// no fs/JSON import, so `loadDevice` bundles into a serverless build (kit/catalog.ts keys by identity).
-	out[join(GENERATED, 'catalog', 'index.ts')] = renderCatalogIndex(slugs);
 	// One concept's sibling files (data .json, camelCase .ts, snake + camel draft-07 .schema.json),
 	// the same layout every layer emits. Returns the direct concept refs so the caller can chase them.
 	// - Ref-hoisted projection: each composed slot is a `$ref` (self-contained `$defs` in the .schema.json,
@@ -129,53 +210,23 @@ export function outputs(): Record<string, string> {
 	// `identity.{archetype, slug}` — archetype = the def's class (its layer), slug = the file stem —
 	// authored identity keys (symbol/code/an explicit slug…) winning. The twin of the validation-side
 	// de-sugar (kit/validate-docs.ts).
-	const CLASS_OF: Record<string, string> = { archetypes: 'archetype', features: 'feature', property: 'property' };
-	const stampIdentity = (tree: Obj, name: string, layer: string): Obj => {
-		const authored = isPlainObject(tree.identity) ? (tree.identity as Obj) : {};
-		return { ...tree, identity: { archetype_id: CLASS_OF[layer], slug: name, ...authored } };
-	};
 	// A concept's top-level data field names, its composed base's included (`$ref` chased through the
 	// chain) — what renderConceptModule projects when a module's data composes a base at the top.
-	const topFields = (name: string): string[] => {
-		const { $composes, ...def } = resolveConcept(name);
-		const layer = layerOf(name);
-		const tree = humps(stampIdentity(conceptDataTree(def, layer, $composes), name, layer)) as Record<string, unknown>;
-		const own = Object.keys(tree).filter((k) => k !== '$ref');
-		const base = typeof tree.$ref === 'string' ? topFields(tree.$ref.split('/').pop()!.replace(/\.json$/, '')) : [];
-		return [...new Set([...base, ...own])];
-	};
-	const emitConcept = (name: string, data: Record<string, unknown>, layer: string): Array<{ name: string; layer: string }> => {
-		const { $composes, ...def } = data;
-		const { json, body, imports } = schemaWithDefs(def);
-		const dataTree = stampIdentity(conceptDataTree(def, layer, $composes), name, layer);
-		out[join(ARTIFACTS, layer, `${name}.json`)] = renderJson(dataTree);
-		out[join(GENERATED, layer, `${name}.ts`)] = renderConceptModule({ name, schema: camelizeSchema(body) as Obj, layer, imports, data: humps(dataTree), fieldsOf: topFields });
-		out[join(ARTIFACTS, layer, `${name}.schema.json`)] = renderJson(json);
-		out[join(ARTIFACTS, layer, `${name}.camel.schema.json`)] = renderJson(camelizeSchema(json));
-		return imports;
-	};
 	// features + archetypes, collecting the property atoms they $ref so each gets its own module.
-	const propQueue: string[] = [];
-	const queueProps = (imports: Array<{ name: string; layer: string }>): void => {
-		for (const d of imports) if (d.layer === 'property') propQueue.push(d.name);
-	};
-	for (const c of concepts) queueProps(emitConcept(c.name, c.data, c.layer));
+	const emittedProps = emitConcepts(out, concepts);
 	// The referenced property atoms, transitively — the importable home a composer $refs instead of
 	// inlining the field. A property NOT $ref'd (e.g. a bare part-instance name) emits no module.
-	const emittedProps = new Set<string>();
-	while (propQueue.length > 0) {
-		const name = propQueue.shift()!;
-		if (emittedProps.has(name)) continue;
-		emittedProps.add(name);
-		queueProps(emitConcept(name, resolveConcept(name), 'property'));
-	}
 	// Per-layer data aggregates: generated/<layer>/index.ts answers "list the layer" — published as
 	// `@nodeve/grimoire/<layer>`, beside the per-concept `@nodeve/grimoire/<layer>/<slug>` subpaths.
 	// A concept named `index` would clobber its layer's aggregate — refuse the bake outright.
 	const clobber = [...concepts.map((c) => c.name), ...emittedProps].filter((n) => n === 'index');
-	if (clobber.length > 0) throw new Error('a concept named "index" would clobber its layer aggregate — rename it');
+	if (clobber.length > 0)
+		throw new Error('a concept named "index" would clobber its layer aggregate — rename it');
 	for (const layer of ['archetypes', 'features'])
-		out[join(GENERATED, layer, 'index.ts')] = renderLayerIndex(layer, concepts.filter((c) => c.layer === layer).map((c) => c.name));
+		out[join(GENERATED, layer, 'index.ts')] = renderLayerIndex(
+			layer,
+			concepts.filter((c) => c.layer === layer).map((c) => c.name),
+		);
 	out[join(GENERATED, 'property', 'index.ts')] = renderLayerIndex('property', [...emittedProps]);
 	// Member data per enumeration — every enumeration, tree-driven: .json wire shape + .ts vocab twin.
 	for (const name of enumerations()) {

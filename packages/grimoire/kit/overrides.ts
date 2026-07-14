@@ -41,24 +41,108 @@ export function overridesOf(def: Obj): Obj {
 	return isPlainObject(def.prop) ? clone(def.prop) : {};
 }
 
+function applyParts(options: {
+	node: Obj;
+	parts: string | Obj;
+	key: string;
+	stack: string[];
+}): Obj {
+	const { parts, key, stack } = options;
+	const partMap: Obj = typeof parts === 'string' ? { [parts]: null } : parts;
+	let out = options.node;
+	for (const [enumeration, idsRaw] of Object.entries(partMap)) {
+		const members = enumerationMembers(enumeration);
+		const ids = idsRaw === null ? members : asList(idsRaw, `parts.${enumeration}`, stack);
+		const stale = ids.filter((id) => !members.includes(id));
+		if (stale.length > 0)
+			throw new Error(
+				`grimoire compile: parts filter on "${key}" names non-members of enumeration/${enumeration}/: ${stale.join(', ')} (via ${stack.join(' → ')})`,
+			);
+		const value = clone(out);
+		if (isPlainObject(value.prop)) delete (value.prop as Obj)[enumeration];
+		out = clone(out);
+		if (!isPlainObject(out.prop)) continue;
+		delete (out.prop as Obj)[enumeration];
+		for (const id of ids) (out.prop as Obj)[id] = clone(value);
+	}
+	return out;
+}
+
+function applyComposes(options: {
+	node: Obj;
+	slugs: unknown[];
+	stack: string[];
+	resolve: Resolver;
+}): Obj {
+	const { slugs, stack, resolve } = options;
+	let out = options.node;
+	for (const slug of slugs.map(String)) {
+		const { prop, ...data } = resolve.concept(slug, stack);
+		Object.assign(out.prop as Obj, clone(prop as Obj));
+		out = mergeDeep(clone(data), out) as Obj;
+	}
+	return out;
+}
+
+function applySchema(node: Obj, schema: Obj): Obj {
+	const patch = clone(schema);
+	if ('env-var' in patch) {
+		patch['x-env-var'] = patch['env-var'];
+		delete patch['env-var'];
+	}
+	return Object.keys(patch).length > 0 ? mergeDeep(node, { schema: patch }) : node;
+}
+
+function applyChildren(options: {
+	node: Obj;
+	overlay: Obj;
+	consumed: Set<string>;
+	stack: string[];
+	resolve: Resolver;
+}): Obj {
+	const { overlay, consumed, stack, resolve } = options;
+	let out = options.node;
+	for (const [key, child] of Object.entries(overlay)) {
+		if (consumed.has(key)) continue;
+		const target = isPlainObject(out.array) ? (out.array as Obj) : out;
+		const prop = target.prop as Obj | undefined;
+		if (isPlainObject(child) && prop && key in prop)
+			prop[key] = applyOverride({ node: prop[key] as Obj, overlay: child, key, stack, resolve });
+		else out = { ...out, [key]: clone(child) };
+	}
+	return out;
+}
+
+function applyRebind(options: {
+	node: Obj;
+	overlay: Obj;
+	stack: string[];
+	resolve: Resolver;
+	consumed: Set<string>;
+}): Obj {
+	const { overlay, stack, resolve, consumed } = options;
+	let out = options.node;
+	for (const key of ['feature', 'archetype']) {
+		if (typeof overlay[key] !== 'string') continue;
+		out = resolve.concept(overlay[key] as string, stack);
+		consumed.add(key);
+	}
+	return out;
+}
+
 /** Apply one field's overlay to its resolved node. Each overlay key is CONSUMED as it's handled;
  *  whatever remains (an object value) is a child descent — so the overlay vocabulary lives here, in
  *  the code that interprets it, not in a keyword table. */
-export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], resolve: Resolver): Obj {
-	let out = node;
+export function applyOverride(options: {
+	node: Obj;
+	overlay: Obj;
+	key: string;
+	stack: string[];
+	resolve: Resolver;
+}): Obj {
+	const { node, overlay: o, key, stack, resolve } = options;
 	const consumed = new Set<string>();
-
-	if (typeof o.feature === 'string') {
-		out = resolve.concept(o.feature, stack);
-		consumed.add('feature');
-	}
-
-	// archetype: SLOT rebind on an `archetype:` map entry — bind the slot's shape to that sibling
-	// archetype (the analog of the `feature:` rebind above). Legal only on an `archetype:` entry.
-	if (typeof o.archetype === 'string') {
-		out = resolve.concept(o.archetype, stack);
-		consumed.add('archetype');
-	}
+	let out = applyRebind({ node, overlay: o, stack, resolve, consumed });
 
 	// parts: instance-key the field by an enumeration its feature cites via `enums:` —
 	// `parts: <enumeration>` keys by every member; `parts: {<enumeration>: [ids]}` NARROWS to a
@@ -66,22 +150,7 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// the enumeration field (the KEY carries that identity).
 	if (typeof o.parts === 'string' || isPlainObject(o.parts)) {
 		consumed.add('parts');
-		const partMap: Obj = typeof o.parts === 'string' ? { [o.parts]: null } : o.parts;
-		for (const [enumeration, idsRaw] of Object.entries(partMap)) {
-			const members = enumerationMembers(enumeration);
-			const ids = idsRaw === null ? members : asList(idsRaw, `parts.${enumeration}`, stack);
-			const stale = ids.filter((id) => !members.includes(id));
-			if (stale.length > 0) {
-				throw new Error(`grimoire compile: parts filter on "${key}" names non-members of enumeration/${enumeration}/: ${stale.join(', ')} (via ${stack.join(' → ')})`);
-			}
-			const value = clone(out);
-			if (isPlainObject(value.prop)) delete (value.prop as Obj)[enumeration];
-			out = clone(out);
-			if (isPlainObject(out.prop)) {
-				delete (out.prop as Obj)[enumeration];
-				for (const id of ids) (out.prop as Obj)[id] = clone(value);
-			}
-		}
+		out = applyParts({ node: out, parts: o.parts, key, stack });
 	}
 
 	// compose: a LITERAL overlay — the named sibling's whole resolved node merges in (shared level
@@ -89,11 +158,7 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// Each prop keeps its own `schema.required`, so required-ness travels with the field.
 	if (Array.isArray(o.compose)) {
 		consumed.add('compose');
-		for (const slug of o.compose.map(String)) {
-			const { prop, ...data } = resolve.concept(slug, stack);
-			Object.assign(out.prop as Obj, clone(prop as Obj));
-			out = mergeDeep(clone(data), out) as Obj;
-		}
+		out = applyComposes({ node: out, slugs: o.compose, stack, resolve });
 	}
 
 	if (o.array === true) {
@@ -110,12 +175,7 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// the projection overlays last).
 	if (isPlainObject(o.schema)) {
 		consumed.add('schema');
-		const patch = clone(o.schema);
-		if ('env-var' in patch) {
-			patch['x-env-var'] = patch['env-var'];
-			delete patch['env-var'];
-		}
-		if (Object.keys(patch).length > 0) out = mergeDeep(out, { schema: patch });
+		out = applySchema(out, o.schema);
 	}
 
 	// Every remaining overlay key is a plain MERGE onto the node — the resolver does not judge which
@@ -125,16 +185,5 @@ export function applyOverride(node: Obj, o: Obj, key: string, stack: string[], r
 	// (`identity.archetype`); a misplaced JSON-Schema keyword (`min_length` bare instead of
 	// `schema: { minLength }`) is caught by validating the resolved node against that archetype,
 	// not by a keyword list here.
-	for (const [childKey, childO] of Object.entries(o)) {
-		if (consumed.has(childKey)) continue;
-		const target = isPlainObject(out.array) ? (out.array as Obj) : out;
-		const prop = target.prop as Obj | undefined;
-		if (isPlainObject(childO) && prop && childKey in prop) {
-			prop[childKey] = applyOverride(prop[childKey] as Obj, childO, childKey, stack, resolve);
-		} else {
-			out = { ...out, [childKey]: clone(childO) };
-		}
-	}
-
-	return out;
+	return applyChildren({ node: out, overlay: o, consumed, stack, resolve });
 }

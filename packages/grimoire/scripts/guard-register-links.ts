@@ -44,6 +44,95 @@ type Spec = { combined?: Body; part?: Record<string, Body>; instances?: Body[] }
 const kindsOf = (body: Body | undefined): Set<string> =>
 	new Set(Object.keys(body ?? {}).filter((k) => !NON_KIND.has(k)));
 
+function featureSpecs(entry: Record<string, unknown>): Map<string, Spec> {
+	const specByKey = new Map<string, Spec>();
+	for (const [key, value] of Object.entries(entry)) {
+		const spec = (value as { feature_spec?: Spec })?.feature_spec;
+		if (spec && typeof spec === 'object') specByKey.set(key, spec);
+	}
+	return specByKey;
+}
+
+function registerMenu(
+	reg: Reg,
+	spec: Spec,
+	count: number,
+): { menu?: Set<string>; where?: string; error?: string } {
+	const { feature_id, part_id, ordinal } = reg;
+	if (part_id != null) {
+		const body = spec.part?.[part_id];
+		return body
+			? { menu: kindsOf(body), where: `${feature_id}.${part_id}` }
+			: {
+					error: `part_id '${part_id}' is not a part of '${feature_id}' (parts: ${Object.keys(spec.part ?? {}).join(', ') || 'none'})`,
+				};
+	}
+	if (ordinal != null)
+		return ordinal < 1 || ordinal > count
+			? { error: `ordinal ${ordinal} out of range 1..${count} on '${feature_id}'` }
+			: { menu: kindsOf(spec.instances?.[ordinal - 1]), where: `${feature_id}[${ordinal}]` };
+	return { menu: kindsOf(spec.combined ?? spec), where: `${feature_id}.combined` };
+}
+
+function checkRegister(options: {
+	reg: Reg;
+	slug: string;
+	specs: Map<string, Spec>;
+	countOf: (feature: string) => number;
+	fail: (entry: string, message: string) => void;
+}): void {
+	const { reg, slug, specs, countOf, fail } = options;
+	const at = `register @${reg.address ?? '?'}`;
+	if (!reg.feature_id && reg.raw_name) return;
+	if (!reg.feature_id) return fail(slug, `${at} links nothing (no feature_id, no raw_name)`);
+	if (reg.raw_name)
+		fail(slug, `${at} is both linked (${reg.feature_id}) and raw (${reg.raw_name})`);
+	const spec = specs.get(reg.feature_id);
+	if (!spec)
+		return fail(
+			slug,
+			`${at} feature_id '${reg.feature_id}' is not a feature slot (slots: ${[...specs.keys()].join(', ') || 'none'})`,
+		);
+	const result = registerMenu(reg, spec, countOf(reg.feature_id));
+	if (result.error) return fail(slug, `${at} ${result.error}`);
+	if (!reg.quantity_kind) fail(slug, `${at} on '${reg.feature_id}' has no quantity_kind`);
+	else if (result.menu!.size > 0 && !result.menu!.has(reg.quantity_kind))
+		fail(
+			slug,
+			`${at} kind '${reg.quantity_kind}' is not offered by '${result.where}' (offers: ${[...result.menu!].join(', ')})`,
+		);
+}
+
+function checkEntry(file: string, failLine: (line: string) => void): void {
+	const entry = JSON.parse(readFileSync(join(ARTIFACTS_CATALOG_DIR, file), 'utf8')) as Record<
+		string,
+		unknown
+	>;
+	const modbus = entry.modbus as
+		| { modbus_registers?: Reg[]; modbus_decodes?: Decode[] }
+		| undefined;
+	if (!modbus) return;
+	const slug = (entry.identity as { slug?: string })?.slug ?? file.replace(/\.json$/, '');
+	const archetype = (entry.identity as { archetype_id?: string })?.archetype_id;
+	const specs = featureSpecs(entry);
+	const fail = (name: string, message: string) => failLine(`${name}: ${message}`);
+	const countOf = (feature: string) => {
+		const settings = (entry[feature] as { concept_settings?: { count?: number } })
+			?.concept_settings;
+		return specs.get(feature)?.instances?.length ?? settings?.count ?? 0;
+	};
+	for (const reg of modbus.modbus_registers ?? [])
+		checkRegister({ reg, slug, specs, countOf, fail });
+	for (const decode of modbus.modbus_decodes ?? []) {
+		const label = decode.state ?? decode.fault ?? '?';
+		if (decode.feature_id && decode.feature_id !== archetype && !specs.has(decode.feature_id))
+			fail(
+				slug,
+				`decode '${label}' feature_id '${decode.feature_id}' is not a feature slot or the archetype root '${archetype}'`,
+			);
+	}
+}
+
 runGuard(
 	{
 		header: (count) =>
@@ -55,96 +144,8 @@ feature slot + part/ordinal + offered kind — do NOT coin a code to match a dat
 `,
 	},
 	(failLine) => {
-		const fail = (entry: string, msg: string): void => failLine(`${entry}: ${msg}`);
-
-		for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((f) => f.endsWith('.json'))) {
-			const entry = JSON.parse(readFileSync(join(ARTIFACTS_CATALOG_DIR, file), 'utf8')) as Record<
-				string,
-				unknown
-			>;
-			const modbus = entry.modbus as
-				| { modbus_registers?: Reg[]; modbus_decodes?: Decode[] }
-				| undefined;
-			if (!modbus) continue; // no register map — nothing to resolve
-
-			const slug = (entry.identity as { slug?: string })?.slug ?? file.replace(/\.json$/, '');
-			const archetype = (entry.identity as { archetype_id?: string })?.archetype_id;
-			// Feature slots = every top-level key whose value carries a baked `feature_spec`.
-			const specByFeature = new Map<string, Spec>();
-			for (const [key, value] of Object.entries(entry)) {
-				const spec = (value as { feature_spec?: Spec })?.feature_spec;
-				if (spec && typeof spec === 'object') specByFeature.set(key, spec);
-			}
-			// A repeated feature's instance count — the ordinal bound.
-			const countOf = (feature: string): number => {
-				const cs = (entry[feature] as { concept_settings?: { count?: number } })?.concept_settings;
-				return specByFeature.get(feature)?.instances?.length ?? cs?.count ?? 0;
-			};
-
-			for (const reg of modbus.modbus_registers ?? []) {
-				const at = `register @${reg.address ?? '?'}`;
-				const { feature_id, part_id, ordinal, quantity_kind, raw_name } = reg;
-				if (!feature_id && raw_name) continue; // RAW / unlinked value — nothing to resolve
-				if (!feature_id) {
-					fail(slug, `${at} links nothing (no feature_id, no raw_name)`);
-					continue;
-				}
-				if (raw_name) fail(slug, `${at} is both linked (${feature_id}) and raw (${raw_name})`);
-				const spec = specByFeature.get(feature_id);
-				if (!spec) {
-					fail(
-						slug,
-						`${at} feature_id '${feature_id}' is not a feature slot (slots: ${[...specByFeature.keys()].join(', ') || 'none'})`,
-					);
-					continue;
-				}
-				// Resolve the offered menu by cardinality: part → instance → combined.
-				let menu: Set<string>;
-				let where: string;
-				if (part_id != null) {
-					const body = spec.part?.[part_id];
-					if (!body) {
-						fail(
-							slug,
-							`${at} part_id '${part_id}' is not a part of '${feature_id}' (parts: ${Object.keys(spec.part ?? {}).join(', ') || 'none'})`,
-						);
-						continue;
-					}
-					menu = kindsOf(body);
-					where = `${feature_id}.${part_id}`;
-				} else if (ordinal != null) {
-					const count = countOf(feature_id);
-					if (ordinal < 1 || ordinal > count) {
-						fail(slug, `${at} ordinal ${ordinal} out of range 1..${count} on '${feature_id}'`);
-						continue;
-					}
-					menu = kindsOf(spec.instances?.[ordinal - 1]);
-					where = `${feature_id}[${ordinal}]`;
-				} else {
-					menu = kindsOf(spec.combined ?? spec);
-					where = `${feature_id}.combined`;
-				}
-				if (!quantity_kind) {
-					fail(slug, `${at} on '${feature_id}' has no quantity_kind`);
-				} else if (menu.size > 0 && !menu.has(quantity_kind)) {
-					fail(
-						slug,
-						`${at} kind '${quantity_kind}' is not offered by '${where}' (offers: ${[...menu].join(', ')})`,
-					);
-				}
-			}
-
-			for (const dec of modbus.modbus_decodes ?? []) {
-				const label = dec.state ?? dec.fault ?? '?';
-				// A decode is a whole-device categorical: its feature is a real slot OR the archetype root.
-				if (dec.feature_id && dec.feature_id !== archetype && !specByFeature.has(dec.feature_id)) {
-					fail(
-						slug,
-						`decode '${label}' feature_id '${dec.feature_id}' is not a feature slot or the archetype root '${archetype}'`,
-					);
-				}
-			}
-		}
+		for (const file of readdirSync(ARTIFACTS_CATALOG_DIR).filter((name) => name.endsWith('.json')))
+			checkEntry(file, failLine);
 
 		return '✓ grimoire register/decode links all resolve against the baked feature tree';
 	},

@@ -38,6 +38,8 @@ export function slugify(input: string): string {
  * (e.g. last 6 chars of an external id) so collisions are deterministic across
  * runs. Pass a unique suffix per input or expect an infinite loop.
  */
+// @TODO migrate on next major release.
+// eslint-disable-next-line max-params
 export function uniqueSlug(
 	input: string,
 	suffix: string,
