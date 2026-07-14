@@ -9,3 +9,7 @@ prop:
   ingest_kind: { schema: { required: true } } # names the mode; site_adapter ties modbus_tap_window to the modbus_tap value
   catalog_item: { title: { en: 'Site Catalog Item' } }
   service_id: {} # polled-master modes: which of the device's OFFERED services the adapter dials
+  # Polled-master modes: pin WHICH of the metered device's network_interfaces the adapter dials,
+  # overriding the service_binding's own network_interface_id. A site fact (which NIC is reachable
+  # from the poller), so it lives on the adapter, not the catalog device.
+  network_interface_id: {}
