@@ -117,21 +117,23 @@ export function readWorkspace(root: string): Workspace | null {
 }
 
 /**
- * Tracked `package.json` files for every workspace package, honoring the
- * workspace globs' `!` negations — so callers see exactly the set the package
- * manager installs. (Workspace `*` matches `/` in git pathspecs, same as
- * pnpm/bun resolution.)
+ * Tracked `package.json` files the package manager installs from: every
+ * workspace package plus the root manifest. Package globs honor their `!`
+ * negations (workspace `*` matches `/` in git pathspecs, same as pnpm/bun
+ * resolution); the root is always included, since its own deps — the shared
+ * tooling devDeps especially — must obey the same org rules as any package.
  */
 export function workspaceManifests(root: string, ws: Workspace): string[] {
 	const positives = ws.packages.filter((p) => !p.startsWith('!'));
 	const negatives = ws.packages
 		.filter((p) => p.startsWith('!'))
 		.map((p) => p.slice(1).replace(/\/\*+$/, ''));
-	return gitFiles(
+	const packages = gitFiles(
 		root,
 		positives.map((p) => `${p}/package.json`),
 	).filter((manifest) => {
 		const dir = dirname(manifest);
 		return !negatives.some((n) => dir === n || dir.startsWith(n + '/'));
 	});
+	return [...new Set([...gitFiles(root, ['package.json']), ...packages])];
 }

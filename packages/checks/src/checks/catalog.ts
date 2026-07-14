@@ -1,6 +1,7 @@
 /**
  * Commit gate (opt-in): every dependency version must be single-sourced through
- * a workspace catalog. No workspace package may pin a literal version — each
+ * a workspace catalog. No manifest the package manager installs from — every
+ * workspace package AND the root `package.json` — may pin a literal version; each
  * dependency must reference the default `catalog` or a named `catalogs.<group>`
  * with the `catalog:` protocol (a `workspace:*` reference to a sibling is fine
  * too). Two breaches fail the commit:

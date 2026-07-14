@@ -11,6 +11,7 @@ allowBuilds:
 # what nodeve itself builds against.
 catalog:
   '@ast-grep/napi': ^0.44.1
+  '@changesets/cli': ^2.27.0
   '@eslint/compat': ^2.1.0
   '@eslint/js': ^10.0.1
   '@noble/hashes': ^2.0.0

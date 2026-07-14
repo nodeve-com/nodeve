@@ -19,7 +19,7 @@
     "check:gate": "lefthook run pre-commit"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.0",
+    "@changesets/cli": "catalog:",
     "@eslint/compat": "catalog:",
     "@eslint/js": "catalog:",
     "@nodeve/checks": "workspace:*",
@@ -28,9 +28,9 @@
     "eslint": "catalog:",
     "eslint-config-prettier": "catalog:",
     "globals": "catalog:",
-    "prettier": "^3.9.5",
+    "prettier": "catalog:",
     "remeda-humps": "catalog:",
-    "typescript": "^6.0.3",
+    "typescript": "catalog:",
     "typescript-eslint": "catalog:"
   }
 }

@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 1.9.0
+
+### Minor Changes
+
+- catalog: gate the root `package.json` too. The check now scans every manifest the package manager installs from — each workspace package **and** the repo root — so a literal version pin in root `devDependencies` (shared tooling especially) fails the gate instead of slipping through.
+
 ## 1.8.0
 
 ### Minor Changes
