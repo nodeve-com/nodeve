@@ -12,6 +12,7 @@ import * as building_ from './building.ts';
 import * as chargeController_ from './charge_controller.ts';
 import * as dehumidifier_ from './dehumidifier.ts';
 import * as feature_ from './feature.ts';
+import * as gridRegion_ from './grid_region.ts';
 import * as intervals_ from './intervals.ts';
 import * as inverter_ from './inverter.ts';
 import * as ipAddresses_ from './ip_addresses.ts';
@@ -46,6 +47,7 @@ export const archetype = {
 	chargeController: chargeController_,
 	dehumidifier: dehumidifier_,
 	feature: feature_,
+	gridRegion: gridRegion_,
 	intervals: intervals_,
 	inverter: inverter_,
 	ipAddresses: ipAddresses_,

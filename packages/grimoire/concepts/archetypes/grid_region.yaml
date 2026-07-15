@@ -1,0 +1,15 @@
+title:
+  en: Grid region
+  pt: Região de rede
+description:
+  en: A regional AC supply standard — the nominal voltage and frequency a mains grid is wired to (IEC 60038 / NEMA). One commissioning knob that fixes both at install.
+  pt: Um padrão regional de alimentação CA — a tensão e frequência nominais da rede (IEC 60038 / NEMA). Um único ajuste que fixa ambos na instalação.
+concept_settings:
+  # A GRID REGION — the mains standard a box is wired for. A Term (identity + i18n label +
+  # crosswalks) plus the facts that gate its nominal bands: phase/line voltage + frequency. The
+  # regions (eu_230v_50hz, ...) are INSTANCES under enumeration/grid_region/, each crosswalked to
+  # IEC 60038. Replaces the raw `grid_region`/`grid_frequency` JSON-schema knobs formerly inlined
+  # on catalog entries.
+  compose: [ thing ]
+feature:
+  mains: {} # nominal phase/line voltage + frequency — the supply facts, grouped once

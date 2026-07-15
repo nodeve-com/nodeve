@@ -1,0 +1,12 @@
+# No iri_template: IEC standards are not freely web-resolvable — a bare token. `term` is the
+# standard-voltage designation this standard fixes ("230/400 V", "120/240 V"), the nominal
+# phase/line pair a grid region is built around.
+title:
+  en: IEC 60038 (IEC standard voltages)
+  pt: "IEC 60038 (Tensões normalizadas IEC)"
+identity:
+  slug: iec_60038
+  code: N5X1HWHZ
+  url: https://webstore.iec.ch/publication/153
+registry_publication:
+  published_by: iec

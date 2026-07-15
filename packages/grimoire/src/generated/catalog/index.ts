@@ -28,6 +28,7 @@ import iana_iftype from './iana_iftype.ts';
 import iana_protocol from './iana_protocol.ts';
 import iana_uri_scheme from './iana_uri_scheme.ts';
 import iec from './iec.ts';
+import iec_60038 from './iec_60038.ts';
 import iec_60381 from './iec_60381.ts';
 import iec_60445 from './iec_60445.ts';
 import iec_61850 from './iec_61850.ts';
@@ -99,6 +100,7 @@ export const catalogEntries = [
 	iana_protocol,
 	iana_uri_scheme,
 	iec,
+	iec_60038,
 	iec_60381,
 	iec_60445,
 	iec_61850,

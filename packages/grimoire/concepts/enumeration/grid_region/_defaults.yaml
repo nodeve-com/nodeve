@@ -1,0 +1,4 @@
+# Each member is a full grid_region (not a bare literal) — it carries the mains facts (nominal
+# phase/line voltage + frequency) that gate a device's operating bands.
+identity:
+  archetype_id: grid_region

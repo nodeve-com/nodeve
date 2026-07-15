@@ -1,0 +1,10 @@
+title:
+  en: North America 120/208 V 60 Hz
+  pt: América do Norte 120/208 V 60 Hz
+description:
+  en: NEMA 120/208 V wye three-phase, 60 Hz — North American commercial service.
+refs:
+  - { registry_id: iec_60038, term: "120/208 V", match: exact }
+mains:
+  voltage: 120
+  frequency: 60

@@ -45,6 +45,7 @@ import * as inventory_ from './inventory.ts';
 import * as ipBinding_ from './ip_binding.ts';
 import * as location_ from './location.ts';
 import * as magicByte_ from './magic_byte.ts';
+import * as mains_ from './mains.ts';
 import * as measurand_ from './measurand.ts';
 import * as measurandLink_ from './measurand_link.ts';
 import * as measuringInterval_ from './measuring_interval.ts';
@@ -138,6 +139,7 @@ export const feature = {
 	ipBinding: ipBinding_,
 	location: location_,
 	magicByte: magicByte_,
+	mains: mains_,
 	measurand: measurand_,
 	measurandLink: measurandLink_,
 	measuringInterval: measuringInterval_,

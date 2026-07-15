@@ -45,6 +45,7 @@ import * as environment_ from './features/environment.ts';
 import * as feature_ from './archetypes/feature.ts';
 import * as featureSpec_ from './features/feature_spec.ts';
 import * as gridElectricalNetwork_ from './features/grid_electrical_network.ts';
+import * as gridRegion_ from './archetypes/grid_region.ts';
 import * as groundTempBand_ from './features/ground_temp_band.ts';
 import * as humidityControl_ from './features/humidity_control.ts';
 import * as i18N_ from './features/i18n.ts';
@@ -59,6 +60,7 @@ import * as ipAddresses_ from './archetypes/ip_addresses.ts';
 import * as ipBinding_ from './features/ip_binding.ts';
 import * as location_ from './features/location.ts';
 import * as magicByte_ from './features/magic_byte.ts';
+import * as mains_ from './features/mains.ts';
 import * as measurand_ from './features/measurand.ts';
 import * as measurandLink_ from './features/measurand_link.ts';
 import * as measuringInterval_ from './features/measuring_interval.ts';
@@ -172,6 +174,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	feature: feature_.schema,
 	featureSpec: featureSpec_.schema,
 	gridElectricalNetwork: gridElectricalNetwork_.schema,
+	gridRegion: gridRegion_.schema,
 	groundTempBand: groundTempBand_.schema,
 	humidityControl: humidityControl_.schema,
 	i18N: i18N_.schema,
@@ -186,6 +189,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	ipBinding: ipBinding_.schema,
 	location: location_.schema,
 	magicByte: magicByte_.schema,
+	mains: mains_.schema,
 	measurand: measurand_.schema,
 	measurandLink: measurandLink_.schema,
 	measuringInterval: measuringInterval_.schema,
@@ -297,6 +301,7 @@ export interface ConceptTypes {
 	feature: feature_.Feature;
 	featureSpec: featureSpec_.FeatureSpec;
 	gridElectricalNetwork: gridElectricalNetwork_.GridElectricalNetwork;
+	gridRegion: gridRegion_.GridRegion;
 	groundTempBand: groundTempBand_.GroundTempBand;
 	humidityControl: humidityControl_.HumidityControl;
 	i18N: i18N_.I18n;
@@ -311,6 +316,7 @@ export interface ConceptTypes {
 	ipBinding: ipBinding_.IpBinding;
 	location: location_.Location;
 	magicByte: magicByte_.MagicByte;
+	mains: mains_.Mains;
 	measurand: measurand_.Measurand;
 	measurandLink: measurandLink_.MeasurandLink;
 	measuringInterval: measuringInterval_.MeasuringInterval;

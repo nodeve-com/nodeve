@@ -1,0 +1,13 @@
+# The nominal AC supply a grid region is built around — its rated mains `voltage` and `frequency`
+# (the universal quantity_kinds; no region-local field is coined). Grouped once so grid_region —
+# and any future supply-referencing thing — nests these rather than restating them. Fill only known
+# values, never fabricate.
+title:
+  en: Mains
+  pt: Rede elétrica
+description:
+  en: Nominal AC supply — rated voltage and mains frequency.
+  pt: Alimentação CA nominal — tensão nominal e frequência da rede.
+prop:
+  voltage: {} # rated nominal, V — the quantity_kind's bare scalar, not a spec-band
+  frequency: {} # rated nominal, Hz

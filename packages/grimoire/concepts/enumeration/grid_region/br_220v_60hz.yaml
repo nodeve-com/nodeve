@@ -1,0 +1,10 @@
+title:
+  en: Brazil 220/380 V 60 Hz
+  pt: Brasil 220/380 V 60 Hz
+description:
+  en: 220/380 V, 60 Hz — Brazil (220 V regions).
+refs:
+  - { registry_id: iec_60038, term: "220/380 V", match: exact }
+mains:
+  voltage: 220
+  frequency: 60
