@@ -70,7 +70,7 @@ A device's key is its **identity** — `archetype_id` + `slug` (`catalog_item: {
 
 ## Using the concepts
 
-Every generated module is a layer subpath — one concept, or the whole layer:
+Every generated module is a layer subpath — one concept, or the whole layer. **This is the ONLY way to type a concept shape in a consumer.** Writing an inline/structural TS type that mirrors a concept (a featureSpec, an interval, any YAML-defined shape) — in a consumer OR in this package's own `src/` — re-authors the def and WILL drift; the YAML already generated the type, so import it (e.g. `type PvTracker` from `@nodeve/grimoire/features/pv_tracker` types `featureSpec.instances[n].voltage.intervals[].interval` all the way down). Missing type? Fix the codegen, never hand-write the shape.
 
 ```ts
 // One concept — the module IS the def node: authored fields + live TypeBox schema + parsed type

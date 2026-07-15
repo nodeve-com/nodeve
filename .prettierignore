@@ -1,0 +1,4 @@
+# Machine output, committed but never hand-edited — formatting it would fight the
+# generator that rewrites it. Mirrors the globalIgnores in eslint.config.js.
+packages/grimoire/src/generated/**
+nodeve.checks.defaults.js

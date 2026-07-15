@@ -28,7 +28,7 @@ const base = [
 			// function () {}` → name it). Note: does NOT govern arrow functions (no
 			// ESLint option does); inline callback arrows stay legal.
 			'func-names': ['error', 'always'],
-			'max-depth': ["error", 3],
+			'max-depth': ['error', 3],
 			// >3 params must collapse into a single typed options object — past three
 			// positional args the call site stops reading and every reorder is a silent bug.
 			'max-params': ['error', 3],

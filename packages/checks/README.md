@@ -106,7 +106,7 @@ All blocking checks accept `--warn` (report-only, exit 0) and `--explain` (expan
 
 Unlike the gates above, fixers mutate staged files and let lefthook re-stage them (`stage_fixed: true`). They run before the `checks` group so the gates see the fixed content.
 
-- `nodeve-format-markdown` — prettier-formats staged `*.md` in place, so docs land formatted without a manual `prettier --write`. Bundles its own prettier (nothing needed on PATH, portable across pnpm and bun) yet honors the repo's prettier config, `.prettierignore`, and plugins, which prettier resolves per file. Skips symlinked docs (e.g. `CLAUDE.md` → `README.md`), which prettier can't format and which get formatted via their real target's own staged entry.
+- `nodeve-format` — prettier-formats staged docs, code, and config in place, so they land formatted without a manual `prettier --write`. Bundles its own prettier (nothing needed on PATH, portable across pnpm and bun) yet honors the repo's prettier config, `.prettierignore`, and plugins, which prettier resolves per file. Skips symlinks (e.g. `CLAUDE.md` → `README.md`), which prettier can't format and which get formatted via their real target's own staged entry. Exclude machine output and vendored code with `.prettierignore` — the lefthook glob stays wide.
 
 ### Running ad hoc
 

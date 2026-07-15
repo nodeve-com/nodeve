@@ -1,71 +1,71 @@
 {
-  "name": "@nodeve/checks",
-  "version": "1.9.0",
-  "description": "Org-wide commit-gate checks (doc budgets, reshape/dup/helper smells, page size) and helper-index generators, driven by a per-repo config file and wired through lefthook.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodeve-com/nodeve.git",
-    "directory": "packages/checks"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist",
-    "lefthook.checks.yml",
-    "nodeve.checks.defaults.js"
-  ],
-  "exports": {
-    "./config": {
-      "types": "./dist/lib/config.d.ts",
-      "default": "./dist/lib/config.js"
-    },
-    "./defaults": {
-      "types": "./dist/lib/defaults.d.ts",
-      "default": "./dist/lib/defaults.js"
-    },
-    "./lefthook": "./lefthook.checks.yml"
-  },
-  "bin": {
-    "nodeve-check": "./dist/bin/check.js",
-    "nodeve-check-doc-tokens": "./dist/bin/doc-tokens.js",
-    "nodeve-check-commit-msg": "./dist/bin/commit-msg.js",
-    "nodeve-check-reshape": "./dist/bin/reshape.js",
-    "nodeve-check-plural-arrays": "./dist/bin/plural-arrays.js",
-    "nodeve-check-inline-dupes": "./dist/bin/inline-dupes.js",
-    "nodeve-check-helper-collisions": "./dist/bin/helper-collisions.js",
-    "nodeve-check-clones": "./dist/bin/clones.js",
-    "nodeve-check-page-size": "./dist/bin/page-size.js",
-    "nodeve-check-file-size": "./dist/bin/file-size.js",
-    "nodeve-check-catalog": "./dist/bin/catalog.js",
-    "nodeve-check-require-deps": "./dist/bin/require-deps.js",
-    "nodeve-check-require-eslint": "./dist/bin/require-eslint.js",
-    "nodeve-format-markdown": "./dist/bin/format-markdown.js",
-    "nodeve-build-lib-names": "./dist/bin/build-lib-names.js",
-    "nodeve-build-helper-manifest": "./dist/bin/build-helper-manifest.js"
-  },
-  "scripts": {
-    "build": "tsc -p tsconfig.json && cp dist/lib/defaults.js nodeve.checks.defaults.js",
-    "clean": "rm -rf dist",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
-  },
-  "dependencies": {
-    "@ast-grep/napi": "catalog:",
-    "@nodeve/text": "workspace:*",
-    "js-tiktoken": "catalog:",
-    "jscpd": "catalog:",
-    "pluralize": "catalog:",
-    "prettier": "catalog:",
-    "remeda": "catalog:",
-    "ts-morph": "catalog:",
-    "typescript": "catalog:",
-    "yaml": "catalog:"
-  },
-  "devDependencies": {
-    "@nodeve/config": "workspace:*",
-    "@types/node": "catalog:",
-    "@types/pluralize": "catalog:"
-  }
+	"name": "@nodeve/checks",
+	"version": "1.9.0",
+	"description": "Org-wide commit-gate checks (doc budgets, reshape/dup/helper smells, page size) and helper-index generators, driven by a per-repo config file and wired through lefthook.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/checks"
+	},
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"lefthook.checks.yml",
+		"nodeve.checks.defaults.js"
+	],
+	"exports": {
+		"./config": {
+			"types": "./dist/lib/config.d.ts",
+			"default": "./dist/lib/config.js"
+		},
+		"./defaults": {
+			"types": "./dist/lib/defaults.d.ts",
+			"default": "./dist/lib/defaults.js"
+		},
+		"./lefthook": "./lefthook.checks.yml"
+	},
+	"bin": {
+		"nodeve-check": "./dist/bin/check.js",
+		"nodeve-check-doc-tokens": "./dist/bin/doc-tokens.js",
+		"nodeve-check-commit-msg": "./dist/bin/commit-msg.js",
+		"nodeve-check-reshape": "./dist/bin/reshape.js",
+		"nodeve-check-plural-arrays": "./dist/bin/plural-arrays.js",
+		"nodeve-check-inline-dupes": "./dist/bin/inline-dupes.js",
+		"nodeve-check-helper-collisions": "./dist/bin/helper-collisions.js",
+		"nodeve-check-clones": "./dist/bin/clones.js",
+		"nodeve-check-page-size": "./dist/bin/page-size.js",
+		"nodeve-check-file-size": "./dist/bin/file-size.js",
+		"nodeve-check-catalog": "./dist/bin/catalog.js",
+		"nodeve-check-require-deps": "./dist/bin/require-deps.js",
+		"nodeve-check-require-eslint": "./dist/bin/require-eslint.js",
+		"nodeve-format": "./dist/bin/format.js",
+		"nodeve-build-lib-names": "./dist/bin/build-lib-names.js",
+		"nodeve-build-helper-manifest": "./dist/bin/build-helper-manifest.js"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.json && cp dist/lib/defaults.js nodeve.checks.defaults.js",
+		"clean": "rm -rf dist",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"dependencies": {
+		"@ast-grep/napi": "catalog:",
+		"@nodeve/text": "workspace:*",
+		"js-tiktoken": "catalog:",
+		"jscpd": "catalog:",
+		"pluralize": "catalog:",
+		"prettier": "catalog:",
+		"remeda": "catalog:",
+		"ts-morph": "catalog:",
+		"typescript": "catalog:",
+		"yaml": "catalog:"
+	},
+	"devDependencies": {
+		"@nodeve/config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/pluralize": "catalog:"
+	}
 }

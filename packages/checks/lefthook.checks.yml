@@ -33,14 +33,20 @@
 pre-commit:
   jobs:
     # Fixer, runs before the `checks` group so the gates see formatted, re-staged
-    # content. Prettier-formats staged markdown in place; `stage_fixed` re-adds
+    # content. Prettier-formats staged files in place; `stage_fixed` re-adds
     # whatever it touched. The bin bundles its own prettier (portable across pnpm
     # and bun, needs nothing on PATH) and honors the repo's prettier config and
-    # `.prettierignore`. It skips symlinked docs itself, so no `file_types` filter
-    # is needed here.
-    - name: format-markdown
-      glob: '*.md'
-      run: node_modules/.bin/nodeve-format-markdown {staged_files}
+    # `.prettierignore`. It skips symlinks itself, so no `file_types` filter is
+    # needed here.
+    #
+    # The glob covers code as well as docs: `eslint-config-prettier` turns OFF every
+    # stylistic eslint rule, so with markdown-only formatting nothing in the gate
+    # judged code formatting at all. It must only name types prettier has a parser
+    # for — prettier errors on a path it can't infer one for. Repos exclude paths
+    # via `.prettierignore` (machine output, vendored code), not by narrowing this.
+    - name: format
+      glob: '*.{md,ts,tsx,js,jsx,mjs,cjs,mts,cts,svelte,json,jsonc,css,html,yml,yaml}'
+      run: node_modules/.bin/nodeve-format {staged_files}
       stage_fixed: true
 
     - name: checks
