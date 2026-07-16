@@ -11,13 +11,15 @@ describe('grimoire-generate mirrors', () => {
 		for (const [path, contents] of Object.entries(outputs())) {
 			expect(readFileSync(path, 'utf8'), path).toBe(contents);
 		}
-	});
+	}, 20_000); // 1310-file mirror sweep outgrew the 5s default
 });
 
 describe('baked vocab dicts', () => {
 	it('ACCUMULATION crosswalks to HA state_class', () => {
 		expect(ACCUMULATION.crosswalk('instantaneous', 'ha_state_class')).toBe('measurement');
-		expect(ACCUMULATION.crosswalk('cumulative_monotonic', 'ha_state_class')).toBe('total_increasing');
+		expect(ACCUMULATION.crosswalk('cumulative_monotonic', 'ha_state_class')).toBe(
+			'total_increasing',
+		);
 		expect(ACCUMULATION.crosswalk('cumulative', 'prometheus')).toBeUndefined();
 	});
 

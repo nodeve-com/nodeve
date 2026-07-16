@@ -421,6 +421,21 @@ export default {
 	"acPhaseThreeGrid": {
 		"featureSpec": {
 			"combined": {
+				"activeEnergy": {
+					"intervals": [
+						{
+							"identity": {
+								"slug": "measurable"
+							},
+							"interval": {
+								"min": 0,
+								"rating": "measurable",
+								"resolution": 0.01,
+								"unit": "kWh"
+							}
+						}
+					]
+				},
 				"activePower": {
 					"intervals": [
 						{
@@ -720,6 +735,15 @@ export default {
 			"wordOrder": "high_first"
 		},
 		"modbusRegisters": [
+			{
+				"address": 39601,
+				"decimals": 2,
+				"featureId": "pv_tracker",
+				"quantityKind": "active_energy",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
 			{
 				"address": 39070,
 				"decimals": 1,
@@ -1111,6 +1135,7 @@ export default {
 		},
 		"featureSpec": {
 			"combined": {
+				"activeEnergy": {},
 				"activePower": {
 					"intervals": [
 						{

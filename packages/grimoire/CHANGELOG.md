@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.7.0
+
+### Minor Changes
+
+- Parse the FoxESS H3 SMART lifetime solar-generation energy counter.
+
 ## 4.6.0
 
 ### Minor Changes

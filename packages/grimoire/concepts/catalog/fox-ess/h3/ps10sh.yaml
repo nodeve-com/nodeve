@@ -35,6 +35,9 @@ ac_phase_three_grid:
     # combined: the three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
     # (it isn't: a 10 kW box can't sustain 3×3.3 kW). Authored because it's not derivable.
     combined:
+      active_energy:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
       active_power:
         # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
         # With no nominal the symmetric export/import rows collapse to one signed range per tier.
@@ -268,6 +271,17 @@ modbus:
   # quantity_kind). The topic is DERIVED from that link downstream — not authored here. `unit`
   # appears ONLY when it isn't the kind's SI/coherent unit (V/A/W/K are SI ⇒ omitted; kW, °C kept).
   modbus_registers:
+    # --- Lifetime PV generation (foxess solar_energy_total) ---
+    # H3 SMART: unsigned 32-bit counter, high word first, 0.01 kWh/count.
+    - {
+        feature_id: pv_tracker,
+        quantity_kind: active_energy,
+        address: 39601,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39602
     # --- PV string 1 (foxess pv1_*) ---
     - {
         feature_id: pv_tracker,
