@@ -28,6 +28,7 @@ import {
 	snakeKey,
 	specSlugPatch,
 } from './measurand-tree.ts';
+import { overlayPatch } from './overlay.ts';
 import { isConcept, validateSite } from './validate-site.ts';
 
 const readYaml = (path: string): unknown => parseYaml(readFileSync(path, 'utf8'));
@@ -117,10 +118,12 @@ function catalogPatch(entry: Record<string, unknown>): Obj {
 const SITE_CATALOG_KEYS = new Set(['identity', 'title', 'description', 'refs', 'inventory']);
 
 function applyCatalogPatch(entry: Record<string, unknown>): void {
-	const patch = catalogPatch(entry);
+	let patch = catalogPatch(entry);
 	for (const key of Object.keys(entry)) {
 		if (SITE_CATALOG_KEYS.has(key)) continue;
-		Object.assign(patch, humps({ [key]: entry[key] }));
+		// Overlay, never assign: a site block naming a measurand feature (custom `intervals` bands,
+		// a spec delta) must MERGE into that feature's generated slug patch, not clobber it.
+		patch = overlayPatch(patch, humps({ [key]: entry[key] })) as Obj;
 		delete entry[key];
 	}
 	if (Object.keys(patch).length === 0) return;

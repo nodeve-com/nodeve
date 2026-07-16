@@ -5,7 +5,7 @@
 // the concept parsers, and the site-bake compiler.
 
 // --- Deterministic sensor IDs: THE one id formula every generator projects names from ---
-export { sensorId, type SensorIdParts } from './sensor-id.ts';
+export { intervalSensorId, sensorId, type SensorIdParts } from './sensor-id.ts';
 
 // --- Display policy: the authored per-quantity filter/publish policy for the HA-facing per-sensor
 //     path. `displayPolicy` is the baked instance (generated from display-policy/sensors.yaml) —
@@ -47,7 +47,12 @@ export {
 	type SiteSensor,
 	type ResolvedDevice,
 } from './site-view.ts';
-export { type MeasurandCell, measurandCells, measurandSubTopic, isMeasurandFeature } from './measurand-tree.ts';
+export {
+	type MeasurandCell,
+	measurandCells,
+	measurandSubTopic,
+	isMeasurandFeature,
+} from './measurand-tree.ts';
 
 // --- Site bundle validation: the ONE schema check over a resolved site bundle. The bake runs it
 //     before writing; any consumer loading a `site.generated.json` calls the same function to trust it ---
