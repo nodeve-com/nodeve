@@ -1,0 +1,4 @@
+title: { en: Throttle average (ms), pt: Média por janela (ms) }
+description:
+  en: 'Mean over a wall-clock window, integer milliseconds — emit the average of all samples seen per window. Frequency-robust: valid whatever the source cadence (unlike a sample-relative EMA).'
+schema: { type: integer, minimum: 1 }

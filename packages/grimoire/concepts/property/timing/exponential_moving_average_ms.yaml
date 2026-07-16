@@ -1,0 +1,4 @@
+title: { en: Exponential moving average τ (ms), pt: Média móvel exponencial τ (ms) }
+description:
+  en: "EMA time constant τ, integer milliseconds — smoothing authored as TIME, never α or sample counts. Sample-relative and Δt-DEPENDENT: a realizer pins α = 1 − e^(−Δt/τ) from the source's observed/commanded interval; unknown Δt ⇒ fall back to a wall-clock mean over the same window."
+schema: { type: integer, minimum: 1 }

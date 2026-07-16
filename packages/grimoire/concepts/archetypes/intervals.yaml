@@ -6,12 +6,12 @@
 # feature) buys each band its identity/title/description, for self-documentation and, above all, the
 # referenceable `slug`. `array: true` — the `intervals` slot is a LIST of these.
 concept_settings:
-  compose: [ thing ] # identity (the slug handle) + title + description + refs
+  compose: [thing] # identity (the slug handle) + title + description + refs
   is_array: true
 title: { en: Intervals }
 description:
-  en: "One identified rated interval of a quantity — bounds + gating conditions under an
-    identity.slug handle. The item type of a specification's `intervals` list."
+  en: "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."
 feature:
   interval: {} # the bounds — rating/mode/nominal_range/tolerance/margin/unit
   condition: {} # the gate list — array of `condition` (its own `array: true` supplies the list)
+  filter: {} # required input conditioning — the band is a claim about the conditioned signal

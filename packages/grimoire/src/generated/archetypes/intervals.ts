@@ -9,17 +9,18 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as condition_ from '../features/condition.ts';
 import * as description_ from '../features/description.ts';
+import * as filter_ from '../features/filter.ts';
 import * as identity_ from '../features/identity.ts';
 import * as interval_ from '../features/interval.ts';
 import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "interval": Type.Optional(interval_.schema), "condition": Type.Optional(condition_.schema) }, {"additionalProperties":false}));
+export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "interval": Type.Optional(interval_.schema), "condition": Type.Optional(condition_.schema), "filter": Type.Optional(filter_.schema) }, {"additionalProperties":false}));
 
-export type Intervals = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "interval"?: interval_.Interval; "condition"?: condition_.Condition }>;
+export type Intervals = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "interval"?: interval_.Interval; "condition"?: condition_.Condition; "filter"?: filter_.Filter }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Coisa" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "filter": typeof filter_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
@@ -27,6 +28,7 @@ const _data: DataT = {
 		"prop": {
 			"condition": condition_,
 			"description": description_,
+			"filter": filter_,
 			"identity": identity_,
 			"interval": interval_,
 			"refs": refs_,

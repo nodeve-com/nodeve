@@ -11,9 +11,10 @@ import type { AcPhaseThreePoint } from '../src/generated/features/ac_phase_three
 
 const REF = { archetype_id: 'ac_phase_three_meter', slug: 'grid_meter_live' };
 
-function fixtureSite(): string {
+function fixtureSite(filterMs = 1000): string {
 	const dir = mkdtempSync(join(tmpdir(), 'grimoire-bake-'));
 	mkdirSync(join(dir, 'catalog'));
+	mkdirSync(join(dir, 'adapter'));
 	writeFileSync(
 		join(dir, 'catalog', '_defaults.yaml'),
 		'identity:\n  archetype_id: site_catalog\n',
@@ -32,12 +33,31 @@ function fixtureSite(): string {
 			'        intervals:',
 			'          - identity: { slug: grid_neutral }',
 			'            interval: { min: -50, max: 50 }',
+			`            filter: { throttle_average_ms: ${filterMs} }`,
 			'    part:',
 			'      a:',
 			'        voltage:',
 			'          intervals:',
 			'            - identity: { slug: brownout }',
 			'              interval: { min: 190, max: 253 }',
+			'',
+		].join('\n'),
+	);
+	writeFileSync(
+		join(dir, 'adapter', 'grid_meter_live.yaml'),
+		[
+			'identity:',
+			'  archetype_id: site_adapter',
+			'ingest:',
+			'  ingest_kind: modbus_tap',
+			'  platform: esphome',
+			'  catalog_item:',
+			'    archetype_id: ac_phase_three_meter',
+			'    slug: grid_meter_live',
+			'modbus_tap_window:',
+			'  - name: telemetry',
+			'    address: 5392',
+			'    observed_interval_ms: 200',
 			'',
 		].join('\n'),
 	);
@@ -72,5 +92,18 @@ describe('bakeSite — site-authored intervals merge into the slug patch', () =>
 		expect(slugsAt('a')).toContain('brownout');
 		expect(slugsAt('a')).toContain('measurable'); // catalog bands intact
 		expect(slugsAt('b')).not.toContain('brownout');
+	});
+
+	test('an interval filter window rides the merge (the band claims the conditioned signal)', () => {
+		const band = featureSpec().combined?.activePower?.intervals?.find(
+			(b) => b.identity?.slug === 'grid_neutral',
+		);
+		expect(band?.filter?.throttleAverageMs).toBe(1000);
+	});
+
+	test('a filter window shorter than the adapter cadence fails the bake', () => {
+		expect(() => bakeSite(fixtureSite(100), 'fixture')).toThrow(
+			/filter window shorter than the sample interval/,
+		);
 	});
 });

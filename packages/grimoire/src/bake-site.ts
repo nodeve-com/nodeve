@@ -23,6 +23,7 @@ import { scopedSensorId, sensorId } from './sensor-id.ts';
 import {
 	type Obj,
 	isMeasurandFeature,
+	measurandCells,
 	quantityCode,
 	quantityCols,
 	snakeKey,
@@ -133,6 +134,69 @@ function applyCatalogPatch(entry: Record<string, unknown>): void {
 	inventory.catalog_patch = patch;
 }
 
+// Interval-filter cadence gate — SITE-level only, by design: a catalog def doesn't know its
+// polling cadence, so a filter window authored there is unvalidatable at emit. The site adapter
+// does know (tap windows' observed_interval_ms / a commanded ingest.update_interval_ms), so gate
+// here: every filter constant on the metered device's intervals must be ≥ the sample interval —
+// a 200 ms mean over a 1 s cadence is a claim the data can't back. v1 is LENIENT: it compares
+// against the adapter's FASTEST known cadence (register→window mapping isn't modelled), so a
+// filter on a slow window's quantity can pass that shouldn't; no cadence info ⇒ skip.
+const adapterCadences = (adapter: Record<string, unknown>): number[] => {
+	const ingest = isPlainObject(adapter.ingest) ? (adapter.ingest as Obj) : {};
+	const windows = Array.isArray(adapter.modbus_tap_window)
+		? (adapter.modbus_tap_window as Obj[])
+		: [];
+	return [...windows.map((w) => w.observed_interval_ms), ingest.update_interval_ms].filter(
+		(v): v is number => typeof v === 'number',
+	);
+};
+
+// Every filter constant on the merged device's intervals, flat: its measurand coordinate, the
+// band's slug handle, the filter key, and the ms value.
+const bandFilterMs = (merged: Obj) =>
+	measurandCells(merged).flatMap((cell) => {
+		const intervals = Array.isArray(cell.node.intervals) ? (cell.node.intervals as Obj[]) : [];
+		return intervals.flatMap((band) => {
+			const filter = isPlainObject(band.filter) ? (band.filter as Obj) : {};
+			const slug = asIdentity(band.identity).slug;
+			return Object.entries(filter).flatMap(([key, ms]) =>
+				typeof ms === 'number' ? [{ cell, slug, key, ms }] : [],
+			);
+		});
+	});
+
+function assertIntervalFilters(
+	catalog: Record<string, unknown>[],
+	adapters: Record<string, unknown>[],
+	label: string,
+): void {
+	const byRef = new Map(
+		catalog.map((e) => [`${inventoryItem(e).archetype_id}/${asIdentity(e.identity).slug}`, e]),
+	);
+	for (const adapter of adapters) {
+		const cadences = adapterCadences(adapter);
+		const ingest = isPlainObject(adapter.ingest) ? (adapter.ingest as Obj) : {};
+		const ref = asIdentity(ingest.catalog_item);
+		if (cadences.length === 0 || !ref.archetype_id || !ref.slug) continue;
+		const fastest = Math.min(...cadences);
+		const entry = byRef.get(`${ref.archetype_id}/${ref.slug}`);
+		const item = entry ? inventoryItem(entry) : ref;
+		const device = loadDevice({
+			archetypeId: item.archetype_id as string,
+			slug: item.slug as string,
+		});
+		const patch = entry ? ((asIdentity(entry.inventory) as Obj).catalog_patch ?? {}) : {};
+		const tooFast = bandFilterMs(overlayPatch(device, patch) as Obj).find((f) => f.ms < fastest);
+		if (tooFast)
+			throw new Error(
+				`${label}: interval filter window shorter than the sample interval — ` +
+					`${tooFast.cell.feature}.${tooFast.cell.partId ?? tooFast.cell.ordinal ?? 'combined'}.${tooFast.cell.quantityKind} ` +
+					`interval "${tooFast.slug}" ${tooFast.key}: ${tooFast.ms} ms < ` +
+					`adapter "${asIdentity(adapter.identity).slug}" fastest cadence ${fastest} ms`,
+			);
+	}
+}
+
 function checkCatalogItems(
 	node: unknown,
 	context: { where: string; label: string; refs: Set<string> },
@@ -201,6 +265,7 @@ export function bakeSite(
 	// slugs) or a grimoire device direct; both are validated by `checkCatalogItems` below.
 	const adapters = bakeCascade(siteDir, 'adapter');
 	if (adapters.length > 0) bundle.site_adapter = adapters;
+	assertIntervalFilters(catalog, adapters, label);
 
 	// Every `catalog_item` anywhere in the bundle must resolve — either to a site_catalog entry
 	// (archetype + slug in `catalogRefs`, the site-local indirection) or, failing that, to a real

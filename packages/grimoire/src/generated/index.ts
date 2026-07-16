@@ -44,6 +44,7 @@ import * as energyConsumer_ from './features/energy_consumer.ts';
 import * as environment_ from './features/environment.ts';
 import * as feature_ from './archetypes/feature.ts';
 import * as featureSpec_ from './features/feature_spec.ts';
+import * as filter_ from './features/filter.ts';
 import * as gridElectricalNetwork_ from './features/grid_electrical_network.ts';
 import * as gridRegion_ from './archetypes/grid_region.ts';
 import * as groundTempBand_ from './features/ground_temp_band.ts';
@@ -173,6 +174,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	environment: environment_.schema,
 	feature: feature_.schema,
 	featureSpec: featureSpec_.schema,
+	filter: filter_.schema,
 	gridElectricalNetwork: gridElectricalNetwork_.schema,
 	gridRegion: gridRegion_.schema,
 	groundTempBand: groundTempBand_.schema,
@@ -300,6 +302,7 @@ export interface ConceptTypes {
 	environment: environment_.Environment;
 	feature: feature_.Feature;
 	featureSpec: featureSpec_.FeatureSpec;
+	filter: filter_.Filter;
 	gridElectricalNetwork: gridElectricalNetwork_.GridElectricalNetwork;
 	gridRegion: gridRegion_.GridRegion;
 	groundTempBand: groundTempBand_.GroundTempBand;

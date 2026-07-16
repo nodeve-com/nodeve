@@ -1,5 +1,14 @@
 # @nodeve/grimoire
 
+## 4.5.0
+
+### Minor Changes
+
+- Interval `filter` — required input conditioning, smoothing subset only.
+
+  - New `filter` slot on the `intervals` archetype (feature `filter`, props `throttle_average_ms` / `exponential_moving_average_ms`, exactly one): the band is a claim about the CONDITIONED signal — a consumer must apply the filter before judging membership; publish-cadence filters (throttle/delta/hysteresis) are output policy and excluded by design.
+  - Site-bake cadence gate: every interval filter constant on an adapter's metered device must be ≥ the adapter's fastest known cadence (tap `observed_interval_ms` / `ingest.update_interval_ms`) — a 200 ms mean over a 1 s cadence fails the bake. Catalog emit can't validate this (a device doesn't know its polling frequency), so the gate lives at the site level only; no cadence info ⇒ skipped. v1 is lenient: compares against the fastest window, register→window mapping unmodelled.
+
 ## 4.4.0
 
 ### Minor Changes

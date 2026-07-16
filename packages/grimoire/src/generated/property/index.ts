@@ -38,6 +38,7 @@ import * as empty_ from './empty.ts';
 import * as en_ from './en.ts';
 import * as equals_ from './equals.ts';
 import * as expect_ from './expect.ts';
+import * as exponentialMovingAverageMs_ from './exponential_moving_average_ms.ts';
 import * as fault_ from './fault.ts';
 import * as featureId_ from './feature_id.ts';
 import * as fieldIndex_ from './field_index.ts';
@@ -139,6 +140,7 @@ import * as stopBits_ from './stop_bits.ts';
 import * as symbol_ from './symbol.ts';
 import * as term_ from './term.ts';
 import * as thickness_ from './thickness.ts';
+import * as throttleAverageMs_ from './throttle_average_ms.ts';
 import * as tilt_ from './tilt.ts';
 import * as timeoutMs_ from './timeout_ms.ts';
 import * as tolerance_ from './tolerance.ts';
@@ -199,6 +201,7 @@ export const property = {
 	en: en_,
 	equals: equals_,
 	expect: expect_,
+	exponentialMovingAverageMs: exponentialMovingAverageMs_,
 	fault: fault_,
 	featureId: featureId_,
 	fieldIndex: fieldIndex_,
@@ -300,6 +303,7 @@ export const property = {
 	symbol: symbol_,
 	term: term_,
 	thickness: thickness_,
+	throttleAverageMs: throttleAverageMs_,
 	tilt: tilt_,
 	timeoutMs: timeoutMs_,
 	tolerance: tolerance_,
