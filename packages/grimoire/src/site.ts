@@ -14,12 +14,16 @@ export { conceptSchema };
 /** Rename snake_case `data` to camel (mapping-driven, BEFORE validation), validate against the
  *  concept's baked camelCase TypeBox schema — THE one parse every consumer of a concept instance
  *  goes through. The schema is a live `Type.*` value (no fs). */
-export function parseConcept<K extends keyof ConceptTypes>(concept: K, data: unknown): ConceptTypes[K] {
+export function parseConcept<K extends keyof ConceptTypes>(
+	concept: K,
+	data: unknown,
+): ConceptTypes[K] {
 	return parseSnake<ConceptTypes[K]>(conceptSchema[concept], data, `${concept} config`);
 }
 
 export type MqttConnection = ConceptTypes['mqttConnection'];
-export const parseMqttConnection = (data: unknown): MqttConnection => parseConcept('mqttConnection', data);
+export const parseMqttConnection = (data: unknown): MqttConnection =>
+	parseConcept('mqttConnection', data);
 
 // --- Site adapters: the install's decoder peers. A `site_adapter` is an ordinary concept parsed
 //     through `parseConcept` like every other; nothing bespoke. What IS shared lives in the topic
@@ -38,7 +42,8 @@ export const parseSiteAdapter = (data: unknown): SiteAdapter => parseConcept('si
  *  into `mqtt_connection` (distinct from infra-web's own network-data prefix). Throws when unset. */
 export const siteTopicPrefix = (bundle: SiteBundle): string => {
 	const prefix = parseMqttConnection(bundle.mqtt_connection).emit?.topicPrefix;
-	if (!prefix) throw new Error('site mqtt config declares no emit.topic_prefix (the sensor topic root)');
+	if (!prefix)
+		throw new Error('site mqtt config declares no emit.topic_prefix (the sensor topic root)');
 	return prefix;
 };
 
@@ -53,18 +58,43 @@ export const adapterTopicPrefix = (topicPrefix: string, adapter: SiteAdapter): s
 
 /** The full topic a tap window's grouped cycle rides — `<topic_prefix>/<slug>/<ingest_kind>/<window
  *  name>`. The single derivation every consumer shares; throws when the named window isn't declared. */
-export const tapWindowTopic = (topicPrefix: string, adapter: SiteAdapter, windowName: string): string => {
+export const tapWindowTopic = (
+	topicPrefix: string,
+	adapter: SiteAdapter,
+	windowName: string,
+): string => {
 	const window = adapter.modbusTapWindow?.find((w) => w.name === windowName);
-	if (!window) throw new Error(`adapter "${adapter.identity?.slug}" declares no tap window "${windowName}"`);
+	if (!window)
+		throw new Error(`adapter "${adapter.identity?.slug}" declares no tap window "${windowName}"`);
 	return `${adapterTopicPrefix(topicPrefix, adapter)}/${adapter.ingest?.ingestKind}/${window.name}`;
 };
 
 /** The per-sensor HA-facing state topic — `<topic_prefix>/<slug>/sensor/<name>/state`. Every sink
  *  and consumer derives the string HERE, never hand-spells it. `name` is one flat topic segment. */
-export const sensorStateTopic = (topicPrefix: string, adapter: SiteAdapter, name: string): string => {
+export const sensorStateTopic = (
+	topicPrefix: string,
+	adapter: SiteAdapter,
+	name: string,
+): string => {
 	if (!/^[a-z0-9_]+$/.test(name))
 		throw new Error(`sensor name "${name}" is not a flat slug (one lowercase topic segment)`);
 	return `${adapterTopicPrefix(topicPrefix, adapter)}/sensor/${name}/state`;
+};
+
+/** A BOOLEAN reading's state topic — `<topic_prefix>/<slug>/binary_sensor/<name>/state`. A boolean
+ *  is a different KIND of reading, so the contract says so in its own segment (mirroring the
+ *  numeric `sensor` path, and ESPHome's own component-kind topic shape); in-band interval booleans
+ *  (`intervalSensorId`) publish here. Same derivation rule: consumers derive HERE, never hand-spell. */
+export const binarySensorStateTopic = (
+	topicPrefix: string,
+	adapter: SiteAdapter,
+	name: string,
+): string => {
+	if (!/^[a-z0-9_]+$/.test(name))
+		throw new Error(
+			`binary_sensor name "${name}" is not a flat slug (one lowercase topic segment)`,
+		);
+	return `${adapterTopicPrefix(topicPrefix, adapter)}/binary_sensor/${name}/state`;
 };
 
 // --- MQTT env-var names: derived from the baked schema's `x-env-var` annotations ---
@@ -88,7 +118,9 @@ function collectEnvVars(schema: unknown, prefix: readonly string[] = []): Record
 
 // The CANONICAL env-var names a deployment supplies each connection field under — DERIVED from
 // the schema's `x-env-var` annotations, so the names live in ONE place and can't drift.
-export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(conceptSchema.mqttConnection);
+export const MQTT_ENV: Readonly<Record<string, string>> = collectEnvVars(
+	conceptSchema.mqttConnection,
+);
 
 /** Every canonical MQTT_* env var name (guard-mqtt-env.sh's allow-list). */
 export const MQTT_ENV_NAMES: readonly string[] = [...new Set(Object.values(MQTT_ENV))];

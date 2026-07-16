@@ -79,6 +79,7 @@ export {
 	adapterTopicPrefix,
 	tapWindowTopic,
 	sensorStateTopic,
+	binarySensorStateTopic,
 	type MqttConnection,
 	parseMqttConnection,
 	MQTT_ENV,

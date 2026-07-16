@@ -4,6 +4,13 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 const _s0 = {
+	"max": 15,
+	"min": -5,
+	"rating": "measurable",
+	"resolution": 0.001,
+	"unit": "kW"
+} as const;
+const _s1 = {
 	"identity": {
 		"slug": "startup"
 	},
@@ -12,12 +19,12 @@ const _s0 = {
 		"rating": "startup"
 	}
 } as const;
-const _s1 = {
+const _s2 = {
 	"feature": "enclosure",
 	"interval": "below_derate",
 	"property": "temperature"
 } as const;
-const _s2 = {
+const _s3 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -26,14 +33,14 @@ const _s2 = {
 		"rating": "survival"
 	}
 } as const;
-const _s3 = {
+const _s4 = {
 	"max": 3.3,
 	"min": -3.3,
 	"rating": "measurable",
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s4 = {
+const _s5 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -42,7 +49,7 @@ const _s4 = {
 		"rating": "survival"
 	}
 } as const;
-const _s5 = {
+const _s6 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -51,7 +58,7 @@ const _s5 = {
 		"rating": "operating"
 	}
 } as const;
-const _s6 = {
+const _s7 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -60,7 +67,7 @@ const _s6 = {
 		"rating": "survival"
 	}
 } as const;
-const _s7 = {
+const _s8 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -69,7 +76,7 @@ const _s7 = {
 		"rating": "operating"
 	}
 } as const;
-const _s8 = {
+const _s9 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -78,7 +85,7 @@ const _s8 = {
 		"rating": "operating"
 	}
 } as const;
-const _s9 = {
+const _s10 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -87,13 +94,13 @@ const _s9 = {
 		"rating": "operating"
 	}
 } as const;
-const _s10 = [
-	_s8
-] as const;
 const _s11 = [
 	_s9
 ] as const;
-const _s12 = {
+const _s12 = [
+	_s10
+] as const;
+const _s13 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -103,19 +110,19 @@ const _s12 = {
 		"rating": "operating"
 	}
 } as const;
-const _s13 = {
-	"intervalItem": _s1
+const _s14 = {
+	"intervalItem": _s2
 } as const;
-const _s14 = [
-	_s13
+const _s15 = [
+	_s14
 ] as const;
-const _s15 = {
-	"intervals": _s10
-} as const;
 const _s16 = {
 	"intervals": _s11
 } as const;
 const _s17 = {
+	"intervals": _s12
+} as const;
+const _s18 = {
 	"identity": {
 		"slug": "protection_required"
 	},
@@ -124,7 +131,7 @@ const _s17 = {
 		"rating": "protection_required"
 	}
 } as const;
-const _s18 = {
+const _s19 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -135,7 +142,7 @@ const _s18 = {
 		"unit": "kW"
 	}
 } as const;
-const _s19 = {
+const _s20 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -146,7 +153,7 @@ const _s19 = {
 		"rating": "operating"
 	}
 } as const;
-const _s20 = {
+const _s21 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -157,7 +164,7 @@ const _s20 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s21 = {
+const _s22 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -168,7 +175,7 @@ const _s21 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s22 = {
+const _s23 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -179,7 +186,7 @@ const _s22 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s23 = {
+const _s24 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -190,7 +197,7 @@ const _s23 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s24 = {
+const _s25 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -201,25 +208,37 @@ const _s24 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s25 = [
-	_s20
+const _s26 = [
+	_s21
 ] as const;
-const _s26 = {
-	"intervals": _s25
-} as const;
 const _s27 = {
 	"identity": {
 		"slug": "measurable"
 	},
-	"interval": _s3
+	"interval": _s0
 } as const;
-const _s28 = [
+const _s28 = {
+	"intervals": _s26
+} as const;
+const _s29 = [
 	_s27
 ] as const;
-const _s29 = {
-	"intervals": _s28
-} as const;
 const _s30 = {
+	"identity": {
+		"slug": "measurable"
+	},
+	"interval": _s4
+} as const;
+const _s31 = [
+	_s30
+] as const;
+const _s32 = {
+	"intervals": _s29
+} as const;
+const _s33 = {
+	"intervals": _s31
+} as const;
+const _s34 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -234,7 +253,7 @@ const _s30 = {
 		"rating": "operating"
 	}
 } as const;
-const _s31 = {
+const _s35 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -249,7 +268,10 @@ const _s31 = {
 		"rating": "operating"
 	}
 } as const;
-const _s32 = {
+const _s36 = {
+	"activePower": _s32
+} as const;
+const _s37 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -265,7 +287,7 @@ const _s32 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s33 = {
+const _s38 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -281,8 +303,8 @@ const _s33 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s34 = {
-	"condition": _s14,
+const _s39 = {
+	"condition": _s15,
 	"identity": {
 		"slug": "operating"
 	},
@@ -292,55 +314,55 @@ const _s34 = {
 		"rating": "operating"
 	}
 } as const;
-const _s35 = [
-	_s19,
-	_s21
-] as const;
-const _s36 = {
-	"intervals": _s35
-} as const;
-const _s37 = [
-	_s7,
-	_s4,
-	_s17
-] as const;
-const _s38 = [
-	_s2,
-	_s5,
-	_s23
-] as const;
-const _s39 = {
-	"intervals": _s37
-} as const;
-const _s40 = {
-	"intervals": _s38
-} as const;
-const _s41 = [
-	_s34,
-	_s18
-] as const;
-const _s42 = {
-	"intervals": _s41
-} as const;
-const _s43 = [
-	_s32,
-	_s33
-] as const;
-const _s44 = {
-	"intervals": _s43
-} as const;
-const _s45 = [
-	_s30,
-	_s31,
+const _s40 = [
+	_s20,
 	_s22
 ] as const;
-const _s46 = {
-	"intervals": _s45
+const _s41 = {
+	"intervals": _s40
 } as const;
-const _s47 = [
-	_s12,
+const _s42 = [
+	_s8,
+	_s5,
+	_s18
+] as const;
+const _s43 = [
+	_s3,
 	_s6,
-	_s0,
+	_s24
+] as const;
+const _s44 = {
+	"intervals": _s42
+} as const;
+const _s45 = {
+	"intervals": _s43
+} as const;
+const _s46 = [
+	_s39,
+	_s19
+] as const;
+const _s47 = {
+	"intervals": _s46
+} as const;
+const _s48 = [
+	_s37,
+	_s38
+] as const;
+const _s49 = {
+	"intervals": _s48
+} as const;
+const _s50 = [
+	_s34,
+	_s35,
+	_s23
+] as const;
+const _s51 = {
+	"intervals": _s50
+} as const;
+const _s52 = [
+	_s13,
+	_s7,
+	_s1,
 	{
 		"interval": {
 			"max": 950,
@@ -355,41 +377,41 @@ const _s47 = [
 			"mode": "mppt_fullpower"
 		}
 	},
-	_s24
+	_s25
 ] as const;
-const _s48 = {
-	"intervals": _s47
+const _s53 = {
+	"intervals": _s52
 } as const;
-const _s49 = {
-	"activePower": _s29,
-	"current": _s26,
-	"frequency": _s16,
-	"voltage": _s36
+const _s54 = {
+	"activePower": _s33,
+	"current": _s28,
+	"frequency": _s17,
+	"voltage": _s41
 } as const;
-const _s50 = {
-	"activePower": _s15,
-	"current": _s40,
-	"voltage": _s48
+const _s55 = {
+	"activePower": _s16,
+	"current": _s45,
+	"voltage": _s53
 } as const;
-const _s51 = {
-	"activePower": _s42,
+const _s56 = {
+	"activePower": _s47,
 	"apparentPower": {},
-	"current": _s39,
-	"frequency": _s44,
+	"current": _s44,
+	"frequency": _s49,
 	"reactivePower": {},
-	"voltage": _s46
+	"voltage": _s51
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s15
+				"activePower": _s16
 			},
 			"part": {
-				"a": _s49,
-				"b": _s49,
-				"c": _s49
+				"a": _s54,
+				"b": _s54,
+				"c": _s54
 			}
 		},
 		"identity": {
@@ -402,7 +424,7 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
-							"condition": _s14,
+							"condition": _s15,
 							"identity": {
 								"slug": "rated_continuous"
 							},
@@ -444,9 +466,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s51,
-				"b": _s51,
-				"c": _s51
+				"a": _s56,
+				"b": _s56,
+				"c": _s56
 			}
 		},
 		"identity": {
@@ -473,7 +495,11 @@ export default {
 					]
 				}
 			},
-			"part": {}
+			"part": {
+				"a": _s36,
+				"b": _s36,
+				"c": _s36
+			}
 		},
 		"identity": {
 			"slug": "ac_load"
@@ -1016,6 +1042,36 @@ export default {
 				"unit": "kW"
 			},
 			{
+				"address": 39219,
+				"decimals": 3,
+				"featureId": "ac_phase_three_load",
+				"partId": "a",
+				"quantityKind": "active_power",
+				"scale": 0.001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 39221,
+				"decimals": 3,
+				"featureId": "ac_phase_three_load",
+				"partId": "b",
+				"quantityKind": "active_power",
+				"scale": 0.001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 39223,
+				"decimals": 3,
+				"featureId": "ac_phase_three_load",
+				"partId": "c",
+				"quantityKind": "active_power",
+				"scale": 0.001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
 				"address": 39141,
 				"decimals": 1,
 				"featureId": "enclosure",
@@ -1079,15 +1135,15 @@ export default {
 				}
 			},
 			"instances": [
-				_s50,
-				_s50,
+				_s55,
+				_s55,
 				{
-					"activePower": _s15,
-					"current": _s40,
+					"activePower": _s16,
+					"current": _s45,
 					"voltage": {
 						"intervals": [
-							_s6,
-							_s0,
+							_s7,
+							_s1,
 							{
 								"interval": {
 									"max": 950,
@@ -1102,7 +1158,7 @@ export default {
 									"mode": "mppt_fullpower"
 								}
 							},
-							_s24,
+							_s25,
 							{
 								"identity": {
 									"slug": "operating"

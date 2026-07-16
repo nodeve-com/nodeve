@@ -163,17 +163,24 @@ ac_phase_three_eps: # separate EPS port — export only; its own per-phase telem
           intervals:
             - interval: { rating: measurable, min: -3.3, max: 3.3, unit: kW, resolution: 0.001 } # unit override — canonical is W
 
-ac_phase_three_load: # total household load the box meters (foxess load_power) — a concrete feature-of-interest
+ac_phase_three_load: # household load the box meters (foxess load_power) — a concrete feature-of-interest
   identity:
     slug: ac_load
-  # whole-house active power; a single TOTAL (not per-phase), so no count/instances. The box reads it
-  # downstream of its own AC port; it's the inverter's view of the home, so it lives on this entry.
-  # Partless feature → its columns live under `feature_spec.combined` (the whole).
+  # whole-house active power, downstream of the box's own AC port; it's the inverter's view of the
+  # home, so it lives on this entry. `combined` is the three-leg total, `default.ac_phase` the
+  # per-leg reading every leg gets (foxess load_power_r/s/t).
   feature_spec:
     combined:
       active_power:
         intervals:
           - interval: { rating: measurable, min: 0, max: 15, unit: kW, resolution: 0.001 }
+    default:
+      ac_phase:
+        active_power:
+          # Signed like the foxess entity (validate −100..100): a leg can read negative when the
+          # box back-feeds through it. Range is the leg's plausible envelope, not a rating.
+          intervals:
+            - interval: { rating: measurable, min: -5, max: 15, unit: kW, resolution: 0.001 }
 
 enclosure: # internal temperature is the enclosure's — a concrete feature-of-interest, not dangling
   # Partless feature → its columns live under `feature_spec.combined` (the whole).
@@ -592,6 +599,37 @@ modbus:
         decimals: 3,
         unit: kW,
       } # high word; low 39226
+    # --- House load, per leg (foxess load_power_r/s/t, holding 39220/39219 … on H3_SMART) ---
+    - {
+        feature_id: ac_phase_three_load,
+        part_id: a,
+        quantity_kind: active_power,
+        address: 39219,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39220
+    - {
+        feature_id: ac_phase_three_load,
+        part_id: b,
+        quantity_kind: active_power,
+        address: 39221,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39222
+    - {
+        feature_id: ac_phase_three_load,
+        part_id: c,
+        quantity_kind: active_power,
+        address: 39223,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39224
     # --- Inverter temperature (foxess invtemp, holding 39141 on H3_SMART) ---
     - {
         feature_id: enclosure,
