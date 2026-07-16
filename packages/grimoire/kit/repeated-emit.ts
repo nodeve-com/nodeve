@@ -95,6 +95,45 @@ function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
 	return childObj(fs, 'combined');
 }
 
+/** Interval slug de-sugar + uniqueness. An interval's `identity.slug` is its addressable handle
+ *  (a `condition.interval_item` names `{feature, property, interval}`); authored YAML rarely spells
+ *  it — an unslugged row de-sugars from its `rating` axis. De-sugar runs FIRST so two bare rows
+ *  sharing a rating collide and force explicit slugs. A rating-less row (mode-only I-V points) stays
+ *  unslugged. Mutates the resolved entry in place; runs AFTER resolveRepeatedFeatures so the filled
+ *  part/instance rows are covered too. */
+export function desugarIntervalSlugs(node: unknown, at: string): void {
+	if (Array.isArray(node)) {
+		node.forEach((v, i) => desugarIntervalSlugs(v, `${at}[${i}]`));
+		return;
+	}
+	if (!isPlainObject(node)) return;
+	for (const [k, v] of Object.entries(node)) {
+		if (k === 'intervals' && Array.isArray(v)) slugIntervalRows(v, `${at}.intervals`);
+		else desugarIntervalSlugs(v, `${at}.${k}`);
+	}
+}
+
+function slugIntervalRows(rows: unknown[], at: string): void {
+	const seen = new Map<string, number>();
+	rows.forEach((row, i) => {
+		if (!isPlainObject(row)) return;
+		const identity = isPlainObject(row.identity) ? (row.identity as Obj) : {};
+		let slug = identity.slug;
+		if (slug === undefined) {
+			const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
+			if (typeof band.rating !== 'string') return; // rating-less AND unslugged — nothing to de-sugar, not addressable
+			slug = band.rating;
+			row.identity = { ...identity, slug };
+		}
+		const prior = seen.get(String(slug));
+		if (prior !== undefined)
+			throw new Error(
+				`grimoire catalog: interval slug "${String(slug)}" duplicated at ${at}[${prior}] and ${at}[${i}] — author distinct identity.slug on each row`,
+			);
+		seen.set(String(slug), i);
+	});
+}
+
 /** Ensure a spec node exists for every LINKED modbus register: a register carrying a measurand link
  *  (feature_id + quantity_kind) reads one quantity of the feature tree, so that quantity's spec node
  *  must exist as the link target — create it (empty until a spec interval is authored; a measuring

@@ -10,82 +10,98 @@ const _s0 = {
 	"rating": "operating"
 } as const;
 const _s1 = {
-	"condition": [
-		{
-			"equals": 230,
-			"setting": "grid_region"
-		}
-	],
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
-		"nominal": 230,
-		"rating": "operating"
+		"max": 280,
+		"min": 150,
+		"rating": "measurable"
 	}
 } as const;
 const _s2 = {
 	"condition": [
 		{
-			"equals": 220,
+			"equals": "eu_230v_50hz",
 			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "eu_230v_50hz"
+	},
 	"interval": {
-		"nominal": 380,
+		"nominal": 230,
 		"rating": "operating"
 	}
 } as const;
 const _s3 = {
 	"condition": [
 		{
-			"equals": 230,
+			"equals": "br_220v_60hz",
 			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "br_220v_60hz"
+	},
 	"interval": {
-		"nominal": 400,
+		"nominal": 380,
 		"rating": "operating"
 	}
 } as const;
 const _s4 = {
 	"condition": [
 		{
-			"equals": 220,
+			"equals": "eu_230v_50hz",
 			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "eu_230v_50hz"
+	},
+	"interval": {
+		"nominal": 400,
+		"rating": "operating"
+	}
+} as const;
+const _s5 = {
+	"condition": [
+		{
+			"equals": "br_220v_60hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "br_220v_60hz"
+	},
 	"interval": _s0
 } as const;
-const _s5 = [
-	_s2,
-	_s3
+const _s6 = [
+	_s3,
+	_s4
 ] as const;
-const _s6 = {
-	"intervals": _s5
-} as const;
 const _s7 = {
-	"voltage": _s6
+	"intervals": _s6
 } as const;
-const _s8 = [
-	_s4,
-	_s1,
-	{
-		"interval": {
-			"max": 280,
-			"min": 150,
-			"rating": "measurable"
-		}
-	}
+const _s8 = {
+	"voltage": _s7
+} as const;
+const _s9 = [
+	_s5,
+	_s2,
+	_s1
 ] as const;
-const _s9 = {
-	"intervals": _s8
-} as const;
 const _s10 = {
+	"intervals": _s9
+} as const;
+const _s11 = {
 	"activePower": {},
 	"apparentPower": {},
 	"current": {},
 	"phaseAngle": {},
 	"powerFactor": {},
 	"reactivePower": {},
-	"voltage": _s9
+	"voltage": _s10
 } as const;
 
 export default {
@@ -99,6 +115,9 @@ export default {
 				"frequency": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"max": 65,
 								"min": 45,
@@ -106,6 +125,9 @@ export default {
 							}
 						},
 						{
+							"identity": {
+								"slug": "measurable"
+							},
 							"interval": {
 								"max": 65,
 								"min": 45,
@@ -120,12 +142,12 @@ export default {
 				"reactivePower": {}
 			},
 			"part": {
-				"a": _s10,
-				"ab": _s7,
-				"b": _s10,
-				"bc": _s7,
-				"c": _s10,
-				"ca": _s7
+				"a": _s11,
+				"ab": _s8,
+				"b": _s11,
+				"bc": _s8,
+				"c": _s11,
+				"ca": _s8
 			}
 		},
 		"identity": {
@@ -629,8 +651,8 @@ export default {
 		"properties": {
 			"gridRegion": {
 				"enum": [
-					220,
-					230
+					"eu_230v_50hz",
+					"br_220v_60hz"
 				]
 			}
 		},

@@ -4,26 +4,130 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 const _s0 = {
-	"intervals": [
-		{
-			"interval": {
-				"max": 10000,
-				"rating": "operating"
-			}
-		}
-	]
+	"identity": {
+		"slug": "startup"
+	},
+	"interval": {
+		"min": 140,
+		"rating": "startup"
+	}
 } as const;
 const _s1 = {
-	"intervals": [
-		{
-			"interval": {
-				"nominal": 50,
-				"rating": "operating"
-			}
-		}
-	]
+	"feature": "enclosure",
+	"interval": "below_derate",
+	"property": "temperature"
 } as const;
 const _s2 = {
+	"identity": {
+		"slug": "survival"
+	},
+	"interval": {
+		"max": 25,
+		"rating": "survival"
+	}
+} as const;
+const _s3 = {
+	"max": 3.3,
+	"min": -3.3,
+	"rating": "measurable",
+	"resolution": 0.001,
+	"unit": "kW"
+} as const;
+const _s4 = {
+	"identity": {
+		"slug": "survival"
+	},
+	"interval": {
+		"max": 16.7,
+		"rating": "survival"
+	}
+} as const;
+const _s5 = {
+	"identity": {
+		"slug": "operating"
+	},
+	"interval": {
+		"max": 20,
+		"rating": "operating"
+	}
+} as const;
+const _s6 = {
+	"identity": {
+		"slug": "survival"
+	},
+	"interval": {
+		"max": 1000,
+		"rating": "survival"
+	}
+} as const;
+const _s7 = {
+	"identity": {
+		"slug": "operating"
+	},
+	"interval": {
+		"max": 15.2,
+		"rating": "operating"
+	}
+} as const;
+const _s8 = {
+	"identity": {
+		"slug": "operating"
+	},
+	"interval": {
+		"max": 10000,
+		"rating": "operating"
+	}
+} as const;
+const _s9 = {
+	"identity": {
+		"slug": "operating"
+	},
+	"interval": {
+		"nominal": 50,
+		"rating": "operating"
+	}
+} as const;
+const _s10 = [
+	_s8
+] as const;
+const _s11 = [
+	_s9
+] as const;
+const _s12 = {
+	"identity": {
+		"slug": "operating"
+	},
+	"interval": {
+		"min": 90,
+		"nominal": 620,
+		"rating": "operating"
+	}
+} as const;
+const _s13 = {
+	"intervalItem": _s1
+} as const;
+const _s14 = [
+	_s13
+] as const;
+const _s15 = {
+	"intervals": _s10
+} as const;
+const _s16 = {
+	"intervals": _s11
+} as const;
+const _s17 = {
+	"identity": {
+		"slug": "protection_required"
+	},
+	"interval": {
+		"max": 25,
+		"rating": "protection_required"
+	}
+} as const;
+const _s18 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 5,
 		"min": 0,
@@ -31,7 +135,10 @@ const _s2 = {
 		"unit": "kW"
 	}
 } as const;
-const _s3 = {
+const _s19 = {
+	"identity": {
+		"slug": "operating"
+	},
 	"interval": {
 		"max": 260,
 		"min": 200,
@@ -39,7 +146,10 @@ const _s3 = {
 		"rating": "operating"
 	}
 } as const;
-const _s4 = {
+const _s20 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 50,
 		"min": 0,
@@ -47,7 +157,10 @@ const _s4 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s5 = {
+const _s21 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 300,
 		"min": 0,
@@ -55,7 +168,10 @@ const _s5 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s6 = {
+const _s22 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 250,
 		"min": 0,
@@ -63,7 +179,10 @@ const _s6 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s7 = {
+const _s23 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 30,
 		"min": 0,
@@ -71,7 +190,10 @@ const _s7 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s8 = {
+const _s24 = {
+	"identity": {
+		"slug": "measurable"
+	},
 	"interval": {
 		"max": 1000,
 		"min": 0,
@@ -79,187 +201,146 @@ const _s8 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s9 = [
-	_s4
+const _s25 = [
+	_s20
 ] as const;
-const _s10 = {
-	"feature": "enclosure",
-	"interval": "below_derate",
-	"property": "temperature"
+const _s26 = {
+	"intervals": _s25
 } as const;
-const _s11 = {
-	"max": 3.3,
-	"min": -3.3,
-	"rating": "measurable",
-	"resolution": 0.001,
-	"unit": "kW"
+const _s27 = {
+	"identity": {
+		"slug": "measurable"
+	},
+	"interval": _s3
 } as const;
-const _s12 = {
-	"intervals": _s9
-} as const;
-const _s13 = {
-	"interval": _s11
-} as const;
-const _s14 = [
-	_s13
+const _s28 = [
+	_s27
 ] as const;
-const _s15 = {
-	"intervalItem": _s10
+const _s29 = {
+	"intervals": _s28
 } as const;
-const _s16 = [
-	_s15
-] as const;
-const _s17 = {
+const _s30 = {
 	"condition": [
 		{
-			"equals": 220,
+			"equals": "br_220v_60hz",
 			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "br_220v_60hz"
+	},
 	"interval": {
 		"nominal": 220,
 		"rating": "operating"
 	}
 } as const;
-const _s18 = {
+const _s31 = {
 	"condition": [
 		{
-			"equals": 230,
+			"equals": "eu_230v_50hz",
 			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "eu_230v_50hz"
+	},
 	"interval": {
 		"nominal": 230,
 		"rating": "operating"
 	}
 } as const;
-const _s19 = {
-	"intervals": _s14
-} as const;
-const _s20 = {
+const _s32 = {
 	"condition": [
 		{
-			"equals": 50,
-			"setting": "grid_frequency"
+			"equals": "eu_230v_50hz",
+			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "eu_230v_50hz"
+	},
 	"interval": {
 		"nominal": 50,
 		"rating": "operating",
 		"tolerance": 0.05
 	}
 } as const;
-const _s21 = {
+const _s33 = {
 	"condition": [
 		{
-			"equals": 60,
-			"setting": "grid_frequency"
+			"equals": "br_220v_60hz",
+			"setting": "grid_region"
 		}
 	],
+	"identity": {
+		"slug": "br_220v_60hz"
+	},
 	"interval": {
 		"nominal": 60,
 		"rating": "operating",
 		"tolerance": 0.05
 	}
 } as const;
-const _s22 = [
-	_s3,
-	_s5
-] as const;
-const _s23 = [
-	{
-		"interval": {
-			"max": 15.2,
-			"rating": "operating"
-		}
+const _s34 = {
+	"condition": _s14,
+	"identity": {
+		"slug": "operating"
 	},
-	{
-		"interval": {
-			"max": 16.7,
-			"rating": "survival"
-		}
-	},
-	{
-		"interval": {
-			"max": 25,
-			"rating": "protection_required"
-		}
-	}
-] as const;
-const _s24 = {
-	"intervals": _s22
-} as const;
-const _s25 = [
-	{
-		"interval": {
-			"max": 25,
-			"rating": "survival"
-		}
-	},
-	{
-		"interval": {
-			"max": 20,
-			"rating": "operating"
-		}
-	},
-	_s7
-] as const;
-const _s26 = {
-	"intervals": _s23
-} as const;
-const _s27 = {
-	"condition": _s16,
 	"interval": {
 		"max": 3666,
 		"nominal": 3333,
 		"rating": "operating"
 	}
 } as const;
-const _s28 = {
-	"intervals": _s25
-} as const;
-const _s29 = [
-	_s27,
-	_s2
-] as const;
-const _s30 = [
-	_s20,
+const _s35 = [
+	_s19,
 	_s21
 ] as const;
-const _s31 = {
-	"intervals": _s29
+const _s36 = {
+	"intervals": _s35
 } as const;
-const _s32 = {
-	"intervals": _s30
-} as const;
-const _s33 = [
-	_s17,
-	_s18,
-	_s6
+const _s37 = [
+	_s7,
+	_s4,
+	_s17
 ] as const;
-const _s34 = {
-	"intervals": _s33
+const _s38 = [
+	_s2,
+	_s5,
+	_s23
+] as const;
+const _s39 = {
+	"intervals": _s37
 } as const;
-const _s35 = [
-	{
-		"interval": {
-			"min": 90,
-			"nominal": 620,
-			"rating": "operating"
-		}
-	},
-	{
-		"interval": {
-			"max": 1000,
-			"rating": "survival"
-		}
-	},
-	{
-		"interval": {
-			"min": 140,
-			"rating": "startup"
-		}
-	},
+const _s40 = {
+	"intervals": _s38
+} as const;
+const _s41 = [
+	_s34,
+	_s18
+] as const;
+const _s42 = {
+	"intervals": _s41
+} as const;
+const _s43 = [
+	_s32,
+	_s33
+] as const;
+const _s44 = {
+	"intervals": _s43
+} as const;
+const _s45 = [
+	_s30,
+	_s31,
+	_s22
+] as const;
+const _s46 = {
+	"intervals": _s45
+} as const;
+const _s47 = [
+	_s12,
+	_s6,
+	_s0,
 	{
 		"interval": {
 			"max": 950,
@@ -274,41 +355,41 @@ const _s35 = [
 			"mode": "mppt_fullpower"
 		}
 	},
-	_s8
+	_s24
 ] as const;
-const _s36 = {
-	"intervals": _s35
+const _s48 = {
+	"intervals": _s47
 } as const;
-const _s37 = {
-	"activePower": _s19,
-	"current": _s12,
-	"frequency": _s1,
-	"voltage": _s24
-} as const;
-const _s38 = {
-	"activePower": _s0,
-	"current": _s28,
+const _s49 = {
+	"activePower": _s29,
+	"current": _s26,
+	"frequency": _s16,
 	"voltage": _s36
 } as const;
-const _s39 = {
-	"activePower": _s31,
+const _s50 = {
+	"activePower": _s15,
+	"current": _s40,
+	"voltage": _s48
+} as const;
+const _s51 = {
+	"activePower": _s42,
 	"apparentPower": {},
-	"current": _s26,
-	"frequency": _s32,
+	"current": _s39,
+	"frequency": _s44,
 	"reactivePower": {},
-	"voltage": _s34
+	"voltage": _s46
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s0
+				"activePower": _s15
 			},
 			"part": {
-				"a": _s37,
-				"b": _s37,
-				"c": _s37
+				"a": _s49,
+				"b": _s49,
+				"c": _s49
 			}
 		},
 		"identity": {
@@ -321,7 +402,7 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
-							"condition": _s16,
+							"condition": _s14,
 							"identity": {
 								"slug": "rated_continuous"
 							},
@@ -363,9 +444,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s39,
-				"b": _s39,
-				"c": _s39
+				"a": _s51,
+				"b": _s51,
+				"c": _s51
 			}
 		},
 		"identity": {
@@ -378,6 +459,9 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "measurable"
+							},
 							"interval": {
 								"max": 15,
 								"min": 0,
@@ -401,6 +485,9 @@ export default {
 				"temperature": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"max": 60,
 								"min": -25,
@@ -409,6 +496,9 @@ export default {
 							}
 						},
 						{
+							"identity": {
+								"slug": "survival"
+							},
 							"interval": {
 								"max": 80,
 								"min": -40,
@@ -438,6 +528,9 @@ export default {
 							}
 						},
 						{
+							"identity": {
+								"slug": "measurable"
+							},
 							"interval": {
 								"max": 120,
 								"min": -40,
@@ -965,12 +1058,18 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "survival"
+							},
 							"interval": {
 								"max": 20000,
 								"rating": "survival"
 							}
 						},
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"max": 18000,
 								"rating": "operating"
@@ -980,25 +1079,15 @@ export default {
 				}
 			},
 			"instances": [
-				_s38,
-				_s38,
+				_s50,
+				_s50,
 				{
-					"activePower": _s0,
-					"current": _s28,
+					"activePower": _s15,
+					"current": _s40,
 					"voltage": {
 						"intervals": [
-							{
-								"interval": {
-									"max": 1000,
-									"rating": "survival"
-								}
-							},
-							{
-								"interval": {
-									"min": 140,
-									"rating": "startup"
-								}
-							},
+							_s6,
+							_s0,
 							{
 								"interval": {
 									"max": 950,
@@ -1013,8 +1102,11 @@ export default {
 									"mode": "mppt_fullpower"
 								}
 							},
-							_s8,
+							_s24,
 							{
+								"identity": {
+									"slug": "operating"
+								},
 								"interval": {
 									"min": 60,
 									"nominal": 480,
@@ -1052,26 +1144,18 @@ export default {
 	"settingsSchema": {
 		"additionalProperties": false,
 		"properties": {
-			"gridFrequency": {
-				"enum": [
-					50,
-					60
-				]
-			},
 			"gridRegion": {
 				"enum": [
-					220,
-					230
+					"eu_230v_50hz",
+					"br_220v_60hz"
 				]
 			}
 		},
 		"required": [
-			"gridRegion",
-			"gridFrequency"
+			"gridRegion"
 		],
 		"type": "object",
 		"x-key-map": {
-			"grid_frequency": "gridFrequency",
 			"grid_region": "gridRegion"
 		}
 	}

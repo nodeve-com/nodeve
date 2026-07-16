@@ -10,12 +10,18 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"nominal": 265,
 								"rating": "operating"
 							}
 						},
 						{
+							"identity": {
+								"slug": "survival"
+							},
 							"interval": {
 								"max": 440,
 								"rating": "survival"
@@ -26,6 +32,9 @@ export default {
 				"voltage": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"nominal": 230,
 								"rating": "operating"

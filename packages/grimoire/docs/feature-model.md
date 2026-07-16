@@ -50,14 +50,16 @@ plus `nominal?`, one-sided `min?`/`max?`, `tolerance?`, `margin?`, `unit?`, `con
 
 A **measuring range IS an interval** — `rating: measurable` (VIM 4.7 / ssn `MeasurementRange`). The dissolved `measurement` feature folded in here: the ONE `intervals` list holds both a thing's own behaviour bands and a sensor's readable span, told apart by the `rating` axis. Instrument-only fields (`resolution`, `max_permissible_error`, `channel`) are optional interval props, authored ONLY on a `measurable` band.
 
+**Interval identity.** Every emitted interval carries an `identity.slug` — its addressable handle (a `condition.interval_item` names `{feature, property, interval}` by it). Unslugged rows DE-SUGAR from their `rating` axis at generate (`kit/repeated-emit.ts` `desugarIntervalSlugs`, after part/instance resolution), so two bare rows sharing a rating collide; slugs must be unique per `intervals` list or the bake fails — author distinct slugs (e.g. the gating `grid_region` member) on condition-split bands. A rating-less row (mode-only I-V points) stays unslugged.
+
 **mode vs condition.** `mode` is intrinsic to the quantity. An EXTERNAL driver that merely gates WHEN a band is valid (the unit's run mode making a compressor's draw apply) is NOT a mode — it's a categorical `condition`.
 
 ### condition (gate, EXTERNAL to the band's own quantity)
 
-A gate holding NO bounds of its own (`concepts/features/condition.yaml`), in one of three forms, told apart by which slot carries a value. Conditions on one band AND together; model an OR as separate bands.
+A gate holding NO bounds of its own (`concepts/features/condition.yaml`), in one of three forms, told apart by which slot carries a value. Conditions on one band AND together; model an OR as separate bands. Pointers are gate-checked per entry at generate (`kit/validate-conditions.ts`, after the slug de-sugar): an `interval_item` must resolve to an existing feature → property → interval slug on the same entry; a `setting` must be a `settings_schema` key and its `equals` a member of that key's `enum`.
 
 - **`interval_item`** = `{ feature, property, interval }` — a POINTER at one identified band of another reading; the named band carries the region (holds below an enclosure's `below_derate` temp band).
-- **`setting` + `equals`** — a COMMISSIONING gate: holds while a `settings_schema` key equals a value (`grid_region == 230`). External config the site fixes once.
+- **`setting` + `equals`** — a COMMISSIONING gate: holds while a `settings_schema` key equals a value (`grid_region == eu_230v_50hz`, an `enumeration/grid_region` member — one knob fixes nominal voltage AND frequency). External config the site fixes once.
 - **`test_condition`** — a STANDARDISED MEASUREMENT REFERENCE (`enumeration/test_condition`: `stc` / `bnpi` / `bsi` …) that rates the band. The named member fixes the reference environment (irradiance, spectrum, cell temp); the measured value stays IN the band. Omit for the implicit reference — a PV panel's bare bands are STC; spell it out only on a non-STC band (a bifacial module's rear-gain Isc/Pmax at BNPI/BSI).
 
 ## Cross-field constraints — raw draft-07 in the `schema:` slot

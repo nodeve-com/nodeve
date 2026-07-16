@@ -2,9 +2,9 @@ title:
   en: Europe 230/400 V 50 Hz
   pt: Europa 230/400 V 50 Hz
 description:
-  en: IEC 230/400 V, 50 Hz — Europe (incl. Portugal) and most of the world.
+  en: IEC 230/400 V, 50 Hz — Europe and most of the world.
 refs:
-  - { registry_id: iec_60038, term: "230/400 V", match: exact }
+  - { registry_id: iec_60038, term: '230/400 V', match: exact }
 mains:
   voltage: 230
   frequency: 50

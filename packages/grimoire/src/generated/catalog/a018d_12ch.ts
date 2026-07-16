@@ -38,6 +38,9 @@ export default {
 				"frequency": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"nominal": 50,
 								"rating": "operating"
@@ -48,6 +51,9 @@ export default {
 				"voltage": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "operating"
+							},
 							"interval": {
 								"max": 240,
 								"min": 220,

@@ -16,15 +16,14 @@ product:
 # the offered measurands with concrete VIM ranges — validated against the projected tree (offered
 # kinds only, intervals within envelope). One kind per status (range-multiplicity lives in `ranges`).
 
-# Commissioning settings — the grid the box is wired for. Each gates a nominal band below via a
-# `condition: [{ setting: …, equals: … }]`. Two SEPARATE knobs (220 V/60 Hz grids exist), raw
-# JSON-schema; the site fixes them once at install.
+# Commissioning setting — the grid region the box is wired for (enumeration/grid_region members;
+# each carries its nominal mains voltage + frequency). ONE knob gates the nominal bands below via
+# `condition: [{ setting: grid_region, equals: <member> }]`; the site fixes it once at install.
 settings_schema:
   type: object
-  required: [grid_region, grid_frequency]
+  required: [grid_region]
   properties:
-    grid_region: { enum: [220, 230] }
-    grid_frequency: { enum: [50, 60] }
+    grid_region: { enum: [eu_230v_50hz, br_220v_60hz] }
   additionalProperties: false
 
 # feature_spec direction (docs/feature-model.md): `combined` = the whole AC-side total, `default` =
@@ -64,17 +63,21 @@ ac_phase_three_grid:
           # 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the
           # single-valued grid_region setting, so the site sets it once and one interval resolves.
           intervals:
-            - interval: { rating: operating, nominal: 220 }
-              condition: [{ setting: grid_region, equals: 220 }]
-            - interval: { rating: operating, nominal: 230 }
-              condition: [{ setting: grid_region, equals: 230 }]
+            - identity: { slug: br_220v_60hz }
+              interval: { rating: operating, nominal: 220 }
+              condition: [{ setting: grid_region, equals: br_220v_60hz }]
+            - identity: { slug: eu_230v_50hz }
+              interval: { rating: operating, nominal: 230 }
+              condition: [{ setting: grid_region, equals: eu_230v_50hz }]
             - interval: { rating: measurable, min: 0, max: 250, resolution: 0.1 }
         frequency:
           intervals:
-            - interval: { rating: operating, nominal: 50, tolerance: 0.05 }
-              condition: [{ setting: grid_frequency, equals: 50 }]
-            - interval: { rating: operating, nominal: 60, tolerance: 0.05 }
-              condition: [{ setting: grid_frequency, equals: 60 }]
+            - identity: { slug: eu_230v_50hz }
+              interval: { rating: operating, nominal: 50, tolerance: 0.05 }
+              condition: [{ setting: grid_region, equals: eu_230v_50hz }]
+            - identity: { slug: br_220v_60hz }
+              interval: { rating: operating, nominal: 60, tolerance: 0.05 }
+              condition: [{ setting: grid_region, equals: br_220v_60hz }]
         current:
           intervals:
             - interval: { rating: operating, max: 15.2 }
@@ -84,7 +87,8 @@ ac_phase_three_grid:
           intervals:
             - interval: { rating: operating, nominal: 3333, max: 3666 }
               condition:
-                - interval_item: { feature: enclosure, property: temperature, interval: below_derate }
+                - interval_item:
+                    { feature: enclosure, property: temperature, interval: below_derate }
                 # TODO(altitude-derate): per-phase full power only below 2000 m — same deferred
                 # altitude band as the combined total above.
             - interval: { rating: measurable, min: 0, max: 5, unit: kW }
@@ -376,31 +380,208 @@ modbus:
         unit: kW,
       } # high word; low 39253
     # --- Grid AC output, per-phase voltage (foxess grid_voltage_R/S/T) ---
-    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: voltage, address: 39123, type: uint16, scale: 0.1, decimals: 1 }
-    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: voltage, address: 39124, type: uint16, scale: 0.1, decimals: 1 }
-    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: voltage, address: 39125, type: uint16, scale: 0.1, decimals: 1 }
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: voltage,
+        address: 39123,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: voltage,
+        address: 39124,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: voltage,
+        address: 39125,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
     # --- Grid AC output, per-phase current (foxess inv_current_R/S/T) ---
-    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: current, address: 39126, type: int32, scale: 0.001, decimals: 3 } # high word; low 39127
-    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: current, address: 39128, type: int32, scale: 0.001, decimals: 3 } # high word; low 39129
-    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: current, address: 39130, type: int32, scale: 0.001, decimals: 3 } # high word; low 39131
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: current,
+        address: 39126,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39127
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: current,
+        address: 39128,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39129
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: current,
+        address: 39130,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39131
     # --- Grid AC output, per-phase reactive power (foxess inv_power_Q_R/S/T) ---
-    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: reactive_power, address: 39256, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39257
-    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: reactive_power, address: 39258, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39259
-    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: reactive_power, address: 39260, type: int32, scale: 0.001, decimals: 3, unit: kvar } # high word; low 39261
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: reactive_power,
+        address: 39256,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+      } # high word; low 39257
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: reactive_power,
+        address: 39258,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+      } # high word; low 39259
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: reactive_power,
+        address: 39260,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+      } # high word; low 39261
     # --- Grid AC output, per-phase apparent power (foxess rpower_S_R/S/T) ---
-    - { feature_id: ac_phase_three_grid, part_id: a, quantity_kind: apparent_power, address: 39264, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39265
-    - { feature_id: ac_phase_three_grid, part_id: b, quantity_kind: apparent_power, address: 39266, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39267
-    - { feature_id: ac_phase_three_grid, part_id: c, quantity_kind: apparent_power, address: 39268, type: int32, scale: 0.001, decimals: 3, unit: kVA } # high word; low 39269
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: apparent_power,
+        address: 39264,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+      } # high word; low 39265
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: apparent_power,
+        address: 39266,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+      } # high word; low 39267
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: apparent_power,
+        address: 39268,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+      } # high word; low 39269
     # --- EPS (backup) output, per phase (foxess eps_rvolt/eps_rcurrent/eps_power R/S/T) ---
-    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: voltage, address: 39201, type: uint16, scale: 0.1, decimals: 1 }
-    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: voltage, address: 39202, type: uint16, scale: 0.1, decimals: 1 }
-    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: voltage, address: 39203, type: uint16, scale: 0.1, decimals: 1 }
-    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: current, address: 39204, type: int32, scale: 0.001, decimals: 3 } # high word; low 39205
-    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: current, address: 39206, type: int32, scale: 0.001, decimals: 3 } # high word; low 39207
-    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: current, address: 39208, type: int32, scale: 0.001, decimals: 3 } # high word; low 39209
-    - { feature_id: ac_phase_three_eps, part_id: a, quantity_kind: active_power, address: 39212, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39213
-    - { feature_id: ac_phase_three_eps, part_id: b, quantity_kind: active_power, address: 39214, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39215
-    - { feature_id: ac_phase_three_eps, part_id: c, quantity_kind: active_power, address: 39216, type: int32, scale: 0.001, decimals: 3, unit: kW } # high word; low 39217
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: a,
+        quantity_kind: voltage,
+        address: 39201,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: b,
+        quantity_kind: voltage,
+        address: 39202,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: c,
+        quantity_kind: voltage,
+        address: 39203,
+        type: uint16,
+        scale: 0.1,
+        decimals: 1,
+      }
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: a,
+        quantity_kind: current,
+        address: 39204,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39205
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: b,
+        quantity_kind: current,
+        address: 39206,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39207
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: c,
+        quantity_kind: current,
+        address: 39208,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+      } # high word; low 39209
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: a,
+        quantity_kind: active_power,
+        address: 39212,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39213
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: b,
+        quantity_kind: active_power,
+        address: 39214,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39215
+    - {
+        feature_id: ac_phase_three_eps,
+        part_id: c,
+        quantity_kind: active_power,
+        address: 39216,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+      } # high word; low 39217
     # --- House load, total (foxess load_power, holding 39226/39225 on H3_SMART) ---
     - {
         feature_id: ac_phase_three_load,

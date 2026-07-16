@@ -8,13 +8,39 @@ import { shortCode } from '@nodeve/encoding/short-code';
 import { effectiveSlug, loadCascade } from '../src/cascade.ts';
 import { CATALOG_DIR } from '../src/concept-sources.ts';
 import { assertDocValid, assertMetaSchema } from './validate-docs.ts';
-import { backfillRegisterSpecNodes, resolveRepeatedFeatures } from './repeated-emit.ts';
+import {
+	backfillRegisterSpecNodes,
+	desugarIntervalSlugs,
+	resolveRepeatedFeatures,
+} from './repeated-emit.ts';
+import { validateConditionRefs } from './validate-conditions.ts';
 import { renderHoistedConst } from './hoist.ts';
 
 export interface CatalogEntryJson {
 	identity: { archetype_id: string; slug: string; code: string };
 	aliases?: string[];
 	[key: string]: unknown;
+}
+
+/** A per-kind uniqueness claimer — a second claim of the same key is an authoring error. */
+function claimer(what: string): (key: string, path: string) => void {
+	const claimed = new Map<string, string>(); // key -> path that claimed it
+	return (key, path) => {
+		const prior = claimed.get(key);
+		if (prior)
+			throw new Error(`grimoire catalog: ${what} "${key}" is claimed by both ${prior} and ${path}`);
+		claimed.set(key, path);
+	};
+}
+
+/** The emit-side spec resolution + gates for one leaf: repeated features filled, register links
+ *  landed, interval slugs de-sugared + unique per list, condition pointers resolved. */
+function resolveEntry(data: Record<string, unknown>, path: string): Record<string, unknown> {
+	const resolved = resolveRepeatedFeatures(data);
+	backfillRegisterSpecNodes(resolved); // every LINKED modbus register must land on a spec node (its quantity)
+	desugarIntervalSlugs(resolved, path); // rating → identity.slug on unslugged rows, then per-list uniqueness
+	validateConditionRefs(resolved, path); // every interval_item / setting gate resolves within the entry
+	return resolved;
 }
 
 /** The cascade-merged catalog, snake_case and enveloped, keyed by SLUG (globally unique across
@@ -26,11 +52,12 @@ export interface CatalogEntryJson {
  *  The emit gate itself (assertDocValid + the leaf/feature sweeps) lives in kit/validate-docs.ts. */
 export function catalogEntries(): Record<string, CatalogEntryJson> {
 	const out: Record<string, CatalogEntryJson> = {};
-	const claimed = new Map<string, string>(); // slug -> path that claimed it
-	const claimedByCode = new Map<string, string>(); // code -> path that claimed it (authored, so dupes possible)
+	const claimSlug = claimer('slug');
+	const claimCode = claimer('code'); // codes are authored, so dupes possible
 	for (const leaf of loadCascade(CATALOG_DIR)) {
 		const identity = (leaf.data.identity ?? {}) as Record<string, unknown>;
-		const archetype = typeof identity.archetype_id === 'string' ? identity.archetype_id : leaf.archetype;
+		const archetype =
+			typeof identity.archetype_id === 'string' ? identity.archetype_id : leaf.archetype;
 		// `settings_schema` is the ONE sanctioned break from "an archetype assembles features": a device
 		// declares its commissioning knobs as a RAW JSON-schema (its own `required`/`properties`), not a
 		// modelled feature. Lift it out before the archetype check (whose additionalProperties:false would
@@ -40,25 +67,22 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 		const slug = effectiveSlug(leaf.path, identity);
 		// Validate the DE-SUGARED doc — identity.{archetype, slug} is required (features/identity.yaml),
 		// filled from the cascade + file stem exactly as the emit envelope will carry them.
-		assertDocValid(`catalog ${leaf.path}`, archetype, { ...forSchema, identity: { ...identity, archetype_id: archetype, slug } });
-		const prior = claimed.get(slug);
-		if (prior) throw new Error(`grimoire catalog: slug "${slug}" is claimed by both ${prior} and ${leaf.path}`);
-		claimed.set(slug, leaf.path);
+		assertDocValid(`catalog ${leaf.path}`, archetype, {
+			...forSchema,
+			identity: { ...identity, archetype_id: archetype, slug },
+		});
+		claimSlug(slug, leaf.path);
 		const code = identity.code;
 		if (typeof code !== 'string')
 			throw new Error(
 				`grimoire catalog ${leaf.path}: no identity.code — mint one at creation and author it (suggested: ${shortCode(slug)})`,
 			);
-		const priorCode = claimedByCode.get(code);
-		if (priorCode) throw new Error(`grimoire catalog: code "${code}" is claimed by both ${priorCode} and ${leaf.path}`);
-		claimedByCode.set(code, leaf.path);
+		claimCode(code, leaf.path);
 		const aliases = leaf.aliases === undefined ? {} : { aliases: leaf.aliases as string[] };
 		// snake_case verbatim — JSON emits keep the wire casing; camelCase exists only in TS emits.
-		const resolved = resolveRepeatedFeatures(leaf.data);
-		backfillRegisterSpecNodes(resolved); // every LINKED modbus register must land on a spec node (its quantity)
 		out[slug] = {
 			...aliases,
-			...resolved,
+			...resolveEntry(leaf.data, leaf.path),
 			identity: { archetype_id: archetype, slug, code },
 		};
 	}

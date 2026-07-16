@@ -26,14 +26,15 @@ title:
 product:
   model: DTSU666 # plain DTSU666 — NOT DDSU666 or DTSU666-H (different maps)
 
-# Commissioning setting — which grid region this meter is wired for. Gates the nominal voltage
-# bands below (a `condition: [{ setting: grid_region, equals: … }]` on each). Raw JSON-schema: the
-# site fixes it once at install.
+# Commissioning setting — which grid region this meter is wired for (enumeration/grid_region
+# members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands
+# below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it
+# once at install.
 settings_schema:
   type: object
   required: [grid_region]
   properties:
-    grid_region: { enum: [220, 230] }
+    grid_region: { enum: [eu_230v_50hz, br_220v_60hz] }
   additionalProperties: false
 
 # feature_spec direction (docs/feature-model.md): the spec body is nested under `feature_spec` —
@@ -53,10 +54,13 @@ ac_phase_three_point:
       ac_phase:
         voltage:
           intervals:
-            - interval: { rating: operating, fraction_lower: 0.7, nominal: 220, fraction_upper: 1.2 }
-              condition: [{ setting: grid_region, equals: 220 }]
-            - interval: { rating: operating, nominal: 230 }
-              condition: [{ setting: grid_region, equals: 230 }]
+            - identity: { slug: br_220v_60hz }
+              interval:
+                { rating: operating, fraction_lower: 0.7, nominal: 220, fraction_upper: 1.2 }
+              condition: [{ setting: grid_region, equals: br_220v_60hz }]
+            - identity: { slug: eu_230v_50hz }
+              interval: { rating: operating, nominal: 230 }
+              condition: [{ setting: grid_region, equals: eu_230v_50hz }]
             - interval: { rating: measurable, min: 150, max: 280 }
         current: {}
         apparent_power: {}
@@ -67,10 +71,12 @@ ac_phase_three_point:
           # Line-to-line nominal = √3 × the phase nominal — the datasheet's 3×220/380 V and
           # 3×230/400 V pairs, gated on the same single grid_region setting as ac_phase.
           intervals:
-            - interval: { rating: operating, nominal: 380 }
-              condition: [{ setting: grid_region, equals: 220 }]
-            - interval: { rating: operating, nominal: 400 }
-              condition: [{ setting: grid_region, equals: 230 }]
+            - identity: { slug: br_220v_60hz }
+              interval: { rating: operating, nominal: 380 }
+              condition: [{ setting: grid_region, equals: br_220v_60hz }]
+            - identity: { slug: eu_230v_50hz }
+              interval: { rating: operating, nominal: 400 }
+              condition: [{ setting: grid_region, equals: eu_230v_50hz }]
 
 modbus:
   serial_port:

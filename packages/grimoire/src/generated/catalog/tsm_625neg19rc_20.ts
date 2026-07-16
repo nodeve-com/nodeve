@@ -76,6 +76,9 @@ export default {
 							}
 						},
 						{
+							"identity": {
+								"slug": "protection_required"
+							},
 							"interval": {
 								"nominal": 35,
 								"rating": "protection_required"

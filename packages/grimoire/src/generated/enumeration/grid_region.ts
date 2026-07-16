@@ -27,7 +27,7 @@ export default {
   "eu230V50Hz": {
     "code": "eu_230v_50hz",
     "description": {
-      "en": "IEC 230/400 V, 50 Hz — Europe (incl. Portugal) and most of the world."
+      "en": "IEC 230/400 V, 50 Hz — Europe and most of the world."
     },
     "mains": {
       "frequency": 50,
