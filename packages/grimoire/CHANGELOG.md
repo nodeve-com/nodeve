@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.6.0
+
+### Minor Changes
+
+- PS10SH per-leg house load (foxess load_power_r/s/t) + `binarySensorStateTopic` export for boolean-reading MQTT topics.
+
 ## 4.5.0
 
 ### Minor Changes
