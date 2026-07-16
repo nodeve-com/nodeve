@@ -1,81 +1,81 @@
 {
-  "name": "@nodeve/grimoire",
-  "version": "4.2.0",
-  "description": "Hardware + site schema/validation: agnostic equipment catalogs (Modbus device profiles, PV panels) and installation-config schemas (solar array), one source of truth projected to JSON Schema + TS types.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodeve-com/nodeve.git",
-    "directory": "packages/grimoire"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist",
-    "artifacts/catalog"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./archetypes": {
-      "types": "./dist/generated/archetypes/index.d.ts",
-      "default": "./dist/generated/archetypes/index.js"
-    },
-    "./features": {
-      "types": "./dist/generated/features/index.d.ts",
-      "default": "./dist/generated/features/index.js"
-    },
-    "./property": {
-      "types": "./dist/generated/property/index.d.ts",
-      "default": "./dist/generated/property/index.js"
-    },
-    "./archetypes/*": {
-      "types": "./dist/generated/archetypes/*.d.ts",
-      "default": "./dist/generated/archetypes/*.js"
-    },
-    "./features/*": {
-      "types": "./dist/generated/features/*.d.ts",
-      "default": "./dist/generated/features/*.js"
-    },
-    "./property/*": {
-      "types": "./dist/generated/property/*.d.ts",
-      "default": "./dist/generated/property/*.js"
-    },
-    "./enumeration/*": {
-      "types": "./dist/generated/enumeration/*.d.ts",
-      "default": "./dist/generated/enumeration/*.js"
-    },
-    "./catalog/*": {
-      "types": "./dist/generated/catalog/*.d.ts",
-      "default": "./dist/generated/catalog/*.js"
-    }
-  },
-  "scripts": {
-    "build": "node kit/generate.ts && tsc -p tsconfig.build.json",
-    "clean": "rm -rf dist artifacts",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run",
-    "check": "pnpm run generate && pnpm run guards && pnpm run typecheck && pnpm run test",
-    "generate": "node kit/generate.ts",
-    "guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-archetype-features.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts && node scripts/guard-generated-camel.ts"
-  },
-  "dependencies": {
-    "@nodeve/schema-case": "workspace:*",
-    "@sinclair/typebox": "catalog:",
-    "ajv": "catalog:",
-    "remeda": "catalog:",
-    "remeda-humps": "catalog:",
-    "yaml": "catalog:"
-  },
-  "devDependencies": {
-    "@nodeve/config": "workspace:*",
-    "@nodeve/encoding": "workspace:*",
-    "@types/node": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
-  }
+	"name": "@nodeve/grimoire",
+	"version": "4.3.0",
+	"description": "Hardware + site schema/validation: agnostic equipment catalogs (Modbus device profiles, PV panels) and installation-config schemas (solar array), one source of truth projected to JSON Schema + TS types.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/grimoire"
+	},
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"artifacts/catalog"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./archetypes": {
+			"types": "./dist/generated/archetypes/index.d.ts",
+			"default": "./dist/generated/archetypes/index.js"
+		},
+		"./features": {
+			"types": "./dist/generated/features/index.d.ts",
+			"default": "./dist/generated/features/index.js"
+		},
+		"./property": {
+			"types": "./dist/generated/property/index.d.ts",
+			"default": "./dist/generated/property/index.js"
+		},
+		"./archetypes/*": {
+			"types": "./dist/generated/archetypes/*.d.ts",
+			"default": "./dist/generated/archetypes/*.js"
+		},
+		"./features/*": {
+			"types": "./dist/generated/features/*.d.ts",
+			"default": "./dist/generated/features/*.js"
+		},
+		"./property/*": {
+			"types": "./dist/generated/property/*.d.ts",
+			"default": "./dist/generated/property/*.js"
+		},
+		"./enumeration/*": {
+			"types": "./dist/generated/enumeration/*.d.ts",
+			"default": "./dist/generated/enumeration/*.js"
+		},
+		"./catalog/*": {
+			"types": "./dist/generated/catalog/*.d.ts",
+			"default": "./dist/generated/catalog/*.js"
+		}
+	},
+	"scripts": {
+		"build": "node kit/generate.ts && tsc -p tsconfig.build.json",
+		"clean": "rm -rf dist artifacts",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run",
+		"check": "pnpm run generate && pnpm run guards && pnpm run typecheck && pnpm run test",
+		"generate": "node kit/generate.ts",
+		"guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-archetype-features.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts && node scripts/guard-generated-camel.ts"
+	},
+	"dependencies": {
+		"@nodeve/schema-case": "workspace:*",
+		"@sinclair/typebox": "catalog:",
+		"ajv": "catalog:",
+		"remeda": "catalog:",
+		"remeda-humps": "catalog:",
+		"yaml": "catalog:"
+	},
+	"devDependencies": {
+		"@nodeve/config": "workspace:*",
+		"@nodeve/encoding": "workspace:*",
+		"@types/node": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
 }

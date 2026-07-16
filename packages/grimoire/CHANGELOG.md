@@ -1,5 +1,15 @@
 # @nodeve/grimoire
 
+## 4.3.0
+
+### Minor Changes
+
+- Interval identity + condition gate; grid_region knob unified.
+
+  - Every emitted interval now carries `identity.slug` — authored, or de-sugared from its `rating` axis; slugs unique per `intervals` list (bake fails on duplicates).
+  - New emit gate: `condition.interval_item` pointers must resolve (feature → property → interval slug) within the entry; `setting` gates must name a `settings_schema` key and an `enum` member.
+  - dtsu666 + ps10sh `settings_schema` now takes one member-valued `grid_region` knob (`eu_230v_50hz` / `br_220v_60hz`), replacing the raw `grid_region: 220|230` and `grid_frequency: 50|60` numeric knobs (no known downstream use).
+
 ## 4.2.0
 
 ### Minor Changes
