@@ -61,7 +61,7 @@ export default defineConfig(
 
 `./eslint/base` gives the recommended JS + TS rules, prettier compatibility, browser + node globals, and the org function-naming convention. `./eslint` adds the Svelte-stack `@lucide/svelte` barrel-import ban on top.
 
-The ESLint peers (`eslint`, `@eslint/js`, `eslint-config-prettier`, `globals`, `typescript-eslint`) are optional — install them where you consume an eslint export.
+The ESLint peers (`eslint`, `@eslint/js`, `eslint-config-prettier`, `globals`, `typescript-eslint`) are **required** — `eslint/base.js` imports them unconditionally, so a frozen/CI install that skipped optional peers would fail to resolve them at lint time. Package managers that auto-install peers (bun) pull them in automatically. The Svelte-only (`@eslint/compat`, `eslint-plugin-svelte`), prettier-plugin, and vite peers stay optional — install those where their export is used.
 
 ## Vite
 
