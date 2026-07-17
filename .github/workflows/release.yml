@@ -35,7 +35,7 @@ jobs:
       # GITHUB_TOKEN-merged Version PR would NOT re-trigger this workflow → nothing would publish.
       # A PAT-authored push/merge is a normal actor event and DOES re-trigger. (Fine-grained PAT,
       # this repo only, Contents + Pull requests: write. Stored as the RELEASE_PAT secret.)
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           token: ${{ secrets.RELEASE_PAT }}
       - uses: pnpm/action-setup@v4
