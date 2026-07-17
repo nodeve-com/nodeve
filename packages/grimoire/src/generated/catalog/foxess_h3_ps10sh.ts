@@ -4,13 +4,26 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 const _s0 = {
+	"min": 0,
+	"rating": "measurable",
+	"resolution": 0.01,
+	"unit": "kWh"
+} as const;
+const _s1 = {
+	"max": 8,
+	"min": -8,
+	"rating": "measurable",
+	"resolution": 0.001,
+	"unit": "kW"
+} as const;
+const _s2 = {
 	"max": 15,
 	"min": -5,
 	"rating": "measurable",
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s1 = {
+const _s3 = {
 	"identity": {
 		"slug": "startup"
 	},
@@ -19,12 +32,12 @@ const _s1 = {
 		"rating": "startup"
 	}
 } as const;
-const _s2 = {
+const _s4 = {
 	"feature": "enclosure",
 	"interval": "below_derate",
 	"property": "temperature"
 } as const;
-const _s3 = {
+const _s5 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -33,14 +46,14 @@ const _s3 = {
 		"rating": "survival"
 	}
 } as const;
-const _s4 = {
+const _s6 = {
 	"max": 3.3,
 	"min": -3.3,
 	"rating": "measurable",
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s5 = {
+const _s7 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -49,7 +62,7 @@ const _s5 = {
 		"rating": "survival"
 	}
 } as const;
-const _s6 = {
+const _s8 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -58,7 +71,7 @@ const _s6 = {
 		"rating": "operating"
 	}
 } as const;
-const _s7 = {
+const _s9 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -67,7 +80,7 @@ const _s7 = {
 		"rating": "survival"
 	}
 } as const;
-const _s8 = {
+const _s10 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -76,7 +89,7 @@ const _s8 = {
 		"rating": "operating"
 	}
 } as const;
-const _s9 = {
+const _s11 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -85,7 +98,7 @@ const _s9 = {
 		"rating": "operating"
 	}
 } as const;
-const _s10 = {
+const _s12 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -94,13 +107,13 @@ const _s10 = {
 		"rating": "operating"
 	}
 } as const;
-const _s11 = [
-	_s9
+const _s13 = [
+	_s11
 ] as const;
-const _s12 = [
-	_s10
+const _s14 = [
+	_s12
 ] as const;
-const _s13 = {
+const _s15 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -110,19 +123,19 @@ const _s13 = {
 		"rating": "operating"
 	}
 } as const;
-const _s14 = {
-	"intervalItem": _s2
-} as const;
-const _s15 = [
-	_s14
-] as const;
 const _s16 = {
-	"intervals": _s11
+	"intervalItem": _s4
 } as const;
-const _s17 = {
-	"intervals": _s12
-} as const;
+const _s17 = [
+	_s16
+] as const;
 const _s18 = {
+	"intervals": _s13
+} as const;
+const _s19 = {
+	"intervals": _s14
+} as const;
+const _s20 = {
 	"identity": {
 		"slug": "protection_required"
 	},
@@ -131,7 +144,7 @@ const _s18 = {
 		"rating": "protection_required"
 	}
 } as const;
-const _s19 = {
+const _s21 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -142,7 +155,7 @@ const _s19 = {
 		"unit": "kW"
 	}
 } as const;
-const _s20 = {
+const _s22 = {
 	"identity": {
 		"slug": "operating"
 	},
@@ -153,7 +166,7 @@ const _s20 = {
 		"rating": "operating"
 	}
 } as const;
-const _s21 = {
+const _s23 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -164,7 +177,7 @@ const _s21 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s22 = {
+const _s24 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -175,7 +188,7 @@ const _s22 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s23 = {
+const _s25 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -186,7 +199,7 @@ const _s23 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s24 = {
+const _s26 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -197,7 +210,7 @@ const _s24 = {
 		"resolution": 0.01
 	}
 } as const;
-const _s25 = {
+const _s27 = {
 	"identity": {
 		"slug": "measurable"
 	},
@@ -208,37 +221,61 @@ const _s25 = {
 		"resolution": 0.1
 	}
 } as const;
-const _s26 = [
-	_s21
+const _s28 = [
+	_s23
 ] as const;
-const _s27 = {
+const _s29 = {
 	"identity": {
 		"slug": "measurable"
 	},
 	"interval": _s0
 } as const;
-const _s28 = {
-	"intervals": _s26
-} as const;
-const _s29 = [
-	_s27
+const _s30 = [
+	_s29
 ] as const;
-const _s30 = {
+const _s31 = {
 	"identity": {
 		"slug": "measurable"
 	},
-	"interval": _s4
+	"interval": _s1
 } as const;
-const _s31 = [
-	_s30
-] as const;
 const _s32 = {
-	"intervals": _s29
+	"identity": {
+		"slug": "measurable"
+	},
+	"interval": _s2
 } as const;
-const _s33 = {
-	"intervals": _s31
-} as const;
+const _s33 = [
+	_s31
+] as const;
 const _s34 = {
+	"intervals": _s28
+} as const;
+const _s35 = [
+	_s32
+] as const;
+const _s36 = {
+	"identity": {
+		"slug": "measurable"
+	},
+	"interval": _s6
+} as const;
+const _s37 = [
+	_s36
+] as const;
+const _s38 = {
+	"intervals": _s30
+} as const;
+const _s39 = {
+	"intervals": _s33
+} as const;
+const _s40 = {
+	"intervals": _s35
+} as const;
+const _s41 = {
+	"intervals": _s37
+} as const;
+const _s42 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -253,7 +290,7 @@ const _s34 = {
 		"rating": "operating"
 	}
 } as const;
-const _s35 = {
+const _s43 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -268,10 +305,13 @@ const _s35 = {
 		"rating": "operating"
 	}
 } as const;
-const _s36 = {
-	"activePower": _s32
+const _s44 = {
+	"activePower": _s39
 } as const;
-const _s37 = {
+const _s45 = {
+	"activePower": _s40
+} as const;
+const _s46 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -287,7 +327,7 @@ const _s37 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s38 = {
+const _s47 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -303,8 +343,8 @@ const _s38 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s39 = {
-	"condition": _s15,
+const _s48 = {
+	"condition": _s17,
 	"identity": {
 		"slug": "operating"
 	},
@@ -314,55 +354,55 @@ const _s39 = {
 		"rating": "operating"
 	}
 } as const;
-const _s40 = [
-	_s20,
-	_s22
-] as const;
-const _s41 = {
-	"intervals": _s40
-} as const;
-const _s42 = [
-	_s8,
-	_s5,
-	_s18
-] as const;
-const _s43 = [
-	_s3,
-	_s6,
+const _s49 = [
+	_s22,
 	_s24
 ] as const;
-const _s44 = {
-	"intervals": _s42
+const _s50 = {
+	"intervals": _s49
 } as const;
-const _s45 = {
-	"intervals": _s43
-} as const;
-const _s46 = [
-	_s39,
-	_s19
-] as const;
-const _s47 = {
-	"intervals": _s46
-} as const;
-const _s48 = [
-	_s37,
-	_s38
-] as const;
-const _s49 = {
-	"intervals": _s48
-} as const;
-const _s50 = [
-	_s34,
-	_s35,
-	_s23
-] as const;
-const _s51 = {
-	"intervals": _s50
-} as const;
-const _s52 = [
-	_s13,
+const _s51 = [
+	_s10,
 	_s7,
-	_s1,
+	_s20
+] as const;
+const _s52 = [
+	_s5,
+	_s8,
+	_s26
+] as const;
+const _s53 = {
+	"intervals": _s51
+} as const;
+const _s54 = {
+	"intervals": _s52
+} as const;
+const _s55 = [
+	_s48,
+	_s21
+] as const;
+const _s56 = {
+	"intervals": _s55
+} as const;
+const _s57 = [
+	_s46,
+	_s47
+] as const;
+const _s58 = {
+	"intervals": _s57
+} as const;
+const _s59 = [
+	_s42,
+	_s43,
+	_s25
+] as const;
+const _s60 = {
+	"intervals": _s59
+} as const;
+const _s61 = [
+	_s15,
+	_s9,
+	_s3,
 	{
 		"interval": {
 			"max": 950,
@@ -377,41 +417,41 @@ const _s52 = [
 			"mode": "mppt_fullpower"
 		}
 	},
-	_s25
+	_s27
 ] as const;
-const _s53 = {
-	"intervals": _s52
+const _s62 = {
+	"intervals": _s61
 } as const;
-const _s54 = {
-	"activePower": _s33,
-	"current": _s28,
-	"frequency": _s17,
-	"voltage": _s41
+const _s63 = {
+	"activePower": _s41,
+	"current": _s34,
+	"frequency": _s19,
+	"voltage": _s50
 } as const;
-const _s55 = {
-	"activePower": _s16,
-	"current": _s45,
-	"voltage": _s53
+const _s64 = {
+	"activePower": _s18,
+	"current": _s54,
+	"voltage": _s62
 } as const;
-const _s56 = {
-	"activePower": _s47,
+const _s65 = {
+	"activePower": _s56,
 	"apparentPower": {},
-	"current": _s44,
-	"frequency": _s49,
+	"current": _s53,
+	"frequency": _s58,
 	"reactivePower": {},
-	"voltage": _s51
+	"voltage": _s60
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s16
+				"activePower": _s18
 			},
 			"part": {
-				"a": _s54,
-				"b": _s54,
-				"c": _s54
+				"a": _s63,
+				"b": _s63,
+				"c": _s63
 			}
 		},
 		"identity": {
@@ -421,25 +461,76 @@ export default {
 	"acPhaseThreeGrid": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": {
+				"activePower": {
 					"intervals": [
 						{
 							"identity": {
 								"slug": "measurable"
 							},
 							"interval": {
-								"min": 0,
+								"max": 15,
+								"min": -15,
 								"rating": "measurable",
-								"resolution": 0.01,
-								"unit": "kWh"
+								"resolution": 0.001,
+								"unit": "kW"
 							}
 						}
 					]
 				},
+				"feedInEnergy": _s38,
+				"feedInEnergyToday": _s38,
+				"gridConsumptionEnergy": _s38,
+				"gridConsumptionEnergyToday": _s38
+			},
+			"part": {
+				"a": _s44,
+				"b": _s44,
+				"c": _s44
+			}
+		},
+		"identity": {
+			"slug": "ac_grid"
+		}
+	},
+	"acPhaseThreeLoad": {
+		"featureSpec": {
+			"combined": {
+				"activeEnergy": _s38,
 				"activePower": {
 					"intervals": [
 						{
-							"condition": _s15,
+							"identity": {
+								"slug": "measurable"
+							},
+							"interval": {
+								"max": 15,
+								"min": 0,
+								"rating": "measurable",
+								"resolution": 0.001,
+								"unit": "kW"
+							}
+						}
+					]
+				},
+				"loadEnergyToday": _s38
+			},
+			"part": {
+				"a": _s45,
+				"b": _s45,
+				"c": _s45
+			}
+		},
+		"identity": {
+			"slug": "ac_load"
+		}
+	},
+	"acPhaseThreeOut": {
+		"featureSpec": {
+			"combined": {
+				"activePower": {
+					"intervals": [
+						{
+							"condition": _s17,
 							"identity": {
 								"slug": "rated_continuous"
 							},
@@ -478,46 +569,36 @@ export default {
 							}
 						}
 					]
-				}
-			},
-			"part": {
-				"a": _s56,
-				"b": _s56,
-				"c": _s56
-			}
-		},
-		"identity": {
-			"slug": "ac_grid"
-		}
-	},
-	"acPhaseThreeLoad": {
-		"featureSpec": {
-			"combined": {
-				"activePower": {
+				},
+				"inputEnergy": _s38,
+				"inputEnergyToday": _s38,
+				"reactivePower": {
 					"intervals": [
 						{
 							"identity": {
 								"slug": "measurable"
 							},
 							"interval": {
-								"max": 15,
-								"min": 0,
+								"max": 11,
+								"min": -11,
 								"rating": "measurable",
 								"resolution": 0.001,
-								"unit": "kW"
+								"unit": "kvar"
 							}
 						}
 					]
-				}
+				},
+				"totalYield": _s38,
+				"totalYieldToday": _s38
 			},
 			"part": {
-				"a": _s36,
-				"b": _s36,
-				"c": _s36
+				"a": _s65,
+				"b": _s65,
+				"c": _s65
 			}
 		},
 		"identity": {
-			"slug": "ac_load"
+			"slug": "ac_out"
 		}
 	},
 	"enclosure": {
@@ -831,7 +912,7 @@ export default {
 			{
 				"address": 39248,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "a",
 				"quantityKind": "active_power",
 				"scale": 0.001,
@@ -841,7 +922,7 @@ export default {
 			{
 				"address": 39250,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "b",
 				"quantityKind": "active_power",
 				"scale": 0.001,
@@ -851,7 +932,7 @@ export default {
 			{
 				"address": 39252,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "c",
 				"quantityKind": "active_power",
 				"scale": 0.001,
@@ -861,7 +942,7 @@ export default {
 			{
 				"address": 39123,
 				"decimals": 1,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "a",
 				"quantityKind": "voltage",
 				"scale": 0.1,
@@ -870,7 +951,7 @@ export default {
 			{
 				"address": 39124,
 				"decimals": 1,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "b",
 				"quantityKind": "voltage",
 				"scale": 0.1,
@@ -879,7 +960,7 @@ export default {
 			{
 				"address": 39125,
 				"decimals": 1,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "c",
 				"quantityKind": "voltage",
 				"scale": 0.1,
@@ -888,7 +969,7 @@ export default {
 			{
 				"address": 39126,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "a",
 				"quantityKind": "current",
 				"scale": 0.001,
@@ -897,7 +978,7 @@ export default {
 			{
 				"address": 39128,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "b",
 				"quantityKind": "current",
 				"scale": 0.001,
@@ -906,7 +987,7 @@ export default {
 			{
 				"address": 39130,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "c",
 				"quantityKind": "current",
 				"scale": 0.001,
@@ -915,7 +996,7 @@ export default {
 			{
 				"address": 39256,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "a",
 				"quantityKind": "reactive_power",
 				"scale": 0.001,
@@ -925,7 +1006,7 @@ export default {
 			{
 				"address": 39258,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "b",
 				"quantityKind": "reactive_power",
 				"scale": 0.001,
@@ -935,7 +1016,7 @@ export default {
 			{
 				"address": 39260,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "c",
 				"quantityKind": "reactive_power",
 				"scale": 0.001,
@@ -945,7 +1026,7 @@ export default {
 			{
 				"address": 39264,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "a",
 				"quantityKind": "apparent_power",
 				"scale": 0.001,
@@ -955,7 +1036,7 @@ export default {
 			{
 				"address": 39266,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "b",
 				"quantityKind": "apparent_power",
 				"scale": 0.001,
@@ -965,7 +1046,7 @@ export default {
 			{
 				"address": 39268,
 				"decimals": 3,
-				"featureId": "ac_phase_three_grid",
+				"featureId": "ac_phase_three_out",
 				"partId": "c",
 				"quantityKind": "apparent_power",
 				"scale": 0.001,
@@ -1096,6 +1177,162 @@ export default {
 				"unit": "kW"
 			},
 			{
+				"address": 39134,
+				"decimals": 3,
+				"featureId": "ac_phase_three_out",
+				"quantityKind": "active_power",
+				"scale": 0.000001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 39136,
+				"decimals": 3,
+				"featureId": "ac_phase_three_out",
+				"quantityKind": "reactive_power",
+				"scale": 0.001,
+				"type": "int32",
+				"unit": "kvar"
+			},
+			{
+				"address": 39621,
+				"decimals": 2,
+				"featureId": "ac_phase_three_out",
+				"quantity": "total_yield",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39623,
+				"decimals": 2,
+				"featureId": "ac_phase_three_out",
+				"quantity": "total_yield_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39625,
+				"decimals": 2,
+				"featureId": "ac_phase_three_out",
+				"quantity": "input_energy",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39627,
+				"decimals": 2,
+				"featureId": "ac_phase_three_out",
+				"quantity": "input_energy_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 38814,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"quantityKind": "active_power",
+				"scale": 0.0001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 38816,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"partId": "a",
+				"quantityKind": "active_power",
+				"scale": 0.0001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 38818,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"partId": "b",
+				"quantityKind": "active_power",
+				"scale": 0.0001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 38820,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"partId": "c",
+				"quantityKind": "active_power",
+				"scale": 0.0001,
+				"type": "int32",
+				"unit": "kW"
+			},
+			{
+				"address": 39613,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"quantity": "feed_in_energy",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39615,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"quantity": "feed_in_energy_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39617,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"quantity": "grid_consumption_energy",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39619,
+				"decimals": 2,
+				"featureId": "ac_phase_three_grid",
+				"quantity": "grid_consumption_energy_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39603,
+				"decimals": 2,
+				"featureId": "pv_tracker",
+				"quantity": "solar_energy_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39629,
+				"decimals": 2,
+				"featureId": "ac_phase_three_load",
+				"quantityKind": "active_energy",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
+				"address": 39631,
+				"decimals": 2,
+				"featureId": "ac_phase_three_load",
+				"quantity": "load_energy_today",
+				"scale": 0.01,
+				"type": "uint32",
+				"unit": "kWh"
+			},
+			{
 				"address": 39141,
 				"decimals": 1,
 				"featureId": "enclosure",
@@ -1157,18 +1394,19 @@ export default {
 							}
 						}
 					]
-				}
+				},
+				"solarEnergyToday": _s38
 			},
 			"instances": [
-				_s55,
-				_s55,
+				_s64,
+				_s64,
 				{
-					"activePower": _s16,
-					"current": _s45,
+					"activePower": _s18,
+					"current": _s54,
 					"voltage": {
 						"intervals": [
-							_s7,
-							_s1,
+							_s9,
+							_s3,
 							{
 								"interval": {
 									"max": 950,
@@ -1183,7 +1421,7 @@ export default {
 									"mode": "mppt_fullpower"
 								}
 							},
-							_s25,
+							_s27,
 							{
 								"identity": {
 									"slug": "operating"

@@ -1,0 +1,8 @@
+title:
+  en: Total yield today
+  pt: Produção hoje
+description:
+  en: Active energy the inverter has yielded since local midnight — foxess total_yield daily accumulator.
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }

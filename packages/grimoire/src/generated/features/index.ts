@@ -8,6 +8,7 @@ import * as acPhaseThree_ from './ac_phase_three.ts';
 import * as acPhaseThreeEps_ from './ac_phase_three_eps.ts';
 import * as acPhaseThreeGrid_ from './ac_phase_three_grid.ts';
 import * as acPhaseThreeLoad_ from './ac_phase_three_load.ts';
+import * as acPhaseThreeOut_ from './ac_phase_three_out.ts';
 import * as acPhaseThreePoint_ from './ac_phase_three_point.ts';
 import * as addressing_ from './addressing.ts';
 import * as archetypeRegistry_ from './archetype_registry.ts';
@@ -49,6 +50,7 @@ import * as magicByte_ from './magic_byte.ts';
 import * as mains_ from './mains.ts';
 import * as measurand_ from './measurand.ts';
 import * as measurandLink_ from './measurand_link.ts';
+import * as measures_ from './measures.ts';
 import * as measuringInterval_ from './measuring_interval.ts';
 import * as modbusConstraints_ from './modbus_constraints.ts';
 import * as modbusDecode_ from './modbus_decode.ts';
@@ -103,6 +105,7 @@ export const feature = {
 	acPhaseThreeEps: acPhaseThreeEps_,
 	acPhaseThreeGrid: acPhaseThreeGrid_,
 	acPhaseThreeLoad: acPhaseThreeLoad_,
+	acPhaseThreeOut: acPhaseThreeOut_,
 	acPhaseThreePoint: acPhaseThreePoint_,
 	addressing: addressing_,
 	archetypeRegistry: archetypeRegistry_,
@@ -144,6 +147,7 @@ export const feature = {
 	mains: mains_,
 	measurand: measurand_,
 	measurandLink: measurandLink_,
+	measures: measures_,
 	measuringInterval: measuringInterval_,
 	modbusConstraints: modbusConstraints_,
 	modbusDecode: modbusDecode_,

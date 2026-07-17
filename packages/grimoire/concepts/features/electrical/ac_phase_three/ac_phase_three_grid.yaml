@@ -15,5 +15,16 @@ refs:
     term: PowerLine
     match: broad
 concept_settings:
-  # Same shape as ac_phase_three (whole + a/b/c + ab/bc/ca) under a new name — pure reuse spreads it.
-  compose: ac_phase_three
+  # The canonical three-phase shape (whole + a/b/c + ab/bc/ca) via the parts map directly — NOT
+  # `compose: ac_phase_three`, because this feature adds its own combined-only columns below, and
+  # compose+own-prop would flatten the parted shape (own `part:` keeps it parted).
+  part: electrical_ac_phase_three
+  is_specification: true # own energy columns above are spec columns (intervals), not bare numbers
+# Whole-meter directional energy accumulators (enumeration/quantity) — feed-in (export) and grid
+# consumption (import) are TWO channels of one active_energy kind, so they're NAMED quantities that
+# coexist as combined-only columns (never per-phase). Own combined-only props (is_specification), per the pv_tracker pattern; each optional, filled only where a device meters it.
+prop:
+  feed_in_energy: {}
+  grid_consumption_energy: {}
+  feed_in_energy_today: {}
+  grid_consumption_energy_today: {}

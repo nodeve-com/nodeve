@@ -1,0 +1,8 @@
+title:
+  en: Total yield
+  pt: Produção total
+description:
+  en: Cumulative active energy the inverter has YIELDED (delivered out its AC port), lifetime — foxess total_yield. Named (not bare active_energy) so it coexists with input_energy on the output port.
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }

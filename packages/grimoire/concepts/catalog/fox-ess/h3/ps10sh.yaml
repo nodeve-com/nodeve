@@ -26,18 +26,33 @@ settings_schema:
     grid_region: { enum: [eu_230v_50hz, br_220v_60hz] }
   additionalProperties: false
 
-# feature_spec direction (docs/feature-model.md): `combined` = the whole AC-side total, `default` =
-# the per-phase template. Nested under `feature_spec` so the def can later carry the agnostic bands.
-ac_phase_three_grid:
+# The inverter's OWN grid-tie AC OUTPUT port (foxess grid_voltage / inv_current / inv_power) — was
+# mislabeled `ac_phase_three_grid`; the real grid CT is the separate feature below. `combined` = the
+# whole AC-side total, `default` = the per-phase template.
+ac_phase_three_out:
   identity:
-    slug: ac_grid
+    slug: ac_out
   feature_spec:
     # combined: the three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
     # (it isn't: a 10 kW box can't sustain 3×3.3 kW). Authored because it's not derivable.
     combined:
-      active_energy:
+      # Lifetime + daily throughput at the AC port (foxess total_yield / input_energy). Directional
+      # (yield out / input in) → NAMED quantities (enumeration/quantity), coexisting on one feature.
+      total_yield:
         intervals:
           - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      total_yield_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      input_energy:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      input_energy_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      reactive_power:
+        intervals:
+          - interval: { rating: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
       active_power:
         # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
         # With no nominal the symmetric export/import rows collapse to one signed range per tier.
@@ -96,6 +111,40 @@ ac_phase_three_grid:
                 # altitude band as the combined total above.
             - interval: { rating: measurable, min: 0, max: 5, unit: kW }
 
+# The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed
+# (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy
+# accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine),
+# distinct from the inverter's own AC output above.
+ac_phase_three_grid:
+  identity:
+    slug: ac_grid
+  feature_spec:
+    combined:
+      # Net grid power, signed: export +, import −. One measurable channel; direction is the sign.
+      active_power:
+        intervals:
+          - interval: { rating: measurable, min: -15, max: 15, unit: kW, resolution: 0.001 }
+      # Directional energy — feed-in (export) vs grid-consumption (import), each its own lifetime and
+      # daily accumulator. NAMED quantities so both directions coexist as separate channels.
+      feed_in_energy:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      grid_consumption_energy:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      feed_in_energy_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      grid_consumption_energy_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+    default:
+      ac_phase:
+        active_power:
+          # per-leg net grid power (foxess grid_ct R/S/T), signed like the combined total.
+          intervals:
+            - interval: { rating: measurable, min: -8, max: 8, unit: kW, resolution: 0.001 }
+
 # feature_spec direction (docs/feature-model.md): `count` is grammar → `concept_settings`; the
 # `combined` / `default` / `instances` spec body nests under `feature_spec`.
 pv_tracker:
@@ -111,6 +160,11 @@ pv_tracker:
         intervals:
           - interval: { rating: survival, max: 20000 }
           - interval: { rating: operating, max: 18000 }
+      # Daily PV generation (foxess solar_energy_today); the lifetime total is the active_energy
+      # register linked to this same combined whole (39601).
+      solar_energy_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
     default:
       voltage:
         intervals:
@@ -137,8 +191,10 @@ pv_tracker:
           intervals:
             - interval: { rating: operating, min: 60, nominal: 480 }
 
-# NB no `ac_export` feature_id: export/import is the SIGN of ac_phase_three_grid.combined.active_power above
-# (export +, import / grid-charge −) — the rated range and thermal derate live there, not duplicated.
+# NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the
+# grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is split into the
+# feed_in_energy / grid_consumption_energy named quantities. The inverter's own throughput lives on
+# ac_phase_three_out (active_power tiers + total_yield / input_energy), not duplicated.
 
 ac_phase_three_eps: # separate EPS port — export only; its own per-phase telemetry
   identity:
@@ -177,6 +233,13 @@ ac_phase_three_load: # household load the box meters (foxess load_power) — a c
       active_power:
         intervals:
           - interval: { rating: measurable, min: 0, max: 15, unit: kW, resolution: 0.001 }
+      # Household load energy — lifetime (foxess load_power total, an energy accumulator) + daily.
+      active_energy:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+      load_energy_today:
+        intervals:
+          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
     default:
       ac_phase:
         active_power:
@@ -230,7 +293,8 @@ services:
       port: 443
 
 # How to TALK to the box: the modbus connectivity medium.
-# Grid/meter telemetry is NOT here — it comes off the Chint DTSU666.
+# The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility
+# point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same.
 # Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the
 # registers backing entities we consume today (write/control registers out of scope — see
 # docs/solar/inverter.md).
@@ -371,7 +435,7 @@ modbus:
       } # high word; low 39284
     # --- Inverter AC output, per phase (foxess inv_power_R/S/T → legs L1/L2/L3) ---
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: a,
         quantity_kind: active_power,
         address: 39248,
@@ -381,7 +445,7 @@ modbus:
         unit: kW,
       } # high word; low 39249
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: b,
         quantity_kind: active_power,
         address: 39250,
@@ -391,7 +455,7 @@ modbus:
         unit: kW,
       } # high word; low 39251
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: c,
         quantity_kind: active_power,
         address: 39252,
@@ -400,9 +464,9 @@ modbus:
         decimals: 3,
         unit: kW,
       } # high word; low 39253
-    # --- Grid AC output, per-phase voltage (foxess grid_voltage_R/S/T) ---
+    # --- Inverter AC output, per-phase voltage (foxess grid_voltage_R/S/T) ---
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: a,
         quantity_kind: voltage,
         address: 39123,
@@ -411,7 +475,7 @@ modbus:
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: b,
         quantity_kind: voltage,
         address: 39124,
@@ -420,7 +484,7 @@ modbus:
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: c,
         quantity_kind: voltage,
         address: 39125,
@@ -428,9 +492,9 @@ modbus:
         scale: 0.1,
         decimals: 1,
       }
-    # --- Grid AC output, per-phase current (foxess inv_current_R/S/T) ---
+    # --- Inverter AC output, per-phase current (foxess inv_current_R/S/T) ---
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: a,
         quantity_kind: current,
         address: 39126,
@@ -439,7 +503,7 @@ modbus:
         decimals: 3,
       } # high word; low 39127
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: b,
         quantity_kind: current,
         address: 39128,
@@ -448,7 +512,7 @@ modbus:
         decimals: 3,
       } # high word; low 39129
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: c,
         quantity_kind: current,
         address: 39130,
@@ -456,9 +520,9 @@ modbus:
         scale: 0.001,
         decimals: 3,
       } # high word; low 39131
-    # --- Grid AC output, per-phase reactive power (foxess inv_power_Q_R/S/T) ---
+    # --- Inverter AC output, per-phase reactive power (foxess inv_power_Q_R/S/T) ---
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: a,
         quantity_kind: reactive_power,
         address: 39256,
@@ -468,7 +532,7 @@ modbus:
         unit: kvar,
       } # high word; low 39257
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: b,
         quantity_kind: reactive_power,
         address: 39258,
@@ -478,7 +542,7 @@ modbus:
         unit: kvar,
       } # high word; low 39259
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: c,
         quantity_kind: reactive_power,
         address: 39260,
@@ -487,9 +551,9 @@ modbus:
         decimals: 3,
         unit: kvar,
       } # high word; low 39261
-    # --- Grid AC output, per-phase apparent power (foxess rpower_S_R/S/T) ---
+    # --- Inverter AC output, per-phase apparent power (foxess rpower_S_R/S/T) ---
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: a,
         quantity_kind: apparent_power,
         address: 39264,
@@ -499,7 +563,7 @@ modbus:
         unit: kVA,
       } # high word; low 39265
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: b,
         quantity_kind: apparent_power,
         address: 39266,
@@ -509,7 +573,7 @@ modbus:
         unit: kVA,
       } # high word; low 39267
     - {
-        feature_id: ac_phase_three_grid,
+        feature_id: ac_phase_three_out,
         part_id: c,
         quantity_kind: apparent_power,
         address: 39268,
@@ -644,6 +708,168 @@ modbus:
         decimals: 3,
         unit: kW,
       } # high word; low 39224
+    # --- Inverter AC output totals (foxess inv_power / inv_power_Q, whole port) ---
+    - {
+        feature_id: ac_phase_three_out,
+        quantity_kind: active_power,
+        address: 39134,
+        type: int32,
+        scale: 0.000001,
+        decimals: 3,
+        unit: kW,
+      } # reported in mW despite spec; high word; low 39135
+    - {
+        feature_id: ac_phase_three_out,
+        quantity_kind: reactive_power,
+        address: 39136,
+        type: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+      } # high word; low 39137
+    # --- Inverter lifetime + daily energy throughput (foxess total_yield / input_energy) ---
+    - {
+        feature_id: ac_phase_three_out,
+        quantity: total_yield,
+        address: 39621,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39622
+    - {
+        feature_id: ac_phase_three_out,
+        quantity: total_yield_today,
+        address: 39623,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39624
+    - {
+        feature_id: ac_phase_three_out,
+        quantity: input_energy,
+        address: 39625,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39626
+    - {
+        feature_id: ac_phase_three_out,
+        quantity: input_energy_today,
+        address: 39627,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39628
+    # --- Grid CT / utility meter: NET power, signed (feed-in +, consumption −) (foxess grid_ct) ---
+    - {
+        feature_id: ac_phase_three_grid,
+        quantity_kind: active_power,
+        address: 38814,
+        type: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+      } # high word; low 38815
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: a,
+        quantity_kind: active_power,
+        address: 38816,
+        type: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+      } # high word; low 38817
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: b,
+        quantity_kind: active_power,
+        address: 38818,
+        type: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+      } # high word; low 38819
+    - {
+        feature_id: ac_phase_three_grid,
+        part_id: c,
+        quantity_kind: active_power,
+        address: 38820,
+        type: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+      } # high word; low 38821
+    # --- Grid CT directional energy (foxess feed_in_energy / grid_consumption_energy) ---
+    - {
+        feature_id: ac_phase_three_grid,
+        quantity: feed_in_energy,
+        address: 39613,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39614
+    - {
+        feature_id: ac_phase_three_grid,
+        quantity: feed_in_energy_today,
+        address: 39615,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39616
+    - {
+        feature_id: ac_phase_three_grid,
+        quantity: grid_consumption_energy,
+        address: 39617,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39618
+    - {
+        feature_id: ac_phase_three_grid,
+        quantity: grid_consumption_energy_today,
+        address: 39619,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39620
+    # --- PV daily generation (foxess solar_energy_today; lifetime total is active_energy 39601) ---
+    - {
+        feature_id: pv_tracker,
+        quantity: solar_energy_today,
+        address: 39603,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39604
+    # --- House load energy: lifetime (foxess load_power total) + daily (load_energy_today) ---
+    - {
+        feature_id: ac_phase_three_load,
+        quantity_kind: active_energy,
+        address: 39629,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39630
+    - {
+        feature_id: ac_phase_three_load,
+        quantity: load_energy_today,
+        address: 39631,
+        type: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+      } # high word; low 39632
     # --- Inverter temperature (foxess invtemp, holding 39141 on H3_SMART) ---
     - {
         feature_id: enclosure,

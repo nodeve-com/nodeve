@@ -1,0 +1,8 @@
+title:
+  en: Load energy today
+  pt: Energia de carga hoje
+description:
+  en: Household load active energy since local midnight — foxess load_energy_today daily accumulator (the lifetime total is the bare active_energy on the load feature).
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }

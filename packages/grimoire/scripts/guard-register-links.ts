@@ -33,6 +33,7 @@ type Reg = {
 	part_id?: string;
 	ordinal?: number;
 	quantity_kind?: string;
+	quantity?: string; // named measurand (enumeration/quantity) — the effective column when set
 	raw_name?: string;
 	address?: number;
 };
@@ -95,11 +96,14 @@ function checkRegister(options: {
 		);
 	const result = registerMenu(reg, spec, countOf(reg.feature_id));
 	if (result.error) return fail(slug, `${at} ${result.error}`);
-	if (!reg.quantity_kind) fail(slug, `${at} on '${reg.feature_id}' has no quantity_kind`);
-	else if (result.menu!.size > 0 && !result.menu!.has(reg.quantity_kind))
+	// The effective column is the named `quantity` when set, else the bare `quantity_kind`
+	// (features/measurand_link.yaml — a link fills EITHER); both appear as columns in the baked menu.
+	const col = reg.quantity ?? reg.quantity_kind;
+	if (!col) fail(slug, `${at} on '${reg.feature_id}' has no quantity_kind or quantity`);
+	else if (result.menu!.size > 0 && !result.menu!.has(col))
 		fail(
 			slug,
-			`${at} kind '${reg.quantity_kind}' is not offered by '${result.where}' (offers: ${[...result.menu!].join(', ')})`,
+			`${at} column '${col}' is not offered by '${result.where}' (offers: ${[...result.menu!].join(', ')})`,
 		);
 }
 
@@ -109,8 +113,7 @@ function checkEntry(file: string, failLine: (line: string) => void): void {
 		unknown
 	>;
 	const modbus = entry.modbus as
-		| { modbus_registers?: Reg[]; modbus_decodes?: Decode[] }
-		| undefined;
+		{ modbus_registers?: Reg[]; modbus_decodes?: Decode[] } | undefined;
 	if (!modbus) return;
 	const slug = (entry.identity as { slug?: string })?.slug ?? file.replace(/\.json$/, '');
 	const archetype = (entry.identity as { archetype_id?: string })?.archetype_id;

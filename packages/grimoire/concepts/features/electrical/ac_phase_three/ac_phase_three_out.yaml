@@ -1,0 +1,34 @@
+concept_settings:
+  # The canonical three-phase shape (whole + a/b/c + ab/bc/ca) via the parts map directly — NOT
+  # `compose: ac_phase_three`, because this feature adds its own combined-only columns below, and
+  # compose+own-prop would flatten the parted shape (own `part:` keeps it parted).
+  part: electrical_ac_phase_three
+  is_specification: true # own energy columns above are spec columns (intervals), not bare numbers
+# Whole-port lifetime + daily energy throughput (enumeration/quantity): yield (out) and input (in)
+# are two directional channels of active_energy, so NAMED quantities coexisting as combined-only
+# columns (is_specification), per the pv_tracker pattern; each optional.
+prop:
+  total_yield: {}
+  total_yield_today: {}
+  input_energy: {}
+  input_energy_today: {}
+title:
+  en: AC 3-Phase Output
+  pt: Saída CA trifásica
+# The inverter's OWN grid-tie AC OUTPUT port — the point where the converter injects to the grid
+# (foxess grid_voltage / inv_current / inv_power R/S/T, reactive + apparent). Distinct from
+# ac_phase_three_grid, which is now the GRID CT / meter (net feed-in vs consumption at the utility
+# connection). This is the converter output; CIM PowerElectronicsConnection / IEC 61850 ZINV.
+refs:
+  - registry_id: sosa
+    term: FeatureOfInterest
+    match: broad
+  - registry_id: cim
+    term: PowerElectronicsConnection
+    match: close
+  - registry_id: iec_61850
+    term: ZINV
+    match: close
+  - registry_id: seas
+    term: AlternatingCurrentConnectionPoint
+    match: close

@@ -7,6 +7,7 @@
 
 import accumulationTerms from './generated/enumeration/accumulation.ts';
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
+import quantities from './generated/enumeration/quantity.ts';
 
 /** A crosswalk to an external registry's term (refs.yaml — registry_id + term + match closeness).
  *  `registryId` is an FK to a `registry` catalog entry (docs/reference-model.md). */
@@ -25,6 +26,8 @@ export interface Term {
 	readonly refs?: readonly TermRef[];
 	readonly accumulation?: string;
 	readonly broader?: string;
+	/** A valued `quantity` member's base kind (enumeration/quantity): the quantity_kind it measures. */
+	readonly measures?: { readonly quantityKind: string };
 }
 
 export interface Vocab<Name extends string, Code extends string> {
@@ -47,7 +50,10 @@ function makeVocab<const Name extends string, const T extends Record<string, Ter
 	generated: T,
 ): Vocab<Name, T[keyof T]['code']> {
 	type Code = T[keyof T]['code'];
-	const dict = Object.fromEntries(Object.values(generated).map((t) => [t.code, t])) as Record<Code, Term>;
+	const dict = Object.fromEntries(Object.values(generated).map((t) => [t.code, t])) as Record<
+		Code,
+		Term
+	>;
 	return {
 		enumeration,
 		codes: Object.keys(dict) as Code[],
@@ -63,3 +69,8 @@ export const ACCUMULATION = makeVocab('accumulation', accumulationTerms);
 /** Kinds of quantity a reading measures (active_power, voltage, temperature…). Codes are dynamic —
  *  they arrive from register maps at runtime, so the dict isn't `as const` and `Code` is `string`. */
 export const QUANTITY_KIND = makeVocab('quantity_kind', quantityKinds);
+
+/** Valued quantities (enumeration/quantity) — NAMED measurands over a base kind (feed_in_energy,
+ *  grid_consumption_energy, total_yield…). `.dict[code].measures.quantityKind` is the base kind a
+ *  unit/device_class crosswalk resolves through (see measurand-tree `baseQuantityKind`). */
+export const QUANTITY = makeVocab('quantity', quantities);

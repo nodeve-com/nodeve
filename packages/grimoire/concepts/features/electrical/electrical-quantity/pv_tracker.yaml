@@ -27,3 +27,8 @@ concept_settings:
   # so this composes that feature rather than re-listing them. When a tracker gains a tracker-specific
   # quantity, add it here as a prop. Each quantity is OPTIONAL — fill only what the datasheet states.
   repeated: true # countable MPPT inputs — the body wraps as {count, combined?, default?, instances?}
+  is_specification: true # own column (solar_energy_today) below is a spec column, not a bare number
+# Daily PV-generation accumulator (enumeration/quantity) — coexists with the lifetime total (bare
+# active_energy). A tracker-specific quantity added as an own prop, exactly as the note above invites.
+prop:
+  solar_energy_today: {}

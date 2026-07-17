@@ -11,7 +11,12 @@ concept_settings:
   compose:
     - instance_key
 enums:
-  - quantity_kind # LINKED value: which quantity of the feature this reads
+  - quantity_kind # LINKED value: which BASE KIND this reads (pure — active_energy, active_power, …)
+  - quantity # OPTIONAL named measurand (enumeration/quantity): the effective column when set. A link
+    # fills EITHER quantity_kind OR quantity (plus feature_id). Used where two channels of one kind
+    # coexist on a feature (feed_in vs grid_consumption energy, total vs today) — the named `quantity`
+    # is the column key + sensor-id segment; its base kind resolves downstream (measurand-tree).
 prop:
   feature_id: {}
   raw_name: {}
+# NB quantity_kind XOR quantity — author only one per link; both-set silently drops the kind.

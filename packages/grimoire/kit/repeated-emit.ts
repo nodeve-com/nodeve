@@ -145,11 +145,13 @@ export function backfillRegisterSpecNodes(entry: Obj): void {
 	const medium = entry.modbus;
 	if (!isPlainObject(medium) || !Array.isArray(medium.modbus_registers)) return;
 	for (const reg of medium.modbus_registers) {
-		if (!isPlainObject(reg) || reg.feature_id === undefined || reg.quantity_kind === undefined)
-			continue;
+		// The effective column key is the named `quantity` when set, else the bare `quantity_kind`
+		// (features/measurand_link.yaml — a link fills EITHER). measurandNode reads only part_id/ordinal.
+		const colKey = isPlainObject(reg) ? (reg.quantity ?? reg.quantity_kind) : undefined;
+		if (!isPlainObject(reg) || reg.feature_id === undefined || colKey === undefined) continue;
 		const feature = entry[String(reg.feature_id)];
 		if (!isPlainObject(feature)) continue; // unresolvable link — a separate link-validation concern, not ours to invent
-		childObj(measurandNode(feature, String(reg.feature_id), reg), String(reg.quantity_kind));
+		childObj(measurandNode(feature, String(reg.feature_id), reg), String(colKey));
 	}
 }
 

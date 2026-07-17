@@ -1,0 +1,13 @@
+# The base-kind reference of a valued `quantity` (archetypes/quantity): WHICH qudt:QuantityKind a
+# named measurand measures. `feed_in_energy` and `grid_consumption_energy` both `measures:
+# { quantity_kind: active_energy }` — the kind stays pure (active_energy), the named quantity carries
+# the specific role. Unit / si_unit / device_class resolve from the referenced kind downstream
+# (src/measurand-tree.ts `baseQuantityKind`). The `quantity_kind` field is the ENUM member — introduced
+# by `enums`, exactly like features/measurand_link.yaml's link field.
+title:
+  en: Measures
+  pt: Mede
+description:
+  en: The base quantity_kind a valued quantity measures (its kind — active_energy, active_power, …).
+enums:
+  - quantity_kind

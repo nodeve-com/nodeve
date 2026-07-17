@@ -57,6 +57,7 @@ export interface ModbusRegister {
 	partId?: string;
 	ordinal?: number;
 	quantityKind?: string;
+	quantity?: string; // named measurand (enumeration/quantity) — the effective column when set (else quantityKind)
 	rawName?: string;
 	[key: string]: unknown;
 }

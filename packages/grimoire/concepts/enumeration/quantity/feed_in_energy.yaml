@@ -1,0 +1,9 @@
+title:
+  en: Feed-in energy
+  pt: Energia injetada
+description:
+  en: Cumulative active energy EXPORTED to the grid (feed-in), lifetime — the export direction of the grid CT.
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }
+  - { registry_id: sunspec, term: TotWhExp, match: close }

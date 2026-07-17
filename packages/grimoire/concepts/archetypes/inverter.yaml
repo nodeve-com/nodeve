@@ -30,7 +30,8 @@ refs:
     match: close
 feature:
   ac_phase_three_eps: {}
-  ac_phase_three_grid: {}
+  ac_phase_three_grid: {} # the GRID CT / meter — net feed-in vs grid-consumption at the utility point
+  ac_phase_three_out: {} # the inverter's own AC OUTPUT port (grid-tie injection: voltage/current/power)
   pv_tracker: {}
   ac_phase_three_load: {}
   enclosure: {}

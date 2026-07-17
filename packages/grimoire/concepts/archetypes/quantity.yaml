@@ -1,0 +1,19 @@
+# A valued qudt:Quantity — a NAMED measurand that references a base quantity_kind. Distinct from
+# `quantity_kind` (the kind itself, energy/power): the README's Quantity-vs-QuantityKind split made
+# concrete. Coined so two directionally- or window-distinct channels of ONE kind (feed-in vs
+# grid-consumption energy; total vs today) can coexist as SEPARATE columns/sensors on one feature —
+# `quantity_kind` alone would collide on the (feature, part, kind) coordinate. Members live under
+# enumeration/quantity/; each `measures:` a base kind and inherits that kind's metrology.
+# Parallel to archetypes/quantity_kind.yaml: same `property` + `measurand` composition, plus the
+# `measures` base-kind reference.
+title:
+  en: Quantity
+  pt: Grandeza
+description:
+  en: A valued qudt:Quantity — a named measurand referencing a base quantity_kind, so directionally or temporally distinct channels of one kind coexist as separate columns.
+  pt: Uma grandeza qudt:Quantity com valor — um mensurando nomeado que referencia um quantity_kind base.
+concept_settings:
+  compose: [property]
+feature:
+  measurand: {} # metrology (unit / si_unit / accumulation) — overrides the base kind's defaults
+  measures: {} # the base quantity_kind this named quantity measures

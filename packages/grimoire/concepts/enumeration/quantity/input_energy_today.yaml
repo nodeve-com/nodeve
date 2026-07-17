@@ -1,0 +1,8 @@
+title:
+  en: Input energy today
+  pt: Energia de entrada hoje
+description:
+  en: Active energy input to the inverter since local midnight — foxess input_energy daily accumulator.
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }

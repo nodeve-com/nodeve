@@ -1,0 +1,7 @@
+# A `quantity` is a NAMED measurand — a COLUMN name on a feature, like a quantity_kind, so it holds a
+# number (schema below). Each member `measures:` a base quantity_kind (its metrology/device_class
+# resolve from that kind). The cascade `archetype_id: quantity` selects archetypes/quantity for
+# validation; `schema`/`archetype_id` are compiler plumbing, stripped from the baked member data.
+identity:
+  archetype_id: quantity
+schema: { type: number }

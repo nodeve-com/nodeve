@@ -1,0 +1,8 @@
+title:
+  en: Solar generation today
+  pt: Geração solar hoje
+description:
+  en: PV active energy generated since local midnight — foxess solar_energy_today daily accumulator (the lifetime total is the bare active_energy on the same tracker).
+measures: { quantity_kind: active_energy }
+refs:
+  - { registry_id: ha_device_class, term: energy, match: exact }

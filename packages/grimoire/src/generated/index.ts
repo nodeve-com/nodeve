@@ -10,6 +10,7 @@ import * as acPhaseThreeEps_ from './features/ac_phase_three_eps.ts';
 import * as acPhaseThreeGrid_ from './features/ac_phase_three_grid.ts';
 import * as acPhaseThreeLoad_ from './features/ac_phase_three_load.ts';
 import * as acPhaseThreeMeter_ from './archetypes/ac_phase_three_meter.ts';
+import * as acPhaseThreeOut_ from './features/ac_phase_three_out.ts';
 import * as acPhaseThreePoint_ from './features/ac_phase_three_point.ts';
 import * as addressing_ from './features/addressing.ts';
 import * as airConditioner_ from './archetypes/air_conditioner.ts';
@@ -64,6 +65,7 @@ import * as magicByte_ from './features/magic_byte.ts';
 import * as mains_ from './features/mains.ts';
 import * as measurand_ from './features/measurand.ts';
 import * as measurandLink_ from './features/measurand_link.ts';
+import * as measures_ from './features/measures.ts';
 import * as measuringInterval_ from './features/measuring_interval.ts';
 import * as modbus_ from './archetypes/modbus.ts';
 import * as modbusConstraints_ from './features/modbus_constraints.ts';
@@ -89,6 +91,7 @@ import * as pvModule_ from './archetypes/pv_module.ts';
 import * as pvString_ from './features/pv_string.ts';
 import * as pvStrings_ from './features/pv_strings.ts';
 import * as pvTracker_ from './features/pv_tracker.ts';
+import * as quantity_ from './archetypes/quantity.ts';
 import * as quantityKind_ from './archetypes/quantity_kind.ts';
 import * as range_ from './features/range.ts';
 import * as reconnect_ from './features/reconnect.ts';
@@ -140,6 +143,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	acPhaseThreeGrid: acPhaseThreeGrid_.schema,
 	acPhaseThreeLoad: acPhaseThreeLoad_.schema,
 	acPhaseThreeMeter: acPhaseThreeMeter_.schema,
+	acPhaseThreeOut: acPhaseThreeOut_.schema,
 	acPhaseThreePoint: acPhaseThreePoint_.schema,
 	addressing: addressing_.schema,
 	airConditioner: airConditioner_.schema,
@@ -194,6 +198,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	mains: mains_.schema,
 	measurand: measurand_.schema,
 	measurandLink: measurandLink_.schema,
+	measures: measures_.schema,
 	measuringInterval: measuringInterval_.schema,
 	modbus: modbus_.schema,
 	modbusConstraints: modbusConstraints_.schema,
@@ -219,6 +224,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	pvString: pvString_.schema,
 	pvStrings: pvStrings_.schema,
 	pvTracker: pvTracker_.schema,
+	quantity: quantity_.schema,
 	quantityKind: quantityKind_.schema,
 	range: range_.schema,
 	reconnect: reconnect_.schema,
@@ -268,6 +274,7 @@ export interface ConceptTypes {
 	acPhaseThreeGrid: acPhaseThreeGrid_.AcPhaseThreeGrid;
 	acPhaseThreeLoad: acPhaseThreeLoad_.AcPhaseThreeLoad;
 	acPhaseThreeMeter: acPhaseThreeMeter_.AcPhaseThreeMeter;
+	acPhaseThreeOut: acPhaseThreeOut_.AcPhaseThreeOut;
 	acPhaseThreePoint: acPhaseThreePoint_.AcPhaseThreePoint;
 	addressing: addressing_.Addressing;
 	airConditioner: airConditioner_.AirConditioner;
@@ -322,6 +329,7 @@ export interface ConceptTypes {
 	mains: mains_.Mains;
 	measurand: measurand_.Measurand;
 	measurandLink: measurandLink_.MeasurandLink;
+	measures: measures_.Measures;
 	measuringInterval: measuringInterval_.MeasuringInterval;
 	modbus: modbus_.Modbus;
 	modbusConstraints: modbusConstraints_.ModbusConstraints;
@@ -347,6 +355,7 @@ export interface ConceptTypes {
 	pvString: pvString_.PvString;
 	pvStrings: pvStrings_.PvStrings;
 	pvTracker: pvTracker_.PvTracker;
+	quantity: quantity_.Quantity;
 	quantityKind: quantityKind_.QuantityKind;
 	range: range_.Range;
 	reconnect: reconnect_.Reconnect;

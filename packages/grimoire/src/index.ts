@@ -52,6 +52,7 @@ export {
 	measurandCells,
 	measurandSubTopic,
 	isMeasurandFeature,
+	baseQuantityKind,
 } from './measurand-tree.ts';
 
 // --- Site bundle validation: the ONE schema check over a resolved site bundle. The bake runs it
@@ -91,6 +92,7 @@ export {
 export {
 	ACCUMULATION,
 	QUANTITY_KIND,
+	QUANTITY,
 	type Vocab,
 	type VocabCode,
 	type Term,
