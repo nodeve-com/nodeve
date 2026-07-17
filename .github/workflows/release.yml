@@ -37,9 +37,11 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
 
-      # Trusted publishing needs a recent npm CLI on PATH (pnpm shells out to it for
-      # the registry OIDC handshake); the node-24 default can lag. Pin forward.
-      - run: npm install -g npm@latest
+      # NB: do NOT upgrade global npm here. pnpm@11 performs the OIDC token exchange
+      # itself; it does not shell out to npm. changesets' "is this version already
+      # published?" check DOES use node-24's bundled npm (`npm info`) — forcing npm@12
+      # broke that check (it reported every already-published package as unpublished,
+      # triggering a doomed republish that crashed in isAlreadyPublishedError).
 
       - uses: changesets/action@v1
         id: changesets
