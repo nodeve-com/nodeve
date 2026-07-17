@@ -1,0 +1,49 @@
+# Release via Changesets + npm Trusted Publishing (OIDC) — no stored npm token.
+#
+# On push to main:
+#   - changesets pending  → open/refresh the "Version Packages" PR (bumps versions,
+#                           writes CHANGELOGs, consumes .changeset/*.md).
+#   - no changesets left  → run `pnpm release` (build + `changeset publish`), which
+#                           publishes changed packages to npm.
+#
+# Auth is OIDC: `id-token: write` lets pnpm exchange a short-lived token with npm's
+# registry (the repo/workflow must be registered as a Trusted Publisher on each
+# package — done in the npmjs.org package settings). No NPM_TOKEN secret, nothing
+# to expire — replaces the local `npm login && pnpm login` dance.
+name: release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write # changesets pushes the version commit + tags, creates GH releases
+  pull-requests: write # opens/updates the Version Packages PR
+  id-token: write # OIDC token exchange for npm Trusted Publishing
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Trusted publishing needs a recent npm CLI on PATH (pnpm shells out to it for
+      # the registry OIDC handshake); the node-24 default can lag. Pin forward.
+      - run: npm install -g npm@latest
+
+      - uses: changesets/action@v1
+        with:
+          version: pnpm changeset version
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
