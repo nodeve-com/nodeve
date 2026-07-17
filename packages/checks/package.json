@@ -15,7 +15,9 @@
 	"files": [
 		"dist",
 		"lefthook.checks.yml",
-		"nodeve.checks.defaults.js"
+		"nodeve.checks.defaults.js",
+		".vale.ini",
+		"styles"
 	],
 	"exports": {
 		"./config": {
@@ -26,7 +28,8 @@
 			"types": "./dist/lib/defaults.d.ts",
 			"default": "./dist/lib/defaults.js"
 		},
-		"./lefthook": "./lefthook.checks.yml"
+		"./lefthook": "./lefthook.checks.yml",
+		"./vale": "./.vale.ini"
 	},
 	"bin": {
 		"nodeve-check": "./dist/bin/check.js",

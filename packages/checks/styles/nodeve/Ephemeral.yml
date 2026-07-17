@@ -1,0 +1,16 @@
+# Flag ephemeral-state language in docs. Docs are written BEFORE a commit but
+# PERSIST after it — so any word framing the doc's moment as transient goes stale
+# the instant it lands. "Uncommitted" describes a git state that ends at commit;
+# "this session" names a working context that's gone by the next reader. Neither
+# has a referent in a saved doc. State the durable fact, not the moment you wrote it.
+extends: existence
+message: "'%s' is transient — docs persist; state durable facts."
+ignorecase: true
+level: error
+nonword: true
+tokens:
+  - '\buncommitted\b'
+  - '\bthis session\b'
+  - '\bHandoff \b'
+  - '\bunblocked\b'
+  - '\bnext step\b'

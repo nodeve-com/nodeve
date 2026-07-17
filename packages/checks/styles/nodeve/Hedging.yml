@@ -1,0 +1,39 @@
+# Flag deferred-decision hedges — phrases that punt a call the doc should MAKE.
+# "Rebuild the pipeline if wanted" leaves the reader to decide whether it's wanted;
+# either commit ("Rebuild the pipeline") or drop it. This is distinct from
+# proselint.Hedging (vague-language weasels like "so to speak") — this rule targets
+# optionality that defers a design decision. ADD phrases below; keep them anchored
+# so legitimate conditional prose ("if needed for X") still reads.
+extends: existence
+message: "'%s' defers a decision — make the call (commit or cut) before commit."
+ignorecase: true
+level: error
+nonword: true
+# Optionality of any form. "if you want per-group albums, do X" is still a deferred
+# call — say who the feature is for and commit, don't offload the choice to the
+# reader. Both dangling ("do X if wanted") and object ("if you want X") forms fire.
+tokens:
+  - '\bif wanted\b'
+  - '\bif desired\b'
+  - '\bas (wanted|desired)\b'
+  - '\b(if|as|when) (you )?(want|like|prefer|wish)\b'
+  - '\bif (you )?feel like it\b'
+  - '\bif that(''s| is) (wanted|desired|preferred)\b'
+  # Epistemic / vagueness hedges — soften a claim the doc should state plainly.
+  # ("completely" is left to write-good.Weasel to avoid a double-flag.)
+  - '\bappears to be\b'
+  - '\bseems to\b'
+  - '\bprobably\b'
+  - '\bbasically\b'
+  - '\bessentially\b'
+  - '\btotally\b'
+  - '\bsomewhat\b'
+  - '\bmight possibly\b'
+  - '\barguably\b'
+  - '\blikely\b'
+  - '\bin general\b'
+  - '\bgenerally speaking\b'
+  # Minimizing "just get" — the diminutive "just" plus a limp "get" softens the
+  # statement ("changes just get a version bump" → "changes get a version bump").
+  # State the action plainly; drop the "just".
+  - '\bjust gets?\b'

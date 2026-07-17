@@ -1,0 +1,30 @@
+# Flag narration of a PRIOR version — prose that talks to the doc's own edit
+# history instead of stating the current fact. A doc is read fresh, current-
+# version-only: the reader never saw the copy you're correcting, so "this used to
+# …", "no longer …", "RESOLVED", "revised — …", "correction:" inform nobody, turn
+# a spec into a changelog, and cost tokens for zero present-tense content. Git
+# holds the history; the doc holds the state. Rewrite to the bare fact. Distinct
+# from Familiar.Ephemeral (transient-MOMENT words) — this targets backward-looking
+# CORRECTION. Keep tokens anchored so legitimate present-tense use survives (a DNS
+# name that "resolved", a promise that "resolves").
+extends: existence
+message: "'%s' narrates a past version — state the current fact; git holds the history."
+ignorecase: true
+level: error
+nonword: true
+tokens:
+  # Backward-reference: the sentence points at an earlier state the reader can't see.
+  - '\bno longer\b'
+  - '\bused to\b'
+  - '\bpreviously\b'
+  - '\bwas previously\b'
+  - '\bformerly\b'
+  - '\bre-?named from\b'
+  - '\bwas re-?named\b'
+  - '\bas (noted|mentioned) (above|earlier|before)\b'
+  # Status / revision markers — meta-commentary on the doc's own resolution.
+  - '\bcorrection:'
+  - '\bnow resolved\b'
+  - '\bnot open\b'
+  - '\((revised|resolved|updated|corrected)\b'
+  - '\b(revised|resolved) —'

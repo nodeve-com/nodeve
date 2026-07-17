@@ -57,6 +57,22 @@ pre-commit:
             glob: '*.md'
             run: node_modules/.bin/nodeve-check doc-tokens {staged_files}
 
+          # Prose gate — the OTHER engine. Not a `nodeve-check` bin: it's the `vale`
+          # binary (from the repo's nix devShell, NOT node_modules) reading the
+          # repo's `.vale.ini`, which pulls the org house rules from
+          # `node_modules/@nodeve/checks` via `Packages` + `vale sync`. Guarded so
+          # the shared config is safe in a repo that hasn't opted into prose yet:
+          # runs only when `vale` is on PATH AND a `.vale.ini` exists, else skips.
+          # When it runs, vale exits nonzero on `error`-level alerts and blocks;
+          # warning/suggestion are advisory. Opt in: add a `.vale.ini` (copy the
+          # block in @nodeve/checks/.vale.ini) and run `vale sync` once per clone.
+          - name: vale
+            glob: '*.md'
+            run: |
+              if command -v vale >/dev/null 2>&1 && test -f .vale.ini; then
+                vale {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit). Tune severity in .vale.ini if a rule is wrong."; exit 1; }
+              fi
+
           - name: reshape
             glob: '*.ts'
             run: node_modules/.bin/nodeve-check reshape {staged_files}

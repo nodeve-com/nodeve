@@ -1,0 +1,10 @@
+# Flag over-long sentences — a telegraphic style keeps them short. Fires when a
+# sentence exceeds `max` words. RAISE `max` if this is too aggressive on design
+# prose, or lower it to tighten. Set level to suggestion to make it advisory.
+extends: occurrence
+message: 'Sentence is long (over 30 words) — split it or cut fat.'
+level: error
+# Match a run of non-terminal chars ending in sentence punctuation.
+scope: sentence
+token: '\b(\w+)\b'
+max: 30

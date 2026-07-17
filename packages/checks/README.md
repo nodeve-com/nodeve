@@ -102,6 +102,10 @@ A reinvention often borrows a _different_ library's name, which shares no tokens
 
 All blocking checks accept `--warn` (report-only, exit 0) and `--explain` (expand the remediation prose under the result); `doc-tokens` accepts `--report` to list the whole backlog without failing. Pass explicit paths to scope a run (lefthook passes `{staged_files}`).
 
+## Prose gate (Vale)
+
+A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules this package ships in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `SentenceLength`), wired through a guarded `vale` job in `lefthook.checks.yml`. Setup, the consumer `.vale.ini` block, and rule authoring: **[PROSE.md](PROSE.md)**.
+
 ## Fixers
 
 Unlike the gates above, fixers mutate staged files and let lefthook re-stage them (`stage_fixed: true`). They run before the `checks` group so the gates see the fixed content.
