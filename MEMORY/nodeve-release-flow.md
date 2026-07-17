@@ -1,12 +1,16 @@
 ---
 name: nodeve-release-flow
-description: "nodeve's `release` script is publish-only — run `changeset version` + commit + push before it"
+description: 'nodeve releases via Changesets — CI-driven OIDC Trusted Publishing (release.yml); local `pnpm release` is publish-only fallback'
 metadata:
   node_type: memory
   type: project
   originSessionId: 0876025f-4fba-4174-be21-ae4b913179da
 ---
 
-nodeve's root `release` script is only `pnpm build && changeset publish` — it does **NOT** run `changeset version`. So before `pnpm release`, run `pnpm changeset version` (applies the bump, regenerates CHANGELOGs, consumes the changeset files) and commit & push the result. Standard changesets two-step; the repo just leaves `version` manual. See [[nodeve-checks]].
+**Primary path (2026-07-17): CI-driven via `.github/workflows/release.yml`** — `changesets/action` on push to main. Pending `.changeset/*.md` → it opens/refreshes a "Version Packages" PR (bumps versions, writes CHANGELOGs, consumes the changesets); merging that PR (no changesets left) → runs `pnpm release` (`pnpm build && changeset publish`) and publishes changed packages.
 
-**GitHub release is automated but tag-triggered.** `.github/workflows/grimoire-json.yml` bakes the JSON artifacts and creates the GH release on push of a `@nodeve/grimoire@*` tag. Gotchas (all fixed 2026-07-13): (1) re-pushing a tag that already exists on the remote fires NO event — to (re)trigger, `git push origin :refs/tags/<tag>` then push it again; (2) the workflow checks out the tag's tree, so any CI fix must be in the tagged commit (move the tag if needed — npm tarball is unaffected by tag position); (3) CI must `pnpm -r build` the workspace deps before `grimoire generate` (codegen imports @nodeve/schema-case + encoding from dist/), and root `prepare` is guarded `lefthook install || true` (lefthook is dev-only).
+Auth is **npm Trusted Publishing (OIDC)** — the job has `id-token: write` and pnpm@11 does the token exchange; **no `NPM_TOKEN` secret, no local login**. This replaces the old local `npm login && pnpm login` dance (which hit E401 daily because web-login mints a session token that expires ~daily). Trusted publishers are **per-package** on npmjs.org (registered as repo `nodeve-com/nodeve` + workflow `release.yml`, blank environment) — every scoped package must be registered or its publish falls back to needing a token. Strategic driver: npm's 2FA-bypass tokens lose direct-publish ~Jan 2027 (npm v12 changelog), so OIDC is the future-proof route.
+
+**Local fallback:** root `release` script is only `pnpm build && changeset publish` — it does **NOT** run `changeset version`. To publish by hand, first `pnpm changeset version` (applies bump, regenerates CHANGELOGs, consumes changeset files), commit, then `pnpm release`. See [[nodeve-checks]].
+
+**Grimoire JSON artifacts bake inside `release.yml`** (2026-07-17) — the "Attach grimoire JSON artifacts" step, gated on `steps.changesets.outputs.published == 'true'` and `@nodeve/grimoire` appearing in `publishedPackages`. It runs `pnpm --filter @nodeve/grimoire generate`, tars `packages/grimoire/artifacts`, and `gh release upload`s to the `@nodeve/grimoire@<v>` release changesets/action just created. The codegen's workspace deps (@nodeve/schema-case, encoding `dist/`) are present because `pnpm release` already ran `pnpm build`. Folded in here (not a separate tag-triggered workflow) precisely because changesets tags with `GITHUB_TOKEN` and GitHub suppresses workflow triggers on `GITHUB_TOKEN`-authored events, so a `on: push: tags` workflow can't fire on a CI release. The old standalone `grimoire-json.yml` was **deleted** — its tag-trigger gotchas (re-push to re-fire, checkout-the-tag-tree) no longer apply since the bake now runs in the publish job on the main commit.

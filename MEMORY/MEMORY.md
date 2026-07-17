@@ -3,7 +3,7 @@
 - [Why pnpm](why-pnpm.md) — pnpm owns everything, Node runs the scripts; NO Bun in this repo (user removed it)
 - [nodeve ecosystem](nodeve-ecosystem.md) — nodeve(pnpm/publish) vs familiar(bun) vs platform(pnpm); @nodeve/config is the shared config source of truth
 - [nodeve checks](nodeve-checks.md) — @nodeve/checks + @nodeve/text: shared lefthook commit-gate checks, config file, and adoption gotchas
-- [nodeve release flow](nodeve-release-flow.md) — `pnpm release` is publish-only; run `changeset version` + commit first
+- [nodeve release flow](nodeve-release-flow.md) — CI-driven via release.yml (Changesets + OIDC Trusted Publishing, no token/login); local `pnpm release` is publish-only fallback
 - [run via pnpm scripts](run-via-pnpm-scripts.md) — verify with `pnpm test`/`pnpm typecheck`/`pnpm generate`, never `bun test`/`bunx tsc` directly
 - [db table naming](db-table-naming.md) — DB tables (and in-memory Maps/dicts) are singular, not plural; confirmed in platform's schema
 - [no eager commits](no-eager-commits.md) — don't commit per sub-task; user says when it's done

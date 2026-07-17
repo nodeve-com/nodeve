@@ -42,8 +42,31 @@ jobs:
       - run: npm install -g npm@latest
 
       - uses: changesets/action@v1
+        id: changesets
         with:
           version: pnpm changeset version
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      # Bake the grimoire JSON artifacts (catalog entries, concept data trees, draft-07
+      # schemas — NOT shipped in the npm tarball) and attach them to the release GH created
+      # for the `@nodeve/grimoire@<v>` tag. Only when this run actually published grimoire.
+      # `pnpm release` already ran `pnpm build`, so the codegen's workspace deps
+      # (@nodeve/schema-case, encoding dist/) are present. Folded in here because a tag-
+      # triggered workflow can't fire on CI releases — changesets tags with GITHUB_TOKEN,
+      # and GitHub suppresses workflow triggers on GITHUB_TOKEN-authored events.
+      - name: Attach grimoire JSON artifacts
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHED: ${{ steps.changesets.outputs.publishedPackages }}
+        run: |
+          version=$(printf '%s' "$PUBLISHED" | jq -r '.[] | select(.name=="@nodeve/grimoire") | .version')
+          if [ -z "$version" ]; then
+            echo "grimoire not published in this release; skipping JSON artifacts."
+            exit 0
+          fi
+          pnpm --filter @nodeve/grimoire generate
+          tar -czf grimoire-json.tar.gz -C packages/grimoire artifacts
+          gh release upload "@nodeve/grimoire@${version}" grimoire-json.tar.gz --clobber
