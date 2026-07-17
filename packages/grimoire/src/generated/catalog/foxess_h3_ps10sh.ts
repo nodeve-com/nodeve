@@ -1199,6 +1199,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_out",
 				"quantity": "total_yield",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1208,6 +1209,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_out",
 				"quantity": "total_yield_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1217,6 +1219,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_out",
 				"quantity": "input_energy",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1226,6 +1229,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_out",
 				"quantity": "input_energy_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1274,6 +1278,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_grid",
 				"quantity": "feed_in_energy",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1283,6 +1288,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_grid",
 				"quantity": "feed_in_energy_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1292,6 +1298,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_grid",
 				"quantity": "grid_consumption_energy",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1301,6 +1308,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_grid",
 				"quantity": "grid_consumption_energy_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1310,6 +1318,7 @@ export default {
 				"decimals": 2,
 				"featureId": "pv_tracker",
 				"quantity": "solar_energy_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"
@@ -1328,6 +1337,7 @@ export default {
 				"decimals": 2,
 				"featureId": "ac_phase_three_load",
 				"quantity": "load_energy_today",
+				"quantityKind": "active_energy",
 				"scale": 0.01,
 				"type": "uint32",
 				"unit": "kWh"

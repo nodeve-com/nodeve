@@ -23,7 +23,13 @@ import humps from 'remeda-humps';
 import { camelizeSchema } from '@nodeve/schema-case';
 import { resolveConcept } from './compile.ts';
 import { type RefContext, projectSchema } from './project.ts';
-import { type Obj, layerIndex } from '../src/concept-sources.ts';
+import {
+	ARTIFACTS_DIR,
+	GENERATED_DIR,
+	type Obj,
+	layerIndex,
+	readYaml,
+} from '../src/concept-sources.ts';
 import {
 	assertArchetypeDocsValid,
 	assertFeatureDocsValid,
@@ -37,10 +43,7 @@ import { enumerationMemberData, enumerations, renderVocabModule } from './emit-e
 import { renderJson } from './json-schema.ts';
 import { parseDisplayPolicy } from '../src/display-policy.ts';
 
-const ROOT = join(import.meta.dirname, '..');
-const GENERATED = join(ROOT, 'src', 'generated');
-const ARTIFACTS = join(ROOT, 'artifacts');
-const DISPLAY_POLICY_YAML = join(ROOT, 'display-policy', 'sensors.yaml');
+const DISPLAY_POLICY_YAML = join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml');
 
 // --- Concept schemas + types (consumer swap slice) ---
 
@@ -141,8 +144,8 @@ function emitConcept(options: {
 	const { $composes, ...def } = data;
 	const { json, body, imports } = schemaWithDefs(def);
 	const dataTree = stampIdentity(conceptDataTree(def, layer, $composes), name, layer);
-	out[join(ARTIFACTS, layer, `${name}.json`)] = renderJson(dataTree);
-	out[join(GENERATED, layer, `${name}.ts`)] = renderConceptModule({
+	out[join(ARTIFACTS_DIR, layer, `${name}.json`)] = renderJson(dataTree);
+	out[join(GENERATED_DIR, layer, `${name}.ts`)] = renderConceptModule({
 		name,
 		schema: camelizeSchema(body) as Obj,
 		layer,
@@ -150,8 +153,8 @@ function emitConcept(options: {
 		data: humps(dataTree),
 		fieldsOf: topFields,
 	});
-	out[join(ARTIFACTS, layer, `${name}.schema.json`)] = renderJson(json);
-	out[join(ARTIFACTS, layer, `${name}.camel.schema.json`)] = renderJson(camelizeSchema(json));
+	out[join(ARTIFACTS_DIR, layer, `${name}.schema.json`)] = renderJson(json);
+	out[join(ARTIFACTS_DIR, layer, `${name}.camel.schema.json`)] = renderJson(camelizeSchema(json));
 	return imports;
 }
 
@@ -175,10 +178,10 @@ function emitConcepts(out: Record<string, string>, concepts: ReturnType<typeof c
 function emitCatalog(out: Record<string, string>, entries: ReturnType<typeof catalogEntries>) {
 	const slugs = Object.keys(entries).sort();
 	for (const slug of slugs) {
-		out[join(ARTIFACTS, 'catalog', `${slug}.json`)] = renderJson(entries[slug]);
-		out[join(GENERATED, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]!);
+		out[join(ARTIFACTS_DIR, 'catalog', `${slug}.json`)] = renderJson(entries[slug]);
+		out[join(GENERATED_DIR, 'catalog', `${slug}.ts`)] = renderCatalogEntry(entries[slug]!);
 	}
-	out[join(GENERATED, 'catalog', 'index.ts')] = renderCatalogIndex(slugs);
+	out[join(GENERATED_DIR, 'catalog', 'index.ts')] = renderCatalogIndex(slugs);
 }
 
 export function outputs(): Record<string, string> {
@@ -188,7 +191,7 @@ export function outputs(): Record<string, string> {
 	const entries = catalogEntries();
 	const concepts = compiledConcepts();
 	const out: Record<string, string> = {
-		[join(GENERATED, 'index.ts')]: renderConceptsIndex(concepts),
+		[join(GENERATED_DIR, 'index.ts')]: renderConceptsIndex(concepts),
 	};
 	// Per catalog entry, keyed by slug: the committed JSON grain a JSON reader assembles, and its
 	// TS-const twin — the isolated part the JS/TS reader path imports (code, no fs/JSON import).
@@ -223,28 +226,41 @@ export function outputs(): Record<string, string> {
 	if (clobber.length > 0)
 		throw new Error('a concept named "index" would clobber its layer aggregate — rename it');
 	for (const layer of ['archetypes', 'features'])
-		out[join(GENERATED, layer, 'index.ts')] = renderLayerIndex(
+		out[join(GENERATED_DIR, layer, 'index.ts')] = renderLayerIndex(
 			layer,
 			concepts.filter((c) => c.layer === layer).map((c) => c.name),
 		);
-	out[join(GENERATED, 'property', 'index.ts')] = renderLayerIndex('property', [...emittedProps]);
+	out[join(GENERATED_DIR, 'property', 'index.ts')] = renderLayerIndex('property', [
+		...emittedProps,
+	]);
 	// Member data per enumeration — every enumeration, tree-driven: .json wire shape + .ts vocab twin.
 	for (const name of enumerations()) {
-		out[join(ARTIFACTS, 'enumeration', `${name}.json`)] = renderJson(enumerationMemberData(name));
-		out[join(GENERATED, 'enumeration', `${name}.ts`)] = renderVocabModule(name);
+		out[join(ARTIFACTS_DIR, 'enumeration', `${name}.json`)] = renderJson(
+			enumerationMemberData(name),
+		);
+		out[join(GENERATED_DIR, 'enumeration', `${name}.ts`)] = renderVocabModule(name);
 	}
-	// The authored display policy, baked to a typed const so every consumer reads it through the API.
-	out[join(GENERATED, 'display-policy.ts')] = renderDisplayPolicyModule(
-		parseDisplayPolicy(parseYaml(readFileSync(DISPLAY_POLICY_YAML, 'utf8'))),
-	);
+	// TODO(move-display-policy): display-policy/ is a data source OUTSIDE concepts/ with its own
+	// bespoke parse+emit — the one violation of "the generator reads only concepts/". Move it soon:
+	// fold into the concept model (ui/display fields on the quantity enumerations) or evict
+	// downstream; then guard generator inputs to concepts/ only.
+	// The authored display policy: a typed const for TS consumers AND an artifacts JSON twin — a TS
+	// export is a view of baked data, never the only copy (guard-artifacts-baked.ts).
+	const policy = parseDisplayPolicy(parseYaml(readFileSync(DISPLAY_POLICY_YAML, 'utf8')));
+	out[join(GENERATED_DIR, 'display-policy.ts')] = renderDisplayPolicyModule(policy);
+	out[join(ARTIFACTS_DIR, 'display-policy.json')] = renderJson(policy);
+	// Parts maps (concepts/parts/) — read by the repeated-feature resolve; baked so every YAML the
+	// generator reads lands in artifacts/ as JSON.
+	for (const [name, path] of [...layerIndex('parts')].sort(([a], [b]) => a.localeCompare(b)))
+		out[join(ARTIFACTS_DIR, 'parts', `${name}.json`)] = renderJson(readYaml(path));
 	return out;
 }
 
 // Write only when run directly, not when imported by the drift test.
 if (import.meta.filename === process.argv[1]) {
 	// Wipe both output roots first so no stale file (renamed/deleted concept) survives the bake.
-	rmSync(GENERATED, { recursive: true, force: true });
-	rmSync(ARTIFACTS, { recursive: true, force: true });
+	rmSync(GENERATED_DIR, { recursive: true, force: true });
+	rmSync(ARTIFACTS_DIR, { recursive: true, force: true });
 	const files = Object.entries(outputs());
 	for (const [path, contents] of files) {
 		mkdirSync(dirname(path), { recursive: true });

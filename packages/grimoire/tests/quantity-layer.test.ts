@@ -34,4 +34,15 @@ describe('quantity layer', () => {
 		expect(topics.size).toBe(gridEnergy.length);
 		expect(topics).toContain('ac_phase_three_grid/feed_in_energy');
 	});
+
+	test('registers carrying a named quantity also carry the baked base kind', () => {
+		const device = loadDevice({ archetypeId: 'inverter', slug: 'foxess_h3_ps10sh' });
+		const regs = (device.modbus as { modbusRegisters: Array<Record<string, unknown>> })
+			.modbusRegisters;
+		const named = regs.filter((r) => typeof r.quantity === 'string');
+		expect(named.length).toBeGreaterThan(0);
+		// A JSON reader routes on the baked kind without the TS enumeration module.
+		for (const r of named)
+			expect(r.quantityKind, String(r.quantity)).toBe(baseQuantityKind(r.quantity as string));
+	});
 });

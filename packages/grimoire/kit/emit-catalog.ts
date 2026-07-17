@@ -3,7 +3,9 @@
 // the fs-free JS/TS reader path (src/catalog.ts keys the composed array by identity).
 
 import humps from 'remeda-humps';
+import { isPlainObject } from 'remeda';
 import { camelizeSchema } from '@nodeve/schema-case';
+import { enumerationMemberData } from './emit-enumeration.ts';
 import { shortCode } from '@nodeve/encoding/short-code';
 import { effectiveSlug, loadCascade } from '../src/cascade.ts';
 import { CATALOG_DIR } from '../src/concept-sources.ts';
@@ -33,10 +35,47 @@ function claimer(what: string): (key: string, path: string) => void {
 	};
 }
 
-/** The emit-side spec resolution + gates for one leaf: repeated features filled, register links
- *  landed, interval slugs de-sugared + unique per list, condition pointers resolved. */
+// quantity code → its base quantity_kind (enumeration/quantity `measures.quantity_kind`), built once.
+let baseKindByQuantity: Map<string, string> | undefined;
+function quantityBaseKind(code: string, path: string): string {
+	baseKindByQuantity ??= new Map(
+		Object.entries(enumerationMemberData('quantity')).map(([c, doc]) => {
+			const measures = isPlainObject(doc) && isPlainObject(doc.measures) ? doc.measures : {};
+			return [c, String(measures.quantity_kind ?? '')];
+		}),
+	);
+	const kind = baseKindByQuantity.get(code);
+	if (!kind)
+		throw new Error(
+			`grimoire catalog ${path}: register quantity "${code}" has no enumeration/quantity member with measures.quantity_kind`,
+		);
+	return kind;
+}
+
+/** Bake each named-`quantity` register's resolved BASE kind into `quantity_kind`, so an artifact
+ *  reader routes on the kind (energy vs power) without the TS enumeration module. The effective
+ *  column stays `quantity ?? quantity_kind` — the named quantity wins. Authoring both is still an
+ *  error when the authored kind contradicts the resolved base. */
+function bakeRegisterBaseKinds(entry: Record<string, unknown>, path: string): void {
+	const medium = entry.modbus;
+	if (!isPlainObject(medium) || !Array.isArray(medium.modbus_registers)) return;
+	for (const reg of medium.modbus_registers) {
+		if (!isPlainObject(reg) || typeof reg.quantity !== 'string') continue;
+		const kind = quantityBaseKind(reg.quantity, path);
+		if (reg.quantity_kind !== undefined && reg.quantity_kind !== kind)
+			throw new Error(
+				`grimoire catalog ${path}: register quantity "${reg.quantity}" authored with quantity_kind "${String(reg.quantity_kind)}" ≠ its base "${kind}" — author only the quantity`,
+			);
+		reg.quantity_kind = kind;
+	}
+}
+
+/** The emit-side spec resolution + gates for one leaf: repeated features filled, base kinds baked
+ *  onto named-quantity registers, register links landed, interval slugs de-sugared + unique per
+ *  list, condition pointers resolved. */
 function resolveEntry(data: Record<string, unknown>, path: string): Record<string, unknown> {
 	const resolved = resolveRepeatedFeatures(data);
+	bakeRegisterBaseKinds(resolved, path); // named `quantity` → its base kind rides the artifact too
 	backfillRegisterSpecNodes(resolved); // every LINKED modbus register must land on a spec node (its quantity)
 	desugarIntervalSlugs(resolved, path); // rating → identity.slug on unslugged rows, then per-list uniqueness
 	validateConditionRefs(resolved, path); // every interval_item / setting gate resolves within the entry

@@ -66,6 +66,18 @@ loadDevice({ archetypeId: 'inverter', slug: 'foxess_h3_ps10sh' }); // CatalogDev
 modbusMediumOf(loadDevice({ archetypeId: 'ac_phase_three_meter', slug: 'chint_dtsu666_4wire' })); // register map + transport + emit (goal 2)
 ```
 
+From a shell, the `grimoire` bin queries the shipped `artifacts/` JSON (snake wire shape) — no grep through `node_modules`:
+
+```sh
+grimoire catalog                     # list entries: archetype_id  slug  code
+grimoire catalog foxess_h3_ps10sh    # one entry, full JSON; append a dotted path to select a node
+grimoire catalog foxess_h3_ps10sh ac_phase_three_grid.feature_spec.combined
+grimoire registers foxess_h3_ps10sh  # its modbus register rows (named `quantity` rows carry the baked base `quantity_kind`)
+grimoire enumeration quantity        # member dict; `grimoire quantity feed_in_energy` for one member
+```
+
+JSON readers also import directly: `@nodeve/grimoire/artifacts/catalog/foxess_h3_ps10sh.json` (the whole `artifacts/` tree ships).
+
 A device's key is its **identity** — `archetype_id` + `slug` (`catalog_item: { archetype_id: inverter, slug: foxess_h3_ps10sh }`), the stable reference downstream configs use. The tree path (`foxess/h3/ps-10.0-sh`) is filing only.
 
 ## Using the concepts

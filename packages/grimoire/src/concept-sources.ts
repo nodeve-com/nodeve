@@ -23,6 +23,10 @@ export const CATALOG_DIR = join(CONCEPTS, 'catalog');
 export const ARTIFACTS_DIR = join(import.meta.dirname, '..', 'artifacts');
 export const ARTIFACTS_CATALOG_DIR = join(ARTIFACTS_DIR, 'catalog');
 
+/** The committed generated-TS output tree (`src/generated/`) — the twin root `pnpm generate` emits
+ *  beside `artifacts/`; the guards sweep it. */
+export const GENERATED_DIR = join(import.meta.dirname, 'generated');
+
 /** Every `.yaml` under `dir` recursively (absolute paths), skipping `_`-prefixed cascade files. */
 export function yamlFiles(dir: string): string[] {
 	const out: string[] = [];
@@ -43,7 +47,10 @@ function indexLayer(dir: string): Map<string, string> {
 	for (const path of yamlFiles(join(CONCEPTS, dir))) {
 		const slug = path.split('/').pop()!.slice(0, -'.yaml'.length);
 		const prior = out.get(slug);
-		if (prior) throw new Error(`grimoire compile: ${dir}/ has two files for slug "${slug}" (${prior}, ${path})`);
+		if (prior)
+			throw new Error(
+				`grimoire compile: ${dir}/ has two files for slug "${slug}" (${prior}, ${path})`,
+			);
 		out.set(slug, path);
 	}
 	return out;
@@ -69,16 +76,21 @@ export function enumerationMembers(name: string): string[] {
 /** The enumeration dir names (`concepts/enumeration/<name>/`) as a Set — the valid `enums:` targets,
  *  the set both vocab guards test membership against. */
 export const enumerationDirNames = (): Set<string> =>
-	new Set(readdirSync(ENUMERATION_DIR).filter((n) => statSync(join(ENUMERATION_DIR, n)).isDirectory()));
+	new Set(
+		readdirSync(ENUMERATION_DIR).filter((n) => statSync(join(ENUMERATION_DIR, n)).isDirectory()),
+	);
 
 /** A def's slug-list field (`compose`/`enums`/`props`/`features`): entries are BARE SLUGS — a
  *  use-site rename object would break the name→def lookup chain. */
 export function asList(v: unknown, field: string, stack: string[]): string[] {
 	if (v === undefined) return [];
-	if (!Array.isArray(v)) throw new Error(`grimoire compile: \`${field}\` must be an array (via ${stack.join(' → ')})`);
+	if (!Array.isArray(v))
+		throw new Error(`grimoire compile: \`${field}\` must be an array (via ${stack.join(' → ')})`);
 	return v.map((entry) => {
 		if (typeof entry !== 'string') {
-			throw new Error(`grimoire compile: \`${field}\` entries are bare slugs — got ${JSON.stringify(entry)} (via ${stack.join(' → ')})`);
+			throw new Error(
+				`grimoire compile: \`${field}\` entries are bare slugs — got ${JSON.stringify(entry)} (via ${stack.join(' → ')})`,
+			);
 		}
 		return entry;
 	});
@@ -87,7 +99,8 @@ export function asList(v: unknown, field: string, stack: string[]): string[] {
 /** slug → file path for a field-backing doc: a `property/` field, or an `enumeration/` member used
  *  as a field (a quantity_kind kind bound via `feature: spec_block`). The two layers share one flat
  *  slug space (stems globally unique), so a prop resolves from whichever defines it. */
-export const fieldSource = (slug: string): string | undefined => layerIndex('property').get(slug) ?? layerIndex('enumeration').get(slug);
+export const fieldSource = (slug: string): string | undefined =>
+	layerIndex('property').get(slug) ?? layerIndex('enumeration').get(slug);
 
 /** The def-language keys the pipeline consumes off a `def`, computed from the def itself — the SINGLE
  *  definition of the instruction vocabulary, shared by the resolver (seeds its `consumed` set, which
@@ -98,7 +111,8 @@ export const fieldSource = (slug: string): string | undefined => layerIndex('pro
  *  node data (dataOf must not drop it), so the resolver removes `schema` from its own `consumed`. */
 export function instructionKeys(def: Obj): Set<string> {
 	const keys = new Set<string>(['prop']);
-	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0) keys.add('concept_settings');
+	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0)
+		keys.add('concept_settings');
 	for (const verb of ['enums', 'feature', 'archetype', 'schema'] as const) {
 		if (def[verb] !== undefined) keys.add(verb);
 	}
@@ -110,7 +124,10 @@ export function instructionKeys(def: Obj): Set<string> {
  *  archetype / `feature: spec_block` binding) lives once in the dir. */
 export function propertyDoc(slug: string): { doc: Obj; path: string } {
 	const path = fieldSource(slug);
-	if (!path) throw new Error(`grimoire compile: no property/**/ or enumeration/**/${slug}.yaml backs prop "${slug}"`);
+	if (!path)
+		throw new Error(
+			`grimoire compile: no property/**/ or enumeration/**/${slug}.yaml backs prop "${slug}"`,
+		);
 	const defaultsPath = join(path.slice(0, path.lastIndexOf('/')), '_defaults.yaml');
 	let defaults: Obj = {};
 	try {

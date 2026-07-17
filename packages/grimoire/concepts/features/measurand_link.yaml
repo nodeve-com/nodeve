@@ -19,4 +19,6 @@ enums:
 prop:
   feature_id: {}
   raw_name: {}
-# NB quantity_kind XOR quantity — author only one per link; both-set silently drops the kind.
+# NB author quantity_kind XOR quantity — one per link. The EMIT bakes the quantity's resolved base
+# kind into quantity_kind on the artifact (kit/emit-catalog.ts bakeRegisterBaseKinds), so a JSON
+# reader routes on the kind without the enumeration module; effective column stays quantity ?? kind.
