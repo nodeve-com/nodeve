@@ -10,11 +10,11 @@ identity:
 product:
   model: H3-10.0-Smart # box reports Inv.H3_SMART
 
-# Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.ts): each feature status carries that
+# Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that
 # feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE,
-# applying to every expanded instance. `measurement:` is a map statusED BY quantity_kind that realizes
-# the offered measurands with concrete VIM ranges — validated against the projected tree (offered
-# kinds only, intervals within envelope). One kind per status (range-multiplicity lives in `ranges`).
+# applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list —
+# rated bands (interval_kind: rating) and measurable sensor spans (interval_kind: measurable, concrete
+# VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
 
 # Commissioning setting — the grid region the box is wired for (enumeration/grid_region members;
 # each carries its nominal mains voltage + frequency). ONE knob gates the nominal bands below via
