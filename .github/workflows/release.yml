@@ -61,15 +61,20 @@ jobs:
           # required for the auto-merge below to re-trigger this workflow's publish run.
           GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
 
-      # Auto-merge the "Version Packages" PR. hasChangesets == 'true' means this run OPENED/updated
-      # the PR (it did not publish); enabling auto-merge lands it once required checks pass, and the
-      # PAT-authored merge re-triggers release.yml — which, with no changesets left, runs the publish
-      # branch above. Needs "Allow auto-merge" enabled in repo Settings → General.
-      - name: Auto-merge the Version Packages PR
+      # Merge the "Version Packages" PR. hasChangesets == 'true' means this run OPENED/updated the PR
+      # (it did not publish). The PAT-authored merge re-triggers release.yml — which, with no changesets
+      # left, runs the publish branch above.
+      #
+      # `--auto` only lands once required checks pass, but GitHub REJECTS enabling auto-merge on a PR
+      # already in "clean" status (no pending required checks) — which is the case here, since main has
+      # no required status checks. So fall back to a direct squash merge: `--auto` when there's a check
+      # to wait for, plain `--squash` when the PR is already mergeable. Both are PAT-authored → re-trigger.
+      - name: Merge the Version Packages PR
         if: steps.changesets.outputs.hasChangesets == 'true' && steps.changesets.outputs.pullRequestNumber != ''
         env:
           GH_TOKEN: ${{ secrets.RELEASE_PAT }}
-        run: gh pr merge "${{ steps.changesets.outputs.pullRequestNumber }}" --auto --squash
+          PR: ${{ steps.changesets.outputs.pullRequestNumber }}
+        run: gh pr merge "$PR" --auto --squash || gh pr merge "$PR" --squash
 
       # Bake the grimoire JSON artifacts (catalog entries, concept data trees, draft-07
       # schemas — NOT shipped in the npm tarball) and attach them to the release GH created
