@@ -13,9 +13,12 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type UnixSocket = { "path"?: path_.Path };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unix_socket" }; readonly "prop": { readonly "path": Omit<typeof path_, "description" | "refs"> & { readonly "description": { readonly "en": "Filesystem path of a Unix-domain (AF_UNIX) socket — same string whether a process binds or connects." }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "posix"; readonly "term": "AF_UNIX" }] } } };
+type DataT = { readonly "body": { readonly "en": "An AF_UNIX socket address — a Unix-domain (local) socket, addressed by a filesystem `path` (the shared os/path property). Unlike an AF_INET endpoint (bind-vs-host by role), the SAME path serves both binder and connector, so one feature serves both sides. No port, no L4 protocol: AF_UNIX is its own address family below the IP stack (POSIX / IEEE Std 1003.1). The AF_UNIX crosswalk rides the slot override below — it's a fact about this socket use of the path, not about paths in general.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unix_socket" }; readonly "prop": { readonly "path": Omit<typeof path_, "description" | "refs"> & { readonly "description": { readonly "en": "Filesystem path of a Unix-domain (AF_UNIX) socket — same string whether a process binds or connects." }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "posix"; readonly "term": "AF_UNIX" }] } } };
 
 const _data: DataT = {
+	"body": {
+		"en": "An AF_UNIX socket address — a Unix-domain (local) socket, addressed by a filesystem `path` (the shared os/path property). Unlike an AF_INET endpoint (bind-vs-host by role), the SAME path serves both binder and connector, so one feature serves both sides. No port, no L4 protocol: AF_UNIX is its own address family below the IP stack (POSIX / IEEE Std 1003.1). The AF_UNIX crosswalk rides the slot override below — it's a fact about this socket use of the path, not about paths in general.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "unix_socket"
@@ -36,4 +39,4 @@ const _data: DataT = {
 		}
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

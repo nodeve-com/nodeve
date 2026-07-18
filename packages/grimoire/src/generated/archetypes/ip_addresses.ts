@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as ipBinding_ from '../features/ip_binding.ts';
@@ -14,22 +15,26 @@ import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "ipBinding": Type.Optional(ipBinding_.schema) }, {"additionalProperties":false,"x-key-map":{"ip_binding":"ipBinding"}}));
+export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "ipBinding": Type.Optional(ipBinding_.schema) }, {"additionalProperties":false,"x-key-map":{"ip_binding":"ipBinding"}}));
 
-export type IpAddresses = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ipBinding"?: ipBinding_.IpBinding }>;
+export type IpAddresses = Array<{ "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ipBinding"?: ipBinding_.IpBinding }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipBinding": typeof ipBinding_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ip_addresses" }; readonly "title": { readonly "en": "IP address"; readonly "pt": "Coisa" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipBinding": typeof ipBinding_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "body": { readonly "en": "IP ADDRESSES — the L3 addresses bound to ONE network interface (an interface may carry several: an IPv4 lease AND an IPv6 address). `is_array: true` so a NIC's `ip_addresses` slot is a LIST of these (same cardinality model as network_interfaces — cardinality lives on the target class, no ref-site marker). Modelling each address as an archetype (not a bare feature) buys it its identity/title/description — above all the referenceable `identity.slug`, so a site can name each binding. The address datasheet itself lives in the `ip_binding` feature.\n" }; readonly "description": { readonly "en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ip_addresses" }; readonly "title": { readonly "en": "IP address"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
 	"array": {
 		"prop": {
+			"body": body_,
 			"description": description_,
 			"identity": identity_,
 			"ipBinding": ipBinding_,
 			"refs": refs_,
 			"title": title_
 		}
+	},
+	"body": {
+		"en": "IP ADDRESSES — the L3 addresses bound to ONE network interface (an interface may carry several: an IPv4 lease AND an IPv6 address). `is_array: true` so a NIC's `ip_addresses` slot is a LIST of these (same cardinality model as network_interfaces — cardinality lives on the target class, no ref-site marker). Modelling each address as an archetype (not a bare feature) buys it its identity/title/description — above all the referenceable `identity.slug`, so a site can name each binding. The address datasheet itself lives in the `ip_binding` feature.\n"
 	},
 	"description": {
 		"en": "One L3 address bound to a network interface — its identity plus address datasheet (ip_address).",
@@ -44,4 +49,4 @@ const _data: DataT = {
 		"pt": "Coisa"
 	}
 };
-export const { array, description, identity, prop, title } = _data;
+export const { array, body, description, identity, prop, title } = _data;

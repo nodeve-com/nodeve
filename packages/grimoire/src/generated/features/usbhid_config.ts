@@ -23,9 +23,12 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type UsbhidConfig = { "offset"?: offset_.Offset; "expect"?: expect_.Expect; "responseMagic"?: responseMagic_.ResponseMagic; "requestLength"?: requestLength_.RequestLength; "indexOffset"?: indexOffset_.IndexOffset; "lengthOffset"?: lengthOffset_.LengthOffset; "valueOffset"?: valueOffset_.ValueOffset; "getCommand"?: getCommand_.GetCommand; "setCommand"?: setCommand_.SetCommand; "parameters"?: parameters_.Parameters };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_config" }; readonly "prop": { readonly "expect": typeof expect_; readonly "getCommand": typeof getCommand_; readonly "indexOffset": typeof indexOffset_; readonly "lengthOffset": typeof lengthOffset_; readonly "offset": typeof offset_; readonly "parameters": typeof parameters_; readonly "requestLength": typeof requestLength_; readonly "responseMagic": typeof responseMagic_; readonly "setCommand": typeof setCommand_; readonly "valueOffset": typeof valueOffset_ } };
+type DataT = { readonly "body": { readonly "en": "The CONFIG EXCHANGE — how to GET and SET the device's named settings by index, plus the parameter list. Control-plane counterpart to the streamed diag read (usbhid_link + usbhid_fields): config issues a per-parameter request — index_offset/length_offset bytes select the parameter, value at value_offset (GET response and SET request). Rides the SAME endpoints/transfer/timeout as the diag link; only the command framing differs. `response_magic` composes the shared magic_byte slot (M4-ATX: byte 0 == 0x31, validated on GET and SET). Mirrors m4GetConfig/m4SetBinary (m4api.c).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_config" }; readonly "prop": { readonly "expect": typeof expect_; readonly "getCommand": typeof getCommand_; readonly "indexOffset": typeof indexOffset_; readonly "lengthOffset": typeof lengthOffset_; readonly "offset": typeof offset_; readonly "parameters": typeof parameters_; readonly "requestLength": typeof requestLength_; readonly "responseMagic": typeof responseMagic_; readonly "setCommand": typeof setCommand_; readonly "valueOffset": typeof valueOffset_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The CONFIG EXCHANGE — how to GET and SET the device's named settings by index, plus the parameter list. Control-plane counterpart to the streamed diag read (usbhid_link + usbhid_fields): config issues a per-parameter request — index_offset/length_offset bytes select the parameter, value at value_offset (GET response and SET request). Rides the SAME endpoints/transfer/timeout as the diag link; only the command framing differs. `response_magic` composes the shared magic_byte slot (M4-ATX: byte 0 == 0x31, validated on GET and SET). Mirrors m4GetConfig/m4SetBinary (m4api.c).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "usbhid_config"
@@ -43,4 +46,4 @@ const _data: DataT = {
 		"valueOffset": valueOffset_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

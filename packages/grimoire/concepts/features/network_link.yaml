@@ -1,10 +1,7 @@
-# NETWORK LINK — the datasheet/runtime state of ONE node NIC: its hardware address (mac_address),
-# the frame-size ceiling (mtu), and the negotiated link (duplex + link_speed), plus interface_type
-# as the wired/wireless discriminator. The physical/electrical layer is a separate axis
-# (property/physical_layer/); this feature is the node-facing interface, not the wire under it.
-# Homed on the `network_interfaces` archetype (that class is a LIST per node — its `is_array`); this
-# feature is the per-interface link block and carries no cardinality of its own.
 title: { en: Network link }
+body:
+  en: >
+    NETWORK LINK — the datasheet/runtime state of ONE node NIC: its hardware address (mac_address), the frame-size ceiling (mtu), and the negotiated link (duplex + link_speed), plus interface_type as the wired/wireless discriminator. The physical/electrical layer is a separate axis (property/physical_layer/); this feature is the node-facing interface, not the wire under it. Homed on the `network_interfaces` archetype (that class is a LIST per node — its `is_array`); this feature is the per-interface link block and carries no cardinality of its own.
 enums:
   # ethernet_csmacd vs ieee80211 (WiFi) — the wired/wireless discriminator, standards-backed by
   # IANA ifType rather than a bare boolean, so LTE/etc. extend without a schema change.

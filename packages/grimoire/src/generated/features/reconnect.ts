@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "connectTimeoutMs": Type.Optional(c
 
 export type Reconnect = { "connectTimeoutMs"?: connectTimeoutMs_.ConnectTimeoutMs; "reconnectPeriodMs"?: reconnectPeriodMs_.ReconnectPeriodMs };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "reconnect" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_ } };
+type DataT = { readonly "body": { readonly "en": "A DIAL POLICY — how a dial-side connection behaves when connecting OUT: `connect_timeout_ms` (how long one attempt waits before giving up) + `reconnect_period_ms` (delay before a dropped link is retried). Behavior, NOT address (socket_address is WHERE; this is how-to-connect). Dial-only — a listener never dials or reconnects — so it rides the connect-out side, composed by `endpoint`, never a listen side.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "reconnect" }; readonly "prop": { readonly "connectTimeoutMs": typeof connectTimeoutMs_; readonly "reconnectPeriodMs": typeof reconnectPeriodMs_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A DIAL POLICY — how a dial-side connection behaves when connecting OUT: `connect_timeout_ms` (how long one attempt waits before giving up) + `reconnect_period_ms` (delay before a dropped link is retried). Behavior, NOT address (socket_address is WHERE; this is how-to-connect). Dial-only — a listener never dials or reconnects — so it rides the connect-out side, composed by `endpoint`, never a listen side.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "reconnect"
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"reconnectPeriodMs": reconnectPeriodMs_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

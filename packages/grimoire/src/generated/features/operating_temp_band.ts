@@ -15,9 +15,10 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type OperatingTempBand = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "prop": (typeof tempBand_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "operating_temp_band" }; readonly "title": { readonly "en": "Operating temperature band"; readonly "pt": "Faixa de temperatura operacional" } };
+type DataT = { readonly "body": (typeof tempBand_)["body"]; readonly "prop": (typeof tempBand_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "operating_temp_band" }; readonly "title": { readonly "en": "Operating temperature band"; readonly "pt": "Faixa de temperatura operacional" } };
 
 const _data: DataT = {
+	"body": tempBand_["body"],
 	"prop": tempBand_["prop"],
 	"identity": {
 		"archetypeId": "feature",
@@ -28,4 +29,4 @@ const _data: DataT = {
 		"pt": "Faixa de temperatura operacional"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

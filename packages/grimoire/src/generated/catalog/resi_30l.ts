@@ -4,6 +4,9 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 export default {
+	"body": {
+		"en": "Generic ~30 L/day residential dehumidifier — a nominal class stand-in (no real make/model). A deployment references it for the rough capacity class, then supplies the unit's fitted Fan/Compressor draw bands and hygrostat config as SITE data (ha-config). Fill compressor / refrigeration / humidity_control only when modeling a real unit — never fabricate.\n"
+	},
 	"dehumidification": {
 		"featureSpec": {
 			"combined": {

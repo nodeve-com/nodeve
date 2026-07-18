@@ -1,24 +1,17 @@
+body:
+  en: >
+    The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers, USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind; a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming gateway applies); the `combined` aggregate is linked with both ABSENT.
 concept_settings:
-  # The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place
-  # feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers,
-  # USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected
-  # feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet
-  # attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link
-  # downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind;
-  # a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key
-  # feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming
-  # gateway applies); the `combined` aggregate is linked with both ABSENT.
   compose:
     - instance_key
 enums:
   - quantity_kind # LINKED value: which BASE KIND this reads (pure — active_energy, active_power, …)
 prop:
   feature_id: {}
-  interval_id: {} # OPTIONAL channel selector — the third coordinate of the interval_item pointer:
-    # (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval},
-    # so a register names WHICH measurable channel of that kind it reads by that channel's interval slug
-    # (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's
-    # flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.
+  interval_id:
+    description:
+      en: >
+        OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.
   raw_name: {}
 # NB a LINKED register fills feature_id + quantity_kind; `interval_id` narrows it to one measurable
 # channel of that kind when several coexist — ONE FK mechanism, shared with interval_item conditions. No

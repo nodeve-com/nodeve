@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Specification = { "identity"?: identity_.Identity; "measurand"?: measurand_.Measurand; "intervals"?: intervals_.Intervals };
 
-type DataT = { readonly "description": { readonly "en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "specification" }; readonly "prop": { readonly "identity": typeof identity_; readonly "intervals": typeof intervals_; readonly "measurand": typeof measurand_ }; readonly "title": { readonly "en": "Specification" } };
+type DataT = { readonly "body": { readonly "en": "A SPECIFICATION — the value a quantity_kind field carries once its feature is marked `concept_settings: { is_specification: true }`. The shape that used to be assembled inline in the compiler (kit/shape-finish.ts), now an authored archetype so it validates like any other: • identity — the deterministic on-bus handle; `identity.slug` is stamped per-site by the site bake (PLANS/deterministic-sensor-ids.md), empty in the agnostic catalog. • measurand — the metrology override slots (unit / si_unit / accumulation); the kind's enum member carries the defaults, a device/site overrides here. • intervals — the one list of rated/characterised bands (archetypes/intervals, `array: true`): the thing's own behaviour envelope AND the sensor's readable span, told apart by `rating`.\n" }; readonly "description": { readonly "en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "specification" }; readonly "prop": { readonly "identity": typeof identity_; readonly "intervals": typeof intervals_; readonly "measurand": typeof measurand_ }; readonly "title": { readonly "en": "Specification" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A SPECIFICATION — the value a quantity_kind field carries once its feature is marked `concept_settings: { is_specification: true }`. The shape that used to be assembled inline in the compiler (kit/shape-finish.ts), now an authored archetype so it validates like any other: • identity — the deterministic on-bus handle; `identity.slug` is stamped per-site by the site bake (PLANS/deterministic-sensor-ids.md), empty in the agnostic catalog. • measurand — the metrology override slots (unit / si_unit / accumulation); the kind's enum member carries the defaults, a device/site overrides here. • intervals — the one list of rated/characterised bands (archetypes/intervals, `array: true`): the thing's own behaviour envelope AND the sensor's readable span, told apart by `rating`.\n"
+	},
 	"description": {
 		"en": "The value of a quantity_kind field on an `is_specification` feature — its on-bus identity, measurand metrology, and the `intervals` list of rated/characterised bands."
 	},
@@ -34,4 +37,4 @@ const _data: DataT = {
 		"en": "Specification"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

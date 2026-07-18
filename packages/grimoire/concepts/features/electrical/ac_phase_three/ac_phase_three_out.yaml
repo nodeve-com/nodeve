@@ -10,10 +10,9 @@ concept_settings:
 title:
   en: AC 3-Phase Output
   pt: Saída CA trifásica
-# The inverter's OWN grid-tie AC OUTPUT port — the point where the converter injects to the grid
-# (foxess grid_voltage / inv_current / inv_power R/S/T, reactive + apparent). Distinct from
-# ac_phase_three_grid, which is now the GRID CT / meter (net feed-in vs consumption at the utility
-# connection). This is the converter output; CIM PowerElectronicsConnection / IEC 61850 ZINV.
+body:
+  en: >
+    The inverter's OWN grid-tie AC OUTPUT port — the point where the converter injects to the grid (foxess grid_voltage / inv_current / inv_power R/S/T, reactive + apparent). Distinct from ac_phase_three_grid, which is now the GRID CT / meter (net feed-in vs consumption at the utility connection). This is the converter output; CIM PowerElectronicsConnection / IEC 61850 ZINV.
 refs:
   - registry_id: sosa
     term: FeatureOfInterest

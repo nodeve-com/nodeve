@@ -1,0 +1,6 @@
+title:
+  en: Body
+description:
+  en: Durable prose/rationale for a concept — the spec doc that survives every projection, distinct from the one-line display description. Author what a comment block would have carried.
+concept_settings:
+  compose: i18n

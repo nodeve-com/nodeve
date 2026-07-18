@@ -8,6 +8,7 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as addressing_ from '../features/addressing.ts';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as emit_ from '../features/emit.ts';
 import * as endpoint_ from '../features/endpoint.ts';
@@ -18,13 +19,16 @@ import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "ingest": Type.Optional(ingest_.schema), "emit": Type.Optional(emit_.schema), "addressing": Type.Optional(addressing_.schema), "endpoint": Type.Optional(endpoint_.schema), "modbusTapWindow": Type.Optional(modbusTapWindow_.schema) }, {"additionalProperties":false,"allOf":[{"if":{"required":["ingest"],"properties":{"ingest":{"properties":{"ingestKind":{"const":"modbus_tap"}},"required":["ingestKind"],"x-key-map":{"ingest_kind":"ingestKind"}}}},"then":{"required":["modbusTapWindow"]},"else":{"properties":{"modbusTapWindow":false},"x-key-map":{"modbus_tap_window":"modbusTapWindow"}}}],"x-key-map":{"modbus_tap_window":"modbusTapWindow"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "ingest": Type.Optional(ingest_.schema), "emit": Type.Optional(emit_.schema), "addressing": Type.Optional(addressing_.schema), "endpoint": Type.Optional(endpoint_.schema), "modbusTapWindow": Type.Optional(modbusTapWindow_.schema) }, {"additionalProperties":false,"allOf":[{"if":{"required":["ingest"],"properties":{"ingest":{"properties":{"ingestKind":{"const":"modbus_tap"}},"required":["ingestKind"],"x-key-map":{"ingest_kind":"ingestKind"}}}},"then":{"required":["modbusTapWindow"]},"else":{"properties":{"modbusTapWindow":false},"x-key-map":{"modbus_tap_window":"modbusTapWindow"}}}],"x-key-map":{"modbus_tap_window":"modbusTapWindow"}});
 
-export type SiteAdapter = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ingest"?: ingest_.Ingest; "emit"?: emit_.Emit; "addressing"?: addressing_.Addressing; "endpoint"?: endpoint_.Endpoint; "modbusTapWindow"?: modbusTapWindow_.ModbusTapWindow };
+export type SiteAdapter = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "ingest"?: ingest_.Ingest; "emit"?: emit_.Emit; "addressing"?: addressing_.Addressing; "endpoint"?: endpoint_.Endpoint; "modbusTapWindow"?: modbusTapWindow_.ModbusTapWindow };
 
-type DataT = { readonly "description": { readonly "en": "One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes."; readonly "pt": "Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "site_adapter" }; readonly "prop": { readonly "addressing": typeof addressing_; readonly "description": typeof description_; readonly "emit": typeof emit_; readonly "endpoint": typeof endpoint_; readonly "identity": typeof identity_; readonly "ingest": typeof ingest_; readonly "modbusTapWindow": typeof modbusTapWindow_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Site adapter"; readonly "pt": "Adaptador do local" } };
+type DataT = { readonly "body": { readonly "en": "One SITE ADAPTER — a physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board): identity, host, ingest kind, and the tap windows it republishes. Its topic root DERIVES as <pathname>/<slug> (never authored — root and identity can't drift); every published path nests the ingest-kind segment under it.\n\nTap-window invariant: the tap-window block travels with — and ONLY with — a modbus_tap ingest. `ingest_kind` names the mode (modbus_tap = passive tap, modbus_tcp = polling master), so the modbus_tap VALUE is the discriminator: windows present iff ingest_kind is modbus_tap. A cross-field invariant, but a structural one — draft-07 if/then/else on the resolved shape, merged by kit/project.ts (same passthrough as endpoint.yaml's transport rules), so every consumer inherits it from the emitted schema. No bake-time special-casing.\n" }; readonly "description": { readonly "en": "One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes."; readonly "pt": "Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "site_adapter" }; readonly "prop": { readonly "addressing": typeof addressing_; readonly "body": typeof body_; readonly "description": typeof description_; readonly "emit": typeof emit_; readonly "endpoint": typeof endpoint_; readonly "identity": typeof identity_; readonly "ingest": typeof ingest_; readonly "modbusTapWindow": typeof modbusTapWindow_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Site adapter"; readonly "pt": "Adaptador do local" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "One SITE ADAPTER — a physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board): identity, host, ingest kind, and the tap windows it republishes. Its topic root DERIVES as <pathname>/<slug> (never authored — root and identity can't drift); every published path nests the ingest-kind segment under it.\n\nTap-window invariant: the tap-window block travels with — and ONLY with — a modbus_tap ingest. `ingest_kind` names the mode (modbus_tap = passive tap, modbus_tcp = polling master), so the modbus_tap VALUE is the discriminator: windows present iff ingest_kind is modbus_tap. A cross-field invariant, but a structural one — draft-07 if/then/else on the resolved shape, merged by kit/project.ts (same passthrough as endpoint.yaml's transport rules), so every consumer inherits it from the emitted schema. No bake-time special-casing.\n"
+	},
 	"description": {
 		"en": "One physical decoder peer of the bus topology (a gateway-daemon link, a passive-tap board) — identity, host, ingest kind, and the tap windows it republishes.",
 		"pt": "Um descodificador físico da topologia do barramento — identidade, host, tipo de ingestão e as janelas que republica."
@@ -35,6 +39,7 @@ const _data: DataT = {
 	},
 	"prop": {
 		"addressing": addressing_,
+		"body": body_,
 		"description": description_,
 		"emit": emit_,
 		"endpoint": endpoint_,
@@ -49,4 +54,4 @@ const _data: DataT = {
 		"pt": "Adaptador do local"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

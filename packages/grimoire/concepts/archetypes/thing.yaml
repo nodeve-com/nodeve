@@ -7,6 +7,7 @@ description:
 feature:
   title: {}
   description: {}
+  body: {}
   identity: {}
   # The standards crosswalk travels WITH the def (package README): any thing may carry refs rows.
   refs: {}

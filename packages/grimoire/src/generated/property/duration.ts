@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Duration = number;
 
-type DataT = { readonly "description": { readonly "en": "How long the quantity may sit inside this band, seconds — absent means the band is unbounded in time (a continuous rating)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "duration" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "OperationalLimitType.acceptableDuration" }]; readonly "title": { readonly "en": "Duration"; readonly "pt": "Duração" } };
+type DataT = { readonly "body": { readonly "en": "The interval's DURATION axis — how long the quantity may sit inside the band, SECONDS (float, the SI base for time; house `_ms` timing fields are elsewhere, but a rated duration is canonical seconds). Absent = unbounded: a continuous rating. A time-bounded band (rating: short_term / intermittent) carries a duration bound — no free-form classifier slug; the rating tier names the tier, this field times it. Borrowed from CIM OperationalLimitType.acceptableDuration (seconds there too); IEC 60034-1 duty analog is S2 short-time vs S1 continuous.\n" }; readonly "description": { readonly "en": "How long the quantity may sit inside this band, seconds — absent means the band is unbounded in time (a continuous rating)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "duration" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "OperationalLimitType.acceptableDuration" }]; readonly "title": { readonly "en": "Duration"; readonly "pt": "Duração" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The interval's DURATION axis — how long the quantity may sit inside the band, SECONDS (float, the SI base for time; house `_ms` timing fields are elsewhere, but a rated duration is canonical seconds). Absent = unbounded: a continuous rating. A time-bounded band (rating: short_term / intermittent) carries a duration bound — no free-form classifier slug; the rating tier names the tier, this field times it. Borrowed from CIM OperationalLimitType.acceptableDuration (seconds there too); IEC 60034-1 duty analog is S2 short-time vs S1 continuous.\n"
+	},
 	"description": {
 		"en": "How long the quantity may sit inside this band, seconds — absent means the band is unbounded in time (a continuous rating)."
 	},
@@ -34,4 +37,4 @@ const _data: DataT = {
 		"pt": "Duração"
 	}
 };
-export const { description, identity, refs, title } = _data;
+export const { body, description, identity, refs, title } = _data;

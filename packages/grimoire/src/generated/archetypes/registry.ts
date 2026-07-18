@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
@@ -14,13 +15,16 @@ import * as registryPublication_ from '../features/registry_publication.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "registryPublication": Type.Optional(registryPublication_.schema) }, {"additionalProperties":false,"x-key-map":{"registry_publication":"registryPublication"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "registryPublication": Type.Optional(registryPublication_.schema) }, {"additionalProperties":false,"x-key-map":{"registry_publication":"registryPublication"}});
 
-export type Registry = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "registryPublication"?: registryPublication_.RegistryPublication };
+export type Registry = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "registryPublication"?: registryPublication_.RegistryPublication };
 
-type DataT = { readonly "description": { readonly "en": "An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher."; readonly "pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "registry" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "registryPublication": typeof registryPublication_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
+type DataT = { readonly "body": { readonly "en": "An external Class: a named vocabulary whose rows live ELSEWHERE — the external analog of an archetype (docs/reference-model.md). A crosswalk ref points at (registry, term): `registry_id` is an FK to one of these entries, `term` an id within it. Each registry carries its resolver + publisher via the `registry_publication` feature (iri_template | base_url + published_by → organization); grained to the IRI NAMESPACE (QUDT quantity-kinds vs units are separate registries — their iri_template differs). Entries are INSTANCES under catalog/registries/ (were enumeration/registry/ before stage 2).\n" }; readonly "description": { readonly "en": "An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher."; readonly "pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "registry" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "registryPublication": typeof registryPublication_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "An external Class: a named vocabulary whose rows live ELSEWHERE — the external analog of an archetype (docs/reference-model.md). A crosswalk ref points at (registry, term): `registry_id` is an FK to one of these entries, `term` an id within it. Each registry carries its resolver + publisher via the `registry_publication` feature (iri_template | base_url + published_by → organization); grained to the IRI NAMESPACE (QUDT quantity-kinds vs units are separate registries — their iri_template differs). Entries are INSTANCES under catalog/registries/ (were enumeration/registry/ before stage 2).\n"
+	},
 	"description": {
 		"en": "An external vocabulary a crosswalk points into — its resolver (iri_template | base_url) and publisher.",
 		"pt": "Um vocabulário externo para o qual um crosswalk aponta — o seu resolvedor (iri_template | base_url) e editor."
@@ -30,6 +34,7 @@ const _data: DataT = {
 		"slug": "registry"
 	},
 	"prop": {
+		"body": body_,
 		"description": description_,
 		"identity": identity_,
 		"refs": refs_,
@@ -41,4 +46,4 @@ const _data: DataT = {
 		"pt": "Registro"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

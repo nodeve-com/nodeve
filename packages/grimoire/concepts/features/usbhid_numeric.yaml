@@ -1,7 +1,6 @@
-# The USB-HID numeric EXTRAS — the two decode fields a diag byte-field (usbhid_fields) and a config
-# parameter (usbhid_params) share beyond the common numeric_decode core, needed by byte-addressed
-# media but not modbus/VE.Direct: `byte_order` for multi-byte types, and per-firmware-profile
-# `scale_overrides` (keyed by the profile a link firmware rule selects).
+body:
+  en: >
+    The USB-HID numeric EXTRAS — the two decode fields a diag byte-field (usbhid_fields) and a config parameter (usbhid_params) share beyond the common numeric_decode core, needed by byte-addressed media but not modbus/VE.Direct: `byte_order` for multi-byte types, and per-firmware-profile `scale_overrides` (keyed by the profile a link firmware rule selects).
 prop:
   byte_order: {}
   scale_overrides: {}

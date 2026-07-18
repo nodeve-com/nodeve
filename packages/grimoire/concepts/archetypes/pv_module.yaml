@@ -1,17 +1,3 @@
-# A PV panel datasheet. Identity + the panel's DC terminals as a SINGLE feature (`dc`, count-less
-# aggregate: one panel's output) whose spec-map carries the nameplate ratings AS INTERVALS, plus
-# optional temperature coefficients. I-V-curve characteristic points are named `zone` bands on the
-# relevant quantity: mpp + open_circuit on voltage, mpp/short_circuit on current, mpp on
-# active_power (add those enumeration/zone members when a panel entry authors them — a blurry
-# rating-vs-zone call deferred to first use). STC (25 °C, 1000 W/m²) is the implicit nameplate reference — kept out of the bands;
-# spell it out only for a non-STC interval, via a `condition: [{ test_condition: <slug> }]` gate
-# naming an `enumeration/test_condition` member. A BIFACIAL module states rear-gain bands at BNPI
-# (rear 135 W/m²) and BSI (rear 300 W/m²) that way — the measured value stays in the band, the
-# reference environment lives in the named test_condition; a value identical across conditions is
-# stated ONCE (at STC), never re-gated. Max series fuse is a `rating: protection_required` current
-# band. Passive hardware: no connectivity — a panel is not talked to. Install facts (series count,
-# orientation, fitted voltages) are site data (solar_array), never here.
-
 concept_settings:
   compose: [thing]
 
@@ -20,6 +6,9 @@ title:
   pt: Módulo fotovoltaico
 description:
   en: A PV module datasheet (per-panel STC ratings + temperature coefficients).
+body:
+  en: >
+    A PV panel datasheet. Identity + the panel's DC terminals as a SINGLE feature (`dc`, count-less aggregate: one panel's output) whose spec-map carries the nameplate ratings AS INTERVALS, plus optional temperature coefficients. I-V-curve characteristic points are named `zone` bands on the relevant quantity: mpp + open_circuit on voltage, mpp/short_circuit on current, mpp on active_power (add those enumeration/zone members when a panel entry authors them — a blurry rating-vs-zone call deferred to first use). STC (25 °C, 1000 W/m²) is the implicit nameplate reference — kept out of the bands; spell it out only for a non-STC interval, via a `condition: [{ test_condition: <slug> }]` gate naming an `enumeration/test_condition` member. A BIFACIAL module states rear-gain bands at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) that way — the measured value stays in the band, the reference environment lives in the named test_condition; a value identical across conditions is stated ONCE (at STC), never re-gated. Max series fuse is a `rating: protection_required` current band. Passive hardware: no connectivity — a panel is not talked to. Install facts (series count, orientation, fitted voltages) are site data (solar_array), never here.
 
 feature:
   product: {}

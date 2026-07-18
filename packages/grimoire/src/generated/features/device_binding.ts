@@ -21,9 +21,12 @@ export const schema: TSchema = Type.Object({ "topicPrefix": Type.Optional(topicP
 
 export type DeviceBinding = { "topicPrefix"?: topicPrefix_.TopicPrefix; "updateIntervalMs"?: updateIntervalMs_.UpdateIntervalMs; "publish"?: publish_.Publish; "format"?: format_.Format; "slug"?: slug_.Slug; "link"?: link_.Link; "catalogRef"?: catalogRef_.CatalogRef; "unitId"?: unitId_.UnitId };
 
-type DataT = { readonly "description": { readonly "en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "device_binding" }; readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ }; readonly "title": { readonly "en": "Device binding" } };
+type DataT = { readonly "body": { readonly "en": "A DEVICE BINDING — one logical endpoint a gateway serves (a gateway_config's `devices` list): WHICH catalog entry (`catalog_ref`), reached over WHICH declared ingest link (`link`, by slug), plus the per-instance overrides of the catalog entry's emit defaults (the SAME emit contract the catalog states — composed, never re-listed) and the modbus `unit_id`. Mirrors the consuming gateway's DeviceSpec. Cross-field rules the schema can't express — `link` must name a declared ingest link; a binding may instead carry an inline transport, exactly one of the two — are the consumer's referential checks.\n" }; readonly "description": { readonly "en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "device_binding" }; readonly "prop": { readonly "catalogRef": typeof catalogRef_; readonly "format": typeof format_; readonly "link": typeof link_; readonly "publish": typeof publish_; readonly "slug": typeof slug_; readonly "topicPrefix": typeof topicPrefix_; readonly "unitId": typeof unitId_; readonly "updateIntervalMs": typeof updateIntervalMs_ }; readonly "title": { readonly "en": "Device binding" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A DEVICE BINDING — one logical endpoint a gateway serves (a gateway_config's `devices` list): WHICH catalog entry (`catalog_ref`), reached over WHICH declared ingest link (`link`, by slug), plus the per-instance overrides of the catalog entry's emit defaults (the SAME emit contract the catalog states — composed, never re-listed) and the modbus `unit_id`. Mirrors the consuming gateway's DeviceSpec. Cross-field rules the schema can't express — `link` must name a declared ingest link; a binding may instead carry an inline transport, exactly one of the two — are the consumer's referential checks.\n"
+	},
 	"description": {
 		"en": "One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides."
 	},
@@ -45,4 +48,4 @@ const _data: DataT = {
 		"en": "Device binding"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

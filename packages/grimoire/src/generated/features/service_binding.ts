@@ -16,9 +16,12 @@ export const schema: TSchema = Type.Object({ "serviceProtocol": Type.Optional(Ty
 
 export type ServiceBinding = { "serviceProtocol"?: "http" | "https" | "modbus_tcp" | "mqtt" | "mqtts" | "ws" | "wss"; "networkInterfaceId"?: networkInterfaceId_.NetworkInterfaceId; "ipAddressId"?: ipAddressId_.IpAddressId; "port"?: port_.Port; "bind"?: bind_.Bind };
 
-type DataT = { readonly "description": { readonly "en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "service_binding" }; readonly "prop": { readonly "bind": typeof bind_; readonly "ipAddressId": typeof ipAddressId_; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "port": typeof port_ }; readonly "title": { readonly "en": "Service binding" } };
+type DataT = { readonly "body": { readonly "en": "SERVICE BINDING — the LOCAL listen socket of a service: which of this node's interfaces/addresses the listener binds to, and on which `port`. The address is named by REFERENCE into the node's own network topology, never restated: `ip_address_id` pins one L3 address (an `ip_addresses` instance — the specific binding, its `ip_address` already owned there) or `network_interface_id` pins a NIC (all its addresses); `bind` is the literal fallback (0.0.0.0 / 127.0.0.1) when no instance is pinned. Mirror of `endpoint` (the dial/reach side) — this is the serve side, so no dial policy; `service_protocol` names WHAT it speaks (the FULL vocab, including modbus_tcp — endpoint filters to the URI-scheme subset). At most one of the two references: an address already implies its interface.\n" }; readonly "description": { readonly "en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "service_binding" }; readonly "prop": { readonly "bind": typeof bind_; readonly "ipAddressId": typeof ipAddressId_; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "port": typeof port_ }; readonly "title": { readonly "en": "Service binding" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "SERVICE BINDING — the LOCAL listen socket of a service: which of this node's interfaces/addresses the listener binds to, and on which `port`. The address is named by REFERENCE into the node's own network topology, never restated: `ip_address_id` pins one L3 address (an `ip_addresses` instance — the specific binding, its `ip_address` already owned there) or `network_interface_id` pins a NIC (all its addresses); `bind` is the literal fallback (0.0.0.0 / 127.0.0.1) when no instance is pinned. Mirror of `endpoint` (the dial/reach side) — this is the serve side, so no dial policy; `service_protocol` names WHAT it speaks (the FULL vocab, including modbus_tcp — endpoint filters to the URI-scheme subset). At most one of the two references: an address already implies its interface.\n"
+	},
 	"description": {
 		"en": "The local listen socket of a service — the protocol it speaks (service_protocol) and which of the node's interfaces/addresses it binds to (by reference into the node's own network_interfaces/ip_addresses), on which port. The serve-side mirror of endpoint."
 	},
@@ -36,4 +39,4 @@ const _data: DataT = {
 		"en": "Service binding"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

@@ -1,22 +1,13 @@
-# CONNECTIVITY MEDIUM, not a device: a composition assigning atoms to named slots. `emit` (the
-# MQTT output) is SHARED with every decoder→MQTT medium; the transport is the USB-specific atom
-# (USB-only — unlike the serial/tcp transport map the modbus medium uses, since nothing else rides
-# USB); the rest is USB-HID framing. Mirrors the modbus medium: where modbus has link (addressing)
-# + registers (the map), usbhid has link (the HID exchange) + fields (the byte map). Carries
-# everything a gateway in ANY language needs: which USB device to open (transport), how to poll it
-# (link), how to decode the frame (fields). Ships a standalone schema.json; no catalog instances
-# of its own. Keyed by its `usbhid` slot on the device archetype — that slot key IS the
-# discriminator (no in-band field repeats it).
-#
-# OSI: USB-HID is NOT an application protocol — it is a USB DEVICE-CLASS / transport framework
-# (L5-7), strictly tied to the USB transport (captured by usb_wire). The `refs` crosswalk records
-# the USB-IF HID class identity. FUTURE (layer-honest model, docs/communication_protocol_standards.md):
-# an interface_type=usb axis could be pinned; today the usb_wire branch already implies it.
-
 title:
   en: USB-HID medium
 description:
   en: A USB-HID connectivity medium — a USB device-class/transport framework, not an application protocol (transport + emit + HID exchange + byte-field map).
+body:
+  en: >
+    CONNECTIVITY MEDIUM, not a device: a composition assigning atoms to named slots. `emit` (the MQTT output) is SHARED with every decoder→MQTT medium; the transport is the USB-specific atom (USB-only — unlike the serial/tcp transport map the modbus medium uses, since nothing else rides USB); the rest is USB-HID framing. Mirrors the modbus medium: where modbus has link (addressing) + registers (the map), usbhid has link (the HID exchange) + fields (the byte map). Carries everything a gateway in ANY language needs: which USB device to open (transport), how to poll it (link), how to decode the frame (fields). Ships a standalone schema.json; no catalog instances of its own. Keyed by its `usbhid` slot on the device archetype — that slot key IS the discriminator (no in-band field repeats it).
+    
+    
+    OSI: USB-HID is NOT an application protocol — it is a USB DEVICE-CLASS / transport framework (L5-7), strictly tied to the USB transport (captured by usb_wire). The `refs` crosswalk records the USB-IF HID class identity. FUTURE (layer-honest model, docs/communication_protocol_standards.md): an interface_type=usb axis could be pinned; today the usb_wire branch already implies it.
 
 # Standards identity (moved off the deleted application_protocol enum; keep the crosswalk with the def).
 refs:

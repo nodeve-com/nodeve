@@ -16,9 +16,12 @@ export const schema: TSchema = Type.Object({ "topicPrefix": Type.Optional(topicP
 
 export type Emit = { "topicPrefix"?: topicPrefix_.TopicPrefix; "updateIntervalMs"?: updateIntervalMs_.UpdateIntervalMs; "publish"?: publish_.Publish; "format"?: format_.Format };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "emit" }; readonly "prop": { readonly "format": typeof format_; readonly "publish": typeof publish_; readonly "topicPrefix": typeof topicPrefix_; readonly "updateIntervalMs": typeof updateIntervalMs_ } };
+type DataT = { readonly "body": { readonly "en": "The emit contract — where a value is published, how often a fresh point is expected, and when to publish. Medium-neutral: every decoder->MQTT medium (modbus, ve.direct, NMEA 0183) publishes under a topic root at some cadence, so this is owned by no single medium and composed by each. update_interval_ms is required in the catalog contract, optional where a downstream consumer (site adapter) overrides the default.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "emit" }; readonly "prop": { readonly "format": typeof format_; readonly "publish": typeof publish_; readonly "topicPrefix": typeof topicPrefix_; readonly "updateIntervalMs": typeof updateIntervalMs_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The emit contract — where a value is published, how often a fresh point is expected, and when to publish. Medium-neutral: every decoder->MQTT medium (modbus, ve.direct, NMEA 0183) publishes under a topic root at some cadence, so this is owned by no single medium and composed by each. update_interval_ms is required in the catalog contract, optional where a downstream consumer (site adapter) overrides the default.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "emit"
@@ -30,4 +33,4 @@ const _data: DataT = {
 		"updateIntervalMs": updateIntervalMs_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

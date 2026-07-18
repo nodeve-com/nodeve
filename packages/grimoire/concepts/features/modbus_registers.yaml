@@ -1,16 +1,7 @@
-# A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input
-# register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side:
-# modbus_decode). A register no longer carries an authored key/topic — it LINKS to the measurand
-# the projected feature tree offers (measurand_link) and the MQTT sub-topic is DERIVED downstream:
-# the catalog says WHAT a register reads, not where to publish it. LINKED (feature_id +
-# quantity_kind; `unknown` = sensed but unclassified) vs RAW (link omitted, raw_name for
-# traceability) — split NOT structurally enforced (no XOR): migration-tolerant while feature trees
-# fill in. DECISION (item A): the link stays a LOOSE reference — `feature_id` not yet validated
-# against the archetype's projected feature tree (needs the projection; until then a typo parses;
-# deliberate). Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals`
-# rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real
-# resolution). Sealed.
 title: { en: Modbus registers, pt: Registros Modbus }
+body:
+  en: >
+    A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side: modbus_decode). A register no longer carries an authored key/topic — it LINKS to the measurand the projected feature tree offers (measurand_link) and the MQTT sub-topic is DERIVED downstream: the catalog says WHAT a register reads, not where to publish it. LINKED (feature_id + quantity_kind; `unknown` = sensed but unclassified) vs RAW (link omitted, raw_name for traceability) — split NOT structurally enforced (no XOR): migration-tolerant while feature trees fill in. DECISION (item A): the link stays a LOOSE reference — `feature_id` not yet validated against the archetype's projected feature tree (needs the projection; until then a typo parses; deliberate). Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals` rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real resolution). Sealed.
 concept_settings:
   compose: [measurand_link, numeric_decode]
   is_array: true

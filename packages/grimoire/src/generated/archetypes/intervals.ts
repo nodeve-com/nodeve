@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as condition_ from '../features/condition.ts';
 import * as description_ from '../features/description.ts';
 import * as filter_ from '../features/filter.ts';
@@ -16,16 +17,17 @@ import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "interval": Type.Optional(interval_.schema), "condition": Type.Optional(condition_.schema), "filter": Type.Optional(filter_.schema) }, {"additionalProperties":false}));
+export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "interval": Type.Optional(interval_.schema), "condition": Type.Optional(condition_.schema), "filter": Type.Optional(filter_.schema) }, {"additionalProperties":false}));
 
-export type Intervals = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "interval"?: interval_.Interval; "condition"?: condition_.Condition; "filter"?: filter_.Filter }>;
+export type Intervals = Array<{ "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "interval"?: interval_.Interval; "condition"?: condition_.Condition; "filter"?: filter_.Filter }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "filter": typeof filter_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Coisa" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "body": typeof body_; readonly "condition": typeof condition_; readonly "description": typeof description_; readonly "filter": typeof filter_; readonly "identity": typeof identity_; readonly "interval": typeof interval_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "body": { readonly "en": "One identified, rated/characterised interval of a quantity: its bounds (`interval`: rating/zone/valued_range/tolerance/margin/unit) plus the `conditions` that gate when it holds, carried under its own `identity.slug` handle so a condition elsewhere can point at it ({feature, property, interval}). THE item type of a `specification`'s `intervals` list. Bands are device-specific inline data, not a shared catalog — but modelling one as an archetype (not a bare feature) buys each band its identity/title/description, for self-documentation and, above all, the referenceable `slug`. `array: true` — the `intervals` slot is a LIST of these.\n" }; readonly "description": { readonly "en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "intervals" }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
 	"array": {
 		"prop": {
+			"body": body_,
 			"condition": condition_,
 			"description": description_,
 			"filter": filter_,
@@ -34,6 +36,9 @@ const _data: DataT = {
 			"refs": refs_,
 			"title": title_
 		}
+	},
+	"body": {
+		"en": "One identified, rated/characterised interval of a quantity: its bounds (`interval`: rating/zone/valued_range/tolerance/margin/unit) plus the `conditions` that gate when it holds, carried under its own `identity.slug` handle so a condition elsewhere can point at it ({feature, property, interval}). THE item type of a `specification`'s `intervals` list. Bands are device-specific inline data, not a shared catalog — but modelling one as an archetype (not a bare feature) buys each band its identity/title/description, for self-documentation and, above all, the referenceable `slug`. `array: true` — the `intervals` slot is a LIST of these.\n"
 	},
 	"description": {
 		"en": "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list.",
@@ -48,4 +53,4 @@ const _data: DataT = {
 		"pt": "Coisa"
 	}
 };
-export const { array, description, identity, prop, title } = _data;
+export const { array, body, description, identity, prop, title } = _data;

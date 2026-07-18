@@ -22,14 +22,19 @@ export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(
 
 export type VedirectFields = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "key"?: key_.Key }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": typeof intervalId_; readonly "key": typeof key_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "description": { readonly "en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "vedirect_fields" }; readonly "title": { readonly "en": "VE.Direct fields"; readonly "pt": "Campos VE.Direct" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "key": typeof key_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "body": { readonly "en": "A device's VE.Direct field decode map — a LIST of field rows, the VE.Direct analogue of modbus_registers. Each row names a wire `key` and how to map it: the numeric-decode core (type/scale/decimals/unit) + a measurand link (feature_id/quantity_kind/part_id/ordinal) or, when not yet attributable, a `raw_name` (RAW/unlinked, same split as modbus). The derived MQTT topic comes from the link, falling back to the lowercased wire key.\n`key` is the case-sensitive VE.Direct wire LABEL (V, VPV, SER#, AC_OUT_V) — the analogue of a register `address`. A LIST (not a slug-keyed map) so decode is pure per-device data living in ONE place on the product: nothing to deep-merge, so nothing can leak product identity into a shared brand cascade (the old keyed-map failure). `type` value set is VE.Direct's (int/hex/bool/string), left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers, left undecoded.\n" }; readonly "description": { readonly "en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "vedirect_fields" }; readonly "title": { readonly "en": "VE.Direct fields"; readonly "pt": "Campos VE.Direct" } };
 
 const _data: DataT = {
 	"array": {
 		"prop": {
 			"decimals": decimals_,
 			"featureId": featureId_,
-			"intervalId": intervalId_,
+			"intervalId": {
+				...intervalId_,
+				"description": {
+					"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
+				}
+			},
 			"key": key_,
 			"ordinal": ordinal_,
 			"partId": partId_,
@@ -38,6 +43,9 @@ const _data: DataT = {
 			"type": type_,
 			"unit": unit_
 		}
+	},
+	"body": {
+		"en": "A device's VE.Direct field decode map — a LIST of field rows, the VE.Direct analogue of modbus_registers. Each row names a wire `key` and how to map it: the numeric-decode core (type/scale/decimals/unit) + a measurand link (feature_id/quantity_kind/part_id/ordinal) or, when not yet attributable, a `raw_name` (RAW/unlinked, same split as modbus). The derived MQTT topic comes from the link, falling back to the lowercased wire key.\n`key` is the case-sensitive VE.Direct wire LABEL (V, VPV, SER#, AC_OUT_V) — the analogue of a register `address`. A LIST (not a slug-keyed map) so decode is pure per-device data living in ONE place on the product: nothing to deep-merge, so nothing can leak product identity into a shared brand cascade (the old keyed-map failure). `type` value set is VE.Direct's (int/hex/bool/string), left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers, left undecoded.\n"
 	},
 	"description": {
 		"en": "The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers)."
@@ -51,4 +59,4 @@ const _data: DataT = {
 		"pt": "Campos VE.Direct"
 	}
 };
-export const { array, description, identity, title } = _data;
+export const { array, body, description, identity, title } = _data;

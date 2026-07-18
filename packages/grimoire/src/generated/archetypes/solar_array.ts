@@ -20,9 +20,12 @@ export const schema: TSchema = Type.Object({ "location": Type.Optional(location_
 
 export type SolarArray = { "location"?: location_.Location; "pvStrings": Array<{ "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": azimuth_.Azimuth; "tilt": tilt_.Tilt; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem }> };
 
-type DataT = { readonly "description": { readonly "en": "A PV array installation (location, inverter, per-string wiring/orientation)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "solar_array" }; readonly "prop": { readonly "location": typeof location_; readonly "pvStrings": { readonly "array": { readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } }; readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "title": { readonly "en": "PV strings"; readonly "pt": "Strings fotovoltaicas" } } }; readonly "title": { readonly "en": "Solar array"; readonly "pt": "Matriz solar" } };
+type DataT = { readonly "body": { readonly "en": "SITE concept (schema-only; instances live in the deploying repo): how one installation's PV array is laid out — location and the per-string wiring/orientation. Each string references the panel MODEL by catalog key, and adds only the install facts datasheets can't know. Model facts are NOT restated: per-string electrical truth is DERIVED downstream (vmp = panel dc.voltage mpp-band value × series_count, capacity = panel dc.active_power mpp-band value × series_count). `location` is OPTIONAL: a co-located array inherits the site location (restating would violate define-once); supply it only when the array genuinely sits elsewhere. `voc_eff` is the as-deployed open-circuit voltage fitted per string from measured data; omit until fitted — falls back to spec downstream.\n" }; readonly "description": { readonly "en": "A PV array installation (location, inverter, per-string wiring/orientation)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "solar_array" }; readonly "prop": { readonly "location": typeof location_; readonly "pvStrings": { readonly "array": { readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } }; readonly "body": { readonly "en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n" }; readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "title": { readonly "en": "PV strings"; readonly "pt": "Strings fotovoltaicas" } } }; readonly "title": { readonly "en": "Solar array"; readonly "pt": "Matriz solar" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "SITE concept (schema-only; instances live in the deploying repo): how one installation's PV array is laid out — location and the per-string wiring/orientation. Each string references the panel MODEL by catalog key, and adds only the install facts datasheets can't know. Model facts are NOT restated: per-string electrical truth is DERIVED downstream (vmp = panel dc.voltage mpp-band value × series_count, capacity = panel dc.active_power mpp-band value × series_count). `location` is OPTIONAL: a co-located array inherits the site location (restating would violate define-once); supply it only when the array genuinely sits elsewhere. `voc_eff` is the as-deployed open-circuit voltage fitted per string from measured data; omit until fitted — falls back to spec downstream.\n"
+	},
 	"description": {
 		"en": "A PV array installation (location, inverter, per-string wiring/orientation)."
 	},
@@ -44,6 +47,9 @@ const _data: DataT = {
 					"vocEff": vocEff_
 				}
 			},
+			"body": {
+				"en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n"
+			},
 			"description": {
 				"en": "PV String instance of on a site install."
 			},
@@ -58,4 +64,4 @@ const _data: DataT = {
 		"pt": "Matriz solar"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

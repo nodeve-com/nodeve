@@ -1,9 +1,7 @@
-# One crosswalk row: this concept ↔ a term in an external vocabulary, with its SKOS mapping
-# strength. `refs` (features/refs.yaml) is a LIST of these — "coin a term → document its
-# crosswalk" (package README). `registry_id` is an FK (column.references: registry) resolving to a
-# `registry` catalog entry — guard-refs checks it, and validates the `term` against that registry's
-# iri_template shape. Was `registry` enum-membership; flipped to an FK in stage 2 (reference-model).
 title: { en: Crosswalk reference, pt: Referência de crosswalk }
+body:
+  en: >
+    One crosswalk row: this concept ↔ a term in an external vocabulary, with its SKOS mapping strength. `refs` (features/refs.yaml) is a LIST of these — "coin a term → document its crosswalk" (package README). `registry_id` is an FK (column.references: registry) resolving to a `registry` catalog entry — guard-refs checks it, and validates the `term` against that registry's iri_template shape. Was `registry` enum-membership; flipped to an FK in stage 2 (reference-model).
 prop:
   registry_id: { schema: { required: true } }
   term: { schema: { required: true } }

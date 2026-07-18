@@ -9,6 +9,7 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as acPhase_ from '../features/ac_phase.ts';
 import * as appliance_ from './appliance.ts';
+import * as body_ from '../features/body.ts';
 import * as construction_ from '../features/construction.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
@@ -16,13 +17,16 @@ import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "construction": Type.Optional(construction_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "construction": Type.Optional(construction_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
 
-export type WaterHeater = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "construction"?: construction_.Construction };
+export type WaterHeater = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "construction"?: construction_.Construction };
 
-type DataT = { readonly "description": { readonly "en": "An appliance with a resistive heat source (+ its rated AC supply)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "water_heater" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "construction": typeof construction_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Water heater"; readonly "pt": "Aquecedor de água" } };
+type DataT = { readonly "body": { readonly "en": "An appliance with a resistive heat source: appliance base (which owns the full `ac_phase` connection + draw, and — via electrical_quantity — the element `resistance` a consumer needs for P = V²/R) plus `construction` (sheath/element material). Parallel to dehumidifier — the extra feature is what makes the schema distinct from a plain appliance. A heat-pump source is future; the resistive element is the source modeled today.\n" }; readonly "description": { readonly "en": "An appliance with a resistive heat source (+ its rated AC supply)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "water_heater" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "body": typeof body_; readonly "construction": typeof construction_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Water heater"; readonly "pt": "Aquecedor de água" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "An appliance with a resistive heat source: appliance base (which owns the full `ac_phase` connection + draw, and — via electrical_quantity — the element `resistance` a consumer needs for P = V²/R) plus `construction` (sheath/element material). Parallel to dehumidifier — the extra feature is what makes the schema distinct from a plain appliance. A heat-pump source is future; the resistive element is the source modeled today.\n"
+	},
 	"description": {
 		"en": "An appliance with a resistive heat source (+ its rated AC supply).",
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
@@ -33,6 +37,7 @@ const _data: DataT = {
 	},
 	"prop": {
 		"acPhase": acPhase_,
+		"body": body_,
 		"construction": construction_,
 		"description": description_,
 		"identity": identity_,
@@ -45,4 +50,4 @@ const _data: DataT = {
 		"pt": "Aquecedor de água"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

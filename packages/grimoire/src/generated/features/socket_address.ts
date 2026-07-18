@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "transportProtocol": Type.Optional(
 
 export type SocketAddress = { "transportProtocol"?: "tcp" | "udp"; "host"?: host_.Host; "port"?: port_.Port };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "socket_address" }; readonly "prop": { readonly "host": typeof host_; readonly "port": typeof port_ } };
+type DataT = { readonly "body": { readonly "en": "A SOCKET ADDRESS — the (host, port, transport) tuple naming WHERE to reach a node and over which L4 wire: L3 `host` + L4 `port` + the `transport_protocol` ({tcp, udp}). The full sockaddr the dial side hands to the socket; the URL authority. `transport_protocol` is OPTIONAL — a raw socket spells it (a bare TCP/UDP link has no scheme to imply it from), a URL endpoint derives it from its scheme (all URI-scheme `service_protocol` members are TCP-family, so `endpoint` pins it to tcp — see there). Pure addressing — WHERE + which wire, not how-to-connect (retry/timeout is dial policy, `reconnect`).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "socket_address" }; readonly "prop": { readonly "host": typeof host_; readonly "port": typeof port_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A SOCKET ADDRESS — the (host, port, transport) tuple naming WHERE to reach a node and over which L4 wire: L3 `host` + L4 `port` + the `transport_protocol` ({tcp, udp}). The full sockaddr the dial side hands to the socket; the URL authority. `transport_protocol` is OPTIONAL — a raw socket spells it (a bare TCP/UDP link has no scheme to imply it from), a URL endpoint derives it from its scheme (all URI-scheme `service_protocol` members are TCP-family, so `endpoint` pins it to tcp — see there). Pure addressing — WHERE + which wire, not how-to-connect (retry/timeout is dial policy, `reconnect`).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "socket_address"
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"port": port_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

@@ -10,6 +10,7 @@ import { type TSchema, Type } from '@sinclair/typebox';
 import * as acPhase_ from '../features/ac_phase.ts';
 import * as acPhaseThreePoint_ from '../features/ac_phase_three_point.ts';
 import * as appliance_ from './appliance.ts';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as modbus_ from './modbus.ts';
@@ -17,11 +18,11 @@ import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "acPhaseThreePoint": Type.Optional(acPhaseThreePoint_.schema), "modbus": Type.Optional(modbus_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","ac_phase_three_point":"acPhaseThreePoint"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "acPhaseThreePoint": Type.Optional(acPhaseThreePoint_.schema), "modbus": Type.Optional(modbus_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","ac_phase_three_point":"acPhaseThreePoint"}});
 
-export type AcPhaseThreeMeter = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "acPhaseThreePoint"?: acPhaseThreePoint_.AcPhaseThreePoint; "modbus"?: modbus_.Modbus };
+export type AcPhaseThreeMeter = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "acPhaseThreePoint"?: acPhaseThreePoint_.AcPhaseThreePoint; "modbus"?: modbus_.Modbus };
 
-type DataT = { readonly "description": { readonly "en": "A three-phase energy/quantity meter (identity + connectivity + whole/per-phase/per-line quantities)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ac_phase_three_meter" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "acPhaseThreePoint": typeof acPhaseThreePoint_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "modbus": typeof modbus_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "Sensor" }, { readonly "match": "close"; readonly "registryId": "brick"; readonly "term": "Electrical_Meter" }, { readonly "match": "close"; readonly "registryId": "sunspec"; readonly "term": "203" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "Meter" }]; readonly "title": { readonly "en": "Three-phase Meter"; readonly "pt": "Medidor trifásico" } };
+type DataT = { readonly "description": { readonly "en": "A three-phase energy/quantity meter (identity + connectivity + whole/per-phase/per-line quantities)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ac_phase_three_meter" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "acPhaseThreePoint": typeof acPhaseThreePoint_; readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "modbus": typeof modbus_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "Sensor" }, { readonly "match": "close"; readonly "registryId": "brick"; readonly "term": "Electrical_Meter" }, { readonly "match": "close"; readonly "registryId": "sunspec"; readonly "term": "203" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "Meter" }]; readonly "title": { readonly "en": "Three-phase Meter"; readonly "pt": "Medidor trifásico" } };
 
 const _data: DataT = {
 	"description": {
@@ -35,6 +36,7 @@ const _data: DataT = {
 	"prop": {
 		"acPhase": acPhase_,
 		"acPhaseThreePoint": acPhaseThreePoint_,
+		"body": body_,
 		"description": description_,
 		"identity": identity_,
 		"modbus": modbus_,

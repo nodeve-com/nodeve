@@ -4,6 +4,9 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 export default {
+	"body": {
+		"en": "No iri_template: JEDEC publishes standards as documents behind a (free, registration-gated) catalog, not per-standard resolvable IRIs (like tia / iso_80000, a bare token). `term` is the standard designation. The JESD8 lineage steps down by supply voltage: base \"JESD8\" is the original nominal 5 V TTL-compatible interface (V_IH 2.0 V / V_IL 0.8 V); \"JESD8-A\"/\"JESD8-B\"/\"JESD8C.01\" are the 3.0 V/3.3 V LVTTL/LVCMOS descendants.\n"
+	},
 	"identity": {
 		"archetypeId": "registry",
 		"code": "NZDG0ZPE",

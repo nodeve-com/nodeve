@@ -1,16 +1,12 @@
-# One identified, rated/characterised interval of a quantity: its bounds (`interval`:
-# rating/zone/valued_range/tolerance/margin/unit) plus the `conditions` that gate when it holds,
-# carried under its own `identity.slug` handle so a condition elsewhere can point at it
-# ({feature, property, interval}). THE item type of a `specification`'s `intervals` list. Bands are
-# device-specific inline data, not a shared catalog — but modelling one as an archetype (not a bare
-# feature) buys each band its identity/title/description, for self-documentation and, above all, the
-# referenceable `slug`. `array: true` — the `intervals` slot is a LIST of these.
 concept_settings:
   compose: [thing] # identity (the slug handle) + title + description + refs
   is_array: true
 title: { en: Intervals }
 description:
   en: "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."
+body:
+  en: >
+    One identified, rated/characterised interval of a quantity: its bounds (`interval`: rating/zone/valued_range/tolerance/margin/unit) plus the `conditions` that gate when it holds, carried under its own `identity.slug` handle so a condition elsewhere can point at it ({feature, property, interval}). THE item type of a `specification`'s `intervals` list. Bands are device-specific inline data, not a shared catalog — but modelling one as an archetype (not a bare feature) buys each band its identity/title/description, for self-documentation and, above all, the referenceable `slug`. `array: true` — the `intervals` slot is a LIST of these.
 feature:
   interval: {} # the bounds — rating/zone/valued_range/tolerance/margin/unit
   condition: {} # the gate list — array of `condition` (its own `array: true` supplies the list)

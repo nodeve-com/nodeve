@@ -21,6 +21,7 @@ import * as archetypeRegistry_ from './features/archetype_registry.ts';
 import * as authentication_ from './features/authentication.ts';
 import * as battery_ from './features/battery.ts';
 import * as batteryCharger_ from './archetypes/battery_charger.ts';
+import * as body_ from './features/body.ts';
 import * as building_ from './archetypes/building.ts';
 import * as byteOffset_ from './features/byte_offset.ts';
 import * as catalogEntry_ from './features/catalog_entry.ts';
@@ -151,6 +152,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	authentication: authentication_.schema,
 	battery: battery_.schema,
 	batteryCharger: batteryCharger_.schema,
+	body: body_.schema,
 	building: building_.schema,
 	byteOffset: byteOffset_.schema,
 	catalogEntry: catalogEntry_.schema,
@@ -279,6 +281,7 @@ export interface ConceptTypes {
 	authentication: authentication_.Authentication;
 	battery: battery_.Battery;
 	batteryCharger: batteryCharger_.BatteryCharger;
+	body: body_.Body;
 	building: building_.Building;
 	byteOffset: byteOffset_.ByteOffset;
 	catalogEntry: catalogEntry_.CatalogEntry;

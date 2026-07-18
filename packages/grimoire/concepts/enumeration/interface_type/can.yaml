@@ -1,10 +1,8 @@
-# CAN is a self-framing link technology (its own data-link + differential PHY), not an async
-# serial line (not `async_serial`) — so it's its own interface_type. IANA ifType has no
-# CAN entry, so this member crosswalks to its actual defining standard, ISO 11898-1 (data link
-# layer), instead of an ifType number; the high-speed differential PHY (ISO 11898-2) is the
-# electrical sub-layer beneath it.
 title:
   en: CAN bus
   pt: Barramento CAN
+body:
+  en: >
+    CAN is a self-framing link technology (its own data-link + differential PHY), not an async serial line (not `async_serial`) — so it's its own interface_type. IANA ifType has no CAN entry, so this member crosswalks to its actual defining standard, ISO 11898-1 (data link layer), instead of an ifType number; the high-speed differential PHY (ISO 11898-2) is the electrical sub-layer beneath it.
 refs:
   - { registry_id: iso_11898, term: 11898-1, match: exact }

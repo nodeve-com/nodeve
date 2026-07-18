@@ -1,7 +1,6 @@
-# BNPI — Bifacial Nameplate Irradiance (IEC TS 60904-1-2): the bifacial rating reference. Front
-# 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Characterises the extra current/power a
-# bifacial module yields under a representative rear contribution — the honest bifacial nameplate,
-# distinct from front-only STC.
 title: { en: BNPI, pt: BNPI }
 description:
-  en: "Bifacial Nameplate Irradiance — front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Bifacial rating reference (IEC TS 60904-1-2)."
+  en: 'Bifacial Nameplate Irradiance — front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Bifacial rating reference (IEC TS 60904-1-2).'
+body:
+  en: >
+    BNPI — Bifacial Nameplate Irradiance (IEC TS 60904-1-2): the bifacial rating reference. Front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Characterises the extra current/power a bifacial module yields under a representative rear contribution — the honest bifacial nameplate, distinct from front-only STC.

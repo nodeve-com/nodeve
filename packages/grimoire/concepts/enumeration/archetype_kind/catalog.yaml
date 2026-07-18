@@ -1,10 +1,8 @@
-# From archetype_registry.ts (catalogArchetypes): device archetypes a catalog leaf may
-# `archetype:`-select — their instances bundle into catalog.generated.ts. There is no `kind`
-# field on an archetype itself; membership in this class is the whole distinction.
-# Members at migration time: inverter, pv_module, meter, appliance, dehumidifier, water_heater,
-# air_conditioner, power_supply, charge_controller.
 title:
   en: Catalog archetype
   pt: Arquétipo de catálogo
 description:
   en: Device archetype a catalog leaf may select; instances bundle into the generated catalog.
+body:
+  en: >
+    From archetype_registry.ts (catalogArchetypes): device archetypes a catalog leaf may `archetype:`-select — their instances bundle into catalog.generated.ts. There is no `kind` field on an archetype itself; membership in this class is the whole distinction. Members at migration time: inverter, pv_module, meter, appliance, dehumidifier, water_heater, air_conditioner, power_supply, charge_controller.

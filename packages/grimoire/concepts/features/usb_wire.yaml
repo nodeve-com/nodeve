@@ -1,9 +1,6 @@
-# A USB WIRE — how to FIND and OPEN a USB device, protocol-neutral (the analogue of serial_wire's
-# port + line discipline): the device IDENTITY (vendor_id/product_id), plus which interface /
-# configuration / alt_setting to claim and whether to detach a kernel driver first. Distinct from
-# the HID framing that rides it (the usbhid medium's link). ids/indices are integers; YAML authors
-# them as hex (0x04d8). This is the `usb` branch of the transport union — the SAME flat shape the
-# serial/socket branches take, no longer inlined into transport.yaml.
+body:
+  en: >
+    A USB WIRE — how to FIND and OPEN a USB device, protocol-neutral (the analogue of serial_wire's port + line discipline): the device IDENTITY (vendor_id/product_id), plus which interface / configuration / alt_setting to claim and whether to detach a kernel driver first. Distinct from the HID framing that rides it (the usbhid medium's link). ids/indices are integers; YAML authors them as hex (0x04d8). This is the `usb` branch of the transport union — the SAME flat shape the serial/socket branches take, no longer inlined into transport.yaml.
 prop:
   vendor_id: {}
   product_id: {}

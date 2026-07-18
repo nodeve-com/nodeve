@@ -1,7 +1,6 @@
-# A MAGIC-BYTE check (usbhid-specific, shared) — a leading sanity byte a device stamps on a
-# valid frame/response, as { offset, expect } (reject the frame if the byte at offset isn't
-# expect). Single place the shape + the `response_magic` slot are defined: the diag read and the
-# config exchange both validate responses against one. Authored sealed.
+body:
+  en: >
+    A MAGIC-BYTE check (usbhid-specific, shared) — a leading sanity byte a device stamps on a valid frame/response, as { offset, expect } (reject the frame if the byte at offset isn't expect). Single place the shape + the `response_magic` slot are defined: the diag read and the config exchange both validate responses against one. Authored sealed.
 prop:
   offset: {}
   expect: {}

@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String();
 
 export type SiUnit = string;
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "si_unit" }; readonly "title": { readonly "en": "SI symbol" } };
+type DataT = { readonly "body": { readonly "en": "The kind's coherent SI unit, as the SI symbol string (ISO 80000-1 / BIPM). Optional: a few kinds have no clean single SI unit (unknown) — omit rather than fabricate. NOT i18n: a unit symbol is language-neutral. A unit's per-registry dialect ids (qudt_unit, ucum) are NOT here — they belong to the UNIT as crosswalks, which would make units first-class (property/unit/); deferred until a consumer needs unit IRIs. The existing ExternalRef.id already carries such a dialect id.\n" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "si_unit" }; readonly "title": { readonly "en": "SI symbol" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The kind's coherent SI unit, as the SI symbol string (ISO 80000-1 / BIPM). Optional: a few kinds have no clean single SI unit (unknown) — omit rather than fabricate. NOT i18n: a unit symbol is language-neutral. A unit's per-registry dialect ids (qudt_unit, ucum) are NOT here — they belong to the UNIT as crosswalks, which would make units first-class (property/unit/); deferred until a consumer needs unit IRIs. The existing ExternalRef.id already carries such a dialect id.\n"
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "si_unit"
@@ -23,4 +26,4 @@ const _data: DataT = {
 		"en": "SI symbol"
 	}
 };
-export const { identity, title } = _data;
+export const { body, identity, title } = _data;

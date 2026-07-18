@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "minHumidity": Type.Optional(minHum
 
 export type HumidityControl = { "minHumidity"?: minHumidity_.MinHumidity; "maxHumidity"?: maxHumidity_.MaxHumidity; "defaultHumidity"?: defaultHumidity_.DefaultHumidity };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "humidity_control" }; readonly "prop": { readonly "defaultHumidity": typeof defaultHumidity_; readonly "maxHumidity": typeof maxHumidity_; readonly "minHumidity": typeof minHumidity_ } };
+type DataT = { readonly "body": { readonly "en": "The humidity-setpoint CAPABILITY of a hygrostat-controlled unit — the settable target-RH range the hardware supports and its designed default. The catalog states RANGE + DEFAULT; a deployment picks operating values within it; control-loop tuning (tolerances, min-cycle, away/stale) is SITE data in ha-config — how YOU run it, not a datasheet fact. Composed (optionally) by the dehumidifier archetype.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "humidity_control" }; readonly "prop": { readonly "defaultHumidity": typeof defaultHumidity_; readonly "maxHumidity": typeof maxHumidity_; readonly "minHumidity": typeof minHumidity_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The humidity-setpoint CAPABILITY of a hygrostat-controlled unit — the settable target-RH range the hardware supports and its designed default. The catalog states RANGE + DEFAULT; a deployment picks operating values within it; control-loop tuning (tolerances, min-cycle, away/stale) is SITE data in ha-config — how YOU run it, not a datasheet fact. Composed (optionally) by the dehumidifier archetype.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "humidity_control"
@@ -28,4 +31,4 @@ const _data: DataT = {
 		"minHumidity": minHumidity_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

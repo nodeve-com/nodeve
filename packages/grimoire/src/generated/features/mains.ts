@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Object({ "voltage": Type.Optional(Type.Numbe
 
 export type Mains = { "voltage"?: number; "frequency"?: number };
 
-type DataT = { readonly "description": { readonly "en": "Nominal AC supply — rated voltage and mains frequency."; readonly "pt": "Alimentação CA nominal — tensão nominal e frequência da rede." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mains" }; readonly "prop": { readonly "frequency": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "voltage": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } }; readonly "title": { readonly "en": "Mains"; readonly "pt": "Rede elétrica" } };
+type DataT = { readonly "body": { readonly "en": "The nominal AC supply a grid region is built around — its rated mains `voltage` and `frequency` (the universal quantity_kinds; no region-local field is coined). Grouped once so grid_region — and any future supply-referencing thing — nests these rather than restating them. Fill only known values, never fabricate.\n" }; readonly "description": { readonly "en": "Nominal AC supply — rated voltage and mains frequency."; readonly "pt": "Alimentação CA nominal — tensão nominal e frequência da rede." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mains" }; readonly "prop": { readonly "frequency": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "voltage": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } }; readonly "title": { readonly "en": "Mains"; readonly "pt": "Rede elétrica" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The nominal AC supply a grid region is built around — its rated mains `voltage` and `frequency` (the universal quantity_kinds; no region-local field is coined). Grouped once so grid_region — and any future supply-referencing thing — nests these rather than restating them. Fill only known values, never fabricate.\n"
+	},
 	"description": {
 		"en": "Nominal AC supply — rated voltage and mains frequency.",
 		"pt": "Alimentação CA nominal — tensão nominal e frequência da rede."
@@ -74,4 +77,4 @@ const _data: DataT = {
 		"pt": "Rede elétrica"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

@@ -1,15 +1,10 @@
-# A DEVICE BINDING — one logical endpoint a gateway serves (a gateway_config's `devices` list):
-# WHICH catalog entry (`catalog_ref`), reached over WHICH declared ingest link (`link`, by slug),
-# plus the per-instance overrides of the catalog entry's emit defaults (the SAME emit contract the
-# catalog states — composed, never re-listed) and the modbus `unit_id`. Mirrors the consuming
-# gateway's DeviceSpec. Cross-field rules the schema can't express — `link` must name a declared
-# ingest link; a binding may instead carry an inline transport, exactly one of the two — are the
-# consumer's referential checks.
 title:
   en: Device binding
 description:
-  en: One logical endpoint a gateway serves — a catalog entry bound to a declared
-    ingest link, with per-instance overrides.
+  en: One logical endpoint a gateway serves — a catalog entry bound to a declared ingest link, with per-instance overrides.
+body:
+  en: >
+    A DEVICE BINDING — one logical endpoint a gateway serves (a gateway_config's `devices` list): WHICH catalog entry (`catalog_ref`), reached over WHICH declared ingest link (`link`, by slug), plus the per-instance overrides of the catalog entry's emit defaults (the SAME emit contract the catalog states — composed, never re-listed) and the modbus `unit_id`. Mirrors the consuming gateway's DeviceSpec. Cross-field rules the schema can't express — `link` must name a declared ingest link; a binding may instead carry an inline transport, exactly one of the two — are the consumer's referential checks.
 concept_settings:
   compose:
     - emit # per-instance overrides of the catalog entry's emit defaults (all optional)

@@ -4,6 +4,9 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 export default {
+	"body": {
+		"en": "Trinasolar Vertex S+ N-type BIFACIAL panel — datasheet, per panel. How the array is wired and oriented lives in the solar-array SITE config, which references this entry by its catalog path `trina/tsm-625neg19rc-20`. Temp coefficients left out rather than fabricated (not on this sheet). `manufacturer`/`archetype` inherited from _defaults.\n\nDC terminals: the panel's DC terminals as a single feature — each nameplate rating is an INTERVAL tagged with the I-V-curve point it characterises (`zone:` — a named region). Bare bands are the implicit STC reference (front 1000 W/m², AM1.5G, 25 °C). This is a bifacial module, so the datasheet also states rear-gain bands at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) — those carry a `test_condition` condition; the measured value stays in the band. Identical-across-conditions bands (Vmp/Voc are the same at STC and BNPI) are stated ONCE, at STC — no redundant gated duplicate.\n"
+	},
 	"dc": {
 		"featureSpec": {
 			"combined": {

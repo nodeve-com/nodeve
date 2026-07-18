@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type IpAddressId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "ip_address_id" }; readonly "title": { readonly "en": "IP address" } };
+type DataT = { readonly "body": { readonly "en": "Reference to the L3 address a service listens on: the `identity.slug` of an `ip_addresses` instance (nested under one of this node's `network_interfaces`). An intra-site pointer — the target is a site instance, not a catalog entry, so it's a plain slug the runtime resolves against the node's own addresses, NOT a `column.references` catalog FK (mirror of `link`). The MORE SPECIFIC binding: it pins one address (which implies its NIC), so the listen address never restates the IP — the referenced ip_addresses instance already owns `ip_address`.\n" }; readonly "description": { readonly "en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "ip_address_id" }; readonly "title": { readonly "en": "IP address" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to the L3 address a service listens on: the `identity.slug` of an `ip_addresses` instance (nested under one of this node's `network_interfaces`). An intra-site pointer — the target is a site instance, not a catalog entry, so it's a plain slug the runtime resolves against the node's own addresses, NOT a `column.references` catalog FK (mirror of `link`). The MORE SPECIFIC binding: it pins one address (which implies its NIC), so the listen address never restates the IP — the referenced ip_addresses instance already owns `ip_address`.\n"
+	},
 	"description": {
 		"en": "Slug of an ip_addresses instance on this node the service listens on (the runtime resolves it against the node's own addresses). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"en": "IP address"
 	}
 };
-export const { description, identity, title } = _data;
+export const { body, description, identity, title } = _data;

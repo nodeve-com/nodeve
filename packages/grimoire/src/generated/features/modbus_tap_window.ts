@@ -17,7 +17,7 @@ export const schema: TSchema = Type.Array(Type.Object({ "name": name_.schema, "a
 
 export type ModbusTapWindow = Array<{ "name": name_.Name; "address": address_.Address; "registerType"?: registerType_.RegisterType; "retain"?: retain_.Retain; "observedIntervalMs"?: observedIntervalMs_.ObservedIntervalMs }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "name": typeof name_; readonly "observedIntervalMs": typeof observedIntervalMs_; readonly "registerType": typeof registerType_; readonly "retain": typeof retain_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_tap_window" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "name": typeof name_; readonly "observedIntervalMs": typeof observedIntervalMs_; readonly "registerType": typeof registerType_; readonly "retain": typeof retain_ } }; readonly "body": { readonly "en": "One TAP WINDOW — a master-polled register window a passive Modbus tap recognizes and republishes as ONE grouped MQTT message. `name` is the window's clean topic segment: the grouped cycle rides <topic_prefix>/modbus_tap/<name> (an unmapped window falls back to its hex start address) — so this feature authors a published topic path's LAST segment. `address` = Modbus start address of the master's read window; `register_type` optional, omitted => holding (function 03). Retain SLOW accumulating windows; leave FAST instantaneous ones unretained.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_tap_window" } };
 
 const _data: DataT = {
 	"array": {
@@ -29,9 +29,12 @@ const _data: DataT = {
 			"retain": retain_
 		}
 	},
+	"body": {
+		"en": "One TAP WINDOW — a master-polled register window a passive Modbus tap recognizes and republishes as ONE grouped MQTT message. `name` is the window's clean topic segment: the grouped cycle rides <topic_prefix>/modbus_tap/<name> (an unmapped window falls back to its hex start address) — so this feature authors a published topic path's LAST segment. `address` = Modbus start address of the master's read window; `register_type` optional, omitted => holding (function 03). Retain SLOW accumulating windows; leave FAST instantaneous ones unretained.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "modbus_tap_window"
 	}
 };
-export const { array, identity } = _data;
+export const { array, body, identity } = _data;

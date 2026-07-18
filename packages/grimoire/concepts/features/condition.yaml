@@ -1,27 +1,27 @@
-# A CONDITION (ssn-system:Condition): a gate, external to a band's own quantity, under which that
-# band holds — an inverter's 10 kW holds while enclosure temp sits in its derate-onset band; a
-# compressor's 1391 W draw holds while the mode is cooling. The DRIVER lives outside the gated
-# quantity — which is why it is a condition, not an interval `mode` (mode is an INTRINSIC region of
-# the quantity's own axis, like an MPPT window).
-#
-# A condition holds NO bounds of its own — it is a GATE in one of three forms, told apart by which
-# slot is filled:
-#   • `interval_item` — a POINTER at one identified band of another reading ({feature, property,
-#     interval}); the band it names carries the region/value (an enclosure-temp derate band).
-#   • `setting` + `equals` — a COMMISSIONING GATE: the band holds while device setting <setting>
-#     (a key in the entry's `settings_schema`) equals <equals> (grid_region == 230). External config
-#     the site fixes once, not a measured region — so it lives here, not in interval_item.
-#   • `test_condition` — a STANDARDISED MEASUREMENT REFERENCE the band was rated at (STC / BNPI /
-#     BSI …). The named `enumeration/test_condition` member fixes the environment (front/rear
-#     irradiance, spectrum, cell temp); the band's own quantity carries the measured value. Omit it
-#     for the implicit reference (a PV panel's bare bands are STC) — spell it out only on a non-STC
-#     band (a bifacial module's rear-gain Isc/Pmax).
-# Wrapping the gate in a single feature (rather than a bare reference) leaves room to grow a condition
-# later (negation, an AND/OR operator, a note) without reshaping every gate. Several conditions on a
-# band = AND; model an OR as separate bands. `array: true` — a band's `condition` slot is a LIST of these.
 title: { en: Conditions }
 description:
-  en: "Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands."
+  en: 'Optional gate list, ALL of which must hold (AND). An interval specification and a system capability both carry one. Model an OR as separate bands.'
+body:
+  en: >
+    A CONDITION (ssn-system:Condition): a gate, external to a band's own quantity, under which that band holds — an inverter's 10 kW holds while enclosure temp sits in its derate-onset band; a compressor's 1391 W draw holds while the mode is cooling. The DRIVER lives outside the gated quantity — which is why it is a condition, not an interval `mode` (mode is an INTRINSIC region of the quantity's own axis, like an MPPT window).
+    
+    
+    A condition holds NO bounds of its own — it is a GATE in one of three forms, told apart by which slot is filled:
+    
+        • `interval_item` — a POINTER at one identified band of another reading ({feature, property,
+        interval}); the band it names carries the region/value (an enclosure-temp derate band).
+    
+        • `setting` + `equals` — a COMMISSIONING GATE: the band holds while device setting <setting>
+        (a key in the entry's `settings_schema`) equals <equals> (grid_region == 230). External config
+        the site fixes once, not a measured region — so it lives here, not in interval_item.
+    
+        • `test_condition` — a STANDARDISED MEASUREMENT REFERENCE the band was rated at (STC / BNPI /
+        BSI …). The named `enumeration/test_condition` member fixes the environment (front/rear
+        irradiance, spectrum, cell temp); the band's own quantity carries the measured value. Omit it
+        for the implicit reference (a PV panel's bare bands are STC) — spell it out only on a non-STC
+        band (a bifacial module's rear-gain Isc/Pmax).
+    
+    Wrapping the gate in a single feature (rather than a bare reference) leaves room to grow a condition later (negation, an AND/OR operator, a note) without reshaping every gate. Several conditions on a band = AND; model an OR as separate bands. `array: true` — a band's `condition` slot is a LIST of these.
 concept_settings:
   is_array: true
 refs:

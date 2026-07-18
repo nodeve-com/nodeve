@@ -10,6 +10,7 @@ import { type TSchema, Type } from '@sinclair/typebox';
 import * as acPhase_ from '../features/ac_phase.ts';
 import * as appliance_ from './appliance.ts';
 import * as battery_ from '../features/battery.ts';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as enclosure_ from '../features/enclosure.ts';
 import * as identity_ from '../features/identity.ts';
@@ -20,13 +21,16 @@ import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 import * as vedirectFields_ from '../features/vedirect_fields.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "vedirectFields": Type.Optional(vedirectFields_.schema), "pvTracker": Type.Optional(pvTracker_.schema), "battery": Type.Optional(battery_.schema), "mpptTracking": Type.Optional(mpptTracking_.schema), "enclosure": Type.Optional(enclosure_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","vedirect_fields":"vedirectFields","pv_tracker":"pvTracker","mppt_tracking":"mpptTracking"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "vedirectFields": Type.Optional(vedirectFields_.schema), "pvTracker": Type.Optional(pvTracker_.schema), "battery": Type.Optional(battery_.schema), "mpptTracking": Type.Optional(mpptTracking_.schema), "enclosure": Type.Optional(enclosure_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","vedirect_fields":"vedirectFields","pv_tracker":"pvTracker","mppt_tracking":"mpptTracking"}});
 
-export type ChargeController = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "vedirectFields"?: vedirectFields_.VedirectFields; "pvTracker"?: pvTracker_.PvTracker; "battery"?: battery_.Battery; "mpptTracking"?: mpptTracking_.MpptTracking; "enclosure"?: enclosure_.Enclosure };
+export type ChargeController = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "vedirectFields"?: vedirectFields_.VedirectFields; "pvTracker"?: pvTracker_.PvTracker; "battery"?: battery_.Battery; "mpptTracking"?: mpptTracking_.MpptTracking; "enclosure"?: enclosure_.Enclosure };
 
-type DataT = { readonly "description": { readonly "en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "charge_controller" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "battery": typeof battery_; readonly "description": typeof description_; readonly "enclosure": typeof enclosure_; readonly "identity": typeof identity_; readonly "mpptTracking": typeof mpptTracking_; readonly "product": typeof product_; readonly "pvTracker": typeof pvTracker_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "vedirectFields": typeof vedirectFields_ }; readonly "title": { readonly "en": "Charge controller"; readonly "pt": "Controlador de carga" } };
+type DataT = { readonly "body": { readonly "en": "A DC solar MPPT charge controller (the Victron SmartSolar / BlueSolar family). Identity + how it's talked to (VE.Direct — required: a charge controller we catalog is one we read) + feature blocks. pv_tracker is the SAME atom an inverter's strings use; battery is its DC-output analogue (a VE.Direct `V` field links to (battery, voltage), `I` to (battery, current)). All feature blocks optional: an entry fills what its datasheet/telemetry offers.\n" }; readonly "description": { readonly "en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "charge_controller" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "battery": typeof battery_; readonly "body": typeof body_; readonly "description": typeof description_; readonly "enclosure": typeof enclosure_; readonly "identity": typeof identity_; readonly "mpptTracking": typeof mpptTracking_; readonly "product": typeof product_; readonly "pvTracker": typeof pvTracker_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "vedirectFields": typeof vedirectFields_ }; readonly "title": { readonly "en": "Charge controller"; readonly "pt": "Controlador de carga" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A DC solar MPPT charge controller (the Victron SmartSolar / BlueSolar family). Identity + how it's talked to (VE.Direct — required: a charge controller we catalog is one we read) + feature blocks. pv_tracker is the SAME atom an inverter's strings use; battery is its DC-output analogue (a VE.Direct `V` field links to (battery, voltage), `I` to (battery, current)). All feature blocks optional: an entry fills what its datasheet/telemetry offers.\n"
+	},
 	"description": {
 		"en": "A DC solar MPPT charge controller (identity + VE.Direct connectivity + MPPT input).",
 		"pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)."
@@ -38,6 +42,7 @@ const _data: DataT = {
 	"prop": {
 		"acPhase": acPhase_,
 		"battery": battery_,
+		"body": body_,
 		"description": description_,
 		"enclosure": enclosure_,
 		"identity": identity_,
@@ -53,4 +58,4 @@ const _data: DataT = {
 		"pt": "Controlador de carga"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

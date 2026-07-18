@@ -1,13 +1,7 @@
-# The def-language grammar a features/ or archetypes/ file may carry — defined HERE as concepts,
-# interpreted by the compiler (kit/compile.ts): `compose` reuses the named tables' columns (a
-# single slug or a list — the old `alias`, a same-shape rename, is just a one-element compose);
-# `repeated`/`part` are the countable / fixed-parts expansions; `is_array`/`map` declare the def's
-# intrinsic cardinality (exclusive); `count` declares that cardinality when KNOWN (how many values a
-# repeated/array feature holds) — the same quantity as a catalog entry's `count`, hoisted to the
-# schema layer; `is_specification` marks a feature as a specification (each of its quantity_kind
-# fields becomes a `specification` — identity + measurand + the `intervals` list).
-# Composed into archetypes/feature.yaml so a def is itself a validated instance, not compiler-only grammar.
 title: { en: Concept settings, pt: Configurações de conceito }
+body:
+  en: >
+    The def-language grammar a features/ or archetypes/ file may carry — defined HERE as concepts, interpreted by the compiler (kit/compile.ts): `compose` reuses the named tables' columns (a single slug or a list — the old `alias`, a same-shape rename, is just a one-element compose); `repeated`/`part` are the countable / fixed-parts expansions; `is_array`/`map` declare the def's intrinsic cardinality (exclusive); `count` declares that cardinality when KNOWN (how many values a repeated/array feature holds) — the same quantity as a catalog entry's `count`, hoisted to the schema layer; `is_specification` marks a feature as a specification (each of its quantity_kind fields becomes a `specification` — identity + measurand + the `intervals` list). Composed into archetypes/feature.yaml so a def is itself a validated instance, not compiler-only grammar.
 prop:
   compose: {}
   repeated: {}

@@ -7,20 +7,24 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
 
-export type Organization = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
+export type Organization = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "description": { readonly "en": "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks."; readonly "pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "organization" }; readonly "title": { readonly "en": "Organization"; readonly "pt": "Organização" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "body": { readonly "en": "A pointable entity: a named body other entries reference by slug — a device's maker (`product.manufacturer_id`), a standards body that publishes a registry (`registry.published_by`). Not restated as a free string on every model. Identity + display name + crosswalks; homepage lives on `identity.url`. Entries are INSTANCES under catalog/organizations/.\n" }; readonly "description": { readonly "en": "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks."; readonly "pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "organization" }; readonly "title": { readonly "en": "Organization"; readonly "pt": "Organização" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
+	"body": {
+		"en": "A pointable entity: a named body other entries reference by slug — a device's maker (`product.manufacturer_id`), a standards body that publishes a registry (`registry.published_by`). Not restated as a free string on every model. Identity + display name + crosswalks; homepage lives on `identity.url`. Entries are INSTANCES under catalog/organizations/.\n"
+	},
 	"description": {
 		"en": "A named organization — a referenceable body (maker, standards body): name, homepage, crosswalks.",
 		"pt": "Uma organização nomeada — um corpo referenciável (fabricante, organismo de normas): nome, site, correspondências."
@@ -34,4 +38,4 @@ const _data: DataT = {
 		"pt": "Organização"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

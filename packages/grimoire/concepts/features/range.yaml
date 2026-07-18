@@ -1,9 +1,6 @@
-# A RANGE — a closed interval {min, max}, inclusive ends; the single shape for "a span of values",
-# unit- and quantity-agnostic (the enclosing concept names the slot + unit). No ordering constraint
-# encoded (a consumer needing min <= max asserts it downstream). Specialized siblings exist on
-# purpose: temp_band (a CONTROL band, degC) and measuring_interval (what an INSTRUMENT reads, VIM
-# 4.7) carry distinct domain meaning + crosswalks. Its single-value counterpart is `value` (a stateful
-# zone's trip point or a `zone` operating point), not a span.
+body:
+  en: >
+    A RANGE — a closed interval {min, max}, inclusive ends; the single shape for "a span of values", unit- and quantity-agnostic (the enclosing concept names the slot + unit). No ordering constraint encoded (a consumer needing min <= max asserts it downstream). Specialized siblings exist on purpose: temp_band (a CONTROL band, degC) and measuring_interval (what an INSTRUMENT reads, VIM 4.7) carry distinct domain meaning + crosswalks. Its single-value counterpart is `value` (a stateful zone's trip point or a `zone` operating point), not a span.
 prop:
   min: { schema: { required: true } }
   max: { schema: { required: true } }

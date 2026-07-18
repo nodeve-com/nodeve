@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type NetworkInterfaceId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "network_interface_id" }; readonly "title": { readonly "en": "Network interface" } };
+type DataT = { readonly "body": { readonly "en": "Reference to the NIC a service binds on: the `identity.slug` of a `network_interfaces` instance of THIS node. An intra-site pointer — the target is a site instance, not a catalog entry (network interfaces have no agnostic rows), so it's a plain slug the runtime resolves against the node's own interfaces, NOT a `column.references` catalog FK (mirror of `link`). Coarser than `ip_address_id`: bind to the interface (all its L3 addresses) rather than one address.\n" }; readonly "description": { readonly "en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "network_interface_id" }; readonly "title": { readonly "en": "Network interface" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to the NIC a service binds on: the `identity.slug` of a `network_interfaces` instance of THIS node. An intra-site pointer — the target is a site instance, not a catalog entry (network interfaces have no agnostic rows), so it's a plain slug the runtime resolves against the node's own interfaces, NOT a `column.references` catalog FK (mirror of `link`). Coarser than `ip_address_id`: bind to the interface (all its L3 addresses) rather than one address.\n"
+	},
 	"description": {
 		"en": "Slug of a network_interfaces instance on this node the service binds to (the runtime resolves it against the node's own interfaces). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"en": "Network interface"
 	}
 };
-export const { description, identity, title } = _data;
+export const { body, description, identity, title } = _data;

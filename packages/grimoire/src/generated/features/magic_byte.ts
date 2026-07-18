@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type MagicByte = { "offset"?: offset_.Offset; "expect"?: expect_.Expect; "responseMagic"?: responseMagic_.ResponseMagic };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "magic_byte" }; readonly "prop": { readonly "expect": typeof expect_; readonly "offset": typeof offset_; readonly "responseMagic": typeof responseMagic_ } };
+type DataT = { readonly "body": { readonly "en": "A MAGIC-BYTE check (usbhid-specific, shared) — a leading sanity byte a device stamps on a valid frame/response, as { offset, expect } (reject the frame if the byte at offset isn't expect). Single place the shape + the `response_magic` slot are defined: the diag read and the config exchange both validate responses against one. Authored sealed.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "magic_byte" }; readonly "prop": { readonly "expect": typeof expect_; readonly "offset": typeof offset_; readonly "responseMagic": typeof responseMagic_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A MAGIC-BYTE check (usbhid-specific, shared) — a leading sanity byte a device stamps on a valid frame/response, as { offset, expect } (reject the frame if the byte at offset isn't expect). Single place the shape + the `response_magic` slot are defined: the diag read and the config exchange both validate responses against one. Authored sealed.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "magic_byte"
@@ -28,4 +31,4 @@ const _data: DataT = {
 		"responseMagic": responseMagic_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

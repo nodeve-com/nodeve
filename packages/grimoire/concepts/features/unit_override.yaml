@@ -1,7 +1,5 @@
-# A UNIT override — `unit`, stated only when a value isn't in its quantity kind's canonical
-# SI/coherent unit (kW vs W, degC vs K, L/day vs m3/s). The single place the `unit` key is defined:
-# every atom carrying a number whose unit can differ from canonical composes this. OPTIONAL (omit
-# => canonical SI; naked numbers are SI); a feature where the unit is REQUIRED (quantity_value) makes
-# it required at its boundary.
+body:
+  en: >
+    A UNIT override — `unit`, stated only when a value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, degC vs K, L/day vs m3/s). The single place the `unit` key is defined: every atom carrying a number whose unit can differ from canonical composes this. OPTIONAL (omit => canonical SI; naked numbers are SI); a feature where the unit is REQUIRED (quantity_value) makes it required at its boundary.
 prop:
   unit: {}

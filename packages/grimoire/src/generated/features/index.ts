@@ -14,6 +14,7 @@ import * as addressing_ from './addressing.ts';
 import * as archetypeRegistry_ from './archetype_registry.ts';
 import * as authentication_ from './authentication.ts';
 import * as battery_ from './battery.ts';
+import * as body_ from './body.ts';
 import * as byteOffset_ from './byte_offset.ts';
 import * as catalogEntry_ from './catalog_entry.ts';
 import * as column_ from './column.ts';
@@ -109,6 +110,7 @@ export const feature = {
 	archetypeRegistry: archetypeRegistry_,
 	authentication: authentication_,
 	battery: battery_,
+	body: body_,
 	byteOffset: byteOffset_,
 	catalogEntry: catalogEntry_,
 	column: column_,

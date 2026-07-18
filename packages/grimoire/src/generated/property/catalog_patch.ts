@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Object({});
 
 export type CatalogPatch = Record<string, never>;
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_patch" }; readonly "title": { readonly "en": "Catalog patch" } };
+type DataT = { readonly "body": { readonly "en": "A sparse OVERLAY onto the referenced catalog device's measurand tree — the site-computed half of the reference (`catalog_item` is the pointer; this is what the site adds to it). Mirrors the device's `{feature}.{combined|part.<id>|instances[n]}.{quantity_kind}` shape, each leaf carrying the deterministic on-bus `slug` (the site bake stamps it — PLANS/deterministic-sensor-ids.md) plus any `si_unit` override. Consumers DEEP-MERGE it onto the loaded device; the merge is deliberately NOT materialised into site.generated.json — only the patch travels. Free-form here: its shape is the referenced device's, which no static schema can know.\n" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_patch" }; readonly "title": { readonly "en": "Catalog patch" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A sparse OVERLAY onto the referenced catalog device's measurand tree — the site-computed half of the reference (`catalog_item` is the pointer; this is what the site adds to it). Mirrors the device's `{feature}.{combined|part.<id>|instances[n]}.{quantity_kind}` shape, each leaf carrying the deterministic on-bus `slug` (the site bake stamps it — PLANS/deterministic-sensor-ids.md) plus any `si_unit` override. Consumers DEEP-MERGE it onto the loaded device; the merge is deliberately NOT materialised into site.generated.json — only the patch travels. Free-form here: its shape is the referenced device's, which no static schema can know.\n"
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "catalog_patch"
@@ -23,4 +26,4 @@ const _data: DataT = {
 		"en": "Catalog patch"
 	}
 };
-export const { identity, title } = _data;
+export const { body, identity, title } = _data;

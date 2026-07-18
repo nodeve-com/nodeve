@@ -1,7 +1,6 @@
-# The INSTANCE KEY — how one member of a repeated feature is addressed: `part_id` for a FIXED
-# instance set (electrical leg/pair: a, ab), `ordinal` for a COUNTED one (1-based). `part_id` wins
-# when both are set; both absent addresses the feature's `combined` aggregate. Composed by every
-# shape that joins to a feature instance (a measurand link, an `instances` override row).
+body:
+  en: >
+    The INSTANCE KEY — how one member of a repeated feature is addressed: `part_id` for a FIXED instance set (electrical leg/pair: a, ab), `ordinal` for a COUNTED one (1-based). `part_id` wins when both are set; both absent addresses the feature's `combined` aggregate. Composed by every shape that joins to a feature instance (a measurand link, an `instances` override row).
 prop:
   part_id: {}
   ordinal: {}

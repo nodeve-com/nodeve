@@ -16,9 +16,12 @@ export const schema: TSchema = Type.Object({ "type": Type.Optional(type_.schema)
 
 export type NumericDecode = { "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "numeric_decode" }; readonly "prop": { readonly "decimals": typeof decimals_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "body": { readonly "en": "The NUMERIC-DECODE core — how a raw value becomes an engineering NUMBER; shared by the modbus register map, USB-HID byte/config maps, and the VE.Direct field map (published = raw * scale, rounded to `decimals`, in `unit`). Only the on-the-wire `type` value set is medium-specific — each medium supplies its own encoding union (and required-vs-optional scale). `unit` states a non-SI unit only (V/A/W/K are SI ⇒ omit; kW, °C kept).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "numeric_decode" }; readonly "prop": { readonly "decimals": typeof decimals_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The NUMERIC-DECODE core — how a raw value becomes an engineering NUMBER; shared by the modbus register map, USB-HID byte/config maps, and the VE.Direct field map (published = raw * scale, rounded to `decimals`, in `unit`). Only the on-the-wire `type` value set is medium-specific — each medium supplies its own encoding union (and required-vs-optional scale). `unit` states a non-SI unit only (V/A/W/K are SI ⇒ omit; kW, °C kept).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "numeric_decode"
@@ -30,4 +33,4 @@ const _data: DataT = {
 		"unit": unit_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

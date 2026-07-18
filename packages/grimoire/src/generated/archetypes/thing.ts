@@ -7,16 +7,17 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
 
-export type Thing = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
+export type Thing = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
 
-type DataT = { readonly "description": { readonly "en": "The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "thing" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Thing"; readonly "pt": "Coisa" } };
+type DataT = { readonly "description": { readonly "en": "The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "thing" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Thing"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"description": {
@@ -28,6 +29,7 @@ const _data: DataT = {
 		"slug": "thing"
 	},
 	"prop": {
+		"body": body_,
 		"description": description_,
 		"identity": identity_,
 		"refs": refs_,

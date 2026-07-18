@@ -9,6 +9,7 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as acPhase_ from '../features/ac_phase.ts';
 import * as appliance_ from './appliance.ts';
+import * as body_ from '../features/body.ts';
 import * as compressor_ from '../features/compressor.ts';
 import * as cooling_ from '../features/cooling.ts';
 import * as description_ from '../features/description.ts';
@@ -17,11 +18,11 @@ import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "cooling": Type.Optional(cooling_.schema), "compressor": Type.Optional(compressor_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "cooling": Type.Optional(cooling_.schema), "compressor": Type.Optional(compressor_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
 
-export type AirConditioner = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "cooling"?: cooling_.Cooling; "compressor"?: compressor_.Compressor };
+export type AirConditioner = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "cooling"?: cooling_.Cooling; "compressor"?: compressor_.Compressor };
 
-type DataT = { readonly "description": { readonly "en": "An appliance whose defining feature is rated cooling output (+ its vapor-compression compressor circuit)."; readonly "pt": "Um aparelho cuja característica definidora é a capacidade nominal de refrigeração (+ seu circuito compressor de compressão de vapor)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "air_conditioner" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "compressor": typeof compressor_; readonly "cooling": typeof cooling_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Air conditioner"; readonly "pt": "Ar-condicionado" } };
+type DataT = { readonly "description": { readonly "en": "An appliance whose defining feature is rated cooling output (+ its vapor-compression compressor circuit)."; readonly "pt": "Um aparelho cuja característica definidora é a capacidade nominal de refrigeração (+ seu circuito compressor de compressão de vapor)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "air_conditioner" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "body": typeof body_; readonly "compressor": typeof compressor_; readonly "cooling": typeof cooling_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Air conditioner"; readonly "pt": "Ar-condicionado" } };
 
 const _data: DataT = {
 	"description": {
@@ -34,6 +35,7 @@ const _data: DataT = {
 	},
 	"prop": {
 		"acPhase": acPhase_,
+		"body": body_,
 		"compressor": compressor_,
 		"cooling": cooling_,
 		"description": description_,

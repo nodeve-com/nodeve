@@ -18,19 +18,27 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type MeasurandLink = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "intervalId": typeof intervalId_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
+type DataT = { readonly "body": { readonly "en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers, USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind; a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming gateway applies); the `combined` aggregate is linked with both ABSENT.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers, USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind; a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming gateway applies); the `combined` aggregate is linked with both ABSENT.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "measurand_link"
 	},
 	"prop": {
 		"featureId": featureId_,
-		"intervalId": intervalId_,
+		"intervalId": {
+			...intervalId_,
+			"description": {
+				"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
+			}
+		},
 		"ordinal": ordinal_,
 		"partId": partId_,
 		"rawName": rawName_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

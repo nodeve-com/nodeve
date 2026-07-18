@@ -16,9 +16,10 @@ export const schema: TSchema = Type.Array(Type.Object({ "registryId": registryId
 
 export type Refs = Array<{ "registryId": registryId_.RegistryId; "term": term_.Term; "match": match_.Match }>;
 
-type DataT = { readonly "prop": (typeof ref_)["prop"]; readonly "array": { readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "refs" }; readonly "title": { readonly "en": "References"; readonly "pt": "Referências" } };
+type DataT = { readonly "body": (typeof ref_)["body"]; readonly "prop": (typeof ref_)["prop"]; readonly "array": { readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "refs" }; readonly "title": { readonly "en": "References"; readonly "pt": "Referências" } };
 
 const _data: DataT = {
+	"body": ref_["body"],
 	"prop": ref_["prop"],
 	"array": {
 		"prop": {
@@ -36,4 +37,4 @@ const _data: DataT = {
 		"pt": "Referências"
 	}
 };
-export const { array, identity, prop, title } = _data;
+export const { array, body, identity, prop, title } = _data;

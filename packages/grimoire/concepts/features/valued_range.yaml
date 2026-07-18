@@ -1,12 +1,7 @@
+body:
+  en: >
+    A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max, OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral: a rated/designated centre (grade it `severity: nominal`), a stateful zone's trip, a zone operating point. Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never `value_v`). Extends the bare `range` feature — min/max are not re-spelled here. Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the `fraction_lower`/`fraction_upper` MULTIPLIER pair here — verbatim spec form (0.7Un–1.2Un), author sugar the generate step desugars into `margin_lower`/`margin_upper` deltas.
 concept_settings:
-  # A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max,
-  # OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral:
-  # a rated/designated centre (grade it `severity: nominal`), a stateful zone's trip, a zone operating point.
-  # Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never
-  # `value_v`). Extends the bare `range` feature — min/max are not re-spelled here.
-  # Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the
-  # `fraction_lower`/`fraction_upper` MULTIPLIER pair here — verbatim spec form (0.7Un–1.2Un), author
-  # sugar the generate step desugars into `margin_lower`/`margin_upper` deltas.
   compose: [range]
 prop:
   value: {}

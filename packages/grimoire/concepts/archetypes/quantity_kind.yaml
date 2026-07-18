@@ -4,18 +4,10 @@ title:
 description:
   en: A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation.
   pt: Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão.
+body:
+  en: >
+    A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued qudt:Quantity. A kind IS a Term — its QUDT identity and HA device_class are refs, its display name is the Term label. The kinds themselves are INSTANCES under enumeration/quantity_kind/. `si_unit` carries the coherent/SI unit as the SI symbol itself (W, K, var — BIPM / ISO 80000-1): borrowing the world standard, locally discoverable; optional — a few kinds have no clean single SI unit, omit rather than fabricate. Not i18n (a unit symbol is language-neutral); per-registry unit dialect ids (qudt_unit, ucum) are a deferred crosswalk concern. A reading's ACTUAL unit lives on measurement.unit; si_unit is the SI default the kind implies. Kinds also carry a DEFAULT accumulation (enumeration/accumulation/; a measurement may override). The metrology facts (unit / si_unit / accumulation) live in the `measurand` feature (a feature groups props; an archetype assembles features), nested below.
 concept_settings:
-  # A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a
-  # valued qudt:Quantity. A kind IS a Term — its QUDT identity and HA device_class are refs, its
-  # display name is the Term label. The kinds themselves are INSTANCES under enumeration/quantity_kind/.
-  # `si_unit` carries the coherent/SI unit as the SI symbol itself (W, K, var — BIPM / ISO 80000-1):
-  # borrowing the world standard, locally discoverable; optional — a few kinds have no clean single
-  # SI unit, omit rather than fabricate. Not i18n (a unit symbol is language-neutral); per-registry
-  # unit dialect ids (qudt_unit, ucum) are a deferred crosswalk concern. A reading's ACTUAL unit
-  # lives on measurement.unit; si_unit is the SI default the kind implies. Kinds also carry a DEFAULT
-  # accumulation (enumeration/accumulation/; a measurement may override).
-  # The metrology facts (unit / si_unit / accumulation) live in the `measurand`
-  # feature (a feature groups props; an archetype assembles features), nested below.
-  compose: [ property ]
+  compose: [property]
 feature:
   measurand: {}

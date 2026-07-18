@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "id": Type.Optional(id_.schema), "a
 
 export type CatalogEntry = { "id"?: id_.Id; "aliases"?: aliases_.Aliases };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "catalog_entry" }; readonly "prop": { readonly "aliases": typeof aliases_; readonly "id": typeof id_ } };
+type DataT = { readonly "body": { readonly "en": "Grimoire's own RECORD metadata for a catalog leaf — the envelope wrapped around the device, distinct from the device's own features (how grimoire FILES it, not what it is). `id` is the stable 8-char short-code of the leaf's tree path (derived, not authored) — the key a consumer persists: it survives re-filing, unlike the path. The `archetype` discriminant is NOT here (it lives on each union member); the `path` is the bundle's map KEY, not duplicated into the value.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "catalog_entry" }; readonly "prop": { readonly "aliases": typeof aliases_; readonly "id": typeof id_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Grimoire's own RECORD metadata for a catalog leaf — the envelope wrapped around the device, distinct from the device's own features (how grimoire FILES it, not what it is). `id` is the stable 8-char short-code of the leaf's tree path (derived, not authored) — the key a consumer persists: it survives re-filing, unlike the path. The `archetype` discriminant is NOT here (it lives on each union member); the `path` is the bundle's map KEY, not duplicated into the value.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "catalog_entry"
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"id": id_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

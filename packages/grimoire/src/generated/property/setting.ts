@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Setting = string;
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "setting" }; readonly "title": { readonly "en": "Setting" } };
+type DataT = { readonly "body": { readonly "en": "The KEY of a commissioning setting a band is gated on — a property name in the device's own `settings_schema` (the entry-level raw JSON-schema of its configurable knobs). A `setting_gate` pairs this with `equals`: \"this band holds when setting <key> == <value>\". Distinct from a `condition` (which gates on another QUANTITY's interval via interval_item); a setting is external config the site fixes at commissioning, not a measured region.\n" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "setting" }; readonly "title": { readonly "en": "Setting" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The KEY of a commissioning setting a band is gated on — a property name in the device's own `settings_schema` (the entry-level raw JSON-schema of its configurable knobs). A `setting_gate` pairs this with `equals`: \"this band holds when setting <key> == <value>\". Distinct from a `condition` (which gates on another QUANTITY's interval via interval_item); a setting is external config the site fixes at commissioning, not a measured region.\n"
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "setting"
@@ -23,4 +26,4 @@ const _data: DataT = {
 		"en": "Setting"
 	}
 };
-export const { identity, title } = _data;
+export const { body, identity, title } = _data;

@@ -24,9 +24,12 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type UsbhidField = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_field" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": typeof intervalId_; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "body": { readonly "en": "The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/ uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via scale_overrides (usbhid_numeric).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_field" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/ uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via scale_overrides (usbhid_numeric).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "usbhid_field"
@@ -35,7 +38,12 @@ const _data: DataT = {
 		"byteOrder": byteOrder_,
 		"decimals": decimals_,
 		"featureId": featureId_,
-		"intervalId": intervalId_,
+		"intervalId": {
+			...intervalId_,
+			"description": {
+				"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
+			}
+		},
 		"offset": offset_,
 		"ordinal": ordinal_,
 		"partId": partId_,
@@ -46,4 +54,4 @@ const _data: DataT = {
 		"unit": unit_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

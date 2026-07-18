@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "accumulation": Type.Optional(Type.
 
 export type Measurand = { "accumulation"?: "cumulative" | "cumulative_monotonic" | "instantaneous"; "unit"?: unit_.Unit; "siUnit"?: siUnit_.SiUnit };
 
-type DataT = { readonly "description": { readonly "en": "The metrology facts of a quantity kind — its unit, SI unit, and default accumulation. The kind's enum member carries the site-agnostic defaults; a `specification` composes measurand so a device/site can OVERRIDE them. The deterministic on-bus `slug` lives on the specification's `identity`, not here." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand" }; readonly "prop": { readonly "siUnit": typeof siUnit_; readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "Measurand" } };
+type DataT = { readonly "body": { readonly "en": "VIM 2.3, JCGM 200:2012 self: [\n    { registry_id: 'vim', term: '2.3', match: 'exact' }, // VIM 2.3 measurand\n    { registry_id: 'sosa', term: 'ObservableProperty', match: 'close' },\n],\n" }; readonly "description": { readonly "en": "The metrology facts of a quantity kind — its unit, SI unit, and default accumulation. The kind's enum member carries the site-agnostic defaults; a `specification` composes measurand so a device/site can OVERRIDE them. The deterministic on-bus `slug` lives on the specification's `identity`, not here." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand" }; readonly "prop": { readonly "siUnit": typeof siUnit_; readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "Measurand" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "VIM 2.3, JCGM 200:2012 self: [\n    { registry_id: 'vim', term: '2.3', match: 'exact' }, // VIM 2.3 measurand\n    { registry_id: 'sosa', term: 'ObservableProperty', match: 'close' },\n],\n"
+	},
 	"description": {
 		"en": "The metrology facts of a quantity kind — its unit, SI unit, and default accumulation. The kind's enum member carries the site-agnostic defaults; a `specification` composes measurand so a device/site can OVERRIDE them. The deterministic on-bus `slug` lives on the specification's `identity`, not here."
 	},
@@ -32,4 +35,4 @@ const _data: DataT = {
 		"en": "Measurand"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

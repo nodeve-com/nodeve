@@ -4,6 +4,9 @@
 
 export default {
   "bnpi": {
+    "body": {
+      "en": "BNPI — Bifacial Nameplate Irradiance (IEC TS 60904-1-2): the bifacial rating reference. Front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Characterises the extra current/power a bifacial module yields under a representative rear contribution — the honest bifacial nameplate, distinct from front-only STC.\n"
+    },
     "code": "bnpi",
     "description": {
       "en": "Bifacial Nameplate Irradiance — front 1000 W/m², rear 135 W/m², AM1.5G, 25 °C cell temp. Bifacial rating reference (IEC TS 60904-1-2)."
@@ -14,6 +17,9 @@ export default {
     }
   },
   "bsi": {
+    "body": {
+      "en": "BSI — Bifacial Stress Irradiance (IEC TS 60904-1-2): the high-rear-contribution reference used to size protection. Front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. The datasheet states it for short-circuit current only — the worst-case Isc a bifacial module reaches, which drives fuse / conductor sizing.\n"
+    },
     "code": "bsi",
     "description": {
       "en": "Bifacial Stress Irradiance — front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. High-rear-contribution reference for worst-case Isc (IEC TS 60904-1-2)."
@@ -24,6 +30,9 @@ export default {
     }
   },
   "stc": {
+    "body": {
+      "en": "STC — Standard Test Conditions (IEC 61215 / IEC 60904-3): the universal PV nameplate reference. Front irradiance 1000 W/m², AM1.5G spectrum, 25 °C cell temperature, no rear contribution. The IMPLICIT reference for any interval that carries NO `test_condition` gate — spelled out here only so a bifacial entry's non-STC bands have a sibling to contrast against.\n"
+    },
     "code": "stc",
     "description": {
       "en": "Standard Test Conditions — front 1000 W/m², AM1.5G, 25 °C cell temp, no rear irradiance. The default PV nameplate reference (IEC 61215 / IEC 60904-3)."

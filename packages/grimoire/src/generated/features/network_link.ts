@@ -16,9 +16,12 @@ export const schema: TSchema = Type.Object({ "interfaceType": Type.Optional(Type
 
 export type NetworkLink = { "interfaceType"?: "async_serial" | "can" | "ethernet_csmacd" | "ieee80211" | "usb"; "macAddress"?: macAddress_.MacAddress; "mtu"?: mtu_.Mtu; "duplex"?: duplex_.Duplex; "linkSpeed"?: linkSpeed_.LinkSpeed };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "network_link" }; readonly "prop": { readonly "duplex": typeof duplex_; readonly "linkSpeed": typeof linkSpeed_; readonly "macAddress": typeof macAddress_; readonly "mtu": typeof mtu_ }; readonly "title": { readonly "en": "Network link" } };
+type DataT = { readonly "body": { readonly "en": "NETWORK LINK — the datasheet/runtime state of ONE node NIC: its hardware address (mac_address), the frame-size ceiling (mtu), and the negotiated link (duplex + link_speed), plus interface_type as the wired/wireless discriminator. The physical/electrical layer is a separate axis (property/physical_layer/); this feature is the node-facing interface, not the wire under it. Homed on the `network_interfaces` archetype (that class is a LIST per node — its `is_array`); this feature is the per-interface link block and carries no cardinality of its own.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "network_link" }; readonly "prop": { readonly "duplex": typeof duplex_; readonly "linkSpeed": typeof linkSpeed_; readonly "macAddress": typeof macAddress_; readonly "mtu": typeof mtu_ }; readonly "title": { readonly "en": "Network link" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "NETWORK LINK — the datasheet/runtime state of ONE node NIC: its hardware address (mac_address), the frame-size ceiling (mtu), and the negotiated link (duplex + link_speed), plus interface_type as the wired/wireless discriminator. The physical/electrical layer is a separate axis (property/physical_layer/); this feature is the node-facing interface, not the wire under it. Homed on the `network_interfaces` archetype (that class is a LIST per node — its `is_array`); this feature is the per-interface link block and carries no cardinality of its own.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "network_link"
@@ -33,4 +36,4 @@ const _data: DataT = {
 		"en": "Network link"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

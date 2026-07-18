@@ -25,16 +25,22 @@ export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(
 
 export type UsbhidFields = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset }>;
 
-type DataT = { readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": typeof intervalId_; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
+type DataT = { readonly "body": (typeof usbhidField_)["body"]; readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
 
 const _data: DataT = {
+	"body": usbhidField_["body"],
 	"prop": usbhidField_["prop"],
 	"array": {
 		"prop": {
 			"byteOrder": byteOrder_,
 			"decimals": decimals_,
 			"featureId": featureId_,
-			"intervalId": intervalId_,
+			"intervalId": {
+				...intervalId_,
+				"description": {
+					"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
+				}
+			},
 			"offset": offset_,
 			"ordinal": ordinal_,
 			"partId": partId_,
@@ -54,4 +60,4 @@ const _data: DataT = {
 		"pt": "Campos USB-HID"
 	}
 };
-export const { array, identity, prop, title } = _data;
+export const { array, body, identity, prop, title } = _data;

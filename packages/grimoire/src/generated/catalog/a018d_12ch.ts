@@ -69,6 +69,9 @@ export default {
 			}
 		}
 	},
+	"body": {
+		"en": "AC phase: the AC phase the unit runs on — accepted 220–240 V / 50 Hz single-phase plus its electrical input draw (active_power). The two draw figures are the unit's own operating modes — each an IDENTIFIED intervals band (its identity.slug + title naming the mode), referenceable by {feature, property, interval}. The connection is the archetype's, not the compressor's.\n"
+	},
 	"compressor": {
 		"refrigerant": "r290"
 	},

@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
@@ -14,13 +15,16 @@ import * as substance_ from '../features/substance.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "substance": Type.Optional(substance_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "substance": Type.Optional(substance_.schema) }, {"additionalProperties":false});
 
-export type Refrigerant = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "substance"?: substance_.Substance };
+export type Refrigerant = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "substance"?: substance_.Substance };
 
-type DataT = { readonly "description": { readonly "en": "The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula."; readonly "pt": "O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "refrigerant" }; readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "substance": typeof substance_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" } };
+type DataT = { readonly "body": { readonly "en": "A REFRIGERANT — the working gas of a vapor-compression cycle. A Term (identity + i18n label + crosswalks) plus the facts that drive decisions: ASHRAE Standard 34 designation + safety class, IPCC AR5 100-year GWP, chemical formula. The refrigerants (r290, ...) are INSTANCES under enumeration/refrigerant/, each crosswalked to ASHRAE 34. Fill only known values — never fabricate.\n" }; readonly "description": { readonly "en": "The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula."; readonly "pt": "O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "refrigerant" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "substance": typeof substance_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A REFRIGERANT — the working gas of a vapor-compression cycle. A Term (identity + i18n label + crosswalks) plus the facts that drive decisions: ASHRAE Standard 34 designation + safety class, IPCC AR5 100-year GWP, chemical formula. The refrigerants (r290, ...) are INSTANCES under enumeration/refrigerant/, each crosswalked to ASHRAE 34. Fill only known values — never fabricate.\n"
+	},
 	"description": {
 		"en": "The working gas of a vapor-compression cycle — ASHRAE 34 designation + safety class, GWP, chemical formula.",
 		"pt": "O gás de trabalho de um ciclo de compressão de vapor — designação ASHRAE 34 + classe de segurança, GWP, fórmula química."
@@ -30,6 +34,7 @@ const _data: DataT = {
 		"slug": "refrigerant"
 	},
 	"prop": {
+		"body": body_,
 		"description": description_,
 		"identity": identity_,
 		"refs": refs_,
@@ -41,4 +46,4 @@ const _data: DataT = {
 		"pt": "Refrigerante"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

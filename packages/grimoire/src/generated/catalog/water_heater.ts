@@ -66,6 +66,9 @@ export default {
 			}
 		}
 	},
+	"body": {
+		"en": "Generic electric water heater (termoacumulador) — the `water_heater` archetype: the `appliance` base composed with the required `resistive_element` atom (the heat source). NO humidity_control (that's the dehumidifier) and no thermostat field — the unit's own thermostat is internal; HA only switches the element and reads its draw. The surplus-loop cycle tuning and priority are control-loop SITE data in ha-config, not catalog model facts. A deployment refits the per-unit fitted draw bands from its measured draw; the resistive_element supply is the datasheet figure (active_power rated at the supply voltage — with resistance_ohms a consumer can compute true output at the actual voltage).\n"
+	},
 	"identity": {
 		"archetypeId": "water_heater",
 		"code": "QXM34AJD",

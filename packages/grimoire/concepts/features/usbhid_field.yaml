@@ -1,9 +1,5 @@
+body:
+  en: >
+    The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/ uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via scale_overrides (usbhid_numeric).
 concept_settings:
-  # The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the
-  # frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of
-  # modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset
-  # into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/
-  # uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is
-  # byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via
-  # scale_overrides (usbhid_numeric).
-  compose: [ measurand_link, numeric_decode, usbhid_numeric, byte_offset ]
+  compose: [measurand_link, numeric_decode, usbhid_numeric, byte_offset]

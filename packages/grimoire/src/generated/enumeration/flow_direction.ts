@@ -4,6 +4,9 @@
 
 export default {
   "in": {
+    "body": {
+      "en": "Inflow — into the feature (import / consumption / drawn-in). An IDENTITY axis: in and out are SEPARATE channels (e.g. two monotonic energy counters), not the sign of one — so the sensor id/key composes from this value. Formerly encoded as the negative sign of a single channel; named now so the channel is addressable.\n"
+    },
     "code": "in",
     "description": {
       "en": "Inflow into the feature (import / consumption) — a distinct channel, not a sign."
@@ -21,6 +24,9 @@ export default {
     }
   },
   "net": {
+    "body": {
+      "en": "Net — the signed DELTA of in minus out on ONE bidirectional channel (grid-CT net power: export +, import −). The delta case: sign encodes direction WITHIN a single channel, distinct from the two separate in/out counters. A first-class member (not \"no direction\") so a net channel keys distinctly from its directional siblings when composing the sensor id.\n"
+    },
     "code": "net",
     "description": {
       "en": "Signed delta of in minus out on one bidirectional channel — sign encodes direction within the channel."

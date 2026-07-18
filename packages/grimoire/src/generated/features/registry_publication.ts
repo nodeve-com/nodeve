@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "publishedBy": publishedBy_.schema,
 
 export type RegistryPublication = { "publishedBy": publishedBy_.PublishedBy; "iriTemplate"?: iriTemplate_.IriTemplate; "baseUrl"?: baseUrl_.BaseUrl };
 
-type DataT = { readonly "description": { readonly "en": "A registry's publisher and term resolver — published_by plus iri_template or base_url."; readonly "pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "registry_publication" }; readonly "prop": { readonly "baseUrl": typeof baseUrl_; readonly "iriTemplate": typeof iriTemplate_; readonly "publishedBy": typeof publishedBy_ }; readonly "title": { readonly "en": "Registry publication"; readonly "pt": "Publicação de registro" } };
+type DataT = { readonly "body": { readonly "en": "A registry's PUBLICATION facts — who owns the id-space and how a term id resolves. Lives on the `registry` archetype as a feature (not identity) so it SURVIVES the catalog emit, which strips identity down to {archetype, slug, code}: the resolver is the whole point of a registry entry.\n\n  - published_by → the organization that owns the vocabulary (FK).\n  - iri_template  → term id to full IRI (`{id}` placeholder) — ontology/anchor registries.\n  - base_url      → term id to an external DB record — database registries (netbox, home_assistant).\n\nA registry that is a bare-token document authority (ISO/IEC/IANA tables) carries neither resolver.\n" }; readonly "description": { readonly "en": "A registry's publisher and term resolver — published_by plus iri_template or base_url."; readonly "pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "registry_publication" }; readonly "prop": { readonly "baseUrl": typeof baseUrl_; readonly "iriTemplate": typeof iriTemplate_; readonly "publishedBy": typeof publishedBy_ }; readonly "title": { readonly "en": "Registry publication"; readonly "pt": "Publicação de registro" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A registry's PUBLICATION facts — who owns the id-space and how a term id resolves. Lives on the `registry` archetype as a feature (not identity) so it SURVIVES the catalog emit, which strips identity down to {archetype, slug, code}: the resolver is the whole point of a registry entry.\n\n  - published_by → the organization that owns the vocabulary (FK).\n  - iri_template  → term id to full IRI (`{id}` placeholder) — ontology/anchor registries.\n  - base_url      → term id to an external DB record — database registries (netbox, home_assistant).\n\nA registry that is a bare-token document authority (ISO/IEC/IANA tables) carries neither resolver.\n"
+	},
 	"description": {
 		"en": "A registry's publisher and term resolver — published_by plus iri_template or base_url.",
 		"pt": "O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url."
@@ -36,4 +39,4 @@ const _data: DataT = {
 		"pt": "Publicação de registro"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

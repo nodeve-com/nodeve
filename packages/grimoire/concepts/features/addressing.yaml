@@ -1,12 +1,10 @@
-# ADDRESSING — the data-link (L2) layer: WHICH node/network, factored out of any single protocol.
-# An address recurs across protocols (a Modbus `unit_id`, a WiFi SSID, an IP host); this feature is
-# their shared home, distinct from framing (protocol-specific byte delimiting) and from the physical
-# layer (electrical signalling). Only `wifi_ssid` lives here for now; `unit_id` belongs here too and
-# should migrate out of `modbus_link` when that feature is split.
 title: { en: Addressing }
+body:
+  en: >
+    ADDRESSING — the data-link (L2) layer: WHICH node/network, factored out of any single protocol. An address recurs across protocols (a Modbus `unit_id`, a WiFi SSID, an IP host); this feature is their shared home, distinct from framing (protocol-specific byte delimiting) and from the physical layer (electrical signalling). Only `wifi_ssid` lives here for now; `unit_id` belongs here too and should migrate out of `modbus_link` when that feature is split.
 prop:
   wifi_ssid: {}
   password: # reuse the network password property, retitled for the WiFi pre-shared key
     title: { en: WiFi password }
     description:
-      en: "The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default."
+      en: 'The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default.'

@@ -1,14 +1,16 @@
-# A registry's PUBLICATION facts — who owns the id-space and how a term id resolves. Lives on the
-# `registry` archetype as a feature (not identity) so it SURVIVES the catalog emit, which strips
-# identity down to {archetype, slug, code}: the resolver is the whole point of a registry entry.
-#   - published_by → the organization that owns the vocabulary (FK).
-#   - iri_template  → term id to full IRI (`{id}` placeholder) — ontology/anchor registries.
-#   - base_url      → term id to an external DB record — database registries (netbox, home_assistant).
-# A registry that is a bare-token document authority (ISO/IEC/IANA tables) carries neither resolver.
 title: { en: Registry publication, pt: Publicação de registro }
 description:
   en: A registry's publisher and term resolver — published_by plus iri_template or base_url.
   pt: O editor e o resolvedor de termos de um registro — published_by mais iri_template ou base_url.
+body:
+  en: >
+    A registry's PUBLICATION facts — who owns the id-space and how a term id resolves. Lives on the `registry` archetype as a feature (not identity) so it SURVIVES the catalog emit, which strips identity down to {archetype, slug, code}: the resolver is the whole point of a registry entry.
+    
+      - published_by → the organization that owns the vocabulary (FK).
+      - iri_template  → term id to full IRI (`{id}` placeholder) — ontology/anchor registries.
+      - base_url      → term id to an external DB record — database registries (netbox, home_assistant).
+    
+    A registry that is a bare-token document authority (ISO/IEC/IANA tables) carries neither resolver.
 prop:
   published_by: { schema: { required: true } }
   iri_template: {}

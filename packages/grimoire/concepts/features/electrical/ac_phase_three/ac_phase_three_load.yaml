@@ -1,10 +1,9 @@
-# The whole-load AC feature-of-interest a box meters downstream of its own port (foxess
-# load_power: the home's total draw as the inverter sees it). Same three-phase shape as its
-# siblings — a device fills only what it meters (fox reports the combined total), the per-phase
-# parts stay optional.
 title:
   en: AC 3-Phase Load
   pt: Carga CA trifásica
+body:
+  en: >
+    The whole-load AC feature-of-interest a box meters downstream of its own port (foxess load_power: the home's total draw as the inverter sees it). Same three-phase shape as its siblings — a device fills only what it meters (fox reports the combined total), the per-phase parts stay optional.
 refs:
   - registry_id: sosa
     term: FeatureOfInterest

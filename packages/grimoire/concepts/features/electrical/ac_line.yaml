@@ -1,16 +1,12 @@
-# features/ac_line.yaml — one AC LINE: the line-to-line voltage measurand of a polyphase AC connection
-# (the voltage BETWEEN two phases — U_AB/U_BC/U_CA), distinct from the phase-to-neutral quantities of
-# ac_phase. A single line carries one measured prop, `voltage` — cited from property by name, not picked
-# from `electrical` (that would drag in current/active_power a line-to-line pair doesn't have). The
-# AB/BC/CA identity is the REPEATED feature's ordinal (meter.ts gives the ac_line slot count 3), never
-# a field here: the feature describes ONE line. Flat measured quantity-kind — `intervals` are
-# authored on the catalog entry. Add more props if a datasheet states them.
 title:
   en: AC line
   pt: Linha CA
 description:
   en: Line-to-line voltage of a polyphase AC connection, one instance per line pair (U_AB / U_BC / U_CA).
   pt: Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA).
+body:
+  en: >
+    features/ac_line.yaml — one AC LINE: the line-to-line voltage measurand of a polyphase AC connection (the voltage BETWEEN two phases — U_AB/U_BC/U_CA), distinct from the phase-to-neutral quantities of ac_phase. A single line carries one measured prop, `voltage` — cited from property by name, not picked from `electrical` (that would drag in current/active_power a line-to-line pair doesn't have). The AB/BC/CA identity is the REPEATED feature's ordinal (meter.ts gives the ac_line slot count 3), never a field here: the feature describes ONE line. Flat measured quantity-kind — `intervals` are authored on the catalog entry. Add more props if a datasheet states them.
 
 # Feature identity crosswalk (the feature AS A WHOLE — a line-to-line voltage FoI). Standards model
 # this at quantity granularity; the pair is the instance key. Refs seeded from property/feature/ac_line.

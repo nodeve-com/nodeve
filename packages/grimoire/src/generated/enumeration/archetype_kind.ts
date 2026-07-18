@@ -4,6 +4,9 @@
 
 export default {
   "catalog": {
+    "body": {
+      "en": "From archetype_registry.ts (catalogArchetypes): device archetypes a catalog leaf may `archetype:`-select — their instances bundle into catalog.generated.ts. There is no `kind` field on an archetype itself; membership in this class is the whole distinction. Members at migration time: inverter, pv_module, meter, appliance, dehumidifier, water_heater, air_conditioner, power_supply, charge_controller.\n"
+    },
     "code": "catalog",
     "description": {
       "en": "Device archetype a catalog leaf may select; instances bundle into the generated catalog."
@@ -14,6 +17,9 @@ export default {
     }
   },
   "schemaOnly": {
+    "body": {
+      "en": "From archetype_registry.ts (schemaOnlyArchetypes): archetypes that ship a schema.json contract but have no catalog instances — connectivity mediums (modbus, usbhid, vedirect), site/installation shapes (solar_array, ambient_tank, location; instances live in sites/<name>/), and deployment config (mqtt_connection, gateway_config, adapters; instances live in each deploying consumer).\n"
+    },
     "code": "schema_only",
     "description": {
       "en": "Archetype shipping a schema contract with no catalog instances (mediums, site shapes, deployment config)."

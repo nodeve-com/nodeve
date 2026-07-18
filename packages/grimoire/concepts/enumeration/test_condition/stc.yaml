@@ -1,7 +1,6 @@
-# STC — Standard Test Conditions (IEC 61215 / IEC 60904-3): the universal PV nameplate reference.
-# Front irradiance 1000 W/m², AM1.5G spectrum, 25 °C cell temperature, no rear contribution. The
-# IMPLICIT reference for any interval that carries NO `test_condition` gate — spelled out here only
-# so a bifacial entry's non-STC bands have a sibling to contrast against.
 title: { en: STC, pt: STC }
 description:
-  en: "Standard Test Conditions — front 1000 W/m², AM1.5G, 25 °C cell temp, no rear irradiance. The default PV nameplate reference (IEC 61215 / IEC 60904-3)."
+  en: 'Standard Test Conditions — front 1000 W/m², AM1.5G, 25 °C cell temp, no rear irradiance. The default PV nameplate reference (IEC 61215 / IEC 60904-3).'
+body:
+  en: >
+    STC — Standard Test Conditions (IEC 61215 / IEC 60904-3): the universal PV nameplate reference. Front irradiance 1000 W/m², AM1.5G spectrum, 25 °C cell temperature, no rear contribution. The IMPLICIT reference for any interval that carries NO `test_condition` gate — spelled out here only so a bifacial entry's non-STC bands have a sibling to contrast against.

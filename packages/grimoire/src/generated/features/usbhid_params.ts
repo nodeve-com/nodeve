@@ -22,9 +22,12 @@ export const schema: TSchema = Type.Object({ "type": Type.Optional(type_.schema)
 
 export type UsbhidParams = { "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "name"?: name_.Name; "fieldIndex"?: fieldIndex_.FieldIndex; "access"?: access_.Access; "sentinel"?: sentinel_.Sentinel };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_params" }; readonly "prop": { readonly "access": typeof access_; readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "fieldIndex": typeof fieldIndex_; readonly "name": typeof name_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "sentinel": typeof sentinel_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "body": { readonly "en": "One CONFIGURATION PARAMETER — a named device setting addressed by a `field_index`, read and/or written via the config exchange (usbhid_config). Distinct from a diag field: a field decodes a fixed offset in a streamed telemetry frame; a parameter is fetched/set BY INDEX in a request/response, typically writable. Same scale + firmware-profile model as a field. `name` = the lowercased device field name (M4-ATX IGN_HIGH => ign_high), the derived MQTT sub-topic. `sentinel` maps a reserved raw value to a categorical meaning (0xffff => never).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_params" }; readonly "prop": { readonly "access": typeof access_; readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "fieldIndex": typeof fieldIndex_; readonly "name": typeof name_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "sentinel": typeof sentinel_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "One CONFIGURATION PARAMETER — a named device setting addressed by a `field_index`, read and/or written via the config exchange (usbhid_config). Distinct from a diag field: a field decodes a fixed offset in a streamed telemetry frame; a parameter is fetched/set BY INDEX in a request/response, typically writable. Same scale + firmware-profile model as a field. `name` = the lowercased device field name (M4-ATX IGN_HIGH => ign_high), the derived MQTT sub-topic. `sentinel` maps a reserved raw value to a categorical meaning (0xffff => never).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "usbhid_params"
@@ -42,4 +45,4 @@ const _data: DataT = {
 		"unit": unit_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

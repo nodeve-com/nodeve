@@ -1,19 +1,12 @@
-# A FILTER — the REQUIRED input conditioning of a quantity before it is evaluated: "this claim is
-# about the signal conditioned THUS", not a presentation hint. On an interval it completes the
-# measurand — a band with `filter: { throttle_average_ms: 1000 }` is a claim about the 1 s mean;
-# judging raw samples against it is judging the wrong quantity (a 5 Hz leg can spike far outside a
-# band whose mean sits comfortably inside). A consumer MUST apply it; an interval carrying one is
-# undefined against unconditioned samples.
-#
-# SMOOTHING (mean-forming) filters only — exactly one. Publish-cadence concerns (throttle, delta,
-# hysteresis) are OUTPUT policy and live with the consumer/derive, never here: they decide when to
-# say the answer, this defines the question. Constants are TIME in integer ms (docs/cadence-field.md),
-# never α or sample counts. Catalog-level defs can't time-validate a window (a device doesn't know
-# its polling cadence); the site bake, which knows the adapter's observed_interval_ms, gates
-# window ≥ sample interval there.
 title: { en: Filter, pt: Filtro }
 description:
   en: 'Required input conditioning of a quantity before evaluation — exactly one mean-forming filter, its constant as integer ms. Completes the measurand; a consumer must apply it.'
+body:
+  en: >
+    A FILTER — the REQUIRED input conditioning of a quantity before it is evaluated: "this claim is about the signal conditioned THUS", not a presentation hint. On an interval it completes the measurand — a band with `filter: { throttle_average_ms: 1000 }` is a claim about the 1 s mean; judging raw samples against it is judging the wrong quantity (a 5 Hz leg can spike far outside a band whose mean sits comfortably inside). A consumer MUST apply it; an interval carrying one is undefined against unconditioned samples.
+    
+    
+    SMOOTHING (mean-forming) filters only — exactly one. Publish-cadence concerns (throttle, delta, hysteresis) are OUTPUT policy and live with the consumer/derive, never here: they decide when to say the answer, this defines the question. Constants are TIME in integer ms (docs/cadence-field.md), never α or sample counts. Catalog-level defs can't time-validate a window (a device doesn't know its polling cadence); the site bake, which knows the adapter's observed_interval_ms, gates window ≥ sample interval there.
 prop:
   throttle_average_ms: {} # wall-clock mean — frequency-robust, valid whatever the cadence
   exponential_moving_average_ms: {} # EMA τ — sample-relative, needs a known Δt to realize α

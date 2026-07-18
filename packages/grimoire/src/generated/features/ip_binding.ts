@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "ipFamily": Type.Optional(Type.Unio
 
 export type IpBinding = { "ipFamily"?: "ipv4" | "ipv6"; "ipAddress"?: ipAddress_.IpAddress; "fqdn"?: fqdn_.Fqdn };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ip_binding" }; readonly "prop": { readonly "fqdn": typeof fqdn_; readonly "ipAddress": typeof ipAddress_ }; readonly "title": { readonly "en": "IP binding" } };
+type DataT = { readonly "body": { readonly "en": "IP BINDING — one L3 address bound to a NIC: the address itself (ip_address), which family it is (ip_family: ipv4/ipv6), and an optional resolving name (fqdn). Homed on the `ip_addresses` archetype (that class is a LIST per interface — its `is_array`); this feature is the per-address block and carries no cardinality of its own. Distinct axis from network_link (the L2 datasheet) — this is L3. Named `ip_binding` so the feature stem stays distinct from its `ip_address` prop.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ip_binding" }; readonly "prop": { readonly "fqdn": typeof fqdn_; readonly "ipAddress": typeof ipAddress_ }; readonly "title": { readonly "en": "IP binding" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "IP BINDING — one L3 address bound to a NIC: the address itself (ip_address), which family it is (ip_family: ipv4/ipv6), and an optional resolving name (fqdn). Homed on the `ip_addresses` archetype (that class is a LIST per interface — its `is_array`); this feature is the per-address block and carries no cardinality of its own. Distinct axis from network_link (the L2 datasheet) — this is L3. Named `ip_binding` so the feature stem stays distinct from its `ip_address` prop.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "ip_binding"
@@ -29,4 +32,4 @@ const _data: DataT = {
 		"en": "IP binding"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

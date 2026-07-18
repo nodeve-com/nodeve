@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type ManufacturerId = string;
 
-type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that made this thing."; readonly "pt": "Slug da entrada de catálogo da organização que fez esta coisa." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "manufacturer_id" }; readonly "title": { readonly "en": "Manufacturer"; readonly "pt": "Fabricante" } };
+type DataT = { readonly "body": { readonly "en": "Reference to the maker: the `slug` of an `organization` catalog entry (catalog/organizations/). The field name is the ROLE (who made this thing); the target Class is `organization` (a maker is one kind of organization). A cross-tree pointer, but the archetype is fixed, so it collapses to the bare slug — a `*_id` like feature_id/property_id, not the full catalog_item {archetype, slug} shape.\n" }; readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that made this thing."; readonly "pt": "Slug da entrada de catálogo da organização que fez esta coisa." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "manufacturer_id" }; readonly "title": { readonly "en": "Manufacturer"; readonly "pt": "Fabricante" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to the maker: the `slug` of an `organization` catalog entry (catalog/organizations/). The field name is the ROLE (who made this thing); the target Class is `organization` (a maker is one kind of organization). A cross-tree pointer, but the archetype is fixed, so it collapses to the bare slug — a `*_id` like feature_id/property_id, not the full catalog_item {archetype, slug} shape.\n"
+	},
 	"column": {
 		"references": "organization"
 	},
@@ -31,4 +34,4 @@ const _data: DataT = {
 		"pt": "Fabricante"
 	}
 };
-export const { column, description, identity, title } = _data;
+export const { body, column, description, identity, title } = _data;

@@ -1,20 +1,56 @@
-# FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole
-# box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it
-# is talked to (its modbus slot). This single file replaces the former split between the
-# inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is
-# inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.
+body:
+  en: >
+    FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.
+    
+    
+    Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — rated bands (interval_kind: rating) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
+    
+    
+    AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
+    
+    
+    AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — interval_kind: rating derives from it, slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
+    
+    
+    The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.
+    
+    
+    PV tracker bands: `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/ startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt, off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.
+    
+    
+    NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
+    
+    
+    Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent) directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
+    
+    
+    Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).
+    
+    
+    How to TALK to the box: the modbus connectivity medium. The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same. Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the registers backing entities we consume today (write/control registers out of scope — see docs/solar/inverter.md).
+    
+    
+    PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a hard split boundary around these until a live probe confirms the hazard:
+    
+      mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?
+      mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
+    
+    invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual
+      control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding
+      around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS
+      battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.
+    
+    
+    modbus_decodes — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
+    
+    
+    Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one. Bits stay in the group the device puts them in — the word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].
 identity:
   slug: foxess_h3_ps10sh
   code: S2P331EC
 
 product:
   model: H3-10.0-Smart # box reports Inv.H3_SMART
-
-# Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that
-# feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE,
-# applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list —
-# rated bands (interval_kind: rating) and measurable sensor spans (interval_kind: measurable, concrete
-# VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
 
 # Commissioning setting — the grid region the box is wired for (enumeration/grid_region members;
 # each carries its nominal mains voltage + frequency). ONE knob gates the nominal bands below via
@@ -76,10 +112,6 @@ ac_phase_three_out:
           - interval:
               { interval_kind: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
       active_power:
-        # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
-        # With no nominal the symmetric export/import rows collapse to one signed range per tier.
-        # Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous`
-        # thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
         intervals:
           - interval: { rating: continuous, min: -11000, max: 10000 } # full capacity, either direction
             condition:
@@ -88,6 +120,7 @@ ac_phase_three_out:
               # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a spec-carrying
               # altitude band to point at — pending a generic altitude/elevation feature (the site
               # supplies the install altitude; geo-fence is undesigned). Deferred, not dropped.
+
           # short-term peak: sustained ≤30 s, the device self-protects beyond.
           - interval: { rating: short_term, min: -12000, max: 11000, duration: 30 }
           - interval: { rating: continuous, min: -10000, max: 9000 } # thermal derate 45–60 °C
@@ -98,10 +131,6 @@ ac_phase_three_out:
     default:
       ac_phase:
         voltage:
-          # 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the
-          # single-valued grid_region setting, so the site sets it once and one interval resolves.
-          # A lone `nominal` (no min/max) IS the nameplate rating — interval_kind: rating derives from
-          # it, slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
           intervals:
             - interval: { value: 220, severity: nominal }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
@@ -129,10 +158,6 @@ ac_phase_three_out:
                 # altitude band as the combined total above.
             - interval: { interval_kind: measurable, min: 0, max: 5, unit: kW }
 
-# The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed
-# (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy
-# accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine),
-# distinct from the inverter's own AC output above.
 ac_phase_three_grid:
   identity:
     slug: ac_grid
@@ -190,10 +215,6 @@ pv_tracker:
   concept_settings:
     count: 3
   feature_spec:
-    # `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/
-    # startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt,
-    # off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries
-    # its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.
     combined:
       active_power:
         intervals:
@@ -236,11 +257,6 @@ pv_tracker:
         voltage:
           intervals:
             - interval: { rating: continuous, min: 60, value: 480, severity: nominal }
-
-# NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the
-# grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy
-# column's flow_direction/period measurable intervals. The inverter's own throughput lives on
-# ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
 
 ac_phase_three_eps: # separate EPS port — export only; its own per-phase telemetry
   identity:
@@ -310,10 +326,6 @@ enclosure: # internal temperature is the enclosure's — a concrete feature-of-i
   feature_spec:
     combined:
       temperature:
-        # The thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the
-        # grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent)
-        # directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit
-        # override — canonical is K) per interval.
         intervals:
           - interval: { rating: survival, min: -40, max: 80, unit: °C }
           - interval: { rating: intermittent, min: -25, max: 60, unit: °C }
@@ -331,10 +343,6 @@ network_interfaces:
       interface_type: ethernet_csmacd
       link_speed: 100
 
-# Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the
-# registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host
-# resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the
-# built-in web UI (https on 443).
 services:
   - identity: { slug: modbus_tcp }
     service_binding:
@@ -347,12 +355,6 @@ services:
       network_interface_id: eth0
       port: 443
 
-# How to TALK to the box: the modbus connectivity medium.
-# The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility
-# point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same.
-# Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the
-# registers backing entities we consume today (write/control registers out of scope — see
-# docs/solar/inverter.md).
 modbus:
   # The reachable surface (modbus_tcp on port 502, its NIC binding) is declared in `services` above —
   # this medium is the DECODE contract (framing + register map), not the network transport.
@@ -362,17 +364,6 @@ modbus:
     # the LOWER address (word_order: high_first); 16-bit registers are big-endian (Modbus std).
     register_type: holding
     word_order: high_first
-  # PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim
-  # from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to
-  # github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT,
-  # not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a
-  # hard split boundary around these until a live probe confirms the hazard:
-  #   mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?
-  #   mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
-  # invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual
-  #   control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding
-  #   around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS
-  #   battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.
   modbus_constraints:
     invalid_ranges:
       - range: [41001, 41006]
@@ -947,17 +938,7 @@ modbus:
         decimals: 1,
         unit: °C,
       }
-  # Categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter
-  # root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns
-  # them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a
-  # quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
   modbus_decodes:
-    # Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at
-    # 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one.
-    # Bits stay in the group the device puts them in — the
-    # word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the
-    # separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is
-    # read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].
     - kind: flags
       feature_id: inverter
       state: run_state

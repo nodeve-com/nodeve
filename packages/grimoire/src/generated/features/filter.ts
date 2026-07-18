@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "throttleAverageMs": Type.Optional(
 
 export type Filter = { "throttleAverageMs"?: throttleAverageMs_.ThrottleAverageMs; "exponentialMovingAverageMs"?: exponentialMovingAverageMs_.ExponentialMovingAverageMs };
 
-type DataT = { readonly "description": { readonly "en": "Required input conditioning of a quantity before evaluation — exactly one mean-forming filter, its constant as integer ms. Completes the measurand; a consumer must apply it." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "filter" }; readonly "prop": { readonly "exponentialMovingAverageMs": typeof exponentialMovingAverageMs_; readonly "throttleAverageMs": typeof throttleAverageMs_ }; readonly "title": { readonly "en": "Filter"; readonly "pt": "Filtro" } };
+type DataT = { readonly "body": { readonly "en": "A FILTER — the REQUIRED input conditioning of a quantity before it is evaluated: \"this claim is about the signal conditioned THUS\", not a presentation hint. On an interval it completes the measurand — a band with `filter: { throttle_average_ms: 1000 }` is a claim about the 1 s mean; judging raw samples against it is judging the wrong quantity (a 5 Hz leg can spike far outside a band whose mean sits comfortably inside). A consumer MUST apply it; an interval carrying one is undefined against unconditioned samples.\n\nSMOOTHING (mean-forming) filters only — exactly one. Publish-cadence concerns (throttle, delta, hysteresis) are OUTPUT policy and live with the consumer/derive, never here: they decide when to say the answer, this defines the question. Constants are TIME in integer ms (docs/cadence-field.md), never α or sample counts. Catalog-level defs can't time-validate a window (a device doesn't know its polling cadence); the site bake, which knows the adapter's observed_interval_ms, gates window ≥ sample interval there.\n" }; readonly "description": { readonly "en": "Required input conditioning of a quantity before evaluation — exactly one mean-forming filter, its constant as integer ms. Completes the measurand; a consumer must apply it." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "filter" }; readonly "prop": { readonly "exponentialMovingAverageMs": typeof exponentialMovingAverageMs_; readonly "throttleAverageMs": typeof throttleAverageMs_ }; readonly "title": { readonly "en": "Filter"; readonly "pt": "Filtro" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A FILTER — the REQUIRED input conditioning of a quantity before it is evaluated: \"this claim is about the signal conditioned THUS\", not a presentation hint. On an interval it completes the measurand — a band with `filter: { throttle_average_ms: 1000 }` is a claim about the 1 s mean; judging raw samples against it is judging the wrong quantity (a 5 Hz leg can spike far outside a band whose mean sits comfortably inside). A consumer MUST apply it; an interval carrying one is undefined against unconditioned samples.\n\nSMOOTHING (mean-forming) filters only — exactly one. Publish-cadence concerns (throttle, delta, hysteresis) are OUTPUT policy and live with the consumer/derive, never here: they decide when to say the answer, this defines the question. Constants are TIME in integer ms (docs/cadence-field.md), never α or sample counts. Catalog-level defs can't time-validate a window (a device doesn't know its polling cadence); the site bake, which knows the adapter's observed_interval_ms, gates window ≥ sample interval there.\n"
+	},
 	"description": {
 		"en": "Required input conditioning of a quantity before evaluation — exactly one mean-forming filter, its constant as integer ms. Completes the measurand; a consumer must apply it."
 	},
@@ -33,4 +36,4 @@ const _data: DataT = {
 		"pt": "Filtro"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

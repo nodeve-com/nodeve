@@ -4,6 +4,9 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 export default {
+	"body": {
+		"en": "Victron SmartSolar MPPT 100/30 — one catalog entry: its identity (the `charge_controller` archetype, inherited from ./_defaults.yaml) AND how it's read (its full VE.Direct field list). `manufacturer` is inherited from ../_defaults.yaml; everything about DECODE lives here on the one product — no brand cascade merges into it.\n\nThe reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list, the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity. Single MPP tracker. `pv_*` link to the `pv_tracker` MPPT-input (ordinal 1); `battery_*` to the `battery` DC-output port; CS/MPPT/ERR codes stay integers, left undecoded. H19–H23 yields are 0.01 kWh counters. Each row's `key` is the VE.Direct wire label; RAW rows carry `raw_name`.\n"
+	},
 	"identity": {
 		"archetypeId": "charge_controller",
 		"code": "1SCV4M25",

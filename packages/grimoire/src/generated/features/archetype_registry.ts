@@ -12,12 +12,15 @@ export const schema: TSchema = Type.Object({ "archetypeKind": Type.Optional(Type
 
 export type ArchetypeRegistry = { "archetypeKind"?: "catalog" | "schema_only" };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "archetype_registry" } };
+type DataT = { readonly "body": { readonly "en": "The archetype registry, from archetype_registry.ts: every concrete schema the catalog tree validates against (the device archetypes a leaf's `archetype:` selector names) plus the connectivity mediums and site/installation shapes. One grouping the cascade loader, the codegen, and the drift test all loop over.\n\nEach archetype declares itself in its own archetypes/<name>.yaml — no text or per-archetype detail lives in this index. Adding an archetype = a new archetypes/<name>.yaml; its class along the one axis that matters downstream (\"is this a catalog device a leaf may `archetype:`-select?\") is the `archetype_kind` enum (property/archetype_kind/: catalog vs schema_only), which replaces the former two-list membership (catalogArchetypes / schemaOnlyArchetypes).\n\nDropped TS plumbing (generation-side, not concept data): resolveArchetype mapping, generated/ output path builders (schemaJsonPath, langJsonPath, uiJsonPath, typeImportPath, catalogBundlePath, catalogIndexPath, catalogJsonPath).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "archetype_registry" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The archetype registry, from archetype_registry.ts: every concrete schema the catalog tree validates against (the device archetypes a leaf's `archetype:` selector names) plus the connectivity mediums and site/installation shapes. One grouping the cascade loader, the codegen, and the drift test all loop over.\n\nEach archetype declares itself in its own archetypes/<name>.yaml — no text or per-archetype detail lives in this index. Adding an archetype = a new archetypes/<name>.yaml; its class along the one axis that matters downstream (\"is this a catalog device a leaf may `archetype:`-select?\") is the `archetype_kind` enum (property/archetype_kind/: catalog vs schema_only), which replaces the former two-list membership (catalogArchetypes / schemaOnlyArchetypes).\n\nDropped TS plumbing (generation-side, not concept data): resolveArchetype mapping, generated/ output path builders (schemaJsonPath, langJsonPath, uiJsonPath, typeImportPath, catalogBundlePath, catalogIndexPath, catalogJsonPath).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "archetype_registry"
 	}
 };
-export const { identity } = _data;
+export const { body, identity } = _data;

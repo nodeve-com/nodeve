@@ -1,22 +1,23 @@
-# An ENDPOINT — one way to reach a node, at either layer of the stack:
-#   * a URL, when `service_protocol` (the L7 scheme) is set — rendered ${scheme}://${host}:${port}${pathname};
-#     the scheme is a TCP-family application protocol (every current member), so it PINS the composed
-#     `transport_protocol` to tcp (schema below) — never authored raw alongside a scheme.
-#   * a raw L4 socket, when no scheme is set — `socket_address.transport_protocol` ({tcp, udp}) spelled
-#     explicitly (a bare socket has no scheme to imply it from), rendered as bare ${host}:${port}.
-# `service_protocol` here is FILTERED to the URI-scheme members (a validated subset — the non-URI
-# members like modbus_tcp can't name a URL); the full vocab is the serve side (service_binding).
-# WHERE + which wire come from `socket_address`; dial policy (connect/retry) from `reconnect`. Every
-# field OPTIONAL: host/port fall back to the connection's shared default / the scheme's well-known
-# port; `pathname` is the fixed URL-path prefix (e.g. /mqtt for MQTT-over-WebSocket), bare / when
-# omitted. Instance-keyable by `service_protocol` (`parts:`) to describe several schemes sharing one
-# host — see mqtt_connection. Overloaded across both layers deliberately: one reach concept, the
-# scalar `schema:` doing the L7-implies-tcp + tcp-needs-dial-policy correlations (absorbed inet_socket).
 title: { en: Endpoint }
-description: { en: "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults." }
+description:
+  {
+    en: "One way to reach a node — a URL when a service_protocol scheme is set (rendered ${scheme}://${host}:${port}${pathname}), or a raw tcp/udp socket when it isn't (bare ${host}:${port}). Reachability comes from socket_address; dial policy from reconnect. Every field optional, falling back to shared/well-known defaults.",
+  }
+body:
+  en: >
+    An ENDPOINT — one way to reach a node, at either layer of the stack:
+    
+        * a URL, when `service_protocol` (the L7 scheme) is set — rendered ${scheme}://${host}:${port}${pathname};
+        the scheme is a TCP-family application protocol (every current member), so it PINS the composed
+        `transport_protocol` to tcp (schema below) — never authored raw alongside a scheme.
+    
+        * a raw L4 socket, when no scheme is set — `socket_address.transport_protocol` ({tcp, udp}) spelled
+        explicitly (a bare socket has no scheme to imply it from), rendered as bare ${host}:${port}.
+    
+    `service_protocol` here is FILTERED to the URI-scheme members (a validated subset — the non-URI members like modbus_tcp can't name a URL); the full vocab is the serve side (service_binding). WHERE + which wire come from `socket_address`; dial policy (connect/retry) from `reconnect`. Every field OPTIONAL: host/port fall back to the connection's shared default / the scheme's well-known port; `pathname` is the fixed URL-path prefix (e.g. /mqtt for MQTT-over-WebSocket), bare / when omitted. Instance-keyable by `service_protocol` (`parts:`) to describe several schemes sharing one host — see mqtt_connection. Overloaded across both layers deliberately: one reach concept, the scalar `schema:` doing the L7-implies-tcp + tcp-needs-dial-policy correlations (absorbed inet_socket).
 enums:
   # Filtered to the URI-scheme members — a URL scheme is one of these, never modbus_tcp (not a URI).
-  - service_protocol: [ mqtt, mqtts, http, https, ws, wss ]
+  - service_protocol: [mqtt, mqtts, http, https, ws, wss]
 concept_settings:
   # socket_address = host + port + transport_protocol (WHERE + which wire); reconnect = dial policy.
   compose:

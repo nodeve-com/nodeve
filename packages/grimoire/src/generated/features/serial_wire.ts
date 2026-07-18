@@ -18,9 +18,12 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type SerialWire = { "path"?: path_.Path; "baudRate"?: baudRate_.BaudRate; "physicalLayer"?: "can_hs" | "current_loop_4_20ma" | "rs232" | "rs485" | "ttl_3v3" | "ttl_5v" | "voltage_0_10v"; "parity"?: parity_.Parity; "dataBits"?: dataBits_.DataBits; "stopBits"?: stopBits_.StopBits };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_wire" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "dataBits": typeof dataBits_; readonly "parity": typeof parity_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } }; readonly "stopBits": typeof stopBits_ } };
+type DataT = { readonly "body": { readonly "en": "A SERIAL WIRE — the one canonical description of an async-serial physical link (device-catalog wire AND a gateway adapter's owned hardware): the PORT (serial_port), the LINE DISCIPLINE (parity/data_bits/stop_bits — the UART framing), and the PHYSICAL layer (rs485/rs232/ttl_*, from property/physical_layer/). `interface_type` is deliberately NOT a field — on this feature it is always the constant async_serial (IANA ifType 33); the `serial` key itself is the serial-vs- usb/socket discriminator. `read_mode` (modbus_tap/master) is excluded — a read-behavior axis composed by the adapter that reads the wire, not a wire property.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_wire" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "dataBits": typeof dataBits_; readonly "parity": typeof parity_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } }; readonly "stopBits": typeof stopBits_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A SERIAL WIRE — the one canonical description of an async-serial physical link (device-catalog wire AND a gateway adapter's owned hardware): the PORT (serial_port), the LINE DISCIPLINE (parity/data_bits/stop_bits — the UART framing), and the PHYSICAL layer (rs485/rs232/ttl_*, from property/physical_layer/). `interface_type` is deliberately NOT a field — on this feature it is always the constant async_serial (IANA ifType 33); the `serial` key itself is the serial-vs- usb/socket discriminator. `read_mode` (modbus_tap/master) is excluded — a read-behavior axis composed by the adapter that reads the wire, not a wire property.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "serial_wire"
@@ -41,4 +44,4 @@ const _data: DataT = {
 		"stopBits": stopBits_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

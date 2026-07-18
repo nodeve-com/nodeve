@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Object({ "feature": Type.Optional(Type.Strin
 
 export type IntervalItem = { "feature"?: string; "property"?: string; "interval"?: string };
 
-type DataT = { readonly "description": { readonly "en": "A by-slug pointer to one interval of a feature's property — {feature, property, interval}. The named interval carries the region/value; a condition is an instance of this reference." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "interval_item" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Interval item" } };
+type DataT = { readonly "body": { readonly "en": "An INTERVAL-ITEM reference — names ONE interval of a quantity: which feature-of-interest (`feature`), which of its properties (`property`: a quantity_kind slug or a settings key), and WHICH interval of that property (`interval`: the target interval's own `code` handle). All three are SLUGS — the same by-slug lookup `catalog_item` ({archetype, slug}) uses; no `_id`/`_slug` suffix. All three required: a fully-qualified pointer, no self-referential shorthand (a self-dwell gate names its own enclosing feature explicitly). The interval it names carries the actual region/value — a condition holds NO bounds of its own, it is a pure pointer. `interval` is unique within the target property's `intervals` array (bake-validated, not draft-07) and must resolve to an existing coded interval.\n" }; readonly "description": { readonly "en": "A by-slug pointer to one interval of a feature's property — {feature, property, interval}. The named interval carries the region/value; a condition is an instance of this reference." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "interval_item" }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }]; readonly "title": { readonly "en": "Interval item" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "An INTERVAL-ITEM reference — names ONE interval of a quantity: which feature-of-interest (`feature`), which of its properties (`property`: a quantity_kind slug or a settings key), and WHICH interval of that property (`interval`: the target interval's own `code` handle). All three are SLUGS — the same by-slug lookup `catalog_item` ({archetype, slug}) uses; no `_id`/`_slug` suffix. All three required: a fully-qualified pointer, no self-referential shorthand (a self-dwell gate names its own enclosing feature explicitly). The interval it names carries the actual region/value — a condition holds NO bounds of its own, it is a pure pointer. `interval` is unique within the target property's `intervals` array (bake-validated, not draft-07) and must resolve to an existing coded interval.\n"
+	},
 	"description": {
 		"en": "A by-slug pointer to one interval of a feature's property — {feature, property, interval}. The named interval carries the region/value; a condition is an instance of this reference."
 	},
@@ -33,4 +36,4 @@ const _data: DataT = {
 		"en": "Interval item"
 	}
 };
-export const { description, identity, refs, title } = _data;
+export const { body, description, identity, refs, title } = _data;

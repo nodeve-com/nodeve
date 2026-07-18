@@ -7,20 +7,24 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": title_.schema, "description": description_.schema, "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": title_.schema, "description": description_.schema, "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
 
-export type Archetype = { "title": title_.Title; "description": description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
+export type Archetype = { "title": title_.Title; "description": description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "description": { readonly "en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries."; readonly "pt": "A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "archetype" }; readonly "title": { readonly "en": "Archetype"; readonly "pt": "Arquétipo" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "body": { readonly "en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n" }; readonly "description": { readonly "en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries."; readonly "pt": "A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "archetype" }; readonly "title": { readonly "en": "Archetype"; readonly "pt": "Arquétipo" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
+	"body": {
+		"en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n"
+	},
 	"description": {
 		"en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries.",
 		"pt": "A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo."
@@ -34,4 +38,4 @@ const _data: DataT = {
 		"pt": "Arquétipo"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

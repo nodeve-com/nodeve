@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as ipAddresses_ from './ip_addresses.ts';
@@ -15,16 +16,17 @@ import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "networkLink": Type.Optional(networkLink_.schema), "ipAddresses": Type.Optional(ipAddresses_.schema) }, {"additionalProperties":false,"x-key-map":{"network_link":"networkLink","ip_addresses":"ipAddresses"}}));
+export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "networkLink": Type.Optional(networkLink_.schema), "ipAddresses": Type.Optional(ipAddresses_.schema) }, {"additionalProperties":false,"x-key-map":{"network_link":"networkLink","ip_addresses":"ipAddresses"}}));
 
-export type NetworkInterfaces = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "networkLink"?: networkLink_.NetworkLink; "ipAddresses"?: ipAddresses_.IpAddresses }>;
+export type NetworkInterfaces = Array<{ "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "networkLink"?: networkLink_.NetworkLink; "ipAddresses"?: ipAddresses_.IpAddresses }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipAddresses": typeof ipAddresses_; readonly "networkLink": typeof networkLink_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "network_interfaces" }; readonly "title": { readonly "en": "Network interface"; readonly "pt": "Coisa" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "ipAddresses": typeof ipAddresses_; readonly "networkLink": typeof networkLink_; readonly "refs": typeof refs_; readonly "title": typeof title_ } }; readonly "body": { readonly "en": "NETWORK INTERFACE — one L2/L3 NIC of a node (a node may carry several: an Ethernet port AND a WiFi radio). `is_array: true` so a device's `network_interfaces` slot is a LIST of these (the same cardinality model as archetypes/intervals — cardinality lives on the target class, there is no ref-site marker). Modelling the NIC as an archetype (not a bare feature) buys each interface its identity/title/description — above all the referenceable `identity.slug`, so a site can name its WiFi vs Ethernet ports. The link datasheet itself lives in the `network_link` feature.\n" }; readonly "description": { readonly "en": "One of a node's network interface controllers — its identity plus link datasheet (network_link)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "network_interfaces" }; readonly "title": { readonly "en": "Network interface"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
 	"array": {
 		"prop": {
+			"body": body_,
 			"description": description_,
 			"identity": identity_,
 			"ipAddresses": ipAddresses_,
@@ -32,6 +34,9 @@ const _data: DataT = {
 			"refs": refs_,
 			"title": title_
 		}
+	},
+	"body": {
+		"en": "NETWORK INTERFACE — one L2/L3 NIC of a node (a node may carry several: an Ethernet port AND a WiFi radio). `is_array: true` so a device's `network_interfaces` slot is a LIST of these (the same cardinality model as archetypes/intervals — cardinality lives on the target class, there is no ref-site marker). Modelling the NIC as an archetype (not a bare feature) buys each interface its identity/title/description — above all the referenceable `identity.slug`, so a site can name its WiFi vs Ethernet ports. The link datasheet itself lives in the `network_link` feature.\n"
 	},
 	"description": {
 		"en": "One of a node's network interface controllers — its identity plus link datasheet (network_link).",
@@ -46,4 +51,4 @@ const _data: DataT = {
 		"pt": "Coisa"
 	}
 };
-export const { array, description, identity, prop, title } = _data;
+export const { array, body, description, identity, prop, title } = _data;

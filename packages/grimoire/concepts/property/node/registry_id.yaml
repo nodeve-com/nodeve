@@ -1,9 +1,9 @@
-# Reference to the external vocabulary a crosswalk ref points into — an FK: the value is the
-# `identity.slug` of a `registry` catalog entry, resolved by guard-refs. Role name, like manufacturer_id:
-# the field is "which registry", the target Class is `registry`. Was enum-membership over
-# enumeration/registry/; now an FK over catalog/registries/ (docs/reference-model.md stage 2).
 title: { en: Registry, pt: Registro }
-description: { en: Slug of the registry catalog entry whose id-space the crosswalk term is drawn from. }
+description:
+  { en: Slug of the registry catalog entry whose id-space the crosswalk term is drawn from. }
+body:
+  en: >
+    Reference to the external vocabulary a crosswalk ref points into — an FK: the value is the `identity.slug` of a `registry` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is "which registry", the target Class is `registry`. Was enum-membership over enumeration/registry/; now an FK over catalog/registries/ (docs/reference-model.md stage 2).
 column:
   references: registry # FK: value MUST be identity.slug of a `registry` catalog entry (guard-refs)
 schema: { type: string, pattern: '^[a-z][a-z0-9_]*$' }

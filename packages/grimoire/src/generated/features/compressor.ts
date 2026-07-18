@@ -13,13 +13,16 @@ export const schema: TSchema = Type.Object({ "refrigerant": Type.Optional(Type.L
 
 export type Compressor = { "refrigerant"?: "r290" };
 
-type DataT = { readonly "prop": (typeof refrigeration_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "compressor" } };
+type DataT = { readonly "prop": (typeof refrigeration_)["prop"]; readonly "body": { readonly "en": "The COMPRESSOR — a vapor-compression circuit as the cooling/heating archetypes characterise it. It carries only its working gas (refrigeration feature, optional). The AC power connection is NOT the compressor's: the archetype (air_conditioner / dehumidifier / heat-pump water_heater) owns the `ac_phase` connection + draw, and the compressor is one load on it. Composed by those archetypes.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "compressor" } };
 
 const _data: DataT = {
 	"prop": refrigeration_["prop"],
+	"body": {
+		"en": "The COMPRESSOR — a vapor-compression circuit as the cooling/heating archetypes characterise it. It carries only its working gas (refrigeration feature, optional). The AC power connection is NOT the compressor's: the archetype (air_conditioner / dehumidifier / heat-pump water_heater) owns the `ac_phase` connection + draw, and the compressor is one load on it. Composed by those archetypes.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "compressor"
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

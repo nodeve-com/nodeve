@@ -15,10 +15,13 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type MeasuringInterval = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measuring_interval" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.7" }] };
+type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "body": { readonly "en": "A MEASURING INTERVAL (VIM 4.7, JCGM 200:2012; a.k.a. measuring range / working interval) — the closed span an instrument channel reads with its stated metrological properties. Unit-agnostic (unit carried once by the enclosing measurement). The {min,max} shape is the generic range feature — composed, never restated. Same shape as temp_band, deliberately a DIFFERENT concept (temp_band is a CONTROL band; this is what an INSTRUMENT can read). Authored sealed.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measuring_interval" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "vim"; readonly "term": "4.7" }] };
 
 const _data: DataT = {
 	"prop": range_["prop"],
+	"body": {
+		"en": "A MEASURING INTERVAL (VIM 4.7, JCGM 200:2012; a.k.a. measuring range / working interval) — the closed span an instrument channel reads with its stated metrological properties. Unit-agnostic (unit carried once by the enclosing measurement). The {min,max} shape is the generic range feature — composed, never restated. Same shape as temp_band, deliberately a DIFFERENT concept (temp_band is a CONTROL band; this is what an INSTRUMENT can read). Authored sealed.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "measuring_interval"
@@ -31,4 +34,4 @@ const _data: DataT = {
 		}
 	]
 };
-export const { identity, prop, refs } = _data;
+export const { body, identity, prop, refs } = _data;

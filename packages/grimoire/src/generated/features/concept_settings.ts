@@ -19,9 +19,12 @@ export const schema: TSchema = Type.Object({ "compose": Type.Optional(compose_.s
 
 export type ConceptSettings = { "compose"?: compose_.Compose; "repeated"?: repeated_.Repeated; "part"?: part_.Part; "isArray"?: isArray_.IsArray; "map"?: map_.Map; "count"?: count_.Count; "isSpecification"?: isSpecification_.IsSpecification };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "concept_settings" }; readonly "prop": { readonly "compose": typeof compose_; readonly "count": typeof count_; readonly "isArray": typeof isArray_; readonly "isSpecification": typeof isSpecification_; readonly "map": typeof map_; readonly "part": typeof part_; readonly "repeated": typeof repeated_ }; readonly "title": { readonly "en": "Concept settings"; readonly "pt": "Configurações de conceito" } };
+type DataT = { readonly "body": { readonly "en": "The def-language grammar a features/ or archetypes/ file may carry — defined HERE as concepts, interpreted by the compiler (kit/compile.ts): `compose` reuses the named tables' columns (a single slug or a list — the old `alias`, a same-shape rename, is just a one-element compose); `repeated`/`part` are the countable / fixed-parts expansions; `is_array`/`map` declare the def's intrinsic cardinality (exclusive); `count` declares that cardinality when KNOWN (how many values a repeated/array feature holds) — the same quantity as a catalog entry's `count`, hoisted to the schema layer; `is_specification` marks a feature as a specification (each of its quantity_kind fields becomes a `specification` — identity + measurand + the `intervals` list). Composed into archetypes/feature.yaml so a def is itself a validated instance, not compiler-only grammar.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "concept_settings" }; readonly "prop": { readonly "compose": typeof compose_; readonly "count": typeof count_; readonly "isArray": typeof isArray_; readonly "isSpecification": typeof isSpecification_; readonly "map": typeof map_; readonly "part": typeof part_; readonly "repeated": typeof repeated_ }; readonly "title": { readonly "en": "Concept settings"; readonly "pt": "Configurações de conceito" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The def-language grammar a features/ or archetypes/ file may carry — defined HERE as concepts, interpreted by the compiler (kit/compile.ts): `compose` reuses the named tables' columns (a single slug or a list — the old `alias`, a same-shape rename, is just a one-element compose); `repeated`/`part` are the countable / fixed-parts expansions; `is_array`/`map` declare the def's intrinsic cardinality (exclusive); `count` declares that cardinality when KNOWN (how many values a repeated/array feature holds) — the same quantity as a catalog entry's `count`, hoisted to the schema layer; `is_specification` marks a feature as a specification (each of its quantity_kind fields becomes a `specification` — identity + measurand + the `intervals` list). Composed into archetypes/feature.yaml so a def is itself a validated instance, not compiler-only grammar.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "concept_settings"
@@ -40,4 +43,4 @@ const _data: DataT = {
 		"pt": "Configurações de conceito"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

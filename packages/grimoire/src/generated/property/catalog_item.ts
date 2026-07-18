@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Object({ "archetypeId": Type.Optional(Type.S
 
 export type CatalogItem = { "archetypeId"?: string; "slug"?: string };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_item" }; readonly "title": { readonly "en": "Catalog item"; readonly "pt": "Item de catálogo" } };
+type DataT = { readonly "body": { readonly "en": "A reference to ONE catalog entry by its identity — `archetype_id` (the class) + `slug` (the globally-unique entry id, catalog.generated.json's key). THE lookup shape every cross-tree reference uses (a site device names its hardware this way); never a filing tree path. A pure foreign key — nothing but the pointer. On-bus name shortening is a CATALOG fact — a feature's own `identity.slug` (e.g. `ac_phase_three_point → ac`), not a site overlay on this pointer.\n" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "catalog_item" }; readonly "title": { readonly "en": "Catalog item"; readonly "pt": "Item de catálogo" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A reference to ONE catalog entry by its identity — `archetype_id` (the class) + `slug` (the globally-unique entry id, catalog.generated.json's key). THE lookup shape every cross-tree reference uses (a site device names its hardware this way); never a filing tree path. A pure foreign key — nothing but the pointer. On-bus name shortening is a CATALOG fact — a feature's own `identity.slug` (e.g. `ac_phase_three_point → ac`), not a site overlay on this pointer.\n"
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "catalog_item"
@@ -24,4 +27,4 @@ const _data: DataT = {
 		"pt": "Item de catálogo"
 	}
 };
-export const { identity, title } = _data;
+export const { body, identity, title } = _data;

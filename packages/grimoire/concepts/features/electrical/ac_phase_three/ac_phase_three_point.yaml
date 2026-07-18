@@ -5,15 +5,13 @@ title:
   en: AC 3-Phase Connection Point
 description:
   en: A three-phase AC connection point measured as a whole plus per-phase (a/b/c) and per-line (ab/bc/ca) parts.
-
-# feature_spec (docs/feature-model.md): the compiler wraps this parted feature's body under
-# `feature_spec` (combined/default/part) and folds each kind feature's own def `combined` under
-# default.<kind>. Authoring this feature's agnostic default bands HERE — so a catalog instance
-# (dtsu666) states only deltas — is the remaining optional data step; the cascade already folds them:
-#
-# feature_spec:
-#   combined:              # the whole three-phase point — the non-derivable system quantities
-#     frequency: { intervals: [{ interval: { rating: continuous, min: 45, max: 65 } }] }
-#   default:               # per-part template; a parent's default.<kind> refines <kind-feature>.combined
-#     ac_phase: { voltage: { intervals: [...] } }
-#     ac_line:  { voltage: { intervals: [...] } }
+body:
+  en: >
+    feature_spec (docs/feature-model.md): the compiler wraps this parted feature's body under `feature_spec` (combined/default/part) and folds each kind feature's own def `combined` under default.<kind>. Authoring this feature's agnostic default bands HERE — so a catalog instance (dtsu666) states only deltas — is the remaining optional data step; the cascade already folds them:
+    
+      feature_spec:
+        combined:              # the whole three-phase point — the non-derivable system quantities
+          frequency: { intervals: [{ interval: { rating: continuous, min: 45, max: 65 } }] }
+        default:               # per-part template; a parent's default.<kind> refines <kind-feature>.combined
+          ac_phase: { voltage: { intervals: [...] } }
+          ac_line:  { voltage: { intervals: [...] } }

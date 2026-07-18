@@ -19,9 +19,12 @@ export const schema: TSchema = Type.Object({ "ordinal": ordinal_.schema, "active
 
 export type PvString = { "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": azimuth_.Azimuth; "tilt": tilt_.Tilt; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem };
 
-type DataT = { readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } };
+type DataT = { readonly "body": { readonly "en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n" }; readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n"
+	},
 	"description": {
 		"en": "PV String instance of on a site install."
 	},
@@ -39,4 +42,4 @@ const _data: DataT = {
 		"vocEff": vocEff_
 	}
 };
-export const { description, identity, prop } = _data;
+export const { body, description, identity, prop } = _data;

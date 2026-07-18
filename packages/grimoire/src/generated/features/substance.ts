@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "formula": Type.Optional(formula_.s
 
 export type Substance = { "formula"?: formula_.Formula; "gwp"?: gwp_.Gwp; "safetyClass"?: safetyClass_.SafetyClass };
 
-type DataT = { readonly "description": { readonly "en": "Chemical-substance facts — formula, global-warming potential, safety classification."; readonly "pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "substance" }; readonly "prop": { readonly "formula": typeof formula_; readonly "gwp": typeof gwp_; readonly "safetyClass": typeof safetyClass_ }; readonly "title": { readonly "en": "Substance"; readonly "pt": "Substância" } };
+type DataT = { readonly "body": { readonly "en": "The facts of a chemical SUBSTANCE — general to any compound, not one use. `formula` is the chemical formula (C3H8, code-like); `gwp` its IPCC AR5 100-year global-warming potential (any greenhouse gas carries one, CO₂ = 1); `safety_class` its safety classification (here the ASHRAE 34 toxicity×flammability code — the scheme refrigerants use; a member's own scheme rides its `refs`). Grouped so refrigerant — and any future substance (a foam agent, a process gas) — nests these once rather than restating them. Fill only known values, never fabricate.\n" }; readonly "description": { readonly "en": "Chemical-substance facts — formula, global-warming potential, safety classification."; readonly "pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "substance" }; readonly "prop": { readonly "formula": typeof formula_; readonly "gwp": typeof gwp_; readonly "safetyClass": typeof safetyClass_ }; readonly "title": { readonly "en": "Substance"; readonly "pt": "Substância" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The facts of a chemical SUBSTANCE — general to any compound, not one use. `formula` is the chemical formula (C3H8, code-like); `gwp` its IPCC AR5 100-year global-warming potential (any greenhouse gas carries one, CO₂ = 1); `safety_class` its safety classification (here the ASHRAE 34 toxicity×flammability code — the scheme refrigerants use; a member's own scheme rides its `refs`). Grouped so refrigerant — and any future substance (a foam agent, a process gas) — nests these once rather than restating them. Fill only known values, never fabricate.\n"
+	},
 	"description": {
 		"en": "Chemical-substance facts — formula, global-warming potential, safety classification.",
 		"pt": "Dados de uma substância química — fórmula, potencial de aquecimento global, classificação de segurança."
@@ -36,4 +39,4 @@ const _data: DataT = {
 		"pt": "Substância"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

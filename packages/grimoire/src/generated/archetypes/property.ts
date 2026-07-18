@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as column_ from '../features/column.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
@@ -14,11 +15,11 @@ import * as refs_ from '../features/refs.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "column": Type.Optional(column_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "column": Type.Optional(column_.schema) }, {"additionalProperties":false});
 
-export type Property = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column };
+export type Property = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column };
 
-type DataT = { readonly "description": { readonly "en": "A single field — one scalar (or one composite-key value) and its schema, plus optional DB-column facts."; readonly "pt": "Um campo único — um escalar (ou valor de chave composta) e o seu schema, mais factos de coluna de BD opcionais." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "property" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Property"; readonly "pt": "Propriedade" } };
+type DataT = { readonly "description": { readonly "en": "A single field — one scalar (or one composite-key value) and its schema, plus optional DB-column facts."; readonly "pt": "Um campo único — um escalar (ou valor de chave composta) e o seu schema, mais factos de coluna de BD opcionais." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "property" }; readonly "prop": { readonly "body": typeof body_; readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Property"; readonly "pt": "Propriedade" } };
 
 const _data: DataT = {
 	"description": {
@@ -30,6 +31,7 @@ const _data: DataT = {
 		"slug": "property"
 	},
 	"prop": {
+		"body": body_,
 		"column": column_,
 		"description": description_,
 		"identity": identity_,

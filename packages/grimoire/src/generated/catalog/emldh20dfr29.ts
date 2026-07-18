@@ -48,6 +48,9 @@ export default {
 			}
 		}
 	},
+	"body": {
+		"en": "Emelson EMLDH20DFR29 — compressor dehumidifier datasheet. `manufacturer: Emelson` is inherited from ../../_defaults.yaml, `archetype: dehumidifier` from ../_defaults.yaml. Model facts only: a deployment's per-unit fitted Fan/Compressor draw bands and the chosen hygrostat setpoints + tuning are SITE data in ha-config, not here.\n"
+	},
 	"compressor": {
 		"refrigerant": "r290"
 	},

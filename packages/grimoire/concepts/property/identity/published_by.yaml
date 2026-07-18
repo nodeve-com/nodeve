@@ -1,11 +1,10 @@
-# The organization that publishes a registry's id-space — the standards body or vendor that owns the
-# vocabulary (QUDT publishes qudt_quantity_kind, IEC publishes cim, Victron publishes ve_direct). An FK:
-# the value is the `identity.slug` of an `organization` catalog entry, resolved by guard-refs. Role name,
-# like manufacturer_id: the field is "who published this", the target Class is `organization`.
 title: { en: Published by, pt: Publicado por }
 description:
   en: Slug of the organization catalog entry that publishes this registry's id-space.
   pt: Slug da entrada de catálogo da organização que publica o espaço de ids deste registro.
+body:
+  en: >
+    The organization that publishes a registry's id-space — the standards body or vendor that owns the vocabulary (QUDT publishes qudt_quantity_kind, IEC publishes cim, Victron publishes ve_direct). An FK: the value is the `identity.slug` of an `organization` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is "who published this", the target Class is `organization`.
 column:
   references: organization # FK: value MUST be identity.slug of an `organization` catalog entry (guard-refs)
 schema: { type: string, minLength: 1 }

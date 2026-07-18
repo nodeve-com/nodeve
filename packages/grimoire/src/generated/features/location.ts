@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "latitude": latitude_.schema, "long
 
 export type Location = { "latitude": latitude_.Latitude; "longitude": longitude_.Longitude; "altitude"?: number };
 
-type DataT = { readonly "description": { readonly "en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level)."; readonly "pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "location" }; readonly "prop": { readonly "altitude": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Altitude" }, { readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "alt" }]; readonly "title": { readonly "en": "Altitude"; readonly "pt": "Altitude" } }; readonly "latitude": typeof latitude_; readonly "longitude": typeof longitude_ }; readonly "title": { readonly "en": "Location"; readonly "pt": "Local" } };
+type DataT = { readonly "body": { readonly "en": "Spec-group ATOM (SHARED): a geographic point — the WGS 84 lat/long/altitude a thing sits at. The single place the pair is defined: a solar array's site, a weather-of-interest location, a device's install position all name the same coordinate, composed here, never re-declared inline. ISO 6709 / GeoJSON sense (decimal degrees; GeoJSON orders lon-then-lat but we key by name so order is moot). altitude is the OPTIONAL third coordinate — ground height above sea level in metres (ISO 6709 elevation; HA `elevation`), NOT a panel's per-string mounting height.\n" }; readonly "description": { readonly "en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level)."; readonly "pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "location" }; readonly "prop": { readonly "altitude": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "m" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Altitude" }, { readonly "match": "exact"; readonly "registryId": "wgs84_geo"; readonly "term": "alt" }]; readonly "title": { readonly "en": "Altitude"; readonly "pt": "Altitude" } }; readonly "latitude": typeof latitude_; readonly "longitude": typeof longitude_ }; readonly "title": { readonly "en": "Location"; readonly "pt": "Local" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Spec-group ATOM (SHARED): a geographic point — the WGS 84 lat/long/altitude a thing sits at. The single place the pair is defined: a solar array's site, a weather-of-interest location, a device's install position all name the same coordinate, composed here, never re-declared inline. ISO 6709 / GeoJSON sense (decimal degrees; GeoJSON orders lon-then-lat but we key by name so order is moot). altitude is the OPTIONAL third coordinate — ground height above sea level in metres (ISO 6709 elevation; HA `elevation`), NOT a panel's per-string mounting height.\n"
+	},
 	"description": {
 		"en": "A site's geographic point (WGS 84 latitude / longitude / altitude above sea level).",
 		"pt": "O ponto geográfico de um site (latitude / longitude / altitude acima do nível do mar, WGS 84)."
@@ -56,4 +59,4 @@ const _data: DataT = {
 		"pt": "Local"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

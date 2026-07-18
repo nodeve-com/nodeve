@@ -12,9 +12,12 @@ export const schema: TSchema = Type.Object({ "refrigerant": Type.Optional(Type.L
 
 export type Refrigeration = { "refrigerant"?: "r290" };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "refrigeration" }; readonly "prop": { readonly "refrigerant": { readonly "description": { readonly "en": "Refrigerant gas, e.g. r290."; readonly "pt": "Gás refrigerante, ex. r290." }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" }; readonly "ui": { readonly "mono": true } } } };
+type DataT = { readonly "body": { readonly "en": "The vapor-compression refrigerant circuit — owned by no single device: an air conditioner, a refrigerator, a compressor dehumidifier, and a heat-pump water heater all have one, so the refrigerant fact lives here once and each archetype composes it. The value is a vocabulary CODE into enumeration/refrigerant/ (e.g. r290 -> Propane), NEVER a free string — so the gas carries its ASHRAE 34 designation, safety class, and GWP once. Future fields: compressor facts, heat-pump flag.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "refrigeration" }; readonly "prop": { readonly "refrigerant": { readonly "description": { readonly "en": "Refrigerant gas, e.g. r290."; readonly "pt": "Gás refrigerante, ex. r290." }; readonly "title": { readonly "en": "Refrigerant"; readonly "pt": "Refrigerante" }; readonly "ui": { readonly "mono": true } } } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The vapor-compression refrigerant circuit — owned by no single device: an air conditioner, a refrigerator, a compressor dehumidifier, and a heat-pump water heater all have one, so the refrigerant fact lives here once and each archetype composes it. The value is a vocabulary CODE into enumeration/refrigerant/ (e.g. r290 -> Propane), NEVER a free string — so the gas carries its ASHRAE 34 designation, safety class, and GWP once. Future fields: compressor facts, heat-pump flag.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "refrigeration"
@@ -35,4 +38,4 @@ const _data: DataT = {
 		}
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

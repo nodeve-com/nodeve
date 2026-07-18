@@ -13,9 +13,12 @@ export const schema: TSchema = Type.Object({ "references": Type.Optional(referen
 
 export type Column = { "references"?: references_.References };
 
-type DataT = { readonly "description": { readonly "en": "Relational metadata a property projects to as a DB column (foreign key, …)."; readonly "pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "column" }; readonly "prop": { readonly "references": typeof references_ }; readonly "title": { readonly "en": "Column"; readonly "pt": "Coluna" } };
+type DataT = { readonly "body": { readonly "en": "A property's RELATIONAL metadata — the facts it projects to as a database column, distinct from its value-shape (that's `schema:`). Composed onto the `property` archetype, so any property may declare it. Today: `references` (the foreign-key target archetype, enforced by guard-refs). Grows here as more column facts are needed (uniqueness, index, …) — one place, not a bare key per fact.\n" }; readonly "description": { readonly "en": "Relational metadata a property projects to as a DB column (foreign key, …)."; readonly "pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "column" }; readonly "prop": { readonly "references": typeof references_ }; readonly "title": { readonly "en": "Column"; readonly "pt": "Coluna" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A property's RELATIONAL metadata — the facts it projects to as a database column, distinct from its value-shape (that's `schema:`). Composed onto the `property` archetype, so any property may declare it. Today: `references` (the foreign-key target archetype, enforced by guard-refs). Grows here as more column facts are needed (uniqueness, index, …) — one place, not a bare key per fact.\n"
+	},
 	"description": {
 		"en": "Relational metadata a property projects to as a DB column (foreign key, …).",
 		"pt": "Metadados relacionais que uma propriedade projeta como coluna de BD (chave estrangeira, …)."
@@ -32,4 +35,4 @@ const _data: DataT = {
 		"pt": "Coluna"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

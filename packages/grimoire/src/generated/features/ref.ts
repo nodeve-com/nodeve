@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "registryId": registryId_.schema, "
 
 export type Ref = { "registryId": registryId_.RegistryId; "term": term_.Term; "match": match_.Match };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ref" }; readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ }; readonly "title": { readonly "en": "Crosswalk reference"; readonly "pt": "Referência de crosswalk" } };
+type DataT = { readonly "body": { readonly "en": "One crosswalk row: this concept ↔ a term in an external vocabulary, with its SKOS mapping strength. `refs` (features/refs.yaml) is a LIST of these — \"coin a term → document its crosswalk\" (package README). `registry_id` is an FK (column.references: registry) resolving to a `registry` catalog entry — guard-refs checks it, and validates the `term` against that registry's iri_template shape. Was `registry` enum-membership; flipped to an FK in stage 2 (reference-model).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ref" }; readonly "prop": { readonly "match": typeof match_; readonly "registryId": typeof registryId_; readonly "term": typeof term_ }; readonly "title": { readonly "en": "Crosswalk reference"; readonly "pt": "Referência de crosswalk" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "One crosswalk row: this concept ↔ a term in an external vocabulary, with its SKOS mapping strength. `refs` (features/refs.yaml) is a LIST of these — \"coin a term → document its crosswalk\" (package README). `registry_id` is an FK (column.references: registry) resolving to a `registry` catalog entry — guard-refs checks it, and validates the `term` against that registry's iri_template shape. Was `registry` enum-membership; flipped to an FK in stage 2 (reference-model).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "ref"
@@ -32,4 +35,4 @@ const _data: DataT = {
 		"pt": "Referência de crosswalk"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

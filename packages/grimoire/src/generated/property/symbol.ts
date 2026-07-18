@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Symbol = string;
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "symbol" }; readonly "title": { readonly "en": "Symbol" } };
+type DataT = { readonly "body": { readonly "en": "A known/common short designation for the thing — a language-neutral symbol string borrowed from a standard (IEC 60445 wire designation `L1`/`N`, a unit-style token), NOT human prose (that is the i18n `title`) and NOT a machine key (that is `slug`/`code`). Like a unit symbol: same token in every locale. Optional — only where a recognized short form exists.\n" }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "symbol" }; readonly "title": { readonly "en": "Symbol" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A known/common short designation for the thing — a language-neutral symbol string borrowed from a standard (IEC 60445 wire designation `L1`/`N`, a unit-style token), NOT human prose (that is the i18n `title`) and NOT a machine key (that is `slug`/`code`). Like a unit symbol: same token in every locale. Optional — only where a recognized short form exists.\n"
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "symbol"
@@ -23,4 +26,4 @@ const _data: DataT = {
 		"en": "Symbol"
 	}
 };
-export const { identity, title } = _data;
+export const { body, identity, title } = _data;

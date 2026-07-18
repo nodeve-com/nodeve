@@ -30,6 +30,7 @@ const ALLOWED = new Set([
 	'identity',
 	'title',
 	'description',
+	'body',
 	'refs',
 	'concept_settings',
 	'feature',

@@ -21,9 +21,12 @@ export const schema: TSchema = Type.Object({ "archetypeId": Type.Optional(archet
 
 export type Identity = { "archetypeId"?: archetypeId_.ArchetypeId; "slug": slug_.Slug; "slugQualified"?: slugQualified_.SlugQualified; "id"?: id_.Id; "code"?: code_.Code; "symbol"?: symbol_.Symbol; "broader"?: broader_.Broader; "url"?: url_.Url; "iriTemplate"?: iriTemplate_.IriTemplate };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "identity" }; readonly "prop": { readonly "archetypeId": typeof archetypeId_; readonly "broader": typeof broader_; readonly "code": typeof code_; readonly "id": typeof id_; readonly "iriTemplate": typeof iriTemplate_; readonly "slug": typeof slug_; readonly "slugQualified": typeof slugQualified_; readonly "symbol": typeof symbol_; readonly "url": typeof url_ } };
+type DataT = { readonly "body": { readonly "en": "slug is REQUIRED wherever an identity appears — authored YAML rarely spells it: the de-sugar fills it from the file stem before validation (and archetype from the layer/_defaults cascade; archetype stays gate-enforced only — a NESTED identity, e.g. a feature's on-bus slug handle, legitimately carries none).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "identity" }; readonly "prop": { readonly "archetypeId": typeof archetypeId_; readonly "broader": typeof broader_; readonly "code": typeof code_; readonly "id": typeof id_; readonly "iriTemplate": typeof iriTemplate_; readonly "slug": typeof slug_; readonly "slugQualified": typeof slugQualified_; readonly "symbol": typeof symbol_; readonly "url": typeof url_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "slug is REQUIRED wherever an identity appears — authored YAML rarely spells it: the de-sugar fills it from the file stem before validation (and archetype from the layer/_defaults cascade; archetype stays gate-enforced only — a NESTED identity, e.g. a feature's on-bus slug handle, legitimately carries none).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "identity"
@@ -40,4 +43,4 @@ const _data: DataT = {
 		"url": url_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

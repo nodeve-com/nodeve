@@ -1,21 +1,33 @@
-# Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: its identity
-# (the `meter` archetype) AND how it is talked to (its modbus slot). `manufacturer: Chint` and
-# `archetype: meter` are inherited from ./_defaults.yaml.
-#
-# This unit serves the SAME physical quantities in (at least) TWO register banks. The map below
-# documents both; it is NOT a poll script and does not say which bank to read — the gateway picks
-# its path (master-poll or passive-listen) and which bank that path exposes:
-#   A) 0x2000 block — divisor-scaled FP32, read as a master (direct serial / TCP bridge).
-#   B) 0x1510 fast + 0x1000 slow windows — what the FoxESS inverter polls, so what a passive
-#      RS-485 tap captures. Floats already in engineering units (scale 1.0), richer than A.
-# Bank A from 3rd-party/DTSU666-Modbus/plugin.py + our on-board tap reads; verified high-word-first,
-# 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames
-# (scripts/SNIFF.md, 2026-06-07).
-#
-# NOTE — native bus: as of 2026-06-07 the FoxESS inverter masters this RS-485 bus; a second
-# master can't coexist. The direct path here is valid against an isolated segment or the
-# USB-RS485 → Modbus-TCP bridge at 172.26.68.1:502 (slave 1). Going forward we PASSIVELY tap the
-# inverter's polling instead (different window, 0x1510/0x1000) — see scripts/SNIFF.md.
+body:
+  en: >
+    Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: its identity (the `meter` archetype) AND how it is talked to (its modbus slot). `manufacturer: Chint` and `archetype: meter` are inherited from ./_defaults.yaml.
+    
+    
+    This unit serves the SAME physical quantities in (at least) TWO register banks. The map below documents both; it is NOT a poll script and does not say which bank to read — the gateway picks its path (master-poll or passive-listen) and which bank that path exposes:
+    
+      A) 0x2000 block — divisor-scaled FP32, read as a master (direct serial / TCP bridge).
+      B) 0x1510 fast + 0x1000 slow windows — what the FoxESS inverter polls, so what a passive
+         RS-485 tap captures. Floats already in engineering units (scale 1.0), richer than A.
+    
+    Bank A from 3rd-party/DTSU666-Modbus/plugin.py + our on-board tap reads; verified high-word-first, 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames (scripts/SNIFF.md, 2026-06-07).
+    
+    
+    NOTE — native bus: as of 2026-06-07 the FoxESS inverter masters this RS-485 bus; a second master can't coexist. The direct path here is valid against an isolated segment or the USB-RS485 → Modbus-TCP bridge at 172.26.68.1:502 (slave 1). Going forward we PASSIVELY tap the inverter's polling instead (different window, 0x1510/0x1000) — see scripts/SNIFF.md.
+    
+    
+    Commissioning setting — which grid region this meter is wired for (enumeration/grid_region members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it once at install.
+    
+    
+    Modbus registers: all instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the feature blocks above offer — (feature, phase?, quantity_kind); the MQTT topic is DERIVED from that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED — divisors provisional until a front-panel check. `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) / 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.
+    
+    
+    Per-phase displacement angle φ (sniff idx 22–24, 0x153C/3E/40; degrees, quadrant-signed 0–360°). Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ, rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included). `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).
+    
+    
+    Slow window (0x1000): the energy accumulators bank A's 0x4000 refuses; the inverter reads them here, so a passive tap recovers them. THREE DISTINCT quantity kinds — active (kWh), apparent (kVAh), reactive (kvarh) — each linked to its own `combined` measurand, so no topic/key collision (the earlier raw/import-export framing was wrong: these are separate quantity kinds, not a directional import/export pair). scale 1.0 + decimals provisional (uncalibrated). `unit` kept — none is the kind's SI unit (J / VA·s / var·s). They publish on the slow `energy` group (by address window), not the 5 Hz `state` group.
+    
+    
+    Deliberately NOT polled: bank A energy totals at 0x401E/0x4028 + Q1–Q4 (0x4000 block returns "Illegal data address" on this firmware — energy is via bank B + the inverter); bank B energy quadrants (SNIFF.md); neutral current = |Ia+Ib+Ic|; active-energy import/export split + counter rates (all derived, not register-backed).
 identity:
   slug: chint_dtsu666_4wire
   code: RR9DBA8D
@@ -26,10 +38,6 @@ title:
 product:
   model: DTSU666 # plain DTSU666 — NOT DDSU666 or DTSU666-H (different maps)
 
-# Commissioning setting — which grid region this meter is wired for (enumeration/grid_region
-# members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands
-# below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it
-# once at install.
 settings_schema:
   type: object
   required: [grid_region]
@@ -93,16 +101,6 @@ modbus:
     unit_id: 1 # Modbus slave id, confirmed on the meter's front panel; overridable downstream
     register_type: holding # all values read via FC03
     word_order: high_first # FP32 high word at the lower address (mbpoll -B, 2026-06-04)
-  # All instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py
-  # divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the
-  # feature blocks above offer — (feature, phase?, quantity_kind); the MQTT topic is DERIVED from
-  # that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit
-  # (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED —
-  # divisors provisional until a front-panel check.
-  # `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the
-  # float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in
-  # a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) /
-  # 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.
   modbus_registers:
     # === BANK A — 0x2000 block. Divisor-scaled FP32, read as a master. ===
     # Line-to-line voltages (plugin Volts_AB/BC/CA, 0x2000/02/04)
@@ -310,6 +308,7 @@ modbus:
     # === BANK B — 0x1510 fast / 0x1000 slow (what the inverter polls; passive-tap map). ===
     # Floats ALREADY in engineering units (scale 1.0), NOT divisor-scaled. Bank B power is native
     # kW/kVAR/kVA (unit kept — non-SI). Same (feature, phase, quantity_kind) link as bank A.
+
     # Phase-neutral voltages (sniff idx 0–2, 0x1510/12/14)
     - {
         feature_id: ac_phase_three_point,
@@ -522,12 +521,6 @@ modbus:
         scale: 1.0,
         decimals: 3,
       }
-    # Per-phase displacement angle φ (sniff idx 22–24, 0x153C/3E/40; degrees, quadrant-signed 0–360°).
-    # Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ,
-    # rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the
-    # FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor
-    # is TRUE PF (P/S, harmonics included).
-    # `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).
     - {
         feature_id: ac_phase_three_point,
         part_id: a,
@@ -567,13 +560,6 @@ modbus:
         scale: 1.0,
         decimals: 2,
       }
-    # Slow window (0x1000): the energy accumulators bank A's 0x4000 refuses; the inverter reads them
-    # here, so a passive tap recovers them. THREE DISTINCT quantity kinds — active (kWh), apparent
-    # (kVAh), reactive (kvarh) — each linked to its own `combined` measurand, so no topic/key
-    # collision (the earlier raw/import-export framing was wrong: these are separate quantity kinds,
-    # not a directional import/export pair). scale
-    # 1.0 + decimals provisional (uncalibrated). `unit` kept — none is the kind's SI unit (J / VA·s /
-    # var·s). They publish on the slow `energy` group (by address window), not the 5 Hz `state` group.
     - {
         feature_id: ac_phase_three_point,
         quantity_kind: active_energy,
@@ -600,8 +586,3 @@ modbus:
         scale: 1.0,
         unit: kvarh,
       }
-
-# Deliberately NOT polled: bank A energy totals at 0x401E/0x4028 + Q1–Q4 (0x4000 block returns
-# "Illegal data address" on this firmware — energy is via bank B + the inverter); bank B energy
-# quadrants (SNIFF.md); neutral current = |Ia+Ib+Ic|; active-energy import/export split + counter
-# rates (all derived, not register-backed).

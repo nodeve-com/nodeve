@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.sch
 
 export type InstanceKey = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "instance_key" }; readonly "prop": { readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_ } };
+type DataT = { readonly "body": { readonly "en": "The INSTANCE KEY — how one member of a repeated feature is addressed: `part_id` for a FIXED instance set (electrical leg/pair: a, ab), `ordinal` for a COUNTED one (1-based). `part_id` wins when both are set; both absent addresses the feature's `combined` aggregate. Composed by every shape that joins to a feature instance (a measurand link, an `instances` override row).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "instance_key" }; readonly "prop": { readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The INSTANCE KEY — how one member of a repeated feature is addressed: `part_id` for a FIXED instance set (electrical leg/pair: a, ab), `ordinal` for a COUNTED one (1-based). `part_id` wins when both are set; both absent addresses the feature's `combined` aggregate. Composed by every shape that joins to a feature instance (a measurand link, an `instances` override row).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "instance_key"
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"partId": partId_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

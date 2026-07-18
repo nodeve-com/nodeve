@@ -4,6 +4,9 @@
 
 export default {
   "continuous": {
+    "body": {
+      "en": "FULL design capacity — the region rated for full continuous output, holdable INDEFINITELY (absorbs the old limit_class `continuous`). The tightest of the normal tiers: continuous ⊂ intermittent ⊂ survival. No `duration` — the unbounded tier. The overload/derate baseline: a reading beyond this band's bound IS the overload/derate onset; the bounded-time region above it is `intermittent`.\n"
+    },
     "code": "continuous",
     "description": {
       "en": "Normal design capacity — rated to hold indefinitely. A reading beyond its bound is the overload condition."

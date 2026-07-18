@@ -1,28 +1,17 @@
-# DEPLOYMENT concept (schema-only; instances live in sites/<name>/mqtt.yaml): how a deployment
-# connects to its MQTT broker. Every field lives inside a feature (an archetype never adds props):
-#   authentication — username/password.
-#   endpoint — the connection's reachability: shared defaults at the feature level (`host` the
-#     default every scheme shares, `version` negotiated on CONNECT — 5.0 the deployed default,
-#     3.1.1 the baseline, reconnect/connect timeouts) plus one scheme-keyed override block per
-#     broker listener — the endpoint feature's service_protocol parts, FILTERED here to the broker
-#     schemes (mqtt/mqtts/ws/wss — TLS is the scheme, never a boolean). Well-known ports ride each
-#     scheme as `default`; 8884 is the broker's OWN TLS-WebSocket listener — a TLS-proxy
-#     deployment overrides via env.
-# Env-var names travel WITH each field as `x-env-var` (schema.env-var overrides below); the flat
-# MQTT_ENV name map is DERIVED from the compiled schema, never hand-kept.
 title:
   en: MQTT connection
   pt: Ligação MQTT
 description:
   en: How a deployment connects to its MQTT broker (auth, shared endpoint defaults, and one scheme-keyed endpoint block per broker listener — mqtt/mqtts/ws/wss).
+body:
+  en: >
+    DEPLOYMENT concept (schema-only; instances live in sites/<name>/mqtt.yaml): how a deployment connects to its MQTT broker. Every field lives inside a feature (an archetype never adds props): authentication — username/password. endpoint — the connection's reachability: shared defaults at the feature level (`host` the default every scheme shares, `version` negotiated on CONNECT — 5.0 the deployed default, 3.1.1 the baseline, reconnect/connect timeouts) plus one scheme-keyed override block per broker listener — the endpoint feature's service_protocol parts, FILTERED here to the broker schemes (mqtt/mqtts/ws/wss — TLS is the scheme, never a boolean). Well-known ports ride each scheme as `default`; 8884 is the broker's OWN TLS-WebSocket listener — a TLS-proxy deployment overrides via env. Env-var names travel WITH each field as `x-env-var` (schema.env-var overrides below); the flat MQTT_ENV name map is DERIVED from the compiled schema, never hand-kept.
 
 feature:
-  # the site's shared publish contract — the topic root (`topic_prefix`) every adapter's own
-  # prefix derives off as `<topic_prefix>/<slug>`, plus the default cadence/sinks/format each
-  # adapter's own `emit` overrides. The topic root names the consuming gateway, so it is a SITE
-  # value (authored under the site's own `mqtt_connection.emit`), never a default here — grimoire
-  # stays consumer-agnostic.
-  emit: {}
+  emit:
+    body:
+      en: >
+        the site's shared publish contract — the topic root (`topic_prefix`) every adapter's own prefix derives off as `<topic_prefix>/<slug>`, plus the default cadence/sinks/format each adapter's own `emit` overrides. The topic root names the consuming gateway, so it is a SITE value (authored under the site's own `mqtt_connection.emit`), never a default here — grimoire stays consumer-agnostic.
   authentication:
     username:
       schema:
@@ -34,13 +23,13 @@ feature:
     # Instance-keyed by service_protocol, FILTERED to the broker listeners — a narrowing of the
     # category (validated against enumeration/service_protocol/ members; a stale id fails the build),
     # never a second member list. http(s)/modbus_tcp are other service protocols, not broker listeners.
-    parts: { service_protocol: [ mqtt, mqtts, ws, wss ] }
+    parts: { service_protocol: [mqtt, mqtts, ws, wss] }
     schema:
       required: true
     host:
       schema: { required: true, env-var: MQTT_BROKER }
     version:
-      schema: { enum: [ '3.1.1', '5.0' ], default: '5.0', env-var: MQTT_VERSION }
+      schema: { enum: ['3.1.1', '5.0'], default: '5.0', env-var: MQTT_VERSION }
     reconnect_period_ms:
       schema: { default: 5000, env-var: MQTT_RECONNECT_PERIOD_MS }
     connect_timeout_ms:

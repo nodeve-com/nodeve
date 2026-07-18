@@ -26,9 +26,10 @@ export const schema: TSchema = Type.Array(Type.Object({ "featureId": Type.Option
 
 export type ModbusDecodes = Array<{ "featureId"?: featureId_.FeatureId; "state"?: state_.State; "fault"?: fault_.Fault; "kind"?: kind_.Kind; "addresses"?: addresses_.Addresses; "labels"?: labels_.Labels; "join"?: join_.Join; "empty"?: empty_.Empty; "rules"?: rules_.Rules; "mask"?: mask_.Mask; "emitString"?: emitString_.EmitString; "default"?: default_.Default; "address"?: address_.Address }>;
 
-type DataT = { readonly "prop": (typeof modbusDecode_)["prop"]; readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "addresses": typeof addresses_; readonly "default": Omit<typeof default_, "description"> & { readonly "description": { readonly "en": "String published when no priority rule matches; omitted = no value / unavailable." } }; readonly "emitString": typeof emitString_; readonly "empty": typeof empty_; readonly "fault": typeof fault_; readonly "featureId": typeof featureId_; readonly "join": typeof join_; readonly "kind": Omit<typeof kind_, "description" | "title"> & { readonly "description": { readonly "en": "The decode discriminant — flags or priority." }; readonly "title": { readonly "en": "Decode kind" } }; readonly "labels": typeof labels_; readonly "mask": typeof mask_; readonly "rules": typeof rules_; readonly "state": typeof state_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_decodes" }; readonly "title": { readonly "en": "Modbus decodes"; readonly "pt": "Decodificações Modbus" } };
+type DataT = { readonly "body": (typeof modbusDecode_)["body"]; readonly "prop": (typeof modbusDecode_)["prop"]; readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "addresses": typeof addresses_; readonly "default": Omit<typeof default_, "description"> & { readonly "description": { readonly "en": "String published when no priority rule matches; omitted = no value / unavailable." } }; readonly "emitString": typeof emitString_; readonly "empty": typeof empty_; readonly "fault": typeof fault_; readonly "featureId": typeof featureId_; readonly "join": typeof join_; readonly "kind": Omit<typeof kind_, "description" | "title"> & { readonly "description": { readonly "en": "The decode discriminant — flags or priority." }; readonly "title": { readonly "en": "Decode kind" } }; readonly "labels": typeof labels_; readonly "mask": typeof mask_; readonly "rules": typeof rules_; readonly "state": typeof state_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_decodes" }; readonly "title": { readonly "en": "Modbus decodes"; readonly "pt": "Decodificações Modbus" } };
 
 const _data: DataT = {
+	"body": modbusDecode_["body"],
 	"prop": modbusDecode_["prop"],
 	"array": {
 		"prop": {
@@ -69,4 +70,4 @@ const _data: DataT = {
 		"pt": "Decodificações Modbus"
 	}
 };
-export const { array, identity, prop, title } = _data;
+export const { array, body, identity, prop, title } = _data;

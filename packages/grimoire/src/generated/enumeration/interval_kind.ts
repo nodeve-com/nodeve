@@ -4,6 +4,9 @@
 
 export default {
   "measurable": {
+    "body": {
+      "en": "The INSTRUMENT side — the span a SENSOR can read this quantity over (VIM 4.7 measuring interval / ssn-system MeasurementRange), NOT the thing's own behaviour. Not derivable from bounds (a bare min/max measurable is shaped like a rating), so `interval_kind` is AUTHORED. A measurable interval may carry the instrument-only fields (resolution, max_permissible_error, channel); a behaviour band may not — the consistency guard enforces both directions.\n"
+    },
     "code": "measurable",
     "description": {
       "en": "The span a sensor can read this quantity over — the instrument side, not the thing's own behaviour."
@@ -26,6 +29,9 @@ export default {
     }
   },
   "rating": {
+    "body": {
+      "en": "A RANGE — the thing's own rated capability envelope, an edge (min and/or max) it is rated to range within. Sub-graded by the `rating` tier (continuous/intermittent/short_term/startup/shutdown/ survival/protection_required/nominal) and, for a time-bounded tier, `duration`. Protection is a one-sided rating (the far end of the ramp), NOT a separate kind — that split has no structural signature and only inter-mixes, so there is no `limit` kind. Structural signature: at least one of min/max.\n"
+    },
     "code": "rating",
     "description": {
       "en": "The thing's rated capability envelope — a min/max edge it is rated to range within, graded by the rating tier."
@@ -43,6 +49,9 @@ export default {
     }
   },
   "zone": {
+    "body": {
+      "en": "A BOOLEAN REGION — a named region of the quantity's own axis with NO spec-sheet capability claim: a reading is inside it or not (an MPPT voltage window, a compressor's normal-draw band, an enclosure-temp derate-onset band). Authorable explicitly; when omitted, DERIVED from a `zone` value (enumeration/zone). Each yields a boolean \"in this region\" sensor and may ALSO anchor an inbound `interval_item` other bands gate on.\n\nSTATELESS by default — the boolean is TRUE while the reading sits INSIDE `[min, max]`, f(reading) with no history: it doesn't matter whether the prior value was on or off. That is the whole contrast with the stateful trigger, and it lives HERE: same `min`/`max` fields, opposite sense. A `trigger_on` axis on the zone flips it — `[min, max]` becomes the HOLD/deadband, ON is the region OUTSIDE it on the `trigger_on` side, and the boolean holds its PRIOR state between the edges (f(reading, prior_state)) — a hysteretic trigger (startup/run-command), folding in the former standalone `threshold` kind, no separate interval_kind. In short: no `trigger_on` ⇒ true inside; `trigger_on` ⇒ ON outside, stateful.\n\nStructural signature: carries an `identity.slug` (auto-derived from the zone name); a slugless zone is unnameable and produces nothing.\n"
+    },
     "code": "zone",
     "description": {
       "en": "A named region of the quantity's own axis, no capability claim — in-zone or not, a boolean sensor. Derived from a `zone` value; may also be an interval_item anchor. Add `trigger_on` to make the zone a stateful hysteretic trigger."

@@ -14,9 +14,12 @@ export const schema: TSchema = Type.Object({ "wifiSsid": Type.Optional(wifiSsid_
 
 export type Addressing = { "wifiSsid"?: wifiSsid_.WifiSsid; "password"?: password_.Password };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "addressing" }; readonly "prop": { readonly "password": Omit<typeof password_, "description" | "title"> & { readonly "description": { readonly "en": "The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default." }; readonly "title": { readonly "en": "WiFi password" } }; readonly "wifiSsid": typeof wifiSsid_ }; readonly "title": { readonly "en": "Addressing" } };
+type DataT = { readonly "body": { readonly "en": "ADDRESSING — the data-link (L2) layer: WHICH node/network, factored out of any single protocol. An address recurs across protocols (a Modbus `unit_id`, a WiFi SSID, an IP host); this feature is their shared home, distinct from framing (protocol-specific byte delimiting) and from the physical layer (electrical signalling). Only `wifi_ssid` lives here for now; `unit_id` belongs here too and should migrate out of `modbus_link` when that feature is split.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "addressing" }; readonly "prop": { readonly "password": Omit<typeof password_, "description" | "title"> & { readonly "description": { readonly "en": "The pre-shared key (WPA PSK) the station presents to join the WiFi network named by `wifi_ssid`. A deployment secret — supplied downstream, never a catalog default." }; readonly "title": { readonly "en": "WiFi password" } }; readonly "wifiSsid": typeof wifiSsid_ }; readonly "title": { readonly "en": "Addressing" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "ADDRESSING — the data-link (L2) layer: WHICH node/network, factored out of any single protocol. An address recurs across protocols (a Modbus `unit_id`, a WiFi SSID, an IP host); this feature is their shared home, distinct from framing (protocol-specific byte delimiting) and from the physical layer (electrical signalling). Only `wifi_ssid` lives here for now; `unit_id` belongs here too and should migrate out of `modbus_link` when that feature is split.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "addressing"
@@ -37,4 +40,4 @@ const _data: DataT = {
 		"en": "Addressing"
 	}
 };
-export const { identity, prop, title } = _data;
+export const { body, identity, prop, title } = _data;

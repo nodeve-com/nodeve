@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as dc_ from '../features/dc.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
@@ -17,13 +18,16 @@ import * as tempCoefficients_ from '../features/temp_coefficients.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "dc": Type.Optional(dc_.schema), "tempCoefficients": Type.Optional(tempCoefficients_.schema), "physical": Type.Optional(physical_.schema) }, {"additionalProperties":false,"x-key-map":{"temp_coefficients":"tempCoefficients"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "dc": Type.Optional(dc_.schema), "tempCoefficients": Type.Optional(tempCoefficients_.schema), "physical": Type.Optional(physical_.schema) }, {"additionalProperties":false,"x-key-map":{"temp_coefficients":"tempCoefficients"}});
 
-export type PvModule = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "dc"?: dc_.Dc; "tempCoefficients"?: tempCoefficients_.TempCoefficients; "physical"?: physical_.Physical };
+export type PvModule = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "dc"?: dc_.Dc; "tempCoefficients"?: tempCoefficients_.TempCoefficients; "physical"?: physical_.Physical };
 
-type DataT = { readonly "description": { readonly "en": "A PV module datasheet (per-panel STC ratings + temperature coefficients)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "pv_module" }; readonly "prop": { readonly "dc": typeof dc_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "physical": typeof physical_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "tempCoefficients": typeof tempCoefficients_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "PV module"; readonly "pt": "Módulo fotovoltaico" } };
+type DataT = { readonly "body": { readonly "en": "A PV panel datasheet. Identity + the panel's DC terminals as a SINGLE feature (`dc`, count-less aggregate: one panel's output) whose spec-map carries the nameplate ratings AS INTERVALS, plus optional temperature coefficients. I-V-curve characteristic points are named `zone` bands on the relevant quantity: mpp + open_circuit on voltage, mpp/short_circuit on current, mpp on active_power (add those enumeration/zone members when a panel entry authors them — a blurry rating-vs-zone call deferred to first use). STC (25 °C, 1000 W/m²) is the implicit nameplate reference — kept out of the bands; spell it out only for a non-STC interval, via a `condition: [{ test_condition: <slug> }]` gate naming an `enumeration/test_condition` member. A BIFACIAL module states rear-gain bands at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) that way — the measured value stays in the band, the reference environment lives in the named test_condition; a value identical across conditions is stated ONCE (at STC), never re-gated. Max series fuse is a `rating: protection_required` current band. Passive hardware: no connectivity — a panel is not talked to. Install facts (series count, orientation, fitted voltages) are site data (solar_array), never here.\n" }; readonly "description": { readonly "en": "A PV module datasheet (per-panel STC ratings + temperature coefficients)."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "pv_module" }; readonly "prop": { readonly "body": typeof body_; readonly "dc": typeof dc_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "physical": typeof physical_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "tempCoefficients": typeof tempCoefficients_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "PV module"; readonly "pt": "Módulo fotovoltaico" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A PV panel datasheet. Identity + the panel's DC terminals as a SINGLE feature (`dc`, count-less aggregate: one panel's output) whose spec-map carries the nameplate ratings AS INTERVALS, plus optional temperature coefficients. I-V-curve characteristic points are named `zone` bands on the relevant quantity: mpp + open_circuit on voltage, mpp/short_circuit on current, mpp on active_power (add those enumeration/zone members when a panel entry authors them — a blurry rating-vs-zone call deferred to first use). STC (25 °C, 1000 W/m²) is the implicit nameplate reference — kept out of the bands; spell it out only for a non-STC interval, via a `condition: [{ test_condition: <slug> }]` gate naming an `enumeration/test_condition` member. A BIFACIAL module states rear-gain bands at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) that way — the measured value stays in the band, the reference environment lives in the named test_condition; a value identical across conditions is stated ONCE (at STC), never re-gated. Max series fuse is a `rating: protection_required` current band. Passive hardware: no connectivity — a panel is not talked to. Install facts (series count, orientation, fitted voltages) are site data (solar_array), never here.\n"
+	},
 	"description": {
 		"en": "A PV module datasheet (per-panel STC ratings + temperature coefficients).",
 		"pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar."
@@ -33,6 +37,7 @@ const _data: DataT = {
 		"slug": "pv_module"
 	},
 	"prop": {
+		"body": body_,
 		"dc": dc_,
 		"description": description_,
 		"identity": identity_,
@@ -47,4 +52,4 @@ const _data: DataT = {
 		"pt": "Módulo fotovoltaico"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

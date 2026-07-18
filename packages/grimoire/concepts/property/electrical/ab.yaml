@@ -2,10 +2,9 @@ title:
   en: Line A–B
   pt: Linha A–B
 identity: { symbol: L1–L2 }
-# A line PAIR — the line-to-line view (U_AB) between legs A and B (L1 and L2), distinct from the
-# phase-to-neutral legs. Machine `code` follows the pair enums (CIM PhaseCode.AB / IEC 61850
-# MMXU.PPV.phsAB); the `symbol` pairs the IEC 60445 leg designations. IEC 60445 fixes no pair token,
-# so the refs stay the measurement standards that do.
+body:
+  en: >
+    A line PAIR — the line-to-line view (U_AB) between legs A and B (L1 and L2), distinct from the phase-to-neutral legs. Machine `code` follows the pair enums (CIM PhaseCode.AB / IEC 61850 MMXU.PPV.phsAB); the `symbol` pairs the IEC 60445 leg designations. IEC 60445 fixes no pair token, so the refs stay the measurement standards that do.
 refs:
   - { registry_id: cim, term: PhaseCode.AB, match: exact }
   - { registry_id: iec_61850, term: MMXU.PPV.phsAB, match: close }

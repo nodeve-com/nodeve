@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type PublishedBy = string;
 
-type DataT = { readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that publishes this registry's id-space."; readonly "pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "published_by" }; readonly "title": { readonly "en": "Published by"; readonly "pt": "Publicado por" } };
+type DataT = { readonly "body": { readonly "en": "The organization that publishes a registry's id-space — the standards body or vendor that owns the vocabulary (QUDT publishes qudt_quantity_kind, IEC publishes cim, Victron publishes ve_direct). An FK: the value is the `identity.slug` of an `organization` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is \"who published this\", the target Class is `organization`.\n" }; readonly "column": { readonly "references": "organization" }; readonly "description": { readonly "en": "Slug of the organization catalog entry that publishes this registry's id-space."; readonly "pt": "Slug da entrada de catálogo da organização que publica o espaço de ids deste registro." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "published_by" }; readonly "title": { readonly "en": "Published by"; readonly "pt": "Publicado por" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "The organization that publishes a registry's id-space — the standards body or vendor that owns the vocabulary (QUDT publishes qudt_quantity_kind, IEC publishes cim, Victron publishes ve_direct). An FK: the value is the `identity.slug` of an `organization` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is \"who published this\", the target Class is `organization`.\n"
+	},
 	"column": {
 		"references": "organization"
 	},
@@ -31,4 +34,4 @@ const _data: DataT = {
 		"pt": "Publicado por"
 	}
 };
-export const { column, description, identity, title } = _data;
+export const { body, column, description, identity, title } = _data;

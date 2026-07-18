@@ -1,6 +1,9 @@
 # Equation A018D-12CH — 12k-class reversible (cooling + heating) split air conditioner, datasheet
 # only. `manufacturer: Equation` is inherited from ../../_defaults.yaml, `archetype: air_conditioner`
 # from ../_defaults.yaml. Model facts only; any fitted per-unit draw bands are SITE data, not here.
+body:
+  en: >
+    AC phase: the AC phase the unit runs on — accepted 220–240 V / 50 Hz single-phase plus its electrical input draw (active_power). The two draw figures are the unit's own operating modes — each an IDENTIFIED intervals band (its identity.slug + title naming the mode), referenceable by {feature, property, interval}. The connection is the archetype's, not the compressor's.
 product:
   model: A018D-12CH
 
@@ -13,10 +16,6 @@ cooling:
         intervals:
           - interval: { value: 2638, severity: nominal } # 9000 BTU/h rated cooling
 
-# The AC phase the unit runs on — accepted 220–240 V / 50 Hz single-phase plus its electrical input
-# draw (active_power). The two draw figures are the unit's own operating modes — each an IDENTIFIED
-# intervals band (its identity.slug + title naming the mode), referenceable by
-# {feature, property, interval}. The connection is the archetype's, not the compressor's.
 ac_phase:
   feature_spec:
     combined:

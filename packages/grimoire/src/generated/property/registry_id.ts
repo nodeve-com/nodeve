@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"pattern":"^[a-z][a-z0-9_]*$"});
 
 export type RegistryId = string;
 
-type DataT = { readonly "column": { readonly "references": "registry" }; readonly "description": { readonly "en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "registry_id" }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
+type DataT = { readonly "body": { readonly "en": "Reference to the external vocabulary a crosswalk ref points into — an FK: the value is the `identity.slug` of a `registry` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is \"which registry\", the target Class is `registry`. Was enum-membership over enumeration/registry/; now an FK over catalog/registries/ (docs/reference-model.md stage 2).\n" }; readonly "column": { readonly "references": "registry" }; readonly "description": { readonly "en": "Slug of the registry catalog entry whose id-space the crosswalk term is drawn from." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "registry_id" }; readonly "title": { readonly "en": "Registry"; readonly "pt": "Registro" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to the external vocabulary a crosswalk ref points into — an FK: the value is the `identity.slug` of a `registry` catalog entry, resolved by guard-refs. Role name, like manufacturer_id: the field is \"which registry\", the target Class is `registry`. Was enum-membership over enumeration/registry/; now an FK over catalog/registries/ (docs/reference-model.md stage 2).\n"
+	},
 	"column": {
 		"references": "registry"
 	},
@@ -30,4 +33,4 @@ const _data: DataT = {
 		"pt": "Registro"
 	}
 };
-export const { column, description, identity, title } = _data;
+export const { body, column, description, identity, title } = _data;

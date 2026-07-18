@@ -4,6 +4,9 @@
 
 export default {
   "asyncSerial": {
+    "body": {
+      "en": "Asynchronous serial (start-stop) interface — the link discipline for a UART framing bytes, covering TTL UART / RS-485 / RS-232 alike. A management-layer classification, NOT a physical claim: the electrical layer (rs232/rs485/ttl_*) rides `physical_layer`, which varies independently (async serial runs over any of them). Code is the universal descriptor `async_serial`; the standards lineage rides `refs` — IANA ifType 33 (named `rs232`, a misnomer for the class), ≡ ISO 1177 start-stop character transmission.\n"
+    },
     "code": "async_serial",
     "refs": [
       {
@@ -18,6 +21,9 @@ export default {
     }
   },
   "can": {
+    "body": {
+      "en": "CAN is a self-framing link technology (its own data-link + differential PHY), not an async serial line (not `async_serial`) — so it's its own interface_type. IANA ifType has no CAN entry, so this member crosswalks to its actual defining standard, ISO 11898-1 (data link layer), instead of an ifType number; the high-speed differential PHY (ISO 11898-2) is the electrical sub-layer beneath it.\n"
+    },
     "code": "can",
     "refs": [
       {

@@ -24,9 +24,12 @@ export const schema: TSchema = Type.Object({ "min": Type.Optional(min_.schema), 
 
 export type ValuedRange = { "min"?: min_.Min; "max"?: max_.Max; "value"?: value_.Value; "tolerance"?: tolerance_.Tolerance; "toleranceLower"?: toleranceLower_.ToleranceLower; "toleranceUpper"?: toleranceUpper_.ToleranceUpper; "margin"?: margin_.Margin; "marginLower"?: marginLower_.MarginLower; "marginUpper"?: marginUpper_.MarginUpper; "fractionLower"?: fractionLower_.FractionLower; "fractionUpper"?: fractionUpper_.FractionUpper };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "valued_range" }; readonly "prop": { readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "margin": typeof margin_; readonly "marginLower": typeof marginLower_; readonly "marginUpper": typeof marginUpper_; readonly "max": typeof max_; readonly "min": typeof min_; readonly "tolerance": typeof tolerance_; readonly "toleranceLower": typeof toleranceLower_; readonly "toleranceUpper": typeof toleranceUpper_; readonly "value": typeof value_ } };
+type DataT = { readonly "body": { readonly "en": "A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max, OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral: a rated/designated centre (grade it `severity: nominal`), a stateful zone's trip, a zone operating point. Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never `value_v`). Extends the bare `range` feature — min/max are not re-spelled here. Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the `fraction_lower`/`fraction_upper` MULTIPLIER pair here — verbatim spec form (0.7Un–1.2Un), author sugar the generate step desugars into `margin_lower`/`margin_upper` deltas.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "valued_range" }; readonly "prop": { readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "margin": typeof margin_; readonly "marginLower": typeof marginLower_; readonly "marginUpper": typeof marginUpper_; readonly "max": typeof max_; readonly "min": typeof min_; readonly "tolerance": typeof tolerance_; readonly "toleranceLower": typeof toleranceLower_; readonly "toleranceUpper": typeof toleranceUpper_; readonly "value": typeof value_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max, OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral: a rated/designated centre (grade it `severity: nominal`), a stateful zone's trip, a zone operating point. Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never `value_v`). Extends the bare `range` feature — min/max are not re-spelled here. Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the `fraction_lower`/`fraction_upper` MULTIPLIER pair here — verbatim spec form (0.7Un–1.2Un), author sugar the generate step desugars into `margin_lower`/`margin_upper` deltas.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "valued_range"
@@ -45,4 +48,4 @@ const _data: DataT = {
 		"value": value_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

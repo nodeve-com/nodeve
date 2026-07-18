@@ -1,7 +1,6 @@
-# slug is REQUIRED wherever an identity appears — authored YAML rarely spells it: the de-sugar
-# fills it from the file stem before validation (and archetype from the layer/_defaults cascade;
-# archetype stays gate-enforced only — a NESTED identity, e.g. a feature's on-bus slug handle,
-# legitimately carries none).
+body:
+  en: >
+    slug is REQUIRED wherever an identity appears — authored YAML rarely spells it: the de-sugar fills it from the file stem before validation (and archetype from the layer/_defaults cascade; archetype stays gate-enforced only — a NESTED identity, e.g. a feature's on-bus slug handle, legitimately carries none).
 prop:
   archetype_id: {}
   slug: { schema: { required: true } }

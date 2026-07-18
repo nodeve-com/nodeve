@@ -32,6 +32,9 @@ export default {
     }
   },
   "modbusTcp": {
+    "body": {
+      "en": "Modbus application protocol carried over TCP (well-known port 502). A polled service — a master dials in and reads the register map. NOT a URI scheme (so excluded from `endpoint`'s scheme subset); its crosswalk is Modbus-org, not the IANA URI-scheme registry the others carry. Moved here from ingest_kind: modbus-over-TCP is WHAT a served surface speaks, not how an adapter ingests (that axis is now modbus_tap-only — a passive sniff; a master consumes this service_protocol).\n"
+    },
     "code": "modbus_tcp",
     "refs": [
       {

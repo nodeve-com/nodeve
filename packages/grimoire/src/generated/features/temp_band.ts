@@ -15,13 +15,16 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type TempBand = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "temp_band" } };
+type DataT = { readonly "prop": (typeof range_)["prop"]; readonly "body": { readonly "en": "A closed temperature interval, degC, inclusive ends — a CONTROL band a setpoint loop should hold (ambient tank target/operational/ground bands, a hygrostat's RH-paired temp range, a dew-point zone). The {min,max} SHAPE is the generic `range` feature, composed never restated; this adds the DOMAIN meaning, distinct from measuring_interval (what an instrument can read).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "temp_band" } };
 
 const _data: DataT = {
 	"prop": range_["prop"],
+	"body": {
+		"en": "A closed temperature interval, degC, inclusive ends — a CONTROL band a setpoint loop should hold (ambient tank target/operational/ground bands, a hygrostat's RH-paired temp range, a dew-point zone). The {min,max} SHAPE is the generic `range` feature, composed never restated; this adds the DOMAIN meaning, distinct from measuring_interval (what an instrument can read).\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "temp_band"
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

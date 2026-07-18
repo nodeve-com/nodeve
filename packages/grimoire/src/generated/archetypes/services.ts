@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
@@ -14,22 +15,26 @@ import * as serviceBinding_ from '../features/service_binding.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "serviceBinding": Type.Optional(serviceBinding_.schema) }, {"additionalProperties":false,"x-key-map":{"service_binding":"serviceBinding"}}));
+export const schema: TSchema = Type.Array(Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "serviceBinding": Type.Optional(serviceBinding_.schema) }, {"additionalProperties":false,"x-key-map":{"service_binding":"serviceBinding"}}));
 
-export type Services = Array<{ "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "serviceBinding"?: serviceBinding_.ServiceBinding }>;
+export type Services = Array<{ "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "serviceBinding"?: serviceBinding_.ServiceBinding }>;
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "serviceBinding": typeof serviceBinding_; readonly "title": typeof title_ } }; readonly "description": { readonly "en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "services" }; readonly "title": { readonly "en": "Service"; readonly "pt": "Coisa" } };
+type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "array": { readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "serviceBinding": typeof serviceBinding_; readonly "title": typeof title_ } }; readonly "body": { readonly "en": "A SERVICE a node OFFERS — one listening surface it exposes (its Modbus-TCP server, a web UI, an MQTT broker): identity/title/description plus the local socket it serves on (`service_binding`). `is_array: true` so a device's `services` slot is a LIST of these (same cardinality model as network_interfaces/ip_addresses — cardinality lives on the target class, no ref-site marker). Modelled as an archetype (not a bare feature) for the referenceable `identity.slug`. The DEVICE declares what it offers — that device-declaration IS the service registry; you read the device, not each surface. The listen address is named by REFERENCE into the device's OWN network topology (service_binding's network_interface_id / ip_address_id), so the site's overlaid address resolves the host — never restated. Serve side only; a service that also DIALS out composes `endpoint` (the reach side).\n" }; readonly "description": { readonly "en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses."; readonly "pt": "A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "services" }; readonly "title": { readonly "en": "Service"; readonly "pt": "Coisa" } };
 
 const _data: DataT = {
 	"prop": thing_["prop"],
 	"array": {
 		"prop": {
+			"body": body_,
 			"description": description_,
 			"identity": identity_,
 			"refs": refs_,
 			"serviceBinding": serviceBinding_,
 			"title": title_
 		}
+	},
+	"body": {
+		"en": "A SERVICE a node OFFERS — one listening surface it exposes (its Modbus-TCP server, a web UI, an MQTT broker): identity/title/description plus the local socket it serves on (`service_binding`). `is_array: true` so a device's `services` slot is a LIST of these (same cardinality model as network_interfaces/ip_addresses — cardinality lives on the target class, no ref-site marker). Modelled as an archetype (not a bare feature) for the referenceable `identity.slug`. The DEVICE declares what it offers — that device-declaration IS the service registry; you read the device, not each surface. The listen address is named by REFERENCE into the device's OWN network topology (service_binding's network_interface_id / ip_address_id), so the site's overlaid address resolves the host — never restated. Serve side only; a service that also DIALS out composes `endpoint` (the reach side).\n"
 	},
 	"description": {
 		"en": "One listening surface a node offers — its identity plus the local socket it serves on (service_binding), bound by reference to the device's own network interfaces/addresses.",
@@ -44,4 +49,4 @@ const _data: DataT = {
 		"pt": "Coisa"
 	}
 };
-export const { array, description, identity, prop, title } = _data;
+export const { array, body, description, identity, prop, title } = _data;

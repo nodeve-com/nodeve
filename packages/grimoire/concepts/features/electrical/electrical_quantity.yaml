@@ -1,9 +1,6 @@
-# features/electrical.yaml — the electrical-measurement quantities EVERY electrical connection
-# carries, AC or DC: voltage, current, active_power, active_energy, resistance. The single place
-# these travel together — a DC port composes exactly this, an AC phase composes this PLUS the
-# AC-only quantities. All quantity_kinds → `is_specification: true`: every field is a spec (its
-# `intervals` list — rated bands and measurable sensor spans, told apart by interval_kind). Each optional — a feature/instance fills only what its
-# datasheet/telemetry states.
+body:
+  en: >
+    features/electrical.yaml — the electrical-measurement quantities EVERY electrical connection carries, AC or DC: voltage, current, active_power, active_energy, resistance. The single place these travel together — a DC port composes exactly this, an AC phase composes this PLUS the AC-only quantities. All quantity_kinds → `is_specification: true`: every field is a spec (its `intervals` list — rated bands and measurable sensor spans, told apart by interval_kind). Each optional — a feature/instance fills only what its datasheet/telemetry states.
 concept_settings:
   is_specification: true
 prop:

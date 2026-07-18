@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "registerType": Type.Optional(regis
 
 export type ModbusLink = { "registerType"?: registerType_.RegisterType; "unitId"?: unitId_.UnitId; "wordOrder"?: wordOrder_.WordOrder };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_link" }; readonly "prop": { readonly "registerType": typeof registerType_; readonly "unitId": typeof unitId_; readonly "wordOrder": typeof wordOrder_ } };
+type DataT = { readonly "body": { readonly "en": "Modbus framing/addressing (modbus-specific) — the slave id, register file, and word order. Distinct from transport (the wire, shared) and emit (the MQTT output, shared): this is what makes a read a MODBUS read. Composed by the modbus connectivity archetype. The register_type slot is defined once here (a device's link and a tap window both compose it). TODO: this feature welds two layers — framing (register_type, word_order) and addressing (unit_id). Addressing is a cross-protocol layer (see features/addressing.yaml, which now homes wifi_ssid); `unit_id` likely wants to migrate there, leaving this as pure framing.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_link" }; readonly "prop": { readonly "registerType": typeof registerType_; readonly "unitId": typeof unitId_; readonly "wordOrder": typeof wordOrder_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Modbus framing/addressing (modbus-specific) — the slave id, register file, and word order. Distinct from transport (the wire, shared) and emit (the MQTT output, shared): this is what makes a read a MODBUS read. Composed by the modbus connectivity archetype. The register_type slot is defined once here (a device's link and a tap window both compose it). TODO: this feature welds two layers — framing (register_type, word_order) and addressing (unit_id). Addressing is a cross-protocol layer (see features/addressing.yaml, which now homes wifi_ssid); `unit_id` likely wants to migrate there, leaving this as pure framing.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "modbus_link"
@@ -28,4 +31,4 @@ const _data: DataT = {
 		"wordOrder": wordOrder_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

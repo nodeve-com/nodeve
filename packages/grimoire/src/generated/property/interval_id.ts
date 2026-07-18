@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type IntervalId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of one interval of the referenced feature's property — the third coordinate of an interval pointer, pairs with feature_id. A slug value naming a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "interval_id" }; readonly "title": { readonly "en": "Interval ID" } };
+type DataT = { readonly "body": { readonly "en": "Reference to ONE interval of the referenced feature's property — that interval's own `identity.slug` handle (out, out_daily, daily, continuous, ...). The third `_id` coordinate of the interval_item pointer: (feature_id, property_id | quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval} conditions use. A measurand link uses it to name WHICH measurable channel of a kind a register reads. `_id` = the target's slug (like feature_id); unique within the property's `intervals` array (bake-validated, not draft-07).\n" }; readonly "description": { readonly "en": "Slug of one interval of the referenced feature's property — the third coordinate of an interval pointer, pairs with feature_id. A slug value naming a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "interval_id" }; readonly "title": { readonly "en": "Interval ID" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to ONE interval of the referenced feature's property — that interval's own `identity.slug` handle (out, out_daily, daily, continuous, ...). The third `_id` coordinate of the interval_item pointer: (feature_id, property_id | quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval} conditions use. A measurand link uses it to name WHICH measurable channel of a kind a register reads. `_id` = the target's slug (like feature_id); unique within the property's `intervals` array (bake-validated, not draft-07).\n"
+	},
 	"description": {
 		"en": "Slug of one interval of the referenced feature's property — the third coordinate of an interval pointer, pairs with feature_id. A slug value naming a relationship, not this object's own id."
 	},
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"en": "Interval ID"
 	}
 };
-export const { description, identity, title } = _data;
+export const { body, description, identity, title } = _data;

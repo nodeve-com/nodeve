@@ -1,11 +1,9 @@
-# A DC solar MPPT charge controller (the Victron SmartSolar / BlueSolar family). Identity + how
-# it's talked to (VE.Direct — required: a charge controller we catalog is one we read) + feature
-# blocks. pv_tracker is the SAME atom an inverter's strings use; battery is its DC-output analogue
-# (a VE.Direct `V` field links to (battery, voltage), `I` to (battery, current)). All feature
-# blocks optional: an entry fills what its datasheet/telemetry offers.
-
 concept_settings:
   compose: [appliance] # base: product + supply draw (vedirect added directly below)
+
+body:
+  en: >
+    A DC solar MPPT charge controller (the Victron SmartSolar / BlueSolar family). Identity + how it's talked to (VE.Direct — required: a charge controller we catalog is one we read) + feature blocks. pv_tracker is the SAME atom an inverter's strings use; battery is its DC-output analogue (a VE.Direct `V` field links to (battery, voltage), `I` to (battery, current)). All feature blocks optional: an entry fills what its datasheet/telemetry offers.
 
 title:
   en: Charge controller

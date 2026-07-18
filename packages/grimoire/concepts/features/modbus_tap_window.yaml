@@ -1,9 +1,6 @@
-# One TAP WINDOW — a master-polled register window a passive Modbus tap recognizes and republishes
-# as ONE grouped MQTT message. `name` is the window's clean topic segment: the grouped cycle rides
-# <topic_prefix>/modbus_tap/<name> (an unmapped window falls back to its hex start address) — so
-# this feature authors a published topic path's LAST segment. `address` = Modbus start address of the
-# master's read window; `register_type` optional, omitted => holding (function 03). Retain SLOW
-# accumulating windows; leave FAST instantaneous ones unretained.
+body:
+  en: >
+    One TAP WINDOW — a master-polled register window a passive Modbus tap recognizes and republishes as ONE grouped MQTT message. `name` is the window's clean topic segment: the grouped cycle rides <topic_prefix>/modbus_tap/<name> (an unmapped window falls back to its hex start address) — so this feature authors a published topic path's LAST segment. `address` = Modbus start address of the master's read window; `register_type` optional, omitted => holding (function 03). Retain SLOW accumulating windows; leave FAST instantaneous ones unretained.
 prop:
   name: { schema: { required: true } }
   address: { schema: { required: true } }

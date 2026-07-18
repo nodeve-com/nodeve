@@ -1,12 +1,8 @@
-# The NULL centre of the bipolar ramp — no concern, the healthy design point. Zero of the ramp:
-# desirable best→better→good sit above it, undesirable notice→…→fatal below. A band graded `nominal`
-# says its `value` IS the nominated centre (a nameplate voltage, a rated draw) — the tolerated band
-# (tolerance/margin/min/max) sits around it. Distinct from ABSENT severity (not graded at all — a raw
-# stateful-zone trip, a bare measurable span): `nominal` is the explicit "graded, and it's the centre".
-# The null grade keys no sub-band slug (only best/good/notice/… rungs do); no alarm-standard rung
-# maps here — syslog/ISA grade only the undesirable side.
 title:
   en: Nominal
   pt: Nominal
 description:
   en: The healthy design centre — no concern, the zero of the severity ramp; a band's `value` is its nominated centre.
+body:
+  en: >
+    The NULL centre of the bipolar ramp — no concern, the healthy design point. Zero of the ramp: desirable best→better→good sit above it, undesirable notice→…→fatal below. A band graded `nominal` says its `value` IS the nominated centre (a nameplate voltage, a rated draw) — the tolerated band (tolerance/margin/min/max) sits around it. Distinct from ABSENT severity (not graded at all — a raw stateful-zone trip, a bare measurable span): `nominal` is the explicit "graded, and it's the centre". The null grade keys no sub-band slug (only best/good/notice/… rungs do); no alarm-standard rung maps here — syslog/ISA grade only the undesirable side.

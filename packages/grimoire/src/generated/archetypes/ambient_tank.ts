@@ -15,9 +15,12 @@ export const schema: TSchema = Type.Object({ "targetTempBand": targetTempBand_.s
 
 export type AmbientTank = { "targetTempBand": targetTempBand_.TargetTempBand; "operatingTempBand": operatingTempBand_.OperatingTempBand; "groundTempBand": groundTempBand_.GroundTempBand };
 
-type DataT = { readonly "description": { readonly "en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ambient_tank" }; readonly "prop": { readonly "groundTempBand": typeof groundTempBand_; readonly "operatingTempBand": typeof operatingTempBand_; readonly "targetTempBand": typeof targetTempBand_ }; readonly "title": { readonly "en": "Ambient tank"; readonly "pt": "Tanque ambiente" } };
+type DataT = { readonly "body": { readonly "en": "SITE concept (schema-only; instances live in sites/<name>/ambient-tank.yaml): the thermal operating bands of one install's ambient tank — the central thermal flywheel. Holds ONLY site TUNING: the °C bands depend on this install's climate, soil, and loads. The tank's physical SPEC (capacity, a quantity-value of kind volume) is a catalog/datasheet fact, never here — specs and tuning are different layers. Composed entirely from the temp_band feature; invents no value shapes. Physical meaning: docs/hvac/tank-ambient.md.\n" }; readonly "description": { readonly "en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "ambient_tank" }; readonly "prop": { readonly "groundTempBand": typeof groundTempBand_; readonly "operatingTempBand": typeof operatingTempBand_; readonly "targetTempBand": typeof targetTempBand_ }; readonly "title": { readonly "en": "Ambient tank"; readonly "pt": "Tanque ambiente" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "SITE concept (schema-only; instances live in sites/<name>/ambient-tank.yaml): the thermal operating bands of one install's ambient tank — the central thermal flywheel. Holds ONLY site TUNING: the °C bands depend on this install's climate, soil, and loads. The tank's physical SPEC (capacity, a quantity-value of kind volume) is a catalog/datasheet fact, never here — specs and tuning are different layers. Composed entirely from the temp_band feature; invents no value shapes. Physical meaning: docs/hvac/tank-ambient.md.\n"
+	},
 	"description": {
 		"en": "An ambient (thermal-flywheel) tank installation — target / operational / ground-coupling °C bands."
 	},
@@ -35,4 +38,4 @@ const _data: DataT = {
 		"pt": "Tanque ambiente"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

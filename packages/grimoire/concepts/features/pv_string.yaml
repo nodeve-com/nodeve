@@ -1,9 +1,8 @@
 description:
   en: PV String instance of on a site install.
-# One PV STRING as installed — the per-string install facts a datasheet can't know (position,
-# wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical
-# truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never
-# restated here.
+body:
+  en: >
+    One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.
 prop:
   ordinal: { schema: { required: true } }
   active: { schema: { required: true } }

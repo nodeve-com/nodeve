@@ -4,6 +4,9 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 export default {
+	"body": {
+		"en": "VE.Direct — Victron's vendor-proprietary serial protocol, published as a document (no per-term resolvable IRIs, so no iri_template). `term` is the field/spec name, e.g. \"PID\". Recorded as a ref because it IS a documented, identifiable protocol — just one owned by a vendor (see the `victron` organization) rather than a standards body. In Stage 2 this registry gains `published_by: victron`.\n"
+	},
 	"identity": {
 		"archetypeId": "registry",
 		"code": "3X30NQ0F",

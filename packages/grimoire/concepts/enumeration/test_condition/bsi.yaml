@@ -1,7 +1,6 @@
-# BSI — Bifacial Stress Irradiance (IEC TS 60904-1-2): the high-rear-contribution reference used to
-# size protection. Front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. The datasheet states it
-# for short-circuit current only — the worst-case Isc a bifacial module reaches, which drives fuse /
-# conductor sizing.
 title: { en: BSI, pt: BSI }
 description:
-  en: "Bifacial Stress Irradiance — front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. High-rear-contribution reference for worst-case Isc (IEC TS 60904-1-2)."
+  en: 'Bifacial Stress Irradiance — front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. High-rear-contribution reference for worst-case Isc (IEC TS 60904-1-2).'
+body:
+  en: >
+    BSI — Bifacial Stress Irradiance (IEC TS 60904-1-2): the high-rear-contribution reference used to size protection. Front 1000 W/m², rear 300 W/m², AM1.5G, 25 °C cell temp. The datasheet states it for short-circuit current only — the worst-case Isc a bifacial module reaches, which drives fuse / conductor sizing.

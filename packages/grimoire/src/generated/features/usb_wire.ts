@@ -18,9 +18,12 @@ export const schema: TSchema = Type.Object({ "vendorId": Type.Optional(vendorId_
 
 export type UsbWire = { "vendorId"?: vendorId_.VendorId; "productId"?: productId_.ProductId; "interface"?: interface_.Interface; "configuration"?: configuration_.Configuration; "altSetting"?: altSetting_.AltSetting; "detachKernelDriver"?: detachKernelDriver_.DetachKernelDriver };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usb_wire" }; readonly "prop": { readonly "altSetting": typeof altSetting_; readonly "configuration": typeof configuration_; readonly "detachKernelDriver": typeof detachKernelDriver_; readonly "interface": typeof interface_; readonly "productId": typeof productId_; readonly "vendorId": typeof vendorId_ } };
+type DataT = { readonly "body": { readonly "en": "A USB WIRE — how to FIND and OPEN a USB device, protocol-neutral (the analogue of serial_wire's port + line discipline): the device IDENTITY (vendor_id/product_id), plus which interface / configuration / alt_setting to claim and whether to detach a kernel driver first. Distinct from the HID framing that rides it (the usbhid medium's link). ids/indices are integers; YAML authors them as hex (0x04d8). This is the `usb` branch of the transport union — the SAME flat shape the serial/socket branches take, no longer inlined into transport.yaml.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usb_wire" }; readonly "prop": { readonly "altSetting": typeof altSetting_; readonly "configuration": typeof configuration_; readonly "detachKernelDriver": typeof detachKernelDriver_; readonly "interface": typeof interface_; readonly "productId": typeof productId_; readonly "vendorId": typeof vendorId_ } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A USB WIRE — how to FIND and OPEN a USB device, protocol-neutral (the analogue of serial_wire's port + line discipline): the device IDENTITY (vendor_id/product_id), plus which interface / configuration / alt_setting to claim and whether to detach a kernel driver first. Distinct from the HID framing that rides it (the usbhid medium's link). ids/indices are integers; YAML authors them as hex (0x04d8). This is the `usb` branch of the transport union — the SAME flat shape the serial/socket branches take, no longer inlined into transport.yaml.\n"
+	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "usb_wire"
@@ -34,4 +37,4 @@ const _data: DataT = {
 		"vendorId": vendorId_
 	}
 };
-export const { identity, prop } = _data;
+export const { body, identity, prop } = _data;

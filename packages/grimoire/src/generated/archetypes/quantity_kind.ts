@@ -7,6 +7,7 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as body_ from '../features/body.ts';
 import * as column_ from '../features/column.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
@@ -15,13 +16,16 @@ import * as property_ from './property.ts';
 import * as refs_ from '../features/refs.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "column": Type.Optional(column_.schema), "measurand": Type.Optional(measurand_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "column": Type.Optional(column_.schema), "measurand": Type.Optional(measurand_.schema) }, {"additionalProperties":false});
 
-export type QuantityKind = { "title"?: title_.Title; "description"?: description_.Description; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column; "measurand"?: measurand_.Measurand };
+export type QuantityKind = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "column"?: column_.Column; "measurand"?: measurand_.Measurand };
 
-type DataT = { readonly "description": { readonly "en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation."; readonly "pt": "Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "quantity_kind" }; readonly "prop": { readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "measurand": typeof measurand_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Quantity kind"; readonly "pt": "Tipo de grandeza" } };
+type DataT = { readonly "body": { readonly "en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued qudt:Quantity. A kind IS a Term — its QUDT identity and HA device_class are refs, its display name is the Term label. The kinds themselves are INSTANCES under enumeration/quantity_kind/. `si_unit` carries the coherent/SI unit as the SI symbol itself (W, K, var — BIPM / ISO 80000-1): borrowing the world standard, locally discoverable; optional — a few kinds have no clean single SI unit, omit rather than fabricate. Not i18n (a unit symbol is language-neutral); per-registry unit dialect ids (qudt_unit, ucum) are a deferred crosswalk concern. A reading's ACTUAL unit lives on measurement.unit; si_unit is the SI default the kind implies. Kinds also carry a DEFAULT accumulation (enumeration/accumulation/; a measurement may override). The metrology facts (unit / si_unit / accumulation) live in the `measurand` feature (a feature groups props; an archetype assembles features), nested below.\n" }; readonly "description": { readonly "en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation."; readonly "pt": "Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "quantity_kind" }; readonly "prop": { readonly "body": typeof body_; readonly "column": typeof column_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "measurand": typeof measurand_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Quantity kind"; readonly "pt": "Tipo de grandeza" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued qudt:Quantity. A kind IS a Term — its QUDT identity and HA device_class are refs, its display name is the Term label. The kinds themselves are INSTANCES under enumeration/quantity_kind/. `si_unit` carries the coherent/SI unit as the SI symbol itself (W, K, var — BIPM / ISO 80000-1): borrowing the world standard, locally discoverable; optional — a few kinds have no clean single SI unit, omit rather than fabricate. Not i18n (a unit symbol is language-neutral); per-registry unit dialect ids (qudt_unit, ucum) are a deferred crosswalk concern. A reading's ACTUAL unit lives on measurement.unit; si_unit is the SI default the kind implies. Kinds also carry a DEFAULT accumulation (enumeration/accumulation/; a measurement may override). The metrology facts (unit / si_unit / accumulation) live in the `measurand` feature (a feature groups props; an archetype assembles features), nested below.\n"
+	},
 	"description": {
 		"en": "A kind of quantity (a qudt:QuantityKind — what HA flattens into device_class), distinct from a valued quantity; carries the SI default unit and default accumulation.",
 		"pt": "Um tipo de grandeza (qudt:QuantityKind — o que o HA achata em device_class), distinto de uma grandeza com valor; transporta a unidade SI padrão e a acumulação padrão."
@@ -31,6 +35,7 @@ const _data: DataT = {
 		"slug": "quantity_kind"
 	},
 	"prop": {
+		"body": body_,
 		"column": column_,
 		"description": description_,
 		"identity": identity_,
@@ -43,4 +48,4 @@ const _data: DataT = {
 		"pt": "Tipo de grandeza"
 	}
 };
-export const { description, identity, prop, title } = _data;
+export const { body, description, identity, prop, title } = _data;

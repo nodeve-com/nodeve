@@ -12,9 +12,12 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type ServiceId = string;
 
-type DataT = { readonly "description": { readonly "en": "Slug of a services instance on the ingested device the adapter dials (the consumer resolves it against that device's own services). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "service_id" }; readonly "title": { readonly "en": "Service" } };
+type DataT = { readonly "body": { readonly "en": "Reference to the OFFERED service an adapter ingests through: the `identity.slug` of a `services` instance on the metered device (`ingest.catalog_item`). An intra-catalog pointer resolved against that device's own `services` — a plain slug, NOT a `column.references` catalog FK (mirror of `network_interface_id`). The service owns the surface (protocol, port, NIC binding); the adapter never restates it.\n" }; readonly "description": { readonly "en": "Slug of a services instance on the ingested device the adapter dials (the consumer resolves it against that device's own services). A slug value but a distinct key — it names a relationship, not this object's own id." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "service_id" }; readonly "title": { readonly "en": "Service" } };
 
 const _data: DataT = {
+	"body": {
+		"en": "Reference to the OFFERED service an adapter ingests through: the `identity.slug` of a `services` instance on the metered device (`ingest.catalog_item`). An intra-catalog pointer resolved against that device's own `services` — a plain slug, NOT a `column.references` catalog FK (mirror of `network_interface_id`). The service owns the surface (protocol, port, NIC binding); the adapter never restates it.\n"
+	},
 	"description": {
 		"en": "Slug of a services instance on the ingested device the adapter dials (the consumer resolves it against that device's own services). A slug value but a distinct key — it names a relationship, not this object's own id."
 	},
@@ -26,4 +29,4 @@ const _data: DataT = {
 		"en": "Service"
 	}
 };
-export const { description, identity, title } = _data;
+export const { body, description, identity, title } = _data;
