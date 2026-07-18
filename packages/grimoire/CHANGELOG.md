@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.10.0
+
+### Minor Changes
+
+- f787db0: Interval-based quantity model: zone / severity sub-grade / stateful threshold axes. `trigger_on` threshold replaces `interval_kind`; interval point unified on `value`. New `body` field for concept prose; oversized comment blocks guarded.
+
 ## 4.9.0
 
 ### Minor Changes
