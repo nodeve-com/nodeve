@@ -1,0 +1,10 @@
+# Top ISA priority — immediate action required; the thing is unusable or unsafe and hard protection
+# acts. Straddles syslog Critical/Emergency; the crosswalk keeps the exact Critical rung.
+title:
+  en: Critical
+  pt: Crítico
+description:
+  en: Immediate action required — the thing is unusable or unsafe; hard protection acts.
+refs:
+  - { registry_id: rfc_5424, term: Critical, match: exact }
+  - { registry_id: isa_18_2, term: Critical, match: close }

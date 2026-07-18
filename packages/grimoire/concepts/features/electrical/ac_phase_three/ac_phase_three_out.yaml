@@ -3,15 +3,10 @@ concept_settings:
   # `compose: ac_phase_three`, because this feature adds its own combined-only columns below, and
   # compose+own-prop would flatten the parted shape (own `part:` keeps it parted).
   part: electrical_ac_phase_three
-  is_specification: true # own energy columns above are spec columns (intervals), not bare numbers
-# Whole-port lifetime + daily energy throughput (enumeration/quantity): yield (out) and input (in)
-# are two directional channels of active_energy, so NAMED quantities coexisting as combined-only
-# columns (is_specification), per the pv_tracker pattern; each optional.
-prop:
-  total_yield: {}
-  total_yield_today: {}
-  input_energy: {}
-  input_energy_today: {}
+  is_specification: true # active_energy (composed) carries measurable throughput channels as intervals
+# Whole-port lifetime + daily energy throughput is the ONE composed `active_energy` column: yield (out)
+# and input (in), lifetime + daily, are measurable intervals tagged by flow_direction + period — not
+# separate columns. The channel identity lives on the interval, the base kind stays pure active_energy.
 title:
   en: AC 3-Phase Output
   pt: Saída CA trifásica

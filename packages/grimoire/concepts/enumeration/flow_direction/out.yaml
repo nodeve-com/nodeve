@@ -1,0 +1,7 @@
+# Outflow — out of the feature (export / feed-in / yielded). The out-direction counterpart of `in`;
+# a distinct channel keyed by this value, not the positive sign of one shared channel.
+title: { en: Outflow, pt: Saída }
+description:
+  en: "Outflow from the feature (export / feed-in) — a distinct channel, not a sign."
+refs:
+  - { registry_id: cim, term: FlowDirectionKind.reverse, match: close }

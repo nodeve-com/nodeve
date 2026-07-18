@@ -1,0 +1,10 @@
+# Lowest graded step above nominal — worth surfacing, no action needed. ABSENCE of `severity` is
+# nominal / no-concern (mirrors absent `duration` = continuous); notice is the first named rung.
+title:
+  en: Notice
+  pt: Aviso
+description:
+  en: Worth surfacing but no action needed — the first rung above nominal. (low)
+refs:
+  - { registry_id: rfc_5424, term: Notice, match: exact }
+  - { registry_id: isa_18_2, term: Low, match: close }

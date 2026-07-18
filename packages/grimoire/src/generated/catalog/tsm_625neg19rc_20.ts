@@ -10,7 +10,11 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal_mpp"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 625
 							}
@@ -21,7 +25,11 @@ export default {
 									"testCondition": "bnpi"
 								}
 							],
+							"identity": {
+								"slug": "nominal_mpp_bnpi"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 692
 							}
@@ -31,13 +39,21 @@ export default {
 				"current": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal_mpp"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 15.45
 							}
 						},
 						{
+							"identity": {
+								"slug": "nominal_short_circuit"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "short_circuit",
 								"nominal": 16.32
 							}
@@ -48,7 +64,11 @@ export default {
 									"testCondition": "bnpi"
 								}
 							],
+							"identity": {
+								"slug": "nominal_mpp_bnpi"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 17.12
 							}
@@ -59,7 +79,11 @@ export default {
 									"testCondition": "bnpi"
 								}
 							],
+							"identity": {
+								"slug": "nominal_short_circuit_bnpi"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "short_circuit",
 								"nominal": 18.08
 							}
@@ -70,7 +94,11 @@ export default {
 									"testCondition": "bsi"
 								}
 							],
+							"identity": {
+								"slug": "nominal_short_circuit_bsi"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "short_circuit",
 								"nominal": 20.24
 							}
@@ -80,6 +108,7 @@ export default {
 								"slug": "protection_required"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"nominal": 35,
 								"rating": "protection_required"
 							}
@@ -89,13 +118,21 @@ export default {
 				"voltage": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal_mpp"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 40.46
 							}
 						},
 						{
+							"identity": {
+								"slug": "nominal_open_circuit"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "open_circuit",
 								"nominal": 48.7
 							}

@@ -1,0 +1,9 @@
+# Above notice — approaching a bound, watch it. No clean syslog rung between Notice and Warning, so
+# the crosswalk is ISA-18.2 only (Medium).
+title:
+  en: Caution
+  pt: Cautela
+description:
+  en: Approaching a bound — watch it; below the warning threshold. (medium/elevated)
+refs:
+  - { registry_id: isa_18_2, term: Medium, match: close }

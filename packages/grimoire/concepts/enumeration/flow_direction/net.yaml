@@ -1,0 +1,9 @@
+# Net — the signed DELTA of in minus out on ONE bidirectional channel (grid-CT net power: export +,
+# import −). The delta case: sign encodes direction WITHIN a single channel, distinct from the two
+# separate in/out counters. A first-class member (not "no direction") so a net channel keys distinctly
+# from its directional siblings when composing the sensor id.
+title: { en: Net, pt: Líquido }
+description:
+  en: "Signed delta of in minus out on one bidirectional channel — sign encodes direction within the channel."
+refs:
+  - { registry_id: cim, term: FlowDirectionKind.net, match: exact }

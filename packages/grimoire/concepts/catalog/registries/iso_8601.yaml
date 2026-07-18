@@ -1,0 +1,11 @@
+# No iri_template: ISO 8601 duration tokens are a notation, not web-resolvable items. `id` is the
+# duration string itself, e.g. "P1D" (one day), "P1M" (one month), "P1Y" (one year).
+title:
+  en: ISO 8601 (Date/time & durations)
+  pt: ISO 8601 (Data/hora e durações)
+identity:
+  slug: iso_8601
+  code: 4TYPMJR1
+  url: https://www.iso.org/iso-8601-date-and-time-format.html
+registry_publication:
+  published_by: iso

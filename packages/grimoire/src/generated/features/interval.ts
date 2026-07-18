@@ -8,6 +8,7 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as channel_ from '../property/channel.ts';
+import * as duration_ from '../property/duration.ts';
 import * as fractionLower_ from '../property/fraction_lower.ts';
 import * as fractionUpper_ from '../property/fraction_upper.ts';
 import * as margin_ from '../property/margin.ts';
@@ -21,11 +22,11 @@ import * as resolution_ from '../property/resolution.ts';
 import * as tolerance_ from '../property/tolerance.ts';
 import * as unit_ from '../property/unit.ts';
 
-export const schema: TSchema = Type.Object({ "min": Type.Optional(min_.schema), "max": Type.Optional(max_.schema), "nominal": Type.Optional(nominal_.schema), "fractionLower": Type.Optional(fractionLower_.schema), "fractionUpper": Type.Optional(fractionUpper_.schema), "rating": Type.Optional(Type.Union([Type.Literal("measurable"), Type.Literal("operating"), Type.Literal("protection_required"), Type.Literal("startup"), Type.Literal("survival")], {"type":"string"})), "unit": Type.Optional(unit_.schema), "mode": Type.Optional(mode_.schema), "tolerance": Type.Optional(tolerance_.schema), "margin": Type.Optional(margin_.schema), "resolution": Type.Optional(resolution_.schema), "maxPermissibleError": Type.Optional(maxPermissibleError_.schema), "channel": Type.Optional(channel_.schema) }, {"additionalProperties":false,"x-key-map":{"fraction_lower":"fractionLower","fraction_upper":"fractionUpper","max_permissible_error":"maxPermissibleError"}});
+export const schema: TSchema = Type.Object({ "min": Type.Optional(min_.schema), "max": Type.Optional(max_.schema), "nominal": Type.Optional(nominal_.schema), "fractionLower": Type.Optional(fractionLower_.schema), "fractionUpper": Type.Optional(fractionUpper_.schema), "intervalKind": Type.Optional(Type.Union([Type.Literal("measurable"), Type.Literal("rating"), Type.Literal("zone")], {"type":"string"})), "rating": Type.Optional(Type.Union([Type.Literal("continuous"), Type.Literal("intermittent"), Type.Literal("protection_required"), Type.Literal("short_term"), Type.Literal("shutdown"), Type.Literal("startup"), Type.Literal("survival")], {"type":"string"})), "severity": Type.Optional(Type.Union([Type.Literal("best"), Type.Literal("better"), Type.Literal("caution"), Type.Literal("critical"), Type.Literal("fatal"), Type.Literal("good"), Type.Literal("notice"), Type.Literal("warning")], {"type":"string"})), "flowDirection": Type.Optional(Type.Union([Type.Literal("in"), Type.Literal("net"), Type.Literal("out")], {"type":"string"})), "period": Type.Optional(Type.Union([Type.Literal("daily"), Type.Literal("lifetime"), Type.Literal("monthly"), Type.Literal("yearly")], {"type":"string"})), "unit": Type.Optional(unit_.schema), "mode": Type.Optional(mode_.schema), "duration": Type.Optional(duration_.schema), "tolerance": Type.Optional(tolerance_.schema), "margin": Type.Optional(margin_.schema), "resolution": Type.Optional(resolution_.schema), "maxPermissibleError": Type.Optional(maxPermissibleError_.schema), "channel": Type.Optional(channel_.schema) }, {"additionalProperties":false,"x-key-map":{"fraction_lower":"fractionLower","fraction_upper":"fractionUpper","interval_kind":"intervalKind","flow_direction":"flowDirection","max_permissible_error":"maxPermissibleError"}});
 
-export type Interval = { "min"?: min_.Min; "max"?: max_.Max; "nominal"?: nominal_.Nominal; "fractionLower"?: fractionLower_.FractionLower; "fractionUpper"?: fractionUpper_.FractionUpper; "rating"?: "measurable" | "operating" | "protection_required" | "startup" | "survival"; "unit"?: unit_.Unit; "mode"?: mode_.Mode; "tolerance"?: tolerance_.Tolerance; "margin"?: margin_.Margin; "resolution"?: resolution_.Resolution; "maxPermissibleError"?: maxPermissibleError_.MaxPermissibleError; "channel"?: channel_.Channel };
+export type Interval = { "min"?: min_.Min; "max"?: max_.Max; "nominal"?: nominal_.Nominal; "fractionLower"?: fractionLower_.FractionLower; "fractionUpper"?: fractionUpper_.FractionUpper; "intervalKind"?: "measurable" | "rating" | "zone"; "rating"?: "continuous" | "intermittent" | "protection_required" | "short_term" | "shutdown" | "startup" | "survival"; "severity"?: "best" | "better" | "caution" | "critical" | "fatal" | "good" | "notice" | "warning"; "flowDirection"?: "in" | "net" | "out"; "period"?: "daily" | "lifetime" | "monthly" | "yearly"; "unit"?: unit_.Unit; "mode"?: mode_.Mode; "duration"?: duration_.Duration; "tolerance"?: tolerance_.Tolerance; "margin"?: margin_.Margin; "resolution"?: resolution_.Resolution; "maxPermissibleError"?: maxPermissibleError_.MaxPermissibleError; "channel"?: channel_.Channel };
 
-type DataT = { readonly "description": { readonly "en": "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "interval" }; readonly "prop": { readonly "channel": typeof channel_; readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "margin": typeof margin_; readonly "max": typeof max_; readonly "maxPermissibleError": typeof maxPermissibleError_; readonly "min": typeof min_; readonly "mode": typeof mode_; readonly "nominal": typeof nominal_; readonly "rating": { readonly "description": { readonly "en": "The rated-envelope axis: how far the quantity is rated/permitted to range. Closed, universal — shared by every archetype, so a consumer reasons about 'the operating interval' without archetype knowledge. Datasheet sense of a rating; operating is a rated region, not a limit (hence rating, not limit). The instrument side is `rating: measurable` (VIM 4.7 measuring interval) — the ONE list holds both a thing's own behaviour bands and a sensor's readable span, told apart by this axis." }; readonly "title": { readonly "en": "Rating" } }; readonly "resolution": typeof resolution_; readonly "tolerance": typeof tolerance_; readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Intervalos" } };
+type DataT = { readonly "description": { readonly "en": "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "interval" }; readonly "prop": { readonly "channel": typeof channel_; readonly "duration": typeof duration_; readonly "flowDirection": { readonly "description": { readonly "en": "Optional flow-channel identity: in / out / net. An IDENTITY axis, not a classifier — two intervals differing in flow_direction are SEPARATE channels (distinct registers, distinct sensor ids), not bands of one series. `in`/`out` are separate counters; `net` is one signed channel (the delta, sign = direction). Absent = undirected (voltage, temperature). Composes into the sensor id/key. Crosswalks to CIM FlowDirectionKind." }; readonly "title": { readonly "en": "Flow direction" } }; readonly "fractionLower": typeof fractionLower_; readonly "fractionUpper": typeof fractionUpper_; readonly "intervalKind": { readonly "description": { readonly "en": "What the interval IS: `measurable` (instrument readable span), `rating` (the thing's own rated band, sub-graded by the `rating` tier), or `zone` (a named condition anchor). DERIVED — never authored — as `rating` whenever a rating tier is present; `measurable`/`zone` are authored, since neither is derivable from the bounds alone." }; readonly "title": { readonly "en": "Interval kind" } }; readonly "margin": typeof margin_; readonly "max": typeof max_; readonly "maxPermissibleError": typeof maxPermissibleError_; readonly "min": typeof min_; readonly "mode": typeof mode_; readonly "nominal": typeof nominal_; readonly "rating": { readonly "description": { readonly "en": "The rated tier of a `interval_kind: rating` band — how far / how long the quantity is rated: continuous (full capacity), intermittent / short_term (time-bounded, carry a duration), survival (endured), startup / shutdown (thresholds), protection_required (trip), nominal (a nameplate value, tolerance/margin allowed, no min/max). Closed and universal, so a consumer reasons about 'the continuous band' without archetype knowledge. Setting it derives interval_kind: rating." }; readonly "title": { readonly "en": "Rating" } }; readonly "resolution": typeof resolution_; readonly "severity": { readonly "description": { readonly "en": "Optional health grade of being in this band, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. A CLASSIFIER, not identity: two intervals differing only in severity are still bands of one series. Absent mirrors absent duration = continuous. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent." }; readonly "title": { readonly "en": "Severity" } }; readonly "tolerance": typeof tolerance_; readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "Intervals"; readonly "pt": "Intervalos" } };
 
 const _data: DataT = {
 	"description": {
@@ -37,8 +38,25 @@ const _data: DataT = {
 	},
 	"prop": {
 		"channel": channel_,
+		"duration": duration_,
+		"flowDirection": {
+			"description": {
+				"en": "Optional flow-channel identity: in / out / net. An IDENTITY axis, not a classifier — two intervals differing in flow_direction are SEPARATE channels (distinct registers, distinct sensor ids), not bands of one series. `in`/`out` are separate counters; `net` is one signed channel (the delta, sign = direction). Absent = undirected (voltage, temperature). Composes into the sensor id/key. Crosswalks to CIM FlowDirectionKind."
+			},
+			"title": {
+				"en": "Flow direction"
+			}
+		},
 		"fractionLower": fractionLower_,
 		"fractionUpper": fractionUpper_,
+		"intervalKind": {
+			"description": {
+				"en": "What the interval IS: `measurable` (instrument readable span), `rating` (the thing's own rated band, sub-graded by the `rating` tier), or `zone` (a named condition anchor). DERIVED — never authored — as `rating` whenever a rating tier is present; `measurable`/`zone` are authored, since neither is derivable from the bounds alone."
+			},
+			"title": {
+				"en": "Interval kind"
+			}
+		},
 		"margin": margin_,
 		"max": max_,
 		"maxPermissibleError": maxPermissibleError_,
@@ -47,13 +65,21 @@ const _data: DataT = {
 		"nominal": nominal_,
 		"rating": {
 			"description": {
-				"en": "The rated-envelope axis: how far the quantity is rated/permitted to range. Closed, universal — shared by every archetype, so a consumer reasons about 'the operating interval' without archetype knowledge. Datasheet sense of a rating; operating is a rated region, not a limit (hence rating, not limit). The instrument side is `rating: measurable` (VIM 4.7 measuring interval) — the ONE list holds both a thing's own behaviour bands and a sensor's readable span, told apart by this axis."
+				"en": "The rated tier of a `interval_kind: rating` band — how far / how long the quantity is rated: continuous (full capacity), intermittent / short_term (time-bounded, carry a duration), survival (endured), startup / shutdown (thresholds), protection_required (trip), nominal (a nameplate value, tolerance/margin allowed, no min/max). Closed and universal, so a consumer reasons about 'the continuous band' without archetype knowledge. Setting it derives interval_kind: rating."
 			},
 			"title": {
 				"en": "Rating"
 			}
 		},
 		"resolution": resolution_,
+		"severity": {
+			"description": {
+				"en": "Optional health grade of being in this band, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. A CLASSIFIER, not identity: two intervals differing only in severity are still bands of one series. Absent mirrors absent duration = continuous. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent."
+			},
+			"title": {
+				"en": "Severity"
+			}
+		},
 		"tolerance": tolerance_,
 		"unit": unit_
 	},

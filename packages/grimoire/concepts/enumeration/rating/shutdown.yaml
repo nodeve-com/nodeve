@@ -1,0 +1,5 @@
+# Threshold band that takes the feature OFFLINE — the counterpart of startup (an under-voltage
+# disconnect, a cutoff). An operational-state rating, not a duration tier.
+title: { en: Shutdown, pt: Desligamento }
+description:
+  en: "The threshold band that takes the feature offline — the counterpart of startup."

@@ -36,43 +36,36 @@ ac_phase_three_out:
     # combined: the three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
     # (it isn't: a 10 kW box can't sustain 3×3.3 kW). Authored because it's not derivable.
     combined:
-      # Lifetime + daily throughput at the AC port (foxess total_yield / input_energy). Directional
-      # (yield out / input in) → NAMED quantities (enumeration/quantity), coexisting on one feature.
-      total_yield:
+      # Lifetime + daily throughput at the AC port (foxess total_yield / input_energy). ONE
+      # active_energy column; the four channels are measurable intervals keyed by flow_direction
+      # (out = yield, in = input) + period (absent = lifetime, daily = *_today).
+      active_energy:
         intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      total_yield_today:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      input_energy:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      input_energy_today:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+          - interval: { interval_kind: measurable, flow_direction: out, min: 0, unit: kWh, resolution: 0.01 } # total_yield
+          - interval: { interval_kind: measurable, flow_direction: out, period: daily, min: 0, unit: kWh, resolution: 0.01 } # total_yield_today
+          - interval: { interval_kind: measurable, flow_direction: in, min: 0, unit: kWh, resolution: 0.01 } # input_energy
+          - interval: { interval_kind: measurable, flow_direction: in, period: daily, min: 0, unit: kWh, resolution: 0.01 } # input_energy_today
       reactive_power:
         intervals:
-          - interval: { rating: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
+          - interval: { interval_kind: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
       active_power:
         # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
         # With no nominal the symmetric export/import rows collapse to one signed range per tier.
+        # Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous`
+        # thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
         intervals:
-          - identity: { slug: rated_continuous }
-            interval: { rating: operating, min: -11000, max: 10000 } # rated continuous, either direction
+          - interval: { rating: continuous, min: -11000, max: 10000 } # full capacity, either direction
             condition:
-              # Holds below the 45 °C derate onset — points at the enclosure's `below_derate` band.
-              - interval_item: { feature: enclosure, property: temperature, interval: below_derate }
+              # Holds while the enclosure is in its `continuous` (≤45 °C) thermal band.
+              - interval_item: { feature: enclosure, property: temperature, interval: continuous }
               # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a spec-carrying
               # altitude band to point at — pending a generic altitude/elevation feature (the site
               # supplies the install altitude; geo-fence is undesigned). Deferred, not dropped.
-          - identity: { slug: peak }
-            interval: { rating: operating, min: 10000, max: 11000 } # short-term "peak", same limit class
-            # TODO(duration-gate): sustained ≤30 s. A self-referential duration gate has no
-            # interval_item target in the new model yet; the device self-protects beyond. Deferred.
-          - identity: { slug: thermal_derate }
-            interval: { rating: operating, max: 9000 } # thermal derate 45–60 °C
+          # short-term peak: sustained ≤30 s, the device self-protects beyond.
+          - interval: { rating: short_term, min: -12000, max: 11000, duration: 30 }
+          - interval: { rating: continuous, min: -10000, max: 9000 } # thermal derate 45–60 °C
             condition:
-              - interval_item: { feature: enclosure, property: temperature, interval: derate_zone }
+              - interval_item: { feature: enclosure, property: temperature, interval: intermittent }
     # default: KIND-keyed base every part of that kind starts from — the emit fills part.<name> as
     # default.<kind> overlaid by any authored part.<name> patch. The power block below is PER-PHASE.
     default:
@@ -80,36 +73,35 @@ ac_phase_three_out:
         voltage:
           # 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the
           # single-valued grid_region setting, so the site sets it once and one interval resolves.
+          # A lone `nominal` (no min/max) IS the nameplate rating — interval_kind: rating derives from
+          # it, slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
           intervals:
-            - identity: { slug: br_220v_60hz }
-              interval: { rating: operating, nominal: 220 }
+            - interval: { nominal: 220 }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-            - identity: { slug: eu_230v_50hz }
-              interval: { rating: operating, nominal: 230 }
+            - interval: { nominal: 230 }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
-            - interval: { rating: measurable, min: 0, max: 250, resolution: 0.1 }
+            - interval: { interval_kind: measurable, min: 0, max: 250, resolution: 0.1 }
         frequency:
+          # nominal + tolerance is still a nominal (a spread AROUND the value, not a min/max envelope).
           intervals:
-            - identity: { slug: eu_230v_50hz }
-              interval: { rating: operating, nominal: 50, tolerance: 0.05 }
+            - interval: { nominal: 50, tolerance: 0.05 }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
-            - identity: { slug: br_220v_60hz }
-              interval: { rating: operating, nominal: 60, tolerance: 0.05 }
+            - interval: { nominal: 60, tolerance: 0.05 }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
         current:
           intervals:
-            - interval: { rating: operating, max: 15.2 }
+            - interval: { rating: continuous, max: 15.2 }
             - interval: { rating: survival, max: 16.7 }
             - interval: { rating: protection_required, max: 25 }
         active_power:
           intervals:
-            - interval: { rating: operating, nominal: 3333, max: 3666 }
+            - interval: { rating: continuous, nominal: 3333, max: 3666 }
               condition:
                 - interval_item:
-                    { feature: enclosure, property: temperature, interval: below_derate }
+                    { feature: enclosure, property: temperature, interval: continuous }
                 # TODO(altitude-derate): per-phase full power only below 2000 m — same deferred
                 # altitude band as the combined total above.
-            - interval: { rating: measurable, min: 0, max: 5, unit: kW }
+            - interval: { interval_kind: measurable, min: 0, max: 5, unit: kW }
 
 # The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed
 # (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy
@@ -123,27 +115,22 @@ ac_phase_three_grid:
       # Net grid power, signed: export +, import −. One measurable channel; direction is the sign.
       active_power:
         intervals:
-          - interval: { rating: measurable, min: -15, max: 15, unit: kW, resolution: 0.001 }
-      # Directional energy — feed-in (export) vs grid-consumption (import), each its own lifetime and
-      # daily accumulator. NAMED quantities so both directions coexist as separate channels.
-      feed_in_energy:
+          - interval: { interval_kind: measurable, min: -15, max: 15, unit: kW, resolution: 0.001 }
+      # Directional energy — feed-in (export) vs grid-consumption (import), each lifetime + daily. ONE
+      # active_energy column; channels are measurable intervals keyed by flow_direction (out = feed-in,
+      # in = grid consumption) + period (absent = lifetime, daily = *_today).
+      active_energy:
         intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      grid_consumption_energy:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      feed_in_energy_today:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      grid_consumption_energy_today:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+          - interval: { interval_kind: measurable, flow_direction: out, min: 0, unit: kWh, resolution: 0.01 } # feed_in_energy
+          - interval: { interval_kind: measurable, flow_direction: out, period: daily, min: 0, unit: kWh, resolution: 0.01 } # feed_in_energy_today
+          - interval: { interval_kind: measurable, flow_direction: in, min: 0, unit: kWh, resolution: 0.01 } # grid_consumption_energy
+          - interval: { interval_kind: measurable, flow_direction: in, period: daily, min: 0, unit: kWh, resolution: 0.01 } # grid_consumption_energy_today
     default:
       ac_phase:
         active_power:
           # per-leg net grid power (foxess grid_ct R/S/T), signed like the combined total.
           intervals:
-            - interval: { rating: measurable, min: -8, max: 8, unit: kW, resolution: 0.001 }
+            - interval: { interval_kind: measurable, min: -8, max: 8, unit: kW, resolution: 0.001 }
 
 # feature_spec direction (docs/feature-model.md): `count` is grammar → `concept_settings`; the
 # `combined` / `default` / `instances` spec body nests under `feature_spec`.
@@ -151,7 +138,7 @@ pv_tracker:
   concept_settings:
     count: 3
   feature_spec:
-    # `rating:` is the UNIVERSAL rated-envelope property (operating/survival/startup/protection_required)
+    # `rating:` is the UNIVERSAL rated-envelope property (operating/survival/startup/protection_required/reference/zone)
     # shared by every archetype; `mode:` is this archetype's OWN operational-state property (mppt,
     # mppt_fullpower) for bands the universal set can't name. Both axes co-occur on one interval. Use
     # `rating:` whenever a universal class fits; reserve `mode:` for the archetype-specific states.
@@ -159,29 +146,30 @@ pv_tracker:
       active_power:
         intervals:
           - interval: { rating: survival, max: 20000 }
-          - interval: { rating: operating, max: 18000 }
-      # Daily PV generation (foxess solar_energy_today); the lifetime total is the active_energy
-      # register linked to this same combined whole (39601).
-      solar_energy_today:
+          - interval: { rating: continuous, max: 18000 }
+      # PV generation energy (undirected — one direction): lifetime total (foxess solar_energy_total,
+      # register 39601) + daily (foxess solar_energy_today, 39603, period: daily) on one active_energy column.
+      active_energy:
         intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+          - interval: { interval_kind: measurable, min: 0, unit: kWh, resolution: 0.01 } # lifetime
+          - interval: { interval_kind: measurable, period: daily, min: 0, unit: kWh, resolution: 0.01 } # solar_energy_today
     default:
       voltage:
         intervals:
-          - interval: { rating: operating, min: 90, nominal: 620 }
+          - interval: { rating: continuous, min: 90, nominal: 620 }
           - interval: { rating: survival, max: 1000 }
           - interval: { rating: startup, min: 140 }
           - interval: { mode: mppt, min: 120, max: 950 }
           - interval: { mode: mppt_fullpower, min: 175, max: 850 }
-          - interval: { rating: measurable, min: 0, max: 1000, resolution: 0.1 }
+          - interval: { interval_kind: measurable, min: 0, max: 1000, resolution: 0.1 }
       current:
         intervals:
           - interval: { rating: survival, max: 25 }
-          - interval: { rating: operating, max: 20 }
-          - interval: { rating: measurable, min: 0, max: 30, resolution: 0.01 }
+          - interval: { rating: continuous, max: 20 }
+          - interval: { interval_kind: measurable, min: 0, max: 30, resolution: 0.01 }
       active_power:
         intervals:
-          - interval: { rating: operating, max: 10000 }
+          - interval: { rating: continuous, max: 10000 }
     # instances: SPARSE array of per-string overrides, each tagged with its 1-based `ordinal`
     # (the join key), overlaid ROW-level onto `default`: this row replaces only the `operating`
     # interval (same rating); survival/startup/mppt rows, current and measurable span stay inherited.
@@ -189,12 +177,12 @@ pv_tracker:
       - ordinal: 3
         voltage:
           intervals:
-            - interval: { rating: operating, min: 60, nominal: 480 }
+            - interval: { rating: continuous, min: 60, nominal: 480 }
 
 # NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the
-# grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is split into the
-# feed_in_energy / grid_consumption_energy named quantities. The inverter's own throughput lives on
-# ac_phase_three_out (active_power tiers + total_yield / input_energy), not duplicated.
+# grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy
+# column's flow_direction/period measurable intervals. The inverter's own throughput lives on
+# ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
 
 ac_phase_three_eps: # separate EPS port — export only; its own per-phase telemetry
   identity:
@@ -204,23 +192,23 @@ ac_phase_three_eps: # separate EPS port — export only; its own per-phase telem
     combined:
       active_power:
         intervals:
-          - interval: { rating: operating, max: 10000 } # rated EPS export, all legs together
+          - interval: { rating: continuous, max: 10000 } # rated EPS export, all legs together
     # default: the per-phase values every leg gets — the power block below is PER-PHASE.
     default:
       ac_phase:
         voltage:
           intervals:
-            - interval: { rating: operating, nominal: 230, min: 200, max: 260 }
-            - interval: { rating: measurable, min: 0, max: 300, resolution: 0.1 }
+            - interval: { rating: continuous, nominal: 230, min: 200, max: 260 }
+            - interval: { interval_kind: measurable, min: 0, max: 300, resolution: 0.1 }
         frequency:
           intervals:
-            - interval: { rating: operating, nominal: 50 }
+            - interval: { nominal: 50 } # lone nominal — nameplate reference
         current:
           intervals:
-            - interval: { rating: measurable, min: 0, max: 50, resolution: 0.01 }
+            - interval: { interval_kind: measurable, min: 0, max: 50, resolution: 0.01 }
         active_power:
           intervals:
-            - interval: { rating: measurable, min: -3.3, max: 3.3, unit: kW, resolution: 0.001 } # unit override — canonical is W
+            - interval: { interval_kind: measurable, min: -3.3, max: 3.3, unit: kW, resolution: 0.001 } # unit override — canonical is W
 
 ac_phase_three_load: # household load the box meters (foxess load_power) — a concrete feature-of-interest
   identity:
@@ -232,38 +220,35 @@ ac_phase_three_load: # household load the box meters (foxess load_power) — a c
     combined:
       active_power:
         intervals:
-          - interval: { rating: measurable, min: 0, max: 15, unit: kW, resolution: 0.001 }
-      # Household load energy — lifetime (foxess load_power total, an energy accumulator) + daily.
+          - interval: { interval_kind: measurable, min: 0, max: 15, unit: kW, resolution: 0.001 }
+      # Household load energy (undirected): lifetime (foxess load_power total, 39629) + daily
+      # (load_energy_today, 39631, period: daily) on one active_energy column.
       active_energy:
         intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
-      load_energy_today:
-        intervals:
-          - interval: { rating: measurable, min: 0, unit: kWh, resolution: 0.01 }
+          - interval: { interval_kind: measurable, min: 0, unit: kWh, resolution: 0.01 } # lifetime
+          - interval: { interval_kind: measurable, period: daily, min: 0, unit: kWh, resolution: 0.01 } # load_energy_today
     default:
       ac_phase:
         active_power:
           # Signed like the foxess entity (validate −100..100): a leg can read negative when the
           # box back-feeds through it. Range is the leg's plausible envelope, not a rating.
           intervals:
-            - interval: { rating: measurable, min: -5, max: 15, unit: kW, resolution: 0.001 }
+            - interval: { interval_kind: measurable, min: -5, max: 15, unit: kW, resolution: 0.001 }
 
 enclosure: # internal temperature is the enclosure's — a concrete feature-of-interest, not dangling
   # Partless feature → its columns live under `feature_spec.combined` (the whole).
   feature_spec:
     combined:
       temperature:
-        # operating/survival are the box's thermal rating; below_derate/derate_zone are the sub-bands the
-        # grid-power thermal derate points at; measurable is what the sensor reads. Numbers in °C (unit
+        # The thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the
+        # grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent)
+        # directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit
         # override — canonical is K) per interval.
         intervals:
-          - interval: { rating: operating, min: -25, max: 60, unit: °C }
           - interval: { rating: survival, min: -40, max: 80, unit: °C }
-          - identity: { slug: below_derate } # ≤45 °C: full-power thermal headroom (derate onset)
-            interval: { rating: operating, max: 45, unit: °C }
-          - identity: { slug: derate_zone } # 45–60 °C: thermal derate region
-            interval: { rating: operating, min: 45, max: 60, unit: °C }
-          - interval: { rating: measurable, min: -40, max: 120, unit: °C, resolution: 0.1 }
+          - interval: { rating: intermittent, min: -25, max: 60, unit: °C }
+          - interval: { rating: continuous, min: -20, max: 45, unit: °C }
+          - interval: { interval_kind: measurable, min: -40, max: 100, unit: °C, resolution: 0.1 }
 
 # Each NIC is one `network_interfaces` archetype instance (is_array): its own identity.slug handle
 # plus the network_link datasheet block. The box ships a WiFi radio and a 100 Mb Ethernet port.
@@ -728,42 +713,47 @@ modbus:
         unit: kvar,
       } # high word; low 39137
     # --- Inverter lifetime + daily energy throughput (foxess total_yield / input_energy) ---
+    # active_energy; `interval_id` = the channel's auto-slug (out / out_daily / in / in_daily).
     - {
         feature_id: ac_phase_three_out,
-        quantity: total_yield,
+        quantity_kind: active_energy,
+        interval_id: out,
         address: 39621,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39622
+      } # total_yield; high word; low 39622
     - {
         feature_id: ac_phase_three_out,
-        quantity: total_yield_today,
+        quantity_kind: active_energy,
+        interval_id: out_daily,
         address: 39623,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39624
+      } # total_yield_today; high word; low 39624
     - {
         feature_id: ac_phase_three_out,
-        quantity: input_energy,
+        quantity_kind: active_energy,
+        interval_id: in,
         address: 39625,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39626
+      } # input_energy; high word; low 39626
     - {
         feature_id: ac_phase_three_out,
-        quantity: input_energy_today,
+        quantity_kind: active_energy,
+        interval_id: in_daily,
         address: 39627,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39628
+      } # input_energy_today; high word; low 39628
     # --- Grid CT / utility meter: NET power, signed (feed-in +, consumption −) (foxess grid_ct) ---
     - {
         feature_id: ac_phase_three_grid,
@@ -805,52 +795,58 @@ modbus:
         unit: kW,
       } # high word; low 38821
     # --- Grid CT directional energy (foxess feed_in_energy / grid_consumption_energy) ---
+    # active_energy; `interval_id` = the channel's auto-slug (out = feed-in, in = grid consumption).
     - {
         feature_id: ac_phase_three_grid,
-        quantity: feed_in_energy,
+        quantity_kind: active_energy,
+        interval_id: out,
         address: 39613,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39614
+      } # feed_in_energy; high word; low 39614
     - {
         feature_id: ac_phase_three_grid,
-        quantity: feed_in_energy_today,
+        quantity_kind: active_energy,
+        interval_id: out_daily,
         address: 39615,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39616
+      } # feed_in_energy_today; high word; low 39616
     - {
         feature_id: ac_phase_three_grid,
-        quantity: grid_consumption_energy,
+        quantity_kind: active_energy,
+        interval_id: in,
         address: 39617,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39618
+      } # grid_consumption_energy; high word; low 39618
     - {
         feature_id: ac_phase_three_grid,
-        quantity: grid_consumption_energy_today,
+        quantity_kind: active_energy,
+        interval_id: in_daily,
         address: 39619,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39620
+      } # grid_consumption_energy_today; high word; low 39620
     # --- PV daily generation (foxess solar_energy_today; lifetime total is active_energy 39601) ---
     - {
         feature_id: pv_tracker,
-        quantity: solar_energy_today,
+        quantity_kind: active_energy,
+        interval_id: daily,
         address: 39603,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39604
+      } # solar_energy_today; high word; low 39604
     # --- House load energy: lifetime (foxess load_power total) + daily (load_energy_today) ---
     - {
         feature_id: ac_phase_three_load,
@@ -863,13 +859,14 @@ modbus:
       } # high word; low 39630
     - {
         feature_id: ac_phase_three_load,
-        quantity: load_energy_today,
+        quantity_kind: active_energy,
+        interval_id: daily,
         address: 39631,
         type: uint32,
         scale: 0.01,
         decimals: 2,
         unit: kWh,
-      } # high word; low 39632
+      } # load_energy_today; high word; low 39632
     # --- Inverter temperature (foxess invtemp, holding 39141 on H3_SMART) ---
     - {
         feature_id: enclosure,

@@ -72,8 +72,8 @@ From a shell, the `grimoire` bin queries the shipped `artifacts/` JSON (snake wi
 grimoire catalog                     # list entries: archetype_id  slug  code
 grimoire catalog foxess_h3_ps10sh    # one entry, full JSON; append a dotted path to select a node
 grimoire catalog foxess_h3_ps10sh ac_phase_three_grid.feature_spec.combined
-grimoire registers foxess_h3_ps10sh  # its modbus register rows (named `quantity` rows carry the baked base `quantity_kind`)
-grimoire enumeration quantity        # member dict; `grimoire quantity feed_in_energy` for one member
+grimoire registers foxess_h3_ps10sh active_energy  # register rows; column filters on quantity_kind (energy channels split by their `interval` slug)
+grimoire enumeration quantity_kind   # member dict; `grimoire enumeration quantity_kind active_energy` for one member
 ```
 
 JSON readers also import directly: `@nodeve/grimoire/artifacts/catalog/foxess_h3_ps10sh.json` (the whole `artifacts/` tree ships).

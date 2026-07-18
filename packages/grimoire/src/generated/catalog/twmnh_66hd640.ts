@@ -10,7 +10,11 @@ export default {
 				"activePower": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal_mpp"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 625
 							}
@@ -20,13 +24,21 @@ export default {
 				"voltage": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal_mpp"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "mpp",
 								"nominal": 40.46
 							}
 						},
 						{
+							"identity": {
+								"slug": "nominal_open_circuit"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"mode": "open_circuit",
 								"nominal": 48.7
 							}

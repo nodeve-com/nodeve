@@ -22,18 +22,18 @@ ac_phase:
     combined:
       voltage:
         intervals:
-          - interval: { rating: operating, min: 220, max: 240 } # 220–240 V single phase
+          - interval: { rating: continuous, min: 220, max: 240 } # 220–240 V single phase
       frequency:
         intervals:
-          - interval: { rating: operating, nominal: 50 }
+          - interval: { nominal: 50 }
       active_power:
         intervals:
           - identity: { slug: cooling }
             title: { en: Cooling }
-            interval: { rating: operating, nominal: 1391 } # rated input power, cooling
+            interval: { nominal: 1391 } # rated input power, cooling
           - identity: { slug: heating }
             title: { en: Heating }
-            interval: { rating: operating, nominal: 1346 } # rated input power, heating
+            interval: { nominal: 1346 } # rated input power, heating
 
 # Vapor-compression circuit — working gas only. `refrigerant` is a property code
 # (enumeration/refrigerant/r290 → Propane, A3, GWP 3).

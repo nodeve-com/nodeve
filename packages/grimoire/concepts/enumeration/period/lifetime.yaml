@@ -1,0 +1,8 @@
+# The null case of the `period` axis: NO reset — a total since commissioning. Absence of a reset
+# cadence, so no ISO 8601 duration. Pairs with accumulation cumulative_monotonic (a lifetime kWh
+# meter). An interval with no `period` is lifetime by default.
+title:
+  en: Lifetime
+  pt: Vitalício
+description:
+  en: Total since commissioning — never resets. The unbounded period; no ISO 8601 duration.

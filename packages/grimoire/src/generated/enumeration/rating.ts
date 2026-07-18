@@ -3,36 +3,38 @@
 // member's wire literal is its `code`), `as const` for the member-code union consumers branch on.
 
 export default {
-  "measurable": {
-    "code": "measurable",
+  "continuous": {
+    "code": "continuous",
     "description": {
-      "en": "The span a SENSOR can read this quantity over — the instrument side (VIM 4.7 measuring interval / ssn-system MeasurementRange), not the thing's own behaviour."
+      "en": "Normal design capacity — rated to hold indefinitely. A reading beyond its bound is the overload condition."
     },
     "refs": [
       {
         "match": "close",
-        "registryId": "vim",
-        "term": "4.7"
-      },
-      {
-        "match": "exact",
-        "registryId": "ssn_system",
-        "term": "MeasurementRange"
+        "registryId": "cim",
+        "term": "OperationalLimitType"
       }
     ],
     "title": {
-      "en": "Measurable",
-      "pt": "Mensurável"
+      "en": "Continuous",
+      "pt": "Contínuo"
     }
   },
-  "operating": {
-    "code": "operating",
+  "intermittent": {
+    "code": "intermittent",
     "description": {
-      "en": "Rated continuous / within-spec — the region the quantity is rated to range over in normal use."
+      "en": "Rated above continuous for a bounded spell (minutes) — carries a duration; not holdable indefinitely."
     },
+    "refs": [
+      {
+        "match": "close",
+        "registryId": "cim",
+        "term": "OperationalLimitType"
+      }
+    ],
     "title": {
-      "en": "Operating",
-      "pt": "Operação"
+      "en": "Intermittent",
+      "pt": "Intermitente"
     }
   },
   "protectionRequired": {
@@ -43,6 +45,33 @@ export default {
     "title": {
       "en": "Protection required",
       "pt": "Proteção necessária"
+    }
+  },
+  "shortTerm": {
+    "code": "short_term",
+    "description": {
+      "en": "Peak / overload — rated above continuous for seconds; carries a duration, self-protects beyond."
+    },
+    "refs": [
+      {
+        "match": "close",
+        "registryId": "cim",
+        "term": "OperationalLimitType"
+      }
+    ],
+    "title": {
+      "en": "Short-term",
+      "pt": "Curto prazo"
+    }
+  },
+  "shutdown": {
+    "code": "shutdown",
+    "description": {
+      "en": "The threshold band that takes the feature offline — the counterpart of startup."
+    },
+    "title": {
+      "en": "Shutdown",
+      "pt": "Desligamento"
     }
   },
   "startup": {

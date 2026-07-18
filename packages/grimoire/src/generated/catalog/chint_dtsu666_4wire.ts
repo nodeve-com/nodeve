@@ -4,20 +4,18 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 const _s0 = {
-	"fractionLower": 0.7,
-	"fractionUpper": 1.2,
-	"nominal": 220,
-	"rating": "operating"
+	"interval": {
+		"intervalKind": "measurable",
+		"max": 280,
+		"min": 150
+	}
 } as const;
 const _s1 = {
-	"identity": {
-		"slug": "measurable"
-	},
-	"interval": {
-		"max": 280,
-		"min": 150,
-		"rating": "measurable"
-	}
+	"fractionLower": 0.7,
+	"fractionUpper": 1.2,
+	"intervalKind": "rating",
+	"nominal": 220,
+	"rating": "continuous"
 } as const;
 const _s2 = {
 	"condition": [
@@ -27,11 +25,11 @@ const _s2 = {
 		}
 	],
 	"identity": {
-		"slug": "eu_230v_50hz"
+		"slug": "nominal_eu_230v_50hz"
 	},
 	"interval": {
-		"nominal": 230,
-		"rating": "operating"
+		"intervalKind": "rating",
+		"nominal": 230
 	}
 } as const;
 const _s3 = {
@@ -42,11 +40,11 @@ const _s3 = {
 		}
 	],
 	"identity": {
-		"slug": "br_220v_60hz"
+		"slug": "nominal_br_220v_60hz"
 	},
 	"interval": {
-		"nominal": 380,
-		"rating": "operating"
+		"intervalKind": "rating",
+		"nominal": 380
 	}
 } as const;
 const _s4 = {
@@ -57,11 +55,11 @@ const _s4 = {
 		}
 	],
 	"identity": {
-		"slug": "eu_230v_50hz"
+		"slug": "nominal_eu_230v_50hz"
 	},
 	"interval": {
-		"nominal": 400,
-		"rating": "operating"
+		"intervalKind": "rating",
+		"nominal": 400
 	}
 } as const;
 const _s5 = {
@@ -72,9 +70,9 @@ const _s5 = {
 		}
 	],
 	"identity": {
-		"slug": "br_220v_60hz"
+		"slug": "continuous_br_220v_60hz"
 	},
-	"interval": _s0
+	"interval": _s1
 } as const;
 const _s6 = [
 	_s3,
@@ -89,7 +87,7 @@ const _s8 = {
 const _s9 = [
 	_s5,
 	_s2,
-	_s1
+	_s0
 ] as const;
 const _s10 = {
 	"intervals": _s9
@@ -116,22 +114,20 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "continuous"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"max": 65,
 								"min": 45,
-								"rating": "operating"
+								"rating": "continuous"
 							}
 						},
 						{
-							"identity": {
-								"slug": "measurable"
-							},
 							"interval": {
+								"intervalKind": "measurable",
 								"max": 65,
 								"min": 45,
-								"rating": "measurable",
 								"resolution": 0.01
 							}
 						}

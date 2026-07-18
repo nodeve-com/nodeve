@@ -2,8 +2,11 @@
 # type of a specification's `intervals` list. A RATING interval: a class-named region of the THING's own
 # behaviour — distinct from measuring-interval (VIM 4.7, what an INSTRUMENT can read) and bare
 # `range` ({min,max}, no class/nameplate/conditions).
-# Band class = two ORTHOGONAL, co-occurrable axes (two fields, not one merged slug — e.g.
-# { rating: operating, mode: mppt, min: 175, max: 850 }): universal `rating`, domain-own `mode`.
+# Band class = ORTHOGONAL, co-occurrable axes (fields, never a merged classifier slug — e.g.
+# { rating: operating, mode: mppt, min: 175, max: 850 }): universal `rating`, domain-own `mode`,
+# duration `duration` in seconds (a short-term "peak" is operating + duration, CIM
+# acceptableDuration). `identity.slug` on a band is a REFERENCE HANDLE only (an interval_item
+# target, an enumeration member, a titled named band) — never a classifier (guard-interval-slugs).
 # Bounds: nominal/min/max come from nominal_range (partial — one-sided or nominal-only legal);
 # symmetric bands: fractional `tolerance` or absolute `margin`. Numbers in the kind's canonical
 # SI unit unless `unit` overrides. `conditions` gate the interval (none = reference/nameplate);
@@ -15,14 +18,31 @@ concept_settings:
   compose:
     - nominal_range # partial: nominal/min/max, defined once
 enums:
-  - rating # the rated-envelope axis (enumeration/rating): operating/survival/startup/protection_required/measurable
+  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone. DERIVED as `rating` whenever a rating tier is set; measurable / zone authored directly.
+  - rating # the rated tier (enumeration/rating): continuous/intermittent/short_term/startup/shutdown/survival/protection_required/nominal
+  - severity # OPTIONAL health grade (enumeration/severity): desirable best/better/good … absent=nominal … undesirable notice/caution/warning/critical/fatal
+  - flow_direction # IDENTITY axis (enumeration/flow_direction): in/out/net; keys the channel + sensor id, absent = undirected
+  - period
 prop:
   unit: {} # non-SI override for this interval's numbers (omit => canonical SI)
-  rating: # overlay the enum-introduced field with its docs (closed, universal axis)
+  interval_kind: # what the interval IS — the closed top classifier
+    title: { en: Interval kind }
+    description:
+      en: "What the interval IS: `measurable` (instrument readable span), `rating` (the thing's own rated band, sub-graded by the `rating` tier), or `zone` (a named condition anchor). DERIVED — never authored — as `rating` whenever a rating tier is present; `measurable`/`zone` are authored, since neither is derivable from the bounds alone."
+  severity: # optional classifier axis — how good/bad it is to sit in this band; add per interval_kind as needed, omit where meaningless
+    title: { en: Severity }
+    description:
+      en: "Optional health grade of being in this band, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. A CLASSIFIER, not identity: two intervals differing only in severity are still bands of one series. Absent mirrors absent duration = continuous. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent."
+  flow_direction: # optional IDENTITY axis — which flow channel this interval measures
+    title: { en: Flow direction }
+    description:
+      en: "Optional flow-channel identity: in / out / net. An IDENTITY axis, not a classifier — two intervals differing in flow_direction are SEPARATE channels (distinct registers, distinct sensor ids), not bands of one series. `in`/`out` are separate counters; `net` is one signed channel (the delta, sign = direction). Absent = undirected (voltage, temperature). Composes into the sensor id/key. Crosswalks to CIM FlowDirectionKind."
+  rating: # the tier of an interval_kind: rating band (closed, universal)
     title: { en: Rating }
     description:
-      en: "The rated-envelope axis: how far the quantity is rated/permitted to range. Closed, universal — shared by every archetype, so a consumer reasons about 'the operating interval' without archetype knowledge. Datasheet sense of a rating; operating is a rated region, not a limit (hence rating, not limit). The instrument side is `rating: measurable` (VIM 4.7 measuring interval) — the ONE list holds both a thing's own behaviour bands and a sensor's readable span, told apart by this axis."
+      en: "The rated tier of a `interval_kind: rating` band — how far / how long the quantity is rated: continuous (full capacity), intermittent / short_term (time-bounded, carry a duration), survival (endured), startup / shutdown (thresholds), protection_required (trip), nominal (a nameplate value, tolerance/margin allowed, no min/max). Closed and universal, so a consumer reasons about 'the continuous band' without archetype knowledge. Setting it derives interval_kind: rating."
   mode: {}
+  duration: {} # duration axis, seconds — absent = continuous rating (CIM acceptableDuration)
   tolerance: {}
   margin: {}
   # Instrument-only fields — the metrology of a `rating: measurable` interval (VIM 4.7 measuring

@@ -1,0 +1,11 @@
+# The INSTRUMENT side — the span a SENSOR can read this quantity over (VIM 4.7 measuring interval /
+# ssn-system MeasurementRange), NOT the thing's own behaviour. Not derivable from bounds (a bare
+# min/max measurable is shaped like a rating), so `interval_kind` is AUTHORED. A measurable interval
+# may carry the instrument-only fields (resolution, max_permissible_error, channel); a behaviour
+# band may not — the consistency guard enforces both directions.
+title: { en: Measurable, pt: Mensurável }
+description:
+  en: "The span a sensor can read this quantity over — the instrument side, not the thing's own behaviour."
+refs:
+  - { registry_id: vim, term: '4.7', match: close }
+  - { registry_id: ssn_system, term: MeasurementRange, match: exact }

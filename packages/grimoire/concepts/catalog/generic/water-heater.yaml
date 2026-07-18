@@ -17,13 +17,13 @@ ac_phase:
     combined:
       voltage:
         intervals:
-          - interval: { rating: operating, nominal: 230 } # Portugal single phase
+          - interval: { nominal: 230 } # Portugal single phase
       frequency:
         intervals:
-          - interval: { rating: operating, nominal: 50 }
+          - interval: { nominal: 50 }
       active_power:
         intervals:
-          - interval: { rating: operating, nominal: 1500 } # nameplate draw, rated at supply voltage
+          - interval: { nominal: 1500 } # nameplate draw, rated at supply voltage
       # Element resistance (Ω) — P = V²/R ⇒ 230²/1500; lets a consumer compute true output off-nominal.
       # On the ac_phase itself (where electrical_quantity puts resistance), not a separate slot.
       resistance:

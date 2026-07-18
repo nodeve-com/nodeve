@@ -1,0 +1,11 @@
+# No iri_template: ISA-18.2 alarm priorities are named levels, not web-resolvable items. `id` is the
+# priority name (Low / Medium / High / Critical).
+title:
+  en: ISA-18.2 (Alarm priority)
+  pt: ISA-18.2 (Prioridade de alarme)
+identity:
+  slug: isa_18_2
+  code: HH16AS0E
+  url: https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa18
+registry_publication:
+  published_by: isa

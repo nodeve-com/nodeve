@@ -9,15 +9,16 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as featureId_ from '../property/feature_id.ts';
 import * as instanceKey_ from './instance_key.ts';
+import * as intervalId_ from '../property/interval_id.ts';
 import * as ordinal_ from '../property/ordinal.ts';
 import * as partId_ from '../property/part_id.ts';
 import * as rawName_ from '../property/raw_name.ts';
 
-export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.schema), "ordinal": Type.Optional(ordinal_.schema), "quantityKind": Type.Optional(Type.Union([Type.Literal("active_energy"), Type.Literal("active_power"), Type.Literal("altitude"), Type.Literal("apparent_energy"), Type.Literal("apparent_power"), Type.Literal("cooling_capacity"), Type.Literal("current"), Type.Literal("dew_point"), Type.Literal("electric_charge"), Type.Literal("frequency"), Type.Literal("phase_angle"), Type.Literal("power"), Type.Literal("power_factor"), Type.Literal("reactive_energy"), Type.Literal("reactive_power"), Type.Literal("relative_humidity"), Type.Literal("resistance"), Type.Literal("temperature"), Type.Literal("voltage"), Type.Literal("volume"), Type.Literal("volume_flow_rate")], {"type":"string"})), "quantity": Type.Optional(Type.Union([Type.Literal("feed_in_energy"), Type.Literal("feed_in_energy_today"), Type.Literal("grid_consumption_energy"), Type.Literal("grid_consumption_energy_today"), Type.Literal("input_energy"), Type.Literal("input_energy_today"), Type.Literal("load_energy_today"), Type.Literal("solar_energy_today"), Type.Literal("total_yield"), Type.Literal("total_yield_today")], {"type":"string"})), "featureId": Type.Optional(featureId_.schema), "rawName": Type.Optional(rawName_.schema) }, {"additionalProperties":false,"x-key-map":{"part_id":"partId","quantity_kind":"quantityKind","feature_id":"featureId","raw_name":"rawName"}});
+export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.schema), "ordinal": Type.Optional(ordinal_.schema), "quantityKind": Type.Optional(Type.Union([Type.Literal("active_energy"), Type.Literal("active_power"), Type.Literal("altitude"), Type.Literal("apparent_energy"), Type.Literal("apparent_power"), Type.Literal("cooling_capacity"), Type.Literal("current"), Type.Literal("dew_point"), Type.Literal("electric_charge"), Type.Literal("frequency"), Type.Literal("phase_angle"), Type.Literal("power"), Type.Literal("power_factor"), Type.Literal("reactive_energy"), Type.Literal("reactive_power"), Type.Literal("relative_humidity"), Type.Literal("resistance"), Type.Literal("temperature"), Type.Literal("voltage"), Type.Literal("volume"), Type.Literal("volume_flow_rate")], {"type":"string"})), "featureId": Type.Optional(featureId_.schema), "intervalId": Type.Optional(intervalId_.schema), "rawName": Type.Optional(rawName_.schema) }, {"additionalProperties":false,"x-key-map":{"part_id":"partId","quantity_kind":"quantityKind","feature_id":"featureId","interval_id":"intervalId","raw_name":"rawName"}});
 
-export type MeasurandLink = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "quantity"?: "feed_in_energy" | "feed_in_energy_today" | "grid_consumption_energy" | "grid_consumption_energy_today" | "input_energy" | "input_energy_today" | "load_energy_today" | "solar_energy_today" | "total_yield" | "total_yield_today"; "featureId"?: featureId_.FeatureId; "rawName"?: rawName_.RawName };
+export type MeasurandLink = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "intervalId": typeof intervalId_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
 
 const _data: DataT = {
 	"identity": {
@@ -26,6 +27,7 @@ const _data: DataT = {
 	},
 	"prop": {
 		"featureId": featureId_,
+		"intervalId": intervalId_,
 		"ordinal": ordinal_,
 		"partId": partId_,
 		"rawName": rawName_

@@ -48,20 +48,18 @@ ac_phase_three_point:
       frequency:
         # One `intervals` list holds both the rated band and the readable span — told apart by `rating`.
         intervals:
-          - interval: { rating: operating, min: 45, max: 65 }
-          - interval: { rating: measurable, min: 45, max: 65, resolution: 0.01 }
+          - interval: { rating: continuous, min: 45, max: 65 }
+          - interval: { interval_kind: measurable, min: 45, max: 65, resolution: 0.01 }
     default:
       ac_phase:
         voltage:
           intervals:
-            - identity: { slug: br_220v_60hz }
-              interval:
-                { rating: operating, fraction_lower: 0.7, nominal: 220, fraction_upper: 1.2 }
+            - interval:
+                { rating: continuous, fraction_lower: 0.7, nominal: 220, fraction_upper: 1.2 }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-            - identity: { slug: eu_230v_50hz }
-              interval: { rating: operating, nominal: 230 }
+            - interval: { nominal: 230 }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
-            - interval: { rating: measurable, min: 150, max: 280 }
+            - interval: { interval_kind: measurable, min: 150, max: 280 }
         current: {}
         apparent_power: {}
         reactive_power: {}
@@ -71,11 +69,9 @@ ac_phase_three_point:
           # Line-to-line nominal = √3 × the phase nominal — the datasheet's 3×220/380 V and
           # 3×230/400 V pairs, gated on the same single grid_region setting as ac_phase.
           intervals:
-            - identity: { slug: br_220v_60hz }
-              interval: { rating: operating, nominal: 380 }
+            - interval: { nominal: 380 }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-            - identity: { slug: eu_230v_50hz }
-              interval: { rating: operating, nominal: 400 }
+            - interval: { nominal: 400 }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
 
 modbus:

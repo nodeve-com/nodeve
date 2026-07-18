@@ -1,8 +1,0 @@
-title:
-  en: Grid consumption energy today
-  pt: Energia consumida da rede hoje
-description:
-  en: Active energy imported from the grid since local midnight — the daily-reset grid-consumption accumulator the device publishes (read honestly, not derived).
-measures: { quantity_kind: active_energy }
-refs:
-  - { registry_id: ha_device_class, term: energy, match: exact }

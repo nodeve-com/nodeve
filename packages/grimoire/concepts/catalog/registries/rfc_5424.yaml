@@ -1,0 +1,11 @@
+# No iri_template: syslog severities are named levels (RFC 5424 §6.2.1), not web-resolvable items.
+# `id` is the severity name (Notice / Warning / Critical / Emergency).
+title:
+  en: Syslog severity (RFC 5424)
+  pt: Severidade Syslog (RFC 5424)
+identity:
+  slug: rfc_5424
+  code: C5611H9R
+  url: https://www.rfc-editor.org/rfc/rfc5424
+registry_publication:
+  published_by: ietf

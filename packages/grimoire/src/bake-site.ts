@@ -22,11 +22,13 @@ import { loadDevice } from './catalog.ts';
 import { scopedSensorId, sensorId } from './sensor-id.ts';
 import {
 	type Obj,
+	isMeasurableInterval,
 	isMeasurandFeature,
-	measurandCells,
+	measurandColumns,
 	quantityCode,
 	quantityCols,
 	snakeKey,
+	specSlug,
 	specSlugPatch,
 } from './measurand-tree.ts';
 import { overlayPatch } from './overlay.ts';
@@ -69,18 +71,35 @@ function assertUniqueFeatureSlugs(features: [string, Obj][], entry: Record<strin
 	}
 }
 
+// A slug patch is planted PER CHANNEL: a column with measurable intervals gets one slug per
+// measurable interval, its channel `interval` slug the sensor-id tail, planted (positionally) at the
+// interval node; a column with none gets one slug at the column node — the prior single-sensor shape.
 function featurePatch(instance: string, feature: string, node: Obj): Obj {
 	const slugAt = (
 		partId: string | undefined,
 		ordinal: number | undefined,
 		quantityKind: string,
-	) => {
-		const parts = { instance, feature: featureSlug(node, feature), partId, ordinal, quantityKind };
+		interval?: string,
+	): Obj => {
+		const parts = { instance, feature: featureSlug(node, feature), partId, ordinal, quantityKind, interval };
 		return specSlugPatch(scopedSensorId(parts), sensorId(parts));
+	};
+	const colPatch = (col: Obj, quantityKind: string, partId?: string, ordinal?: number): Obj => {
+		const intervals = Array.isArray(col.intervals) ? (col.intervals as Obj[]) : [];
+		if (!intervals.some(isMeasurableInterval)) return slugAt(partId, ordinal, quantityKind); // column node
+		// Mirror the interval order: plant on each measurable row (its channel slug the id tail), leave others `{}`.
+		return {
+			intervals: intervals.map((row) =>
+				isMeasurableInterval(row) ? slugAt(partId, ordinal, quantityKind, specSlug(row)) : {},
+			),
+		};
 	};
 	const cols = (source: Obj, partId?: string, ordinal?: number): Obj =>
 		Object.fromEntries(
-			quantityCols(source).map((kind) => [kind, slugAt(partId, ordinal, quantityCode(kind))]),
+			quantityCols(source).map((kind) => [
+				kind,
+				colPatch(source[kind] as Obj, quantityCode(kind), partId, ordinal),
+			]),
 		);
 	const spec = node.featureSpec as Obj;
 	const patch: Obj = {};
@@ -154,7 +173,7 @@ const adapterCadences = (adapter: Record<string, unknown>): number[] => {
 // Every filter constant on the merged device's intervals, flat: its measurand coordinate, the
 // band's slug handle, the filter key, and the ms value.
 const bandFilterMs = (merged: Obj) =>
-	measurandCells(merged).flatMap((cell) => {
+	measurandColumns(merged).flatMap((cell) => {
 		const intervals = Array.isArray(cell.node.intervals) ? (cell.node.intervals as Obj[]) : [];
 		return intervals.flatMap((band) => {
 			const filter = isPlainObject(band.filter) ? (band.filter as Obj) : {};

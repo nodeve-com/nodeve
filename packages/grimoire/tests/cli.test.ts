@@ -19,19 +19,15 @@ describe('grimoire CLI', () => {
 		expect(node).toBe('ac_grid');
 	});
 
-	test('quantity member resolves its base kind', () => {
-		const member = JSON.parse(run('quantity', 'feed_in_energy')) as {
-			measures: { quantity_kind: string };
-		};
-		expect(member.measures.quantity_kind).toBe('active_energy');
-	});
-
-	test('a column filter selects one register, carrying the baked base kind', () => {
-		const regs = JSON.parse(run('registers', 'foxess_h3_ps10sh', 'feed_in_energy')) as Array<
+	test('a quantity_kind column filter selects its registers, keyed by the interval_id slug', () => {
+		const regs = JSON.parse(run('registers', 'foxess_h3_ps10sh', 'active_energy')) as Array<
 			Record<string, unknown>
 		>;
-		expect(regs).toHaveLength(1);
-		expect(regs[0]!.quantity_kind).toBe('active_energy');
+		// grid feed-in/consumption ×2, port yield/input ×2, pv lifetime+daily, load lifetime+daily.
+		const grid = regs.filter((r) => r.feature_id === 'ac_phase_three_grid');
+		expect(grid).toHaveLength(4);
+		const feedInDaily = grid.find((r) => r.interval_id === 'out_daily');
+		expect(feedInDaily?.address).toBe(39615);
 	});
 
 	test('an unknown slug fails with the valid set', () => {

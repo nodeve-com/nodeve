@@ -14,9 +14,9 @@ export default {
 								"slug": "running"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"margin": 33,
-								"nominal": 38,
-								"rating": "operating"
+								"nominal": 38
 							},
 							"title": {
 								"en": "Program running"
@@ -27,9 +27,9 @@ export default {
 								"slug": "heating"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"margin": 200,
-								"nominal": 1500,
-								"rating": "operating"
+								"nominal": 1500
 							},
 							"title": {
 								"en": "Heating element engaged"

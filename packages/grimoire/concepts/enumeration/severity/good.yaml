@@ -1,0 +1,8 @@
+# Widest desirable band — acceptable, no concern. The positive counterpart to the alarm ramp: where
+# notice→fatal grade how BAD a band is, good→best grade how GOOD it is. No alarm/quality standard
+# grades the desirable side, so these carry no crosswalk (unlike the syslog/ISA rungs above nominal).
+title:
+  en: Good
+  pt: Bom
+description:
+  en: Acceptable — the widest desirable band; no concern.

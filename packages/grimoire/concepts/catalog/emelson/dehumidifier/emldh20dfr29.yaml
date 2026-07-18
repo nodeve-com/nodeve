@@ -22,10 +22,10 @@ ac_phase:
     combined:
       voltage:
         intervals:
-          - interval: { rating: operating, nominal: 230 } # 220–240 V single phase; sole option, no gate needed
+          - interval: { nominal: 230 } # 220–240 V single phase; sole option, no gate needed
       active_power:
         intervals:
-          - interval: { rating: operating, nominal: 265 } # rated running draw
+          - interval: { nominal: 265 } # rated running draw
           - interval: { rating: survival, max: 440 } # datasheet peak draw (W; canonical, no unit override)
 
 # Vapor-compression circuit — working gas only. `refrigerant` is a property code

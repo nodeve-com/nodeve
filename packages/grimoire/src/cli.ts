@@ -11,11 +11,9 @@ const USAGE = `grimoire — query the baked @nodeve/grimoire artifacts (JSON to 
   grimoire catalog                     list entries: archetype_id  slug  code
   grimoire catalog <slug> [path]       one entry, full snake wire JSON; a dotted path selects a
                                        node (e.g. ac_phase_three_grid.feature_spec.combined)
-  grimoire registers <slug> [column]   the entry's modbus register rows; column filters on the
-                                       effective column (quantity, else quantity_kind)
+  grimoire registers <slug> [column]   the entry's modbus register rows; column filters on quantity_kind
   grimoire enumeration                 list enumeration names
   grimoire enumeration <name> [code]   member dict, or one member
-  grimoire quantity [code]             shorthand for \`enumeration quantity\`
 `;
 
 function die(message: string): never {
@@ -64,13 +62,13 @@ function catalog(slug?: string, path?: string): void {
 function registers(slug?: string, column?: string): void {
 	if (slug === undefined) die(USAGE);
 	const modbus = readEntry('catalog', slug).modbus as
-		{ modbus_registers?: Array<{ quantity?: string; quantity_kind?: string }> } | undefined;
+		{ modbus_registers?: Array<{ quantity_kind?: string }> } | undefined;
 	if (!modbus?.modbus_registers) die(`catalog/${slug} has no modbus register map`);
 	const rows = modbus.modbus_registers;
 	if (column === undefined) return print(rows);
-	const hits = rows.filter((r) => (r.quantity ?? r.quantity_kind) === column);
+	const hits = rows.filter((r) => r.quantity_kind === column);
 	if (hits.length === 0) {
-		const cols = [...new Set(rows.map((r) => r.quantity ?? r.quantity_kind).filter(Boolean))];
+		const cols = [...new Set(rows.map((r) => r.quantity_kind).filter(Boolean))];
 		die(
 			`catalog/${slug} has no register with column "${column}" (have: ${cols.sort().join(', ')})`,
 		);
@@ -97,9 +95,6 @@ switch (command) {
 		break;
 	case 'enumeration':
 		enumeration(rest[0], rest[1]);
-		break;
-	case 'quantity':
-		enumeration('quantity', rest[0]);
 		break;
 	default:
 		die(USAGE);

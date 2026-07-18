@@ -1,0 +1,10 @@
+# Resets at local midnight — the foxess *_today accumulators. ISO 8601 P1D is a CALENDAR day, not a
+# fixed 86400 s (DST days run 82800/90000 s): the reset is anchored to the boundary, not a length.
+# This is why `period` canonicalises to an ISO 8601 token, never to seconds.
+title:
+  en: Daily
+  pt: Diário
+description:
+  en: Resets at local midnight — a per-day accumulator (the *_today registers).
+refs:
+  - { registry_id: iso_8601, term: P1D, match: close }

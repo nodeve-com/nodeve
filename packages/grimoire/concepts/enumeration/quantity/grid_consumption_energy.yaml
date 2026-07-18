@@ -1,9 +1,0 @@
-title:
-  en: Grid consumption energy
-  pt: Energia consumida da rede
-description:
-  en: Cumulative active energy IMPORTED from the grid, lifetime — the import direction of the grid CT.
-measures: { quantity_kind: active_energy }
-refs:
-  - { registry_id: ha_device_class, term: energy, match: exact }
-  - { registry_id: sunspec, term: TotWhImp, match: close }

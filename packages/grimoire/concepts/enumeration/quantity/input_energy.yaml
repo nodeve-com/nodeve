@@ -1,8 +1,0 @@
-title:
-  en: Input energy
-  pt: Energia de entrada
-description:
-  en: Cumulative active energy INPUT to the inverter (drawn in through its AC port), lifetime — foxess input_energy. The import counterpart of total_yield on the output port.
-measures: { quantity_kind: active_energy }
-refs:
-  - { registry_id: ha_device_class, term: energy, match: exact }

@@ -73,6 +73,19 @@ describe('sensorId over the dtsu666 register map', () => {
 		expect(() => sensorId({ instance: 'Grid Meter' })).toThrow(/not a slug/);
 	});
 
+	test('an energy channel renders its interval slug as the tail (one FK, no flow/period segment)', () => {
+		expect(
+			sensorId({ instance, feature: 'ac_grid', quantityKind: 'active_energy', interval: 'out_daily' }),
+		).toBe('grid_meter_live_ac_grid_active_energy_out_daily');
+		expect(
+			sensorId({ instance, feature: 'ac_grid', quantityKind: 'active_energy', interval: 'out' }),
+		).toBe('grid_meter_live_ac_grid_active_energy_out');
+		// undirected/lifetime channel: slugless interval — unchanged from a plain column id
+		expect(sensorId({ instance, feature: 'pv', quantityKind: 'active_energy' })).toBe(
+			'grid_meter_live_pv_active_energy',
+		);
+	});
+
 	test('interval slug renders as the trailing segment (the in-band boolean id)', () => {
 		expect(
 			sensorId({

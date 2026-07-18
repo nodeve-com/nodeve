@@ -10,7 +10,11 @@ export default {
 				"volumeFlowRate": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"nominal": 30,
 								"unit": "L/day"
 							}

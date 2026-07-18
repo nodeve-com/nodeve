@@ -50,7 +50,6 @@ import * as magicByte_ from './magic_byte.ts';
 import * as mains_ from './mains.ts';
 import * as measurand_ from './measurand.ts';
 import * as measurandLink_ from './measurand_link.ts';
-import * as measures_ from './measures.ts';
 import * as measuringInterval_ from './measuring_interval.ts';
 import * as modbusConstraints_ from './modbus_constraints.ts';
 import * as modbusDecode_ from './modbus_decode.ts';
@@ -147,7 +146,6 @@ export const feature = {
 	mains: mains_,
 	measurand: measurand_,
 	measurandLink: measurandLink_,
-	measures: measures_,
 	measuringInterval: measuringInterval_,
 	modbusConstraints: modbusConstraints_,
 	modbusDecode: modbusDecode_,

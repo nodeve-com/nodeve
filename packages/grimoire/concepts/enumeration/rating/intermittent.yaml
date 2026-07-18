@@ -1,0 +1,8 @@
+# Rated above continuous for a bounded spell — not indefinite (the derated thermal band sits here,
+# continuous ⊂ intermittent ⊂ survival). Carries a `duration` where time-bounded. IEC 60034-1 duty
+# analog: S6 (continuous-operation periodic duty).
+title: { en: Intermittent, pt: Intermitente }
+description:
+  en: "Rated above continuous for a bounded spell (minutes) — carries a duration; not holdable indefinitely."
+refs:
+  - { registry_id: cim, term: OperationalLimitType, match: close }

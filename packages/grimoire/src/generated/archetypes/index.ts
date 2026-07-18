@@ -23,7 +23,6 @@ import * as organization_ from './organization.ts';
 import * as powerSupply_ from './power_supply.ts';
 import * as property_ from './property.ts';
 import * as pvModule_ from './pv_module.ts';
-import * as quantity_ from './quantity.ts';
 import * as quantityKind_ from './quantity_kind.ts';
 import * as refrigerant_ from './refrigerant.ts';
 import * as registry_ from './registry.ts';
@@ -59,7 +58,6 @@ export const archetype = {
 	powerSupply: powerSupply_,
 	property: property_,
 	pvModule: pvModule_,
-	quantity: quantity_,
 	quantityKind: quantityKind_,
 	refrigerant: refrigerant_,
 	registry: registry_,

@@ -1,0 +1,9 @@
+# Resets on Jan 1 (local). ISO 8601 P1Y is a CALENDAR year (365/366 days) — no fixed second count,
+# so `period` canonicalises to the ISO token, never to seconds.
+title:
+  en: Yearly
+  pt: Anual
+description:
+  en: Resets on January 1 — a per-year accumulator.
+refs:
+  - { registry_id: iso_8601, term: P1Y, match: close }

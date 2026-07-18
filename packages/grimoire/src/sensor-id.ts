@@ -19,7 +19,8 @@ export interface SensorIdParts {
 	partId?: string; // bare part-instance id (a | ab | …); wins over ordinal when both set
 	ordinal?: number;
 	quantityKind?: string;
-	interval?: string; // interval identity.slug — the derived in-band boolean of that quantity's band
+	interval?: string; // interval identity.slug — the measurable channel handle (energy: out / out_daily …)
+	// or a rating band's derived in-band boolean; the sensor-id tail
 	rawName?: string; // unlinked register — id is instance + rawName, nothing else
 }
 
@@ -46,8 +47,8 @@ function scopedSegments({
 	return segments.filter((s): s is string => Boolean(s)).map(assertSlug);
 }
 
-/** The SCOPED id — everything past the instance (feature ⊕ variant ⊕ part|ordinal ⊕ quantity_kind,
- *  or `rawName`). Device-local; what a producer already namespaced under its node/topic emits. */
+/** The SCOPED id — everything past the instance (feature ⊕ variant ⊕ part|ordinal ⊕ quantity_kind ⊕
+ *  interval, or `rawName`). Device-local; what a producer already namespaced under its topic emits. */
 export function scopedSensorId(parts: SensorIdParts): string {
 	return scopedSegments(parts).join('_');
 }

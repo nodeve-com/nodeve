@@ -19,12 +19,7 @@ concept_settings:
   # `compose: ac_phase_three`, because this feature adds its own combined-only columns below, and
   # compose+own-prop would flatten the parted shape (own `part:` keeps it parted).
   part: electrical_ac_phase_three
-  is_specification: true # own energy columns above are spec columns (intervals), not bare numbers
-# Whole-meter directional energy accumulators (enumeration/quantity) — feed-in (export) and grid
-# consumption (import) are TWO channels of one active_energy kind, so they're NAMED quantities that
-# coexist as combined-only columns (never per-phase). Own combined-only props (is_specification), per the pv_tracker pattern; each optional, filled only where a device meters it.
-prop:
-  feed_in_energy: {}
-  grid_consumption_energy: {}
-  feed_in_energy_today: {}
-  grid_consumption_energy_today: {}
+  is_specification: true # active_energy (composed) carries directional meter channels as intervals
+# Whole-meter directional energy is the ONE composed `active_energy` column: feed-in (export, flow out)
+# and grid consumption (import, flow in), lifetime + daily, are measurable intervals keyed by
+# flow_direction + period — never separate columns, never per-phase. Kind stays pure active_energy.

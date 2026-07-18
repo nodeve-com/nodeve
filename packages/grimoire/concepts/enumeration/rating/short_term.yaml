@@ -1,0 +1,7 @@
+# Peak / overload — rated above continuous for SECONDS; the device self-protects beyond. Carries a
+# `duration` (the peak it may sustain). IEC 60034-1 duty analog: S2 (short-time duty).
+title: { en: Short-term, pt: Curto prazo }
+description:
+  en: "Peak / overload — rated above continuous for seconds; carries a duration, self-protects beyond."
+refs:
+  - { registry_id: cim, term: OperationalLimitType, match: close }

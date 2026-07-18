@@ -11,11 +11,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 1500,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 1500
 							}
 						}
 					]
@@ -24,11 +24,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 50,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 50
 							}
 						}
 					]
@@ -36,7 +36,11 @@ export default {
 				"resistance": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"nominal": 35.3
 							}
 						}
@@ -46,11 +50,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 230,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 230
 							}
 						}
 					]

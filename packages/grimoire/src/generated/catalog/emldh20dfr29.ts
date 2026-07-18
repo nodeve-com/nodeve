@@ -11,11 +11,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 265,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 265
 							}
 						},
 						{
@@ -23,6 +23,7 @@ export default {
 								"slug": "survival"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"max": 440,
 								"rating": "survival"
 							}
@@ -33,11 +34,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 230,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 230
 							}
 						}
 					]
@@ -54,7 +55,11 @@ export default {
 				"volumeFlowRate": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"nominal": 20,
 								"unit": "L/day"
 							}

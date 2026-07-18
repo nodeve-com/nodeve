@@ -45,22 +45,43 @@ function intervalTargets(entry: Obj): Targets {
 	return out;
 }
 
-function checkIntervalItem(item: Obj, targets: Targets, at: string): void {
-	const { feature, property, interval } = item as Record<string, unknown>;
+/** Resolve one (feature, property, interval) by-slug triple against the entry's interval targets —
+ *  shared by interval_item conditions and measurand-link registers (features/measurand_link.yaml
+ *  reuses the SAME pointer: feature_id + quantity_kind + interval). `kind` names the caller in errors. */
+function checkTriple(
+	feature: unknown,
+	property: unknown,
+	interval: unknown,
+	targets: Targets,
+	at: string,
+	kind: string,
+): void {
 	const byProperty = targets.get(String(feature));
 	if (!byProperty)
-		throw new Error(
-			`${at}: interval_item names feature "${String(feature)}" — no such spec feature on this entry`,
-		);
+		throw new Error(`${at}: ${kind} names feature "${String(feature)}" — no such spec feature on this entry`);
 	const slugs = byProperty.get(String(property));
 	if (!slugs)
 		throw new Error(
-			`${at}: interval_item names ${String(feature)}.${String(property)} — the feature carries no such property`,
+			`${at}: ${kind} names ${String(feature)}.${String(property)} — the feature carries no such property`,
 		);
 	if (!slugs.has(String(interval)))
 		throw new Error(
-			`${at}: interval_item names interval "${String(interval)}" on ${String(feature)}.${String(property)} — no interval answers to it (have: ${[...slugs].join(', ') || 'none'})`,
+			`${at}: ${kind} names interval "${String(interval)}" on ${String(feature)}.${String(property)} — no interval answers to it (have: ${[...slugs].join(', ') || 'none'})`,
 		);
+}
+
+function checkIntervalItem(item: Obj, targets: Targets, at: string): void {
+	const { feature, property, interval } = item as Record<string, unknown>;
+	checkTriple(feature, property, interval, targets, at, 'interval_item');
+}
+
+/** A LINKED register naming a measurable channel by `interval_id` must resolve (feature_id,
+ *  quantity_kind, interval_id) — the same triple interval_item uses (interval_id = its `interval`
+ *  coordinate). Registers without `interval_id` (the one undirected/lifetime channel) and RAW
+ *  registers are skipped. */
+function checkRegisterInterval(reg: unknown, targets: Targets, at: string): void {
+	if (!isPlainObject(reg) || typeof reg.interval_id !== 'string') return;
+	checkTriple(reg.feature_id, reg.quantity_kind, reg.interval_id, targets, at, 'register interval_id');
 }
 
 function checkSetting(row: Obj, settings: Obj | undefined, at: string): void {
@@ -105,4 +126,11 @@ export function validateConditionRefs(entry: Obj, path: string): void {
 		}
 	};
 	walk(entry, path);
+
+	// Modbus register links reuse the interval_item pointer (feature_id + quantity_kind + interval_id).
+	const medium = isPlainObject(entry.modbus) ? (entry.modbus as Obj) : undefined;
+	const registers = medium && Array.isArray(medium.modbus_registers) ? medium.modbus_registers : [];
+	registers.forEach((reg, i) =>
+		checkRegisterInterval(reg, ctx.targets, `${path}.modbus.modbus_registers[${i}]`),
+	);
 }

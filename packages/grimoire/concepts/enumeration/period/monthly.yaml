@@ -1,0 +1,9 @@
+# Resets on the 1st of the local month. ISO 8601 P1M is a CALENDAR month (28–31 days) — no fixed
+# second count exists, so `period` canonicalises to the ISO token, never to seconds.
+title:
+  en: Monthly
+  pt: Mensal
+description:
+  en: Resets on the 1st of the month — a per-month accumulator.
+refs:
+  - { registry_id: iso_8601, term: P1M, match: close }

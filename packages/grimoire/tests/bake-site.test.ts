@@ -90,7 +90,7 @@ describe('bakeSite — site-authored intervals merge into the slug patch', () =>
 		const slugsAt = (leg: 'a' | 'b'): (string | undefined)[] =>
 			featureSpec().part?.[leg]?.voltage?.intervals?.map((b) => b.identity?.slug) ?? [];
 		expect(slugsAt('a')).toContain('brownout');
-		expect(slugsAt('a')).toContain('measurable'); // catalog bands intact
+		expect(slugsAt('a')).toContain('nominal_eu_230v_50hz'); // catalog bands intact
 		expect(slugsAt('b')).not.toContain('brownout');
 	});
 

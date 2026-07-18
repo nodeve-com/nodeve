@@ -1,0 +1,9 @@
+# Beyond failure — permanent destruction (burnout, explosion, rupture). Past every protection band;
+# there is no recovery. ISA-18.2 tops out at Critical, so the crosswalk is syslog Emergency only.
+title:
+  en: Fatal
+  pt: Fatal
+description:
+  en: Beyond failure — permanent destruction (burnout, explosion); no recovery.
+refs:
+  - { registry_id: rfc_5424, term: Emergency, match: close }

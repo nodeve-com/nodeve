@@ -32,9 +32,13 @@ import iec_60038 from './iec_60038.ts';
 import iec_60381 from './iec_60381.ts';
 import iec_60445 from './iec_60445.ts';
 import iec_61850 from './iec_61850.ts';
+import ietf from './ietf.ts';
+import isa from './isa.ts';
+import isa_18_2 from './isa_18_2.ts';
 import iso from './iso.ts';
 import iso_11898 from './iso_11898.ts';
 import iso_80000 from './iso_80000.ts';
+import iso_8601 from './iso_8601.ts';
 import jedec from './jedec.ts';
 import jedec_standard from './jedec_standard.ts';
 import m4_atx from './m4_atx.ts';
@@ -48,6 +52,7 @@ import prometheus from './prometheus.ts';
 import qudt from './qudt.ts';
 import qudt_quantity_kind from './qudt_quantity_kind.ts';
 import resi_30l from './resi_30l.ts';
+import rfc_5424 from './rfc_5424.ts';
 import saref4grid from './saref4grid.ts';
 import seas from './seas.ts';
 import skos from './skos.ts';
@@ -104,9 +109,13 @@ export const catalogEntries = [
 	iec_60381,
 	iec_60445,
 	iec_61850,
+	ietf,
+	isa,
+	isa_18_2,
 	iso,
 	iso_11898,
 	iso_80000,
+	iso_8601,
 	jedec,
 	jedec_standard,
 	m4_atx,
@@ -120,6 +129,7 @@ export const catalogEntries = [
 	qudt,
 	qudt_quantity_kind,
 	resi_30l,
+	rfc_5424,
 	saref4grid,
 	seas,
 	skos,

@@ -14,8 +14,8 @@ export default {
 								"slug": "cooling"
 							},
 							"interval": {
-								"nominal": 1391,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 1391
 							},
 							"title": {
 								"en": "Cooling"
@@ -26,8 +26,8 @@ export default {
 								"slug": "heating"
 							},
 							"interval": {
-								"nominal": 1346,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 1346
 							},
 							"title": {
 								"en": "Heating"
@@ -39,11 +39,11 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "nominal"
 							},
 							"interval": {
-								"nominal": 50,
-								"rating": "operating"
+								"intervalKind": "rating",
+								"nominal": 50
 							}
 						}
 					]
@@ -52,12 +52,13 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "operating"
+								"slug": "continuous"
 							},
 							"interval": {
+								"intervalKind": "rating",
 								"max": 240,
 								"min": 220,
-								"rating": "operating"
+								"rating": "continuous"
 							}
 						}
 					]
@@ -74,7 +75,11 @@ export default {
 				"coolingCapacity": {
 					"intervals": [
 						{
+							"identity": {
+								"slug": "nominal"
+							},
 							"interval": {
+								"intervalKind": "rating",
 								"nominal": 2638
 							}
 						}

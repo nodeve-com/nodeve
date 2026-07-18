@@ -33,7 +33,7 @@ type Reg = {
 	part_id?: string;
 	ordinal?: number;
 	quantity_kind?: string;
-	quantity?: string; // named measurand (enumeration/quantity) — the effective column when set
+	interval_id?: string; // channel selector — the measurable interval's slug (validated in kit/validate-conditions)
 	raw_name?: string;
 	address?: number;
 };
@@ -96,10 +96,10 @@ function checkRegister(options: {
 		);
 	const result = registerMenu(reg, spec, countOf(reg.feature_id));
 	if (result.error) return fail(slug, `${at} ${result.error}`);
-	// The effective column is the named `quantity` when set, else the bare `quantity_kind`
-	// (features/measurand_link.yaml — a link fills EITHER); both appear as columns in the baked menu.
-	const col = reg.quantity ?? reg.quantity_kind;
-	if (!col) fail(slug, `${at} on '${reg.feature_id}' has no quantity_kind or quantity`);
+	// The column is the bare `quantity_kind` (features/measurand_link.yaml); flow_direction/period
+	// narrow it to one measurable interval of that column (validated against interval axes elsewhere).
+	const col = reg.quantity_kind;
+	if (!col) fail(slug, `${at} on '${reg.feature_id}' has no quantity_kind`);
 	else if (result.menu!.size > 0 && !result.menu!.has(col))
 		fail(
 			slug,

@@ -33,6 +33,7 @@ import * as defaultHumidity_ from './default_humidity.ts';
 import * as detachKernelDriver_ from './detach_kernel_driver.ts';
 import * as direction_ from './direction.ts';
 import * as duplex_ from './duplex.ts';
+import * as duration_ from './duration.ts';
 import * as emitString_ from './emit_string.ts';
 import * as empty_ from './empty.ts';
 import * as en_ from './en.ts';
@@ -58,6 +59,7 @@ import * as indexOffset_ from './index_offset.ts';
 import * as individualReadRanges_ from './individual_read_ranges.ts';
 import * as instances_ from './instances.ts';
 import * as interface_ from './interface.ts';
+import * as intervalId_ from './interval_id.ts';
 import * as intervalItem_ from './interval_item.ts';
 import * as invalidRanges_ from './invalid_ranges.ts';
 import * as ipAddress_ from './ip_address.ts';
@@ -196,6 +198,7 @@ export const property = {
 	detachKernelDriver: detachKernelDriver_,
 	direction: direction_,
 	duplex: duplex_,
+	duration: duration_,
 	emitString: emitString_,
 	empty: empty_,
 	en: en_,
@@ -221,6 +224,7 @@ export const property = {
 	individualReadRanges: individualReadRanges_,
 	instances: instances_,
 	interface: interface_,
+	intervalId: intervalId_,
 	intervalItem: intervalItem_,
 	invalidRanges: invalidRanges_,
 	ipAddress: ipAddress_,

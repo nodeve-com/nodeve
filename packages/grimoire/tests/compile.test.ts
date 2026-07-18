@@ -134,16 +134,17 @@ describe('mqtt_connection (new nested contract)', () => {
 describe('desugarIntervalSlugs (kit/repeated-emit.ts)', async () => {
 	const { desugarIntervalSlugs } = await import('../kit/repeated-emit.ts');
 
-	test('de-sugars rating → identity.slug on unslugged rows; authored slug and rating-less rows untouched', () => {
+	test('auto-slug composes tier / nominal + mode + condition; authored slug untouched; measurable unslugged', () => {
 		const entry = {
 			f: {
 				feature_spec: {
 					combined: {
 						voltage: {
 							intervals: [
-								{ interval: { rating: 'operating', nominal: 230 } },
-								{ identity: { slug: 'peak' }, interval: { rating: 'operating', max: 250 } },
-								{ interval: { mode: 'mpp', nominal: 40 } },
+								{ interval: { rating: 'continuous', nominal: 230 } }, // tier → continuous
+								{ identity: { slug: 'peak' }, interval: { rating: 'short_term', max: 250 } }, // authored kept
+								{ interval: { mode: 'mpp', nominal: 40 } }, // bounds-free nominal + mode → nominal_mpp
+								{ interval: { interval_kind: 'measurable', min: 0, max: 300 } }, // no axis → unslugged
 							],
 						},
 					},
@@ -153,20 +154,24 @@ describe('desugarIntervalSlugs (kit/repeated-emit.ts)', async () => {
 		desugarIntervalSlugs(entry, 'fixture');
 		const rows = entry.f.feature_spec.combined.voltage.intervals as Array<{
 			identity?: { slug: string };
+			interval: { interval_kind?: string };
 		}>;
-		expect(rows[0]!.identity).toEqual({ slug: 'operating' });
+		expect(rows[0]!.identity).toEqual({ slug: 'continuous' });
+		expect(rows[0]!.interval.interval_kind).toBe('rating'); // derived from the tier
 		expect(rows[1]!.identity).toEqual({ slug: 'peak' });
-		expect(rows[2]!.identity).toBeUndefined();
+		expect(rows[2]!.identity).toEqual({ slug: 'nominal_mpp' });
+		expect(rows[2]!.interval.interval_kind).toBe('rating'); // derived from bounds-free nominal
+		expect(rows[3]!.identity).toBeUndefined();
 	});
 
 	test('duplicate slugs within one intervals list throw; the same slug on sibling lists is fine', () => {
 		const dup = {
-			intervals: [{ interval: { rating: 'operating' } }, { interval: { rating: 'operating' } }],
+			intervals: [{ interval: { rating: 'continuous' } }, { interval: { rating: 'continuous' } }],
 		};
 		expect(() => desugarIntervalSlugs(dup, 'fixture')).toThrow(/duplicated/);
 		const siblings = {
-			voltage: { intervals: [{ interval: { rating: 'operating' } }] },
-			current: { intervals: [{ interval: { rating: 'operating' } }] },
+			voltage: { intervals: [{ interval: { rating: 'continuous' } }] },
+			current: { intervals: [{ interval: { rating: 'continuous' } }] },
 		};
 		expect(() => desugarIntervalSlugs(siblings, 'fixture')).not.toThrow();
 	});

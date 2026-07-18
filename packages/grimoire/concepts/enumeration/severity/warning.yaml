@@ -1,0 +1,9 @@
+# Out of normal range — action expected before it escalates.
+title:
+  en: Warning
+  pt: Alerta
+description:
+  en: Out of normal range — action expected before escalation. (high/warning)
+refs:
+  - { registry_id: rfc_5424, term: Warning, match: exact }
+  - { registry_id: isa_18_2, term: High, match: close }

@@ -1,0 +1,9 @@
+# A BOOLEAN CALCULATION — a named region with NO capability claim, existing only so other bands can
+# gate on it: a reading is inside it or not (an enclosure-temp derate-onset band). Structural
+# signature: carries an `identity.slug` AND at least one inbound `interval_item` reference in the
+# same entry (guard-interval-slugs) — an unreferenced zone is dead weight, a slugless one unreachable.
+title: { en: Zone, pt: Zona }
+description:
+  en: "A named region used only as a condition anchor — in-zone or not, no capability claim. Must carry a slug and be an interval_item target."
+refs:
+  - { registry_id: ssn_system, term: Condition, match: close }

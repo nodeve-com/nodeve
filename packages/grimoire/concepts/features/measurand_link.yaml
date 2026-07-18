@@ -12,13 +12,14 @@ concept_settings:
     - instance_key
 enums:
   - quantity_kind # LINKED value: which BASE KIND this reads (pure — active_energy, active_power, …)
-  - quantity # OPTIONAL named measurand (enumeration/quantity): the effective column when set. A link
-    # fills EITHER quantity_kind OR quantity (plus feature_id). Used where two channels of one kind
-    # coexist on a feature (feed_in vs grid_consumption energy, total vs today) — the named `quantity`
-    # is the column key + sensor-id segment; its base kind resolves downstream (measurand-tree).
 prop:
   feature_id: {}
+  interval_id: {} # OPTIONAL channel selector — the third coordinate of the interval_item pointer:
+    # (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval},
+    # so a register names WHICH measurable channel of that kind it reads by that channel's interval slug
+    # (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's
+    # flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.
   raw_name: {}
-# NB author quantity_kind XOR quantity — one per link. The EMIT bakes the quantity's resolved base
-# kind into quantity_kind on the artifact (kit/emit-catalog.ts bakeRegisterBaseKinds), so a JSON
-# reader routes on the kind without the enumeration module; effective column stays quantity ?? kind.
+# NB a LINKED register fills feature_id + quantity_kind; `interval_id` narrows it to one measurable
+# channel of that kind when several coexist — ONE FK mechanism, shared with interval_item conditions. No
+# named `quantity` layer, no flow_direction/period FK: those axes live on the interval, the slug derives from them.
