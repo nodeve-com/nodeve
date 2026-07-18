@@ -190,10 +190,10 @@ pv_tracker:
   concept_settings:
     count: 3
   feature_spec:
-    # `rating:` is the UNIVERSAL rated-envelope property (operating/survival/startup/protection_required/reference/zone)
-    # shared by every archetype; `mode:` is this archetype's OWN operational-state property (mppt,
-    # mppt_fullpower) for bands the universal set can't name. Both axes co-occur on one interval. Use
-    # `rating:` whenever a universal class fits; reserve `mode:` for the archetype-specific states.
+    # `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/
+    # startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt,
+    # off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries
+    # its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.
     combined:
       active_power:
         intervals:
@@ -214,11 +214,11 @@ pv_tracker:
     default:
       voltage:
         intervals:
-          - interval: { rating: continuous, min: 90, nominal: 620 }
+          - interval: { rating: continuous, min: 90, nominal: 620 } # the stateless rated envelope
           - interval: { rating: survival, max: 1000 }
-          - interval: { rating: startup, min: 140 }
-          - interval: { mode: mppt, min: 120, max: 950 }
-          - interval: { mode: mppt_fullpower, min: 175, max: 850 }
+          - interval: { zone: running, bound: 140, direction: above, hysteresis: 50 } # STATEFUL startup: trips ON above 140 V, releases (dropout) below 90 V
+          - interval: { zone: mppt, min: 120, max: 950 } # the tracking window
+          - interval: { zone: mppt, severity: best, min: 175, max: 850 } # the tighter full-power sub-window
           - interval: { interval_kind: measurable, min: 0, max: 1000, resolution: 0.1 }
       current:
         intervals:

@@ -1,0 +1,4 @@
+# The open-circuit point — the I-V-curve end at zero current, maximum voltage (Voc).
+title: { en: Open circuit, pt: Circuito aberto }
+description:
+  en: The I-V-curve point at zero current, maximum voltage (Voc).

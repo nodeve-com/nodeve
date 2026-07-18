@@ -1,0 +1,5 @@
+# The MPPT tracking window — the input-voltage region an inverter/charger sweeps for the maximum
+# power point. A boolean "PV voltage in MPPT range" sensor; bounds are the window (min/max V).
+title: { en: MPPT window, pt: Janela MPPT }
+description:
+  en: The input-voltage region over which maximum-power-point tracking operates.

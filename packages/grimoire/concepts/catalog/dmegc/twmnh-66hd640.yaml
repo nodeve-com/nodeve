@@ -3,11 +3,11 @@ dc:
     combined:
       voltage:
         intervals:
-          - interval: { mode: mpp, nominal: 40.46 } # Vmp — voltage at the max-power point
-          - interval: { mode: open_circuit, nominal: 48.7 } # Voc — open-circuit voltage
+          - interval: { zone: mpp, nominal: 40.46 } # Vmp — voltage at the max-power point
+          - interval: { zone: open_circuit, nominal: 48.7 } # Voc — open-circuit voltage
       active_power:
         intervals:
-          - interval: { mode: mpp, nominal: 625 } # Pmax — nameplate power at STC (W; canonical, no unit override)
+          - interval: { zone: mpp, nominal: 625 } # Pmax — nameplate power at STC (W; canonical, no unit override)
 
 # Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
 identity:

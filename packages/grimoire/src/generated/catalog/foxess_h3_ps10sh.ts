@@ -70,14 +70,11 @@ const _s10 = {
 	"rating": "continuous"
 } as const;
 const _s11 = {
-	"identity": {
-		"slug": "mppt"
-	},
-	"interval": {
-		"max": 950,
-		"min": 120,
-		"mode": "mppt"
-	}
+	"intervalKind": "zone",
+	"max": 850,
+	"min": 175,
+	"severity": "best",
+	"zone": "mppt"
 } as const;
 const _s12 = {
 	"interval": _s0
@@ -183,32 +180,30 @@ const _s34 = [
 	_s30
 ] as const;
 const _s35 = {
-	"interval": _s20
+	"bound": 140,
+	"direction": "above",
+	"hysteresis": 50,
+	"intervalKind": "threshold",
+	"zone": "running"
 } as const;
 const _s36 = {
-	"identity": {
-		"slug": "mppt_fullpower"
-	},
-	"interval": {
-		"max": 850,
-		"min": 175,
-		"mode": "mppt_fullpower"
-	}
+	"interval": _s20
 } as const;
 const _s37 = [
-	_s35
+	_s36
 ] as const;
 const _s38 = {
 	"intervals": _s24
 } as const;
 const _s39 = {
 	"identity": {
-		"slug": "startup"
+		"slug": "mppt"
 	},
 	"interval": {
-		"intervalKind": "rating",
-		"min": 140,
-		"rating": "startup"
+		"intervalKind": "zone",
+		"max": 950,
+		"min": 120,
+		"zone": "mppt"
 	}
 } as const;
 const _s40 = {
@@ -312,51 +307,63 @@ const _s53 = {
 	"interval": _s4
 } as const;
 const _s54 = {
-	"intervals": _s48
+	"identity": {
+		"slug": "mppt_best"
+	},
+	"interval": _s11
 } as const;
 const _s55 = {
-	"activePower": _s47
+	"intervals": _s48
 } as const;
 const _s56 = {
-	"activePower": _s50
+	"activePower": _s47
 } as const;
 const _s57 = {
+	"activePower": _s50
+} as const;
+const _s58 = {
 	"identity": {
 		"slug": "daily"
 	},
 	"interval": _s25
 } as const;
-const _s58 = {
+const _s59 = {
 	"identity": {
 		"slug": "continuous"
 	},
 	"interval": _s22
 } as const;
-const _s59 = {
+const _s60 = {
 	"identity": {
 		"slug": "in"
 	},
 	"interval": _s26
 } as const;
-const _s60 = {
+const _s61 = {
 	"identity": {
 		"slug": "out"
 	},
 	"interval": _s28
 } as const;
-const _s61 = {
+const _s62 = {
+	"identity": {
+		"slug": "running"
+	},
+	"interval": _s35
+} as const;
+const _s63 = {
 	"identity": {
 		"slug": "in_daily"
 	},
 	"interval": _s46
 } as const;
-const _s62 = {
+const _s64 = {
 	"identity": {
 		"slug": "out_daily"
 	},
 	"interval": _s49
 } as const;
-const _s63 = {
+const _s65 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -371,7 +378,7 @@ const _s63 = {
 		"nominal": 220
 	}
 } as const;
-const _s64 = {
+const _s66 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -386,7 +393,7 @@ const _s64 = {
 		"nominal": 230
 	}
 } as const;
-const _s65 = {
+const _s67 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -402,7 +409,7 @@ const _s65 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s66 = {
+const _s68 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -418,115 +425,115 @@ const _s66 = {
 		"tolerance": 0.05
 	}
 } as const;
-const _s67 = [
-	_s58,
+const _s69 = [
+	_s59,
 	_s13
 ] as const;
-const _s68 = [
+const _s70 = [
 	_s23,
-	_s57
+	_s58
 ] as const;
-const _s69 = {
-	"intervals": _s67
-} as const;
-const _s70 = {
-	"intervals": _s68
-} as const;
 const _s71 = {
+	"intervals": _s69
+} as const;
+const _s72 = {
+	"intervals": _s70
+} as const;
+const _s73 = {
 	"condition": _s31,
 	"identity": {
 		"slug": "continuous_continuous"
 	},
 	"interval": _s10
 } as const;
-const _s72 = [
+const _s74 = [
 	_s40,
 	_s43,
 	_s16
-] as const;
-const _s73 = {
-	"intervals": _s72
-} as const;
-const _s74 = [
-	_s71,
-	_s7
 ] as const;
 const _s75 = {
 	"intervals": _s74
 } as const;
 const _s76 = [
-	_s44,
-	_s41,
-	_s53
+	_s73,
+	_s7
 ] as const;
 const _s77 = {
 	"intervals": _s76
 } as const;
 const _s78 = [
-	_s65,
-	_s66
+	_s44,
+	_s41,
+	_s53
 ] as const;
 const _s79 = {
 	"intervals": _s78
 } as const;
 const _s80 = [
-	_s63,
-	_s64,
-	_s15
+	_s67,
+	_s68
 ] as const;
 const _s81 = {
 	"intervals": _s80
 } as const;
 const _s82 = [
+	_s65,
+	_s66,
+	_s15
+] as const;
+const _s83 = {
+	"intervals": _s82
+} as const;
+const _s84 = [
+	_s61,
+	_s64,
 	_s60,
-	_s62,
-	_s59,
-	_s61
+	_s63
 ] as const;
-const _s83 = [
-	_s52,
-	_s42,
-	_s39,
-	_s11,
-	_s36,
-	_s18
-] as const;
-const _s84 = {
+const _s85 = {
 	"activePower": _s51,
 	"current": _s33,
 	"frequency": _s38,
-	"voltage": _s69
-} as const;
-const _s85 = {
-	"intervals": _s82
+	"voltage": _s71
 } as const;
 const _s86 = {
-	"intervals": _s83
+	"intervals": _s84
 } as const;
-const _s87 = {
-	"activePower": _s54,
-	"current": _s73,
-	"voltage": _s86
-} as const;
+const _s87 = [
+	_s52,
+	_s42,
+	_s62,
+	_s39,
+	_s54,
+	_s18
+] as const;
 const _s88 = {
-	"activePower": _s75,
+	"intervals": _s87
+} as const;
+const _s89 = {
+	"activePower": _s55,
+	"current": _s75,
+	"voltage": _s88
+} as const;
+const _s90 = {
+	"activePower": _s77,
 	"apparentPower": {},
-	"current": _s77,
-	"frequency": _s79,
+	"current": _s79,
+	"frequency": _s81,
 	"reactivePower": {},
-	"voltage": _s81
+	"voltage": _s83
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s54
+				"activePower": _s55
 			},
 			"part": {
-				"a": _s84,
-				"b": _s84,
-				"c": _s84
+				"a": _s85,
+				"b": _s85,
+				"c": _s85
 			}
 		},
 		"identity": {
@@ -536,7 +543,7 @@ export default {
 	"acPhaseThreeGrid": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s85,
+				"activeEnergy": _s86,
 				"activePower": {
 					"intervals": [
 						{
@@ -552,9 +559,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s55,
-				"b": _s55,
-				"c": _s55
+				"a": _s56,
+				"b": _s56,
+				"c": _s56
 			}
 		},
 		"identity": {
@@ -564,7 +571,7 @@ export default {
 	"acPhaseThreeLoad": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s70,
+				"activeEnergy": _s72,
 				"activePower": {
 					"intervals": [
 						{
@@ -580,9 +587,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s56,
-				"b": _s56,
-				"c": _s56
+				"a": _s57,
+				"b": _s57,
+				"c": _s57
 			}
 		},
 		"identity": {
@@ -592,7 +599,7 @@ export default {
 	"acPhaseThreeOut": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s85,
+				"activeEnergy": _s86,
 				"activePower": {
 					"intervals": [
 						{
@@ -656,9 +663,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s88,
-				"b": _s88,
-				"c": _s88
+				"a": _s90,
+				"b": _s90,
+				"c": _s90
 			}
 		},
 		"identity": {
@@ -1436,7 +1443,7 @@ export default {
 		},
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s70,
+				"activeEnergy": _s72,
 				"activePower": {
 					"intervals": [
 						{
@@ -1463,17 +1470,17 @@ export default {
 				}
 			},
 			"instances": [
-				_s87,
-				_s87,
+				_s89,
+				_s89,
 				{
-					"activePower": _s54,
-					"current": _s73,
+					"activePower": _s55,
+					"current": _s75,
 					"voltage": {
 						"intervals": [
 							_s42,
+							_s62,
 							_s39,
-							_s11,
-							_s36,
+							_s54,
 							_s18,
 							{
 								"identity": {

@@ -11,12 +11,12 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "nominal_mpp"
+								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 625
+								"intervalKind": "zone",
+								"nominal": 625,
+								"zone": "mpp"
 							}
 						}
 					]
@@ -25,22 +25,22 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "nominal_mpp"
+								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 40.46
+								"intervalKind": "zone",
+								"nominal": 40.46,
+								"zone": "mpp"
 							}
 						},
 						{
 							"identity": {
-								"slug": "nominal_open_circuit"
+								"slug": "open_circuit"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "open_circuit",
-								"nominal": 48.7
+								"intervalKind": "zone",
+								"nominal": 48.7,
+								"zone": "open_circuit"
 							}
 						}
 					]

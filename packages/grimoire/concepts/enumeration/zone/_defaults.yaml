@@ -1,0 +1,9 @@
+# A ZONE — a named operating region of a quantity's own axis, distinct from a `rating` (a spec-sheet
+# capability tier) and a `measurable` span (an instrument's readable range). Selecting a zone on an
+# interval DERIVES `interval_kind: zone`; the zone slug is the band's reference handle. Each zone
+# yields a BOOLEAN "is the quantity in this region" sensor and may also be an `interval_item` anchor
+# other bands gate on. Two flavours share the axis: electrical operating points/windows (mppt, mpp,
+# open_circuit) and lifecycle STATUS bands (off, idle, running). Narrower sub-ranges grade via
+# `severity` (a tight full-power MPPT window is severity: best). Which enum a value lives in (rating vs zone) IS its
+# classification — reclassifying a blurry one (startup, mpp) is a one-file move. A member is a bare
+# literal — the default `property` archetype applies (title + crosswalk refs, nothing structural).

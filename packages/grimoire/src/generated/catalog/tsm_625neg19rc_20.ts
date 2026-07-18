@@ -11,12 +11,12 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "nominal_mpp"
+								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 625
+								"intervalKind": "zone",
+								"nominal": 625,
+								"zone": "mpp"
 							}
 						},
 						{
@@ -26,12 +26,12 @@ export default {
 								}
 							],
 							"identity": {
-								"slug": "nominal_mpp_bnpi"
+								"slug": "mpp_bnpi"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 692
+								"intervalKind": "zone",
+								"nominal": 692,
+								"zone": "mpp"
 							}
 						}
 					]
@@ -40,37 +40,22 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "nominal_mpp"
+								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 15.45
+								"intervalKind": "zone",
+								"nominal": 15.45,
+								"zone": "mpp"
 							}
 						},
 						{
 							"identity": {
-								"slug": "nominal_short_circuit"
+								"slug": "short_circuit"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "short_circuit",
-								"nominal": 16.32
-							}
-						},
-						{
-							"condition": [
-								{
-									"testCondition": "bnpi"
-								}
-							],
-							"identity": {
-								"slug": "nominal_mpp_bnpi"
-							},
-							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 17.12
+								"intervalKind": "zone",
+								"nominal": 16.32,
+								"zone": "short_circuit"
 							}
 						},
 						{
@@ -80,12 +65,27 @@ export default {
 								}
 							],
 							"identity": {
-								"slug": "nominal_short_circuit_bnpi"
+								"slug": "mpp_bnpi"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "short_circuit",
-								"nominal": 18.08
+								"intervalKind": "zone",
+								"nominal": 17.12,
+								"zone": "mpp"
+							}
+						},
+						{
+							"condition": [
+								{
+									"testCondition": "bnpi"
+								}
+							],
+							"identity": {
+								"slug": "short_circuit_bnpi"
+							},
+							"interval": {
+								"intervalKind": "zone",
+								"nominal": 18.08,
+								"zone": "short_circuit"
 							}
 						},
 						{
@@ -95,12 +95,12 @@ export default {
 								}
 							],
 							"identity": {
-								"slug": "nominal_short_circuit_bsi"
+								"slug": "short_circuit_bsi"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "short_circuit",
-								"nominal": 20.24
+								"intervalKind": "zone",
+								"nominal": 20.24,
+								"zone": "short_circuit"
 							}
 						},
 						{
@@ -119,22 +119,22 @@ export default {
 					"intervals": [
 						{
 							"identity": {
-								"slug": "nominal_mpp"
+								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "mpp",
-								"nominal": 40.46
+								"intervalKind": "zone",
+								"nominal": 40.46,
+								"zone": "mpp"
 							}
 						},
 						{
 							"identity": {
-								"slug": "nominal_open_circuit"
+								"slug": "open_circuit"
 							},
 							"interval": {
-								"intervalKind": "rating",
-								"mode": "open_circuit",
-								"nominal": 48.7
+								"intervalKind": "zone",
+								"nominal": 48.7,
+								"zone": "open_circuit"
 							}
 						}
 					]

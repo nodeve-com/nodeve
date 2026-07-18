@@ -1,7 +1,0 @@
-# Outdated. Use identity.slug unless necessary.
-title: { en: Mode }
-description:
-  {
-    en: "The intrinsic-region axis: a region of THIS quantity's own axis named by the archetype's operating-state property — an MPPT window (mppt, mppt_fullpower), a circuit operating point (mpp, open_circuit, short_circuit). Open, domain-specific slug. NOT for external drivers that merely gate validity (a run mode) — those are categorical conditions.",
-  }
-schema: { type: string, minLength: 1 }

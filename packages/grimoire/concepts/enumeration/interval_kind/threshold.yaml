@@ -1,0 +1,11 @@
+# A STATEFUL TRIGGER — the one interval_kind that is NOT a stateless f(reading): a hysteretic
+# switch whose boolean output depends on the PRIOR on/off state. `bound` = the trip value,
+# `direction` (above/below) = the activating side, `hysteresis` = the release deadband past the bound
+# (a PV inverter starting at 140 V but not dropping out until 90 V; a thermostat, a hygrostat, a
+# run-command). DERIVED from the presence of `direction`. Folds in the former standalone `threshold`
+# feature. Distinct from `zone` (a stateless named region) precisely by carrying state.
+title: { en: Threshold, pt: Limiar }
+description:
+  en: 'A stateful hysteretic trigger (bound + direction + hysteresis) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command.'
+refs:
+  - { registry_id: ssn_system, term: Condition, match: close }

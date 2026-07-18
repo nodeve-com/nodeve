@@ -89,7 +89,6 @@ import * as maxHumidity_ from './max_humidity.ts';
 import * as maxPermissibleError_ from './max_permissible_error.ts';
 import * as min_ from './min.ts';
 import * as minHumidity_ from './min_humidity.ts';
-import * as mode_ from './mode.ts';
 import * as mono_ from './mono.ts';
 import * as mpptWindow_ from './mppt_window.ts';
 import * as mtu_ from './mtu.ts';
@@ -254,7 +253,6 @@ export const property = {
 	maxPermissibleError: maxPermissibleError_,
 	min: min_,
 	minHumidity: minHumidity_,
-	mode: mode_,
 	mono: mono_,
 	mpptWindow: mpptWindow_,
 	mtu: mtu_,

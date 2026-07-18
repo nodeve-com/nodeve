@@ -39,12 +39,13 @@ function featureCombined(slug: string): Obj {
 }
 
 // A spec-row's identity: the band axes of an interval (`interval:`-nested or flat). Rows in `default`
-// and an instance/part override join on this key. Rating tier + mode identify a rating band; a
+// and an instance/part override join on this key. Rating tier or zone name (+ optional severity sub-grade)
+// identifies a rating/zone band; a
 // measurable channel is identified instead by interval_kind + its flow_direction/period axes — so
 // two energy channels (out vs in, lifetime vs daily) don't collide under one empty `|` key.
 const bandKey = (row: Obj): string => {
 	const r = isPlainObject(row.interval) ? row.interval : row;
-	return [r.interval_kind, r.rating, r.mode, r.flow_direction, r.period]
+	return [r.interval_kind, r.rating, r.zone, r.severity, r.flow_direction, r.period]
 		.map((v) => String(v ?? ''))
 		.join('|');
 };

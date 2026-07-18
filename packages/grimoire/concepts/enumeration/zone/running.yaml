@@ -1,0 +1,6 @@
+# Running in its normal working band — the EXPECTED operating region, distinct from the spec-sheet
+# rating (a compressor's rated max vs its actual running draw). Named `running`, not `active` — the
+# `active` stem is the in-service config flag (property/spec/active).
+title: { en: Running, pt: Em funcionamento }
+description:
+  en: Running in its normal expected operating region.

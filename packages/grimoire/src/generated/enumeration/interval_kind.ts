@@ -42,10 +42,27 @@ export default {
       "pt": "Classificação"
     }
   },
+  "threshold": {
+    "code": "threshold",
+    "description": {
+      "en": "A stateful hysteretic trigger (bound + direction + hysteresis) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command."
+    },
+    "refs": [
+      {
+        "match": "close",
+        "registryId": "ssn_system",
+        "term": "Condition"
+      }
+    ],
+    "title": {
+      "en": "Threshold",
+      "pt": "Limiar"
+    }
+  },
   "zone": {
     "code": "zone",
     "description": {
-      "en": "A named region used only as a condition anchor — in-zone or not, no capability claim. Must carry a slug and be an interval_item target."
+      "en": "A named region of the quantity's own axis, no capability claim — in-zone or not, a boolean sensor. Derived from a `zone` value; may also be an interval_item anchor."
     },
     "refs": [
       {

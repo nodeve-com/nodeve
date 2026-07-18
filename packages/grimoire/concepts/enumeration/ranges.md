@@ -1,15 +1,3 @@
-## severity - ramp - range
-
-- good (widest desirable)
-- better (middle)
-- best (narrowest - bullseye)
-- nominal (NULL - no severity)
-- notice (low)
-- caution (medium/elevated)
-- warning (high/warning → nearLimit)
-- critical (critical - Cutoff limit; unusable/unsafe, hard protection acts)
-- fatal (failed/dead/explode)
-
 ## zone - named operating zone/band/mode - boolean
 
 - off (switched off)

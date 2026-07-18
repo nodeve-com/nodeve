@@ -1,0 +1,5 @@
+# De-energized — the thing is switched off / not running. On a power draw: ~0. A boolean "is off"
+# sensor is its complement of any running zone.
+title: { en: Off, pt: Desligado }
+description:
+  en: Switched off / de-energized — no productive draw.

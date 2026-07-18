@@ -113,7 +113,6 @@ import * as targetTempBand_ from './features/target_temp_band.ts';
 import * as tempBand_ from './features/temp_band.ts';
 import * as tempCoefficients_ from './features/temp_coefficients.ts';
 import * as thing_ from './archetypes/thing.ts';
-import * as threshold_ from './features/threshold.ts';
 import * as title_ from './features/title.ts';
 import * as ui_ from './features/ui.ts';
 import * as unitOverride_ from './features/unit_override.ts';
@@ -244,7 +243,6 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	tempBand: tempBand_.schema,
 	tempCoefficients: tempCoefficients_.schema,
 	thing: thing_.schema,
-	threshold: threshold_.schema,
 	title: title_.schema,
 	ui: ui_.schema,
 	unitOverride: unitOverride_.schema,
@@ -373,7 +371,6 @@ export interface ConceptTypes {
 	tempBand: tempBand_.TempBand;
 	tempCoefficients: tempCoefficients_.TempCoefficients;
 	thing: thing_.Thing;
-	threshold: threshold_.Threshold;
 	title: title_.Title;
 	ui: ui_.Ui;
 	unitOverride: unitOverride_.UnitOverride;

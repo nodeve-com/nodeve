@@ -1,0 +1,5 @@
+# The maximum power point — the I-V-curve operating point (Vmp, Imp, Pmax) where a PV source
+# delivers most power. A characteristic nameplate POINT (nominal, no bounds).
+title: { en: Maximum power point, pt: Ponto de potência máxima }
+description:
+  en: The I-V-curve point (Vmp/Imp/Pmax) of peak power output.

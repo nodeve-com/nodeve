@@ -10,7 +10,7 @@ title:
 description:
   en: N-Type i-TOPCon Bifacial dual glass monocrystalline module
 # The panel's DC terminals as a single feature: each nameplate rating is an INTERVAL tagged with the
-# I-V-curve point it characterises (`mode:`). Bare bands are the implicit STC reference (front
+# I-V-curve point it characterises (`zone:` — a named region). Bare bands are the implicit STC reference (front
 # 1000 W/m², AM1.5G, 25 °C). This is a bifacial module, so the datasheet also states rear-gain bands
 # at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) — those carry a `test_condition` condition; the
 # measured value stays in the band. Identical-across-conditions bands (Vmp/Voc are the same at STC
@@ -20,23 +20,23 @@ dc:
     combined:
       voltage:
         intervals:
-          - interval: { mode: mpp, nominal: 40.46 } # Vmp — voltage at the max-power point
-          - interval: { mode: open_circuit, nominal: 48.7 } # Voc — open-circuit voltage
+          - interval: { zone: mpp, nominal: 40.46 } # Vmp — voltage at the max-power point
+          - interval: { zone: open_circuit, nominal: 48.7 } # Voc — open-circuit voltage
       current:
         intervals:
-          - interval: { mode: mpp, nominal: 15.45 } # Imp — current at the max-power point (STC)
-          - interval: { mode: short_circuit, nominal: 16.32 } # Isc — short-circuit current (STC)
-          - interval: { mode: mpp, nominal: 17.12 } # Imp at BNPI (rear 135 W/m²)
+          - interval: { zone: mpp, nominal: 15.45 } # Imp — current at the max-power point (STC)
+          - interval: { zone: short_circuit, nominal: 16.32 } # Isc — short-circuit current (STC)
+          - interval: { zone: mpp, nominal: 17.12 } # Imp at BNPI (rear 135 W/m²)
             condition: [{ test_condition: bnpi }]
-          - interval: { mode: short_circuit, nominal: 18.08 } # Isc at BNPI (rear 135 W/m²)
+          - interval: { zone: short_circuit, nominal: 18.08 } # Isc at BNPI (rear 135 W/m²)
             condition: [{ test_condition: bnpi }]
-          - interval: { mode: short_circuit, nominal: 20.24 } # Isc at BSI (rear 300 W/m²) — worst case
+          - interval: { zone: short_circuit, nominal: 20.24 } # Isc at BSI (rear 300 W/m²) — worst case
             condition: [{ test_condition: bsi }]
           - interval: { rating: protection_required, nominal: 35 } # Maximum series fuse rating (A)
       active_power:
         intervals:
-          - interval: { mode: mpp, nominal: 625 } # Pmax — nameplate power at STC (W; canonical, no unit override)
-          - interval: { mode: mpp, nominal: 692 } # Pmax at BNPI (rear 135 W/m²)
+          - interval: { zone: mpp, nominal: 625 } # Pmax — nameplate power at STC (W; canonical, no unit override)
+          - interval: { zone: mpp, nominal: 692 } # Pmax at BNPI (rear 135 W/m²)
             condition: [{ test_condition: bnpi }]
 
 # Mechanical block, datasheet values (mm/kg; the inch/lb figures are unit conversions, not stored).

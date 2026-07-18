@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Hysteresis = number;
 
-type DataT = { readonly "description": { readonly "en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "hysteresis" }; readonly "title": { readonly "en": "Hysteresis"; readonly "pt": "Histerese" } };
+type DataT = { readonly "description": { readonly "en": "The release deadband of a threshold trigger (interval_kind: threshold) — once tripped past `bound` on the `direction` side, the reading must travel this far back past `bound` to release, so the boolean depends on prior state (a PV inverter tripping ON above its 140 V `bound` and releasing only below 140 − 50 = 90 V). Same unit as `bound`; never fabricate." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "hysteresis" }; readonly "title": { readonly "en": "Hysteresis"; readonly "pt": "Histerese" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "Optional deadband around `at` to suppress chatter — once tripped, the reading must travel this far back past `at` to clear. Same unit as `at`; never fabricate."
+		"en": "The release deadband of a threshold trigger (interval_kind: threshold) — once tripped past `bound` on the `direction` side, the reading must travel this far back past `bound` to release, so the boolean depends on prior state (a PV inverter tripping ON above its 140 V `bound` and releasing only below 140 − 50 = 90 V). Same unit as `bound`; never fabricate."
 	},
 	"identity": {
 		"archetypeId": "property",

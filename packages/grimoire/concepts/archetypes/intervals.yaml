@@ -1,5 +1,5 @@
 # One identified, rated/characterised interval of a quantity: its bounds (`interval`:
-# rating/mode/nominal_range/tolerance/margin/unit) plus the `conditions` that gate when it holds,
+# rating/zone/nominal_range/tolerance/margin/unit) plus the `conditions` that gate when it holds,
 # carried under its own `identity.slug` handle so a condition elsewhere can point at it
 # ({feature, property, interval}). THE item type of a `specification`'s `intervals` list. Bands are
 # device-specific inline data, not a shared catalog — but modelling one as an archetype (not a bare
@@ -12,6 +12,6 @@ title: { en: Intervals }
 description:
   en: "One identified rated interval of a quantity — bounds + gating conditions under an identity.slug handle. The item type of a specification's `intervals` list."
 feature:
-  interval: {} # the bounds — rating/mode/nominal_range/tolerance/margin/unit
+  interval: {} # the bounds — rating/zone/nominal_range/tolerance/margin/unit
   condition: {} # the gate list — array of `condition` (its own `array: true` supplies the list)
   filter: {} # required input conditioning — the band is a claim about the conditioned signal

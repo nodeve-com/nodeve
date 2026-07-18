@@ -134,7 +134,7 @@ describe('mqtt_connection (new nested contract)', () => {
 describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 	const { desugarIntervalSlugs } = await import('../kit/interval-slugs.ts');
 
-	test('auto-slug composes tier / nominal + mode + condition; authored slug untouched; measurable unslugged', () => {
+	test('auto-slug composes tier / zone (+ severity sub-grade); nominal fallback; authored slug untouched; measurable unslugged', () => {
 		const entry = {
 			f: {
 				feature_spec: {
@@ -143,7 +143,10 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 							intervals: [
 								{ interval: { rating: 'continuous', nominal: 230 } }, // tier → continuous
 								{ identity: { slug: 'peak' }, interval: { rating: 'short_term', max: 250 } }, // authored kept
-								{ interval: { mode: 'mpp', nominal: 40 } }, // bounds-free nominal + mode → nominal_mpp
+								{ interval: { zone: 'mpp', nominal: 40 } }, // zone wins over bounds-free nominal → mpp
+								{ interval: { zone: 'mppt', severity: 'best', min: 175, max: 850 } }, // zone + severity sub-grade → mppt_best
+								{ interval: { zone: 'running', bound: 140, direction: 'above', hysteresis: 50 } }, // direction → stateful threshold, slug from zone
+								{ interval: { nominal: 12 } }, // bare bounds-free nominal → nominal
 								{ interval: { interval_kind: 'measurable', min: 0, max: 300 } }, // no axis → unslugged
 							],
 						},
@@ -159,9 +162,15 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 		expect(rows[0]!.identity).toEqual({ slug: 'continuous' });
 		expect(rows[0]!.interval.interval_kind).toBe('rating'); // derived from the tier
 		expect(rows[1]!.identity).toEqual({ slug: 'peak' });
-		expect(rows[2]!.identity).toEqual({ slug: 'nominal_mpp' });
-		expect(rows[2]!.interval.interval_kind).toBe('rating'); // derived from bounds-free nominal
-		expect(rows[3]!.identity).toBeUndefined();
+		expect(rows[2]!.identity).toEqual({ slug: 'mpp' });
+		expect(rows[2]!.interval.interval_kind).toBe('zone'); // zone wins over the nominal fallback
+		expect(rows[3]!.identity).toEqual({ slug: 'mppt_best' }); // severity is identity-bearing
+		expect(rows[3]!.interval.interval_kind).toBe('zone');
+		expect(rows[4]!.identity).toEqual({ slug: 'running' }); // threshold: slug from zone name
+		expect(rows[4]!.interval.interval_kind).toBe('threshold'); // derived from direction (stateful)
+		expect(rows[5]!.identity).toEqual({ slug: 'nominal' }); // bounds-free nominal fallback
+		expect(rows[5]!.interval.interval_kind).toBe('rating');
+		expect(rows[6]!.identity).toBeUndefined();
 	});
 
 	test('duplicate slugs within one intervals list throw; the same slug on sibling lists is fine', () => {

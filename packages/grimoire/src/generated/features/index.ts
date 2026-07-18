@@ -82,7 +82,6 @@ import * as substance_ from './substance.ts';
 import * as targetTempBand_ from './target_temp_band.ts';
 import * as tempBand_ from './temp_band.ts';
 import * as tempCoefficients_ from './temp_coefficients.ts';
-import * as threshold_ from './threshold.ts';
 import * as title_ from './title.ts';
 import * as ui_ from './ui.ts';
 import * as unitOverride_ from './unit_override.ts';
@@ -178,7 +177,6 @@ export const feature = {
 	targetTempBand: targetTempBand_,
 	tempBand: tempBand_,
 	tempCoefficients: tempCoefficients_,
-	threshold: threshold_,
 	title: title_,
 	ui: ui_,
 	unitOverride: unitOverride_,

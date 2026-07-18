@@ -4,7 +4,7 @@ import { isPlainObject } from 'remeda';
 /** Interval slug de-sugar + uniqueness. An interval's `identity.slug` is its addressable ID
  *  (a `condition.interval_item` names `{feature, property, interval}`; downstream sensors point at
  *  bands the same way); authored YAML rarely spells it — an unslugged row de-sugars from its
- *  `rating` axis. De-sugar runs FIRST so two bare rows sharing a rating collide and force explicit
+ *  identity axes (rating tier / zone name / flow_direction / period). De-sugar runs FIRST so two bare rows sharing them collide and force explicit
  *  slugs — which guard-interval-slugs then requires to be defined vocabulary (a `rating`
  *  member, another enum member, an interval_item target, or a titled band), never free prose. A
  *  rating-less row (mode-only I-V points) stays unslugged. Mutates the resolved entry in place;
@@ -41,26 +41,30 @@ function conditionSuffix(row: Obj): string {
 	return toks.join('_');
 }
 
-/** The auto-slug for a row: its tier (or `zone` kind), the measurable channel's flow_direction/period
- *  axes, `mode`, and condition tokens — or undefined when the row is not auto-addressable (an
- *  unclassified band with no axis: the single undirected/lifetime measurable channel). Shared by the
- *  de-sugar and the slug-classifier check so both agree on what a legitimate auto-slug is. */
+/** The auto-slug for a row: its base classifier (rating tier / `nominal` / zone name), the measurable
+ *  channel's flow_direction/period axes, and condition tokens — or undefined when the row is not
+ *  auto-addressable (an unclassified band with no axis: the single undirected/lifetime measurable
+ *  channel). Shared by the de-sugar and the slug-classifier check so both agree on what a legitimate
+ *  auto-slug is. */
 export function autoSlug(row: Obj): string | undefined {
 	const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
-	// Compose the handle from the band's identity axes, in order: its base classifier (rating tier,
-	// else `nominal` for a bounds-free nameplate value — a derived tier, not an enum member, so it
-	// never collides with the nominal property; else `zone`); then a measurable channel's
-	// flow_direction + period (energy: out / out_daily / in / in_daily / daily); then `mode`, then each
-	// gating condition. Enough to disambiguate every sibling that differs on any axis. A measurable band
-	// with no axis at all (the one undirected/lifetime channel) has no auto-slug.
+	// Compose the handle from the band's identity axes, in order: its base classifier — ONE of a
+	// rating tier, `nominal` (a bounds-free nameplate value — a derived tier, not an enum member, so it
+	// never collides with the nominal property), or a `zone` name (mppt / active / …); then `severity`
+	// (grades a narrower sub-range of the base region — a tight `best` window inside a wider one); then
+	// a measurable channel's flow_direction + period (energy: out / out_daily / in / in_daily / daily);
+	// then each gating condition. Enough to disambiguate every sibling that differs on any axis. A
+	// measurable band with no axis at all (the one undirected/lifetime channel) has no auto-slug.
 	const tokens: string[] = [];
+	// An explicit rating tier or zone name wins over the bounds-free `nominal` fallback (a zone point
+	// like `{ zone: mpp, nominal: 40.46 }` is a zone, not a bare nominal).
 	if (typeof band.rating === 'string') tokens.push(band.rating);
+	else if (typeof band.zone === 'string') tokens.push(band.zone);
 	else if (band.nominal !== undefined && band.min === undefined && band.max === undefined)
 		tokens.push('nominal');
-	else if (band.interval_kind === 'zone') tokens.push('zone');
+	if (typeof band.severity === 'string') tokens.push(band.severity);
 	if (typeof band.flow_direction === 'string') tokens.push(band.flow_direction);
 	if (typeof band.period === 'string') tokens.push(band.period);
-	if (typeof band.mode === 'string') tokens.push(band.mode);
 	const suffix = conditionSuffix(row);
 	if (suffix) tokens.push(suffix);
 	return tokens.length > 0 ? tokens.join('_') : undefined;
@@ -71,14 +75,18 @@ function slugIntervalRows(rows: unknown[], at: string): void {
 	rows.forEach((row, i) => {
 		if (!isPlainObject(row)) return;
 		const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
-		// interval_kind: rating is DERIVED from a rating tier OR a bounds-free `nominal` (a nameplate
-		// value IS a rating); never authored. measurable / zone are authored on interval_kind directly.
-		if (
-			band.interval_kind === undefined &&
-			(typeof band.rating === 'string' ||
-				(band.nominal !== undefined && band.min === undefined && band.max === undefined))
-		)
-			band.interval_kind = 'rating';
+		// interval_kind is DERIVED, never authored on the base axes: `threshold` from a `direction` (the
+		// stateful hysteretic trigger); `rating` from a rating tier OR a bounds-free `nominal` (a nameplate
+		// value IS a rating); `zone` from a zone name. `measurable` alone is authored on interval_kind directly.
+		if (band.interval_kind === undefined) {
+			if (typeof band.direction === 'string') band.interval_kind = 'threshold';
+			else if (typeof band.zone === 'string') band.interval_kind = 'zone';
+			else if (
+				typeof band.rating === 'string' ||
+				(band.nominal !== undefined && band.min === undefined && band.max === undefined)
+			)
+				band.interval_kind = 'rating';
+		}
 		const identity = isPlainObject(row.identity) ? (row.identity as Obj) : {};
 		let slug = identity.slug;
 		if (slug === undefined) {
@@ -129,8 +137,9 @@ function collectBandSlugs(node: unknown, at: string, acc: BandAcc): void {
  *  scripts/guard-interval-slugs.ts). An interval's `identity.slug` is a REFERENCE HANDLE, never a
  *  classifier. Legitimate only when it is the row's OWN auto-slug (tier/kind + condition tokens), a
  *  referenced interval_item target, or a titled band. A hand-typed classifier (`peak`,
- *  `rated_continuous`) is none of these — model it as an axis. A zone MUST carry a slug and be
- *  referenced (a slugless zone is unreachable, an unreferenced one a dead anchor). */
+ *  `rated_continuous`) is none of these — model it as an axis. A zone MUST carry a slug (its name,
+ *  auto-derived from the zone value); it need not be referenced — a zone stands alone as a boolean
+ *  "in this region" sensor, and may ALSO anchor an interval_item. */
 export function validateIntervalSlugs(entry: Record<string, unknown>, path: string): void {
 	const bands: BandSlug[] = [];
 	const targets = new Set<string>();
@@ -140,9 +149,7 @@ export function validateIntervalSlugs(entry: Record<string, unknown>, path: stri
 		const referenced = b.slug !== undefined && targets.has(b.slug);
 		if (b.kind === 'zone') {
 			if (b.slug === undefined)
-				fails.push(`${b.at}: zone band without identity.slug — unreachable`);
-			else if (!referenced)
-				fails.push(`${b.at}: zone "${b.slug}" has no inbound interval_item — dead anchor`);
+				fails.push(`${b.at}: zone band without identity.slug — unnameable, produces no sensor`);
 			continue;
 		}
 		if (b.slug !== undefined && b.slug !== b.auto && !referenced && !b.titled)

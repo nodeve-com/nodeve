@@ -1,0 +1,5 @@
+# Powered but not doing productive work — standby / parasitic draw only, above off, below the active
+# working band.
+title: { en: Idle, pt: Ocioso }
+description:
+  en: Powered, no productive work — standby / parasitic draw.

@@ -1,3 +1,6 @@
 title: { en: Direction, pt: Direção }
-description: { en: "Which side of the threshold trips: above ⇒ trips when the reading exceeds `at`; below ⇒ when it drops under. Borrowed from HA numeric_state (above/below)." }
+description:
+  {
+    en: "Which side an `interval_kind: threshold` trips: above ⇒ trips when the reading rises past `bound` (releases below `bound − hysteresis`); below ⇒ trips falling under `bound` (releases above `bound + hysteresis`). The STATEFUL bit `min`/`max` position alone can't encode. Borrowed from HA numeric_state (above/below).",
+  }
 schema: { type: string, enum: [above, below] }
