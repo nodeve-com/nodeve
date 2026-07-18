@@ -105,8 +105,8 @@ Validating an instance goes through the root API: `parseConcept('solarArray', da
 
 ## Conventions
 
-- [catalog generation pipeline](docs/catalog-generation-pipeline.md) — `generate.ts` flow, `resolveRepeatedFeatures` (default→part/instances; nature from `concept_settings`), register→measurement backfill
-- [feature model](docs/feature-model.md) — flat one-level features; `count`'s presence discriminates single vs repeated; interval (a measuring range is a `rating: measurable` interval) / condition
+- [catalog generation pipeline](docs/catalog-generation-pipeline.md) — `generate.ts` flow, `resolveRepeatedFeatures` (default→part/instances; nature from `concept_settings`), register→spec-node backfill
+- [feature model](docs/feature-model.md) — flat one-level features; `count`'s presence discriminates single vs repeated; interval (a measuring range is an `interval_kind: measurable` interval) / condition
 - [reference model](docs/reference-model.md) — every pointer is `(Class, id)`; internal=archetype vs external=registry, public=grimoire vs private=site; `column.references` FK + `guard-refs`
 - [site overlay](docs/site-overlay.md) — a `site_catalog` entry patches its device via `catalog_patch`: author device facts (mac_address…) at top level, the bake folds them in, the reader merges arrays by `identity.slug` (not index)
 - [cadence field is `update_interval_ms`](docs/cadence-field.md) — integer ms, fetch-neutral

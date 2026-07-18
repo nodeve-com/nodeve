@@ -16,17 +16,17 @@ How a `concepts/catalog/<brand>/…yaml` becomes `artifacts/catalog/<slug>.json`
 - **counted feature** (`concept_settings.repeated: true`) → `{ count, combined?, instances: [default ⊕ {ordinal} override] }`, dense by ordinal.
 - **single feature** → body (spec-map) passes through; quantities sit directly under the feature.
 
-`featureNature(slug)` reads the nature from `concept_settings.part`/`.repeated` (NOT top-level — the grammar moved under `concept_settings`; reading top-level silently no-ops all resolution). `overlaySpec`/`overlayRows` merge instance/part overrides row-level for `intervals`/`measurements` (keyed `bandKey`/`measurementKey`).
+`featureNature(slug)` reads the nature from `concept_settings.part`/`.repeated` (NOT top-level — the grammar moved under `concept_settings`; reading top-level silently no-ops all resolution). `overlaySpec`/`overlayRows` merge instance/part overrides row-level for `intervals` (keyed `bandKey` = `interval_kind`+`rating`+`mode`+`flow_direction`+`period`).
 
-## The measurand link → measurement (register↔measurement)
+## The measurand link → spec node (register↔quantity)
 
 A `modbus_medium.modbus_registers[]` row (feature `modbus_register`, composes `measurand_link` + `numeric_decode`) either:
 
-- **LINKED**: `feature_id` + `quantity_kind` (+ `part_id` | `ordinal`; both absent ⇒ the `combined` whole) — reads one quantity of the feature tree. Its target spec_block lives at `entry[feature_id]` → part/instance/combined node → `[quantity_kind]`, whose `measurements: []` array is the SENSOR channels (`spec_map → spec_block → measurements[]`, each a `measurement` = `{min,max,resolution?,unit?,channel?,kind?}`).
+- **LINKED**: `feature_id` + `quantity_kind` (+ `part_id` | `ordinal`; both absent ⇒ the `combined` whole; + optional `interval_id` naming one measurable channel) — reads one quantity of the feature tree. Its target spec node lives at `entry[feature_id]` → part/instance/combined node → `[quantity_kind]`, whose `intervals[]` list carries the SENSOR channels as `interval_kind: measurable` bands (a measuring range IS an interval — no separate `measurements` slot).
 - **RAW**: `raw_name` only, no link — deliberately unattributed.
-- **category**: `feature_id` + `state`/`fault` (enum-valued), no `quantity_kind` — not a measurement.
+- **category**: `feature_id` + `state`/`fault` (enum-valued), no `quantity_kind` — not a measurand.
 
-`backfillRegisterMeasurements(entry)` (kit/repeated-emit.ts, called in `catalogEntries` after `resolveRepeatedFeatures`): for every LINKED register, ensure its target spec_block exists and carries a `measurements` array (empty `[]` is a valid placeholder). RAW + category rows skipped; unresolvable `feature_id` left alone (a separate link-validation concern). Node selection uses `featureNature` so part/counted/single each land on the right node.
+`backfillRegisterSpecNodes(entry)` (kit/repeated-emit.ts, called in `catalogEntries` after `resolveRepeatedFeatures`): for every LINKED register, ensure its target spec node exists (empty until a spec interval is authored). RAW + category rows skipped; unresolvable `feature_id` left alone (a separate link-validation concern). Node selection uses `featureNature` so part/counted/single each land on the right node.
 
 ## Real catalog entries with registers
 

@@ -41,13 +41,40 @@ ac_phase_three_out:
       # (out = yield, in = input) + period (absent = lifetime, daily = *_today).
       active_energy:
         intervals:
-          - interval: { interval_kind: measurable, flow_direction: out, min: 0, unit: kWh, resolution: 0.01 } # total_yield
-          - interval: { interval_kind: measurable, flow_direction: out, period: daily, min: 0, unit: kWh, resolution: 0.01 } # total_yield_today
-          - interval: { interval_kind: measurable, flow_direction: in, min: 0, unit: kWh, resolution: 0.01 } # input_energy
-          - interval: { interval_kind: measurable, flow_direction: in, period: daily, min: 0, unit: kWh, resolution: 0.01 } # input_energy_today
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: out,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # total_yield
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: out,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # total_yield_today
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: in,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # input_energy
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: in,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # input_energy_today
       reactive_power:
         intervals:
-          - interval: { interval_kind: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
+          - interval:
+              { interval_kind: measurable, min: -11, max: 11, unit: kvar, resolution: 0.001 }
       active_power:
         # power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry.
         # With no nominal the symmetric export/import rows collapse to one signed range per tier.
@@ -97,8 +124,7 @@ ac_phase_three_out:
           intervals:
             - interval: { rating: continuous, nominal: 3333, max: 3666 }
               condition:
-                - interval_item:
-                    { feature: enclosure, property: temperature, interval: continuous }
+                - interval_item: { feature: enclosure, property: temperature, interval: continuous }
                 # TODO(altitude-derate): per-phase full power only below 2000 m — same deferred
                 # altitude band as the combined total above.
             - interval: { interval_kind: measurable, min: 0, max: 5, unit: kW }
@@ -121,10 +147,36 @@ ac_phase_three_grid:
       # in = grid consumption) + period (absent = lifetime, daily = *_today).
       active_energy:
         intervals:
-          - interval: { interval_kind: measurable, flow_direction: out, min: 0, unit: kWh, resolution: 0.01 } # feed_in_energy
-          - interval: { interval_kind: measurable, flow_direction: out, period: daily, min: 0, unit: kWh, resolution: 0.01 } # feed_in_energy_today
-          - interval: { interval_kind: measurable, flow_direction: in, min: 0, unit: kWh, resolution: 0.01 } # grid_consumption_energy
-          - interval: { interval_kind: measurable, flow_direction: in, period: daily, min: 0, unit: kWh, resolution: 0.01 } # grid_consumption_energy_today
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: out,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # feed_in_energy
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: out,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # feed_in_energy_today
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: in,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # grid_consumption_energy
+          - interval: {
+                interval_kind: measurable,
+                flow_direction: in,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # grid_consumption_energy_today
     default:
       ac_phase:
         active_power:
@@ -152,7 +204,13 @@ pv_tracker:
       active_energy:
         intervals:
           - interval: { interval_kind: measurable, min: 0, unit: kWh, resolution: 0.01 } # lifetime
-          - interval: { interval_kind: measurable, period: daily, min: 0, unit: kWh, resolution: 0.01 } # solar_energy_today
+          - interval: {
+                interval_kind: measurable,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # solar_energy_today
     default:
       voltage:
         intervals:
@@ -171,7 +229,7 @@ pv_tracker:
         intervals:
           - interval: { rating: continuous, max: 10000 }
     # instances: SPARSE array of per-string overrides, each tagged with its 1-based `ordinal`
-    # (the join key), overlaid ROW-level onto `default`: this row replaces only the `operating`
+    # (the join key), overlaid ROW-level onto `default`: this row replaces only the `continuous`
     # interval (same rating); survival/startup/mppt rows, current and measurable span stay inherited.
     instances:
       - ordinal: 3
@@ -208,7 +266,13 @@ ac_phase_three_eps: # separate EPS port — export only; its own per-phase telem
             - interval: { interval_kind: measurable, min: 0, max: 50, resolution: 0.01 }
         active_power:
           intervals:
-            - interval: { interval_kind: measurable, min: -3.3, max: 3.3, unit: kW, resolution: 0.001 } # unit override — canonical is W
+            - interval: {
+                  interval_kind: measurable,
+                  min: -3.3,
+                  max: 3.3,
+                  unit: kW,
+                  resolution: 0.001,
+                } # unit override — canonical is W
 
 ac_phase_three_load: # household load the box meters (foxess load_power) — a concrete feature-of-interest
   identity:
@@ -226,7 +290,13 @@ ac_phase_three_load: # household load the box meters (foxess load_power) — a c
       active_energy:
         intervals:
           - interval: { interval_kind: measurable, min: 0, unit: kWh, resolution: 0.01 } # lifetime
-          - interval: { interval_kind: measurable, period: daily, min: 0, unit: kWh, resolution: 0.01 } # load_energy_today
+          - interval: {
+                interval_kind: measurable,
+                period: daily,
+                min: 0,
+                unit: kWh,
+                resolution: 0.01,
+              } # load_energy_today
     default:
       ac_phase:
         active_power:

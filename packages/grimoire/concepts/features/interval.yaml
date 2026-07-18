@@ -1,10 +1,11 @@
 # An INTERVAL — one rated/characterised interval of a single quantity on a feature, the item
-# type of a specification's `intervals` list. A RATING interval: a class-named region of the THING's own
-# behaviour — distinct from measuring-interval (VIM 4.7, what an INSTRUMENT can read) and bare
-# `range` ({min,max}, no class/nameplate/conditions).
+# type of a specification's `intervals` list. `interval_kind` is the closed top classifier:
+# a RATING interval (a class-named region of the THING's own behaviour), a MEASURABLE interval
+# (VIM 4.7, what an INSTRUMENT can read — folded in here, not a separate feature), or a ZONE
+# (a named condition anchor); vs bare `range` ({min,max}, no class/nameplate/conditions).
 # Band class = ORTHOGONAL, co-occurrable axes (fields, never a merged classifier slug — e.g.
-# { rating: operating, mode: mppt, min: 175, max: 850 }): universal `rating`, domain-own `mode`,
-# duration `duration` in seconds (a short-term "peak" is operating + duration, CIM
+# { rating: continuous, mode: mppt, min: 175, max: 850 }): `rating` tier, domain-own `mode`,
+# duration `duration` in seconds (a short-term "peak" is rating: short_term + duration, CIM
 # acceptableDuration). `identity.slug` on a band is a REFERENCE HANDLE only (an interval_item
 # target, an enumeration member, a titled named band) — never a classifier (guard-interval-slugs).
 # Bounds: nominal/min/max come from nominal_range (partial — one-sided or nominal-only legal);
@@ -13,7 +14,10 @@
 # a commissioning choice is intervals gated on one single-valued settings property — the site
 # sets it once and every interval conditioned on it resolves (no separate `variant` grouping).
 title: { en: Intervals, pt: Intervalos }
-description: { en: "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope." }
+description:
+  {
+    en: "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope.",
+  }
 concept_settings:
   compose:
     - nominal_range # partial: nominal/min/max, defined once
@@ -32,11 +36,11 @@ prop:
   severity: # optional classifier axis — how good/bad it is to sit in this band; add per interval_kind as needed, omit where meaningless
     title: { en: Severity }
     description:
-      en: "Optional health grade of being in this band, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. A CLASSIFIER, not identity: two intervals differing only in severity are still bands of one series. Absent mirrors absent duration = continuous. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent."
+      en: 'Optional health grade of being in this band, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. A CLASSIFIER, not identity: two intervals differing only in severity are still bands of one series. Absent mirrors absent duration = continuous. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent.'
   flow_direction: # optional IDENTITY axis — which flow channel this interval measures
     title: { en: Flow direction }
     description:
-      en: "Optional flow-channel identity: in / out / net. An IDENTITY axis, not a classifier — two intervals differing in flow_direction are SEPARATE channels (distinct registers, distinct sensor ids), not bands of one series. `in`/`out` are separate counters; `net` is one signed channel (the delta, sign = direction). Absent = undirected (voltage, temperature). Composes into the sensor id/key. Crosswalks to CIM FlowDirectionKind."
+      en: 'Optional flow-channel identity: in / out / net. An IDENTITY axis, not a classifier — two intervals differing in flow_direction are SEPARATE channels (distinct registers, distinct sensor ids), not bands of one series. `in`/`out` are separate counters; `net` is one signed channel (the delta, sign = direction). Absent = undirected (voltage, temperature). Composes into the sensor id/key. Crosswalks to CIM FlowDirectionKind.'
   rating: # the tier of an interval_kind: rating band (closed, universal)
     title: { en: Rating }
     description:
@@ -45,10 +49,10 @@ prop:
   duration: {} # duration axis, seconds — absent = continuous rating (CIM acceptableDuration)
   tolerance: {}
   margin: {}
-  # Instrument-only fields — the metrology of a `rating: measurable` interval (VIM 4.7 measuring
+  # Instrument-only fields — the metrology of an `interval_kind: measurable` interval (VIM 4.7 measuring
   # interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band
-  # (the fold of the dissolved `measurement` feature — a measuring range is a rating member, not a
-  # separate slot). Omit on a behaviour band (operating/survival/…).
+  # (the fold of the dissolved `measurement` feature — a measuring range is an interval_kind, not a
+  # separate slot). Omit on a behaviour band (rating: continuous/survival/…).
   resolution: {} # VIM 4.14 quantization step
   max_permissible_error: {} # VIM 4.26 coarse accuracy figure
   channel: {} # sub-channel slug when one instrument exposes several ranges of the same quantity

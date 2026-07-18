@@ -1,6 +1,6 @@
 # A RANGE — the thing's own rated capability envelope, an edge (min and/or max) it is rated to range
-# within. Sub-graded by the `rating` tier (operating/survival/startup/protection_required) and, for
-# a time-bounded tier, `limit_class` + `duration`. Protection is a one-sided rating (the far end of
+# within. Sub-graded by the `rating` tier (continuous/intermittent/short_term/startup/shutdown/
+# survival/protection_required/nominal) and, for a time-bounded tier, `duration`. Protection is a one-sided rating (the far end of
 # the ramp), NOT a separate kind — that split has no structural signature and only inter-mixes, so
 # there is no `limit` kind. Structural signature: at least one of min/max.
 title: { en: Rating, pt: Classificação }

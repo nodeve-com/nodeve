@@ -1,6 +1,6 @@
 # COOLING — an air conditioner's defining feature, its rated cooling output. One quantity,
-# cooling_capacity (a thermal power). `is_specification: true` — its value is a spec (rated intervals +
-# measurements). Required where composed: it's what an A/C IS.
+# cooling_capacity (a thermal power). `is_specification: true` — its value is a spec (its `intervals`
+# list — rated bands and measurable spans). Required where composed: it's what an A/C IS.
 concept_settings:
   is_specification: true
 prop:

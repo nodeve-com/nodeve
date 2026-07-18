@@ -3,7 +3,7 @@
 # ac_phase. A single line carries one measured prop, `voltage` — cited from property by name, not picked
 # from `electrical` (that would drag in current/active_power a line-to-line pair doesn't have). The
 # AB/BC/CA identity is the REPEATED feature's ordinal (meter.ts gives the ac_line slot count 3), never
-# a field here: the feature describes ONE line. Flat measured quantity-kind — intervals/measurements are
+# a field here: the feature describes ONE line. Flat measured quantity-kind — `intervals` are
 # authored on the catalog entry. Add more props if a datasheet states them.
 title:
   en: AC line
@@ -30,5 +30,3 @@ concept_settings:
 prop:
   voltage: {}
     # - phase angle
-
-

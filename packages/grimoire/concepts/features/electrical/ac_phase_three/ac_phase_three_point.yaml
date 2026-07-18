@@ -13,7 +13,7 @@ description:
 #
 # feature_spec:
 #   combined:              # the whole three-phase point — the non-derivable system quantities
-#     frequency: { intervals: [{ interval: { rating: operating, min: 45, max: 65 } }] }
+#     frequency: { intervals: [{ interval: { rating: continuous, min: 45, max: 65 } }] }
 #   default:               # per-part template; a parent's default.<kind> refines <kind-feature>.combined
 #     ac_phase: { voltage: { intervals: [...] } }
 #     ac_line:  { voltage: { intervals: [...] } }

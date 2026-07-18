@@ -5,7 +5,7 @@ import { isPlainObject } from 'remeda';
  *  (a `condition.interval_item` names `{feature, property, interval}`; downstream sensors point at
  *  bands the same way); authored YAML rarely spells it — an unslugged row de-sugars from its
  *  `rating` axis. De-sugar runs FIRST so two bare rows sharing a rating collide and force explicit
- *  slugs — which guard-interval-slugs then requires to be defined vocabulary (a `limit_class`
+ *  slugs — which guard-interval-slugs then requires to be defined vocabulary (a `rating`
  *  member, another enum member, an interval_item target, or a titled band), never free prose. A
  *  rating-less row (mode-only I-V points) stays unslugged. Mutates the resolved entry in place;
  *  runs AFTER resolveRepeatedFeatures so the filled part/instance rows are covered too. */

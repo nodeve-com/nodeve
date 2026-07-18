@@ -101,7 +101,7 @@ function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
 /** Ensure a spec node exists for every LINKED modbus register: a register carrying a measurand link
  *  (feature_id + quantity_kind) reads one quantity of the feature tree, so that quantity's spec node
  *  must exist as the link target — create it (empty until a spec interval is authored; a measuring
- *  range is a `rating: measurable` interval, NOT a separate slot). RAW registers (raw_name only, no
+ *  range is an `interval_kind: measurable` interval, NOT a separate slot). RAW registers (raw_name only, no
  *  quantity_kind) and category registers (enum-valued `state`/`fault`, no quantity_kind) are
  *  deliberately unlinked and skipped. Mutates the resolved entry in place; runs AFTER
  *  resolveRepeatedFeatures so the part/instance nodes a link targets already exist. */

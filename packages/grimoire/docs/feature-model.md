@@ -12,7 +12,7 @@ A feature is **single**, **parted**, or **counted** — the last two are the rep
 - **parted (`ac_phase_three_*`): `{ combined?, default?, part? }`** — a FIXED named instance set. The set lives once in `concepts/parts/<slug>.yaml` (kind → names, e.g. `ac_phase: [a,b,c]` + `ac_line: [ab,bc,ca]`); the feature def references it via `part:`. No `count` (the parts map fixes the set), no `instances`. Authored `default` is KIND-keyed (`default.ac_phase.…`); authored `part` is NAME-keyed sparse overrides (`part.c.…`).
 - **counted (`pv_tracker`): `{ count, combined?, default?, instances? }`** — discrete, countable instances (`repeated: true` on the feature def). `instances?` are sparse `{ordinal}`-tagged (1-based) overrides of `default`.
 
-In both repeated forms `combined?` is the non-derivable whole-feature total, and `default` is **authoring-only**: the generated catalog never exports it. The emit resolves each part/instance to its filled node. `part.<name>` = its kind's default ⊕ the authored part override, with all kinds' parts merged into the one `part` map; `instances[n]` = one row per `count`, `default` ⊕ its ordinal's override. The overlay is a deep-merge with ROW-level `intervals` semantics: an override row replaces the default row sharing its band key (`rating`+`mode`). Unstated rows stay inherited; unmatched rows append; an authored empty array is an explicit clear. Other arrays replace wholesale.
+In both repeated forms `combined?` is the non-derivable whole-feature total, and `default` is **authoring-only**: the generated catalog never exports it. The emit resolves each part/instance to its filled node. `part.<name>` = its kind's default ⊕ the authored part override, with all kinds' parts merged into the one `part` map; `instances[n]` = one row per `count`, `default` ⊕ its ordinal's override. The overlay is a deep-merge with ROW-level `intervals` semantics: an override row replaces the default row sharing its band key (`interval_kind`+`rating`+`mode`+`flow_direction`+`period`). Unstated rows stay inherited; unmatched rows append; an authored empty array is an explicit clear. Other arrays replace wholesale.
 
 **`count: 1` ≠ count-less.** `count: 1` is _one discrete instance_ (a Shelly relay box with a single power+relay circuit — same _kind_ of thing as `count: 2`, just one of it). Count-less is _the single whole_ (no instance to count). Rule: never write `count: 1` for a whole; never omit `count` for something you could ever see two of.
 
@@ -41,16 +41,19 @@ A feature body is a spec-map of its quantities (each an `intervals` list — see
 
 ### interval (item of `intervals`)
 
-A rated/characterised region named on two orthogonal, co-occurrable band axes:
+A rated/characterised region named on orthogonal, co-occurrable band axes:
 
-- **`rating?`** — universal rated-envelope axis: `operating` / `survival` / `startup` / `protection_required`.
+- **`interval_kind?`** — the closed TOP classifier (`enumeration/interval_kind`): `measurable` (instrument-readable span), `rating` (the thing's own rated band), `zone` (a named condition anchor). DERIVED as `rating` whenever a rating tier is set; `measurable`/`zone` authored directly.
+- **`rating?`** — the tier of a `rating` band (`enumeration/rating`): `continuous` / `intermittent` / `short_term` / `startup` / `shutdown` / `survival` / `protection_required` / `nominal` (a bounds-free nameplate value).
+- **`flow_direction?`** — an IDENTITY axis (`enumeration/flow_direction`): `in` / `out` / `net`. Two intervals differing here are SEPARATE channels (distinct registers + sensor ids), not bands of one series.
+- **`period?`** / **`severity?`** — the accumulation window, and an optional health grade (desirable → nominal → undesirable, crosswalking RFC 5424 / ISA-18.2).
 - **`mode?`** — an INTRINSIC region of the quantity's OWN axis (an MPPT window `mppt`/`mppt_fullpower`, an I-V curve point `mpp`/`open_circuit`).
 
 plus `nominal?`, one-sided `min?`/`max?`, `tolerance?`, `margin?`, `unit?`, `conditions?`.
 
-A **measuring range IS an interval** — `rating: measurable` (VIM 4.7 / ssn `MeasurementRange`). The dissolved `measurement` feature folded in here: the ONE `intervals` list holds both a thing's own behaviour bands and a sensor's readable span, told apart by the `rating` axis. Instrument-only fields (`resolution`, `max_permissible_error`, `channel`) are optional interval props, authored ONLY on a `measurable` band.
+A **measuring range IS an interval** — `interval_kind: measurable` (VIM 4.7 / ssn `MeasurementRange`). The dissolved `measurement` feature folded in here: the ONE `intervals` list holds both a thing's own behaviour bands and a sensor's readable span, told apart by `interval_kind`. Instrument-only fields (`resolution`, `max_permissible_error`, `channel`) are optional interval props, authored ONLY on a `measurable` band.
 
-**Interval identity.** Every emitted interval carries an `identity.slug` — its addressable handle (a `condition.interval_item` names `{feature, property, interval}` by it). Unslugged rows DE-SUGAR from their `rating` axis at generate (`kit/repeated-emit.ts` `desugarIntervalSlugs`, after part/instance resolution), so two bare rows sharing a rating collide; slugs must be unique per `intervals` list or the bake fails — author distinct slugs (e.g. the gating `grid_region` member) on condition-split bands. A rating-less row (mode-only I-V points) stays unslugged.
+**Interval identity.** Every emitted interval carries an `identity.slug` — its addressable handle (a `condition.interval_item` names `{feature, property, interval}` by it). Unslugged rows DE-SUGAR from their identity axes (tier/kind + `flow_direction`/`period`/`mode` + condition tokens) at generate (`kit/interval-slugs.ts` `desugarIntervalSlugs`, after part/instance resolution), so two bare rows sharing every axis collide; slugs must be unique per `intervals` list or the bake fails — author distinct slugs (e.g. the gating `grid_region` member) on condition-split bands. A row with no addressable axis (the one undirected measurable channel) stays unslugged.
 
 **mode vs condition.** `mode` is intrinsic to the quantity. An EXTERNAL driver that merely gates WHEN a band is valid (the unit's run mode making a compressor's draw apply) is NOT a mode — it's a categorical `condition`.
 

@@ -1,13 +1,13 @@
 # The interval's DURATION axis — how long the quantity may sit inside the band, SECONDS (float, the
 # SI base for time; house `_ms` timing fields are elsewhere, but a rated duration is canonical
-# seconds). Absent = unbounded: a continuous rating (limit_class continuous). A short-term "peak"
-# is the SAME band class (rating: operating) carrying a duration bound — no new rating member, no
-# free-form classifier slug; the limit_class tier names the tier, this field times it. Borrowed from
+# seconds). Absent = unbounded: a continuous rating. A time-bounded band (rating: short_term /
+# intermittent) carries a duration bound — no free-form classifier slug; the rating tier names the
+# tier, this field times it. Borrowed from
 # CIM OperationalLimitType.acceptableDuration (seconds there too); IEC 60034-1 duty analog is S2
 # short-time vs S1 continuous.
 title: { en: Duration, pt: Duração }
 description:
-  en: "How long the quantity may sit inside this band, seconds — absent means the band is unbounded in time (a continuous rating)."
+  en: 'How long the quantity may sit inside this band, seconds — absent means the band is unbounded in time (a continuous rating).'
 schema: { type: number, exclusiveMinimum: 0 }
 refs:
   - { registry_id: cim, term: OperationalLimitType.acceptableDuration, match: close }
