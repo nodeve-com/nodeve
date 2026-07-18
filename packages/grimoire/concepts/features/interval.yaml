@@ -1,12 +1,14 @@
 # An INTERVAL — one rated/characterised interval of a single quantity on a feature, the item
-# type of a specification's `intervals` list. `interval_kind` is the closed top classifier:
-# a RATING interval (a class-named region of the THING's own behaviour), a MEASURABLE interval
-# (VIM 4.7, what an INSTRUMENT can read — folded in here, not a separate feature), or a ZONE
-# (a named condition anchor); vs bare `range` ({min,max}, no class/nameplate/conditions).
+# type of a specification's `intervals` list. `interval_kind` is the closed top classifier — three
+# STATELESS (f(reading) → in-band?): a RATING interval (a class-named region of the THING's own
+# behaviour), a MEASURABLE interval (VIM 4.7, what an INSTRUMENT can read — folded in here, not a
+# separate feature), a ZONE (a named operating region → a boolean sensor); and one STATEFUL
+# (f(reading, prior_state) → on/off): a THRESHOLD (a hysteretic trigger). vs bare `range`.
 # Band class = axes (fields, never a merged classifier slug). The interval_kind base is ONE of:
-# `rating` tier (spec-sheet capability, e.g. { rating: continuous, min: 175, max: 850 }), `zone`
-# named region (actual expectation / operating point, e.g. { zone: mppt, min: 120, max: 950 }), or a
-# bare `measurable` span. Co-occurring identity axes: `flow_direction`, `period`; plus optional
+# `rating` tier (spec-sheet capability, e.g. { rating: continuous, min: 175, max: 850 }), a `zone`
+# named region (actual operating point, e.g. { zone: mppt, min: 120, max: 950 }), a `threshold`
+# (bound + direction + hysteresis, e.g. { zone: running, bound: 140, direction: above, hysteresis: 50 }),
+# or a bare `measurable` span. Co-occurring identity axes: `flow_direction`, `period`; plus optional
 # duration `duration` in seconds (a short-term "peak" is rating: short_term + duration, CIM
 # acceptableDuration). `identity.slug` on a band is a REFERENCE HANDLE only (an interval_item
 # target, an enumeration member, a titled named band) — never a classifier (guard-interval-slugs).
@@ -18,13 +20,13 @@
 title: { en: Intervals, pt: Intervalos }
 description:
   {
-    en: "Rated/characterised regions: operating/survival/startup bands, MPPT window, conditional derates — the THING's own behaviour envelope.",
+    en: "Regions of a quantity: rating tiers (continuous/survival/…), named zones (MPPT window, running), measurable spans, and hysteretic thresholds — the THING's behaviour envelope and operating status.",
   }
 concept_settings:
   compose:
     - nominal_range # partial: nominal/min/max, defined once
 enums:
-  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone. DERIVED as `rating` from a rating tier, as `zone` from a zone value; measurable authored directly.
+  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone / threshold. DERIVED — `rating` from a rating tier, `zone` from a zone name, `threshold` from a `direction`; measurable authored directly.
   - rating # the rated tier (enumeration/rating): continuous/intermittent/short_term/startup/shutdown/survival/protection_required/nominal
   - zone # named operating region (enumeration/zone): mppt/mpp/open_circuit/off/idle/running … → interval_kind: zone, a boolean "in this region" sensor
   - severity # OPTIONAL health grade (enumeration/severity): desirable best/better/good … absent=nominal … undesirable notice/caution/warning/critical/fatal
