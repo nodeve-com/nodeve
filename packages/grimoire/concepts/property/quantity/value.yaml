@@ -1,6 +1,6 @@
 title: { en: Value, pt: Valor }
 description:
-  en: "The magnitude of a valued quantity (a qudt:Quantity), in the stated unit — the ONE role-neutral point field of an interval. Alone it is an exact point; with a band (tolerance/margin/min/max) it is the designated centre that band sits around. The role comes from co-present axes: a `zone` operating point (Vmp, Voc), or a rated/designated centre graded `severity: nominal`. (A `threshold`'s switch is its `min`/`max` edges + `trigger_on`, not `value`; a threshold's `value` is only an optional nominal setpoint.)"
+  en: "The magnitude of a valued quantity (a qudt:Quantity), in the stated unit — the ONE role-neutral point field of an interval. Alone it is an exact point; with a band (tolerance/margin/min/max) it is the designated centre that band sits around. The role comes from co-present axes: a `zone` operating point (Vmp, Voc), or a rated/designated centre graded `severity: nominal`. (A stateful zone's switch is its `min`/`max` edges + `trigger_on`, not `value`; its `value` is only an optional nominal setpoint.)"
 schema: { type: number }
 refs:
   - { registry_id: qudt_quantity_kind, term: Quantity, match: close }

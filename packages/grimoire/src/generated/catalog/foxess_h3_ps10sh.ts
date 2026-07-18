@@ -109,21 +109,21 @@ const _s19 = [
 	_s12
 ] as const;
 const _s20 = {
+	"intervalKind": "zone",
+	"max": 140,
+	"min": 90,
+	"triggerOn": "above",
+	"zone": "running"
+} as const;
+const _s21 = {
 	"intervalKind": "measurable",
 	"max": 3.3,
 	"min": -3.3,
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s21 = {
-	"interval": _s6
-} as const;
 const _s22 = {
-	"intervalKind": "threshold",
-	"max": 140,
-	"min": 90,
-	"triggerOn": "above",
-	"zone": "running"
+	"interval": _s6
 } as const;
 const _s23 = {
 	"intervalKind": "measurable",
@@ -182,7 +182,7 @@ const _s34 = [
 	_s29
 ] as const;
 const _s35 = {
-	"interval": _s20
+	"interval": _s21
 } as const;
 const _s36 = [
 	_s35
@@ -329,25 +329,25 @@ const _s57 = {
 	"activePower": _s48
 } as const;
 const _s58 = {
-	"activePower": _s51
+	"identity": {
+		"slug": "running"
+	},
+	"interval": _s20
 } as const;
 const _s59 = {
+	"activePower": _s51
+} as const;
+const _s60 = {
 	"identity": {
 		"slug": "daily"
 	},
 	"interval": _s23
 } as const;
-const _s60 = {
+const _s61 = {
 	"identity": {
 		"slug": "in"
 	},
 	"interval": _s24
-} as const;
-const _s61 = {
-	"identity": {
-		"slug": "running"
-	},
-	"interval": _s22
 } as const;
 const _s62 = {
 	"identity": {
@@ -436,8 +436,8 @@ const _s70 = {
 	"interval": _s9
 } as const;
 const _s71 = [
-	_s21,
-	_s59
+	_s22,
+	_s60
 ] as const;
 const _s72 = {
 	"intervals": _s71
@@ -497,7 +497,7 @@ const _s85 = {
 const _s86 = [
 	_s62,
 	_s66,
-	_s60,
+	_s61,
 	_s65
 ] as const;
 const _s87 = {
@@ -512,7 +512,7 @@ const _s88 = {
 const _s89 = [
 	_s63,
 	_s42,
-	_s61,
+	_s58,
 	_s37,
 	_s55,
 	_s18
@@ -597,9 +597,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s58,
-				"b": _s58,
-				"c": _s58
+				"a": _s59,
+				"b": _s59,
+				"c": _s59
 			}
 		},
 		"identity": {
@@ -1488,7 +1488,7 @@ export default {
 					"voltage": {
 						"intervals": [
 							_s42,
-							_s61,
+							_s58,
 							_s37,
 							_s55,
 							_s18,

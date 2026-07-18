@@ -66,7 +66,7 @@ export function autoSlug(row: Obj): string | undefined {
 		band.value !== undefined &&
 		band.min === undefined &&
 		band.max === undefined &&
-		band.trigger_on === undefined // a `value` + `trigger_on` is a threshold trip, not a nameplate
+		band.trigger_on === undefined // a `value` + `trigger_on` is a stateful trigger's setpoint, not a nameplate
 	)
 		tokens.push('nominal');
 	if (typeof band.severity === 'string' && band.severity !== 'nominal') tokens.push(band.severity);
@@ -98,16 +98,18 @@ function slugIntervalRows(rows: unknown[], at: string): void {
 		if (!isPlainObject(row)) return;
 		const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
 		foldFractionToMargin(band); // verbatim multiplier sugar → canonical ±fraction delta
-		// interval_kind may be authored explicitly on any row; only DERIVE it when omitted: `threshold`
-		// from a `trigger_on` (the stateful hysteretic trigger); `rating` from a rating tier OR a bounds-free
-		// `value` (a bare nameplate value IS a rating); `zone` from a zone name. `measurable` isn't derivable
-		// from bounds, so a bare span authors it directly.
+		// interval_kind may be authored explicitly on any row; only DERIVE it when omitted: `zone` from a
+		// zone name (a `trigger_on` on it makes that zone a STATEFUL hysteretic trigger — an axis, not a
+		// separate kind); `rating` from a rating tier OR a bounds-free `value` (a bare nameplate value IS a
+		// rating). `measurable` isn't derivable from bounds, so a bare span authors it directly.
 		if (band.interval_kind === undefined) {
-			if (typeof band.trigger_on === 'string') band.interval_kind = 'threshold';
-			else if (typeof band.zone === 'string') band.interval_kind = 'zone';
+			if (typeof band.zone === 'string') band.interval_kind = 'zone';
 			else if (
 				typeof band.rating === 'string' ||
-				(band.value !== undefined && band.min === undefined && band.max === undefined)
+				(band.value !== undefined &&
+					band.min === undefined &&
+					band.max === undefined &&
+					band.trigger_on === undefined) // a `value` + `trigger_on` is a stateful setpoint, not a nameplate
 			)
 				band.interval_kind = 'rating';
 		}

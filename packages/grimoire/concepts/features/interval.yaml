@@ -1,13 +1,15 @@
 # An INTERVAL — one rated/characterised interval of a single quantity on a feature, the item
 # type of a specification's `intervals` list. `interval_kind` is the closed top classifier — three
-# STATELESS (f(reading) → in-band?): a RATING interval (a class-named region of the THING's own
-# behaviour), a MEASURABLE interval (VIM 4.7, what an INSTRUMENT can read — folded in here, not a
-# separate feature), a ZONE (a named operating region → a boolean sensor); and one STATEFUL
-# (f(reading, prior_state) → on/off): a THRESHOLD (a hysteretic trigger). vs bare `range`.
+# kinds: a RATING interval (a class-named region of the THING's own behaviour), a MEASURABLE interval
+# (VIM 4.7, what an INSTRUMENT can read — folded in here, not a separate feature), a ZONE (a named
+# operating region → a boolean sensor). All are STATELESS (f(reading) → in-band?) UNTIL an interval
+# carries `trigger_on` — that one axis (orthogonal to interval_kind, most often on a zone whose name
+# handles the sensor, but a startup/shutdown rating takes it too) makes it a STATEFUL hysteretic trigger
+# (f(reading, prior_state) → on/off: a startup/thermostat/run-command), no separate kind. vs bare `range`.
 # Band class = axes (fields, never a merged classifier slug). The interval_kind base is ONE of:
 # `rating` tier (spec-sheet capability, e.g. { rating: continuous, min: 175, max: 850 }), a `zone`
-# named region (actual operating point, e.g. { zone: mppt, min: 120, max: 950 }), a `threshold`
-# (min/max edges + `trigger_on`, e.g. { zone: running, trigger_on: above, min: 90, max: 140 } — ON above max, off below min),
+# named region (actual operating point, e.g. { zone: mppt, min: 120, max: 950 }; add `trigger_on` for a
+# stateful trigger, e.g. { zone: running, trigger_on: above, min: 90, max: 140 } — ON above max, off below min),
 # or a bare `measurable` span. A rated/designated centre is a bare `value` graded `severity: nominal`
 # (the tolerated band sits around it). Co-occurring identity axes: `flow_direction`, `period`; plus optional
 # duration `duration` in seconds (a short-term "peak" is rating: short_term + duration, CIM
@@ -16,7 +18,7 @@
 # Bounds: value/min/max come from valued_range (partial — one-sided or value-only legal). Band
 # around the value, two families: ABSOLUTE `tolerance` (± in unit) / `tolerance_lower` / `tolerance_upper`,
 # and RELATIVE `margin` (±fraction) / `margin_lower` / `margin_upper` (the `fraction_*` multiplier sugar
-# desugars into margin_lower/upper). A `threshold`'s two hysteresis edges are just `min`/`max` (the
+# desugars into margin_lower/upper). A stateful zone's two hysteresis edges are just `min`/`max` (the
 # deadband/hold zone); `trigger_on` picks the ON side. Numbers in the kind's canonical
 # SI unit unless `unit` overrides. `conditions` gate the interval (none = reference/nameplate);
 # a commissioning choice is intervals gated on one single-valued settings property — the site
@@ -30,7 +32,7 @@ concept_settings:
   compose:
     - valued_range # partial: value/min/max + band, defined once
 enums:
-  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone / threshold. Authorable explicitly; omitted, it's DERIVED — `rating` from a rating tier, `zone` from a zone name, `threshold` from a `trigger_on`; measurable isn't derivable so a bare span authors it.
+  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone. Authorable explicitly; omitted, it's DERIVED — `rating` from a rating tier, `zone` from a zone name; measurable isn't derivable so a bare span authors it. A `trigger_on` on a zone makes it stateful — an axis, not a kind.
   - rating # the rated tier (enumeration/rating): continuous/intermittent/short_term/startup/shutdown/survival/protection_required
   - zone # named operating region (enumeration/zone): mppt/mpp/open_circuit/off/idle/running … → interval_kind: zone, a boolean "in this region" sensor
   - severity # OPTIONAL health grade (enumeration/severity): desirable best/better/good … nominal (centre) … undesirable notice/caution/warning/critical/fatal; absent = not graded
@@ -41,7 +43,7 @@ prop:
   interval_kind: # what the interval IS — the closed top classifier
     title: { en: Interval kind }
     description:
-      en: "What the interval IS. Three are STATELESS — `f(reading) → in-band?`, no history: `measurable` (instrument readable span), `rating` (a rated capability tier), `zone` (a named operating region → a boolean sensor). One is STATEFUL — `f(reading, prior_state) → on/off`: `threshold` (a hysteretic trigger: `min`/`max` hysteresis edges + `trigger_on` picking the ON side, a startup/run-command/thermostat/hygrostat). Authorable explicitly on any row; omit it and it's DERIVED from the base axes — `rating` from a rating tier OR a bounds-free bare `value` (a nameplate), `zone` from a zone name, `threshold` from a `trigger_on`; `measurable` isn't derivable from bounds alone, so a bare span authors it."
+      en: "What the interval IS — three kinds, all STATELESS (`f(reading) → in-band?`, no history) by default: `measurable` (instrument readable span), `rating` (a rated capability tier), `zone` (a named operating region → a boolean sensor). Any interval carrying `trigger_on` becomes STATEFUL (`f(reading, prior_state) → on/off`) — a hysteretic trigger whose `min`/`max` are the hysteresis edges and `trigger_on` picks the ON side (a startup/run-command/thermostat/hygrostat); that is an axis orthogonal to interval_kind (most often on a zone, whose name handles the boolean sensor; a startup/shutdown rating takes it too), not a fourth kind. Authorable explicitly on any row; omit it and it's DERIVED from the base axes — `rating` from a rating tier OR a bounds-free bare `value` (a nameplate), `zone` from a zone name; `measurable` isn't derivable from bounds alone, so a bare span authors it."
   severity: # optional IDENTITY axis — grades a narrower sub-range of the base region into its own addressable band
     title: { en: Severity }
     description:
@@ -57,17 +59,18 @@ prop:
   zone: # the named operating region of an interval_kind: zone band
     title: { en: Zone }
     description:
-      en: "The named operating region of an `interval_kind: zone` band — a region of THIS quantity's own axis: an electrical operating point/window (mppt, mpp, open_circuit, short_circuit) or a lifecycle status band (off, idle, running). Unlike a `rating` (the capability envelope), a zone captures where it ACTUALLY sits — a compressor's normal running draw vs its rated max. Each yields a boolean 'is the quantity in this region' sensor and may also anchor an interval_item. Setting it derives interval_kind: zone. Replaces the former free-form `mode`. Narrower sub-ranges grade via `severity`. A zone is STATELESS; for a stateful trigger (startup) use `interval_kind: threshold` below."
+      en: "The named operating region of an `interval_kind: zone` band — a region of THIS quantity's own axis: an electrical operating point/window (mppt, mpp, open_circuit, short_circuit) or a lifecycle status band (off, idle, running). Unlike a `rating` (the capability envelope), a zone captures where it ACTUALLY sits — a compressor's normal running draw vs its rated max. Each yields a boolean 'is the quantity in this region' sensor and may also anchor an interval_item. Setting it derives interval_kind: zone. Replaces the former free-form `mode`. Narrower sub-ranges grade via `severity`. A zone is STATELESS by default; add `trigger_on` (below) to make THIS zone a stateful hysteretic trigger (startup, run-command)."
   duration: {} # duration axis, seconds — absent = continuous rating (CIM acceptableDuration)
 
-  # THRESHOLD-kind fields (interval_kind: threshold) — a STATEFUL hysteretic trigger, the one interval
-  # that isn't a stateless f(reading): its boolean output depends on the prior on/off state. Folds in
-  # the former standalone `threshold` feature. Its two edges ARE `min`/`max` (composed from valued_range
-  # — the same fields a stateless band uses): the deadband `[min,max]` is the HOLD zone, the ON region is
-  # OUTSIDE it. `trigger_on` picks the side: `below` ⇒ ON below `min`, OFF above `max` (heat: on cold,
-  # off warm); `above` ⇒ ON above `max`, OFF below `min` (cool / over-limit trip). `value` is an OPTIONAL
-  # nominal setpoint (grade it `severity: nominal`) — display context, not part of the switch logic.
-  trigger_on: {} # above | below — which side is ON; the one irreducible bit min/max can't encode
+  # STATEFULNESS axis — `trigger_on` on ANY interval turns it into a STATEFUL hysteretic trigger,
+  # the one interval whose boolean output depends on the prior on/off state (f(reading, prior_state)).
+  # It is an axis orthogonal to interval_kind, NOT a separate kind — most often on a zone (whose name
+  # handles the boolean sensor), but a startup/shutdown rating takes it too. Its two edges ARE `min`/`max` (composed from
+  # valued_range — the same fields a stateless band uses): the deadband `[min,max]` is the HOLD zone, the
+  # ON region is OUTSIDE it. `trigger_on` picks the side: `below` ⇒ ON below `min`, OFF above `max`
+  # (heat: on cold, off warm); `above` ⇒ ON above `max`, OFF below `min` (cool / over-limit trip).
+  # `value` is an OPTIONAL nominal setpoint (grade it `severity: nominal`) — display context, not switch logic.
+  trigger_on: {} # above | below — which side is ON; the one irreducible bit min/max can't encode. Makes a zone stateful.
   # Instrument-only fields — the metrology of an `interval_kind: measurable` interval (VIM 4.7 measuring
   # interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band
   # (the fold of the dissolved `measurement` feature — a measuring range is an interval_kind, not a

@@ -1,7 +1,7 @@
 concept_settings:
   # A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max,
   # OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral:
-  # a rated/designated centre (grade it `severity: nominal`), a threshold trip, a zone operating point.
+  # a rated/designated centre (grade it `severity: nominal`), a stateful zone's trip, a zone operating point.
   # Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never
   # `value_v`). Extends the bare `range` feature — min/max are not re-spelled here.
   # Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the

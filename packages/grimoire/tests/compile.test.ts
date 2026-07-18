@@ -145,7 +145,7 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 								{ identity: { slug: 'peak' }, interval: { rating: 'short_term', max: 250 } }, // authored kept
 								{ interval: { zone: 'mpp', value: 40 } }, // zone operating point (exact value) → mpp
 								{ interval: { zone: 'mppt', severity: 'best', min: 175, max: 850 } }, // zone + severity sub-grade → mppt_best
-								{ interval: { zone: 'running', trigger_on: 'above', min: 90, max: 140 } }, // trigger_on → stateful threshold, slug from zone
+								{ interval: { zone: 'running', trigger_on: 'above', min: 90, max: 140 } }, // stateful zone (trigger_on), kind stays zone, slug from zone
 								{ interval: { value: 12, severity: 'nominal' } }, // bare bounds-free value → nominal
 								{
 									identity: { slug: 'grid' },
@@ -157,7 +157,7 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 									},
 								}, // multiplier sugar → margin delta
 								{ interval: { interval_kind: 'measurable', min: 0, max: 300 } }, // no axis → unslugged
-								{ interval: { trigger_on: 'below', value: 20 } }, // zone-less threshold, bare value → NOT the nominal fallback
+								{ interval: { trigger_on: 'below', value: 20 } }, // zone-less stateful trigger, bare value → NOT the nominal fallback, no derived kind
 							],
 						},
 					},
@@ -176,8 +176,8 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 		expect(rows[2]!.interval.interval_kind).toBe('zone'); // zone wins over the nominal fallback
 		expect(rows[3]!.identity).toEqual({ slug: 'mppt_best' }); // severity is identity-bearing
 		expect(rows[3]!.interval.interval_kind).toBe('zone');
-		expect(rows[4]!.identity).toEqual({ slug: 'running' }); // threshold: slug from zone name
-		expect(rows[4]!.interval.interval_kind).toBe('threshold'); // derived from trigger_on (stateful)
+		expect(rows[4]!.identity).toEqual({ slug: 'running' }); // stateful zone: slug from zone name
+		expect(rows[4]!.interval.interval_kind).toBe('zone'); // derived from zone; trigger_on is a statefulness axis, not a kind
 		expect(rows[5]!.identity).toEqual({ slug: 'nominal' }); // bounds-free nominal fallback
 		expect(rows[5]!.interval.interval_kind).toBe('rating');
 		const grid = rows[6]!.interval as {
@@ -189,7 +189,7 @@ describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
 		expect(grid.margin_upper).toBeCloseTo(0.2); // fraction_upper 1.2 -> margin_upper delta 0.2
 		expect(grid.fraction_lower).toBeUndefined(); // sugar consumed
 		expect(rows[7]!.identity).toBeUndefined();
-		expect(rows[8]!.interval.interval_kind).toBe('threshold'); // trigger_on → threshold, not rating
+		expect(rows[8]!.interval.interval_kind).toBeUndefined(); // no zone/rating → no derived kind; trigger_on alone doesn't derive one
 		expect(rows[8]!.identity).toBeUndefined(); // bare value + trigger_on must NOT hit the nominal fallback
 	});
 
