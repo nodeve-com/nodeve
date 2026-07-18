@@ -8,23 +8,22 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 
-export const schema: TSchema = Type.Number();
+export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
-export type Nominal = number;
+export type ToleranceUpper = number;
 
-type DataT = { readonly "description": { readonly "en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "nominal" }; readonly "title": { readonly "en": "Nominal"; readonly "pt": "Nominal" } };
+type DataT = { readonly "description": { readonly "en": "Asymmetric ABSOLUTE band ABOVE the value, in the quantity's unit (high edge = value + tolerance_upper). Pairs with `tolerance_lower`." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "tolerance_upper" }; readonly "title": { readonly "en": "Tolerance upper" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "The rated/designated value, in the enclosing unit — a nameplate point the tolerated band sits around."
+		"en": "Asymmetric ABSOLUTE band ABOVE the value, in the quantity's unit (high edge = value + tolerance_upper). Pairs with `tolerance_lower`."
 	},
 	"identity": {
 		"archetypeId": "property",
-		"slug": "nominal"
+		"slug": "tolerance_upper"
 	},
 	"title": {
-		"en": "Nominal",
-		"pt": "Nominal"
+		"en": "Tolerance upper"
 	}
 };
 export const { description, identity, title } = _data;

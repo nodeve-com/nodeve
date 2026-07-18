@@ -15,7 +15,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 625,
+								"value": 625,
 								"zone": "mpp"
 							}
 						}
@@ -29,7 +29,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 40.46,
+								"value": 40.46,
 								"zone": "mpp"
 							}
 						},
@@ -39,7 +39,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 48.7,
+								"value": 48.7,
 								"zone": "open_circuit"
 							}
 						}

@@ -59,7 +59,6 @@ import * as modbusRegisters_ from './modbus_registers.ts';
 import * as modbusTapWindow_ from './modbus_tap_window.ts';
 import * as mpptTracking_ from './mppt_tracking.ts';
 import * as networkLink_ from './network_link.ts';
-import * as nominalRange_ from './nominal_range.ts';
 import * as numericDecode_ from './numeric_decode.ts';
 import * as operatingTempBand_ from './operating_temp_band.ts';
 import * as physical_ from './physical.ts';
@@ -93,6 +92,7 @@ import * as usbhidFields_ from './usbhid_fields.ts';
 import * as usbhidLink_ from './usbhid_link.ts';
 import * as usbhidNumeric_ from './usbhid_numeric.ts';
 import * as usbhidParams_ from './usbhid_params.ts';
+import * as valuedRange_ from './valued_range.ts';
 import * as vedirectFields_ from './vedirect_fields.ts';
 
 /** camelized slug → the feature's def node (title/description/slots + `schema`). */
@@ -154,7 +154,6 @@ export const feature = {
 	modbusTapWindow: modbusTapWindow_,
 	mpptTracking: mpptTracking_,
 	networkLink: networkLink_,
-	nominalRange: nominalRange_,
 	numericDecode: numericDecode_,
 	operatingTempBand: operatingTempBand_,
 	physical: physical_,
@@ -188,5 +187,6 @@ export const feature = {
 	usbhidLink: usbhidLink_,
 	usbhidNumeric: usbhidNumeric_,
 	usbhidParams: usbhidParams_,
+	valuedRange: valuedRange_,
 	vedirectFields: vedirectFields_,
 };

@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type Margin = number;
 
-type DataT = { readonly "description": { readonly "en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "margin" }; readonly "title": { readonly "en": "Margin" } };
+type DataT = { readonly "description": { readonly "en": "Symmetric RELATIVE band around the value, as a fraction (±5% => margin: 0.05) — unit-free. Use when the datasheet states a percentage; the absolute counterpart is `tolerance` (± in unit). Asymmetric => `margin_lower` / `margin_upper` (or the `fraction_*` multiplier sugar). Mutually exclusive with explicit min/max in practice." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "margin" }; readonly "title": { readonly "en": "Margin" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "Symmetric ABSOLUTE band around nominal, in the quantity's unit (1500 ± 200 => margin: 200, i.e. 1300-1700). The absolute counterpart to tolerance; use when the datasheet states a ± figure in real units. Mutually exclusive with explicit min/max in practice."
+		"en": "Symmetric RELATIVE band around the value, as a fraction (±5% => margin: 0.05) — unit-free. Use when the datasheet states a percentage; the absolute counterpart is `tolerance` (± in unit). Asymmetric => `margin_lower` / `margin_upper` (or the `fraction_*` multiplier sugar). Mutually exclusive with explicit min/max in practice."
 	},
 	"identity": {
 		"archetypeId": "property",

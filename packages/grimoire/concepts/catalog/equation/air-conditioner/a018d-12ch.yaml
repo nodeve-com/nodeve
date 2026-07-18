@@ -11,7 +11,7 @@ cooling:
     combined:
       cooling_capacity:
         intervals:
-          - interval: { nominal: 2638 } # 9000 BTU/h rated cooling
+          - interval: { value: 2638, severity: nominal } # 9000 BTU/h rated cooling
 
 # The AC phase the unit runs on — accepted 220–240 V / 50 Hz single-phase plus its electrical input
 # draw (active_power). The two draw figures are the unit's own operating modes — each an IDENTIFIED
@@ -25,15 +25,15 @@ ac_phase:
           - interval: { rating: continuous, min: 220, max: 240 } # 220–240 V single phase
       frequency:
         intervals:
-          - interval: { nominal: 50 }
+          - interval: { value: 50, severity: nominal }
       active_power:
         intervals:
           - identity: { slug: cooling }
             title: { en: Cooling }
-            interval: { nominal: 1391 } # rated input power, cooling
+            interval: { value: 1391, severity: nominal } # rated input power, cooling
           - identity: { slug: heating }
             title: { en: Heating }
-            interval: { nominal: 1346 } # rated input power, heating
+            interval: { value: 1346, severity: nominal } # rated input power, heating
 
 # Vapor-compression circuit — working gas only. `refrigerant` is a property code
 # (enumeration/refrigerant/r290 → Propane, A3, GWP 3).

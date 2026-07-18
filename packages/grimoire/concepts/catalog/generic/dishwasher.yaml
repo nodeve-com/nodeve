@@ -17,11 +17,11 @@ ac_phase:
           # A program is in progress — the whole-unit active draw envelope (38 ± 33 W).
           - identity: { slug: running }
             title: { en: Program running }
-            interval: { nominal: 38, margin: 33 }
+            interval: { value: 38, severity: nominal, tolerance: 33 }
           # The heating element engaged (1500 ± 200 W).
           - identity: { slug: heating }
             title: { en: Heating element engaged }
-            interval: { nominal: 1500, margin: 200 }
+            interval: { value: 1500, severity: nominal, tolerance: 200 }
 
 # Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
 identity:

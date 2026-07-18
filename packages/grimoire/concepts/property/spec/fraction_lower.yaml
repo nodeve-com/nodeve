@@ -1,3 +1,6 @@
 title: { en: Lower fraction }
-description: { en: "Asymmetric FRACTIONAL lower bound as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `upper_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free." }
+description:
+  {
+    en: 'Asymmetric lower edge as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un); pairs with `fraction_upper`. Author sugar — desugars to the canonical `margin_lower` delta (0.7 => 0.3). Unit-free.',
+  }
 schema: { type: number, exclusiveMinimum: 0 }

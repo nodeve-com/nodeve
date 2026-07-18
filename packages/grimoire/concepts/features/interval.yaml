@@ -7,13 +7,17 @@
 # Band class = axes (fields, never a merged classifier slug). The interval_kind base is ONE of:
 # `rating` tier (spec-sheet capability, e.g. { rating: continuous, min: 175, max: 850 }), a `zone`
 # named region (actual operating point, e.g. { zone: mppt, min: 120, max: 950 }), a `threshold`
-# (bound + direction + hysteresis, e.g. { zone: running, bound: 140, direction: above, hysteresis: 50 }),
-# or a bare `measurable` span. Co-occurring identity axes: `flow_direction`, `period`; plus optional
+# (min/max edges + `trigger_on`, e.g. { zone: running, trigger_on: above, min: 90, max: 140 } — ON above max, off below min),
+# or a bare `measurable` span. A rated/designated centre is a bare `value` graded `severity: nominal`
+# (the tolerated band sits around it). Co-occurring identity axes: `flow_direction`, `period`; plus optional
 # duration `duration` in seconds (a short-term "peak" is rating: short_term + duration, CIM
 # acceptableDuration). `identity.slug` on a band is a REFERENCE HANDLE only (an interval_item
 # target, an enumeration member, a titled named band) — never a classifier (guard-interval-slugs).
-# Bounds: nominal/min/max come from nominal_range (partial — one-sided or nominal-only legal);
-# symmetric bands: fractional `tolerance` or absolute `margin`. Numbers in the kind's canonical
+# Bounds: value/min/max come from valued_range (partial — one-sided or value-only legal). Band
+# around the value, two families: ABSOLUTE `tolerance` (± in unit) / `tolerance_lower` / `tolerance_upper`,
+# and RELATIVE `margin` (±fraction) / `margin_lower` / `margin_upper` (the `fraction_*` multiplier sugar
+# desugars into margin_lower/upper). A `threshold`'s two hysteresis edges are just `min`/`max` (the
+# deadband/hold zone); `trigger_on` picks the ON side. Numbers in the kind's canonical
 # SI unit unless `unit` overrides. `conditions` gate the interval (none = reference/nameplate);
 # a commissioning choice is intervals gated on one single-valued settings property — the site
 # sets it once and every interval conditioned on it resolves (no separate `variant` grouping).
@@ -24,12 +28,12 @@ description:
   }
 concept_settings:
   compose:
-    - nominal_range # partial: nominal/min/max, defined once
+    - valued_range # partial: value/min/max + band, defined once
 enums:
-  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone / threshold. DERIVED — `rating` from a rating tier, `zone` from a zone name, `threshold` from a `direction`; measurable authored directly.
-  - rating # the rated tier (enumeration/rating): continuous/intermittent/short_term/startup/shutdown/survival/protection_required/nominal
+  - interval_kind # what the interval IS (enumeration/interval_kind): measurable / rating / zone / threshold. Authorable explicitly; omitted, it's DERIVED — `rating` from a rating tier, `zone` from a zone name, `threshold` from a `trigger_on`; measurable isn't derivable so a bare span authors it.
+  - rating # the rated tier (enumeration/rating): continuous/intermittent/short_term/startup/shutdown/survival/protection_required
   - zone # named operating region (enumeration/zone): mppt/mpp/open_circuit/off/idle/running … → interval_kind: zone, a boolean "in this region" sensor
-  - severity # OPTIONAL health grade (enumeration/severity): desirable best/better/good … absent=nominal … undesirable notice/caution/warning/critical/fatal
+  - severity # OPTIONAL health grade (enumeration/severity): desirable best/better/good … nominal (centre) … undesirable notice/caution/warning/critical/fatal; absent = not graded
   - flow_direction # IDENTITY axis (enumeration/flow_direction): in/out/net; keys the channel + sensor id, absent = undirected
   - period
 prop:
@@ -37,11 +41,11 @@ prop:
   interval_kind: # what the interval IS — the closed top classifier
     title: { en: Interval kind }
     description:
-      en: "What the interval IS. Three are STATELESS — `f(reading) → in-band?`, no history: `measurable` (instrument readable span), `rating` (a rated capability tier), `zone` (a named operating region → a boolean sensor). One is STATEFUL — `f(reading, prior_state) → on/off`: `threshold` (a hysteretic trigger: `bound` + `direction` + `hysteresis`, a startup/run-command/thermostat/hygrostat). DERIVED — never authored on the base axes — as `rating` from a rating tier, `zone` from a zone name, `threshold` from a `direction`; `measurable` is authored, since it isn't derivable from the bounds alone."
+      en: "What the interval IS. Three are STATELESS — `f(reading) → in-band?`, no history: `measurable` (instrument readable span), `rating` (a rated capability tier), `zone` (a named operating region → a boolean sensor). One is STATEFUL — `f(reading, prior_state) → on/off`: `threshold` (a hysteretic trigger: `min`/`max` hysteresis edges + `trigger_on` picking the ON side, a startup/run-command/thermostat/hygrostat). Authorable explicitly on any row; omit it and it's DERIVED from the base axes — `rating` from a rating tier OR a bounds-free bare `value` (a nameplate), `zone` from a zone name, `threshold` from a `trigger_on`; `measurable` isn't derivable from bounds alone, so a bare span authors it."
   severity: # optional IDENTITY axis — grades a narrower sub-range of the base region into its own addressable band
     title: { en: Severity }
     description:
-      en: 'Optional grade of a narrower sub-range within the base region, a bipolar ramp: desirable best → better → good, absent = nominal/no-concern, undesirable notice → caution → warning → critical → fatal. An IDENTITY axis: a `best` sub-band (a tight full-power MPPT window) inside a wider `good` one is its OWN addressable band + boolean sensor, keyed into the slug. The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent.'
+      en: 'Optional grade of a narrower sub-range within the base region, a bipolar ramp: desirable best → better → good, nominal = the no-concern centre (a band whose `value` IS the nominated design point), undesirable notice → caution → warning → critical → fatal; ABSENT = not graded at all. An IDENTITY axis: a `best` sub-band (a tight full-power MPPT window) inside a wider `good` one is its OWN addressable band + boolean sensor, keyed into the slug (the `nominal` centre grade keys none — the point IS the nominal). The undesirable rungs crosswalk to syslog RFC 5424 severity and ISA-18.2 alarm priority; the desirable side has no standard equivalent.'
   flow_direction: # optional IDENTITY axis — which flow channel this interval measures
     title: { en: Flow direction }
     description:
@@ -49,21 +53,21 @@ prop:
   rating: # the tier of an interval_kind: rating band (closed, universal)
     title: { en: Rating }
     description:
-      en: "The rated tier of a `interval_kind: rating` band — how far / how long the quantity is rated: continuous (full capacity), intermittent / short_term (time-bounded, carry a duration), survival (endured), startup / shutdown (thresholds), protection_required (trip), nominal (a nameplate value, tolerance/margin allowed, no min/max). Closed and universal, so a consumer reasons about 'the continuous band' without archetype knowledge. Setting it derives interval_kind: rating."
+      en: "The rated tier of a `interval_kind: rating` band — how far / how long the quantity is rated: continuous (full capacity), intermittent / short_term (time-bounded, carry a duration), survival (endured), startup / shutdown (thresholds), protection_required (trip). Closed and universal, so a consumer reasons about 'the continuous band' without archetype knowledge. Setting it derives interval_kind: rating; a bounds-free bare `value` (a nameplate, grade it `severity: nominal`) also derives rating."
   zone: # the named operating region of an interval_kind: zone band
     title: { en: Zone }
     description:
       en: "The named operating region of an `interval_kind: zone` band — a region of THIS quantity's own axis: an electrical operating point/window (mppt, mpp, open_circuit, short_circuit) or a lifecycle status band (off, idle, running). Unlike a `rating` (the capability envelope), a zone captures where it ACTUALLY sits — a compressor's normal running draw vs its rated max. Each yields a boolean 'is the quantity in this region' sensor and may also anchor an interval_item. Setting it derives interval_kind: zone. Replaces the former free-form `mode`. Narrower sub-ranges grade via `severity`. A zone is STATELESS; for a stateful trigger (startup) use `interval_kind: threshold` below."
   duration: {} # duration axis, seconds — absent = continuous rating (CIM acceptableDuration)
-  tolerance: {}
-  margin: {}
+
   # THRESHOLD-kind fields (interval_kind: threshold) — a STATEFUL hysteretic trigger, the one interval
   # that isn't a stateless f(reading): its boolean output depends on the prior on/off state. Folds in
-  # the former standalone `threshold` feature. `bound` = the trip value; `direction` = which side is ON
-  # (above → on rising past bound, off falling past bound − hysteresis); `hysteresis` = the release deadband.
-  bound: {} # the trigger's single threshold value (a PV inverter's 140 V startup)
-  direction: {} # above | below — the activating side; the STATEFUL bit min/max can't encode
-  hysteresis: {} # release deadband past `bound` (startup 140 with hysteresis 50 → dropout at 90)
+  # the former standalone `threshold` feature. Its two edges ARE `min`/`max` (composed from valued_range
+  # — the same fields a stateless band uses): the deadband `[min,max]` is the HOLD zone, the ON region is
+  # OUTSIDE it. `trigger_on` picks the side: `below` ⇒ ON below `min`, OFF above `max` (heat: on cold,
+  # off warm); `above` ⇒ ON above `max`, OFF below `min` (cool / over-limit trip). `value` is an OPTIONAL
+  # nominal setpoint (grade it `severity: nominal`) — display context, not part of the switch logic.
+  trigger_on: {} # above | below — which side is ON; the one irreducible bit min/max can't encode
   # Instrument-only fields — the metrology of an `interval_kind: measurable` interval (VIM 4.7 measuring
   # interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band
   # (the fold of the dissolved `measurement` feature — a measuring range is an interval_kind, not a

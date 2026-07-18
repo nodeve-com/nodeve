@@ -1,0 +1,4 @@
+title: { en: Margin lower }
+description:
+  en: 'Asymmetric RELATIVE band BELOW the value, as a fraction (margin_lower: 0.3 => 30% below, low edge at 0.7×value) — unit-free. Pairs with `margin_upper`; the canonical delta form the verbatim multiplier `fraction_lower` desugars into (fraction_lower 0.7 => margin_lower 0.3).'
+schema: { type: number, exclusiveMinimum: 0 }

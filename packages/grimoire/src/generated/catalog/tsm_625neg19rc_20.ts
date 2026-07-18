@@ -15,7 +15,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 625,
+								"value": 625,
 								"zone": "mpp"
 							}
 						},
@@ -30,7 +30,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 692,
+								"value": 692,
 								"zone": "mpp"
 							}
 						}
@@ -44,7 +44,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 15.45,
+								"value": 15.45,
 								"zone": "mpp"
 							}
 						},
@@ -54,7 +54,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 16.32,
+								"value": 16.32,
 								"zone": "short_circuit"
 							}
 						},
@@ -69,7 +69,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 17.12,
+								"value": 17.12,
 								"zone": "mpp"
 							}
 						},
@@ -84,7 +84,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 18.08,
+								"value": 18.08,
 								"zone": "short_circuit"
 							}
 						},
@@ -99,7 +99,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 20.24,
+								"value": 20.24,
 								"zone": "short_circuit"
 							}
 						},
@@ -109,7 +109,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 35,
+								"max": 35,
 								"rating": "protection_required"
 							}
 						}
@@ -123,7 +123,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 40.46,
+								"value": 40.46,
 								"zone": "mpp"
 							}
 						},
@@ -133,7 +133,7 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "zone",
-								"nominal": 48.7,
+								"value": 48.7,
 								"zone": "open_circuit"
 							}
 						}

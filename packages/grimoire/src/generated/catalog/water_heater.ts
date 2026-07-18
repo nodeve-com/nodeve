@@ -15,7 +15,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 1500
+								"severity": "nominal",
+								"value": 1500
 							}
 						}
 					]
@@ -28,7 +29,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 50
+								"severity": "nominal",
+								"value": 50
 							}
 						}
 					]
@@ -41,7 +43,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 35.3
+								"severity": "nominal",
+								"value": 35.3
 							}
 						}
 					]
@@ -54,7 +57,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 230
+								"severity": "nominal",
+								"value": 230
 							}
 						}
 					]

@@ -15,7 +15,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 1391
+								"severity": "nominal",
+								"value": 1391
 							},
 							"title": {
 								"en": "Cooling"
@@ -27,7 +28,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 1346
+								"severity": "nominal",
+								"value": 1346
 							},
 							"title": {
 								"en": "Heating"
@@ -43,7 +45,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 50
+								"severity": "nominal",
+								"value": 50
 							}
 						}
 					]
@@ -80,7 +83,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 2638
+								"severity": "nominal",
+								"value": 2638
 							}
 						}
 					]

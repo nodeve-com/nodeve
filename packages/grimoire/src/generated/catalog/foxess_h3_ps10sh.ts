@@ -54,20 +54,20 @@ const _s7 = {
 } as const;
 const _s8 = {
 	"intervalKind": "rating",
-	"min": 90,
-	"nominal": 620,
-	"rating": "continuous"
+	"margin": 0.05,
+	"severity": "nominal",
+	"value": 50
 } as const;
 const _s9 = {
+	"intervalKind": "rating",
+	"margin": 0.05,
+	"severity": "nominal",
+	"value": 60
+} as const;
+const _s10 = {
 	"feature": "enclosure",
 	"interval": "continuous",
 	"property": "temperature"
-} as const;
-const _s10 = {
-	"intervalKind": "rating",
-	"max": 3666,
-	"nominal": 3333,
-	"rating": "continuous"
 } as const;
 const _s11 = {
 	"intervalKind": "zone",
@@ -116,86 +116,78 @@ const _s20 = {
 	"unit": "kW"
 } as const;
 const _s21 = {
-	"identity": {
-		"slug": "nominal"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"nominal": 50
-	}
-} as const;
-const _s22 = {
-	"intervalKind": "rating",
-	"max": 260,
-	"min": 200,
-	"nominal": 230,
-	"rating": "continuous"
-} as const;
-const _s23 = {
 	"interval": _s6
 } as const;
-const _s24 = [
-	_s21
-] as const;
-const _s25 = {
+const _s22 = {
+	"intervalKind": "threshold",
+	"max": 140,
+	"min": 90,
+	"triggerOn": "above",
+	"zone": "running"
+} as const;
+const _s23 = {
 	"intervalKind": "measurable",
 	"min": 0,
 	"period": "daily",
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s26 = {
+const _s24 = {
 	"flowDirection": "in",
 	"intervalKind": "measurable",
 	"min": 0,
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s27 = {
-	"intervalItem": _s9
+const _s25 = {
+	"intervalItem": _s10
 } as const;
-const _s28 = {
+const _s26 = {
+	"intervalKind": "rating",
+	"min": 90,
+	"rating": "continuous",
+	"severity": "nominal",
+	"value": 620
+} as const;
+const _s27 = {
 	"flowDirection": "out",
 	"intervalKind": "measurable",
 	"min": 0,
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s29 = {
+const _s28 = {
 	"interval": _s14
 } as const;
-const _s30 = {
+const _s29 = {
 	"interval": _s17
 } as const;
+const _s30 = [
+	_s25
+] as const;
 const _s31 = [
-	_s27
+	_s28
 ] as const;
-const _s32 = [
-	_s29
-] as const;
+const _s32 = {
+	"intervalKind": "rating",
+	"max": 3666,
+	"rating": "continuous",
+	"severity": "nominal",
+	"value": 3333
+} as const;
 const _s33 = {
 	"intervals": _s19
 } as const;
 const _s34 = [
-	_s30
+	_s29
 ] as const;
 const _s35 = {
-	"bound": 140,
-	"direction": "above",
-	"hysteresis": 50,
-	"intervalKind": "threshold",
-	"zone": "running"
-} as const;
-const _s36 = {
 	"interval": _s20
 } as const;
-const _s37 = [
-	_s36
+const _s36 = [
+	_s35
 ] as const;
-const _s38 = {
-	"intervals": _s24
-} as const;
-const _s39 = {
+const _s37 = {
 	"identity": {
 		"slug": "mppt"
 	},
@@ -206,7 +198,7 @@ const _s39 = {
 		"zone": "mppt"
 	}
 } as const;
-const _s40 = {
+const _s38 = {
 	"identity": {
 		"slug": "survival"
 	},
@@ -215,6 +207,24 @@ const _s40 = {
 		"max": 25,
 		"rating": "survival"
 	}
+} as const;
+const _s39 = {
+	"identity": {
+		"slug": "nominal"
+	},
+	"interval": {
+		"intervalKind": "rating",
+		"severity": "nominal",
+		"value": 50
+	}
+} as const;
+const _s40 = {
+	"intervalKind": "rating",
+	"max": 260,
+	"min": 200,
+	"rating": "continuous",
+	"severity": "nominal",
+	"value": 230
 } as const;
 const _s41 = {
 	"identity": {
@@ -236,7 +246,10 @@ const _s42 = {
 		"rating": "survival"
 	}
 } as const;
-const _s43 = {
+const _s43 = [
+	_s39
+] as const;
+const _s44 = {
 	"identity": {
 		"slug": "continuous"
 	},
@@ -246,7 +259,7 @@ const _s43 = {
 		"rating": "continuous"
 	}
 } as const;
-const _s44 = {
+const _s45 = {
 	"identity": {
 		"slug": "continuous"
 	},
@@ -256,7 +269,7 @@ const _s44 = {
 		"rating": "continuous"
 	}
 } as const;
-const _s45 = {
+const _s46 = {
 	"identity": {
 		"slug": "continuous"
 	},
@@ -266,7 +279,7 @@ const _s45 = {
 		"rating": "continuous"
 	}
 } as const;
-const _s46 = {
+const _s47 = {
 	"flowDirection": "in",
 	"intervalKind": "measurable",
 	"min": 0,
@@ -274,13 +287,13 @@ const _s46 = {
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s47 = {
-	"intervals": _s32
+const _s48 = {
+	"intervals": _s31
 } as const;
-const _s48 = [
-	_s45
+const _s49 = [
+	_s46
 ] as const;
-const _s49 = {
+const _s50 = {
 	"flowDirection": "out",
 	"intervalKind": "measurable",
 	"min": 0,
@@ -288,82 +301,85 @@ const _s49 = {
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s50 = {
+const _s51 = {
 	"intervals": _s34
 } as const;
-const _s51 = {
-	"intervals": _s37
-} as const;
 const _s52 = {
-	"identity": {
-		"slug": "continuous"
-	},
-	"interval": _s8
+	"intervals": _s36
 } as const;
 const _s53 = {
+	"intervals": _s43
+} as const;
+const _s54 = {
 	"identity": {
 		"slug": "protection_required"
 	},
 	"interval": _s4
 } as const;
-const _s54 = {
+const _s55 = {
 	"identity": {
 		"slug": "mppt_best"
 	},
 	"interval": _s11
 } as const;
-const _s55 = {
-	"intervals": _s48
-} as const;
 const _s56 = {
-	"activePower": _s47
+	"intervals": _s49
 } as const;
 const _s57 = {
-	"activePower": _s50
+	"activePower": _s48
 } as const;
 const _s58 = {
-	"identity": {
-		"slug": "daily"
-	},
-	"interval": _s25
+	"activePower": _s51
 } as const;
 const _s59 = {
 	"identity": {
-		"slug": "continuous"
+		"slug": "daily"
 	},
-	"interval": _s22
+	"interval": _s23
 } as const;
 const _s60 = {
 	"identity": {
 		"slug": "in"
 	},
-	"interval": _s26
+	"interval": _s24
 } as const;
 const _s61 = {
 	"identity": {
-		"slug": "out"
+		"slug": "running"
 	},
-	"interval": _s28
+	"interval": _s22
 } as const;
 const _s62 = {
 	"identity": {
-		"slug": "running"
+		"slug": "out"
 	},
-	"interval": _s35
+	"interval": _s27
 } as const;
 const _s63 = {
 	"identity": {
-		"slug": "in_daily"
+		"slug": "continuous"
 	},
-	"interval": _s46
+	"interval": _s26
 } as const;
 const _s64 = {
 	"identity": {
-		"slug": "out_daily"
+		"slug": "continuous"
 	},
-	"interval": _s49
+	"interval": _s40
 } as const;
 const _s65 = {
+	"identity": {
+		"slug": "in_daily"
+	},
+	"interval": _s47
+} as const;
+const _s66 = {
+	"identity": {
+		"slug": "out_daily"
+	},
+	"interval": _s50
+} as const;
+const _s67 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -375,43 +391,41 @@ const _s65 = {
 	},
 	"interval": {
 		"intervalKind": "rating",
-		"nominal": 220
-	}
-} as const;
-const _s66 = {
-	"condition": [
-		{
-			"equals": "eu_230v_50hz",
-			"setting": "grid_region"
-		}
-	],
-	"identity": {
-		"slug": "nominal_eu_230v_50hz"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"nominal": 230
-	}
-} as const;
-const _s67 = {
-	"condition": [
-		{
-			"equals": "eu_230v_50hz",
-			"setting": "grid_region"
-		}
-	],
-	"identity": {
-		"slug": "nominal_eu_230v_50hz"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"nominal": 50,
-		"tolerance": 0.05
+		"severity": "nominal",
+		"value": 220
 	}
 } as const;
 const _s68 = {
 	"condition": [
 		{
+			"equals": "eu_230v_50hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_eu_230v_50hz"
+	},
+	"interval": {
+		"intervalKind": "rating",
+		"severity": "nominal",
+		"value": 230
+	}
+} as const;
+const _s69 = {
+	"condition": [
+		{
+			"equals": "eu_230v_50hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_eu_230v_50hz"
+	},
+	"interval": _s8
+} as const;
+const _s70 = {
+	"condition": [
+		{
 			"equals": "br_220v_60hz",
 			"setting": "grid_region"
 		}
@@ -419,121 +433,117 @@ const _s68 = {
 	"identity": {
 		"slug": "nominal_br_220v_60hz"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"nominal": 60,
-		"tolerance": 0.05
-	}
+	"interval": _s9
 } as const;
-const _s69 = [
-	_s59,
+const _s71 = [
+	_s21,
+	_s59
+] as const;
+const _s72 = {
+	"intervals": _s71
+} as const;
+const _s73 = [
+	_s64,
 	_s13
 ] as const;
-const _s70 = [
-	_s23,
-	_s58
-] as const;
-const _s71 = {
-	"intervals": _s69
+const _s74 = {
+	"intervals": _s73
 } as const;
-const _s72 = {
-	"intervals": _s70
-} as const;
-const _s73 = {
-	"condition": _s31,
+const _s75 = {
+	"condition": _s30,
 	"identity": {
 		"slug": "continuous_continuous"
 	},
-	"interval": _s10
-} as const;
-const _s74 = [
-	_s40,
-	_s43,
-	_s16
-] as const;
-const _s75 = {
-	"intervals": _s74
+	"interval": _s32
 } as const;
 const _s76 = [
-	_s73,
-	_s7
+	_s38,
+	_s44,
+	_s16
 ] as const;
 const _s77 = {
 	"intervals": _s76
 } as const;
 const _s78 = [
-	_s44,
-	_s41,
-	_s53
+	_s75,
+	_s7
 ] as const;
-const _s79 = {
+const _s79 = [
+	_s45,
+	_s41,
+	_s54
+] as const;
+const _s80 = {
 	"intervals": _s78
 } as const;
-const _s80 = [
-	_s67,
-	_s68
-] as const;
 const _s81 = {
-	"intervals": _s80
+	"intervals": _s79
 } as const;
 const _s82 = [
-	_s65,
-	_s66,
-	_s15
+	_s69,
+	_s70
 ] as const;
 const _s83 = {
 	"intervals": _s82
 } as const;
 const _s84 = [
-	_s61,
-	_s64,
-	_s60,
-	_s63
+	_s67,
+	_s68,
+	_s15
 ] as const;
 const _s85 = {
-	"activePower": _s51,
-	"current": _s33,
-	"frequency": _s38,
-	"voltage": _s71
-} as const;
-const _s86 = {
 	"intervals": _s84
 } as const;
-const _s87 = [
-	_s52,
-	_s42,
+const _s86 = [
 	_s62,
-	_s39,
-	_s54,
+	_s66,
+	_s60,
+	_s65
+] as const;
+const _s87 = {
+	"intervals": _s86
+} as const;
+const _s88 = {
+	"activePower": _s52,
+	"current": _s33,
+	"frequency": _s53,
+	"voltage": _s74
+} as const;
+const _s89 = [
+	_s63,
+	_s42,
+	_s61,
+	_s37,
+	_s55,
 	_s18
 ] as const;
-const _s88 = {
-	"intervals": _s87
-} as const;
-const _s89 = {
-	"activePower": _s55,
-	"current": _s75,
-	"voltage": _s88
-} as const;
 const _s90 = {
-	"activePower": _s77,
+	"intervals": _s89
+} as const;
+const _s91 = {
+	"activePower": _s56,
+	"current": _s77,
+	"voltage": _s90
+} as const;
+const _s92 = {
+	"activePower": _s80,
 	"apparentPower": {},
-	"current": _s79,
-	"frequency": _s81,
+	"current": _s81,
+	"frequency": _s83,
 	"reactivePower": {},
-	"voltage": _s83
+	"voltage": _s85
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s55
+				"activePower": _s56
 			},
 			"part": {
-				"a": _s85,
-				"b": _s85,
-				"c": _s85
+				"a": _s88,
+				"b": _s88,
+				"c": _s88
 			}
 		},
 		"identity": {
@@ -543,7 +553,7 @@ export default {
 	"acPhaseThreeGrid": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s86,
+				"activeEnergy": _s87,
 				"activePower": {
 					"intervals": [
 						{
@@ -559,9 +569,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s56,
-				"b": _s56,
-				"c": _s56
+				"a": _s57,
+				"b": _s57,
+				"c": _s57
 			}
 		},
 		"identity": {
@@ -587,9 +597,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s57,
-				"b": _s57,
-				"c": _s57
+				"a": _s58,
+				"b": _s58,
+				"c": _s58
 			}
 		},
 		"identity": {
@@ -599,11 +609,11 @@ export default {
 	"acPhaseThreeOut": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s86,
+				"activeEnergy": _s87,
 				"activePower": {
 					"intervals": [
 						{
-							"condition": _s31,
+							"condition": _s30,
 							"identity": {
 								"slug": "continuous_continuous"
 							},
@@ -663,9 +673,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s90,
-				"b": _s90,
-				"c": _s90
+				"a": _s92,
+				"b": _s92,
+				"c": _s92
 			}
 		},
 		"identity": {
@@ -1470,17 +1480,17 @@ export default {
 				}
 			},
 			"instances": [
-				_s89,
-				_s89,
+				_s91,
+				_s91,
 				{
-					"activePower": _s55,
-					"current": _s75,
+					"activePower": _s56,
+					"current": _s77,
 					"voltage": {
 						"intervals": [
 							_s42,
-							_s62,
-							_s39,
-							_s54,
+							_s61,
+							_s37,
+							_s55,
 							_s18,
 							{
 								"identity": {
@@ -1489,8 +1499,9 @@ export default {
 								"interval": {
 									"intervalKind": "rating",
 									"min": 60,
-									"nominal": 480,
-									"rating": "continuous"
+									"rating": "continuous",
+									"severity": "nominal",
+									"value": 480
 								}
 							}
 						]

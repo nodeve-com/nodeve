@@ -1,11 +1,13 @@
 # A STATEFUL TRIGGER — the one interval_kind that is NOT a stateless f(reading): a hysteretic
-# switch whose boolean output depends on the PRIOR on/off state. `bound` = the trip value,
-# `direction` (above/below) = the activating side, `hysteresis` = the release deadband past the bound
-# (a PV inverter starting at 140 V but not dropping out until 90 V; a thermostat, a hygrostat, a
-# run-command). DERIVED from the presence of `direction`. Folds in the former standalone `threshold`
-# feature. Distinct from `zone` (a stateless named region) precisely by carrying state.
+# switch whose boolean output depends on the PRIOR on/off state. Its two hysteresis edges ARE `min`/`max`
+# (the deadband/hold zone); `trigger_on` (above/below) picks which side is ON, the OUTSIDE region:
+# `above` ⇒ ON above `max`, OFF below `min`; `below` ⇒ ON below `min`, OFF above `max` (a PV inverter
+# starting above 140 V but not dropping out until below 90 V ⇒ trigger_on: above, min: 90, max: 140; a
+# thermostat, a hygrostat, a run-command). Authorable explicitly; when omitted, DERIVED from the presence
+# of `trigger_on`. Folds in the former standalone `threshold`
+# feature. Distinct from `zone` (a stateless named region, ON inside) precisely by carrying state.
 title: { en: Threshold, pt: Limiar }
 description:
-  en: 'A stateful hysteretic trigger (bound + direction + hysteresis) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command.'
+  en: 'A stateful hysteretic trigger (min/max hysteresis edges + trigger_on picking the ON side) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command.'
 refs:
   - { registry_id: ssn_system, term: Condition, match: close }

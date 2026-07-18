@@ -1,0 +1,4 @@
+title: { en: Tolerance lower }
+description:
+  en: "Asymmetric ABSOLUTE band BELOW the value, in the quantity's unit (low edge = value − tolerance_lower). Pairs with `tolerance_upper`."
+schema: { type: number, exclusiveMinimum: 0 }

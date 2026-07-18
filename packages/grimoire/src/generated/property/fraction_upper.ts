@@ -12,11 +12,11 @@ export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
 export type FractionUpper = number;
 
-type DataT = { readonly "description": { readonly "en": "Asymmetric FRACTIONAL upper bound as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `lower_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fraction_upper" }; readonly "title": { readonly "en": "Upper fraction" } };
+type DataT = { readonly "description": { readonly "en": "Asymmetric upper edge as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un); pairs with `fraction_lower`. Author sugar — desugars to the canonical `margin_upper` delta (1.2 => 0.2). Unit-free." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fraction_upper" }; readonly "title": { readonly "en": "Upper fraction" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "Asymmetric FRACTIONAL upper bound as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un). Pairs with `lower_fraction`; use for asymmetric fractional bands the symmetric `tolerance` can't hold. Unit-free."
+		"en": "Asymmetric upper edge as a MULTIPLIER of nominal (1.2 => 1.2×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un); pairs with `fraction_lower`. Author sugar — desugars to the canonical `margin_upper` delta (1.2 => 0.2). Unit-free."
 	},
 	"identity": {
 		"archetypeId": "property",

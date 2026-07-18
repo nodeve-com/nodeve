@@ -1,4 +1,0 @@
-title: { en: Bound, pt: Limite }
-description:
-  en: "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude."
-schema: { type: number }

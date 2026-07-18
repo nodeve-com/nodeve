@@ -77,7 +77,6 @@ import * as mpptTracking_ from './features/mppt_tracking.ts';
 import * as mqttConnection_ from './archetypes/mqtt_connection.ts';
 import * as networkInterfaces_ from './archetypes/network_interfaces.ts';
 import * as networkLink_ from './features/network_link.ts';
-import * as nominalRange_ from './features/nominal_range.ts';
 import * as numericDecode_ from './features/numeric_decode.ts';
 import * as operatingTempBand_ from './features/operating_temp_band.ts';
 import * as organization_ from './archetypes/organization.ts';
@@ -125,6 +124,7 @@ import * as usbhidFields_ from './features/usbhid_fields.ts';
 import * as usbhidLink_ from './features/usbhid_link.ts';
 import * as usbhidNumeric_ from './features/usbhid_numeric.ts';
 import * as usbhidParams_ from './features/usbhid_params.ts';
+import * as valuedRange_ from './features/valued_range.ts';
 import * as vedirectFields_ from './features/vedirect_fields.ts';
 import * as waterHeater_ from './archetypes/water_heater.ts';
 
@@ -207,7 +207,6 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	mqttConnection: mqttConnection_.schema,
 	networkInterfaces: networkInterfaces_.schema,
 	networkLink: networkLink_.schema,
-	nominalRange: nominalRange_.schema,
 	numericDecode: numericDecode_.schema,
 	operatingTempBand: operatingTempBand_.schema,
 	organization: organization_.schema,
@@ -255,6 +254,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	usbhidLink: usbhidLink_.schema,
 	usbhidNumeric: usbhidNumeric_.schema,
 	usbhidParams: usbhidParams_.schema,
+	valuedRange: valuedRange_.schema,
 	vedirectFields: vedirectFields_.schema,
 	waterHeater: waterHeater_.schema,
 };
@@ -335,7 +335,6 @@ export interface ConceptTypes {
 	mqttConnection: mqttConnection_.MqttConnection;
 	networkInterfaces: networkInterfaces_.NetworkInterfaces;
 	networkLink: networkLink_.NetworkLink;
-	nominalRange: nominalRange_.NominalRange;
 	numericDecode: numericDecode_.NumericDecode;
 	operatingTempBand: operatingTempBand_.OperatingTempBand;
 	organization: organization_.Organization;
@@ -383,6 +382,7 @@ export interface ConceptTypes {
 	usbhidLink: usbhidLink_.UsbhidLink;
 	usbhidNumeric: usbhidNumeric_.UsbhidNumeric;
 	usbhidParams: usbhidParams_.UsbhidParams;
+	valuedRange: valuedRange_.ValuedRange;
 	vedirectFields: vedirectFields_.VedirectFields;
 	waterHeater: waterHeater_.WaterHeater;
 }

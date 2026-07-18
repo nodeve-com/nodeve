@@ -8,23 +8,22 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 
-export const schema: TSchema = Type.Number();
+export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
-export type Bound = number;
+export type ToleranceLower = number;
 
-type DataT = { readonly "description": { readonly "en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "bound" }; readonly "title": { readonly "en": "Bound"; readonly "pt": "Limite" } };
+type DataT = { readonly "description": { readonly "en": "Asymmetric ABSOLUTE band BELOW the value, in the quantity's unit (low edge = value − tolerance_lower). Pairs with `tolerance_upper`." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "tolerance_lower" }; readonly "title": { readonly "en": "Tolerance lower" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "The single bound a value is tested against (a threshold boundary), in the enclosing concept's unit. Named `bound`, not `value` — `value` is reserved for an actual magnitude."
+		"en": "Asymmetric ABSOLUTE band BELOW the value, in the quantity's unit (low edge = value − tolerance_lower). Pairs with `tolerance_upper`."
 	},
 	"identity": {
 		"archetypeId": "property",
-		"slug": "bound"
+		"slug": "tolerance_lower"
 	},
 	"title": {
-		"en": "Bound",
-		"pt": "Limite"
+		"en": "Tolerance lower"
 	}
 };
 export const { description, identity, title } = _data;

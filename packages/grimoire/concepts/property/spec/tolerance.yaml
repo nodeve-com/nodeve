@@ -1,4 +1,4 @@
 title: { en: Tolerance }
 description:
-  en: "Symmetric FRACTIONAL band around nominal (±5% => 0.05) — a fraction of nominal, unit-free. Use when the datasheet states a percentage."
+  en: "Symmetric ABSOLUTE band around the value, in the quantity's unit (1500 ± 200 => tolerance: 200, i.e. 1300–1700). Use when the datasheet states a ± figure in real units; the relative counterpart is `margin` (±%). Asymmetric => `tolerance_lower` / `tolerance_upper`."
 schema: { type: number, exclusiveMinimum: 0 }

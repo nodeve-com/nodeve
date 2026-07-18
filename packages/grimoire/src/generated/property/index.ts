@@ -13,7 +13,6 @@ import * as azimuth_ from './azimuth.ts';
 import * as baseUrl_ from './base_url.ts';
 import * as baudRate_ from './baud_rate.ts';
 import * as bind_ from './bind.ts';
-import * as bound_ from './bound.ts';
 import * as broader_ from './broader.ts';
 import * as byteOrder_ from './byte_order.ts';
 import * as catalogItem_ from './catalog_item.ts';
@@ -31,7 +30,6 @@ import * as decimals_ from './decimals.ts';
 import * as default_ from './default.ts';
 import * as defaultHumidity_ from './default_humidity.ts';
 import * as detachKernelDriver_ from './detach_kernel_driver.ts';
-import * as direction_ from './direction.ts';
 import * as duplex_ from './duplex.ts';
 import * as duration_ from './duration.ts';
 import * as emitString_ from './emit_string.ts';
@@ -53,7 +51,6 @@ import * as getCommand_ from './get_command.ts';
 import * as gwp_ from './gwp.ts';
 import * as height_ from './height.ts';
 import * as host_ from './host.ts';
-import * as hysteresis_ from './hysteresis.ts';
 import * as id_ from './id.ts';
 import * as indexOffset_ from './index_offset.ts';
 import * as individualReadRanges_ from './individual_read_ranges.ts';
@@ -80,6 +77,8 @@ import * as macAddress_ from './mac_address.ts';
 import * as manufacturerId_ from './manufacturer_id.ts';
 import * as map_ from './map.ts';
 import * as margin_ from './margin.ts';
+import * as marginLower_ from './margin_lower.ts';
+import * as marginUpper_ from './margin_upper.ts';
 import * as mask_ from './mask.ts';
 import * as mass_ from './mass.ts';
 import * as match_ from './match.ts';
@@ -94,7 +93,6 @@ import * as mpptWindow_ from './mppt_window.ts';
 import * as mtu_ from './mtu.ts';
 import * as name_ from './name.ts';
 import * as networkInterfaceId_ from './network_interface_id.ts';
-import * as nominal_ from './nominal.ts';
 import * as observedIntervalMs_ from './observed_interval_ms.ts';
 import * as offset_ from './offset.ts';
 import * as ordinal_ from './ordinal.ts';
@@ -145,14 +143,18 @@ import * as throttleAverageMs_ from './throttle_average_ms.ts';
 import * as tilt_ from './tilt.ts';
 import * as timeoutMs_ from './timeout_ms.ts';
 import * as tolerance_ from './tolerance.ts';
+import * as toleranceLower_ from './tolerance_lower.ts';
+import * as toleranceUpper_ from './tolerance_upper.ts';
 import * as topicPrefix_ from './topic_prefix.ts';
 import * as transfer_ from './transfer.ts';
+import * as triggerOn_ from './trigger_on.ts';
 import * as type_ from './type.ts';
 import * as unit_ from './unit.ts';
 import * as unitId_ from './unit_id.ts';
 import * as updateIntervalMs_ from './update_interval_ms.ts';
 import * as url_ from './url.ts';
 import * as username_ from './username.ts';
+import * as value_ from './value.ts';
 import * as valueOffset_ from './value_offset.ts';
 import * as valueType_ from './value_type.ts';
 import * as vendorId_ from './vendor_id.ts';
@@ -177,7 +179,6 @@ export const property = {
 	baseUrl: baseUrl_,
 	baudRate: baudRate_,
 	bind: bind_,
-	bound: bound_,
 	broader: broader_,
 	byteOrder: byteOrder_,
 	catalogItem: catalogItem_,
@@ -195,7 +196,6 @@ export const property = {
 	default: default_,
 	defaultHumidity: defaultHumidity_,
 	detachKernelDriver: detachKernelDriver_,
-	direction: direction_,
 	duplex: duplex_,
 	duration: duration_,
 	emitString: emitString_,
@@ -217,7 +217,6 @@ export const property = {
 	gwp: gwp_,
 	height: height_,
 	host: host_,
-	hysteresis: hysteresis_,
 	id: id_,
 	indexOffset: indexOffset_,
 	individualReadRanges: individualReadRanges_,
@@ -244,6 +243,8 @@ export const property = {
 	manufacturerId: manufacturerId_,
 	map: map_,
 	margin: margin_,
+	marginLower: marginLower_,
+	marginUpper: marginUpper_,
 	mask: mask_,
 	mass: mass_,
 	match: match_,
@@ -258,7 +259,6 @@ export const property = {
 	mtu: mtu_,
 	name: name_,
 	networkInterfaceId: networkInterfaceId_,
-	nominal: nominal_,
 	observedIntervalMs: observedIntervalMs_,
 	offset: offset_,
 	ordinal: ordinal_,
@@ -309,14 +309,18 @@ export const property = {
 	tilt: tilt_,
 	timeoutMs: timeoutMs_,
 	tolerance: tolerance_,
+	toleranceLower: toleranceLower_,
+	toleranceUpper: toleranceUpper_,
 	topicPrefix: topicPrefix_,
 	transfer: transfer_,
+	triggerOn: triggerOn_,
 	type: type_,
 	unit: unit_,
 	unitId: unitId_,
 	updateIntervalMs: updateIntervalMs_,
 	url: url_,
 	username: username_,
+	value: value_,
 	valueOffset: valueOffset_,
 	valueType: valueType_,
 	vendorId: vendorId_,

@@ -1,0 +1,26 @@
+concept_settings:
+  # A VALUED RANGE — a single distinguished point (`value`) plus the tolerated band around it (min/max,
+  # OPTIONAL — a datasheet may give only the point; never fabricate a band). The point is role-neutral:
+  # a rated/designated centre (grade it `severity: nominal`), a threshold trip, a zone operating point.
+  # Unit/quantity-AGNOSTIC: the enclosing concept names the slot and supplies the unit (`value`, never
+  # `value_v`). Extends the bare `range` feature — min/max are not re-spelled here.
+  # Relative band as a fraction of the value, symmetric `margin` (interval feature); asymmetric via the
+  # `fraction_lower`/`fraction_upper` MULTIPLIER pair here — verbatim spec form (0.7Un–1.2Un), author
+  # sugar the generate step desugars into `margin_lower`/`margin_upper` deltas.
+  compose: [range]
+prop:
+  value: {}
+  # A valued-range band is PARTIAL — value-only, one-sided, or full all legal. Relax the min/max
+  # `required` that the composed `range` feature stamps (that requiredness is right for a bare range,
+  # wrong for a rated interval that may state only its point value).
+  min: { schema: { required: false } }
+  max: { schema: { required: false } }
+  # Band around the value — ABSOLUTE (± in unit) and RELATIVE (±fraction) families, symmetric + asymmetric.
+  tolerance: {} # symmetric ABSOLUTE (±200)
+  tolerance_lower: {} # asymmetric ABSOLUTE below the value
+  tolerance_upper: {} # asymmetric ABSOLUTE above the value
+  margin: {} # symmetric RELATIVE (±0.05 = ±5%)
+  margin_lower: {} # asymmetric RELATIVE below (0.3 = 30% below); `fraction_lower` sugar desugars into this
+  margin_upper: {} # asymmetric RELATIVE above (0.2 = 20% above); `fraction_upper` sugar desugars into this
+  fraction_lower: {}
+  fraction_upper: {}

@@ -1,7 +1,7 @@
 - best (narrowest - bullseye)
 - better (middle)
 - good (widest desirable)
-- nominal (NULL - no severity)
+- nominal (centre - the healthy design point, zero of the ramp; ABSENT severity = not graded)
 - notice (low)
 - caution (medium/elevated)
 - warning (high/warning → nearLimit)

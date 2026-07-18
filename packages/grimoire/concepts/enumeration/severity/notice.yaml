@@ -1,5 +1,6 @@
-# Lowest graded step above nominal — worth surfacing, no action needed. ABSENCE of `severity` is
-# nominal / no-concern (mirrors absent `duration` = continuous); notice is the first named rung.
+# Lowest graded step above nominal — worth surfacing, no action needed. `severity: nominal` is the
+# explicit no-concern centre; ABSENCE of `severity` = not graded at all. notice is the first named
+# rung above the centre.
 title:
   en: Notice
   pt: Aviso

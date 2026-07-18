@@ -11,7 +11,7 @@ dehumidification:
     combined:
       volume_flow_rate:
         intervals:
-          - interval: { nominal: 30, unit: L/day } # rated water extraction
+          - interval: { value: 30, severity: nominal, unit: L/day } # rated water extraction
 
 # Pinned identity — the stable reference (code = short-code minted at creation); survives re-filing/renames.
 identity:

@@ -55,9 +55,15 @@ ac_phase_three_point:
         voltage:
           intervals:
             - interval:
-                { rating: continuous, fraction_lower: 0.7, nominal: 220, fraction_upper: 1.2 }
+                {
+                  rating: continuous,
+                  fraction_lower: 0.7,
+                  value: 220,
+                  severity: nominal,
+                  fraction_upper: 1.2,
+                }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-            - interval: { nominal: 230 }
+            - interval: { value: 230, severity: nominal }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
             - interval: { interval_kind: measurable, min: 150, max: 280 }
         current: {}
@@ -69,9 +75,9 @@ ac_phase_three_point:
           # Line-to-line nominal = √3 × the phase nominal — the datasheet's 3×220/380 V and
           # 3×230/400 V pairs, gated on the same single grid_region setting as ac_phase.
           intervals:
-            - interval: { nominal: 380 }
+            - interval: { value: 380, severity: nominal }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-            - interval: { nominal: 400 }
+            - interval: { value: 400, severity: nominal }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
 
 modbus:

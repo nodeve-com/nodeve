@@ -45,7 +45,7 @@ export default {
   "threshold": {
     "code": "threshold",
     "description": {
-      "en": "A stateful hysteretic trigger (bound + direction + hysteresis) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command."
+      "en": "A stateful hysteretic trigger (min/max hysteresis edges + trigger_on picking the ON side) — a boolean whose value depends on prior state, not the reading alone. Startup/shutdown, thermostat, hygrostat, run-command."
     },
     "refs": [
       {

@@ -89,6 +89,16 @@ export default {
       "pt": "Bom"
     }
   },
+  "nominal": {
+    "code": "nominal",
+    "description": {
+      "en": "The healthy design centre — no concern, the zero of the severity ramp; a band's `value` is its nominated centre."
+    },
+    "title": {
+      "en": "Nominal",
+      "pt": "Nominal"
+    }
+  },
   "notice": {
     "code": "notice",
     "description": {

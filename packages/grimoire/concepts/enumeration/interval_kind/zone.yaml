@@ -1,6 +1,6 @@
 # A BOOLEAN REGION — a named region of the quantity's own axis with NO spec-sheet capability claim:
 # a reading is inside it or not (an MPPT voltage window, a compressor's normal-draw band, an
-# enclosure-temp derate-onset band). DERIVED from a `zone` value (enumeration/zone). Each yields a
+# enclosure-temp derate-onset band). Authorable explicitly; when omitted, DERIVED from a `zone` value (enumeration/zone). Each yields a
 # boolean "in this region" sensor and may ALSO anchor an inbound `interval_item` other bands gate on.
 # Structural signature: carries an `identity.slug` (auto-derived from the zone name); a slugless zone
 # is unnameable and produces nothing.

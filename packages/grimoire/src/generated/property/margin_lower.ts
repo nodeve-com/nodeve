@@ -10,20 +10,20 @@ import { type TSchema, Type } from '@sinclair/typebox';
 
 export const schema: TSchema = Type.Number({"exclusiveMinimum":0});
 
-export type FractionLower = number;
+export type MarginLower = number;
 
-type DataT = { readonly "description": { readonly "en": "Asymmetric lower edge as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un); pairs with `fraction_upper`. Author sugar — desugars to the canonical `margin_lower` delta (0.7 => 0.3). Unit-free." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "fraction_lower" }; readonly "title": { readonly "en": "Lower fraction" } };
+type DataT = { readonly "description": { readonly "en": "Asymmetric RELATIVE band BELOW the value, as a fraction (margin_lower: 0.3 => 30% below, low edge at 0.7×value) — unit-free. Pairs with `margin_upper`; the canonical delta form the verbatim multiplier `fraction_lower` desugars into (fraction_lower 0.7 => margin_lower 0.3)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "margin_lower" }; readonly "title": { readonly "en": "Margin lower" } };
 
 const _data: DataT = {
 	"description": {
-		"en": "Asymmetric lower edge as a MULTIPLIER of nominal (0.7 => 0.7×Un). Verbatim spec-sheet form (e.g. 0.7Un–1.2Un); pairs with `fraction_upper`. Author sugar — desugars to the canonical `margin_lower` delta (0.7 => 0.3). Unit-free."
+		"en": "Asymmetric RELATIVE band BELOW the value, as a fraction (margin_lower: 0.3 => 30% below, low edge at 0.7×value) — unit-free. Pairs with `margin_upper`; the canonical delta form the verbatim multiplier `fraction_lower` desugars into (fraction_lower 0.7 => margin_lower 0.3)."
 	},
 	"identity": {
 		"archetypeId": "property",
-		"slug": "fraction_lower"
+		"slug": "margin_lower"
 	},
 	"title": {
-		"en": "Lower fraction"
+		"en": "Margin lower"
 	}
 };
 export const { description, identity, title } = _data;

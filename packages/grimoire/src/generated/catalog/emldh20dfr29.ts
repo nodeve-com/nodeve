@@ -15,7 +15,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 265
+								"severity": "nominal",
+								"value": 265
 							}
 						},
 						{
@@ -38,7 +39,8 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 230
+								"severity": "nominal",
+								"value": 230
 							}
 						}
 					]
@@ -60,8 +62,9 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 20,
-								"unit": "L/day"
+								"severity": "nominal",
+								"unit": "L/day",
+								"value": 20
 							}
 						}
 					]

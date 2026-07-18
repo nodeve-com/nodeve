@@ -11,11 +11,12 @@ const _s0 = {
 	}
 } as const;
 const _s1 = {
-	"fractionLower": 0.7,
-	"fractionUpper": 1.2,
 	"intervalKind": "rating",
-	"nominal": 220,
-	"rating": "continuous"
+	"marginLower": 0.3,
+	"marginUpper": 0.2,
+	"rating": "continuous",
+	"severity": "nominal",
+	"value": 220
 } as const;
 const _s2 = {
 	"condition": [
@@ -29,7 +30,8 @@ const _s2 = {
 	},
 	"interval": {
 		"intervalKind": "rating",
-		"nominal": 230
+		"severity": "nominal",
+		"value": 230
 	}
 } as const;
 const _s3 = {
@@ -44,7 +46,8 @@ const _s3 = {
 	},
 	"interval": {
 		"intervalKind": "rating",
-		"nominal": 380
+		"severity": "nominal",
+		"value": 380
 	}
 } as const;
 const _s4 = {
@@ -59,7 +62,8 @@ const _s4 = {
 	},
 	"interval": {
 		"intervalKind": "rating",
-		"nominal": 400
+		"severity": "nominal",
+		"value": 400
 	}
 } as const;
 const _s5 = {

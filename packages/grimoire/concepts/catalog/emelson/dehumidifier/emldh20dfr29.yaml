@@ -12,7 +12,7 @@ dehumidification:
     combined:
       volume_flow_rate:
         intervals:
-          - interval: { nominal: 20, unit: L/day } # rated water extraction
+          - interval: { value: 20, severity: nominal, unit: L/day } # rated water extraction
 
 # The AC phase the unit runs on — accepted voltage plus its running/survival draw (active_power). The
 # connection is the archetype's, not the compressor's. The fitted idle/running draw bands (measured
@@ -22,10 +22,10 @@ ac_phase:
     combined:
       voltage:
         intervals:
-          - interval: { nominal: 230 } # 220–240 V single phase; sole option, no gate needed
+          - interval: { value: 230, severity: nominal } # 220–240 V single phase; sole option, no gate needed
       active_power:
         intervals:
-          - interval: { nominal: 265 } # rated running draw
+          - interval: { value: 265, severity: nominal } # rated running draw
           - interval: { rating: survival, max: 440 } # datasheet peak draw (W; canonical, no unit override)
 
 # Vapor-compression circuit — working gas only. `refrigerant` is a property code

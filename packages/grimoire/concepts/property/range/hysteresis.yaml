@@ -1,4 +1,0 @@
-title: { en: Hysteresis, pt: Histerese }
-description:
-  en: 'The release deadband of a threshold trigger (interval_kind: threshold) — once tripped past `bound` on the `direction` side, the reading must travel this far back past `bound` to release, so the boolean depends on prior state (a PV inverter tripping ON above its 140 V `bound` and releasing only below 140 − 50 = 90 V). Same unit as `bound`; never fabricate.'
-schema: { type: number, exclusiveMinimum: 0 }

@@ -15,8 +15,9 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"margin": 33,
-								"nominal": 38
+								"severity": "nominal",
+								"tolerance": 33,
+								"value": 38
 							},
 							"title": {
 								"en": "Program running"
@@ -28,8 +29,9 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"margin": 200,
-								"nominal": 1500
+								"severity": "nominal",
+								"tolerance": 200,
+								"value": 1500
 							},
 							"title": {
 								"en": "Heating element engaged"

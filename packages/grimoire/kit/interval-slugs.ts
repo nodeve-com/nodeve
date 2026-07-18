@@ -41,7 +41,7 @@ function conditionSuffix(row: Obj): string {
 	return toks.join('_');
 }
 
-/** The auto-slug for a row: its base classifier (rating tier / `nominal` / zone name), the measurable
+/** The auto-slug for a row: its base classifier (rating tier / bare-value `nominal` / zone name), the measurable
  *  channel's flow_direction/period axes, and condition tokens — or undefined when the row is not
  *  auto-addressable (an unclassified band with no axis: the single undirected/lifetime measurable
  *  channel). Shared by the de-sugar and the slug-classifier check so both agree on what a legitimate
@@ -49,20 +49,27 @@ function conditionSuffix(row: Obj): string {
 export function autoSlug(row: Obj): string | undefined {
 	const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
 	// Compose the handle from the band's identity axes, in order: its base classifier — ONE of a
-	// rating tier, `nominal` (a bounds-free nameplate value — a derived tier, not an enum member, so it
-	// never collides with the nominal property), or a `zone` name (mppt / active / …); then `severity`
-	// (grades a narrower sub-range of the base region — a tight `best` window inside a wider one); then
-	// a measurable channel's flow_direction + period (energy: out / out_daily / in / in_daily / daily);
-	// then each gating condition. Enough to disambiguate every sibling that differs on any axis. A
-	// measurable band with no axis at all (the one undirected/lifetime channel) has no auto-slug.
+	// rating tier, `nominal` (a bounds-free nameplate `value` — a derived tier), or a `zone` name
+	// (mppt / active / …); then `severity` (grades a narrower sub-range of the base region — a tight
+	// `best` window inside a wider one); then a measurable channel's flow_direction + period (energy:
+	// out / out_daily / in / in_daily / daily); then each gating condition. Enough to disambiguate
+	// every sibling that differs on any axis. A measurable band with no axis at all (the one
+	// undirected/lifetime channel) has no auto-slug.
 	const tokens: string[] = [];
 	// An explicit rating tier or zone name wins over the bounds-free `nominal` fallback (a zone point
-	// like `{ zone: mpp, nominal: 40.46 }` is a zone, not a bare nominal).
+	// like `{ zone: mpp, value: 40.46 }` is a zone, not a bare nominal). `severity: nominal` is the
+	// NULL/centre grade — the point IS the nominal, so it contributes no token (only the graded rungs
+	// best/good/notice/… key a sub-band); the bare-value fallback already spells `nominal`.
 	if (typeof band.rating === 'string') tokens.push(band.rating);
 	else if (typeof band.zone === 'string') tokens.push(band.zone);
-	else if (band.nominal !== undefined && band.min === undefined && band.max === undefined)
+	else if (
+		band.value !== undefined &&
+		band.min === undefined &&
+		band.max === undefined &&
+		band.trigger_on === undefined // a `value` + `trigger_on` is a threshold trip, not a nameplate
+	)
 		tokens.push('nominal');
-	if (typeof band.severity === 'string') tokens.push(band.severity);
+	if (typeof band.severity === 'string' && band.severity !== 'nominal') tokens.push(band.severity);
 	if (typeof band.flow_direction === 'string') tokens.push(band.flow_direction);
 	if (typeof band.period === 'string') tokens.push(band.period);
 	const suffix = conditionSuffix(row);
@@ -70,20 +77,37 @@ export function autoSlug(row: Obj): string | undefined {
 	return tokens.length > 0 ? tokens.join('_') : undefined;
 }
 
+/** Fold the verbatim MULTIPLIER-of-nominal sugar (`fraction_lower` 0.7 / `fraction_upper` 1.2, the
+ *  power-systems 0.7Un–1.2Un spec form) into the canonical ±fraction deltas (`margin_lower` 0.3 /
+ *  `margin_upper` 0.2). Rounded to kill float dust (1 − 0.7 = 0.30000000000000004). */
+function foldFractionToMargin(band: Obj): void {
+	const round = (n: number) => Math.round(n * 1e9) / 1e9;
+	if (typeof band.fraction_lower === 'number') {
+		band.margin_lower = round(1 - band.fraction_lower);
+		delete band.fraction_lower;
+	}
+	if (typeof band.fraction_upper === 'number') {
+		band.margin_upper = round(band.fraction_upper - 1);
+		delete band.fraction_upper;
+	}
+}
+
 function slugIntervalRows(rows: unknown[], at: string): void {
 	const seen = new Map<string, number>();
 	rows.forEach((row, i) => {
 		if (!isPlainObject(row)) return;
 		const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
-		// interval_kind is DERIVED, never authored on the base axes: `threshold` from a `direction` (the
-		// stateful hysteretic trigger); `rating` from a rating tier OR a bounds-free `nominal` (a nameplate
-		// value IS a rating); `zone` from a zone name. `measurable` alone is authored on interval_kind directly.
+		foldFractionToMargin(band); // verbatim multiplier sugar → canonical ±fraction delta
+		// interval_kind may be authored explicitly on any row; only DERIVE it when omitted: `threshold`
+		// from a `trigger_on` (the stateful hysteretic trigger); `rating` from a rating tier OR a bounds-free
+		// `value` (a bare nameplate value IS a rating); `zone` from a zone name. `measurable` isn't derivable
+		// from bounds, so a bare span authors it directly.
 		if (band.interval_kind === undefined) {
-			if (typeof band.direction === 'string') band.interval_kind = 'threshold';
+			if (typeof band.trigger_on === 'string') band.interval_kind = 'threshold';
 			else if (typeof band.zone === 'string') band.interval_kind = 'zone';
 			else if (
 				typeof band.rating === 'string' ||
-				(band.nominal !== undefined && band.min === undefined && band.max === undefined)
+				(band.value !== undefined && band.min === undefined && band.max === undefined)
 			)
 				band.interval_kind = 'rating';
 		}

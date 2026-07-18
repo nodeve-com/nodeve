@@ -15,8 +15,9 @@ export default {
 							},
 							"interval": {
 								"intervalKind": "rating",
-								"nominal": 30,
-								"unit": "L/day"
+								"severity": "nominal",
+								"unit": "L/day",
+								"value": 30
 							}
 						}
 					]
