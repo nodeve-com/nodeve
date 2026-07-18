@@ -131,8 +131,8 @@ describe('mqtt_connection (new nested contract)', () => {
 	});
 });
 
-describe('desugarIntervalSlugs (kit/repeated-emit.ts)', async () => {
-	const { desugarIntervalSlugs } = await import('../kit/repeated-emit.ts');
+describe('desugarIntervalSlugs (kit/interval-slugs.ts)', async () => {
+	const { desugarIntervalSlugs } = await import('../kit/interval-slugs.ts');
 
 	test('auto-slug composes tier / nominal + mode + condition; authored slug untouched; measurable unslugged', () => {
 		const entry = {

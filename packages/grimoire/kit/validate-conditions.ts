@@ -48,17 +48,19 @@ function intervalTargets(entry: Obj): Targets {
 /** Resolve one (feature, property, interval) by-slug triple against the entry's interval targets —
  *  shared by interval_item conditions and measurand-link registers (features/measurand_link.yaml
  *  reuses the SAME pointer: feature_id + quantity_kind + interval). `kind` names the caller in errors. */
+type Triple = { feature: unknown; property: unknown; interval: unknown };
+// `at`/`kind` name the site + caller in errors; `targets` is the entry's interval index.
+type TripleCtx = { targets: Targets; at: string; kind: string };
+
 function checkTriple(
-	feature: unknown,
-	property: unknown,
-	interval: unknown,
-	targets: Targets,
-	at: string,
-	kind: string,
+	{ feature, property, interval }: Triple,
+	{ targets, at, kind }: TripleCtx,
 ): void {
 	const byProperty = targets.get(String(feature));
 	if (!byProperty)
-		throw new Error(`${at}: ${kind} names feature "${String(feature)}" — no such spec feature on this entry`);
+		throw new Error(
+			`${at}: ${kind} names feature "${String(feature)}" — no such spec feature on this entry`,
+		);
 	const slugs = byProperty.get(String(property));
 	if (!slugs)
 		throw new Error(
@@ -72,7 +74,7 @@ function checkTriple(
 
 function checkIntervalItem(item: Obj, targets: Targets, at: string): void {
 	const { feature, property, interval } = item as Record<string, unknown>;
-	checkTriple(feature, property, interval, targets, at, 'interval_item');
+	checkTriple({ feature, property, interval }, { targets, at, kind: 'interval_item' });
 }
 
 /** A LINKED register naming a measurable channel by `interval_id` must resolve (feature_id,
@@ -81,7 +83,10 @@ function checkIntervalItem(item: Obj, targets: Targets, at: string): void {
  *  registers are skipped. */
 function checkRegisterInterval(reg: unknown, targets: Targets, at: string): void {
 	if (!isPlainObject(reg) || typeof reg.interval_id !== 'string') return;
-	checkTriple(reg.feature_id, reg.quantity_kind, reg.interval_id, targets, at, 'register interval_id');
+	checkTriple(
+		{ feature: reg.feature_id, property: reg.quantity_kind, interval: reg.interval_id },
+		{ targets, at, kind: 'register interval_id' },
+	);
 }
 
 function checkSetting(row: Obj, settings: Obj | undefined, at: string): void {

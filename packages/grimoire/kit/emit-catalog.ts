@@ -8,12 +8,8 @@ import { shortCode } from '@nodeve/encoding/short-code';
 import { effectiveSlug, loadCascade } from '../src/cascade.ts';
 import { CATALOG_DIR } from '../src/concept-sources.ts';
 import { assertDocValid, assertMetaSchema } from './validate-docs.ts';
-import {
-	backfillRegisterSpecNodes,
-	desugarIntervalSlugs,
-	resolveRepeatedFeatures,
-	validateIntervalSlugs,
-} from './repeated-emit.ts';
+import { backfillRegisterSpecNodes, resolveRepeatedFeatures } from './repeated-emit.ts';
+import { desugarIntervalSlugs, validateIntervalSlugs } from './interval-slugs.ts';
 import { validateConditionRefs } from './validate-conditions.ts';
 import { renderHoistedConst } from './hoist.ts';
 
