@@ -75,7 +75,12 @@ describe('sensorId over the dtsu666 register map', () => {
 
 	test('an energy channel renders its interval slug as the tail (one FK, no flow/period segment)', () => {
 		expect(
-			sensorId({ instance, feature: 'ac_grid', quantityKind: 'active_energy', interval: 'out_daily' }),
+			sensorId({
+				instance,
+				feature: 'ac_grid',
+				quantityKind: 'active_energy',
+				interval: 'out_daily',
+			}),
 		).toBe('grid_meter_live_ac_grid_active_energy_out_daily');
 		expect(
 			sensorId({ instance, feature: 'ac_grid', quantityKind: 'active_energy', interval: 'out' }),
@@ -113,19 +118,19 @@ describe('sensorId over the dtsu666 register map', () => {
 // flat scoped slug; scry reads that via SiteSensor.slug, not this.)
 describe('measurandSubTopic', () => {
 	test('joins feature / part / quantity_kind', () => {
-		expect(measurandSubTopic({ feature: 'ac', partId: 'a', quantityKind: 'active_power' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac', partId: 'a', quantityKind: 'active_power' })).toBe(
 			'ac/a/active_power',
 		);
 	});
 
 	test('combined column drops the part segment', () => {
-		expect(measurandSubTopic({ feature: 'ac', quantityKind: 'active_power' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac', quantityKind: 'active_power' })).toBe(
 			'ac/active_power',
 		);
 	});
 
 	test('an ordinal instance renders its 1-based position', () => {
-		expect(measurandSubTopic({ feature: 'ac_phase', ordinal: 2, quantityKind: 'voltage' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac_phase', ordinal: 2, quantityKind: 'voltage' })).toBe(
 			'ac_phase/2/voltage',
 		);
 	});

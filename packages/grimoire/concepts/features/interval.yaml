@@ -11,7 +11,7 @@ body:
     The `trigger_on` prop — STATEFULNESS axis — `trigger_on` on ANY interval turns it into a STATEFUL hysteretic trigger, the one interval whose boolean output depends on the prior on/off state (f(reading, prior_state)). It is an axis orthogonal to interval_kind, NOT a separate kind — most often on a zone (whose name handles the boolean sensor), but a startup/shutdown rating takes it too. Its two edges ARE `min`/`max` (composed from valued_range — the same fields a stateless band uses): the deadband `[min,max]` is the HOLD zone, the ON region is OUTSIDE it. `trigger_on` picks the side: `below` ⇒ ON below `min`, OFF above `max` (heat: on cold, off warm); `above` ⇒ ON above `max`, OFF below `min` (cool / over-limit trip). `value` is an OPTIONAL nominal setpoint (grade it `severity: nominal`) — display context, not switch logic.
     
     
-    The `resolution`/`max_permissible_error`/`channel` props — Instrument-only fields — the metrology of an `interval_kind: measurable` interval (VIM 4.7 measuring interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band (the fold of the dissolved `measurement` feature — a measuring range is an interval_kind, not a separate slot). Omit on a behaviour band (rating: continuous/survival/…).
+    The `resolution`/`max_permissible_error` props — Instrument-only fields — the metrology of an `interval_kind: measurable` interval (VIM 4.7 measuring interval / ssn-system MeasurementRange). Optional everywhere; authored ONLY on a measurable band (the fold of the dissolved `measurement` feature — a measuring range is an interval_kind, not a separate slot). Omit on a behaviour band (rating: continuous/survival/…). A measurable channel's handle is its `identity.slug` (auto-derived from the `flow_direction`/`period` axes), not a separate slug field.
 concept_settings:
   compose:
     - valued_range # partial: value/min/max + band, defined once
@@ -48,4 +48,3 @@ prop:
   trigger_on: {} # above | below — which side is ON; the one irreducible bit min/max can't encode. Makes a zone stateful.
   resolution: {} # VIM 4.14 quantization step
   max_permissible_error: {} # VIM 4.26 coarse accuracy figure
-  channel: {} # sub-channel slug when one instrument exposes several ranges of the same quantity

@@ -7,25 +7,17 @@
 
 import accumulationTerms from './generated/enumeration/accumulation.ts';
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
+import type { Ref } from './generated/features/ref.ts';
+import type { Code } from './generated/property/code.ts';
 
-/** A crosswalk to an external registry's term (refs.yaml — registry_id + term + match closeness).
- *  `registryId` is an FK to a `registry` catalog entry (docs/reference-model.md). */
-export interface TermRef {
-	readonly registryId: string;
-	readonly term: string;
-	readonly match?: string;
-}
+/** A crosswalk to an external registry's term — the generated `ref` (`registryId` + `term` + `match`
+ *  closeness). `registryId` is an FK to a `registry` catalog entry (docs/reference-model.md). */
+export type TermRef = Ref;
 
-/** One vocab member / quantity kind, as baked from its YAML file (camelCase, `code` = file stem).
- *  Deep-readonly so the `as const` generated dicts satisfy it verbatim. */
-export interface Term {
-	readonly code: string;
-	readonly title?: Readonly<Record<string, string>>;
-	readonly description?: Readonly<Record<string, string>>;
-	readonly refs?: readonly TermRef[];
-	readonly accumulation?: string;
-	readonly broader?: string;
-}
+/** The minimal vocab-member contract `makeVocab` reads off a baked enumeration dict: its `code` (the
+ *  wire lookup key) and optional crosswalk `refs` — both concept-sourced (the `code` property, the
+ *  `ref` feature). The full baked member carries more (title / measurand / …); nothing here reads it. */
+export type Term = { readonly code: Code; readonly refs?: readonly TermRef[] };
 
 export interface Vocab<Name extends string, Code extends string> {
 	readonly enumeration: Name;

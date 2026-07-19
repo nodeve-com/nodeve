@@ -7,13 +7,13 @@
 // grain is the same data for a reader that reads JSON instead of importing.
 
 import { catalogEntries } from './generated/catalog/index.ts';
+import type { Modbus } from './generated/archetypes/modbus.ts';
+import type { ModbusRegisters } from './generated/features/modbus_registers.ts';
+import type { CatalogItem } from './generated/property/catalog_item.ts';
 
-/** A device's stable reference — archetypeId + slug (camel surface of the wire `catalog_item`
- *  `{archetype_id, slug}` pair). */
-export interface CatalogIdentity {
-	archetypeId: string;
-	slug: string;
-}
+/** A device's stable reference — the generated `catalog_item` (`{archetypeId, slug}`), narrowed so both
+ *  are present (a resolved identity, unlike the authorable optional-field concept). */
+export type CatalogIdentity = Required<CatalogItem>;
 
 /** One baked catalog entry (camelCase keys, as emitted — the snake wire shape is the .json twin).
  *  Identity is guaranteed; the archetype body varies by archetype — access its `modbus` etc. by key. */
@@ -44,34 +44,15 @@ export function loadDevice(identity: CatalogIdentity): CatalogDevice {
 	return device;
 }
 
-/** One decoded register of a modbus device (camelCase, as emitted): its address + wire type/scale,
- *  and EITHER a measurand link (`featureId` + `quantityKind`, optional `partId`/`ordinal`) OR a bare
- *  `rawName` when still unattributed. `unit`/`decimals` present only when authored. */
-export interface ModbusRegister {
-	address: number;
-	type: string;
-	scale?: number;
-	unit?: string;
-	decimals?: number;
-	featureId?: string;
-	partId?: string;
-	ordinal?: number;
-	quantityKind?: string;
-	quantity?: string; // named measurand (enumeration/quantity) — the effective column when set (else quantityKind)
-	rawName?: string;
-	[key: string]: unknown;
-}
+/** One decoded register of a modbus device — the generated `modbus_registers` row verbatim (numeric
+ *  decode ⊕ its `measurand_link`: `featureId`/`quantityKind`/`intervalId`… or a bare `rawName`). Never
+ *  re-spelled here; the concept owns the shape. */
+export type ModbusRegister = ModbusRegisters[number];
 
-/** A device's modbus medium — the register map + how the bus is talked to (`serialPort`,
- *  `serialWire`, `modbusLink`), exactly as emitted. The one accessor a gateway/codegen reads to
- *  decode this device (README "Using the catalog"). */
-export interface ModbusMedium {
-	modbusRegisters: ModbusRegister[];
-	serialPort?: { baudRate?: number; [key: string]: unknown };
-	serialWire?: Record<string, unknown>;
-	modbusLink?: Record<string, unknown>;
-	[key: string]: unknown;
-}
+/** A device's modbus medium — the generated `modbus` archetype (register map + `serialPort` /
+ *  `serialWire` / `modbusLink` transport), narrowed so `modbusRegisters` is present (the one accessor a
+ *  gateway/codegen reads — README "Using the catalog"; `modbusMediumOf` guarantees it). */
+export type ModbusMedium = Modbus & { modbusRegisters: ModbusRegisters };
 
 /** The modbus medium of a device, or throw if it exposes none (a spec-only catalog entry). */
 export function modbusMediumOf(device: CatalogDevice): ModbusMedium {

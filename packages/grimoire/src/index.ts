@@ -41,10 +41,12 @@ export {
 //     slug-bearing sensor list ha-config / esphome codegen iterate. No reshape; stays snake ---
 export {
 	openSite,
+	linkRegisters,
 	type CatalogItemRef,
 	type SiteView,
 	type SiteBundle,
 	type SiteSensor,
+	type LinkedRegister,
 	type ResolvedDevice,
 } from './site-view.ts';
 export {
@@ -52,6 +54,7 @@ export {
 	type MeasurandColumn,
 	measurandCells,
 	measurandColumns,
+	measurandKey,
 	measurandSubTopic,
 	isMeasurandFeature,
 } from './measurand-tree.ts';

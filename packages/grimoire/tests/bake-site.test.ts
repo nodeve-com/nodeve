@@ -6,7 +6,8 @@ import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { bakeSite } from '../src/bake-site.ts';
-import { openSite } from '../src/site-view.ts';
+import { linkRegisters, openSite } from '../src/site-view.ts';
+import { modbusMediumOf } from '../src/catalog.ts';
 import type { AcPhaseThreePoint } from '../src/generated/features/ac_phase_three_point.ts';
 
 const REF = { archetype_id: 'ac_phase_three_meter', slug: 'grid_meter_live' };
@@ -63,6 +64,95 @@ function fixtureSite(filterMs = 1000): string {
 	);
 	return dir;
 }
+
+// A catalog entry referencing a device whose measurable intervals ALREADY carry `identity.slug`
+// handles on the raw catalog (the ps10sh grid CT's directional energy channels: out/out_daily/
+// in/in_daily). The generated slug patch must LAND on those base intervals — the read-side overlay
+// matches array elements by `identity.slug`, so the patch has to preserve each interval's handle as
+// its match key while stamping the qualified sensor id, or the patch appends beside the base
+// interval instead of merging onto it and the channel reads back slugless.
+function inverterSite(): string {
+	const dir = mkdtempSync(join(tmpdir(), 'grimoire-bake-inv-'));
+	mkdirSync(join(dir, 'catalog'));
+	writeFileSync(
+		join(dir, 'catalog', '_defaults.yaml'),
+		'identity:\n  archetype_id: site_catalog\n',
+	);
+	writeFileSync(
+		join(dir, 'catalog', 'grid_inverter.yaml'),
+		[
+			'inventory:',
+			'  catalog_item:',
+			'    archetype_id: inverter',
+			'    slug: foxess_h3_ps10sh',
+			'',
+		].join('\n'),
+	);
+	return dir;
+}
+
+describe('bakeSite — slugged measurable intervals (directional energy channels)', () => {
+	const INV = { archetype_id: 'inverter', slug: 'grid_inverter' };
+	const site = openSite(bakeSite(inverterSite(), 'inv-fixture'));
+
+	const gridEnergy = () =>
+		site
+			.sensors(INV)
+			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.quantityKind === 'active_energy');
+
+	test('the four directional energy channels read back with baked slugs (no slugless append)', () => {
+		const channels = gridEnergy();
+		expect(channels.map((c) => c.intervalId).sort()).toEqual([
+			'in',
+			'in_daily',
+			'out',
+			'out_daily',
+		]);
+		// every channel carries BOTH ids — the bug left these undefined and threw "no slug".
+		expect(channels.map((c) => c.slug).sort()).toEqual([
+			'ac_grid_active_energy_in',
+			'ac_grid_active_energy_in_daily',
+			'ac_grid_active_energy_out',
+			'ac_grid_active_energy_out_daily',
+		]);
+		expect(channels.map((c) => c.slugQualified).sort()).toEqual([
+			'grid_inverter_ac_grid_active_energy_in',
+			'grid_inverter_ac_grid_active_energy_in_daily',
+			'grid_inverter_ac_grid_active_energy_out',
+			'grid_inverter_ac_grid_active_energy_out_daily',
+		]);
+	});
+
+	test('linkRegisters pairs each energy register with its distinct channel sensor (no re-spelled coord)', () => {
+		const { merged } = site.resolve(INV);
+		const links = linkRegisters(modbusMediumOf(merged).modbusRegisters, site.sensors(INV));
+		const energy = links.filter(
+			(l) =>
+				l.register.featureId === 'ac_phase_three_grid' &&
+				l.register.quantityKind === 'active_energy',
+		);
+		expect(energy).toHaveLength(4);
+		// every energy register resolves to a sensor, and the four map to four DISTINCT slugs.
+		const slugs = energy.map((l) => l.sensor?.slug);
+		expect(slugs.every((s) => typeof s === 'string')).toBe(true);
+		expect(new Set(slugs).size).toBe(4);
+		expect(slugs.sort()).toEqual([
+			'ac_grid_active_energy_in',
+			'ac_grid_active_energy_in_daily',
+			'ac_grid_active_energy_out',
+			'ac_grid_active_energy_out_daily',
+		]);
+	});
+
+	test('a slugless single channel (active_power) keeps an undefined interval handle', () => {
+		const power = site
+			.sensors(INV)
+			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.quantityKind === 'active_power');
+		const combined = power.find((s) => s.partId === undefined && s.ordinal === undefined);
+		expect(combined?.intervalId).toBeUndefined();
+		expect(combined?.slug).toBe('ac_grid_active_power');
+	});
+});
 
 describe('bakeSite — site-authored intervals merge into the slug patch', () => {
 	const bundle = bakeSite(fixtureSite(), 'fixture');

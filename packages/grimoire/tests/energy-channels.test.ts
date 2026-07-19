@@ -13,13 +13,13 @@ const device = loadDevice({ archetypeId: 'inverter', slug: 'foxess_h3_ps10sh' })
 >;
 
 const gridEnergy = measurandCells(device).filter(
-	(c) => c.feature === 'ac_phase_three_grid' && c.quantityKind === 'active_energy',
+	(c) => c.featureId === 'ac_phase_three_grid' && c.quantityKind === 'active_energy',
 );
 
 describe('energy channels on one active_energy column', () => {
 	test('the grid active_energy column yields four interval-slug channels', () => {
 		expect(gridEnergy).toHaveLength(4);
-		const slugs = gridEnergy.map((c) => c.interval).sort();
+		const slugs = gridEnergy.map((c) => c.intervalId).sort();
 		expect(slugs).toEqual(['in', 'in_daily', 'out', 'out_daily']);
 	});
 
@@ -37,7 +37,7 @@ describe('energy channels on one active_energy column', () => {
 			(r) => r.featureId === 'ac_phase_three_grid' && r.quantityKind === 'active_energy',
 		);
 		expect(energy).toHaveLength(4);
-		const channelSlugs = new Set(gridEnergy.map((c) => c.interval));
+		const channelSlugs = new Set(gridEnergy.map((c) => c.intervalId));
 		// ONE FK: registers carry no flow_direction/period, only the `interval_id` slug — resolves to a channel.
 		for (const r of energy) {
 			expect(r.flowDirection).toBeUndefined();

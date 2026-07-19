@@ -13,14 +13,14 @@
 //   • catalog_patch — the site_catalog entry carries the sparse slug patch `generate-site` baked;
 //     merged onto the loaded grimoire device it puts each measurand column's `slug` in place.
 
-import { type CatalogDevice, loadDevice } from './catalog.ts';
+import { type CatalogDevice, type ModbusRegister, loadDevice } from './catalog.ts';
 import { isPlainObject } from 'remeda';
 import { overlayPatch } from './overlay.ts';
 import {
 	type MeasurandCell,
 	type Obj,
 	measurandCells,
-	specSlug,
+	measurandKey,
 	specSlugQualified,
 } from './measurand-tree.ts';
 
@@ -84,18 +84,51 @@ function resolveDevice(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): Resolv
 
 function sensorsFor(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): SiteSensor[] {
 	const { merged, siteLocal } = resolveDevice(bySiteRef, ref);
+	// The instance prefix the bake qualified ids with is the site_catalog entry's own slug.
+	const instance = identityOf(bySiteRef.get(refKey(ref))?.identity).slug ?? '';
 	return measurandCells(merged).map((cell) => {
-		const slug = specSlug(cell.node);
+		// The bake stamps only the QUALIFIED id; the SCOPED (device-local) slug is it minus the
+		// `<instance>_` prefix — not stored twice. `cell.interval` (from specSlug) stays the raw
+		// channel handle, never the sensor id.
 		const slugQualified = specSlugQualified(cell.node);
-		if (typeof slug !== 'string' || typeof slugQualified !== 'string')
+		if (typeof slugQualified !== 'string')
 			throw new Error(
-				`no slug for ${refKey(ref)} ${cell.feature}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.quantityKind}` +
+				`no slug for ${refKey(ref)} ${cell.featureId}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.quantityKind}` +
 					(siteLocal
 						? ''
 						: ' (ref does not resolve to a site_catalog entry — give the metered device one)'),
 			);
+		const prefix = `${instance}_`;
+		const slug = slugQualified.startsWith(prefix)
+			? slugQualified.slice(prefix.length)
+			: slugQualified;
 		return { ...cell, slug, slugQualified };
 	});
+}
+
+/** One modbus register paired with the baked sensor it reads (undefined for a raw/unlinked register
+ *  — no `quantityKind`). */
+export interface LinkedRegister {
+	register: ModbusRegister;
+	sensor?: SiteSensor;
+}
+
+/** Join a device's modbus registers to the baked sensors they read — the register→channel link done
+ *  ONCE here, by the shared measurand coordinate, so a downstream register generator reads
+ *  `sensor.slug` and never re-spells the coordinate. A register with no `quantityKind` (a raw/decode
+ *  word) carries no sensor. Register and sensor are two projections of the ONE `measurand_link`
+ *  coordinate (`featureId`/`intervalId`…), so `measurandKey` reads the same fields off both. */
+export function linkRegisters(
+	registers: ModbusRegister[],
+	sensors: SiteSensor[],
+): LinkedRegister[] {
+	const byCoord = new Map(sensors.map((s) => [measurandKey(s), s]));
+	return registers.map((register) => ({
+		register,
+		// The register IS a `measurand_link` (modbus_registers composes it), so its own coordinate
+		// fields ARE the join key — no re-spell.
+		sensor: register.quantityKind ? byCoord.get(measurandKey(register)) : undefined,
+	}));
 }
 
 /** Open a baked site bundle for reading. Indexes its site_catalog + site_adapter once; every lookup

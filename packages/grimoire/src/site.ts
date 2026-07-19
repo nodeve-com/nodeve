@@ -4,9 +4,18 @@
 // topic/env derivations every consumer shares.
 
 import { snakeKeyByCamel } from '@nodeve/schema-case';
+import { Value } from '@sinclair/typebox/value';
 import { type ConceptTypes, conceptSchema } from './generated/index.ts';
+import { schema as slugSchema } from './generated/property/slug.ts';
 import { parseSnake } from './parse.ts';
 import type { SiteBundle } from './site-view.ts';
+
+/** Assert a topic-segment `name` is a `slug` — the `property/identity/slug` schema owns the pattern;
+ *  no re-spelled regex. `kind` labels the failing segment ("sensor" / "binary_sensor"). */
+const assertFlatSlug = (kind: string, name: string): void => {
+	if (!Value.Check(slugSchema, name))
+		throw new Error(`${kind} name "${name}" is not a flat slug (one lowercase topic segment)`);
+};
 
 export type { ConceptTypes };
 export { conceptSchema };
@@ -76,8 +85,7 @@ export const sensorStateTopic = (
 	adapter: SiteAdapter,
 	name: string,
 ): string => {
-	if (!/^[a-z0-9_]+$/.test(name))
-		throw new Error(`sensor name "${name}" is not a flat slug (one lowercase topic segment)`);
+	assertFlatSlug('sensor', name);
 	return `${adapterTopicPrefix(topicPrefix, adapter)}/sensor/${name}/state`;
 };
 
@@ -90,10 +98,7 @@ export const binarySensorStateTopic = (
 	adapter: SiteAdapter,
 	name: string,
 ): string => {
-	if (!/^[a-z0-9_]+$/.test(name))
-		throw new Error(
-			`binary_sensor name "${name}" is not a flat slug (one lowercase topic segment)`,
-		);
+	assertFlatSlug('binary_sensor', name);
 	return `${adapterTopicPrefix(topicPrefix, adapter)}/binary_sensor/${name}/state`;
 };
 

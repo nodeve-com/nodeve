@@ -9,42 +9,57 @@
 // Segments arrive as finished slugs; this builder never re-slugifies, it only joins and refuses
 // non-slug input.
 
-const SLUG = /^[a-z0-9]+(_[a-z0-9]+)*$/;
+import { Value } from '@sinclair/typebox/value';
+import { schema as slugSchema, type Slug } from './generated/property/slug.ts';
+import { schema as ordinalSchema } from './generated/property/ordinal.ts';
+import type { MeasurandLink } from './generated/features/measurand_link.ts';
 
-/** The measurand link of one register/value — the feature slug already resolved to its on-bus handle. */
-export interface SensorIdParts {
-	instance: string; // effective identity.slug (site override or filename default)
-	feature?: string;
-	variant?: string;
-	partId?: string; // bare part-instance id (a | ab | …); wins over ordinal when both set
-	ordinal?: number;
-	quantityKind?: string;
-	interval?: string; // interval identity.slug — the measurable channel handle (energy: out / out_daily …)
+/** The id-segment projection of one register/value: the `measurand_link` coordinate fields
+ *  (`partId`/`ordinal`/`rawName`) it shares, plus the sensor-id's own RESOLVED handles — `feature` /
+ *  `interval` are the on-bus `identity.slug` handles (`ac_phase_three_point → ac`), NOT the
+ *  `featureId`/`intervalId` (the caller resolves them before this). `quantityKind` arrives as its
+ *  resolved wire code (a slug segment). Segments are finished slugs; this builder only joins them. */
+export type SensorIdParts = Pick<MeasurandLink, 'partId' | 'ordinal' | 'rawName'> & {
+	instance: Slug; // effective identity.slug (site override or filename default)
+	feature?: Slug; // the feature's on-bus handle (identity.slug), resolved from featureId upstream
+	variant?: Slug;
+	quantityKind?: string; // the measurand_link quantity_kind, as its resolved wire code
+	interval?: Slug; // interval identity.slug — the measurable channel handle (energy: out / out_daily …)
 	// or a rating band's derived in-band boolean; the sensor-id tail
-	rawName?: string; // unlinked register — id is instance + rawName, nothing else
-}
+};
 
+/** Assert a segment is a `slug` — the `property/identity/slug` schema owns the pattern; this builder
+ *  never re-spells it. */
 function assertSlug(segment: string): string {
-	if (!SLUG.test(segment))
+	if (!Value.Check(slugSchema, segment))
 		throw new Error(`sensorId: segment ${JSON.stringify(segment)} is not a slug`);
 	return segment;
 }
 
+/** The `part | ordinal` instance segment: a slug `partId` (wins), else an `ordinal` rendered decimal —
+ *  a bare number, NOT a slug, so it's checked against the `ordinal` integer schema, not the slug one. */
+function instanceSegment(partId?: Slug, ordinal?: number): string | undefined {
+	if (partId !== undefined) return assertSlug(partId);
+	if (ordinal === undefined) return undefined;
+	if (!Value.Check(ordinalSchema, ordinal))
+		throw new Error(`sensorId: ordinal ${JSON.stringify(ordinal)} is not a positive integer`);
+	return String(ordinal);
+}
+
 // The id segments PAST the instance — the scoped part every generator shares. `instance` is the
-// site-local device prefix; prepending it yields the globally-unique qualified id.
-function scopedSegments({
-	feature,
-	variant,
-	partId,
-	ordinal,
-	quantityKind,
-	interval,
-	rawName,
-}: SensorIdParts): string[] {
-	const segments = rawName
-		? [rawName]
-		: [feature, variant, partId ?? ordinal?.toString(), quantityKind, interval];
-	return segments.filter((s): s is string => Boolean(s)).map(assertSlug);
+// site-local device prefix; prepending it yields the globally-unique qualified id. Each slug segment
+// is validated against the slug schema; the instance segment self-validates (slug or ordinal).
+function scopedSegments(p: SensorIdParts): string[] {
+	if (p.rawName !== undefined) return [assertSlug(p.rawName)];
+	const slug = (s?: string): string[] => (s === undefined ? [] : [assertSlug(s)]);
+	const inst = instanceSegment(p.partId, p.ordinal);
+	return [
+		...slug(p.feature),
+		...slug(p.variant),
+		...(inst === undefined ? [] : [inst]),
+		...slug(p.quantityKind),
+		...slug(p.interval),
+	];
 }
 
 /** The SCOPED id — everything past the instance (feature ⊕ variant ⊕ part|ordinal ⊕ quantity_kind ⊕

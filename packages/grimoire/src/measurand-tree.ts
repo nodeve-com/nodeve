@@ -10,6 +10,7 @@
 // so the sensor slug plants on the CHANNEL (the measurable interval), not the column.
 
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
+import type { MeasurandLink } from './generated/features/measurand_link.ts';
 import { isPlainObject } from 'remeda';
 
 export type Obj = Record<string, unknown>;
@@ -31,55 +32,55 @@ export const quantityCols = (node: Obj): string[] =>
 	Object.keys(node).filter((k) => QUANTITY_KIND_CODE.has(k));
 
 /** A column key's wire `code` — the snake on-bus spelling every id/coordinate carries. */
-export const quantityCode = (camelKey: string): string => QUANTITY_KIND_CODE.get(camelKey) ?? camelKey;
+export const quantityCode = (camelKey: string): string =>
+	QUANTITY_KIND_CODE.get(camelKey) ?? camelKey;
 
 /** A camel tree key's snake wire spelling (feature keys camelize their authored slug). */
 export const snakeKey = (camelKey: string): string =>
 	camelKey.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
 
-// Where a channel's deterministic on-bus id lives: the `identity.slug` handle of its node
-// (archetypes/specification composes the `identity` feature). For a channel it's the measurable
-// interval node; for a column with no measurable interval it's the column node. The writer
-// (generate-site bakes the patch) and the reader (site-view reads it back) BOTH go through these,
-// so the location is defined ONCE here — change the id slot, change it here.
-/** Build the sparse patch that plants a channel's baked slugs at its id handle: the SCOPED `slug`
- *  (device-local, for a producer that already namespaces) + the QUALIFIED `slug_qualified`
- *  (instance-prefixed, globally unique — HA's entity id). */
-export const specSlugPatch = (slug: string, slugQualified: string): Obj => ({
-	identity: { slug, slugQualified },
+// Two distinct slugs live on `identity` (archetypes/specification composes the `identity` feature),
+// and keeping them separate is what lets the read-side overlay land the patch:
+//   • `slug` — the interval's CHANNEL HANDLE, a raw-catalog fact (energy: out / out_daily / in / …;
+//     undefined for an undirected single channel or a column node). It is the on-bus id TAIL and,
+//     crucially, the key `overlayPatch` matches array elements by — so the bake must PRESERVE it,
+//     never overwrite it with the computed sensor id, or a slugged base interval and its patch no
+//     longer match and the patch appends beside it instead of merging onto it.
+//   • `slug_qualified` — the QUALIFIED (instance-prefixed, globally unique) sensor id the bake
+//     STAMPS. The SCOPED sensor id is this minus the instance prefix, so it isn't stored twice.
+// The writer (bake-site) and reader (site-view) BOTH go through the helpers here, so the slot layout
+// is defined ONCE — change it here.
+/** Build the sparse patch that stamps a channel's baked QUALIFIED sensor id, keyed (for a slugged
+ *  interval) by its channel `handle` so `overlayPatch` merges onto the right base element. A column
+ *  node / undirected channel has no handle — the patch carries only the qualified id and merges
+ *  positionally / by object key. */
+export const specSlugPatch = (slugQualified: string, handle?: string): Obj => ({
+	identity: { ...(handle !== undefined ? { slug: handle } : {}), slugQualified },
 });
 const idString = (node: Obj, key: 'slug' | 'slugQualified'): string | undefined =>
 	isPlainObject(node.identity) && typeof node.identity[key] === 'string'
 		? (node.identity[key] as string)
 		: undefined;
-/** Read a channel node's baked SCOPED slug back from its id handle (undefined if unbaked). */
+/** Read a node's interval channel HANDLE (its raw `identity.slug`) — the on-bus id tail and overlay
+ *  match key. Undefined for an undirected single channel or a column node. */
 export const specSlug = (node: Obj): string | undefined => idString(node, 'slug');
-/** Read a channel node's baked QUALIFIED slug back from its id handle (undefined if unbaked). */
+/** Read a channel node's baked QUALIFIED sensor id (undefined if unbaked). */
 export const specSlugQualified = (node: Obj): string | undefined => idString(node, 'slugQualified');
 
-/** One measured column located in the tree: its feature, its instance coordinate (`combined` → both
- *  absent; `part` → partId; `instances` → 1-based ordinal), its quantity_kind, and the column node. */
-export interface MeasurandColumn {
-	feature: string;
-	partId?: string;
-	ordinal?: number;
-	quantityKind: string;
-	node: Obj; // the column node (carries the `intervals` list)
-}
+/** One measured column located in the tree: its `measurand_link` coordinate (`combined` → featureId +
+ *  quantityKind, both instance slots absent; `part` → partId; `instances` → 1-based ordinal) PLUS the
+ *  column node (carries the `intervals` list). The coordinate IS the generated `measurand_link` feature
+ *  — never re-spelled here. */
+export type MeasurandColumn = MeasurandLink & { node: Obj };
 
 /** One sensor CHANNEL: a column's coordinate PLUS, for a channel carried by a measurable interval,
  *  its channel `interval` slug (the by-slug handle a register FK names — `out` / `out_daily` / …,
  *  auto-slugged from the interval's flow_direction/period) and that interval node. A column with no
  *  measurable interval yields one channel at the column node (interval undefined) — prior single-cell
  *  behaviour, as does the one undirected/lifetime measurable channel (a slugless interval). */
-export interface MeasurandCell {
-	feature: string;
-	partId?: string;
-	ordinal?: number;
-	quantityKind: string;
-	interval?: string;
+export type MeasurandCell = MeasurandLink & {
 	node: Obj; // the measurable interval node, or the column node when the column has none
-}
+};
 
 // A row's band body — `{ interval: {...} }` nested (the authored shape) or the row itself flat.
 const bandOf = (row: Obj): Obj => (isPlainObject(row.interval) ? (row.interval as Obj) : row);
@@ -90,7 +91,9 @@ export const isMeasurableInterval = (row: unknown): row is Obj =>
 
 /** A column's measurable interval rows — each is its own sensor channel. */
 const measurableRows = (column: Obj): Obj[] =>
-	(Array.isArray(column.intervals) ? (column.intervals as unknown[]) : []).filter(isMeasurableInterval);
+	(Array.isArray(column.intervals) ? (column.intervals as unknown[]) : []).filter(
+		isMeasurableInterval,
+	);
 
 /** Walk a device tree and yield every measurand column with its coordinates — the flat view the
  *  patch's nested `{feature}.{combined|part.<id>|instances[n]}.{quantity_kind}` mirrors. */
@@ -98,11 +101,16 @@ export function measurandColumns(device: Obj): MeasurandColumn[] {
 	const cols: MeasurandColumn[] = [];
 	for (const [featureKey, node] of Object.entries(device)) {
 		if (!isMeasurandFeature(node)) continue;
-		const feature = snakeKey(featureKey); // cols carry the snake wire spelling, like every coordinate
+		const featureId = snakeKey(featureKey); // cols carry the snake wire spelling, like every coordinate
 		const fs = node.featureSpec as Obj;
 		const push = (src: Obj, coord: { partId?: string; ordinal?: number }): void => {
 			for (const col of quantityCols(src))
-				cols.push({ feature, quantityKind: quantityCode(col), node: src[col] as Obj, ...coord });
+				cols.push({
+					featureId,
+					quantityKind: quantityCode(col) as MeasurandLink['quantityKind'],
+					node: src[col] as Obj,
+					...coord,
+				});
 		};
 		if (isPlainObject(fs.combined)) push(fs.combined, {}); // the whole / aggregate (incl. a single spec feature's columns)
 		if (isPlainObject(fs.part))
@@ -120,25 +128,29 @@ export function measurandColumns(device: Obj): MeasurandColumn[] {
 export function measurandCells(device: Obj): MeasurandCell[] {
 	return measurandColumns(device).flatMap((col) => {
 		const rows = measurableRows(col.node);
-		if (rows.length === 0) return [{ ...col }]; // no measurable interval — one channel at the column node
-		return rows.map((row) => ({
-			feature: col.feature,
-			partId: col.partId,
-			ordinal: col.ordinal,
-			quantityKind: col.quantityKind,
-			interval: specSlug(row), // the channel handle (undefined for the one undirected/lifetime channel)
-			node: row,
-		}));
+		if (rows.length === 0) return [col]; // no measurable interval — one channel at the column node
+		// The channel keeps the column's coordinate; only its `intervalId` handle (undefined for the one
+		// undirected/lifetime channel) and its node differ — spread, don't re-spell.
+		return rows.map((row): MeasurandCell => ({ ...col, intervalId: specSlug(row), node: row }));
 	});
 }
+
+/** The canonical join key for a measurand coordinate — a stable delimiter-joined string (empty
+ *  segments kept, so channels never collide). The coordinate IS the generated `measurand_link`: a spec
+ *  cell and a decode LINK (a modbus register / hid field / vedirect field) are two projections of the
+ *  SAME `measurand_link`, so both sides build the key through HERE, neither hand-spells it. */
+export const measurandKey = (c: MeasurandLink): string =>
+	[c.featureId, c.partId ?? c.ordinal?.toString(), c.quantityKind, c.intervalId]
+		.map((s) => s ?? '')
+		.join('|');
 
 /** The key a gateway publishes a measurand channel under in its grouped `state` JSON — the `/`-joined
  *  coordinate `<feature>/<part|ordinal>/<quantity_kind>/<interval?>`, canonical feature (pre-alias,
  *  matching what the wire actually carries). The counterpart of the gateway's register→sub-topic
  *  derivation, so a downstream bus reader derives the key HERE, never hand-spells it. */
 export const measurandSubTopic = (
-	cell: Pick<MeasurandCell, 'feature' | 'partId' | 'ordinal' | 'quantityKind' | 'interval'>,
+	cell: Pick<MeasurandLink, 'featureId' | 'partId' | 'ordinal' | 'quantityKind' | 'intervalId'>,
 ): string =>
-	[cell.feature, cell.partId ?? cell.ordinal?.toString(), cell.quantityKind, cell.interval]
+	[cell.featureId, cell.partId ?? cell.ordinal?.toString(), cell.quantityKind, cell.intervalId]
 		.filter(Boolean)
 		.join('/');

@@ -18,7 +18,6 @@ import * as byteOrder_ from './byte_order.ts';
 import * as catalogItem_ from './catalog_item.ts';
 import * as catalogPatch_ from './catalog_patch.ts';
 import * as catalogRef_ from './catalog_ref.ts';
-import * as channel_ from './channel.ts';
 import * as code_ from './code.ts';
 import * as combined_ from './combined.ts';
 import * as compose_ from './compose.ts';
@@ -184,7 +183,6 @@ export const property = {
 	catalogItem: catalogItem_,
 	catalogPatch: catalogPatch_,
 	catalogRef: catalogRef_,
-	channel: channel_,
 	code: code_,
 	combined: combined_,
 	compose: compose_,

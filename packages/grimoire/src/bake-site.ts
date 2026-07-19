@@ -19,7 +19,7 @@ import { basename, join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { effectiveSlug, loadCascade } from './cascade.ts';
 import { loadDevice } from './catalog.ts';
-import { scopedSensorId, sensorId } from './sensor-id.ts';
+import { sensorId } from './sensor-id.ts';
 import {
 	type Obj,
 	isMeasurableInterval,
@@ -79,7 +79,9 @@ type PartRef = { partId?: string; ordinal?: number };
 function featurePatch(instance: string, feature: string, node: Obj): Obj {
 	const slugAt = (ref: PartRef, quantityKind: string, interval?: string): Obj => {
 		const parts = { instance, feature: featureSlug(node, feature), ...ref, quantityKind, interval };
-		return specSlugPatch(scopedSensorId(parts), sensorId(parts));
+		// Stamp the QUALIFIED sensor id, keyed by the channel HANDLE (`interval`) so the read-side
+		// overlay lands it on this base interval — never overwrite the handle with the computed id.
+		return specSlugPatch(sensorId(parts), interval);
 	};
 	const colPatch = (col: Obj, quantityKind: string, ref: PartRef): Obj => {
 		const intervals = Array.isArray(col.intervals) ? (col.intervals as Obj[]) : [];
@@ -206,7 +208,7 @@ function assertIntervalFilters(
 		if (tooFast)
 			throw new Error(
 				`${label}: interval filter window shorter than the sample interval — ` +
-					`${tooFast.cell.feature}.${tooFast.cell.partId ?? tooFast.cell.ordinal ?? 'combined'}.${tooFast.cell.quantityKind} ` +
+					`${tooFast.cell.featureId}.${tooFast.cell.partId ?? tooFast.cell.ordinal ?? 'combined'}.${tooFast.cell.quantityKind} ` +
 					`interval "${tooFast.slug}" ${tooFast.key}: ${tooFast.ms} ms < ` +
 					`adapter "${asIdentity(adapter.identity).slug}" fastest cadence ${fastest} ms`,
 			);
