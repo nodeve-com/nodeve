@@ -14,11 +14,9 @@
 // inline enum (`enum:` list, or `schema: { enum: … }`) rather than merely referencing the enumeration.
 // A field that genuinely needs a local literal set must be NAMED for what it is, not for an
 // enumeration. Run standalone: `node scripts/guard-vocab-collision.ts`.
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS, enumerationDirNames } from '../src/concept-sources.ts';
+import { CONCEPTS, enumerationDirNames, readYaml } from '../src/concept-sources.ts';
 
 const SCAN_DIRS = [join(CONCEPTS, 'property'), join(CONCEPTS, 'features'), join(CONCEPTS, 'archetypes')];
 
@@ -39,7 +37,7 @@ const hits: Hit[] = [];
 for (const dir of SCAN_DIRS) {
 	for (const path of yamlFiles(dir)) {
 		const rel = path.slice(CONCEPTS.length + 1);
-		const doc = parseYaml(readFileSync(path, 'utf8')) as unknown;
+		const doc = readYaml(path) as unknown;
 		// Walk every mapping; a KEY that IS an enumeration name whose value coins an inline set collides.
 		const visit = (node: unknown): void => {
 			if (!node || typeof node !== 'object') return;

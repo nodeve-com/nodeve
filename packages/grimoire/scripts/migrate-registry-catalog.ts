@@ -8,8 +8,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { shortCode } from '@nodeve/encoding/short-code';
-import { parse as parseYaml } from 'yaml';
-import { CONCEPTS } from '../src/concept-sources.ts';
+import { CONCEPTS, readYaml } from '../src/concept-sources.ts';
 
 const ENUM_REGISTRY = join(CONCEPTS, 'enumeration/registry');
 const CATALOG_REGISTRIES = join(CONCEPTS, 'catalog/registries');
@@ -126,7 +125,7 @@ if (existsSync(ENUM_REGISTRY)) {
 	for (const f of readdirSync(ENUM_REGISTRY)) {
 		if (!f.endsWith('.yaml') || f === '_defaults.yaml') continue;
 		const raw = readFileSync(join(ENUM_REGISTRY, f), 'utf8');
-		const doc = (parseYaml(raw) ?? {}) as Record<string, unknown>;
+		const doc = readYaml(join(ENUM_REGISTRY, f)) as Record<string, unknown>;
 		const oldSlug = f.slice(0, -5);
 		const slug = REGISTRY_RENAME[oldSlug] ?? oldSlug;
 		const identity = (doc.identity ?? {}) as Record<string, unknown>;

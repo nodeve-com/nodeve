@@ -1,12 +1,11 @@
 // The enumeration/vocab emit for `pnpm generate`: read each concepts/enumeration/<name>/
 // dir into its merged member-data dict, and render the TS vocab modules a code consumer imports.
 // DATA FIRST — the .json is the wire shape (snake_case); the .ts vocab modules camelCase on top.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readdirSync, statSync } from 'node:fs';
 import { isPlainObject, toCamelCase } from 'remeda';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import humps from 'remeda-humps';
-import { ENUMERATION_DIR } from '../src/concept-sources.ts';
+import { ENUMERATION_DIR, readYaml } from '../src/concept-sources.ts';
 import { renderJson } from './json-schema.ts';
 
 /** One enumeration's `code → member data` dict from its enumeration/<name>/*.yaml files (`code` =
@@ -15,13 +14,11 @@ import { renderJson } from './json-schema.ts';
 export function enumerationMemberData(name: string): Record<string, unknown> {
 	const dir = join(ENUMERATION_DIR, name);
 	const files = readdirSync(dir).filter((f) => f.endsWith('.yaml'));
-	const defaults = files.includes('_defaults.yaml')
-		? ((parseYaml(readFileSync(join(dir, '_defaults.yaml'), 'utf8')) ?? {}) as Record<string, unknown>)
-		: {};
+	const defaults = files.includes('_defaults.yaml') ? readYaml(join(dir, '_defaults.yaml')) : {};
 	const out: Record<string, unknown> = {};
 	for (const file of files.filter((f) => f !== '_defaults.yaml').sort()) {
 		const code = file.slice(0, -'.yaml'.length);
-		const doc = { ...defaults, ...((parseYaml(readFileSync(join(dir, file), 'utf8')) ?? {}) as Record<string, unknown>) };
+		const doc = { ...defaults, ...readYaml(join(dir, file)) };
 		// `identity` is real member data (symbol, url, iri_template, broader). Strip only the filing
 		// SELECTOR: `archetype_id` (the schema selector — compiler plumbing) and the reserved `id` (DB uuid).
 		if (isPlainObject(doc.identity)) {

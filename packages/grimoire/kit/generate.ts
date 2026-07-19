@@ -15,10 +15,9 @@
 // Every catalog + property/enumeration leaf validates against its archetype's projected schema before
 // anything emits — an invalid doc fails the whole generate (and the pre-commit that runs it).
 
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { isPlainObject } from 'remeda';
 import { dirname, join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import humps from 'remeda-humps';
 import { camelizeSchema } from '@nodeve/schema-case';
 import { resolveConcept } from './compile.ts';
@@ -246,7 +245,7 @@ export function outputs(): Record<string, string> {
 	// downstream; then guard generator inputs to concepts/ only.
 	// The authored display policy: a typed const for TS consumers AND an artifacts JSON twin — a TS
 	// export is a view of baked data, never the only copy (guard-artifacts-baked.ts).
-	const policy = parseDisplayPolicy(parseYaml(readFileSync(DISPLAY_POLICY_YAML, 'utf8')));
+	const policy = parseDisplayPolicy(readYaml(DISPLAY_POLICY_YAML));
 	out[join(GENERATED_DIR, 'display-policy.ts')] = renderDisplayPolicyModule(policy);
 	out[join(ARTIFACTS_DIR, 'display-policy.json')] = renderJson(policy);
 	// Parts maps (concepts/parts/) — read by the repeated-feature resolve; baked so every YAML the

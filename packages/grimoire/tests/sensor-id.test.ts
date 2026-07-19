@@ -3,11 +3,10 @@
 // (`ac_phase_three_point → ac`), a CATALOG fact (site-agnostic); the only site overlay is the
 // instance slug, an inline fixture mirroring sites/lounge/catalog/grid_meter_live.yaml.
 import { describe, expect, test } from 'vitest';
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import { intervalSensorId, sensorId } from '../src/sensor-id.ts';
 import { measurandSubTopic } from '../src/measurand-tree.ts';
+import { readYaml } from '../src/concept-sources.ts';
 
 const instance = 'grid_meter_live'; // site file stem overrides catalog slug chint_dtsu666_4wire
 
@@ -15,9 +14,10 @@ interface Register {
 	interval_item?: { feature_id?: string; part_id?: string; property_id?: string };
 }
 
-const device = parseYaml(
-	readFileSync(join(import.meta.dirname, '../concepts/catalog/chint/dtsu666.yaml'), 'utf8'),
-) as { modbus: { modbus_registers: Register[] }; [feature: string]: unknown };
+const device = readYaml(join(import.meta.dirname, '../concepts/catalog/chint/dtsu666.yaml')) as {
+	modbus: { modbus_registers: Register[] };
+	[feature: string]: unknown;
+};
 
 // The feature → on-bus slug map the site bake reads off each feature's `identity.slug` (here from
 // the source YAML; generate-site reads the baked device). Unauthored ⇒ the feature slug itself.

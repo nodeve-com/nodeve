@@ -13,11 +13,9 @@
 // vedirect media). This guard walks every archetype YAML and fails on any top-level key outside the
 // allowed set — which catches `prop:`, `enums:`, AND bare property keys in one sweep. Run standalone:
 // `node scripts/guard-archetype-features.ts`.
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS } from '../src/concept-sources.ts';
+import { CONCEPTS, readYaml } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
 
 const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
@@ -52,9 +50,8 @@ feature from the archetype. See concepts/README.md ("Archetype").
 	(fail) => {
 		for (const path of yamlFiles(ARCHETYPES_DIR)) {
 			const rel = path.slice(CONCEPTS.length + 1);
-			const doc = parseYaml(readFileSync(path, 'utf8'));
-			if (doc === null || typeof doc !== 'object' || Array.isArray(doc)) continue;
-			for (const key of Object.keys(doc as Record<string, unknown>)) {
+			const doc = readYaml(path);
+			for (const key of Object.keys(doc)) {
 				if (!ALLOWED.has(key)) fail(`${key}  —  ${rel}`);
 			}
 		}

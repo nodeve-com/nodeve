@@ -10,10 +10,9 @@
 //
 // A pair that legitimately shares a group (a deliberate, documented exception) goes in ALLOW below
 // with a WHY. Run standalone any time: `node scripts/guard-feature-dupes.ts`.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
-import { parse as parseYaml } from 'yaml';
-import { FEATURES_DIR } from '../src/concept-sources.ts';
+import { FEATURES_DIR, readYaml } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
 
 // Unordered `a|b` file-pair keys accepted despite sharing a prop group, each with the reason the
@@ -40,7 +39,7 @@ function featureFiles(dir: string): string[] {
 
 type FeatureDoc = { prop?: unknown; concept_settings?: { compose?: unknown } } | null;
 const readDoc = (rel: string): FeatureDoc =>
-	parseYaml(readFileSync(join(FEATURES_DIR, rel), 'utf8')) as FeatureDoc;
+	readYaml(join(FEATURES_DIR, rel)) as FeatureDoc;
 const ownPropKeys = (doc: FeatureDoc): string[] =>
 	doc?.prop && typeof doc.prop === 'object' && !Array.isArray(doc.prop)
 		? Object.keys(doc.prop)

@@ -11,10 +11,8 @@
 // whose overlay rebinds to another layer via `feature:`/`feature:`) and each enum value, and fails on
 // any that the property layer doesn't back. `prop` must be a map; an array is a shape error. Run
 // standalone: `node scripts/guard-feature-props.ts`.
-import { readFileSync } from 'node:fs';
-import { parse as parseYaml } from 'yaml';
 import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames } from '../src/concept-sources.ts';
+import { CONCEPTS, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames, readYaml } from '../src/concept-sources.ts';
 
 // The property layer: the set of defined property slugs (basenames, globally unique) and the set of
 // category directories (the `enums:` targets).
@@ -60,7 +58,7 @@ const shapeErrors: string[] = [];
 
 for (const path of yamlFiles(FEATURES_DIR)) {
 	const rel = path.slice(CONCEPTS.length + 1);
-	const doc = parseYaml(readFileSync(path, 'utf8'));
+	const doc = readYaml(path);
 	for (const slug of featureProps(doc, rel)) {
 		if (!propertySlugs.has(slug)) missingProps.push({ file: rel, slug });
 	}

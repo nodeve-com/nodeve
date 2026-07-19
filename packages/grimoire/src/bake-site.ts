@@ -12,11 +12,11 @@
 // This is pure mechanism: it takes the site's source dir and returns the validated bundle. The
 // deploying repo owns *where* sites live and *writing* the artifact (grimoire never resolves a sites
 // path from its own installed location); it drives this via `bakeSite` from a thin wrapper.
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { isPlainObject } from 'remeda';
 import humps from 'remeda-humps';
 import { basename, join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
+import { readYaml } from './concept-sources.ts';
 import { effectiveSlug, loadCascade } from './cascade.ts';
 import { loadDevice } from './catalog.ts';
 import { sensorId } from './sensor-id.ts';
@@ -34,7 +34,6 @@ import {
 import { overlayPatch } from './overlay.ts';
 import { isConcept, validateSite } from './validate-site.ts';
 
-const readYaml = (path: string): unknown => parseYaml(readFileSync(path, 'utf8'));
 const stemKey = (file: string): string => basename(file, '.yaml').replace(/-/g, '_');
 
 const asIdentity = (v: unknown): { archetype_id?: string; slug?: string } =>

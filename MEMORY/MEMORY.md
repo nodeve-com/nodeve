@@ -13,3 +13,4 @@
 - [no inline string vocab](no-inline-string-vocab.md) — inline string-array/Set vocabularies in code are a total failure; derive from the authoritative source
 - [grimoire no TS spec grammar](grimoire-no-ts-spec-grammar.md) — hand-written TS interfaces for the spec/measurand grammar are forbidden; YAML concepts are the only source
 - [grimoire settings external sensors](grimoire-settings-external-sensors.md) — settings_schema will grow external-sensor refs (ESPHome import pattern); setting gates stay pointed at the same keys
+- [grimoire shape slop cleanup](grimoire-shape-slop-cleanup.md) — hand-authored shapes, dup defs, opaque Obj bags all trace to one missing desugar-at-openSite edge; multi-thread cleanup, gate currently red

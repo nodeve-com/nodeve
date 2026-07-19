@@ -39,6 +39,8 @@ export function yamlFiles(dir: string): string[] {
 	return out;
 }
 
+/** THE single YAML load surface — the only `readFileSync`+`parseYaml` pair in grimoire. Every
+ *  generator, guard, and site bake reads through here (empty file → `{}`). */
 export const readYaml = (path: string): Obj => (parseYaml(readFileSync(path, 'utf8')) ?? {}) as Obj;
 
 /** slug → file path for one concept layer dir; slugs are file stems, unique per layer. */

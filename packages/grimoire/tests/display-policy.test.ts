@@ -3,11 +3,10 @@
 // cross-field rules) and confirms the committed instance parses. The realization (copy/template
 // fan-in, α computation) is downstream codegen, tested where it lives.
 
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import { describe, expect, it } from 'vitest';
 import { displayPolicyFor, parseDisplayPolicy } from '../src/display-policy.ts';
+import { readYaml } from '../src/concept-sources.ts';
 
 const voltage = {
   feature: 'ac_phase',
@@ -49,7 +48,7 @@ describe('display policy', () => {
   });
 
   it('the committed sensors.yaml is a valid instance', () => {
-    const committed = parseYaml(readFileSync(join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml'), 'utf8'));
+    const committed = readYaml(join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml'));
     expect(() => parseDisplayPolicy(committed)).not.toThrow();
   });
 });

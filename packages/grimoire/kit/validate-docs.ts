@@ -2,23 +2,23 @@
 // Shared by generate.ts — catalog leaves, property/enumeration leaves, and feature defs all pass
 // through here before anything emits; an invalid doc fails the whole generate (and the pre-commit).
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse as parseYaml } from 'yaml';
 import { type ValidateFunction } from 'ajv';
 import { isPlainObject, mergeDeep } from 'remeda';
 import { instructionKeys, resolveConcept } from './compile.ts';
 import { projectSchema } from './project.ts';
 import { ajv } from '../src/ajv.ts';
-import { type Obj, ARCHETYPES_DIR, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR } from '../src/concept-sources.ts';
+import { type Obj, ARCHETYPES_DIR, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, readYaml } from '../src/concept-sources.ts';
 
 const schemaByArchetype = new Map<string, ValidateFunction>();
 
 /** Parse one def file; an EMPTY def is a hard failure — a def earns its file by saying something. */
 function parseDoc(path: string): Obj {
-	const doc = parseYaml(readFileSync(path, 'utf8'));
-	if (doc == null) throw new Error(`grimoire ${path}: empty def — author it or delete the file`);
-	return doc as Obj;
+	const doc = readYaml(path);
+	if (Object.keys(doc).length === 0)
+		throw new Error(`grimoire ${path}: empty def — author it or delete the file`);
+	return doc;
 }
 
 /** The identity de-sugar: EVERY doc validates carrying `identity.{archetype_id, slug}` (required by
@@ -57,7 +57,7 @@ export function assertLeafDocsValid(): void {
 	const walk = (root: string, dir: string, inherited: Record<string, unknown>): void => {
 		const names = readdirSync(dir, { withFileTypes: true });
 		const defaults = names.some((e) => e.isFile() && e.name === '_defaults.yaml')
-			? (mergeDeep(inherited, (parseYaml(readFileSync(join(dir, '_defaults.yaml'), 'utf8')) ?? {}) as Record<string, unknown>) as Record<string, unknown>)
+			? (mergeDeep(inherited, readYaml(join(dir, '_defaults.yaml'))) as Record<string, unknown>)
 			: inherited;
 		for (const entry of names.sort((a, b) => a.name.localeCompare(b.name))) {
 			if (entry.isDirectory()) {
