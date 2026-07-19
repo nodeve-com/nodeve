@@ -19,14 +19,13 @@ describe('grimoire CLI', () => {
 		expect(node).toBe('ac_grid');
 	});
 
-	test('a quantity_kind column filter selects its registers, keyed by the interval_id slug', () => {
-		const regs = JSON.parse(run('registers', 'foxess_h3_ps10sh', 'active_energy')) as Array<
-			Record<string, unknown>
-		>;
+	test('a property_id column filter selects its registers, keyed by the interval_id slug', () => {
+		type Reg = { interval_item?: { feature_id?: string; interval_id?: string }; address?: number };
+		const regs = JSON.parse(run('registers', 'foxess_h3_ps10sh', 'active_energy')) as Reg[];
 		// grid feed-in/consumption ×2, port yield/input ×2, pv lifetime+daily, load lifetime+daily.
-		const grid = regs.filter((r) => r.feature_id === 'ac_phase_three_grid');
+		const grid = regs.filter((r) => r.interval_item?.feature_id === 'ac_phase_three_grid');
 		expect(grid).toHaveLength(4);
-		const feedInDaily = grid.find((r) => r.interval_id === 'out_daily');
+		const feedInDaily = grid.find((r) => r.interval_item?.interval_id === 'out_daily');
 		expect(feedInDaily?.address).toBe(39615);
 	});
 

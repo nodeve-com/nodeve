@@ -12,10 +12,7 @@ import { measurandSubTopic } from '../src/measurand-tree.ts';
 const instance = 'grid_meter_live'; // site file stem overrides catalog slug chint_dtsu666_4wire
 
 interface Register {
-	feature_id?: string;
-	part_id?: string;
-	quantity_kind?: string;
-	raw_name?: string;
+	interval_item?: { feature_id?: string; part_id?: string; property_id?: string };
 }
 
 const device = parseYaml(
@@ -33,15 +30,15 @@ const featureSlug = (feature: string): string => {
 	return typeof id?.slug === 'string' ? id.slug : feature;
 };
 
-const ids = device.modbus.modbus_registers.map((r) =>
-	sensorId({
+const ids = device.modbus.modbus_registers.map((r) => {
+	const link = r.interval_item ?? {};
+	return sensorId({
 		instance,
-		feature: r.feature_id ? featureSlug(r.feature_id) : undefined,
-		partId: r.part_id,
-		quantityKind: r.quantity_kind,
-		rawName: r.raw_name,
-	}),
-);
+		feature: link.feature_id ? featureSlug(link.feature_id) : undefined,
+		partId: link.part_id,
+		propertyId: link.property_id,
+	});
+});
 
 describe('sensorId over the dtsu666 register map', () => {
 	test('renders the aliased worked examples', () => {
@@ -65,7 +62,7 @@ describe('sensorId over the dtsu666 register map', () => {
 
 	test('a feature with no identity.slug renders its own slug verbatim', () => {
 		expect(
-			sensorId({ instance, feature: 'ac_phase_three_point', partId: 'a', quantityKind: 'voltage' }),
+			sensorId({ instance, feature: 'ac_phase_three_point', partId: 'a', propertyId: 'voltage' }),
 		).toBe('grid_meter_live_ac_phase_three_point_a_voltage');
 	});
 
@@ -78,15 +75,15 @@ describe('sensorId over the dtsu666 register map', () => {
 			sensorId({
 				instance,
 				feature: 'ac_grid',
-				quantityKind: 'active_energy',
+				propertyId: 'active_energy',
 				interval: 'out_daily',
 			}),
 		).toBe('grid_meter_live_ac_grid_active_energy_out_daily');
 		expect(
-			sensorId({ instance, feature: 'ac_grid', quantityKind: 'active_energy', interval: 'out' }),
+			sensorId({ instance, feature: 'ac_grid', propertyId: 'active_energy', interval: 'out' }),
 		).toBe('grid_meter_live_ac_grid_active_energy_out');
 		// undirected/lifetime channel: slugless interval — unchanged from a plain column id
-		expect(sensorId({ instance, feature: 'pv', quantityKind: 'active_energy' })).toBe(
+		expect(sensorId({ instance, feature: 'pv', propertyId: 'active_energy' })).toBe(
 			'grid_meter_live_pv_active_energy',
 		);
 	});
@@ -97,7 +94,7 @@ describe('sensorId over the dtsu666 register map', () => {
 				instance,
 				feature: 'ac',
 				partId: 'a',
-				quantityKind: 'voltage',
+				propertyId: 'voltage',
 				interval: 'eu_230v_50hz',
 			}),
 		).toBe('grid_meter_live_ac_a_voltage_eu_230v_50hz');
@@ -118,19 +115,19 @@ describe('sensorId over the dtsu666 register map', () => {
 // flat scoped slug; scry reads that via SiteSensor.slug, not this.)
 describe('measurandSubTopic', () => {
 	test('joins feature / part / quantity_kind', () => {
-		expect(measurandSubTopic({ featureId: 'ac', partId: 'a', quantityKind: 'active_power' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac', partId: 'a', propertyId: 'active_power' })).toBe(
 			'ac/a/active_power',
 		);
 	});
 
 	test('combined column drops the part segment', () => {
-		expect(measurandSubTopic({ featureId: 'ac', quantityKind: 'active_power' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac', propertyId: 'active_power' })).toBe(
 			'ac/active_power',
 		);
 	});
 
 	test('an ordinal instance renders its 1-based position', () => {
-		expect(measurandSubTopic({ featureId: 'ac_phase', ordinal: 2, quantityKind: 'voltage' })).toBe(
+		expect(measurandSubTopic({ featureId: 'ac_phase', ordinal: 2, propertyId: 'voltage' })).toBe(
 			'ac_phase/2/voltage',
 		);
 	});

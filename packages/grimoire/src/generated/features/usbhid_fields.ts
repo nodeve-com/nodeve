@@ -9,23 +9,19 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as byteOrder_ from '../property/byte_order.ts';
 import * as decimals_ from '../property/decimals.ts';
-import * as featureId_ from '../property/feature_id.ts';
-import * as intervalId_ from '../property/interval_id.ts';
+import * as intervalItem_ from '../property/interval_item.ts';
 import * as offset_ from '../property/offset.ts';
-import * as ordinal_ from '../property/ordinal.ts';
-import * as partId_ from '../property/part_id.ts';
-import * as rawName_ from '../property/raw_name.ts';
 import * as scale_ from '../property/scale.ts';
 import * as scaleOverrides_ from '../property/scale_overrides.ts';
 import * as type_ from '../property/type.ts';
 import * as unit_ from '../property/unit.ts';
 import * as usbhidField_ from './usbhid_field.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(partId_.schema), "ordinal": Type.Optional(ordinal_.schema), "quantityKind": Type.Optional(Type.Union([Type.Literal("active_energy"), Type.Literal("active_power"), Type.Literal("altitude"), Type.Literal("apparent_energy"), Type.Literal("apparent_power"), Type.Literal("cooling_capacity"), Type.Literal("current"), Type.Literal("dew_point"), Type.Literal("electric_charge"), Type.Literal("frequency"), Type.Literal("phase_angle"), Type.Literal("power"), Type.Literal("power_factor"), Type.Literal("reactive_energy"), Type.Literal("reactive_power"), Type.Literal("relative_humidity"), Type.Literal("resistance"), Type.Literal("temperature"), Type.Literal("voltage"), Type.Literal("volume"), Type.Literal("volume_flow_rate")], {"type":"string"})), "featureId": Type.Optional(featureId_.schema), "intervalId": Type.Optional(intervalId_.schema), "rawName": Type.Optional(rawName_.schema), "type": Type.Optional(type_.schema), "scale": Type.Optional(scale_.schema), "decimals": Type.Optional(decimals_.schema), "unit": Type.Optional(unit_.schema), "byteOrder": Type.Optional(byteOrder_.schema), "scaleOverrides": Type.Optional(scaleOverrides_.schema), "offset": Type.Optional(offset_.schema) }, {"additionalProperties":false,"x-key-map":{"part_id":"partId","quantity_kind":"quantityKind","feature_id":"featureId","interval_id":"intervalId","raw_name":"rawName","byte_order":"byteOrder","scale_overrides":"scaleOverrides"}}));
+export const schema: TSchema = Type.Array(Type.Object({ "intervalItem": Type.Optional(intervalItem_.schema), "type": Type.Optional(type_.schema), "scale": Type.Optional(scale_.schema), "decimals": Type.Optional(decimals_.schema), "unit": Type.Optional(unit_.schema), "byteOrder": Type.Optional(byteOrder_.schema), "scaleOverrides": Type.Optional(scaleOverrides_.schema), "offset": Type.Optional(offset_.schema) }, {"additionalProperties":false,"x-key-map":{"interval_item":"intervalItem","byte_order":"byteOrder","scale_overrides":"scaleOverrides"}}));
 
-export type UsbhidFields = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset }>;
+export type UsbhidFields = Array<{ "intervalItem"?: intervalItem_.IntervalItem; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset }>;
 
-type DataT = { readonly "body": (typeof usbhidField_)["body"]; readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "offset": typeof offset_; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
+type DataT = { readonly "body": (typeof usbhidField_)["body"]; readonly "prop": (typeof usbhidField_)["prop"]; readonly "array": { readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "intervalItem": typeof intervalItem_; readonly "offset": typeof offset_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_fields" }; readonly "title": { readonly "en": "USB-HID fields"; readonly "pt": "Campos USB-HID" } };
 
 const _data: DataT = {
 	"body": usbhidField_["body"],
@@ -34,17 +30,8 @@ const _data: DataT = {
 		"prop": {
 			"byteOrder": byteOrder_,
 			"decimals": decimals_,
-			"featureId": featureId_,
-			"intervalId": {
-				...intervalId_,
-				"description": {
-					"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
-				}
-			},
+			"intervalItem": intervalItem_,
 			"offset": offset_,
-			"ordinal": ordinal_,
-			"partId": partId_,
-			"rawName": rawName_,
 			"scale": scale_,
 			"scaleOverrides": scaleOverrides_,
 			"type": type_,

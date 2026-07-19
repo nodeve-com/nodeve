@@ -45,8 +45,8 @@ export function loadDevice(identity: CatalogIdentity): CatalogDevice {
 }
 
 /** One decoded register of a modbus device — the generated `modbus_registers` row verbatim (numeric
- *  decode ⊕ its `measurand_link`: `featureId`/`quantityKind`/`intervalId`… or a bare `rawName`). Never
- *  re-spelled here; the concept owns the shape. */
+ *  decode ⊕ its `interval_item` pointer: `featureId`/`propertyId`/`intervalId`…, absent for an unlinked
+ *  discovery row). Never re-spelled here; the concept owns the shape. */
 export type ModbusRegister = ModbusRegisters[number];
 
 /** A device's modbus medium — the generated `modbus` archetype (register map + `serialPort` /

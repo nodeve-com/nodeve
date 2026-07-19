@@ -34,7 +34,7 @@ function claimer(what: string): (key: string, path: string) => void {
  *  landed, interval slugs de-sugared + unique per list, condition pointers resolved. */
 function resolveEntry(data: Record<string, unknown>, path: string): Record<string, unknown> {
 	const resolved = resolveRepeatedFeatures(data);
-	backfillRegisterSpecNodes(resolved); // every LINKED modbus register must land on a spec node (its quantity_kind)
+	backfillRegisterSpecNodes(resolved); // every LINKED modbus register must land on a spec node (its property_id)
 	desugarIntervalSlugs(resolved, path); // derive interval_kind + auto-slug (tier/kind + condition), per-list uniqueness
 	validateIntervalSlugs(resolved, path); // slug-classifier gate, post-desugar (auto-slug | referenced target | titled)
 	validateConditionRefs(resolved, path); // every interval_item / setting gate resolves within the entry

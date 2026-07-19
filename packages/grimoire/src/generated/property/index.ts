@@ -55,7 +55,6 @@ import * as indexOffset_ from './index_offset.ts';
 import * as individualReadRanges_ from './individual_read_ranges.ts';
 import * as instances_ from './instances.ts';
 import * as interface_ from './interface.ts';
-import * as intervalId_ from './interval_id.ts';
 import * as intervalItem_ from './interval_item.ts';
 import * as invalidRanges_ from './invalid_ranges.ts';
 import * as ipAddress_ from './ip_address.ts';
@@ -108,7 +107,6 @@ import * as productId_ from './product_id.ts';
 import * as pt_ from './pt.ts';
 import * as publish_ from './publish.ts';
 import * as publishedBy_ from './published_by.ts';
-import * as rawName_ from './raw_name.ts';
 import * as readEndpoint_ from './read_endpoint.ts';
 import * as reconnectPeriodMs_ from './reconnect_period_ms.ts';
 import * as references_ from './references.ts';
@@ -220,7 +218,6 @@ export const property = {
 	individualReadRanges: individualReadRanges_,
 	instances: instances_,
 	interface: interface_,
-	intervalId: intervalId_,
 	intervalItem: intervalItem_,
 	invalidRanges: invalidRanges_,
 	ipAddress: ipAddress_,
@@ -273,7 +270,6 @@ export const property = {
 	pt: pt_,
 	publish: publish_,
 	publishedBy: publishedBy_,
-	rawName: rawName_,
 	readEndpoint: readEndpoint_,
 	reconnectPeriodMs: reconnectPeriodMs_,
 	references: references_,

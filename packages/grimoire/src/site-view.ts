@@ -93,7 +93,7 @@ function sensorsFor(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): SiteSenso
 		const slugQualified = specSlugQualified(cell.node);
 		if (typeof slugQualified !== 'string')
 			throw new Error(
-				`no slug for ${refKey(ref)} ${cell.featureId}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.quantityKind}` +
+				`no slug for ${refKey(ref)} ${cell.featureId}.${cell.partId ?? cell.ordinal ?? 'combined'}.${cell.propertyId}` +
 					(siteLocal
 						? ''
 						: ' (ref does not resolve to a site_catalog entry — give the metered device one)'),
@@ -106,8 +106,8 @@ function sensorsFor(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): SiteSenso
 	});
 }
 
-/** One modbus register paired with the baked sensor it reads (undefined for a raw/unlinked register
- *  — no `quantityKind`). */
+/** One modbus register paired with the baked sensor it reads (undefined for an unlinked register
+ *  — no `interval_item`). */
 export interface LinkedRegister {
 	register: ModbusRegister;
 	sensor?: SiteSensor;
@@ -115,9 +115,10 @@ export interface LinkedRegister {
 
 /** Join a device's modbus registers to the baked sensors they read — the register→channel link done
  *  ONCE here, by the shared measurand coordinate, so a downstream register generator reads
- *  `sensor.slug` and never re-spells the coordinate. A register with no `quantityKind` (a raw/decode
- *  word) carries no sensor. Register and sensor are two projections of the ONE `measurand_link`
- *  coordinate (`featureId`/`intervalId`…), so `measurandKey` reads the same fields off both. */
+ *  `sensor.slug` and never re-spells the coordinate. A register with no `interval_item` (an unlinked
+ *  discovery/decode word) carries no sensor. Register and sensor are two projections of the ONE
+ *  `interval_item` pointer (`featureId`/`propertyId`/`intervalId`…), so `measurandKey` reads the same
+ *  fields off both. */
 export function linkRegisters(
 	registers: ModbusRegister[],
 	sensors: SiteSensor[],
@@ -125,9 +126,11 @@ export function linkRegisters(
 	const byCoord = new Map(sensors.map((s) => [measurandKey(s), s]));
 	return registers.map((register) => ({
 		register,
-		// The register IS a `measurand_link` (modbus_registers composes it), so its own coordinate
-		// fields ARE the join key — no re-spell.
-		sensor: register.quantityKind ? byCoord.get(measurandKey(register)) : undefined,
+		// The register carries the `interval_item` pointer (modbus_registers composes measurand_link),
+		// so that pointer's fields ARE the join key — no re-spell.
+		sensor: register.intervalItem?.propertyId
+			? byCoord.get(measurandKey(register.intervalItem))
+			: undefined,
 	}));
 }
 

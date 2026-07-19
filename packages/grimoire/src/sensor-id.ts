@@ -1,10 +1,10 @@
 // Deterministic sensor ID builder — THE one formula every generator (esphome, gateway topics,
 // ha-config entities) projects names from. Spec + worked examples: PLANS/deterministic-sensor-ids.md.
 //
-//   id = join([instance, feature, variant, part_id | ordinal, quantity_kind, interval].filter(Boolean), '_')
+//   id = join([instance, feature, variant, part_id | ordinal, property_id, interval].filter(Boolean), '_')
 //
-// Raw/unlinked registers (raw_name, no measurand link) short-circuit to instance + raw_name. The
-// `feature` segment is the feature's on-bus handle — its authored `identity.slug` (a catalog fact:
+// Unlinked registers (no `interval_item`) carry no coordinate and produce no sensor id — the caller
+// skips them. The `feature` segment is the feature's on-bus handle — its authored `identity.slug` (a catalog fact:
 // `ac_phase_three_point → ac`), resolved by the caller (generate-site) before it reaches here.
 // Segments arrive as finished slugs; this builder never re-slugifies, it only joins and refuses
 // non-slug input.
@@ -12,18 +12,18 @@
 import { Value } from '@sinclair/typebox/value';
 import { schema as slugSchema, type Slug } from './generated/property/slug.ts';
 import { schema as ordinalSchema } from './generated/property/ordinal.ts';
-import type { MeasurandLink } from './generated/features/measurand_link.ts';
+import type { IntervalItem } from './generated/property/interval_item.ts';
 
-/** The id-segment projection of one register/value: the `measurand_link` coordinate fields
- *  (`partId`/`ordinal`/`rawName`) it shares, plus the sensor-id's own RESOLVED handles — `feature` /
+/** The id-segment projection of one register/value: the `interval_item` coordinate fields
+ *  (`partId`/`ordinal`) it shares, plus the sensor-id's own RESOLVED handles — `feature` /
  *  `interval` are the on-bus `identity.slug` handles (`ac_phase_three_point → ac`), NOT the
- *  `featureId`/`intervalId` (the caller resolves them before this). `quantityKind` arrives as its
+ *  `featureId`/`intervalId` (the caller resolves them before this). `propertyId` arrives as its
  *  resolved wire code (a slug segment). Segments are finished slugs; this builder only joins them. */
-export type SensorIdParts = Pick<MeasurandLink, 'partId' | 'ordinal' | 'rawName'> & {
+export type SensorIdParts = Pick<IntervalItem, 'partId' | 'ordinal'> & {
 	instance: Slug; // effective identity.slug (site override or filename default)
 	feature?: Slug; // the feature's on-bus handle (identity.slug), resolved from featureId upstream
 	variant?: Slug;
-	quantityKind?: string; // the measurand_link quantity_kind, as its resolved wire code
+	propertyId?: string; // the interval_item property_id, as its resolved wire code
 	interval?: Slug; // interval identity.slug — the measurable channel handle (energy: out / out_daily …)
 	// or a rating band's derived in-band boolean; the sensor-id tail
 };
@@ -50,20 +50,19 @@ function instanceSegment(partId?: Slug, ordinal?: number): string | undefined {
 // site-local device prefix; prepending it yields the globally-unique qualified id. Each slug segment
 // is validated against the slug schema; the instance segment self-validates (slug or ordinal).
 function scopedSegments(p: SensorIdParts): string[] {
-	if (p.rawName !== undefined) return [assertSlug(p.rawName)];
 	const slug = (s?: string): string[] => (s === undefined ? [] : [assertSlug(s)]);
 	const inst = instanceSegment(p.partId, p.ordinal);
 	return [
 		...slug(p.feature),
 		...slug(p.variant),
 		...(inst === undefined ? [] : [inst]),
-		...slug(p.quantityKind),
+		...slug(p.propertyId),
 		...slug(p.interval),
 	];
 }
 
-/** The SCOPED id — everything past the instance (feature ⊕ variant ⊕ part|ordinal ⊕ quantity_kind ⊕
- *  interval, or `rawName`). Device-local; what a producer already namespaced under its topic emits. */
+/** The SCOPED id — everything past the instance (feature ⊕ variant ⊕ part|ordinal ⊕ property_id ⊕
+ *  interval). Device-local; what a producer already namespaced under its topic emits. */
 export function scopedSensorId(parts: SensorIdParts): string {
 	return scopedSegments(parts).join('_');
 }

@@ -582,7 +582,6 @@ export default {
 			{
 				"decimals": 2,
 				"offset": 2,
-				"rawName": "vin",
 				"scale": 0.1552,
 				"scaleOverrides": {
 					"legacy": 0.1123
@@ -592,7 +591,6 @@ export default {
 			{
 				"decimals": 2,
 				"offset": 3,
-				"rawName": "ign",
 				"scale": 0.1552,
 				"scaleOverrides": {
 					"legacy": 0.1123
@@ -602,7 +600,6 @@ export default {
 			{
 				"decimals": 2,
 				"offset": 4,
-				"rawName": "v33",
 				"scale": 0.0195,
 				"scaleOverrides": {
 					"legacy": 0.0188136
@@ -612,7 +609,6 @@ export default {
 			{
 				"decimals": 2,
 				"offset": 5,
-				"rawName": "v5",
 				"scale": 0.0389,
 				"scaleOverrides": {
 					"legacy": 0.0375
@@ -622,7 +618,6 @@ export default {
 			{
 				"decimals": 2,
 				"offset": 6,
-				"rawName": "v12",
 				"scale": 0.1165,
 				"scaleOverrides": {
 					"legacy": 0.076625
@@ -632,7 +627,6 @@ export default {
 			{
 				"decimals": 0,
 				"offset": 12,
-				"rawName": "temp",
 				"scale": 1,
 				"type": "int8",
 				"unit": "degC"

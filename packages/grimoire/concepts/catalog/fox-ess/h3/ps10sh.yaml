@@ -116,7 +116,8 @@ ac_phase_three_out:
           - interval: { rating: continuous, min: -11000, max: 10000 } # full capacity, either direction
             condition:
               # Holds while the enclosure is in its `continuous` (≤45 °C) thermal band.
-              - interval_item: { feature: enclosure, property: temperature, interval: continuous }
+              - interval_item:
+                  { feature_id: enclosure, property_id: temperature, interval_id: continuous }
               # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a spec-carrying
               # altitude band to point at — pending a generic altitude/elevation feature (the site
               # supplies the install altitude; geo-fence is undesigned). Deferred, not dropped.
@@ -125,7 +126,8 @@ ac_phase_three_out:
           - interval: { rating: short_term, min: -12000, max: 11000, duration: 30 }
           - interval: { rating: continuous, min: -10000, max: 9000 } # thermal derate 45–60 °C
             condition:
-              - interval_item: { feature: enclosure, property: temperature, interval: intermittent }
+              - interval_item:
+                  { feature_id: enclosure, property_id: temperature, interval_id: intermittent }
     # default: KIND-keyed base every part of that kind starts from — the emit fills part.<name> as
     # default.<kind> overlaid by any authored part.<name> patch. The power block below is PER-PHASE.
     default:
@@ -153,7 +155,8 @@ ac_phase_three_out:
           intervals:
             - interval: { rating: continuous, value: 3333, severity: nominal, max: 3666 }
               condition:
-                - interval_item: { feature: enclosure, property: temperature, interval: continuous }
+                - interval_item:
+                    { feature_id: enclosure, property_id: temperature, interval_id: continuous }
                 # TODO(altitude-derate): per-phase full power only below 2000 m — same deferred
                 # altitude band as the combined total above.
             - interval: { interval_kind: measurable, min: 0, max: 5, unit: kW }
@@ -384,8 +387,7 @@ modbus:
     # --- Lifetime PV generation (foxess solar_energy_total) ---
     # H3 SMART: unsigned 32-bit counter, high word first, 0.01 kWh/count.
     - {
-        feature_id: pv_tracker,
-        quantity_kind: active_energy,
+        interval_item: { feature_id: pv_tracker, property_id: active_energy },
         address: 39601,
         type: uint32,
         scale: 0.01,
@@ -394,27 +396,21 @@ modbus:
       } # high word; low 39602
     # --- PV string 1 (foxess pv1_*) ---
     - {
-        feature_id: pv_tracker,
-        ordinal: 1,
-        quantity_kind: voltage,
+        interval_item: { feature_id: pv_tracker, property_id: voltage, ordinal: 1 },
         address: 39070,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 1,
-        quantity_kind: current,
+        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 1 },
         address: 39071,
         type: uint16,
         scale: 0.01,
         decimals: 2,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 1,
-        quantity_kind: active_power,
+        interval_item: { feature_id: pv_tracker, property_id: active_power, ordinal: 1 },
         address: 39279,
         type: int32,
         scale: 0.001,
@@ -423,27 +419,21 @@ modbus:
       } # high word; low 39280
     # --- PV string 2 (foxess pv2_*) ---
     - {
-        feature_id: pv_tracker,
-        ordinal: 2,
-        quantity_kind: voltage,
+        interval_item: { feature_id: pv_tracker, property_id: voltage, ordinal: 2 },
         address: 39072,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 2,
-        quantity_kind: current,
+        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 2 },
         address: 39073,
         type: uint16,
         scale: 0.01,
         decimals: 2,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 2,
-        quantity_kind: active_power,
+        interval_item: { feature_id: pv_tracker, property_id: active_power, ordinal: 2 },
         address: 39281,
         type: int32,
         scale: 0.001,
@@ -452,27 +442,21 @@ modbus:
       } # high word; low 39282
     # --- PV string 3 (foxess pv3_*) — the box's third tracker (ordinal 3 override in feature_spec) ---
     - {
-        feature_id: pv_tracker,
-        ordinal: 3,
-        quantity_kind: voltage,
+        interval_item: { feature_id: pv_tracker, property_id: voltage, ordinal: 3 },
         address: 39074,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 3,
-        quantity_kind: current,
+        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 3 },
         address: 39075,
         type: uint16,
         scale: 0.01,
         decimals: 2,
       }
     - {
-        feature_id: pv_tracker,
-        ordinal: 3,
-        quantity_kind: active_power,
+        interval_item: { feature_id: pv_tracker, property_id: active_power, ordinal: 3 },
         address: 39283,
         type: int32,
         scale: 0.001,
@@ -481,9 +465,7 @@ modbus:
       } # high word; low 39284
     # --- Inverter AC output, per phase (foxess inv_power_R/S/T → legs L1/L2/L3) ---
     - {
-        feature_id: ac_phase_three_out,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: active_power, part_id: a },
         address: 39248,
         type: int32,
         scale: 0.001,
@@ -491,9 +473,7 @@ modbus:
         unit: kW,
       } # high word; low 39249
     - {
-        feature_id: ac_phase_three_out,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: active_power, part_id: b },
         address: 39250,
         type: int32,
         scale: 0.001,
@@ -501,9 +481,7 @@ modbus:
         unit: kW,
       } # high word; low 39251
     - {
-        feature_id: ac_phase_three_out,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: active_power, part_id: c },
         address: 39252,
         type: int32,
         scale: 0.001,
@@ -512,27 +490,21 @@ modbus:
       } # high word; low 39253
     # --- Inverter AC output, per-phase voltage (foxess grid_voltage_R/S/T) ---
     - {
-        feature_id: ac_phase_three_out,
-        part_id: a,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_out, property_id: voltage, part_id: a },
         address: 39123,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_out,
-        part_id: b,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_out, property_id: voltage, part_id: b },
         address: 39124,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_out,
-        part_id: c,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_out, property_id: voltage, part_id: c },
         address: 39125,
         type: uint16,
         scale: 0.1,
@@ -540,27 +512,21 @@ modbus:
       }
     # --- Inverter AC output, per-phase current (foxess inv_current_R/S/T) ---
     - {
-        feature_id: ac_phase_three_out,
-        part_id: a,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: a },
         address: 39126,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39127
     - {
-        feature_id: ac_phase_three_out,
-        part_id: b,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: b },
         address: 39128,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39129
     - {
-        feature_id: ac_phase_three_out,
-        part_id: c,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: c },
         address: 39130,
         type: int32,
         scale: 0.001,
@@ -568,9 +534,7 @@ modbus:
       } # high word; low 39131
     # --- Inverter AC output, per-phase reactive power (foxess inv_power_Q_R/S/T) ---
     - {
-        feature_id: ac_phase_three_out,
-        part_id: a,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: reactive_power, part_id: a },
         address: 39256,
         type: int32,
         scale: 0.001,
@@ -578,9 +542,7 @@ modbus:
         unit: kvar,
       } # high word; low 39257
     - {
-        feature_id: ac_phase_three_out,
-        part_id: b,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: reactive_power, part_id: b },
         address: 39258,
         type: int32,
         scale: 0.001,
@@ -588,9 +550,7 @@ modbus:
         unit: kvar,
       } # high word; low 39259
     - {
-        feature_id: ac_phase_three_out,
-        part_id: c,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: reactive_power, part_id: c },
         address: 39260,
         type: int32,
         scale: 0.001,
@@ -599,9 +559,7 @@ modbus:
       } # high word; low 39261
     # --- Inverter AC output, per-phase apparent power (foxess rpower_S_R/S/T) ---
     - {
-        feature_id: ac_phase_three_out,
-        part_id: a,
-        quantity_kind: apparent_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: apparent_power, part_id: a },
         address: 39264,
         type: int32,
         scale: 0.001,
@@ -609,9 +567,7 @@ modbus:
         unit: kVA,
       } # high word; low 39265
     - {
-        feature_id: ac_phase_three_out,
-        part_id: b,
-        quantity_kind: apparent_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: apparent_power, part_id: b },
         address: 39266,
         type: int32,
         scale: 0.001,
@@ -619,9 +575,7 @@ modbus:
         unit: kVA,
       } # high word; low 39267
     - {
-        feature_id: ac_phase_three_out,
-        part_id: c,
-        quantity_kind: apparent_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: apparent_power, part_id: c },
         address: 39268,
         type: int32,
         scale: 0.001,
@@ -630,63 +584,49 @@ modbus:
       } # high word; low 39269
     # --- EPS (backup) output, per phase (foxess eps_rvolt/eps_rcurrent/eps_power R/S/T) ---
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: a,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: voltage, part_id: a },
         address: 39201,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: b,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: voltage, part_id: b },
         address: 39202,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: c,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: voltage, part_id: c },
         address: 39203,
         type: uint16,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: a,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: a },
         address: 39204,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39205
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: b,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: b },
         address: 39206,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39207
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: c,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: c },
         address: 39208,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39209
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: active_power, part_id: a },
         address: 39212,
         type: int32,
         scale: 0.001,
@@ -694,9 +634,7 @@ modbus:
         unit: kW,
       } # high word; low 39213
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: active_power, part_id: b },
         address: 39214,
         type: int32,
         scale: 0.001,
@@ -704,9 +642,7 @@ modbus:
         unit: kW,
       } # high word; low 39215
     - {
-        feature_id: ac_phase_three_eps,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_eps, property_id: active_power, part_id: c },
         address: 39216,
         type: int32,
         scale: 0.001,
@@ -715,8 +651,7 @@ modbus:
       } # high word; low 39217
     # --- House load, total (foxess load_power, holding 39226/39225 on H3_SMART) ---
     - {
-        feature_id: ac_phase_three_load,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_load, property_id: active_power },
         address: 39225,
         type: int32,
         scale: 0.001,
@@ -725,9 +660,7 @@ modbus:
       } # high word; low 39226
     # --- House load, per leg (foxess load_power_r/s/t, holding 39220/39219 … on H3_SMART) ---
     - {
-        feature_id: ac_phase_three_load,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_load, property_id: active_power, part_id: a },
         address: 39219,
         type: int32,
         scale: 0.001,
@@ -735,9 +668,7 @@ modbus:
         unit: kW,
       } # high word; low 39220
     - {
-        feature_id: ac_phase_three_load,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_load, property_id: active_power, part_id: b },
         address: 39221,
         type: int32,
         scale: 0.001,
@@ -745,9 +676,7 @@ modbus:
         unit: kW,
       } # high word; low 39222
     - {
-        feature_id: ac_phase_three_load,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_load, property_id: active_power, part_id: c },
         address: 39223,
         type: int32,
         scale: 0.001,
@@ -756,8 +685,7 @@ modbus:
       } # high word; low 39224
     # --- Inverter AC output totals (foxess inv_power / inv_power_Q, whole port) ---
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: active_power },
         address: 39134,
         type: int32,
         scale: 0.000001,
@@ -765,8 +693,7 @@ modbus:
         unit: kW,
       } # reported in mW despite spec; high word; low 39135
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_out, property_id: reactive_power },
         address: 39136,
         type: int32,
         scale: 0.001,
@@ -776,9 +703,8 @@ modbus:
     # --- Inverter lifetime + daily energy throughput (foxess total_yield / input_energy) ---
     # active_energy; `interval_id` = the channel's auto-slug (out / out_daily / in / in_daily).
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: active_energy,
-        interval_id: out,
+        interval_item:
+          { feature_id: ac_phase_three_out, property_id: active_energy, interval_id: out },
         address: 39621,
         type: uint32,
         scale: 0.01,
@@ -786,9 +712,8 @@ modbus:
         unit: kWh,
       } # total_yield; high word; low 39622
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: active_energy,
-        interval_id: out_daily,
+        interval_item:
+          { feature_id: ac_phase_three_out, property_id: active_energy, interval_id: out_daily },
         address: 39623,
         type: uint32,
         scale: 0.01,
@@ -796,9 +721,8 @@ modbus:
         unit: kWh,
       } # total_yield_today; high word; low 39624
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: active_energy,
-        interval_id: in,
+        interval_item:
+          { feature_id: ac_phase_three_out, property_id: active_energy, interval_id: in },
         address: 39625,
         type: uint32,
         scale: 0.01,
@@ -806,9 +730,8 @@ modbus:
         unit: kWh,
       } # input_energy; high word; low 39626
     - {
-        feature_id: ac_phase_three_out,
-        quantity_kind: active_energy,
-        interval_id: in_daily,
+        interval_item:
+          { feature_id: ac_phase_three_out, property_id: active_energy, interval_id: in_daily },
         address: 39627,
         type: uint32,
         scale: 0.01,
@@ -817,8 +740,7 @@ modbus:
       } # input_energy_today; high word; low 39628
     # --- Grid CT / utility meter: NET power, signed (feed-in +, consumption −) (foxess grid_ct) ---
     - {
-        feature_id: ac_phase_three_grid,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_grid, property_id: active_power },
         address: 38814,
         type: int32,
         scale: 0.0001,
@@ -826,9 +748,7 @@ modbus:
         unit: kW,
       } # high word; low 38815
     - {
-        feature_id: ac_phase_three_grid,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_grid, property_id: active_power, part_id: a },
         address: 38816,
         type: int32,
         scale: 0.0001,
@@ -836,9 +756,7 @@ modbus:
         unit: kW,
       } # high word; low 38817
     - {
-        feature_id: ac_phase_three_grid,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_grid, property_id: active_power, part_id: b },
         address: 38818,
         type: int32,
         scale: 0.0001,
@@ -846,9 +764,7 @@ modbus:
         unit: kW,
       } # high word; low 38819
     - {
-        feature_id: ac_phase_three_grid,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_grid, property_id: active_power, part_id: c },
         address: 38820,
         type: int32,
         scale: 0.0001,
@@ -858,9 +774,8 @@ modbus:
     # --- Grid CT directional energy (foxess feed_in_energy / grid_consumption_energy) ---
     # active_energy; `interval_id` = the channel's auto-slug (out = feed-in, in = grid consumption).
     - {
-        feature_id: ac_phase_three_grid,
-        quantity_kind: active_energy,
-        interval_id: out,
+        interval_item:
+          { feature_id: ac_phase_three_grid, property_id: active_energy, interval_id: out },
         address: 39613,
         type: uint32,
         scale: 0.01,
@@ -868,9 +783,8 @@ modbus:
         unit: kWh,
       } # feed_in_energy; high word; low 39614
     - {
-        feature_id: ac_phase_three_grid,
-        quantity_kind: active_energy,
-        interval_id: out_daily,
+        interval_item:
+          { feature_id: ac_phase_three_grid, property_id: active_energy, interval_id: out_daily },
         address: 39615,
         type: uint32,
         scale: 0.01,
@@ -878,9 +792,8 @@ modbus:
         unit: kWh,
       } # feed_in_energy_today; high word; low 39616
     - {
-        feature_id: ac_phase_three_grid,
-        quantity_kind: active_energy,
-        interval_id: in,
+        interval_item:
+          { feature_id: ac_phase_three_grid, property_id: active_energy, interval_id: in },
         address: 39617,
         type: uint32,
         scale: 0.01,
@@ -888,9 +801,8 @@ modbus:
         unit: kWh,
       } # grid_consumption_energy; high word; low 39618
     - {
-        feature_id: ac_phase_three_grid,
-        quantity_kind: active_energy,
-        interval_id: in_daily,
+        interval_item:
+          { feature_id: ac_phase_three_grid, property_id: active_energy, interval_id: in_daily },
         address: 39619,
         type: uint32,
         scale: 0.01,
@@ -899,9 +811,7 @@ modbus:
       } # grid_consumption_energy_today; high word; low 39620
     # --- PV daily generation (foxess solar_energy_today; lifetime total is active_energy 39601) ---
     - {
-        feature_id: pv_tracker,
-        quantity_kind: active_energy,
-        interval_id: daily,
+        interval_item: { feature_id: pv_tracker, property_id: active_energy, interval_id: daily },
         address: 39603,
         type: uint32,
         scale: 0.01,
@@ -910,8 +820,7 @@ modbus:
       } # solar_energy_today; high word; low 39604
     # --- House load energy: lifetime (foxess load_power total) + daily (load_energy_today) ---
     - {
-        feature_id: ac_phase_three_load,
-        quantity_kind: active_energy,
+        interval_item: { feature_id: ac_phase_three_load, property_id: active_energy },
         address: 39629,
         type: uint32,
         scale: 0.01,
@@ -919,9 +828,8 @@ modbus:
         unit: kWh,
       } # high word; low 39630
     - {
-        feature_id: ac_phase_three_load,
-        quantity_kind: active_energy,
-        interval_id: daily,
+        interval_item:
+          { feature_id: ac_phase_three_load, property_id: active_energy, interval_id: daily },
         address: 39631,
         type: uint32,
         scale: 0.01,
@@ -930,8 +838,7 @@ modbus:
       } # load_energy_today; high word; low 39632
     # --- Inverter temperature (foxess invtemp, holding 39141 on H3_SMART) ---
     - {
-        feature_id: enclosure,
-        quantity_kind: temperature,
+        interval_item: { feature_id: enclosure, property_id: temperature },
         address: 39141,
         type: int16,
         scale: 0.1,

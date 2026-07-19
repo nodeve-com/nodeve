@@ -259,7 +259,7 @@ describe('validateIntervalSlugs — a slug is a reference handle, never a classi
 			derate: {
 				intervals: [
 					{
-						condition: [{ interval_item: { interval: 'peak' } }],
+						condition: [{ interval_item: { interval_id: 'peak' } }],
 						interval: { rating: 'survival' },
 					},
 				],

@@ -18,7 +18,7 @@ body:
     Commissioning setting — which grid region this meter is wired for (enumeration/grid_region members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it once at install.
     
     
-    Modbus registers: all instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the feature blocks above offer — (feature, phase?, quantity_kind); the MQTT topic is DERIVED from that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED — divisors provisional until a front-panel check. `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) / 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.
+    Modbus registers: all instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the feature blocks above offer via its `interval_item` pointer — (feature_id, property_id, part_id?); the MQTT topic is DERIVED from that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED — divisors provisional until a front-panel check. `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) / 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.
     
     
     Per-phase displacement angle φ (sniff idx 22–24, 0x153C/3E/40; degrees, quadrant-signed 0–360°). Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ, rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included). `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).
@@ -105,27 +105,21 @@ modbus:
     # === BANK A — 0x2000 block. Divisor-scaled FP32, read as a master. ===
     # Line-to-line voltages (plugin Volts_AB/BC/CA, 0x2000/02/04)
     - {
-        feature_id: ac_phase_three_point,
-        part_id: ab,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: ab },
         address: 8192,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: bc,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: bc },
         address: 8194,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: ca,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: ca },
         address: 8196,
         type: float32,
         scale: 0.1,
@@ -133,27 +127,21 @@ modbus:
       }
     # Phase-to-neutral voltages (plugin Volts_L1/L2/L3, 0x2006/08/0A)
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: a },
         address: 8198,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: b },
         address: 8200,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: c },
         address: 8202,
         type: float32,
         scale: 0.1,
@@ -161,27 +149,21 @@ modbus:
       }
     # Phase currents (plugin Current_L1/L2/L3, 0x200C/0E/10)
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: a },
         address: 8204,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: b },
         address: 8206,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: c },
         address: 8208,
         type: float32,
         scale: 0.001,
@@ -189,35 +171,28 @@ modbus:
       }
     # Active power (plugin *_Active_Power, 0x2012 total then 0x2014/16/18 per phase)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power },
         address: 8210,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: a },
         address: 8212,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: b },
         address: 8214,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: c },
         address: 8216,
         type: float32,
         scale: 0.1,
@@ -225,35 +200,31 @@ modbus:
       }
     # Reactive power (plugin *_Reactive_Power, 0x201A total then 0x201C/1E/20 per phase)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: reactive_power },
         address: 8218,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: a },
         address: 8220,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: b },
         address: 8222,
         type: float32,
         scale: 0.1,
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: c },
         address: 8224,
         type: float32,
         scale: 0.1,
@@ -261,35 +232,28 @@ modbus:
       }
     # Power factor (plugin *_Power_Factor, 0x202A total then 0x202C/2E/30 per phase)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor },
         address: 8234,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: a },
         address: 8236,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: b },
         address: 8238,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: c },
         address: 8240,
         type: float32,
         scale: 0.001,
@@ -297,8 +261,7 @@ modbus:
       }
     # System frequency (plugin Frequency_Of_Supply_Voltages, 0x2044)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: frequency,
+        interval_item: { feature_id: ac_phase_three_point, property_id: frequency },
         address: 8260,
         type: float32,
         scale: 0.01,
@@ -307,31 +270,25 @@ modbus:
 
     # === BANK B — 0x1510 fast / 0x1000 slow (what the inverter polls; passive-tap map). ===
     # Floats ALREADY in engineering units (scale 1.0), NOT divisor-scaled. Bank B power is native
-    # kW/kVAR/kVA (unit kept — non-SI). Same (feature, phase, quantity_kind) link as bank A.
+    # kW/kVAR/kVA (unit kept — non-SI). Same interval_item (feature_id, property_id, part_id) link as bank A.
 
     # Phase-neutral voltages (sniff idx 0–2, 0x1510/12/14)
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: a },
         address: 5392,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: b },
         address: 5394,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: voltage,
+        interval_item: { feature_id: ac_phase_three_point, property_id: voltage, part_id: c },
         address: 5396,
         type: float32,
         scale: 1.0,
@@ -339,27 +296,21 @@ modbus:
       }
     # Phase currents (sniff idx 3–5, 0x1516/18/1A)
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: a },
         address: 5398,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: b },
         address: 5400,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: current,
+        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: c },
         address: 5402,
         type: float32,
         scale: 1.0,
@@ -367,8 +318,7 @@ modbus:
       }
     # Active power (sniff idx 6–9, 0x151C/1E/20/22; native kW)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power },
         address: 5404,
         type: float32,
         scale: 1.0,
@@ -376,9 +326,7 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: a },
         address: 5406,
         type: float32,
         scale: 1.0,
@@ -386,9 +334,7 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: b },
         address: 5408,
         type: float32,
         scale: 1.0,
@@ -396,9 +342,7 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: active_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_power, part_id: c },
         address: 5410,
         type: float32,
         scale: 1.0,
@@ -407,8 +351,7 @@ modbus:
       }
     # Reactive power (sniff idx 10–13, 0x1524/26/28/2A; native kVAR)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: reactive_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: reactive_power },
         address: 5412,
         type: float32,
         scale: 1.0,
@@ -416,9 +359,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: a },
         address: 5414,
         type: float32,
         scale: 1.0,
@@ -426,9 +368,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: b },
         address: 5416,
         type: float32,
         scale: 1.0,
@@ -436,9 +377,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: reactive_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: reactive_power, part_id: c },
         address: 5418,
         type: float32,
         scale: 1.0,
@@ -447,8 +387,7 @@ modbus:
       }
     # Apparent power (sniff idx 14–17, 0x152C/2E/30/32; native kVA — bank B only)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: apparent_power,
+        interval_item: { feature_id: ac_phase_three_point, property_id: apparent_power },
         address: 5420,
         type: float32,
         scale: 1.0,
@@ -456,9 +395,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: apparent_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: apparent_power, part_id: a },
         address: 5422,
         type: float32,
         scale: 1.0,
@@ -466,9 +404,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: apparent_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: apparent_power, part_id: b },
         address: 5424,
         type: float32,
         scale: 1.0,
@@ -476,9 +413,8 @@ modbus:
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: apparent_power,
+        interval_item:
+          { feature_id: ac_phase_three_point, property_id: apparent_power, part_id: c },
         address: 5426,
         type: float32,
         scale: 1.0,
@@ -487,44 +423,35 @@ modbus:
       }
     # Power factor (sniff idx 18–21, 0x1534/36/38/3A; direct ratio)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor },
         address: 5428,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: a },
         address: 5430,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: b },
         address: 5432,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: power_factor,
+        interval_item: { feature_id: ac_phase_three_point, property_id: power_factor, part_id: c },
         address: 5434,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: a,
-        quantity_kind: phase_angle,
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: a },
         address: 5436,
         type: float32,
         scale: 1.0,
@@ -532,9 +459,7 @@ modbus:
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: b,
-        quantity_kind: phase_angle,
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: b },
         address: 5438,
         type: float32,
         scale: 1.0,
@@ -542,9 +467,7 @@ modbus:
         decimals: 1,
       }
     - {
-        feature_id: ac_phase_three_point,
-        part_id: c,
-        quantity_kind: phase_angle,
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: c },
         address: 5440,
         type: float32,
         scale: 1.0,
@@ -553,16 +476,14 @@ modbus:
       }
     # System frequency (sniff idx 31, 0x154E; direct Hz)
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: frequency,
+        interval_item: { feature_id: ac_phase_three_point, property_id: frequency },
         address: 5454,
         type: float32,
         scale: 1.0,
         decimals: 2,
       }
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: active_energy,
+        interval_item: { feature_id: ac_phase_three_point, property_id: active_energy },
         address: 4096,
         type: float32,
         scale: 1.0,
@@ -570,8 +491,7 @@ modbus:
         decimals: 2,
       }
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: apparent_energy,
+        interval_item: { feature_id: ac_phase_three_point, property_id: apparent_energy },
         address: 4106,
         type: float32,
         scale: 1.0,
@@ -579,8 +499,7 @@ modbus:
         decimals: 2,
       }
     - {
-        feature_id: ac_phase_three_point,
-        quantity_kind: reactive_energy,
+        interval_item: { feature_id: ac_phase_three_point, property_id: reactive_energy },
         address: 4144,
         type: float32,
         scale: 1.0,

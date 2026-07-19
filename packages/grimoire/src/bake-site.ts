@@ -77,19 +77,19 @@ function assertUniqueFeatureSlugs(features: [string, Obj][], entry: Record<strin
 type PartRef = { partId?: string; ordinal?: number };
 
 function featurePatch(instance: string, feature: string, node: Obj): Obj {
-	const slugAt = (ref: PartRef, quantityKind: string, interval?: string): Obj => {
-		const parts = { instance, feature: featureSlug(node, feature), ...ref, quantityKind, interval };
+	const slugAt = (ref: PartRef, propertyId: string, interval?: string): Obj => {
+		const parts = { instance, feature: featureSlug(node, feature), ...ref, propertyId, interval };
 		// Stamp the QUALIFIED sensor id, keyed by the channel HANDLE (`interval`) so the read-side
 		// overlay lands it on this base interval — never overwrite the handle with the computed id.
 		return specSlugPatch(sensorId(parts), interval);
 	};
-	const colPatch = (col: Obj, quantityKind: string, ref: PartRef): Obj => {
+	const colPatch = (col: Obj, propertyId: string, ref: PartRef): Obj => {
 		const intervals = Array.isArray(col.intervals) ? (col.intervals as Obj[]) : [];
-		if (!intervals.some(isMeasurableInterval)) return slugAt(ref, quantityKind); // column node
+		if (!intervals.some(isMeasurableInterval)) return slugAt(ref, propertyId); // column node
 		// Mirror the interval order: plant on each measurable row (its channel slug the id tail), leave others `{}`.
 		return {
 			intervals: intervals.map((row) =>
-				isMeasurableInterval(row) ? slugAt(ref, quantityKind, specSlug(row)) : {},
+				isMeasurableInterval(row) ? slugAt(ref, propertyId, specSlug(row)) : {},
 			),
 		};
 	};
@@ -208,7 +208,7 @@ function assertIntervalFilters(
 		if (tooFast)
 			throw new Error(
 				`${label}: interval filter window shorter than the sample interval — ` +
-					`${tooFast.cell.featureId}.${tooFast.cell.partId ?? tooFast.cell.ordinal ?? 'combined'}.${tooFast.cell.quantityKind} ` +
+					`${tooFast.cell.featureId}.${tooFast.cell.partId ?? tooFast.cell.ordinal ?? 'combined'}.${tooFast.cell.propertyId} ` +
 					`interval "${tooFast.slug}" ${tooFast.key}: ${tooFast.ms} ms < ` +
 					`adapter "${asIdentity(adapter.identity).slug}" fastest cadence ${fastest} ms`,
 			);

@@ -8,8 +8,9 @@ body:
     
     A condition holds NO bounds of its own — it is a GATE in one of three forms, told apart by which slot is filled:
     
-        • `interval_item` — a POINTER at one identified band of another reading ({feature, property,
-        interval}); the band it names carries the region/value (an enclosure-temp derate band).
+        • `interval_item` — a POINTER at one identified band of another reading ({feature_id,
+        property_id, interval_id}); the band it names carries the region/value (an enclosure-temp
+        derate band). The SAME pointer a decode-map register/field link uses.
     
         • `setting` + `equals` — a COMMISSIONING GATE: the band holds while device setting <setting>
         (a key in the entry's `settings_schema`) equals <equals> (grid_region == 230). External config
@@ -29,7 +30,7 @@ refs:
 enums:
   - test_condition # form 3: the standardised measurement reference the band was rated at
 prop:
-  interval_item: {} # form 1: the pointed-at band of another reading — {feature, property, interval}
+  interval_item: {} # form 1: the pointed-at band of another reading — {feature_id, property_id, interval_id}
   setting: {} # form 2: the gated commissioning setting — a key in the entry's `settings_schema`
   equals: {} # form 2: the value that `setting` must hold for the band to apply
   test_condition: # form 3: overlay the enum-introduced field — a named `enumeration/test_condition` member

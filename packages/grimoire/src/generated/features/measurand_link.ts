@@ -7,38 +7,24 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
-import * as featureId_ from '../property/feature_id.ts';
-import * as instanceKey_ from './instance_key.ts';
-import * as intervalId_ from '../property/interval_id.ts';
-import * as ordinal_ from '../property/ordinal.ts';
-import * as partId_ from '../property/part_id.ts';
-import * as rawName_ from '../property/raw_name.ts';
+import * as intervalItem_ from '../property/interval_item.ts';
 
-export const schema: TSchema = Type.Object({ "partId": Type.Optional(partId_.schema), "ordinal": Type.Optional(ordinal_.schema), "quantityKind": Type.Optional(Type.Union([Type.Literal("active_energy"), Type.Literal("active_power"), Type.Literal("altitude"), Type.Literal("apparent_energy"), Type.Literal("apparent_power"), Type.Literal("cooling_capacity"), Type.Literal("current"), Type.Literal("dew_point"), Type.Literal("electric_charge"), Type.Literal("frequency"), Type.Literal("phase_angle"), Type.Literal("power"), Type.Literal("power_factor"), Type.Literal("reactive_energy"), Type.Literal("reactive_power"), Type.Literal("relative_humidity"), Type.Literal("resistance"), Type.Literal("temperature"), Type.Literal("voltage"), Type.Literal("volume"), Type.Literal("volume_flow_rate")], {"type":"string"})), "featureId": Type.Optional(featureId_.schema), "intervalId": Type.Optional(intervalId_.schema), "rawName": Type.Optional(rawName_.schema) }, {"additionalProperties":false,"x-key-map":{"part_id":"partId","quantity_kind":"quantityKind","feature_id":"featureId","interval_id":"intervalId","raw_name":"rawName"}});
+export const schema: TSchema = Type.Object({ "intervalItem": Type.Optional(intervalItem_.schema) }, {"additionalProperties":false,"x-key-map":{"interval_item":"intervalItem"}});
 
-export type MeasurandLink = { "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName };
+export type MeasurandLink = { "intervalItem"?: intervalItem_.IntervalItem };
 
-type DataT = { readonly "body": { readonly "en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers, USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind; a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming gateway applies); the `combined` aggregate is linked with both ABSENT.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_ } };
+type DataT = { readonly "body": { readonly "en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. A Modbus register, a USB-HID byte field and a VE.Direct field each carry ONE `interval_item` FK pointer naming the measurand the projected feature tree offers — (feature_id, property_id, interval_id, part_id | ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the link downstream, not authored. A complete definition links every value; a value sensed-but-not-yet-attributed during discovery carries no link (drop `interval_item`, note it in a comment) until its feature lands.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "intervalItem": typeof intervalItem_ } };
 
 const _data: DataT = {
 	"body": {
-		"en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. Single place feature_id/part/ordinal/quantity_kind/raw_name are defined for decode maps: modbus registers, USB-HID byte maps and VE.Direct field maps each LINK a value to a measurand the projected feature tree offers — (feature_id, part | ordinal, quantity_kind) — or, when not yet attributable, carry a raw_name for traceability (RAW/unlinked). Topic is DERIVED from the link downstream, not authored. All slots OPTIONAL: a LINKED value fills feature_id + quantity_kind; a RAW value fills only raw_name. A repeated feature's instance is selected by the instance_key feature (`part` | `ordinal` — see features/instance_key.yaml for the precedence the consuming gateway applies); the `combined` aggregate is linked with both ABSENT.\n"
+		"en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. A Modbus register, a USB-HID byte field and a VE.Direct field each carry ONE `interval_item` FK pointer naming the measurand the projected feature tree offers — (feature_id, property_id, interval_id, part_id | ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the link downstream, not authored. A complete definition links every value; a value sensed-but-not-yet-attributed during discovery carries no link (drop `interval_item`, note it in a comment) until its feature lands.\n"
 	},
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "measurand_link"
 	},
 	"prop": {
-		"featureId": featureId_,
-		"intervalId": {
-			...intervalId_,
-			"description": {
-				"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
-			}
-		},
-		"ordinal": ordinal_,
-		"partId": partId_,
-		"rawName": rawName_
+		"intervalItem": intervalItem_
 	}
 };
 export const { body, identity, prop } = _data;

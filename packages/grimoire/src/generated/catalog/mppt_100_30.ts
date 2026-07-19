@@ -5,7 +5,7 @@
 
 export default {
 	"body": {
-		"en": "Victron SmartSolar MPPT 100/30 — one catalog entry: its identity (the `charge_controller` archetype, inherited from ./_defaults.yaml) AND how it's read (its full VE.Direct field list). `manufacturer` is inherited from ../_defaults.yaml; everything about DECODE lives here on the one product — no brand cascade merges into it.\n\nThe reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list, the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity. Single MPP tracker. `pv_*` link to the `pv_tracker` MPPT-input (ordinal 1); `battery_*` to the `battery` DC-output port; CS/MPPT/ERR codes stay integers, left undecoded. H19–H23 yields are 0.01 kWh counters. Each row's `key` is the VE.Direct wire label; RAW rows carry `raw_name`.\n"
+		"en": "Victron SmartSolar MPPT 100/30 — one catalog entry: its identity (the `charge_controller` archetype, inherited from ./_defaults.yaml) AND how it's read (its full VE.Direct field list). `manufacturer` is inherited from ../_defaults.yaml; everything about DECODE lives here on the one product — no brand cascade merges into it.\n\nThe reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list, the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity. Single MPP tracker. `pv_*` link to the `pv_tracker` MPPT-input (ordinal 1); `battery_*` to the `battery` DC-output port; CS/MPPT/ERR codes stay integers, left undecoded. H19–H23 yields are 0.01 kWh counters. Each row's `key` is the VE.Direct wire label; LINKED rows carry an `interval_item` pointer, unlinked (discovery) rows carry none (name in a comment).\n"
 	},
 	"identity": {
 		"archetypeId": "charge_controller",
@@ -29,104 +29,97 @@ export default {
 	"vedirectFields": [
 		{
 			"key": "PID",
-			"rawName": "product_id",
 			"type": "hex"
 		},
 		{
 			"key": "SER#",
-			"rawName": "serial",
 			"type": "string"
 		},
 		{
 			"key": "FW",
-			"rawName": "firmware",
 			"type": "string"
 		},
 		{
 			"decimals": 3,
-			"featureId": "battery",
+			"intervalItem": {
+				"featureId": "battery",
+				"propertyId": "voltage"
+			},
 			"key": "V",
-			"quantityKind": "voltage",
 			"scale": 0.001
 		},
 		{
 			"decimals": 3,
-			"featureId": "battery",
+			"intervalItem": {
+				"featureId": "battery",
+				"propertyId": "current"
+			},
 			"key": "I",
-			"quantityKind": "current",
 			"scale": 0.001
 		},
 		{
 			"decimals": 3,
-			"featureId": "pv_tracker",
+			"intervalItem": {
+				"featureId": "pv_tracker",
+				"ordinal": 1,
+				"propertyId": "voltage"
+			},
 			"key": "VPV",
-			"ordinal": 1,
-			"quantityKind": "voltage",
 			"scale": 0.001
 		},
 		{
-			"featureId": "pv_tracker",
-			"key": "PPV",
-			"ordinal": 1,
-			"quantityKind": "active_power"
+			"intervalItem": {
+				"featureId": "pv_tracker",
+				"ordinal": 1,
+				"propertyId": "active_power"
+			},
+			"key": "PPV"
 		},
 		{
 			"decimals": 3,
 			"key": "IL",
-			"rawName": "load_current",
 			"scale": 0.001
 		},
 		{
-			"key": "CS",
-			"rawName": "charge_state"
+			"key": "CS"
 		},
 		{
-			"key": "MPPT",
-			"rawName": "tracker_state"
+			"key": "MPPT"
 		},
 		{
-			"key": "ERR",
-			"rawName": "error_code"
+			"key": "ERR"
 		},
 		{
 			"key": "OR",
-			"rawName": "off_reason",
 			"type": "hex"
 		},
 		{
 			"key": "LOAD",
-			"rawName": "load_on",
 			"type": "bool"
 		},
 		{
 			"decimals": 2,
 			"key": "H19",
-			"rawName": "yield_total",
 			"scale": 0.01
 		},
 		{
 			"decimals": 2,
 			"key": "H20",
-			"rawName": "yield_today",
 			"scale": 0.01
 		},
 		{
-			"key": "H21",
-			"rawName": "max_power_today"
+			"key": "H21"
 		},
 		{
 			"decimals": 2,
 			"key": "H22",
-			"rawName": "yield_yesterday",
 			"scale": 0.01
 		},
 		{
-			"key": "H23",
-			"rawName": "max_power_yesterday"
+			"key": "H23"
 		},
 		{
-			"key": "HSDS",
-			"rawName": "day_sequence"
+			"key": "HSDS"
 		}
 	]
 } as const;

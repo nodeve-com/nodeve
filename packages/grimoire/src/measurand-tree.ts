@@ -10,7 +10,7 @@
 // so the sensor slug plants on the CHANNEL (the measurable interval), not the column.
 
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
-import type { MeasurandLink } from './generated/features/measurand_link.ts';
+import type { IntervalItem } from './generated/property/interval_item.ts';
 import { isPlainObject } from 'remeda';
 
 export type Obj = Record<string, unknown>;
@@ -67,18 +67,18 @@ export const specSlug = (node: Obj): string | undefined => idString(node, 'slug'
 /** Read a channel node's baked QUALIFIED sensor id (undefined if unbaked). */
 export const specSlugQualified = (node: Obj): string | undefined => idString(node, 'slugQualified');
 
-/** One measured column located in the tree: its `measurand_link` coordinate (`combined` → featureId +
- *  quantityKind, both instance slots absent; `part` → partId; `instances` → 1-based ordinal) PLUS the
- *  column node (carries the `intervals` list). The coordinate IS the generated `measurand_link` feature
- *  — never re-spelled here. */
-export type MeasurandColumn = MeasurandLink & { node: Obj };
+/** One measured column located in the tree: its `interval_item` coordinate (`combined` → featureId +
+ *  propertyId, both instance slots absent; `part` → partId; `instances` → 1-based ordinal) PLUS the
+ *  column node (carries the `intervals` list). The coordinate IS the shared `interval_item` pointer
+ *  (property/condition/interval_item.yaml) — never re-spelled here. */
+export type MeasurandColumn = IntervalItem & { node: Obj };
 
 /** One sensor CHANNEL: a column's coordinate PLUS, for a channel carried by a measurable interval,
  *  its channel `interval` slug (the by-slug handle a register FK names — `out` / `out_daily` / …,
  *  auto-slugged from the interval's flow_direction/period) and that interval node. A column with no
  *  measurable interval yields one channel at the column node (interval undefined) — prior single-cell
  *  behaviour, as does the one undirected/lifetime measurable channel (a slugless interval). */
-export type MeasurandCell = MeasurandLink & {
+export type MeasurandCell = IntervalItem & {
 	node: Obj; // the measurable interval node, or the column node when the column has none
 };
 
@@ -107,7 +107,7 @@ export function measurandColumns(device: Obj): MeasurandColumn[] {
 			for (const col of quantityCols(src))
 				cols.push({
 					featureId,
-					quantityKind: quantityCode(col) as MeasurandLink['quantityKind'],
+					propertyId: quantityCode(col),
 					node: src[col] as Obj,
 					...coord,
 				});
@@ -136,11 +136,12 @@ export function measurandCells(device: Obj): MeasurandCell[] {
 }
 
 /** The canonical join key for a measurand coordinate — a stable delimiter-joined string (empty
- *  segments kept, so channels never collide). The coordinate IS the generated `measurand_link`: a spec
- *  cell and a decode LINK (a modbus register / hid field / vedirect field) are two projections of the
- *  SAME `measurand_link`, so both sides build the key through HERE, neither hand-spells it. */
-export const measurandKey = (c: MeasurandLink): string =>
-	[c.featureId, c.partId ?? c.ordinal?.toString(), c.quantityKind, c.intervalId]
+ *  segments kept, so channels never collide). The coordinate IS the shared `interval_item` pointer: a
+ *  spec cell and a decode LINK (a modbus register / hid field / vedirect field, via its `intervalItem`)
+ *  are two projections of the SAME pointer, so both sides build the key through HERE, neither
+ *  hand-spells it. */
+export const measurandKey = (c: IntervalItem): string =>
+	[c.featureId, c.partId ?? c.ordinal?.toString(), c.propertyId, c.intervalId]
 		.map((s) => s ?? '')
 		.join('|');
 
@@ -149,8 +150,8 @@ export const measurandKey = (c: MeasurandLink): string =>
  *  matching what the wire actually carries). The counterpart of the gateway's register→sub-topic
  *  derivation, so a downstream bus reader derives the key HERE, never hand-spells it. */
 export const measurandSubTopic = (
-	cell: Pick<MeasurandLink, 'featureId' | 'partId' | 'ordinal' | 'quantityKind' | 'intervalId'>,
+	cell: Pick<IntervalItem, 'featureId' | 'partId' | 'ordinal' | 'propertyId' | 'intervalId'>,
 ): string =>
-	[cell.featureId, cell.partId ?? cell.ordinal?.toString(), cell.quantityKind, cell.intervalId]
+	[cell.featureId, cell.partId ?? cell.ordinal?.toString(), cell.propertyId, cell.intervalId]
 		.filter(Boolean)
 		.join('/');

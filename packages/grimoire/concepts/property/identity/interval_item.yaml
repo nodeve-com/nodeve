@@ -1,0 +1,18 @@
+title: { en: Interval item }
+body:
+  en: >
+    THE FK pointer at ONE interval of a quantity — the SINGLE mechanism both a `condition` gate and a decode-map link (a Modbus register, a VE.Direct field, a USB-HID byte field) use to name what they read/gate. Coordinates: which feature-of-interest (`feature_id`), which of its properties (`property_id`: a quantity_kind slug OR a settings key — any feature prop), and, when it matters, WHICH interval of that property (`interval_id`: the target interval's own `identity.slug` handle). A repeated feature's instance is picked by `part_id` (fixed set: a, ab) or `ordinal` (1-based counted) — `part_id` wins; both absent addresses the `combined` aggregate. All are SLUGS (the by-slug lookup, no `_slug` suffix). `feature_id` + `property_id` are always present; `interval_id`/`part_id`/`ordinal` are optional — `interval_id` absent = the property's one undirected/lifetime channel. A `condition` REQUIRES `interval_id` (a gate points at ONE identified band) — enforced at bake, not draft-07. The named interval carries the actual region/value; the pointer holds NO bounds of its own. `interval_id` is unique within the target property's `intervals` array (bake-validated) and must resolve to an existing coded interval.
+description:
+  en: "The FK pointer at one interval of a feature's property — {feature_id, property_id, interval_id(+part_id/ordinal)}. Shared by condition gates and decode-map links; the named interval carries the region/value."
+refs:
+  - { registry_id: sosa, term: FeatureOfInterest, match: close }
+schema:
+  type: object
+  required: [feature_id, property_id]
+  properties:
+    feature_id: { type: string, minLength: 1 }
+    property_id: { type: string, minLength: 1 } # a quantity_kind slug or a settings key
+    interval_id: { type: string, minLength: 1 } # the target interval's `identity.slug` handle
+    part_id: { type: string, minLength: 1 } # repeated-feature instance — fixed set
+    ordinal: { type: integer, minimum: 1 } # repeated-feature instance — 1-based counted
+  additionalProperties: false

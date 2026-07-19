@@ -80,44 +80,48 @@ const childObj = (o: Obj, key: string): Obj =>
 /** The spec-map node a measurand link addresses within its feature's `feature_spec` body, per the
  *  feature's repeated nature: a parts feature keys `part.<part_id>` (or `combined` when unset — the
  *  aggregate), a counted feature `instances[ordinal-1]` (or `combined`), a single spec feature its
- *  `combined`. Missing containers (incl. `feature_spec` itself) are created so an absent link target
- *  can be filled. */
-function measurandNode(feature: Obj, slug: string, reg: Obj): Obj {
+ *  `combined`. `link` is the register's `interval_item` pointer (carries part_id/ordinal). Missing
+ *  containers (incl. `feature_spec` itself) are created so an absent link target can be filled. */
+function measurandNode(feature: Obj, slug: string, link: Obj): Obj {
 	const fs = childObj(feature, 'feature_spec');
 	const nature = featureNature(slug);
 	if (nature.parts)
-		return reg.part_id === undefined
+		return link.part_id === undefined
 			? childObj(fs, 'combined')
-			: childObj(childObj(fs, 'part'), String(reg.part_id));
+			: childObj(childObj(fs, 'part'), String(link.part_id));
 	if (nature.counted) {
-		if (reg.ordinal === undefined) return childObj(fs, 'combined');
+		if (link.ordinal === undefined) return childObj(fs, 'combined');
 		const instances = Array.isArray(fs.instances) ? fs.instances : (fs.instances = []);
-		const i = Number(reg.ordinal) - 1;
+		const i = Number(link.ordinal) - 1;
 		if (!isPlainObject(instances[i])) instances[i] = {};
 		return instances[i] as Obj;
 	}
 	return childObj(fs, 'combined');
 }
 
-/** Ensure a spec node exists for every LINKED modbus register: a register carrying a measurand link
- *  (feature_id + quantity_kind) reads one quantity of the feature tree, so that quantity's spec node
+/** Ensure a spec node exists for every LINKED modbus register: a register carrying an `interval_item`
+ *  link (feature_id + property_id) reads one property of the feature tree, so that property's spec node
  *  must exist as the link target — create it (empty until a spec interval is authored; a measuring
- *  range is an `interval_kind: measurable` interval, NOT a separate slot). RAW registers (raw_name only, no
- *  quantity_kind) and category registers (enum-valued `state`/`fault`, no quantity_kind) are
- *  deliberately unlinked and skipped. Mutates the resolved entry in place; runs AFTER
- *  resolveRepeatedFeatures so the part/instance nodes a link targets already exist. */
+ *  range is an `interval_kind: measurable` interval, NOT a separate slot). Unlinked registers (no
+ *  `interval_item`) and category registers (enum-valued `state`/`fault` on modbus_decodes) are
+ *  deliberately skipped. Mutates the resolved entry in place; runs AFTER resolveRepeatedFeatures so
+ *  the part/instance nodes a link targets already exist. */
 export function backfillRegisterSpecNodes(entry: Obj): void {
 	const medium = entry.modbus;
 	if (!isPlainObject(medium) || !Array.isArray(medium.modbus_registers)) return;
 	for (const reg of medium.modbus_registers) {
-		// The column key is the bare `quantity_kind` (features/measurand_link.yaml). flow_direction /
-		// period narrow it to one measurable interval — authored on the entry, not invented here.
-		// measurandNode reads only part_id/ordinal.
-		const colKey = isPlainObject(reg) ? reg.quantity_kind : undefined;
-		if (!isPlainObject(reg) || reg.feature_id === undefined || colKey === undefined) continue;
-		const feature = entry[String(reg.feature_id)];
+		// The column key is the link's `property_id` (property/condition/interval_item.yaml). interval_id
+		// narrows it to one measurable interval — authored on the entry, not invented here.
+		// measurandNode reads only part_id/ordinal off the link.
+		const link =
+			isPlainObject(reg) && isPlainObject(reg.interval_item)
+				? (reg.interval_item as Obj)
+				: undefined;
+		const colKey = link?.property_id;
+		if (!link || link.feature_id === undefined || colKey === undefined) continue;
+		const feature = entry[String(link.feature_id)];
 		if (!isPlainObject(feature)) continue; // unresolvable link — a separate link-validation concern, not ours to invent
-		childObj(measurandNode(feature, String(reg.feature_id), reg), String(colKey));
+		childObj(measurandNode(feature, String(link.feature_id), link), String(colKey));
 	}
 }
 

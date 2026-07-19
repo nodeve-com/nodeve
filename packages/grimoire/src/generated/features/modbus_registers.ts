@@ -9,37 +9,24 @@
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as address_ from '../property/address.ts';
 import * as decimals_ from '../property/decimals.ts';
-import * as featureId_ from '../property/feature_id.ts';
-import * as intervalId_ from '../property/interval_id.ts';
-import * as ordinal_ from '../property/ordinal.ts';
-import * as partId_ from '../property/part_id.ts';
-import * as rawName_ from '../property/raw_name.ts';
+import * as intervalItem_ from '../property/interval_item.ts';
 import * as scale_ from '../property/scale.ts';
 import * as type_ from '../property/type.ts';
 import * as unit_ from '../property/unit.ts';
 import * as valueType_ from '../property/value_type.ts';
 
-export const schema: TSchema = Type.Array(Type.Object({ "partId": Type.Optional(partId_.schema), "ordinal": Type.Optional(ordinal_.schema), "quantityKind": Type.Optional(Type.Union([Type.Literal("active_energy"), Type.Literal("active_power"), Type.Literal("altitude"), Type.Literal("apparent_energy"), Type.Literal("apparent_power"), Type.Literal("cooling_capacity"), Type.Literal("current"), Type.Literal("dew_point"), Type.Literal("electric_charge"), Type.Literal("frequency"), Type.Literal("phase_angle"), Type.Literal("power"), Type.Literal("power_factor"), Type.Literal("reactive_energy"), Type.Literal("reactive_power"), Type.Literal("relative_humidity"), Type.Literal("resistance"), Type.Literal("temperature"), Type.Literal("voltage"), Type.Literal("volume"), Type.Literal("volume_flow_rate")], {"type":"string"})), "featureId": Type.Optional(featureId_.schema), "intervalId": Type.Optional(intervalId_.schema), "rawName": Type.Optional(rawName_.schema), "type": Type.Optional(type_.schema), "scale": Type.Optional(scale_.schema), "decimals": Type.Optional(decimals_.schema), "unit": Type.Optional(unit_.schema), "address": Type.Optional(address_.schema), "valueType": Type.Optional(valueType_.schema) }, {"additionalProperties":false,"x-key-map":{"part_id":"partId","quantity_kind":"quantityKind","feature_id":"featureId","interval_id":"intervalId","raw_name":"rawName","value_type":"valueType"}}));
+export const schema: TSchema = Type.Array(Type.Object({ "intervalItem": Type.Optional(intervalItem_.schema), "type": Type.Optional(type_.schema), "scale": Type.Optional(scale_.schema), "decimals": Type.Optional(decimals_.schema), "unit": Type.Optional(unit_.schema), "address": Type.Optional(address_.schema), "valueType": Type.Optional(valueType_.schema) }, {"additionalProperties":false,"x-key-map":{"interval_item":"intervalItem","value_type":"valueType"}}));
 
-export type ModbusRegisters = Array<{ "partId"?: partId_.PartId; "ordinal"?: ordinal_.Ordinal; "quantityKind"?: "active_energy" | "active_power" | "altitude" | "apparent_energy" | "apparent_power" | "cooling_capacity" | "current" | "dew_point" | "electric_charge" | "frequency" | "phase_angle" | "power" | "power_factor" | "reactive_energy" | "reactive_power" | "relative_humidity" | "resistance" | "temperature" | "voltage" | "volume" | "volume_flow_rate"; "featureId"?: featureId_.FeatureId; "intervalId"?: intervalId_.IntervalId; "rawName"?: rawName_.RawName; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "address"?: address_.Address; "valueType"?: valueType_.ValueType }>;
+export type ModbusRegisters = Array<{ "intervalItem"?: intervalItem_.IntervalItem; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "address"?: address_.Address; "valueType"?: valueType_.ValueType }>;
 
-type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "decimals": typeof decimals_; readonly "featureId": typeof featureId_; readonly "intervalId": Omit<typeof intervalId_, "description"> & { readonly "description": { readonly "en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n" } }; readonly "ordinal": typeof ordinal_; readonly "partId": typeof partId_; readonly "rawName": typeof rawName_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_; readonly "valueType": typeof valueType_ } }; readonly "body": { readonly "en": "A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side: modbus_decode). A register no longer carries an authored key/topic — it LINKS to the measurand the projected feature tree offers (measurand_link) and the MQTT sub-topic is DERIVED downstream: the catalog says WHAT a register reads, not where to publish it. LINKED (feature_id + quantity_kind; `unknown` = sensed but unclassified) vs RAW (link omitted, raw_name for traceability) — split NOT structurally enforced (no XOR): migration-tolerant while feature trees fill in. DECISION (item A): the link stays a LOOSE reference — `feature_id` not yet validated against the archetype's projected feature tree (needs the projection; until then a typo parses; deliberate). Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals` rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real resolution). Sealed.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_registers" }; readonly "title": { readonly "en": "Modbus registers"; readonly "pt": "Registros Modbus" } };
+type DataT = { readonly "array": { readonly "prop": { readonly "address": typeof address_; readonly "decimals": typeof decimals_; readonly "intervalItem": typeof intervalItem_; readonly "scale": typeof scale_; readonly "type": typeof type_; readonly "unit": typeof unit_; readonly "valueType": typeof valueType_ } }; readonly "body": { readonly "en": "A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side: modbus_decode). A register carries no authored key/topic — it LINKS to the measurand the projected feature tree offers via the shared `interval_item` pointer (measurand_link) and the MQTT sub-topic is DERIVED downstream: the catalog says WHAT a register reads, not where to publish it. The link stays a LOOSE reference — `interval_item.feature_id`/`property_id` are validated against the entry's baked feature tree at bake (guard-register-links), not draft-07. Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals` rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real resolution).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_registers" }; readonly "title": { readonly "en": "Modbus registers"; readonly "pt": "Registros Modbus" } };
 
 const _data: DataT = {
 	"array": {
 		"prop": {
 			"address": address_,
 			"decimals": decimals_,
-			"featureId": featureId_,
-			"intervalId": {
-				...intervalId_,
-				"description": {
-					"en": "OPTIONAL channel selector — the third coordinate of the interval_item pointer: (feature_id, quantity_kind, interval_id) is the SAME by-slug triple {feature, property, interval}, so a register names WHICH measurable channel of that kind it reads by that channel's interval slug (energy: `out` / `out_daily` / `in` / `in_daily` / `daily`, auto-slugged from the interval's flow_direction/period). Absent = the feature's one undirected/lifetime channel. It is the sensor-id tail.\n"
-				}
-			},
-			"ordinal": ordinal_,
-			"partId": partId_,
-			"rawName": rawName_,
+			"intervalItem": intervalItem_,
 			"scale": scale_,
 			"type": type_,
 			"unit": unit_,
@@ -47,7 +34,7 @@ const _data: DataT = {
 		}
 	},
 	"body": {
-		"en": "A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side: modbus_decode). A register no longer carries an authored key/topic — it LINKS to the measurand the projected feature tree offers (measurand_link) and the MQTT sub-topic is DERIVED downstream: the catalog says WHAT a register reads, not where to publish it. LINKED (feature_id + quantity_kind; `unknown` = sensed but unclassified) vs RAW (link omitted, raw_name for traceability) — split NOT structurally enforced (no XOR): migration-tolerant while feature trees fill in. DECISION (item A): the link stays a LOOSE reference — `feature_id` not yet validated against the archetype's projected feature tree (needs the projection; until then a typo parses; deliberate). Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals` rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real resolution). Sealed.\n"
+		"en": "A device's scalar Modbus register map — a LIST of register rows. Each row is a holding/input register read, scaled to an engineering NUMBER; the numeric side of decode (categorical side: modbus_decode). A register carries no authored key/topic — it LINKS to the measurand the projected feature tree offers via the shared `interval_item` pointer (measurand_link) and the MQTT sub-topic is DERIVED downstream: the catalog says WHAT a register reads, not where to publish it. The link stays a LOOSE reference — `interval_item.feature_id`/`property_id` are validated against the entry's baked feature tree at bake (guard-register-links), not draft-07. Numeric core (type/scale/decimals/unit) comes from numeric_decode; `decimals` rounding is source-side honesty (float32 IEEE-754 quantization beyond the meter's real resolution).\n"
 	},
 	"identity": {
 		"archetypeId": "feature",

@@ -2,7 +2,7 @@ import { type Obj } from '../src/concept-sources.ts';
 import { isPlainObject } from 'remeda';
 
 /** Interval slug de-sugar + uniqueness. An interval's `identity.slug` is its addressable ID
- *  (a `condition.interval_item` names `{feature, property, interval}`; downstream sensors point at
+ *  (a `condition.interval_item` names `{feature_id, property_id, interval_id}`; downstream sensors point at
  *  bands the same way); authored YAML rarely spells it — an unslugged row de-sugars from its
  *  identity axes (rating tier / zone name / flow_direction / period). De-sugar runs FIRST so two bare rows sharing them collide and force explicit
  *  slugs — which guard-interval-slugs then requires to be defined vocabulary (a `rating`
@@ -35,7 +35,7 @@ function conditionSuffix(row: Obj): string {
 			toks.push(c.test_condition); // { test_condition }
 		else {
 			const item = c.interval_item;
-			if (isPlainObject(item) && typeof item.interval === 'string') toks.push(item.interval);
+			if (isPlainObject(item) && typeof item.interval_id === 'string') toks.push(item.interval_id);
 		}
 	}
 	return toks.join('_');
@@ -140,7 +140,7 @@ type BandSlug = { slug?: string; auto?: string; titled: boolean; isZone: boolean
 type BandAcc = { bands: BandSlug[]; targets: Set<string> };
 
 /** One walk of a resolved entry: every interval row (slug, its auto-slug, titled, interval_kind)
- *  plus every interval_item.interval target. */
+ *  plus every interval_item.interval_id target. */
 function collectBandSlugs(node: unknown, at: string, acc: BandAcc): void {
 	if (Array.isArray(node)) {
 		node.forEach((v, i) => collectBandSlugs(v, `${at}[${i}]`, acc));
@@ -148,7 +148,8 @@ function collectBandSlugs(node: unknown, at: string, acc: BandAcc): void {
 	}
 	if (!isPlainObject(node)) return;
 	const item = node.interval_item;
-	if (isPlainObject(item) && typeof item.interval === 'string') acc.targets.add(item.interval);
+	if (isPlainObject(item) && typeof item.interval_id === 'string')
+		acc.targets.add(item.interval_id);
 	if (Array.isArray(node.intervals))
 		node.intervals.forEach((row, i) => {
 			if (!isPlainObject(row)) return;

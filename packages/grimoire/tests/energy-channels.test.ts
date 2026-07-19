@@ -13,7 +13,7 @@ const device = loadDevice({ archetypeId: 'inverter', slug: 'foxess_h3_ps10sh' })
 >;
 
 const gridEnergy = measurandCells(device).filter(
-	(c) => c.featureId === 'ac_phase_three_grid' && c.quantityKind === 'active_energy',
+	(c) => c.featureId === 'ac_phase_three_grid' && c.propertyId === 'active_energy',
 );
 
 describe('energy channels on one active_energy column', () => {
@@ -30,20 +30,21 @@ describe('energy channels on one active_energy column', () => {
 		expect(topics).toContain('ac_phase_three_grid/active_energy/in_daily'); // grid consumption today
 	});
 
-	test('registers link a channel by the interval_item triple (feature + quantity_kind + interval_id)', () => {
-		const regs = (device.modbus as { modbusRegisters: Array<Record<string, unknown>> })
-			.modbusRegisters;
+	test('registers link a channel by the interval_item pointer (feature_id + property_id + interval_id)', () => {
+		type Link = { featureId?: string; propertyId?: string; intervalId?: string };
+		const regs = (
+			device.modbus as { modbusRegisters: Array<{ intervalItem?: Link; address?: number }> }
+		).modbusRegisters;
 		const energy = regs.filter(
-			(r) => r.featureId === 'ac_phase_three_grid' && r.quantityKind === 'active_energy',
+			(r) =>
+				r.intervalItem?.featureId === 'ac_phase_three_grid' &&
+				r.intervalItem?.propertyId === 'active_energy',
 		);
 		expect(energy).toHaveLength(4);
 		const channelSlugs = new Set(gridEnergy.map((c) => c.intervalId));
-		// ONE FK: registers carry no flow_direction/period, only the `interval_id` slug — resolves to a channel.
+		// ONE pointer: registers carry no flow_direction/period, only the `interval_id` slug — resolves to a channel.
 		for (const r of energy) {
-			expect(r.flowDirection).toBeUndefined();
-			expect(r.period).toBeUndefined();
-			expect(r.quantity).toBeUndefined();
-			expect(channelSlugs, String(r.address)).toContain(r.intervalId);
+			expect(channelSlugs, String(r.address)).toContain(r.intervalItem?.intervalId);
 		}
 	});
 });

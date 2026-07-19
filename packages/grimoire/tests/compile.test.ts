@@ -155,9 +155,9 @@ describe('validateConditionRefs (kit/validate-conditions.ts)', async () => {
 								condition: [
 									{
 										interval_item: {
-											feature: 'enclosure',
-											property: 'temperature',
-											interval: 'derate_zone',
+											feature_id: 'enclosure',
+											property_id: 'temperature',
+											interval_id: 'derate_zone',
 										},
 									},
 									{ setting: 'grid_region', equals: 'eu_230v_50hz' },
@@ -176,15 +176,15 @@ describe('validateConditionRefs (kit/validate-conditions.ts)', async () => {
 
 	test('dangling feature / property / interval slug throw', () => {
 		const missingFeature = entry();
-		missingFeature.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.feature =
+		missingFeature.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.feature_id =
 			'nope';
 		expect(() => validateConditionRefs(missingFeature, 'fixture')).toThrow(/no such spec feature/);
 		const missingProperty = entry();
-		missingProperty.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.property =
+		missingProperty.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.property_id =
 			'nope';
 		expect(() => validateConditionRefs(missingProperty, 'fixture')).toThrow(/no such property/);
 		const missingInterval = entry();
-		missingInterval.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.interval =
+		missingInterval.grid.feature_spec.combined.active_power.intervals[0]!.condition[0]!.interval_item!.interval_id =
 			'nope';
 		expect(() => validateConditionRefs(missingInterval, 'fixture')).toThrow(/no interval answers/);
 	});

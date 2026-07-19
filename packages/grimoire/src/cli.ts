@@ -17,7 +17,7 @@ CATALOG (agnostic device instances):
   grimoire catalog                     list entries: archetype_id  slug  code
   grimoire catalog <slug> [path]       one entry, full snake wire JSON; a dotted path selects a
                                        node (e.g. ac_phase_three_grid.feature_spec.combined)
-  grimoire registers <slug> [column]   the entry's modbus register rows; column filters on quantity_kind
+  grimoire registers <slug> [column]   the entry's modbus register rows; column filters on interval_item.property_id
 
 CONCEPTS (the schema — what a thing IS; each node carries its own body/description/title prose):
   grimoire feature [<slug> [path]]     list features, or dump one (e.g. \`feature interval\` — what an interval is)
@@ -98,13 +98,13 @@ function catalog(slug?: string, path?: string): void {
 function registers(slug?: string, column?: string): void {
 	if (slug === undefined) die(USAGE);
 	const modbus = readEntry('catalog', slug).modbus as
-		{ modbus_registers?: Array<{ quantity_kind?: string }> } | undefined;
+		{ modbus_registers?: Array<{ interval_item?: { property_id?: string } }> } | undefined;
 	if (!modbus?.modbus_registers) die(`catalog/${slug} has no modbus register map`);
 	const rows = modbus.modbus_registers;
 	if (column === undefined) return print(rows);
-	const hits = rows.filter((r) => r.quantity_kind === column);
+	const hits = rows.filter((r) => r.interval_item?.property_id === column);
 	if (hits.length === 0) {
-		const cols = [...new Set(rows.map((r) => r.quantity_kind).filter(Boolean))];
+		const cols = [...new Set(rows.map((r) => r.interval_item?.property_id).filter(Boolean))];
 		die(
 			`catalog/${slug} has no register with column "${column}" (have: ${cols.sort().join(', ')})`,
 		);

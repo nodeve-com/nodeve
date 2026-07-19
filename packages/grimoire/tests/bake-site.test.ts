@@ -98,7 +98,7 @@ describe('bakeSite — slugged measurable intervals (directional energy channels
 	const gridEnergy = () =>
 		site
 			.sensors(INV)
-			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.quantityKind === 'active_energy');
+			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.propertyId === 'active_energy');
 
 	test('the four directional energy channels read back with baked slugs (no slugless append)', () => {
 		const channels = gridEnergy();
@@ -128,8 +128,8 @@ describe('bakeSite — slugged measurable intervals (directional energy channels
 		const links = linkRegisters(modbusMediumOf(merged).modbusRegisters, site.sensors(INV));
 		const energy = links.filter(
 			(l) =>
-				l.register.featureId === 'ac_phase_three_grid' &&
-				l.register.quantityKind === 'active_energy',
+				l.register.intervalItem?.featureId === 'ac_phase_three_grid' &&
+				l.register.intervalItem?.propertyId === 'active_energy',
 		);
 		expect(energy).toHaveLength(4);
 		// every energy register resolves to a sensor, and the four map to four DISTINCT slugs.
@@ -147,7 +147,7 @@ describe('bakeSite — slugged measurable intervals (directional energy channels
 	test('a slugless single channel (active_power) keeps an undefined interval handle', () => {
 		const power = site
 			.sensors(INV)
-			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.quantityKind === 'active_power');
+			.filter((s) => s.featureId === 'ac_phase_three_grid' && s.propertyId === 'active_power');
 		const combined = power.find((s) => s.partId === undefined && s.ordinal === undefined);
 		expect(combined?.intervalId).toBeUndefined();
 		expect(combined?.slug).toBe('ac_grid_active_power');

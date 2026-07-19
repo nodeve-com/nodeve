@@ -53,48 +53,15 @@ usbhid:
       nibble: high # major version = high nibble; minor = low nibble
       select:
         - { lt: 2, profile: legacy } # major < 2 ⇒ V1 conversion table; else (>= 2) base scale (V2)
+  # UNLINKED (discovery) — no feature tree yet, so no `interval_item` link; the value name rides a
+  # comment until a proper feature definition lands (then add interval_item + drop the note).
   usbhid_fields:
-    - {
-        raw_name: vin,
-        offset: 2,
-        type: uint8,
-        scale: 0.1552,
-        scale_overrides: { legacy: 0.1123 },
-        decimals: 2,
-      } # input voltage
-    - {
-        raw_name: ign,
-        offset: 3,
-        type: uint8,
-        scale: 0.1552,
-        scale_overrides: { legacy: 0.1123 },
-        decimals: 2,
-      } # ignition voltage
-    - {
-        raw_name: v33,
-        offset: 4,
-        type: uint8,
-        scale: 0.0195,
-        scale_overrides: { legacy: 0.0188136 },
-        decimals: 2,
-      } # 3.3V rail
-    - {
-        raw_name: v5,
-        offset: 5,
-        type: uint8,
-        scale: 0.0389,
-        scale_overrides: { legacy: 0.0375 },
-        decimals: 2,
-      } # 5V rail
-    - {
-        raw_name: v12,
-        offset: 6,
-        type: uint8,
-        scale: 0.1165,
-        scale_overrides: { legacy: 0.076625 },
-        decimals: 2,
-      } # 12V rail
-    - { raw_name: temp, offset: 12, type: int8, scale: 1.0, decimals: 0, unit: degC } # board temperature (signed byte, m4TypeLengths[M4_DEG]==1)
+    - { offset: 2, type: uint8, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 } # vin — input voltage
+    - { offset: 3, type: uint8, scale: 0.1552, scale_overrides: { legacy: 0.1123 }, decimals: 2 } # ign — ignition voltage
+    - { offset: 4, type: uint8, scale: 0.0195, scale_overrides: { legacy: 0.0188136 }, decimals: 2 } # v33 — 3.3V rail
+    - { offset: 5, type: uint8, scale: 0.0389, scale_overrides: { legacy: 0.0375 }, decimals: 2 } # v5 — 5V rail
+    - { offset: 6, type: uint8, scale: 0.1165, scale_overrides: { legacy: 0.076625 }, decimals: 2 } # v12 — 12V rail
+    - { offset: 12, type: int8, scale: 1.0, decimals: 0, unit: degC } # temp — board temperature (signed byte, m4TypeLengths[M4_DEG]==1)
 
   usbhid_config:
     request_length: 24
