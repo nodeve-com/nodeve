@@ -16,8 +16,6 @@ import { join } from 'node:path';
 import { isPlainObject, mergeDeep } from 'remeda';
 import { readYaml } from './concept-sources.ts';
 
-type Obj = Record<string, unknown>;
-
 /** A raw, merged catalog leaf before schema validation: its tree path, declared archetype, the
  *  deep-merged snake_case data (with `archetype`/`aliases` filing metadata stripped out), and any
  *  former paths this leaf used to live at (the inline changelog — see `aliases` in the README). */
@@ -49,7 +47,7 @@ const isLeaf = (f: string): boolean =>
 function walkCascade(state: {
 	dir: string;
 	segments: string[];
-	inherited: Obj;
+	inherited: Record<string, unknown>;
 	out: CascadeEntry[];
 }): void {
 	const { dir, segments, inherited, out } = state;
@@ -57,7 +55,7 @@ function walkCascade(state: {
 	// Fold this level's _defaults.yaml into the inherited context before descending/leafing.
 	const defaultsFile = names.find((e) => e.isFile() && isDefaults(e.name));
 	const ctx = defaultsFile
-		? (mergeDeep(inherited, readYaml(join(dir, defaultsFile.name))) as Obj)
+		? (mergeDeep(inherited, readYaml(join(dir, defaultsFile.name))) as Record<string, unknown>)
 		: inherited;
 
 	for (const entry of names.sort((a, b) => a.name.localeCompare(b.name))) {
@@ -69,7 +67,7 @@ function walkCascade(state: {
 				out,
 			});
 		} else if (isLeaf(entry.name)) {
-			const merged = mergeDeep(ctx, readYaml(join(dir, entry.name))) as Obj;
+			const merged = mergeDeep(ctx, readYaml(join(dir, entry.name))) as Record<string, unknown>;
 			const { archetype_id: topLevel, aliases, ...data } = merged;
 			// The archetype selector's two authored forms: top-level `archetype_id:` or the newer
 			// `identity.archetype_id:` (identity stays in the data — it carries the slug and is device fact).
