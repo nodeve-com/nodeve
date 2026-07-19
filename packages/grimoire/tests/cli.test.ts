@@ -33,4 +33,31 @@ describe('grimoire CLI', () => {
 	test('an unknown slug fails with the valid set', () => {
 		expect(() => run('catalog', 'nope')).toThrow();
 	});
+
+	test('concept commands list slug<TAB>title and dump a node', () => {
+		expect(run('feature')).toContain('interval\t');
+		const desc = JSON.parse(run('feature', 'interval', 'description')) as { en: string };
+		expect(desc.en).toBeTruthy();
+	});
+
+	test('archetype exposes the intervals item-type slots', () => {
+		const slots = JSON.parse(run('archetype', 'intervals', 'array.prop')) as Record<
+			string,
+			unknown
+		>;
+		expect(Object.keys(slots)).toContain('interval');
+	});
+
+	test('schema dumps the JSON Schema twin', () => {
+		const s = JSON.parse(run('schema', 'feature', 'interval')) as Record<string, unknown>;
+		expect(s.$defs ?? s.properties).toBeTruthy();
+	});
+
+	test('help flags print usage to stdout and exit 0', () => {
+		for (const flag of ['help', '-h', '--help']) expect(run(flag)).toContain('grimoire —');
+	});
+
+	test('an unknown command exits non-zero', () => {
+		expect(() => run('bogus')).toThrow();
+	});
 });

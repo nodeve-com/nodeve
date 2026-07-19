@@ -14,7 +14,8 @@
 	},
 	"files": [
 		"dist",
-		"artifacts"
+		"artifacts",
+		"docs"
 	],
 	"bin": {
 		"grimoire": "./dist/cli.js"
