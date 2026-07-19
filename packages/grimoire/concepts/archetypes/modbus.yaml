@@ -17,6 +17,6 @@ feature:
   serial_port: {}
   serial_wire: {}
   modbus_link: {} # modbus framing/addressing
-  modbus_registers: {} # the register map — a LIST of register rows
+  modbus_registers: { schema: { required: true } } # the register map — a LIST of register rows; a modbus medium IS its register map
   modbus_decodes: {} # optional categorical decode
   modbus_constraints: {} # optional read-batching hints

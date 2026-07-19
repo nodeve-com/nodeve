@@ -32,7 +32,6 @@ export {
 	modbusMediumOf,
 	type CatalogIdentity,
 	type CatalogDevice,
-	type ModbusMedium,
 	type ModbusRegister,
 } from './catalog.ts';
 

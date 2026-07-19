@@ -49,15 +49,12 @@ export function loadDevice(identity: CatalogIdentity): CatalogDevice {
  *  discovery row). Never re-spelled here; the concept owns the shape. */
 export type ModbusRegister = ModbusRegisters[number];
 
-/** A device's modbus medium — the generated `modbus` archetype (register map + `serialPort` /
- *  `serialWire` / `modbusLink` transport), narrowed so `modbusRegisters` is present (the one accessor a
- *  gateway/codegen reads — README "Using the catalog"; `modbusMediumOf` guarantees it). */
-export type ModbusMedium = Modbus & { modbusRegisters: ModbusRegisters };
-
-/** The modbus medium of a device, or throw if it exposes none (a spec-only catalog entry). */
-export function modbusMediumOf(device: CatalogDevice): ModbusMedium {
-	const modbus = device.modbus as ModbusMedium | undefined;
-	if (!modbus?.modbusRegisters)
-		throw new Error(`catalog device \`${refOf(device.identity)}\` has no modbus register map`);
+/** The modbus medium of a device, or throw if the device exposes none (a spec-only device — no `modbus`
+ *  block, e.g. a `pv_module`). The generated `Modbus` guarantees `modbusRegisters` (the concept marks it
+ *  required — a modbus medium IS its register map), so no narrowing is needed here. */
+export function modbusMediumOf(device: CatalogDevice): Modbus {
+	const modbus = device.modbus as Modbus | undefined;
+	if (!modbus)
+		throw new Error(`catalog device \`${refOf(device.identity)}\` has no modbus medium`);
 	return modbus;
 }
