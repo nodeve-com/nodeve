@@ -47,6 +47,10 @@ export type PluralArraysConfig = Scoped & {
 export type InlineDupesConfig = Scoped & {
 	/** Bare names that legitimately recur across files. */
 	allowlist: string[];
+	/** Also flag EXPORTED names (not just private ones). Off by default: app repos legitimately
+	 *  repeat exported route handlers (`load`, `actions`, `GET`) per route. A library-only repo (no
+	 *  route files) turns this on — an exported name in 2+ modules there IS a second source of truth. */
+	includeExported?: boolean;
 };
 
 export type HelperCollisionsConfig = Scoped & {

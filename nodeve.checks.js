@@ -18,6 +18,9 @@ export default {
 	},
 	inlineDupes: {
 		ignore: [GENERATED],
+		// nodeve is library-only (no route files), so an exported name in 2+ modules is a second
+		// source of truth just like a private one — flag both. Also covers type/interface decls.
+		includeExported: true,
 		// False positives: independent grimoire codegen/guard scripts that coincidentally share a
 		// generic local name for DIFFERENT logic — a per-script dir `walk`, a result `render`/`tally`,
 		// a findings accumulator (`violations`/`dups`), a script `main`, a `STRUCTURAL` keyword set

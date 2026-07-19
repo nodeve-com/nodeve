@@ -1,7 +1,8 @@
 /**
- * Commit gate: flag a top-level name (non-exported const or function) that
- * appears in 2+ tracked source files — a sign it should live in a shared
- * package and be imported instead.
+ * Commit gate: flag a top-level definition name (const, function, type, or
+ * interface) that appears in 2+ tracked source files — a sign it should live in
+ * one shared module and be imported instead. Exported names count only when
+ * `includeExported` is set (a library-only repo); otherwise private decls only.
  *
  * Scope: `inlineDupes.globs` (default `apps/`, `packages/`). Note this always
  * scans the full configured scope, not just staged files — a dupe is a
@@ -14,21 +15,30 @@ import { parseSource } from '../lib/ast.js';
 import { scopedTsSources } from '../lib/bin.js';
 
 /**
- * Non-exported top-level names in a source file: private `const` and
- * `function` declarations. Exported names (SvelteKit `load`, `actions`,
- * HTTP verbs, etc.) are skipped — they're legitimately repeated per route.
+ * Top-level definition names in a source file: `const`/`function` VALUE decls
+ * and `type`/`interface` TYPE decls (a re-declared type — `Obj = Record<…>` in
+ * three files — is a second source of truth exactly like a re-declared helper).
+ * Exported names are skipped unless `includeExported` — an app repo legitimately
+ * repeats exported route handlers (`load`, `actions`, `GET`) per route; a
+ * library-only repo turns the flag on to catch exported dupes too. Re-exports
+ * (`export { X } from './y'`) are ExportDeclarations, not declarations, so a
+ * barrel re-exporting a name never counts as a second definition.
  */
-function topLevelNames(absPath: string): string[] {
+function topLevelNames(absPath: string, includeExported: boolean): string[] {
 	const src = parseSource(absPath);
 	const out: string[] = [];
 	for (const stmt of src.statements) {
-		const isExported =
-			ts.canHaveModifiers(stmt) &&
-			(ts.getModifiers(stmt)?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) ?? false);
-		if (isExported) continue;
+		if (!includeExported) {
+			const isExported =
+				ts.canHaveModifiers(stmt) &&
+				(ts.getModifiers(stmt)?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) ?? false);
+			if (isExported) continue;
+		}
 
 		if (ts.isFunctionDeclaration(stmt) && stmt.name) out.push(stmt.name.text);
 		else if (ts.isVariableStatement(stmt)) out.push(...variableNames(stmt));
+		else if (ts.isTypeAliasDeclaration(stmt)) out.push(stmt.name.text);
+		else if (ts.isInterfaceDeclaration(stmt)) out.push(stmt.name.text);
 	}
 	return out;
 }
@@ -53,13 +63,14 @@ and be imported instead. Clear it by:
 --warn downgrades this to report-only.`,
 
 	run(gate) {
-		const { root, allowlist, explain } = gate;
+		const { root, allowlist, explain, cfg } = gate;
+		const includeExported = cfg.includeExported ?? false;
 		const nameToFiles = new Map<string, Set<string>>();
 
 		// staged omitted → full scope (see header): a dupe needs both files, even if one isn't staged.
 		for (const rel of scopedTsSources(gate)) {
 			const abs = join(root, rel);
-			for (const name of topLevelNames(abs)) {
+			for (const name of topLevelNames(abs, includeExported)) {
 				if (allowlist.has(name)) continue;
 				const files = nameToFiles.get(name) ?? new Set();
 				files.add(rel);

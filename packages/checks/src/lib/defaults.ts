@@ -51,6 +51,9 @@ export default {
 	inlineDupes: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
 		allowlist: [],
+		// Off by default: an app repo legitimately repeats exported route handlers per route.
+		// A library-only repo (no route files) sets this true to catch exported dupes too.
+		includeExported: false,
 	},
 	helperCollisions: {
 		globs: ['apps/*.ts', 'packages/*.ts'],
