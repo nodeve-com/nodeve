@@ -13,12 +13,8 @@
 // vedirect media). This guard walks every archetype YAML and fails on any top-level key outside the
 // allowed set — which catches `prop:`, `enums:`, AND bare property keys in one sweep. Run standalone:
 // `node scripts/guard-archetype-features.ts`.
-import { join } from 'node:path';
-import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS, readYaml } from '../src/concept-sources.ts';
+import { ARCHETYPES_DIR, CONCEPTS, readYaml, yamlFiles } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
-
-const ARCHETYPES_DIR = join(CONCEPTS, 'archetypes');
 
 // The ONLY top-level keys an archetype may carry. Everything else — `prop:`, `enums:`, or a bare
 // property key — is a field/enum that belongs on a feature, not on the class. `schema:` is the

@@ -3,15 +3,18 @@
 // BUILD- AND TEST-ONLY: imports `yaml` + `fs`; nothing on the runtime path may import it.
 
 import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 import { isPlainObject } from 'remeda';
 import { parse as parseYaml } from 'yaml';
 
 export type Obj = Record<string, unknown>;
 
+/** `src/` — the runtime TS surface (glue over the generated projection). */
+export const SRC_DIR = import.meta.dirname;
+
 /** The `concepts/` source tree and its layer dirs — single-sourced here so every generator/guard
  *  imports them instead of re-deriving the same `join(root, 'concepts', …)` per file. */
-export const CONCEPTS = join(import.meta.dirname, '..', 'concepts');
+export const CONCEPTS = join(SRC_DIR, '..', 'concepts');
 export const PROPERTY_DIR = join(CONCEPTS, 'property');
 export const ENUMERATION_DIR = join(CONCEPTS, 'enumeration');
 export const FEATURES_DIR = join(CONCEPTS, 'features');
@@ -20,12 +23,12 @@ export const CATALOG_DIR = join(CONCEPTS, 'catalog');
 
 /** The `artifacts/` JSON output tree and its baked catalog — what JSON readers (and the guards)
  *  read; `pnpm generate` emits it. Distinct from `CATALOG_DIR` above, the YAML SOURCE catalog. */
-export const ARTIFACTS_DIR = join(import.meta.dirname, '..', 'artifacts');
+export const ARTIFACTS_DIR = join(SRC_DIR, '..', 'artifacts');
 export const ARTIFACTS_CATALOG_DIR = join(ARTIFACTS_DIR, 'catalog');
 
 /** The committed generated-TS output tree (`src/generated/`) — the twin root `pnpm generate` emits
  *  beside `artifacts/`; the guards sweep it. */
-export const GENERATED_DIR = join(import.meta.dirname, 'generated');
+export const GENERATED_DIR = join(SRC_DIR, 'generated');
 
 /** Every `.yaml` under `dir` recursively (absolute paths), skipping `_`-prefixed cascade files. */
 export function yamlFiles(dir: string): string[] {
@@ -37,6 +40,20 @@ export function yamlFiles(dir: string): string[] {
 		else if (name.endsWith('.yaml')) out.push(p);
 	}
 	return out;
+}
+
+/** Every `.ts` under `root`, recursively, as paths relative to `root` (sorted) — the file-walking
+ *  half every `.ts`-sweeping guard shares. `skip(path)` prunes a subtree (e.g. `src/generated` when
+ *  sweeping the runtime surface). */
+export function tsFiles(root: string, skip: (path: string) => boolean = () => false): string[] {
+	const walk = (dir: string): string[] =>
+		readdirSync(dir).flatMap((name) => {
+			const path = join(dir, name);
+			if (skip(path)) return [];
+			if (statSync(path).isDirectory()) return walk(path);
+			return path.endsWith('.ts') ? [relative(root, path)] : [];
+		});
+	return walk(root).sort();
 }
 
 /** THE single YAML load surface — the only `readFileSync`+`parseYaml` pair in grimoire. Every

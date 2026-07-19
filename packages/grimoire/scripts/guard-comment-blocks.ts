@@ -12,8 +12,7 @@
 // docs are exempt (yamlFiles skips them): they describe a dir, not a projectable concept.
 // Run standalone: `node scripts/guard-comment-blocks.ts`.
 import { readFileSync } from 'node:fs';
-import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS } from '../src/concept-sources.ts';
+import { CONCEPTS, yamlFiles } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
 
 // A block of this many contiguous comment lines (or more) must move to `body:`. Three or fewer is a

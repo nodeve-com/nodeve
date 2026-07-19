@@ -10,26 +10,11 @@
 // `Required`/`NonNullable`/`ReturnType`/`Static`/`Camelize`, unions of those, `Record<…>`, primitives,
 // and pure index-signature literals (`{ [k: string]: unknown }` — Record spelled out, no member names).
 // Run standalone: `node scripts/guard-authored-shapes.ts`.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import ts from 'typescript';
+import { GENERATED_DIR, SRC_DIR, tsFiles } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
-
-const SRC_DIR = fileURLToPath(new URL('../src', import.meta.url));
-const GENERATED_DIR = join(SRC_DIR, 'generated');
-
-/** Every `.ts` under `src`, recursively, EXCEPT `src/generated` — the projection authors shapes by design. */
-function runtimeFiles(dir: string): string[] {
-	return readdirSync(dir)
-		.flatMap((name) => {
-			const path = join(dir, name);
-			if (path === GENERATED_DIR) return [];
-			if (statSync(path).isDirectory()) return runtimeFiles(path);
-			return path.endsWith('.ts') ? [relative(SRC_DIR, path)] : [];
-		})
-		.sort();
-}
 
 /** A type-literal that NAMES members — `{ foo: T }`. Pure index signatures (`{ [k: string]: unknown }`)
  *  are Record spelled out and carry no member names, so they don't re-author a shape. */
@@ -47,7 +32,7 @@ hand-write it here. See docs/typebox-vs-zod.md and the grimoire-no-ts-spec-gramm
 `,
 	},
 	(fail) => {
-		for (const rel of runtimeFiles(SRC_DIR)) {
+		for (const rel of tsFiles(SRC_DIR, (path) => path === GENERATED_DIR)) {
 			const src = ts.createSourceFile(
 				rel,
 				readFileSync(join(SRC_DIR, rel), 'utf8'),

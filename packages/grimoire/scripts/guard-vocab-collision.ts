@@ -14,11 +14,9 @@
 // inline enum (`enum:` list, or `schema: { enum: … }`) rather than merely referencing the enumeration.
 // A field that genuinely needs a local literal set must be NAMED for what it is, not for an
 // enumeration. Run standalone: `node scripts/guard-vocab-collision.ts`.
-import { join } from 'node:path';
-import { yamlFiles } from './yaml-files.ts';
-import { CONCEPTS, enumerationDirNames, readYaml } from '../src/concept-sources.ts';
+import { ARCHETYPES_DIR, CONCEPTS, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames, readYaml, yamlFiles } from '../src/concept-sources.ts';
 
-const SCAN_DIRS = [join(CONCEPTS, 'property'), join(CONCEPTS, 'features'), join(CONCEPTS, 'archetypes')];
+const SCAN_DIRS = [PROPERTY_DIR, FEATURES_DIR, ARCHETYPES_DIR];
 
 const enumDirs = enumerationDirNames();
 

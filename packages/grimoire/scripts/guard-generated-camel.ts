@@ -8,24 +8,11 @@
 // import/export specifiers. String-literal VALUES (slugs `foxess_h3`, wire labels `AC_OUT_V`, IRIs
 // `ashrae_34`) are data and stay snake; module specifiers (`./features/ac_line.ts`) mirror the snake
 // source tree and are paths, not code. Run standalone: `node scripts/guard-generated-camel.ts`.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import ts from 'typescript';
+import { GENERATED_DIR, tsFiles } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
-
-const GENERATED_DIR = fileURLToPath(new URL('../src/generated', import.meta.url));
-
-/** Every `.ts` under `src/generated`, recursively, as paths relative to it. */
-function generatedFiles(dir: string): string[] {
-	return readdirSync(dir)
-		.flatMap((name) => {
-			const path = join(dir, name);
-			if (statSync(path).isDirectory()) return generatedFiles(path);
-			return path.endsWith('.ts') ? [relative(GENERATED_DIR, path)] : [];
-		})
-		.sort();
-}
 
 /** A name that carries an internal `_` between word chars — snake. Leading/trailing `_` (reserved-name
  *  suffix like `Type_`) and SCREAMING_CASE aren't the target; only lower/mixed snake identifiers are. */
@@ -76,7 +63,7 @@ key before it writes the file, then regenerate — do not hand-edit src/generate
 `,
 	},
 	(fail) => {
-		for (const rel of generatedFiles(GENERATED_DIR)) {
+		for (const rel of tsFiles(GENERATED_DIR)) {
 			const src = ts.createSourceFile(
 				rel,
 				readFileSync(join(GENERATED_DIR, rel), 'utf8'),
