@@ -17,7 +17,7 @@ export default {
 								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 625,
 								"zone": "mpp"
 							}
@@ -32,7 +32,7 @@ export default {
 								"slug": "mpp_bnpi"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 692,
 								"zone": "mpp"
 							}
@@ -46,7 +46,7 @@ export default {
 								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 15.45,
 								"zone": "mpp"
 							}
@@ -56,7 +56,7 @@ export default {
 								"slug": "short_circuit"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 16.32,
 								"zone": "short_circuit"
 							}
@@ -71,7 +71,7 @@ export default {
 								"slug": "mpp_bnpi"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 17.12,
 								"zone": "mpp"
 							}
@@ -86,7 +86,7 @@ export default {
 								"slug": "short_circuit_bnpi"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 18.08,
 								"zone": "short_circuit"
 							}
@@ -101,7 +101,7 @@ export default {
 								"slug": "short_circuit_bsi"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 20.24,
 								"zone": "short_circuit"
 							}
@@ -111,7 +111,7 @@ export default {
 								"slug": "protection_required"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 35,
 								"rating": "protection_required"
 							}
@@ -125,7 +125,7 @@ export default {
 								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 40.46,
 								"zone": "mpp"
 							}
@@ -135,7 +135,7 @@ export default {
 								"slug": "open_circuit"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 48.7,
 								"zone": "open_circuit"
 							}

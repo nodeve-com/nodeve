@@ -11,14 +11,29 @@ const _s0 = {
 	}
 } as const;
 const _s1 = {
-	"intervalKind": "rating",
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 230
+} as const;
+const _s2 = {
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 380
+} as const;
+const _s3 = {
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 400
+} as const;
+const _s4 = {
+	"intervalKind": "behavioural",
 	"marginLower": 0.3,
 	"marginUpper": 0.2,
 	"rating": "continuous",
 	"severity": "nominal",
 	"value": 220
 } as const;
-const _s2 = {
+const _s5 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -28,13 +43,9 @@ const _s2 = {
 	"identity": {
 		"slug": "nominal_eu_230v_50hz"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 230
-	}
+	"interval": _s1
 } as const;
-const _s3 = {
+const _s6 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -44,13 +55,9 @@ const _s3 = {
 	"identity": {
 		"slug": "nominal_br_220v_60hz"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 380
-	}
+	"interval": _s2
 } as const;
-const _s4 = {
+const _s7 = {
 	"condition": [
 		{
 			"equals": "eu_230v_50hz",
@@ -60,13 +67,9 @@ const _s4 = {
 	"identity": {
 		"slug": "nominal_eu_230v_50hz"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 400
-	}
+	"interval": _s3
 } as const;
-const _s5 = {
+const _s8 = {
 	"condition": [
 		{
 			"equals": "br_220v_60hz",
@@ -74,36 +77,36 @@ const _s5 = {
 		}
 	],
 	"identity": {
-		"slug": "continuous_br_220v_60hz"
+		"slug": "nominal_br_220v_60hz"
 	},
-	"interval": _s1
-} as const;
-const _s6 = [
-	_s3,
-	_s4
-] as const;
-const _s7 = {
-	"intervals": _s6
-} as const;
-const _s8 = {
-	"voltage": _s7
+	"interval": _s4
 } as const;
 const _s9 = [
-	_s5,
-	_s2,
-	_s0
+	_s6,
+	_s7
 ] as const;
 const _s10 = {
 	"intervals": _s9
 } as const;
 const _s11 = {
+	"voltage": _s10
+} as const;
+const _s12 = [
+	_s8,
+	_s5,
+	_s0
+] as const;
+const _s13 = {
+	"intervals": _s12
+} as const;
+const _s14 = {
 	"activePower": {},
 	"apparentPower": {},
 	"current": {},
 	"phaseAngle": {},
 	"powerFactor": {},
 	"reactivePower": {},
-	"voltage": _s10
+	"voltage": _s13
 } as const;
 
 export default {
@@ -121,7 +124,7 @@ export default {
 								"slug": "continuous"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 65,
 								"min": 45,
 								"rating": "continuous"
@@ -142,12 +145,12 @@ export default {
 				"reactivePower": {}
 			},
 			"part": {
-				"a": _s11,
-				"ab": _s8,
-				"b": _s11,
-				"bc": _s8,
-				"c": _s11,
-				"ca": _s8
+				"a": _s14,
+				"ab": _s11,
+				"b": _s14,
+				"bc": _s11,
+				"c": _s14,
+				"ca": _s11
 			}
 		},
 		"identity": {

@@ -14,7 +14,7 @@ export default {
 								"slug": "cooling"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 1391
 							},
@@ -27,7 +27,7 @@ export default {
 								"slug": "heating"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 1346
 							},
@@ -44,7 +44,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 50
 							}
@@ -58,7 +58,7 @@ export default {
 								"slug": "continuous"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 240,
 								"min": 220,
 								"rating": "continuous"
@@ -85,7 +85,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 2638
 							}

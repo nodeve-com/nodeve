@@ -14,7 +14,7 @@
 - survival
 - protection_requirement
 
-interval_kind: (measurable), (reference_point, rating, limits), (band, zone)
+interval_kind: measurable | behavioural — behavioural shape rides co-occurrable axes (rating, zone, value)
 
 ## Other Notes
 

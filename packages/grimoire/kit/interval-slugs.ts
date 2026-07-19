@@ -41,27 +41,26 @@ function conditionSuffix(row: Obj): string {
 	return toks.join('_');
 }
 
-/** The auto-slug for a row: its base classifier (rating tier / bare-value `nominal` / zone name), the measurable
- *  channel's flow_direction/period axes, and condition tokens — or undefined when the row is not
- *  auto-addressable (an unclassified band with no axis: the single undirected/lifetime measurable
+/** The auto-slug for a row: its behavioural axes (zone name / bare-value `nominal`, then severity
+ *  sub-grade, then the measurable channel's flow_direction/period), plus condition tokens — with the
+ *  `rating` tier as a NAMER OF LAST RESORT (keyed only when no other axis named the band). Undefined
+ *  when the row is not auto-addressable (no axis at all: the single undirected/lifetime measurable
  *  channel). Shared by the de-sugar and the slug-classifier check so both agree on what a legitimate
  *  auto-slug is. */
 export function autoSlug(row: Obj): string | undefined {
 	const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
-	// Compose the handle from the band's identity axes, in order: its base classifier — ONE of a
-	// rating tier, `nominal` (a bounds-free nameplate `value` — a derived tier), or a `zone` name
-	// (mppt / active / …); then `severity` (grades a narrower sub-range of the base region — a tight
+	// Compose the handle from the band's identity axes, in order: a `zone` name (mppt / active / …) or
+	// `nominal` (a bounds-free nameplate `value`); then `severity` (grades a narrower sub-range — a tight
 	// `best` window inside a wider one); then a measurable channel's flow_direction + period (energy:
 	// out / out_daily / in / in_daily / daily); then each gating condition. Enough to disambiguate
 	// every sibling that differs on any axis. A measurable band with no axis at all (the one
 	// undirected/lifetime channel) has no auto-slug.
 	const tokens: string[] = [];
-	// An explicit rating tier or zone name wins over the bounds-free `nominal` fallback (a zone point
-	// like `{ zone: mpp, value: 40.46 }` is a zone, not a bare nominal). `severity: nominal` is the
-	// NULL/centre grade — the point IS the nominal, so it contributes no token (only the graded rungs
-	// best/good/notice/… key a sub-band); the bare-value fallback already spells `nominal`.
-	if (typeof band.rating === 'string') tokens.push(band.rating);
-	else if (typeof band.zone === 'string') tokens.push(band.zone);
+	// `zone` names the region (a zone point like `{ zone: mpp, value: 40.46 }` is a zone, not a bare
+	// nominal); the bounds-free `nominal` fallback names a nameplate when there's no zone. `severity: nominal`
+	// is the NULL/centre grade — the point IS the nominal, keys no token (only the graded rungs
+	// best/good/notice/… key a sub-band).
+	if (typeof band.zone === 'string') tokens.push(band.zone);
 	else if (
 		band.value !== undefined &&
 		band.min === undefined &&
@@ -72,6 +71,10 @@ export function autoSlug(row: Obj): string | undefined {
 	if (typeof band.severity === 'string' && band.severity !== 'nominal') tokens.push(band.severity);
 	if (typeof band.flow_direction === 'string') tokens.push(band.flow_direction);
 	if (typeof band.period === 'string') tokens.push(band.period);
+	// `rating` names the band ONLY when nothing else did — a bare rated band (`{ rating: continuous,
+	// max: 15.2 }`) has no other axis, so the tier IS its name. When a zone/severity/channel axis
+	// already names it, the tier does NOT compound in (continuous + mppt → `mppt`, not `continuous_mppt`).
+	if (tokens.length === 0 && typeof band.rating === 'string') tokens.push(band.rating);
 	const suffix = conditionSuffix(row);
 	if (suffix) tokens.push(suffix);
 	return tokens.length > 0 ? tokens.join('_') : undefined;
@@ -98,21 +101,24 @@ function slugIntervalRows(rows: unknown[], at: string): void {
 		if (!isPlainObject(row)) return;
 		const band = isPlainObject(row.interval) ? (row.interval as Obj) : row;
 		foldFractionToMargin(band); // verbatim multiplier sugar → canonical ±fraction delta
-		// interval_kind may be authored explicitly on any row; only DERIVE it when omitted: `zone` from a
-		// zone name (a `trigger_on` on it makes that zone a STATEFUL hysteretic trigger — an axis, not a
-		// separate kind); `rating` from a rating tier OR a bounds-free `value` (a bare nameplate value IS a
-		// rating). `measurable` isn't derivable from bounds, so a bare span authors it directly.
-		if (band.interval_kind === undefined) {
-			if (typeof band.zone === 'string') band.interval_kind = 'zone';
-			else if (
-				typeof band.rating === 'string' ||
-				(band.value !== undefined &&
-					band.min === undefined &&
-					band.max === undefined &&
-					band.trigger_on === undefined) // a `value` + `trigger_on` is a stateful setpoint, not a nameplate
-			)
-				band.interval_kind = 'rating';
-		}
+		// A NAKED value (a bare `value` with no severity/rating/zone/bounds/trigger) IS a nameplate —
+		// the model defines a nameplate as "a bare value graded `severity: nominal`". Fill that grade so
+		// the canonical form always carries it (slug is `nominal` either way).
+		if (
+			band.value !== undefined &&
+			band.severity === undefined &&
+			band.rating === undefined &&
+			band.zone === undefined &&
+			band.min === undefined &&
+			band.max === undefined &&
+			band.trigger_on === undefined
+		)
+			band.severity = 'nominal';
+		// interval_kind is a 2-way top classifier: `measurable` (instrument-readable span) vs
+		// `behavioural` (the thing's own band). `measurable` isn't derivable from bounds, so it is
+		// AUTHORED; omit interval_kind and the row is a behaviour band — its SHAPE (rating tier / zone
+		// name / bare nominal value, co-occurrable) rides the axis props, not a further kind.
+		if (band.interval_kind === undefined) band.interval_kind = 'behavioural';
 		const identity = isPlainObject(row.identity) ? (row.identity as Obj) : {};
 		let slug = identity.slug;
 		if (slug === undefined) {
@@ -130,7 +136,7 @@ function slugIntervalRows(rows: unknown[], at: string): void {
 	});
 }
 
-type BandSlug = { slug?: string; auto?: string; titled: boolean; kind?: string; at: string };
+type BandSlug = { slug?: string; auto?: string; titled: boolean; isZone: boolean; at: string };
 type BandAcc = { bands: BandSlug[]; targets: Set<string> };
 
 /** One walk of a resolved entry: every interval row (slug, its auto-slug, titled, interval_kind)
@@ -152,14 +158,15 @@ function collectBandSlugs(node: unknown, at: string, acc: BandAcc): void {
 				slug: typeof identity.slug === 'string' ? identity.slug : undefined,
 				auto: autoSlug(row),
 				titled: isPlainObject(row.title),
-				kind: typeof band.interval_kind === 'string' ? band.interval_kind : undefined,
+				isZone: typeof band.zone === 'string',
 				at: `${at}.intervals[${i}]`,
 			});
 		});
 	for (const [k, v] of Object.entries(node)) collectBandSlugs(v, at ? `${at}.${k}` : k, acc);
 }
 
-/** Parse-time slug-classifier gate — runs AFTER desugar (moved here from the former standalone
+/** The zone-ness of a band is now its `zone` prop (not a derived interval_kind).
+ *  Parse-time slug-classifier gate — runs AFTER desugar (moved here from the former standalone
  *  scripts/guard-interval-slugs.ts). An interval's `identity.slug` is a REFERENCE HANDLE, never a
  *  classifier. Legitimate only when it is the row's OWN auto-slug (tier/kind + condition tokens), a
  *  referenced interval_item target, or a titled band. A hand-typed classifier (`peak`,
@@ -173,7 +180,7 @@ export function validateIntervalSlugs(entry: Record<string, unknown>, path: stri
 	const fails: string[] = [];
 	for (const b of bands) {
 		const referenced = b.slug !== undefined && targets.has(b.slug);
-		if (b.kind === 'zone') {
+		if (b.isZone) {
 			if (b.slug === undefined)
 				fails.push(`${b.at}: zone band without identity.slug — unnameable, produces no sensor`);
 			continue;

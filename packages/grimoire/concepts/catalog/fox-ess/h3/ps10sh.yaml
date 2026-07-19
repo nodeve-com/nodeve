@@ -3,13 +3,13 @@ body:
     FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.
     
     
-    Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — rated bands (interval_kind: rating) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
+    Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
     
     
     AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
     
     
-    AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — interval_kind: rating derives from it, slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
+    AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
     
     
     The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.
@@ -235,11 +235,11 @@ pv_tracker:
     default:
       voltage:
         intervals:
-          - interval: { rating: continuous, min: 90, value: 620, severity: nominal } # the stateless rated envelope
           - interval: { rating: survival, max: 1000 }
-          - interval: { zone: running, trigger_on: above, min: 90, max: 140 } # STATEFUL startup: trips ON above 140 V, releases (dropout) below 90 V
-          - interval: { zone: mppt, min: 120, max: 950 } # the tracking window
-          - interval: { zone: mppt, severity: best, min: 175, max: 850 } # the tighter full-power sub-window
+          - interval: { zone: running, trigger_on: above, min: 90, max: 140 }
+          - interval: { rating: continuous, zone: mppt, severity: notice, min: 120, max: 950 }
+          - interval:
+              { rating: continuous, zone: mppt, severity: nominal, min: 175, value: 620, max: 850 }
           - interval: { interval_kind: measurable, min: 0, max: 1000, resolution: 0.1 }
       current:
         intervals:

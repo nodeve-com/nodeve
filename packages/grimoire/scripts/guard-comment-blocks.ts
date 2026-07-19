@@ -5,7 +5,7 @@
 // hidden in a header comment can never become documentation. The `body` field (i18n text, mounted
 // on `thing`, so every archetype/feature/enumeration-member/property def carries it) is where that
 // prose lives instead: it bakes into `artifacts/<layer>/<slug>.json` and the TS emit, queryable and
-// renderable. See concepts/enumeration/interval_kind/zone.yaml for the shape.
+// renderable. See concepts/enumeration/interval_kind/behavioural.yaml for the shape.
 //
 // This guard fails on any contiguous run of >= MAX_RUN comment-only lines. Short inline annotations
 // on a data row (<= MAX_RUN-1 lines) stay — they're data-local, not prose. `_defaults.yaml` cascade
@@ -51,7 +51,7 @@ runGuard(
 A \`#\` comment is lost the moment the YAML bakes to JSON/TS — it can never become docs. Author
 durable prose in \`body: { en: > … }\` instead (it bakes into artifacts + the TS emit). Runs of
 ${MAX_RUN}+ contiguous comment lines are the trigger; keep inline row annotations to ${MAX_RUN - 1} lines or fewer.
-See concepts/enumeration/interval_kind/zone.yaml.
+See concepts/enumeration/interval_kind/behavioural.yaml.
 `,
 	},
 	(fail) => {

@@ -14,7 +14,7 @@ export default {
 								"slug": "running"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"tolerance": 33,
 								"value": 38
@@ -28,7 +28,7 @@ export default {
 								"slug": "heating"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"tolerance": 200,
 								"value": 1500

@@ -3,13 +3,33 @@
 // member's wire literal is its `code`), `as const` for the member-code union consumers branch on.
 
 export default {
+  "behavioural": {
+    "body": {
+      "en": "The THING side — one band of the quantity's OWN behaviour, NOT the span a sensor can read (`measurable`). It is the default `interval_kind`: omit `interval_kind` and it derives `behavioural`. What SHAPE of behaviour it is comes from co-occurrable axes, not from a further kind: a `rating` tier (the rated capability envelope — continuous/intermittent/short_term/startup/shutdown/survival/protection_required), a `zone` name (a named operating region → a boolean in-region sensor), and/or a bare `value` (a nameplate `nominal`). A row may set both `rating` and `zone` — it is then both a rated envelope AND a named region; the axes are independent, no longer forced into one closed classifier. A `trigger_on` on any behavioural band makes it a STATEFUL hysteretic trigger (orthogonal axis, most often on a zone). Behavioural bands NEVER carry the instrument-only fields (resolution, max_permissible_error, channel).\n"
+    },
+    "code": "behavioural",
+    "description": {
+      "en": "The thing's OWN behaviour band, not an instrument's readable span — carries the `rating` tier and/or `zone` name (and/or a bare `value`). The default kind; derived when `interval_kind` is omitted."
+    },
+    "refs": [
+      {
+        "match": "close",
+        "registryId": "cim",
+        "term": "OperationalLimitType"
+      }
+    ],
+    "title": {
+      "en": "Behavioural",
+      "pt": "Comportamental"
+    }
+  },
   "measurable": {
     "body": {
-      "en": "The INSTRUMENT side — the span a SENSOR can read this quantity over (VIM 4.7 measuring interval / ssn-system MeasurementRange), NOT the thing's own behaviour. Not derivable from bounds (a bare min/max measurable is shaped like a rating), so `interval_kind` is AUTHORED. A measurable interval may carry the instrument-only fields (resolution, max_permissible_error, channel); a behaviour band may not — the consistency guard enforces both directions.\n"
+      "en": "The INSTRUMENT side — the span a SENSOR can read this quantity over (VIM 4.7 measuring interval / ssn-system MeasurementRange), NOT the thing's own behaviour (`behavioural`). Not derivable from bounds (a bare min/max measurable is shaped like a behaviour band), so it is the ONE `interval_kind` that must be AUTHORED — omit it and the interval derives `behavioural`. Only a measurable interval may carry the instrument-only fields (resolution, max_permissible_error, channel); a behavioural band may not. The `rating`/`zone`/`value` axes belong to a behavioural band, not here.\n"
     },
     "code": "measurable",
     "description": {
-      "en": "The span a sensor can read this quantity over — the instrument side, not the thing's own behaviour."
+      "en": "The span a SENSOR can read this quantity over — the instrument side, not the thing's own behaviour. The one interval_kind that must be authored (a bare span is shaped like a behaviour band)."
     },
     "refs": [
       {
@@ -26,46 +46,6 @@ export default {
     "title": {
       "en": "Measurable",
       "pt": "Mensurável"
-    }
-  },
-  "rating": {
-    "body": {
-      "en": "A RANGE — the thing's own rated capability envelope, an edge (min and/or max) it is rated to range within. Sub-graded by the `rating` tier (continuous/intermittent/short_term/startup/shutdown/ survival/protection_required/nominal) and, for a time-bounded tier, `duration`. Protection is a one-sided rating (the far end of the ramp), NOT a separate kind — that split has no structural signature and only inter-mixes, so there is no `limit` kind. Structural signature: at least one of min/max.\n"
-    },
-    "code": "rating",
-    "description": {
-      "en": "The thing's rated capability envelope — a min/max edge it is rated to range within, graded by the rating tier."
-    },
-    "refs": [
-      {
-        "match": "close",
-        "registryId": "cim",
-        "term": "OperationalLimitType"
-      }
-    ],
-    "title": {
-      "en": "Rating",
-      "pt": "Classificação"
-    }
-  },
-  "zone": {
-    "body": {
-      "en": "A BOOLEAN REGION — a named region of the quantity's own axis with NO spec-sheet capability claim: a reading is inside it or not (an MPPT voltage window, a compressor's normal-draw band, an enclosure-temp derate-onset band). Authorable explicitly; when omitted, DERIVED from a `zone` value (enumeration/zone). Each yields a boolean \"in this region\" sensor and may ALSO anchor an inbound `interval_item` other bands gate on.\n\nSTATELESS by default — the boolean is TRUE while the reading sits INSIDE `[min, max]`, f(reading) with no history: it doesn't matter whether the prior value was on or off. That is the whole contrast with the stateful trigger, and it lives HERE: same `min`/`max` fields, opposite sense. A `trigger_on` axis on the zone flips it — `[min, max]` becomes the HOLD/deadband, ON is the region OUTSIDE it on the `trigger_on` side, and the boolean holds its PRIOR state between the edges (f(reading, prior_state)) — a hysteretic trigger (startup/run-command), folding in the former standalone `threshold` kind, no separate interval_kind. In short: no `trigger_on` ⇒ true inside; `trigger_on` ⇒ ON outside, stateful.\n\nStructural signature: carries an `identity.slug` (auto-derived from the zone name); a slugless zone is unnameable and produces nothing.\n"
-    },
-    "code": "zone",
-    "description": {
-      "en": "A named region of the quantity's own axis, no capability claim — in-zone or not, a boolean sensor. Derived from a `zone` value; may also be an interval_item anchor. Add `trigger_on` to make the zone a stateful hysteretic trigger."
-    },
-    "refs": [
-      {
-        "match": "close",
-        "registryId": "ssn_system",
-        "term": "Condition"
-      }
-    ],
-    "title": {
-      "en": "Zone",
-      "pt": "Zona"
     }
   }
 } as const;

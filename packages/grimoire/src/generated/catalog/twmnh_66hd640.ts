@@ -14,7 +14,7 @@ export default {
 								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 625,
 								"zone": "mpp"
 							}
@@ -28,7 +28,7 @@ export default {
 								"slug": "mpp"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 40.46,
 								"zone": "mpp"
 							}
@@ -38,7 +38,7 @@ export default {
 								"slug": "open_circuit"
 							},
 							"interval": {
-								"intervalKind": "zone",
+								"intervalKind": "behavioural",
 								"value": 48.7,
 								"zone": "open_circuit"
 							}

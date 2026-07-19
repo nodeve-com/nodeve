@@ -1,0 +1,8 @@
+title: { en: Behavioural, pt: Comportamental }
+description:
+  en: "The thing's OWN behaviour band, not an instrument's readable span — carries the `rating` tier and/or `zone` name (and/or a bare `value`). The default kind; derived when `interval_kind` is omitted."
+body:
+  en: >
+    The THING side — one band of the quantity's OWN behaviour, NOT the span a sensor can read (`measurable`). It is the default `interval_kind`: omit `interval_kind` and it derives `behavioural`. What SHAPE of behaviour it is comes from co-occurrable axes, not from a further kind: a `rating` tier (the rated capability envelope — continuous/intermittent/short_term/startup/shutdown/survival/protection_required), a `zone` name (a named operating region → a boolean in-region sensor), and/or a bare `value` (a nameplate `nominal`). A row may set both `rating` and `zone` — it is then both a rated envelope AND a named region; the axes are independent, no longer forced into one closed classifier. A `trigger_on` on any behavioural band makes it a STATEFUL hysteretic trigger (orthogonal axis, most often on a zone). Behavioural bands NEVER carry the instrument-only fields (resolution, max_permissible_error, channel).
+refs:
+  - { registry_id: cim, term: OperationalLimitType, match: close }

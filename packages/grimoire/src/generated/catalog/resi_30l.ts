@@ -17,7 +17,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"unit": "L/day",
 								"value": 30

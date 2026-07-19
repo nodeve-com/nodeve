@@ -14,7 +14,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 1500
 							}
@@ -28,7 +28,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 50
 							}
@@ -42,7 +42,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 35.3
 							}
@@ -56,7 +56,7 @@ export default {
 								"slug": "nominal"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"severity": "nominal",
 								"value": 230
 							}

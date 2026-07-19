@@ -4,47 +4,82 @@
 // const and referenced per part. Do not edit by hand — edit the YAML, regenerate.
 
 const _s0 = {
+	"intervalKind": "behavioural",
+	"max": 16.7,
+	"rating": "survival"
+} as const;
+const _s1 = {
+	"intervalKind": "behavioural",
+	"max": 20,
+	"rating": "continuous"
+} as const;
+const _s2 = {
+	"intervalKind": "behavioural",
+	"max": 1000,
+	"rating": "survival"
+} as const;
+const _s3 = {
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 50
+} as const;
+const _s4 = {
+	"intervalKind": "behavioural",
+	"max": 15.2,
+	"rating": "continuous"
+} as const;
+const _s5 = {
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 220
+} as const;
+const _s6 = {
+	"intervalKind": "behavioural",
+	"severity": "nominal",
+	"value": 230
+} as const;
+const _s7 = {
+	"intervalKind": "behavioural",
+	"max": 10000,
+	"rating": "continuous"
+} as const;
+const _s8 = {
 	"intervalKind": "measurable",
 	"max": 50,
 	"min": 0,
 	"resolution": 0.01
 } as const;
-const _s1 = {
+const _s9 = {
 	"intervalKind": "measurable",
 	"max": 300,
 	"min": 0,
 	"resolution": 0.1
 } as const;
-const _s2 = {
+const _s10 = {
 	"intervalKind": "measurable",
 	"max": 250,
 	"min": 0,
 	"resolution": 0.1
 } as const;
-const _s3 = {
+const _s11 = {
 	"intervalKind": "measurable",
 	"max": 30,
 	"min": 0,
 	"resolution": 0.01
 } as const;
-const _s4 = {
-	"intervalKind": "rating",
-	"max": 25,
-	"rating": "protection_required"
-} as const;
-const _s5 = {
+const _s12 = {
 	"intervalKind": "measurable",
 	"max": 1000,
 	"min": 0,
 	"resolution": 0.1
 } as const;
-const _s6 = {
+const _s13 = {
 	"intervalKind": "measurable",
 	"min": 0,
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s7 = {
+const _s14 = {
 	"interval": {
 		"intervalKind": "measurable",
 		"max": 5,
@@ -52,234 +87,169 @@ const _s7 = {
 		"unit": "kW"
 	}
 } as const;
-const _s8 = {
-	"intervalKind": "rating",
-	"margin": 0.05,
-	"severity": "nominal",
-	"value": 50
+const _s15 = {
+	"intervalKind": "behavioural",
+	"max": 25,
+	"rating": "protection_required"
 } as const;
-const _s9 = {
-	"intervalKind": "rating",
-	"margin": 0.05,
-	"severity": "nominal",
-	"value": 60
-} as const;
-const _s10 = {
+const _s16 = {
 	"feature": "enclosure",
 	"interval": "continuous",
 	"property": "temperature"
 } as const;
-const _s11 = {
-	"intervalKind": "zone",
-	"max": 850,
-	"min": 175,
-	"severity": "best",
-	"zone": "mppt"
+const _s17 = {
+	"intervalKind": "behavioural",
+	"margin": 0.05,
+	"severity": "nominal",
+	"value": 50
 } as const;
-const _s12 = {
-	"interval": _s0
+const _s18 = {
+	"intervalKind": "behavioural",
+	"margin": 0.05,
+	"severity": "nominal",
+	"value": 60
 } as const;
-const _s13 = {
-	"interval": _s1
+const _s19 = {
+	"interval": _s8
 } as const;
-const _s14 = {
+const _s20 = {
+	"interval": _s9
+} as const;
+const _s21 = {
 	"intervalKind": "measurable",
 	"max": 8,
 	"min": -8,
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s15 = {
-	"interval": _s2
+const _s22 = {
+	"interval": _s10
 } as const;
-const _s16 = {
-	"interval": _s3
+const _s23 = {
+	"interval": _s11
 } as const;
-const _s17 = {
+const _s24 = {
 	"intervalKind": "measurable",
 	"max": 15,
 	"min": -5,
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s18 = {
-	"interval": _s5
+const _s25 = {
+	"interval": _s12
 } as const;
-const _s19 = [
-	_s12
+const _s26 = [
+	_s19
 ] as const;
-const _s20 = {
-	"intervalKind": "zone",
-	"max": 140,
-	"min": 90,
-	"triggerOn": "above",
-	"zone": "running"
-} as const;
-const _s21 = {
+const _s27 = {
 	"intervalKind": "measurable",
 	"max": 3.3,
 	"min": -3.3,
 	"resolution": 0.001,
 	"unit": "kW"
 } as const;
-const _s22 = {
-	"interval": _s6
+const _s28 = {
+	"interval": _s13
 } as const;
-const _s23 = {
+const _s29 = {
 	"intervalKind": "measurable",
 	"min": 0,
 	"period": "daily",
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s24 = {
+const _s30 = {
+	"intervalKind": "behavioural",
+	"max": 140,
+	"min": 90,
+	"triggerOn": "above",
+	"zone": "running"
+} as const;
+const _s31 = {
 	"flowDirection": "in",
 	"intervalKind": "measurable",
 	"min": 0,
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s25 = {
-	"intervalItem": _s10
+const _s32 = {
+	"intervalItem": _s16
 } as const;
-const _s26 = {
-	"intervalKind": "rating",
-	"min": 90,
-	"rating": "continuous",
-	"severity": "nominal",
-	"value": 620
-} as const;
-const _s27 = {
+const _s33 = {
 	"flowDirection": "out",
 	"intervalKind": "measurable",
 	"min": 0,
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s28 = {
-	"interval": _s14
+const _s34 = {
+	"interval": _s21
 } as const;
-const _s29 = {
-	"interval": _s17
+const _s35 = {
+	"interval": _s24
 } as const;
-const _s30 = [
-	_s25
+const _s36 = [
+	_s32
 ] as const;
-const _s31 = [
-	_s28
+const _s37 = [
+	_s34
 ] as const;
-const _s32 = {
-	"intervalKind": "rating",
+const _s38 = {
+	"intervals": _s26
+} as const;
+const _s39 = [
+	_s35
+] as const;
+const _s40 = {
+	"interval": _s27
+} as const;
+const _s41 = [
+	_s40
+] as const;
+const _s42 = {
+	"intervalKind": "behavioural",
 	"max": 3666,
 	"rating": "continuous",
 	"severity": "nominal",
 	"value": 3333
 } as const;
-const _s33 = {
-	"intervals": _s19
-} as const;
-const _s34 = [
-	_s29
-] as const;
-const _s35 = {
-	"interval": _s21
-} as const;
-const _s36 = [
-	_s35
-] as const;
-const _s37 = {
-	"identity": {
-		"slug": "mppt"
-	},
-	"interval": {
-		"intervalKind": "zone",
-		"max": 950,
-		"min": 120,
-		"zone": "mppt"
-	}
-} as const;
-const _s38 = {
+const _s43 = {
 	"identity": {
 		"slug": "survival"
 	},
 	"interval": {
-		"intervalKind": "rating",
+		"intervalKind": "behavioural",
 		"max": 25,
 		"rating": "survival"
 	}
 } as const;
-const _s39 = {
+const _s44 = {
 	"identity": {
 		"slug": "nominal"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 50
-	}
+	"interval": _s3
 } as const;
-const _s40 = {
-	"intervalKind": "rating",
+const _s45 = {
+	"intervalKind": "behavioural",
 	"max": 260,
 	"min": 200,
 	"rating": "continuous",
 	"severity": "nominal",
 	"value": 230
 } as const;
-const _s41 = {
-	"identity": {
-		"slug": "survival"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"max": 16.7,
-		"rating": "survival"
-	}
-} as const;
-const _s42 = {
-	"identity": {
-		"slug": "survival"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"max": 1000,
-		"rating": "survival"
-	}
-} as const;
-const _s43 = [
-	_s39
-] as const;
-const _s44 = {
-	"identity": {
-		"slug": "continuous"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"max": 20,
-		"rating": "continuous"
-	}
-} as const;
-const _s45 = {
-	"identity": {
-		"slug": "continuous"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"max": 15.2,
-		"rating": "continuous"
-	}
-} as const;
 const _s46 = {
 	"identity": {
-		"slug": "continuous"
+		"slug": "survival"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"max": 10000,
-		"rating": "continuous"
-	}
+	"interval": _s0
 } as const;
 const _s47 = {
+	"identity": {
+		"slug": "survival"
+	},
+	"interval": _s2
+} as const;
+const _s48 = {
 	"flowDirection": "in",
 	"intervalKind": "measurable",
 	"min": 0,
@@ -287,13 +257,21 @@ const _s47 = {
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s48 = {
-	"intervals": _s31
+const _s49 = {
+	"intervals": _s37
 } as const;
-const _s49 = [
-	_s46
-] as const;
 const _s50 = {
+	"intervalKind": "behavioural",
+	"max": 950,
+	"min": 120,
+	"rating": "continuous",
+	"severity": "notice",
+	"zone": "mppt"
+} as const;
+const _s51 = [
+	_s44
+] as const;
+const _s52 = {
 	"flowDirection": "out",
 	"intervalKind": "measurable",
 	"min": 0,
@@ -301,249 +279,270 @@ const _s50 = {
 	"resolution": 0.01,
 	"unit": "kWh"
 } as const;
-const _s51 = {
-	"intervals": _s34
-} as const;
-const _s52 = {
-	"intervals": _s36
-} as const;
 const _s53 = {
-	"intervals": _s43
+	"intervals": _s39
 } as const;
 const _s54 = {
 	"identity": {
-		"slug": "protection_required"
+		"slug": "continuous"
 	},
-	"interval": _s4
+	"interval": _s1
 } as const;
 const _s55 = {
 	"identity": {
-		"slug": "mppt_best"
+		"slug": "continuous"
 	},
-	"interval": _s11
+	"interval": _s4
 } as const;
 const _s56 = {
-	"intervals": _s49
+	"identity": {
+		"slug": "continuous"
+	},
+	"interval": _s7
 } as const;
 const _s57 = {
-	"activePower": _s48
+	"intervals": _s41
 } as const;
-const _s58 = {
-	"identity": {
-		"slug": "running"
-	},
-	"interval": _s20
-} as const;
+const _s58 = [
+	_s56
+] as const;
 const _s59 = {
-	"activePower": _s51
+	"intervalKind": "behavioural",
+	"max": 850,
+	"min": 175,
+	"rating": "continuous",
+	"severity": "nominal",
+	"value": 620,
+	"zone": "mppt"
 } as const;
 const _s60 = {
-	"identity": {
-		"slug": "daily"
-	},
-	"interval": _s23
+	"intervals": _s51
 } as const;
 const _s61 = {
-	"identity": {
-		"slug": "in"
-	},
-	"interval": _s24
+	"activePower": _s49
 } as const;
 const _s62 = {
-	"identity": {
-		"slug": "out"
-	},
-	"interval": _s27
+	"activePower": _s53
 } as const;
 const _s63 = {
 	"identity": {
-		"slug": "continuous"
+		"slug": "protection_required"
 	},
-	"interval": _s26
+	"interval": _s15
 } as const;
 const _s64 = {
-	"identity": {
-		"slug": "continuous"
-	},
-	"interval": _s40
+	"intervals": _s58
 } as const;
 const _s65 = {
 	"identity": {
-		"slug": "in_daily"
+		"slug": "daily"
 	},
-	"interval": _s47
+	"interval": _s29
 } as const;
 const _s66 = {
 	"identity": {
+		"slug": "in"
+	},
+	"interval": _s31
+} as const;
+const _s67 = {
+	"identity": {
+		"slug": "out"
+	},
+	"interval": _s33
+} as const;
+const _s68 = {
+	"identity": {
+		"slug": "running"
+	},
+	"interval": _s30
+} as const;
+const _s69 = {
+	"identity": {
+		"slug": "in_daily"
+	},
+	"interval": _s48
+} as const;
+const _s70 = {
+	"identity": {
+		"slug": "continuous"
+	},
+	"interval": _s45
+} as const;
+const _s71 = {
+	"identity": {
 		"slug": "out_daily"
+	},
+	"interval": _s52
+} as const;
+const _s72 = {
+	"identity": {
+		"slug": "mppt_notice"
 	},
 	"interval": _s50
 } as const;
-const _s67 = {
-	"condition": [
-		{
-			"equals": "br_220v_60hz",
-			"setting": "grid_region"
-		}
-	],
+const _s73 = {
 	"identity": {
-		"slug": "nominal_br_220v_60hz"
+		"slug": "mppt"
 	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 220
-	}
+	"interval": _s59
 } as const;
-const _s68 = {
-	"condition": [
-		{
-			"equals": "eu_230v_50hz",
-			"setting": "grid_region"
-		}
-	],
-	"identity": {
-		"slug": "nominal_eu_230v_50hz"
-	},
-	"interval": {
-		"intervalKind": "rating",
-		"severity": "nominal",
-		"value": 230
-	}
-} as const;
-const _s69 = {
-	"condition": [
-		{
-			"equals": "eu_230v_50hz",
-			"setting": "grid_region"
-		}
-	],
-	"identity": {
-		"slug": "nominal_eu_230v_50hz"
-	},
-	"interval": _s8
-} as const;
-const _s70 = {
-	"condition": [
-		{
-			"equals": "br_220v_60hz",
-			"setting": "grid_region"
-		}
-	],
-	"identity": {
-		"slug": "nominal_br_220v_60hz"
-	},
-	"interval": _s9
-} as const;
-const _s71 = [
-	_s22,
-	_s60
-] as const;
-const _s72 = {
-	"intervals": _s71
-} as const;
-const _s73 = [
-	_s64,
-	_s13
-] as const;
 const _s74 = {
-	"intervals": _s73
+	"condition": [
+		{
+			"equals": "br_220v_60hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_br_220v_60hz"
+	},
+	"interval": _s5
 } as const;
 const _s75 = {
-	"condition": _s30,
+	"condition": [
+		{
+			"equals": "eu_230v_50hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_eu_230v_50hz"
+	},
+	"interval": _s6
+} as const;
+const _s76 = {
+	"condition": [
+		{
+			"equals": "eu_230v_50hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_eu_230v_50hz"
+	},
+	"interval": _s17
+} as const;
+const _s77 = {
+	"condition": [
+		{
+			"equals": "br_220v_60hz",
+			"setting": "grid_region"
+		}
+	],
+	"identity": {
+		"slug": "nominal_br_220v_60hz"
+	},
+	"interval": _s18
+} as const;
+const _s78 = [
+	_s28,
+	_s65
+] as const;
+const _s79 = {
+	"intervals": _s78
+} as const;
+const _s80 = [
+	_s70,
+	_s20
+] as const;
+const _s81 = {
+	"intervals": _s80
+} as const;
+const _s82 = {
+	"condition": _s36,
 	"identity": {
 		"slug": "continuous_continuous"
 	},
-	"interval": _s32
+	"interval": _s42
 } as const;
-const _s76 = [
-	_s38,
-	_s44,
-	_s16
+const _s83 = [
+	_s43,
+	_s54,
+	_s23
 ] as const;
-const _s77 = {
-	"intervals": _s76
+const _s84 = {
+	"intervals": _s83
 } as const;
-const _s78 = [
-	_s75,
-	_s7
+const _s85 = [
+	_s82,
+	_s14
 ] as const;
-const _s79 = [
-	_s45,
-	_s41,
-	_s54
-] as const;
-const _s80 = {
-	"intervals": _s78
-} as const;
-const _s81 = {
-	"intervals": _s79
-} as const;
-const _s82 = [
-	_s69,
-	_s70
-] as const;
-const _s83 = {
-	"intervals": _s82
-} as const;
-const _s84 = [
-	_s67,
-	_s68,
-	_s15
-] as const;
-const _s85 = {
-	"intervals": _s84
-} as const;
 const _s86 = [
-	_s62,
-	_s66,
-	_s61,
-	_s65
+	_s55,
+	_s46,
+	_s63
 ] as const;
 const _s87 = {
-	"intervals": _s86
+	"intervals": _s85
 } as const;
 const _s88 = {
-	"activePower": _s52,
-	"current": _s33,
-	"frequency": _s53,
-	"voltage": _s74
+	"intervals": _s86
 } as const;
 const _s89 = [
-	_s63,
-	_s42,
-	_s58,
-	_s37,
-	_s55,
-	_s18
+	_s76,
+	_s77
 ] as const;
 const _s90 = {
 	"intervals": _s89
 } as const;
-const _s91 = {
-	"activePower": _s56,
-	"current": _s77,
-	"voltage": _s90
-} as const;
+const _s91 = [
+	_s74,
+	_s75,
+	_s22
+] as const;
 const _s92 = {
-	"activePower": _s80,
+	"intervals": _s91
+} as const;
+const _s93 = [
+	_s67,
+	_s71,
+	_s66,
+	_s69
+] as const;
+const _s94 = {
+	"intervals": _s93
+} as const;
+const _s95 = {
+	"activePower": _s57,
+	"current": _s38,
+	"frequency": _s60,
+	"voltage": _s81
+} as const;
+const _s96 = [
+	_s47,
+	_s68,
+	_s72,
+	_s73,
+	_s25
+] as const;
+const _s97 = {
+	"intervals": _s96
+} as const;
+const _s98 = {
+	"activePower": _s64,
+	"current": _s84,
+	"voltage": _s97
+} as const;
+const _s99 = {
+	"activePower": _s87,
 	"apparentPower": {},
-	"current": _s81,
-	"frequency": _s83,
+	"current": _s88,
+	"frequency": _s90,
 	"reactivePower": {},
-	"voltage": _s85
+	"voltage": _s92
 } as const;
 
 export default {
 	"acPhaseThreeEps": {
 		"featureSpec": {
 			"combined": {
-				"activePower": _s56
+				"activePower": _s64
 			},
 			"part": {
-				"a": _s88,
-				"b": _s88,
-				"c": _s88
+				"a": _s95,
+				"b": _s95,
+				"c": _s95
 			}
 		},
 		"identity": {
@@ -553,7 +552,7 @@ export default {
 	"acPhaseThreeGrid": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s87,
+				"activeEnergy": _s94,
 				"activePower": {
 					"intervals": [
 						{
@@ -569,9 +568,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s57,
-				"b": _s57,
-				"c": _s57
+				"a": _s61,
+				"b": _s61,
+				"c": _s61
 			}
 		},
 		"identity": {
@@ -581,7 +580,7 @@ export default {
 	"acPhaseThreeLoad": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s72,
+				"activeEnergy": _s79,
 				"activePower": {
 					"intervals": [
 						{
@@ -597,9 +596,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s59,
-				"b": _s59,
-				"c": _s59
+				"a": _s62,
+				"b": _s62,
+				"c": _s62
 			}
 		},
 		"identity": {
@@ -609,16 +608,16 @@ export default {
 	"acPhaseThreeOut": {
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s87,
+				"activeEnergy": _s94,
 				"activePower": {
 					"intervals": [
 						{
-							"condition": _s30,
+							"condition": _s36,
 							"identity": {
 								"slug": "continuous_continuous"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 10000,
 								"min": -11000,
 								"rating": "continuous"
@@ -630,7 +629,7 @@ export default {
 							},
 							"interval": {
 								"duration": 30,
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 11000,
 								"min": -12000,
 								"rating": "short_term"
@@ -650,7 +649,7 @@ export default {
 								"slug": "continuous_intermittent"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 9000,
 								"min": -10000,
 								"rating": "continuous"
@@ -673,9 +672,9 @@ export default {
 				}
 			},
 			"part": {
-				"a": _s92,
-				"b": _s92,
-				"c": _s92
+				"a": _s99,
+				"b": _s99,
+				"c": _s99
 			}
 		},
 		"identity": {
@@ -683,7 +682,7 @@ export default {
 		}
 	},
 	"body": {
-		"en": "FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.\n\nMirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — rated bands (interval_kind: rating) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).\n\nAC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term \"peak\" = a duration; derate = continuous gated by `intermittent`.\n\nAC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — interval_kind: rating derives from it, slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).\n\nThe GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.\n\nPV tracker bands: `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/ startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt, off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.\n\nNB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.\n\nEnclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent) directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.\n\nServices this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).\n\nHow to TALK to the box: the modbus connectivity medium. The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same. Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the registers backing entities we consume today (write/control registers out of scope — see docs/solar/inverter.md).\n\nPROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a hard split boundary around these until a live probe confirms the hazard:\n\n  mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?\n  mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?\n\ninvalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual\n  control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding\n  around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS\n  battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.\n\n\nmodbus_decodes — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.\n\nInverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one. Bits stay in the group the device puts them in — the word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].\n"
+		"en": "FoxESS PS-10.0-SH (box label H3 SMART), SN 60P11030588M005 — one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map. `manufacturer: FoxESS` is inherited from ../_defaults.yaml; `archetype: inverter` from ./_defaults.yaml.\n\nMirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).\n\nAC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term \"peak\" = a duration; derate = continuous gated by `intermittent`.\n\nAC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).\n\nThe GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.\n\nPV tracker bands: `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/ startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt, off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.\n\nNB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.\n\nEnclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent) directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.\n\nServices this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).\n\nHow to TALK to the box: the modbus connectivity medium. The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same. Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the registers backing entities we consume today (write/control registers out of scope — see docs/solar/inverter.md).\n\nPROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a hard split boundary around these until a live probe confirms the hazard:\n\n  mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?\n  mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?\n\ninvalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual\n  control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding\n  around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS\n  battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.\n\n\nmodbus_decodes — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.\n\nInverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one. Bits stay in the group the device puts them in — the word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].\n"
 	},
 	"enclosure": {
 		"featureSpec": {
@@ -695,7 +694,7 @@ export default {
 								"slug": "survival"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 80,
 								"min": -40,
 								"rating": "survival",
@@ -707,7 +706,7 @@ export default {
 								"slug": "intermittent"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 60,
 								"min": -25,
 								"rating": "intermittent",
@@ -719,7 +718,7 @@ export default {
 								"slug": "continuous"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 45,
 								"min": -20,
 								"rating": "continuous",
@@ -1456,7 +1455,7 @@ export default {
 		},
 		"featureSpec": {
 			"combined": {
-				"activeEnergy": _s72,
+				"activeEnergy": _s79,
 				"activePower": {
 					"intervals": [
 						{
@@ -1464,7 +1463,7 @@ export default {
 								"slug": "survival"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 20000,
 								"rating": "survival"
 							}
@@ -1474,7 +1473,7 @@ export default {
 								"slug": "continuous"
 							},
 							"interval": {
-								"intervalKind": "rating",
+								"intervalKind": "behavioural",
 								"max": 18000,
 								"rating": "continuous"
 							}
@@ -1483,24 +1482,24 @@ export default {
 				}
 			},
 			"instances": [
-				_s91,
-				_s91,
+				_s98,
+				_s98,
 				{
-					"activePower": _s56,
-					"current": _s77,
+					"activePower": _s64,
+					"current": _s84,
 					"voltage": {
 						"intervals": [
-							_s42,
-							_s58,
-							_s37,
-							_s55,
-							_s18,
+							_s47,
+							_s68,
+							_s72,
+							_s73,
+							_s25,
 							{
 								"identity": {
 									"slug": "continuous"
 								},
 								"interval": {
-									"intervalKind": "rating",
+									"intervalKind": "behavioural",
 									"min": 60,
 									"rating": "continuous",
 									"severity": "nominal",
