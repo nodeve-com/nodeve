@@ -1,5 +1,11 @@
 # @nodeve/grimoire
 
+## 4.11.0
+
+### Minor Changes
+
+- 05dd5b8: CLI concept + schema queries. New `feature`/`archetype`/`property`/`part` commands list or dump concept nodes with their inline prose; `schema <kind> <slug> [camel]` dumps the JSON Schema twin. `help`/`-h`/`--help` prints usage to stdout, exit 0. `docs/` ships in the package.
+
 ## 4.10.0
 
 ### Minor Changes
