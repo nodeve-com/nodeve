@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "intervalItem": Type.Optional(inter
 
 export type MeasurandLink = { "intervalItem"?: intervalItem_.IntervalItem };
 
-type DataT = { readonly "body": { readonly "en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. A Modbus register, a USB-HID byte field and a VE.Direct field each carry ONE `interval_item` FK pointer naming the measurand the projected feature tree offers — (feature_id, property_id, interval_id, part_id | ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the link downstream, not authored. A complete definition links every value; a value sensed-but-not-yet-attributed during discovery carries no link (drop `interval_item`, note it in a comment) until its feature lands.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "intervalItem": typeof intervalItem_ } };
+type DataT = { readonly "body": { readonly "en": "The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. A Modbus register, a USB-HID byte field and a VE.Direct field each carry ONE `interval_item` FK pointer naming the measurand the projected feature tree offers — (feature_id, property_id, interval_id, part_id | ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the link downstream, not authored. A complete definition links every value; a value sensed-but-not-yet-attributed during discovery carries no link (drop `interval_item`, note it in a comment) until its feature lands.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "measurand_link" }; readonly "prop": { readonly "intervalItem": typeof intervalItem_ }; readonly "title": { readonly "en": "Measurand Link" } };
 
 const _data: DataT = {
 	"body": {
@@ -25,6 +25,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"intervalItem": intervalItem_
+	},
+	"title": {
+		"en": "Measurand Link"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

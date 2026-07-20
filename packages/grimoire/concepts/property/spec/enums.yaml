@@ -1,0 +1,7 @@
+title: { en: Enums, pt: Enums }
+description:
+  en: The enumerations a feature binds — each entry names an `enumeration/<name>` directory, resolving to that dir's member stems as an enum of string literals. Feature-level only; an enum reaches a class inside a feature, never directly.
+  pt: As enumerações que um elemento associa — cada entrada nomeia um diretório `enumeration/<name>`, resolvendo para os stems dos seus membros como um enum de literais de string. Apenas ao nível de elemento.
+schema:
+  type: array
+  minItems: 1 # entries are a bare enumeration slug or a { <enumeration>: [ids] } filter — kit/enum-fields.ts

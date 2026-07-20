@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "Ingest kind — the adapter is the polling master, dialing the metered device's Modbus-TCP surface and reading it directly (no tap windows)."
     },
+    "identity": {
+      "slug": "modbus_poll"
+    },
     "refs": [
       {
         "match": "broad",
@@ -23,6 +26,9 @@ export default {
     "code": "modbus_tap",
     "description": {
       "en": "Ingest kind — passive sniff of an existing master's Modbus traffic; the adapter republishes windows of the observed poll cycle."
+    },
+    "identity": {
+      "slug": "modbus_tap"
     },
     "refs": [
       {

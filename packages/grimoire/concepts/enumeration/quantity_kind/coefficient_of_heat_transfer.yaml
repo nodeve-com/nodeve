@@ -1,0 +1,6 @@
+title:
+  en: Coefficient of Heat Transfer
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CoefficientOfHeatTransfer
+    match: exact

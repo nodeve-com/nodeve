@@ -1,0 +1,14 @@
+title:
+  en: R-501
+refs:
+  - registry_id: ashrae_34
+    term: R-501
+    match: exact
+composition:
+  - refrigerant: r22
+    mass_fraction: 0.75
+  - refrigerant: r12
+    mass_fraction: 0.25
+substance:
+  safety_class: A1
+  gwp: 3870

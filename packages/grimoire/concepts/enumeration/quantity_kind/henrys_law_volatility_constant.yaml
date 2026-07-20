@@ -1,0 +1,6 @@
+title:
+  en: Henry's Law Volatility Constant
+refs:
+  - registry_id: qudt_quantity_kind
+    term: HenrysLawVolatilityConstant
+    match: exact

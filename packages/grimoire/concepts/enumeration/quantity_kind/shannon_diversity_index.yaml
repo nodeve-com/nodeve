@@ -1,0 +1,8 @@
+title:
+  en: Shannon Diversity Index
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ShannonDiversityIndex
+    match: exact
+identity:
+  broader: information_entropy

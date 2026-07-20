@@ -1,0 +1,9 @@
+title:
+  en: 1,1,2-trifluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-143
+    match: exact
+substance:
+  formula: C2H3F3
+  gwp: 328

@@ -1,0 +1,11 @@
+title:
+  en: Mass Flow Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MassFlowRate
+    match: exact
+  - registry_id: wikidata
+    term: Q1366187
+    match: exact
+identity:
+  broader: mass_per_time

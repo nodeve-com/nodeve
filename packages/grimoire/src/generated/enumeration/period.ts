@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "Resets at local midnight — a per-day accumulator (the *_today registers)."
     },
+    "identity": {
+      "slug": "daily"
+    },
     "refs": [
       {
         "match": "close",
@@ -25,6 +28,9 @@ export default {
     "description": {
       "en": "Total since commissioning — never resets. The unbounded period; no ISO 8601 duration."
     },
+    "identity": {
+      "slug": "lifetime"
+    },
     "title": {
       "en": "Lifetime",
       "pt": "Vitalício"
@@ -34,6 +40,9 @@ export default {
     "code": "monthly",
     "description": {
       "en": "Resets on the 1st of the month — a per-month accumulator."
+    },
+    "identity": {
+      "slug": "monthly"
     },
     "refs": [
       {
@@ -51,6 +60,9 @@ export default {
     "code": "yearly",
     "description": {
       "en": "Resets on January 1 — a per-year accumulator."
+    },
+    "identity": {
+      "slug": "yearly"
     },
     "refs": [
       {

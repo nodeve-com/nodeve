@@ -1,0 +1,6 @@
+title:
+  en: Quartic Electric Dipole Moment per Cubic Energy
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ElectricDipoleMoment_QuarticPerEnergy_Cubic
+    match: exact

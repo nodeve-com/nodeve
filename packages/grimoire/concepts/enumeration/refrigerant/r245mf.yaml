@@ -1,0 +1,9 @@
+title:
+  en: Difluoromethyl 2,2,2-trifluoroethyl ether
+refs:
+  - registry_id: ashrae_34
+    term: R-245mf
+    match: exact
+substance:
+  formula: C3H3F5O
+  gwp: 286

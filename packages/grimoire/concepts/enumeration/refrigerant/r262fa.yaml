@@ -1,0 +1,8 @@
+title:
+  en: 3-chloro-1,1-difluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-262fa
+    match: exact
+substance:
+  formula: C3H5F2Cl

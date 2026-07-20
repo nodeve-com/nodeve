@@ -1,0 +1,13 @@
+title:
+  en: Water/steam
+refs:
+  - registry_id: ashrae_34
+    term: R-718
+    match: exact
+  - registry_id: wikidata
+    term: Q283
+    match: exact
+substance:
+  safety_class: A1
+  formula: H2O
+  gwp: 0.2

@@ -1,0 +1,11 @@
+title:
+  en: Relaxation Time
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RelaxationTime
+    match: exact
+  - registry_id: wikidata
+    term: Q102310909
+    match: exact
+identity:
+  broader: time

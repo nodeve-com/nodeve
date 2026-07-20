@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "path": Type.Optional(path_.schema)
 
 export type SerialPort = { "path"?: path_.Path; "baudRate"?: baudRate_.BaudRate };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_port" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "serial_port" }; readonly "prop": { readonly "baudRate": typeof baudRate_; readonly "path": Omit<typeof path_, "description" | "title"> & { readonly "description": { readonly "en": "OS serial device path, e.g. /dev/ttyUSB0 — a sensible default the consuming gateway may override / auto-discover (ttyUSB* renumbers across reboots/replugs)." }; readonly "title": { readonly "en": "Device" } } }; readonly "title": { readonly "en": "Serial Port" } };
 
 const _data: DataT = {
 	"identity": {
@@ -32,6 +32,9 @@ const _data: DataT = {
 				"en": "Device"
 			}
 		}
+	},
+	"title": {
+		"en": "Serial Port"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

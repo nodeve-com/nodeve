@@ -1,0 +1,8 @@
+title:
+  en: Dry Mass
+refs:
+  - registry_id: qudt_quantity_kind
+    term: DRY-MASS
+    match: exact
+identity:
+  broader: mass

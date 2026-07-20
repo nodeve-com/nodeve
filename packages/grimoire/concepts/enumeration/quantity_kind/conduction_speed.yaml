@@ -1,0 +1,8 @@
+title:
+  en: Conduction Speed
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ConductionSpeed
+    match: exact
+identity:
+  broader: speed

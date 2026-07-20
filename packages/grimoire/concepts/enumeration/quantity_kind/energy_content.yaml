@@ -1,0 +1,8 @@
+title:
+  en: Energy Content
+refs:
+  - registry_id: qudt_quantity_kind
+    term: EnergyContent
+    match: exact
+identity:
+  broader: energy

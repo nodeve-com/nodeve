@@ -1,0 +1,8 @@
+title:
+  en: Fluoroethylene (vinyl fluoride)
+refs:
+  - registry_id: ashrae_34
+    term: R-1141
+    match: exact
+substance:
+  formula: C2H3F

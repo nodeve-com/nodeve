@@ -5,6 +5,9 @@
 export default {
   "tcp": {
     "code": "tcp",
+    "identity": {
+      "slug": "tcp"
+    },
     "refs": [
       {
         "match": "exact",
@@ -19,6 +22,9 @@ export default {
   },
   "udp": {
     "code": "udp",
+    "identity": {
+      "slug": "udp"
+    },
     "refs": [
       {
         "match": "exact",

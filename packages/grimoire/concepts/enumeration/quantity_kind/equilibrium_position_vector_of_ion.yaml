@@ -1,0 +1,11 @@
+title:
+  en: Equilibrium Position Vector of Ion
+refs:
+  - registry_id: qudt_quantity_kind
+    term: EquilibriumPositionVectorOfIon
+    match: exact
+  - registry_id: wikidata
+    term: Q105533477
+    match: exact
+identity:
+  broader: length

@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "mpptWindow": Type.Optional(mpptWin
 
 export type MpptTracking = { "mpptWindow"?: mpptWindow_.MpptWindow };
 
-type DataT = { readonly "body": { readonly "en": "The MPPT (maximum-power-point tracking) DC-input envelope of a PV-coupled converter — the voltage WINDOW the tracker hunts within. Distinct from ac-output (what it puts out) and the panel's own dc ratings: this is the tracker's behaviour. The NUMBER of independent trackers is not a field here — it is the cardinality of the pv-string part ('per-entry'): the catalog entry fills the string count (see archetypes/inverter).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mppt_tracking" }; readonly "prop": { readonly "mpptWindow": typeof mpptWindow_ } };
+type DataT = { readonly "body": { readonly "en": "The MPPT (maximum-power-point tracking) DC-input envelope of a PV-coupled converter — the voltage WINDOW the tracker hunts within. Distinct from ac-output (what it puts out) and the panel's own dc ratings: this is the tracker's behaviour. The NUMBER of independent trackers is not a field here — it is the cardinality of the pv-string part ('per-entry'): the catalog entry fills the string count (see archetypes/inverter).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mppt_tracking" }; readonly "prop": { readonly "mpptWindow": typeof mpptWindow_ }; readonly "title": { readonly "en": "Mppt Tracking" } };
 
 const _data: DataT = {
 	"body": {
@@ -25,6 +25,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"mpptWindow": mpptWindow_
+	},
+	"title": {
+		"en": "Mppt Tracking"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

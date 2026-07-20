@@ -1,7 +1,0 @@
-title:
-  en: Tilt
-  pt: Inclinação
-description:
-  en: Plane tilt in degrees from horizontal.
-schema:
-  type: number

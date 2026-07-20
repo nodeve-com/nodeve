@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "mono": Type.Optional(mono_.schema)
 
 export type Ui = { "mono"?: mono_.Mono };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ui" }; readonly "prop": { readonly "mono": typeof mono_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ui" }; readonly "prop": { readonly "mono": typeof mono_ }; readonly "title": { readonly "en": "UI hints" } };
 
 const _data: DataT = {
 	"identity": {
@@ -22,6 +22,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"mono": mono_
+	},
+	"title": {
+		"en": "UI hints"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

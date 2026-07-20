@@ -1,0 +1,6 @@
+title:
+  en: Temperature Amount of Substance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureAmountOfSubstance
+    match: exact

@@ -11,6 +11,9 @@ export default {
     "description": {
       "en": "Inflow into the feature (import / consumption) — a distinct channel, not a sign."
     },
+    "identity": {
+      "slug": "in"
+    },
     "refs": [
       {
         "match": "close",
@@ -31,6 +34,9 @@ export default {
     "description": {
       "en": "Signed delta of in minus out on one bidirectional channel — sign encodes direction within the channel."
     },
+    "identity": {
+      "slug": "net"
+    },
     "refs": [
       {
         "match": "exact",
@@ -47,6 +53,9 @@ export default {
     "code": "out",
     "description": {
       "en": "Outflow from the feature (export / feed-in) — a distinct channel, not a sign."
+    },
+    "identity": {
+      "slug": "out"
     },
     "refs": [
       {

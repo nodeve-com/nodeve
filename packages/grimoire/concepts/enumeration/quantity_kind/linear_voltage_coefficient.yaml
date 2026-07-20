@@ -1,0 +1,6 @@
+title:
+  en: Linear Voltage Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LinearVoltageCoefficient
+    match: exact

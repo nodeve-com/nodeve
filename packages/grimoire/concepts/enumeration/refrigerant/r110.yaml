@@ -1,0 +1,8 @@
+title:
+  en: Hexachloroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-110
+    match: exact
+substance:
+  formula: C2Cl6

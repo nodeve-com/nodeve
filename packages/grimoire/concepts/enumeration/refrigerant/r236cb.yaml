@@ -1,0 +1,9 @@
+title:
+  en: 1,1,1,2,2,3-hexafluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-236cb
+    match: exact
+substance:
+  formula: C3H2F6
+  gwp: 1210

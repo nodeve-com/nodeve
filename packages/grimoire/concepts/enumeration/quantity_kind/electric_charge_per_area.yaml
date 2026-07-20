@@ -1,0 +1,6 @@
+title:
+  en: Electric Charge per Area
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ElectricChargePerArea
+    match: exact

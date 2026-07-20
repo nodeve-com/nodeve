@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "en": Type.Optional(Type.String({"m
 
 export type Description = { "en"?: string; "pt"?: string };
 
-type DataT = { readonly "description": { readonly "en": "Optional localized blurb for a term (i18n text)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "description" }; readonly "prop": { readonly "en": { readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } } }; readonly "title": { readonly "en": "Description"; readonly "pt": "Descrição" } };
+type DataT = { readonly "description": { readonly "en": "Optional localized blurb for a term (i18n text)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "description" }; readonly "prop": { readonly "en": { readonly "identity": { readonly "slug": "en" }; readonly "title": { readonly "en": "English"; readonly "pt": "inglês" } }; readonly "pt": { readonly "description": { readonly "en": "The Portuguese text of a translatable field — an ISO 639-1 locale key, sibling to `en`."; readonly "pt": "O texto em português de um campo traduzível — uma chave de locale ISO 639-1, irmã de `en`." }; readonly "identity": { readonly "slug": "pt" }; readonly "title": { readonly "en": "Portuguese"; readonly "pt": "português" } } }; readonly "title": { readonly "en": "Description"; readonly "pt": "Descrição" } };
 
 const _data: DataT = {
 	"description": {
@@ -25,9 +25,25 @@ const _data: DataT = {
 	},
 	"prop": {
 		"en": {
+			"identity": {
+				"slug": "en"
+			},
 			"title": {
 				"en": "English",
 				"pt": "inglês"
+			}
+		},
+		"pt": {
+			"description": {
+				"en": "The Portuguese text of a translatable field — an ISO 639-1 locale key, sibling to `en`.",
+				"pt": "O texto em português de um campo traduzível — uma chave de locale ISO 639-1, irmã de `en`."
+			},
+			"identity": {
+				"slug": "pt"
+			},
+			"title": {
+				"en": "Portuguese",
+				"pt": "português"
 			}
 		}
 	},

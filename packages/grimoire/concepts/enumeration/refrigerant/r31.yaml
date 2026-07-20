@@ -1,0 +1,12 @@
+title:
+  en: Chlorofluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-31
+    match: exact
+  - registry_id: wikidata
+    term: Q421766
+    match: exact
+substance:
+  safety_class: B2
+  formula: CH2FCl

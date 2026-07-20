@@ -1,0 +1,8 @@
+title:
+  en: Resistance Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ResistanceRatio
+    match: exact
+identity:
+  broader: dimensionless_ratio

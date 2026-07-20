@@ -3,11 +3,11 @@ title:
   pt: Descrição
 
 description: { en: Optional localized blurb for a term (i18n text). }
-
-prop:
-  pt:
-    schema: { minLength: 3 }
-  en:
-    schema: { minLength: 3 }
+feature_settings:
+  prop:
+    pt:
+      schema: { minLength: 3 }
+    en:
+      schema: { minLength: 3 }
 concept_settings:
   compose: i18n

@@ -1,0 +1,8 @@
+title:
+  en: Electromagnetic Wave Phase Speed
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ElectromagneticWavePhaseSpeed
+    match: exact
+identity:
+  broader: speed

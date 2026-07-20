@@ -1,0 +1,11 @@
+title:
+  en: Sound Pressure
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SoundPressure
+    match: exact
+  - registry_id: wikidata
+    term: Q1068172
+    match: exact
+identity:
+  broader: pressure

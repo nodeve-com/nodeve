@@ -1,0 +1,6 @@
+title:
+  en: rise of off-state voltage
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RiseOfOffStateVoltage
+    match: exact

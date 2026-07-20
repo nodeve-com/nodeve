@@ -11,11 +11,11 @@ import * as electricalQuantity_ from './electrical_quantity.ts';
 import * as identity_ from './identity.ts';
 import * as specification_ from '../archetypes/specification.ts';
 
-export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy"}})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
+export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy"}})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
 
-export type Dc = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification } } };
+export type Dc = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification } } };
 
-type DataT = { readonly "body": (typeof electricalQuantity_)["body"]; readonly "prop": (typeof electricalQuantity_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "dc" } };
+type DataT = { readonly "body": (typeof electricalQuantity_)["body"]; readonly "prop": (typeof electricalQuantity_)["prop"]; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "dc" }; readonly "title": { readonly "en": "Direct current" } };
 
 const _data: DataT = {
 	"body": electricalQuantity_["body"],
@@ -23,6 +23,9 @@ const _data: DataT = {
 	"identity": {
 		"archetypeId": "feature",
 		"slug": "dc"
+	},
+	"title": {
+		"en": "Direct current"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

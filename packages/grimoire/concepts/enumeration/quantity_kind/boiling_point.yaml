@@ -1,0 +1,8 @@
+title:
+  en: Boiling Point Temperature
+refs:
+  - registry_id: qudt_quantity_kind
+    term: BoilingPoint
+    match: exact
+identity:
+  broader: temperature

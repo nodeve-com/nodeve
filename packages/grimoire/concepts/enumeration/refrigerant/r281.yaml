@@ -1,0 +1,8 @@
+title:
+  en: Fluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-281
+    match: exact
+substance:
+  formula: C3H7F

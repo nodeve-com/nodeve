@@ -1,0 +1,6 @@
+title:
+  en: Spectral Luminous Efficiency
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SpectralLuminousEfficiency
+    match: exact

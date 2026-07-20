@@ -10,11 +10,11 @@ import { type TSchema, Type } from '@sinclair/typebox';
 import * as identity_ from './identity.ts';
 import * as specification_ from '../archetypes/specification.ts';
 
-export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "coolingCapacity": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"cooling_capacity":"coolingCapacity"}})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
+export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "heatFlowRate": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"heat_flow_rate":"heatFlowRate"}})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
 
-export type Cooling = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "coolingCapacity"?: specification_.Specification } } };
+export type Cooling = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "heatFlowRate"?: specification_.Specification } } };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "cooling" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "coolingCapacity": Omit<typeof specification_, "description" | "measurand" | "title"> & { readonly "description": { readonly "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity." }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "title": { readonly "en": "Cooling capacity" } } } } } }; readonly "identity": typeof identity_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "cooling" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "heatFlowRate": Omit<typeof specification_, "description" | "identity" | "measurand" | "refs" | "title"> & { readonly "description": { readonly "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity." }; readonly "identity": { readonly "broader": "power"; readonly "slug": "heat_flow_rate" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "HeatFlowRate" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12160631" }]; readonly "title": { readonly "en": "Heat Flow Rate" } } } } } }; readonly "identity": typeof identity_ }; readonly "title": { readonly "en": "Cooling" } };
 
 const _data: DataT = {
 	"identity": {
@@ -26,17 +26,33 @@ const _data: DataT = {
 			"prop": {
 				"combined": {
 					"prop": {
-						"coolingCapacity": {
+						"heatFlowRate": {
 							...specification_,
 							"description": {
 								"en": "Rated cooling output — a thermal power. An air conditioner's defining quantity."
+							},
+							"identity": {
+								"broader": "power",
+								"slug": "heat_flow_rate"
 							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "W"
 							},
+							"refs": [
+								{
+									"match": "broad",
+									"registryId": "qudt_quantity_kind",
+									"term": "HeatFlowRate"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q12160631"
+								}
+							],
 							"title": {
-								"en": "Cooling capacity"
+								"en": "Heat Flow Rate"
 							}
 						}
 					}
@@ -44,6 +60,9 @@ const _data: DataT = {
 			}
 		},
 		"identity": identity_
+	},
+	"title": {
+		"en": "Cooling"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

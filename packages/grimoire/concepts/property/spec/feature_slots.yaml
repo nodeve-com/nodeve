@@ -1,0 +1,7 @@
+title: { en: Feature slots, pt: Ranhuras de elemento }
+description:
+  en: "The features an archetype assembles: a `<slug>: overlay` map, the key naming the feature bound to that slot (no rename — the key IS the slug). Archetype-level only; a feature pulls a sibling's shape in via `compose`, never by nesting."
+  pt: "Os elementos que um arquétipo monta: um mapa `<slug>: overlay`, sendo a chave o elemento ligado a essa ranhura (sem renomear — a chave É o slug). Apenas ao nível de arquétipo."
+schema:
+  type: object
+  additionalProperties: true # keys are feature slugs — kit/resolve-slug.ts rejects an unknown one

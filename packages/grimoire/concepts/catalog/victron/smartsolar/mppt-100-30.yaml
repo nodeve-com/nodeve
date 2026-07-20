@@ -26,7 +26,7 @@ vedirect_fields:
     } # mV → V
   - {
       key: I,
-      interval_item: { feature_id: battery, property_id: current },
+      interval_item: { feature_id: battery, property_id: electric_current },
       scale: 0.001,
       decimals: 3,
     } # mA → A

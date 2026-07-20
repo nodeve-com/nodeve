@@ -1,0 +1,9 @@
+title:
+  en: Thermal Diffusion Factor
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThermalDiffusionFactor
+    match: exact
+  - registry_id: wikidata
+    term: Q96249629
+    match: exact

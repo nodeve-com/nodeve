@@ -1,0 +1,8 @@
+title:
+  en: Dibromodifluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-12B2
+    match: exact
+substance:
+  formula: CBr2F2

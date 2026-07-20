@@ -1,0 +1,6 @@
+title:
+  en: Acidity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Acidity
+    match: exact

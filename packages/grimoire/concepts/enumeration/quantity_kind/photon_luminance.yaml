@@ -1,0 +1,6 @@
+title:
+  en: Photon Luminance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PhotonLuminance
+    match: exact

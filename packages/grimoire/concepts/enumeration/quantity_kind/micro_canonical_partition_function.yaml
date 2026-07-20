@@ -1,0 +1,11 @@
+title:
+  en: Micro Canonical Partition Function
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MicroCanonicalPartitionFunction
+    match: exact
+  - registry_id: wikidata
+    term: Q96106546
+    match: exact
+identity:
+  broader: canonical_partition_function

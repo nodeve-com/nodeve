@@ -1,0 +1,8 @@
+title:
+  en: Cation Exchange Capacity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CationExchangeCapacity
+    match: exact
+identity:
+  broader: reactive_charge_per_mass

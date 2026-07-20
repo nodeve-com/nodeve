@@ -1,0 +1,6 @@
+title:
+  en: Thermal Energy Length
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThermalEnergyLength
+    match: exact

@@ -1,0 +1,11 @@
+title:
+  en: Cross-section
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CrossSection
+    match: exact
+  - registry_id: wikidata
+    term: Q17128025
+    match: exact
+identity:
+  broader: area

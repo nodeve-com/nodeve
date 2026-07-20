@@ -13,12 +13,13 @@ import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
 
-export type Appliance = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase };
+export type Appliance = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase };
 
 type DataT = { readonly "description": { readonly "en": "A metered electrical load (identity + AC supply draw)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "appliance" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Appliance"; readonly "pt": "Eletrodoméstico" } };
 

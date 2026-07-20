@@ -14,12 +14,13 @@ import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as title_ from '../features/title.ts';
 import * as usbhid_ from './usbhid.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "usbhid": Type.Optional(usbhid_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "product": Type.Optional(product_.schema), "acPhase": Type.Optional(acPhase_.schema), "usbhid": Type.Optional(usbhid_.schema) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase"}});
 
-export type PowerSupply = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "usbhid"?: usbhid_.Usbhid };
+export type PowerSupply = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "product"?: product_.Product; "acPhase"?: acPhase_.AcPhase; "usbhid"?: usbhid_.Usbhid };
 
 type DataT = { readonly "body": { readonly "en": "A DC-DC / ATX power supply that reports its own diagnostics (input + rail voltages, temperature). Identity + connectivity (required: a power supply we catalog for its telemetry has connectivity; usbhid medium). Feature/measurand blocks deliberately NOT modelled yet — the M4-ATX's diagnostics ride as RAW/labelled fields in its usbhid medium (same interim path as chint/dtsu666's un-attributed registers), pending a DC-rail feature atom.\n" }; readonly "description": { readonly "en": "A DC-DC/ATX power supply reporting its own diagnostics (identity + connectivity)."; readonly "pt": "Uma carga elétrica medida (identidade + consumo de alimentação CA)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "power_supply" }; readonly "prop": { readonly "acPhase": typeof acPhase_; readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_; readonly "usbhid": typeof usbhid_ }; readonly "title": { readonly "en": "Power supply"; readonly "pt": "Fonte de alimentação" } };
 

@@ -1,0 +1,7 @@
+title: { en: Archetype slots, pt: Ranhuras de arquétipo }
+description:
+  en: "The sibling classes an archetype nests as named slots: a `<slug>: overlay` map, the key naming the archetype bound to that slot (e.g. a `modbus` connectivity medium). Archetype-level only — nesting a class is what makes a class a class."
+  pt: "As classes irmãs que um arquétipo aninha como ranhuras nomeadas: um mapa `<slug>: overlay`, sendo a chave o arquétipo ligado a essa ranhura (p. ex. um meio de conectividade `modbus`). Apenas ao nível de arquétipo."
+schema:
+  type: object
+  additionalProperties: true # keys are archetype slugs — kit/resolve-slug.ts rejects an unknown one

@@ -10,7 +10,7 @@ import {
 	fieldSource,
 	layerIndex,
 	propertyDoc,
-	readYaml,
+	readJson,
 } from '../src/concept-sources.ts';
 import { identityData } from './shape-finish.ts';
 import { resolveShapeDef } from './resolve.ts';
@@ -22,7 +22,7 @@ export type Layer = (typeof LAYER_DIRS)[number];
 export function resolveConceptBySlug(slug: string, stack: string[]): Obj {
 	for (const dir of LAYER_DIRS) {
 		const path = layerIndex(dir).get(slug);
-		if (path) return resolveShapeDef(readYaml(path), [...stack, `${dir}/${slug}`], dir);
+		if (path) return resolveShapeDef(readJson(path), [...stack, `${dir}/${slug}`], dir);
 	}
 	if (fieldSource(slug)) return resolveFieldBySlug(slug, stack);
 	throw new Error(
@@ -39,7 +39,7 @@ export function resolveFeatureBySlug(slug: string, stack: string[]): Obj {
 		throw new Error(
 			`grimoire compile: \`feature:\` entry "${slug}" is not a features/ concept — a feature groups props; a bare field belongs in a feature, not directly on the def (via ${stack.join(' → ')})`,
 		);
-	return resolveShapeDef(readYaml(path), [...stack, `features/${slug}`], 'features');
+	return resolveShapeDef(readJson(path), [...stack, `features/${slug}`], 'features');
 }
 
 /** Resolve an `archetype:` map entry — STRICTLY an archetypes/ concept, a sibling CLASS nested as a
@@ -51,7 +51,7 @@ export function resolveArchetypeBySlug(slug: string, stack: string[]): Obj {
 		throw new Error(
 			`grimoire compile: \`archetype:\` entry "${slug}" is not an archetypes/ concept — the archetype map nests a sibling class as a slot; a feature belongs in the \`feature:\` map (via ${stack.join(' → ')})`,
 		);
-	return resolveShapeDef(readYaml(path), [...stack, `archetypes/${slug}`], 'archetypes');
+	return resolveShapeDef(readJson(path), [...stack, `archetypes/${slug}`], 'archetypes');
 }
 
 /** Resolve a `compose:` target — a SIBLING in the composing def's own layer only (an archetype
@@ -63,7 +63,7 @@ export function resolveSiblingBySlug(slug: string, layer: Layer, stack: string[]
 		throw new Error(
 			`grimoire compile: compose target "${slug}" is not a sibling ${layer.replace(/s$/, '')} — compose merges same-layer siblings only, add a feature via \`feature:\` (via ${stack.join(' → ')})`,
 		);
-	return resolveShapeDef(readYaml(path), [...stack, `${layer}/${slug}`], layer);
+	return resolveShapeDef(readJson(path), [...stack, `${layer}/${slug}`], layer);
 }
 
 /** A prop's field node: the property doc whole (its `schema:` block is the shape, the rest is

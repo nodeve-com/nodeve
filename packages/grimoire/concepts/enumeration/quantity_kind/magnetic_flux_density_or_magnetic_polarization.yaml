@@ -1,0 +1,6 @@
+title:
+  en: magnetic flux density or magnetic polarization
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MagneticFluxDensityOrMagneticPolarization
+    match: exact

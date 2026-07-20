@@ -5,20 +5,20 @@ import { readdirSync, statSync } from 'node:fs';
 import { isPlainObject, toCamelCase } from 'remeda';
 import { join } from 'node:path';
 import humps from 'remeda-humps';
-import { ENUMERATION_DIR, readYaml } from '../src/concept-sources.ts';
+import { ENUMERATION_DIR, readJson } from '../src/concept-sources.ts';
 import { renderJson } from './json-schema.ts';
 
-/** One enumeration's `code → member data` dict from its enumeration/<name>/*.yaml files (`code` =
- *  file stem = the literal; `_defaults.yaml` is the cascade, merged then stripped of the filing
- *  selector). Snake_case — the wire shape the data file emits; the TS vocab modules camelCase on top. */
+/** One enumeration's `code → member data` dict from its scribed enumeration/<name>/*.json members
+ *  (`code` = file stem = the literal; scribe already folded the `_defaults.yaml` cascade in). The
+ *  filing selector is stripped below. Snake_case — the wire shape the data file emits; the TS vocab
+ *  modules camelCase on top. */
 export function enumerationMemberData(name: string): Record<string, unknown> {
 	const dir = join(ENUMERATION_DIR, name);
-	const files = readdirSync(dir).filter((f) => f.endsWith('.yaml'));
-	const defaults = files.includes('_defaults.yaml') ? readYaml(join(dir, '_defaults.yaml')) : {};
+	const files = readdirSync(dir).filter((f) => f.endsWith('.json'));
 	const out: Record<string, unknown> = {};
-	for (const file of files.filter((f) => f !== '_defaults.yaml').sort()) {
-		const code = file.slice(0, -'.yaml'.length);
-		const doc = { ...defaults, ...readYaml(join(dir, file)) };
+	for (const file of files.sort()) {
+		const code = file.slice(0, -'.json'.length);
+		const doc = readJson(join(dir, file));
 		// `identity` is real member data (symbol, url, iri_template, broader). Strip only the filing
 		// SELECTOR: `archetype_id` (the schema selector — compiler plumbing) and the reserved `id` (DB uuid).
 		if (isPlainObject(doc.identity)) {

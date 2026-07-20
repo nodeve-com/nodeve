@@ -1,0 +1,8 @@
+title:
+  en: Flight Path Angle
+refs:
+  - registry_id: qudt_quantity_kind
+    term: FlightPathAngle
+    match: exact
+identity:
+  broader: angle

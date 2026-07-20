@@ -12,12 +12,20 @@ export const schema: TSchema = Type.String({"minLength":1});
 
 export type Pt = string;
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "pt" } };
+type DataT = { readonly "description": { readonly "en": "The Portuguese text of a translatable field — an ISO 639-1 locale key, sibling to `en`."; readonly "pt": "O texto em português de um campo traduzível — uma chave de locale ISO 639-1, irmã de `en`." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "pt" }; readonly "title": { readonly "en": "Portuguese"; readonly "pt": "português" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "The Portuguese text of a translatable field — an ISO 639-1 locale key, sibling to `en`.",
+		"pt": "O texto em português de um campo traduzível — uma chave de locale ISO 639-1, irmã de `en`."
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "pt"
+	},
+	"title": {
+		"en": "Portuguese",
+		"pt": "português"
 	}
 };
-export const { identity } = _data;
+export const { description, identity, title } = _data;

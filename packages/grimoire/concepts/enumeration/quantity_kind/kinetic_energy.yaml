@@ -1,0 +1,11 @@
+title:
+  en: Kinetic Energy
+refs:
+  - registry_id: qudt_quantity_kind
+    term: KineticEnergy
+    match: exact
+  - registry_id: wikidata
+    term: Q46276
+    match: exact
+identity:
+  broader: energy

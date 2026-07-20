@@ -1,0 +1,8 @@
+title:
+  en: 1,1,1,2-tetrachloro-2-fluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-121a
+    match: exact
+substance:
+  formula: C2HFCl4

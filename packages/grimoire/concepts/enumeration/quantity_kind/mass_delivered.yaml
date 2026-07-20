@@ -1,0 +1,8 @@
+title:
+  en: Mass Delivered
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MASS-DELIVERED
+    match: exact
+identity:
+  broader: mass

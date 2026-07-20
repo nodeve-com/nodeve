@@ -25,6 +25,12 @@ import {
 	propertyDoc,
 } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
+import { loadOracle } from './vocab/qudt.ts';
+
+// QUDT ships as a committed oracle (scripts/vocab/qudt-quantitykind.json), so a `qudt_quantity_kind`
+// term is verified by MEMBERSHIP, not just the {id}-shape check every other registry gets — a typo or
+// a kind that renamed upstream fails the build. Refresh the oracle with `node scripts/vocab/qudt.ts`.
+const qudtKinds = new Set(Object.keys(loadOracle()));
 
 // FK map: property slug → referenced archetype, read from each property's `column.references`.
 const fkByProp = new Map<string, string>();
@@ -95,6 +101,10 @@ function walk(options: {
 		if (template && /\s/.test(node.term))
 			fail(
 				`${file} at ${where}.term: term "${node.term}" has whitespace — cannot fill {id} in ${node.registry_id} (${template})`,
+			);
+		if (node.registry_id === 'qudt_quantity_kind' && !qudtKinds.has(node.term))
+			fail(
+				`${file} at ${where}.term: "${node.term}" is not a QUDT quantity kind — no such kind in the QUDT oracle (scripts/vocab/qudt-quantitykind.json). Fix the term or refresh the oracle.`,
 			);
 	}
 	for (const [key, value] of Object.entries(node)) {

@@ -1,0 +1,8 @@
+title:
+  en: Bevel Gear Pitch Angle
+refs:
+  - registry_id: qudt_quantity_kind
+    term: BevelGearPitchAngle
+    match: exact
+identity:
+  broader: angle

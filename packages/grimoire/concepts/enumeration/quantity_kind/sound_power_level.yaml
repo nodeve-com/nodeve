@@ -1,0 +1,9 @@
+title:
+  en: Sound Power Level
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SoundPowerLevel
+    match: exact
+  - registry_id: wikidata
+    term: Q2157873
+    match: exact

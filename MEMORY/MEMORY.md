@@ -11,6 +11,8 @@
 - [grimoire TS camel-only](grimoire-ts-camel-only.md) — TS emits camel wall-to-wall incl. data default export; snake in .ts is a generator bug, never style
 - [typescript major upgrade](typescript-major-upgrade.md) — TS7 blocked by typescript-eslint; TS6 needs types:["node"] per node package + @types/node ^24
 - [no inline string vocab](no-inline-string-vocab.md) — inline string-array/Set vocabularies in code are a total failure; derive from the authoritative source
+- [bulk-load vocabularies](bulk-load-vocabularies.md) — bounded enums (refrigerant, quantity_kind) load the WHOLE upstream set at once; never add-when-needed
 - [grimoire no TS spec grammar](grimoire-no-ts-spec-grammar.md) — hand-written TS interfaces for the spec/measurand grammar are forbidden; YAML concepts are the only source
 - [grimoire settings external sensors](grimoire-settings-external-sensors.md) — settings_schema will grow external-sensor refs (ESPHome import pattern); setting gates stay pointed at the same keys
 - [grimoire shape slop cleanup](grimoire-shape-slop-cleanup.md) — hand-authored shapes, dup defs, opaque Obj bags all trace to one missing desugar-at-openSite edge; multi-thread cleanup, gate currently red
+- [grimoire global slots](grimoire-global-slots.md) — global-by-default property defs are a wanted invariant, hand-enforced many ways; native in LinkML

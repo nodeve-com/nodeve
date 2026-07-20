@@ -10,7 +10,7 @@ import { linkRegisters, openSite } from '../src/site-view.ts';
 import { modbusMediumOf } from '../src/catalog.ts';
 import type { AcPhaseThreePoint } from '../src/generated/features/ac_phase_three_point.ts';
 
-const REF = { archetype_id: 'ac_phase_three_meter', slug: 'grid_meter_live' };
+const REF = { archetypeId: 'ac_phase_three_meter', slug: 'grid_meter_live' };
 
 function fixtureSite(filterMs = 1000): string {
 	const dir = mkdtempSync(join(tmpdir(), 'grimoire-bake-'));
@@ -92,7 +92,7 @@ function inverterSite(): string {
 }
 
 describe('bakeSite — slugged measurable intervals (directional energy channels)', () => {
-	const INV = { archetype_id: 'inverter', slug: 'grid_inverter' };
+	const INV = { archetypeId: 'inverter', slug: 'grid_inverter' };
 	const site = openSite(bakeSite(inverterSite(), 'inv-fixture'));
 
 	const gridEnergy = () =>

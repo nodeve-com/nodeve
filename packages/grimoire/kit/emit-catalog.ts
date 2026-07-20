@@ -5,7 +5,7 @@
 import humps from 'remeda-humps';
 import { camelizeSchema } from '@nodeve/schema-case';
 import { shortCode } from '@nodeve/encoding/short-code';
-import { effectiveSlug, loadCascade } from '../src/cascade.ts';
+import { loadCascade } from '../src/cascade.ts';
 import { CATALOG_DIR } from '../src/concept-sources.ts';
 import { assertDocValid, assertMetaSchema } from './validate-docs.ts';
 import { backfillRegisterSpecNodes, resolveRepeatedFeatures } from './repeated-emit.ts';
@@ -15,7 +15,6 @@ import { renderHoistedConst } from './hoist.ts';
 
 export interface CatalogEntryJson {
 	identity: { archetype_id: string; slug: string; code: string };
-	aliases?: string[];
 	[key: string]: unknown;
 }
 
@@ -62,7 +61,8 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 		// reject it), meta-validate it is a real schema, and let it flow verbatim into the emitted entry.
 		const { settings_schema, ...forSchema } = leaf.data as Record<string, unknown>;
 		if (settings_schema !== undefined) assertMetaSchema(leaf.path, settings_schema);
-		const slug = effectiveSlug(leaf.path, identity);
+		// scribe stamped `identity.slug` (authored, else the file stem) — the stable reference.
+		const slug = identity.slug as string;
 		// Validate the DE-SUGARED doc — identity.{archetype, slug} is required (features/identity.yaml),
 		// filled from the cascade + file stem exactly as the emit envelope will carry them.
 		assertDocValid(`catalog ${leaf.path}`, archetype, {
@@ -76,10 +76,8 @@ export function catalogEntries(): Record<string, CatalogEntryJson> {
 				`grimoire catalog ${leaf.path}: no identity.code — mint one at creation and author it (suggested: ${shortCode(slug)})`,
 			);
 		claimCode(code, leaf.path);
-		const aliases = leaf.aliases === undefined ? {} : { aliases: leaf.aliases as string[] };
 		// snake_case verbatim — JSON emits keep the wire casing; camelCase exists only in TS emits.
 		out[slug] = {
-			...aliases,
 			...resolveEntry(leaf.data, leaf.path),
 			identity: { archetype_id: archetype, slug, code },
 		};

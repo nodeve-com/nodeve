@@ -20,7 +20,7 @@ export const schema: TSchema = Type.Object({ "intervalItem": Type.Optional(inter
 
 export type UsbhidField = { "intervalItem"?: intervalItem_.IntervalItem; "type"?: type_.Type_; "scale"?: scale_.Scale; "decimals"?: decimals_.Decimals; "unit"?: unit_.Unit; "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides; "offset"?: offset_.Offset };
 
-type DataT = { readonly "body": { readonly "en": "The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/ uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via scale_overrides (usbhid_numeric).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_field" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "intervalItem": typeof intervalItem_; readonly "offset": typeof offset_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ } };
+type DataT = { readonly "body": { readonly "en": "The USB-HID byte-field map — each value the poll response carries, at a byte OFFSET into the frame, scaled to an engineering NUMBER, linked to the measurand it reads. The USB-HID analogue of modbus_registers: same measurand-link + scale + topic-derivation model, addressed by byte offset into a HID report instead of a 16-bit register address. Encoding `type` values: uint8/int8/ uint16/int16/uint32/int32/float32 (modbus's set extended down to single bytes — a HID report is byte-addressed). `scale` is the DEFAULT-firmware value; older firmwares override via scale_overrides (usbhid_numeric).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_field" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "decimals": typeof decimals_; readonly "intervalItem": typeof intervalItem_; readonly "offset": typeof offset_; readonly "scale": typeof scale_; readonly "scaleOverrides": typeof scaleOverrides_; readonly "type": typeof type_; readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "USBHID Field" } };
 
 const _data: DataT = {
 	"body": {
@@ -39,6 +39,9 @@ const _data: DataT = {
 		"scaleOverrides": scaleOverrides_,
 		"type": type_,
 		"unit": unit_
+	},
+	"title": {
+		"en": "USBHID Field"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

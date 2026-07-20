@@ -1,0 +1,8 @@
+title:
+  en: Web Time Average Thrust
+refs:
+  - registry_id: qudt_quantity_kind
+    term: WebTimeAverageThrust
+    match: exact
+identity:
+  broader: thrust

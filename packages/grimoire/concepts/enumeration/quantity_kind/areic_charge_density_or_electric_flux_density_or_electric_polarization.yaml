@@ -1,0 +1,6 @@
+title:
+  en: areic charge density or electric flux density or electric polarization
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AreicChargeDensityOrElectricFluxDensityOrElectricPolarization
+    match: exact

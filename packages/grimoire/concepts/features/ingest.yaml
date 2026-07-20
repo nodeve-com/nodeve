@@ -1,14 +1,21 @@
+title: { en: Ingest }
 body:
   en: >
-    How a site adapter INGESTS the metered thing (`catalog_item`) via its decoder `platform`. `ingest_kind` names the mode: modbus_tap = PASSIVE TAP (sniff an existing master's traffic, republish its `modbus_tap_window` windows — the member doubles as the path segment); modbus_tcp = POLLED MASTER (dial the device's Modbus-TCP surface, read it directly). Add enum members here as more modes appear.
-enums:
-  - ingest_kind # modbus_tap (passive tap) | modbus_tcp (polling master)
-  - platform # which decoder platform runs the adapter (see the platform enum)
-prop:
-  ingest_kind: { schema: { required: true } } # names the mode; site_adapter ties modbus_tap_window to the modbus_tap value
-  catalog_item: { title: { en: 'Site Catalog Item' } }
-  service_id: {} # polled-master modes: which of the device's OFFERED services the adapter dials
-  # Polled-master modes: pin WHICH of the metered device's network_interfaces the adapter dials,
-  # overriding the service_binding's own network_interface_id. A site fact (which NIC is reachable
-  # from the poller), so it lives on the adapter, not the catalog device.
-  network_interface_id: {}
+    How a site adapter INGESTS the metered thing (`catalog_item`) via its
+    decoder `platform`. `ingest_kind` names the mode: modbus_tap = PASSIVE TAP
+    (sniff an existing master's traffic, republish its `modbus_tap_window`
+    windows — the member doubles as the path segment); modbus_tcp = POLLED
+    MASTER (dial the device's Modbus-TCP surface, read it directly). Add enum
+    members here as more modes appear.
+feature_settings:
+  prop:
+    ingest_kind: { schema: { required: true } } # names the mode; site_adapter ties modbus_tap_window to the modbus_tap value
+    catalog_item: { title: { en: 'Site Catalog Item' } }
+    service_id: {} # polled-master modes: which of the device's OFFERED services the adapter dials
+    # Polled-master modes: pin WHICH of the metered device's network_interfaces the adapter dials,
+    # overriding the service_binding's own network_interface_id. A site fact (which NIC is reachable
+    # from the poller), so it lives on the adapter, not the catalog device.
+    network_interface_id: {}
+  enums:
+    - ingest_kind # modbus_tap (passive tap) | modbus_tcp (polling master)
+    - platform # which decoder platform runs the adapter (see the platform enum)

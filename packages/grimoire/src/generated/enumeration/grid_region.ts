@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "220/380 V, 60 Hz — Brazil (220 V regions)."
     },
+    "identity": {
+      "slug": "br_220v_60hz"
+    },
     "mains": {
       "frequency": 60,
       "voltage": 220
@@ -28,6 +31,9 @@ export default {
     "code": "eu_230v_50hz",
     "description": {
       "en": "IEC 230/400 V, 50 Hz — Europe and most of the world."
+    },
+    "identity": {
+      "slug": "eu_230v_50hz"
     },
     "mains": {
       "frequency": 50,
@@ -50,6 +56,9 @@ export default {
     "description": {
       "en": "NEMA 120/240 V split-phase, 60 Hz — North American residential service."
     },
+    "identity": {
+      "slug": "na_120v_60hz"
+    },
     "mains": {
       "frequency": 60,
       "voltage": 120
@@ -70,6 +79,9 @@ export default {
     "code": "na_208v_60hz",
     "description": {
       "en": "NEMA 120/208 V wye three-phase, 60 Hz — North American commercial service."
+    },
+    "identity": {
+      "slug": "na_208v_60hz"
     },
     "mains": {
       "frequency": 60,

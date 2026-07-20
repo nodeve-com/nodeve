@@ -1,0 +1,6 @@
+title:
+  en: Warping Constant
+refs:
+  - registry_id: qudt_quantity_kind
+    term: WarpingConstant
+    match: exact

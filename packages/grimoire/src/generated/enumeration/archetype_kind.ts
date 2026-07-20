@@ -11,6 +11,9 @@ export default {
     "description": {
       "en": "Device archetype a catalog leaf may select; instances bundle into the generated catalog."
     },
+    "identity": {
+      "slug": "catalog"
+    },
     "title": {
       "en": "Catalog archetype",
       "pt": "Arquétipo de catálogo"
@@ -23,6 +26,9 @@ export default {
     "code": "schema_only",
     "description": {
       "en": "Archetype shipping a schema contract with no catalog instances (mediums, site shapes, deployment config)."
+    },
+    "identity": {
+      "slug": "schema_only"
     },
     "title": {
       "en": "Schema-only archetype",

@@ -1,9 +1,18 @@
 title:
-  en: Volume flow rate
+  en: Volume Flow Rate
   pt: Caudal volumétrico
 refs:
-  - { registry_id: qudt_quantity_kind, term: VolumeFlowRate, match: exact }
-  - { registry_id: ha_device_class, term: volume_flow_rate, match: exact }
+  - registry_id: qudt_quantity_kind
+    term: VolumeFlowRate
+    match: exact
+  - registry_id: wikidata
+    term: Q1134348
+    match: exact
+  - registry_id: ha_device_class
+    term: volume_flow_rate
+    match: exact
+identity:
+  broader: volume_per_time
 measurand:
   si_unit: m³/s
   accumulation: instantaneous

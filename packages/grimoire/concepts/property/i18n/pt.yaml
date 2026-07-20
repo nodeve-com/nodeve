@@ -1,4 +1,9 @@
-# ISO 639-1
+title:
+  en: Portuguese
+  pt: português
+description:
+  en: The Portuguese text of a translatable field — an ISO 639-1 locale key, sibling to `en`.
+  pt: O texto em português de um campo traduzível — uma chave de locale ISO 639-1, irmã de `en`.
 schema:
   type: string
   minLength: 1

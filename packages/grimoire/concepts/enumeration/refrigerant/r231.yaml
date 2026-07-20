@@ -1,0 +1,8 @@
+title:
+  en: Pentachlorofluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-231
+    match: exact
+substance:
+  formula: C3H2FCl5

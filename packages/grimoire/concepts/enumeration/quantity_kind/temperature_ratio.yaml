@@ -1,0 +1,8 @@
+title:
+  en: Temperature Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureRatio
+    match: exact
+identity:
+  broader: dimensionless_ratio

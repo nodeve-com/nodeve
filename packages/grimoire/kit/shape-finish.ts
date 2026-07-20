@@ -5,7 +5,7 @@
 // needs all recurse back into resolveShapeDef, so they're passed in rather than imported (resolve.ts
 // owns them).
 import { clone, isPlainObject, omit } from 'remeda';
-import { type Obj, layerIndex, readYaml } from '../src/concept-sources.ts';
+import { type Obj, layerIndex, readJson } from '../src/concept-sources.ts';
 import type { Shape } from './overrides.ts';
 
 const FILING = new Set(['slug']);
@@ -99,7 +99,7 @@ function partedSpecification(options: FinishOptions, part: string): Obj {
 	const path = layerIndex('parts').get(part);
 	if (!path)
 		throw new Error(`grimoire compile: no parts/${part}.yaml (via ${options.stack.join(' → ')})`);
-	const parts = readYaml(path).parts;
+	const parts = readJson(path).parts;
 	if (!isPlainObject(parts))
 		throw new Error(`grimoire compile: parts/${part}.yaml has no \`parts:\` map`);
 	const combined: Obj = { ...options.shape.prop };

@@ -1,0 +1,6 @@
+title:
+  en: Exposure Rate of Ionizing Radiation
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ExposureRateOfIonizingRadiation
+    match: exact

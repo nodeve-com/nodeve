@@ -1,0 +1,9 @@
+title:
+  en: 1-chloro-1,1,2,2-tetrafluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-124a
+    match: exact
+substance:
+  formula: C2HF4Cl
+  gwp: 609

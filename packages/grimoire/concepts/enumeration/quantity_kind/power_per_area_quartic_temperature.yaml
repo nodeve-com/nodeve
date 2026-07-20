@@ -1,0 +1,6 @@
+title:
+  en: Power per Area Quartic Temperature
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PowerPerAreaQuarticTemperature
+    match: exact

@@ -1,0 +1,6 @@
+title:
+  en: Warm Receptor Threshold
+refs:
+  - registry_id: qudt_quantity_kind
+    term: WarmReceptorThreshold
+    match: exact

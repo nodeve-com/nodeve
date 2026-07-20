@@ -1,0 +1,6 @@
+title:
+  en: Conductivity Variance, NEON
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ConductivityVariance_NEON
+    match: exact

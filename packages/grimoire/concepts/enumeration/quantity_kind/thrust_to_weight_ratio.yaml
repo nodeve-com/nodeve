@@ -1,0 +1,8 @@
+title:
+  en: Thrust to Weight Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThrustToWeightRatio
+    match: exact
+identity:
+  broader: dimensionless_ratio

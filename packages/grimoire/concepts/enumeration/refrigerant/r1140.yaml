@@ -1,0 +1,9 @@
+title:
+  en: Chloroethylene (vinyl chloride)
+refs:
+  - registry_id: ashrae_34
+    term: R-1140
+    match: exact
+substance:
+  safety_class: B3
+  formula: C2H3Cl

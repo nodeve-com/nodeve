@@ -1,0 +1,6 @@
+title:
+  en: Temperature-based Mass Flow Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureBasedMassFlowRate
+    match: exact

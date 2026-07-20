@@ -1,0 +1,6 @@
+title:
+  en: Rotary-translatory Motion Conversion
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RotaryTranslatoryMotionConversion
+    match: exact

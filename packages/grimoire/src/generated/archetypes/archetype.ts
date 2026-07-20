@@ -7,23 +7,25 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
+import * as archetypeSettings_ from '../features/archetype_settings.ts';
 import * as body_ from '../features/body.ts';
+import * as conceptSettings_ from '../features/concept_settings.ts';
 import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": title_.schema, "description": description_.schema, "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": title_.schema, "description": description_.schema, "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "conceptSettings": Type.Optional(conceptSettings_.schema), "archetypeSettings": Type.Optional(archetypeSettings_.schema) }, {"additionalProperties":false,"x-key-map":{"concept_settings":"conceptSettings","archetype_settings":"archetypeSettings"}});
 
-export type Archetype = { "title": title_.Title; "description": description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs };
+export type Archetype = { "title": title_.Title; "description": description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "conceptSettings"?: conceptSettings_.ConceptSettings; "archetypeSettings"?: archetypeSettings_.ArchetypeSettings };
 
-type DataT = { readonly "prop": (typeof thing_)["prop"]; readonly "body": { readonly "en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n" }; readonly "description": { readonly "en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries."; readonly "pt": "A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "archetype" }; readonly "title": { readonly "en": "Archetype"; readonly "pt": "Arquétipo" } };
+type DataT = { readonly "body": { readonly "en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n\nTHE SLOTS BELOW ARE THE WHOLE GRAMMAR. Nothing is stripped before validation and the projection is closed, so a key this def does not declare is REJECTED — this file is the single source of truth for what an archetype may carry, replacing the hand-authored allow-list that scripts/guard-archetype-features.ts used to keep in parallel (it drifted by construction: the validator stripped exactly the keys the guard re-listed).\n\n`feature:` and `archetype:` are the two assembly maps — `<slug>: overlay`, the key naming the nested feature or the sibling class bound to that slot. They are LEGALIZED ONLY: the open value means \"this key may appear and is a map\", NOT that its overlays are checked. Interiors remain the def-language contract kit/compile.ts owns (feature.yaml says the same of its own def-language shape); resolving each slot against its named concept is the follow-up that closes them.\n" }; readonly "description": { readonly "en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries."; readonly "pt": "A classe das classes — a superfície obrigatória (rótulos + identidade + crosswalk) de cada def de arquétipo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "archetype" }; readonly "prop": { readonly "archetypeSettings": typeof archetypeSettings_; readonly "body": typeof body_; readonly "conceptSettings": typeof conceptSettings_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Archetype"; readonly "pt": "Arquétipo" } };
 
 const _data: DataT = {
-	"prop": thing_["prop"],
 	"body": {
-		"en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n"
+		"en": "The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.\n\nTHE SLOTS BELOW ARE THE WHOLE GRAMMAR. Nothing is stripped before validation and the projection is closed, so a key this def does not declare is REJECTED — this file is the single source of truth for what an archetype may carry, replacing the hand-authored allow-list that scripts/guard-archetype-features.ts used to keep in parallel (it drifted by construction: the validator stripped exactly the keys the guard re-listed).\n\n`feature:` and `archetype:` are the two assembly maps — `<slug>: overlay`, the key naming the nested feature or the sibling class bound to that slot. They are LEGALIZED ONLY: the open value means \"this key may appear and is a map\", NOT that its overlays are checked. Interiors remain the def-language contract kit/compile.ts owns (feature.yaml says the same of its own def-language shape); resolving each slot against its named concept is the follow-up that closes them.\n"
 	},
 	"description": {
 		"en": "The class of classes — the required surface (labels + identity + crosswalk) every archetype def carries.",
@@ -32,6 +34,15 @@ const _data: DataT = {
 	"identity": {
 		"archetypeId": "archetype",
 		"slug": "archetype"
+	},
+	"prop": {
+		"archetypeSettings": archetypeSettings_,
+		"body": body_,
+		"conceptSettings": conceptSettings_,
+		"description": description_,
+		"identity": identity_,
+		"refs": refs_,
+		"title": title_
 	},
 	"title": {
 		"en": "Archetype",

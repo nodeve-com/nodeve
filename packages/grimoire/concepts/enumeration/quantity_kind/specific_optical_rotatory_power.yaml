@@ -1,0 +1,6 @@
+title:
+  en: Specific Optical Rotatory Power
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SpecificOpticalRotatoryPower
+    match: exact

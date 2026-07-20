@@ -1,0 +1,8 @@
+title:
+  en: Chlorohexafluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-226
+    match: exact
+substance:
+  formula: C3HF6Cl

@@ -1,0 +1,11 @@
+title:
+  en: Quantum Number
+refs:
+  - registry_id: qudt_quantity_kind
+    term: QuantumNumber
+    match: exact
+  - registry_id: wikidata
+    term: Q232431
+    match: exact
+identity:
+  broader: dimensionless

@@ -5,6 +5,9 @@
 export default {
   "cumulative": {
     "code": "cumulative",
+    "identity": {
+      "slug": "cumulative"
+    },
     "refs": [
       {
         "match": "exact",
@@ -19,6 +22,9 @@ export default {
   },
   "cumulativeMonotonic": {
     "code": "cumulative_monotonic",
+    "identity": {
+      "slug": "cumulative_monotonic"
+    },
     "refs": [
       {
         "match": "exact",
@@ -38,6 +44,9 @@ export default {
   },
   "instantaneous": {
     "code": "instantaneous",
+    "identity": {
+      "slug": "instantaneous"
+    },
     "refs": [
       {
         "match": "exact",

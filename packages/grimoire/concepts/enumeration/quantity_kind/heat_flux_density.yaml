@@ -1,0 +1,8 @@
+title:
+  en: Heat Flux Density
+refs:
+  - registry_id: qudt_quantity_kind
+    term: HeatFluxDensity
+    match: exact
+identity:
+  broader: power_per_area

@@ -1,0 +1,16 @@
+title:
+  en: Heat Flow Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: HeatFlowRate
+    match: broad
+  - registry_id: wikidata
+    term: Q12160631
+    match: exact
+identity:
+  broader: power
+description:
+  en: Rated cooling output — a thermal power. An air conditioner's defining quantity.
+measurand:
+  si_unit: W
+  accumulation: instantaneous

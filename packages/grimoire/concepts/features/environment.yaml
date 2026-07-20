@@ -1,6 +1,8 @@
-prop:
-  temperature: {}
-  relative_humidity: {}
-  dew_point: {}
-    # - atmospheric_pressure
-    # - heat_index
+title: { en: Environment }
+feature_settings:
+  prop:
+    temperature: {}
+    relative_humidity: {}
+    dew_point_temperature: {}
+      # - atmospheric_pressure
+      # - heat_index

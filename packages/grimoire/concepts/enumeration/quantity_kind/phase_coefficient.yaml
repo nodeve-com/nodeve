@@ -1,0 +1,9 @@
+title:
+  en: Phase Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PhaseCoefficient
+    match: exact
+  - registry_id: wikidata
+    term: Q32745742
+    match: exact

@@ -1,0 +1,8 @@
+title:
+  en: Torsional Rigidity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TorsionalRigidity
+    match: exact
+identity:
+  broader: torque_per_angle

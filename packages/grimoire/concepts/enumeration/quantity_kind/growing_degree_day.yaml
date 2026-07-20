@@ -1,0 +1,8 @@
+title:
+  en: Growing Degree Days (Cereals)
+refs:
+  - registry_id: qudt_quantity_kind
+    term: GrowingDegreeDay
+    match: exact
+identity:
+  broader: time_temperature

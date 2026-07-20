@@ -1,0 +1,6 @@
+title:
+  en: Symbol Transmission Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SymbolTransmissionRate
+    match: exact

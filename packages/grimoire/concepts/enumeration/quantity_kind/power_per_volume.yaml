@@ -1,0 +1,6 @@
+title:
+  en: Power per Volume
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PowerPerVolume
+    match: exact

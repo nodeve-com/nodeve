@@ -59,62 +59,62 @@ const _s10 = {
 const _s11 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "a",
-	"propertyId": "current"
+	"propertyId": "active_power"
 } as const;
 const _s12 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "b",
-	"propertyId": "current"
+	"propertyId": "active_power"
 } as const;
 const _s13 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "c",
-	"propertyId": "current"
+	"propertyId": "active_power"
 } as const;
 const _s14 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "a",
-	"propertyId": "active_power"
+	"propertyId": "power_factor"
 } as const;
 const _s15 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "b",
-	"propertyId": "active_power"
+	"propertyId": "power_factor"
 } as const;
 const _s16 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "c",
-	"propertyId": "active_power"
+	"propertyId": "power_factor"
 } as const;
 const _s17 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "a",
-	"propertyId": "power_factor"
+	"propertyId": "reactive_power"
 } as const;
 const _s18 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "b",
-	"propertyId": "power_factor"
+	"propertyId": "reactive_power"
 } as const;
 const _s19 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "c",
-	"propertyId": "power_factor"
+	"propertyId": "reactive_power"
 } as const;
 const _s20 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "a",
-	"propertyId": "reactive_power"
+	"propertyId": "electric_current"
 } as const;
 const _s21 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "b",
-	"propertyId": "reactive_power"
+	"propertyId": "electric_current"
 } as const;
 const _s22 = {
 	"featureId": "ac_phase_three_point",
 	"partId": "c",
-	"propertyId": "reactive_power"
+	"propertyId": "electric_current"
 } as const;
 const _s23 = {
 	"intervalKind": "behavioural",
@@ -193,8 +193,8 @@ const _s32 = {
 const _s33 = {
 	"activePower": {},
 	"apparentPower": {},
-	"current": {},
-	"phaseAngle": {},
+	"electricCurrent": {},
+	"phaseDifference": {},
 	"powerFactor": {},
 	"reactivePower": {},
 	"voltage": _s32
@@ -249,7 +249,7 @@ export default {
 		}
 	},
 	"body": {
-		"en": "Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: its identity (the `meter` archetype) AND how it is talked to (its modbus slot). `manufacturer: Chint` and `archetype: meter` are inherited from ./_defaults.yaml.\n\nThis unit serves the SAME physical quantities in (at least) TWO register banks. The map below documents both; it is NOT a poll script and does not say which bank to read — the gateway picks its path (master-poll or passive-listen) and which bank that path exposes:\n\n  A) 0x2000 block — divisor-scaled FP32, read as a master (direct serial / TCP bridge).\n  B) 0x1510 fast + 0x1000 slow windows — what the FoxESS inverter polls, so what a passive\n     RS-485 tap captures. Floats already in engineering units (scale 1.0), richer than A.\n\nBank A from 3rd-party/DTSU666-Modbus/plugin.py + our on-board tap reads; verified high-word-first, 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames (scripts/SNIFF.md, 2026-06-07).\n\nNOTE — native bus: as of 2026-06-07 the FoxESS inverter masters this RS-485 bus; a second master can't coexist. The direct path here is valid against an isolated segment or the USB-RS485 → Modbus-TCP bridge at 172.26.68.1:502 (slave 1). Going forward we PASSIVELY tap the inverter's polling instead (different window, 0x1510/0x1000) — see scripts/SNIFF.md.\n\nCommissioning setting — which grid region this meter is wired for (enumeration/grid_region members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it once at install.\n\nModbus registers: all instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the feature blocks above offer via its `interval_item` pointer — (feature_id, property_id, part_id?); the MQTT topic is DERIVED from that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED — divisors provisional until a front-panel check. `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) / 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.\n\nPer-phase displacement angle φ (sniff idx 22–24, 0x153C/3E/40; degrees, quadrant-signed 0–360°). Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ, rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included). `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).\n\nSlow window (0x1000): the energy accumulators bank A's 0x4000 refuses; the inverter reads them here, so a passive tap recovers them. THREE DISTINCT quantity kinds — active (kWh), apparent (kVAh), reactive (kvarh) — each linked to its own `combined` measurand, so no topic/key collision (the earlier raw/import-export framing was wrong: these are separate quantity kinds, not a directional import/export pair). scale 1.0 + decimals provisional (uncalibrated). `unit` kept — none is the kind's SI unit (J / VA·s / var·s). They publish on the slow `energy` group (by address window), not the 5 Hz `state` group.\n\nDeliberately NOT polled: bank A energy totals at 0x401E/0x4028 + Q1–Q4 (0x4000 block returns \"Illegal data address\" on this firmware — energy is via bank B + the inverter); bank B energy quadrants (SNIFF.md); neutral current = |Ia+Ib+Ic|; active-energy import/export split + counter rates (all derived, not register-backed).\n"
+		"en": "Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: its identity (the `meter` archetype) AND how it is talked to (its modbus slot). `manufacturer: Chint` and `archetype: meter` are inherited from ./_defaults.yaml.\n\nThis unit serves the SAME physical quantities in (at least) TWO register banks. The map below documents both; it is NOT a poll script and does not say which bank to read — the gateway picks its path (master-poll or passive-listen) and which bank that path exposes:\n\n\n  A) 0x2000 block — divisor-scaled FP32, read as a master (direct serial / TCP bridge).\n  B) 0x1510 fast + 0x1000 slow windows — what the FoxESS inverter polls, so what a passive\n     RS-485 tap captures. Floats already in engineering units (scale 1.0), richer than A.\n\n\nBank A from 3rd-party/DTSU666-Modbus/plugin.py + our on-board tap reads; verified high-word-first, 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames (scripts/SNIFF.md, 2026-06-07).\n\nNOTE — native bus: as of 2026-06-07 the FoxESS inverter masters this RS-485 bus; a second master can't coexist. The direct path here is valid against an isolated segment or the USB-RS485 → Modbus-TCP bridge at 172.26.68.1:502 (slave 1). Going forward we PASSIVELY tap the inverter's polling instead (different window, 0x1510/0x1000) — see scripts/SNIFF.md.\n\nCommissioning setting — which grid region this meter is wired for (enumeration/grid_region members; each carries its nominal mains voltage + frequency). Gates the nominal voltage bands below (a `condition: [{ setting: grid_region, equals: <member> }]` on each). The site fixes it once at install.\n\nModbus registers: all instantaneous quantities in the 0x2000 (8192+) block (BANK A); `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100). Each register LINKS to a measurand the feature blocks above offer via its `interval_item` pointer — (feature_id, property_id, part_id?); the MQTT topic is DERIVED from that link downstream, not authored here. `unit` appears ONLY when it isn't the kind's SI unit (V/A/W/var/Hz and power_factor are SI ⇒ omitted; kW/kVAR/kVA/kWh kept). NOT YET CALIBRATED — divisors provisional until a front-panel check. `decimals` = the places the meter actually resolves; the decoder rounds to it, stripping the float32 quantization that otherwise widens (e.g. a 1.675 A current reads 1.6749999523162842 in a JS double). Per quantity: voltage 0.1 V → 1, current 1 mA → 3, power ~1 W → 1 (bank A, W) / 3 (bank B, kW), power_factor 0.001 → 3, frequency 0.01 Hz → 2.\n\nPer-phase displacement angle φ (sniff idx 22–24, 0x153C/3E/40; degrees, quadrant-signed 0–360°). Identified 2026-07-09 by correlating against per-phase P/Q/PF across load steps: value ≈ 360−φ, rising toward 360° as PF→1, sitting ~300° under the light leading-capacitive load. This is the FUNDAMENTAL displacement angle (cosφ₁), NOT acos(reported power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included). `unit: deg` — kind's SI unit is radian. decimals 1 (meter resolves ~0.1°).\n\nSlow window (0x1000): the energy accumulators bank A's 0x4000 refuses; the inverter reads them here, so a passive tap recovers them. THREE DISTINCT quantity kinds — active (kWh), apparent (kVAh), reactive (kvarh) — each linked to its own `combined` measurand, so no topic/key collision (the earlier raw/import-export framing was wrong: these are separate quantity kinds, not a directional import/export pair). scale 1.0 + decimals provisional (uncalibrated). `unit` kept — none is the kind's SI unit (J / VA·s / var·s). They publish on the slow `energy` group (by address window), not the 5 Hz `state` group.\n\nDeliberately NOT polled: bank A energy totals at 0x401E/0x4028 + Q1–Q4 (0x4000 block returns \"Illegal data address\" on this firmware — energy is via bank B + the inverter); bank B energy quadrants (SNIFF.md); neutral current = |Ia+Ib+Ic|; active-energy import/export split + counter rates (all derived, not register-backed).\n"
 	},
 	"identity": {
 		"archetypeId": "ac_phase_three_meter",
@@ -320,21 +320,21 @@ export default {
 			{
 				"address": 8204,
 				"decimals": 3,
-				"intervalItem": _s11,
+				"intervalItem": _s20,
 				"scale": 0.001,
 				"type": "float32"
 			},
 			{
 				"address": 8206,
 				"decimals": 3,
-				"intervalItem": _s12,
+				"intervalItem": _s21,
 				"scale": 0.001,
 				"type": "float32"
 			},
 			{
 				"address": 8208,
 				"decimals": 3,
-				"intervalItem": _s13,
+				"intervalItem": _s22,
 				"scale": 0.001,
 				"type": "float32"
 			},
@@ -348,21 +348,21 @@ export default {
 			{
 				"address": 8212,
 				"decimals": 1,
-				"intervalItem": _s14,
+				"intervalItem": _s11,
 				"scale": 0.1,
 				"type": "float32"
 			},
 			{
 				"address": 8214,
 				"decimals": 1,
-				"intervalItem": _s15,
+				"intervalItem": _s12,
 				"scale": 0.1,
 				"type": "float32"
 			},
 			{
 				"address": 8216,
 				"decimals": 1,
-				"intervalItem": _s16,
+				"intervalItem": _s13,
 				"scale": 0.1,
 				"type": "float32"
 			},
@@ -376,21 +376,21 @@ export default {
 			{
 				"address": 8220,
 				"decimals": 1,
-				"intervalItem": _s20,
+				"intervalItem": _s17,
 				"scale": 0.1,
 				"type": "float32"
 			},
 			{
 				"address": 8222,
 				"decimals": 1,
-				"intervalItem": _s21,
+				"intervalItem": _s18,
 				"scale": 0.1,
 				"type": "float32"
 			},
 			{
 				"address": 8224,
 				"decimals": 1,
-				"intervalItem": _s22,
+				"intervalItem": _s19,
 				"scale": 0.1,
 				"type": "float32"
 			},
@@ -404,21 +404,21 @@ export default {
 			{
 				"address": 8236,
 				"decimals": 3,
-				"intervalItem": _s17,
+				"intervalItem": _s14,
 				"scale": 0.001,
 				"type": "float32"
 			},
 			{
 				"address": 8238,
 				"decimals": 3,
-				"intervalItem": _s18,
+				"intervalItem": _s15,
 				"scale": 0.001,
 				"type": "float32"
 			},
 			{
 				"address": 8240,
 				"decimals": 3,
-				"intervalItem": _s19,
+				"intervalItem": _s16,
 				"scale": 0.001,
 				"type": "float32"
 			},
@@ -453,21 +453,21 @@ export default {
 			{
 				"address": 5398,
 				"decimals": 3,
-				"intervalItem": _s11,
+				"intervalItem": _s20,
 				"scale": 1,
 				"type": "float32"
 			},
 			{
 				"address": 5400,
 				"decimals": 3,
-				"intervalItem": _s12,
+				"intervalItem": _s21,
 				"scale": 1,
 				"type": "float32"
 			},
 			{
 				"address": 5402,
 				"decimals": 3,
-				"intervalItem": _s13,
+				"intervalItem": _s22,
 				"scale": 1,
 				"type": "float32"
 			},
@@ -482,7 +482,7 @@ export default {
 			{
 				"address": 5406,
 				"decimals": 3,
-				"intervalItem": _s14,
+				"intervalItem": _s11,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kW"
@@ -490,7 +490,7 @@ export default {
 			{
 				"address": 5408,
 				"decimals": 3,
-				"intervalItem": _s15,
+				"intervalItem": _s12,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kW"
@@ -498,7 +498,7 @@ export default {
 			{
 				"address": 5410,
 				"decimals": 3,
-				"intervalItem": _s16,
+				"intervalItem": _s13,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kW"
@@ -514,7 +514,7 @@ export default {
 			{
 				"address": 5414,
 				"decimals": 3,
-				"intervalItem": _s20,
+				"intervalItem": _s17,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kVAR"
@@ -522,7 +522,7 @@ export default {
 			{
 				"address": 5416,
 				"decimals": 3,
-				"intervalItem": _s21,
+				"intervalItem": _s18,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kVAR"
@@ -530,7 +530,7 @@ export default {
 			{
 				"address": 5418,
 				"decimals": 3,
-				"intervalItem": _s22,
+				"intervalItem": _s19,
 				"scale": 1,
 				"type": "float32",
 				"unit": "kVAR"
@@ -592,21 +592,21 @@ export default {
 			{
 				"address": 5430,
 				"decimals": 3,
-				"intervalItem": _s17,
+				"intervalItem": _s14,
 				"scale": 1,
 				"type": "float32"
 			},
 			{
 				"address": 5432,
 				"decimals": 3,
-				"intervalItem": _s18,
+				"intervalItem": _s15,
 				"scale": 1,
 				"type": "float32"
 			},
 			{
 				"address": 5434,
 				"decimals": 3,
-				"intervalItem": _s19,
+				"intervalItem": _s16,
 				"scale": 1,
 				"type": "float32"
 			},
@@ -616,7 +616,7 @@ export default {
 				"intervalItem": {
 					"featureId": "ac_phase_three_point",
 					"partId": "a",
-					"propertyId": "phase_angle"
+					"propertyId": "phase_difference"
 				},
 				"scale": 1,
 				"type": "float32",
@@ -628,7 +628,7 @@ export default {
 				"intervalItem": {
 					"featureId": "ac_phase_three_point",
 					"partId": "b",
-					"propertyId": "phase_angle"
+					"propertyId": "phase_difference"
 				},
 				"scale": 1,
 				"type": "float32",
@@ -640,7 +640,7 @@ export default {
 				"intervalItem": {
 					"featureId": "ac_phase_three_point",
 					"partId": "c",
-					"propertyId": "phase_angle"
+					"propertyId": "phase_difference"
 				},
 				"scale": 1,
 				"type": "float32",

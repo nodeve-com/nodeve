@@ -1,0 +1,10 @@
+title:
+  en: Tetrafluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-14
+    match: exact
+substance:
+  safety_class: A1
+  formula: CF4
+  gwp: 7390

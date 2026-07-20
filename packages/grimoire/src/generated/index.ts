@@ -18,15 +18,16 @@ import * as ambientTank_ from './archetypes/ambient_tank.ts';
 import * as appliance_ from './archetypes/appliance.ts';
 import * as archetype_ from './archetypes/archetype.ts';
 import * as archetypeRegistry_ from './features/archetype_registry.ts';
+import * as archetypeSettings_ from './features/archetype_settings.ts';
 import * as authentication_ from './features/authentication.ts';
 import * as battery_ from './features/battery.ts';
 import * as batteryCharger_ from './archetypes/battery_charger.ts';
 import * as body_ from './features/body.ts';
 import * as building_ from './archetypes/building.ts';
 import * as byteOffset_ from './features/byte_offset.ts';
-import * as catalogEntry_ from './features/catalog_entry.ts';
 import * as chargeController_ from './archetypes/charge_controller.ts';
 import * as column_ from './features/column.ts';
+import * as composition_ from './features/composition.ts';
 import * as compressor_ from './features/compressor.ts';
 import * as conceptSettings_ from './features/concept_settings.ts';
 import * as condition_ from './features/condition.ts';
@@ -45,6 +46,7 @@ import * as endpoint_ from './features/endpoint.ts';
 import * as energyConsumer_ from './features/energy_consumer.ts';
 import * as environment_ from './features/environment.ts';
 import * as feature_ from './archetypes/feature.ts';
+import * as featureSettings_ from './features/feature_settings.ts';
 import * as featureSpec_ from './features/feature_spec.ts';
 import * as filter_ from './features/filter.ts';
 import * as gridElectricalNetwork_ from './features/grid_electrical_network.ts';
@@ -99,6 +101,7 @@ import * as refrigeration_ from './features/refrigeration.ts';
 import * as refs_ from './features/refs.ts';
 import * as registry_ from './archetypes/registry.ts';
 import * as registryPublication_ from './features/registry_publication.ts';
+import * as schema_ from './features/schema.ts';
 import * as serialPort_ from './features/serial_port.ts';
 import * as serialWire_ from './features/serial_wire.ts';
 import * as serviceBinding_ from './features/service_binding.ts';
@@ -149,15 +152,16 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	appliance: appliance_.schema,
 	archetype: archetype_.schema,
 	archetypeRegistry: archetypeRegistry_.schema,
+	archetypeSettings: archetypeSettings_.schema,
 	authentication: authentication_.schema,
 	battery: battery_.schema,
 	batteryCharger: batteryCharger_.schema,
 	body: body_.schema,
 	building: building_.schema,
 	byteOffset: byteOffset_.schema,
-	catalogEntry: catalogEntry_.schema,
 	chargeController: chargeController_.schema,
 	column: column_.schema,
+	composition: composition_.schema,
 	compressor: compressor_.schema,
 	conceptSettings: conceptSettings_.schema,
 	condition: condition_.schema,
@@ -176,6 +180,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	energyConsumer: energyConsumer_.schema,
 	environment: environment_.schema,
 	feature: feature_.schema,
+	featureSettings: featureSettings_.schema,
 	featureSpec: featureSpec_.schema,
 	filter: filter_.schema,
 	gridElectricalNetwork: gridElectricalNetwork_.schema,
@@ -230,6 +235,7 @@ export const conceptSchema: Record<keyof ConceptTypes, TSchema> = {
 	refs: refs_.schema,
 	registry: registry_.schema,
 	registryPublication: registryPublication_.schema,
+	schema: schema_.schema,
 	serialPort: serialPort_.schema,
 	serialWire: serialWire_.schema,
 	serviceBinding: serviceBinding_.schema,
@@ -278,15 +284,16 @@ export interface ConceptTypes {
 	appliance: appliance_.Appliance;
 	archetype: archetype_.Archetype;
 	archetypeRegistry: archetypeRegistry_.ArchetypeRegistry;
+	archetypeSettings: archetypeSettings_.ArchetypeSettings;
 	authentication: authentication_.Authentication;
 	battery: battery_.Battery;
 	batteryCharger: batteryCharger_.BatteryCharger;
 	body: body_.Body;
 	building: building_.Building;
 	byteOffset: byteOffset_.ByteOffset;
-	catalogEntry: catalogEntry_.CatalogEntry;
 	chargeController: chargeController_.ChargeController;
 	column: column_.Column;
+	composition: composition_.Composition;
 	compressor: compressor_.Compressor;
 	conceptSettings: conceptSettings_.ConceptSettings;
 	condition: condition_.Condition;
@@ -305,6 +312,7 @@ export interface ConceptTypes {
 	energyConsumer: energyConsumer_.EnergyConsumer;
 	environment: environment_.Environment;
 	feature: feature_.Feature;
+	featureSettings: featureSettings_.FeatureSettings;
 	featureSpec: featureSpec_.FeatureSpec;
 	filter: filter_.Filter;
 	gridElectricalNetwork: gridElectricalNetwork_.GridElectricalNetwork;
@@ -359,6 +367,7 @@ export interface ConceptTypes {
 	refs: refs_.Refs;
 	registry: registry_.Registry;
 	registryPublication: registryPublication_.RegistryPublication;
+	schema: schema_.Schema;
 	serialPort: serialPort_.SerialPort;
 	serialWire: serialWire_.SerialWire;
 	serviceBinding: serviceBinding_.ServiceBinding;

@@ -1,0 +1,8 @@
+title:
+  en: Gas Leak Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: GasLeakRate
+    match: exact
+identity:
+  broader: energy_fluence

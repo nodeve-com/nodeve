@@ -5,12 +5,14 @@ body:
     
     This medium is the COMPLETE protocol, as data: a gateway in any language reads it to drive the device — which USB device to open (transport.usb), how to poll it (link), and how to decode the 24-byte frame (fields). Verified against the upstream m4api C source (mini-box/m4atx, m4api.c):
     
+
       • Poll: interrupt-write [0x81,0x00] to EP 0x01, interrupt-read 24 bytes from EP 0x81.
       • A valid frame stamps 0x21 at byte 0; the firmware version is byte 23 (high nibble = major).
       • Voltage bytes are firmware-scaled: major < 2 uses the V1 conversion table (the `legacy`
         profile below), major >= 2 the V2 table (the base `scale`). Temperature is a signed
         big-endian 16-bit °C at byte 12, firmware-independent.
     
+
     These byte offsets / scales / endianness are read directly off m4GetDiag + the m4TypeConversions V1/V2 tables in m4api.c — defined once here so every consuming gateway (in any language) branches off the same definition instead of each re-encoding it.
     
     

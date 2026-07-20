@@ -52,7 +52,7 @@ export default {
 			"decimals": 3,
 			"intervalItem": {
 				"featureId": "battery",
-				"propertyId": "current"
+				"propertyId": "electric_current"
 			},
 			"key": "I",
 			"scale": 0.001

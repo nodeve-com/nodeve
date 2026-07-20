@@ -1,0 +1,8 @@
+title:
+  en: Chloropentafluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-235
+    match: exact
+substance:
+  formula: C3H2F5Cl

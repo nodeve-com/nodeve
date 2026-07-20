@@ -1,0 +1,11 @@
+title:
+  en: Mach Number
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MachNumber
+    match: exact
+  - registry_id: wikidata
+    term: Q160669
+    match: exact
+identity:
+  broader: dimensionless_ratio

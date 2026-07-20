@@ -12,12 +12,10 @@
 // This is pure mechanism: it takes the site's source dir and returns the validated bundle. The
 // deploying repo owns *where* sites live and *writing* the artifact (grimoire never resolves a sites
 // path from its own installed location); it drives this via `bakeSite` from a thin wrapper.
-import { existsSync, readdirSync } from 'node:fs';
 import { isPlainObject } from 'remeda';
 import humps from 'remeda-humps';
-import { basename, join } from 'node:path';
-import { readYaml } from './concept-sources.ts';
-import { effectiveSlug, loadCascade } from './cascade.ts';
+import { basename } from 'node:path';
+import { scribeTree } from './scribe/index.ts';
 import { loadDevice } from './catalog.ts';
 import { sensorId } from './sensor-id.ts';
 import {
@@ -25,6 +23,8 @@ import {
 	isMeasurableInterval,
 	isMeasurandFeature,
 	measurandColumns,
+	patchFromWire,
+	patchToWire,
 	quantityCode,
 	quantityCols,
 	snakeKey,
@@ -34,19 +34,20 @@ import {
 import { overlayPatch } from './overlay.ts';
 import { isConcept, validateSite } from './validate-site.ts';
 
-const stemKey = (file: string): string => basename(file, '.yaml').replace(/-/g, '_');
+const stemKey = (file: string): string => basename(file, '.json').replace(/-/g, '_');
 
 const asIdentity = (v: unknown): { archetype_id?: string; slug?: string } =>
 	(v && typeof v === 'object' ? v : {}) as never;
 
-function bakeCascade(siteDir: string, dir: string): Record<string, unknown>[] {
-	const root = join(siteDir, dir);
-	if (!existsSync(root)) return [];
-	return loadCascade(root).map(({ path, data }) => {
-		const identity = asIdentity(data.identity);
-		data.identity = { ...identity, slug: effectiveSlug(path, identity) };
-		return data;
-	});
+/** The scribed docs under one site subtree (`catalog/`, `adapter/`), sorted by tree path. scribe
+ *  already folded the `_defaults.yaml` cascade and stamped `identity.slug`, so this just selects the
+ *  subtree. `tree` keys are the scribe relative paths (`catalog/<...>.json`). */
+function bakeCascade(tree: Map<string, Record<string, unknown>>, dir: string): Record<string, unknown>[] {
+	const prefix = `${dir}/`;
+	return [...tree]
+		.filter(([rel]) => rel.startsWith(prefix))
+		.sort(([a], [b]) => a.localeCompare(b))
+		.map(([, data]) => data);
 }
 
 const inventoryItem = (entry: Record<string, unknown>): { archetype_id?: string; slug?: string } =>
@@ -148,7 +149,9 @@ function applyCatalogPatch(entry: Record<string, unknown>): void {
 	const inventory = (
 		isPlainObject(entry.inventory) ? entry.inventory : (entry.inventory = {})
 	) as Obj;
-	inventory.catalog_patch = patch;
+	// The patch was assembled off the camel `loadDevice` grain — serialize it snake so the bundle is
+	// uniformly wire-cased (no camel island); readers camelize it back via `patchFromWire`.
+	inventory.catalog_patch = patchToWire(patch);
 }
 
 // Interval-filter cadence gate — SITE-level only, by design: a catalog def doesn't know its
@@ -202,7 +205,10 @@ function assertIntervalFilters(
 			archetypeId: item.archetype_id as string,
 			slug: item.slug as string,
 		});
-		const patch = entry ? ((asIdentity(entry.inventory) as Obj).catalog_patch ?? {}) : {};
+		// catalog_patch is now snake in the bundle — camelize back to overlay onto the camel device.
+		const patch = patchFromWire(
+			entry ? ((asIdentity(entry.inventory) as Obj).catalog_patch as Obj) ?? {} : {},
+		);
 		const tooFast = bandFilterMs(overlayPatch(device, patch) as Obj).find((f) => f.ms < fastest);
 		if (tooFast)
 			throw new Error(
@@ -259,18 +265,23 @@ export function bakeSite(
 ): Record<string, unknown> {
 	const bundle: Record<string, unknown> = {};
 
-	// Top-level <concept>.yaml → bundle[<concept>]. Non-concept stems (z_wave, …) are ignored.
-	for (const entry of readdirSync(siteDir, { withFileTypes: true })) {
-		if (!entry.isFile() || !entry.name.endsWith('.yaml') || entry.name.startsWith('_')) continue;
-		const key = stemKey(entry.name);
+	// scribe the whole site tree ONCE — YAML → desugared JSON (defaults folded, identity stamped,
+	// comment blocks rejected), the same front step grimoire runs on its own concepts. Everything
+	// below reads this in-memory JSON; bakeSite never parses YAML itself.
+	const tree = scribeTree(siteDir) as Map<string, Record<string, unknown>>;
+
+	// Top-level <concept>.json → bundle[<concept>]. Non-concept stems (z_wave, …) are ignored.
+	for (const [rel, doc] of tree) {
+		if (rel.includes('/')) continue;
+		const key = stemKey(rel);
 		if (!isConcept(key)) continue;
-		bundle[key] = readYaml(join(siteDir, entry.name));
+		bundle[key] = doc;
 	}
 
 	// catalog/ dir → `site_catalog` entries. Their identity (now always slug-bearing) + underlying
 	// device archetype (`inventory.catalog_item`) is the reference target adapters name; build that
 	// lookup as we bake.
-	const catalog = bakeCascade(siteDir, 'catalog');
+	const catalog = bakeCascade(tree, 'catalog');
 	const catalogRefs = new Set(
 		catalog.map((e) => `${inventoryItem(e).archetype_id}/${asIdentity(e.identity).slug}`),
 	);
@@ -280,7 +291,7 @@ export function bakeSite(
 	// adapter/ dir → `site_adapter` instances. An adapter names its metered thing via
 	// `ingest.catalog_item` — a site_catalog entry (the common case, resolving the device + its baked
 	// slugs) or a grimoire device direct; both are validated by `checkCatalogItems` below.
-	const adapters = bakeCascade(siteDir, 'adapter');
+	const adapters = bakeCascade(tree, 'adapter');
 	if (adapters.length > 0) bundle.site_adapter = adapters;
 	assertIntervalFilters(catalog, adapters, label);
 

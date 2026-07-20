@@ -3,17 +3,299 @@
 // member's wire literal is its `code`), `as const` for the member-code union consumers branch on.
 
 export default {
+  "absoluteActivity": {
+    "code": "absolute_activity",
+    "identity": {
+      "slug": "absolute_activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AbsoluteActivity"
+      }
+    ],
+    "title": {
+      "en": "Absolute Activity"
+    }
+  },
+  "absoluteHumidity": {
+    "code": "absolute_humidity",
+    "identity": {
+      "broader": "density",
+      "slug": "absolute_humidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AbsoluteHumidity"
+      }
+    ],
+    "title": {
+      "en": "Absolute Humidity"
+    }
+  },
+  "absoluteTypographicMeasurement": {
+    "code": "absolute_typographic_measurement",
+    "identity": {
+      "broader": "length",
+      "slug": "absolute_typographic_measurement"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AbsoluteTypographicMeasurement"
+      }
+    ],
+    "title": {
+      "en": "Absolute Typographic Measurement"
+    }
+  },
+  "absorbedDose": {
+    "code": "absorbed_dose",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "absorbed_dose"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AbsorbedDose"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q215313"
+      }
+    ],
+    "title": {
+      "en": "Absorbed Dose"
+    }
+  },
+  "absorbedDoseRate": {
+    "code": "absorbed_dose_rate",
+    "identity": {
+      "broader": "specific_power",
+      "slug": "absorbed_dose_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AbsorbedDoseRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q69428958"
+      }
+    ],
+    "title": {
+      "en": "Absorbed Dose Rate"
+    }
+  },
+  "absorptance": {
+    "code": "absorptance",
+    "identity": {
+      "slug": "absorptance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Absorptance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q16635541"
+      }
+    ],
+    "title": {
+      "en": "Absorptance"
+    }
+  },
+  "acceleration": {
+    "code": "acceleration",
+    "identity": {
+      "slug": "acceleration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Acceleration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11376"
+      }
+    ],
+    "title": {
+      "en": "Acceleration"
+    }
+  },
+  "accelerationOfGravity": {
+    "code": "acceleration_of_gravity",
+    "identity": {
+      "broader": "acceleration",
+      "slug": "acceleration_of_gravity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AccelerationOfGravity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q30006"
+      }
+    ],
+    "title": {
+      "en": "Acceleration of Gravity"
+    }
+  },
+  "acceptorDensity": {
+    "code": "acceptor_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "acceptor_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AcceptorDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105979968"
+      }
+    ],
+    "title": {
+      "en": "Acceptor Density"
+    }
+  },
+  "acceptorIonizationEnergy": {
+    "code": "acceptor_ionization_energy",
+    "identity": {
+      "broader": "ionization_energy",
+      "slug": "acceptor_ionization_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AcceptorIonizationEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q112958122"
+      }
+    ],
+    "title": {
+      "en": "Acceptor Ionization Energy"
+    }
+  },
+  "acidity": {
+    "code": "acidity",
+    "identity": {
+      "slug": "acidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Acidity"
+      }
+    ],
+    "title": {
+      "en": "Acidity"
+    }
+  },
+  "acousticImpedance": {
+    "code": "acoustic_impedance",
+    "identity": {
+      "broader": "mass_per_area_time",
+      "slug": "acoustic_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AcousticImpedance"
+      }
+    ],
+    "title": {
+      "en": "Acoustic Impediance"
+    }
+  },
+  "action": {
+    "code": "action",
+    "identity": {
+      "slug": "action"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Action"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q846785"
+      }
+    ],
+    "title": {
+      "en": "Action"
+    }
+  },
+  "actionTime": {
+    "code": "action_time",
+    "identity": {
+      "broader": "time",
+      "slug": "action_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ActionTime"
+      }
+    ],
+    "title": {
+      "en": "Action Time"
+    }
+  },
   "activeEnergy": {
     "code": "active_energy",
+    "identity": {
+      "broader": "electric_energy",
+      "slug": "active_energy"
+    },
     "measurand": {
       "accumulation": "cumulative_monotonic",
       "siUnit": "J"
     },
     "refs": [
       {
-        "match": "broad",
+        "match": "exact",
         "registryId": "qudt_quantity_kind",
-        "term": "Energy"
+        "term": "ActiveEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q79813678"
       },
       {
         "match": "exact",
@@ -22,14 +304,15 @@ export default {
       }
     ],
     "title": {
-      "en": "Active energy",
+      "en": "Active Energy",
       "pt": "Energia ativa"
     }
   },
   "activePower": {
     "code": "active_power",
     "identity": {
-      "broader": "power"
+      "broader": "electric_power",
+      "slug": "active_power"
     },
     "measurand": {
       "accumulation": "instantaneous",
@@ -42,18 +325,184 @@ export default {
         "term": "ActivePower"
       },
       {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q12713281"
+      },
+      {
         "match": "broad",
         "registryId": "ha_device_class",
         "term": "power"
       }
     ],
     "title": {
-      "en": "Active power",
+      "en": "Active Power",
       "pt": "Potência ativa"
+    }
+  },
+  "activity": {
+    "code": "activity",
+    "identity": {
+      "broader": "stochastic_process",
+      "slug": "activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Activity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q317949"
+      }
+    ],
+    "title": {
+      "en": "Activity"
+    }
+  },
+  "activityCoefficient": {
+    "code": "activity_coefficient",
+    "identity": {
+      "slug": "activity_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ActivityCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q745224"
+      }
+    ],
+    "title": {
+      "en": "Activity Coefficient"
+    }
+  },
+  "activityConcentration": {
+    "code": "activity_concentration",
+    "identity": {
+      "slug": "activity_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ActivityConcentration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q423263"
+      }
+    ],
+    "title": {
+      "en": "Activity Concentration"
+    }
+  },
+  "activityRelatedByMass": {
+    "code": "activity_related_by_mass",
+    "identity": {
+      "broader": "massic_activity",
+      "slug": "activity_related_by_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ActivityRelatedByMass"
+      }
+    ],
+    "title": {
+      "en": "Activity Related by Mass"
+    }
+  },
+  "activityThresholds": {
+    "code": "activity_thresholds",
+    "identity": {
+      "slug": "activity_thresholds"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ActivityThresholds"
+      }
+    ],
+    "title": {
+      "en": "Activity Thresholds"
+    }
+  },
+  "adaptation": {
+    "code": "adaptation",
+    "identity": {
+      "broader": "time",
+      "slug": "adaptation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Adaptation"
+      }
+    ],
+    "title": {
+      "en": "Adaptation"
+    }
+  },
+  "admittance": {
+    "code": "admittance",
+    "identity": {
+      "slug": "admittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Admittance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q214518"
+      }
+    ],
+    "title": {
+      "en": "Admittance"
+    }
+  },
+  "alphaDisintegrationEnergy": {
+    "code": "alpha_disintegration_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "alpha_disintegration_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AlphaDisintegrationEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98146025"
+      }
+    ],
+    "title": {
+      "en": "Alpha Disintegration Energy"
     }
   },
   "altitude": {
     "code": "altitude",
+    "identity": {
+      "broader": "length",
+      "slug": "altitude"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "m"
@@ -66,6 +515,11 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q190200"
+      },
+      {
+        "match": "exact",
         "registryId": "wgs84_geo",
         "term": "alt"
       }
@@ -75,28 +529,512 @@ export default {
       "pt": "Altitude"
     }
   },
+  "ambientPressure": {
+    "code": "ambient_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "ambient_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmbientPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q789775"
+      }
+    ],
+    "title": {
+      "en": "Ambient Pressure"
+    }
+  },
+  "amountOfBiologicallyActiveSubstance": {
+    "code": "amount_of_biologically_active_substance",
+    "identity": {
+      "slug": "amount_of_biologically_active_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfBiologicallyActiveSubstance"
+      }
+    ],
+    "title": {
+      "en": "Amount of Biologically Active Substance"
+    }
+  },
+  "amountOfCloudCover": {
+    "code": "amount_of_cloud_cover",
+    "identity": {
+      "slug": "amount_of_cloud_cover"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfCloudCover"
+      }
+    ],
+    "title": {
+      "en": "Amount of Cloud Cover"
+    }
+  },
+  "amountOfSubstance": {
+    "code": "amount_of_substance",
+    "identity": {
+      "slug": "amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q104946"
+      }
+    ],
+    "title": {
+      "en": "Amount of Substance"
+    }
+  },
+  "amountOfSubstanceConcentration": {
+    "code": "amount_of_substance_concentration",
+    "identity": {
+      "broader": "concentration",
+      "slug": "amount_of_substance_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstanceConcentration"
+      }
+    ],
+    "title": {
+      "en": "Amount of Substance of Concentration"
+    }
+  },
+  "amountOfSubstanceFraction": {
+    "code": "amount_of_substance_fraction",
+    "identity": {
+      "slug": "amount_of_substance_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstanceFraction"
+      }
+    ],
+    "title": {
+      "en": "Fractional Amount of Substance"
+    }
+  },
+  "amountOfSubstanceIonConcentration": {
+    "code": "amount_of_substance_ion_concentration",
+    "identity": {
+      "broader": "concentration",
+      "slug": "amount_of_substance_ion_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstanceIonConcentration"
+      }
+    ],
+    "title": {
+      "en": "Amount of Substance Ion Concentration"
+    }
+  },
+  "amountOfSubstancePerMass": {
+    "code": "amount_of_substance_per_mass",
+    "identity": {
+      "slug": "amount_of_substance_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstancePerMass"
+      }
+    ],
+    "title": {
+      "en": "Amount of Substance per Mass"
+    }
+  },
+  "amountOfSubstancePerMassPressure": {
+    "code": "amount_of_substance_per_mass_pressure",
+    "identity": {
+      "slug": "amount_of_substance_per_mass_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstancePerMassPressure"
+      }
+    ],
+    "title": {
+      "en": "Molar Mass Variation Due to Pressure"
+    }
+  },
+  "amountOfSubstancePerVolume": {
+    "code": "amount_of_substance_per_volume",
+    "identity": {
+      "broader": "concentration",
+      "slug": "amount_of_substance_per_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AmountOfSubstancePerVolume"
+      }
+    ],
+    "title": {
+      "en": "Amount of Substance per Volume"
+    }
+  },
+  "angle": {
+    "code": "angle",
+    "identity": {
+      "slug": "angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Angle"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1357788"
+      }
+    ],
+    "title": {
+      "en": "Angle"
+    }
+  },
+  "angleOfAttack": {
+    "code": "angle_of_attack",
+    "identity": {
+      "broader": "angle",
+      "slug": "angle_of_attack"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngleOfAttack"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q370906"
+      }
+    ],
+    "title": {
+      "en": "Angle of Attack"
+    }
+  },
+  "angleOfOpticalRotation": {
+    "code": "angle_of_optical_rotation",
+    "identity": {
+      "broader": "angle",
+      "slug": "angle_of_optical_rotation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngleOfOpticalRotation"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96323385"
+      }
+    ],
+    "title": {
+      "en": "Angle of Optical Rotation"
+    }
+  },
+  "angularAcceleration": {
+    "code": "angular_acceleration",
+    "identity": {
+      "slug": "angular_acceleration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularAcceleration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q186300"
+      }
+    ],
+    "title": {
+      "en": "Angular Acceleration"
+    }
+  },
+  "angularCrossSection": {
+    "code": "angular_cross_section",
+    "identity": {
+      "slug": "angular_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98266630"
+      }
+    ],
+    "title": {
+      "en": "Angular Cross-section"
+    }
+  },
+  "angularDistance": {
+    "code": "angular_distance",
+    "identity": {
+      "broader": "angle",
+      "slug": "angular_distance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularDistance"
+      }
+    ],
+    "title": {
+      "en": "Angular Distance"
+    }
+  },
+  "angularFrequency": {
+    "code": "angular_frequency",
+    "identity": {
+      "slug": "angular_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularFrequency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q834020"
+      }
+    ],
+    "title": {
+      "en": "Angular Frequency"
+    }
+  },
+  "angularImpulse": {
+    "code": "angular_impulse",
+    "identity": {
+      "slug": "angular_impulse"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularImpulse"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q73428743"
+      }
+    ],
+    "title": {
+      "en": "Angular Impulse"
+    }
+  },
+  "angularMomentum": {
+    "code": "angular_momentum",
+    "identity": {
+      "slug": "angular_momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularMomentum"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q161254"
+      }
+    ],
+    "title": {
+      "en": "Angular Momentum"
+    }
+  },
+  "angularMomentumPerAngle": {
+    "code": "angular_momentum_per_angle",
+    "identity": {
+      "slug": "angular_momentum_per_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularMomentumPerAngle"
+      }
+    ],
+    "title": {
+      "en": "Angular Momentum per Angle"
+    }
+  },
+  "angularReciprocalLatticeVector": {
+    "code": "angular_reciprocal_lattice_vector",
+    "identity": {
+      "slug": "angular_reciprocal_lattice_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularReciprocalLatticeVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105475278"
+      }
+    ],
+    "title": {
+      "en": "Angular Reciprocal Lattice Vector"
+    }
+  },
+  "angularVelocity": {
+    "code": "angular_velocity",
+    "identity": {
+      "slug": "angular_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularVelocity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q161635"
+      }
+    ],
+    "title": {
+      "en": "Angular Velocity"
+    }
+  },
+  "angularWavenumber": {
+    "code": "angular_wavenumber",
+    "identity": {
+      "slug": "angular_wavenumber"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AngularWavenumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q30338487"
+      }
+    ],
+    "title": {
+      "en": "Angular Wavenumber"
+    }
+  },
+  "apiGravity": {
+    "code": "api_gravity",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "api_gravity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "APIGravity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q29246"
+      }
+    ],
+    "title": {
+      "en": "API Gravity"
+    }
+  },
+  "apogeeRadius": {
+    "code": "apogee_radius",
+    "identity": {
+      "broader": "radius",
+      "slug": "apogee_radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ApogeeRadius"
+      }
+    ],
+    "title": {
+      "en": "Apogee Radius"
+    }
+  },
   "apparentEnergy": {
     "code": "apparent_energy",
+    "identity": {
+      "broader": "electric_energy",
+      "slug": "apparent_energy"
+    },
     "measurand": {
       "accumulation": "cumulative_monotonic",
       "siUnit": "VA·s"
     },
     "refs": [
       {
-        "match": "broad",
+        "match": "exact",
         "registryId": "qudt_quantity_kind",
-        "term": "Energy"
+        "term": "ApparentEnergy"
       }
     ],
     "title": {
-      "en": "Apparent energy",
+      "en": "Apparent Energy",
       "pt": "Energia aparente"
     }
   },
   "apparentPower": {
     "code": "apparent_power",
     "identity": {
-      "broader": "power"
+      "broader": "electric_power",
+      "slug": "apparent_power"
     },
     "measurand": {
       "accumulation": "instantaneous",
@@ -110,53 +1048,2874 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1930258"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "apparent_power"
       }
     ],
     "title": {
-      "en": "Apparent power",
+      "en": "Apparent Power",
       "pt": "Potência aparente"
     }
   },
-  "coolingCapacity": {
-    "code": "cooling_capacity",
-    "description": {
-      "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity."
-    },
-    "measurand": {
-      "accumulation": "instantaneous",
-      "siUnit": "W"
-    },
-    "title": {
-      "en": "Cooling capacity"
-    }
-  },
-  "current": {
-    "code": "current",
-    "measurand": {
-      "accumulation": "instantaneous",
-      "siUnit": "A"
+  "apparentThermalInertia": {
+    "code": "apparent_thermal_inertia",
+    "identity": {
+      "broader": "inverse_temperature",
+      "slug": "apparent_thermal_inertia"
     },
     "refs": [
       {
         "match": "exact",
         "registryId": "qudt_quantity_kind",
-        "term": "ElectricCurrent"
-      },
-      {
-        "match": "exact",
-        "registryId": "ha_device_class",
-        "term": "current"
+        "term": "ApparentThermalInertia"
       }
     ],
     "title": {
-      "en": "Current",
-      "pt": "Corrente"
+      "en": "Measurement Unit for a Quantity Approximately Proportional to Thermal Inertia"
     }
   },
-  "dewPoint": {
-    "code": "dew_point",
+  "area": {
+    "code": "area",
+    "identity": {
+      "slug": "area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Area"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11500"
+      }
+    ],
+    "title": {
+      "en": "Area"
+    }
+  },
+  "areaAngle": {
+    "code": "area_angle",
+    "identity": {
+      "slug": "area_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaAngle"
+      }
+    ],
+    "title": {
+      "en": "Area Angle"
+    }
+  },
+  "areaBitDensity": {
+    "code": "area_bit_density",
+    "identity": {
+      "slug": "area_bit_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaBitDensity"
+      }
+    ],
+    "title": {
+      "en": "Areic Bit Density"
+    }
+  },
+  "areaChargeDensity": {
+    "code": "area_charge_density",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "area_charge_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaChargeDensity"
+      }
+    ],
+    "title": {
+      "en": "Areic Charge Density"
+    }
+  },
+  "areaMass": {
+    "code": "area_mass",
+    "identity": {
+      "broader": "mass_per_area",
+      "slug": "area_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaMass"
+      }
+    ],
+    "title": {
+      "en": "Areic Mass"
+    }
+  },
+  "areaPerLength": {
+    "code": "area_per_length",
+    "identity": {
+      "slug": "area_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaPerLength"
+      }
+    ],
+    "title": {
+      "en": "Area per Length"
+    }
+  },
+  "areaPerPower": {
+    "code": "area_per_power",
+    "identity": {
+      "slug": "area_per_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaPerPower"
+      }
+    ],
+    "title": {
+      "en": "Area per Heating Load"
+    }
+  },
+  "areaPerTime": {
+    "code": "area_per_time",
+    "identity": {
+      "slug": "area_per_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaPerTime"
+      }
+    ],
+    "title": {
+      "en": "Area per Time"
+    }
+  },
+  "areaRatio": {
+    "code": "area_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "area_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaRatio"
+      }
+    ],
+    "title": {
+      "en": "Area Ratio"
+    }
+  },
+  "areaTemperature": {
+    "code": "area_temperature",
+    "identity": {
+      "slug": "area_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaTemperature"
+      }
+    ],
+    "title": {
+      "en": "Area Temperature"
+    }
+  },
+  "areaThermalExpansion": {
+    "code": "area_thermal_expansion",
+    "identity": {
+      "slug": "area_thermal_expansion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaThermalExpansion"
+      }
+    ],
+    "title": {
+      "en": "Area Thermal Expansion"
+    }
+  },
+  "areaTime": {
+    "code": "area_time",
+    "identity": {
+      "slug": "area_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaTime"
+      }
+    ],
+    "title": {
+      "en": "Area Time"
+    }
+  },
+  "areaTimeTemperature": {
+    "code": "area_time_temperature",
+    "identity": {
+      "slug": "area_time_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreaTimeTemperature"
+      }
+    ],
+    "title": {
+      "en": "Area Time Temperature"
+    }
+  },
+  "areicChargeDensityOrElectricFluxDensityOrElectricPolarization": {
+    "code": "areic_charge_density_or_electric_flux_density_or_electric_polarization",
+    "identity": {
+      "slug": "areic_charge_density_or_electric_flux_density_or_electric_polarization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicChargeDensityOrElectricFluxDensityOrElectricPolarization"
+      }
+    ],
+    "title": {
+      "en": "areic charge density or electric flux density or electric polarization"
+    }
+  },
+  "areicDataVolume": {
+    "code": "areic_data_volume",
+    "identity": {
+      "slug": "areic_data_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicDataVolume"
+      }
+    ],
+    "title": {
+      "en": "Areic Data Volume"
+    }
+  },
+  "areicEnergyFlow": {
+    "code": "areic_energy_flow",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "areic_energy_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicEnergyFlow"
+      }
+    ],
+    "title": {
+      "en": "Areic Energy Flow"
+    }
+  },
+  "areicHeatFlowRate": {
+    "code": "areic_heat_flow_rate",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "areic_heat_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicHeatFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Aeric Heat Flow Rate"
+    }
+  },
+  "areicMass": {
+    "code": "areic_mass",
+    "identity": {
+      "broader": "mass_per_area",
+      "slug": "areic_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicMass"
+      }
+    ],
+    "title": {
+      "en": "Areic Mass"
+    }
+  },
+  "areicTorque": {
+    "code": "areic_torque",
+    "identity": {
+      "slug": "areic_torque"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AreicTorque"
+      }
+    ],
+    "title": {
+      "en": "Areic Torque"
+    }
+  },
+  "asset": {
+    "code": "asset",
+    "identity": {
+      "slug": "asset"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Asset"
+      }
+    ],
+    "title": {
+      "en": "Asset"
+    }
+  },
+  "atmosphericHydroxylationRate": {
+    "code": "atmospheric_hydroxylation_rate",
+    "identity": {
+      "broader": "second_order_reaction_rate_constant",
+      "slug": "atmospheric_hydroxylation_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtmosphericHydroxylationRate"
+      }
+    ],
+    "title": {
+      "en": "Atmospheric Hydroxylation Rate"
+    }
+  },
+  "atmosphericPressure": {
+    "code": "atmospheric_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "atmospheric_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtmosphericPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q81809"
+      }
+    ],
+    "title": {
+      "en": "Atmospheric Pressure"
+    }
+  },
+  "atomicAttenuationCoefficient": {
+    "code": "atomic_attenuation_coefficient",
+    "identity": {
+      "broader": "area",
+      "slug": "atomic_attenuation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicAttenuationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98592911"
+      }
+    ],
+    "title": {
+      "en": "Atomic Attenuation Coefficient"
+    }
+  },
+  "atomicCharge": {
+    "code": "atomic_charge",
+    "identity": {
+      "broader": "electric_charge",
+      "slug": "atomic_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicCharge"
+      }
+    ],
+    "title": {
+      "en": "Atomic Charge"
+    }
+  },
+  "atomicEnergy": {
+    "code": "atomic_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "atomic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicEnergy"
+      }
+    ],
+    "title": {
+      "en": "Atomic Energy"
+    }
+  },
+  "atomicMass": {
+    "code": "atomic_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "atomic_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3840065"
+      }
+    ],
+    "title": {
+      "en": "Atomic Mass"
+    }
+  },
+  "atomicNumber": {
+    "code": "atomic_number",
+    "identity": {
+      "broader": "count",
+      "slug": "atomic_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q23809"
+      }
+    ],
+    "title": {
+      "en": "Atomic Number"
+    }
+  },
+  "atomicStoppingPower": {
+    "code": "atomic_stopping_power",
+    "identity": {
+      "slug": "atomic_stopping_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomicStoppingPower"
+      }
+    ],
+    "title": {
+      "en": "Atomic Stopping Power"
+    }
+  },
+  "atomScatteringFactor": {
+    "code": "atom_scattering_factor",
+    "identity": {
+      "slug": "atom_scattering_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AtomScatteringFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q837866"
+      }
+    ],
+    "title": {
+      "en": "Atom Scattering Factor"
+    }
+  },
+  "attenuationCoefficient": {
+    "code": "attenuation_coefficient",
+    "identity": {
+      "slug": "attenuation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AttenuationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q902086"
+      }
+    ],
+    "title": {
+      "en": "Attenuation Coefficient"
+    }
+  },
+  "auditoryThresholds": {
+    "code": "auditory_thresholds",
+    "identity": {
+      "broader": "sound_power_level",
+      "slug": "auditory_thresholds"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AuditoryThresholds"
+      }
+    ],
+    "title": {
+      "en": "Auditory Thresholds"
+    }
+  },
+  "auxillaryMagneticField": {
+    "code": "auxillary_magnetic_field",
+    "identity": {
+      "broader": "magnetic_field_strength",
+      "slug": "auxillary_magnetic_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AuxillaryMagneticField"
+      }
+    ],
+    "title": {
+      "en": "Auxillary Magnetic Field"
+    }
+  },
+  "averageEnergyLossPerElementaryChargeProduced": {
+    "code": "average_energy_loss_per_elementary_charge_produced",
+    "identity": {
+      "broader": "energy",
+      "slug": "average_energy_loss_per_elementary_charge_produced"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AverageEnergyLossPerElementaryChargeProduced"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98793042"
+      }
+    ],
+    "title": {
+      "en": "Average Energy Loss per Elementary Charge Produced"
+    }
+  },
+  "averageHeadEndPressure": {
+    "code": "average_head_end_pressure",
+    "identity": {
+      "broader": "head_end_pressure",
+      "slug": "average_head_end_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AverageHeadEndPressure"
+      }
+    ],
+    "title": {
+      "en": "Average Head End Pressure"
+    }
+  },
+  "averageLogarithmicEnergyDecrement": {
+    "code": "average_logarithmic_energy_decrement",
+    "identity": {
+      "slug": "average_logarithmic_energy_decrement"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AverageLogarithmicEnergyDecrement"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1940739"
+      }
+    ],
+    "title": {
+      "en": "Average Logarithmic Energy Decrement"
+    }
+  },
+  "averageSpecificImpulse": {
+    "code": "average_specific_impulse",
+    "identity": {
+      "broader": "specific_impulse",
+      "slug": "average_specific_impulse"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AverageSpecificImpulse"
+      }
+    ],
+    "title": {
+      "en": "Average Specific Impulse"
+    }
+  },
+  "averageVacuumThrust": {
+    "code": "average_vacuum_thrust",
+    "identity": {
+      "broader": "vacuum_thrust",
+      "slug": "average_vacuum_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "AverageVacuumThrust"
+      }
+    ],
+    "title": {
+      "en": "Average Vacuum Thrust"
+    }
+  },
+  "azimuth": {
+    "code": "azimuth",
+    "description": {
+      "en": "Plane orientation as compass degrees, 0° = N."
+    },
+    "identity": {
+      "broader": "angle",
+      "slug": "azimuth"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Azimuth"
+      }
+    ],
+    "title": {
+      "en": "Azimuth",
+      "pt": "Azimute"
+    }
+  },
+  "bandwidthDistanceProduct": {
+    "code": "bandwidth_distance_product",
+    "identity": {
+      "slug": "bandwidth_distance_product"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BandwidthDistanceProduct"
+      }
+    ],
+    "title": {
+      "en": "Bandwidth Distance Product"
+    }
+  },
+  "bandwidthLengthProduct": {
+    "code": "bandwidth_length_product",
+    "identity": {
+      "slug": "bandwidth_length_product"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BandwidthLengthProduct"
+      }
+    ],
+    "title": {
+      "en": "Bandwidth Length Product"
+    }
+  },
+  "basicity": {
+    "code": "basicity",
+    "identity": {
+      "slug": "basicity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Basicity"
+      }
+    ],
+    "title": {
+      "en": "Basicity"
+    }
+  },
+  "batteryCapacity": {
+    "code": "battery_capacity",
+    "identity": {
+      "broader": "electric_charge",
+      "slug": "battery_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BatteryCapacity"
+      }
+    ],
+    "title": {
+      "en": "Battery Capacity"
+    }
+  },
+  "bendingMomentOfForce": {
+    "code": "bending_moment_of_force",
+    "identity": {
+      "broader": "moment_of_force",
+      "slug": "bending_moment_of_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BendingMomentOfForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q857244"
+      }
+    ],
+    "title": {
+      "en": "Bending Moment of Force"
+    }
+  },
+  "betaDisintegrationEnergy": {
+    "code": "beta_disintegration_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "beta_disintegration_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BetaDisintegrationEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98148340"
+      }
+    ],
+    "title": {
+      "en": "Beta Disintegration Energy"
+    }
+  },
+  "bevelGearPitchAngle": {
+    "code": "bevel_gear_pitch_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "bevel_gear_pitch_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BevelGearPitchAngle"
+      }
+    ],
+    "title": {
+      "en": "Bevel Gear Pitch Angle"
+    }
+  },
+  "binaryLogarithmicMedianInformationFlow": {
+    "code": "binary_logarithmic_median_information_flow",
+    "identity": {
+      "slug": "binary_logarithmic_median_information_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BinaryLogarithmicMedianInformationFlow"
+      }
+    ],
+    "title": {
+      "en": "Median Information Flow (from a Source of Information), Expressed as a Binary Logarithm"
+    }
+  },
+  "bindingFraction": {
+    "code": "binding_fraction",
+    "identity": {
+      "slug": "binding_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BindingFraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98058362"
+      }
+    ],
+    "title": {
+      "en": "Binding Fraction"
+    }
+  },
+  "bioconcentrationFactor": {
+    "code": "bioconcentration_factor",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "bioconcentration_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BioconcentrationFactor"
+      }
+    ],
+    "title": {
+      "en": "Bioconcentration Factor"
+    }
+  },
+  "biodegredationHalfLife": {
+    "code": "biodegredation_half_life",
+    "identity": {
+      "broader": "time",
+      "slug": "biodegredation_half_life"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BiodegredationHalfLife"
+      }
+    ],
+    "title": {
+      "en": "Biodegredation Half Life"
+    }
+  },
+  "biogeochemicalRate": {
+    "code": "biogeochemical_rate",
+    "identity": {
+      "slug": "biogeochemical_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BiogeochemicalRate"
+      }
+    ],
+    "title": {
+      "en": "Biogeochemical Rate"
+    }
+  },
+  "bitDataVolume": {
+    "code": "bit_data_volume",
+    "identity": {
+      "slug": "bit_data_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BitDataVolume"
+      }
+    ],
+    "title": {
+      "en": "Bit Data Volume"
+    }
+  },
+  "bitRate": {
+    "code": "bit_rate",
+    "identity": {
+      "broader": "data_rate",
+      "slug": "bit_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BitRate"
+      }
+    ],
+    "title": {
+      "en": "Bit Rate"
+    }
+  },
+  "bitTransmissionRate": {
+    "code": "bit_transmission_rate",
+    "identity": {
+      "broader": "bit_rate",
+      "slug": "bit_transmission_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BitTransmissionRate"
+      }
+    ],
+    "title": {
+      "en": "Bit Transmission Rate"
+    }
+  },
+  "bloodGlucoseLevel": {
+    "code": "blood_glucose_level",
+    "identity": {
+      "slug": "blood_glucose_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BloodGlucoseLevel"
+      }
+    ],
+    "title": {
+      "en": "Blood Glucose Level"
+    }
+  },
+  "bloodGlucoseLevelMass": {
+    "code": "blood_glucose_level_mass",
+    "identity": {
+      "slug": "blood_glucose_level_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BloodGlucoseLevel_Mass"
+      }
+    ],
+    "title": {
+      "en": "Blood Glucose Level by Mass"
+    }
+  },
+  "bodyMassIndex": {
+    "code": "body_mass_index",
+    "identity": {
+      "broader": "mass_per_area",
+      "slug": "body_mass_index"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BodyMassIndex"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q131191"
+      }
+    ],
+    "title": {
+      "en": "Body Mass Index"
+    }
+  },
+  "boilingPoint": {
+    "code": "boiling_point",
+    "identity": {
+      "broader": "temperature",
+      "slug": "boiling_point"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BoilingPoint"
+      }
+    ],
+    "title": {
+      "en": "Boiling Point Temperature"
+    }
+  },
+  "braggAngle": {
+    "code": "bragg_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "bragg_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BraggAngle"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105488118"
+      }
+    ],
+    "title": {
+      "en": "Bragg Angle"
+    }
+  },
+  "breadth": {
+    "code": "breadth",
+    "identity": {
+      "broader": "length",
+      "slug": "breadth"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Breadth"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77835705"
+      }
+    ],
+    "title": {
+      "en": "Breadth"
+    }
+  },
+  "bucklingFactor": {
+    "code": "buckling_factor",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "buckling_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BucklingFactor"
+      }
+    ],
+    "title": {
+      "en": "Buckling Factor"
+    }
+  },
+  "bulkModulus": {
+    "code": "bulk_modulus",
+    "identity": {
+      "broader": "modulus_of_elasticity",
+      "slug": "bulk_modulus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BulkModulus"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900371"
+      }
+    ],
+    "title": {
+      "en": "Bulk Modulus"
+    }
+  },
+  "burgersVector": {
+    "code": "burgers_vector",
+    "identity": {
+      "broader": "length",
+      "slug": "burgers_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BurgersVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q623093"
+      }
+    ],
+    "title": {
+      "en": "Burgers Vector"
+    }
+  },
+  "burnRate": {
+    "code": "burn_rate",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "burn_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BurnRate"
+      }
+    ],
+    "title": {
+      "en": "Burn Rate"
+    }
+  },
+  "burnTime": {
+    "code": "burn_time",
+    "identity": {
+      "broader": "time",
+      "slug": "burn_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BurnTime"
+      }
+    ],
+    "title": {
+      "en": "Burn Time"
+    }
+  },
+  "burstFactor": {
+    "code": "burst_factor",
+    "identity": {
+      "slug": "burst_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "BurstFactor"
+      }
+    ],
+    "title": {
+      "en": "Burst Factor"
+    }
+  },
+  "byteDataVolume": {
+    "code": "byte_data_volume",
+    "identity": {
+      "slug": "byte_data_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ByteDataVolume"
+      }
+    ],
+    "title": {
+      "en": "Byte Data Volume"
+    }
+  },
+  "byteRate": {
+    "code": "byte_rate",
+    "identity": {
+      "broader": "data_rate",
+      "slug": "byte_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ByteRate"
+      }
+    ],
+    "title": {
+      "en": "Byte Rate"
+    }
+  },
+  "byteTransmissionRate": {
+    "code": "byte_transmission_rate",
+    "identity": {
+      "broader": "byte_rate",
+      "slug": "byte_transmission_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ByteTransmissionRate"
+      }
+    ],
+    "title": {
+      "en": "Byte Transmission Rate"
+    }
+  },
+  "canonicalPartitionFunction": {
+    "code": "canonical_partition_function",
+    "identity": {
+      "slug": "canonical_partition_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CanonicalPartitionFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96142389"
+      }
+    ],
+    "title": {
+      "en": "Canonical Partition Function"
+    }
+  },
+  "capacitance": {
+    "code": "capacitance",
+    "identity": {
+      "slug": "capacitance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Capacitance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q164399"
+      }
+    ],
+    "title": {
+      "en": "Capacitance"
+    }
+  },
+  "capacity": {
+    "code": "capacity",
+    "identity": {
+      "slug": "capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Capacity"
+      }
+    ],
+    "title": {
+      "en": "Capacity"
+    }
+  },
+  "carrierLifetime": {
+    "code": "carrier_lifetime",
+    "identity": {
+      "broader": "time",
+      "slug": "carrier_lifetime"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CarrierLifetime"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q5046374"
+      }
+    ],
+    "title": {
+      "en": "Carrier Lifetime"
+    }
+  },
+  "cartesianArea": {
+    "code": "cartesian_area",
+    "identity": {
+      "broader": "area",
+      "slug": "cartesian_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CartesianArea"
+      }
+    ],
+    "title": {
+      "en": "Cartesian Area"
+    }
+  },
+  "cartesianCoordinates": {
+    "code": "cartesian_coordinates",
+    "identity": {
+      "broader": "length",
+      "slug": "cartesian_coordinates"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CartesianCoordinates"
+      }
+    ],
+    "title": {
+      "en": "Cartesian Coordinates"
+    }
+  },
+  "cartesianVolume": {
+    "code": "cartesian_volume",
+    "identity": {
+      "broader": "volume",
+      "slug": "cartesian_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CartesianVolume"
+      }
+    ],
+    "title": {
+      "en": "Volume"
+    }
+  },
+  "catalyticActivity": {
+    "code": "catalytic_activity",
+    "identity": {
+      "slug": "catalytic_activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CatalyticActivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1735592"
+      }
+    ],
+    "title": {
+      "en": "Catalytic Activity"
+    }
+  },
+  "catalyticActivityConcentration": {
+    "code": "catalytic_activity_concentration",
+    "identity": {
+      "slug": "catalytic_activity_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CatalyticActivityConcentration"
+      }
+    ],
+    "title": {
+      "en": "Catalytic Activity Concentration"
+    }
+  },
+  "cationExchangeCapacity": {
+    "code": "cation_exchange_capacity",
+    "identity": {
+      "broader": "reactive_charge_per_mass",
+      "slug": "cation_exchange_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CationExchangeCapacity"
+      }
+    ],
+    "title": {
+      "en": "Cation Exchange Capacity"
+    }
+  },
+  "celsiusTemperature": {
+    "code": "celsius_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "celsius_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CelsiusTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74758530"
+      }
+    ],
+    "title": {
+      "en": "Celsius Temperature"
+    }
+  },
+  "centerOfGravityX": {
+    "code": "center_of_gravity_x",
+    "identity": {
+      "broader": "length",
+      "slug": "center_of_gravity_x"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CenterOfGravity_X"
+      }
+    ],
+    "title": {
+      "en": "Center of Gravity in the X Axis"
+    }
+  },
+  "centerOfGravityY": {
+    "code": "center_of_gravity_y",
+    "identity": {
+      "broader": "length",
+      "slug": "center_of_gravity_y"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CenterOfGravity_Y"
+      }
+    ],
+    "title": {
+      "en": "Center of Gravity in the Y Axis"
+    }
+  },
+  "centerOfGravityZ": {
+    "code": "center_of_gravity_z",
+    "identity": {
+      "broader": "length",
+      "slug": "center_of_gravity_z"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CenterOfGravity_Z"
+      }
+    ],
+    "title": {
+      "en": "Center of Gravity in the Z Axis"
+    }
+  },
+  "centerOfMass": {
+    "code": "center_of_mass",
+    "identity": {
+      "broader": "position_vector",
+      "slug": "center_of_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CENTER-OF-MASS"
+      }
+    ],
+    "title": {
+      "en": "Center of Mass (CoM)"
+    }
+  },
+  "characteristicAcousticImpedance": {
+    "code": "characteristic_acoustic_impedance",
+    "identity": {
+      "broader": "acoustic_impedance",
+      "slug": "characteristic_acoustic_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CharacteristicAcousticImpedance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q87051330"
+      }
+    ],
+    "title": {
+      "en": "Characteristic Acoustic Impedance"
+    }
+  },
+  "characteristicNumber": {
+    "code": "characteristic_number",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "characteristic_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CharacteristicNumber"
+      }
+    ],
+    "title": {
+      "en": "Characteristic Number"
+    }
+  },
+  "characteristicVelocity": {
+    "code": "characteristic_velocity",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "characteristic_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CharacteristicVelocity"
+      }
+    ],
+    "title": {
+      "en": "Characteristic Velocity"
+    }
+  },
+  "chargeNumber": {
+    "code": "charge_number",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "charge_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ChargeNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1800063"
+      }
+    ],
+    "title": {
+      "en": "Charge Number"
+    }
+  },
+  "chemicalAffinity": {
+    "code": "chemical_affinity",
+    "identity": {
+      "slug": "chemical_affinity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ChemicalAffinity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q382783"
+      }
+    ],
+    "title": {
+      "en": "Chemical Affinity"
+    }
+  },
+  "chemicalConsumptionPerMass": {
+    "code": "chemical_consumption_per_mass",
+    "identity": {
+      "broader": "specific_volume",
+      "slug": "chemical_consumption_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ChemicalConsumptionPerMass"
+      }
+    ],
+    "title": {
+      "en": "Chemical Consumption per Mass"
+    }
+  },
+  "chemicalPotential": {
+    "code": "chemical_potential",
+    "identity": {
+      "broader": "molar_energy",
+      "slug": "chemical_potential"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ChemicalPotential"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q737004"
+      }
+    ],
+    "title": {
+      "en": "Chemical Potential"
+    }
+  },
+  "chromaticity": {
+    "code": "chromaticity",
+    "identity": {
+      "slug": "chromaticity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Chromaticity"
+      }
+    ],
+    "title": {
+      "en": "Chromaticity"
+    }
+  },
+  "circulation": {
+    "code": "circulation",
+    "identity": {
+      "broader": "area_per_time",
+      "slug": "circulation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Circulation"
+      }
+    ],
+    "title": {
+      "en": "Circulation"
+    }
+  },
+  "closestApproachRadius": {
+    "code": "closest_approach_radius",
+    "identity": {
+      "broader": "radius",
+      "slug": "closest_approach_radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ClosestApproachRadius"
+      }
+    ],
+    "title": {
+      "en": "Closest Approach Radius"
+    }
+  },
+  "co2Equivalent": {
+    "code": "co2_equivalent",
+    "identity": {
+      "broader": "mass_equivalent",
+      "slug": "co2_equivalent"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CO2Equivalent"
+      }
+    ],
+    "title": {
+      "en": "CO2Equivalent"
+    }
+  },
+  "coefficientOfHeatTransfer": {
+    "code": "coefficient_of_heat_transfer",
+    "identity": {
+      "slug": "coefficient_of_heat_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CoefficientOfHeatTransfer"
+      }
+    ],
+    "title": {
+      "en": "Coefficient of Heat Transfer"
+    }
+  },
+  "coefficientOfPerformance": {
+    "code": "coefficient_of_performance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "coefficient_of_performance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CoefficientOfPerformance"
+      }
+    ],
+    "title": {
+      "en": "Coefficient of Performance"
+    }
+  },
+  "coercivity": {
+    "code": "coercivity",
+    "identity": {
+      "broader": "magnetic_field_strength",
+      "slug": "coercivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Coercivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q432635"
+      }
+    ],
+    "title": {
+      "en": "Coercivity"
+    }
+  },
+  "coherenceLength": {
+    "code": "coherence_length",
+    "identity": {
+      "broader": "length",
+      "slug": "coherence_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CoherenceLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q7643174"
+      }
+    ],
+    "title": {
+      "en": "Coherence Length"
+    }
+  },
+  "coldReceptorThreshold": {
+    "code": "cold_receptor_threshold",
+    "identity": {
+      "broader": "temperature",
+      "slug": "cold_receptor_threshold"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ColdReceptorThreshold"
+      }
+    ],
+    "title": {
+      "en": "Cold Receptor Threshold"
+    }
+  },
+  "combinedNonEvaporativeHeatTransferCoefficient": {
+    "code": "combined_non_evaporative_heat_transfer_coefficient",
+    "identity": {
+      "slug": "combined_non_evaporative_heat_transfer_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CombinedNonEvaporativeHeatTransferCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Combined Non Evaporative Heat Transfer Coefficient"
+    }
+  },
+  "commonLogarithmicMedianInformationFlow": {
+    "code": "common_logarithmic_median_information_flow",
+    "identity": {
+      "slug": "common_logarithmic_median_information_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CommonLogarithmicMedianInformationFlow"
+      }
+    ],
+    "title": {
+      "en": "Median Information Flow (from a Source of Information), Expressed as a Common Logarithm "
+    }
+  },
+  "complexFrequencyImaginary": {
+    "code": "complex_frequency_imaginary",
+    "identity": {
+      "broader": "frequency",
+      "slug": "complex_frequency_imaginary"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ComplexFrequency_Imaginary"
+      }
+    ],
+    "title": {
+      "en": "Imaginary Part of Complex Frequency"
+    }
+  },
+  "complexFrequencyReal": {
+    "code": "complex_frequency_real",
+    "identity": {
+      "broader": "frequency",
+      "slug": "complex_frequency_real"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ComplexFrequency_Real"
+      }
+    ],
+    "title": {
+      "en": "Real Part of Complex Frequency"
+    }
+  },
+  "complexPower": {
+    "code": "complex_power",
+    "identity": {
+      "broader": "electric_power",
+      "slug": "complex_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ComplexPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q65239736"
+      }
+    ],
+    "title": {
+      "en": "Complex Power"
+    }
+  },
+  "compoundPlaneAngle": {
+    "code": "compound_plane_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "compound_plane_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CompoundPlaneAngle"
+      }
+    ],
+    "title": {
+      "en": "Compound Plane Angle"
+    }
+  },
+  "compressibility": {
+    "code": "compressibility",
+    "identity": {
+      "slug": "compressibility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Compressibility"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q8067817"
+      }
+    ],
+    "title": {
+      "en": "Compressibility"
+    }
+  },
+  "compressibilityFactor": {
+    "code": "compressibility_factor",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "compressibility_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CompressibilityFactor"
+      }
+    ],
+    "title": {
+      "en": "Compressibility Factor"
+    }
+  },
+  "concentration": {
+    "code": "concentration",
+    "identity": {
+      "slug": "concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Concentration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3686031"
+      }
+    ],
+    "title": {
+      "en": "Concentration"
+    }
+  },
+  "conductance": {
+    "code": "conductance",
+    "identity": {
+      "slug": "conductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Conductance"
+      }
+    ],
+    "title": {
+      "en": "Conductance"
+    }
+  },
+  "conductionSpeed": {
+    "code": "conduction_speed",
+    "identity": {
+      "broader": "speed",
+      "slug": "conduction_speed"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ConductionSpeed"
+      }
+    ],
+    "title": {
+      "en": "Conduction Speed"
+    }
+  },
+  "conductiveHeatTransferRate": {
+    "code": "conductive_heat_transfer_rate",
+    "identity": {
+      "broader": "heat_flow_rate",
+      "slug": "conductive_heat_transfer_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ConductiveHeatTransferRate"
+      }
+    ],
+    "title": {
+      "en": "Conductive Heat Transfer Rate"
+    }
+  },
+  "conductivity": {
+    "code": "conductivity",
+    "identity": {
+      "slug": "conductivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Conductivity"
+      }
+    ],
+    "title": {
+      "en": "Conductivity"
+    }
+  },
+  "conductivityVariance": {
+    "code": "conductivity_variance",
+    "identity": {
+      "slug": "conductivity_variance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ConductivityVariance"
+      }
+    ],
+    "title": {
+      "en": "Conductivity Variance"
+    }
+  },
+  "conductivityVarianceNeon": {
+    "code": "conductivity_variance_neon",
+    "identity": {
+      "slug": "conductivity_variance_neon"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ConductivityVariance_NEON"
+      }
+    ],
+    "title": {
+      "en": "Conductivity Variance, NEON"
+    }
+  },
+  "constringence": {
+    "code": "constringence",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "constringence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Constringence"
+      }
+    ],
+    "title": {
+      "en": "Constringence"
+    }
+  },
+  "contractEndItemSpecificationMass": {
+    "code": "contract_end_item_specification_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "contract_end_item_specification_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CONTRACT-END-ITEM-SPECIFICATION-MASS"
+      }
+    ],
+    "title": {
+      "en": "Contract End Item (CEI) Specification Mass."
+    }
+  },
+  "controlMass": {
+    "code": "control_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "control_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CONTROL-MASS"
+      }
+    ],
+    "title": {
+      "en": "Control Mass."
+    }
+  },
+  "convectiveHeatTransfer": {
+    "code": "convective_heat_transfer",
+    "identity": {
+      "broader": "heat_flow_rate",
+      "slug": "convective_heat_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ConvectiveHeatTransfer"
+      }
+    ],
+    "title": {
+      "en": "Convective Heat Transfer"
+    }
+  },
+  "coolingPerformanceRatio": {
+    "code": "cooling_performance_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "cooling_performance_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CoolingPerformanceRatio"
+      }
+    ],
+    "title": {
+      "en": "Cooling Performance Ratio"
+    }
+  },
+  "correlatedColorTemperature": {
+    "code": "correlated_color_temperature",
+    "identity": {
+      "broader": "thermodynamic_temperature",
+      "slug": "correlated_color_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CorrelatedColorTemperature"
+      }
+    ],
+    "title": {
+      "en": "Correlated Colour Temperature"
+    }
+  },
+  "costPerArea": {
+    "code": "cost_per_area",
+    "identity": {
+      "slug": "cost_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CostPerArea"
+      }
+    ],
+    "title": {
+      "en": "Cost per Area"
+    }
+  },
+  "costPerEnergy": {
+    "code": "cost_per_energy",
+    "identity": {
+      "slug": "cost_per_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CostPerEnergy"
+      }
+    ],
+    "title": {
+      "en": "Energy Cost"
+    }
+  },
+  "costPerMass": {
+    "code": "cost_per_mass",
+    "identity": {
+      "slug": "cost_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CostPerMass"
+      }
+    ],
+    "title": {
+      "en": "Cost per Mass"
+    }
+  },
+  "costPerPower": {
+    "code": "cost_per_power",
+    "identity": {
+      "slug": "cost_per_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CostPerPower"
+      }
+    ],
+    "title": {
+      "en": "Cost per Power"
+    }
+  },
+  "count": {
+    "code": "count",
+    "description": {
+      "en": "Number of discrete instances of a repeated feature (1 is legal: one discrete circuit). Its PRESENCE is the explicit nature tag: present = discrete countable instance(s); absent = inherently-singular aggregate. Never count: 1 for an aggregate; never omit for something you could see two of."
+    },
+    "identity": {
+      "slug": "count"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Count"
+      }
+    ],
+    "title": {
+      "en": "Count"
+    }
+  },
+  "countRate": {
+    "code": "count_rate",
+    "identity": {
+      "slug": "count_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CountRate"
+      }
+    ],
+    "title": {
+      "en": "Count Rate"
+    }
+  },
+  "couplingFactor": {
+    "code": "coupling_factor",
+    "identity": {
+      "slug": "coupling_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CouplingFactor"
+      }
+    ],
+    "title": {
+      "en": "Coupling Factor"
+    }
+  },
+  "crossSection": {
+    "code": "cross_section",
+    "identity": {
+      "broader": "area",
+      "slug": "cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q17128025"
+      }
+    ],
+    "title": {
+      "en": "Cross-section"
+    }
+  },
+  "crossSectionalArea": {
+    "code": "cross_sectional_area",
+    "identity": {
+      "broader": "area",
+      "slug": "cross_sectional_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CrossSectionalArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q29325024"
+      }
+    ],
+    "title": {
+      "en": "Cross-sectional Area"
+    }
+  },
+  "cubicElectricDipoleMomentPerSquareEnergy": {
+    "code": "cubic_electric_dipole_moment_per_square_energy",
+    "identity": {
+      "slug": "cubic_electric_dipole_moment_per_square_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CubicElectricDipoleMomentPerSquareEnergy"
+      }
+    ],
+    "title": {
+      "en": "Cubic Electric Dipole Moment per Square Energy"
+    }
+  },
+  "cubicExpansionCoefficient": {
+    "code": "cubic_expansion_coefficient",
+    "identity": {
+      "broader": "expansion_ratio",
+      "slug": "cubic_expansion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CubicExpansionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74761076"
+      }
+    ],
+    "title": {
+      "en": "Cubic Expansion Coefficient"
+    }
+  },
+  "curieTemperature": {
+    "code": "curie_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "curie_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurieTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q191073"
+      }
+    ],
+    "title": {
+      "en": "Curie Temperature"
+    }
+  },
+  "currency": {
+    "code": "currency",
+    "identity": {
+      "slug": "currency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Currency"
+      }
+    ],
+    "title": {
+      "en": "Currency"
+    }
+  },
+  "currencyPerFlight": {
+    "code": "currency_per_flight",
+    "identity": {
+      "slug": "currency_per_flight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurrencyPerFlight"
+      }
+    ],
+    "title": {
+      "en": "Currency per Flight"
+    }
+  },
+  "currencyPerTime": {
+    "code": "currency_per_time",
+    "identity": {
+      "slug": "currency_per_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurrencyPerTime"
+      }
+    ],
+    "title": {
+      "en": "Currency per Time"
+    }
+  },
+  "currentLinkage": {
+    "code": "current_linkage",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "current_linkage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurrentLinkage"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77995703"
+      }
+    ],
+    "title": {
+      "en": "Current Linkage"
+    }
+  },
+  "currentOfTheAmountOfSubstance": {
+    "code": "current_of_the_amount_of_substance",
+    "identity": {
+      "slug": "current_of_the_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurrentOfTheAmountOfSubstance"
+      }
+    ],
+    "title": {
+      "en": "Current of the Amount of Substance"
+    }
+  },
+  "curvature": {
+    "code": "curvature",
+    "identity": {
+      "slug": "curvature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Curvature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q214881"
+      }
+    ],
+    "title": {
+      "en": "Curvature"
+    }
+  },
+  "curvatureFromRadius": {
+    "code": "curvature_from_radius",
+    "identity": {
+      "slug": "curvature_from_radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CurvatureFromRadius"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q214881"
+      }
+    ],
+    "title": {
+      "en": "Curvature"
+    }
+  },
+  "cutoffCurrentRating": {
+    "code": "cutoff_current_rating",
+    "identity": {
+      "slug": "cutoff_current_rating"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CutoffCurrentRating"
+      }
+    ],
+    "title": {
+      "en": "I²t-value"
+    }
+  },
+  "cyclotronAngularFrequency": {
+    "code": "cyclotron_angular_frequency",
+    "identity": {
+      "broader": "angular_frequency",
+      "slug": "cyclotron_angular_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "CyclotronAngularFrequency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97708211"
+      }
+    ],
+    "title": {
+      "en": "Larmor Angular Frequency"
+    }
+  },
+  "dataRate": {
+    "code": "data_rate",
+    "identity": {
+      "slug": "data_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DataRate"
+      }
+    ],
+    "title": {
+      "en": "Data Rate"
+    }
+  },
+  "datasetOfBits": {
+    "code": "dataset_of_bits",
+    "identity": {
+      "slug": "dataset_of_bits"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DatasetOfBits"
+      }
+    ],
+    "title": {
+      "en": "Dataset of Bits"
+    }
+  },
+  "datasetOfBytes": {
+    "code": "dataset_of_bytes",
+    "identity": {
+      "slug": "dataset_of_bytes"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DatasetOfBytes"
+      }
+    ],
+    "title": {
+      "en": "Dataset of Bytes"
+    }
+  },
+  "dataTransmissionRate": {
+    "code": "data_transmission_rate",
+    "identity": {
+      "slug": "data_transmission_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DataTransmissionRate"
+      }
+    ],
+    "title": {
+      "en": "Data Transmission Rate"
+    }
+  },
+  "debyeAngularFrequency": {
+    "code": "debye_angular_frequency",
+    "identity": {
+      "broader": "angular_frequency",
+      "slug": "debye_angular_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DebyeAngularFrequency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105580986"
+      }
+    ],
+    "title": {
+      "en": "Debye Angular Frequency"
+    }
+  },
+  "debyeAngularWavenumber": {
+    "code": "debye_angular_wavenumber",
+    "identity": {
+      "broader": "angular_wavenumber",
+      "slug": "debye_angular_wavenumber"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DebyeAngularWavenumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105554370"
+      }
+    ],
+    "title": {
+      "en": "Debye Angular Wavenumber"
+    }
+  },
+  "debyeTemperature": {
+    "code": "debye_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "debye_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DebyeTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3517821"
+      }
+    ],
+    "title": {
+      "en": "Debye Temperature"
+    }
+  },
+  "debyeWallerFactor": {
+    "code": "debye_waller_factor",
+    "identity": {
+      "slug": "debye_waller_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DebyeWallerFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q902587"
+      }
+    ],
+    "title": {
+      "en": "Debye-Waller Factor"
+    }
+  },
+  "decayConstant": {
+    "code": "decay_constant",
+    "identity": {
+      "broader": "inverse_time",
+      "slug": "decay_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DecayConstant"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11477200"
+      }
+    ],
+    "title": {
+      "en": "Decay Constant"
+    }
+  },
+  "degreeOfDissociation": {
+    "code": "degree_of_dissociation",
+    "identity": {
+      "slug": "degree_of_dissociation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DegreeOfDissociation"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q907334"
+      }
+    ],
+    "title": {
+      "en": "Degree of Dissociation"
+    }
+  },
+  "deltaV": {
+    "code": "delta_v",
+    "identity": {
+      "broader": "velocity",
+      "slug": "delta_v"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DELTA-V"
+      }
+    ],
+    "title": {
+      "en": "Delta-V"
+    }
+  },
+  "density": {
+    "code": "density",
+    "identity": {
+      "slug": "density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Density"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q29539"
+      }
+    ],
+    "title": {
+      "en": "Density"
+    }
+  },
+  "densityInCombustionChamber": {
+    "code": "density_in_combustion_chamber",
+    "identity": {
+      "broader": "density",
+      "slug": "density_in_combustion_chamber"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DensityInCombustionChamber"
+      }
+    ],
+    "title": {
+      "en": "Density in Combustion Chamber"
+    }
+  },
+  "densityOfStates": {
+    "code": "density_of_states",
+    "identity": {
+      "slug": "density_of_states"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DensityOfStates"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q230895"
+      }
+    ],
+    "title": {
+      "en": "Density of states"
+    }
+  },
+  "depth": {
+    "code": "depth",
+    "identity": {
+      "broader": "length",
+      "slug": "depth"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Depth"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q930412"
+      }
+    ],
+    "title": {
+      "en": "Depth"
+    }
+  },
+  "dewPointTemperature": {
+    "code": "dew_point_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "dew_point_temperature"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "K"
@@ -174,12 +3933,854 @@ export default {
       }
     ],
     "title": {
-      "en": "Dew point",
+      "en": "Dew Point Temperature",
       "pt": "Ponto de orvalho"
+    }
+  },
+  "diameter": {
+    "code": "diameter",
+    "identity": {
+      "broader": "length",
+      "slug": "diameter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Diameter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q37221"
+      }
+    ],
+    "title": {
+      "en": "Diameter"
+    }
+  },
+  "diastolicBloodPressure": {
+    "code": "diastolic_blood_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "diastolic_blood_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DiastolicBloodPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q42015777"
+      }
+    ],
+    "title": {
+      "en": "Diastolic Blood Pressure"
+    }
+  },
+  "diffusionArea": {
+    "code": "diffusion_area",
+    "identity": {
+      "broader": "area",
+      "slug": "diffusion_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DiffusionArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98966292"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Area"
+    }
+  },
+  "diffusionCoefficient": {
+    "code": "diffusion_coefficient",
+    "identity": {
+      "broader": "area_per_time",
+      "slug": "diffusion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DiffusionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q604008"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Coefficient"
+    }
+  },
+  "diffusionCoefficientForFluenceRate": {
+    "code": "diffusion_coefficient_for_fluence_rate",
+    "identity": {
+      "broader": "length",
+      "slug": "diffusion_coefficient_for_fluence_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DiffusionCoefficientForFluenceRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98876254"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Coefficient for Fluence Rate"
+    }
+  },
+  "diffusionLength": {
+    "code": "diffusion_length",
+    "identity": {
+      "broader": "length",
+      "slug": "diffusion_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DiffusionLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98997762"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Length"
+    }
+  },
+  "digitRate": {
+    "code": "digit_rate",
+    "identity": {
+      "slug": "digit_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DigitRate"
+      }
+    ],
+    "title": {
+      "en": "Digit Rate"
+    }
+  },
+  "dimensionless": {
+    "code": "dimensionless",
+    "identity": {
+      "slug": "dimensionless"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Dimensionless"
+      }
+    ],
+    "title": {
+      "en": "Dimensionless"
+    }
+  },
+  "dimensionlessRatio": {
+    "code": "dimensionless_ratio",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "dimensionless_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DimensionlessRatio"
+      }
+    ],
+    "title": {
+      "en": "Dimensionless Ratio"
+    }
+  },
+  "displacement": {
+    "code": "displacement",
+    "identity": {
+      "broader": "length",
+      "slug": "displacement"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Displacement"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q190291"
+      }
+    ],
+    "title": {
+      "en": "Displacement"
+    }
+  },
+  "displacementCurrent": {
+    "code": "displacement_current",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "displacement_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DisplacementCurrent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q853178"
+      }
+    ],
+    "title": {
+      "en": "Displacement Current"
+    }
+  },
+  "displacementCurrentDensity": {
+    "code": "displacement_current_density",
+    "identity": {
+      "slug": "displacement_current_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DisplacementCurrentDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77614612"
+      }
+    ],
+    "title": {
+      "en": "Displacement Current Density"
+    }
+  },
+  "displacementVectorOfIon": {
+    "code": "displacement_vector_of_ion",
+    "identity": {
+      "broader": "length",
+      "slug": "displacement_vector_of_ion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DisplacementVectorOfIon"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105533558"
+      }
+    ],
+    "title": {
+      "en": "Displacement Vector of Ion"
+    }
+  },
+  "dissipance": {
+    "code": "dissipance",
+    "identity": {
+      "slug": "dissipance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Dissipance"
+      }
+    ],
+    "title": {
+      "en": "Dissipance"
+    }
+  },
+  "distance": {
+    "code": "distance",
+    "identity": {
+      "broader": "length",
+      "slug": "distance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Distance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q126017"
+      }
+    ],
+    "title": {
+      "en": "Distance"
+    }
+  },
+  "distanceTraveledDuringBurn": {
+    "code": "distance_traveled_during_burn",
+    "identity": {
+      "broader": "distance",
+      "slug": "distance_traveled_during_burn"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DistanceTraveledDuringBurn"
+      }
+    ],
+    "title": {
+      "en": "Distance Traveled During a Burn"
+    }
+  },
+  "donorDensity": {
+    "code": "donor_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "donor_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DonorDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105979886"
+      }
+    ],
+    "title": {
+      "en": "Donor Density"
+    }
+  },
+  "donorIonizationEnergy": {
+    "code": "donor_ionization_energy",
+    "identity": {
+      "broader": "ionization_energy",
+      "slug": "donor_ionization_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DonorIonizationEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q112958103"
+      }
+    ],
+    "title": {
+      "en": "Donor Ionization Energy"
+    }
+  },
+  "doseEquivalent": {
+    "code": "dose_equivalent",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "dose_equivalent"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DoseEquivalent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q256106"
+      }
+    ],
+    "title": {
+      "en": "Dose Equivalent"
+    }
+  },
+  "doseEquivalentQualityFactor": {
+    "code": "dose_equivalent_quality_factor",
+    "identity": {
+      "slug": "dose_equivalent_quality_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DoseEquivalentQualityFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2122099"
+      }
+    ],
+    "title": {
+      "en": "Dose Equivalent Quality Factor"
+    }
+  },
+  "doseEquivalentRate": {
+    "code": "dose_equivalent_rate",
+    "identity": {
+      "slug": "dose_equivalent_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DoseEquivalentRate"
+      }
+    ],
+    "title": {
+      "en": "Dose Equivalent Rate"
+    }
+  },
+  "dotsPerInch": {
+    "code": "dots_per_inch",
+    "identity": {
+      "broader": "lineic_resolution",
+      "slug": "dots_per_inch"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DotsPerInch"
+      }
+    ],
+    "title": {
+      "en": "Dots per Inch"
+    }
+  },
+  "dragCoefficient": {
+    "code": "drag_coefficient",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "drag_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DragCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1778961"
+      }
+    ],
+    "title": {
+      "en": "Drag Coefficient"
+    }
+  },
+  "dragForce": {
+    "code": "drag_force",
+    "identity": {
+      "broader": "force",
+      "slug": "drag_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DragForce"
+      }
+    ],
+    "title": {
+      "en": "Drag Force"
+    }
+  },
+  "dryBulbTemperature": {
+    "code": "dry_bulb_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "dry_bulb_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DryBulbTemperature"
+      }
+    ],
+    "title": {
+      "en": "Dry Bulb Temperature"
+    }
+  },
+  "dryMass": {
+    "code": "dry_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "dry_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DRY-MASS"
+      }
+    ],
+    "title": {
+      "en": "Dry Mass"
+    }
+  },
+  "dryVolume": {
+    "code": "dry_volume",
+    "identity": {
+      "broader": "volume",
+      "slug": "dry_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DryVolume"
+      }
+    ],
+    "title": {
+      "en": "Dry Volume"
+    }
+  },
+  "dutyCycle": {
+    "code": "duty_cycle",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "duty_cycle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DutyCycle"
+      }
+    ],
+    "title": {
+      "en": "Duty Cycle"
+    }
+  },
+  "duv": {
+    "code": "duv",
+    "identity": {
+      "slug": "duv"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Duv"
+      }
+    ],
+    "title": {
+      "en": "Delta u,v"
+    }
+  },
+  "dynamicFriction": {
+    "code": "dynamic_friction",
+    "identity": {
+      "broader": "friction",
+      "slug": "dynamic_friction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DynamicFriction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99492067"
+      }
+    ],
+    "title": {
+      "en": "Dynamic Friction"
+    }
+  },
+  "dynamicFrictionCoefficient": {
+    "code": "dynamic_friction_coefficient",
+    "identity": {
+      "broader": "friction_coefficient",
+      "slug": "dynamic_friction_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DynamicFrictionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Dynamic Friction Coefficient"
+    }
+  },
+  "dynamicPressure": {
+    "code": "dynamic_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "dynamic_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DynamicPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q949674"
+      }
+    ],
+    "title": {
+      "en": "Dynamic Pressure"
+    }
+  },
+  "dynamicViscosity": {
+    "code": "dynamic_viscosity",
+    "identity": {
+      "slug": "dynamic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "DynamicViscosity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q15152757"
+      }
+    ],
+    "title": {
+      "en": "Dynamic Viscosity"
+    }
+  },
+  "earthquakeMagnitude": {
+    "code": "earthquake_magnitude",
+    "identity": {
+      "slug": "earthquake_magnitude"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EarthquakeMagnitude"
+      }
+    ],
+    "title": {
+      "en": "Earthquake Magnitude"
+    }
+  },
+  "eccentricityOfOrbit": {
+    "code": "eccentricity_of_orbit",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "eccentricity_of_orbit"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EccentricityOfOrbit"
+      }
+    ],
+    "title": {
+      "en": "Eccentricity of Orbit"
+    }
+  },
+  "effectiveMass": {
+    "code": "effective_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "effective_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EffectiveMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1064434"
+      }
+    ],
+    "title": {
+      "en": "Effective Mass"
+    }
+  },
+  "effectiveMultiplicationFactor": {
+    "code": "effective_multiplication_factor",
+    "identity": {
+      "broader": "multiplication_factor",
+      "slug": "effective_multiplication_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EffectiveMultiplicationFactor"
+      }
+    ],
+    "title": {
+      "en": "Effective Multiplication Factor"
+    }
+  },
+  "efficiency": {
+    "code": "efficiency",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "efficiency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Efficiency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11945244"
+      }
+    ],
+    "title": {
+      "en": "Efficiency"
+    }
+  },
+  "einsteinCoefficients": {
+    "code": "einstein_coefficients",
+    "identity": {
+      "slug": "einstein_coefficients"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EinsteinCoefficients"
+      }
+    ],
+    "title": {
+      "en": "Einstein Coefficients"
+    }
+  },
+  "einsteinTransitionProbability": {
+    "code": "einstein_transition_probability",
+    "identity": {
+      "slug": "einstein_transition_probability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EinsteinTransitionProbability"
+      }
+    ],
+    "title": {
+      "en": "Einstein Transition Probability"
+    }
+  },
+  "einsteinTransitionProbabilityForSpontaneousOrInducedEmissionAndAbsorption": {
+    "code": "einstein_transition_probability_for_spontaneous_or_induced_emission_and_absorption",
+    "identity": {
+      "slug": "einstein_transition_probability_for_spontaneous_or_induced_emission_and_absorption"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EinsteinTransitionProbabilityForSpontaneousOrInducedEmissionAndAbsorption"
+      }
+    ],
+    "title": {
+      "en": "Einstein Transition Probability for Spontaneous Or Induced Emission and Absorption"
+    }
+  },
+  "electricalConductance": {
+    "code": "electrical_conductance",
+    "identity": {
+      "slug": "electrical_conductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricalConductance"
+      }
+    ],
+    "title": {
+      "en": "Electrical Conductance"
+    }
+  },
+  "electricalPowerToMassRatio": {
+    "code": "electrical_power_to_mass_ratio",
+    "identity": {
+      "broader": "specific_power",
+      "slug": "electrical_power_to_mass_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricalPowerToMassRatio"
+      }
+    ],
+    "title": {
+      "en": "Electrical Power to Mass Ratio"
+    }
+  },
+  "electricalResistance": {
+    "code": "electrical_resistance",
+    "identity": {
+      "slug": "electrical_resistance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricalResistance"
+      }
+    ],
+    "title": {
+      "en": "Electrical Resistance"
     }
   },
   "electricCharge": {
     "code": "electric_charge",
+    "identity": {
+      "slug": "electric_charge"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "C"
@@ -189,15 +4790,2174 @@ export default {
         "match": "exact",
         "registryId": "qudt_quantity_kind",
         "term": "ElectricCharge"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1111"
       }
     ],
     "title": {
-      "en": "Electric charge",
+      "en": "Electric Charge",
       "pt": "Carga elétrica"
+    }
+  },
+  "electricChargeDensity": {
+    "code": "electric_charge_density",
+    "identity": {
+      "slug": "electric_charge_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargeDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q69425629"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Density"
+    }
+  },
+  "electricChargeLinearDensity": {
+    "code": "electric_charge_linear_density",
+    "identity": {
+      "slug": "electric_charge_linear_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargeLinearDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Linear Density"
+    }
+  },
+  "electricChargeLineDensity": {
+    "code": "electric_charge_line_density",
+    "identity": {
+      "slug": "electric_charge_line_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargeLineDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Line Density"
+    }
+  },
+  "electricChargePerAmountOfSubstance": {
+    "code": "electric_charge_per_amount_of_substance",
+    "identity": {
+      "slug": "electric_charge_per_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargePerAmountOfSubstance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97061171"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge per Amount of Substance"
+    }
+  },
+  "electricChargePerArea": {
+    "code": "electric_charge_per_area",
+    "identity": {
+      "slug": "electric_charge_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargePerArea"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge per Area"
+    }
+  },
+  "electricChargePerMass": {
+    "code": "electric_charge_per_mass",
+    "identity": {
+      "slug": "electric_charge_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargePerMass"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge per Mass"
+    }
+  },
+  "electricChargeSurfaceDensity": {
+    "code": "electric_charge_surface_density",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "electric_charge_surface_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargeSurfaceDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Surface Density"
+    }
+  },
+  "electricChargeVolumeDensity": {
+    "code": "electric_charge_volume_density",
+    "identity": {
+      "slug": "electric_charge_volume_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricChargeVolumeDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Volume Density"
+    }
+  },
+  "electricConductivity": {
+    "code": "electric_conductivity",
+    "identity": {
+      "slug": "electric_conductivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricConductivity"
+      }
+    ],
+    "title": {
+      "en": "Electric Conductivity"
+    }
+  },
+  "electricCurrent": {
+    "code": "electric_current",
+    "identity": {
+      "slug": "electric_current"
+    },
+    "measurand": {
+      "accumulation": "instantaneous",
+      "siUnit": "A"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q29996"
+      },
+      {
+        "match": "exact",
+        "registryId": "ha_device_class",
+        "term": "current"
+      }
+    ],
+    "title": {
+      "en": "Electric Current",
+      "pt": "Corrente"
+    }
+  },
+  "electricCurrentDensity": {
+    "code": "electric_current_density",
+    "identity": {
+      "slug": "electric_current_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q234072"
+      }
+    ],
+    "title": {
+      "en": "Electric Current Density"
+    }
+  },
+  "electricCurrentImbalance": {
+    "code": "electric_current_imbalance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "electric_current_imbalance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentImbalance"
+      }
+    ],
+    "title": {
+      "en": "Electric Current Imbalance"
+    }
+  },
+  "electricCurrentPerAngle": {
+    "code": "electric_current_per_angle",
+    "identity": {
+      "slug": "electric_current_per_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentPerAngle"
+      }
+    ],
+    "title": {
+      "en": "Electric Current per Angle"
+    }
+  },
+  "electricCurrentPerEnergy": {
+    "code": "electric_current_per_energy",
+    "identity": {
+      "slug": "electric_current_per_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentPerEnergy"
+      }
+    ],
+    "title": {
+      "en": "Electric Current per Energy"
+    }
+  },
+  "electricCurrentPerLength": {
+    "code": "electric_current_per_length",
+    "identity": {
+      "broader": "linear_electric_current_density",
+      "slug": "electric_current_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentPerLength"
+      }
+    ],
+    "title": {
+      "en": "Electric Current per Length"
+    }
+  },
+  "electricCurrentPerTemperature": {
+    "code": "electric_current_per_temperature",
+    "identity": {
+      "slug": "electric_current_per_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentPerTemperature"
+      }
+    ],
+    "title": {
+      "en": "Electric Current per Temperature"
+    }
+  },
+  "electricCurrentPhasor": {
+    "code": "electric_current_phasor",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "electric_current_phasor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricCurrentPhasor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q78514596"
+      }
+    ],
+    "title": {
+      "en": "Electric Current Phasor"
+    }
+  },
+  "electricDipoleMoment": {
+    "code": "electric_dipole_moment",
+    "identity": {
+      "slug": "electric_dipole_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricDipoleMoment"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q735135"
+      }
+    ],
+    "title": {
+      "en": "Electric Dipole Moment"
+    }
+  },
+  "electricDipoleMomentCubicPerEnergySquared": {
+    "code": "electric_dipole_moment_cubic_per_energy_squared",
+    "identity": {
+      "slug": "electric_dipole_moment_cubic_per_energy_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricDipoleMoment_CubicPerEnergy_Squared"
+      }
+    ],
+    "title": {
+      "en": "Cubic Electric Dipole Moment per Square Energy"
+    }
+  },
+  "electricDipoleMomentQuarticPerEnergyCubic": {
+    "code": "electric_dipole_moment_quartic_per_energy_cubic",
+    "identity": {
+      "slug": "electric_dipole_moment_quartic_per_energy_cubic"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricDipoleMoment_QuarticPerEnergy_Cubic"
+      }
+    ],
+    "title": {
+      "en": "Quartic Electric Dipole Moment per Cubic Energy"
+    }
+  },
+  "electricDisplacement": {
+    "code": "electric_displacement",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "electric_displacement"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricDisplacement"
+      }
+    ],
+    "title": {
+      "en": "Electric Displacement"
+    }
+  },
+  "electricDisplacementField": {
+    "code": "electric_displacement_field",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "electric_displacement_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricDisplacementField"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q371907"
+      }
+    ],
+    "title": {
+      "en": "Electric Displacement Field"
+    }
+  },
+  "electricEnergy": {
+    "code": "electric_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "electric_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q206799"
+      }
+    ],
+    "title": {
+      "en": "Electric Energy"
+    }
+  },
+  "electricField": {
+    "code": "electric_field",
+    "identity": {
+      "slug": "electric_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricField"
+      }
+    ],
+    "title": {
+      "en": "Electric Field"
+    }
+  },
+  "electricFieldStrength": {
+    "code": "electric_field_strength",
+    "identity": {
+      "slug": "electric_field_strength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricFieldStrength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q20989"
+      }
+    ],
+    "title": {
+      "en": "Electric Field Strength"
+    }
+  },
+  "electricFlux": {
+    "code": "electric_flux",
+    "identity": {
+      "slug": "electric_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q501267"
+      }
+    ],
+    "title": {
+      "en": "Electric Flux"
+    }
+  },
+  "electricFluxDensity": {
+    "code": "electric_flux_density",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "electric_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Flux Density"
+    }
+  },
+  "electricPolarizability": {
+    "code": "electric_polarizability",
+    "identity": {
+      "slug": "electric_polarizability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricPolarizability"
+      }
+    ],
+    "title": {
+      "en": "Electric Polarizability"
+    }
+  },
+  "electricPolarization": {
+    "code": "electric_polarization",
+    "identity": {
+      "slug": "electric_polarization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricPolarization"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1050425"
+      }
+    ],
+    "title": {
+      "en": "Electric Polarization"
+    }
+  },
+  "electricPotential": {
+    "code": "electric_potential",
+    "identity": {
+      "slug": "electric_potential"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricPotential"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q55451"
+      }
+    ],
+    "title": {
+      "en": "Electric Potential"
+    }
+  },
+  "electricPotentialDifference": {
+    "code": "electric_potential_difference",
+    "identity": {
+      "slug": "electric_potential_difference"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricPotentialDifference"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77597807"
+      }
+    ],
+    "title": {
+      "en": "Electric Potential Difference"
+    }
+  },
+  "electricPower": {
+    "code": "electric_power",
+    "identity": {
+      "broader": "power",
+      "slug": "electric_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q27137"
+      }
+    ],
+    "title": {
+      "en": "Electric Power"
+    }
+  },
+  "electricQuadrupoleMoment": {
+    "code": "electric_quadrupole_moment",
+    "identity": {
+      "slug": "electric_quadrupole_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricQuadrupoleMoment"
+      }
+    ],
+    "title": {
+      "en": "Electric Quadrupole Moment"
+    }
+  },
+  "electricSusceptibility": {
+    "code": "electric_susceptibility",
+    "identity": {
+      "slug": "electric_susceptibility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectricSusceptibility"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q598305"
+      }
+    ],
+    "title": {
+      "en": "Electric Susceptibility"
+    }
+  },
+  "electrolyticConductivity": {
+    "code": "electrolytic_conductivity",
+    "identity": {
+      "slug": "electrolytic_conductivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectrolyticConductivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q907564"
+      }
+    ],
+    "title": {
+      "en": "Electrolytic Conductivity"
+    }
+  },
+  "electromagneticEnergyDensity": {
+    "code": "electromagnetic_energy_density",
+    "identity": {
+      "broader": "energy_density",
+      "slug": "electromagnetic_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectromagneticEnergyDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77989624"
+      }
+    ],
+    "title": {
+      "en": "Electromagnetic Energy Density"
+    }
+  },
+  "electromagneticPermeability": {
+    "code": "electromagnetic_permeability",
+    "identity": {
+      "slug": "electromagnetic_permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectromagneticPermeability"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q28352"
+      }
+    ],
+    "title": {
+      "en": "Permeability"
+    }
+  },
+  "electromagneticPermeabilityRatio": {
+    "code": "electromagnetic_permeability_ratio",
+    "identity": {
+      "slug": "electromagnetic_permeability_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectromagneticPermeabilityRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77785645"
+      }
+    ],
+    "title": {
+      "en": "Electromagnetic Permeability Ratio"
+    }
+  },
+  "electromagneticWavePhaseSpeed": {
+    "code": "electromagnetic_wave_phase_speed",
+    "identity": {
+      "broader": "speed",
+      "slug": "electromagnetic_wave_phase_speed"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectromagneticWavePhaseSpeed"
+      }
+    ],
+    "title": {
+      "en": "Electromagnetic Wave Phase Speed"
+    }
+  },
+  "electromotiveForce": {
+    "code": "electromotive_force",
+    "identity": {
+      "broader": "electric_potential",
+      "slug": "electromotive_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectromotiveForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q185329"
+      }
+    ],
+    "title": {
+      "en": "Electromotive Force"
+    }
+  },
+  "electronAffinity": {
+    "code": "electron_affinity",
+    "identity": {
+      "broader": "energy",
+      "slug": "electron_affinity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectronAffinity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105846486"
+      }
+    ],
+    "title": {
+      "en": "Electron Affinity"
+    }
+  },
+  "electronDensity": {
+    "code": "electron_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "electron_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectronDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105971077"
+      }
+    ],
+    "title": {
+      "en": "Electron Density"
+    }
+  },
+  "electronMeanFreePath": {
+    "code": "electron_mean_free_path",
+    "identity": {
+      "broader": "length",
+      "slug": "electron_mean_free_path"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectronMeanFreePath"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105672307"
+      }
+    ],
+    "title": {
+      "en": "Electron Mean Free Path"
+    }
+  },
+  "electronMobility": {
+    "code": "electron_mobility",
+    "identity": {
+      "broader": "mobility",
+      "slug": "electron_mobility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectronMobility"
+      }
+    ],
+    "title": {
+      "en": "Electron Mobility"
+    }
+  },
+  "electronRadius": {
+    "code": "electron_radius",
+    "identity": {
+      "broader": "length",
+      "slug": "electron_radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElectronRadius"
+      }
+    ],
+    "title": {
+      "en": "Electron Radius"
+    }
+  },
+  "elevationRelativeToNap": {
+    "code": "elevation_relative_to_nap",
+    "identity": {
+      "broader": "altitude",
+      "slug": "elevation_relative_to_nap"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ElevationRelativeToNAP"
+      }
+    ],
+    "title": {
+      "en": "Elevation Relative to NAP"
+    }
+  },
+  "emissivity": {
+    "code": "emissivity",
+    "identity": {
+      "slug": "emissivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Emissivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q899670"
+      }
+    ],
+    "title": {
+      "en": "Emissivity"
+    }
+  },
+  "energy": {
+    "code": "energy",
+    "identity": {
+      "slug": "energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Energy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11379"
+      }
+    ],
+    "title": {
+      "en": "Energy"
+    }
+  },
+  "energyContent": {
+    "code": "energy_content",
+    "identity": {
+      "broader": "energy",
+      "slug": "energy_content"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyContent"
+      }
+    ],
+    "title": {
+      "en": "Energy Content"
+    }
+  },
+  "energyDensity": {
+    "code": "energy_density",
+    "identity": {
+      "slug": "energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q828402"
+      }
+    ],
+    "title": {
+      "en": "Energy Density"
+    }
+  },
+  "energyDensityOfStates": {
+    "code": "energy_density_of_states",
+    "identity": {
+      "slug": "energy_density_of_states"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyDensityOfStates"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105687031"
+      }
+    ],
+    "title": {
+      "en": "Energy Density of States"
+    }
+  },
+  "energyExpenditure": {
+    "code": "energy_expenditure",
+    "identity": {
+      "broader": "massic_power",
+      "slug": "energy_expenditure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyExpenditure"
+      }
+    ],
+    "title": {
+      "en": "Energy Expenditure"
+    }
+  },
+  "energyFluence": {
+    "code": "energy_fluence",
+    "identity": {
+      "broader": "energy_per_area",
+      "slug": "energy_fluence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyFluence"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98538612"
+      }
+    ],
+    "title": {
+      "en": "Energy Fluence"
+    }
+  },
+  "energyFluenceRate": {
+    "code": "energy_fluence_rate",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "energy_fluence_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyFluenceRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q65274525"
+      }
+    ],
+    "title": {
+      "en": "Energy Fluence Rate"
+    }
+  },
+  "energyImparted": {
+    "code": "energy_imparted",
+    "identity": {
+      "broader": "energy",
+      "slug": "energy_imparted"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyImparted"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99526944"
+      }
+    ],
+    "title": {
+      "en": "Energy Imparted"
+    }
+  },
+  "energyInternal": {
+    "code": "energy_internal",
+    "identity": {
+      "broader": "energy",
+      "slug": "energy_internal"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyInternal"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q180241"
+      }
+    ],
+    "title": {
+      "en": "internal energy"
+    }
+  },
+  "energyKinetic": {
+    "code": "energy_kinetic",
+    "identity": {
+      "broader": "energy",
+      "slug": "energy_kinetic"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyKinetic"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q46276"
+      }
+    ],
+    "title": {
+      "en": "kinetic energy"
+    }
+  },
+  "energyLevel": {
+    "code": "energy_level",
+    "identity": {
+      "broader": "energy",
+      "slug": "energy_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyLevel"
+      }
+    ],
+    "title": {
+      "en": "Energy Level"
+    }
+  },
+  "energyPerArea": {
+    "code": "energy_per_area",
+    "identity": {
+      "slug": "energy_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerArea"
+      }
+    ],
+    "title": {
+      "en": "Energy per Area"
+    }
+  },
+  "energyPerAreaElectricCharge": {
+    "code": "energy_per_area_electric_charge",
+    "identity": {
+      "slug": "energy_per_area_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerAreaElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Energy per Area Electric Charge"
+    }
+  },
+  "energyPerElectricCharge": {
+    "code": "energy_per_electric_charge",
+    "identity": {
+      "slug": "energy_per_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Energy per Electric Charge"
+    }
+  },
+  "energyPerMagneticFluxDensitySquared": {
+    "code": "energy_per_magnetic_flux_density_squared",
+    "identity": {
+      "slug": "energy_per_magnetic_flux_density_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerMagneticFluxDensity_Squared"
+      }
+    ],
+    "title": {
+      "en": "Energy Per Square Magnetic Flux Density"
+    }
+  },
+  "energyPerMassAmountOfSubstance": {
+    "code": "energy_per_mass_amount_of_substance",
+    "identity": {
+      "slug": "energy_per_mass_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerMassAmountOfSubstance"
+      }
+    ],
+    "title": {
+      "en": "Energy and Work per Mass Amount of Substance"
+    }
+  },
+  "energyPerSquareMagneticFluxDensity": {
+    "code": "energy_per_square_magnetic_flux_density",
+    "identity": {
+      "slug": "energy_per_square_magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerSquareMagneticFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Energy per Square Magnetic Flux Density"
+    }
+  },
+  "energyPerTemperature": {
+    "code": "energy_per_temperature",
+    "identity": {
+      "slug": "energy_per_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EnergyPerTemperature"
+      }
+    ],
+    "title": {
+      "en": "Energy per Temperature"
+    }
+  },
+  "energySquared": {
+    "code": "energy_squared",
+    "identity": {
+      "slug": "energy_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Energy_Squared"
+      }
+    ],
+    "title": {
+      "en": "Square Energy"
+    }
+  },
+  "enthalpy": {
+    "code": "enthalpy",
+    "identity": {
+      "broader": "energy",
+      "slug": "enthalpy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Enthalpy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q161064"
+      }
+    ],
+    "title": {
+      "en": "Enthalpy"
+    }
+  },
+  "entropy": {
+    "code": "entropy",
+    "identity": {
+      "slug": "entropy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Entropy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q45003"
+      }
+    ],
+    "title": {
+      "en": "Entropy"
+    }
+  },
+  "equilibriumConstant": {
+    "code": "equilibrium_constant",
+    "identity": {
+      "slug": "equilibrium_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumConstant"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q857809"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Constant"
+    }
+  },
+  "equilibriumConstantBasedOnConcentration": {
+    "code": "equilibrium_constant_based_on_concentration",
+    "identity": {
+      "slug": "equilibrium_constant_based_on_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumConstantBasedOnConcentration"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Constant Based On Concentration"
+    }
+  },
+  "equilibriumConstantBasedOnPressure": {
+    "code": "equilibrium_constant_based_on_pressure",
+    "identity": {
+      "slug": "equilibrium_constant_based_on_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumConstantBasedOnPressure"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Constant Based On Pressure"
+    }
+  },
+  "equilibriumConstantOnConcentrationBasis": {
+    "code": "equilibrium_constant_on_concentration_basis",
+    "identity": {
+      "broader": "equilibrium_constant",
+      "slug": "equilibrium_constant_on_concentration_basis"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumConstantOnConcentrationBasis"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96096049"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Constant On Concentration Basis"
+    }
+  },
+  "equilibriumConstantOnPressureBasis": {
+    "code": "equilibrium_constant_on_pressure_basis",
+    "identity": {
+      "broader": "equilibrium_constant",
+      "slug": "equilibrium_constant_on_pressure_basis"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumConstantOnPressureBasis"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96096019"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Constant On Pressure Basis"
+    }
+  },
+  "equilibriumPositionVectorOfIon": {
+    "code": "equilibrium_position_vector_of_ion",
+    "identity": {
+      "broader": "length",
+      "slug": "equilibrium_position_vector_of_ion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquilibriumPositionVectorOfIon"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105533477"
+      }
+    ],
+    "title": {
+      "en": "Equilibrium Position Vector of Ion"
+    }
+  },
+  "equivalenceDoseOutput": {
+    "code": "equivalence_dose_output",
+    "identity": {
+      "broader": "dose_equivalent_rate",
+      "slug": "equivalence_dose_output"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquivalenceDoseOutput"
+      }
+    ],
+    "title": {
+      "en": "Equivalence Dose Output"
+    }
+  },
+  "equivalentAbsorptionArea": {
+    "code": "equivalent_absorption_area",
+    "identity": {
+      "broader": "area",
+      "slug": "equivalent_absorption_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquivalentAbsorptionArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q87745170"
+      }
+    ],
+    "title": {
+      "en": "Equivalent Absorption Area"
+    }
+  },
+  "equivalentConcentration": {
+    "code": "equivalent_concentration",
+    "identity": {
+      "broader": "concentration",
+      "slug": "equivalent_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquivalentConcentration"
+      }
+    ],
+    "title": {
+      "en": "Equivalent Concentration"
+    }
+  },
+  "equivalentDensity": {
+    "code": "equivalent_density",
+    "identity": {
+      "broader": "density",
+      "slug": "equivalent_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EquivalentDensity"
+      }
+    ],
+    "title": {
+      "en": "Equivalent Density"
+    }
+  },
+  "equivalentMass": {
+    "code": "equivalent_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "equivalent_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Equivalent_Mass"
+      }
+    ],
+    "title": {
+      "en": "Mass Equivalent"
+    }
+  },
+  "equivalentMolar": {
+    "code": "equivalent_molar",
+    "identity": {
+      "broader": "amount_of_substance",
+      "slug": "equivalent_molar"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Equivalent_Molar"
+      }
+    ],
+    "title": {
+      "en": "Molar Equivalent"
+    }
+  },
+  "evaporativeHeatTransfer": {
+    "code": "evaporative_heat_transfer",
+    "identity": {
+      "slug": "evaporative_heat_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EvaporativeHeatTransfer"
+      }
+    ],
+    "title": {
+      "en": "Evaporative Heat Transfer"
+    }
+  },
+  "evaporativeHeatTransferCoefficient": {
+    "code": "evaporative_heat_transfer_coefficient",
+    "identity": {
+      "slug": "evaporative_heat_transfer_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "EvaporativeHeatTransferCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Combined Non Evaporative Heat Transfer Coefficient"
+    }
+  },
+  "exchangeIntegral": {
+    "code": "exchange_integral",
+    "identity": {
+      "broader": "energy",
+      "slug": "exchange_integral"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExchangeIntegral"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q10882959"
+      }
+    ],
+    "title": {
+      "en": "Exchange Integral"
+    }
+  },
+  "expansionRatio": {
+    "code": "expansion_ratio",
+    "identity": {
+      "broader": "inverse_temperature",
+      "slug": "expansion_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExpansionRatio"
+      }
+    ],
+    "title": {
+      "en": "Expansion Ratio"
+    }
+  },
+  "exposure": {
+    "code": "exposure",
+    "identity": {
+      "broader": "electric_charge_per_mass",
+      "slug": "exposure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Exposure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q336938"
+      }
+    ],
+    "title": {
+      "en": "Exposure"
+    }
+  },
+  "exposureOfIonizingRadiation": {
+    "code": "exposure_of_ionizing_radiation",
+    "identity": {
+      "slug": "exposure_of_ionizing_radiation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExposureOfIonizingRadiation"
+      }
+    ],
+    "title": {
+      "en": "Exposure of Ionizing Radiation"
+    }
+  },
+  "exposureRate": {
+    "code": "exposure_rate",
+    "identity": {
+      "slug": "exposure_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExposureRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99720212"
+      }
+    ],
+    "title": {
+      "en": "Exposure Rate"
+    }
+  },
+  "exposureRateOfIonizingRadiation": {
+    "code": "exposure_rate_of_ionizing_radiation",
+    "identity": {
+      "slug": "exposure_rate_of_ionizing_radiation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExposureRateOfIonizingRadiation"
+      }
+    ],
+    "title": {
+      "en": "Exposure Rate of Ionizing Radiation"
+    }
+  },
+  "extentOfReaction": {
+    "code": "extent_of_reaction",
+    "identity": {
+      "broader": "amount_of_substance",
+      "slug": "extent_of_reaction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ExtentOfReaction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q899046"
+      }
+    ],
+    "title": {
+      "en": "Extent of Reaction"
+    }
+  },
+  "fahrenheitTemperature": {
+    "code": "fahrenheit_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "fahrenheit_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FahrenheitTemperature"
+      }
+    ],
+    "title": {
+      "en": "Fahrenheit Temperature"
+    }
+  },
+  "failureRate": {
+    "code": "failure_rate",
+    "identity": {
+      "broader": "incidence",
+      "slug": "failure_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FailureRate"
+      }
+    ],
+    "title": {
+      "en": "Failure Rate"
+    }
+  },
+  "fastFissionFactor": {
+    "code": "fast_fission_factor",
+    "identity": {
+      "slug": "fast_fission_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FastFissionFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99197493"
+      }
+    ],
+    "title": {
+      "en": "Fast Fission Factor"
+    }
+  },
+  "fermiAngularWavenumber": {
+    "code": "fermi_angular_wavenumber",
+    "identity": {
+      "broader": "angular_wavenumber",
+      "slug": "fermi_angular_wavenumber"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FermiAngularWavenumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105554303"
+      }
+    ],
+    "title": {
+      "en": "Fermi Angular Wavenumber"
+    }
+  },
+  "fermiEnergy": {
+    "code": "fermi_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "fermi_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FermiEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q431335"
+      }
+    ],
+    "title": {
+      "en": "Fermi Energy"
+    }
+  },
+  "fermiTemperature": {
+    "code": "fermi_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "fermi_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FermiTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105942324"
+      }
+    ],
+    "title": {
+      "en": "Fermi Temperature"
+    }
+  },
+  "finalOrCurrentVehicleMass": {
+    "code": "final_or_current_vehicle_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "final_or_current_vehicle_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FinalOrCurrentVehicleMass"
+      }
+    ],
+    "title": {
+      "en": "Final Or Current Vehicle Mass"
+    }
+  },
+  "firstMomentOfArea": {
+    "code": "first_moment_of_area",
+    "identity": {
+      "broader": "volume",
+      "slug": "first_moment_of_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FirstMomentOfArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q920601"
+      }
+    ],
+    "title": {
+      "en": "First Moment of Area"
+    }
+  },
+  "fishBiotransformationHalfLife": {
+    "code": "fish_biotransformation_half_life",
+    "identity": {
+      "broader": "time",
+      "slug": "fish_biotransformation_half_life"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FishBiotransformationHalfLife"
+      }
+    ],
+    "title": {
+      "en": "Fish Biotransformation Half Life"
+    }
+  },
+  "fissionCoreRadiusToHeightRatio": {
+    "code": "fission_core_radius_to_height_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "fission_core_radius_to_height_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FissionCoreRadiusToHeightRatio"
+      }
+    ],
+    "title": {
+      "en": "Fission Core Radius to Height Ratio"
+    }
+  },
+  "fissionFuelUtilizationFactor": {
+    "code": "fission_fuel_utilization_factor",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "fission_fuel_utilization_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FissionFuelUtilizationFactor"
+      }
+    ],
+    "title": {
+      "en": "Fission Fuel Utilization Factor"
+    }
+  },
+  "fissionMultiplicationFactor": {
+    "code": "fission_multiplication_factor",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "fission_multiplication_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FissionMultiplicationFactor"
+      }
+    ],
+    "title": {
+      "en": "Fission Multiplication Factor"
+    }
+  },
+  "flashPoint": {
+    "code": "flash_point",
+    "identity": {
+      "broader": "temperature",
+      "slug": "flash_point"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FlashPoint"
+      }
+    ],
+    "title": {
+      "en": "Flash Point Temperature"
+    }
+  },
+  "flightPathAngle": {
+    "code": "flight_path_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "flight_path_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FlightPathAngle"
+      }
+    ],
+    "title": {
+      "en": "Flight Path Angle"
+    }
+  },
+  "flightPerformanceReservePropellantMass": {
+    "code": "flight_performance_reserve_propellant_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "flight_performance_reserve_propellant_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS"
+      }
+    ],
+    "title": {
+      "en": "Flight Performance Reserve Propellant Mass"
+    }
+  },
+  "floatingPointCalculationCapability": {
+    "code": "floating_point_calculation_capability",
+    "identity": {
+      "slug": "floating_point_calculation_capability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FloatingPointCalculationCapability"
+      }
+    ],
+    "title": {
+      "en": "Floating Point Calculation Capability"
+    }
+  },
+  "fluidity": {
+    "code": "fluidity",
+    "identity": {
+      "slug": "fluidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Fluidity"
+      }
+    ],
+    "title": {
+      "en": "Fluidity"
+    }
+  },
+  "flux": {
+    "code": "flux",
+    "identity": {
+      "slug": "flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Flux"
+      }
+    ],
+    "title": {
+      "en": "Flux"
+    }
+  },
+  "force": {
+    "code": "force",
+    "identity": {
+      "slug": "force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Force"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11402"
+      }
+    ],
+    "title": {
+      "en": "Force"
+    }
+  },
+  "forceConstant": {
+    "code": "force_constant",
+    "identity": {
+      "slug": "force_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForceConstant"
+      }
+    ],
+    "title": {
+      "en": "Force Constant"
+    }
+  },
+  "forceMagnitude": {
+    "code": "force_magnitude",
+    "identity": {
+      "broader": "force",
+      "slug": "force_magnitude"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForceMagnitude"
+      }
+    ],
+    "title": {
+      "en": "Force Magnitude"
+    }
+  },
+  "forcePerAngle": {
+    "code": "force_per_angle",
+    "identity": {
+      "slug": "force_per_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForcePerAngle"
+      }
+    ],
+    "title": {
+      "en": "Force per Angle"
+    }
+  },
+  "forcePerArea": {
+    "code": "force_per_area",
+    "identity": {
+      "slug": "force_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForcePerArea"
+      }
+    ],
+    "title": {
+      "en": "Force per Area"
+    }
+  },
+  "forcePerAreaTime": {
+    "code": "force_per_area_time",
+    "identity": {
+      "slug": "force_per_area_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForcePerAreaTime"
+      }
+    ],
+    "title": {
+      "en": "Force per Area Time"
+    }
+  },
+  "forcePerElectricCharge": {
+    "code": "force_per_electric_charge",
+    "identity": {
+      "slug": "force_per_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForcePerElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Force per Electric Charge"
+    }
+  },
+  "forcePerLength": {
+    "code": "force_per_length",
+    "identity": {
+      "slug": "force_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ForcePerLength"
+      }
+    ],
+    "title": {
+      "en": "Force per Length"
     }
   },
   "frequency": {
     "code": "frequency",
+    "identity": {
+      "broader": "inverse_time",
+      "slug": "frequency"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "Hz"
@@ -210,6 +6970,11 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11652"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "frequency"
       }
@@ -219,8 +6984,7411 @@ export default {
       "pt": "Frequência"
     }
   },
-  "phaseAngle": {
-    "code": "phase_angle",
+  "friction": {
+    "code": "friction",
+    "identity": {
+      "broader": "force",
+      "slug": "friction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Friction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q82580"
+      }
+    ],
+    "title": {
+      "en": "Friction"
+    }
+  },
+  "frictionCoefficient": {
+    "code": "friction_coefficient",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "friction_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FrictionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Friction Coefficient"
+    }
+  },
+  "fuelBias": {
+    "code": "fuel_bias",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "fuel_bias"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FUEL-BIAS"
+      }
+    ],
+    "title": {
+      "en": "Fuel Bias"
+    }
+  },
+  "fugacity": {
+    "code": "fugacity",
+    "identity": {
+      "broader": "pressure",
+      "slug": "fugacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Fugacity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q898412"
+      }
+    ],
+    "title": {
+      "en": "Fugacity"
+    }
+  },
+  "fundamentalLatticeVector": {
+    "code": "fundamental_lattice_vector",
+    "identity": {
+      "broader": "lattice_vector",
+      "slug": "fundamental_lattice_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FundamentalLatticeVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105451063"
+      }
+    ],
+    "title": {
+      "en": "Fundamental Lattice Vector"
+    }
+  },
+  "fundamentalReciprocalLatticeVector": {
+    "code": "fundamental_reciprocal_lattice_vector",
+    "identity": {
+      "slug": "fundamental_reciprocal_lattice_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "FundamentalReciprocalLatticeVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105475399"
+      }
+    ],
+    "title": {
+      "en": "Fundamental Reciprocal Lattice Vector"
+    }
+  },
+  "gain": {
+    "code": "gain",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "gain"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Gain"
+      }
+    ],
+    "title": {
+      "en": "Gain"
+    }
+  },
+  "gapEnergy": {
+    "code": "gap_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "gap_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GapEnergy"
+      }
+    ],
+    "title": {
+      "en": "Gap Energy"
+    }
+  },
+  "gasLeakRate": {
+    "code": "gas_leak_rate",
+    "identity": {
+      "broader": "energy_fluence",
+      "slug": "gas_leak_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GasLeakRate"
+      }
+    ],
+    "title": {
+      "en": "Gas Leak Rate"
+    }
+  },
+  "gaugePressure": {
+    "code": "gauge_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "gauge_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GaugePressure"
+      }
+    ],
+    "title": {
+      "en": "Gauge Pressure"
+    }
+  },
+  "geneFamilyAbundance": {
+    "code": "gene_family_abundance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "gene_family_abundance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GeneFamilyAbundance"
+      }
+    ],
+    "title": {
+      "en": "Gene Family Abundance"
+    }
+  },
+  "generalizedCoordinate": {
+    "code": "generalized_coordinate",
+    "identity": {
+      "slug": "generalized_coordinate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GeneralizedCoordinate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1057607"
+      }
+    ],
+    "title": {
+      "en": "Generalized Coordinate"
+    }
+  },
+  "generalizedForce": {
+    "code": "generalized_force",
+    "identity": {
+      "slug": "generalized_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GeneralizedForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1153787"
+      }
+    ],
+    "title": {
+      "en": "Generalized Force"
+    }
+  },
+  "generalizedMomentum": {
+    "code": "generalized_momentum",
+    "identity": {
+      "slug": "generalized_momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GeneralizedMomentum"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q6806305"
+      }
+    ],
+    "title": {
+      "en": "Generalized Force"
+    }
+  },
+  "generalizedVelocity": {
+    "code": "generalized_velocity",
+    "identity": {
+      "slug": "generalized_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GeneralizedVelocity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74317892"
+      }
+    ],
+    "title": {
+      "en": "Generalized Velocity"
+    }
+  },
+  "gFactorOfNucleus": {
+    "code": "g_factor_of_nucleus",
+    "identity": {
+      "slug": "g_factor_of_nucleus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GFactorOfNucleus"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97591250"
+      }
+    ],
+    "title": {
+      "en": "g-Factor of Nucleus"
+    }
+  },
+  "gibbsEnergy": {
+    "code": "gibbs_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "gibbs_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GibbsEnergy"
+      }
+    ],
+    "title": {
+      "en": "Gibbs Energy"
+    }
+  },
+  "gradient": {
+    "code": "gradient",
+    "identity": {
+      "slug": "gradient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Gradient"
+      }
+    ],
+    "title": {
+      "en": "Gradient"
+    }
+  },
+  "grandCanonicalPartitionFunction": {
+    "code": "grand_canonical_partition_function",
+    "identity": {
+      "broader": "canonical_partition_function",
+      "slug": "grand_canonical_partition_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GrandCanonicalPartitionFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96176022"
+      }
+    ],
+    "title": {
+      "en": "Grand Canonical Partition Function"
+    }
+  },
+  "gravitationalAttraction": {
+    "code": "gravitational_attraction",
+    "identity": {
+      "broader": "force",
+      "slug": "gravitational_attraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GravitationalAttraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q78337869"
+      }
+    ],
+    "title": {
+      "en": "Gravitational Attraction"
+    }
+  },
+  "gravityApi": {
+    "code": "gravity_api",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "gravity_api"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Gravity_API"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q29246"
+      }
+    ],
+    "title": {
+      "en": "API Gravity"
+    }
+  },
+  "grossLiftOffWeight": {
+    "code": "gross_lift_off_weight",
+    "identity": {
+      "broader": "mass",
+      "slug": "gross_lift_off_weight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GROSS-LIFT-OFF-WEIGHT"
+      }
+    ],
+    "title": {
+      "en": "Gross Lift-Off Weight"
+    }
+  },
+  "grossTonnage": {
+    "code": "gross_tonnage",
+    "identity": {
+      "broader": "volume",
+      "slug": "gross_tonnage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GrossTonnage"
+      }
+    ],
+    "title": {
+      "en": "Gross Tonnage"
+    }
+  },
+  "groupSpeedOfSound": {
+    "code": "group_speed_of_sound",
+    "identity": {
+      "broader": "speed_of_sound",
+      "slug": "group_speed_of_sound"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GroupSpeedOfSound"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86508881"
+      }
+    ],
+    "title": {
+      "en": "Group Speed of Sound"
+    }
+  },
+  "growingDegreeDay": {
+    "code": "growing_degree_day",
+    "identity": {
+      "broader": "time_temperature",
+      "slug": "growing_degree_day"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GrowingDegreeDay"
+      }
+    ],
+    "title": {
+      "en": "Growing Degree Days (Cereals)"
+    }
+  },
+  "growingDegreeDayCereal": {
+    "code": "growing_degree_day_cereal",
+    "identity": {
+      "broader": "time_temperature",
+      "slug": "growing_degree_day_cereal"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GrowingDegreeDay_Cereal"
+      }
+    ],
+    "title": {
+      "en": "Growing Degree Days (Cereals)"
+    }
+  },
+  "gruneisenParameter": {
+    "code": "gruneisen_parameter",
+    "identity": {
+      "slug": "gruneisen_parameter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GruneisenParameter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105658620"
+      }
+    ],
+    "title": {
+      "en": "Gruneisen Parameter"
+    }
+  },
+  "gustatoryThreshold": {
+    "code": "gustatory_threshold",
+    "identity": {
+      "slug": "gustatory_threshold"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GustatoryThreshold"
+      }
+    ],
+    "title": {
+      "en": "Gustatory Threshold"
+    }
+  },
+  "gyromagneticRatio": {
+    "code": "gyromagnetic_ratio",
+    "identity": {
+      "slug": "gyromagnetic_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "GyromagneticRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q634552"
+      }
+    ],
+    "title": {
+      "en": "Gyromagnetic Ratio"
+    }
+  },
+  "halfLife": {
+    "code": "half_life",
+    "identity": {
+      "broader": "time",
+      "slug": "half_life"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HalfLife"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98118544"
+      }
+    ],
+    "title": {
+      "en": "Half-life"
+    }
+  },
+  "halfValueThickness": {
+    "code": "half_value_thickness",
+    "identity": {
+      "broader": "length",
+      "slug": "half_value_thickness"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HalfValueThickness"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q127526"
+      }
+    ],
+    "title": {
+      "en": "Half-Value Thickness"
+    }
+  },
+  "hallCoefficient": {
+    "code": "hall_coefficient",
+    "identity": {
+      "slug": "hall_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HallCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q997439"
+      }
+    ],
+    "title": {
+      "en": "Hall Coefficient"
+    }
+  },
+  "hamiltonFunction": {
+    "code": "hamilton_function",
+    "identity": {
+      "broader": "energy",
+      "slug": "hamilton_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HamiltonFunction"
+      }
+    ],
+    "title": {
+      "en": "Hamilton Function"
+    }
+  },
+  "headEndPressure": {
+    "code": "head_end_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "head_end_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeadEndPressure"
+      }
+    ],
+    "title": {
+      "en": "Head End Pressure"
+    }
+  },
+  "heartRate": {
+    "code": "heart_rate",
+    "identity": {
+      "broader": "count_rate",
+      "slug": "heart_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeartRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1073121"
+      }
+    ],
+    "title": {
+      "en": "Heart Rate"
+    }
+  },
+  "heat": {
+    "code": "heat",
+    "identity": {
+      "broader": "thermal_energy",
+      "slug": "heat"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Heat"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q44432"
+      }
+    ],
+    "title": {
+      "en": "Heat"
+    }
+  },
+  "heatCapacity": {
+    "code": "heat_capacity",
+    "identity": {
+      "broader": "energy_per_temperature",
+      "slug": "heat_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatCapacity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q179388"
+      }
+    ],
+    "title": {
+      "en": "Heat Capacity"
+    }
+  },
+  "heatCapacityRatio": {
+    "code": "heat_capacity_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "heat_capacity_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatCapacityRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q503869"
+      }
+    ],
+    "title": {
+      "en": "Heat Capacity Ratio"
+    }
+  },
+  "heatFlowRate": {
+    "code": "heat_flow_rate",
+    "description": {
+      "en": "Rated cooling output — a thermal power. An air conditioner's defining quantity."
+    },
+    "identity": {
+      "broader": "power",
+      "slug": "heat_flow_rate"
+    },
+    "measurand": {
+      "accumulation": "instantaneous",
+      "siUnit": "W"
+    },
+    "refs": [
+      {
+        "match": "broad",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatFlowRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q12160631"
+      }
+    ],
+    "title": {
+      "en": "Heat Flow Rate"
+    }
+  },
+  "heatFlowRatePerArea": {
+    "code": "heat_flow_rate_per_area",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "heat_flow_rate_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatFlowRatePerArea"
+      }
+    ],
+    "title": {
+      "en": "Heat Flow Rate per Unit Area"
+    }
+  },
+  "heatFluxDensity": {
+    "code": "heat_flux_density",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "heat_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Heat Flux Density"
+    }
+  },
+  "heatingValue": {
+    "code": "heating_value",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "heating_value"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HeatingValue"
+      }
+    ],
+    "title": {
+      "en": "Calorific Value"
+    }
+  },
+  "height": {
+    "code": "height",
+    "description": {
+      "en": "Physical height of an enclosure/part, millimetres."
+    },
+    "identity": {
+      "broader": "length",
+      "slug": "height"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Height"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q208826"
+      }
+    ],
+    "title": {
+      "en": "Height",
+      "pt": "Altura (mm)"
+    }
+  },
+  "helmholtzEnergy": {
+    "code": "helmholtz_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "helmholtz_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HelmholtzEnergy"
+      }
+    ],
+    "title": {
+      "en": "Helmholtz Energy"
+    }
+  },
+  "henrysLawVolatilityConstant": {
+    "code": "henrys_law_volatility_constant",
+    "identity": {
+      "slug": "henrys_law_volatility_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HenrysLawVolatilityConstant"
+      }
+    ],
+    "title": {
+      "en": "Henry's Law Volatility Constant"
+    }
+  },
+  "holeDensity": {
+    "code": "hole_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "hole_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HoleDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105971101"
+      }
+    ],
+    "title": {
+      "en": "Hole Density"
+    }
+  },
+  "horizontalVelocity": {
+    "code": "horizontal_velocity",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "horizontal_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HorizontalVelocity"
+      }
+    ],
+    "title": {
+      "en": "Horizontal Velocity"
+    }
+  },
+  "hydraulicPermeability": {
+    "code": "hydraulic_permeability",
+    "identity": {
+      "broader": "area",
+      "slug": "hydraulic_permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HydraulicPermeability"
+      }
+    ],
+    "title": {
+      "en": "Hydraulic Permeability"
+    }
+  },
+  "hyperfineStructureQuantumNumber": {
+    "code": "hyperfine_structure_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "hyperfine_structure_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "HyperfineStructureQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97577449"
+      }
+    ],
+    "title": {
+      "en": "Hyperfine Structure Quantum Number"
+    }
+  },
+  "ignitionIntervalTime": {
+    "code": "ignition_interval_time",
+    "identity": {
+      "broader": "time",
+      "slug": "ignition_interval_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IgnitionIntervalTime"
+      }
+    ],
+    "title": {
+      "en": "Ignition Interval Time"
+    }
+  },
+  "illuminance": {
+    "code": "illuminance",
+    "identity": {
+      "broader": "luminous_flux_per_area",
+      "slug": "illuminance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Illuminance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q194411"
+      }
+    ],
+    "title": {
+      "en": "Illuminance"
+    }
+  },
+  "impedance": {
+    "code": "impedance",
+    "identity": {
+      "broader": "resistance",
+      "slug": "impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Impedance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q179043"
+      }
+    ],
+    "title": {
+      "en": "Impedance"
+    }
+  },
+  "impulse": {
+    "code": "impulse",
+    "identity": {
+      "slug": "impulse"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Impulse"
+      }
+    ],
+    "title": {
+      "en": "Impulse"
+    }
+  },
+  "incidence": {
+    "code": "incidence",
+    "identity": {
+      "slug": "incidence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Incidence"
+      }
+    ],
+    "title": {
+      "en": "Incidence"
+    }
+  },
+  "incidenceProportion": {
+    "code": "incidence_proportion",
+    "identity": {
+      "slug": "incidence_proportion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IncidenceProportion"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q217690"
+      }
+    ],
+    "title": {
+      "en": "Incidence Proportion"
+    }
+  },
+  "incidenceRate": {
+    "code": "incidence_rate",
+    "identity": {
+      "slug": "incidence_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IncidenceRate"
+      }
+    ],
+    "title": {
+      "en": "Incidence Rate"
+    }
+  },
+  "inductance": {
+    "code": "inductance",
+    "identity": {
+      "slug": "inductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Inductance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q177897"
+      }
+    ],
+    "title": {
+      "en": "Inductance"
+    }
+  },
+  "inductanceBasedTimeConstant": {
+    "code": "inductance_based_time_constant",
+    "identity": {
+      "slug": "inductance_based_time_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InductanceBasedTimeConstant"
+      }
+    ],
+    "title": {
+      "en": "Inductance Based Time Constant"
+    }
+  },
+  "inertMass": {
+    "code": "inert_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "inert_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "INERT-MASS"
+      }
+    ],
+    "title": {
+      "en": "Inert Mass"
+    }
+  },
+  "infiniteMultiplicationFactor": {
+    "code": "infinite_multiplication_factor",
+    "identity": {
+      "broader": "multiplication_factor",
+      "slug": "infinite_multiplication_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InfiniteMultiplicationFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99440487"
+      }
+    ],
+    "title": {
+      "en": "Infinite Multiplication Factor"
+    }
+  },
+  "informationContent": {
+    "code": "information_content",
+    "identity": {
+      "slug": "information_content"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationContent"
+      }
+    ],
+    "title": {
+      "en": "Information Content"
+    }
+  },
+  "informationContentExpressedAsALogarithmToBase10": {
+    "code": "information_content_expressed_as_a_logarithm_to_base10",
+    "identity": {
+      "slug": "information_content_expressed_as_a_logarithm_to_base10"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationContentExpressedAsALogarithmToBase10"
+      }
+    ],
+    "title": {
+      "en": "Information Content Expressed as a Logarithm to Base 10"
+    }
+  },
+  "informationContentExpressedAsALogarithmToBase2": {
+    "code": "information_content_expressed_as_a_logarithm_to_base2",
+    "identity": {
+      "slug": "information_content_expressed_as_a_logarithm_to_base2"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationContentExpressedAsALogarithmToBase2"
+      }
+    ],
+    "title": {
+      "en": "Information Content Expressed as a Logarithm to Base 2"
+    }
+  },
+  "informationContentExpressedAsALogarithmToBaseE": {
+    "code": "information_content_expressed_as_a_logarithm_to_base_e",
+    "identity": {
+      "slug": "information_content_expressed_as_a_logarithm_to_base_e"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationContentExpressedAsALogarithmToBaseE"
+      }
+    ],
+    "title": {
+      "en": "Information Content Expressed as a Logarithm to Base e"
+    }
+  },
+  "informationEntropy": {
+    "code": "information_entropy",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "information_entropy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationEntropy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q204570"
+      }
+    ],
+    "title": {
+      "en": "Information Entropy"
+    }
+  },
+  "informationFlowRate": {
+    "code": "information_flow_rate",
+    "identity": {
+      "slug": "information_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InformationFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Information Flow Rate"
+    }
+  },
+  "initialExpansionRatio": {
+    "code": "initial_expansion_ratio",
+    "identity": {
+      "broader": "expansion_ratio",
+      "slug": "initial_expansion_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InitialExpansionRatio"
+      }
+    ],
+    "title": {
+      "en": "Initial Expansion Ratio"
+    }
+  },
+  "initialVehicleMass": {
+    "code": "initial_vehicle_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "initial_vehicle_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InitialVehicleMass"
+      }
+    ],
+    "title": {
+      "en": "Initial Vehicle Mass"
+    }
+  },
+  "initialVelocity": {
+    "code": "initial_velocity",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "initial_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InitialVelocity"
+      }
+    ],
+    "title": {
+      "en": "Initial Velocity"
+    }
+  },
+  "instantaneousPower": {
+    "code": "instantaneous_power",
+    "identity": {
+      "broader": "electric_power",
+      "slug": "instantaneous_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InstantaneousPower"
+      }
+    ],
+    "title": {
+      "en": "Instantaneous Power"
+    }
+  },
+  "internalConversionFactor": {
+    "code": "internal_conversion_factor",
+    "identity": {
+      "slug": "internal_conversion_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InternalConversionFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q6047819"
+      }
+    ],
+    "title": {
+      "en": "Internal Conversion Factor"
+    }
+  },
+  "internalEnergy": {
+    "code": "internal_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "internal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InternalEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q180241"
+      }
+    ],
+    "title": {
+      "en": "Internal Energy"
+    }
+  },
+  "intinsicCarrierDensity": {
+    "code": "intinsic_carrier_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "intinsic_carrier_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IntinsicCarrierDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1303188"
+      }
+    ],
+    "title": {
+      "en": "Intrinsic Carrier Density"
+    }
+  },
+  "intrinsicCarrierDensity": {
+    "code": "intrinsic_carrier_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "intrinsic_carrier_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IntrinsicCarrierDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1303188"
+      }
+    ],
+    "title": {
+      "en": "Intrinsic Carrier Density"
+    }
+  },
+  "inverseAmountOfSubstance": {
+    "code": "inverse_amount_of_substance",
+    "identity": {
+      "slug": "inverse_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseAmountOfSubstance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q93421670"
+      }
+    ],
+    "title": {
+      "en": "Inverse Amount of Substance"
+    }
+  },
+  "inverseArea": {
+    "code": "inverse_area",
+    "identity": {
+      "slug": "inverse_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseArea"
+      }
+    ],
+    "title": {
+      "en": "Inverse Area"
+    }
+  },
+  "inverseEnergy": {
+    "code": "inverse_energy",
+    "identity": {
+      "slug": "inverse_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseEnergy"
+      }
+    ],
+    "title": {
+      "en": "Inverse Energy"
+    }
+  },
+  "inverseEnergySquared": {
+    "code": "inverse_energy_squared",
+    "identity": {
+      "slug": "inverse_energy_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseEnergy_Squared"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Energy"
+    }
+  },
+  "inverseLength": {
+    "code": "inverse_length",
+    "identity": {
+      "slug": "inverse_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1028259"
+      }
+    ],
+    "title": {
+      "en": "Inverse Length"
+    }
+  },
+  "inverseLengthTemperature": {
+    "code": "inverse_length_temperature",
+    "identity": {
+      "slug": "inverse_length_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseLengthTemperature"
+      }
+    ],
+    "title": {
+      "en": "Inverse Length Temperature"
+    }
+  },
+  "inverseMagneticFlux": {
+    "code": "inverse_magnetic_flux",
+    "identity": {
+      "slug": "inverse_magnetic_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseMagneticFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q101194934"
+      }
+    ],
+    "title": {
+      "en": "Inverse Magnetic Flux"
+    }
+  },
+  "inverseMass": {
+    "code": "inverse_mass",
+    "identity": {
+      "slug": "inverse_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseMass"
+      }
+    ],
+    "title": {
+      "en": "Reciprocal Mass"
+    }
+  },
+  "inverseMassSquared": {
+    "code": "inverse_mass_squared",
+    "identity": {
+      "slug": "inverse_mass_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseMass_Squared"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Mass"
+    }
+  },
+  "inversePermittivity": {
+    "code": "inverse_permittivity",
+    "identity": {
+      "slug": "inverse_permittivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InversePermittivity"
+      }
+    ],
+    "title": {
+      "en": "Inverse Permittivity"
+    }
+  },
+  "inversePressure": {
+    "code": "inverse_pressure",
+    "identity": {
+      "slug": "inverse_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InversePressure"
+      }
+    ],
+    "title": {
+      "en": "Inverse Pressure"
+    }
+  },
+  "inverseSquareEnergy": {
+    "code": "inverse_square_energy",
+    "identity": {
+      "slug": "inverse_square_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseSquareEnergy"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Energy"
+    }
+  },
+  "inverseSquareMass": {
+    "code": "inverse_square_mass",
+    "identity": {
+      "slug": "inverse_square_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseSquareMass"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Mass"
+    }
+  },
+  "inverseSquareTime": {
+    "code": "inverse_square_time",
+    "identity": {
+      "slug": "inverse_square_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseSquareTime"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Time"
+    }
+  },
+  "inverseTemperature": {
+    "code": "inverse_temperature",
+    "identity": {
+      "slug": "inverse_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q107028650"
+      }
+    ],
+    "title": {
+      "en": "Inverse Temperature"
+    }
+  },
+  "inverseTime": {
+    "code": "inverse_time",
+    "identity": {
+      "slug": "inverse_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseTime"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98690850"
+      }
+    ],
+    "title": {
+      "en": "Inverse Time"
+    }
+  },
+  "inverseTimeSquared": {
+    "code": "inverse_time_squared",
+    "identity": {
+      "slug": "inverse_time_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseTime_Squared"
+      }
+    ],
+    "title": {
+      "en": "Inverse Square Time"
+    }
+  },
+  "inverseTimeTemperature": {
+    "code": "inverse_time_temperature",
+    "identity": {
+      "slug": "inverse_time_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseTimeTemperature"
+      }
+    ],
+    "title": {
+      "en": "Inverse Time Temperature"
+    }
+  },
+  "inverseVolume": {
+    "code": "inverse_volume",
+    "identity": {
+      "slug": "inverse_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "InverseVolume"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98690867"
+      }
+    ],
+    "title": {
+      "en": "Inverse Volume"
+    }
+  },
+  "ionConcentration": {
+    "code": "ion_concentration",
+    "identity": {
+      "broader": "concentration",
+      "slug": "ion_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonConcentration"
+      }
+    ],
+    "title": {
+      "en": "Ion Concentration"
+    }
+  },
+  "ionCurrent": {
+    "code": "ion_current",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "ion_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonCurrent"
+      }
+    ],
+    "title": {
+      "en": "Ion Current"
+    }
+  },
+  "ionDensity": {
+    "code": "ion_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "ion_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonDensity"
+      }
+    ],
+    "title": {
+      "en": "Ion Density"
+    }
+  },
+  "ionicCharge": {
+    "code": "ionic_charge",
+    "identity": {
+      "broader": "electric_charge",
+      "slug": "ionic_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonicCharge"
+      }
+    ],
+    "title": {
+      "en": "Ionic Charge"
+    }
+  },
+  "ionicStrength": {
+    "code": "ionic_strength",
+    "identity": {
+      "broader": "amount_of_substance_per_mass",
+      "slug": "ionic_strength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonicStrength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q898396"
+      }
+    ],
+    "title": {
+      "en": "Ionic Strength"
+    }
+  },
+  "ionizationEnergy": {
+    "code": "ionization_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "ionization_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonizationEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q483769"
+      }
+    ],
+    "title": {
+      "en": "Ionization Energy"
+    }
+  },
+  "ionTransportNumber": {
+    "code": "ion_transport_number",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "ion_transport_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IonTransportNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q331854"
+      }
+    ],
+    "title": {
+      "en": "Ion Transport Number"
+    }
+  },
+  "irradiance": {
+    "code": "irradiance",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "irradiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Irradiance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q830654"
+      }
+    ],
+    "title": {
+      "en": "Irradiance"
+    }
+  },
+  "isentropicCompressibility": {
+    "code": "isentropic_compressibility",
+    "identity": {
+      "broader": "compressibility",
+      "slug": "isentropic_compressibility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IsentropicCompressibility"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2990695"
+      }
+    ],
+    "title": {
+      "en": "Isentropic Compressibility"
+    }
+  },
+  "isentropicExponent": {
+    "code": "isentropic_exponent",
+    "identity": {
+      "slug": "isentropic_exponent"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IsentropicExponent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q75775739"
+      }
+    ],
+    "title": {
+      "en": "Isentropic Exponent"
+    }
+  },
+  "isothermalCompressibility": {
+    "code": "isothermal_compressibility",
+    "identity": {
+      "broader": "compressibility",
+      "slug": "isothermal_compressibility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IsothermalCompressibility"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2990696"
+      }
+    ],
+    "title": {
+      "en": "Isothermal Compressibility"
+    }
+  },
+  "isothermalMoistureCapacity": {
+    "code": "isothermal_moisture_capacity",
+    "identity": {
+      "broader": "specific_volume",
+      "slug": "isothermal_moisture_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "IsothermalMoistureCapacity"
+      }
+    ],
+    "title": {
+      "en": "Isothermal Moisture Capacity"
+    }
+  },
+  "kerma": {
+    "code": "kerma",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "kerma"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Kerma"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1739288"
+      }
+    ],
+    "title": {
+      "en": "Kerma"
+    }
+  },
+  "kermaRate": {
+    "code": "kerma_rate",
+    "identity": {
+      "broader": "specific_power",
+      "slug": "kerma_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "KermaRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1739280"
+      }
+    ],
+    "title": {
+      "en": "Kerma Rate"
+    }
+  },
+  "kinematicViscosity": {
+    "code": "kinematic_viscosity",
+    "identity": {
+      "broader": "area_per_time",
+      "slug": "kinematic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "KinematicViscosity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q15106259"
+      }
+    ],
+    "title": {
+      "en": "Kinematic Viscosity"
+    }
+  },
+  "kinematicViscosityOrDiffusionConstantOrThermalDiffusivity": {
+    "code": "kinematic_viscosity_or_diffusion_constant_or_thermal_diffusivity",
+    "identity": {
+      "slug": "kinematic_viscosity_or_diffusion_constant_or_thermal_diffusivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "KinematicViscosityOrDiffusionConstantOrThermalDiffusivity"
+      }
+    ],
+    "title": {
+      "en": "kinematic viscosity or diffusion constant or thermal diffusivity"
+    }
+  },
+  "kineticEnergy": {
+    "code": "kinetic_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "kinetic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "KineticEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q46276"
+      }
+    ],
+    "title": {
+      "en": "Kinetic Energy"
+    }
+  },
+  "kineticOrThermalEnergy": {
+    "code": "kinetic_or_thermal_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "kinetic_or_thermal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "KineticOrThermalEnergy"
+      }
+    ],
+    "title": {
+      "en": "kinetic or thermal energy"
+    }
+  },
+  "lagrangeFunction": {
+    "code": "lagrange_function",
+    "identity": {
+      "broader": "energy",
+      "slug": "lagrange_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LagrangeFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74318512"
+      }
+    ],
+    "title": {
+      "en": "Lagrange Function"
+    }
+  },
+  "landauGinzburgNumber": {
+    "code": "landau_ginzburg_number",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "landau_ginzburg_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LandauGinzburgNumber"
+      }
+    ],
+    "title": {
+      "en": "Landau-Ginzburg Number"
+    }
+  },
+  "landeGFactor": {
+    "code": "lande_g_factor",
+    "identity": {
+      "slug": "lande_g_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LandeGFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1191684"
+      }
+    ],
+    "title": {
+      "en": "Lande g-Factor"
+    }
+  },
+  "larmorAngularFrequency": {
+    "code": "larmor_angular_frequency",
+    "identity": {
+      "broader": "angular_frequency",
+      "slug": "larmor_angular_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LarmorAngularFrequency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97617059"
+      }
+    ],
+    "title": {
+      "en": "Larmor Angular Frequency"
+    }
+  },
+  "latticePlaneSpacing": {
+    "code": "lattice_plane_spacing",
+    "identity": {
+      "broader": "length",
+      "slug": "lattice_plane_spacing"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LatticePlaneSpacing"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105488046"
+      }
+    ],
+    "title": {
+      "en": "Lattice Plane Spacing"
+    }
+  },
+  "latticeVector": {
+    "code": "lattice_vector",
+    "identity": {
+      "broader": "length",
+      "slug": "lattice_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LatticeVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105435234"
+      }
+    ],
+    "title": {
+      "en": "Lattice Vector"
+    }
+  },
+  "leakageFactor": {
+    "code": "leakage_factor",
+    "identity": {
+      "slug": "leakage_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LeakageFactor"
+      }
+    ],
+    "title": {
+      "en": "Leakage Factor"
+    }
+  },
+  "length": {
+    "code": "length",
+    "identity": {
+      "slug": "length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Length"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q36253"
+      }
+    ],
+    "title": {
+      "en": "Length"
+    }
+  },
+  "lengthByForce": {
+    "code": "length_by_force",
+    "identity": {
+      "broader": "work",
+      "slug": "length_by_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthByForce"
+      }
+    ],
+    "title": {
+      "en": "Length Force"
+    }
+  },
+  "lengthEnergy": {
+    "code": "length_energy",
+    "identity": {
+      "slug": "length_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthEnergy"
+      }
+    ],
+    "title": {
+      "en": "Length Energy"
+    }
+  },
+  "lengthMass": {
+    "code": "length_mass",
+    "identity": {
+      "slug": "length_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthMass"
+      }
+    ],
+    "title": {
+      "en": "Length Mass"
+    }
+  },
+  "lengthMolarEnergy": {
+    "code": "length_molar_energy",
+    "identity": {
+      "slug": "length_molar_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthMolarEnergy"
+      }
+    ],
+    "title": {
+      "en": "Length Molar Energy"
+    }
+  },
+  "lengthPerElectricCurrent": {
+    "code": "length_per_electric_current",
+    "identity": {
+      "slug": "length_per_electric_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthPerElectricCurrent"
+      }
+    ],
+    "title": {
+      "en": "Length per Electric Current"
+    }
+  },
+  "lengthRatio": {
+    "code": "length_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "length_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthRatio"
+      }
+    ],
+    "title": {
+      "en": "Length Ratio"
+    }
+  },
+  "lengthTemperature": {
+    "code": "length_temperature",
+    "identity": {
+      "slug": "length_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthTemperature"
+      }
+    ],
+    "title": {
+      "en": "Length Temperature"
+    }
+  },
+  "lengthTemperatureTime": {
+    "code": "length_temperature_time",
+    "identity": {
+      "slug": "length_temperature_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LengthTemperatureTime"
+      }
+    ],
+    "title": {
+      "en": "Length Temperature Time"
+    }
+  },
+  "lethargy": {
+    "code": "lethargy",
+    "identity": {
+      "slug": "lethargy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Lethargy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25508781"
+      }
+    ],
+    "title": {
+      "en": "Lethargy"
+    }
+  },
+  "levelWidth": {
+    "code": "level_width",
+    "identity": {
+      "broader": "energy",
+      "slug": "level_width"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LevelWidth"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98082340"
+      }
+    ],
+    "title": {
+      "en": "Level Width"
+    }
+  },
+  "liftCoefficient": {
+    "code": "lift_coefficient",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "lift_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LiftCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q760106"
+      }
+    ],
+    "title": {
+      "en": "Lift Coefficient"
+    }
+  },
+  "liftForce": {
+    "code": "lift_force",
+    "identity": {
+      "broader": "force",
+      "slug": "lift_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LiftForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q101960694"
+      }
+    ],
+    "title": {
+      "en": "Lift Force"
+    }
+  },
+  "linearAbsorptionCoefficient": {
+    "code": "linear_absorption_coefficient",
+    "identity": {
+      "broader": "attenuation_coefficient",
+      "slug": "linear_absorption_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearAbsorptionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86204782"
+      }
+    ],
+    "title": {
+      "en": "Linear Absorption Coefficient"
+    }
+  },
+  "linearAcceleration": {
+    "code": "linear_acceleration",
+    "identity": {
+      "slug": "linear_acceleration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearAcceleration"
+      }
+    ],
+    "title": {
+      "en": "Linear Acceleration"
+    }
+  },
+  "linearAttenuationCoefficient": {
+    "code": "linear_attenuation_coefficient",
+    "identity": {
+      "broader": "attenuation_coefficient",
+      "slug": "linear_attenuation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearAttenuationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86204330"
+      }
+    ],
+    "title": {
+      "en": "Linear Attenuation Coefficient"
+    }
+  },
+  "linearBitDensity": {
+    "code": "linear_bit_density",
+    "identity": {
+      "slug": "linear_bit_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearBitDensity"
+      }
+    ],
+    "title": {
+      "en": "Lineic Bit Density"
+    }
+  },
+  "linearCompressibility": {
+    "code": "linear_compressibility",
+    "identity": {
+      "slug": "linear_compressibility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearCompressibility"
+      }
+    ],
+    "title": {
+      "en": "Linear Compressibility"
+    }
+  },
+  "linearDensity": {
+    "code": "linear_density",
+    "identity": {
+      "broader": "mass_per_length",
+      "slug": "linear_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q56298294"
+      }
+    ],
+    "title": {
+      "en": "Linear Density"
+    }
+  },
+  "linearElectricCharge": {
+    "code": "linear_electric_charge",
+    "identity": {
+      "slug": "linear_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Lineic Electric Charge"
+    }
+  },
+  "linearElectricChargeDensity": {
+    "code": "linear_electric_charge_density",
+    "identity": {
+      "slug": "linear_electric_charge_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearElectricChargeDensity"
+      }
+    ],
+    "title": {
+      "en": "Electric Charge Linear Density"
+    }
+  },
+  "linearElectricCurrent": {
+    "code": "linear_electric_current",
+    "identity": {
+      "broader": "linear_electric_current_density",
+      "slug": "linear_electric_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearElectricCurrent"
+      }
+    ],
+    "title": {
+      "en": "Linear Electric Current"
+    }
+  },
+  "linearElectricCurrentDensity": {
+    "code": "linear_electric_current_density",
+    "identity": {
+      "slug": "linear_electric_current_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearElectricCurrentDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2356741"
+      }
+    ],
+    "title": {
+      "en": "Linear Electric Current Density"
+    }
+  },
+  "linearEnergyTransfer": {
+    "code": "linear_energy_transfer",
+    "identity": {
+      "slug": "linear_energy_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearEnergyTransfer"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1699996"
+      }
+    ],
+    "title": {
+      "en": "Linear Energy Transfer"
+    }
+  },
+  "linearExpansionCoefficient": {
+    "code": "linear_expansion_coefficient",
+    "identity": {
+      "broader": "expansion_ratio",
+      "slug": "linear_expansion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearExpansionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74760821"
+      }
+    ],
+    "title": {
+      "en": "Linear Expansion Coefficient"
+    }
+  },
+  "linearForce": {
+    "code": "linear_force",
+    "identity": {
+      "broader": "force_per_length",
+      "slug": "linear_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearForce"
+      }
+    ],
+    "title": {
+      "en": "Linear Force"
+    }
+  },
+  "linearIonization": {
+    "code": "linear_ionization",
+    "identity": {
+      "slug": "linear_ionization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearIonization"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98690755"
+      }
+    ],
+    "title": {
+      "en": "Linear Ionization"
+    }
+  },
+  "linearLogarithmicRatio": {
+    "code": "linear_logarithmic_ratio",
+    "identity": {
+      "slug": "linear_logarithmic_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearLogarithmicRatio"
+      }
+    ],
+    "title": {
+      "en": "Lineic Logarithmic Ratio"
+    }
+  },
+  "linearMass": {
+    "code": "linear_mass",
+    "identity": {
+      "slug": "linear_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearMass"
+      }
+    ],
+    "title": {
+      "en": "Lineic Mass"
+    }
+  },
+  "linearMomentum": {
+    "code": "linear_momentum",
+    "identity": {
+      "slug": "linear_momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearMomentum"
+      }
+    ],
+    "title": {
+      "en": "Linear Momentum"
+    }
+  },
+  "linearNumberDensity": {
+    "code": "linear_number_density",
+    "identity": {
+      "slug": "linear_number_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearNumberDensity"
+      }
+    ],
+    "title": {
+      "en": "Linear Number Density"
+    }
+  },
+  "linearPower": {
+    "code": "linear_power",
+    "identity": {
+      "slug": "linear_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearPower"
+      }
+    ],
+    "title": {
+      "en": "Lineic Power"
+    }
+  },
+  "linearResistance": {
+    "code": "linear_resistance",
+    "identity": {
+      "slug": "linear_resistance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearResistance"
+      }
+    ],
+    "title": {
+      "en": "Lineic Resistance"
+    }
+  },
+  "linearStiffness": {
+    "code": "linear_stiffness",
+    "identity": {
+      "broader": "force_per_length",
+      "slug": "linear_stiffness"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearStiffness"
+      }
+    ],
+    "title": {
+      "en": "Linear Force"
+    }
+  },
+  "linearStrain": {
+    "code": "linear_strain",
+    "identity": {
+      "broader": "length_ratio",
+      "slug": "linear_strain"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearStrain"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1990546"
+      }
+    ],
+    "title": {
+      "en": "Linear Strain"
+    }
+  },
+  "linearThermalExpansion": {
+    "code": "linear_thermal_expansion",
+    "identity": {
+      "slug": "linear_thermal_expansion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearThermalExpansion"
+      }
+    ],
+    "title": {
+      "en": "Linear Thermal Expansion"
+    }
+  },
+  "linearTorque": {
+    "code": "linear_torque",
+    "identity": {
+      "slug": "linear_torque"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearTorque"
+      }
+    ],
+    "title": {
+      "en": "Lineic Torque"
+    }
+  },
+  "linearVelocity": {
+    "code": "linear_velocity",
+    "identity": {
+      "slug": "linear_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearVelocity"
+      }
+    ],
+    "title": {
+      "en": "Linear Velocity"
+    }
+  },
+  "linearVoltageCoefficient": {
+    "code": "linear_voltage_coefficient",
+    "identity": {
+      "slug": "linear_voltage_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinearVoltageCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Linear Voltage Coefficient"
+    }
+  },
+  "lineicCharge": {
+    "code": "lineic_charge",
+    "identity": {
+      "slug": "lineic_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicCharge"
+      }
+    ],
+    "title": {
+      "en": "Lineic Charge"
+    }
+  },
+  "lineicDataVolume": {
+    "code": "lineic_data_volume",
+    "identity": {
+      "slug": "lineic_data_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicDataVolume"
+      }
+    ],
+    "title": {
+      "en": "Lineic Data Volume"
+    }
+  },
+  "lineicLogarithmicRatio": {
+    "code": "lineic_logarithmic_ratio",
+    "identity": {
+      "slug": "lineic_logarithmic_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicLogarithmicRatio"
+      }
+    ],
+    "title": {
+      "en": "Lineic Logarithmic Ratio"
+    }
+  },
+  "lineicMass": {
+    "code": "lineic_mass",
+    "identity": {
+      "slug": "lineic_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicMass"
+      }
+    ],
+    "title": {
+      "en": "Lineic Mass"
+    }
+  },
+  "lineicPower": {
+    "code": "lineic_power",
+    "identity": {
+      "slug": "lineic_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicPower"
+      }
+    ],
+    "title": {
+      "en": "Lineic Power"
+    }
+  },
+  "lineicQuantity": {
+    "code": "lineic_quantity",
+    "identity": {
+      "slug": "lineic_quantity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicQuantity"
+      }
+    ],
+    "title": {
+      "en": "Lineic Quantity"
+    }
+  },
+  "lineicResistance": {
+    "code": "lineic_resistance",
+    "identity": {
+      "slug": "lineic_resistance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicResistance"
+      }
+    ],
+    "title": {
+      "en": "Lineic Resistance"
+    }
+  },
+  "lineicResolution": {
+    "code": "lineic_resolution",
+    "identity": {
+      "slug": "lineic_resolution"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicResolution"
+      }
+    ],
+    "title": {
+      "en": "Lineic Resolution"
+    }
+  },
+  "lineicTorque": {
+    "code": "lineic_torque",
+    "identity": {
+      "slug": "lineic_torque"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LineicTorque"
+      }
+    ],
+    "title": {
+      "en": "Lineic Torque"
+    }
+  },
+  "linkedFlux": {
+    "code": "linked_flux",
+    "identity": {
+      "broader": "magnetic_flux",
+      "slug": "linked_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LinkedFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q118540114"
+      }
+    ],
+    "title": {
+      "en": "Linked Flux"
+    }
+  },
+  "liquidLevel": {
+    "code": "liquid_level",
+    "identity": {
+      "broader": "length",
+      "slug": "liquid_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LiquidLevel"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1481422"
+      }
+    ],
+    "title": {
+      "en": "Liquid Level"
+    }
+  },
+  "liquidVolume": {
+    "code": "liquid_volume",
+    "identity": {
+      "broader": "volume",
+      "slug": "liquid_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LiquidVolume"
+      }
+    ],
+    "title": {
+      "en": "Liquid Volume"
+    }
+  },
+  "log10FrequencyInterval": {
+    "code": "log10_frequency_interval",
+    "identity": {
+      "slug": "log10_frequency_interval"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Log10FrequencyInterval"
+      }
+    ],
+    "title": {
+      "en": "Logarithmic Frequency Interval to Base 10"
+    }
+  },
+  "log10Ratio": {
+    "code": "log10_ratio",
+    "identity": {
+      "slug": "log10_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Log10Ratio"
+      }
+    ],
+    "title": {
+      "en": "Logarithmic Ratio to Base 10"
+    }
+  },
+  "logarithmicFrequencyInterval": {
+    "code": "logarithmic_frequency_interval",
+    "identity": {
+      "slug": "logarithmic_frequency_interval"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmicFrequencyInterval"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86499668"
+      }
+    ],
+    "title": {
+      "en": "Logarithmic Frequency Interval"
+    }
+  },
+  "logarithmicFrequencyIntervalToBase10": {
+    "code": "logarithmic_frequency_interval_to_base10",
+    "identity": {
+      "slug": "logarithmic_frequency_interval_to_base10"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmicFrequencyIntervalToBase10"
+      }
+    ],
+    "title": {
+      "en": "Logarithmic Frequency Interval to Base 10"
+    }
+  },
+  "logarithmicMedianInformationFlowSourceToBase10": {
+    "code": "logarithmic_median_information_flow_source_to_base10",
+    "identity": {
+      "slug": "logarithmic_median_information_flow_source_to_base10"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmicMedianInformationFlow_SourceToBase10"
+      }
+    ],
+    "title": {
+      "en": "median information flow (from a source of information), expressed as a common logarithm "
+    }
+  },
+  "logarithmicMedianInformationFlowSourceToBase2": {
+    "code": "logarithmic_median_information_flow_source_to_base2",
+    "identity": {
+      "slug": "logarithmic_median_information_flow_source_to_base2"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmicMedianInformationFlow_SourceToBase2"
+      }
+    ],
+    "title": {
+      "en": "median information flow (from a source of information), expressed as a binary logarithm"
+    }
+  },
+  "logarithmicMedianInformationFlowSourceToBaseE": {
+    "code": "logarithmic_median_information_flow_source_to_base_e",
+    "identity": {
+      "slug": "logarithmic_median_information_flow_source_to_base_e"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmicMedianInformationFlow_SourceToBaseE"
+      }
+    ],
+    "title": {
+      "en": "median information flow (from a source of information), expressed as a natural logarithm "
+    }
+  },
+  "logarithmRatioToBase10": {
+    "code": "logarithm_ratio_to_base10",
+    "identity": {
+      "slug": "logarithm_ratio_to_base10"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmRatioToBase10"
+      }
+    ],
+    "title": {
+      "en": "Logarithm Ratio to Base 10"
+    }
+  },
+  "logarithmRatioToBaseE": {
+    "code": "logarithm_ratio_to_base_e",
+    "identity": {
+      "slug": "logarithm_ratio_to_base_e"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogarithmRatioToBaseE"
+      }
+    ],
+    "title": {
+      "en": "Logarithm Ratio to Base e"
+    }
+  },
+  "logERatio": {
+    "code": "log_e_ratio",
+    "identity": {
+      "slug": "log_e_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogERatio"
+      }
+    ],
+    "title": {
+      "en": "Logarithmic Ratio to Base e"
+    }
+  },
+  "logOctanolAirPartitionCoefficient": {
+    "code": "log_octanol_air_partition_coefficient",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "log_octanol_air_partition_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogOctanolAirPartitionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Octanol Air Partition Coefficient"
+    }
+  },
+  "logOctanolWaterPartitionCoefficient": {
+    "code": "log_octanol_water_partition_coefficient",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "log_octanol_water_partition_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LogOctanolWaterPartitionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Logarithm of Octanol Water Partition Coefficient"
+    }
+  },
+  "londonPenetrationDepth": {
+    "code": "london_penetration_depth",
+    "identity": {
+      "broader": "length",
+      "slug": "london_penetration_depth"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LondonPenetrationDepth"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3277853"
+      }
+    ],
+    "title": {
+      "en": "London Penetration Depth"
+    }
+  },
+  "longRangeOrderParameter": {
+    "code": "long_range_order_parameter",
+    "identity": {
+      "slug": "long_range_order_parameter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LongRangeOrderParameter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105496124"
+      }
+    ],
+    "title": {
+      "en": "Long-Range Order Parameter"
+    }
+  },
+  "lorenzCoefficient": {
+    "code": "lorenz_coefficient",
+    "identity": {
+      "slug": "lorenz_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LorenzCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105728754"
+      }
+    ],
+    "title": {
+      "en": "Lorenz Coefficient"
+    }
+  },
+  "lossAngle": {
+    "code": "loss_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "loss_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LossAngle"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q20820438"
+      }
+    ],
+    "title": {
+      "en": "Loss Angle"
+    }
+  },
+  "lossFactor": {
+    "code": "loss_factor",
+    "identity": {
+      "slug": "loss_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LossFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q79468728"
+      }
+    ],
+    "title": {
+      "en": "Loss Factor"
+    }
+  },
+  "loudness": {
+    "code": "loudness",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "loudness"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Loudness"
+      }
+    ],
+    "title": {
+      "en": "Loudness"
+    }
+  },
+  "loudnessLevel": {
+    "code": "loudness_level",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "loudness_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LoudnessLevel"
+      }
+    ],
+    "title": {
+      "en": "Loudness Level"
+    }
+  },
+  "lowerCriticalMagneticFluxDensity": {
+    "code": "lower_critical_magnetic_flux_density",
+    "identity": {
+      "broader": "magnetic_flux_density",
+      "slug": "lower_critical_magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LowerCriticalMagneticFluxDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106127355"
+      }
+    ],
+    "title": {
+      "en": "Lower Critical Magnetic Flux Density"
+    }
+  },
+  "luminance": {
+    "code": "luminance",
+    "identity": {
+      "slug": "luminance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Luminance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q355386"
+      }
+    ],
+    "title": {
+      "en": "Luminance"
+    }
+  },
+  "luminousEfficacy": {
+    "code": "luminous_efficacy",
+    "identity": {
+      "slug": "luminous_efficacy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousEfficacy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1504173"
+      }
+    ],
+    "title": {
+      "en": "Luminous Efficacy"
+    }
+  },
+  "luminousEmittance": {
+    "code": "luminous_emittance",
+    "identity": {
+      "broader": "luminous_flux_per_area",
+      "slug": "luminous_emittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousEmittance"
+      }
+    ],
+    "title": {
+      "en": "Luminous Emmitance"
+    }
+  },
+  "luminousEnergy": {
+    "code": "luminous_energy",
+    "identity": {
+      "slug": "luminous_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900164"
+      }
+    ],
+    "title": {
+      "en": "Luminous Energy"
+    }
+  },
+  "luminousExitance": {
+    "code": "luminous_exitance",
+    "identity": {
+      "broader": "luminous_flux_per_area",
+      "slug": "luminous_exitance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousExitance"
+      }
+    ],
+    "title": {
+      "en": "Luminous Exitance"
+    }
+  },
+  "luminousExposure": {
+    "code": "luminous_exposure",
+    "identity": {
+      "slug": "luminous_exposure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousExposure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q815588"
+      }
+    ],
+    "title": {
+      "en": "Luminous Exposure"
+    }
+  },
+  "luminousFlux": {
+    "code": "luminous_flux",
+    "identity": {
+      "slug": "luminous_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q107780"
+      }
+    ],
+    "title": {
+      "en": "Luminous Flux"
+    }
+  },
+  "luminousFluxPerArea": {
+    "code": "luminous_flux_per_area",
+    "identity": {
+      "slug": "luminous_flux_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousFluxPerArea"
+      }
+    ],
+    "title": {
+      "en": "Luminous Flux per Area"
+    }
+  },
+  "luminousFluxRatio": {
+    "code": "luminous_flux_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "luminous_flux_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousFluxRatio"
+      }
+    ],
+    "title": {
+      "en": "Luminous Flux Ratio"
+    }
+  },
+  "luminousIntensity": {
+    "code": "luminous_intensity",
+    "identity": {
+      "slug": "luminous_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousIntensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q104831"
+      }
+    ],
+    "title": {
+      "en": "Luminous Intensity"
+    }
+  },
+  "luminousIntensityDistribution": {
+    "code": "luminous_intensity_distribution",
+    "identity": {
+      "slug": "luminous_intensity_distribution"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "LuminousIntensityDistribution"
+      }
+    ],
+    "title": {
+      "en": "Ion Concentration"
+    }
+  },
+  "machNumber": {
+    "code": "mach_number",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "mach_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MachNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q160669"
+      }
+    ],
+    "title": {
+      "en": "Mach Number"
+    }
+  },
+  "macroscopicCrossSection": {
+    "code": "macroscopic_cross_section",
+    "identity": {
+      "broader": "cross_section",
+      "slug": "macroscopic_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MacroscopicCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98280520"
+      }
+    ],
+    "title": {
+      "en": "Macroscopic Cross-section"
+    }
+  },
+  "macroscopicTotalCrossSection": {
+    "code": "macroscopic_total_cross_section",
+    "identity": {
+      "broader": "cross_section",
+      "slug": "macroscopic_total_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MacroscopicTotalCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98280548"
+      }
+    ],
+    "title": {
+      "en": "Macroscopic Total Cross-section"
+    }
+  },
+  "madelungConstant": {
+    "code": "madelung_constant",
+    "identity": {
+      "slug": "madelung_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MadelungConstant"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q898781"
+      }
+    ],
+    "title": {
+      "en": "Madelung Constant"
+    }
+  },
+  "magneticAreaMoment": {
+    "code": "magnetic_area_moment",
+    "identity": {
+      "slug": "magnetic_area_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticAreaMoment"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Area Moment"
+    }
+  },
+  "magneticDipoleMoment": {
+    "code": "magnetic_dipole_moment",
+    "identity": {
+      "slug": "magnetic_dipole_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticDipoleMoment"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q71008556"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Dipole Moment"
+    }
+  },
+  "magneticDipoleMomentOfAMolecule": {
+    "code": "magnetic_dipole_moment_of_a_molecule",
+    "identity": {
+      "slug": "magnetic_dipole_moment_of_a_molecule"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticDipoleMomentOfAMolecule"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Dipole Moment of a Molecule"
+    }
+  },
+  "magneticField": {
+    "code": "magnetic_field",
+    "identity": {
+      "slug": "magnetic_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticField"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Field"
+    }
+  },
+  "magneticFieldStrength": {
+    "code": "magnetic_field_strength",
+    "identity": {
+      "broader": "electric_current_per_length",
+      "slug": "magnetic_field_strength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFieldStrength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q28123"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Field Strength"
+    }
+  },
+  "magneticFieldStrengthH": {
+    "code": "magnetic_field_strength_h",
+    "identity": {
+      "broader": "electric_current_per_length",
+      "slug": "magnetic_field_strength_h"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFieldStrength_H"
+      }
+    ],
+    "title": {
+      "en": "magnetic field strength"
+    }
+  },
+  "magneticFlux": {
+    "code": "magnetic_flux",
+    "identity": {
+      "slug": "magnetic_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q177831"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Flux"
+    }
+  },
+  "magneticFluxDensity": {
+    "code": "magnetic_flux_density",
+    "identity": {
+      "slug": "magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFluxDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q30204"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Flux Density"
+    }
+  },
+  "magneticFluxDensityOrMagneticPolarization": {
+    "code": "magnetic_flux_density_or_magnetic_polarization",
+    "identity": {
+      "slug": "magnetic_flux_density_or_magnetic_polarization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFluxDensityOrMagneticPolarization"
+      }
+    ],
+    "title": {
+      "en": "magnetic flux density or magnetic polarization"
+    }
+  },
+  "magneticFluxPerLength": {
+    "code": "magnetic_flux_per_length",
+    "identity": {
+      "slug": "magnetic_flux_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticFluxPerLength"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Flux per Length"
+    }
+  },
+  "magneticMoment": {
+    "code": "magnetic_moment",
+    "identity": {
+      "slug": "magnetic_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticMoment"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q242657"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Moment"
+    }
+  },
+  "magneticPolarization": {
+    "code": "magnetic_polarization",
+    "identity": {
+      "slug": "magnetic_polarization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticPolarization"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1884336"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Polarization"
+    }
+  },
+  "magneticQuantumNumber": {
+    "code": "magnetic_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "magnetic_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2009727"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Quantum Number"
+    }
+  },
+  "magneticReluctivity": {
+    "code": "magnetic_reluctivity",
+    "identity": {
+      "slug": "magnetic_reluctivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticReluctivity"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Reluctivity"
+    }
+  },
+  "magneticSusceptability": {
+    "code": "magnetic_susceptability",
+    "identity": {
+      "slug": "magnetic_susceptability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticSusceptability"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Susceptability"
+    }
+  },
+  "magneticTension": {
+    "code": "magnetic_tension",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "magnetic_tension"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticTension"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77993836"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Tension"
+    }
+  },
+  "magneticVectorPotential": {
+    "code": "magnetic_vector_potential",
+    "identity": {
+      "slug": "magnetic_vector_potential"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagneticVectorPotential"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2299100"
+      }
+    ],
+    "title": {
+      "en": "Magnetic Vector Potential"
+    }
+  },
+  "magnetization": {
+    "code": "magnetization",
+    "identity": {
+      "broader": "linear_electric_current",
+      "slug": "magnetization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Magnetization"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q856711"
+      }
+    ],
+    "title": {
+      "en": "Magnetization"
+    }
+  },
+  "magnetizationField": {
+    "code": "magnetization_field",
+    "identity": {
+      "broader": "electric_current_per_length",
+      "slug": "magnetization_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagnetizationField"
+      }
+    ],
+    "title": {
+      "en": "Magnetization Field"
+    }
+  },
+  "magnetomotiveForce": {
+    "code": "magnetomotive_force",
+    "identity": {
+      "slug": "magnetomotive_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MagnetomotiveForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1266982"
+      }
+    ],
+    "title": {
+      "en": "Magnetomotive Force"
+    }
+  },
+  "mass": {
+    "code": "mass",
+    "description": {
+      "en": "Physical mass of a part/module, kilograms."
+    },
+    "identity": {
+      "slug": "mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Mass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11423"
+      }
+    ],
+    "title": {
+      "en": "Mass",
+      "pt": "Massa (kg)"
+    }
+  },
+  "massAbsorptionCoefficient": {
+    "code": "mass_absorption_coefficient",
+    "identity": {
+      "broader": "mass_attenuation_coefficient",
+      "slug": "mass_absorption_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassAbsorptionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86202147"
+      }
+    ],
+    "title": {
+      "en": "Mass Absorption Coefficient"
+    }
+  },
+  "massAmountOfSubstance": {
+    "code": "mass_amount_of_substance",
+    "identity": {
+      "slug": "mass_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassAmountOfSubstance"
+      }
+    ],
+    "title": {
+      "en": "Mass Amount of Substance"
+    }
+  },
+  "massAmountOfSubstanceTemperature": {
+    "code": "mass_amount_of_substance_temperature",
+    "identity": {
+      "slug": "mass_amount_of_substance_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassAmountOfSubstanceTemperature"
+      }
+    ],
+    "title": {
+      "en": "Mass Amount of Substance Temperature"
+    }
+  },
+  "massAttenuationCoefficient": {
+    "code": "mass_attenuation_coefficient",
+    "identity": {
+      "slug": "mass_attenuation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassAttenuationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1907558"
+      }
+    ],
+    "title": {
+      "en": "Mass Attenuation Coefficient"
+    }
+  },
+  "massBasedBloodGlucoseLevel": {
+    "code": "mass_based_blood_glucose_level",
+    "identity": {
+      "broader": "mass_concentration",
+      "slug": "mass_based_blood_glucose_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassBasedBloodGlucoseLevel"
+      }
+    ],
+    "title": {
+      "en": "Blood Glucose Level by Mass"
+    }
+  },
+  "massConcentration": {
+    "code": "mass_concentration",
+    "identity": {
+      "broader": "density",
+      "slug": "mass_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassConcentration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q589446"
+      }
+    ],
+    "title": {
+      "en": "Mass Concentration"
+    }
+  },
+  "massConcentrationOfWater": {
+    "code": "mass_concentration_of_water",
+    "identity": {
+      "broader": "mass_concentration",
+      "slug": "mass_concentration_of_water"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassConcentrationOfWater"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76378758"
+      }
+    ],
+    "title": {
+      "en": "Mass Concentration of Water"
+    }
+  },
+  "massConcentrationOfWaterVapour": {
+    "code": "mass_concentration_of_water_vapour",
+    "identity": {
+      "broader": "mass_concentration",
+      "slug": "mass_concentration_of_water_vapour"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassConcentrationOfWaterVapour"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76378808"
+      }
+    ],
+    "title": {
+      "en": "Mass Concentration of Water Vapour"
+    }
+  },
+  "massConcentrationRateOfChange": {
+    "code": "mass_concentration_rate_of_change",
+    "identity": {
+      "slug": "mass_concentration_rate_of_change"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassConcentrationRateOfChange"
+      }
+    ],
+    "title": {
+      "en": "Mass Concentration Rate of Change"
+    }
+  },
+  "massDefect": {
+    "code": "mass_defect",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_defect"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassDefect"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q26897126"
+      }
+    ],
+    "title": {
+      "en": "Mass Defect"
+    }
+  },
+  "massDelivered": {
+    "code": "mass_delivered",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_delivered"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MASS-DELIVERED"
+      }
+    ],
+    "title": {
+      "en": "Mass Delivered"
+    }
+  },
+  "massDensity": {
+    "code": "mass_density",
+    "identity": {
+      "slug": "mass_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassDensity"
+      }
+    ],
+    "title": {
+      "en": "Mass Density"
+    }
+  },
+  "massEnergyTransferCoefficient": {
+    "code": "mass_energy_transfer_coefficient",
+    "identity": {
+      "broader": "mass_attenuation_coefficient",
+      "slug": "mass_energy_transfer_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassEnergyTransferCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99714619"
+      }
+    ],
+    "title": {
+      "en": "Mass Energy Transfer Coefficient"
+    }
+  },
+  "massEquivalent": {
+    "code": "mass_equivalent",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_equivalent"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassEquivalent"
+      }
+    ],
+    "title": {
+      "en": "Mass Equivalent"
+    }
+  },
+  "massExcess": {
+    "code": "mass_excess",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_excess"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassExcess"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1571163"
+      }
+    ],
+    "title": {
+      "en": "Mass Excess"
+    }
+  },
+  "massFlowRate": {
+    "code": "mass_flow_rate",
+    "identity": {
+      "broader": "mass_per_time",
+      "slug": "mass_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassFlowRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1366187"
+      }
+    ],
+    "title": {
+      "en": "Mass Flow Rate"
+    }
+  },
+  "massFluxDensity": {
+    "code": "mass_flux_density",
+    "identity": {
+      "broader": "mass_per_area_time",
+      "slug": "mass_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Mass Flux Density"
+    }
+  },
+  "massFraction": {
+    "code": "mass_fraction",
+    "description": {
+      "en": "A component's share of a mixture by mass, 0–1 (0.5 => 50%). A refrigerant blend's ASHRAE-34 formulation is a list of these; the blend's GWP derives from Σ(mass_fraction × component GWP)."
+    },
+    "identity": {
+      "slug": "mass_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassFraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q899138"
+      }
+    ],
+    "title": {
+      "en": "Mass Fraction",
+      "pt": "Fração mássica"
+    }
+  },
+  "massFractionOfDryMatter": {
+    "code": "mass_fraction_of_dry_matter",
+    "identity": {
+      "slug": "mass_fraction_of_dry_matter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassFractionOfDryMatter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76379189"
+      }
+    ],
+    "title": {
+      "en": "Mass Fraction of Dry Matter"
+    }
+  },
+  "massFractionOfWater": {
+    "code": "mass_fraction_of_water",
+    "identity": {
+      "slug": "mass_fraction_of_water"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassFractionOfWater"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76379025"
+      }
+    ],
+    "title": {
+      "en": "Mass Fraction of Water"
+    }
+  },
+  "massGrowthAllowance": {
+    "code": "mass_growth_allowance",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_growth_allowance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MASS-GROWTH-ALLOWANCE"
+      }
+    ],
+    "title": {
+      "en": "Mass Growth Allowance"
+    }
+  },
+  "massicActivity": {
+    "code": "massic_activity",
+    "identity": {
+      "broader": "specific_activity",
+      "slug": "massic_activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassicActivity"
+      }
+    ],
+    "title": {
+      "en": "Massic Activity"
+    }
+  },
+  "massicElectricCurrent": {
+    "code": "massic_electric_current",
+    "identity": {
+      "slug": "massic_electric_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassicElectricCurrent"
+      }
+    ],
+    "title": {
+      "en": "Massic Electric Current"
+    }
+  },
+  "massicHeatCapacity": {
+    "code": "massic_heat_capacity",
+    "identity": {
+      "slug": "massic_heat_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassicHeatCapacity"
+      }
+    ],
+    "title": {
+      "en": "Massic Heat Capacity"
+    }
+  },
+  "massicPower": {
+    "code": "massic_power",
+    "identity": {
+      "broader": "specific_power",
+      "slug": "massic_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassicPower"
+      }
+    ],
+    "title": {
+      "en": "Massic Power"
+    }
+  },
+  "massicTorque": {
+    "code": "massic_torque",
+    "identity": {
+      "slug": "massic_torque"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassicTorque"
+      }
+    ],
+    "title": {
+      "en": "Massic Torque"
+    }
+  },
+  "massieuFunction": {
+    "code": "massieu_function",
+    "identity": {
+      "slug": "massieu_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassieuFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3077625"
+      }
+    ],
+    "title": {
+      "en": "Massieu Function"
+    }
+  },
+  "massMargin": {
+    "code": "mass_margin",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_margin"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MASS-MARGIN"
+      }
+    ],
+    "title": {
+      "en": "Mass Margin"
+    }
+  },
+  "massNumber": {
+    "code": "mass_number",
+    "identity": {
+      "broader": "count",
+      "slug": "mass_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q101395"
+      }
+    ],
+    "title": {
+      "en": "Mass Number"
+    }
+  },
+  "massOfElectricalPowerSupply": {
+    "code": "mass_of_electrical_power_supply",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_of_electrical_power_supply"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassOfElectricalPowerSupply"
+      }
+    ],
+    "title": {
+      "en": "Mass of Electrical Power Supply"
+    }
+  },
+  "massOfSolidBooster": {
+    "code": "mass_of_solid_booster",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_of_solid_booster"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassOfSolidBooster"
+      }
+    ],
+    "title": {
+      "en": "Mass of Solid Booster"
+    }
+  },
+  "massOfTheEarth": {
+    "code": "mass_of_the_earth",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_of_the_earth"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassOfTheEarth"
+      }
+    ],
+    "title": {
+      "en": "Mass of the Earth"
+    }
+  },
+  "massPerArea": {
+    "code": "mass_per_area",
+    "identity": {
+      "slug": "mass_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerArea"
+      }
+    ],
+    "title": {
+      "en": "Mass per Area"
+    }
+  },
+  "massPerAreaTime": {
+    "code": "mass_per_area_time",
+    "identity": {
+      "slug": "mass_per_area_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerAreaTime"
+      }
+    ],
+    "title": {
+      "en": "Mass per Area Time"
+    }
+  },
+  "massPerElectricCharge": {
+    "code": "mass_per_electric_charge",
+    "identity": {
+      "slug": "mass_per_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Mass per Electric Charge"
+    }
+  },
+  "massPerEnergy": {
+    "code": "mass_per_energy",
+    "identity": {
+      "slug": "mass_per_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerEnergy"
+      }
+    ],
+    "title": {
+      "en": "Mass per Energy"
+    }
+  },
+  "massPerLength": {
+    "code": "mass_per_length",
+    "identity": {
+      "slug": "mass_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerLength"
+      }
+    ],
+    "title": {
+      "en": "Mass per Length"
+    }
+  },
+  "massPerTime": {
+    "code": "mass_per_time",
+    "identity": {
+      "slug": "mass_per_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassPerTime"
+      }
+    ],
+    "title": {
+      "en": "Mass per Time"
+    }
+  },
+  "massPropertyUncertainty": {
+    "code": "mass_property_uncertainty",
+    "identity": {
+      "broader": "mass",
+      "slug": "mass_property_uncertainty"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MASS-PROPERTY-UNCERTAINTY"
+      }
+    ],
+    "title": {
+      "en": "Mass Property Uncertainty"
+    }
+  },
+  "massRatio": {
+    "code": "mass_ratio",
+    "identity": {
+      "slug": "mass_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1563068"
+      }
+    ],
+    "title": {
+      "en": "Mass Ratio"
+    }
+  },
+  "massRatioOfWaterToDryMatter": {
+    "code": "mass_ratio_of_water_to_dry_matter",
+    "identity": {
+      "slug": "mass_ratio_of_water_to_dry_matter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassRatioOfWaterToDryMatter"
+      }
+    ],
+    "title": {
+      "en": "Mass Concentration of Water to Dry Matter"
+    }
+  },
+  "massRatioOfWaterVapourToDryGas": {
+    "code": "mass_ratio_of_water_vapour_to_dry_gas",
+    "identity": {
+      "slug": "mass_ratio_of_water_vapour_to_dry_gas"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassRatioOfWaterVapourToDryGas"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q17232415"
+      }
+    ],
+    "title": {
+      "en": "Mass Ratio of Water Vapour to Dry Gas"
+    }
+  },
+  "massRelatedElectricalCurrent": {
+    "code": "mass_related_electrical_current",
+    "identity": {
+      "slug": "mass_related_electrical_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassRelatedElectricalCurrent"
+      }
+    ],
+    "title": {
+      "en": "Mass-related Electrical Current"
+    }
+  },
+  "massSpecificBiogeochemicalRate": {
+    "code": "mass_specific_biogeochemical_rate",
+    "identity": {
+      "slug": "mass_specific_biogeochemical_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassSpecificBiogeochemicalRate"
+      }
+    ],
+    "title": {
+      "en": "Mass Specific Biogeochemical Rate"
+    }
+  },
+  "massStoppingPower": {
+    "code": "mass_stopping_power",
+    "identity": {
+      "slug": "mass_stopping_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassStoppingPower"
+      }
+    ],
+    "title": {
+      "en": "Mass Stopping Power"
+    }
+  },
+  "massTemperature": {
+    "code": "mass_temperature",
+    "identity": {
+      "slug": "mass_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MassTemperature"
+      }
+    ],
+    "title": {
+      "en": "Mass Temperature"
+    }
+  },
+  "maxExpectedOperatingThrust": {
+    "code": "max_expected_operating_thrust",
+    "identity": {
+      "broader": "max_operating_thrust",
+      "slug": "max_expected_operating_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaxExpectedOperatingThrust"
+      }
+    ],
+    "title": {
+      "en": "Maximum Expected Operating Thrust"
+    }
+  },
+  "maximumBetaParticleEnergy": {
+    "code": "maximum_beta_particle_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "maximum_beta_particle_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaximumBetaParticleEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98148038"
+      }
+    ],
+    "title": {
+      "en": "Maximum Beta-Particle Energy"
+    }
+  },
+  "maximumExpectedOperatingPressure": {
+    "code": "maximum_expected_operating_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "maximum_expected_operating_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaximumExpectedOperatingPressure"
+      }
+    ],
+    "title": {
+      "en": "Maximum Expected Operating Pressure"
+    }
+  },
+  "maximumOperatingPressure": {
+    "code": "maximum_operating_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "maximum_operating_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaximumOperatingPressure"
+      }
+    ],
+    "title": {
+      "en": "Maximum Operating Pressure"
+    }
+  },
+  "maxOperatingThrust": {
+    "code": "max_operating_thrust",
+    "identity": {
+      "broader": "thrust",
+      "slug": "max_operating_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaxOperatingThrust"
+      }
+    ],
+    "title": {
+      "en": "Max Operating Thrust"
+    }
+  },
+  "maxSeaLevelThrust": {
+    "code": "max_sea_level_thrust",
+    "identity": {
+      "broader": "thrust",
+      "slug": "max_sea_level_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MaxSeaLevelThrust"
+      }
+    ],
+    "title": {
+      "en": "Max Sea Level Thrust"
+    }
+  },
+  "meanEnergyImparted": {
+    "code": "mean_energy_imparted",
+    "identity": {
+      "broader": "energy",
+      "slug": "mean_energy_imparted"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeanEnergyImparted"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99526969"
+      }
+    ],
+    "title": {
+      "en": "Mean Energy Imparted"
+    }
+  },
+  "meanFreePath": {
+    "code": "mean_free_path",
+    "identity": {
+      "broader": "length",
+      "slug": "mean_free_path"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeanFreePath"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q756307"
+      }
+    ],
+    "title": {
+      "en": "Mean Free Path"
+    }
+  },
+  "meanLifetime": {
+    "code": "mean_lifetime",
+    "identity": {
+      "broader": "time",
+      "slug": "mean_lifetime"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeanLifetime"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1758559"
+      }
+    ],
+    "title": {
+      "en": "Mean Lifetime"
+    }
+  },
+  "meanLinearRange": {
+    "code": "mean_linear_range",
+    "identity": {
+      "broader": "length",
+      "slug": "mean_linear_range"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeanLinearRange"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98681589"
+      }
+    ],
+    "title": {
+      "en": "Mean Linear Range"
+    }
+  },
+  "meanMassRange": {
+    "code": "mean_mass_range",
+    "identity": {
+      "broader": "mass_per_area",
+      "slug": "mean_mass_range"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeanMassRange"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98681670"
+      }
+    ],
+    "title": {
+      "en": "Mean Mass Range"
+    }
+  },
+  "mechanicalEnergy": {
+    "code": "mechanical_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "mechanical_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MechanicalEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q184550"
+      }
+    ],
+    "title": {
+      "en": "Mechanical Energy"
+    }
+  },
+  "mechanicalImpedance": {
+    "code": "mechanical_impedance",
+    "identity": {
+      "slug": "mechanical_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MechanicalImpedance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q6421317"
+      }
+    ],
+    "title": {
+      "en": "Mechanical Impedance"
+    }
+  },
+  "mechanicalMobility": {
+    "code": "mechanical_mobility",
+    "identity": {
+      "slug": "mechanical_mobility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MechanicalMobility"
+      }
+    ],
+    "title": {
+      "en": "Mechanical Mobility"
+    }
+  },
+  "mechanicalSurfaceImpedance": {
+    "code": "mechanical_surface_impedance",
+    "identity": {
+      "slug": "mechanical_surface_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MechanicalSurfaceImpedance"
+      }
+    ],
+    "title": {
+      "en": "Mechanical Surface Impedance"
+    }
+  },
+  "mechanicalTension": {
+    "code": "mechanical_tension",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "mechanical_tension"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MechanicalTension"
+      }
+    ],
+    "title": {
+      "en": "Mechanical Tension"
+    }
+  },
+  "meltingPoint": {
+    "code": "melting_point",
+    "identity": {
+      "broader": "temperature",
+      "slug": "melting_point"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MeltingPoint"
+      }
+    ],
+    "title": {
+      "en": "Melting Point Temperature"
+    }
+  },
+  "microbialFormation": {
+    "code": "microbial_formation",
+    "identity": {
+      "slug": "microbial_formation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MicrobialFormation"
+      }
+    ],
+    "title": {
+      "en": "Microbial Formation"
+    }
+  },
+  "microCanonicalPartitionFunction": {
+    "code": "micro_canonical_partition_function",
+    "identity": {
+      "broader": "canonical_partition_function",
+      "slug": "micro_canonical_partition_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MicroCanonicalPartitionFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96106546"
+      }
+    ],
+    "title": {
+      "en": "Micro Canonical Partition Function"
+    }
+  },
+  "migrationArea": {
+    "code": "migration_area",
+    "identity": {
+      "broader": "area",
+      "slug": "migration_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MigrationArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98966325"
+      }
+    ],
+    "title": {
+      "en": "Migration Area"
+    }
+  },
+  "migrationLength": {
+    "code": "migration_length",
+    "identity": {
+      "broader": "length",
+      "slug": "migration_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MigrationLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98998318"
+      }
+    ],
+    "title": {
+      "en": "Migration Length"
+    }
+  },
+  "mobility": {
+    "code": "mobility",
+    "identity": {
+      "slug": "mobility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Mobility"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900648"
+      }
+    ],
+    "title": {
+      "en": "Mobility"
+    }
+  },
+  "mobilityRatio": {
+    "code": "mobility_ratio",
+    "identity": {
+      "slug": "mobility_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MobilityRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106010255"
+      }
+    ],
+    "title": {
+      "en": "Mobility Ratio"
+    }
+  },
+  "modulusOfAdmittance": {
+    "code": "modulus_of_admittance",
+    "identity": {
+      "slug": "modulus_of_admittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfAdmittance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q79466359"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Admittance"
+    }
+  },
+  "modulusOfElasticity": {
+    "code": "modulus_of_elasticity",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "modulus_of_elasticity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfElasticity"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Elasticity"
+    }
+  },
+  "modulusOfImpedance": {
+    "code": "modulus_of_impedance",
+    "identity": {
+      "broader": "impedance",
+      "slug": "modulus_of_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfImpedance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25457909"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Impedance"
+    }
+  },
+  "modulusOfLinearSubgradeReaction": {
+    "code": "modulus_of_linear_subgrade_reaction",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "modulus_of_linear_subgrade_reaction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfLinearSubgradeReaction"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Linear Subgrade Reaction"
+    }
+  },
+  "modulusOfRotationalSubgradeReaction": {
+    "code": "modulus_of_rotational_subgrade_reaction",
+    "identity": {
+      "slug": "modulus_of_rotational_subgrade_reaction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfRotationalSubgradeReaction"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Rotational Subgrade Reaction"
+    }
+  },
+  "modulusOfSubgradeReaction": {
+    "code": "modulus_of_subgrade_reaction",
+    "identity": {
+      "slug": "modulus_of_subgrade_reaction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ModulusOfSubgradeReaction"
+      }
+    ],
+    "title": {
+      "en": "Modulus of Subgrade Reaction"
+    }
+  },
+  "moistureDiffusivity": {
+    "code": "moisture_diffusivity",
+    "identity": {
+      "broader": "volume_flow_rate",
+      "slug": "moisture_diffusivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MoistureDiffusivity"
+      }
+    ],
+    "title": {
+      "en": "Moisture Diffusivity"
+    }
+  },
+  "molalityOfSolute": {
+    "code": "molality_of_solute",
+    "identity": {
+      "broader": "amount_of_substance_per_mass",
+      "slug": "molality_of_solute"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolalityOfSolute"
+      }
+    ],
+    "title": {
+      "en": "Molality of Solute"
+    }
+  },
+  "molarAbsorptionCoefficient": {
+    "code": "molar_absorption_coefficient",
+    "identity": {
+      "slug": "molar_absorption_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarAbsorptionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11784888"
+      }
+    ],
+    "title": {
+      "en": "Molar Absorption Coefficient"
+    }
+  },
+  "molarAngularMomentum": {
+    "code": "molar_angular_momentum",
+    "identity": {
+      "slug": "molar_angular_momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarAngularMomentum"
+      }
+    ],
+    "title": {
+      "en": "Molar Angular Momentum"
+    }
+  },
+  "molarAttenuationCoefficient": {
+    "code": "molar_attenuation_coefficient",
+    "identity": {
+      "slug": "molar_attenuation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarAttenuationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900239"
+      }
+    ],
+    "title": {
+      "en": "Molar Attenuation Coefficient"
+    }
+  },
+  "molarConductivity": {
+    "code": "molar_conductivity",
+    "identity": {
+      "slug": "molar_conductivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarConductivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1943278"
+      }
+    ],
+    "title": {
+      "en": "Molar Conductivity"
+    }
+  },
+  "molarDensity": {
+    "code": "molar_density",
+    "identity": {
+      "slug": "molar_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarDensity"
+      }
+    ],
+    "title": {
+      "en": "Molar Density"
+    }
+  },
+  "molarEnergy": {
+    "code": "molar_energy",
+    "identity": {
+      "slug": "molar_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q69427512"
+      }
+    ],
+    "title": {
+      "en": "Molar Energy"
+    }
+  },
+  "molarEntropy": {
+    "code": "molar_entropy",
+    "identity": {
+      "slug": "molar_entropy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarEntropy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q68972876"
+      }
+    ],
+    "title": {
+      "en": "Molar Entropy"
+    }
+  },
+  "molarEquivalent": {
+    "code": "molar_equivalent",
+    "identity": {
+      "broader": "amount_of_substance",
+      "slug": "molar_equivalent"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarEquivalent"
+      }
+    ],
+    "title": {
+      "en": "Molar Equivalent"
+    }
+  },
+  "molarFlowRate": {
+    "code": "molar_flow_rate",
+    "identity": {
+      "slug": "molar_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Molar Flow Rate"
+    }
+  },
+  "molarFluxDensity": {
+    "code": "molar_flux_density",
+    "identity": {
+      "slug": "molar_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Molar Flux Density"
+    }
+  },
+  "molarFluxDensityVariance": {
+    "code": "molar_flux_density_variance",
+    "identity": {
+      "slug": "molar_flux_density_variance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarFluxDensityVariance"
+      }
+    ],
+    "title": {
+      "en": "Molar Flux Density Variance"
+    }
+  },
+  "molarFluxDensityVarianceNeon": {
+    "code": "molar_flux_density_variance_neon",
+    "identity": {
+      "slug": "molar_flux_density_variance_neon"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarFluxDensityVariance_NEON"
+      }
+    ],
+    "title": {
+      "en": "Molar Flux Density Variance, NEON"
+    }
+  },
+  "molarHeatCapacity": {
+    "code": "molar_heat_capacity",
+    "identity": {
+      "slug": "molar_heat_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarHeatCapacity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2937190"
+      }
+    ],
+    "title": {
+      "en": "Molar Heat Capacity"
+    }
+  },
+  "molarInternalEnergy": {
+    "code": "molar_internal_energy",
+    "identity": {
+      "broader": "molar_energy",
+      "slug": "molar_internal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarInternalEnergy"
+      }
+    ],
+    "title": {
+      "en": "Molar Internal Energy"
+    }
+  },
+  "molarMass": {
+    "code": "molar_mass",
+    "identity": {
+      "slug": "molar_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q145623"
+      }
+    ],
+    "title": {
+      "en": "Molar Mass"
+    }
+  },
+  "molarOpticalRotationalAbility": {
+    "code": "molar_optical_rotational_ability",
+    "identity": {
+      "slug": "molar_optical_rotational_ability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarOpticalRotationalAbility"
+      }
+    ],
+    "title": {
+      "en": "Molar Optical Rotational Ability"
+    }
+  },
+  "molarOpticalRotatoryPower": {
+    "code": "molar_optical_rotatory_power",
+    "identity": {
+      "slug": "molar_optical_rotatory_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarOpticalRotatoryPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96346994"
+      }
+    ],
+    "title": {
+      "en": "Molar Optical Rotatory Power"
+    }
+  },
+  "molarRefractivity": {
+    "code": "molar_refractivity",
+    "identity": {
+      "slug": "molar_refractivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarRefractivity"
+      }
+    ],
+    "title": {
+      "en": "Molar Refractivity"
+    }
+  },
+  "molarThermalCapacity": {
+    "code": "molar_thermal_capacity",
+    "identity": {
+      "slug": "molar_thermal_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarThermalCapacity"
+      }
+    ],
+    "title": {
+      "en": "Molar Thermal Capacity"
+    }
+  },
+  "molarThermodynamicEnergy": {
+    "code": "molar_thermodynamic_energy",
+    "identity": {
+      "broader": "molar_energy",
+      "slug": "molar_thermodynamic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarThermodynamicEnergy"
+      }
+    ],
+    "title": {
+      "en": "Molar Thermodynamic Energy"
+    }
+  },
+  "molarVolume": {
+    "code": "molar_volume",
+    "identity": {
+      "slug": "molar_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolarVolume"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q487112"
+      }
+    ],
+    "title": {
+      "en": "Molar Volume"
+    }
+  },
+  "molecularConcentration": {
+    "code": "molecular_concentration",
+    "identity": {
+      "broader": "number_density",
+      "slug": "molecular_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolecularConcentration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q88865973"
+      }
+    ],
+    "title": {
+      "en": "Molecular Concentration"
+    }
+  },
+  "molecularMass": {
+    "code": "molecular_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "molecular_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolecularMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q182854"
+      }
+    ],
+    "title": {
+      "en": "Molecular Mass"
+    }
+  },
+  "molecularViscosity": {
+    "code": "molecular_viscosity",
+    "identity": {
+      "slug": "molecular_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MolecularViscosity"
+      }
+    ],
+    "title": {
+      "en": "Molecular Viscosity"
+    }
+  },
+  "moleFraction": {
+    "code": "mole_fraction",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "mole_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MoleFraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q125264"
+      }
+    ],
+    "title": {
+      "en": "Mole Fraction"
+    }
+  },
+  "momentOfForce": {
+    "code": "moment_of_force",
+    "identity": {
+      "slug": "moment_of_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MomentOfForce"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q17232562"
+      }
+    ],
+    "title": {
+      "en": "Moment of Force"
+    }
+  },
+  "momentOfInertia": {
+    "code": "moment_of_inertia",
+    "identity": {
+      "slug": "moment_of_inertia"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MomentOfInertia"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q165618"
+      }
+    ],
+    "title": {
+      "en": "Moment of Inertia"
+    }
+  },
+  "momentOfInertiaY": {
+    "code": "moment_of_inertia_y",
+    "identity": {
+      "broader": "moment_of_inertia",
+      "slug": "moment_of_inertia_y"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MomentOfInertia_Y"
+      }
+    ],
+    "title": {
+      "en": "Moment of Inertia in the Y Axis"
+    }
+  },
+  "momentOfInertiaZ": {
+    "code": "moment_of_inertia_z",
+    "identity": {
+      "broader": "moment_of_inertia",
+      "slug": "moment_of_inertia_z"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MomentOfInertia_Z"
+      }
+    ],
+    "title": {
+      "en": "Moment of Inertia in the Z Axis"
+    }
+  },
+  "momentum": {
+    "code": "momentum",
+    "identity": {
+      "slug": "momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Momentum"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q41273"
+      }
+    ],
+    "title": {
+      "en": "Momentum"
+    }
+  },
+  "momentumPerAngle": {
+    "code": "momentum_per_angle",
+    "identity": {
+      "slug": "momentum_per_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MomentumPerAngle"
+      }
+    ],
+    "title": {
+      "en": "Momentum per Angle"
+    }
+  },
+  "morbidityRate": {
+    "code": "morbidity_rate",
+    "identity": {
+      "broader": "incidence_proportion",
+      "slug": "morbidity_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MorbidityRate"
+      }
+    ],
+    "title": {
+      "en": "Morbidity Rate"
+    }
+  },
+  "mortalityRate": {
+    "code": "mortality_rate",
+    "identity": {
+      "broader": "incidence_proportion",
+      "slug": "mortality_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MortalityRate"
+      }
+    ],
+    "title": {
+      "en": "Mortality Rate"
+    }
+  },
+  "motorConstant": {
+    "code": "motor_constant",
+    "identity": {
+      "slug": "motor_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MotorConstant"
+      }
+    ],
+    "title": {
+      "en": "Motor Constant"
+    }
+  },
+  "multiplicationFactor": {
+    "code": "multiplication_factor",
+    "identity": {
+      "slug": "multiplication_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MultiplicationFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99440471"
+      }
+    ],
+    "title": {
+      "en": "Multiplication Factor"
+    }
+  },
+  "mutualInductance": {
+    "code": "mutual_inductance",
+    "identity": {
+      "broader": "inductance",
+      "slug": "mutual_inductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "MutualInductance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q78101401"
+      }
+    ],
+    "title": {
+      "en": "Mutual Inductance"
+    }
+  },
+  "napierianAbsorbance": {
+    "code": "napierian_absorbance",
+    "identity": {
+      "slug": "napierian_absorbance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NapierianAbsorbance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q85664557"
+      }
+    ],
+    "title": {
+      "en": "Napierian Absorbance"
+    }
+  },
+  "naturalLogarithmicMedianInformationFlow": {
+    "code": "natural_logarithmic_median_information_flow",
+    "identity": {
+      "slug": "natural_logarithmic_median_information_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NaturalLogarithmicMedianInformationFlow"
+      }
+    ],
+    "title": {
+      "en": "Median Information Flow (from a Source of Information), Expressed as a Natural Logarithm "
+    }
+  },
+  "neelTemperature": {
+    "code": "neel_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "neel_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeelTemperature"
+      }
+    ],
+    "title": {
+      "en": "Neel Temperature"
+    }
+  },
+  "netTonnage": {
+    "code": "net_tonnage",
+    "identity": {
+      "broader": "volume",
+      "slug": "net_tonnage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NetTonnage"
+      }
+    ],
+    "title": {
+      "en": "Net Tonnage"
+    }
+  },
+  "neutralRatio": {
+    "code": "neutral_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "neutral_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutralRatio"
+      }
+    ],
+    "title": {
+      "en": "Neutral Ratio"
+    }
+  },
+  "neutronDiffusionCoefficient": {
+    "code": "neutron_diffusion_coefficient",
+    "identity": {
+      "slug": "neutron_diffusion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutronDiffusionCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105623303"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Coefficient"
+    }
+  },
+  "neutronDiffusionLength": {
+    "code": "neutron_diffusion_length",
+    "identity": {
+      "broader": "length",
+      "slug": "neutron_diffusion_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutronDiffusionLength"
+      }
+    ],
+    "title": {
+      "en": "Neutron Diffusion Length"
+    }
+  },
+  "neutronNumber": {
+    "code": "neutron_number",
+    "identity": {
+      "broader": "count",
+      "slug": "neutron_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutronNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q970319"
+      }
+    ],
+    "title": {
+      "en": "Neutron Number"
+    }
+  },
+  "neutronYieldPerAbsorption": {
+    "code": "neutron_yield_per_absorption",
+    "identity": {
+      "slug": "neutron_yield_per_absorption"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutronYieldPerAbsorption"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99159075"
+      }
+    ],
+    "title": {
+      "en": "Neutron Yield per Absorption"
+    }
+  },
+  "neutronYieldPerFission": {
+    "code": "neutron_yield_per_fission",
+    "identity": {
+      "slug": "neutron_yield_per_fission"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NeutronYieldPerFission"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99157909"
+      }
+    ],
+    "title": {
+      "en": "Neutron Yield per Fission"
+    }
+  },
+  "nominalAscentPropellantMass": {
+    "code": "nominal_ascent_propellant_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "nominal_ascent_propellant_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NOMINAL-ASCENT-PROPELLANT-MASS"
+      }
+    ],
+    "title": {
+      "en": "Nominal Ascent Propellant Mass"
+    }
+  },
+  "nonActivePower": {
+    "code": "non_active_power",
+    "identity": {
+      "broader": "electric_power",
+      "slug": "non_active_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NonActivePower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q79813060"
+      }
+    ],
+    "title": {
+      "en": "Non-active Power"
+    }
+  },
+  "nonLeakageProbability": {
+    "code": "non_leakage_probability",
+    "identity": {
+      "slug": "non_leakage_probability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NonLeakageProbability"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99415566"
+      }
+    ],
+    "title": {
+      "en": "Non-Leakage Probability"
+    }
+  },
+  "nonNegativeLength": {
+    "code": "non_negative_length",
+    "identity": {
+      "broader": "length",
+      "slug": "non_negative_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NonNegativeLength"
+      }
+    ],
+    "title": {
+      "en": "Positive Length"
+    }
+  },
+  "normalizedDimensionlessRatio": {
+    "code": "normalized_dimensionless_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "normalized_dimensionless_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NormalizedDimensionlessRatio"
+      }
+    ],
+    "title": {
+      "en": "Positive Dimensionless Ratio"
+    }
+  },
+  "normalStress": {
+    "code": "normal_stress",
+    "identity": {
+      "broader": "stress",
+      "slug": "normal_stress"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NormalStress"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11425837"
+      }
+    ],
+    "title": {
+      "en": "Normal Stress"
+    }
+  },
+  "nuclearEnergy": {
+    "code": "nuclear_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "nuclear_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NuclearEnergy"
+      }
+    ],
+    "title": {
+      "en": "Nuclear Energy"
+    }
+  },
+  "nuclearQuadrupoleMoment": {
+    "code": "nuclear_quadrupole_moment",
+    "identity": {
+      "broader": "area",
+      "slug": "nuclear_quadrupole_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NuclearQuadrupoleMoment"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97921226"
+      }
+    ],
+    "title": {
+      "en": "Nuclear Quadrupole Moment"
+    }
+  },
+  "nuclearRadius": {
+    "code": "nuclear_radius",
+    "identity": {
+      "broader": "length",
+      "slug": "nuclear_radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NuclearRadius"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3535676"
+      }
+    ],
+    "title": {
+      "en": "Nuclear Radius"
+    }
+  },
+  "nuclearSpinQuantumNumber": {
+    "code": "nuclear_spin_quantum_number",
+    "identity": {
+      "broader": "spin_quantum_number",
+      "slug": "nuclear_spin_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NuclearSpinQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97577403"
+      }
+    ],
+    "title": {
+      "en": "Spin Quantum Number"
+    }
+  },
+  "nucleonNumber": {
+    "code": "nucleon_number",
+    "identity": {
+      "broader": "count",
+      "slug": "nucleon_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NucleonNumber"
+      }
+    ],
+    "title": {
+      "en": "Nucleon Number"
+    }
+  },
+  "numberDensity": {
+    "code": "number_density",
+    "identity": {
+      "slug": "number_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NumberDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q176449"
+      }
+    ],
+    "title": {
+      "en": "Number Density"
+    }
+  },
+  "numberOfElectricalPhases": {
+    "code": "number_of_electrical_phases",
+    "identity": {
+      "broader": "count",
+      "slug": "number_of_electrical_phases"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NumberOfElectricalPhases"
+      }
+    ],
+    "title": {
+      "en": "Number of Electrical Phases"
+    }
+  },
+  "numberOfParticles": {
+    "code": "number_of_particles",
+    "identity": {
+      "broader": "count",
+      "slug": "number_of_particles"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "NumberOfParticles"
+      }
+    ],
+    "title": {
+      "en": "Number of Particles"
+    }
+  },
+  "olfactoryThreshold": {
+    "code": "olfactory_threshold",
+    "identity": {
+      "broader": "concentration",
+      "slug": "olfactory_threshold"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OlfactoryThreshold"
+      }
+    ],
+    "title": {
+      "en": "Olfactory Threshold"
+    }
+  },
+  "openingRatio": {
+    "code": "opening_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "opening_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OpeningRatio"
+      }
+    ],
+    "title": {
+      "en": "Opening Ratio"
+    }
+  },
+  "orbitalAngularMomentumPerMass": {
+    "code": "orbital_angular_momentum_per_mass",
+    "identity": {
+      "slug": "orbital_angular_momentum_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OrbitalAngularMomentumPerMass"
+      }
+    ],
+    "title": {
+      "en": "Orbital Angular Momentum per Mass"
+    }
+  },
+  "orbitalAngularMomentumQuantumNumber": {
+    "code": "orbital_angular_momentum_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "orbital_angular_momentum_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OrbitalAngularMomentumQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1916324"
+      }
+    ],
+    "title": {
+      "en": "Orbital Angular Momentum Quantum Number"
+    }
+  },
+  "orbitalRadialDistance": {
+    "code": "orbital_radial_distance",
+    "identity": {
+      "broader": "length",
+      "slug": "orbital_radial_distance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OrbitalRadialDistance"
+      }
+    ],
+    "title": {
+      "en": "Orbital Radial Distance"
+    }
+  },
+  "orderOfReflection": {
+    "code": "order_of_reflection",
+    "identity": {
+      "slug": "order_of_reflection"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OrderOfReflection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105488155"
+      }
+    ],
+    "title": {
+      "en": "Order of Reflection"
+    }
+  },
+  "osmoticCoefficient": {
+    "code": "osmotic_coefficient",
+    "identity": {
+      "slug": "osmotic_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OsmoticCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q5776102"
+      }
+    ],
+    "title": {
+      "en": "Osmotic Coefficient"
+    }
+  },
+  "osmoticConcentration": {
+    "code": "osmotic_concentration",
+    "identity": {
+      "slug": "osmotic_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OsmoticConcentration"
+      }
+    ],
+    "title": {
+      "en": "Osmotic Concentration"
+    }
+  },
+  "osmoticPressure": {
+    "code": "osmotic_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "osmotic_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OsmoticPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q193135"
+      }
+    ],
+    "title": {
+      "en": "Osmotic Pressure"
+    }
+  },
+  "overRangeDistance": {
+    "code": "over_range_distance",
+    "identity": {
+      "broader": "length",
+      "slug": "over_range_distance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "OverRangeDistance"
+      }
+    ],
+    "title": {
+      "en": "Over-range Distance"
+    }
+  },
+  "pace": {
+    "code": "pace",
+    "identity": {
+      "slug": "pace"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Pace"
+      }
+    ],
+    "title": {
+      "en": "Pace"
+    }
+  },
+  "packingFraction": {
+    "code": "packing_fraction",
+    "identity": {
+      "slug": "packing_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PackingFraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98058276"
+      }
+    ],
+    "title": {
+      "en": "Packing Fraction"
+    }
+  },
+  "partialPressure": {
+    "code": "partial_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "partial_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PartialPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q27165"
+      }
+    ],
+    "title": {
+      "en": "Partial Pressure"
+    }
+  },
+  "particleCurrent": {
+    "code": "particle_current",
+    "identity": {
+      "broader": "count_rate",
+      "slug": "particle_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleCurrent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2400689"
+      }
+    ],
+    "title": {
+      "en": "Particle Current"
+    }
+  },
+  "particleCurrentDensity": {
+    "code": "particle_current_density",
+    "identity": {
+      "slug": "particle_current_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleCurrentDensity"
+      }
+    ],
+    "title": {
+      "en": "Particle Current Density"
+    }
+  },
+  "particleFluence": {
+    "code": "particle_fluence",
+    "identity": {
+      "slug": "particle_fluence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleFluence"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q82965908"
+      }
+    ],
+    "title": {
+      "en": "Particle Fluence"
+    }
+  },
+  "particleFluenceRate": {
+    "code": "particle_fluence_rate",
+    "identity": {
+      "slug": "particle_fluence_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleFluenceRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98497410"
+      }
+    ],
+    "title": {
+      "en": "Particle Fluence Rate"
+    }
+  },
+  "particleNumberDensity": {
+    "code": "particle_number_density",
+    "identity": {
+      "broader": "number_density",
+      "slug": "particle_number_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleNumberDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98601569"
+      }
+    ],
+    "title": {
+      "en": "Particle Number Density"
+    }
+  },
+  "particlePositionVector": {
+    "code": "particle_position_vector",
+    "identity": {
+      "broader": "length",
+      "slug": "particle_position_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticlePositionVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105533324"
+      }
+    ],
+    "title": {
+      "en": "Particle Position Vector"
+    }
+  },
+  "particleSourceDensity": {
+    "code": "particle_source_density",
+    "identity": {
+      "slug": "particle_source_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ParticleSourceDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98915762"
+      }
+    ],
+    "title": {
+      "en": "Particle Source Density"
+    }
+  },
+  "pathLength": {
+    "code": "path_length",
+    "identity": {
+      "broader": "length",
+      "slug": "path_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PathLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q670036"
+      }
+    ],
+    "title": {
+      "en": "Path Length"
+    }
+  },
+  "payloadMass": {
+    "code": "payload_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "payload_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PayloadMass"
+      }
+    ],
+    "title": {
+      "en": "Payload Mass"
+    }
+  },
+  "payloadRatio": {
+    "code": "payload_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "payload_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PayloadRatio"
+      }
+    ],
+    "title": {
+      "en": "Payload Ratio"
+    }
+  },
+  "peltierCoefficient": {
+    "code": "peltier_coefficient",
+    "identity": {
+      "slug": "peltier_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PeltierCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105801003"
+      }
+    ],
+    "title": {
+      "en": "Peltier Coefficient"
+    }
+  },
+  "period": {
+    "code": "period",
+    "identity": {
+      "broader": "time",
+      "slug": "period"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Period"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2642727"
+      }
+    ],
+    "title": {
+      "en": "Period"
+    }
+  },
+  "permeability": {
+    "code": "permeability",
+    "identity": {
+      "slug": "permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Permeability"
+      }
+    ],
+    "title": {
+      "en": "Permeability"
+    }
+  },
+  "permeabilityRatio": {
+    "code": "permeability_ratio",
+    "identity": {
+      "slug": "permeability_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PermeabilityRatio"
+      }
+    ],
+    "title": {
+      "en": "Permeability Ratio"
+    }
+  },
+  "permeance": {
+    "code": "permeance",
+    "identity": {
+      "slug": "permeance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Permeance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77997985"
+      }
+    ],
+    "title": {
+      "en": "Permeance"
+    }
+  },
+  "permittivity": {
+    "code": "permittivity",
+    "identity": {
+      "slug": "permittivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Permittivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q211569"
+      }
+    ],
+    "title": {
+      "en": "Permittivity"
+    }
+  },
+  "permittivityRatio": {
+    "code": "permittivity_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "permittivity_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PermittivityRatio"
+      }
+    ],
+    "title": {
+      "en": "Permittivity Ratio"
+    }
+  },
+  "phaseCoefficient": {
+    "code": "phase_coefficient",
+    "identity": {
+      "slug": "phase_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhaseCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q32745742"
+      }
+    ],
+    "title": {
+      "en": "Phase Coefficient"
+    }
+  },
+  "phaseDifference": {
+    "code": "phase_difference",
+    "identity": {
+      "broader": "angle",
+      "slug": "phase_difference"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "rad"
@@ -229,16 +14397,462 @@ export default {
       {
         "match": "exact",
         "registryId": "qudt_quantity_kind",
-        "term": "PhaseAngle"
+        "term": "PhaseDifference"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q78514588"
       }
     ],
     "title": {
-      "en": "Phase angle",
+      "en": "Phase Difference",
       "pt": "Ângulo de fase"
+    }
+  },
+  "phaseSpeedOfSound": {
+    "code": "phase_speed_of_sound",
+    "identity": {
+      "broader": "speed_of_sound",
+      "slug": "phase_speed_of_sound"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhaseSpeedOfSound"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86501878"
+      }
+    ],
+    "title": {
+      "en": "Phase Speed of Sound"
+    }
+  },
+  "phononMeanFreePath": {
+    "code": "phonon_mean_free_path",
+    "identity": {
+      "broader": "length",
+      "slug": "phonon_mean_free_path"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhononMeanFreePath"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105672255"
+      }
+    ],
+    "title": {
+      "en": "Phonon Mean Free Path"
+    }
+  },
+  "photonIntensity": {
+    "code": "photon_intensity",
+    "identity": {
+      "slug": "photon_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotonIntensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q83853335"
+      }
+    ],
+    "title": {
+      "en": "Photon Intensity"
+    }
+  },
+  "photonLuminance": {
+    "code": "photon_luminance",
+    "identity": {
+      "slug": "photon_luminance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotonLuminance"
+      }
+    ],
+    "title": {
+      "en": "Photon Luminance"
+    }
+  },
+  "photonRadiance": {
+    "code": "photon_radiance",
+    "identity": {
+      "slug": "photon_radiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotonRadiance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q10498337"
+      }
+    ],
+    "title": {
+      "en": "Photon Radiance"
+    }
+  },
+  "photosyntheticPhotonFlux": {
+    "code": "photosynthetic_photon_flux",
+    "identity": {
+      "slug": "photosynthetic_photon_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotosyntheticPhotonFlux"
+      }
+    ],
+    "title": {
+      "en": "Photosynthetic Photon Flux"
+    }
+  },
+  "photosyntheticPhotonFluxDensity": {
+    "code": "photosynthetic_photon_flux_density",
+    "identity": {
+      "slug": "photosynthetic_photon_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotosyntheticPhotonFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Photosynthetic Photon Flux Density"
+    }
+  },
+  "photoThresholdOfAwarenessFunction": {
+    "code": "photo_threshold_of_awareness_function",
+    "identity": {
+      "slug": "photo_threshold_of_awareness_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PhotoThresholdOfAwarenessFunction"
+      }
+    ],
+    "title": {
+      "en": "Photo Threshold of Awareness Function"
+    }
+  },
+  "pictureElement": {
+    "code": "picture_element",
+    "identity": {
+      "slug": "picture_element"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PictureElement"
+      }
+    ],
+    "title": {
+      "en": "Picture Element"
+    }
+  },
+  "piece": {
+    "code": "piece",
+    "identity": {
+      "broader": "count",
+      "slug": "piece"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Piece"
+      }
+    ],
+    "title": {
+      "en": "Piece"
+    }
+  },
+  "planarForce": {
+    "code": "planar_force",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "planar_force"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PlanarForce"
+      }
+    ],
+    "title": {
+      "en": "Planar Force"
+    }
+  },
+  "planckFunction": {
+    "code": "planck_function",
+    "identity": {
+      "broader": "energy",
+      "slug": "planck_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PlanckFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76364998"
+      }
+    ],
+    "title": {
+      "en": "Planck Function"
+    }
+  },
+  "planeAngle": {
+    "code": "plane_angle",
+    "identity": {
+      "slug": "plane_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PlaneAngle"
+      }
+    ],
+    "title": {
+      "en": "Plane Angle"
+    }
+  },
+  "plasmaLevel": {
+    "code": "plasma_level",
+    "identity": {
+      "broader": "amount_of_substance_concentration",
+      "slug": "plasma_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PlasmaLevel"
+      }
+    ],
+    "title": {
+      "en": "Plasma Level"
+    }
+  },
+  "poissonRatio": {
+    "code": "poisson_ratio",
+    "identity": {
+      "slug": "poisson_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PoissonRatio"
+      }
+    ],
+    "title": {
+      "en": "Poisson Ratio"
+    }
+  },
+  "polarizability": {
+    "code": "polarizability",
+    "identity": {
+      "slug": "polarizability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Polarizability"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q869891"
+      }
+    ],
+    "title": {
+      "en": "Polarisability"
+    }
+  },
+  "polarizationField": {
+    "code": "polarization_field",
+    "identity": {
+      "broader": "electric_charge_per_area",
+      "slug": "polarization_field"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PolarizationField"
+      }
+    ],
+    "title": {
+      "en": "Polarization Field"
+    }
+  },
+  "polarMomentOfInertia": {
+    "code": "polar_moment_of_inertia",
+    "identity": {
+      "broader": "moment_of_inertia",
+      "slug": "polar_moment_of_inertia"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PolarMomentOfInertia"
+      }
+    ],
+    "title": {
+      "en": "Polar Moment of Inertia"
+    }
+  },
+  "population": {
+    "code": "population",
+    "identity": {
+      "broader": "count",
+      "slug": "population"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Population"
+      }
+    ],
+    "title": {
+      "en": "Population"
+    }
+  },
+  "positionVector": {
+    "code": "position_vector",
+    "identity": {
+      "broader": "length",
+      "slug": "position_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PositionVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q192388"
+      }
+    ],
+    "title": {
+      "en": "Position Vector"
+    }
+  },
+  "positiveDimensionlessRatio": {
+    "code": "positive_dimensionless_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "positive_dimensionless_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PositiveDimensionlessRatio"
+      }
+    ],
+    "title": {
+      "en": "Positive Dimensionless Ratio"
+    }
+  },
+  "positiveLength": {
+    "code": "positive_length",
+    "identity": {
+      "broader": "non_negative_length",
+      "slug": "positive_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PositiveLength"
+      }
+    ],
+    "title": {
+      "en": "Positive Length"
+    }
+  },
+  "positivePlaneAngle": {
+    "code": "positive_plane_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "positive_plane_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PositivePlaneAngle"
+      }
+    ],
+    "title": {
+      "en": "Positive Plane Angle"
+    }
+  },
+  "potentialEnergy": {
+    "code": "potential_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "potential_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PotentialEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q155640"
+      }
+    ],
+    "title": {
+      "en": "Potential Energy"
     }
   },
   "power": {
     "code": "power",
+    "identity": {
+      "slug": "power"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "W"
@@ -248,6 +14862,11 @@ export default {
         "match": "exact",
         "registryId": "qudt_quantity_kind",
         "term": "Power"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25342"
       }
     ],
     "title": {
@@ -255,8 +14874,75 @@ export default {
       "pt": "Potência"
     }
   },
+  "powerArea": {
+    "code": "power_area",
+    "identity": {
+      "slug": "power_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerArea"
+      }
+    ],
+    "title": {
+      "en": "Power Area"
+    }
+  },
+  "powerAreaPerSolidAngle": {
+    "code": "power_area_per_solid_angle",
+    "identity": {
+      "slug": "power_area_per_solid_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerAreaPerSolidAngle"
+      }
+    ],
+    "title": {
+      "en": "Power Area per Solid Angle"
+    }
+  },
+  "powerConstant": {
+    "code": "power_constant",
+    "identity": {
+      "slug": "power_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerConstant"
+      }
+    ],
+    "title": {
+      "en": "Power Constant"
+    }
+  },
+  "powerDensity": {
+    "code": "power_density",
+    "identity": {
+      "slug": "power_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerDensity"
+      }
+    ],
+    "title": {
+      "en": "Power Density"
+    }
+  },
   "powerFactor": {
     "code": "power_factor",
+    "identity": {
+      "slug": "power_factor"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "1"
@@ -269,37 +14955,1314 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q750454"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "power_factor"
       }
     ],
     "title": {
-      "en": "Power factor",
+      "en": "Power Factor",
       "pt": "Fator de potência"
+    }
+  },
+  "powerPerArea": {
+    "code": "power_per_area",
+    "identity": {
+      "slug": "power_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerPerArea"
+      }
+    ],
+    "title": {
+      "en": "Power per Area"
+    }
+  },
+  "powerPerAreaAngle": {
+    "code": "power_per_area_angle",
+    "identity": {
+      "slug": "power_per_area_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerPerAreaAngle"
+      }
+    ],
+    "title": {
+      "en": "Power per Area Angle"
+    }
+  },
+  "powerPerAreaQuarticTemperature": {
+    "code": "power_per_area_quartic_temperature",
+    "identity": {
+      "slug": "power_per_area_quartic_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerPerAreaQuarticTemperature"
+      }
+    ],
+    "title": {
+      "en": "Power per Area Quartic Temperature"
+    }
+  },
+  "powerPerElectricCharge": {
+    "code": "power_per_electric_charge",
+    "identity": {
+      "slug": "power_per_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerPerElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Power per Electric Charge"
+    }
+  },
+  "powerPerVolume": {
+    "code": "power_per_volume",
+    "identity": {
+      "slug": "power_per_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PowerPerVolume"
+      }
+    ],
+    "title": {
+      "en": "Power per Volume"
+    }
+  },
+  "poyntingVector": {
+    "code": "poynting_vector",
+    "identity": {
+      "slug": "poynting_vector"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PoyntingVector"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q504186"
+      }
+    ],
+    "title": {
+      "en": "Poynting Vector"
+    }
+  },
+  "predictedMass": {
+    "code": "predicted_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "predicted_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PREDICTED-MASS"
+      }
+    ],
+    "title": {
+      "en": "Predicted Mass"
+    }
+  },
+  "pressure": {
+    "code": "pressure",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Pressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q39552"
+      }
+    ],
+    "title": {
+      "en": "Pressure"
+    }
+  },
+  "pressureBasedAmountOfSubstanceConcentration": {
+    "code": "pressure_based_amount_of_substance_concentration",
+    "identity": {
+      "slug": "pressure_based_amount_of_substance_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedAmountOfSubstanceConcentration"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Amount-of-substance Concentration"
+    }
+  },
+  "pressureBasedDensity": {
+    "code": "pressure_based_density",
+    "identity": {
+      "slug": "pressure_based_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedDensity"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Density"
+    }
+  },
+  "pressureBasedDynamicViscosity": {
+    "code": "pressure_based_dynamic_viscosity",
+    "identity": {
+      "slug": "pressure_based_dynamic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedDynamicViscosity"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Dynamic Viscosity"
+    }
+  },
+  "pressureBasedElectricCurrent": {
+    "code": "pressure_based_electric_current",
+    "identity": {
+      "slug": "pressure_based_electric_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedElectricCurrent"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Electric Current"
+    }
+  },
+  "pressureBasedElectricVoltage": {
+    "code": "pressure_based_electric_voltage",
+    "identity": {
+      "slug": "pressure_based_electric_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedElectricVoltage"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Electric Voltage"
+    }
+  },
+  "pressureBasedKinematicViscosity": {
+    "code": "pressure_based_kinematic_viscosity",
+    "identity": {
+      "slug": "pressure_based_kinematic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedKinematicViscosity"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Kinematic Viscosity"
+    }
+  },
+  "pressureBasedLength": {
+    "code": "pressure_based_length",
+    "identity": {
+      "slug": "pressure_based_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedLength"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Length"
+    }
+  },
+  "pressureBasedMass": {
+    "code": "pressure_based_mass",
+    "identity": {
+      "slug": "pressure_based_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedMass"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Mass"
+    }
+  },
+  "pressureBasedMassFlow": {
+    "code": "pressure_based_mass_flow",
+    "identity": {
+      "slug": "pressure_based_mass_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedMassFlow"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Mass Flow"
+    }
+  },
+  "pressureBasedMolality": {
+    "code": "pressure_based_molality",
+    "identity": {
+      "slug": "pressure_based_molality"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedMolality"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Molality"
+    }
+  },
+  "pressureBasedQuantity": {
+    "code": "pressure_based_quantity",
+    "identity": {
+      "slug": "pressure_based_quantity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedQuantity"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Quantity"
+    }
+  },
+  "pressureBasedTemperature": {
+    "code": "pressure_based_temperature",
+    "identity": {
+      "slug": "pressure_based_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedTemperature"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Temperature"
+    }
+  },
+  "pressureBasedVelocity": {
+    "code": "pressure_based_velocity",
+    "identity": {
+      "slug": "pressure_based_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedVelocity"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Velocity"
+    }
+  },
+  "pressureBasedVolume": {
+    "code": "pressure_based_volume",
+    "identity": {
+      "slug": "pressure_based_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedVolume"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Volume"
+    }
+  },
+  "pressureBasedVolumeFlow": {
+    "code": "pressure_based_volume_flow",
+    "identity": {
+      "slug": "pressure_based_volume_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBasedVolumeFlow"
+      }
+    ],
+    "title": {
+      "en": "Pressure-based Volume Flow"
+    }
+  },
+  "pressureBurningRateConstant": {
+    "code": "pressure_burning_rate_constant",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "pressure_burning_rate_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBurningRateConstant"
+      }
+    ],
+    "title": {
+      "en": "Pressure Burning Rate Constant"
+    }
+  },
+  "pressureBurningRateIndex": {
+    "code": "pressure_burning_rate_index",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "pressure_burning_rate_index"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureBurningRateIndex"
+      }
+    ],
+    "title": {
+      "en": "Pressure Burning Rate Index"
+    }
+  },
+  "pressureCoefficient": {
+    "code": "pressure_coefficient",
+    "identity": {
+      "slug": "pressure_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74762732"
+      }
+    ],
+    "title": {
+      "en": "Pressure Coefficient"
+    }
+  },
+  "pressureGradient": {
+    "code": "pressure_gradient",
+    "identity": {
+      "slug": "pressure_gradient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureGradient"
+      }
+    ],
+    "title": {
+      "en": "Pressure Gradient"
+    }
+  },
+  "pressureInRelationToVolumeFlow": {
+    "code": "pressure_in_relation_to_volume_flow",
+    "identity": {
+      "slug": "pressure_in_relation_to_volume_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureInRelationToVolumeFlow"
+      }
+    ],
+    "title": {
+      "en": "Pressure in Relation to Volume Flow"
+    }
+  },
+  "pressureInRelationToVolumeFlowRate": {
+    "code": "pressure_in_relation_to_volume_flow_rate",
+    "identity": {
+      "slug": "pressure_in_relation_to_volume_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureInRelationToVolumeFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Pressure in Relation to Volume Flow Rate"
+    }
+  },
+  "pressureLossPerLength": {
+    "code": "pressure_loss_per_length",
+    "identity": {
+      "slug": "pressure_loss_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureLossPerLength"
+      }
+    ],
+    "title": {
+      "en": "Pressure Loss per Length"
+    }
+  },
+  "pressureRatio": {
+    "code": "pressure_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "pressure_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PressureRatio"
+      }
+    ],
+    "title": {
+      "en": "Pressure Ratio"
+    }
+  },
+  "prevalence": {
+    "code": "prevalence",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "prevalence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Prevalence"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q719602"
+      }
+    ],
+    "title": {
+      "en": "Prevalence"
+    }
+  },
+  "principalQuantumNumber": {
+    "code": "principal_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "principal_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PrincipalQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q867448"
+      }
+    ],
+    "title": {
+      "en": "Principal Quantum Number"
+    }
+  },
+  "productOfInertia": {
+    "code": "product_of_inertia",
+    "identity": {
+      "slug": "product_of_inertia"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ProductOfInertia"
+      }
+    ],
+    "title": {
+      "en": "Product of Inertia"
+    }
+  },
+  "productOfInertiaX": {
+    "code": "product_of_inertia_x",
+    "identity": {
+      "broader": "product_of_inertia",
+      "slug": "product_of_inertia_x"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ProductOfInertia_X"
+      }
+    ],
+    "title": {
+      "en": "Product of Inertia in the X Axis"
+    }
+  },
+  "productOfInertiaY": {
+    "code": "product_of_inertia_y",
+    "identity": {
+      "broader": "product_of_inertia",
+      "slug": "product_of_inertia_y"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ProductOfInertia_Y"
+      }
+    ],
+    "title": {
+      "en": "Product of Inertia in the Y Axis"
+    }
+  },
+  "productOfInertiaZ": {
+    "code": "product_of_inertia_z",
+    "identity": {
+      "broader": "product_of_inertia",
+      "slug": "product_of_inertia_z"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ProductOfInertia_Z"
+      }
+    ],
+    "title": {
+      "en": "Product of Inertia in the Z Axis"
+    }
+  },
+  "propagationCoefficient": {
+    "code": "propagation_coefficient",
+    "identity": {
+      "slug": "propagation_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "PropagationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1434913"
+      }
+    ],
+    "title": {
+      "en": "Propagation Coefficient"
+    }
+  },
+  "qualityFactor": {
+    "code": "quality_factor",
+    "identity": {
+      "slug": "quality_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "QualityFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q79467569"
+      }
+    ],
+    "title": {
+      "en": "Quality Factor"
+    }
+  },
+  "quantityOfLight": {
+    "code": "quantity_of_light",
+    "identity": {
+      "slug": "quantity_of_light"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "QuantityOfLight"
+      }
+    ],
+    "title": {
+      "en": "Quantity of Light"
+    }
+  },
+  "quantumNumber": {
+    "code": "quantum_number",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "QuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q232431"
+      }
+    ],
+    "title": {
+      "en": "Quantum Number"
+    }
+  },
+  "quarticElectricDipoleMomentPerCubicEnergy": {
+    "code": "quartic_electric_dipole_moment_per_cubic_energy",
+    "identity": {
+      "slug": "quartic_electric_dipole_moment_per_cubic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "QuarticElectricDipoleMomentPerCubicEnergy"
+      }
+    ],
+    "title": {
+      "en": "Quartic Electric Dipole Moment per Cubic Energy"
+    }
+  },
+  "radialDistance": {
+    "code": "radial_distance",
+    "identity": {
+      "broader": "length",
+      "slug": "radial_distance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadialDistance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1578234"
+      }
+    ],
+    "title": {
+      "en": "Radial Distance"
+    }
+  },
+  "radiance": {
+    "code": "radiance",
+    "identity": {
+      "broader": "power_per_area_angle",
+      "slug": "radiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Radiance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1411145"
+      }
+    ],
+    "title": {
+      "en": "Radiance"
+    }
+  },
+  "radianceFactor": {
+    "code": "radiance_factor",
+    "identity": {
+      "slug": "radiance_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadianceFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q85811846"
+      }
+    ],
+    "title": {
+      "en": "Radiance Factor"
+    }
+  },
+  "radiantEmmitance": {
+    "code": "radiant_emmitance",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "radiant_emmitance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantEmmitance"
+      }
+    ],
+    "title": {
+      "en": "Radiant Emmitance"
+    }
+  },
+  "radiantEnergy": {
+    "code": "radiant_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "radiant_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q10932713"
+      }
+    ],
+    "title": {
+      "en": "Radiant Energy"
+    }
+  },
+  "radiantEnergyDensity": {
+    "code": "radiant_energy_density",
+    "identity": {
+      "broader": "energy_density",
+      "slug": "radiant_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantEnergyDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q15054312"
+      }
+    ],
+    "title": {
+      "en": "Radiant Energy Density"
+    }
+  },
+  "radiantEnergyExposure": {
+    "code": "radiant_energy_exposure",
+    "identity": {
+      "slug": "radiant_energy_exposure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantEnergyExposure"
+      }
+    ],
+    "title": {
+      "en": "Radiant Energy Exposure"
+    }
+  },
+  "radiantExposure": {
+    "code": "radiant_exposure",
+    "identity": {
+      "broader": "energy_per_area",
+      "slug": "radiant_exposure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantExposure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1418023"
+      }
+    ],
+    "title": {
+      "en": "Radiant Exposure"
+    }
+  },
+  "radiantFluence": {
+    "code": "radiant_fluence",
+    "identity": {
+      "broader": "energy_per_area",
+      "slug": "radiant_fluence"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantFluence"
+      }
+    ],
+    "title": {
+      "en": "Radiant Fluence"
+    }
+  },
+  "radiantFluenceRate": {
+    "code": "radiant_fluence_rate",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "radiant_fluence_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantFluenceRate"
+      }
+    ],
+    "title": {
+      "en": "Radiant Fluence Rate"
+    }
+  },
+  "radiantFlux": {
+    "code": "radiant_flux",
+    "identity": {
+      "broader": "power",
+      "slug": "radiant_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantFlux"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1253356"
+      }
+    ],
+    "title": {
+      "en": "Radiant Flux"
+    }
+  },
+  "radiantIntensity": {
+    "code": "radiant_intensity",
+    "identity": {
+      "slug": "radiant_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiantIntensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1253365"
+      }
+    ],
+    "title": {
+      "en": "Radiant Intensity"
+    }
+  },
+  "radiativeHeatTransfer": {
+    "code": "radiative_heat_transfer",
+    "identity": {
+      "broader": "heat_flow_rate",
+      "slug": "radiative_heat_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiativeHeatTransfer"
+      }
+    ],
+    "title": {
+      "en": "Radiative Heat Transfer"
+    }
+  },
+  "radioactiveDecay": {
+    "code": "radioactive_decay",
+    "identity": {
+      "broader": "stochastic_process",
+      "slug": "radioactive_decay"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadioactiveDecay"
+      }
+    ],
+    "title": {
+      "en": "Radioactive Decay"
+    }
+  },
+  "radioactivity": {
+    "code": "radioactivity",
+    "identity": {
+      "slug": "radioactivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Radioactivity"
+      }
+    ],
+    "title": {
+      "en": "Radioactivity"
+    }
+  },
+  "radiosity": {
+    "code": "radiosity",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "radiosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Radiosity"
+      }
+    ],
+    "title": {
+      "en": "Radiosity"
+    }
+  },
+  "radius": {
+    "code": "radius",
+    "identity": {
+      "broader": "length",
+      "slug": "radius"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Radius"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q173817"
+      }
+    ],
+    "title": {
+      "en": "Radius"
+    }
+  },
+  "radiusOfCurvature": {
+    "code": "radius_of_curvature",
+    "identity": {
+      "broader": "length",
+      "slug": "radius_of_curvature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RadiusOfCurvature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1136069"
+      }
+    ],
+    "title": {
+      "en": "Radius of Curvature"
+    }
+  },
+  "rankineTemperature": {
+    "code": "rankine_temperature",
+    "identity": {
+      "broader": "thermodynamic_temperature",
+      "slug": "rankine_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RankineTemperature"
+      }
+    ],
+    "title": {
+      "en": "Rankine Temperature"
+    }
+  },
+  "rateOfChange": {
+    "code": "rate_of_change",
+    "identity": {
+      "broader": "inverse_time",
+      "slug": "rate_of_change"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RateOfChange"
+      }
+    ],
+    "title": {
+      "en": "Rate of Change"
+    }
+  },
+  "rateOfChangeOfFrequency": {
+    "code": "rate_of_change_of_frequency",
+    "identity": {
+      "broader": "inverse_square_time",
+      "slug": "rate_of_change_of_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RateOfChangeOfFrequency"
+      }
+    ],
+    "title": {
+      "en": "Rate of Change of Frequency"
+    }
+  },
+  "rateOfRiseOfOffStateVoltage": {
+    "code": "rate_of_rise_of_off_state_voltage",
+    "identity": {
+      "slug": "rate_of_rise_of_off_state_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RateOfRiseOfOffStateVoltage"
+      }
+    ],
+    "title": {
+      "en": "Rise of Off-state Voltage"
+    }
+  },
+  "rateOfRiseOfVoltage": {
+    "code": "rate_of_rise_of_voltage",
+    "identity": {
+      "slug": "rate_of_rise_of_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RateOfRiseOfVoltage"
+      }
+    ],
+    "title": {
+      "en": "Rate of Rise of Voltage"
+    }
+  },
+  "ratio": {
+    "code": "ratio",
+    "identity": {
+      "slug": "ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Ratio"
+      }
+    ],
+    "title": {
+      "en": "Ratio"
+    }
+  },
+  "ratioOfSpecificHeatCapacities": {
+    "code": "ratio_of_specific_heat_capacities",
+    "identity": {
+      "slug": "ratio_of_specific_heat_capacities"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RatioOfSpecificHeatCapacities"
+      }
+    ],
+    "title": {
+      "en": "Ratio of Specific Heat Capacities"
+    }
+  },
+  "reactance": {
+    "code": "reactance",
+    "identity": {
+      "broader": "resistance",
+      "slug": "reactance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Reactance"
+      }
+    ],
+    "title": {
+      "en": "Reactance"
+    }
+  },
+  "reactionEnergy": {
+    "code": "reaction_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "reaction_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReactionEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98164745"
+      }
+    ],
+    "title": {
+      "en": "Reaction Energy"
+    }
+  },
+  "reactiveCharge": {
+    "code": "reactive_charge",
+    "identity": {
+      "broader": "molar_equivalent",
+      "slug": "reactive_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReactiveCharge"
+      }
+    ],
+    "title": {
+      "en": "Reactive Charge"
+    }
+  },
+  "reactiveChargePerMass": {
+    "code": "reactive_charge_per_mass",
+    "identity": {
+      "slug": "reactive_charge_per_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReactiveChargePerMass"
+      }
+    ],
+    "title": {
+      "en": "Reactive Charge per Mass"
     }
   },
   "reactiveEnergy": {
     "code": "reactive_energy",
+    "identity": {
+      "broader": "electric_energy",
+      "slug": "reactive_energy"
+    },
     "measurand": {
       "accumulation": "cumulative_monotonic",
       "siUnit": "var·s"
     },
     "refs": [
       {
-        "match": "broad",
+        "match": "exact",
         "registryId": "qudt_quantity_kind",
-        "term": "Energy"
+        "term": "ReactiveEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q12373673"
       }
     ],
     "title": {
-      "en": "Reactive energy",
+      "en": "Reactive Energy",
       "pt": "Energia reativa"
     }
   },
   "reactivePower": {
     "code": "reactive_power",
     "identity": {
-      "broader": "power"
+      "broader": "electric_power",
+      "slug": "reactive_power"
     },
     "measurand": {
       "accumulation": "instantaneous",
@@ -313,17 +16276,253 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2144613"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "reactive_power"
       }
     ],
     "title": {
-      "en": "Reactive power",
+      "en": "Reactive Power",
       "pt": "Potência reativa"
+    }
+  },
+  "reactivity": {
+    "code": "reactivity",
+    "identity": {
+      "slug": "reactivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Reactivity"
+      }
+    ],
+    "title": {
+      "en": "Reactivity"
+    }
+  },
+  "reactorTimeConstant": {
+    "code": "reactor_time_constant",
+    "identity": {
+      "broader": "time",
+      "slug": "reactor_time_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReactorTimeConstant"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99518950"
+      }
+    ],
+    "title": {
+      "en": "Reactor Time Constant"
+    }
+  },
+  "reciprocalElectricResistance": {
+    "code": "reciprocal_electric_resistance",
+    "identity": {
+      "slug": "reciprocal_electric_resistance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReciprocalElectricResistance"
+      }
+    ],
+    "title": {
+      "en": "Reciprocal Electric Resistance"
+    }
+  },
+  "reciprocalEnergy": {
+    "code": "reciprocal_energy",
+    "identity": {
+      "slug": "reciprocal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReciprocalEnergy"
+      }
+    ],
+    "title": {
+      "en": "Reciprocal Energy"
+    }
+  },
+  "reciprocalPlaneAngle": {
+    "code": "reciprocal_plane_angle",
+    "identity": {
+      "slug": "reciprocal_plane_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReciprocalPlaneAngle"
+      }
+    ],
+    "title": {
+      "en": "Reciprocal Plane Angle"
+    }
+  },
+  "reciprocalVoltage": {
+    "code": "reciprocal_voltage",
+    "identity": {
+      "slug": "reciprocal_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReciprocalVoltage"
+      }
+    ],
+    "title": {
+      "en": "Reciprocal Voltage"
+    }
+  },
+  "recombinationCoefficient": {
+    "code": "recombination_coefficient",
+    "identity": {
+      "broader": "volume_per_time",
+      "slug": "recombination_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RecombinationCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98842099"
+      }
+    ],
+    "title": {
+      "en": "Recombination Coefficient"
+    }
+  },
+  "reflectance": {
+    "code": "reflectance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "reflectance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Reflectance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q663650"
+      }
+    ],
+    "title": {
+      "en": "Reflectance"
+    }
+  },
+  "reflectanceFactor": {
+    "code": "reflectance_factor",
+    "identity": {
+      "slug": "reflectance_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReflectanceFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86078369"
+      }
+    ],
+    "title": {
+      "en": "Reflectance Factor"
+    }
+  },
+  "reflectivity": {
+    "code": "reflectivity",
+    "identity": {
+      "broader": "reflectance",
+      "slug": "reflectivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Reflectivity"
+      }
+    ],
+    "title": {
+      "en": "Reflectivity"
+    }
+  },
+  "refractiveIndex": {
+    "code": "refractive_index",
+    "identity": {
+      "slug": "refractive_index"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RefractiveIndex"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q174102"
+      }
+    ],
+    "title": {
+      "en": "Refractive Index"
+    }
+  },
+  "relativeAtomicMass": {
+    "code": "relative_atomic_mass",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "relative_atomic_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeAtomicMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q41377"
+      }
+    ],
+    "title": {
+      "en": "Relative Atomic Mass"
     }
   },
   "relativeHumidity": {
     "code": "relative_humidity",
+    "identity": {
+      "broader": "relative_partial_pressure",
+      "slug": "relative_humidity"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "%"
@@ -336,17 +16535,301 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2499617"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "humidity"
       }
     ],
     "title": {
-      "en": "Relative humidity",
+      "en": "Relative Humidity",
       "pt": "Humidade relativa"
+    }
+  },
+  "relativeMassConcentrationOfVapour": {
+    "code": "relative_mass_concentration_of_vapour",
+    "identity": {
+      "slug": "relative_mass_concentration_of_vapour"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMassConcentrationOfVapour"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76379357"
+      }
+    ],
+    "title": {
+      "en": "Relative Mass Concentration of Vapour"
+    }
+  },
+  "relativeMassDefect": {
+    "code": "relative_mass_defect",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "relative_mass_defect"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMassDefect"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98038718"
+      }
+    ],
+    "title": {
+      "en": "Relative Mass Defect"
+    }
+  },
+  "relativeMassDensity": {
+    "code": "relative_mass_density",
+    "identity": {
+      "slug": "relative_mass_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMassDensity"
+      }
+    ],
+    "title": {
+      "en": "Relative Mass Density"
+    }
+  },
+  "relativeMassExcess": {
+    "code": "relative_mass_excess",
+    "identity": {
+      "slug": "relative_mass_excess"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMassExcess"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98038610"
+      }
+    ],
+    "title": {
+      "en": "Relative Mass Excess"
+    }
+  },
+  "relativeMassRatioOfVapour": {
+    "code": "relative_mass_ratio_of_vapour",
+    "identity": {
+      "slug": "relative_mass_ratio_of_vapour"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMassRatioOfVapour"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76379414"
+      }
+    ],
+    "title": {
+      "en": "Relative Mass Ratio of Vapour"
+    }
+  },
+  "relativeMolecularMass": {
+    "code": "relative_molecular_mass",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "relative_molecular_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativeMolecularMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q21697817"
+      }
+    ],
+    "title": {
+      "en": "Relative Molecular Mass"
+    }
+  },
+  "relativePartialPressure": {
+    "code": "relative_partial_pressure",
+    "identity": {
+      "broader": "pressure_ratio",
+      "slug": "relative_partial_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativePartialPressure"
+      }
+    ],
+    "title": {
+      "en": "Relative Partial Pressure"
+    }
+  },
+  "relativePressureCoefficient": {
+    "code": "relative_pressure_coefficient",
+    "identity": {
+      "broader": "inverse_temperature",
+      "slug": "relative_pressure_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelativePressureCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74761852"
+      }
+    ],
+    "title": {
+      "en": "Relative Pressure Coefficient"
+    }
+  },
+  "relaxationTime": {
+    "code": "relaxation_time",
+    "identity": {
+      "broader": "time",
+      "slug": "relaxation_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelaxationTime"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q102310909"
+      }
+    ],
+    "title": {
+      "en": "Relaxation Time"
+    }
+  },
+  "relaxationTIme": {
+    "code": "relaxation_t_ime",
+    "identity": {
+      "broader": "time",
+      "slug": "relaxation_t_ime"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RelaxationTIme"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q102310909"
+      }
+    ],
+    "title": {
+      "en": "Relaxation Time"
+    }
+  },
+  "reluctance": {
+    "code": "reluctance",
+    "identity": {
+      "slug": "reluctance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Reluctance"
+      }
+    ],
+    "title": {
+      "en": "Reluctance"
+    }
+  },
+  "repetency": {
+    "code": "repetency",
+    "identity": {
+      "slug": "repetency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Repetency"
+      }
+    ],
+    "title": {
+      "en": "Repetency"
+    }
+  },
+  "reserveMass": {
+    "code": "reserve_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "reserve_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RESERVE-MASS"
+      }
+    ],
+    "title": {
+      "en": "Reserve Mass"
+    }
+  },
+  "residualResistivity": {
+    "code": "residual_resistivity",
+    "identity": {
+      "slug": "residual_resistivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResidualResistivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25098876"
+      }
+    ],
+    "title": {
+      "en": "Residual Resistivity"
     }
   },
   "resistance": {
     "code": "resistance",
+    "identity": {
+      "slug": "resistance"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "Ω"
@@ -363,8 +16846,2781 @@ export default {
       "pt": "Resistência"
     }
   },
+  "resistanceBasedInductance": {
+    "code": "resistance_based_inductance",
+    "identity": {
+      "slug": "resistance_based_inductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResistanceBasedInductance"
+      }
+    ],
+    "title": {
+      "en": "Resistance-based Inductance"
+    }
+  },
+  "resistanceRatio": {
+    "code": "resistance_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "resistance_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResistanceRatio"
+      }
+    ],
+    "title": {
+      "en": "Resistance Ratio"
+    }
+  },
+  "resistivity": {
+    "code": "resistivity",
+    "identity": {
+      "slug": "resistivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Resistivity"
+      }
+    ],
+    "title": {
+      "en": "Resistivity"
+    }
+  },
+  "resonanceEnergy": {
+    "code": "resonance_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "resonance_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResonanceEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98165187"
+      }
+    ],
+    "title": {
+      "en": "Resonance Energy"
+    }
+  },
+  "resonanceEscapeProbability": {
+    "code": "resonance_escape_probability",
+    "identity": {
+      "slug": "resonance_escape_probability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResonanceEscapeProbability"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q4108072"
+      }
+    ],
+    "title": {
+      "en": "Resonance Escape Probability"
+    }
+  },
+  "resonanceEscapeProbabilityForFission": {
+    "code": "resonance_escape_probability_for_fission",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "resonance_escape_probability_for_fission"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ResonanceEscapeProbabilityForFission"
+      }
+    ],
+    "title": {
+      "en": "Resonance Escape Probability for Fission"
+    }
+  },
+  "respiratoryRate": {
+    "code": "respiratory_rate",
+    "identity": {
+      "broader": "count_rate",
+      "slug": "respiratory_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RespiratoryRate"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q754250"
+      }
+    ],
+    "title": {
+      "en": "Respiratory Rate"
+    }
+  },
+  "restEnergy": {
+    "code": "rest_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "rest_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RestEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11663629"
+      }
+    ],
+    "title": {
+      "en": "Rest Energy"
+    }
+  },
+  "restMass": {
+    "code": "rest_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "rest_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RestMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96941619"
+      }
+    ],
+    "title": {
+      "en": "Rest Mass"
+    }
+  },
+  "reverberationTime": {
+    "code": "reverberation_time",
+    "identity": {
+      "broader": "time",
+      "slug": "reverberation_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReverberationTime"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q606646"
+      }
+    ],
+    "title": {
+      "en": "Reverberation Time"
+    }
+  },
+  "reynoldsNumber": {
+    "code": "reynolds_number",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "reynolds_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ReynoldsNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q178932"
+      }
+    ],
+    "title": {
+      "en": "Reynolds Number"
+    }
+  },
+  "rfPower": {
+    "code": "rf_power",
+    "identity": {
+      "broader": "signal_strength",
+      "slug": "rf_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RFPower"
+      }
+    ],
+    "title": {
+      "en": "RF-Power Level"
+    }
+  },
+  "richardsonConstant": {
+    "code": "richardson_constant",
+    "identity": {
+      "slug": "richardson_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RichardsonConstant"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105883079"
+      }
+    ],
+    "title": {
+      "en": "Richardson Constant"
+    }
+  },
+  "riseOfOffStateVoltage": {
+    "code": "rise_of_off_state_voltage",
+    "identity": {
+      "slug": "rise_of_off_state_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RiseOfOffStateVoltage"
+      }
+    ],
+    "title": {
+      "en": "rise of off-state voltage"
+    }
+  },
+  "rotaryShock": {
+    "code": "rotary_shock",
+    "identity": {
+      "slug": "rotary_shock"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotaryShock"
+      }
+    ],
+    "title": {
+      "en": "Rotary Shock"
+    }
+  },
+  "rotaryTranslatoryMotionConversion": {
+    "code": "rotary_translatory_motion_conversion",
+    "identity": {
+      "slug": "rotary_translatory_motion_conversion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotaryTranslatoryMotionConversion"
+      }
+    ],
+    "title": {
+      "en": "Rotary-translatory Motion Conversion"
+    }
+  },
+  "rotationalFrequency": {
+    "code": "rotational_frequency",
+    "identity": {
+      "slug": "rotational_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotationalFrequency"
+      }
+    ],
+    "title": {
+      "en": "Rotational Frequency"
+    }
+  },
+  "rotationalMass": {
+    "code": "rotational_mass",
+    "identity": {
+      "slug": "rotational_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotationalMass"
+      }
+    ],
+    "title": {
+      "en": "Rotational Mass"
+    }
+  },
+  "rotationalStiffness": {
+    "code": "rotational_stiffness",
+    "identity": {
+      "broader": "torque_per_angle",
+      "slug": "rotational_stiffness"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotationalStiffness"
+      }
+    ],
+    "title": {
+      "en": "Rotational Stiffness"
+    }
+  },
+  "rotationalVelocity": {
+    "code": "rotational_velocity",
+    "identity": {
+      "slug": "rotational_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "RotationalVelocity"
+      }
+    ],
+    "title": {
+      "en": "Rotational Frequency"
+    }
+  },
+  "scalarMagneticPotential": {
+    "code": "scalar_magnetic_potential",
+    "identity": {
+      "slug": "scalar_magnetic_potential"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ScalarMagneticPotential"
+      }
+    ],
+    "title": {
+      "en": "Scalar Magnetic Potential"
+    }
+  },
+  "secondAxialMomentOfArea": {
+    "code": "second_axial_moment_of_area",
+    "identity": {
+      "broader": "second_moment_of_area",
+      "slug": "second_axial_moment_of_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SecondAxialMomentOfArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q91405496"
+      }
+    ],
+    "title": {
+      "en": "Second Axial Moment of Area"
+    }
+  },
+  "secondMomentOfArea": {
+    "code": "second_moment_of_area",
+    "identity": {
+      "slug": "second_moment_of_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SecondMomentOfArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q835065"
+      }
+    ],
+    "title": {
+      "en": "Second Moment of Area"
+    }
+  },
+  "secondOrderReactionRateConstant": {
+    "code": "second_order_reaction_rate_constant",
+    "identity": {
+      "slug": "second_order_reaction_rate_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SecondOrderReactionRateConstant"
+      }
+    ],
+    "title": {
+      "en": "Reaction Rate Constant"
+    }
+  },
+  "secondPolarMomentOfArea": {
+    "code": "second_polar_moment_of_area",
+    "identity": {
+      "broader": "second_moment_of_area",
+      "slug": "second_polar_moment_of_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SecondPolarMomentOfArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1049636"
+      }
+    ],
+    "title": {
+      "en": "Second Polar Moment of Area"
+    }
+  },
+  "secondRadiationConstant": {
+    "code": "second_radiation_constant",
+    "identity": {
+      "slug": "second_radiation_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SecondRadiationConstant"
+      }
+    ],
+    "title": {
+      "en": "Second Radiation Constant"
+    }
+  },
+  "sectionAreaIntegral": {
+    "code": "section_area_integral",
+    "identity": {
+      "slug": "section_area_integral"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SectionAreaIntegral"
+      }
+    ],
+    "title": {
+      "en": "Section Area Integral"
+    }
+  },
+  "sectionModulus": {
+    "code": "section_modulus",
+    "identity": {
+      "slug": "section_modulus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SectionModulus"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1930808"
+      }
+    ],
+    "title": {
+      "en": "Section Modulus"
+    }
+  },
+  "seebeckCoefficient": {
+    "code": "seebeck_coefficient",
+    "identity": {
+      "slug": "seebeck_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SeebeckCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1091448"
+      }
+    ],
+    "title": {
+      "en": "Seebeck Coefficient"
+    }
+  },
+  "serumLevel": {
+    "code": "serum_level",
+    "identity": {
+      "broader": "amount_of_substance_concentration",
+      "slug": "serum_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SerumLevel"
+      }
+    ],
+    "title": {
+      "en": "Serum Level"
+    }
+  },
+  "serumOrPlasmaLevel": {
+    "code": "serum_or_plasma_level",
+    "identity": {
+      "broader": "amount_of_substance_per_volume",
+      "slug": "serum_or_plasma_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SerumOrPlasmaLevel"
+      }
+    ],
+    "title": {
+      "en": "Serum or Plasma Level"
+    }
+  },
+  "serviceFactor": {
+    "code": "service_factor",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "service_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ServiceFactor"
+      }
+    ],
+    "title": {
+      "en": "Service Factor"
+    }
+  },
+  "shannonDiversityIndex": {
+    "code": "shannon_diversity_index",
+    "identity": {
+      "broader": "information_entropy",
+      "slug": "shannon_diversity_index"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ShannonDiversityIndex"
+      }
+    ],
+    "title": {
+      "en": "Shannon Diversity Index"
+    }
+  },
+  "shearModulus": {
+    "code": "shear_modulus",
+    "identity": {
+      "broader": "modulus_of_elasticity",
+      "slug": "shear_modulus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ShearModulus"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q461466"
+      }
+    ],
+    "title": {
+      "en": "Shear Modulus"
+    }
+  },
+  "shearStrain": {
+    "code": "shear_strain",
+    "identity": {
+      "broader": "length_ratio",
+      "slug": "shear_strain"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ShearStrain"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q7561704"
+      }
+    ],
+    "title": {
+      "en": "Shear Strain"
+    }
+  },
+  "shearStress": {
+    "code": "shear_stress",
+    "identity": {
+      "broader": "stress",
+      "slug": "shear_stress"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ShearStress"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q657936"
+      }
+    ],
+    "title": {
+      "en": "Shear Stress"
+    }
+  },
+  "shortRangeOrderParameter": {
+    "code": "short_range_order_parameter",
+    "identity": {
+      "slug": "short_range_order_parameter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ShortRangeOrderParameter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105495979"
+      }
+    ],
+    "title": {
+      "en": "Short-Range Order Parameter"
+    }
+  },
+  "signalDetectionThreshold": {
+    "code": "signal_detection_threshold",
+    "identity": {
+      "slug": "signal_detection_threshold"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SignalDetectionThreshold"
+      }
+    ],
+    "title": {
+      "en": "Signal Detection Threshold"
+    }
+  },
+  "signalStrength": {
+    "code": "signal_strength",
+    "identity": {
+      "broader": "electric_field",
+      "slug": "signal_strength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SignalStrength"
+      }
+    ],
+    "title": {
+      "en": "Signal Strength"
+    }
+  },
+  "slowingDownArea": {
+    "code": "slowing_down_area",
+    "identity": {
+      "broader": "area",
+      "slug": "slowing_down_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SlowingDownArea"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98950918"
+      }
+    ],
+    "title": {
+      "en": "Slowing-Down Area"
+    }
+  },
+  "slowingDownDensity": {
+    "code": "slowing_down_density",
+    "identity": {
+      "slug": "slowing_down_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SlowingDownDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98915830"
+      }
+    ],
+    "title": {
+      "en": "Slowing-Down Density"
+    }
+  },
+  "slowingDownLength": {
+    "code": "slowing_down_length",
+    "identity": {
+      "broader": "length",
+      "slug": "slowing_down_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SlowingDownLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98996963"
+      }
+    ],
+    "title": {
+      "en": "Slowing-Down Length"
+    }
+  },
+  "soilAdsorptionCoefficient": {
+    "code": "soil_adsorption_coefficient",
+    "identity": {
+      "broader": "specific_volume",
+      "slug": "soil_adsorption_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoilAdsorptionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Soil Adsorption Coefficient"
+    }
+  },
+  "solidAngle": {
+    "code": "solid_angle",
+    "identity": {
+      "slug": "solid_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SolidAngle"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q208476"
+      }
+    ],
+    "title": {
+      "en": "Solid Angle"
+    }
+  },
+  "solidStateDiffusionLength": {
+    "code": "solid_state_diffusion_length",
+    "identity": {
+      "broader": "length",
+      "slug": "solid_state_diffusion_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SolidStateDiffusionLength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106097176"
+      }
+    ],
+    "title": {
+      "en": "Diffusion Length (Solid State Physics)"
+    }
+  },
+  "solubilityWater": {
+    "code": "solubility_water",
+    "identity": {
+      "broader": "amount_of_substance_per_volume",
+      "slug": "solubility_water"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Solubility_Water"
+      }
+    ],
+    "title": {
+      "en": "Water Solubility"
+    }
+  },
+  "soundEnergyDensity": {
+    "code": "sound_energy_density",
+    "identity": {
+      "broader": "energy_density",
+      "slug": "sound_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundEnergyDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2230505"
+      }
+    ],
+    "title": {
+      "en": "Sound Energy Density"
+    }
+  },
+  "soundExposure": {
+    "code": "sound_exposure",
+    "identity": {
+      "slug": "sound_exposure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundExposure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2230528"
+      }
+    ],
+    "title": {
+      "en": "Sound Exposure"
+    }
+  },
+  "soundExposureLevel": {
+    "code": "sound_exposure_level",
+    "identity": {
+      "slug": "sound_exposure_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundExposureLevel"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q87543983"
+      }
+    ],
+    "title": {
+      "en": "Sound Exposure Level"
+    }
+  },
+  "soundIntensity": {
+    "code": "sound_intensity",
+    "identity": {
+      "broader": "power_per_area",
+      "slug": "sound_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundIntensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1140289"
+      }
+    ],
+    "title": {
+      "en": "Sound Intensity"
+    }
+  },
+  "soundParticleAcceleration": {
+    "code": "sound_particle_acceleration",
+    "identity": {
+      "broader": "acceleration",
+      "slug": "sound_particle_acceleration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundParticleAcceleration"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q7140491"
+      }
+    ],
+    "title": {
+      "en": "Sound Particle Acceleration"
+    }
+  },
+  "soundParticleDisplacement": {
+    "code": "sound_particle_displacement",
+    "identity": {
+      "broader": "length",
+      "slug": "sound_particle_displacement"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundParticleDisplacement"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q779457"
+      }
+    ],
+    "title": {
+      "en": "Sound Particle Displacement"
+    }
+  },
+  "soundParticleVelocity": {
+    "code": "sound_particle_velocity",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "sound_particle_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundParticleVelocity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q336894"
+      }
+    ],
+    "title": {
+      "en": "Sound Particle Velocity"
+    }
+  },
+  "soundPower": {
+    "code": "sound_power",
+    "identity": {
+      "broader": "power",
+      "slug": "sound_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1588477"
+      }
+    ],
+    "title": {
+      "en": "Sound Power"
+    }
+  },
+  "soundPowerLevel": {
+    "code": "sound_power_level",
+    "identity": {
+      "slug": "sound_power_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundPowerLevel"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2157873"
+      }
+    ],
+    "title": {
+      "en": "Sound Power Level"
+    }
+  },
+  "soundPressure": {
+    "code": "sound_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "sound_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1068172"
+      }
+    ],
+    "title": {
+      "en": "Sound Pressure"
+    }
+  },
+  "soundPressureLevel": {
+    "code": "sound_pressure_level",
+    "identity": {
+      "slug": "sound_pressure_level"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundPressureLevel"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q14515278"
+      }
+    ],
+    "title": {
+      "en": "Sound Pressure Level"
+    }
+  },
+  "soundReductionIndex": {
+    "code": "sound_reduction_index",
+    "identity": {
+      "slug": "sound_reduction_index"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundReductionIndex"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2230459"
+      }
+    ],
+    "title": {
+      "en": "Sound Reduction Index"
+    }
+  },
+  "soundVolumeVelocity": {
+    "code": "sound_volume_velocity",
+    "identity": {
+      "broader": "volume_per_time",
+      "slug": "sound_volume_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SoundVolumeVelocity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1640308"
+      }
+    ],
+    "title": {
+      "en": "Sound Volume Velocity"
+    }
+  },
+  "sourceVoltage": {
+    "code": "source_voltage",
+    "identity": {
+      "broader": "electric_potential",
+      "slug": "source_voltage"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SourceVoltage"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q185329"
+      }
+    ],
+    "title": {
+      "en": "Source Voltage"
+    }
+  },
+  "sourceVoltageBetweenSubstances": {
+    "code": "source_voltage_between_substances",
+    "identity": {
+      "broader": "electric_potential",
+      "slug": "source_voltage_between_substances"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SourceVoltageBetweenSubstances"
+      }
+    ],
+    "title": {
+      "en": "Source Voltage Between Substances"
+    }
+  },
+  "spatialSummationFunction": {
+    "code": "spatial_summation_function",
+    "identity": {
+      "broader": "length",
+      "slug": "spatial_summation_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpatialSummationFunction"
+      }
+    ],
+    "title": {
+      "en": "Spatial Summation Function"
+    }
+  },
+  "specificAcousticImpedance": {
+    "code": "specific_acoustic_impedance",
+    "identity": {
+      "slug": "specific_acoustic_impedance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificAcousticImpedance"
+      }
+    ],
+    "title": {
+      "en": "Specific Acoustic Impedance"
+    }
+  },
+  "specificActivity": {
+    "code": "specific_activity",
+    "identity": {
+      "slug": "specific_activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificActivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2823748"
+      }
+    ],
+    "title": {
+      "en": "Specific Activity"
+    }
+  },
+  "specificElectricCharge": {
+    "code": "specific_electric_charge",
+    "identity": {
+      "slug": "specific_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Specific Electric Charge"
+    }
+  },
+  "specificElectricCurrent": {
+    "code": "specific_electric_current",
+    "identity": {
+      "slug": "specific_electric_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificElectricCurrent"
+      }
+    ],
+    "title": {
+      "en": "Specific Electrical Current"
+    }
+  },
+  "specificEnergy": {
+    "code": "specific_energy",
+    "identity": {
+      "slug": "specific_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3023293"
+      }
+    ],
+    "title": {
+      "en": "Specific Energy"
+    }
+  },
+  "specificEnergyImparted": {
+    "code": "specific_energy_imparted",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "specific_energy_imparted"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificEnergyImparted"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99566195"
+      }
+    ],
+    "title": {
+      "en": "Specific Energy Imparted"
+    }
+  },
+  "specificEnthalpy": {
+    "code": "specific_enthalpy",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "specific_enthalpy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificEnthalpy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q21572993"
+      }
+    ],
+    "title": {
+      "en": "Specific Enthalpy"
+    }
+  },
+  "specificEntropy": {
+    "code": "specific_entropy",
+    "identity": {
+      "slug": "specific_entropy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificEntropy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q69423705"
+      }
+    ],
+    "title": {
+      "en": "Specific Entropy"
+    }
+  },
+  "specificGibbsEnergy": {
+    "code": "specific_gibbs_energy",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "specific_gibbs_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificGibbsEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76360636"
+      }
+    ],
+    "title": {
+      "en": "Specific Gibbs Energy"
+    }
+  },
+  "specificHeatCapacity": {
+    "code": "specific_heat_capacity",
+    "identity": {
+      "slug": "specific_heat_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatCapacity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q487756"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Capacity"
+    }
+  },
+  "specificHeatCapacityAtConstantPressure": {
+    "code": "specific_heat_capacity_at_constant_pressure",
+    "identity": {
+      "broader": "specific_heat_capacity",
+      "slug": "specific_heat_capacity_at_constant_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatCapacityAtConstantPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q75774282"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Capacity at Constant Pressure"
+    }
+  },
+  "specificHeatCapacityAtConstantVolume": {
+    "code": "specific_heat_capacity_at_constant_volume",
+    "identity": {
+      "broader": "specific_heat_capacity",
+      "slug": "specific_heat_capacity_at_constant_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatCapacityAtConstantVolume"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q75774757"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Capacity at Constant Volume"
+    }
+  },
+  "specificHeatCapacityAtSaturation": {
+    "code": "specific_heat_capacity_at_saturation",
+    "identity": {
+      "broader": "specific_heat_capacity",
+      "slug": "specific_heat_capacity_at_saturation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatCapacityAtSaturation"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q75775005"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Capacity at Saturation"
+    }
+  },
+  "specificHeatPressure": {
+    "code": "specific_heat_pressure",
+    "identity": {
+      "slug": "specific_heat_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatPressure"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Pressure"
+    }
+  },
+  "specificHeatsRatio": {
+    "code": "specific_heats_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "specific_heats_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatsRatio"
+      }
+    ],
+    "title": {
+      "en": "Specific Heats Ratio"
+    }
+  },
+  "specificHeatVolume": {
+    "code": "specific_heat_volume",
+    "identity": {
+      "slug": "specific_heat_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHeatVolume"
+      }
+    ],
+    "title": {
+      "en": "Specific Heat Volume"
+    }
+  },
+  "specificHelmholtzEnergy": {
+    "code": "specific_helmholtz_energy",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "specific_helmholtz_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHelmholtzEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76359554"
+      }
+    ],
+    "title": {
+      "en": "Specific Helmholtz Energy"
+    }
+  },
+  "specificHumidity": {
+    "code": "specific_humidity",
+    "identity": {
+      "broader": "mass_ratio",
+      "slug": "specific_humidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificHumidity"
+      }
+    ],
+    "title": {
+      "en": "Specific Humidity"
+    }
+  },
+  "specificImpulse": {
+    "code": "specific_impulse",
+    "identity": {
+      "broader": "time",
+      "slug": "specific_impulse"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificImpulse"
+      }
+    ],
+    "title": {
+      "en": "Specific Impulse"
+    }
+  },
+  "specificImpulseByMass": {
+    "code": "specific_impulse_by_mass",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "specific_impulse_by_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificImpulseByMass"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q100793317"
+      }
+    ],
+    "title": {
+      "en": "Specific Impulse by Mass"
+    }
+  },
+  "specificImpulseByWeight": {
+    "code": "specific_impulse_by_weight",
+    "identity": {
+      "broader": "specific_impulse",
+      "slug": "specific_impulse_by_weight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificImpulseByWeight"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q100828354"
+      }
+    ],
+    "title": {
+      "en": "Specific Impulse by Weight"
+    }
+  },
+  "specificInternalEnergy": {
+    "code": "specific_internal_energy",
+    "identity": {
+      "broader": "specific_energy",
+      "slug": "specific_internal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificInternalEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q76357367"
+      }
+    ],
+    "title": {
+      "en": "Specific Internal Energy"
+    }
+  },
+  "specificModulus": {
+    "code": "specific_modulus",
+    "identity": {
+      "slug": "specific_modulus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificModulus"
+      }
+    ],
+    "title": {
+      "en": "Specific Modulus"
+    }
+  },
+  "specificOpticalRotationalAbility": {
+    "code": "specific_optical_rotational_ability",
+    "identity": {
+      "slug": "specific_optical_rotational_ability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificOpticalRotationalAbility"
+      }
+    ],
+    "title": {
+      "en": "Specific Optical Rotational Ability"
+    }
+  },
+  "specificOpticalRotatoryPower": {
+    "code": "specific_optical_rotatory_power",
+    "identity": {
+      "slug": "specific_optical_rotatory_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificOpticalRotatoryPower"
+      }
+    ],
+    "title": {
+      "en": "Specific Optical Rotatory Power"
+    }
+  },
+  "specificPower": {
+    "code": "specific_power",
+    "identity": {
+      "slug": "specific_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificPower"
+      }
+    ],
+    "title": {
+      "en": "Specific Power"
+    }
+  },
+  "specificSurfaceArea": {
+    "code": "specific_surface_area",
+    "identity": {
+      "broader": "mass_attenuation_coefficient",
+      "slug": "specific_surface_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificSurfaceArea"
+      }
+    ],
+    "title": {
+      "en": "Specific Surface Area"
+    }
+  },
+  "specificThrust": {
+    "code": "specific_thrust",
+    "identity": {
+      "slug": "specific_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificThrust"
+      }
+    ],
+    "title": {
+      "en": "Specific Thrust"
+    }
+  },
+  "specificVolume": {
+    "code": "specific_volume",
+    "identity": {
+      "slug": "specific_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificVolume"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q683556"
+      }
+    ],
+    "title": {
+      "en": "Specific Volume"
+    }
+  },
+  "specificWeight": {
+    "code": "specific_weight",
+    "identity": {
+      "slug": "specific_weight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpecificWeight"
+      }
+    ],
+    "title": {
+      "en": "Specific Weight"
+    }
+  },
+  "spectralAngularCrossSection": {
+    "code": "spectral_angular_cross_section",
+    "identity": {
+      "slug": "spectral_angular_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralAngularCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98269571"
+      }
+    ],
+    "title": {
+      "en": "Spectral Angular Cross-section"
+    }
+  },
+  "spectralConcentrationOfRadiantEnergyDensity": {
+    "code": "spectral_concentration_of_radiant_energy_density",
+    "identity": {
+      "slug": "spectral_concentration_of_radiant_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralConcentrationOfRadiantEnergyDensity"
+      }
+    ],
+    "title": {
+      "en": "Spectral Concentration of Radiant Energy Density"
+    }
+  },
+  "spectralConcentrationOfVibrationalModes": {
+    "code": "spectral_concentration_of_vibrational_modes",
+    "identity": {
+      "slug": "spectral_concentration_of_vibrational_modes"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralConcentrationOfVibrationalModes"
+      }
+    ],
+    "title": {
+      "en": "Spectral Concentration of Vibrational Modes (in Terms of Angular Frequency)"
+    }
+  },
+  "spectralCrossSection": {
+    "code": "spectral_cross_section",
+    "identity": {
+      "slug": "spectral_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98267245"
+      }
+    ],
+    "title": {
+      "en": "Spectral Cross-section"
+    }
+  },
+  "spectralDensityOfVibrationalModes": {
+    "code": "spectral_density_of_vibrational_modes",
+    "identity": {
+      "slug": "spectral_density_of_vibrational_modes"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralDensityOfVibrationalModes"
+      }
+    ],
+    "title": {
+      "en": "Spectral Density of Vibrational Modes"
+    }
+  },
+  "spectralEmittance": {
+    "code": "spectral_emittance",
+    "identity": {
+      "slug": "spectral_emittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralEmittance"
+      }
+    ],
+    "title": {
+      "en": "Measurement Unit of Spectral Emittance"
+    }
+  },
+  "spectralIrradiance": {
+    "code": "spectral_irradiance",
+    "identity": {
+      "slug": "spectral_irradiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralIrradiance"
+      }
+    ],
+    "title": {
+      "en": "Measurement Unit of Spectral Irradiance"
+    }
+  },
+  "spectralLuminousEfficiency": {
+    "code": "spectral_luminous_efficiency",
+    "identity": {
+      "slug": "spectral_luminous_efficiency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralLuminousEfficiency"
+      }
+    ],
+    "title": {
+      "en": "Spectral Luminous Efficiency"
+    }
+  },
+  "spectralRadiance": {
+    "code": "spectral_radiance",
+    "identity": {
+      "slug": "spectral_radiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralRadiance"
+      }
+    ],
+    "title": {
+      "en": "Measurement Unit of Spectral Radiance"
+    }
+  },
+  "spectralRadiantEnergyDensity": {
+    "code": "spectral_radiant_energy_density",
+    "identity": {
+      "slug": "spectral_radiant_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralRadiantEnergyDensity"
+      }
+    ],
+    "title": {
+      "en": "Spectral Radiant Energy Density"
+    }
+  },
+  "spectralRadiantEnergyDensityInTermsOfWavelength": {
+    "code": "spectral_radiant_energy_density_in_terms_of_wavelength",
+    "identity": {
+      "slug": "spectral_radiant_energy_density_in_terms_of_wavelength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpectralRadiantEnergyDensityInTermsOfWavelength"
+      }
+    ],
+    "title": {
+      "en": "Spectral Radiant Energy Density in Terms of Wavelength"
+    }
+  },
+  "speed": {
+    "code": "speed",
+    "identity": {
+      "slug": "speed"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Speed"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3711325"
+      }
+    ],
+    "title": {
+      "en": "Speed"
+    }
+  },
+  "speedOfLight": {
+    "code": "speed_of_light",
+    "identity": {
+      "broader": "speed",
+      "slug": "speed_of_light"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpeedOfLight"
+      }
+    ],
+    "title": {
+      "en": "Speed of Light"
+    }
+  },
+  "speedOfSound": {
+    "code": "speed_of_sound",
+    "identity": {
+      "broader": "speed",
+      "slug": "speed_of_sound"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpeedOfSound"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q124003"
+      }
+    ],
+    "title": {
+      "en": "Speed of Sound"
+    }
+  },
+  "speedRatio": {
+    "code": "speed_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "speed_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpeedRatio"
+      }
+    ],
+    "title": {
+      "en": "Speed Ratio"
+    }
+  },
+  "sphericalIlluminance": {
+    "code": "spherical_illuminance",
+    "identity": {
+      "broader": "illuminance",
+      "slug": "spherical_illuminance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SphericalIlluminance"
+      }
+    ],
+    "title": {
+      "en": "Illuminance"
+    }
+  },
+  "spin": {
+    "code": "spin",
+    "identity": {
+      "broader": "angular_impulse",
+      "slug": "spin"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Spin"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q133673"
+      }
+    ],
+    "title": {
+      "en": "Spin"
+    }
+  },
+  "spinQuantumNumber": {
+    "code": "spin_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "spin_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SpinQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3879445"
+      }
+    ],
+    "title": {
+      "en": "Spin Quantum Number"
+    }
+  },
+  "squareEnergy": {
+    "code": "square_energy",
+    "identity": {
+      "slug": "square_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SquareEnergy"
+      }
+    ],
+    "title": {
+      "en": "Square Energy"
+    }
+  },
+  "squareTime": {
+    "code": "square_time",
+    "identity": {
+      "slug": "square_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SquareTime"
+      }
+    ],
+    "title": {
+      "en": "Square Time"
+    }
+  },
+  "standardAbsoluteActivity": {
+    "code": "standard_absolute_activity",
+    "identity": {
+      "slug": "standard_absolute_activity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StandardAbsoluteActivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q89406159"
+      }
+    ],
+    "title": {
+      "en": "Standard Absolute Activity"
+    }
+  },
+  "standardChemicalPotential": {
+    "code": "standard_chemical_potential",
+    "identity": {
+      "broader": "chemical_potential",
+      "slug": "standard_chemical_potential"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StandardChemicalPotential"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q89333468"
+      }
+    ],
+    "title": {
+      "en": "Standard Chemical Potential"
+    }
+  },
+  "standardGravitationalParameter": {
+    "code": "standard_gravitational_parameter",
+    "identity": {
+      "slug": "standard_gravitational_parameter"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StandardGravitationalParameter"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q579338"
+      }
+    ],
+    "title": {
+      "en": "Standard Gravitational Parameter"
+    }
+  },
+  "stateDensity": {
+    "code": "state_density",
+    "identity": {
+      "slug": "state_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StateDensity"
+      }
+    ],
+    "title": {
+      "en": "State Density"
+    }
+  },
+  "stateDensityAsExpressionOfAngularFrequency": {
+    "code": "state_density_as_expression_of_angular_frequency",
+    "identity": {
+      "slug": "state_density_as_expression_of_angular_frequency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StateDensityAsExpressionOfAngularFrequency"
+      }
+    ],
+    "title": {
+      "en": "State Density as Expression of Angular Frequency)"
+    }
+  },
+  "stateOfCharge": {
+    "code": "state_of_charge",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "state_of_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StateOfCharge"
+      }
+    ],
+    "title": {
+      "en": "State of Charge"
+    }
+  },
+  "staticFriction": {
+    "code": "static_friction",
+    "identity": {
+      "broader": "friction",
+      "slug": "static_friction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StaticFriction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q90862568"
+      }
+    ],
+    "title": {
+      "en": "Static Friction"
+    }
+  },
+  "staticFrictionCoefficient": {
+    "code": "static_friction_coefficient",
+    "identity": {
+      "broader": "friction_coefficient",
+      "slug": "static_friction_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StaticFrictionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Static Friction Coefficient"
+    }
+  },
+  "staticPressure": {
+    "code": "static_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "static_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StaticPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2406217"
+      }
+    ],
+    "title": {
+      "en": "Static Pressure"
+    }
+  },
+  "statisticalWeight": {
+    "code": "statistical_weight",
+    "identity": {
+      "slug": "statistical_weight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StatisticalWeight"
+      }
+    ],
+    "title": {
+      "en": "Statistical Weight"
+    }
+  },
+  "stochasticProcess": {
+    "code": "stochastic_process",
+    "identity": {
+      "slug": "stochastic_process"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StochasticProcess"
+      }
+    ],
+    "title": {
+      "en": "Stochastic Process"
+    }
+  },
+  "stoichiometricNumber": {
+    "code": "stoichiometric_number",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "stoichiometric_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StoichiometricNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q17326453"
+      }
+    ],
+    "title": {
+      "en": "Stoichiometric Number"
+    }
+  },
+  "strain": {
+    "code": "strain",
+    "identity": {
+      "broader": "length_ratio",
+      "slug": "strain"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Strain"
+      }
+    ],
+    "title": {
+      "en": "Strain"
+    }
+  },
+  "strainEnergyDensity": {
+    "code": "strain_energy_density",
+    "identity": {
+      "broader": "energy_density",
+      "slug": "strain_energy_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StrainEnergyDensity"
+      }
+    ],
+    "title": {
+      "en": "Strain Energy Density"
+    }
+  },
+  "strainEnergyReleaseRate": {
+    "code": "strain_energy_release_rate",
+    "identity": {
+      "broader": "energy_per_area",
+      "slug": "strain_energy_release_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StrainEnergyReleaseRate"
+      }
+    ],
+    "title": {
+      "en": "Strain Energy Release Rate"
+    }
+  },
+  "stress": {
+    "code": "stress",
+    "identity": {
+      "broader": "force_per_area",
+      "slug": "stress"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Stress"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q206175"
+      }
+    ],
+    "title": {
+      "en": "Stress"
+    }
+  },
+  "stressIntensityFactor": {
+    "code": "stress_intensity_factor",
+    "identity": {
+      "slug": "stress_intensity_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StressIntensityFactor"
+      }
+    ],
+    "title": {
+      "en": "Stress Intensity Factor"
+    }
+  },
+  "stressOpticCoefficient": {
+    "code": "stress_optic_coefficient",
+    "identity": {
+      "slug": "stress_optic_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StressOpticCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Stress-Optic Coefficient"
+    }
+  },
+  "structuralEfficiency": {
+    "code": "structural_efficiency",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "structural_efficiency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StructuralEfficiency"
+      }
+    ],
+    "title": {
+      "en": "Structural Efficiency"
+    }
+  },
+  "structureFactor": {
+    "code": "structure_factor",
+    "identity": {
+      "slug": "structure_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "StructureFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900684"
+      }
+    ],
+    "title": {
+      "en": "Structure Factor"
+    }
+  },
+  "sunProtectionFactorOfAProduct": {
+    "code": "sun_protection_factor_of_a_product",
+    "identity": {
+      "slug": "sun_protection_factor_of_a_product"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SunProtectionFactorOfAProduct"
+      }
+    ],
+    "title": {
+      "en": "Sun Protection Factor of a Product"
+    }
+  },
+  "superconductionTransitionTemperature": {
+    "code": "superconduction_transition_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "superconduction_transition_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SuperconductionTransitionTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106103037"
+      }
+    ],
+    "title": {
+      "en": "Superconduction Transition Temperature"
+    }
+  },
+  "superconductorEnergyGap": {
+    "code": "superconductor_energy_gap",
+    "identity": {
+      "broader": "gap_energy",
+      "slug": "superconductor_energy_gap"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SuperconductorEnergyGap"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106127898"
+      }
+    ],
+    "title": {
+      "en": "Superconductor Energy Gap"
+    }
+  },
+  "surfaceActivityDensity": {
+    "code": "surface_activity_density",
+    "identity": {
+      "slug": "surface_activity_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceActivityDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98103005"
+      }
+    ],
+    "title": {
+      "en": "Surface Activity Density"
+    }
+  },
+  "surfaceCoefficientOfHeatTransfer": {
+    "code": "surface_coefficient_of_heat_transfer",
+    "identity": {
+      "broader": "coefficient_of_heat_transfer",
+      "slug": "surface_coefficient_of_heat_transfer"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceCoefficientOfHeatTransfer"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q74770365"
+      }
+    ],
+    "title": {
+      "en": "Surface Coefficient of Heat Transfer"
+    }
+  },
+  "surfaceDensity": {
+    "code": "surface_density",
+    "identity": {
+      "broader": "mass_per_area",
+      "slug": "surface_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceDensity"
+      }
+    ],
+    "title": {
+      "en": "Surface Density"
+    }
+  },
+  "surfaceRelatedVolumeFlow": {
+    "code": "surface_related_volume_flow",
+    "identity": {
+      "slug": "surface_related_volume_flow"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceRelatedVolumeFlow"
+      }
+    ],
+    "title": {
+      "en": "Surface-related Volume Flow"
+    }
+  },
+  "surfaceRelatedVolumeFlowRate": {
+    "code": "surface_related_volume_flow_rate",
+    "identity": {
+      "slug": "surface_related_volume_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceRelatedVolumeFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Surface‑related Volume Flow Rate"
+    }
+  },
+  "surfaceTension": {
+    "code": "surface_tension",
+    "identity": {
+      "broader": "energy_per_area",
+      "slug": "surface_tension"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurfaceTension"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q170749"
+      }
+    ],
+    "title": {
+      "en": "Surface Tension"
+    }
+  },
+  "surgeImpedanceOfTheMedium": {
+    "code": "surge_impedance_of_the_medium",
+    "identity": {
+      "slug": "surge_impedance_of_the_medium"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SurgeImpedanceOfTheMedium"
+      }
+    ],
+    "title": {
+      "en": "Surge Impedance of the Medium"
+    }
+  },
+  "susceptance": {
+    "code": "susceptance",
+    "identity": {
+      "slug": "susceptance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Susceptance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q509598"
+      }
+    ],
+    "title": {
+      "en": "Susceptance"
+    }
+  },
+  "symbolTransmissionRate": {
+    "code": "symbol_transmission_rate",
+    "identity": {
+      "slug": "symbol_transmission_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SymbolTransmissionRate"
+      }
+    ],
+    "title": {
+      "en": "Symbol Transmission Rate"
+    }
+  },
+  "systolicBloodPressure": {
+    "code": "systolic_blood_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "systolic_blood_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "SystolicBloodPressure"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q42015775"
+      }
+    ],
+    "title": {
+      "en": "Systolic Blood Pressure"
+    }
+  },
+  "targetBogieMass": {
+    "code": "target_bogie_mass",
+    "identity": {
+      "broader": "mass",
+      "slug": "target_bogie_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TARGET-BOGIE-MASS"
+      }
+    ],
+    "title": {
+      "en": "Target Bogie Mass"
+    }
+  },
   "temperature": {
     "code": "temperature",
+    "identity": {
+      "slug": "temperature"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "K"
@@ -377,6 +19633,11 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11466"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "temperature"
       }
@@ -386,8 +19647,1976 @@ export default {
       "pt": "Temperatura"
     }
   },
+  "temperatureAmountOfSubstance": {
+    "code": "temperature_amount_of_substance",
+    "identity": {
+      "slug": "temperature_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureAmountOfSubstance"
+      }
+    ],
+    "title": {
+      "en": "Temperature Amount of Substance"
+    }
+  },
+  "temperatureBasedAmountOfSubstanceConcentration": {
+    "code": "temperature_based_amount_of_substance_concentration",
+    "identity": {
+      "slug": "temperature_based_amount_of_substance_concentration"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedAmountOfSubstanceConcentration"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Amount-of-substance Concentration"
+    }
+  },
+  "temperatureBasedDensity": {
+    "code": "temperature_based_density",
+    "identity": {
+      "slug": "temperature_based_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedDensity"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Density"
+    }
+  },
+  "temperatureBasedDynamicViscosity": {
+    "code": "temperature_based_dynamic_viscosity",
+    "identity": {
+      "slug": "temperature_based_dynamic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedDynamicViscosity"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Dynamic Viscosity"
+    }
+  },
+  "temperatureBasedKinematicViscosity": {
+    "code": "temperature_based_kinematic_viscosity",
+    "identity": {
+      "slug": "temperature_based_kinematic_viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedKinematicViscosity"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Kinematic Viscosity"
+    }
+  },
+  "temperatureBasedLength": {
+    "code": "temperature_based_length",
+    "identity": {
+      "slug": "temperature_based_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedLength"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Length"
+    }
+  },
+  "temperatureBasedMass": {
+    "code": "temperature_based_mass",
+    "identity": {
+      "slug": "temperature_based_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedMass"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Mass"
+    }
+  },
+  "temperatureBasedMassFlowRate": {
+    "code": "temperature_based_mass_flow_rate",
+    "identity": {
+      "slug": "temperature_based_mass_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedMassFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Mass Flow Rate"
+    }
+  },
+  "temperatureBasedQuantity": {
+    "code": "temperature_based_quantity",
+    "identity": {
+      "slug": "temperature_based_quantity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedQuantity"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Quantity"
+    }
+  },
+  "temperatureBasedVelocity": {
+    "code": "temperature_based_velocity",
+    "identity": {
+      "slug": "temperature_based_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedVelocity"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Velocity"
+    }
+  },
+  "temperatureBasedVolumeFlowRate": {
+    "code": "temperature_based_volume_flow_rate",
+    "identity": {
+      "slug": "temperature_based_volume_flow_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureBasedVolumeFlowRate"
+      }
+    ],
+    "title": {
+      "en": "Temperature-based Volume Flow Rate"
+    }
+  },
+  "temperatureDifference": {
+    "code": "temperature_difference",
+    "identity": {
+      "broader": "temperature",
+      "slug": "temperature_difference"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureDifference"
+      }
+    ],
+    "title": {
+      "en": "Temperature Difference"
+    }
+  },
+  "temperatureGradient": {
+    "code": "temperature_gradient",
+    "identity": {
+      "slug": "temperature_gradient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureGradient"
+      }
+    ],
+    "title": {
+      "en": "Temperature Gradient"
+    }
+  },
+  "temperaturePerMagneticFluxDensity": {
+    "code": "temperature_per_magnetic_flux_density",
+    "identity": {
+      "slug": "temperature_per_magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperaturePerMagneticFluxDensity"
+      }
+    ],
+    "title": {
+      "en": "Temperature per Magnetic Flux Density"
+    }
+  },
+  "temperaturePerSquareTime": {
+    "code": "temperature_per_square_time",
+    "identity": {
+      "slug": "temperature_per_square_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperaturePerSquareTime"
+      }
+    ],
+    "title": {
+      "en": "Temperature per Square Time"
+    }
+  },
+  "temperaturePerTime": {
+    "code": "temperature_per_time",
+    "identity": {
+      "slug": "temperature_per_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperaturePerTime"
+      }
+    ],
+    "title": {
+      "en": "Temperature per Time"
+    }
+  },
+  "temperaturePerTimeSquared": {
+    "code": "temperature_per_time_squared",
+    "identity": {
+      "slug": "temperature_per_time_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperaturePerTime_Squared"
+      }
+    ],
+    "title": {
+      "en": "Temperature per Time Squared"
+    }
+  },
+  "temperatureRateOfChange": {
+    "code": "temperature_rate_of_change",
+    "identity": {
+      "broader": "temperature_per_time",
+      "slug": "temperature_rate_of_change"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureRateOfChange"
+      }
+    ],
+    "title": {
+      "en": "Temperature Rate of Change"
+    }
+  },
+  "temperatureRatio": {
+    "code": "temperature_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "temperature_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureRatio"
+      }
+    ],
+    "title": {
+      "en": "Temperature Ratio"
+    }
+  },
+  "temperatureRelatedMolarMass": {
+    "code": "temperature_related_molar_mass",
+    "identity": {
+      "slug": "temperature_related_molar_mass"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureRelatedMolarMass"
+      }
+    ],
+    "title": {
+      "en": "Temperature-related Molar Mass"
+    }
+  },
+  "temperatureRelatedVolume": {
+    "code": "temperature_related_volume",
+    "identity": {
+      "slug": "temperature_related_volume"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureRelatedVolume"
+      }
+    ],
+    "title": {
+      "en": "Temperature-related Volume  "
+    }
+  },
+  "temperatureVariance": {
+    "code": "temperature_variance",
+    "identity": {
+      "slug": "temperature_variance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureVariance"
+      }
+    ],
+    "title": {
+      "en": "Temperature Variance"
+    }
+  },
+  "temperatureVarianceNeon": {
+    "code": "temperature_variance_neon",
+    "identity": {
+      "slug": "temperature_variance_neon"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemperatureVariance_NEON"
+      }
+    ],
+    "title": {
+      "en": "Temperature Variance, NEON"
+    }
+  },
+  "temporalSummationFunction": {
+    "code": "temporal_summation_function",
+    "identity": {
+      "slug": "temporal_summation_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TemporalSummationFunction"
+      }
+    ],
+    "title": {
+      "en": "Temporal Summation Function"
+    }
+  },
+  "tension": {
+    "code": "tension",
+    "identity": {
+      "broader": "force_magnitude",
+      "slug": "tension"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Tension"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q908584"
+      }
+    ],
+    "title": {
+      "en": "Tension"
+    }
+  },
+  "thermalAdmittance": {
+    "code": "thermal_admittance",
+    "identity": {
+      "broader": "coefficient_of_heat_transfer",
+      "slug": "thermal_admittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalAdmittance"
+      }
+    ],
+    "title": {
+      "en": "Thermal Admittance"
+    }
+  },
+  "thermalCapacitance": {
+    "code": "thermal_capacitance",
+    "identity": {
+      "slug": "thermal_capacitance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalCapacitance"
+      }
+    ],
+    "title": {
+      "en": "Thermal Capacitance"
+    }
+  },
+  "thermalCoefficientOfLinearExpansion": {
+    "code": "thermal_coefficient_of_linear_expansion",
+    "identity": {
+      "slug": "thermal_coefficient_of_linear_expansion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalCoefficientOfLinearExpansion"
+      }
+    ],
+    "title": {
+      "en": "Thermal Coefficient of Linear Expansion"
+    }
+  },
+  "thermalConductance": {
+    "code": "thermal_conductance",
+    "identity": {
+      "slug": "thermal_conductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalConductance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q17176562"
+      }
+    ],
+    "title": {
+      "en": "Thermal Conductance"
+    }
+  },
+  "thermalConductivity": {
+    "code": "thermal_conductivity",
+    "identity": {
+      "slug": "thermal_conductivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalConductivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q487005"
+      }
+    ],
+    "title": {
+      "en": "Thermal Conductivity"
+    }
+  },
+  "thermalDiffusionFactor": {
+    "code": "thermal_diffusion_factor",
+    "identity": {
+      "slug": "thermal_diffusion_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalDiffusionFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96249629"
+      }
+    ],
+    "title": {
+      "en": "Thermal Diffusion Factor"
+    }
+  },
+  "thermalDiffusionRatio": {
+    "code": "thermal_diffusion_ratio",
+    "identity": {
+      "slug": "thermal_diffusion_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalDiffusionRatio"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96249433"
+      }
+    ],
+    "title": {
+      "en": "Thermal Diffusion Ratio"
+    }
+  },
+  "thermalDiffusionRatioCoefficient": {
+    "code": "thermal_diffusion_ratio_coefficient",
+    "identity": {
+      "slug": "thermal_diffusion_ratio_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalDiffusionRatioCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q96249751"
+      }
+    ],
+    "title": {
+      "en": "Thermal Diffusion Coefficient"
+    }
+  },
+  "thermalDiffusivity": {
+    "code": "thermal_diffusivity",
+    "identity": {
+      "broader": "area_per_time",
+      "slug": "thermal_diffusivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalDiffusivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3381809"
+      }
+    ],
+    "title": {
+      "en": "Thermal Diffusivity"
+    }
+  },
+  "thermalEfficiency": {
+    "code": "thermal_efficiency",
+    "identity": {
+      "broader": "efficiency",
+      "slug": "thermal_efficiency"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalEfficiency"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1452104"
+      }
+    ],
+    "title": {
+      "en": "Thermal Efficiency"
+    }
+  },
+  "thermalEnergy": {
+    "code": "thermal_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "thermal_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalEnergy"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q209233"
+      }
+    ],
+    "title": {
+      "en": "Thermal Energy"
+    }
+  },
+  "thermalEnergyLength": {
+    "code": "thermal_energy_length",
+    "identity": {
+      "slug": "thermal_energy_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalEnergyLength"
+      }
+    ],
+    "title": {
+      "en": "Thermal Energy Length"
+    }
+  },
+  "thermalExpansionCoefficient": {
+    "code": "thermal_expansion_coefficient",
+    "identity": {
+      "broader": "expansion_ratio",
+      "slug": "thermal_expansion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalExpansionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Thermal Expansion Coefficient"
+    }
+  },
+  "thermalInertia": {
+    "code": "thermal_inertia",
+    "identity": {
+      "slug": "thermal_inertia"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalInertia"
+      }
+    ],
+    "title": {
+      "en": "Measurement Unit of Thermal Inertia"
+    }
+  },
+  "thermalInsulance": {
+    "code": "thermal_insulance",
+    "identity": {
+      "slug": "thermal_insulance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalInsulance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2596212"
+      }
+    ],
+    "title": {
+      "en": "Thermal Insulance"
+    }
+  },
+  "thermalInsulation": {
+    "code": "thermal_insulation",
+    "identity": {
+      "slug": "thermal_insulation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalInsulation"
+      }
+    ],
+    "title": {
+      "en": "Thermal Insulation"
+    }
+  },
+  "thermalPower": {
+    "code": "thermal_power",
+    "identity": {
+      "broader": "power",
+      "slug": "thermal_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2419903"
+      }
+    ],
+    "title": {
+      "en": "Thermal Power"
+    }
+  },
+  "thermalResistance": {
+    "code": "thermal_resistance",
+    "identity": {
+      "slug": "thermal_resistance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalResistance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q899628"
+      }
+    ],
+    "title": {
+      "en": "Thermal Resistance"
+    }
+  },
+  "thermalResistivity": {
+    "code": "thermal_resistivity",
+    "identity": {
+      "slug": "thermal_resistivity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalResistivity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q66311516"
+      }
+    ],
+    "title": {
+      "en": "Thermal Resistivity"
+    }
+  },
+  "thermalTransmittance": {
+    "code": "thermal_transmittance",
+    "identity": {
+      "broader": "coefficient_of_heat_transfer",
+      "slug": "thermal_transmittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalTransmittance"
+      }
+    ],
+    "title": {
+      "en": "Thermal Transmittance"
+    }
+  },
+  "thermalUtilizationFactor": {
+    "code": "thermal_utilization_factor",
+    "identity": {
+      "slug": "thermal_utilization_factor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalUtilizationFactor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q99197650"
+      }
+    ],
+    "title": {
+      "en": "Thermal Utilization Factor"
+    }
+  },
+  "thermalUtilizationFactorForFission": {
+    "code": "thermal_utilization_factor_for_fission",
+    "identity": {
+      "broader": "dimensionless",
+      "slug": "thermal_utilization_factor_for_fission"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermalUtilizationFactorForFission"
+      }
+    ],
+    "title": {
+      "en": "Thermal Utilization Factor for Fission"
+    }
+  },
+  "thermodynamicCriticalMagneticFluxDensity": {
+    "code": "thermodynamic_critical_magnetic_flux_density",
+    "identity": {
+      "broader": "magnetic_flux_density",
+      "slug": "thermodynamic_critical_magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermodynamicCriticalMagneticFluxDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106103200"
+      }
+    ],
+    "title": {
+      "en": "Thermodynamic Critical Magnetic Flux Density"
+    }
+  },
+  "thermodynamicEnergy": {
+    "code": "thermodynamic_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "thermodynamic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermodynamicEnergy"
+      }
+    ],
+    "title": {
+      "en": "Thermodynamic Energy"
+    }
+  },
+  "thermodynamicEntropy": {
+    "code": "thermodynamic_entropy",
+    "identity": {
+      "broader": "energy_per_temperature",
+      "slug": "thermodynamic_entropy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermodynamicEntropy"
+      }
+    ],
+    "title": {
+      "en": "Thermodynamic Entropy"
+    }
+  },
+  "thermodynamicTemperature": {
+    "code": "thermodynamic_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "thermodynamic_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThermodynamicTemperature"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q264647"
+      }
+    ],
+    "title": {
+      "en": "Thermodynamic Temperature"
+    }
+  },
+  "thickness": {
+    "code": "thickness",
+    "description": {
+      "en": "Physical thickness/depth of an enclosure/part, millimetres."
+    },
+    "identity": {
+      "broader": "length",
+      "slug": "thickness"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Thickness"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q3589038"
+      }
+    ],
+    "title": {
+      "en": "Thickness",
+      "pt": "Espessura (mm)"
+    }
+  },
+  "thomsonCoefficient": {
+    "code": "thomson_coefficient",
+    "identity": {
+      "slug": "thomson_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThomsonCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q105801233"
+      }
+    ],
+    "title": {
+      "en": "Thomson Coefficient"
+    }
+  },
+  "thrust": {
+    "code": "thrust",
+    "identity": {
+      "broader": "force",
+      "slug": "thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Thrust"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q533668"
+      }
+    ],
+    "title": {
+      "en": "Thrust"
+    }
+  },
+  "thrustCoefficient": {
+    "code": "thrust_coefficient",
+    "identity": {
+      "slug": "thrust_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThrustCoefficient"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q102040931"
+      }
+    ],
+    "title": {
+      "en": "Thrust Coefficient"
+    }
+  },
+  "thrustToMassRatio": {
+    "code": "thrust_to_mass_ratio",
+    "identity": {
+      "broader": "acceleration",
+      "slug": "thrust_to_mass_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThrustToMassRatio"
+      }
+    ],
+    "title": {
+      "en": "Thrust to Mass Ratio"
+    }
+  },
+  "thrustToWeightRatio": {
+    "code": "thrust_to_weight_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "thrust_to_weight_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ThrustToWeightRatio"
+      }
+    ],
+    "title": {
+      "en": "Thrust to Weight Ratio"
+    }
+  },
+  "tilt": {
+    "code": "tilt",
+    "description": {
+      "en": "Plane tilt in degrees from horizontal."
+    },
+    "identity": {
+      "broader": "angle",
+      "slug": "tilt"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Tilt"
+      }
+    ],
+    "title": {
+      "en": "Tilt",
+      "pt": "Inclinação"
+    }
+  },
+  "time": {
+    "code": "time",
+    "identity": {
+      "slug": "time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Time"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q2199864"
+      }
+    ],
+    "title": {
+      "en": "Time"
+    }
+  },
+  "timeAveragedSoundIntensity": {
+    "code": "time_averaged_sound_intensity",
+    "identity": {
+      "broader": "sound_intensity",
+      "slug": "time_averaged_sound_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimeAveragedSoundIntensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q86827342"
+      }
+    ],
+    "title": {
+      "en": "Time Averaged Sound Intensity"
+    }
+  },
+  "timeConstantInductance": {
+    "code": "time_constant_inductance",
+    "identity": {
+      "slug": "time_constant_inductance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimeConstant_Inductance"
+      }
+    ],
+    "title": {
+      "en": "time constant (inductance based)"
+    }
+  },
+  "timePerCount": {
+    "code": "time_per_count",
+    "identity": {
+      "slug": "time_per_count"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimePerCount"
+      }
+    ],
+    "title": {
+      "en": "Time per Count"
+    }
+  },
+  "timeRatio": {
+    "code": "time_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "time_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimeRatio"
+      }
+    ],
+    "title": {
+      "en": "Time Ratio"
+    }
+  },
+  "timeRelatedLogarithmicRatio": {
+    "code": "time_related_logarithmic_ratio",
+    "identity": {
+      "slug": "time_related_logarithmic_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimeRelatedLogarithmicRatio"
+      }
+    ],
+    "title": {
+      "en": "Time-related Logarithmic Ratio"
+    }
+  },
+  "timeSquared": {
+    "code": "time_squared",
+    "identity": {
+      "slug": "time_squared"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Time_Squared"
+      }
+    ],
+    "title": {
+      "en": "Time Squared"
+    }
+  },
+  "timeTemperature": {
+    "code": "time_temperature",
+    "identity": {
+      "slug": "time_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TimeTemperature"
+      }
+    ],
+    "title": {
+      "en": "Time Temperature"
+    }
+  },
+  "torque": {
+    "code": "torque",
+    "identity": {
+      "slug": "torque"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Torque"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q48103"
+      }
+    ],
+    "title": {
+      "en": "Torque"
+    }
+  },
+  "torqueConstant": {
+    "code": "torque_constant",
+    "identity": {
+      "slug": "torque_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TorqueConstant"
+      }
+    ],
+    "title": {
+      "en": "Torque Constant"
+    }
+  },
+  "torquePerAngle": {
+    "code": "torque_per_angle",
+    "identity": {
+      "slug": "torque_per_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TorquePerAngle"
+      }
+    ],
+    "title": {
+      "en": "Torque per Angle"
+    }
+  },
+  "torquePerLength": {
+    "code": "torque_per_length",
+    "identity": {
+      "slug": "torque_per_length"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TorquePerLength"
+      }
+    ],
+    "title": {
+      "en": "Torque per Length"
+    }
+  },
+  "torsionalRigidity": {
+    "code": "torsional_rigidity",
+    "identity": {
+      "broader": "torque_per_angle",
+      "slug": "torsional_rigidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TorsionalRigidity"
+      }
+    ],
+    "title": {
+      "en": "Torsional Rigidity"
+    }
+  },
+  "torsionalSpringConstant": {
+    "code": "torsional_spring_constant",
+    "identity": {
+      "broader": "torque_per_angle",
+      "slug": "torsional_spring_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TorsionalSpringConstant"
+      }
+    ],
+    "title": {
+      "en": "Torsional Spring Constant"
+    }
+  },
+  "totalAngularMomentum": {
+    "code": "total_angular_momentum",
+    "identity": {
+      "broader": "angular_impulse",
+      "slug": "total_angular_momentum"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalAngularMomentum"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q97496506"
+      }
+    ],
+    "title": {
+      "en": "Total Angular Momentum"
+    }
+  },
+  "totalAngularMomentumQuantumNumber": {
+    "code": "total_angular_momentum_quantum_number",
+    "identity": {
+      "broader": "quantum_number",
+      "slug": "total_angular_momentum_quantum_number"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalAngularMomentumQuantumNumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1141095"
+      }
+    ],
+    "title": {
+      "en": "Total Angular Momentum Quantum Number"
+    }
+  },
+  "totalAtomicStoppingPower": {
+    "code": "total_atomic_stopping_power",
+    "identity": {
+      "slug": "total_atomic_stopping_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalAtomicStoppingPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q112725871"
+      }
+    ],
+    "title": {
+      "en": "Total Atomic Stopping Power"
+    }
+  },
+  "totalCrossSection": {
+    "code": "total_cross_section",
+    "identity": {
+      "broader": "cross_section",
+      "slug": "total_cross_section"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalCrossSection"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98206553"
+      }
+    ],
+    "title": {
+      "en": "Total Cross-section"
+    }
+  },
+  "totalCurrent": {
+    "code": "total_current",
+    "identity": {
+      "broader": "electric_current",
+      "slug": "total_current"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalCurrent"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77679732"
+      }
+    ],
+    "title": {
+      "en": "Total Current"
+    }
+  },
+  "totalCurrentDensity": {
+    "code": "total_current_density",
+    "identity": {
+      "slug": "total_current_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalCurrentDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q77680811"
+      }
+    ],
+    "title": {
+      "en": "Total Current Density"
+    }
+  },
+  "totalIonization": {
+    "code": "total_ionization",
+    "identity": {
+      "slug": "total_ionization"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalIonization"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98690787"
+      }
+    ],
+    "title": {
+      "en": "Total Ionization"
+    }
+  },
+  "totalLinearStoppingPower": {
+    "code": "total_linear_stopping_power",
+    "identity": {
+      "slug": "total_linear_stopping_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalLinearStoppingPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q908474"
+      }
+    ],
+    "title": {
+      "en": "Total Linear Stopping Power"
+    }
+  },
+  "totalMassStoppingPower": {
+    "code": "total_mass_stopping_power",
+    "identity": {
+      "slug": "total_mass_stopping_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalMassStoppingPower"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q98642795"
+      }
+    ],
+    "title": {
+      "en": "Total Mass Stopping Power"
+    }
+  },
+  "totalPressure": {
+    "code": "total_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "total_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalPressure"
+      }
+    ],
+    "title": {
+      "en": "Total Pressure"
+    }
+  },
+  "totalRadiance": {
+    "code": "total_radiance",
+    "identity": {
+      "slug": "total_radiance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TotalRadiance"
+      }
+    ],
+    "title": {
+      "en": "Total Radiance"
+    }
+  },
+  "touchThresholds": {
+    "code": "touch_thresholds",
+    "identity": {
+      "slug": "touch_thresholds"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TouchThresholds"
+      }
+    ],
+    "title": {
+      "en": "Touch Thresholds"
+    }
+  },
+  "trafficIntensity": {
+    "code": "traffic_intensity",
+    "identity": {
+      "slug": "traffic_intensity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TrafficIntensity"
+      }
+    ],
+    "title": {
+      "en": "Traffic Intensity"
+    }
+  },
+  "transmissionRatioBetweenRotationAndTranslation": {
+    "code": "transmission_ratio_between_rotation_and_translation",
+    "identity": {
+      "slug": "transmission_ratio_between_rotation_and_translation"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TransmissionRatioBetweenRotationAndTranslation"
+      }
+    ],
+    "title": {
+      "en": "Transmission Ratio Between Rotation and Translation"
+    }
+  },
+  "transmittance": {
+    "code": "transmittance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "transmittance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Transmittance"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1427863"
+      }
+    ],
+    "title": {
+      "en": "Transmittance"
+    }
+  },
+  "transmittanceDensity": {
+    "code": "transmittance_density",
+    "identity": {
+      "slug": "transmittance_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "TransmittanceDensity"
+      }
+    ],
+    "title": {
+      "en": "Transmittance Density"
+    }
+  },
+  "turbidity": {
+    "code": "turbidity",
+    "identity": {
+      "slug": "turbidity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Turbidity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q898574"
+      }
+    ],
+    "title": {
+      "en": "Turbidity"
+    }
+  },
+  "turns": {
+    "code": "turns",
+    "identity": {
+      "broader": "count",
+      "slug": "turns"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Turns"
+      }
+    ],
+    "title": {
+      "en": "Turns"
+    }
+  },
+  "unbalance": {
+    "code": "unbalance",
+    "identity": {
+      "slug": "unbalance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Unbalance"
+      }
+    ],
+    "title": {
+      "en": "Unbalance"
+    }
+  },
+  "unknown": {
+    "code": "unknown",
+    "identity": {
+      "slug": "unknown"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Unknown"
+      }
+    ],
+    "title": {
+      "en": "Unknown"
+    }
+  },
+  "upperCriticalMagneticFluxDensity": {
+    "code": "upper_critical_magnetic_flux_density",
+    "identity": {
+      "broader": "magnetic_flux_density",
+      "slug": "upper_critical_magnetic_flux_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "UpperCriticalMagneticFluxDensity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q106127634"
+      }
+    ],
+    "title": {
+      "en": "Upper Critical Magnetic Flux Density"
+    }
+  },
+  "vacuumThrust": {
+    "code": "vacuum_thrust",
+    "identity": {
+      "broader": "thrust",
+      "slug": "vacuum_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VacuumThrust"
+      }
+    ],
+    "title": {
+      "en": "Vacuum Thrust"
+    }
+  },
+  "vaporPermeability": {
+    "code": "vapor_permeability",
+    "identity": {
+      "slug": "vapor_permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VaporPermeability"
+      }
+    ],
+    "title": {
+      "en": "Vapour Permeability"
+    }
+  },
+  "vaporPermeance": {
+    "code": "vapor_permeance",
+    "identity": {
+      "slug": "vapor_permeance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VaporPermeance"
+      }
+    ],
+    "title": {
+      "en": "Vapour Permeance"
+    }
+  },
+  "vaporPressure": {
+    "code": "vapor_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "vapor_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VaporPressure"
+      }
+    ],
+    "title": {
+      "en": "Vapour Pressure"
+    }
+  },
+  "vapourPermeability": {
+    "code": "vapour_permeability",
+    "identity": {
+      "slug": "vapour_permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VapourPermeability"
+      }
+    ],
+    "title": {
+      "en": "Vapour Permeability"
+    }
+  },
+  "vapourPermeance": {
+    "code": "vapour_permeance",
+    "identity": {
+      "slug": "vapour_permeance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VapourPermeance"
+      }
+    ],
+    "title": {
+      "en": "Vapour Permeance"
+    }
+  },
+  "vapourPressure": {
+    "code": "vapour_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "vapour_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VapourPressure"
+      }
+    ],
+    "title": {
+      "en": "Vapour Pressure"
+    }
+  },
+  "velocity": {
+    "code": "velocity",
+    "identity": {
+      "slug": "velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Velocity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q11465"
+      }
+    ],
+    "title": {
+      "en": "Velocity"
+    }
+  },
+  "ventilationRatePerFloorArea": {
+    "code": "ventilation_rate_per_floor_area",
+    "identity": {
+      "broader": "surface_related_volume_flow",
+      "slug": "ventilation_rate_per_floor_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VentilationRatePerFloorArea"
+      }
+    ],
+    "title": {
+      "en": "Ventilation Rate per Floor Area"
+    }
+  },
+  "verticalVelocity": {
+    "code": "vertical_velocity",
+    "identity": {
+      "broader": "linear_velocity",
+      "slug": "vertical_velocity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VerticalVelocity"
+      }
+    ],
+    "title": {
+      "en": "Vertical Velocity"
+    }
+  },
+  "vibrationalDensityOfStates": {
+    "code": "vibrational_density_of_states",
+    "identity": {
+      "slug": "vibrational_density_of_states"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VibrationalDensityOfStates"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q230895"
+      }
+    ],
+    "title": {
+      "en": "Vibrational Density of States"
+    }
+  },
+  "videoFrameRate": {
+    "code": "video_frame_rate",
+    "identity": {
+      "slug": "video_frame_rate"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VideoFrameRate"
+      }
+    ],
+    "title": {
+      "en": "Video Frame Rate"
+    }
+  },
+  "viscosity": {
+    "code": "viscosity",
+    "identity": {
+      "slug": "viscosity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Viscosity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q128709"
+      }
+    ],
+    "title": {
+      "en": "Viscosity"
+    }
+  },
+  "visibleRadiantEnergy": {
+    "code": "visible_radiant_energy",
+    "identity": {
+      "broader": "energy",
+      "slug": "visible_radiant_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VisibleRadiantEnergy"
+      }
+    ],
+    "title": {
+      "en": "Visible Radiant Energy"
+    }
+  },
+  "visionThresholds": {
+    "code": "vision_thresholds",
+    "identity": {
+      "slug": "vision_thresholds"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VisionThresholds"
+      }
+    ],
+    "title": {
+      "en": "Vision Thresholds"
+    }
+  },
   "voltage": {
     "code": "voltage",
+    "identity": {
+      "slug": "voltage"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "V"
@@ -400,6 +21629,11 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25428"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "voltage"
       }
@@ -409,8 +21643,66 @@ export default {
       "pt": "Tensão"
     }
   },
+  "voltageImbalance": {
+    "code": "voltage_imbalance",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "voltage_imbalance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VoltageImbalance"
+      }
+    ],
+    "title": {
+      "en": "Voltage Imbalance"
+    }
+  },
+  "voltagePhasor": {
+    "code": "voltage_phasor",
+    "identity": {
+      "slug": "voltage_phasor"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VoltagePhasor"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q78514605"
+      }
+    ],
+    "title": {
+      "en": "Voltage Phasor"
+    }
+  },
+  "voltageRatio": {
+    "code": "voltage_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "voltage_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VoltageRatio"
+      }
+    ],
+    "title": {
+      "en": "Voltage Ratio"
+    }
+  },
   "volume": {
     "code": "volume",
+    "identity": {
+      "slug": "volume"
+    },
     "measurand": {
       "siUnit": "m³"
     },
@@ -419,6 +21711,11 @@ export default {
         "match": "exact",
         "registryId": "qudt_quantity_kind",
         "term": "Volume"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q39297"
       },
       {
         "match": "exact",
@@ -431,8 +21728,28 @@ export default {
       "pt": "Volume"
     }
   },
+  "volumeDensityOfCharge": {
+    "code": "volume_density_of_charge",
+    "identity": {
+      "slug": "volume_density_of_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeDensityOfCharge"
+      }
+    ],
+    "title": {
+      "en": "Volume Density of Charge"
+    }
+  },
   "volumeFlowRate": {
     "code": "volume_flow_rate",
+    "identity": {
+      "broader": "volume_per_time",
+      "slug": "volume_flow_rate"
+    },
     "measurand": {
       "accumulation": "instantaneous",
       "siUnit": "m³/s"
@@ -445,13 +21762,697 @@ export default {
       },
       {
         "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1134348"
+      },
+      {
+        "match": "exact",
         "registryId": "ha_device_class",
         "term": "volume_flow_rate"
       }
     ],
     "title": {
-      "en": "Volume flow rate",
+      "en": "Volume Flow Rate",
       "pt": "Caudal volumétrico"
+    }
+  },
+  "volumeFlowRateSurfaceRelated": {
+    "code": "volume_flow_rate_surface_related",
+    "identity": {
+      "slug": "volume_flow_rate_surface_related"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeFlowRate_SurfaceRelated"
+      }
+    ],
+    "title": {
+      "en": "surface‑related volume flow rate"
+    }
+  },
+  "volumeFlowRatio": {
+    "code": "volume_flow_ratio",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "volume_flow_ratio"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeFlowRatio"
+      }
+    ],
+    "title": {
+      "en": "Volume Flow Ratio"
+    }
+  },
+  "volumeFraction": {
+    "code": "volume_fraction",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "volume_fraction"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeFraction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q909482"
+      }
+    ],
+    "title": {
+      "en": "Volume Fraction"
+    }
+  },
+  "volumeOrSectionModulus": {
+    "code": "volume_or_section_modulus",
+    "identity": {
+      "slug": "volume_or_section_modulus"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeOrSectionModulus"
+      }
+    ],
+    "title": {
+      "en": "volume or section modulus"
+    }
+  },
+  "volumePerArea": {
+    "code": "volume_per_area",
+    "identity": {
+      "slug": "volume_per_area"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumePerArea"
+      }
+    ],
+    "title": {
+      "en": "Volume per Unit Area"
+    }
+  },
+  "volumePerTime": {
+    "code": "volume_per_time",
+    "identity": {
+      "slug": "volume_per_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumePerTime"
+      }
+    ],
+    "title": {
+      "en": "Volume per Time"
+    }
+  },
+  "volumeStrain": {
+    "code": "volume_strain",
+    "identity": {
+      "broader": "dimensionless_ratio",
+      "slug": "volume_strain"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeStrain"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q73432507"
+      }
+    ],
+    "title": {
+      "en": "Volume Strain"
+    }
+  },
+  "volumeThermalExpansion": {
+    "code": "volume_thermal_expansion",
+    "identity": {
+      "slug": "volume_thermal_expansion"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumeThermalExpansion"
+      }
+    ],
+    "title": {
+      "en": "Volume Thermal Expansion"
+    }
+  },
+  "volumetricBitDensity": {
+    "code": "volumetric_bit_density",
+    "identity": {
+      "slug": "volumetric_bit_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricBitDensity"
+      }
+    ],
+    "title": {
+      "en": "Volumic Bit Density"
+    }
+  },
+  "volumetricElectricCharge": {
+    "code": "volumetric_electric_charge",
+    "identity": {
+      "slug": "volumetric_electric_charge"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricElectricCharge"
+      }
+    ],
+    "title": {
+      "en": "Volumic Electric Charge"
+    }
+  },
+  "volumetricEntityDensity": {
+    "code": "volumetric_entity_density",
+    "identity": {
+      "slug": "volumetric_entity_density"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricEntityDensity"
+      }
+    ],
+    "title": {
+      "en": "Volumetric Entity Density"
+    }
+  },
+  "volumetricFlux": {
+    "code": "volumetric_flux",
+    "identity": {
+      "slug": "volumetric_flux"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricFlux"
+      }
+    ],
+    "title": {
+      "en": "Volumetric Flux"
+    }
+  },
+  "volumetricHeatCapacity": {
+    "code": "volumetric_heat_capacity",
+    "identity": {
+      "slug": "volumetric_heat_capacity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricHeatCapacity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q900661"
+      }
+    ],
+    "title": {
+      "en": "Volumetric Heat Capacity"
+    }
+  },
+  "volumetricOutputPower": {
+    "code": "volumetric_output_power",
+    "identity": {
+      "slug": "volumetric_output_power"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumetricOutputPower"
+      }
+    ],
+    "title": {
+      "en": "Volumic Output Power"
+    }
+  },
+  "volumicAmountOfSubstance": {
+    "code": "volumic_amount_of_substance",
+    "identity": {
+      "slug": "volumic_amount_of_substance"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumicAmountOfSubstance"
+      }
+    ],
+    "title": {
+      "en": "Volumic Amount of Substance"
+    }
+  },
+  "volumicDataQuantity": {
+    "code": "volumic_data_quantity",
+    "identity": {
+      "slug": "volumic_data_quantity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumicDataQuantity"
+      }
+    ],
+    "title": {
+      "en": "Volumic Data Quantity"
+    }
+  },
+  "volumicElectromagneticEnergy": {
+    "code": "volumic_electromagnetic_energy",
+    "identity": {
+      "broader": "energy_density",
+      "slug": "volumic_electromagnetic_energy"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumicElectromagneticEnergy"
+      }
+    ],
+    "title": {
+      "en": "Volumic Electromagnetic Energy"
+    }
+  },
+  "volumicOutput": {
+    "code": "volumic_output",
+    "identity": {
+      "slug": "volumic_output"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "VolumicOutput"
+      }
+    ],
+    "title": {
+      "en": "Volumic Output"
+    }
+  },
+  "vorticity": {
+    "code": "vorticity",
+    "identity": {
+      "broader": "angular_frequency",
+      "slug": "vorticity"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Vorticity"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q1143513"
+      }
+    ],
+    "title": {
+      "en": "Vorticity"
+    }
+  },
+  "warmReceptorThreshold": {
+    "code": "warm_receptor_threshold",
+    "identity": {
+      "slug": "warm_receptor_threshold"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WarmReceptorThreshold"
+      }
+    ],
+    "title": {
+      "en": "Warm Receptor Threshold"
+    }
+  },
+  "warpingConstant": {
+    "code": "warping_constant",
+    "identity": {
+      "slug": "warping_constant"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WarpingConstant"
+      }
+    ],
+    "title": {
+      "en": "Warping Constant"
+    }
+  },
+  "warpingMoment": {
+    "code": "warping_moment",
+    "identity": {
+      "slug": "warping_moment"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WarpingMoment"
+      }
+    ],
+    "title": {
+      "en": "Warping Moment"
+    }
+  },
+  "waterHorsepower": {
+    "code": "water_horsepower",
+    "identity": {
+      "broader": "power",
+      "slug": "water_horsepower"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WaterHorsepower"
+      }
+    ],
+    "title": {
+      "en": "Water Horsepower"
+    }
+  },
+  "waterSolubility": {
+    "code": "water_solubility",
+    "identity": {
+      "broader": "amount_of_substance_concentration",
+      "slug": "water_solubility"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WaterSolubility"
+      }
+    ],
+    "title": {
+      "en": "Water Solubility"
+    }
+  },
+  "waterVaporDiffusionCoefficient": {
+    "code": "water_vapor_diffusion_coefficient",
+    "identity": {
+      "slug": "water_vapor_diffusion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WaterVaporDiffusionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Water vapour diffusion coefficient"
+    }
+  },
+  "waterVapourDiffusionCoefficient": {
+    "code": "water_vapour_diffusion_coefficient",
+    "identity": {
+      "slug": "water_vapour_diffusion_coefficient"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WaterVapourDiffusionCoefficient"
+      }
+    ],
+    "title": {
+      "en": "Water Vapour Diffusion Coefficient"
+    }
+  },
+  "waterVapourPermeability": {
+    "code": "water_vapour_permeability",
+    "identity": {
+      "slug": "water_vapour_permeability"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WaterVapourPermeability"
+      }
+    ],
+    "title": {
+      "en": "Water Vapour Permeability"
+    }
+  },
+  "wavelength": {
+    "code": "wavelength",
+    "identity": {
+      "broader": "length",
+      "slug": "wavelength"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Wavelength"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q41364"
+      }
+    ],
+    "title": {
+      "en": "Wavelength"
+    }
+  },
+  "wavenumber": {
+    "code": "wavenumber",
+    "identity": {
+      "slug": "wavenumber"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Wavenumber"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q192510"
+      }
+    ],
+    "title": {
+      "en": "Wavenumber"
+    }
+  },
+  "webTime": {
+    "code": "web_time",
+    "identity": {
+      "broader": "time",
+      "slug": "web_time"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WebTime"
+      }
+    ],
+    "title": {
+      "en": "Web Time"
+    }
+  },
+  "webTimeAveragePressure": {
+    "code": "web_time_average_pressure",
+    "identity": {
+      "broader": "pressure",
+      "slug": "web_time_average_pressure"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WebTimeAveragePressure"
+      }
+    ],
+    "title": {
+      "en": "Web Time Average Pressure"
+    }
+  },
+  "webTimeAverageThrust": {
+    "code": "web_time_average_thrust",
+    "identity": {
+      "broader": "thrust",
+      "slug": "web_time_average_thrust"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WebTimeAverageThrust"
+      }
+    ],
+    "title": {
+      "en": "Web Time Average Thrust"
+    }
+  },
+  "weight": {
+    "code": "weight",
+    "identity": {
+      "broader": "force",
+      "slug": "weight"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Weight"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q25288"
+      }
+    ],
+    "title": {
+      "en": "Weight"
+    }
+  },
+  "wetBulbTemperature": {
+    "code": "wet_bulb_temperature",
+    "identity": {
+      "broader": "temperature",
+      "slug": "wet_bulb_temperature"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WetBulbTemperature"
+      }
+    ],
+    "title": {
+      "en": "Wet Bulb Temperature"
+    }
+  },
+  "width": {
+    "code": "width",
+    "description": {
+      "en": "Physical width of an enclosure/part, millimetres."
+    },
+    "identity": {
+      "broader": "length",
+      "slug": "width"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Width"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q35059"
+      }
+    ],
+    "title": {
+      "en": "Width",
+      "pt": "Largura (mm)"
+    }
+  },
+  "work": {
+    "code": "work",
+    "identity": {
+      "broader": "energy",
+      "slug": "work"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "Work"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q42213"
+      }
+    ],
+    "title": {
+      "en": "Work"
+    }
+  },
+  "workFunction": {
+    "code": "work_function",
+    "identity": {
+      "broader": "energy",
+      "slug": "work_function"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "WorkFunction"
+      },
+      {
+        "match": "exact",
+        "registryId": "wikidata",
+        "term": "Q783800"
+      }
+    ],
+    "title": {
+      "en": "Work Function"
+    }
+  },
+  "zenithAngle": {
+    "code": "zenith_angle",
+    "identity": {
+      "broader": "angle",
+      "slug": "zenith_angle"
+    },
+    "refs": [
+      {
+        "match": "exact",
+        "registryId": "qudt_quantity_kind",
+        "term": "ZenithAngle"
+      }
+    ],
+    "title": {
+      "en": "Zenith Angle"
     }
   }
 } as const;

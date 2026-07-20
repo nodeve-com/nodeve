@@ -1,0 +1,8 @@
+title:
+  en: Over-range Distance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: OverRangeDistance
+    match: exact
+identity:
+  broader: length

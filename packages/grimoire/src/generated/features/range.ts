@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "min": min_.schema, "max": max_.sch
 
 export type Range = { "min": min_.Min; "max": max_.Max };
 
-type DataT = { readonly "body": { readonly "en": "A RANGE — a closed interval {min, max}, inclusive ends; the single shape for \"a span of values\", unit- and quantity-agnostic (the enclosing concept names the slot + unit). No ordering constraint encoded (a consumer needing min <= max asserts it downstream). Specialized siblings exist on purpose: temp_band (a CONTROL band, degC) and measuring_interval (what an INSTRUMENT reads, VIM 4.7) carry distinct domain meaning + crosswalks. Its single-value counterpart is `value` (a stateful zone's trip point or a `zone` operating point), not a span.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "range" }; readonly "prop": { readonly "max": typeof max_; readonly "min": typeof min_ } };
+type DataT = { readonly "body": { readonly "en": "A RANGE — a closed interval {min, max}, inclusive ends; the single shape for \"a span of values\", unit- and quantity-agnostic (the enclosing concept names the slot + unit). No ordering constraint encoded (a consumer needing min <= max asserts it downstream). Specialized siblings exist on purpose: temp_band (a CONTROL band, degC) and measuring_interval (what an INSTRUMENT reads, VIM 4.7) carry distinct domain meaning + crosswalks. Its single-value counterpart is `value` (a stateful zone's trip point or a `zone` operating point), not a span.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "range" }; readonly "prop": { readonly "max": typeof max_; readonly "min": typeof min_ }; readonly "title": { readonly "en": "Range" } };
 
 const _data: DataT = {
 	"body": {
@@ -27,6 +27,9 @@ const _data: DataT = {
 	"prop": {
 		"max": max_,
 		"min": min_
+	},
+	"title": {
+		"en": "Range"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

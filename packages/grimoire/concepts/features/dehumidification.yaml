@@ -5,8 +5,10 @@ title:
   en: Dehumidification
   pt: Desumidificação
 description:
-  en: Rated moisture-extraction output of a dehumidifier (a volume flow rate; catalog overrides the unit).
+  en: Rated moisture-extraction output of a dehumidifier (a volume flow rate;
+    catalog overrides the unit).
 concept_settings:
   is_specification: true
-prop:
-  volume_flow_rate: {}
+feature_settings:
+  prop:
+    volume_flow_rate: {}

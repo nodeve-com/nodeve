@@ -5,6 +5,9 @@
 export default {
   "canHs": {
     "code": "can_hs",
+    "identity": {
+      "slug": "can_hs"
+    },
     "refs": [
       {
         "match": "exact",
@@ -19,6 +22,9 @@ export default {
   },
   "currentLoop420Ma": {
     "code": "current_loop_4_20ma",
+    "identity": {
+      "slug": "current_loop_4_20ma"
+    },
     "refs": [
       {
         "match": "exact",
@@ -33,6 +39,9 @@ export default {
   },
   "rs232": {
     "code": "rs232",
+    "identity": {
+      "slug": "rs232"
+    },
     "refs": [
       {
         "match": "exact",
@@ -47,6 +56,9 @@ export default {
   },
   "rs485": {
     "code": "rs485",
+    "identity": {
+      "slug": "rs485"
+    },
     "refs": [
       {
         "match": "exact",
@@ -61,6 +73,9 @@ export default {
   },
   "ttl3V3": {
     "code": "ttl_3v3",
+    "identity": {
+      "slug": "ttl_3v3"
+    },
     "refs": [
       {
         "match": "exact",
@@ -75,6 +90,9 @@ export default {
   },
   "ttl5V": {
     "code": "ttl_5v",
+    "identity": {
+      "slug": "ttl_5v"
+    },
     "refs": [
       {
         "match": "exact",
@@ -89,6 +107,9 @@ export default {
   },
   "voltage010V": {
     "code": "voltage_0_10v",
+    "identity": {
+      "slug": "voltage_0_10v"
+    },
     "refs": [
       {
         "match": "exact",

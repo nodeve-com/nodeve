@@ -1,0 +1,6 @@
+title:
+  en: Area Time Temperature
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AreaTimeTemperature
+    match: exact

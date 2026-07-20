@@ -1,0 +1,8 @@
+title:
+  en: Magnetization Field
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MagnetizationField
+    match: exact
+identity:
+  broader: electric_current_per_length

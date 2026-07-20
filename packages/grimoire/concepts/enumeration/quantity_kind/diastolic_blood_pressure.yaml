@@ -1,0 +1,11 @@
+title:
+  en: Diastolic Blood Pressure
+refs:
+  - registry_id: qudt_quantity_kind
+    term: DiastolicBloodPressure
+    match: exact
+  - registry_id: wikidata
+    term: Q42015777
+    match: exact
+identity:
+  broader: pressure

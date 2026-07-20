@@ -1,0 +1,8 @@
+title:
+  en: Acoustic Impediance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AcousticImpedance
+    match: exact
+identity:
+  broader: mass_per_area_time

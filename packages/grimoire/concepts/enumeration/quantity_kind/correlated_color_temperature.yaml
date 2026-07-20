@@ -1,0 +1,8 @@
+title:
+  en: Correlated Colour Temperature
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CorrelatedColorTemperature
+    match: exact
+identity:
+  broader: thermodynamic_temperature

@@ -1,0 +1,6 @@
+title:
+  en: Water vapour diffusion coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: WaterVaporDiffusionCoefficient
+    match: exact

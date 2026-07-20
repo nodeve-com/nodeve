@@ -23,29 +23,40 @@
 //     only place field shape is coined; the rest of the doc is the field's data. A property is a
 //     FIELD, never a feature: a feature groups props (must resolve to an object shape), never IS a prop.
 //   - A shape def (feature / archetype file) builds one object node
-//     (optional-by-default; projection closes it with `additionalProperties: false`) from:
-//       enums:    [category…]        — one field per category, `enum:` of the member file stems.
-//       feature: {slug: overlay…}    — one NESTED field per entry; the key IS the feature slug (a
-//                 use-site rename would break the name→def lookup chain). A `<slug>: overlay` MAP,
-//                 the archetype-level analog of `prop:`: `{}` includes it unchanged, the overlay
-//                 refines the resolved feature shape. This is the ONLY way to add a feature.
-//       archetype: {slug: overlay…}  — the exact analog for nesting a SIBLING ARCHETYPE as a named
-//                 slot (a connectivity medium like `modbus`); key IS the archetype slug, resolved
-//                 strictly within archetypes/. This is the ONLY way to nest a class in a class.
-//       concept_settings: {…}        — the def-language grammar block, legal on features AND
-//                 archetypes (concepts/features/concept_settings.yaml):
+//     (optional-by-default; projection closes it with `additionalProperties: false`). Its whole
+//     grammar lives in `*_settings:` BLOCKS — never at the document root. That is what lets each
+//     meta-def DECLARE its own grammar, so the emit gate can strip nothing and reject any undeclared
+//     key (kit/validate-docs.ts); a root verb no meta-def could declare had to be stripped, and a
+//     stripped key is an unvalidated key. The suffix is the rule instructionKeys() derives from:
+//       concept_settings: {…}        — SHARED grammar, legal on a feature AND an archetype
+//                 (concepts/features/concept_settings.yaml):
 //                   compose: slug | [slug…]  — REUSE a same-layer SIBLING table's columns (an
 //                     archetype composes archetypes, a feature composes features — never a feature slot).
 //                   repeated: true           — countable instances ({count, combined?, default?, instances?}).
 //                   part: <slug>             — a fixed parts map ({combined?, default?, part?}).
 //                   is_array | map: true     — the def's intrinsic cardinality (list / slug-keyed record).
-//       prop:     {name: overlay…}   — one field per entry; the key IS a PROPERTY slug (never a
-//                 feature — a `feature:` rebind in a prop overlay is rejected; slots come from the
-//                 `feature:` map). `{}` includes it unchanged; the overlay refines it (schema patch,
-//                 child descent) — kit/overrides.ts. Outer def wins over composed source.
+//       feature_settings: {…}        — FEATURE-ONLY grouping (concepts/features/feature_settings.yaml);
+//                 an archetype carrying it is rejected, since a bare field or enum on a CLASS is
+//                 exactly what the layer model forbids:
+//                   prop:  {name: overlay…}  — one field per entry; the key IS a PROPERTY slug (never
+//                     a feature — a `feature:` rebind in a prop overlay is rejected). `{}` includes it
+//                     unchanged; the overlay refines it (schema patch, child descent) —
+//                     kit/overrides.ts. Outer def wins over composed source.
+//                   enums: [enumeration…]    — one field per named value set, `enum:` of member stems.
+//       archetype_settings: {…}      — ARCHETYPE-ONLY assembly (concepts/features/archetype_settings.yaml);
+//                 a feature carrying it is rejected — a feature groups props and reaches a sibling's
+//                 shape through `compose`, never by nesting:
+//                   feature_slots:   {slug: overlay…}  — one NESTED field per entry; the key IS the
+//                     feature slug (a use-site rename would break the name→def lookup chain). `{}`
+//                     includes it unchanged, the overlay refines the resolved feature shape. The ONLY
+//                     way to add a feature.
+//                   archetype_slots: {slug: overlay…}  — the exact analog for nesting a SIBLING
+//                     ARCHETYPE as a named slot (a connectivity medium like `modbus`); key IS the
+//                     archetype slug, resolved strictly within archetypes/. The ONLY way to nest a
+//                     class in a class.
 
 import { clone, isPlainObject, mergeDeep, omit } from 'remeda';
-import { type Obj, asList, instructionKeys, layerIndex } from '../src/concept-sources.ts';
+import { type Obj, asList, featureSettingsOf, instructionKeys, layerIndex } from '../src/concept-sources.ts';
 import { enumFields } from './enum-fields.ts';
 import { type Resolver, type Shape, applyOverride, overridesOf } from './overrides.ts';
 import { finishShape, specColumns } from './shape-finish.ts';
@@ -94,10 +105,10 @@ function pureReuse(options: {
 }): Obj | null {
 	const { def, settings, slugs, layer, stack, consumed } = options;
 	const noOwnShape =
-		!isPlainObject(def.prop) &&
-		def.feature === undefined &&
-		def.archetype === undefined &&
-		def.enums === undefined &&
+		!isPlainObject(featureSettingsOf(def).prop) &&
+		slotEntries(def, 'feature', stack).length === 0 &&
+		slotEntries(def, 'archetype', stack).length === 0 &&
+		featureSettingsOf(def).enums === undefined &&
 		settings.is_specification !== true &&
 		settings.part === undefined &&
 		settings.repeated !== true &&
@@ -135,11 +146,20 @@ function composeIntoShape(options: {
 	return data;
 }
 
+/** The two ASSEMBLY maps, read off the archetype-only `archetype_settings:` block. They live there
+ *  rather than at the document root so `archetype.yaml` can DECLARE them — a root key the meta-def
+ *  cannot declare is a key the validator has to strip, which is how these two went unvalidated. */
 function slotEntries(def: Obj, kind: 'feature' | 'archetype', stack: string[]) {
-	const value = def[kind];
+	const settings = def.archetype_settings;
+	if (settings !== undefined && !isPlainObject(settings))
+		throw new Error(
+			`grimoire compile: \`archetype_settings:\` must be a map, not ${Array.isArray(settings) ? 'an array' : typeof settings} (via ${stack.join(' → ')})`,
+		);
+	const key = `${kind}_slots`;
+	const value = isPlainObject(settings) ? settings[key] : undefined;
 	if (value !== undefined && !isPlainObject(value))
 		throw new Error(
-			`grimoire compile: \`${kind}:\` must be a \`<slug>: overlay\` map (like \`prop:\`), not ${Array.isArray(value) ? 'an array' : typeof value} (via ${stack.join(' → ')})`,
+			`grimoire compile: \`archetype_settings.${key}:\` must be a \`<slug>: overlay\` map (like \`prop:\`), not ${Array.isArray(value) ? 'an array' : typeof value} (via ${stack.join(' → ')})`,
 		);
 	return Object.entries(isPlainObject(value) ? value : {});
 }
@@ -209,17 +229,16 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 
 	// An archetype ASSEMBLES features (`feature:` map); it never authors a bare field. `prop:` is the
 	// FEATURE-level verb (a feature groups props) — on an archetype it's a miscategorised feature.
-	if (layer === 'archetypes' && isPlainObject(def.prop)) {
+	if (layer === 'archetypes' && isPlainObject(featureSettingsOf(def).prop)) {
 		throw new Error(
 			`grimoire compile: archetype declares \`prop:\` — a field is a feature; move it under \`feature:\` (via ${stack.join(' → ')})`,
 		);
 	}
 
 	// Instruction keys the resolver consumes; everything else a def states is node data (dataOf).
-	// Seeded from the shared instructionKeys(); `schema` is excluded — it's a projection passthrough
-	// kept as node data (kit/project.ts merges it), not dropped like the compile verbs.
+	// The shared instructionKeys() derives them from the `*_settings` suffix — `schema` is not among
+	// them by construction, so it survives as node data (kit/project.ts merges it) with no exception.
 	const consumed = instructionKeys(def);
-	consumed.delete('schema');
 
 	const shape: Shape = { prop: {} };
 
@@ -244,7 +263,7 @@ export function resolveShapeDef(def: Obj, stack: string[] = [], layer?: Layer): 
 	const composedData = composeIntoShape({ shape, slugs: composeSlugs, layer, stack });
 
 	// enums: one enum-valued field per named enumeration (kit/enum-fields.ts).
-	Object.assign(shape.prop, enumFields(def.enums, stack));
+	Object.assign(shape.prop, enumFields(featureSettingsOf(def).enums, stack));
 	assembleFields(def, shape, stack);
 
 	// Finish: specification wrap, part/repeated expansion, array/map cardinality (kit/shape-finish.ts).

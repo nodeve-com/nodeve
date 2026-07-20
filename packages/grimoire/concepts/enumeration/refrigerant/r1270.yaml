@@ -1,0 +1,13 @@
+title:
+  en: Propene (propylene)
+refs:
+  - registry_id: ashrae_34
+    term: R-1270
+    match: exact
+  - registry_id: wikidata
+    term: Q151324
+    match: exact
+substance:
+  safety_class: A3
+  formula: C3H6
+  gwp: 1.8

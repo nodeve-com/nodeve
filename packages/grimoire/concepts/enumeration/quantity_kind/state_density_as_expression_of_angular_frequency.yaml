@@ -1,0 +1,6 @@
+title:
+  en: State Density as Expression of Angular Frequency)
+refs:
+  - registry_id: qudt_quantity_kind
+    term: StateDensityAsExpressionOfAngularFrequency
+    match: exact

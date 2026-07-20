@@ -1,0 +1,12 @@
+title:
+  en: Bromochlorodifluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-12B1
+    match: exact
+  - registry_id: wikidata
+    term: Q419723
+    match: exact
+substance:
+  formula: CBrClF2
+  gwp: 1750

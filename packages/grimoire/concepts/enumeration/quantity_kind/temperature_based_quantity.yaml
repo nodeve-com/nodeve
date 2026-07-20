@@ -1,0 +1,6 @@
+title:
+  en: Temperature-based Quantity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureBasedQuantity
+    match: exact

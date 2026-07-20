@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "username": Type.Optional(username_
 
 export type Authentication = { "username"?: username_.Username; "password"?: password_.Password };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "authentication" }; readonly "prop": { readonly "password": typeof password_; readonly "username": typeof username_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "authentication" }; readonly "prop": { readonly "password": typeof password_; readonly "username": typeof username_ }; readonly "title": { readonly "en": "Authentication" } };
 
 const _data: DataT = {
 	"identity": {
@@ -24,6 +24,9 @@ const _data: DataT = {
 	"prop": {
 		"password": password_,
 		"username": username_
+	},
+	"title": {
+		"en": "Authentication"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

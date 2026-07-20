@@ -78,7 +78,7 @@ export default {
 	"cooling": {
 		"featureSpec": {
 			"combined": {
-				"coolingCapacity": {
+				"heatFlowRate": {
 					"intervals": [
 						{
 							"identity": {

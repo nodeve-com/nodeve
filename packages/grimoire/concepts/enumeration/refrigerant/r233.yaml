@@ -1,0 +1,8 @@
+title:
+  en: Trichlorotrifluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-233
+    match: exact
+substance:
+  formula: C3H2F3Cl3

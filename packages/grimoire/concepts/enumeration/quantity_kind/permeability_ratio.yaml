@@ -1,0 +1,6 @@
+title:
+  en: Permeability Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PermeabilityRatio
+    match: exact

@@ -2,7 +2,7 @@
 // authoring-only and never leaves the package — the emit fills `part.<name>` / `instances[n]`
 // from it. BUILD- AND TEST-ONLY (reads the concept YAML via kit/concept-sources).
 
-import { type Obj, layerIndex, readYaml } from '../src/concept-sources.ts';
+import { type Obj, layerIndex, readJson } from '../src/concept-sources.ts';
 import { isPlainObject } from 'remeda';
 
 /** A features/<slug> def's repeated nature: a parts map (kind → part names), counted, or single. */
@@ -10,12 +10,12 @@ function featureNature(slug: string): { parts?: Record<string, string[]>; counte
 	const path = layerIndex('features').get(slug);
 	if (!path) return {};
 	// The repeated/part grammar lives under `concept_settings` (concepts/features/concept_settings.yaml).
-	const settings = (readYaml(path).concept_settings ?? {}) as Record<string, unknown>;
+	const settings = (readJson(path).concept_settings ?? {}) as Record<string, unknown>;
 	if (typeof settings.part === 'string') {
 		const partsPath = layerIndex('parts').get(settings.part);
 		if (!partsPath)
 			throw new Error(`grimoire generate: no parts/${settings.part}.yaml (feature ${slug})`);
-		return { parts: readYaml(partsPath).parts as Record<string, string[]> };
+		return { parts: readJson(partsPath).parts as Record<string, string[]> };
 	}
 	if (settings.repeated === true) return { counted: true };
 	// A pure-reuse feature (`compose: <sibling>`, no own shape — kit/resolve.ts) IS its sibling's shape:
@@ -30,7 +30,7 @@ function featureNature(slug: string): { parts?: Record<string, string[]>; counte
 function featureCombined(slug: string): Obj {
 	const path = layerIndex('features').get(slug);
 	if (!path) return {};
-	const doc = readYaml(path);
+	const doc = readJson(path);
 	const fs = doc.feature_spec;
 	if (isPlainObject(fs) && isPlainObject((fs as Obj).combined)) return (fs as Obj).combined as Obj;
 	// Pure-reuse feature: its own bands live on the composed sibling (kit/resolve.ts).

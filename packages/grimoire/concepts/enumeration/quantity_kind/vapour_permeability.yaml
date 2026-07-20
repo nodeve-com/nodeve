@@ -1,0 +1,6 @@
+title:
+  en: Vapour Permeability
+refs:
+  - registry_id: qudt_quantity_kind
+    term: VapourPermeability
+    match: exact

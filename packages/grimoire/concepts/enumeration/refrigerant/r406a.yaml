@@ -1,0 +1,16 @@
+title:
+  en: R-406A
+refs:
+  - registry_id: ashrae_34
+    term: R-406A
+    match: exact
+composition:
+  - refrigerant: r22
+    mass_fraction: 0.55
+  - refrigerant: r600a
+    mass_fraction: 0.04
+  - refrigerant: r142b
+    mass_fraction: 0.41
+substance:
+  safety_class: A2
+  gwp: 1915

@@ -1,0 +1,9 @@
+title:
+  en: 1,2,2,2-tetrafluoroethyl difluoromethyl ether
+refs:
+  - registry_id: ashrae_34
+    term: R-236me
+    match: exact
+substance:
+  formula: C3H2F6O
+  gwp: 989

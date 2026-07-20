@@ -2,12 +2,15 @@ title:
   en: Thing
   pt: Coisa
 description:
-  en: The base class every archetype composes — identity, labels, and the standards crosswalk any thing may carry.
-  pt: A classe base que todos os arquétipos compõem — identidade, rótulos e o crosswalk de normas que qualquer coisa pode transportar.
-feature:
-  title: {}
-  description: {}
-  body: {}
-  identity: {}
-  # The standards crosswalk travels WITH the def (package README): any thing may carry refs rows.
-  refs: {}
+  en: The base class every archetype composes — identity, labels, and the
+    standards crosswalk any thing may carry.
+  pt: A classe base que todos os arquétipos compõem — identidade, rótulos e o
+    crosswalk de normas que qualquer coisa pode transportar.
+archetype_settings:
+  feature_slots:
+    title: {}
+    description: {}
+    body: {}
+    identity: {}
+    refs: {}
+    schema: {}

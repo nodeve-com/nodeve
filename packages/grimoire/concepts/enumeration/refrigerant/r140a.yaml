@@ -1,0 +1,9 @@
+title:
+  en: 1,1,1-trichloroethane (methyl chloroform)
+refs:
+  - registry_id: ashrae_34
+    term: R-140a
+    match: exact
+substance:
+  formula: C2H3Cl3
+  gwp: 160

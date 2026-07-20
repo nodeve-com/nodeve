@@ -1,0 +1,6 @@
+title:
+  en: Equilibrium Constant Based On Concentration
+refs:
+  - registry_id: qudt_quantity_kind
+    term: EquilibriumConstantBasedOnConcentration
+    match: exact

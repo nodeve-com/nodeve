@@ -1,0 +1,9 @@
+title:
+  en: Magnetic Flux Density
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MagneticFluxDensity
+    match: exact
+  - registry_id: wikidata
+    term: Q30204
+    match: exact

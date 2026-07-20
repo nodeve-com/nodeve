@@ -9,6 +9,7 @@ body:
   en: >
     feature_spec (docs/feature-model.md): the compiler wraps this parted feature's body under `feature_spec` (combined/default/part) and folds each kind feature's own def `combined` under default.<kind>. Authoring this feature's agnostic default bands HERE — so a catalog instance (dtsu666) states only deltas — is the remaining optional data step; the cascade already folds them:
     
+
       feature_spec:
         combined:              # the whole three-phase point — the non-derivable system quantities
           frequency: { intervals: [{ interval: { rating: continuous, min: 45, max: 65 } }] }

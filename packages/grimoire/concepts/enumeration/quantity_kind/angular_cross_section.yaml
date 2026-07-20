@@ -1,0 +1,9 @@
+title:
+  en: Angular Cross-section
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AngularCrossSection
+    match: exact
+  - registry_id: wikidata
+    term: Q98266630
+    match: exact

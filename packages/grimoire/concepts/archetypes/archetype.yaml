@@ -9,6 +9,15 @@ description:
 body:
   en: >
     The META-DEF: what an archetype def itself must carry. Every concepts/archetypes/*.yaml validates against this (kit/validate-docs.ts assertArchetypeDocsValid) — the same self-hosting gate feature defs pass against `feature`. Labels are REQUIRED: a class with no title/description can't render anywhere (catalog UI, docs) — slot-level `schema.required: true` is the projection.
-feature:
-  title: { schema: { required: true } }
-  description: { schema: { required: true } }
+    
+
+    THE SLOTS BELOW ARE THE WHOLE GRAMMAR. Nothing is stripped before validation and the projection is closed, so a key this def does not declare is REJECTED — this file is the single source of truth for what an archetype may carry, replacing the hand-authored allow-list that scripts/guard-archetype-features.ts used to keep in parallel (it drifted by construction: the validator stripped exactly the keys the guard re-listed).
+    
+
+    `feature:` and `archetype:` are the two assembly maps — `<slug>: overlay`, the key naming the nested feature or the sibling class bound to that slot. They are LEGALIZED ONLY: the open value means "this key may appear and is a map", NOT that its overlays are checked. Interiors remain the def-language contract kit/compile.ts owns (feature.yaml says the same of its own def-language shape); resolving each slot against its named concept is the follow-up that closes them.
+archetype_settings:
+  feature_slots:
+    title: { schema: { required: true } }
+    description: { schema: { required: true } }
+    concept_settings: {}
+    archetype_settings: {}

@@ -1,0 +1,8 @@
+title:
+  en: Temperature Difference
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureDifference
+    match: exact
+identity:
+  broader: temperature

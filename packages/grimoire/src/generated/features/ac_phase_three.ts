@@ -10,11 +10,11 @@ import { type TSchema, Type } from '@sinclair/typebox';
 import * as identity_ from './identity.ts';
 import * as specification_ from '../archetypes/specification.ts';
 
-export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseAngle": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_angle":"phaseAngle","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "default": Type.Optional(Type.Object({ "acPhase": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseAngle": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_angle":"phaseAngle","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "acLine": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","ac_line":"acLine"}})), "part": Type.Optional(Type.Object({ "a": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseAngle": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_angle":"phaseAngle","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "b": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseAngle": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_angle":"phaseAngle","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "c": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "current": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseAngle": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_angle":"phaseAngle","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "ab": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})), "bc": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})), "ca": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})) }, {"additionalProperties":false})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
+export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_.schema), "featureSpec": Type.Optional(Type.Object({ "combined": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseDifference": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_difference":"phaseDifference","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "default": Type.Optional(Type.Object({ "acPhase": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseDifference": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_difference":"phaseDifference","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "acLine": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"ac_phase":"acPhase","ac_line":"acLine"}})), "part": Type.Optional(Type.Object({ "a": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseDifference": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_difference":"phaseDifference","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "b": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseDifference": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_difference":"phaseDifference","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "c": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema), "electricCurrent": Type.Optional(specification_.schema), "activePower": Type.Optional(specification_.schema), "activeEnergy": Type.Optional(specification_.schema), "resistance": Type.Optional(specification_.schema), "frequency": Type.Optional(specification_.schema), "reactivePower": Type.Optional(specification_.schema), "apparentPower": Type.Optional(specification_.schema), "powerFactor": Type.Optional(specification_.schema), "phaseDifference": Type.Optional(specification_.schema), "reactiveEnergy": Type.Optional(specification_.schema), "apparentEnergy": Type.Optional(specification_.schema) }, {"additionalProperties":false,"x-key-map":{"electric_current":"electricCurrent","active_power":"activePower","active_energy":"activeEnergy","reactive_power":"reactivePower","apparent_power":"apparentPower","power_factor":"powerFactor","phase_difference":"phaseDifference","reactive_energy":"reactiveEnergy","apparent_energy":"apparentEnergy"}})), "ab": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})), "bc": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})), "ca": Type.Optional(Type.Object({ "voltage": Type.Optional(specification_.schema) }, {"additionalProperties":false})) }, {"additionalProperties":false})) }, {"additionalProperties":false})) }, {"additionalProperties":false,"x-key-map":{"feature_spec":"featureSpec"}});
 
-export type AcPhaseThree = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseAngle"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "default"?: { "acPhase"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseAngle"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "acLine"?: { "voltage"?: specification_.Specification } }; "part"?: { "a"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseAngle"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "b"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseAngle"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "c"?: { "voltage"?: specification_.Specification; "current"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseAngle"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "ab"?: { "voltage"?: specification_.Specification }; "bc"?: { "voltage"?: specification_.Specification }; "ca"?: { "voltage"?: specification_.Specification } } } };
+export type AcPhaseThree = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseDifference"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "default"?: { "acPhase"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseDifference"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "acLine"?: { "voltage"?: specification_.Specification } }; "part"?: { "a"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseDifference"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "b"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseDifference"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "c"?: { "voltage"?: specification_.Specification; "electricCurrent"?: specification_.Specification; "activePower"?: specification_.Specification; "activeEnergy"?: specification_.Specification; "resistance"?: specification_.Specification; "frequency"?: specification_.Specification; "reactivePower"?: specification_.Specification; "apparentPower"?: specification_.Specification; "powerFactor"?: specification_.Specification; "phaseDifference"?: specification_.Specification; "reactiveEnergy"?: specification_.Specification; "apparentEnergy"?: specification_.Specification }; "ab"?: { "voltage"?: specification_.Specification }; "bc"?: { "voltage"?: specification_.Specification }; "ca"?: { "voltage"?: specification_.Specification } } } };
 
-type DataT = { readonly "body": { readonly "en": "The CANONICAL three-phase AC connection shape: the whole plus per-phase (a/b/c) and per-line (ab/bc/ca) parts (parts/electrical_ac_phase_three.yaml). Every concrete three-phase feature-of-interest — connection point, EPS output, grid injection — is THIS shape under a new name: `compose: ac_phase_three` (kit/resolve.ts pure reuse), restating only its own title/refs. The parted spec lives HERE, once.\n" }; readonly "description": { readonly "en": "A three-phase AC connection as one whole — the fixed, mandatory set of phases A, B and C (CIM PhaseCode.ABC)."; readonly "pt": "Uma ligação CA trifásica como um todo — o conjunto fixo e obrigatório de fases A, B e C (CIM PhaseCode.ABC)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ac_phase_three" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Apparent energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent power"; readonly "pt": "Potência aparente" } }; readonly "current": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseAngle": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseAngle" }]; readonly "title": { readonly "en": "Phase angle"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Reactive energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "default": { readonly "prop": { readonly "acLine": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "acPhase": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Apparent energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent power"; readonly "pt": "Potência aparente" } }; readonly "current": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseAngle": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseAngle" }]; readonly "title": { readonly "en": "Phase angle"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Reactive energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "part": { readonly "prop": { readonly "a": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Apparent energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent power"; readonly "pt": "Potência aparente" } }; readonly "current": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseAngle": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseAngle" }]; readonly "title": { readonly "en": "Phase angle"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Reactive energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "ab": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "b": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Apparent energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent power"; readonly "pt": "Potência aparente" } }; readonly "current": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseAngle": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseAngle" }]; readonly "title": { readonly "en": "Phase angle"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Reactive energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "bc": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "c": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Apparent energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent power"; readonly "pt": "Potência aparente" } }; readonly "current": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseAngle": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseAngle" }]; readonly "title": { readonly "en": "Phase angle"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Energy" }]; readonly "title": { readonly "en": "Reactive energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "ca": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "close"; readonly "registryId": "seas"; readonly "term": "AlternatingCurrentConnectionPoint" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "PhaseCode.ABC" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "203" }]; readonly "title": { readonly "en": "Three-phase AC"; readonly "pt": "CA trifásica" } };
+type DataT = { readonly "body": { readonly "en": "The CANONICAL three-phase AC connection shape: the whole plus per-phase (a/b/c) and per-line (ab/bc/ca) parts (parts/electrical_ac_phase_three.yaml). Every concrete three-phase feature-of-interest — connection point, EPS output, grid injection — is THIS shape under a new name: `compose: ac_phase_three` (kit/resolve.ts pure reuse), restating only its own title/refs. The parted spec lives HERE, once.\n" }; readonly "description": { readonly "en": "A three-phase AC connection as one whole — the fixed, mandatory set of phases A, B and C (CIM PhaseCode.ABC)."; readonly "pt": "Uma ligação CA trifásica como um todo — o conjunto fixo e obrigatório de fases A, B e C (CIM PhaseCode.ABC)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ac_phase_three" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "active_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q79813678" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active Energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "active_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12713281" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active Power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "apparent_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentEnergy" }]; readonly "title": { readonly "en": "Apparent Energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "apparent_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q1930258" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent Power"; readonly "pt": "Potência aparente" } }; readonly "electricCurrent": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "electric_current" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q29996" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Electric Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseDifference": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "angle"; readonly "slug": "phase_difference" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseDifference" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q78514588" }]; readonly "title": { readonly "en": "Phase Difference"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "power_factor" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q750454" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power Factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "reactive_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12373673" }]; readonly "title": { readonly "en": "Reactive Energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "reactive_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2144613" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive Power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "resistance" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "default": { readonly "prop": { readonly "acLine": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "acPhase": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "active_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q79813678" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active Energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "active_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12713281" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active Power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "apparent_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentEnergy" }]; readonly "title": { readonly "en": "Apparent Energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "apparent_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q1930258" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent Power"; readonly "pt": "Potência aparente" } }; readonly "electricCurrent": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "electric_current" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q29996" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Electric Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseDifference": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "angle"; readonly "slug": "phase_difference" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseDifference" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q78514588" }]; readonly "title": { readonly "en": "Phase Difference"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "power_factor" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q750454" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power Factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "reactive_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12373673" }]; readonly "title": { readonly "en": "Reactive Energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "reactive_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2144613" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive Power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "resistance" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "part": { readonly "prop": { readonly "a": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "active_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q79813678" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active Energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "active_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12713281" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active Power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "apparent_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentEnergy" }]; readonly "title": { readonly "en": "Apparent Energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "apparent_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q1930258" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent Power"; readonly "pt": "Potência aparente" } }; readonly "electricCurrent": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "electric_current" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q29996" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Electric Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseDifference": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "angle"; readonly "slug": "phase_difference" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseDifference" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q78514588" }]; readonly "title": { readonly "en": "Phase Difference"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "power_factor" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q750454" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power Factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "reactive_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12373673" }]; readonly "title": { readonly "en": "Reactive Energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "reactive_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2144613" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive Power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "resistance" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "ab": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "b": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "active_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q79813678" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active Energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "active_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12713281" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active Power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "apparent_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentEnergy" }]; readonly "title": { readonly "en": "Apparent Energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "apparent_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q1930258" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent Power"; readonly "pt": "Potência aparente" } }; readonly "electricCurrent": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "electric_current" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q29996" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Electric Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseDifference": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "angle"; readonly "slug": "phase_difference" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseDifference" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q78514588" }]; readonly "title": { readonly "en": "Phase Difference"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "power_factor" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q750454" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power Factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "reactive_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12373673" }]; readonly "title": { readonly "en": "Reactive Energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "reactive_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2144613" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive Power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "resistance" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "bc": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "c": { readonly "prop": { readonly "activeEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "active_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "J" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q79813678" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "energy" }]; readonly "title": { readonly "en": "Active Energy"; readonly "pt": "Energia ativa" } }; readonly "activePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "active_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "W" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ActivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12713281" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "power" }]; readonly "title": { readonly "en": "Active Power"; readonly "pt": "Potência ativa" } }; readonly "apparentEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "apparent_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "VA·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentEnergy" }]; readonly "title": { readonly "en": "Apparent Energy"; readonly "pt": "Energia aparente" } }; readonly "apparentPower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "apparent_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "VA" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ApparentPower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q1930258" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "apparent_power" }]; readonly "title": { readonly "en": "Apparent Power"; readonly "pt": "Potência aparente" } }; readonly "electricCurrent": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "electric_current" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "A" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ElectricCurrent" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q29996" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "current" }]; readonly "title": { readonly "en": "Electric Current"; readonly "pt": "Corrente" } }; readonly "frequency": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "phaseDifference": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "angle"; readonly "slug": "phase_difference" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "rad" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PhaseDifference" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q78514588" }]; readonly "title": { readonly "en": "Phase Difference"; readonly "pt": "Ângulo de fase" } }; readonly "powerFactor": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "power_factor" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "1" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "PowerFactor" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q750454" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "power_factor" }]; readonly "title": { readonly "en": "Power Factor"; readonly "pt": "Fator de potência" } }; readonly "reactiveEnergy": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_energy"; readonly "slug": "reactive_energy" }; readonly "measurand": { readonly "accumulation": "cumulative_monotonic"; readonly "siUnit": "var·s" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactiveEnergy" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q12373673" }]; readonly "title": { readonly "en": "Reactive Energy"; readonly "pt": "Energia reativa" } }; readonly "reactivePower": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "broader": "electric_power"; readonly "slug": "reactive_power" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "var" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "ReactivePower" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2144613" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "reactive_power" }]; readonly "title": { readonly "en": "Reactive Power"; readonly "pt": "Potência reativa" } }; readonly "resistance": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "resistance" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Ω" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Resistance" }]; readonly "title": { readonly "en": "Resistance"; readonly "pt": "Resistência" } }; readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } }; readonly "ca": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "close"; readonly "registryId": "seas"; readonly "term": "AlternatingCurrentConnectionPoint" }, { readonly "match": "close"; readonly "registryId": "cim"; readonly "term": "PhaseCode.ABC" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "203" }]; readonly "title": { readonly "en": "Three-phase AC"; readonly "pt": "CA trifásica" } };
 
 const _data: DataT = {
 	"body": {
@@ -35,15 +35,24 @@ const _data: DataT = {
 					"prop": {
 						"activeEnergy": {
 							...specification_,
+							"identity": {
+								"broader": "electric_energy",
+								"slug": "active_energy"
+							},
 							"measurand": {
 								"accumulation": "cumulative_monotonic",
 								"siUnit": "J"
 							},
 							"refs": [
 								{
-									"match": "broad",
+									"match": "exact",
 									"registryId": "qudt_quantity_kind",
-									"term": "Energy"
+									"term": "ActiveEnergy"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q79813678"
 								},
 								{
 									"match": "exact",
@@ -52,14 +61,15 @@ const _data: DataT = {
 								}
 							],
 							"title": {
-								"en": "Active energy",
+								"en": "Active Energy",
 								"pt": "Energia ativa"
 							}
 						},
 						"activePower": {
 							...specification_,
 							"identity": {
-								"broader": "power"
+								"broader": "electric_power",
+								"slug": "active_power"
 							},
 							"measurand": {
 								"accumulation": "instantaneous",
@@ -72,38 +82,48 @@ const _data: DataT = {
 									"term": "ActivePower"
 								},
 								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q12713281"
+								},
+								{
 									"match": "broad",
 									"registryId": "ha_device_class",
 									"term": "power"
 								}
 							],
 							"title": {
-								"en": "Active power",
+								"en": "Active Power",
 								"pt": "Potência ativa"
 							}
 						},
 						"apparentEnergy": {
 							...specification_,
+							"identity": {
+								"broader": "electric_energy",
+								"slug": "apparent_energy"
+							},
 							"measurand": {
 								"accumulation": "cumulative_monotonic",
 								"siUnit": "VA·s"
 							},
 							"refs": [
 								{
-									"match": "broad",
+									"match": "exact",
 									"registryId": "qudt_quantity_kind",
-									"term": "Energy"
+									"term": "ApparentEnergy"
 								}
 							],
 							"title": {
-								"en": "Apparent energy",
+								"en": "Apparent Energy",
 								"pt": "Energia aparente"
 							}
 						},
 						"apparentPower": {
 							...specification_,
 							"identity": {
-								"broader": "power"
+								"broader": "electric_power",
+								"slug": "apparent_power"
 							},
 							"measurand": {
 								"accumulation": "instantaneous",
@@ -117,17 +137,25 @@ const _data: DataT = {
 								},
 								{
 									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q1930258"
+								},
+								{
+									"match": "exact",
 									"registryId": "ha_device_class",
 									"term": "apparent_power"
 								}
 							],
 							"title": {
-								"en": "Apparent power",
+								"en": "Apparent Power",
 								"pt": "Potência aparente"
 							}
 						},
-						"current": {
+						"electricCurrent": {
 							...specification_,
+							"identity": {
+								"slug": "electric_current"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "A"
@@ -140,17 +168,26 @@ const _data: DataT = {
 								},
 								{
 									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q29996"
+								},
+								{
+									"match": "exact",
 									"registryId": "ha_device_class",
 									"term": "current"
 								}
 							],
 							"title": {
-								"en": "Current",
+								"en": "Electric Current",
 								"pt": "Corrente"
 							}
 						},
 						"frequency": {
 							...specification_,
+							"identity": {
+								"broader": "inverse_time",
+								"slug": "frequency"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "Hz"
@@ -163,6 +200,11 @@ const _data: DataT = {
 								},
 								{
 									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q11652"
+								},
+								{
+									"match": "exact",
 									"registryId": "ha_device_class",
 									"term": "frequency"
 								}
@@ -172,8 +214,12 @@ const _data: DataT = {
 								"pt": "Frequência"
 							}
 						},
-						"phaseAngle": {
+						"phaseDifference": {
 							...specification_,
+							"identity": {
+								"broader": "angle",
+								"slug": "phase_difference"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "rad"
@@ -182,16 +228,24 @@ const _data: DataT = {
 								{
 									"match": "exact",
 									"registryId": "qudt_quantity_kind",
-									"term": "PhaseAngle"
+									"term": "PhaseDifference"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q78514588"
 								}
 							],
 							"title": {
-								"en": "Phase angle",
+								"en": "Phase Difference",
 								"pt": "Ângulo de fase"
 							}
 						},
 						"powerFactor": {
 							...specification_,
+							"identity": {
+								"slug": "power_factor"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "1"
@@ -204,37 +258,52 @@ const _data: DataT = {
 								},
 								{
 									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q750454"
+								},
+								{
+									"match": "exact",
 									"registryId": "ha_device_class",
 									"term": "power_factor"
 								}
 							],
 							"title": {
-								"en": "Power factor",
+								"en": "Power Factor",
 								"pt": "Fator de potência"
 							}
 						},
 						"reactiveEnergy": {
 							...specification_,
+							"identity": {
+								"broader": "electric_energy",
+								"slug": "reactive_energy"
+							},
 							"measurand": {
 								"accumulation": "cumulative_monotonic",
 								"siUnit": "var·s"
 							},
 							"refs": [
 								{
-									"match": "broad",
+									"match": "exact",
 									"registryId": "qudt_quantity_kind",
-									"term": "Energy"
+									"term": "ReactiveEnergy"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q12373673"
 								}
 							],
 							"title": {
-								"en": "Reactive energy",
+								"en": "Reactive Energy",
 								"pt": "Energia reativa"
 							}
 						},
 						"reactivePower": {
 							...specification_,
 							"identity": {
-								"broader": "power"
+								"broader": "electric_power",
+								"slug": "reactive_power"
 							},
 							"measurand": {
 								"accumulation": "instantaneous",
@@ -248,17 +317,25 @@ const _data: DataT = {
 								},
 								{
 									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q2144613"
+								},
+								{
+									"match": "exact",
 									"registryId": "ha_device_class",
 									"term": "reactive_power"
 								}
 							],
 							"title": {
-								"en": "Reactive power",
+								"en": "Reactive Power",
 								"pt": "Potência reativa"
 							}
 						},
 						"resistance": {
 							...specification_,
+							"identity": {
+								"slug": "resistance"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "Ω"
@@ -277,6 +354,9 @@ const _data: DataT = {
 						},
 						"voltage": {
 							...specification_,
+							"identity": {
+								"slug": "voltage"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "V"
@@ -286,6 +366,11 @@ const _data: DataT = {
 									"match": "exact",
 									"registryId": "qudt_quantity_kind",
 									"term": "Voltage"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q25428"
 								},
 								{
 									"match": "exact",
@@ -306,6 +391,9 @@ const _data: DataT = {
 							"prop": {
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -315,6 +403,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -333,15 +426,24 @@ const _data: DataT = {
 							"prop": {
 								"activeEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "active_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "J"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ActiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q79813678"
 										},
 										{
 											"match": "exact",
@@ -350,14 +452,15 @@ const _data: DataT = {
 										}
 									],
 									"title": {
-										"en": "Active energy",
+										"en": "Active Energy",
 										"pt": "Energia ativa"
 									}
 								},
 								"activePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "active_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -370,38 +473,48 @@ const _data: DataT = {
 											"term": "ActivePower"
 										},
 										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12713281"
+										},
+										{
 											"match": "broad",
 											"registryId": "ha_device_class",
 											"term": "power"
 										}
 									],
 									"title": {
-										"en": "Active power",
+										"en": "Active Power",
 										"pt": "Potência ativa"
 									}
 								},
 								"apparentEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "apparent_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "VA·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ApparentEnergy"
 										}
 									],
 									"title": {
-										"en": "Apparent energy",
+										"en": "Apparent Energy",
 										"pt": "Energia aparente"
 									}
 								},
 								"apparentPower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "apparent_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -415,17 +528,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q1930258"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "apparent_power"
 										}
 									],
 									"title": {
-										"en": "Apparent power",
+										"en": "Apparent Power",
 										"pt": "Potência aparente"
 									}
 								},
-								"current": {
+								"electricCurrent": {
 									...specification_,
+									"identity": {
+										"slug": "electric_current"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "A"
@@ -438,17 +559,26 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q29996"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "current"
 										}
 									],
 									"title": {
-										"en": "Current",
+										"en": "Electric Current",
 										"pt": "Corrente"
 									}
 								},
 								"frequency": {
 									...specification_,
+									"identity": {
+										"broader": "inverse_time",
+										"slug": "frequency"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Hz"
@@ -461,6 +591,11 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q11652"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "frequency"
 										}
@@ -470,8 +605,12 @@ const _data: DataT = {
 										"pt": "Frequência"
 									}
 								},
-								"phaseAngle": {
+								"phaseDifference": {
 									...specification_,
+									"identity": {
+										"broader": "angle",
+										"slug": "phase_difference"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "rad"
@@ -480,16 +619,24 @@ const _data: DataT = {
 										{
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "PhaseAngle"
+											"term": "PhaseDifference"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q78514588"
 										}
 									],
 									"title": {
-										"en": "Phase angle",
+										"en": "Phase Difference",
 										"pt": "Ângulo de fase"
 									}
 								},
 								"powerFactor": {
 									...specification_,
+									"identity": {
+										"slug": "power_factor"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "1"
@@ -502,37 +649,52 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q750454"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "power_factor"
 										}
 									],
 									"title": {
-										"en": "Power factor",
+										"en": "Power Factor",
 										"pt": "Fator de potência"
 									}
 								},
 								"reactiveEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "reactive_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "var·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ReactiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12373673"
 										}
 									],
 									"title": {
-										"en": "Reactive energy",
+										"en": "Reactive Energy",
 										"pt": "Energia reativa"
 									}
 								},
 								"reactivePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "reactive_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -546,17 +708,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q2144613"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "reactive_power"
 										}
 									],
 									"title": {
-										"en": "Reactive power",
+										"en": "Reactive Power",
 										"pt": "Potência reativa"
 									}
 								},
 								"resistance": {
 									...specification_,
+									"identity": {
+										"slug": "resistance"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Ω"
@@ -575,6 +745,9 @@ const _data: DataT = {
 								},
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -584,6 +757,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -606,15 +784,24 @@ const _data: DataT = {
 							"prop": {
 								"activeEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "active_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "J"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ActiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q79813678"
 										},
 										{
 											"match": "exact",
@@ -623,14 +810,15 @@ const _data: DataT = {
 										}
 									],
 									"title": {
-										"en": "Active energy",
+										"en": "Active Energy",
 										"pt": "Energia ativa"
 									}
 								},
 								"activePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "active_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -643,38 +831,48 @@ const _data: DataT = {
 											"term": "ActivePower"
 										},
 										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12713281"
+										},
+										{
 											"match": "broad",
 											"registryId": "ha_device_class",
 											"term": "power"
 										}
 									],
 									"title": {
-										"en": "Active power",
+										"en": "Active Power",
 										"pt": "Potência ativa"
 									}
 								},
 								"apparentEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "apparent_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "VA·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ApparentEnergy"
 										}
 									],
 									"title": {
-										"en": "Apparent energy",
+										"en": "Apparent Energy",
 										"pt": "Energia aparente"
 									}
 								},
 								"apparentPower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "apparent_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -688,17 +886,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q1930258"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "apparent_power"
 										}
 									],
 									"title": {
-										"en": "Apparent power",
+										"en": "Apparent Power",
 										"pt": "Potência aparente"
 									}
 								},
-								"current": {
+								"electricCurrent": {
 									...specification_,
+									"identity": {
+										"slug": "electric_current"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "A"
@@ -711,17 +917,26 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q29996"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "current"
 										}
 									],
 									"title": {
-										"en": "Current",
+										"en": "Electric Current",
 										"pt": "Corrente"
 									}
 								},
 								"frequency": {
 									...specification_,
+									"identity": {
+										"broader": "inverse_time",
+										"slug": "frequency"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Hz"
@@ -734,6 +949,11 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q11652"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "frequency"
 										}
@@ -743,8 +963,12 @@ const _data: DataT = {
 										"pt": "Frequência"
 									}
 								},
-								"phaseAngle": {
+								"phaseDifference": {
 									...specification_,
+									"identity": {
+										"broader": "angle",
+										"slug": "phase_difference"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "rad"
@@ -753,16 +977,24 @@ const _data: DataT = {
 										{
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "PhaseAngle"
+											"term": "PhaseDifference"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q78514588"
 										}
 									],
 									"title": {
-										"en": "Phase angle",
+										"en": "Phase Difference",
 										"pt": "Ângulo de fase"
 									}
 								},
 								"powerFactor": {
 									...specification_,
+									"identity": {
+										"slug": "power_factor"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "1"
@@ -775,37 +1007,52 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q750454"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "power_factor"
 										}
 									],
 									"title": {
-										"en": "Power factor",
+										"en": "Power Factor",
 										"pt": "Fator de potência"
 									}
 								},
 								"reactiveEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "reactive_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "var·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ReactiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12373673"
 										}
 									],
 									"title": {
-										"en": "Reactive energy",
+										"en": "Reactive Energy",
 										"pt": "Energia reativa"
 									}
 								},
 								"reactivePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "reactive_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -819,17 +1066,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q2144613"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "reactive_power"
 										}
 									],
 									"title": {
-										"en": "Reactive power",
+										"en": "Reactive Power",
 										"pt": "Potência reativa"
 									}
 								},
 								"resistance": {
 									...specification_,
+									"identity": {
+										"slug": "resistance"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Ω"
@@ -848,6 +1103,9 @@ const _data: DataT = {
 								},
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -857,6 +1115,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -875,6 +1138,9 @@ const _data: DataT = {
 							"prop": {
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -884,6 +1150,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -902,15 +1173,24 @@ const _data: DataT = {
 							"prop": {
 								"activeEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "active_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "J"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ActiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q79813678"
 										},
 										{
 											"match": "exact",
@@ -919,14 +1199,15 @@ const _data: DataT = {
 										}
 									],
 									"title": {
-										"en": "Active energy",
+										"en": "Active Energy",
 										"pt": "Energia ativa"
 									}
 								},
 								"activePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "active_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -939,38 +1220,48 @@ const _data: DataT = {
 											"term": "ActivePower"
 										},
 										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12713281"
+										},
+										{
 											"match": "broad",
 											"registryId": "ha_device_class",
 											"term": "power"
 										}
 									],
 									"title": {
-										"en": "Active power",
+										"en": "Active Power",
 										"pt": "Potência ativa"
 									}
 								},
 								"apparentEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "apparent_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "VA·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ApparentEnergy"
 										}
 									],
 									"title": {
-										"en": "Apparent energy",
+										"en": "Apparent Energy",
 										"pt": "Energia aparente"
 									}
 								},
 								"apparentPower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "apparent_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -984,17 +1275,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q1930258"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "apparent_power"
 										}
 									],
 									"title": {
-										"en": "Apparent power",
+										"en": "Apparent Power",
 										"pt": "Potência aparente"
 									}
 								},
-								"current": {
+								"electricCurrent": {
 									...specification_,
+									"identity": {
+										"slug": "electric_current"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "A"
@@ -1007,17 +1306,26 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q29996"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "current"
 										}
 									],
 									"title": {
-										"en": "Current",
+										"en": "Electric Current",
 										"pt": "Corrente"
 									}
 								},
 								"frequency": {
 									...specification_,
+									"identity": {
+										"broader": "inverse_time",
+										"slug": "frequency"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Hz"
@@ -1030,6 +1338,11 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q11652"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "frequency"
 										}
@@ -1039,8 +1352,12 @@ const _data: DataT = {
 										"pt": "Frequência"
 									}
 								},
-								"phaseAngle": {
+								"phaseDifference": {
 									...specification_,
+									"identity": {
+										"broader": "angle",
+										"slug": "phase_difference"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "rad"
@@ -1049,16 +1366,24 @@ const _data: DataT = {
 										{
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "PhaseAngle"
+											"term": "PhaseDifference"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q78514588"
 										}
 									],
 									"title": {
-										"en": "Phase angle",
+										"en": "Phase Difference",
 										"pt": "Ângulo de fase"
 									}
 								},
 								"powerFactor": {
 									...specification_,
+									"identity": {
+										"slug": "power_factor"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "1"
@@ -1071,37 +1396,52 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q750454"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "power_factor"
 										}
 									],
 									"title": {
-										"en": "Power factor",
+										"en": "Power Factor",
 										"pt": "Fator de potência"
 									}
 								},
 								"reactiveEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "reactive_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "var·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ReactiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12373673"
 										}
 									],
 									"title": {
-										"en": "Reactive energy",
+										"en": "Reactive Energy",
 										"pt": "Energia reativa"
 									}
 								},
 								"reactivePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "reactive_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -1115,17 +1455,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q2144613"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "reactive_power"
 										}
 									],
 									"title": {
-										"en": "Reactive power",
+										"en": "Reactive Power",
 										"pt": "Potência reativa"
 									}
 								},
 								"resistance": {
 									...specification_,
+									"identity": {
+										"slug": "resistance"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Ω"
@@ -1144,6 +1492,9 @@ const _data: DataT = {
 								},
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -1153,6 +1504,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -1171,6 +1527,9 @@ const _data: DataT = {
 							"prop": {
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -1180,6 +1539,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -1198,15 +1562,24 @@ const _data: DataT = {
 							"prop": {
 								"activeEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "active_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "J"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ActiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q79813678"
 										},
 										{
 											"match": "exact",
@@ -1215,14 +1588,15 @@ const _data: DataT = {
 										}
 									],
 									"title": {
-										"en": "Active energy",
+										"en": "Active Energy",
 										"pt": "Energia ativa"
 									}
 								},
 								"activePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "active_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -1235,38 +1609,48 @@ const _data: DataT = {
 											"term": "ActivePower"
 										},
 										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12713281"
+										},
+										{
 											"match": "broad",
 											"registryId": "ha_device_class",
 											"term": "power"
 										}
 									],
 									"title": {
-										"en": "Active power",
+										"en": "Active Power",
 										"pt": "Potência ativa"
 									}
 								},
 								"apparentEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "apparent_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "VA·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ApparentEnergy"
 										}
 									],
 									"title": {
-										"en": "Apparent energy",
+										"en": "Apparent Energy",
 										"pt": "Energia aparente"
 									}
 								},
 								"apparentPower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "apparent_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -1280,17 +1664,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q1930258"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "apparent_power"
 										}
 									],
 									"title": {
-										"en": "Apparent power",
+										"en": "Apparent Power",
 										"pt": "Potência aparente"
 									}
 								},
-								"current": {
+								"electricCurrent": {
 									...specification_,
+									"identity": {
+										"slug": "electric_current"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "A"
@@ -1303,17 +1695,26 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q29996"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "current"
 										}
 									],
 									"title": {
-										"en": "Current",
+										"en": "Electric Current",
 										"pt": "Corrente"
 									}
 								},
 								"frequency": {
 									...specification_,
+									"identity": {
+										"broader": "inverse_time",
+										"slug": "frequency"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Hz"
@@ -1326,6 +1727,11 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q11652"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "frequency"
 										}
@@ -1335,8 +1741,12 @@ const _data: DataT = {
 										"pt": "Frequência"
 									}
 								},
-								"phaseAngle": {
+								"phaseDifference": {
 									...specification_,
+									"identity": {
+										"broader": "angle",
+										"slug": "phase_difference"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "rad"
@@ -1345,16 +1755,24 @@ const _data: DataT = {
 										{
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "PhaseAngle"
+											"term": "PhaseDifference"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q78514588"
 										}
 									],
 									"title": {
-										"en": "Phase angle",
+										"en": "Phase Difference",
 										"pt": "Ângulo de fase"
 									}
 								},
 								"powerFactor": {
 									...specification_,
+									"identity": {
+										"slug": "power_factor"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "1"
@@ -1367,37 +1785,52 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q750454"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "power_factor"
 										}
 									],
 									"title": {
-										"en": "Power factor",
+										"en": "Power Factor",
 										"pt": "Fator de potência"
 									}
 								},
 								"reactiveEnergy": {
 									...specification_,
+									"identity": {
+										"broader": "electric_energy",
+										"slug": "reactive_energy"
+									},
 									"measurand": {
 										"accumulation": "cumulative_monotonic",
 										"siUnit": "var·s"
 									},
 									"refs": [
 										{
-											"match": "broad",
+											"match": "exact",
 											"registryId": "qudt_quantity_kind",
-											"term": "Energy"
+											"term": "ReactiveEnergy"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q12373673"
 										}
 									],
 									"title": {
-										"en": "Reactive energy",
+										"en": "Reactive Energy",
 										"pt": "Energia reativa"
 									}
 								},
 								"reactivePower": {
 									...specification_,
 									"identity": {
-										"broader": "power"
+										"broader": "electric_power",
+										"slug": "reactive_power"
 									},
 									"measurand": {
 										"accumulation": "instantaneous",
@@ -1411,17 +1844,25 @@ const _data: DataT = {
 										},
 										{
 											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q2144613"
+										},
+										{
+											"match": "exact",
 											"registryId": "ha_device_class",
 											"term": "reactive_power"
 										}
 									],
 									"title": {
-										"en": "Reactive power",
+										"en": "Reactive Power",
 										"pt": "Potência reativa"
 									}
 								},
 								"resistance": {
 									...specification_,
+									"identity": {
+										"slug": "resistance"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "Ω"
@@ -1440,6 +1881,9 @@ const _data: DataT = {
 								},
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -1449,6 +1893,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",
@@ -1467,6 +1916,9 @@ const _data: DataT = {
 							"prop": {
 								"voltage": {
 									...specification_,
+									"identity": {
+										"slug": "voltage"
+									},
 									"measurand": {
 										"accumulation": "instantaneous",
 										"siUnit": "V"
@@ -1476,6 +1928,11 @@ const _data: DataT = {
 											"match": "exact",
 											"registryId": "qudt_quantity_kind",
 											"term": "Voltage"
+										},
+										{
+											"match": "exact",
+											"registryId": "wikidata",
+											"term": "Q25428"
 										},
 										{
 											"match": "exact",

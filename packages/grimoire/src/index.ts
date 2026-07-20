@@ -35,9 +35,9 @@ export {
 	type ModbusRegister,
 } from './catalog.ts';
 
-// --- Site view: THE consumer SDK over a baked `site.generated.json` — resolve a `catalog_item`
+// --- Site view: THE consumer SDK over a baked `site.generated.json` — resolve a `catalogItem`
 //     through its site_catalog indirection, merge the slug patch onto the device, flatten to the
-//     slug-bearing sensor list ha-config / esphome codegen iterate. No reshape; stays snake ---
+//     slug-bearing sensor list ha-config / esphome codegen iterate. Camelizes each block at the edge ---
 export {
 	openSite,
 	linkRegisters,

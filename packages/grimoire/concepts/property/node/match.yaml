@@ -1,2 +1,8 @@
+title:
+  en: Match
+  pt: Correspondência
+description:
+  en: How closely a `refs` row maps this concept to its external term — the SKOS mapping strengths (exact, close, broad, narrow, related).
+  pt: Quão exatamente uma linha `refs` mapeia este conceito para o seu termo externo — as forças de mapeamento SKOS (exact, close, broad, narrow, related).
 schema:
   enum: [exact, close, broad, narrow, related]

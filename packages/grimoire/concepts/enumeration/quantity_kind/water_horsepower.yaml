@@ -1,0 +1,8 @@
+title:
+  en: Water Horsepower
+refs:
+  - registry_id: qudt_quantity_kind
+    term: WaterHorsepower
+    match: exact
+identity:
+  broader: power

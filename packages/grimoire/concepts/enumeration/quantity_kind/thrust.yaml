@@ -1,0 +1,11 @@
+title:
+  en: Thrust
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Thrust
+    match: exact
+  - registry_id: wikidata
+    term: Q533668
+    match: exact
+identity:
+  broader: force

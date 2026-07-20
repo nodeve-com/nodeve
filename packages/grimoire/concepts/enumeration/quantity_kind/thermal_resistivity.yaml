@@ -1,0 +1,9 @@
+title:
+  en: Thermal Resistivity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThermalResistivity
+    match: exact
+  - registry_id: wikidata
+    term: Q66311516
+    match: exact

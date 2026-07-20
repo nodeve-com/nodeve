@@ -1,0 +1,8 @@
+title:
+  en: Fish Biotransformation Half Life
+refs:
+  - registry_id: qudt_quantity_kind
+    term: FishBiotransformationHalfLife
+    match: exact
+identity:
+  broader: time

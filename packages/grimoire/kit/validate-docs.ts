@@ -2,32 +2,14 @@
 // Shared by generate.ts — catalog leaves, property/enumeration leaves, and feature defs all pass
 // through here before anything emits; an invalid doc fails the whole generate (and the pre-commit).
 
-import { readdirSync } from 'node:fs';
-import { join } from 'node:path';
 import { type ValidateFunction } from 'ajv';
-import { isPlainObject, mergeDeep } from 'remeda';
-import { instructionKeys, resolveConcept } from './compile.ts';
+import { isPlainObject } from 'remeda';
+import { resolveConcept } from './compile.ts';
 import { projectSchema } from './project.ts';
 import { ajv } from '../src/ajv.ts';
-import { type Obj, ARCHETYPES_DIR, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, readYaml } from '../src/concept-sources.ts';
+import { type Obj, ARCHETYPES_DIR, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, jsonFiles, readJson } from '../src/concept-sources.ts';
 
 const schemaByArchetype = new Map<string, ValidateFunction>();
-
-/** Parse one def file; an EMPTY def is a hard failure — a def earns its file by saying something. */
-function parseDoc(path: string): Obj {
-	const doc = readYaml(path);
-	if (Object.keys(doc).length === 0)
-		throw new Error(`grimoire ${path}: empty def — author it or delete the file`);
-	return doc;
-}
-
-/** The identity de-sugar: EVERY doc validates carrying `identity.{archetype_id, slug}` (required by
- *  features/identity.yaml) — archetype from the layer/cascade, slug defaulting to the FILE STEM —
- *  so authored YAML never restates its own filename. Authored identity keys win. */
-export function desugarIdentity(data: Obj, archetype: string, stem: string): Obj {
-	const identity = isPlainObject(data.identity) ? data.identity : {};
-	return { ...data, identity: { archetype_id: archetype, slug: stem, ...identity } };
-}
 
 export function assertDocValid(label: string, archetype: string, data: unknown): void {
 	let check = schemaByArchetype.get(archetype);
@@ -54,81 +36,65 @@ export function assertMetaSchema(label: string, schema: unknown): void {
  *  Def-language keys (`schema:`, `feature:`) are compiler plumbing, stripped before validating. */
 export function assertLeafDocsValid(): void {
 	const failures: string[] = [];
-	const walk = (root: string, dir: string, inherited: Record<string, unknown>): void => {
-		const names = readdirSync(dir, { withFileTypes: true });
-		const defaults = names.some((e) => e.isFile() && e.name === '_defaults.yaml')
-			? (mergeDeep(inherited, readYaml(join(dir, '_defaults.yaml'))) as Record<string, unknown>)
-			: inherited;
-		for (const entry of names.sort((a, b) => a.name.localeCompare(b.name))) {
-			if (entry.isDirectory()) {
-				walk(root, join(dir, entry.name), defaults);
-			} else if (entry.name.endsWith('.yaml') && entry.name !== '_defaults.yaml') {
-				const path = join(dir, entry.name);
-				const data = mergeDeep(defaults, parseDoc(path)) as Record<string, unknown>;
-				delete data.schema; // def-language field shape — the compiler's contract, not member data
-				delete data.feature; // def-language field binding
-				const identity = (data.identity ?? {}) as Record<string, unknown>;
-				if (typeof identity.archetype_id !== 'string') throw new Error(`grimoire ${path} declares no identity.archetype_id (cascade _defaults.yaml)`);
-				try {
-					assertDocValid(path.slice(root.length + 1), identity.archetype_id, desugarIdentity(data as Obj, identity.archetype_id, entry.name.slice(0, -'.yaml'.length)));
-				} catch (e) {
-					failures.push(e instanceof Error ? e.message : String(e));
-				}
+	// scribe already folded the cascade and stamped identity.{archetype_id, slug}; read each leaf and
+	// validate against the archetype its identity declares. Def-language keys are compiler plumbing.
+	for (const root of [PROPERTY_DIR, ENUMERATION_DIR]) {
+		for (const path of jsonFiles(root)) {
+			const data = readJson(path);
+			delete data.schema; // def-language field shape — the compiler's contract, not member data
+			delete data.feature; // def-language field binding
+			const identity = (data.identity ?? {}) as Record<string, unknown>;
+			if (typeof identity.archetype_id !== 'string')
+				throw new Error(`grimoire ${path} declares no identity.archetype_id (cascade _defaults.yaml)`);
+			try {
+				assertDocValid(path.slice(root.length + 1), identity.archetype_id, data);
+			} catch (e) {
+				failures.push(e instanceof Error ? e.message : String(e));
 			}
 		}
-	};
-	walk(PROPERTY_DIR, PROPERTY_DIR, {});
-	walk(ENUMERATION_DIR, ENUMERATION_DIR, {});
+	}
 	if (failures.length > 0) throw new Error(`${failures.length} leaf docs fail validation:\n${failures.join('\n')}`);
 }
 
-/** Validate every concepts/features/** def against the `feature` archetype. The def-language
- *  keys the archetype DOES declare (concept_settings: compose/repeated/array/map) validate as fields; the
- *  rest of the instruction vocabulary (compose/prop/enums/…) is still the compiler's contract and
- *  is stripped, like `schema:`/`feature:` on property docs. */
+/** Validate every concepts/features/** def against the `feature` archetype — the self-hosting gate,
+ *  and like its archetype twin it strips NOTHING. `feature.yaml` declares the whole feature-level
+ *  grammar (prop / enums / concept_settings / feature_spec), so an undeclared key is rejected. That
+ *  is what keeps `archetype_settings` archetype-only: assembly is undeclared here, so a feature def
+ *  reaching for it fails — no per-key exception needed, which is how the old allow-list crept back. */
 export function assertFeatureDocsValid(): void {
-	const featureSchema = projectSchema(resolveConcept('feature'));
-	const declared = new Set(Object.keys((featureSchema.properties ?? {}) as Record<string, unknown>));
 	const failures: string[] = [];
-	const walk = (dir: string): void => {
-		for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-			if (entry.name.startsWith('_')) continue;
-			const path = join(dir, entry.name);
-			if (entry.isDirectory()) {
-				walk(path);
-			} else if (entry.name.endsWith('.yaml')) {
-				const doc = parseDoc(path) as Record<string, unknown>;
-				const instr = instructionKeys(doc as Obj);
-				const data = Object.fromEntries(
-					Object.entries(doc).filter(([k]) => !(instr.has(k) && !declared.has(k))),
-				);
-				try {
-					assertDocValid(`feature ${path.slice(FEATURES_DIR.length + 1)}`, 'feature', desugarIdentity(data as Obj, 'feature', entry.name.slice(0, -'.yaml'.length)));
-				} catch (e) {
-					failures.push(e instanceof Error ? e.message : String(e));
-				}
-			}
+	for (const path of jsonFiles(FEATURES_DIR)) {
+		const data = readJson(path);
+		try {
+			assertDocValid(`feature ${path.slice(FEATURES_DIR.length + 1)}`, 'feature', data);
+		} catch (e) {
+			failures.push(e instanceof Error ? e.message : String(e));
 		}
-	};
-	walk(FEATURES_DIR);
+	}
 	if (failures.length > 0) throw new Error(`${failures.length} feature docs fail validation:\n${failures.join('\n')}`);
 }
 
 /** Validate every concepts/archetypes/** def against the `archetype` meta-def — the same
  *  self-hosting gate feature defs pass. Requires the labels every class must carry (title,
- *  description — archetypes/archetype.yaml); an empty def fails in parseDoc. */
+ *  description — archetypes/archetype.yaml); an empty def fails in parseDoc.
+ *
+ *  `prop:`/`enums:` are the FIELD-layer instruction keys — illegal on a class, which assembles
+ *  features only (concepts/README.md "Archetype"). They stay in `data` so the meta-def's closed
+ *  projection rejects them; stripping them as instructions is what let `vedirect_medium.pid` and
+ *  the `application_protocol` enum land here. The class-layer keys below ARE legal and strip. */
 export function assertArchetypeDocsValid(): void {
 	const archetypeSchema = projectSchema(resolveConcept('archetype'));
 	const declared = new Set(Object.keys((archetypeSchema.properties ?? {}) as Record<string, unknown>));
 	const failures: string[] = [];
-	for (const entry of readdirSync(ARCHETYPES_DIR, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
-		if (!entry.name.endsWith('.yaml') || entry.name.startsWith('_')) continue;
-		const path = join(ARCHETYPES_DIR, entry.name);
+	for (const path of jsonFiles(ARCHETYPES_DIR)) {
 		try {
-			const doc = parseDoc(path) as Record<string, unknown>;
-			const instr = instructionKeys(doc as Obj);
-			const data = Object.fromEntries(Object.entries(doc).filter(([k]) => !((instr.has(k) || k === 'archetype') && !declared.has(k))));
-			assertDocValid(`archetype ${entry.name}`, 'archetype', desugarIdentity(data as Obj, 'archetype', entry.name.slice(0, -'.yaml'.length)));
+			const doc = readJson(path);
+			// NOTHING is stripped: a key an archetype may carry is a key `archetype.yaml` DECLARES,
+			// and the projection is closed. Stripping undeclared instruction keys made declaring
+			// optional — it hid `prop:`/`enums:` (illegal here) and left `feature:`/`archetype:`/
+			// `schema:` unvalidated in 36 defs. Undeclared ⇒ rejected, no exceptions.
+			const data = doc;
+			assertDocValid(`archetype ${path.slice(ARCHETYPES_DIR.length + 1)}`, 'archetype', data);
 		} catch (e) {
 			failures.push(e instanceof Error ? e.message : String(e));
 		}

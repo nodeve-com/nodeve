@@ -1,0 +1,8 @@
+title:
+  en: Zenith Angle
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ZenithAngle
+    match: exact
+identity:
+  broader: angle

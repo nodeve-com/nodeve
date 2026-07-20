@@ -12,7 +12,7 @@ product:
 cooling:
   feature_spec:
     combined:
-      cooling_capacity:
+      heat_flow_rate:
         intervals:
           - interval: { value: 2638, severity: nominal } # 9000 BTU/h rated cooling
 

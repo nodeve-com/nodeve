@@ -1,0 +1,8 @@
+title:
+  en: Average Specific Impulse
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AverageSpecificImpulse
+    match: exact
+identity:
+  broader: specific_impulse

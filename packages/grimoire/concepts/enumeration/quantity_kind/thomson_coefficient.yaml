@@ -1,0 +1,9 @@
+title:
+  en: Thomson Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThomsonCoefficient
+    match: exact
+  - registry_id: wikidata
+    term: Q105801233
+    match: exact

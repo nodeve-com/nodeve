@@ -1,5 +1,14 @@
+title: { en: Measurand Link }
 body:
   en: >
-    The MEASURAND LINK — how a decoded value attaches to the feature tree it reads. A Modbus register, a USB-HID byte field and a VE.Direct field each carry ONE `interval_item` FK pointer naming the measurand the projected feature tree offers — (feature_id, property_id, interval_id, part_id | ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the link downstream, not authored. A complete definition links every value; a value sensed-but-not-yet-attributed during discovery carries no link (drop `interval_item`, note it in a comment) until its feature lands.
-prop:
-  interval_item: {} # THE FK pointer — {feature_id, property_id, interval_id(+part_id/ordinal)}, shared with condition gates
+    The MEASURAND LINK — how a decoded value attaches to the feature tree it
+    reads. A Modbus register, a USB-HID byte field and a VE.Direct field each
+    carry ONE `interval_item` FK pointer naming the measurand the projected
+    feature tree offers — (feature_id, property_id, interval_id, part_id |
+    ordinal), the SAME pointer a condition gate uses. Topic is DERIVED from the
+    link downstream, not authored. A complete definition links every value; a
+    value sensed-but-not-yet-attributed during discovery carries no link (drop
+    `interval_item`, note it in a comment) until its feature lands.
+feature_settings:
+  prop:
+    interval_item: {} # THE FK pointer — {feature_id, property_id, interval_id(+part_id/ordinal)}, shared with condition gates

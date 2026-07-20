@@ -1,0 +1,16 @@
+title:
+  en: R-422D
+refs:
+  - registry_id: ashrae_34
+    term: R-422D
+    match: exact
+composition:
+  - refrigerant: r125
+    mass_fraction: 0.6509999999999999
+  - refrigerant: r134a
+    mass_fraction: 0.315
+  - refrigerant: r600a
+    mass_fraction: 0.034
+substance:
+  safety_class: A1
+  gwp: 2473

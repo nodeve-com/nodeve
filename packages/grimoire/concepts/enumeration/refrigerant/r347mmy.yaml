@@ -1,0 +1,9 @@
+title:
+  en: Perfluoroisopropyl methyl ether
+refs:
+  - registry_id: ashrae_34
+    term: R-347mmy
+    match: exact
+substance:
+  formula: C4H3F7O
+  gwp: 343

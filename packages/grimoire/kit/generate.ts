@@ -24,11 +24,15 @@ import { resolveConcept } from './compile.ts';
 import { type RefContext, projectSchema } from './project.ts';
 import {
 	ARTIFACTS_DIR,
+	CONCEPTS,
 	GENERATED_DIR,
+	SRC_DIR,
 	type Obj,
+	fieldSource,
 	layerIndex,
-	readYaml,
+	readJson,
 } from '../src/concept-sources.ts';
+import { scribeToDir } from '../src/scribe/index.ts';
 import {
 	assertArchetypeDocsValid,
 	assertFeatureDocsValid,
@@ -42,7 +46,7 @@ import { enumerationMemberData, enumerations, renderVocabModule } from './emit-e
 import { renderJson } from './json-schema.ts';
 import { parseDisplayPolicy } from '../src/display-policy.ts';
 
-const DISPLAY_POLICY_YAML = join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml');
+const DISPLAY_POLICY_JSON = join(CONCEPTS, 'display-policy', 'sensors.json');
 
 // --- Concept schemas + types (consumer swap slice) ---
 
@@ -105,21 +109,26 @@ function schemaWithDefs(data: Record<string, unknown>): {
 	return { json, body, imports: direct.map((name) => ({ name, layer: layerOf(name) })) };
 }
 
-const CLASS_OF: Record<string, string> = {
-	archetypes: 'archetype',
-	features: 'feature',
-	property: 'property',
-};
+/** The concept's SCRIBED identity — the source of truth (`archetype_id` from the layer/dir cascade,
+ *  `slug` the file stem, plus any authored keys). `referentialize` would otherwise diff-collapse the
+ *  identity node against the base `identity` concept and drop matching keys (e.g. `archetype_id`); the
+ *  emitted tree must carry identity WHOLE, so stamp it back from the database doc. */
+function sourceIdentity(name: string, layer: string): Obj {
+	const path = layer === 'property' ? fieldSource(name) : layerIndex(layer).get(name);
+	const identity = path ? readJson(path).identity : undefined;
+	return isPlainObject(identity) ? (identity as Obj) : {};
+}
 
-function stampIdentity(tree: Obj, name: string, layer: string): Obj {
-	const authored = isPlainObject(tree.identity) ? (tree.identity as Obj) : {};
-	return { ...tree, identity: { archetype_id: CLASS_OF[layer], slug: name, ...authored } };
+/** `tree` with its identity replaced by the scribed source identity (whole), when the source has one. */
+function withSourceIdentity(tree: Obj, name: string, layer: string): Obj {
+	const identity = sourceIdentity(name, layer);
+	return Object.keys(identity).length > 0 ? { ...tree, identity } : tree;
 }
 
 function topFields(name: string): string[] {
 	const { $composes, ...def } = resolveConcept(name);
 	const layer = layerOf(name);
-	const tree = humps(stampIdentity(conceptDataTree(def, layer, $composes), name, layer)) as Obj;
+	const tree = humps(conceptDataTree(def, layer, $composes)) as Obj;
 	const own = Object.keys(tree).filter((key) => key !== '$ref');
 	const base =
 		typeof tree.$ref === 'string'
@@ -142,7 +151,7 @@ function emitConcept(options: {
 	const { out, name, data, layer } = options;
 	const { $composes, ...def } = data;
 	const { json, body, imports } = schemaWithDefs(def);
-	const dataTree = stampIdentity(conceptDataTree(def, layer, $composes), name, layer);
+	const dataTree = withSourceIdentity(conceptDataTree(def, layer, $composes), name, layer);
 	out[join(ARTIFACTS_DIR, layer, `${name}.json`)] = renderJson(dataTree);
 	out[join(GENERATED_DIR, layer, `${name}.ts`)] = renderConceptModule({
 		name,
@@ -239,27 +248,31 @@ export function outputs(): Record<string, string> {
 		);
 		out[join(GENERATED_DIR, 'enumeration', `${name}.ts`)] = renderVocabModule(name);
 	}
-	// TODO(move-display-policy): display-policy/ is a data source OUTSIDE concepts/ with its own
-	// bespoke parse+emit — the one violation of "the generator reads only concepts/". Move it soon:
-	// fold into the concept model (ui/display fields on the quantity enumerations) or evict
-	// downstream; then guard generator inputs to concepts/ only.
+	// display-policy/ is a data source outside concepts/ with its own bespoke parse+emit; scribe
+	// converts it (artifacts/database/display-policy/sensors.json) like everything else, so the
+	// generator still reads only scribed JSON. TODO(move-display-policy): fold it into the concept
+	// model (ui/display fields on the quantity enumerations) or evict downstream.
 	// The authored display policy: a typed const for TS consumers AND an artifacts JSON twin — a TS
 	// export is a view of baked data, never the only copy (guard-artifacts-baked.ts).
-	const policy = parseDisplayPolicy(readYaml(DISPLAY_POLICY_YAML));
+	const policy = parseDisplayPolicy(readJson(DISPLAY_POLICY_JSON));
 	out[join(GENERATED_DIR, 'display-policy.ts')] = renderDisplayPolicyModule(policy);
 	out[join(ARTIFACTS_DIR, 'display-policy.json')] = renderJson(policy);
 	// Parts maps (concepts/parts/) — read by the repeated-feature resolve; baked so every YAML the
 	// generator reads lands in artifacts/ as JSON.
 	for (const [name, path] of [...layerIndex('parts')].sort(([a], [b]) => a.localeCompare(b)))
-		out[join(ARTIFACTS_DIR, 'parts', `${name}.json`)] = renderJson(readYaml(path));
+		out[join(ARTIFACTS_DIR, 'parts', `${name}.json`)] = renderJson(readJson(path));
 	return out;
 }
 
 // Write only when run directly, not when imported by the drift test.
 if (import.meta.filename === process.argv[1]) {
-	// Wipe both output roots first so no stale file (renamed/deleted concept) survives the bake.
+	// Wipe both output roots first so no stale file (renamed/deleted concept) survives the bake, then
+	// (re)scribe the YAML into artifacts/database/ — the JSON source every step below reads. Wipe
+	// BEFORE scribe so the fresh database survives (artifacts/database sits under the wiped root).
 	rmSync(GENERATED_DIR, { recursive: true, force: true });
 	rmSync(ARTIFACTS_DIR, { recursive: true, force: true });
+	scribeToDir(join(SRC_DIR, '..', 'concepts'), CONCEPTS, { conceptRules: true });
+	scribeToDir(join(SRC_DIR, '..', 'display-policy'), join(CONCEPTS, 'display-policy'));
 	const files = Object.entries(outputs());
 	for (const [path, contents] of files) {
 		mkdirSync(dirname(path), { recursive: true });

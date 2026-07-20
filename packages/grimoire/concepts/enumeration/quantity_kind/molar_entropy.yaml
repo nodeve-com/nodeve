@@ -1,0 +1,9 @@
+title:
+  en: Molar Entropy
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MolarEntropy
+    match: exact
+  - registry_id: wikidata
+    term: Q68972876
+    match: exact

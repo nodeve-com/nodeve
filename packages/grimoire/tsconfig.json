@@ -7,5 +7,12 @@
     "types": ["node"]
   },
   "include": ["src", "kit", "scripts"],
-  "exclude": ["node_modules", "dist", "tests", "**/*.test.ts"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests",
+    "**/*.test.ts",
+    "scripts/migrate-concept-settings.ts",
+    "scripts/migrate-registry-catalog.ts"
+  ]
 }

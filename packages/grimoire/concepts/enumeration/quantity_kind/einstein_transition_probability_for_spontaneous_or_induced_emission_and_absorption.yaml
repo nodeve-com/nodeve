@@ -1,0 +1,6 @@
+title:
+  en: Einstein Transition Probability for Spontaneous Or Induced Emission and Absorption
+refs:
+  - registry_id: qudt_quantity_kind
+    term: EinsteinTransitionProbabilityForSpontaneousOrInducedEmissionAndAbsorption
+    match: exact

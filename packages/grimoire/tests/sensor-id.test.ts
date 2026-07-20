@@ -6,7 +6,7 @@ import { describe, expect, test } from 'vitest';
 import { join } from 'node:path';
 import { intervalSensorId, sensorId } from '../src/sensor-id.ts';
 import { measurandSubTopic } from '../src/measurand-tree.ts';
-import { readYaml } from '../src/concept-sources.ts';
+import { readRaw } from '../src/scribe/index.ts';
 
 const instance = 'grid_meter_live'; // site file stem overrides catalog slug chint_dtsu666_4wire
 
@@ -14,7 +14,7 @@ interface Register {
 	interval_item?: { feature_id?: string; part_id?: string; property_id?: string };
 }
 
-const device = readYaml(join(import.meta.dirname, '../concepts/catalog/chint/dtsu666.yaml')) as {
+const device = readRaw(join(import.meta.dirname, '../concepts/catalog/chint/dtsu666.yaml')) as {
 	modbus: { modbus_registers: Register[] };
 	[feature: string]: unknown;
 };

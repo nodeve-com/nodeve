@@ -5,10 +5,12 @@ body:
     
     This unit serves the SAME physical quantities in (at least) TWO register banks. The map below documents both; it is NOT a poll script and does not say which bank to read — the gateway picks its path (master-poll or passive-listen) and which bank that path exposes:
     
+
       A) 0x2000 block — divisor-scaled FP32, read as a master (direct serial / TCP bridge).
       B) 0x1510 fast + 0x1000 slow windows — what the FoxESS inverter polls, so what a passive
          RS-485 tap captures. Floats already in engineering units (scale 1.0), richer than A.
     
+
     Bank A from 3rd-party/DTSU666-Modbus/plugin.py + our on-board tap reads; verified high-word-first, 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames (scripts/SNIFF.md, 2026-06-07).
     
     
@@ -74,7 +76,7 @@ ac_phase_three_point:
             - interval: { value: 230, severity: nominal }
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
             - interval: { interval_kind: measurable, min: 150, max: 280 }
-        current: {}
+        electric_current: {}
         apparent_power: {}
         reactive_power: {}
         power_factor: {}
@@ -149,21 +151,21 @@ modbus:
       }
     # Phase currents (plugin Current_L1/L2/L3, 0x200C/0E/10)
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: a },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: a },
         address: 8204,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: b },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: b },
         address: 8206,
         type: float32,
         scale: 0.001,
         decimals: 3,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: c },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: c },
         address: 8208,
         type: float32,
         scale: 0.001,
@@ -296,21 +298,21 @@ modbus:
       }
     # Phase currents (sniff idx 3–5, 0x1516/18/1A)
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: a },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: a },
         address: 5398,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: b },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: b },
         address: 5400,
         type: float32,
         scale: 1.0,
         decimals: 3,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: current, part_id: c },
+        interval_item: { feature_id: ac_phase_three_point, property_id: electric_current, part_id: c },
         address: 5402,
         type: float32,
         scale: 1.0,
@@ -451,7 +453,7 @@ modbus:
         decimals: 3,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: a },
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_difference, part_id: a },
         address: 5436,
         type: float32,
         scale: 1.0,
@@ -459,7 +461,7 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: b },
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_difference, part_id: b },
         address: 5438,
         type: float32,
         scale: 1.0,
@@ -467,7 +469,7 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_point, property_id: phase_angle, part_id: c },
+        interval_item: { feature_id: ac_phase_three_point, property_id: phase_difference, part_id: c },
         address: 5440,
         type: float32,
         scale: 1.0,

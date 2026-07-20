@@ -23,5 +23,6 @@ refs:
     match: close
 concept_settings:
   compose: [ electrical_quantity ]
-prop:
-  electric_charge: {}
+feature_settings:
+  prop:
+    electric_charge: {}

@@ -1,0 +1,9 @@
+title:
+  en: Seebeck Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SeebeckCoefficient
+    match: exact
+  - registry_id: wikidata
+    term: Q1091448
+    match: exact

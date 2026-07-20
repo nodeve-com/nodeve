@@ -1,0 +1,9 @@
+title:
+  en: Bromodifluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-22B1
+    match: exact
+substance:
+  formula: CHBrF2
+  gwp: 404

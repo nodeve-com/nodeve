@@ -1,0 +1,6 @@
+title:
+  en: Temperature Gradient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureGradient
+    match: exact

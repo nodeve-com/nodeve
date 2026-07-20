@@ -8,18 +8,16 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 import * as active_ from '../property/active.ts';
-import * as azimuth_ from '../property/azimuth.ts';
 import * as catalogItem_ from '../property/catalog_item.ts';
 import * as ordinal_ from '../property/ordinal.ts';
 import * as seriesCount_ from '../property/series_count.ts';
-import * as tilt_ from '../property/tilt.ts';
 import * as vocEff_ from '../property/voc_eff.ts';
 
-export const schema: TSchema = Type.Object({ "ordinal": ordinal_.schema, "active": active_.schema, "seriesCount": seriesCount_.schema, "azimuth": azimuth_.schema, "tilt": tilt_.schema, "vocEff": Type.Optional(vocEff_.schema), "catalogItem": catalogItem_.schema }, {"additionalProperties":false,"x-key-map":{"series_count":"seriesCount","voc_eff":"vocEff","catalog_item":"catalogItem"}});
+export const schema: TSchema = Type.Object({ "ordinal": ordinal_.schema, "active": active_.schema, "seriesCount": seriesCount_.schema, "azimuth": Type.Number(), "tilt": Type.Number(), "vocEff": Type.Optional(vocEff_.schema), "catalogItem": catalogItem_.schema }, {"additionalProperties":false,"x-key-map":{"series_count":"seriesCount","voc_eff":"vocEff","catalog_item":"catalogItem"}});
 
-export type PvString = { "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": azimuth_.Azimuth; "tilt": tilt_.Tilt; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem };
+export type PvString = { "ordinal": ordinal_.Ordinal; "active": active_.Active; "seriesCount": seriesCount_.SeriesCount; "azimuth": number; "tilt": number; "vocEff"?: vocEff_.VocEff; "catalogItem": catalogItem_.CatalogItem };
 
-type DataT = { readonly "body": { readonly "en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n" }; readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": typeof azimuth_; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": typeof tilt_; readonly "vocEff": typeof vocEff_ } };
+type DataT = { readonly "body": { readonly "en": "One PV STRING as installed — the per-string install facts a datasheet can't know (position, wiring, orientation, fitted voc). The panel MODEL is a catalog reference; per-string electrical truth (vmp, voc, capacity) is DERIVED from that datasheet × series_count downstream, never restated here.\n" }; readonly "description": { readonly "en": "PV String instance of on a site install." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "pv_string" }; readonly "prop": { readonly "active": typeof active_; readonly "azimuth": { readonly "description": { readonly "en": "Plane orientation as compass degrees, 0° = N." }; readonly "identity": { readonly "broader": "angle"; readonly "slug": "azimuth" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Azimuth" }]; readonly "title": { readonly "en": "Azimuth"; readonly "pt": "Azimute" } }; readonly "catalogItem": typeof catalogItem_; readonly "ordinal": typeof ordinal_; readonly "seriesCount": typeof seriesCount_; readonly "tilt": { readonly "description": { readonly "en": "Plane tilt in degrees from horizontal." }; readonly "identity": { readonly "broader": "angle"; readonly "slug": "tilt" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Tilt" }]; readonly "title": { readonly "en": "Tilt"; readonly "pt": "Inclinação" } }; readonly "vocEff": typeof vocEff_ }; readonly "title": { readonly "en": "PV String" } };
 
 const _data: DataT = {
 	"body": {
@@ -34,12 +32,53 @@ const _data: DataT = {
 	},
 	"prop": {
 		"active": active_,
-		"azimuth": azimuth_,
+		"azimuth": {
+			"description": {
+				"en": "Plane orientation as compass degrees, 0° = N."
+			},
+			"identity": {
+				"broader": "angle",
+				"slug": "azimuth"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Azimuth"
+				}
+			],
+			"title": {
+				"en": "Azimuth",
+				"pt": "Azimute"
+			}
+		},
 		"catalogItem": catalogItem_,
 		"ordinal": ordinal_,
 		"seriesCount": seriesCount_,
-		"tilt": tilt_,
+		"tilt": {
+			"description": {
+				"en": "Plane tilt in degrees from horizontal."
+			},
+			"identity": {
+				"broader": "angle",
+				"slug": "tilt"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Tilt"
+				}
+			],
+			"title": {
+				"en": "Tilt",
+				"pt": "Inclinação"
+			}
+		},
 		"vocEff": vocEff_
+	},
+	"title": {
+		"en": "PV String"
 	}
 };
-export const { body, description, identity, prop } = _data;
+export const { body, description, identity, prop, title } = _data;

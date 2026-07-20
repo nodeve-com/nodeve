@@ -1,0 +1,9 @@
+title:
+  en: Inverse Length
+refs:
+  - registry_id: qudt_quantity_kind
+    term: InverseLength
+    match: exact
+  - registry_id: wikidata
+    term: Q1028259
+    match: exact

@@ -1,0 +1,6 @@
+title:
+  en: Square Time
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SquareTime
+    match: exact

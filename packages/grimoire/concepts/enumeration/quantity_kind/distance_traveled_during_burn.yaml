@@ -1,0 +1,8 @@
+title:
+  en: Distance Traveled During a Burn
+refs:
+  - registry_id: qudt_quantity_kind
+    term: DistanceTraveledDuringBurn
+    match: exact
+identity:
+  broader: distance

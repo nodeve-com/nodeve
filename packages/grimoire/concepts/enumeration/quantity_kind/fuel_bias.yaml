@@ -1,0 +1,8 @@
+title:
+  en: Fuel Bias
+refs:
+  - registry_id: qudt_quantity_kind
+    term: FUEL-BIAS
+    match: exact
+identity:
+  broader: dimensionless

@@ -1,0 +1,6 @@
+title:
+  en: Mechanical Surface Impedance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MechanicalSurfaceImpedance
+    match: exact

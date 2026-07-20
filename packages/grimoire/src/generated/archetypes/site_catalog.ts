@@ -12,12 +12,13 @@ import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as inventory_ from '../features/inventory.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "inventory": Type.Optional(inventory_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "inventory": Type.Optional(inventory_.schema) }, {"additionalProperties":false});
 
-export type SiteCatalog = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "inventory"?: inventory_.Inventory };
+export type SiteCatalog = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "inventory"?: inventory_.Inventory };
 
 type DataT = { readonly "description": { readonly "en": "A site's owned instance of a catalogued device — its site-local identity plus the inventory reference to the device it is."; readonly "pt": "Uma instância detida pelo local de um dispositivo catalogado — a identidade local mais a referência de inventário ao dispositivo." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "site_catalog" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "inventory": typeof inventory_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Site catalog entry"; readonly "pt": "Entrada do catálogo do local" } };
 

@@ -1,0 +1,8 @@
+title:
+  en: Strain
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Strain
+    match: exact
+identity:
+  broader: length_ratio

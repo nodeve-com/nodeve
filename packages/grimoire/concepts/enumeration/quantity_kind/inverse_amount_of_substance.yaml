@@ -1,0 +1,9 @@
+title:
+  en: Inverse Amount of Substance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: InverseAmountOfSubstance
+    match: exact
+  - registry_id: wikidata
+    term: Q93421670
+    match: exact

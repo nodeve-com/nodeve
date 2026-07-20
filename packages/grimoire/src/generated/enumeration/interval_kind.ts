@@ -11,6 +11,9 @@ export default {
     "description": {
       "en": "The thing's OWN behaviour band, not an instrument's readable span — carries the `rating` tier and/or `zone` name (and/or a bare `value`). The default kind; derived when `interval_kind` is omitted."
     },
+    "identity": {
+      "slug": "behavioural"
+    },
     "refs": [
       {
         "match": "close",
@@ -30,6 +33,9 @@ export default {
     "code": "measurable",
     "description": {
       "en": "The span a SENSOR can read this quantity over — the instrument side, not the thing's own behaviour. The one interval_kind that must be authored (a bare span is shaped like a behaviour band)."
+    },
+    "identity": {
+      "slug": "measurable"
     },
     "refs": [
       {

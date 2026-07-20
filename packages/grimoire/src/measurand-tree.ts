@@ -11,9 +11,23 @@
 
 import quantityKinds from './generated/enumeration/quantity_kind.ts';
 import type { IntervalItem } from './generated/property/interval_item.ts';
-import { isPlainObject } from 'remeda';
+import { isPlainObject, toSnakeCase } from 'remeda';
+import humps from 'remeda-humps';
+import createHumps from 'remeda-humps/createHumps';
 
 export type Obj = Record<string, unknown>;
+
+// `catalog_patch` casing — keys only (values/slugs/codes untouched), the SAME snake .json ⇄ camel TS
+// twin the whole catalog rides (kit/emit-catalog.ts: `humps` deep-camelizes the snake source). The
+// patch is BUILT off the camel `loadDevice` grain, so the bake serializes it back to snake through
+// `patchToWire` — one uniformly-snake bundle, no camel island — and every reader (site-view overlay,
+// the bake's own interval-filter check) camelizes it back through `patchFromWire` before overlaying
+// onto the camel device.
+const decamelizeKeys = createHumps(toSnakeCase);
+/** The camel `catalog_patch` in its snake wire spelling — what the bake writes into the bundle. */
+export const patchToWire = (patch: Obj): Obj => decamelizeKeys(patch) as Obj;
+/** A snake wire `catalog_patch` back in the camel device grain — what a reader overlays. */
+export const patchFromWire = (patch: Obj): Obj => humps(patch) as Obj;
 
 // The trees here are the CAMEL generated device grain (loadDevice / the emitted TS catalog), so
 // column keys are the camelCase dict keys; each member's authoritative snake `code` is the on-bus

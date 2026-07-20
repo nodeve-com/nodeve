@@ -1,0 +1,8 @@
+title:
+  en: Ionic Charge
+refs:
+  - registry_id: qudt_quantity_kind
+    term: IonicCharge
+    match: exact
+identity:
+  broader: electric_charge

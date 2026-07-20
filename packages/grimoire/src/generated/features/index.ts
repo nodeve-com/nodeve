@@ -12,12 +12,13 @@ import * as acPhaseThreeOut_ from './ac_phase_three_out.ts';
 import * as acPhaseThreePoint_ from './ac_phase_three_point.ts';
 import * as addressing_ from './addressing.ts';
 import * as archetypeRegistry_ from './archetype_registry.ts';
+import * as archetypeSettings_ from './archetype_settings.ts';
 import * as authentication_ from './authentication.ts';
 import * as battery_ from './battery.ts';
 import * as body_ from './body.ts';
 import * as byteOffset_ from './byte_offset.ts';
-import * as catalogEntry_ from './catalog_entry.ts';
 import * as column_ from './column.ts';
+import * as composition_ from './composition.ts';
 import * as compressor_ from './compressor.ts';
 import * as conceptSettings_ from './concept_settings.ts';
 import * as condition_ from './condition.ts';
@@ -34,6 +35,7 @@ import * as enclosure_ from './enclosure.ts';
 import * as endpoint_ from './endpoint.ts';
 import * as energyConsumer_ from './energy_consumer.ts';
 import * as environment_ from './environment.ts';
+import * as featureSettings_ from './feature_settings.ts';
 import * as featureSpec_ from './feature_spec.ts';
 import * as filter_ from './filter.ts';
 import * as gridElectricalNetwork_ from './grid_electrical_network.ts';
@@ -74,6 +76,7 @@ import * as ref_ from './ref.ts';
 import * as refrigeration_ from './refrigeration.ts';
 import * as refs_ from './refs.ts';
 import * as registryPublication_ from './registry_publication.ts';
+import * as schema_ from './schema.ts';
 import * as serialPort_ from './serial_port.ts';
 import * as serialWire_ from './serial_wire.ts';
 import * as serviceBinding_ from './service_binding.ts';
@@ -108,12 +111,13 @@ export const feature = {
 	acPhaseThreePoint: acPhaseThreePoint_,
 	addressing: addressing_,
 	archetypeRegistry: archetypeRegistry_,
+	archetypeSettings: archetypeSettings_,
 	authentication: authentication_,
 	battery: battery_,
 	body: body_,
 	byteOffset: byteOffset_,
-	catalogEntry: catalogEntry_,
 	column: column_,
+	composition: composition_,
 	compressor: compressor_,
 	conceptSettings: conceptSettings_,
 	condition: condition_,
@@ -130,6 +134,7 @@ export const feature = {
 	endpoint: endpoint_,
 	energyConsumer: energyConsumer_,
 	environment: environment_,
+	featureSettings: featureSettings_,
 	featureSpec: featureSpec_,
 	filter: filter_,
 	gridElectricalNetwork: gridElectricalNetwork_,
@@ -170,6 +175,7 @@ export const feature = {
 	refrigeration: refrigeration_,
 	refs: refs_,
 	registryPublication: registryPublication_,
+	schema: schema_,
 	serialPort: serialPort_,
 	serialWire: serialWire_,
 	serviceBinding: serviceBinding_,

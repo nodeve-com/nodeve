@@ -1,0 +1,13 @@
+title:
+  en: 1,1,1-trifluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-143a
+    match: exact
+  - registry_id: wikidata
+    term: Q161267
+    match: exact
+substance:
+  safety_class: A2L
+  formula: C2H3F3
+  gwp: 4800

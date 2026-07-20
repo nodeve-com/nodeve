@@ -1,0 +1,9 @@
+title:
+  en: Magnetic Vector Potential
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MagneticVectorPotential
+    match: exact
+  - registry_id: wikidata
+    term: Q2299100
+    match: exact

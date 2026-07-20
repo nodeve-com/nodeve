@@ -1,0 +1,13 @@
+title:
+  en: 1,1,2-trichloro-1,2,2-trifluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-113
+    match: exact
+  - registry_id: wikidata
+    term: Q161276
+    match: exact
+substance:
+  safety_class: A1
+  formula: C2F3Cl3
+  gwp: 5820

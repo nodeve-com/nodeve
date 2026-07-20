@@ -1,0 +1,8 @@
+title:
+  en: Chlorofluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-271
+    match: exact
+substance:
+  formula: C3H6FCl

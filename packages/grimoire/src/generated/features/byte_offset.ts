@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "offset": Type.Optional(offset_.sch
 
 export type ByteOffset = { "offset"?: offset_.Offset };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "byte_offset" }; readonly "prop": { readonly "offset": typeof offset_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "byte_offset" }; readonly "prop": { readonly "offset": typeof offset_ }; readonly "title": { readonly "en": "Byte Offset" } };
 
 const _data: DataT = {
 	"identity": {
@@ -22,6 +22,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"offset": offset_
+	},
+	"title": {
+		"en": "Byte Offset"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

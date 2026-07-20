@@ -1,0 +1,8 @@
+title:
+  en: Energy Expenditure
+refs:
+  - registry_id: qudt_quantity_kind
+    term: EnergyExpenditure
+    match: exact
+identity:
+  broader: massic_power

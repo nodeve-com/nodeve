@@ -1,2 +1,4 @@
-prop:
-  mono: {}
+title: { en: UI hints }
+feature_settings:
+  prop:
+    mono: {}

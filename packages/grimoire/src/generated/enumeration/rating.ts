@@ -11,6 +11,9 @@ export default {
     "description": {
       "en": "Normal design capacity — rated to hold indefinitely. A reading beyond its bound is the overload condition."
     },
+    "identity": {
+      "slug": "continuous"
+    },
     "refs": [
       {
         "match": "close",
@@ -27,6 +30,9 @@ export default {
     "code": "intermittent",
     "description": {
       "en": "Rated above continuous for a bounded spell (minutes) — carries a duration; not holdable indefinitely."
+    },
+    "identity": {
+      "slug": "intermittent"
     },
     "refs": [
       {
@@ -45,6 +51,9 @@ export default {
     "description": {
       "en": "The region beyond which external protection must clear the fault."
     },
+    "identity": {
+      "slug": "protection_required"
+    },
     "title": {
       "en": "Protection required",
       "pt": "Proteção necessária"
@@ -54,6 +63,9 @@ export default {
     "code": "short_term",
     "description": {
       "en": "Peak / overload — rated above continuous for seconds; carries a duration, self-protects beyond."
+    },
+    "identity": {
+      "slug": "short_term"
     },
     "refs": [
       {
@@ -72,6 +84,9 @@ export default {
     "description": {
       "en": "The threshold band that takes the feature offline — the counterpart of startup."
     },
+    "identity": {
+      "slug": "shutdown"
+    },
     "title": {
       "en": "Shutdown",
       "pt": "Desligamento"
@@ -82,6 +97,9 @@ export default {
     "description": {
       "en": "The threshold band that brings the feature online."
     },
+    "identity": {
+      "slug": "startup"
+    },
     "title": {
       "en": "Startup",
       "pt": "Partida"
@@ -91,6 +109,9 @@ export default {
     "code": "survival",
     "description": {
       "en": "The span endured without damage (superset of operating) — beyond it the thing is harmed."
+    },
+    "identity": {
+      "slug": "survival"
     },
     "title": {
       "en": "Survival",

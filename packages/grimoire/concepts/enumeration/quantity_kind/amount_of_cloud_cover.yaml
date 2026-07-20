@@ -1,0 +1,6 @@
+title:
+  en: Amount of Cloud Cover
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AmountOfCloudCover
+    match: exact

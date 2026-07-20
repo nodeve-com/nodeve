@@ -1,0 +1,6 @@
+title:
+  en: Stress-Optic Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: StressOpticCoefficient
+    match: exact

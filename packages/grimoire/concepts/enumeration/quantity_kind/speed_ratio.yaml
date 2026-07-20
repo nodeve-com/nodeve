@@ -1,0 +1,8 @@
+title:
+  en: Speed Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SpeedRatio
+    match: exact
+identity:
+  broader: dimensionless_ratio

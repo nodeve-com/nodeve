@@ -1,0 +1,8 @@
+title:
+  en: Moment of Inertia in the Z Axis
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MomentOfInertia_Z
+    match: exact
+identity:
+  broader: moment_of_inertia

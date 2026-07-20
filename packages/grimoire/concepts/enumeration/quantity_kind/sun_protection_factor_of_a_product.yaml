@@ -1,0 +1,6 @@
+title:
+  en: Sun Protection Factor of a Product
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SunProtectionFactorOfAProduct
+    match: exact

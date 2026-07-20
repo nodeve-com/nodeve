@@ -1,0 +1,6 @@
+title:
+  en: Logarithmic Frequency Interval to Base 10
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LogarithmicFrequencyIntervalToBase10
+    match: exact

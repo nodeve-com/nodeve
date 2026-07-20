@@ -1,0 +1,9 @@
+title:
+  en: Thermal Diffusion Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ThermalDiffusionRatioCoefficient
+    match: exact
+  - registry_id: wikidata
+    term: Q96249751
+    match: exact

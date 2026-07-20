@@ -11,14 +11,14 @@
 // whose overlay rebinds to another layer via `feature:`/`feature:`) and each enum value, and fails on
 // any that the property layer doesn't back. `prop` must be a map; an array is a shape error. Run
 // standalone: `node scripts/guard-feature-props.ts`.
-import { CONCEPTS, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames, readYaml, yamlFiles } from '../src/concept-sources.ts';
+import { CONCEPTS, ENUMERATION_DIR, FEATURES_DIR, PROPERTY_DIR, enumerationDirNames, readJson, jsonFiles } from '../src/concept-sources.ts';
 
 // The property layer: the set of defined property slugs (basenames, globally unique) and the set of
 // category directories (the `enums:` targets).
 // A prop is backed by a `property/` field OR an `enumeration/` member used as a field (a
 // quantity_kind kind bound via `feature: spec_block`) — the two layers share one flat slug space.
 const propertySlugs = new Set(
-	[...yamlFiles(PROPERTY_DIR), ...yamlFiles(ENUMERATION_DIR)].map((p) => p.slice(0, -'.yaml'.length).split('/').pop()!),
+	[...jsonFiles(PROPERTY_DIR), ...jsonFiles(ENUMERATION_DIR)].map((p) => p.slice(0, -'.json'.length).split('/').pop()!),
 );
 // An `enums:` value points to an `enumeration/<name>/` directory.
 const enumCategories = enumerationDirNames();
@@ -55,9 +55,9 @@ const missingProps: Array<{ file: string; slug: string }> = [];
 const missingEnums: Array<{ file: string; category: string }> = [];
 const shapeErrors: string[] = [];
 
-for (const path of yamlFiles(FEATURES_DIR)) {
+for (const path of jsonFiles(FEATURES_DIR)) {
 	const rel = path.slice(CONCEPTS.length + 1);
-	const doc = readYaml(path);
+	const doc = readJson(path);
 	for (const slug of featureProps(doc, rel)) {
 		if (!propertySlugs.has(slug)) missingProps.push({ file: rel, slug });
 	}

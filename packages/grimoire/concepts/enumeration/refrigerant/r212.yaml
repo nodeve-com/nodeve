@@ -1,0 +1,8 @@
+title:
+  en: Hexachlorodifluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-212
+    match: exact
+substance:
+  formula: C3F2Cl6

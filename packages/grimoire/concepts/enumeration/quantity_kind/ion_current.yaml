@@ -1,0 +1,8 @@
+title:
+  en: Ion Current
+refs:
+  - registry_id: qudt_quantity_kind
+    term: IonCurrent
+    match: exact
+identity:
+  broader: electric_current

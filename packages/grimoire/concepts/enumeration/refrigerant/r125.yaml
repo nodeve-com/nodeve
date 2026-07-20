@@ -1,0 +1,13 @@
+title:
+  en: Pentafluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-125
+    match: exact
+  - registry_id: wikidata
+    term: Q419065
+    match: exact
+substance:
+  safety_class: A1
+  formula: C2HF5
+  gwp: 3170

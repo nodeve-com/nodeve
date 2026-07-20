@@ -1,0 +1,6 @@
+title:
+  en: Time Squared
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Time_Squared
+    match: exact

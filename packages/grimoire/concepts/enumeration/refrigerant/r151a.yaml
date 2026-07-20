@@ -1,0 +1,8 @@
+title:
+  en: 1-chloro-1-fluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-151a
+    match: exact
+substance:
+  formula: C2H4ClF

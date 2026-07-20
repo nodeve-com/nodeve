@@ -1,0 +1,8 @@
+title:
+  en: Temperature Rate of Change
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TemperatureRateOfChange
+    match: exact
+identity:
+  broader: temperature_per_time

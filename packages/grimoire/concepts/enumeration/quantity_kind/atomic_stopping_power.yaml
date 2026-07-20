@@ -1,0 +1,6 @@
+title:
+  en: Atomic Stopping Power
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AtomicStoppingPower
+    match: exact

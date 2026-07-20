@@ -1,0 +1,11 @@
+title:
+  en: Radiant Flux
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RadiantFlux
+    match: exact
+  - registry_id: wikidata
+    term: Q1253356
+    match: exact
+identity:
+  broader: power

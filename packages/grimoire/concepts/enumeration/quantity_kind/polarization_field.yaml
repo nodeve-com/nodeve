@@ -1,0 +1,8 @@
+title:
+  en: Polarization Field
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PolarizationField
+    match: exact
+identity:
+  broader: electric_charge_per_area

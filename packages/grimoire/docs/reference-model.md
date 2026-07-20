@@ -28,7 +28,7 @@ The concept layers ARE relational normalization ([`concepts/README.md`](../conce
 | layer | relational | consequence |
 | --- | --- | --- |
 | property | column | one field + its `schema` |
-| feature | table | flat `prop:` map — tables don't nest, so features don't |
+| feature | table | flat `feature_settings.prop` map — tables don't nest, so features don't |
 | archetype | view / class | joins its feature-tables — composes features, never props directly |
 | catalog entry | row | identity `(archetype_id, slug)` = `(view, PK)` |
 

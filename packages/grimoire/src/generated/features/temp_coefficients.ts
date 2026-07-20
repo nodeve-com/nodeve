@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "vocTempCoeffPctPerC": Type.Optiona
 
 export type TempCoefficients = { "vocTempCoeffPctPerC"?: vocTempCoeffPctPerC_.VocTempCoeffPctPerC };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "temp_coefficients" }; readonly "prop": { readonly "vocTempCoeffPctPerC": typeof vocTempCoeffPctPerC_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "temp_coefficients" }; readonly "prop": { readonly "vocTempCoeffPctPerC": typeof vocTempCoeffPctPerC_ }; readonly "title": { readonly "en": "Temp Coefficients" } };
 
 const _data: DataT = {
 	"identity": {
@@ -22,6 +22,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"vocTempCoeffPctPerC": vocTempCoeffPctPerC_
+	},
+	"title": {
+		"en": "Temp Coefficients"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

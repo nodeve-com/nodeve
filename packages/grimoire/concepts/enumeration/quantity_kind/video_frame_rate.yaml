@@ -1,0 +1,6 @@
+title:
+  en: Video Frame Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: VideoFrameRate
+    match: exact

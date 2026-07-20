@@ -1,6 +1,6 @@
-// Guard: NO hand-authored object shapes on the runtime TS surface. `src/` (minus `src/generated/`) is
-// glue over the generated projection — it may IMPORT concept types and DERIVE from them, never re-author
-// a shape. An `interface X { … }` or a `type X = { a: …; b: … }` in `src/*.ts` is a second source of
+// Guard: NO hand-authored object shapes on the runtime TS surface. `src/` (minus `src/generated/` and
+// the `src/scribe/` YAML→JSON tool, which is build tooling like `kit/`, not runtime glue) is glue over
+// the generated projection — it may IMPORT concept types and DERIVE from them, never re-author a shape. An `interface X { … }` or a `type X = { a: …; b: … }` in `src/*.ts` is a second source of
 // truth that drifts silently from the YAML concepts (`grimoire-no-ts-spec-grammar`). `CatalogDevice`,
 // `LinkedRegister`, `SiteSensor`, `Vocab`, `CascadeEntry`, `ResolvedDevice` were exactly this — slop.
 //
@@ -15,6 +15,10 @@ import { join } from 'node:path';
 import ts from 'typescript';
 import { GENERATED_DIR, SRC_DIR, tsFiles } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
+
+/** Build-tooling subtree that lives under `src/` for the dist layout but is NOT runtime glue — the
+ *  YAML→JSON scribe, held to `kit/`'s rules (its own tool), not the concept-projection rule here. */
+const SCRIBE_DIR = join(SRC_DIR, 'scribe');
 
 /** A type-literal that NAMES members — `{ foo: T }`. Pure index signatures (`{ [k: string]: unknown }`)
  *  are Record spelled out and carry no member names, so they don't re-author a shape. */
@@ -32,7 +36,7 @@ hand-write it here. See docs/typebox-vs-zod.md and the grimoire-no-ts-spec-gramm
 `,
 	},
 	(fail) => {
-		for (const rel of tsFiles(SRC_DIR, (path) => path === GENERATED_DIR)) {
+		for (const rel of tsFiles(SRC_DIR, (path) => path === GENERATED_DIR || path === SCRIBE_DIR)) {
 			const src = ts.createSourceFile(
 				rel,
 				readFileSync(join(SRC_DIR, rel), 'utf8'),

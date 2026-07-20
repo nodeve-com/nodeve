@@ -1,0 +1,8 @@
+title:
+  en: Real Part of Complex Frequency
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ComplexFrequency_Real
+    match: exact
+identity:
+  broader: frequency

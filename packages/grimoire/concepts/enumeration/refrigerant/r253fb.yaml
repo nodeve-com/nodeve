@@ -1,0 +1,8 @@
+title:
+  en: 3-chloro-1,1,1-trifluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-253fb
+    match: exact
+substance:
+  formula: C3H4F3Cl

@@ -1,0 +1,6 @@
+title:
+  en: Reciprocal Electric Resistance
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ReciprocalElectricResistance
+    match: exact

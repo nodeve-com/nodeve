@@ -1,0 +1,8 @@
+title:
+  en: Reflectivity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Reflectivity
+    match: exact
+identity:
+  broader: reflectance

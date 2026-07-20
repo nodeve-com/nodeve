@@ -1,0 +1,9 @@
+title:
+  en: Luminous Intensity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LuminousIntensity
+    match: exact
+  - registry_id: wikidata
+    term: Q104831
+    match: exact

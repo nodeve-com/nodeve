@@ -1,0 +1,9 @@
+title:
+  en: Curvature
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CurvatureFromRadius
+    match: exact
+  - registry_id: wikidata
+    term: Q214881
+    match: exact

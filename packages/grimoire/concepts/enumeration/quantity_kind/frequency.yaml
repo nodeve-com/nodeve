@@ -2,8 +2,17 @@ title:
   en: Frequency
   pt: Frequência
 refs:
-  - { registry_id: qudt_quantity_kind, term: Frequency, match: exact }
-  - { registry_id: ha_device_class, term: frequency, match: exact }
+  - registry_id: qudt_quantity_kind
+    term: Frequency
+    match: exact
+  - registry_id: wikidata
+    term: Q11652
+    match: exact
+  - registry_id: ha_device_class
+    term: frequency
+    match: exact
+identity:
+  broader: inverse_time
 measurand:
   si_unit: Hz
   accumulation: instantaneous

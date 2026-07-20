@@ -1,0 +1,6 @@
+title:
+  en: Length Temperature Time
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LengthTemperatureTime
+    match: exact

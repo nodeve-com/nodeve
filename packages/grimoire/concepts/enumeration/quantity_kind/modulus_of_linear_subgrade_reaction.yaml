@@ -1,0 +1,8 @@
+title:
+  en: Modulus of Linear Subgrade Reaction
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ModulusOfLinearSubgradeReaction
+    match: exact
+identity:
+  broader: force_per_area

@@ -1,0 +1,9 @@
+title:
+  en: Chloroform (trichloromethane)
+refs:
+  - registry_id: ashrae_34
+    term: R-20
+    match: exact
+substance:
+  formula: CHCl3
+  gwp: 31

@@ -1,0 +1,13 @@
+title:
+  en: 1,1-difluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-152a
+    match: exact
+  - registry_id: wikidata
+    term: Q161285
+    match: exact
+substance:
+  safety_class: A2
+  formula: C2H4F2
+  gwp: 138

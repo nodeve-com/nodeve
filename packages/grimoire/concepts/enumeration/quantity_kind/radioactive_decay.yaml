@@ -1,0 +1,8 @@
+title:
+  en: Radioactive Decay
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RadioactiveDecay
+    match: exact
+identity:
+  broader: stochastic_process

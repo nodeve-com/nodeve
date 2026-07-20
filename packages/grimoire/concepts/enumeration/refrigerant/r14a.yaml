@@ -1,0 +1,8 @@
+title:
+  en: R-14A
+refs:
+  - registry_id: ashrae_34
+    term: R-14A
+    match: exact
+substance:
+  gwp: 415

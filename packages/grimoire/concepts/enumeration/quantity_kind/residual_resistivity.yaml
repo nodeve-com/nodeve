@@ -1,0 +1,9 @@
+title:
+  en: Residual Resistivity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ResidualResistivity
+    match: exact
+  - registry_id: wikidata
+    term: Q25098876
+    match: exact

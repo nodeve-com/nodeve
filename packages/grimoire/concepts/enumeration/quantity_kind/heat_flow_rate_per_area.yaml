@@ -1,0 +1,8 @@
+title:
+  en: Heat Flow Rate per Unit Area
+refs:
+  - registry_id: qudt_quantity_kind
+    term: HeatFlowRatePerArea
+    match: exact
+identity:
+  broader: power_per_area

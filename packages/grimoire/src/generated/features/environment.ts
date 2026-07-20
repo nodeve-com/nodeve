@@ -8,11 +8,11 @@
 
 import { type TSchema, Type } from '@sinclair/typebox';
 
-export const schema: TSchema = Type.Object({ "temperature": Type.Optional(Type.Number()), "relativeHumidity": Type.Optional(Type.Number()), "dewPoint": Type.Optional(Type.Number()) }, {"additionalProperties":false,"x-key-map":{"relative_humidity":"relativeHumidity","dew_point":"dewPoint"}});
+export const schema: TSchema = Type.Object({ "temperature": Type.Optional(Type.Number()), "relativeHumidity": Type.Optional(Type.Number()), "dewPointTemperature": Type.Optional(Type.Number()) }, {"additionalProperties":false,"x-key-map":{"relative_humidity":"relativeHumidity","dew_point_temperature":"dewPointTemperature"}});
 
-export type Environment = { "temperature"?: number; "relativeHumidity"?: number; "dewPoint"?: number };
+export type Environment = { "temperature"?: number; "relativeHumidity"?: number; "dewPointTemperature"?: number };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "environment" }; readonly "prop": { readonly "dewPoint": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "DewPointTemperature" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Dew point"; readonly "pt": "Ponto de orvalho" } }; readonly "relativeHumidity": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "%" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "RelativeHumidity" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "humidity" }]; readonly "title": { readonly "en": "Relative humidity"; readonly "pt": "Humidade relativa" } }; readonly "temperature": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Temperature" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Temperature"; readonly "pt": "Temperatura" } } } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "environment" }; readonly "prop": { readonly "dewPointTemperature": { readonly "identity": { readonly "broader": "temperature"; readonly "slug": "dew_point_temperature" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "DewPointTemperature" }, { readonly "match": "broad"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Dew Point Temperature"; readonly "pt": "Ponto de orvalho" } }; readonly "relativeHumidity": { readonly "identity": { readonly "broader": "relative_partial_pressure"; readonly "slug": "relative_humidity" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "%" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "RelativeHumidity" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q2499617" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "humidity" }]; readonly "title": { readonly "en": "Relative Humidity"; readonly "pt": "Humidade relativa" } }; readonly "temperature": { readonly "identity": { readonly "slug": "temperature" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Temperature" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11466" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Temperature"; readonly "pt": "Temperatura" } } }; readonly "title": { readonly "en": "Environment" } };
 
 const _data: DataT = {
 	"identity": {
@@ -20,7 +20,11 @@ const _data: DataT = {
 		"slug": "environment"
 	},
 	"prop": {
-		"dewPoint": {
+		"dewPointTemperature": {
+			"identity": {
+				"broader": "temperature",
+				"slug": "dew_point_temperature"
+			},
 			"measurand": {
 				"accumulation": "instantaneous",
 				"siUnit": "K"
@@ -38,11 +42,15 @@ const _data: DataT = {
 				}
 			],
 			"title": {
-				"en": "Dew point",
+				"en": "Dew Point Temperature",
 				"pt": "Ponto de orvalho"
 			}
 		},
 		"relativeHumidity": {
+			"identity": {
+				"broader": "relative_partial_pressure",
+				"slug": "relative_humidity"
+			},
 			"measurand": {
 				"accumulation": "instantaneous",
 				"siUnit": "%"
@@ -55,16 +63,24 @@ const _data: DataT = {
 				},
 				{
 					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q2499617"
+				},
+				{
+					"match": "exact",
 					"registryId": "ha_device_class",
 					"term": "humidity"
 				}
 			],
 			"title": {
-				"en": "Relative humidity",
+				"en": "Relative Humidity",
 				"pt": "Humidade relativa"
 			}
 		},
 		"temperature": {
+			"identity": {
+				"slug": "temperature"
+			},
 			"measurand": {
 				"accumulation": "instantaneous",
 				"siUnit": "K"
@@ -77,6 +93,11 @@ const _data: DataT = {
 				},
 				{
 					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q11466"
+				},
+				{
+					"match": "exact",
 					"registryId": "ha_device_class",
 					"term": "temperature"
 				}
@@ -86,6 +107,9 @@ const _data: DataT = {
 				"pt": "Temperatura"
 			}
 		}
+	},
+	"title": {
+		"en": "Environment"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

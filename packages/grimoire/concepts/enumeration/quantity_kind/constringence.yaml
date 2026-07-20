@@ -1,0 +1,8 @@
+title:
+  en: Constringence
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Constringence
+    match: exact
+identity:
+  broader: dimensionless_ratio

@@ -1,0 +1,9 @@
+title:
+  en: 3,3-dichloro-1,1,1,2,2-pentafluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-225ca
+    match: exact
+substance:
+  formula: C3HF5Cl2
+  gwp: 127

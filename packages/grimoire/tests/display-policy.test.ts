@@ -6,7 +6,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { displayPolicyFor, parseDisplayPolicy } from '../src/display-policy.ts';
-import { readYaml } from '../src/concept-sources.ts';
+import { readRaw } from '../src/scribe/index.ts';
 
 const voltage = {
   feature: 'ac_phase',
@@ -48,7 +48,7 @@ describe('display policy', () => {
   });
 
   it('the committed sensors.yaml is a valid instance', () => {
-    const committed = readYaml(join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml'));
+    const committed = readRaw(join(import.meta.dirname, '..', 'display-policy', 'sensors.yaml'));
     expect(() => parseDisplayPolicy(committed)).not.toThrow();
   });
 });

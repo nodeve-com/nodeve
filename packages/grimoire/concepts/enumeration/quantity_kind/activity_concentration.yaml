@@ -1,0 +1,9 @@
+title:
+  en: Activity Concentration
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ActivityConcentration
+    match: exact
+  - registry_id: wikidata
+    term: Q423263
+    match: exact

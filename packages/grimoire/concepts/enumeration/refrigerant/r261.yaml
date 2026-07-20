@@ -1,0 +1,8 @@
+title:
+  en: Dichlorofluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-261
+    match: exact
+substance:
+  formula: C3H5FCl2

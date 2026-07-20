@@ -1,0 +1,9 @@
+title:
+  en: Moment of Force
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MomentOfForce
+    match: exact
+  - registry_id: wikidata
+    term: Q17232562
+    match: exact

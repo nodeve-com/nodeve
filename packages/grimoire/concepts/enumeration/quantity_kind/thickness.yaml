@@ -1,0 +1,17 @@
+title:
+  en: Thickness
+  pt: Espessura (mm)
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Thickness
+    match: exact
+  - registry_id: wikidata
+    term: Q3589038
+    match: exact
+identity:
+  broader: length
+description:
+  en: Physical thickness/depth of an enclosure/part, millimetres.
+schema:
+  type: number
+  exclusiveMinimum: 0

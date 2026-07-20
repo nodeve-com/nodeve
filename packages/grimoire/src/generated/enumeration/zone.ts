@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "Powered, no productive work — standby / parasitic draw."
     },
+    "identity": {
+      "slug": "idle"
+    },
     "title": {
       "en": "Idle",
       "pt": "Ocioso"
@@ -17,6 +20,9 @@ export default {
     "code": "mpp",
     "description": {
       "en": "The I-V-curve point (Vmp/Imp/Pmax) of peak power output."
+    },
+    "identity": {
+      "slug": "mpp"
     },
     "title": {
       "en": "Maximum power point",
@@ -28,6 +34,9 @@ export default {
     "description": {
       "en": "The input-voltage region over which maximum-power-point tracking operates."
     },
+    "identity": {
+      "slug": "mppt"
+    },
     "title": {
       "en": "MPPT window",
       "pt": "Janela MPPT"
@@ -37,6 +46,9 @@ export default {
     "code": "off",
     "description": {
       "en": "Switched off / de-energized — no productive draw."
+    },
+    "identity": {
+      "slug": "off"
     },
     "title": {
       "en": "Off",
@@ -48,6 +60,9 @@ export default {
     "description": {
       "en": "The I-V-curve point at zero current, maximum voltage (Voc)."
     },
+    "identity": {
+      "slug": "open_circuit"
+    },
     "title": {
       "en": "Open circuit",
       "pt": "Circuito aberto"
@@ -58,6 +73,9 @@ export default {
     "description": {
       "en": "Running in its normal expected operating region."
     },
+    "identity": {
+      "slug": "running"
+    },
     "title": {
       "en": "Running",
       "pt": "Em funcionamento"
@@ -67,6 +85,9 @@ export default {
     "code": "short_circuit",
     "description": {
       "en": "The I-V-curve point at zero voltage, maximum current (Isc)."
+    },
+    "identity": {
+      "slug": "short_circuit"
     },
     "title": {
       "en": "Short circuit",

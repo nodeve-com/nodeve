@@ -5,6 +5,9 @@
 export default {
   "http": {
     "code": "http",
+    "identity": {
+      "slug": "http"
+    },
     "refs": [
       {
         "match": "exact",
@@ -19,6 +22,9 @@ export default {
   },
   "https": {
     "code": "https",
+    "identity": {
+      "slug": "https"
+    },
     "refs": [
       {
         "match": "exact",
@@ -36,6 +42,9 @@ export default {
       "en": "Modbus application protocol carried over TCP (well-known port 502). A polled service — a master dials in and reads the register map. NOT a URI scheme (so excluded from `endpoint`'s scheme subset); its crosswalk is Modbus-org, not the IANA URI-scheme registry the others carry. Moved here from ingest_kind: modbus-over-TCP is WHAT a served surface speaks, not how an adapter ingests (that axis is now modbus_tap-only — a passive sniff; a master consumes this service_protocol).\n"
     },
     "code": "modbus_tcp",
+    "identity": {
+      "slug": "modbus_tcp"
+    },
     "refs": [
       {
         "match": "broad",
@@ -49,6 +58,9 @@ export default {
   },
   "mqtt": {
     "code": "mqtt",
+    "identity": {
+      "slug": "mqtt"
+    },
     "refs": [
       {
         "match": "exact",
@@ -63,6 +75,9 @@ export default {
   },
   "mqtts": {
     "code": "mqtts",
+    "identity": {
+      "slug": "mqtts"
+    },
     "refs": [
       {
         "match": "exact",
@@ -77,6 +92,9 @@ export default {
   },
   "ws": {
     "code": "ws",
+    "identity": {
+      "slug": "ws"
+    },
     "refs": [
       {
         "match": "exact",
@@ -91,6 +109,9 @@ export default {
   },
   "wss": {
     "code": "wss",
+    "identity": {
+      "slug": "wss"
+    },
     "refs": [
       {
         "match": "exact",

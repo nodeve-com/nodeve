@@ -5,12 +5,18 @@
 export default {
   "ipv4": {
     "code": "ipv4",
+    "identity": {
+      "slug": "ipv4"
+    },
     "title": {
       "en": "IPv4"
     }
   },
   "ipv6": {
     "code": "ipv6",
+    "identity": {
+      "slug": "ipv6"
+    },
     "title": {
       "en": "IPv6"
     }

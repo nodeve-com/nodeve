@@ -2,30 +2,44 @@
 // and the esphome codegen don't re-implement the site_adapter → site_catalog → device →
 // `catalog_patch` chain each time they need a sensor's `slug`; they `openSite(bundle)` and ask.
 //
-// Authored bundle blocks stay in their SNAKE wire shape — no reshape; consumers that want
-// camelCase parse a block separately. The resolved DEVICE grain (loadDevice + catalog_patch)
-// is the camel generated-TS catalog; measurand-tree owns that grammar for both sides.
+// The bundle on disk is SNAKE (the desugared wire twin); this reader camelizes each authored block
+// at its edge — the SAME snake→camel rename `parseConcept` runs, mapping-driven off the concept's
+// `x-key-map` — so everything this SDK hands back is camelCase, like the generated-TS device grain.
+// measurand-tree owns the shared measurand grammar for both sides.
 //
 // The two indirections this untangles:
-//   • catalog_item — an adapter (or anything) names its metered thing by `{archetype_id, slug}`. The
+//   • catalogItem — an adapter (or anything) names its metered thing by `{archetypeId, slug}`. The
 //     ref resolves EITHER to a site_catalog entry (the site-local indirection: `<device
 //     archetype>/<entry slug>`) or, failing that, straight to a grimoire device.
-//   • catalog_patch — the site_catalog entry carries the sparse slug patch `generate-site` baked;
+//   • catalogPatch — the site_catalog entry carries the sparse slug patch `generate-site` baked;
 //     merged onto the loaded grimoire device it puts each measurand column's `slug` in place.
 
-import { type CatalogDevice, type ModbusRegister, loadDevice } from './catalog.ts';
+import { type CatalogDevice, type CatalogIdentity, type ModbusRegister, loadDevice } from './catalog.ts';
+import { camelizeInstance } from '@nodeve/schema-case';
 import { isPlainObject } from 'remeda';
+import { type ConceptTypes, conceptSchema } from './generated/index.ts';
 import { overlayPatch } from './overlay.ts';
 import {
 	type MeasurandCell,
 	type Obj,
 	measurandCells,
 	measurandKey,
+	patchFromWire,
 	specSlugQualified,
 } from './measurand-tree.ts';
 
-/** A baked site bundle, as read from `site.generated.json` (snake_case, pre-validated by the bake). */
+/** A baked site bundle, as read from `site.generated.json` (snake_case wire twin — this reader
+ *  camelizes each block it consumes at the edge). */
 export type SiteBundle = Record<string, unknown>;
+
+type SiteCatalogEntry = ConceptTypes['siteCatalog'];
+type SiteAdapter = ConceptTypes['siteAdapter'];
+
+/** Camelize one authored bundle block against its concept schema — the `parseConcept` snake→camel
+ *  edge, minus re-validation (the bake already validated). A free-form leaf (`catalogPatch`) rides
+ *  through snake, camelized separately by `patchFromWire` at overlay. */
+const camelizeBlock = <K extends keyof ConceptTypes>(concept: K, data: unknown): ConceptTypes[K] =>
+	camelizeInstance(conceptSchema[concept], data) as ConceptTypes[K];
 
 /** One flattened sensor: its deterministic ids — SCOPED `slug` (device-local; a producer that already
  *  namespaces under its node/topic emits this) + QUALIFIED `slugQualified` (instance-prefixed, globally
@@ -46,46 +60,43 @@ export interface ResolvedDevice {
 }
 
 const asObj = (v: unknown): Obj => (isPlainObject(v) ? v : {});
-// Named identityOf (not identity) — extracts an identity object, unlike remeda.identity.
-const identityOf = (v: unknown): { archetype_id?: string; slug?: string } => asObj(v) as never;
-/** A wire `catalog_item` ref, as authored in a site bundle (snake — this reader never reshapes). */
-export type CatalogItemRef = { archetype_id: string; slug: string };
-const refKey = ({ archetype_id, slug }: CatalogItemRef): string => `${archetype_id}/${slug}`;
+/** A `catalogItem` ref — camel `{archetypeId, slug}`, the same identity a device loads by. */
+export type CatalogItemRef = CatalogIdentity;
+const refKey = ({ archetypeId, slug }: CatalogItemRef): string => `${archetypeId}/${slug}`;
 
 function siteIndexes(bundle: SiteBundle) {
-	const catalog = (Array.isArray(bundle.site_catalog) ? bundle.site_catalog : []) as Obj[];
-	const adapters = (Array.isArray(bundle.site_adapter) ? bundle.site_adapter : []) as Obj[];
-	const bySiteRef = new Map<string, Obj>();
-	for (const entry of catalog) {
-		const item = identityOf(asObj(entry.inventory).catalog_item);
-		bySiteRef.set(`${item.archetype_id}/${identityOf(entry.identity).slug}`, entry);
-	}
-	const byAdapterSlug = new Map<string, Obj>(
-		adapters.map((adapter) => [identityOf(adapter.identity).slug as string, adapter]),
+	const catalog = (Array.isArray(bundle.site_catalog) ? bundle.site_catalog : []).map((e) =>
+		camelizeBlock('siteCatalog', e),
 	);
+	const adapters = (Array.isArray(bundle.site_adapter) ? bundle.site_adapter : []).map((a) =>
+		camelizeBlock('siteAdapter', a),
+	);
+	const bySiteRef = new Map<string, SiteCatalogEntry>();
+	for (const entry of catalog)
+		bySiteRef.set(`${entry.inventory?.catalogItem?.archetypeId}/${entry.identity?.slug}`, entry);
+	const byAdapterSlug = new Map(adapters.map((a) => [a.identity?.slug as string, a]));
 	return { adapters, bySiteRef, byAdapterSlug };
 }
 
-function resolveDevice(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): ResolvedDevice {
+function resolveDevice(bySiteRef: Map<string, SiteCatalogEntry>, ref: CatalogItemRef): ResolvedDevice {
 	const entry = bySiteRef.get(refKey(ref));
 	if (!entry) {
-		const device = loadDevice({ archetypeId: ref.archetype_id, slug: ref.slug });
+		const device = loadDevice(ref);
 		return { device, patch: {}, merged: device, siteLocal: false };
 	}
-	const inventory = asObj(entry.inventory);
-	const item = identityOf(inventory.catalog_item);
-	const device = loadDevice({
-		archetypeId: item.archetype_id as string,
-		slug: item.slug as string,
-	});
-	const patch = asObj(inventory.catalog_patch);
+	const item = entry.inventory?.catalogItem;
+	const device = loadDevice({ archetypeId: item?.archetypeId as string, slug: item?.slug as string });
+	// catalogPatch rode through as a free-form snake leaf (its shape is the device's, no schema knows
+	// it); camelize it to the device grain before overlaying — the merged tree, and so this whole SDK,
+	// is camel end to end.
+	const patch = patchFromWire(asObj(entry.inventory?.catalogPatch));
 	return { device, patch, merged: overlayPatch(device, patch) as CatalogDevice, siteLocal: true };
 }
 
-function sensorsFor(bySiteRef: Map<string, Obj>, ref: CatalogItemRef): SiteSensor[] {
+function sensorsFor(bySiteRef: Map<string, SiteCatalogEntry>, ref: CatalogItemRef): SiteSensor[] {
 	const { merged, siteLocal } = resolveDevice(bySiteRef, ref);
 	// The instance prefix the bake qualified ids with is the site_catalog entry's own slug.
-	const instance = identityOf(bySiteRef.get(refKey(ref))?.identity).slug ?? '';
+	const instance = bySiteRef.get(refKey(ref))?.identity?.slug ?? '';
 	return measurandCells(merged).map((cell) => {
 		// The bake stamps only the QUALIFIED id; the SCOPED (device-local) slug is it minus the
 		// `<instance>_` prefix — not stored twice. `cell.interval` (from specSlug) stays the raw
@@ -159,10 +170,10 @@ export function openSite(bundle: SiteBundle) {
 
 	return {
 		bundle,
-		/** The site's adapters, in bundle order (raw snake entries). */
+		/** The site's adapters, in bundle order (camelCased). */
 		adapters,
 		/** One adapter by its `identity.slug`, or throw. */
-		adapter(slug: string): Obj {
+		adapter(slug: string): SiteAdapter {
 			const a = byAdapterSlug.get(slug);
 			if (!a)
 				throw new Error(
@@ -172,13 +183,11 @@ export function openSite(bundle: SiteBundle) {
 		},
 		resolve,
 		sensors,
-		/** The sensors an adapter meters — `sensors(adapter.ingest.catalog_item)`. */
-		adapterSensors(adapter: Obj): SiteSensor[] {
-			const ref = identityOf(asObj(adapter.ingest).catalog_item);
-			if (!ref.archetype_id || !ref.slug)
-				throw new Error(
-					`site_adapter "${identityOf(adapter.identity).slug}" has no ingest.catalog_item`,
-				);
+		/** The sensors an adapter meters — `sensors(adapter.ingest.catalogItem)`. */
+		adapterSensors(adapter: SiteAdapter): SiteSensor[] {
+			const ref = adapter.ingest?.catalogItem;
+			if (!ref?.archetypeId || !ref.slug)
+				throw new Error(`site_adapter "${adapter.identity?.slug}" has no ingest.catalog_item`);
 			return sensors(ref as CatalogItemRef);
 		},
 	};

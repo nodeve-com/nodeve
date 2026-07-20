@@ -1,0 +1,8 @@
+title:
+  en: Bit Rate
+refs:
+  - registry_id: qudt_quantity_kind
+    term: BitRate
+    match: exact
+identity:
+  broader: data_rate

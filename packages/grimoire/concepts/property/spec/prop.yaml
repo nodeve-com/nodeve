@@ -1,0 +1,7 @@
+title: { en: Prop, pt: Prop }
+description:
+  en: "The fields a feature groups: a `<name>: overlay` map, the key a bare property slug (`{}` includes it unchanged, an overlay refines it). Feature-level only — a class assembles features, never a bare field."
+  pt: "Os campos que um elemento agrupa: um mapa `<name>: overlay`, sendo a chave um slug de propriedade (`{}` inclui-a inalterada, um overlay refina-a). Apenas ao nível de elemento."
+schema:
+  type: object
+  additionalProperties: true # keys are property slugs — kit/resolve-slug.ts rejects an unknown one

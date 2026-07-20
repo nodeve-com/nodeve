@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "byteOrder": Type.Optional(byteOrde
 
 export type UsbhidNumeric = { "byteOrder"?: byteOrder_.ByteOrder; "scaleOverrides"?: scaleOverrides_.ScaleOverrides };
 
-type DataT = { readonly "body": { readonly "en": "The USB-HID numeric EXTRAS — the two decode fields a diag byte-field (usbhid_fields) and a config parameter (usbhid_params) share beyond the common numeric_decode core, needed by byte-addressed media but not modbus/VE.Direct: `byte_order` for multi-byte types, and per-firmware-profile `scale_overrides` (keyed by the profile a link firmware rule selects).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_numeric" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "scaleOverrides": typeof scaleOverrides_ } };
+type DataT = { readonly "body": { readonly "en": "The USB-HID numeric EXTRAS — the two decode fields a diag byte-field (usbhid_fields) and a config parameter (usbhid_params) share beyond the common numeric_decode core, needed by byte-addressed media but not modbus/VE.Direct: `byte_order` for multi-byte types, and per-firmware-profile `scale_overrides` (keyed by the profile a link firmware rule selects).\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "usbhid_numeric" }; readonly "prop": { readonly "byteOrder": typeof byteOrder_; readonly "scaleOverrides": typeof scaleOverrides_ }; readonly "title": { readonly "en": "USBHID Numeric" } };
 
 const _data: DataT = {
 	"body": {
@@ -27,6 +27,9 @@ const _data: DataT = {
 	"prop": {
 		"byteOrder": byteOrder_,
 		"scaleOverrides": scaleOverrides_
+	},
+	"title": {
+		"en": "USBHID Numeric"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

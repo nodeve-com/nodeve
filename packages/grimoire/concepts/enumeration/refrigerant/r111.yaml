@@ -1,0 +1,8 @@
+title:
+  en: Pentachlorofluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-111
+    match: exact
+substance:
+  formula: C2FCl5

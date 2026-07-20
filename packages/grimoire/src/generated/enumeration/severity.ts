@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "The bullseye — narrowest band, tightest around the optimum."
     },
+    "identity": {
+      "slug": "best"
+    },
     "title": {
       "en": "Best",
       "pt": "Ótimo"
@@ -18,6 +21,9 @@ export default {
     "description": {
       "en": "Closer to optimum — a narrower band inside good."
     },
+    "identity": {
+      "slug": "better"
+    },
     "title": {
       "en": "Better",
       "pt": "Melhor"
@@ -27,6 +33,9 @@ export default {
     "code": "caution",
     "description": {
       "en": "Approaching a bound — watch it; below the warning threshold. (medium/elevated)"
+    },
+    "identity": {
+      "slug": "caution"
     },
     "refs": [
       {
@@ -44,6 +53,9 @@ export default {
     "code": "critical",
     "description": {
       "en": "Immediate action required — the thing is unusable or unsafe; hard protection acts."
+    },
+    "identity": {
+      "slug": "critical"
     },
     "refs": [
       {
@@ -67,6 +79,9 @@ export default {
     "description": {
       "en": "Beyond failure — permanent destruction (burnout, explosion); no recovery."
     },
+    "identity": {
+      "slug": "fatal"
+    },
     "refs": [
       {
         "match": "close",
@@ -84,6 +99,9 @@ export default {
     "description": {
       "en": "Acceptable — the widest desirable band; no concern."
     },
+    "identity": {
+      "slug": "good"
+    },
     "title": {
       "en": "Good",
       "pt": "Bom"
@@ -97,6 +115,9 @@ export default {
     "description": {
       "en": "The healthy design centre — no concern, the zero of the severity ramp; a band's `value` is its nominated centre."
     },
+    "identity": {
+      "slug": "nominal"
+    },
     "title": {
       "en": "Nominal",
       "pt": "Nominal"
@@ -106,6 +127,9 @@ export default {
     "code": "notice",
     "description": {
       "en": "Worth surfacing but no action needed — the first rung above nominal. (low)"
+    },
+    "identity": {
+      "slug": "notice"
     },
     "refs": [
       {
@@ -128,6 +152,9 @@ export default {
     "code": "warning",
     "description": {
       "en": "Out of normal range — action expected before escalation. (high/warning)"
+    },
+    "identity": {
+      "slug": "warning"
     },
     "refs": [
       {

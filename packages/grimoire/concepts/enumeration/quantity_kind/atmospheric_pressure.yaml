@@ -1,0 +1,11 @@
+title:
+  en: Atmospheric Pressure
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AtmosphericPressure
+    match: exact
+  - registry_id: wikidata
+    term: Q81809
+    match: exact
+identity:
+  broader: pressure

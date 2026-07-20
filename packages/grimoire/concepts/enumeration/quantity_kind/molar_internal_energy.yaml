@@ -1,0 +1,8 @@
+title:
+  en: Molar Internal Energy
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MolarInternalEnergy
+    match: exact
+identity:
+  broader: molar_energy

@@ -1,0 +1,8 @@
+title:
+  en: Trichlorodifluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-242
+    match: exact
+substance:
+  formula: C3H3F2Cl3

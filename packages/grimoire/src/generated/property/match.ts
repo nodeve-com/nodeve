@@ -12,12 +12,20 @@ export const schema: TSchema = Type.Union([Type.Literal("exact"), Type.Literal("
 
 export type Match = "exact" | "close" | "broad" | "narrow" | "related";
 
-type DataT = { readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "match" } };
+type DataT = { readonly "description": { readonly "en": "How closely a `refs` row maps this concept to its external term — the SKOS mapping strengths (exact, close, broad, narrow, related)."; readonly "pt": "Quão exatamente uma linha `refs` mapeia este conceito para o seu termo externo — as forças de mapeamento SKOS (exact, close, broad, narrow, related)." }; readonly "identity": { readonly "archetypeId": "property"; readonly "slug": "match" }; readonly "title": { readonly "en": "Match"; readonly "pt": "Correspondência" } };
 
 const _data: DataT = {
+	"description": {
+		"en": "How closely a `refs` row maps this concept to its external term — the SKOS mapping strengths (exact, close, broad, narrow, related).",
+		"pt": "Quão exatamente uma linha `refs` mapeia este conceito para o seu termo externo — as forças de mapeamento SKOS (exact, close, broad, narrow, related)."
+	},
 	"identity": {
 		"archetypeId": "property",
 		"slug": "match"
+	},
+	"title": {
+		"en": "Match",
+		"pt": "Correspondência"
 	}
 };
-export const { identity } = _data;
+export const { description, identity, title } = _data;

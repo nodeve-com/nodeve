@@ -12,12 +12,13 @@ import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as product_ from '../features/product.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "product": Type.Optional(product_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "product": Type.Optional(product_.schema) }, {"additionalProperties":false});
 
-export type BatteryCharger = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "product"?: product_.Product };
+export type BatteryCharger = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "product"?: product_.Product };
 
 type DataT = { readonly "description": { readonly "en": "A mains-powered battery charger (identity + product facts; specs as catalogued)."; readonly "pt": "Um carregador de baterias alimentado pela rede (identidade + factos do produto)." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "battery_charger" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "product": typeof product_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Battery charger"; readonly "pt": "Carregador de baterias" } };
 

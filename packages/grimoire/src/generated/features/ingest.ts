@@ -15,7 +15,7 @@ export const schema: TSchema = Type.Object({ "ingestKind": Type.Union([Type.Lite
 
 export type Ingest = { "ingestKind": "modbus_poll" | "modbus_tap"; "platform"?: "esphome" | "farana" | "telegraf"; "catalogItem"?: catalogItem_.CatalogItem; "serviceId"?: serviceId_.ServiceId; "networkInterfaceId"?: networkInterfaceId_.NetworkInterfaceId };
 
-type DataT = { readonly "body": { readonly "en": "How a site adapter INGESTS the metered thing (`catalog_item`) via its decoder `platform`. `ingest_kind` names the mode: modbus_tap = PASSIVE TAP (sniff an existing master's traffic, republish its `modbus_tap_window` windows — the member doubles as the path segment); modbus_tcp = POLLED MASTER (dial the device's Modbus-TCP surface, read it directly). Add enum members here as more modes appear.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } }; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "serviceId": typeof serviceId_ } };
+type DataT = { readonly "body": { readonly "en": "How a site adapter INGESTS the metered thing (`catalog_item`) via its decoder `platform`. `ingest_kind` names the mode: modbus_tap = PASSIVE TAP (sniff an existing master's traffic, republish its `modbus_tap_window` windows — the member doubles as the path segment); modbus_tcp = POLLED MASTER (dial the device's Modbus-TCP surface, read it directly). Add enum members here as more modes appear.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ingest" }; readonly "prop": { readonly "catalogItem": Omit<typeof catalogItem_, "title"> & { readonly "title": { readonly "en": "Site Catalog Item" } }; readonly "networkInterfaceId": typeof networkInterfaceId_; readonly "serviceId": typeof serviceId_ }; readonly "title": { readonly "en": "Ingest" } };
 
 const _data: DataT = {
 	"body": {
@@ -34,6 +34,9 @@ const _data: DataT = {
 		},
 		"networkInterfaceId": networkInterfaceId_,
 		"serviceId": serviceId_
+	},
+	"title": {
+		"en": "Ingest"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

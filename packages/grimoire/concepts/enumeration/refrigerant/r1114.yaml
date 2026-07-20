@@ -1,0 +1,8 @@
+title:
+  en: Tetrafluoroethylene
+refs:
+  - registry_id: ashrae_34
+    term: R-1114
+    match: exact
+substance:
+  formula: C2F4

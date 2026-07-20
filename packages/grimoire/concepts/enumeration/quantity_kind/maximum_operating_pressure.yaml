@@ -1,0 +1,8 @@
+title:
+  en: Maximum Operating Pressure
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MaximumOperatingPressure
+    match: exact
+identity:
+  broader: pressure

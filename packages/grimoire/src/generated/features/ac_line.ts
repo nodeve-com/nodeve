@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type AcLine = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "voltage"?: specification_.Specification } } };
 
-type DataT = { readonly "body": { readonly "en": "features/ac_line.yaml — one AC LINE: the line-to-line voltage measurand of a polyphase AC connection (the voltage BETWEEN two phases — U_AB/U_BC/U_CA), distinct from the phase-to-neutral quantities of ac_phase. A single line carries one measured prop, `voltage` — cited from property by name, not picked from `electrical` (that would drag in current/active_power a line-to-line pair doesn't have). The AB/BC/CA identity is the REPEATED feature's ordinal (meter.ts gives the ac_line slot count 3), never a field here: the feature describes ONE line. Flat measured quantity-kind — `intervals` are authored on the catalog entry. Add more props if a datasheet states them.\n" }; readonly "description": { readonly "en": "Line-to-line voltage of a polyphase AC connection, one instance per line pair (U_AB / U_BC / U_CA)."; readonly "pt": "Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ac_line" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "iec_61850"; readonly "term": "MMXU.PPV" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "PPVphAB" }, { readonly "match": "related"; readonly "registryId": "cim"; readonly "term": "PhaseCode.AB" }]; readonly "title": { readonly "en": "AC line"; readonly "pt": "Linha CA" } };
+type DataT = { readonly "body": { readonly "en": "features/ac_line.yaml — one AC LINE: the line-to-line voltage measurand of a polyphase AC connection (the voltage BETWEEN two phases — U_AB/U_BC/U_CA), distinct from the phase-to-neutral quantities of ac_phase. A single line carries one measured prop, `voltage` — cited from property by name, not picked from `electrical` (that would drag in current/active_power a line-to-line pair doesn't have). The AB/BC/CA identity is the REPEATED feature's ordinal (meter.ts gives the ac_line slot count 3), never a field here: the feature describes ONE line. Flat measured quantity-kind — `intervals` are authored on the catalog entry. Add more props if a datasheet states them.\n" }; readonly "description": { readonly "en": "Line-to-line voltage of a polyphase AC connection, one instance per line pair (U_AB / U_BC / U_CA)."; readonly "pt": "Tensão entre linhas de uma ligação CA polifásica, uma instância por par de linhas (U_AB / U_BC / U_CA)." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "ac_line" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "voltage": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "close"; readonly "registryId": "iec_61850"; readonly "term": "MMXU.PPV" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "PPVphAB" }, { readonly "match": "related"; readonly "registryId": "cim"; readonly "term": "PhaseCode.AB" }]; readonly "title": { readonly "en": "AC line"; readonly "pt": "Linha CA" } };
 
 const _data: DataT = {
 	"body": {
@@ -35,6 +35,9 @@ const _data: DataT = {
 					"prop": {
 						"voltage": {
 							...specification_,
+							"identity": {
+								"slug": "voltage"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "V"
@@ -44,6 +47,11 @@ const _data: DataT = {
 									"match": "exact",
 									"registryId": "qudt_quantity_kind",
 									"term": "Voltage"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q25428"
 								},
 								{
 									"match": "exact",

@@ -1,20 +1,23 @@
-// Source indexes for the concept layers (concepts/property|features|archetypes|parts) —
-// the file-walking half of the YAML→schema compiler (kit/compile.ts holds the composition).
-// BUILD- AND TEST-ONLY: imports `yaml` + `fs`; nothing on the runtime path may import it.
+// Source indexes for the concept layers (property|features|archetypes|parts) — the file-walking
+// half of the schema compiler (kit/compile.ts holds the composition). Reads the SCRIBED JSON
+// database (artifacts/database/), NOT the raw YAML: scribe already folded the `_defaults.yaml`
+// cascade and stamped identity, so everything here works against desugared JSON. The only YAML
+// reader in grimoire is scribe/. BUILD- AND TEST-ONLY: imports `fs`; nothing on the runtime path
+// may import it.
 
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { isPlainObject } from 'remeda';
-import { parse as parseYaml } from 'yaml';
 
 export type Obj = Record<string, unknown>;
 
 /** `src/` — the runtime TS surface (glue over the generated projection). */
 export const SRC_DIR = import.meta.dirname;
 
-/** The `concepts/` source tree and its layer dirs — single-sourced here so every generator/guard
- *  imports them instead of re-deriving the same `join(root, 'concepts', …)` per file. */
-export const CONCEPTS = join(SRC_DIR, '..', 'concepts');
+/** The scribed JSON database — the desugared concept tree (`_defaults` folded, identity stamped)
+ *  scribe emits from `concepts/`. Every generator/guard reads THIS, not the raw YAML; `CONCEPTS`
+ *  keeps its name (the conceptual root) but points at the JSON mirror. `pnpm scribe` builds it. */
+export const CONCEPTS = join(SRC_DIR, '..', 'artifacts', 'database');
 export const PROPERTY_DIR = join(CONCEPTS, 'property');
 export const ENUMERATION_DIR = join(CONCEPTS, 'enumeration');
 export const FEATURES_DIR = join(CONCEPTS, 'features');
@@ -30,14 +33,14 @@ export const ARTIFACTS_CATALOG_DIR = join(ARTIFACTS_DIR, 'catalog');
  *  beside `artifacts/`; the guards sweep it. */
 export const GENERATED_DIR = join(SRC_DIR, 'generated');
 
-/** Every `.yaml` under `dir` recursively (absolute paths), skipping `_`-prefixed cascade files. */
-export function yamlFiles(dir: string): string[] {
+/** Every `.json` under `dir` recursively (absolute paths). The database holds no cascade files
+ *  (scribe consumed the `_defaults.yaml`), so there is nothing to skip. */
+export function jsonFiles(dir: string): string[] {
 	const out: string[] = [];
 	for (const name of readdirSync(dir)) {
-		if (name.startsWith('_')) continue;
 		const p = join(dir, name);
-		if (statSync(p).isDirectory()) out.push(...yamlFiles(p));
-		else if (name.endsWith('.yaml')) out.push(p);
+		if (statSync(p).isDirectory()) out.push(...jsonFiles(p));
+		else if (name.endsWith('.json')) out.push(p);
 	}
 	return out;
 }
@@ -56,15 +59,15 @@ export function tsFiles(root: string, skip: (path: string) => boolean = () => fa
 	return walk(root).sort();
 }
 
-/** THE single YAML load surface — the only `readFileSync`+`parseYaml` pair in grimoire. Every
- *  generator, guard, and site bake reads through here (empty file → `{}`). */
-export const readYaml = (path: string): Obj => (parseYaml(readFileSync(path, 'utf8')) ?? {}) as Obj;
+/** Read one scribed database doc — the desugared JSON a source `.yaml` became. THE single load
+ *  surface downstream of scribe (empty → `{}`). */
+export const readJson = (path: string): Obj => (JSON.parse(readFileSync(path, 'utf8')) ?? {}) as Obj;
 
 /** slug → file path for one concept layer dir; slugs are file stems, unique per layer. */
 function indexLayer(dir: string): Map<string, string> {
 	const out = new Map<string, string>();
-	for (const path of yamlFiles(join(CONCEPTS, dir))) {
-		const slug = path.split('/').pop()!.slice(0, -'.yaml'.length);
+	for (const path of jsonFiles(join(CONCEPTS, dir))) {
+		const slug = path.split('/').pop()!.slice(0, -'.json'.length);
 		const prior = out.get(slug);
 		if (prior)
 			throw new Error(
@@ -87,8 +90,8 @@ export const layerIndex = (dir: string): Map<string, string> => {
 export function enumerationMembers(name: string): string[] {
 	const dir = join(CONCEPTS, 'enumeration', name);
 	return readdirSync(dir)
-		.filter((f) => f.endsWith('.yaml') && !f.startsWith('_'))
-		.map((f) => f.slice(0, -'.yaml'.length))
+		.filter((f) => f.endsWith('.json'))
+		.map((f) => f.slice(0, -'.json'.length))
 		.sort();
 }
 
@@ -121,38 +124,29 @@ export function asList(v: unknown, field: string, stack: string[]): string[] {
 export const fieldSource = (slug: string): string | undefined =>
 	layerIndex('property').get(slug) ?? layerIndex('enumeration').get(slug);
 
-/** The def-language keys the pipeline consumes off a `def`, computed from the def itself — the SINGLE
- *  definition of the instruction vocabulary, shared by the resolver (seeds its `consumed` set, which
- *  dataOf drops) and generate.ts (strips them before validating a doc's DATA against the archetype).
- *  Replaces a hand-kept keyword table that duplicated the resolver's branches. `prop` is always
- *  consumed (own-field overlays); `schema` is the projection passthrough (kit/project.ts merges an
- *  object node's `schema:` block) — an instruction for the VALIDATOR, but the resolver keeps it as
- *  node data (dataOf must not drop it), so the resolver removes `schema` from its own `consumed`. */
-export function instructionKeys(def: Obj): Set<string> {
-	const keys = new Set<string>(['prop']);
-	if (isPlainObject(def.concept_settings) && Object.keys(def.concept_settings).length > 0)
-		keys.add('concept_settings');
-	for (const verb of ['enums', 'feature', 'archetype', 'schema'] as const) {
-		if (def[verb] !== undefined) keys.add(verb);
-	}
-	return keys;
-}
+/** A def's FEATURE-only grammar (concepts/features/feature_settings.yaml): the fields it groups
+ *  (`prop`) and the enumerations it binds (`enums`). The one accessor — reads through the block
+ *  rather than the document root, where these keys no longer live. */
+export const featureSettingsOf = (def: Obj): Obj =>
+	isPlainObject(def.feature_settings) ? (def.feature_settings as Obj) : {};
 
-/** A field's source doc with its immediate dir `_defaults.yaml` merged under it (member wins) —
- *  the same cascade the enumeration bake applies, so a dir-wide fact (e.g. quantity_kind's
- *  archetype / `feature: spec_block` binding) lives once in the dir. */
+/** The def-language keys the resolver consumes off a `def` — everything else it states is node data
+ *  (dataOf keeps it). DERIVED, not listed: the def language lives entirely in `*_settings` blocks
+ *  (`concept_settings` shared, `feature_settings` feature-only, `archetype_settings` archetype-only),
+ *  so the suffix IS the rule and a new block needs no edit here. Note `schema` is deliberately absent
+ *  — it's a projection passthrough (kit/project.ts merges an object node's `schema:` block), so it
+ *  must survive as node data; it used to be added here only for the caller to delete again. */
+export const instructionKeys = (def: Obj): Set<string> =>
+	new Set(Object.keys(def).filter((key) => key.endsWith('_settings')));
+
+/** A field's scribed source doc — the `_defaults.yaml` cascade is already folded in (scribe did it),
+ *  so this is a plain read. Backs a `property/` field or an `enumeration/` member used as a field
+ *  (a quantity_kind kind bound via `feature: spec_block`). */
 export function propertyDoc(slug: string): { doc: Obj; path: string } {
 	const path = fieldSource(slug);
 	if (!path)
 		throw new Error(
-			`grimoire compile: no property/**/ or enumeration/**/${slug}.yaml backs prop "${slug}"`,
+			`grimoire compile: no property/**/ or enumeration/**/${slug}.json backs prop "${slug}"`,
 		);
-	const defaultsPath = join(path.slice(0, path.lastIndexOf('/')), '_defaults.yaml');
-	let defaults: Obj = {};
-	try {
-		defaults = readYaml(defaultsPath);
-	} catch {
-		// no category defaults file
-	}
-	return { doc: { ...defaults, ...readYaml(path) }, path };
+	return { doc: readJson(path), path };
 }

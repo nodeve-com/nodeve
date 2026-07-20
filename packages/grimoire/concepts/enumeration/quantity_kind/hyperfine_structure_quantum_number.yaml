@@ -1,0 +1,11 @@
+title:
+  en: Hyperfine Structure Quantum Number
+refs:
+  - registry_id: qudt_quantity_kind
+    term: HyperfineStructureQuantumNumber
+    match: exact
+  - registry_id: wikidata
+    term: Q97577449
+    match: exact
+identity:
+  broader: quantum_number

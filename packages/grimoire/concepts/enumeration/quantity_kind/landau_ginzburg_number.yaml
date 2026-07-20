@@ -1,0 +1,8 @@
+title:
+  en: Landau-Ginzburg Number
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LandauGinzburgNumber
+    match: exact
+identity:
+  broader: dimensionless_ratio

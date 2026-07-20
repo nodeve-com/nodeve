@@ -1,0 +1,8 @@
+title:
+  en: Flight Performance Reserve Propellant Mass
+refs:
+  - registry_id: qudt_quantity_kind
+    term: FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS
+    match: exact
+identity:
+  broader: mass

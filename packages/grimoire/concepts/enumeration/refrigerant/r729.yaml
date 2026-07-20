@@ -1,0 +1,10 @@
+title:
+  en: Air N2/O2/Ar (78.082/20.945/.934 vol%)
+refs:
+  - registry_id: ashrae_34
+    term: R-729
+    match: exact
+substance:
+  safety_class: A1
+  formula: 78.082%N2·20.945%O2·.934%Ar
+  gwp: 391.25

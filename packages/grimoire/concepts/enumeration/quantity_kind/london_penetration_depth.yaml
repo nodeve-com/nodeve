@@ -1,0 +1,11 @@
+title:
+  en: London Penetration Depth
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LondonPenetrationDepth
+    match: exact
+  - registry_id: wikidata
+    term: Q3277853
+    match: exact
+identity:
+  broader: length

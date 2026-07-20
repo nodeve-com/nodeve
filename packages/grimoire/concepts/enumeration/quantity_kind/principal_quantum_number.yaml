@@ -1,0 +1,11 @@
+title:
+  en: Principal Quantum Number
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PrincipalQuantumNumber
+    match: exact
+  - registry_id: wikidata
+    term: Q867448
+    match: exact
+identity:
+  broader: quantum_number

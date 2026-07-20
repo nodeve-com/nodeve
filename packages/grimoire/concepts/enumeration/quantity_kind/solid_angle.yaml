@@ -1,0 +1,9 @@
+title:
+  en: Solid Angle
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SolidAngle
+    match: exact
+  - registry_id: wikidata
+    term: Q208476
+    match: exact

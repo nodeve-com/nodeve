@@ -12,7 +12,7 @@
 // with a WHY. Run standalone any time: `node scripts/guard-feature-dupes.ts`.
 import { readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
-import { FEATURES_DIR, readYaml } from '../src/concept-sources.ts';
+import { FEATURES_DIR, readJson } from '../src/concept-sources.ts';
 import { runGuard } from './guard-report.ts';
 
 // Unordered `a|b` file-pair keys accepted despite sharing a prop group, each with the reason the
@@ -20,10 +20,10 @@ import { runGuard } from './guard-report.ts';
 const ALLOW = new Set<string>([
 	// catalog_item is the REFERENCE shape — it cites the same (archetype, slug) pair identity
 	// DECLARES on an entry; declaration vs reference of one key, not a shape to extract.
-	'catalog_item.yaml|identity.yaml',
+	'catalog_item.json|identity.json',
 	// Both bind a catalog entry (catalog_ref) and carry their OWN slug (link name / adapter name)
 	// — the pair co-occurs by role, it never travels as one shape.
-	'device_binding.yaml|site_adapter.yaml',
+	'device_binding.json|site_adapter.json',
 ]);
 
 /** Every `.yaml` under a dir, recursively, as paths relative to FEATURES_DIR. */
@@ -32,14 +32,14 @@ function featureFiles(dir: string): string[] {
 		.flatMap((name) => {
 			const path = join(dir, name);
 			if (statSync(path).isDirectory()) return featureFiles(path);
-			return path.endsWith('.yaml') ? [relative(FEATURES_DIR, path)] : [];
+			return path.endsWith('.json') ? [relative(FEATURES_DIR, path)] : [];
 		})
 		.sort();
 }
 
 type FeatureDoc = { prop?: unknown; concept_settings?: { compose?: unknown } } | null;
 const readDoc = (rel: string): FeatureDoc =>
-	readYaml(join(FEATURES_DIR, rel)) as FeatureDoc;
+	readJson(join(FEATURES_DIR, rel)) as FeatureDoc;
 const ownPropKeys = (doc: FeatureDoc): string[] =>
 	doc?.prop && typeof doc.prop === 'object' && !Array.isArray(doc.prop)
 		? Object.keys(doc.prop)
@@ -47,7 +47,7 @@ const ownPropKeys = (doc: FeatureDoc): string[] =>
 
 // slug (file stem) → path, for resolving `concept_settings.compose` targets to their prop shape.
 const byStem = new Map<string, string>(
-	featureFiles(FEATURES_DIR).map((rel) => [rel.split('/').pop()!.slice(0, -'.yaml'.length), rel]),
+	featureFiles(FEATURES_DIR).map((rel) => [rel.split('/').pop()!.slice(0, -'.json'.length), rel]),
 );
 
 /** Prop names a feature's `concept_settings.compose` pulls in (recursively) — shared BY COMPOSITION,

@@ -1,0 +1,11 @@
+title:
+  en: Bulk Modulus
+refs:
+  - registry_id: qudt_quantity_kind
+    term: BulkModulus
+    match: exact
+  - registry_id: wikidata
+    term: Q900371
+    match: exact
+identity:
+  broader: modulus_of_elasticity

@@ -7,16 +7,12 @@
 // (fields + `schema`) so a shape lives once; snake never enters a .ts emit.
 
 import { type TSchema, Type } from '@sinclair/typebox';
-import * as height_ from '../property/height.ts';
-import * as mass_ from '../property/mass.ts';
-import * as thickness_ from '../property/thickness.ts';
-import * as width_ from '../property/width.ts';
 
-export const schema: TSchema = Type.Object({ "width": Type.Optional(width_.schema), "height": Type.Optional(height_.schema), "thickness": Type.Optional(thickness_.schema), "mass": Type.Optional(mass_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "width": Type.Optional(Type.Number({"exclusiveMinimum":0})), "height": Type.Optional(Type.Number({"exclusiveMinimum":0})), "thickness": Type.Optional(Type.Number({"exclusiveMinimum":0})), "mass": Type.Optional(Type.Number({"exclusiveMinimum":0})) }, {"additionalProperties":false});
 
-export type Physical = { "width"?: width_.Width; "height"?: height_.Height; "thickness"?: thickness_.Thickness; "mass"?: mass_.Mass };
+export type Physical = { "width"?: number; "height"?: number; "thickness"?: number; "mass"?: number };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "physical" }; readonly "prop": { readonly "height": typeof height_; readonly "mass": typeof mass_; readonly "thickness": typeof thickness_; readonly "width": typeof width_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "physical" }; readonly "prop": { readonly "height": { readonly "description": { readonly "en": "Physical height of an enclosure/part, millimetres." }; readonly "identity": { readonly "broader": "length"; readonly "slug": "height" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Height" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q208826" }]; readonly "title": { readonly "en": "Height"; readonly "pt": "Altura (mm)" } }; readonly "mass": { readonly "description": { readonly "en": "Physical mass of a part/module, kilograms." }; readonly "identity": { readonly "slug": "mass" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Mass" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11423" }]; readonly "title": { readonly "en": "Mass"; readonly "pt": "Massa (kg)" } }; readonly "thickness": { readonly "description": { readonly "en": "Physical thickness/depth of an enclosure/part, millimetres." }; readonly "identity": { readonly "broader": "length"; readonly "slug": "thickness" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Thickness" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q3589038" }]; readonly "title": { readonly "en": "Thickness"; readonly "pt": "Espessura (mm)" } }; readonly "width": { readonly "description": { readonly "en": "Physical width of an enclosure/part, millimetres." }; readonly "identity": { readonly "broader": "length"; readonly "slug": "width" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Width" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q35059" }]; readonly "title": { readonly "en": "Width"; readonly "pt": "Largura (mm)" } } }; readonly "title": { readonly "en": "Physical" } };
 
 const _data: DataT = {
 	"identity": {
@@ -24,10 +20,108 @@ const _data: DataT = {
 		"slug": "physical"
 	},
 	"prop": {
-		"height": height_,
-		"mass": mass_,
-		"thickness": thickness_,
-		"width": width_
+		"height": {
+			"description": {
+				"en": "Physical height of an enclosure/part, millimetres."
+			},
+			"identity": {
+				"broader": "length",
+				"slug": "height"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Height"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q208826"
+				}
+			],
+			"title": {
+				"en": "Height",
+				"pt": "Altura (mm)"
+			}
+		},
+		"mass": {
+			"description": {
+				"en": "Physical mass of a part/module, kilograms."
+			},
+			"identity": {
+				"slug": "mass"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Mass"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q11423"
+				}
+			],
+			"title": {
+				"en": "Mass",
+				"pt": "Massa (kg)"
+			}
+		},
+		"thickness": {
+			"description": {
+				"en": "Physical thickness/depth of an enclosure/part, millimetres."
+			},
+			"identity": {
+				"broader": "length",
+				"slug": "thickness"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Thickness"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q3589038"
+				}
+			],
+			"title": {
+				"en": "Thickness",
+				"pt": "Espessura (mm)"
+			}
+		},
+		"width": {
+			"description": {
+				"en": "Physical width of an enclosure/part, millimetres."
+			},
+			"identity": {
+				"broader": "length",
+				"slug": "width"
+			},
+			"refs": [
+				{
+					"match": "exact",
+					"registryId": "qudt_quantity_kind",
+					"term": "Width"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q35059"
+				}
+			],
+			"title": {
+				"en": "Width",
+				"pt": "Largura (mm)"
+			}
+		}
+	},
+	"title": {
+		"en": "Physical"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

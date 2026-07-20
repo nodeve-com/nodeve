@@ -21,7 +21,7 @@
 // The resolver is INJECTED (`Resolver`) — this module never reads the concept tree itself.
 
 import { clone, isPlainObject, mergeDeep } from 'remeda';
-import { type Obj, asList, enumerationMembers } from '../src/concept-sources.ts';
+import { type Obj, asList, enumerationMembers, featureSettingsOf } from '../src/concept-sources.ts';
 
 /** Object-node scaffold every resolved shape starts from (kit/compile.ts builds these). Authoring
  *  vocabulary: the props map is `prop`, verbatim from the YAML — no synthesized `fields`/`required`.
@@ -38,7 +38,8 @@ export interface Resolver {
 
 /** A def's `prop:` map — one `<name>: overlay` entry per field it contributes or refines. */
 export function overridesOf(def: Obj): Obj {
-	return isPlainObject(def.prop) ? clone(def.prop) : {};
+	const prop = featureSettingsOf(def).prop;
+	return isPlainObject(prop) ? clone(prop) : {};
 }
 
 function applyParts(options: {

@@ -1,0 +1,11 @@
+title:
+  en: Isentropic Compressibility
+refs:
+  - registry_id: qudt_quantity_kind
+    term: IsentropicCompressibility
+    match: exact
+  - registry_id: wikidata
+    term: Q2990695
+    match: exact
+identity:
+  broader: compressibility

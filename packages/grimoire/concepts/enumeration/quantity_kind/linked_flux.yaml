@@ -1,0 +1,11 @@
+title:
+  en: Linked Flux
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LinkedFlux
+    match: exact
+  - registry_id: wikidata
+    term: Q118540114
+    match: exact
+identity:
+  broader: magnetic_flux

@@ -1,0 +1,8 @@
+title:
+  en: Logarithm of Octanol Water Partition Coefficient
+refs:
+  - registry_id: qudt_quantity_kind
+    term: LogOctanolWaterPartitionCoefficient
+    match: exact
+identity:
+  broader: dimensionless_ratio

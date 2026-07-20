@@ -1,0 +1,16 @@
+title:
+  en: Mass Fraction
+  pt: Fração mássica
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MassFraction
+    match: exact
+  - registry_id: wikidata
+    term: Q899138
+    match: exact
+description:
+  en: A component's share of a mixture by mass, 0–1 (0.5 => 50%). A refrigerant blend's ASHRAE-34 formulation is a list of these; the blend's GWP derives from Σ(mass_fraction × component GWP).
+schema:
+  type: number
+  exclusiveMinimum: 0
+  maximum: 1

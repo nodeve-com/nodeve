@@ -1,0 +1,32 @@
+title: { en: Feature settings, pt: Configurações de elemento }
+description:
+  en: The def-language grammar only a FEATURE may carry — the fields it groups and
+    the enumerations it binds, kept out of the shared concept_settings block so
+    an archetype can never reach them.
+  pt: A gramática de def que só um ELEMENTO pode transportar — os campos que
+    agrupa e as enumerações que associa, mantidos fora do bloco partilhado
+    concept_settings para que um arquétipo nunca lhes chegue.
+body:
+  en: >
+    GROUPING — the feature-level half of the def language, the mirror of
+    features/archetype_settings.yaml. `prop` is the `<name>: overlay` map of
+    fields the feature groups; `enums` binds enumerations, one field per named
+    value set.
+
+
+    WHY A SEPARATE BLOCK, not two more props on `concept_settings`: that block
+    is composed by BOTH meta-defs, so a slot added there is legal on an
+    archetype too — and a bare field or enum on a class is exactly what the
+    layer model forbids (a property or an enum reaches an archetype only one
+    layer down, INSIDE a feature). The three blocks split the def language by
+    who may carry it: `concept_settings` shared, `feature_settings`
+    feature-only, `archetype_settings` archetype-only. Each is declared by the
+    meta-def that allows it, so "feature-only" and "archetype-only" hold BY
+    CONSTRUCTION — the closed projection rejects an undeclared key, and nothing
+    is stripped before it looks. That is what replaced a hand-authored
+    allow-list (the deleted scripts/guard-archetype-features.ts) and, with it,
+    the per-key exceptions that kept re-growing one.
+feature_settings:
+  prop:
+    prop: {}
+    enums: {}

@@ -6,10 +6,9 @@ import * as access_ from './access.ts';
 import * as active_ from './active.ts';
 import * as address_ from './address.ts';
 import * as addresses_ from './addresses.ts';
-import * as aliases_ from './aliases.ts';
 import * as altSetting_ from './alt_setting.ts';
 import * as archetypeId_ from './archetype_id.ts';
-import * as azimuth_ from './azimuth.ts';
+import * as archetypeSlots_ from './archetype_slots.ts';
 import * as baseUrl_ from './base_url.ts';
 import * as baudRate_ from './baud_rate.ts';
 import * as bind_ from './bind.ts';
@@ -23,7 +22,6 @@ import * as combined_ from './combined.ts';
 import * as compose_ from './compose.ts';
 import * as configuration_ from './configuration.ts';
 import * as connectTimeoutMs_ from './connect_timeout_ms.ts';
-import * as count_ from './count.ts';
 import * as dataBits_ from './data_bits.ts';
 import * as decimals_ from './decimals.ts';
 import * as default_ from './default.ts';
@@ -34,11 +32,13 @@ import * as duration_ from './duration.ts';
 import * as emitString_ from './emit_string.ts';
 import * as empty_ from './empty.ts';
 import * as en_ from './en.ts';
+import * as enums_ from './enums.ts';
 import * as equals_ from './equals.ts';
 import * as expect_ from './expect.ts';
 import * as exponentialMovingAverageMs_ from './exponential_moving_average_ms.ts';
 import * as fault_ from './fault.ts';
 import * as featureId_ from './feature_id.ts';
+import * as featureSlots_ from './feature_slots.ts';
 import * as fieldIndex_ from './field_index.ts';
 import * as firmware_ from './firmware.ts';
 import * as format_ from './format.ts';
@@ -48,7 +48,6 @@ import * as fractionLower_ from './fraction_lower.ts';
 import * as fractionUpper_ from './fraction_upper.ts';
 import * as getCommand_ from './get_command.ts';
 import * as gwp_ from './gwp.ts';
-import * as height_ from './height.ts';
 import * as host_ from './host.ts';
 import * as id_ from './id.ts';
 import * as indexOffset_ from './index_offset.ts';
@@ -78,7 +77,6 @@ import * as margin_ from './margin.ts';
 import * as marginLower_ from './margin_lower.ts';
 import * as marginUpper_ from './margin_upper.ts';
 import * as mask_ from './mask.ts';
-import * as mass_ from './mass.ts';
 import * as match_ from './match.ts';
 import * as material_ from './material.ts';
 import * as max_ from './max.ts';
@@ -104,6 +102,7 @@ import * as pathname_ from './pathname.ts';
 import * as pollCommand_ from './poll_command.ts';
 import * as port_ from './port.ts';
 import * as productId_ from './product_id.ts';
+import * as prop_ from './prop.ts';
 import * as pt_ from './pt.ts';
 import * as publish_ from './publish.ts';
 import * as publishedBy_ from './published_by.ts';
@@ -135,9 +134,7 @@ import * as state_ from './state.ts';
 import * as stopBits_ from './stop_bits.ts';
 import * as symbol_ from './symbol.ts';
 import * as term_ from './term.ts';
-import * as thickness_ from './thickness.ts';
 import * as throttleAverageMs_ from './throttle_average_ms.ts';
-import * as tilt_ from './tilt.ts';
 import * as timeoutMs_ from './timeout_ms.ts';
 import * as tolerance_ from './tolerance.ts';
 import * as toleranceLower_ from './tolerance_lower.ts';
@@ -158,7 +155,6 @@ import * as vendorId_ from './vendor_id.ts';
 import * as version_ from './version.ts';
 import * as vocEff_ from './voc_eff.ts';
 import * as vocTempCoeffPctPerC_ from './voc_temp_coeff_pct_per_c.ts';
-import * as width_ from './width.ts';
 import * as wifiSsid_ from './wifi_ssid.ts';
 import * as wordOrder_ from './word_order.ts';
 import * as writeEndpoint_ from './write_endpoint.ts';
@@ -169,10 +165,9 @@ export const property = {
 	active: active_,
 	address: address_,
 	addresses: addresses_,
-	aliases: aliases_,
 	altSetting: altSetting_,
 	archetypeId: archetypeId_,
-	azimuth: azimuth_,
+	archetypeSlots: archetypeSlots_,
 	baseUrl: baseUrl_,
 	baudRate: baudRate_,
 	bind: bind_,
@@ -186,7 +181,6 @@ export const property = {
 	compose: compose_,
 	configuration: configuration_,
 	connectTimeoutMs: connectTimeoutMs_,
-	count: count_,
 	dataBits: dataBits_,
 	decimals: decimals_,
 	default: default_,
@@ -197,11 +191,13 @@ export const property = {
 	emitString: emitString_,
 	empty: empty_,
 	en: en_,
+	enums: enums_,
 	equals: equals_,
 	expect: expect_,
 	exponentialMovingAverageMs: exponentialMovingAverageMs_,
 	fault: fault_,
 	featureId: featureId_,
+	featureSlots: featureSlots_,
 	fieldIndex: fieldIndex_,
 	firmware: firmware_,
 	format: format_,
@@ -211,7 +207,6 @@ export const property = {
 	fractionUpper: fractionUpper_,
 	getCommand: getCommand_,
 	gwp: gwp_,
-	height: height_,
 	host: host_,
 	id: id_,
 	indexOffset: indexOffset_,
@@ -241,7 +236,6 @@ export const property = {
 	marginLower: marginLower_,
 	marginUpper: marginUpper_,
 	mask: mask_,
-	mass: mass_,
 	match: match_,
 	material: material_,
 	max: max_,
@@ -267,6 +261,7 @@ export const property = {
 	pollCommand: pollCommand_,
 	port: port_,
 	productId: productId_,
+	prop: prop_,
 	pt: pt_,
 	publish: publish_,
 	publishedBy: publishedBy_,
@@ -298,9 +293,7 @@ export const property = {
 	stopBits: stopBits_,
 	symbol: symbol_,
 	term: term_,
-	thickness: thickness_,
 	throttleAverageMs: throttleAverageMs_,
-	tilt: tilt_,
 	timeoutMs: timeoutMs_,
 	tolerance: tolerance_,
 	toleranceLower: toleranceLower_,
@@ -321,7 +314,6 @@ export const property = {
 	version: version_,
 	vocEff: vocEff_,
 	vocTempCoeffPctPerC: vocTempCoeffPctPerC_,
-	width: width_,
 	wifiSsid: wifiSsid_,
 	wordOrder: wordOrder_,
 	writeEndpoint: writeEndpoint_,

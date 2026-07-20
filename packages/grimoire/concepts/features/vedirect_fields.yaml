@@ -1,14 +1,27 @@
 title: { en: VE.Direct fields, pt: Campos VE.Direct }
 description:
-  en: The VE.Direct field decode map — a list of rows, each a wire key + how to map it (mirrors modbus_registers).
+  en: The VE.Direct field decode map — a list of rows, each a wire key + how to
+    map it (mirrors modbus_registers).
 body:
   en: >
-    A device's VE.Direct field decode map — a LIST of field rows, the VE.Direct analogue of modbus_registers. Each row names a wire `key` and how to map it: the numeric-decode core (type/scale/decimals/unit) + a measurand link (the shared `interval_item` pointer). The derived MQTT topic comes from the link, falling back to the lowercased wire key.
-    
-    `key` is the case-sensitive VE.Direct wire LABEL (V, VPV, SER#, AC_OUT_V) — the analogue of a register `address`. A LIST (not a slug-keyed map) so decode is pure per-device data living in ONE place on the product: nothing to deep-merge, so nothing can leak product identity into a shared brand cascade (the old keyed-map failure). `type` value set is VE.Direct's (int/hex/bool/string), left to the loose property/decode/type; codes (CS/MPPT/ERR) stay integers, left undecoded.
+    A device's VE.Direct field decode map — a LIST of field rows, the VE.Direct
+    analogue of modbus_registers. Each row names a wire `key` and how to map it:
+    the numeric-decode core (type/scale/decimals/unit) + a measurand link (the
+    shared `interval_item` pointer). The derived MQTT topic comes from the link,
+    falling back to the lowercased wire key.
+
+
+    `key` is the case-sensitive VE.Direct wire LABEL (V, VPV, SER#, AC_OUT_V) —
+    the analogue of a register `address`. A LIST (not a slug-keyed map) so
+    decode is pure per-device data living in ONE place on the product: nothing
+    to deep-merge, so nothing can leak product identity into a shared brand
+    cascade (the old keyed-map failure). `type` value set is VE.Direct's
+    (int/hex/bool/string), left to the loose property/decode/type; codes
+    (CS/MPPT/ERR) stay integers, left undecoded.
 
 concept_settings:
-  compose: [measurand_link, numeric_decode]
+  compose: [ measurand_link, numeric_decode ]
   is_array: true
-prop:
-  key: {}
+feature_settings:
+  prop:
+    key: {}

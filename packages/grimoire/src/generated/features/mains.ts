@@ -12,7 +12,7 @@ export const schema: TSchema = Type.Object({ "voltage": Type.Optional(Type.Numbe
 
 export type Mains = { "voltage"?: number; "frequency"?: number };
 
-type DataT = { readonly "body": { readonly "en": "The nominal AC supply a grid region is built around — its rated mains `voltage` and `frequency` (the universal quantity_kinds; no region-local field is coined). Grouped once so grid_region — and any future supply-referencing thing — nests these rather than restating them. Fill only known values, never fabricate.\n" }; readonly "description": { readonly "en": "Nominal AC supply — rated voltage and mains frequency."; readonly "pt": "Alimentação CA nominal — tensão nominal e frequência da rede." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mains" }; readonly "prop": { readonly "frequency": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "voltage": { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } }; readonly "title": { readonly "en": "Mains"; readonly "pt": "Rede elétrica" } };
+type DataT = { readonly "body": { readonly "en": "The nominal AC supply a grid region is built around — its rated mains `voltage` and `frequency` (the universal quantity_kinds; no region-local field is coined). Grouped once so grid_region — and any future supply-referencing thing — nests these rather than restating them. Fill only known values, never fabricate.\n" }; readonly "description": { readonly "en": "Nominal AC supply — rated voltage and mains frequency."; readonly "pt": "Alimentação CA nominal — tensão nominal e frequência da rede." }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "mains" }; readonly "prop": { readonly "frequency": { readonly "identity": { readonly "broader": "inverse_time"; readonly "slug": "frequency" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "Hz" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Frequency" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11652" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "frequency" }]; readonly "title": { readonly "en": "Frequency"; readonly "pt": "Frequência" } }; readonly "voltage": { readonly "identity": { readonly "slug": "voltage" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "V" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Voltage" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q25428" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "voltage" }]; readonly "title": { readonly "en": "Voltage"; readonly "pt": "Tensão" } } }; readonly "title": { readonly "en": "Mains"; readonly "pt": "Rede elétrica" } };
 
 const _data: DataT = {
 	"body": {
@@ -28,6 +28,10 @@ const _data: DataT = {
 	},
 	"prop": {
 		"frequency": {
+			"identity": {
+				"broader": "inverse_time",
+				"slug": "frequency"
+			},
 			"measurand": {
 				"accumulation": "instantaneous",
 				"siUnit": "Hz"
@@ -37,6 +41,11 @@ const _data: DataT = {
 					"match": "exact",
 					"registryId": "qudt_quantity_kind",
 					"term": "Frequency"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q11652"
 				},
 				{
 					"match": "exact",
@@ -50,6 +59,9 @@ const _data: DataT = {
 			}
 		},
 		"voltage": {
+			"identity": {
+				"slug": "voltage"
+			},
 			"measurand": {
 				"accumulation": "instantaneous",
 				"siUnit": "V"
@@ -59,6 +71,11 @@ const _data: DataT = {
 					"match": "exact",
 					"registryId": "qudt_quantity_kind",
 					"term": "Voltage"
+				},
+				{
+					"match": "exact",
+					"registryId": "wikidata",
+					"term": "Q25428"
 				},
 				{
 					"match": "exact",

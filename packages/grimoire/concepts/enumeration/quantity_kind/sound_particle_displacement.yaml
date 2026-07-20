@@ -1,0 +1,11 @@
+title:
+  en: Sound Particle Displacement
+refs:
+  - registry_id: qudt_quantity_kind
+    term: SoundParticleDisplacement
+    match: exact
+  - registry_id: wikidata
+    term: Q779457
+    match: exact
+identity:
+  broader: length

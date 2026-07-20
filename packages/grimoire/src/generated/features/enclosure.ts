@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "identity": Type.Optional(identity_
 
 export type Enclosure = { "identity"?: identity_.Identity; "featureSpec"?: { "combined"?: { "temperature"?: specification_.Specification } } };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "enclosure" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "temperature": Omit<typeof specification_, "measurand" | "refs" | "title"> & { readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Temperature" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Temperature"; readonly "pt": "Temperatura" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "broad"; readonly "registryId": "cim"; readonly "term": "AssetContainer" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "TmpCab" }]; readonly "title": { readonly "en": "Enclosure"; readonly "pt": "Invólucro" } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "enclosure" }; readonly "prop": { readonly "featureSpec": { readonly "prop": { readonly "combined": { readonly "prop": { readonly "temperature": Omit<typeof specification_, "identity" | "measurand" | "refs" | "title"> & { readonly "identity": { readonly "slug": "temperature" }; readonly "measurand": { readonly "accumulation": "instantaneous"; readonly "siUnit": "K" }; readonly "refs": readonly [{ readonly "match": "exact"; readonly "registryId": "qudt_quantity_kind"; readonly "term": "Temperature" }, { readonly "match": "exact"; readonly "registryId": "wikidata"; readonly "term": "Q11466" }, { readonly "match": "exact"; readonly "registryId": "ha_device_class"; readonly "term": "temperature" }]; readonly "title": { readonly "en": "Temperature"; readonly "pt": "Temperatura" } } } } } }; readonly "identity": typeof identity_ }; readonly "refs": readonly [{ readonly "match": "broad"; readonly "registryId": "sosa"; readonly "term": "FeatureOfInterest" }, { readonly "match": "broad"; readonly "registryId": "cim"; readonly "term": "AssetContainer" }, { readonly "match": "related"; readonly "registryId": "sunspec"; readonly "term": "TmpCab" }]; readonly "title": { readonly "en": "Enclosure"; readonly "pt": "Invólucro" } };
 
 const _data: DataT = {
 	"identity": {
@@ -28,6 +28,9 @@ const _data: DataT = {
 					"prop": {
 						"temperature": {
 							...specification_,
+							"identity": {
+								"slug": "temperature"
+							},
 							"measurand": {
 								"accumulation": "instantaneous",
 								"siUnit": "K"
@@ -37,6 +40,11 @@ const _data: DataT = {
 									"match": "exact",
 									"registryId": "qudt_quantity_kind",
 									"term": "Temperature"
+								},
+								{
+									"match": "exact",
+									"registryId": "wikidata",
+									"term": "Q11466"
 								},
 								{
 									"match": "exact",

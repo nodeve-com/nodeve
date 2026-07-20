@@ -1,0 +1,16 @@
+title: { en: Schema, pt: Esquema }
+description:
+  en: A node's own raw draft-07 block — its value-shape as a property, or its cross-field constraints as a grouping.
+  pt: O bloco draft-07 do próprio nó — a forma do seu valor como propriedade, ou as suas restrições entre campos como agrupamento.
+body:
+  en: >
+    The PROJECTION PASSTHROUGH: kit/project.ts merges an object node's `schema:` into its emitted object schema, and takes a leaf's verbatim as the field's shape. Two roles, one key — a property's value-shape (`type`/`minimum`/`pattern`, the counterpart to `column:`'s relational facts), and an object node's cross-field invariants (if/then/else, oneOf, dependentRequired — see inet_socket.yaml: transport==tcp ⇒ reconnect fields required). NEVER coin a concept_settings primitive for a rule JSON Schema already expresses.
+
+
+    Composed onto `thing`, so EVERY layer may carry it — property, feature and archetype defs all do. Declared here rather than per-layer meta-def: one definition, not three.
+
+
+    Its contents are draft-07 keywords, an open set the validator hands to Ajv rather than enumerating — hence the open object below. What is constrained is WHERE it may appear, which the composing meta-def decides.
+schema:
+  type: object
+  additionalProperties: true # draft-07 keywords are an open set — Ajv checks them, not this def

@@ -1,0 +1,11 @@
+title:
+  en: Tension
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Tension
+    match: exact
+  - registry_id: wikidata
+    term: Q908584
+    match: exact
+identity:
+  broader: force_magnitude

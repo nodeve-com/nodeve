@@ -1,0 +1,8 @@
+title:
+  en: Imaginary Part of Complex Frequency
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ComplexFrequency_Imaginary
+    match: exact
+identity:
+  broader: frequency

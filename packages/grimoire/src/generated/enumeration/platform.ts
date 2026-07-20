@@ -8,6 +8,9 @@ export default {
     "description": {
       "en": "Decoder platform — the adapter runs as a generated ESPHome device rather than the site's gateway daemon."
     },
+    "identity": {
+      "slug": "esphome"
+    },
     "title": {
       "en": "ESPHome"
     }
@@ -17,6 +20,9 @@ export default {
     "description": {
       "en": "Decoder platform — the adapter runs as the site's gateway daemon, reaching the device across a network proxy (ser2net, a Modbus-TCP gateway, or similar). Direct-attached serial is legacy; dedicated hardware adapter services or on-board decoder boards are preferred."
     },
+    "identity": {
+      "slug": "farana"
+    },
     "title": {
       "en": "Farana"
     }
@@ -25,6 +31,9 @@ export default {
     "code": "telegraf",
     "description": {
       "en": "Decoder platform — the adapter runs as a generated Telegraf `inputs.modbus` (TCP) master, polling the device's offered modbus_tcp service and republishing each register to MQTT. The config is projected from grimoire (`pnpm generate-telegraf`) and imported by the nix flake (`modules/telegraf/`). Numeric registers only (no bit/word decode)."
+    },
+    "identity": {
+      "slug": "telegraf"
     },
     "title": {
       "en": "Telegraf"

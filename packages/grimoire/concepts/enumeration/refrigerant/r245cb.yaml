@@ -1,0 +1,8 @@
+title:
+  en: Pentafluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-245cb
+    match: exact
+substance:
+  formula: C3H3F5

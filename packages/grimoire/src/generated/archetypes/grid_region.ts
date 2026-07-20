@@ -12,12 +12,13 @@ import * as description_ from '../features/description.ts';
 import * as identity_ from '../features/identity.ts';
 import * as mains_ from '../features/mains.ts';
 import * as refs_ from '../features/refs.ts';
+import * as schema_ from '../features/schema.ts';
 import * as thing_ from './thing.ts';
 import * as title_ from '../features/title.ts';
 
-export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "mains": Type.Optional(mains_.schema) }, {"additionalProperties":false});
+export const schema: TSchema = Type.Object({ "title": Type.Optional(title_.schema), "description": Type.Optional(description_.schema), "body": Type.Optional(body_.schema), "identity": Type.Optional(identity_.schema), "refs": Type.Optional(refs_.schema), "schema": Type.Optional(schema_.schema), "mains": Type.Optional(mains_.schema) }, {"additionalProperties":false});
 
-export type GridRegion = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "mains"?: mains_.Mains };
+export type GridRegion = { "title"?: title_.Title; "description"?: description_.Description; "body"?: body_.Body; "identity"?: identity_.Identity; "refs"?: refs_.Refs; "schema"?: schema_.Schema; "mains"?: mains_.Mains };
 
 type DataT = { readonly "body": { readonly "en": "A GRID REGION — the mains standard a box is wired for. A Term (identity + i18n label + crosswalks) plus the facts that gate its nominal bands: phase/line voltage + frequency. The regions (eu_230v_50hz, ...) are INSTANCES under enumeration/grid_region/, each crosswalked to IEC 60038. Replaces the raw `grid_region`/`grid_frequency` JSON-schema knobs formerly inlined on catalog entries.\n" }; readonly "description": { readonly "en": "A regional AC supply standard — the nominal voltage and frequency a mains grid is wired to (IEC 60038 / NEMA). One commissioning knob that fixes both at install."; readonly "pt": "Um padrão regional de alimentação CA — a tensão e frequência nominais da rede (IEC 60038 / NEMA). Um único ajuste que fixa ambos na instalação." }; readonly "identity": { readonly "archetypeId": "archetype"; readonly "slug": "grid_region" }; readonly "prop": { readonly "body": typeof body_; readonly "description": typeof description_; readonly "identity": typeof identity_; readonly "mains": typeof mains_; readonly "refs": typeof refs_; readonly "title": typeof title_ }; readonly "title": { readonly "en": "Grid region"; readonly "pt": "Região de rede" } };
 

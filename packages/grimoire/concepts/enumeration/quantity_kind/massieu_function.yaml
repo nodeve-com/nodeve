@@ -1,0 +1,9 @@
+title:
+  en: Massieu Function
+refs:
+  - registry_id: qudt_quantity_kind
+    term: MassieuFunction
+    match: exact
+  - registry_id: wikidata
+    term: Q3077625
+    match: exact

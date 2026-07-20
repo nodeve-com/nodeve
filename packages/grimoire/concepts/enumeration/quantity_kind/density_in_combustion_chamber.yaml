@@ -1,0 +1,8 @@
+title:
+  en: Density in Combustion Chamber
+refs:
+  - registry_id: qudt_quantity_kind
+    term: DensityInCombustionChamber
+    match: exact
+identity:
+  broader: density

@@ -10,7 +10,7 @@ Materializing the full joined tree (every nested concept spliced in) is a read-t
 
 ## Orientation (relational) — do not delete
 
-property = **column** · feature = **table** (flat `prop:` map) · archetype = **view** (names its feature-tables as `<featureSlug>.<propSlug>`, does NOT merge them into one flat sheet) · catalog entry = **row**. An archetype naming a table is a reference, not a copy — inlining the table into the view at build time is the de-normalization this doc stops.
+property = **column** · feature = **table** (flat `feature_settings.prop` map) · archetype = **view** (names its feature-tables as `<featureSlug>.<propSlug>`, does NOT merge them into one flat sheet) · catalog entry = **row**. An archetype naming a table is a reference, not a copy — inlining the table into the view at build time is the de-normalization this doc stops.
 
 ## State — the bug
 

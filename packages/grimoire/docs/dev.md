@@ -24,20 +24,25 @@ The catalog is **composable**: a device entry is atoms assigned to named slots b
 ## Layout
 
 ```
-concepts/                 # SCHEMA ONLY — the composed layers (concepts/README.md)
+concepts/                 # SCHEMA ONLY — the composed layers (concepts/README.md), authored in YAML
   property/<cat>/          #   single fields (one scalar + its `schema:`)
-  enumeration/<name>/      #   named value sets (one literal per file; `enums:`/`parts:` targets)
+  enumeration/<name>/      #   named value sets (one literal per file; `feature_settings.enums`/`parts:` targets)
   features/                #   groupings of props
   archetypes/              #   classes (cataloguable / instantiable)
   catalog/<brand>/…        #   agnostic instances of archetypes + _defaults.yaml cascade
 src/                      # the npm-surfaced runtime: index.ts entry + loaders (catalog, site,
   generated/              #   vocab, sensor-id, display-policy) and the committed generated TS
-artifacts/                # generated JSON (data trees, .schema.json, catalog entries) — gitignored;
-                          #   `pnpm generate` bakes it, CI attaches it to the GitHub release
+  scribe/                 #   the YAML→JSON front step (published bin `grimoire-scribe`) — THE only
+                          #   YAML reader; folds _defaults, stamps identity.slug, runs raw gates
+artifacts/                # generated JSON — gitignored; `pnpm generate` bakes it, CI attaches to the release
+  database/               #   scribe's canonical JSON (concepts + display-policy, desugared) — every
+                          #   generator/guard reads THIS, never the raw YAML
 kit/                      # codegen only: generate.ts entry + compile/project/emit helpers
 scripts/                  # validation guards
 tests/                    # schema-behavior + example-drift tests
 ```
+
+- **[scribe](../src/scribe/index.ts)** — the independent first step: raw YAML → canonical JSON. It folds the `_defaults.yaml` cascade, stamps `identity.slug` on every identified doc, and (with `--concept-rules`) enforces the raw-only authoring gates (no oversized comment blocks — prose belongs in `body:`; no empty leaf). `identity.archetype_id` is data too — every concept layer declares its class in a `_defaults.yaml`, so the cascade stamps it uniformly. Everything downstream reads the scribed JSON in `artifacts/database/`; `readYaml` exists ONLY inside scribe. Published as the `grimoire-scribe` bin so a consumer runs the SAME conversion on new catalog items / site YAML (`grimoire-scribe <src> <dest>`, or `--stdout`).
 
 - **[`concepts/README.md`](../concepts/README.md)** — the composable model: atoms, archetypes, the `catalog/<brand>/…` tree + `_defaults.yaml` cascade, inline labels/hints/ui.
 
@@ -55,7 +60,7 @@ tests/                    # schema-behavior + example-drift tests
 
 ## Generation
 
-`pnpm generate` bakes everything, DATA FIRST, mirroring the `concepts/` source tree flat into TWO roots split by target:
+`pnpm generate` first scribes the YAML into `artifacts/database/` (`pnpm scribe` runs the same step standalone), then bakes everything from that JSON, DATA FIRST, mirroring the source tree flat into TWO roots split by target:
 
 - **TS → `src/generated/`** (committed; `<layer>/<slug>.ts` camelCase **everywhere** — type, `schema` const, and authored data fields as named exports — the module IS the def node; the npm surface never shows a snake key; tree-shakeable; `index.ts` the opt-in all-concepts module; every module a layer subpath export, `<layer>/index.ts` the per-layer aggregate — see [Using the concepts](../README.md#using-the-concepts); `catalog/<slug>.ts` + `catalog/index.ts` the pure-code reader path; `enumeration/<name>.ts` vocab modules).
 - **JSON → `artifacts/`** (gitignored build artifact, attached to the GitHub release by CI; `<layer>/<slug>.json` resolved data tree — labels/ui/refs at every node — plus, per concept, the standalone `<slug>.schema.json` wire contract and its `<slug>.camel.schema.json` sibling; `enumeration/<name>.json` member data; `catalog/<slug>.json` one file per entry — no all-in-one; a JSON reader assembles its own bundle).

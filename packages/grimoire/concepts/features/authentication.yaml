@@ -1,3 +1,5 @@
-prop:
-  username: {}
-  password: {}
+title: { en: Authentication }
+feature_settings:
+  prop:
+    username: {}
+    password: {}

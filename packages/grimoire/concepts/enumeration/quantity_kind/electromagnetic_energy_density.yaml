@@ -1,0 +1,11 @@
+title:
+  en: Electromagnetic Energy Density
+refs:
+  - registry_id: qudt_quantity_kind
+    term: ElectromagneticEnergyDensity
+    match: exact
+  - registry_id: wikidata
+    term: Q77989624
+    match: exact
+identity:
+  broader: energy_density

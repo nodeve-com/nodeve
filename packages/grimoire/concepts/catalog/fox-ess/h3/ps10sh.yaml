@@ -32,9 +32,11 @@ body:
     
     PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a hard split boundary around these until a live probe confirms the hazard:
     
+
       mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?
       mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
     
+
     invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual
       control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding
       around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS
@@ -146,7 +148,7 @@ ac_phase_three_out:
               condition: [{ setting: grid_region, equals: eu_230v_50hz }]
             - interval: { value: 60, severity: nominal, margin: 0.05 }
               condition: [{ setting: grid_region, equals: br_220v_60hz }]
-        current:
+        electric_current:
           intervals:
             - interval: { rating: continuous, max: 15.2 }
             - interval: { rating: survival, max: 16.7 }
@@ -244,7 +246,7 @@ pv_tracker:
           - interval:
               { rating: continuous, zone: mppt, severity: nominal, min: 175, value: 620, max: 850 }
           - interval: { interval_kind: measurable, min: 0, max: 1000, resolution: 0.1 }
-      current:
+      electric_current:
         intervals:
           - interval: { rating: survival, max: 25 }
           - interval: { rating: continuous, max: 20 }
@@ -280,7 +282,7 @@ ac_phase_three_eps: # separate EPS port — export only; its own per-phase telem
         frequency:
           intervals:
             - interval: { value: 50, severity: nominal } # lone nominal — nameplate reference
-        current:
+        electric_current:
           intervals:
             - interval: { interval_kind: measurable, min: 0, max: 50, resolution: 0.01 }
         active_power:
@@ -403,7 +405,7 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 1 },
+        interval_item: { feature_id: pv_tracker, property_id: electric_current, ordinal: 1 },
         address: 39071,
         type: uint16,
         scale: 0.01,
@@ -426,7 +428,7 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 2 },
+        interval_item: { feature_id: pv_tracker, property_id: electric_current, ordinal: 2 },
         address: 39073,
         type: uint16,
         scale: 0.01,
@@ -449,7 +451,7 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: pv_tracker, property_id: current, ordinal: 3 },
+        interval_item: { feature_id: pv_tracker, property_id: electric_current, ordinal: 3 },
         address: 39075,
         type: uint16,
         scale: 0.01,
@@ -512,21 +514,21 @@ modbus:
       }
     # --- Inverter AC output, per-phase current (foxess inv_current_R/S/T) ---
     - {
-        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: a },
+        interval_item: { feature_id: ac_phase_three_out, property_id: electric_current, part_id: a },
         address: 39126,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39127
     - {
-        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: b },
+        interval_item: { feature_id: ac_phase_three_out, property_id: electric_current, part_id: b },
         address: 39128,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39129
     - {
-        interval_item: { feature_id: ac_phase_three_out, property_id: current, part_id: c },
+        interval_item: { feature_id: ac_phase_three_out, property_id: electric_current, part_id: c },
         address: 39130,
         type: int32,
         scale: 0.001,
@@ -605,21 +607,21 @@ modbus:
         decimals: 1,
       }
     - {
-        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: a },
+        interval_item: { feature_id: ac_phase_three_eps, property_id: electric_current, part_id: a },
         address: 39204,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39205
     - {
-        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: b },
+        interval_item: { feature_id: ac_phase_three_eps, property_id: electric_current, part_id: b },
         address: 39206,
         type: int32,
         scale: 0.001,
         decimals: 3,
       } # high word; low 39207
     - {
-        interval_item: { feature_id: ac_phase_three_eps, property_id: current, part_id: c },
+        interval_item: { feature_id: ac_phase_three_eps, property_id: electric_current, part_id: c },
         address: 39208,
         type: int32,
         scale: 0.001,

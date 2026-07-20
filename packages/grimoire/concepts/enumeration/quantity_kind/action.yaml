@@ -1,0 +1,9 @@
+title:
+  en: Action
+refs:
+  - registry_id: qudt_quantity_kind
+    term: Action
+    match: exact
+  - registry_id: wikidata
+    term: Q846785
+    match: exact

@@ -1,0 +1,6 @@
+title:
+  en: Area Angle
+refs:
+  - registry_id: qudt_quantity_kind
+    term: AreaAngle
+    match: exact

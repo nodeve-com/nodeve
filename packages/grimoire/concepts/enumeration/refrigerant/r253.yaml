@@ -1,0 +1,8 @@
+title:
+  en: Chlorotrifluoropropane
+refs:
+  - registry_id: ashrae_34
+    term: R-253
+    match: exact
+substance:
+  formula: C3H4F3Cl

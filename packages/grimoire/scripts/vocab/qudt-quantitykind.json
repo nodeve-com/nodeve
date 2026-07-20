@@ -1,0 +1,4774 @@
+{
+	"AbsoluteActivity": {
+		"label": "Absolute Activity"
+	},
+	"AbsoluteHumidity": {
+		"label": "Absolute Humidity",
+		"broader": "Density"
+	},
+	"AbsoluteTypographicMeasurement": {
+		"label": "Absolute Typographic Measurement",
+		"broader": "Length"
+	},
+	"AbsorbedDose": {
+		"label": "Absorbed Dose",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q215313"
+	},
+	"AbsorbedDoseRate": {
+		"label": "Absorbed Dose Rate",
+		"broader": "SpecificPower",
+		"wikidata": "Q69428958"
+	},
+	"Absorptance": {
+		"label": "Absorptance",
+		"wikidata": "Q16635541"
+	},
+	"Acceleration": {
+		"label": "Acceleration",
+		"wikidata": "Q11376"
+	},
+	"AccelerationOfGravity": {
+		"label": "Acceleration of Gravity",
+		"broader": "Acceleration",
+		"wikidata": "Q30006"
+	},
+	"AcceptorDensity": {
+		"label": "Acceptor Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q105979968"
+	},
+	"AcceptorIonizationEnergy": {
+		"label": "Acceptor Ionization Energy",
+		"broader": "IonizationEnergy",
+		"wikidata": "Q112958122"
+	},
+	"Acidity": {
+		"label": "Acidity"
+	},
+	"AcousticImpedance": {
+		"label": "Acoustic Impediance",
+		"broader": "MassPerAreaTime"
+	},
+	"Action": {
+		"label": "Action",
+		"wikidata": "Q846785"
+	},
+	"ActionTime": {
+		"label": "Action Time",
+		"broader": "Time"
+	},
+	"ActiveEnergy": {
+		"label": "Active Energy",
+		"broader": "ElectricEnergy",
+		"wikidata": "Q79813678"
+	},
+	"ActivePower": {
+		"label": "Active Power",
+		"broader": "ElectricPower",
+		"wikidata": "Q12713281"
+	},
+	"Activity": {
+		"label": "Activity",
+		"broader": "StochasticProcess",
+		"wikidata": "Q317949"
+	},
+	"ActivityCoefficient": {
+		"label": "Activity Coefficient",
+		"wikidata": "Q745224"
+	},
+	"ActivityConcentration": {
+		"label": "Activity Concentration",
+		"wikidata": "Q423263"
+	},
+	"ActivityRelatedByMass": {
+		"label": "Activity Related by Mass",
+		"broader": "MassicActivity"
+	},
+	"ActivityThresholds": {
+		"label": "Activity Thresholds"
+	},
+	"Adaptation": {
+		"label": "Adaptation",
+		"broader": "Time"
+	},
+	"Admittance": {
+		"label": "Admittance",
+		"wikidata": "Q214518"
+	},
+	"AlphaDisintegrationEnergy": {
+		"label": "Alpha Disintegration Energy",
+		"broader": "Energy",
+		"wikidata": "Q98146025"
+	},
+	"Altitude": {
+		"label": "Altitude",
+		"broader": "Length",
+		"wikidata": "Q190200"
+	},
+	"AmbientPressure": {
+		"label": "Ambient Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q789775"
+	},
+	"AmountOfBiologicallyActiveSubstance": {
+		"label": "Amount of Biologically Active Substance"
+	},
+	"AmountOfCloudCover": {
+		"label": "Amount of Cloud Cover"
+	},
+	"AmountOfSubstance": {
+		"label": "Amount of Substance",
+		"wikidata": "Q104946"
+	},
+	"AmountOfSubstanceConcentration": {
+		"label": "Amount of Substance of Concentration",
+		"broader": "Concentration"
+	},
+	"AmountOfSubstanceFraction": {
+		"label": "Fractional Amount of Substance"
+	},
+	"AmountOfSubstanceIonConcentration": {
+		"label": "Amount of Substance Ion Concentration",
+		"broader": "Concentration"
+	},
+	"AmountOfSubstancePerMass": {
+		"label": "Amount of Substance per Mass"
+	},
+	"AmountOfSubstancePerMassPressure": {
+		"label": "Molar Mass Variation Due to Pressure"
+	},
+	"AmountOfSubstancePerVolume": {
+		"label": "Amount of Substance per Volume",
+		"broader": "Concentration"
+	},
+	"Angle": {
+		"label": "Angle",
+		"wikidata": "Q1357788"
+	},
+	"AngleOfAttack": {
+		"label": "Angle of Attack",
+		"broader": "Angle",
+		"wikidata": "Q370906"
+	},
+	"AngleOfOpticalRotation": {
+		"label": "Angle of Optical Rotation",
+		"broader": "Angle",
+		"wikidata": "Q96323385"
+	},
+	"AngularAcceleration": {
+		"label": "Angular Acceleration",
+		"wikidata": "Q186300"
+	},
+	"AngularCrossSection": {
+		"label": "Angular Cross-section",
+		"wikidata": "Q98266630"
+	},
+	"AngularDistance": {
+		"label": "Angular Distance",
+		"broader": "Angle"
+	},
+	"AngularFrequency": {
+		"label": "Angular Frequency",
+		"wikidata": "Q834020"
+	},
+	"AngularImpulse": {
+		"label": "Angular Impulse",
+		"wikidata": "Q73428743"
+	},
+	"AngularMomentum": {
+		"label": "Angular Momentum",
+		"wikidata": "Q161254"
+	},
+	"AngularMomentumPerAngle": {
+		"label": "Angular Momentum per Angle"
+	},
+	"AngularReciprocalLatticeVector": {
+		"label": "Angular Reciprocal Lattice Vector",
+		"wikidata": "Q105475278"
+	},
+	"AngularVelocity": {
+		"label": "Angular Velocity",
+		"wikidata": "Q161635"
+	},
+	"AngularWavenumber": {
+		"label": "Angular Wavenumber",
+		"wikidata": "Q30338487"
+	},
+	"APIGravity": {
+		"label": "API Gravity",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q29246"
+	},
+	"ApogeeRadius": {
+		"label": "Apogee Radius",
+		"broader": "Radius"
+	},
+	"ApparentEnergy": {
+		"label": "Apparent Energy",
+		"broader": "ElectricEnergy"
+	},
+	"ApparentPower": {
+		"label": "Apparent Power",
+		"broader": "ElectricPower",
+		"wikidata": "Q1930258"
+	},
+	"ApparentThermalInertia": {
+		"label": "Measurement Unit for a Quantity Approximately Proportional to Thermal Inertia",
+		"broader": "InverseTemperature"
+	},
+	"Area": {
+		"label": "Area",
+		"wikidata": "Q11500"
+	},
+	"AreaAngle": {
+		"label": "Area Angle"
+	},
+	"AreaBitDensity": {
+		"label": "Areic Bit Density"
+	},
+	"AreaChargeDensity": {
+		"label": "Areic Charge Density",
+		"broader": "ElectricChargePerArea"
+	},
+	"AreaMass": {
+		"label": "Areic Mass",
+		"broader": "MassPerArea"
+	},
+	"AreaPerLength": {
+		"label": "Area per Length"
+	},
+	"AreaPerPower": {
+		"label": "Area per Heating Load"
+	},
+	"AreaPerTime": {
+		"label": "Area per Time"
+	},
+	"AreaRatio": {
+		"label": "Area Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"AreaTemperature": {
+		"label": "Area Temperature"
+	},
+	"AreaThermalExpansion": {
+		"label": "Area Thermal Expansion"
+	},
+	"AreaTime": {
+		"label": "Area Time"
+	},
+	"AreaTimeTemperature": {
+		"label": "Area Time Temperature"
+	},
+	"AreicChargeDensityOrElectricFluxDensityOrElectricPolarization": {
+		"label": "areic charge density or electric flux density or electric polarization"
+	},
+	"AreicDataVolume": {
+		"label": "Areic Data Volume"
+	},
+	"AreicEnergyFlow": {
+		"label": "Areic Energy Flow",
+		"broader": "PowerPerArea"
+	},
+	"AreicHeatFlowRate": {
+		"label": "Aeric Heat Flow Rate",
+		"broader": "PowerPerArea"
+	},
+	"AreicMass": {
+		"label": "Areic Mass",
+		"broader": "MassPerArea"
+	},
+	"AreicTorque": {
+		"label": "Areic Torque"
+	},
+	"Asset": {
+		"label": "Asset"
+	},
+	"AtmosphericHydroxylationRate": {
+		"label": "Atmospheric Hydroxylation Rate",
+		"broader": "SecondOrderReactionRateConstant"
+	},
+	"AtmosphericPressure": {
+		"label": "Atmospheric Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q81809"
+	},
+	"AtomicAttenuationCoefficient": {
+		"label": "Atomic Attenuation Coefficient",
+		"broader": "Area",
+		"wikidata": "Q98592911"
+	},
+	"AtomicCharge": {
+		"label": "Atomic Charge",
+		"broader": "ElectricCharge"
+	},
+	"AtomicEnergy": {
+		"label": "Atomic Energy",
+		"broader": "Energy"
+	},
+	"AtomicMass": {
+		"label": "Atomic Mass",
+		"broader": "Mass",
+		"wikidata": "Q3840065"
+	},
+	"AtomicNumber": {
+		"label": "Atomic Number",
+		"broader": "Count",
+		"wikidata": "Q23809"
+	},
+	"AtomicStoppingPower": {
+		"label": "Atomic Stopping Power"
+	},
+	"AtomScatteringFactor": {
+		"label": "Atom Scattering Factor",
+		"wikidata": "Q837866"
+	},
+	"AttenuationCoefficient": {
+		"label": "Attenuation Coefficient",
+		"wikidata": "Q902086"
+	},
+	"AuditoryThresholds": {
+		"label": "Auditory Thresholds",
+		"broader": "SoundPowerLevel"
+	},
+	"AuxillaryMagneticField": {
+		"label": "Auxillary Magnetic Field",
+		"broader": "MagneticFieldStrength"
+	},
+	"AverageEnergyLossPerElementaryChargeProduced": {
+		"label": "Average Energy Loss per Elementary Charge Produced",
+		"broader": "Energy",
+		"wikidata": "Q98793042"
+	},
+	"AverageHeadEndPressure": {
+		"label": "Average Head End Pressure",
+		"broader": "HeadEndPressure"
+	},
+	"AverageLogarithmicEnergyDecrement": {
+		"label": "Average Logarithmic Energy Decrement",
+		"wikidata": "Q1940739"
+	},
+	"AverageSpecificImpulse": {
+		"label": "Average Specific Impulse",
+		"broader": "SpecificImpulse"
+	},
+	"AverageVacuumThrust": {
+		"label": "Average Vacuum Thrust",
+		"broader": "VacuumThrust"
+	},
+	"Azimuth": {
+		"label": "Azimuth",
+		"broader": "Angle"
+	},
+	"BandwidthDistanceProduct": {
+		"label": "Bandwidth Distance Product"
+	},
+	"BandwidthLengthProduct": {
+		"label": "Bandwidth Length Product"
+	},
+	"Basicity": {
+		"label": "Basicity"
+	},
+	"BatteryCapacity": {
+		"label": "Battery Capacity",
+		"broader": "ElectricCharge"
+	},
+	"BendingMomentOfForce": {
+		"label": "Bending Moment of Force",
+		"broader": "MomentOfForce",
+		"wikidata": "Q857244"
+	},
+	"BetaDisintegrationEnergy": {
+		"label": "Beta Disintegration Energy",
+		"broader": "Energy",
+		"wikidata": "Q98148340"
+	},
+	"BevelGearPitchAngle": {
+		"label": "Bevel Gear Pitch Angle",
+		"broader": "Angle"
+	},
+	"BinaryLogarithmicMedianInformationFlow": {
+		"label": "Median Information Flow (from a Source of Information), Expressed as a Binary Logarithm"
+	},
+	"BindingFraction": {
+		"label": "Binding Fraction",
+		"wikidata": "Q98058362"
+	},
+	"BioconcentrationFactor": {
+		"label": "Bioconcentration Factor",
+		"broader": "DimensionlessRatio"
+	},
+	"BiodegredationHalfLife": {
+		"label": "Biodegredation Half Life",
+		"broader": "Time"
+	},
+	"BiogeochemicalRate": {
+		"label": "Biogeochemical Rate"
+	},
+	"BitDataVolume": {
+		"label": "Bit Data Volume"
+	},
+	"BitRate": {
+		"label": "Bit Rate",
+		"broader": "DataRate"
+	},
+	"BitTransmissionRate": {
+		"label": "Bit Transmission Rate",
+		"broader": "BitRate"
+	},
+	"BloodGlucoseLevel": {
+		"label": "Blood Glucose Level"
+	},
+	"BloodGlucoseLevel_Mass": {
+		"label": "Blood Glucose Level by Mass"
+	},
+	"BodyMassIndex": {
+		"label": "Body Mass Index",
+		"broader": "MassPerArea",
+		"wikidata": "Q131191"
+	},
+	"BoilingPoint": {
+		"label": "Boiling Point Temperature",
+		"broader": "Temperature"
+	},
+	"BraggAngle": {
+		"label": "Bragg Angle",
+		"broader": "Angle",
+		"wikidata": "Q105488118"
+	},
+	"Breadth": {
+		"label": "Breadth",
+		"broader": "Length",
+		"wikidata": "Q77835705"
+	},
+	"BucklingFactor": {
+		"label": "Buckling Factor",
+		"broader": "Dimensionless"
+	},
+	"BulkModulus": {
+		"label": "Bulk Modulus",
+		"broader": "ModulusOfElasticity",
+		"wikidata": "Q900371"
+	},
+	"BurgersVector": {
+		"label": "Burgers Vector",
+		"broader": "Length",
+		"wikidata": "Q623093"
+	},
+	"BurnRate": {
+		"label": "Burn Rate",
+		"broader": "LinearVelocity"
+	},
+	"BurnTime": {
+		"label": "Burn Time",
+		"broader": "Time"
+	},
+	"BurstFactor": {
+		"label": "Burst Factor"
+	},
+	"ByteDataVolume": {
+		"label": "Byte Data Volume"
+	},
+	"ByteRate": {
+		"label": "Byte Rate",
+		"broader": "DataRate"
+	},
+	"ByteTransmissionRate": {
+		"label": "Byte Transmission Rate",
+		"broader": "ByteRate"
+	},
+	"CanonicalPartitionFunction": {
+		"label": "Canonical Partition Function",
+		"wikidata": "Q96142389"
+	},
+	"Capacitance": {
+		"label": "Capacitance",
+		"wikidata": "Q164399"
+	},
+	"Capacity": {
+		"label": "Capacity"
+	},
+	"CarrierLifetime": {
+		"label": "Carrier Lifetime",
+		"broader": "Time",
+		"wikidata": "Q5046374"
+	},
+	"CartesianArea": {
+		"label": "Cartesian Area",
+		"broader": "Area"
+	},
+	"CartesianCoordinates": {
+		"label": "Cartesian Coordinates",
+		"broader": "Length"
+	},
+	"CartesianVolume": {
+		"label": "Volume",
+		"broader": "Volume"
+	},
+	"CatalyticActivity": {
+		"label": "Catalytic Activity",
+		"wikidata": "Q1735592"
+	},
+	"CatalyticActivityConcentration": {
+		"label": "Catalytic Activity Concentration"
+	},
+	"CationExchangeCapacity": {
+		"label": "Cation Exchange Capacity",
+		"broader": "ReactiveChargePerMass"
+	},
+	"CelsiusTemperature": {
+		"label": "Celsius Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q74758530"
+	},
+	"CENTER-OF-GRAVITY_X": {
+		"label": "Center of Gravity in the X axis",
+		"broader": "Length"
+	},
+	"CENTER-OF-GRAVITY_Y": {
+		"label": "Center of Gravity in the Y axis",
+		"broader": "Length"
+	},
+	"CENTER-OF-GRAVITY_Z": {
+		"label": "Center of Gravity in the Z axis",
+		"broader": "Length"
+	},
+	"CENTER-OF-MASS": {
+		"label": "Center of Mass (CoM)",
+		"broader": "PositionVector"
+	},
+	"CenterOfGravity_X": {
+		"label": "Center of Gravity in the X Axis",
+		"broader": "Length"
+	},
+	"CenterOfGravity_Y": {
+		"label": "Center of Gravity in the Y Axis",
+		"broader": "Length"
+	},
+	"CenterOfGravity_Z": {
+		"label": "Center of Gravity in the Z Axis",
+		"broader": "Length"
+	},
+	"CharacteristicAcousticImpedance": {
+		"label": "Characteristic Acoustic Impedance",
+		"broader": "AcousticImpedance",
+		"wikidata": "Q87051330"
+	},
+	"CharacteristicNumber": {
+		"label": "Characteristic Number",
+		"broader": "Dimensionless"
+	},
+	"CharacteristicVelocity": {
+		"label": "Characteristic Velocity",
+		"broader": "LinearVelocity"
+	},
+	"ChargeNumber": {
+		"label": "Charge Number",
+		"broader": "Dimensionless",
+		"wikidata": "Q1800063"
+	},
+	"ChemicalAffinity": {
+		"label": "Chemical Affinity",
+		"wikidata": "Q382783"
+	},
+	"ChemicalConsumptionPerMass": {
+		"label": "Chemical Consumption per Mass",
+		"broader": "SpecificVolume"
+	},
+	"ChemicalPotential": {
+		"label": "Chemical Potential",
+		"broader": "MolarEnergy",
+		"wikidata": "Q737004"
+	},
+	"Chromaticity": {
+		"label": "Chromaticity"
+	},
+	"Circulation": {
+		"label": "Circulation",
+		"broader": "AreaPerTime"
+	},
+	"ClosestApproachRadius": {
+		"label": "Closest Approach Radius",
+		"broader": "Radius"
+	},
+	"CO2Equivalent": {
+		"label": "CO2Equivalent",
+		"broader": "MassEquivalent"
+	},
+	"CoefficientOfHeatTransfer": {
+		"label": "Coefficient of Heat Transfer"
+	},
+	"CoefficientOfPerformance": {
+		"label": "Coefficient of Performance",
+		"broader": "DimensionlessRatio"
+	},
+	"Coercivity": {
+		"label": "Coercivity",
+		"broader": "MagneticFieldStrength",
+		"wikidata": "Q432635"
+	},
+	"CoherenceLength": {
+		"label": "Coherence Length",
+		"broader": "Length",
+		"wikidata": "Q7643174"
+	},
+	"ColdReceptorThreshold": {
+		"label": "Cold Receptor Threshold",
+		"broader": "Temperature"
+	},
+	"CombinedNonEvaporativeHeatTransferCoefficient": {
+		"label": "Combined Non Evaporative Heat Transfer Coefficient"
+	},
+	"CommonLogarithmicMedianInformationFlow": {
+		"label": "Median Information Flow (from a Source of Information), Expressed as a Common Logarithm "
+	},
+	"ComplexFrequency_Imaginary": {
+		"label": "Imaginary Part of Complex Frequency",
+		"broader": "Frequency"
+	},
+	"ComplexFrequency_Real": {
+		"label": "Real Part of Complex Frequency",
+		"broader": "Frequency"
+	},
+	"ComplexPower": {
+		"label": "Complex Power",
+		"broader": "ElectricPower",
+		"wikidata": "Q65239736"
+	},
+	"CompoundPlaneAngle": {
+		"label": "Compound Plane Angle",
+		"broader": "Angle"
+	},
+	"Compressibility": {
+		"label": "Compressibility",
+		"wikidata": "Q8067817"
+	},
+	"CompressibilityFactor": {
+		"label": "Compressibility Factor",
+		"broader": "DimensionlessRatio"
+	},
+	"Concentration": {
+		"label": "Concentration",
+		"wikidata": "Q3686031"
+	},
+	"Conductance": {
+		"label": "Conductance"
+	},
+	"ConductionSpeed": {
+		"label": "Conduction Speed",
+		"broader": "Speed"
+	},
+	"ConductiveHeatTransferRate": {
+		"label": "Conductive Heat Transfer Rate",
+		"broader": "HeatFlowRate"
+	},
+	"Conductivity": {
+		"label": "Conductivity"
+	},
+	"ConductivityVariance": {
+		"label": "Conductivity Variance"
+	},
+	"ConductivityVariance_NEON": {
+		"label": "Conductivity Variance, NEON"
+	},
+	"Constringence": {
+		"label": "Constringence",
+		"broader": "DimensionlessRatio"
+	},
+	"CONTRACT-END-ITEM-SPECIFICATION-MASS": {
+		"label": "Contract End Item (CEI) Specification Mass.",
+		"broader": "Mass"
+	},
+	"CONTROL-MASS": {
+		"label": "Control Mass.",
+		"broader": "Mass"
+	},
+	"ConvectiveHeatTransfer": {
+		"label": "Convective Heat Transfer",
+		"broader": "HeatFlowRate"
+	},
+	"CoolingPerformanceRatio": {
+		"label": "Cooling Performance Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"CorrelatedColorTemperature": {
+		"label": "Correlated Colour Temperature",
+		"broader": "ThermodynamicTemperature"
+	},
+	"CostPerArea": {
+		"label": "Cost per Area"
+	},
+	"CostPerEnergy": {
+		"label": "Energy Cost"
+	},
+	"CostPerMass": {
+		"label": "Cost per Mass"
+	},
+	"CostPerPower": {
+		"label": "Cost per Power"
+	},
+	"Count": {
+		"label": "Count"
+	},
+	"CountRate": {
+		"label": "Count Rate"
+	},
+	"CouplingFactor": {
+		"label": "Coupling Factor"
+	},
+	"CrossSection": {
+		"label": "Cross-section",
+		"broader": "Area",
+		"wikidata": "Q17128025"
+	},
+	"CrossSectionalArea": {
+		"label": "Cross-sectional Area",
+		"broader": "Area",
+		"wikidata": "Q29325024"
+	},
+	"CubicElectricDipoleMomentPerSquareEnergy": {
+		"label": "Cubic Electric Dipole Moment per Square Energy"
+	},
+	"CubicExpansionCoefficient": {
+		"label": "Cubic Expansion Coefficient",
+		"broader": "ExpansionRatio",
+		"wikidata": "Q74761076"
+	},
+	"CurieTemperature": {
+		"label": "Curie Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q191073"
+	},
+	"Currency": {
+		"label": "Currency"
+	},
+	"CurrencyPerFlight": {
+		"label": "Currency per Flight"
+	},
+	"CurrencyPerTime": {
+		"label": "Currency per Time"
+	},
+	"CurrentLinkage": {
+		"label": "Current Linkage",
+		"broader": "ElectricCurrent",
+		"wikidata": "Q77995703"
+	},
+	"CurrentOfTheAmountOfSubstance": {
+		"label": "Current of the Amount of Substance"
+	},
+	"Curvature": {
+		"label": "Curvature",
+		"wikidata": "Q214881"
+	},
+	"CurvatureFromRadius": {
+		"label": "Curvature",
+		"wikidata": "Q214881"
+	},
+	"CutoffCurrentRating": {
+		"label": "I²t-value"
+	},
+	"CyclotronAngularFrequency": {
+		"label": "Larmor Angular Frequency",
+		"broader": "AngularFrequency",
+		"wikidata": "Q97708211"
+	},
+	"DataRate": {
+		"label": "Data Rate"
+	},
+	"DatasetOfBits": {
+		"label": "Dataset of Bits"
+	},
+	"DatasetOfBytes": {
+		"label": "Dataset of Bytes"
+	},
+	"DataTransmissionRate": {
+		"label": "Data Transmission Rate"
+	},
+	"Debye-WallerFactor": {
+		"label": "Debye-Waller Factor",
+		"wikidata": "Q902587"
+	},
+	"DebyeAngularFrequency": {
+		"label": "Debye Angular Frequency",
+		"broader": "AngularFrequency",
+		"wikidata": "Q105580986"
+	},
+	"DebyeAngularWavenumber": {
+		"label": "Debye Angular Wavenumber",
+		"broader": "AngularWavenumber",
+		"wikidata": "Q105554370"
+	},
+	"DebyeTemperature": {
+		"label": "Debye Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q3517821"
+	},
+	"DebyeWallerFactor": {
+		"label": "Debye-Waller Factor",
+		"wikidata": "Q902587"
+	},
+	"DecayConstant": {
+		"label": "Decay Constant",
+		"broader": "InverseTime",
+		"wikidata": "Q11477200"
+	},
+	"DegreeOfDissociation": {
+		"label": "Degree of Dissociation",
+		"wikidata": "Q907334"
+	},
+	"DELTA-V": {
+		"label": "Delta-V",
+		"broader": "Velocity"
+	},
+	"Density": {
+		"label": "Density",
+		"wikidata": "Q29539"
+	},
+	"DensityInCombustionChamber": {
+		"label": "Density in Combustion Chamber",
+		"broader": "Density"
+	},
+	"DensityOfStates": {
+		"label": "Density of states",
+		"wikidata": "Q230895"
+	},
+	"Depth": {
+		"label": "Depth",
+		"broader": "Length",
+		"wikidata": "Q930412"
+	},
+	"DewPointTemperature": {
+		"label": "Dew Point Temperature",
+		"broader": "Temperature"
+	},
+	"Diameter": {
+		"label": "Diameter",
+		"broader": "Length",
+		"wikidata": "Q37221"
+	},
+	"DiastolicBloodPressure": {
+		"label": "Diastolic Blood Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q42015777"
+	},
+	"DiffusionArea": {
+		"label": "Diffusion Area",
+		"broader": "Area",
+		"wikidata": "Q98966292"
+	},
+	"DiffusionCoefficient": {
+		"label": "Diffusion Coefficient",
+		"broader": "AreaPerTime",
+		"wikidata": "Q604008"
+	},
+	"DiffusionCoefficientForFluenceRate": {
+		"label": "Diffusion Coefficient for Fluence Rate",
+		"broader": "Length",
+		"wikidata": "Q98876254"
+	},
+	"DiffusionLength": {
+		"label": "Diffusion Length",
+		"broader": "Length",
+		"wikidata": "Q98997762"
+	},
+	"DigitRate": {
+		"label": "Digit Rate"
+	},
+	"Dimensionless": {
+		"label": "Dimensionless"
+	},
+	"DimensionlessRatio": {
+		"label": "Dimensionless Ratio",
+		"broader": "Dimensionless"
+	},
+	"Displacement": {
+		"label": "Displacement",
+		"broader": "Length",
+		"wikidata": "Q190291"
+	},
+	"DisplacementCurrent": {
+		"label": "Displacement Current",
+		"broader": "ElectricCurrent",
+		"wikidata": "Q853178"
+	},
+	"DisplacementCurrentDensity": {
+		"label": "Displacement Current Density",
+		"wikidata": "Q77614612"
+	},
+	"DisplacementVectorOfIon": {
+		"label": "Displacement Vector of Ion",
+		"broader": "Length",
+		"wikidata": "Q105533558"
+	},
+	"Dissipance": {
+		"label": "Dissipance"
+	},
+	"Distance": {
+		"label": "Distance",
+		"broader": "Length",
+		"wikidata": "Q126017"
+	},
+	"DistanceTraveledDuringBurn": {
+		"label": "Distance Traveled During a Burn",
+		"broader": "Distance"
+	},
+	"DonorDensity": {
+		"label": "Donor Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q105979886"
+	},
+	"DonorIonizationEnergy": {
+		"label": "Donor Ionization Energy",
+		"broader": "IonizationEnergy",
+		"wikidata": "Q112958103"
+	},
+	"DoseEquivalent": {
+		"label": "Dose Equivalent",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q256106"
+	},
+	"DoseEquivalentQualityFactor": {
+		"label": "Dose Equivalent Quality Factor",
+		"wikidata": "Q2122099"
+	},
+	"DoseEquivalentRate": {
+		"label": "Dose Equivalent Rate"
+	},
+	"DotsPerInch": {
+		"label": "Dots per Inch",
+		"broader": "LineicResolution"
+	},
+	"DragCoefficient": {
+		"label": "Drag Coefficient",
+		"broader": "Dimensionless",
+		"wikidata": "Q1778961"
+	},
+	"DragForce": {
+		"label": "Drag Force",
+		"broader": "Force"
+	},
+	"DRY-MASS": {
+		"label": "Dry Mass",
+		"broader": "Mass"
+	},
+	"DryBulbTemperature": {
+		"label": "Dry Bulb Temperature",
+		"broader": "Temperature"
+	},
+	"DryVolume": {
+		"label": "Dry Volume",
+		"broader": "Volume"
+	},
+	"DutyCycle": {
+		"label": "Duty Cycle",
+		"broader": "DimensionlessRatio"
+	},
+	"Duv": {
+		"label": "Delta u,v"
+	},
+	"DynamicFriction": {
+		"label": "Dynamic Friction",
+		"broader": "Friction",
+		"wikidata": "Q99492067"
+	},
+	"DynamicFrictionCoefficient": {
+		"label": "Dynamic Friction Coefficient",
+		"broader": "FrictionCoefficient"
+	},
+	"DynamicPressure": {
+		"label": "Dynamic Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q949674"
+	},
+	"DynamicViscosity": {
+		"label": "Dynamic Viscosity",
+		"wikidata": "Q15152757"
+	},
+	"EarthquakeMagnitude": {
+		"label": "Earthquake Magnitude"
+	},
+	"EccentricityOfOrbit": {
+		"label": "Eccentricity of Orbit",
+		"broader": "DimensionlessRatio"
+	},
+	"EffectiveMass": {
+		"label": "Effective Mass",
+		"broader": "Mass",
+		"wikidata": "Q1064434"
+	},
+	"EffectiveMultiplicationFactor": {
+		"label": "Effective Multiplication Factor",
+		"broader": "MultiplicationFactor"
+	},
+	"Efficiency": {
+		"label": "Efficiency",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q11945244"
+	},
+	"EinsteinCoefficients": {
+		"label": "Einstein Coefficients"
+	},
+	"EinsteinTransitionProbability": {
+		"label": "Einstein Transition Probability"
+	},
+	"EinsteinTransitionProbabilityForSpontaneousOrInducedEmissionAndAbsorption": {
+		"label": "Einstein Transition Probability for Spontaneous Or Induced Emission and Absorption"
+	},
+	"ElectricalConductance": {
+		"label": "Electrical Conductance"
+	},
+	"ElectricalPowerToMassRatio": {
+		"label": "Electrical Power to Mass Ratio",
+		"broader": "SpecificPower"
+	},
+	"ElectricalResistance": {
+		"label": "Electrical Resistance"
+	},
+	"ElectricCharge": {
+		"label": "Electric Charge",
+		"wikidata": "Q1111"
+	},
+	"ElectricChargeDensity": {
+		"label": "Electric Charge Density",
+		"wikidata": "Q69425629"
+	},
+	"ElectricChargeLinearDensity": {
+		"label": "Electric Charge Linear Density"
+	},
+	"ElectricChargeLineDensity": {
+		"label": "Electric Charge Line Density"
+	},
+	"ElectricChargePerAmountOfSubstance": {
+		"label": "Electric Charge per Amount of Substance",
+		"wikidata": "Q97061171"
+	},
+	"ElectricChargePerArea": {
+		"label": "Electric Charge per Area"
+	},
+	"ElectricChargePerMass": {
+		"label": "Electric Charge per Mass"
+	},
+	"ElectricChargeSurfaceDensity": {
+		"label": "Electric Charge Surface Density",
+		"broader": "ElectricChargePerArea"
+	},
+	"ElectricChargeVolumeDensity": {
+		"label": "Electric Charge Volume Density"
+	},
+	"ElectricConductivity": {
+		"label": "Electric Conductivity"
+	},
+	"ElectricCurrent": {
+		"label": "Electric Current",
+		"wikidata": "Q29996"
+	},
+	"ElectricCurrentDensity": {
+		"label": "Electric Current Density",
+		"wikidata": "Q234072"
+	},
+	"ElectricCurrentImbalance": {
+		"label": "Electric Current Imbalance",
+		"broader": "DimensionlessRatio"
+	},
+	"ElectricCurrentPerAngle": {
+		"label": "Electric Current per Angle"
+	},
+	"ElectricCurrentPerEnergy": {
+		"label": "Electric Current per Energy"
+	},
+	"ElectricCurrentPerLength": {
+		"label": "Electric Current per Length",
+		"broader": "LinearElectricCurrentDensity"
+	},
+	"ElectricCurrentPerTemperature": {
+		"label": "Electric Current per Temperature"
+	},
+	"ElectricCurrentPhasor": {
+		"label": "Electric Current Phasor",
+		"broader": "ElectricCurrent",
+		"wikidata": "Q78514596"
+	},
+	"ElectricDipoleMoment": {
+		"label": "Electric Dipole Moment",
+		"wikidata": "Q735135"
+	},
+	"ElectricDipoleMoment_CubicPerEnergy_Squared": {
+		"label": "Cubic Electric Dipole Moment per Square Energy"
+	},
+	"ElectricDipoleMoment_QuarticPerEnergy_Cubic": {
+		"label": "Quartic Electric Dipole Moment per Cubic Energy"
+	},
+	"ElectricDisplacement": {
+		"label": "Electric Displacement",
+		"broader": "ElectricChargePerArea"
+	},
+	"ElectricDisplacementField": {
+		"label": "Electric Displacement Field",
+		"broader": "ElectricChargePerArea",
+		"wikidata": "Q371907"
+	},
+	"ElectricEnergy": {
+		"label": "Electric Energy",
+		"broader": "Energy",
+		"wikidata": "Q206799"
+	},
+	"ElectricField": {
+		"label": "Electric Field"
+	},
+	"ElectricFieldStrength": {
+		"label": "Electric Field Strength",
+		"wikidata": "Q20989"
+	},
+	"ElectricFlux": {
+		"label": "Electric Flux",
+		"wikidata": "Q501267"
+	},
+	"ElectricFluxDensity": {
+		"label": "Electric Flux Density",
+		"broader": "ElectricChargePerArea"
+	},
+	"ElectricPolarizability": {
+		"label": "Electric Polarizability"
+	},
+	"ElectricPolarization": {
+		"label": "Electric Polarization",
+		"wikidata": "Q1050425"
+	},
+	"ElectricPotential": {
+		"label": "Electric Potential",
+		"wikidata": "Q55451"
+	},
+	"ElectricPotentialDifference": {
+		"label": "Electric Potential Difference",
+		"wikidata": "Q77597807"
+	},
+	"ElectricPower": {
+		"label": "Electric Power",
+		"broader": "Power",
+		"wikidata": "Q27137"
+	},
+	"ElectricQuadrupoleMoment": {
+		"label": "Electric Quadrupole Moment"
+	},
+	"ElectricSusceptibility": {
+		"label": "Electric Susceptibility",
+		"wikidata": "Q598305"
+	},
+	"ElectrolyticConductivity": {
+		"label": "Electrolytic Conductivity",
+		"wikidata": "Q907564"
+	},
+	"ElectromagneticEnergyDensity": {
+		"label": "Electromagnetic Energy Density",
+		"broader": "EnergyDensity",
+		"wikidata": "Q77989624"
+	},
+	"ElectromagneticPermeability": {
+		"label": "Permeability",
+		"wikidata": "Q28352"
+	},
+	"ElectromagneticPermeabilityRatio": {
+		"label": "Electromagnetic Permeability Ratio",
+		"wikidata": "Q77785645"
+	},
+	"ElectromagneticWavePhaseSpeed": {
+		"label": "Electromagnetic Wave Phase Speed",
+		"broader": "Speed"
+	},
+	"ElectromotiveForce": {
+		"label": "Electromotive Force",
+		"broader": "ElectricPotential",
+		"wikidata": "Q185329"
+	},
+	"ElectronAffinity": {
+		"label": "Electron Affinity",
+		"broader": "Energy",
+		"wikidata": "Q105846486"
+	},
+	"ElectronDensity": {
+		"label": "Electron Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q105971077"
+	},
+	"ElectronMeanFreePath": {
+		"label": "Electron Mean Free Path",
+		"broader": "Length",
+		"wikidata": "Q105672307"
+	},
+	"ElectronMobility": {
+		"label": "Electron Mobility",
+		"broader": "Mobility"
+	},
+	"ElectronRadius": {
+		"label": "Electron Radius",
+		"broader": "Length"
+	},
+	"ElevationRelativeToNAP": {
+		"label": "Elevation Relative to NAP",
+		"broader": "Altitude"
+	},
+	"Emissivity": {
+		"label": "Emissivity",
+		"wikidata": "Q899670"
+	},
+	"Energy": {
+		"label": "Energy",
+		"wikidata": "Q11379"
+	},
+	"Energy_Squared": {
+		"label": "Square Energy"
+	},
+	"EnergyContent": {
+		"label": "Energy Content",
+		"broader": "Energy"
+	},
+	"EnergyDensity": {
+		"label": "Energy Density",
+		"wikidata": "Q828402"
+	},
+	"EnergyDensityOfStates": {
+		"label": "Energy Density of States",
+		"wikidata": "Q105687031"
+	},
+	"EnergyExpenditure": {
+		"label": "Energy Expenditure",
+		"broader": "MassicPower"
+	},
+	"EnergyFluence": {
+		"label": "Energy Fluence",
+		"broader": "EnergyPerArea",
+		"wikidata": "Q98538612"
+	},
+	"EnergyFluenceRate": {
+		"label": "Energy Fluence Rate",
+		"broader": "PowerPerArea",
+		"wikidata": "Q65274525"
+	},
+	"EnergyImparted": {
+		"label": "Energy Imparted",
+		"broader": "Energy",
+		"wikidata": "Q99526944"
+	},
+	"EnergyInternal": {
+		"label": "internal energy",
+		"broader": "Energy",
+		"wikidata": "Q180241"
+	},
+	"EnergyKinetic": {
+		"label": "kinetic energy",
+		"broader": "Energy",
+		"wikidata": "Q46276"
+	},
+	"EnergyLevel": {
+		"label": "Energy Level",
+		"broader": "Energy"
+	},
+	"EnergyPerArea": {
+		"label": "Energy per Area"
+	},
+	"EnergyPerAreaElectricCharge": {
+		"label": "Energy per Area Electric Charge"
+	},
+	"EnergyPerElectricCharge": {
+		"label": "Energy per Electric Charge"
+	},
+	"EnergyPerMagneticFluxDensity_Squared": {
+		"label": "Energy Per Square Magnetic Flux Density"
+	},
+	"EnergyPerMassAmountOfSubstance": {
+		"label": "Energy and Work per Mass Amount of Substance"
+	},
+	"EnergyPerSquareMagneticFluxDensity": {
+		"label": "Energy per Square Magnetic Flux Density"
+	},
+	"EnergyPerTemperature": {
+		"label": "Energy per Temperature"
+	},
+	"Enthalpy": {
+		"label": "Enthalpy",
+		"broader": "Energy",
+		"wikidata": "Q161064"
+	},
+	"Entropy": {
+		"label": "Entropy",
+		"wikidata": "Q45003"
+	},
+	"EquilibriumConstant": {
+		"label": "Equilibrium Constant",
+		"wikidata": "Q857809"
+	},
+	"EquilibriumConstantBasedOnConcentration": {
+		"label": "Equilibrium Constant Based On Concentration"
+	},
+	"EquilibriumConstantBasedOnPressure": {
+		"label": "Equilibrium Constant Based On Pressure"
+	},
+	"EquilibriumConstantOnConcentrationBasis": {
+		"label": "Equilibrium Constant On Concentration Basis",
+		"broader": "EquilibriumConstant",
+		"wikidata": "Q96096049"
+	},
+	"EquilibriumConstantOnPressureBasis": {
+		"label": "Equilibrium Constant On Pressure Basis",
+		"broader": "EquilibriumConstant",
+		"wikidata": "Q96096019"
+	},
+	"EquilibriumPositionVectorOfIon": {
+		"label": "Equilibrium Position Vector of Ion",
+		"broader": "Length",
+		"wikidata": "Q105533477"
+	},
+	"EquivalenceDoseOutput": {
+		"label": "Equivalence Dose Output",
+		"broader": "DoseEquivalentRate"
+	},
+	"Equivalent_Mass": {
+		"label": "Mass Equivalent",
+		"broader": "Mass"
+	},
+	"Equivalent_Molar": {
+		"label": "Molar Equivalent",
+		"broader": "AmountOfSubstance"
+	},
+	"EquivalentAbsorptionArea": {
+		"label": "Equivalent Absorption Area",
+		"broader": "Area",
+		"wikidata": "Q87745170"
+	},
+	"EquivalentConcentration": {
+		"label": "Equivalent Concentration",
+		"broader": "Concentration"
+	},
+	"EquivalentDensity": {
+		"label": "Equivalent Density",
+		"broader": "Density"
+	},
+	"EvaporativeHeatTransfer": {
+		"label": "Evaporative Heat Transfer"
+	},
+	"EvaporativeHeatTransferCoefficient": {
+		"label": "Combined Non Evaporative Heat Transfer Coefficient"
+	},
+	"ExchangeIntegral": {
+		"label": "Exchange Integral",
+		"broader": "Energy",
+		"wikidata": "Q10882959"
+	},
+	"ExpansionRatio": {
+		"label": "Expansion Ratio",
+		"broader": "InverseTemperature"
+	},
+	"Exposure": {
+		"label": "Exposure",
+		"broader": "ElectricChargePerMass",
+		"wikidata": "Q336938"
+	},
+	"ExposureOfIonizingRadiation": {
+		"label": "Exposure of Ionizing Radiation"
+	},
+	"ExposureRate": {
+		"label": "Exposure Rate",
+		"wikidata": "Q99720212"
+	},
+	"ExposureRateOfIonizingRadiation": {
+		"label": "Exposure Rate of Ionizing Radiation"
+	},
+	"ExtentOfReaction": {
+		"label": "Extent of Reaction",
+		"broader": "AmountOfSubstance",
+		"wikidata": "Q899046"
+	},
+	"FahrenheitTemperature": {
+		"label": "Fahrenheit Temperature",
+		"broader": "Temperature"
+	},
+	"FailureRate": {
+		"label": "Failure Rate",
+		"broader": "Incidence"
+	},
+	"FastFissionFactor": {
+		"label": "Fast Fission Factor",
+		"wikidata": "Q99197493"
+	},
+	"FermiAngularWavenumber": {
+		"label": "Fermi Angular Wavenumber",
+		"broader": "AngularWavenumber",
+		"wikidata": "Q105554303"
+	},
+	"FermiEnergy": {
+		"label": "Fermi Energy",
+		"broader": "Energy",
+		"wikidata": "Q431335"
+	},
+	"FermiTemperature": {
+		"label": "Fermi Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q105942324"
+	},
+	"FinalOrCurrentVehicleMass": {
+		"label": "Final Or Current Vehicle Mass",
+		"broader": "Mass"
+	},
+	"FirstMomentOfArea": {
+		"label": "First Moment of Area",
+		"broader": "Volume",
+		"wikidata": "Q920601"
+	},
+	"FishBiotransformationHalfLife": {
+		"label": "Fish Biotransformation Half Life",
+		"broader": "Time"
+	},
+	"FissionCoreRadiusToHeightRatio": {
+		"label": "Fission Core Radius to Height Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"FissionFuelUtilizationFactor": {
+		"label": "Fission Fuel Utilization Factor",
+		"broader": "Dimensionless"
+	},
+	"FissionMultiplicationFactor": {
+		"label": "Fission Multiplication Factor",
+		"broader": "Dimensionless"
+	},
+	"FlashPoint": {
+		"label": "Flash Point Temperature",
+		"broader": "Temperature"
+	},
+	"FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS": {
+		"label": "Flight Performance Reserve Propellant Mass",
+		"broader": "Mass"
+	},
+	"FlightPathAngle": {
+		"label": "Flight Path Angle",
+		"broader": "Angle"
+	},
+	"FloatingPointCalculationCapability": {
+		"label": "Floating Point Calculation Capability"
+	},
+	"Fluidity": {
+		"label": "Fluidity"
+	},
+	"Flux": {
+		"label": "Flux"
+	},
+	"Force": {
+		"label": "Force",
+		"wikidata": "Q11402"
+	},
+	"ForceConstant": {
+		"label": "Force Constant"
+	},
+	"ForceMagnitude": {
+		"label": "Force Magnitude",
+		"broader": "Force"
+	},
+	"ForcePerAngle": {
+		"label": "Force per Angle"
+	},
+	"ForcePerArea": {
+		"label": "Force per Area"
+	},
+	"ForcePerAreaTime": {
+		"label": "Force per Area Time"
+	},
+	"ForcePerElectricCharge": {
+		"label": "Force per Electric Charge"
+	},
+	"ForcePerLength": {
+		"label": "Force per Length"
+	},
+	"Frequency": {
+		"label": "Frequency",
+		"broader": "InverseTime",
+		"wikidata": "Q11652"
+	},
+	"Friction": {
+		"label": "Friction",
+		"broader": "Force",
+		"wikidata": "Q82580"
+	},
+	"FrictionCoefficient": {
+		"label": "Friction Coefficient",
+		"broader": "DimensionlessRatio"
+	},
+	"FUEL-BIAS": {
+		"label": "Fuel Bias",
+		"broader": "Dimensionless"
+	},
+	"Fugacity": {
+		"label": "Fugacity",
+		"broader": "Pressure",
+		"wikidata": "Q898412"
+	},
+	"FundamentalLatticeVector": {
+		"label": "Fundamental Lattice Vector",
+		"broader": "LatticeVector",
+		"wikidata": "Q105451063"
+	},
+	"FundamentalReciprocalLatticeVector": {
+		"label": "Fundamental Reciprocal Lattice Vector",
+		"wikidata": "Q105475399"
+	},
+	"Gain": {
+		"label": "Gain",
+		"broader": "DimensionlessRatio"
+	},
+	"GapEnergy": {
+		"label": "Gap Energy",
+		"broader": "Energy"
+	},
+	"GasLeakRate": {
+		"label": "Gas Leak Rate",
+		"broader": "EnergyFluence"
+	},
+	"GaugePressure": {
+		"label": "Gauge Pressure",
+		"broader": "Pressure"
+	},
+	"GeneFamilyAbundance": {
+		"label": "Gene Family Abundance",
+		"broader": "DimensionlessRatio"
+	},
+	"GeneralizedCoordinate": {
+		"label": "Generalized Coordinate",
+		"wikidata": "Q1057607"
+	},
+	"GeneralizedForce": {
+		"label": "Generalized Force",
+		"wikidata": "Q1153787"
+	},
+	"GeneralizedMomentum": {
+		"label": "Generalized Force",
+		"wikidata": "Q6806305"
+	},
+	"GeneralizedVelocity": {
+		"label": "Generalized Velocity",
+		"wikidata": "Q74317892"
+	},
+	"GFactorOfNucleus": {
+		"label": "g-Factor of Nucleus",
+		"wikidata": "Q97591250"
+	},
+	"GibbsEnergy": {
+		"label": "Gibbs Energy",
+		"broader": "Energy"
+	},
+	"Gradient": {
+		"label": "Gradient"
+	},
+	"GrandCanonicalPartitionFunction": {
+		"label": "Grand Canonical Partition Function",
+		"broader": "CanonicalPartitionFunction",
+		"wikidata": "Q96176022"
+	},
+	"GravitationalAttraction": {
+		"label": "Gravitational Attraction",
+		"broader": "Force",
+		"wikidata": "Q78337869"
+	},
+	"Gravity_API": {
+		"label": "API Gravity",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q29246"
+	},
+	"GROSS-LIFT-OFF-WEIGHT": {
+		"label": "Gross Lift-Off Weight",
+		"broader": "Mass"
+	},
+	"GrossTonnage": {
+		"label": "Gross Tonnage",
+		"broader": "Volume"
+	},
+	"GroupSpeedOfSound": {
+		"label": "Group Speed of Sound",
+		"broader": "SpeedOfSound",
+		"wikidata": "Q86508881"
+	},
+	"GrowingDegreeDay": {
+		"label": "Growing Degree Days (Cereals)",
+		"broader": "TimeTemperature"
+	},
+	"GrowingDegreeDay_Cereal": {
+		"label": "Growing Degree Days (Cereals)",
+		"broader": "TimeTemperature"
+	},
+	"GruneisenParameter": {
+		"label": "Gruneisen Parameter",
+		"wikidata": "Q105658620"
+	},
+	"GustatoryThreshold": {
+		"label": "Gustatory Threshold"
+	},
+	"GyromagneticRatio": {
+		"label": "Gyromagnetic Ratio",
+		"wikidata": "Q634552"
+	},
+	"Half-Life": {
+		"label": "half-life",
+		"broader": "Time",
+		"wikidata": "Q98118544"
+	},
+	"Half-ValueThickness": {
+		"label": "Half-Value Thickness",
+		"broader": "Length",
+		"wikidata": "Q127526"
+	},
+	"HalfLife": {
+		"label": "Half-life",
+		"broader": "Time",
+		"wikidata": "Q98118544"
+	},
+	"HalfValueThickness": {
+		"label": "Half-Value Thickness",
+		"broader": "Length",
+		"wikidata": "Q127526"
+	},
+	"HallCoefficient": {
+		"label": "Hall Coefficient",
+		"wikidata": "Q997439"
+	},
+	"HamiltonFunction": {
+		"label": "Hamilton Function",
+		"broader": "Energy"
+	},
+	"HeadEndPressure": {
+		"label": "Head End Pressure",
+		"broader": "Pressure"
+	},
+	"HeartRate": {
+		"label": "Heart Rate",
+		"broader": "CountRate",
+		"wikidata": "Q1073121"
+	},
+	"Heat": {
+		"label": "Heat",
+		"broader": "ThermalEnergy",
+		"wikidata": "Q44432"
+	},
+	"HeatCapacity": {
+		"label": "Heat Capacity",
+		"broader": "EnergyPerTemperature",
+		"wikidata": "Q179388"
+	},
+	"HeatCapacityRatio": {
+		"label": "Heat Capacity Ratio",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q503869"
+	},
+	"HeatFlowRate": {
+		"label": "Heat Flow Rate",
+		"broader": "Power",
+		"wikidata": "Q12160631"
+	},
+	"HeatFlowRatePerArea": {
+		"label": "Heat Flow Rate per Unit Area",
+		"broader": "PowerPerArea"
+	},
+	"HeatFluxDensity": {
+		"label": "Heat Flux Density",
+		"broader": "PowerPerArea"
+	},
+	"HeatingValue": {
+		"label": "Calorific Value",
+		"broader": "SpecificEnergy"
+	},
+	"Height": {
+		"label": "Height",
+		"broader": "Length",
+		"wikidata": "Q208826"
+	},
+	"HelmholtzEnergy": {
+		"label": "Helmholtz Energy",
+		"broader": "Energy"
+	},
+	"HenrysLawVolatilityConstant": {
+		"label": "Henry's Law Volatility Constant"
+	},
+	"HoleDensity": {
+		"label": "Hole Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q105971101"
+	},
+	"HorizontalVelocity": {
+		"label": "Horizontal Velocity",
+		"broader": "LinearVelocity"
+	},
+	"HydraulicPermeability": {
+		"label": "Hydraulic Permeability",
+		"broader": "Area"
+	},
+	"HyperfineStructureQuantumNumber": {
+		"label": "Hyperfine Structure Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q97577449"
+	},
+	"IgnitionIntervalTime": {
+		"label": "Ignition Interval Time",
+		"broader": "Time"
+	},
+	"Illuminance": {
+		"label": "Illuminance",
+		"broader": "LuminousFluxPerArea",
+		"wikidata": "Q194411"
+	},
+	"Impedance": {
+		"label": "Impedance",
+		"broader": "Resistance",
+		"wikidata": "Q179043"
+	},
+	"Impulse": {
+		"label": "Impulse"
+	},
+	"Incidence": {
+		"label": "Incidence"
+	},
+	"IncidenceProportion": {
+		"label": "Incidence Proportion",
+		"wikidata": "Q217690"
+	},
+	"IncidenceRate": {
+		"label": "Incidence Rate"
+	},
+	"Inductance": {
+		"label": "Inductance",
+		"wikidata": "Q177897"
+	},
+	"InductanceBasedTimeConstant": {
+		"label": "Inductance Based Time Constant"
+	},
+	"INERT-MASS": {
+		"label": "Inert Mass",
+		"broader": "Mass"
+	},
+	"InfiniteMultiplicationFactor": {
+		"label": "Infinite Multiplication Factor",
+		"broader": "MultiplicationFactor",
+		"wikidata": "Q99440487"
+	},
+	"InformationContent": {
+		"label": "Information Content"
+	},
+	"InformationContentExpressedAsALogarithmToBase10": {
+		"label": "Information Content Expressed as a Logarithm to Base 10"
+	},
+	"InformationContentExpressedAsALogarithmToBase2": {
+		"label": "Information Content Expressed as a Logarithm to Base 2"
+	},
+	"InformationContentExpressedAsALogarithmToBaseE": {
+		"label": "Information Content Expressed as a Logarithm to Base e"
+	},
+	"InformationEntropy": {
+		"label": "Information Entropy",
+		"broader": "Dimensionless",
+		"wikidata": "Q204570"
+	},
+	"InformationFlowRate": {
+		"label": "Information Flow Rate"
+	},
+	"InitialExpansionRatio": {
+		"label": "Initial Expansion Ratio",
+		"broader": "ExpansionRatio"
+	},
+	"InitialVehicleMass": {
+		"label": "Initial Vehicle Mass",
+		"broader": "Mass"
+	},
+	"InitialVelocity": {
+		"label": "Initial Velocity",
+		"broader": "LinearVelocity"
+	},
+	"InstantaneousPower": {
+		"label": "Instantaneous Power",
+		"broader": "ElectricPower"
+	},
+	"InternalConversionFactor": {
+		"label": "Internal Conversion Factor",
+		"wikidata": "Q6047819"
+	},
+	"InternalEnergy": {
+		"label": "Internal Energy",
+		"broader": "Energy",
+		"wikidata": "Q180241"
+	},
+	"IntinsicCarrierDensity": {
+		"label": "Intrinsic Carrier Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q1303188"
+	},
+	"IntrinsicCarrierDensity": {
+		"label": "Intrinsic Carrier Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q1303188"
+	},
+	"InverseAmountOfSubstance": {
+		"label": "Inverse Amount of Substance",
+		"wikidata": "Q93421670"
+	},
+	"InverseArea": {
+		"label": "Inverse Area"
+	},
+	"InverseEnergy": {
+		"label": "Inverse Energy"
+	},
+	"InverseEnergy_Squared": {
+		"label": "Inverse Square Energy"
+	},
+	"InverseLength": {
+		"label": "Inverse Length",
+		"wikidata": "Q1028259"
+	},
+	"InverseLengthTemperature": {
+		"label": "Inverse Length Temperature"
+	},
+	"InverseMagneticFlux": {
+		"label": "Inverse Magnetic Flux",
+		"wikidata": "Q101194934"
+	},
+	"InverseMass": {
+		"label": "Reciprocal Mass"
+	},
+	"InverseMass_Squared": {
+		"label": "Inverse Square Mass"
+	},
+	"InversePermittivity": {
+		"label": "Inverse Permittivity"
+	},
+	"InversePressure": {
+		"label": "Inverse Pressure"
+	},
+	"InverseSquareEnergy": {
+		"label": "Inverse Square Energy"
+	},
+	"InverseSquareMass": {
+		"label": "Inverse Square Mass"
+	},
+	"InverseSquareTime": {
+		"label": "Inverse Square Time"
+	},
+	"InverseTemperature": {
+		"label": "Inverse Temperature",
+		"wikidata": "Q107028650"
+	},
+	"InverseTime": {
+		"label": "Inverse Time",
+		"wikidata": "Q98690850"
+	},
+	"InverseTime_Squared": {
+		"label": "Inverse Square Time"
+	},
+	"InverseTimeTemperature": {
+		"label": "Inverse Time Temperature"
+	},
+	"InverseVolume": {
+		"label": "Inverse Volume",
+		"wikidata": "Q98690867"
+	},
+	"IonConcentration": {
+		"label": "Ion Concentration",
+		"broader": "Concentration"
+	},
+	"IonCurrent": {
+		"label": "Ion Current",
+		"broader": "ElectricCurrent"
+	},
+	"IonDensity": {
+		"label": "Ion Density",
+		"broader": "NumberDensity"
+	},
+	"IonicCharge": {
+		"label": "Ionic Charge",
+		"broader": "ElectricCharge"
+	},
+	"IonicStrength": {
+		"label": "Ionic Strength",
+		"broader": "AmountOfSubstancePerMass",
+		"wikidata": "Q898396"
+	},
+	"IonizationEnergy": {
+		"label": "Ionization Energy",
+		"broader": "Energy",
+		"wikidata": "Q483769"
+	},
+	"IonTransportNumber": {
+		"label": "Ion Transport Number",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q331854"
+	},
+	"Irradiance": {
+		"label": "Irradiance",
+		"broader": "PowerPerArea",
+		"wikidata": "Q830654"
+	},
+	"IsentropicCompressibility": {
+		"label": "Isentropic Compressibility",
+		"broader": "Compressibility",
+		"wikidata": "Q2990695"
+	},
+	"IsentropicExponent": {
+		"label": "Isentropic Exponent",
+		"wikidata": "Q75775739"
+	},
+	"IsothermalCompressibility": {
+		"label": "Isothermal Compressibility",
+		"broader": "Compressibility",
+		"wikidata": "Q2990696"
+	},
+	"IsothermalMoistureCapacity": {
+		"label": "Isothermal Moisture Capacity",
+		"broader": "SpecificVolume"
+	},
+	"Kerma": {
+		"label": "Kerma",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q1739288"
+	},
+	"KermaRate": {
+		"label": "Kerma Rate",
+		"broader": "SpecificPower",
+		"wikidata": "Q1739280"
+	},
+	"KinematicViscosity": {
+		"label": "Kinematic Viscosity",
+		"broader": "AreaPerTime",
+		"wikidata": "Q15106259"
+	},
+	"KinematicViscosityOrDiffusionConstantOrThermalDiffusivity": {
+		"label": "kinematic viscosity or diffusion constant or thermal diffusivity"
+	},
+	"KineticEnergy": {
+		"label": "Kinetic Energy",
+		"broader": "Energy",
+		"wikidata": "Q46276"
+	},
+	"KineticOrThermalEnergy": {
+		"label": "kinetic or thermal energy",
+		"broader": "Energy"
+	},
+	"LagrangeFunction": {
+		"label": "Lagrange Function",
+		"broader": "Energy",
+		"wikidata": "Q74318512"
+	},
+	"Landau-GinzburgNumber": {
+		"label": "Landau-Ginzburg Number",
+		"broader": "DimensionlessRatio"
+	},
+	"LandauGinzburgNumber": {
+		"label": "Landau-Ginzburg Number",
+		"broader": "DimensionlessRatio"
+	},
+	"LandeGFactor": {
+		"label": "Lande g-Factor",
+		"wikidata": "Q1191684"
+	},
+	"LarmorAngularFrequency": {
+		"label": "Larmor Angular Frequency",
+		"broader": "AngularFrequency",
+		"wikidata": "Q97617059"
+	},
+	"LatticePlaneSpacing": {
+		"label": "Lattice Plane Spacing",
+		"broader": "Length",
+		"wikidata": "Q105488046"
+	},
+	"LatticeVector": {
+		"label": "Lattice Vector",
+		"broader": "Length",
+		"wikidata": "Q105435234"
+	},
+	"LeakageFactor": {
+		"label": "Leakage Factor"
+	},
+	"Length": {
+		"label": "Length",
+		"wikidata": "Q36253"
+	},
+	"LengthByForce": {
+		"label": "Length Force",
+		"broader": "Work"
+	},
+	"LengthEnergy": {
+		"label": "Length Energy"
+	},
+	"LengthMass": {
+		"label": "Length Mass"
+	},
+	"LengthMolarEnergy": {
+		"label": "Length Molar Energy"
+	},
+	"LengthPerElectricCurrent": {
+		"label": "Length per Electric Current"
+	},
+	"LengthRatio": {
+		"label": "Length Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"LengthTemperature": {
+		"label": "Length Temperature"
+	},
+	"LengthTemperatureTime": {
+		"label": "Length Temperature Time"
+	},
+	"Lethargy": {
+		"label": "Lethargy",
+		"wikidata": "Q25508781"
+	},
+	"LevelWidth": {
+		"label": "Level Width",
+		"broader": "Energy",
+		"wikidata": "Q98082340"
+	},
+	"LiftCoefficient": {
+		"label": "Lift Coefficient",
+		"broader": "Dimensionless",
+		"wikidata": "Q760106"
+	},
+	"LiftForce": {
+		"label": "Lift Force",
+		"broader": "Force",
+		"wikidata": "Q101960694"
+	},
+	"LinearAbsorptionCoefficient": {
+		"label": "Linear Absorption Coefficient",
+		"broader": "AttenuationCoefficient",
+		"wikidata": "Q86204782"
+	},
+	"LinearAcceleration": {
+		"label": "Linear Acceleration"
+	},
+	"LinearAttenuationCoefficient": {
+		"label": "Linear Attenuation Coefficient",
+		"broader": "AttenuationCoefficient",
+		"wikidata": "Q86204330"
+	},
+	"LinearBitDensity": {
+		"label": "Lineic Bit Density"
+	},
+	"LinearCompressibility": {
+		"label": "Linear Compressibility"
+	},
+	"LinearDensity": {
+		"label": "Linear Density",
+		"broader": "MassPerLength",
+		"wikidata": "Q56298294"
+	},
+	"LinearElectricCharge": {
+		"label": "Lineic Electric Charge"
+	},
+	"LinearElectricChargeDensity": {
+		"label": "Electric Charge Linear Density"
+	},
+	"LinearElectricCurrent": {
+		"label": "Linear Electric Current",
+		"broader": "LinearElectricCurrentDensity"
+	},
+	"LinearElectricCurrentDensity": {
+		"label": "Linear Electric Current Density",
+		"wikidata": "Q2356741"
+	},
+	"LinearEnergyTransfer": {
+		"label": "Linear Energy Transfer",
+		"wikidata": "Q1699996"
+	},
+	"LinearExpansionCoefficient": {
+		"label": "Linear Expansion Coefficient",
+		"broader": "ExpansionRatio",
+		"wikidata": "Q74760821"
+	},
+	"LinearForce": {
+		"label": "Linear Force",
+		"broader": "ForcePerLength"
+	},
+	"LinearIonization": {
+		"label": "Linear Ionization",
+		"wikidata": "Q98690755"
+	},
+	"LinearLogarithmicRatio": {
+		"label": "Lineic Logarithmic Ratio"
+	},
+	"LinearMass": {
+		"label": "Lineic Mass"
+	},
+	"LinearMomentum": {
+		"label": "Linear Momentum"
+	},
+	"LinearNumberDensity": {
+		"label": "Linear Number Density"
+	},
+	"LinearPower": {
+		"label": "Lineic Power"
+	},
+	"LinearResistance": {
+		"label": "Lineic Resistance"
+	},
+	"LinearStiffness": {
+		"label": "Linear Force",
+		"broader": "ForcePerLength"
+	},
+	"LinearStrain": {
+		"label": "Linear Strain",
+		"broader": "LengthRatio",
+		"wikidata": "Q1990546"
+	},
+	"LinearThermalExpansion": {
+		"label": "Linear Thermal Expansion"
+	},
+	"LinearTorque": {
+		"label": "Lineic Torque"
+	},
+	"LinearVelocity": {
+		"label": "Linear Velocity"
+	},
+	"LinearVoltageCoefficient": {
+		"label": "Linear Voltage Coefficient"
+	},
+	"LineicCharge": {
+		"label": "Lineic Charge"
+	},
+	"LineicDataVolume": {
+		"label": "Lineic Data Volume"
+	},
+	"LineicLogarithmicRatio": {
+		"label": "Lineic Logarithmic Ratio"
+	},
+	"LineicMass": {
+		"label": "Lineic Mass"
+	},
+	"LineicPower": {
+		"label": "Lineic Power"
+	},
+	"LineicQuantity": {
+		"label": "Lineic Quantity"
+	},
+	"LineicResistance": {
+		"label": "Lineic Resistance"
+	},
+	"LineicResolution": {
+		"label": "Lineic Resolution"
+	},
+	"LineicTorque": {
+		"label": "Lineic Torque"
+	},
+	"LinkedFlux": {
+		"label": "Linked Flux",
+		"broader": "MagneticFlux",
+		"wikidata": "Q118540114"
+	},
+	"LiquidLevel": {
+		"label": "Liquid Level",
+		"broader": "Length",
+		"wikidata": "Q1481422"
+	},
+	"LiquidVolume": {
+		"label": "Liquid Volume",
+		"broader": "Volume"
+	},
+	"Log10FrequencyInterval": {
+		"label": "Logarithmic Frequency Interval to Base 10"
+	},
+	"Log10Ratio": {
+		"label": "Logarithmic Ratio to Base 10"
+	},
+	"LogarithmicFrequencyInterval": {
+		"label": "Logarithmic Frequency Interval",
+		"wikidata": "Q86499668"
+	},
+	"LogarithmicFrequencyIntervalToBase10": {
+		"label": "Logarithmic Frequency Interval to Base 10"
+	},
+	"LogarithmicMedianInformationFlow_SourceToBase10": {
+		"label": "median information flow (from a source of information), expressed as a common logarithm "
+	},
+	"LogarithmicMedianInformationFlow_SourceToBase2": {
+		"label": "median information flow (from a source of information), expressed as a binary logarithm"
+	},
+	"LogarithmicMedianInformationFlow_SourceToBaseE": {
+		"label": "median information flow (from a source of information), expressed as a natural logarithm "
+	},
+	"LogarithmRatioToBase10": {
+		"label": "Logarithm Ratio to Base 10"
+	},
+	"LogarithmRatioToBaseE": {
+		"label": "Logarithm Ratio to Base e"
+	},
+	"LogERatio": {
+		"label": "Logarithmic Ratio to Base e"
+	},
+	"LogOctanolAirPartitionCoefficient": {
+		"label": "Octanol Air Partition Coefficient",
+		"broader": "DimensionlessRatio"
+	},
+	"LogOctanolWaterPartitionCoefficient": {
+		"label": "Logarithm of Octanol Water Partition Coefficient",
+		"broader": "DimensionlessRatio"
+	},
+	"LondonPenetrationDepth": {
+		"label": "London Penetration Depth",
+		"broader": "Length",
+		"wikidata": "Q3277853"
+	},
+	"Long-RangeOrderParameter": {
+		"label": "Long-Range Order Parameter",
+		"wikidata": "Q105496124"
+	},
+	"LongRangeOrderParameter": {
+		"label": "Long-Range Order Parameter",
+		"wikidata": "Q105496124"
+	},
+	"LorenzCoefficient": {
+		"label": "Lorenz Coefficient",
+		"wikidata": "Q105728754"
+	},
+	"LossAngle": {
+		"label": "Loss Angle",
+		"broader": "Angle",
+		"wikidata": "Q20820438"
+	},
+	"LossFactor": {
+		"label": "Loss Factor",
+		"wikidata": "Q79468728"
+	},
+	"Loudness": {
+		"label": "Loudness",
+		"broader": "Dimensionless"
+	},
+	"LoudnessLevel": {
+		"label": "Loudness Level",
+		"broader": "Dimensionless"
+	},
+	"LowerCriticalMagneticFluxDensity": {
+		"label": "Lower Critical Magnetic Flux Density",
+		"broader": "MagneticFluxDensity",
+		"wikidata": "Q106127355"
+	},
+	"Luminance": {
+		"label": "Luminance",
+		"wikidata": "Q355386"
+	},
+	"LuminousEfficacy": {
+		"label": "Luminous Efficacy",
+		"wikidata": "Q1504173"
+	},
+	"LuminousEmittance": {
+		"label": "Luminous Emmitance",
+		"broader": "LuminousFluxPerArea"
+	},
+	"LuminousEnergy": {
+		"label": "Luminous Energy",
+		"wikidata": "Q900164"
+	},
+	"LuminousExitance": {
+		"label": "Luminous Exitance",
+		"broader": "LuminousFluxPerArea"
+	},
+	"LuminousExposure": {
+		"label": "Luminous Exposure",
+		"wikidata": "Q815588"
+	},
+	"LuminousFlux": {
+		"label": "Luminous Flux",
+		"wikidata": "Q107780"
+	},
+	"LuminousFluxPerArea": {
+		"label": "Luminous Flux per Area"
+	},
+	"LuminousFluxRatio": {
+		"label": "Luminous Flux Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"LuminousIntensity": {
+		"label": "Luminous Intensity",
+		"wikidata": "Q104831"
+	},
+	"LuminousIntensityDistribution": {
+		"label": "Ion Concentration"
+	},
+	"MachNumber": {
+		"label": "Mach Number",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q160669"
+	},
+	"MacroscopicCrossSection": {
+		"label": "Macroscopic Cross-section",
+		"broader": "CrossSection",
+		"wikidata": "Q98280520"
+	},
+	"MacroscopicTotalCrossSection": {
+		"label": "Macroscopic Total Cross-section",
+		"broader": "CrossSection",
+		"wikidata": "Q98280548"
+	},
+	"MadelungConstant": {
+		"label": "Madelung Constant",
+		"wikidata": "Q898781"
+	},
+	"MagneticAreaMoment": {
+		"label": "Magnetic Area Moment"
+	},
+	"MagneticDipoleMoment": {
+		"label": "Magnetic Dipole Moment",
+		"wikidata": "Q71008556"
+	},
+	"MagneticDipoleMomentOfAMolecule": {
+		"label": "Magnetic Dipole Moment of a Molecule"
+	},
+	"MagneticField": {
+		"label": "Magnetic Field"
+	},
+	"MagneticFieldStrength": {
+		"label": "Magnetic Field Strength",
+		"broader": "ElectricCurrentPerLength",
+		"wikidata": "Q28123"
+	},
+	"MagneticFieldStrength_H": {
+		"label": "magnetic field strength",
+		"broader": "ElectricCurrentPerLength"
+	},
+	"MagneticFlux": {
+		"label": "Magnetic Flux",
+		"wikidata": "Q177831"
+	},
+	"MagneticFluxDensity": {
+		"label": "Magnetic Flux Density",
+		"wikidata": "Q30204"
+	},
+	"MagneticFluxDensityOrMagneticPolarization": {
+		"label": "magnetic flux density or magnetic polarization"
+	},
+	"MagneticFluxPerLength": {
+		"label": "Magnetic Flux per Length"
+	},
+	"MagneticMoment": {
+		"label": "Magnetic Moment",
+		"wikidata": "Q242657"
+	},
+	"MagneticPolarization": {
+		"label": "Magnetic Polarization",
+		"wikidata": "Q1884336"
+	},
+	"MagneticQuantumNumber": {
+		"label": "Magnetic Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q2009727"
+	},
+	"MagneticReluctivity": {
+		"label": "Magnetic Reluctivity"
+	},
+	"MagneticSusceptability": {
+		"label": "Magnetic Susceptability"
+	},
+	"MagneticTension": {
+		"label": "Magnetic Tension",
+		"broader": "ElectricCurrent",
+		"wikidata": "Q77993836"
+	},
+	"MagneticVectorPotential": {
+		"label": "Magnetic Vector Potential",
+		"wikidata": "Q2299100"
+	},
+	"Magnetization": {
+		"label": "Magnetization",
+		"broader": "LinearElectricCurrent",
+		"wikidata": "Q856711"
+	},
+	"MagnetizationField": {
+		"label": "Magnetization Field",
+		"broader": "ElectricCurrentPerLength"
+	},
+	"MagnetomotiveForce": {
+		"label": "Magnetomotive Force",
+		"wikidata": "Q1266982"
+	},
+	"Mass": {
+		"label": "Mass",
+		"wikidata": "Q11423"
+	},
+	"MASS-DELIVERED": {
+		"label": "Mass Delivered",
+		"broader": "Mass"
+	},
+	"MASS-GROWTH-ALLOWANCE": {
+		"label": "Mass Growth Allowance",
+		"broader": "Mass"
+	},
+	"MASS-MARGIN": {
+		"label": "Mass Margin",
+		"broader": "Mass"
+	},
+	"MASS-PROPERTY-UNCERTAINTY": {
+		"label": "Mass Property Uncertainty",
+		"broader": "Mass"
+	},
+	"MassAbsorptionCoefficient": {
+		"label": "Mass Absorption Coefficient",
+		"broader": "MassAttenuationCoefficient",
+		"wikidata": "Q86202147"
+	},
+	"MassAmountOfSubstance": {
+		"label": "Mass Amount of Substance"
+	},
+	"MassAmountOfSubstanceTemperature": {
+		"label": "Mass Amount of Substance Temperature"
+	},
+	"MassAttenuationCoefficient": {
+		"label": "Mass Attenuation Coefficient",
+		"wikidata": "Q1907558"
+	},
+	"MassBasedBloodGlucoseLevel": {
+		"label": "Blood Glucose Level by Mass",
+		"broader": "MassConcentration"
+	},
+	"MassConcentration": {
+		"label": "Mass Concentration",
+		"broader": "Density",
+		"wikidata": "Q589446"
+	},
+	"MassConcentrationOfWater": {
+		"label": "Mass Concentration of Water",
+		"broader": "MassConcentration",
+		"wikidata": "Q76378758"
+	},
+	"MassConcentrationOfWaterVapour": {
+		"label": "Mass Concentration of Water Vapour",
+		"broader": "MassConcentration",
+		"wikidata": "Q76378808"
+	},
+	"MassConcentrationRateOfChange": {
+		"label": "Mass Concentration Rate of Change"
+	},
+	"MassDefect": {
+		"label": "Mass Defect",
+		"broader": "Mass",
+		"wikidata": "Q26897126"
+	},
+	"MassDensity": {
+		"label": "Mass Density"
+	},
+	"MassEnergyTransferCoefficient": {
+		"label": "Mass Energy Transfer Coefficient",
+		"broader": "MassAttenuationCoefficient",
+		"wikidata": "Q99714619"
+	},
+	"MassEquivalent": {
+		"label": "Mass Equivalent",
+		"broader": "Mass"
+	},
+	"MassExcess": {
+		"label": "Mass Excess",
+		"broader": "Mass",
+		"wikidata": "Q1571163"
+	},
+	"MassFlowRate": {
+		"label": "Mass Flow Rate",
+		"broader": "MassPerTime",
+		"wikidata": "Q1366187"
+	},
+	"MassFluxDensity": {
+		"label": "Mass Flux Density",
+		"broader": "MassPerAreaTime"
+	},
+	"MassFraction": {
+		"label": "Mass Fraction",
+		"wikidata": "Q899138"
+	},
+	"MassFractionOfDryMatter": {
+		"label": "Mass Fraction of Dry Matter",
+		"wikidata": "Q76379189"
+	},
+	"MassFractionOfWater": {
+		"label": "Mass Fraction of Water",
+		"wikidata": "Q76379025"
+	},
+	"MassicActivity": {
+		"label": "Massic Activity",
+		"broader": "SpecificActivity"
+	},
+	"MassicElectricCurrent": {
+		"label": "Massic Electric Current"
+	},
+	"MassicHeatCapacity": {
+		"label": "Massic Heat Capacity"
+	},
+	"MassicPower": {
+		"label": "Massic Power",
+		"broader": "SpecificPower"
+	},
+	"MassicTorque": {
+		"label": "Massic Torque"
+	},
+	"MassieuFunction": {
+		"label": "Massieu Function",
+		"wikidata": "Q3077625"
+	},
+	"MassNumber": {
+		"label": "Mass Number",
+		"broader": "Count",
+		"wikidata": "Q101395"
+	},
+	"MassOfElectricalPowerSupply": {
+		"label": "Mass of Electrical Power Supply",
+		"broader": "Mass"
+	},
+	"MassOfSolidBooster": {
+		"label": "Mass of Solid Booster",
+		"broader": "Mass"
+	},
+	"MassOfTheEarth": {
+		"label": "Mass of the Earth",
+		"broader": "Mass"
+	},
+	"MassPerArea": {
+		"label": "Mass per Area"
+	},
+	"MassPerAreaTime": {
+		"label": "Mass per Area Time"
+	},
+	"MassPerElectricCharge": {
+		"label": "Mass per Electric Charge"
+	},
+	"MassPerEnergy": {
+		"label": "Mass per Energy"
+	},
+	"MassPerLength": {
+		"label": "Mass per Length"
+	},
+	"MassPerTime": {
+		"label": "Mass per Time"
+	},
+	"MassRatio": {
+		"label": "Mass Ratio",
+		"wikidata": "Q1563068"
+	},
+	"MassRatioOfWaterToDryMatter": {
+		"label": "Mass Concentration of Water to Dry Matter"
+	},
+	"MassRatioOfWaterVapourToDryGas": {
+		"label": "Mass Ratio of Water Vapour to Dry Gas",
+		"wikidata": "Q17232415"
+	},
+	"MassRelatedElectricalCurrent": {
+		"label": "Mass-related Electrical Current"
+	},
+	"MassSpecificBiogeochemicalRate": {
+		"label": "Mass Specific Biogeochemical Rate"
+	},
+	"MassStoppingPower": {
+		"label": "Mass Stopping Power"
+	},
+	"MassTemperature": {
+		"label": "Mass Temperature"
+	},
+	"MaxExpectedOperatingThrust": {
+		"label": "Maximum Expected Operating Thrust",
+		"broader": "MaxOperatingThrust"
+	},
+	"MaximumBeta-ParticleEnergy": {
+		"label": "Maximum Beta-Particle Energy",
+		"broader": "Energy",
+		"wikidata": "Q98148038"
+	},
+	"MaximumBetaParticleEnergy": {
+		"label": "Maximum Beta-Particle Energy",
+		"broader": "Energy",
+		"wikidata": "Q98148038"
+	},
+	"MaximumExpectedOperatingPressure": {
+		"label": "Maximum Expected Operating Pressure",
+		"broader": "Pressure"
+	},
+	"MaximumOperatingPressure": {
+		"label": "Maximum Operating Pressure",
+		"broader": "Pressure"
+	},
+	"MaxOperatingThrust": {
+		"label": "Max Operating Thrust",
+		"broader": "Thrust"
+	},
+	"MaxSeaLevelThrust": {
+		"label": "Max Sea Level Thrust",
+		"broader": "Thrust"
+	},
+	"MeanEnergyImparted": {
+		"label": "Mean Energy Imparted",
+		"broader": "Energy",
+		"wikidata": "Q99526969"
+	},
+	"MeanFreePath": {
+		"label": "Mean Free Path",
+		"broader": "Length",
+		"wikidata": "Q756307"
+	},
+	"MeanLifetime": {
+		"label": "Mean Lifetime",
+		"broader": "Time",
+		"wikidata": "Q1758559"
+	},
+	"MeanLinearRange": {
+		"label": "Mean Linear Range",
+		"broader": "Length",
+		"wikidata": "Q98681589"
+	},
+	"MeanMassRange": {
+		"label": "Mean Mass Range",
+		"broader": "MassPerArea",
+		"wikidata": "Q98681670"
+	},
+	"MechanicalEnergy": {
+		"label": "Mechanical Energy",
+		"broader": "Energy",
+		"wikidata": "Q184550"
+	},
+	"MechanicalImpedance": {
+		"label": "Mechanical Impedance",
+		"wikidata": "Q6421317"
+	},
+	"MechanicalMobility": {
+		"label": "Mechanical Mobility"
+	},
+	"MechanicalSurfaceImpedance": {
+		"label": "Mechanical Surface Impedance"
+	},
+	"MechanicalTension": {
+		"label": "Mechanical Tension",
+		"broader": "ForcePerArea"
+	},
+	"MeltingPoint": {
+		"label": "Melting Point Temperature",
+		"broader": "Temperature"
+	},
+	"MicrobialFormation": {
+		"label": "Microbial Formation"
+	},
+	"MicroCanonicalPartitionFunction": {
+		"label": "Micro Canonical Partition Function",
+		"broader": "CanonicalPartitionFunction",
+		"wikidata": "Q96106546"
+	},
+	"MigrationArea": {
+		"label": "Migration Area",
+		"broader": "Area",
+		"wikidata": "Q98966325"
+	},
+	"MigrationLength": {
+		"label": "Migration Length",
+		"broader": "Length",
+		"wikidata": "Q98998318"
+	},
+	"Mobility": {
+		"label": "Mobility",
+		"wikidata": "Q900648"
+	},
+	"MobilityRatio": {
+		"label": "Mobility Ratio",
+		"wikidata": "Q106010255"
+	},
+	"ModulusOfAdmittance": {
+		"label": "Modulus of Admittance",
+		"wikidata": "Q79466359"
+	},
+	"ModulusOfElasticity": {
+		"label": "Modulus of Elasticity",
+		"broader": "ForcePerArea"
+	},
+	"ModulusOfImpedance": {
+		"label": "Modulus of Impedance",
+		"broader": "Impedance",
+		"wikidata": "Q25457909"
+	},
+	"ModulusOfLinearSubgradeReaction": {
+		"label": "Modulus of Linear Subgrade Reaction",
+		"broader": "ForcePerArea"
+	},
+	"ModulusOfRotationalSubgradeReaction": {
+		"label": "Modulus of Rotational Subgrade Reaction"
+	},
+	"ModulusOfSubgradeReaction": {
+		"label": "Modulus of Subgrade Reaction"
+	},
+	"MoistureDiffusivity": {
+		"label": "Moisture Diffusivity",
+		"broader": "VolumeFlowRate"
+	},
+	"MolalityOfSolute": {
+		"label": "Molality of Solute",
+		"broader": "AmountOfSubstancePerMass"
+	},
+	"MolarAbsorptionCoefficient": {
+		"label": "Molar Absorption Coefficient",
+		"wikidata": "Q11784888"
+	},
+	"MolarAngularMomentum": {
+		"label": "Molar Angular Momentum"
+	},
+	"MolarAttenuationCoefficient": {
+		"label": "Molar Attenuation Coefficient",
+		"wikidata": "Q900239"
+	},
+	"MolarConductivity": {
+		"label": "Molar Conductivity",
+		"wikidata": "Q1943278"
+	},
+	"MolarDensity": {
+		"label": "Molar Density"
+	},
+	"MolarEnergy": {
+		"label": "Molar Energy",
+		"wikidata": "Q69427512"
+	},
+	"MolarEntropy": {
+		"label": "Molar Entropy",
+		"wikidata": "Q68972876"
+	},
+	"MolarEquivalent": {
+		"label": "Molar Equivalent",
+		"broader": "AmountOfSubstance"
+	},
+	"MolarFlowRate": {
+		"label": "Molar Flow Rate"
+	},
+	"MolarFluxDensity": {
+		"label": "Molar Flux Density"
+	},
+	"MolarFluxDensityVariance": {
+		"label": "Molar Flux Density Variance"
+	},
+	"MolarFluxDensityVariance_NEON": {
+		"label": "Molar Flux Density Variance, NEON"
+	},
+	"MolarHeatCapacity": {
+		"label": "Molar Heat Capacity",
+		"wikidata": "Q2937190"
+	},
+	"MolarInternalEnergy": {
+		"label": "Molar Internal Energy",
+		"broader": "MolarEnergy"
+	},
+	"MolarMass": {
+		"label": "Molar Mass",
+		"wikidata": "Q145623"
+	},
+	"MolarOpticalRotationalAbility": {
+		"label": "Molar Optical Rotational Ability"
+	},
+	"MolarOpticalRotatoryPower": {
+		"label": "Molar Optical Rotatory Power",
+		"wikidata": "Q96346994"
+	},
+	"MolarRefractivity": {
+		"label": "Molar Refractivity"
+	},
+	"MolarThermalCapacity": {
+		"label": "Molar Thermal Capacity"
+	},
+	"MolarThermodynamicEnergy": {
+		"label": "Molar Thermodynamic Energy",
+		"broader": "MolarEnergy"
+	},
+	"MolarVolume": {
+		"label": "Molar Volume",
+		"wikidata": "Q487112"
+	},
+	"MolecularConcentration": {
+		"label": "Molecular Concentration",
+		"broader": "NumberDensity",
+		"wikidata": "Q88865973"
+	},
+	"MolecularMass": {
+		"label": "Molecular Mass",
+		"broader": "Mass",
+		"wikidata": "Q182854"
+	},
+	"MolecularViscosity": {
+		"label": "Molecular Viscosity"
+	},
+	"MoleFraction": {
+		"label": "Mole Fraction",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q125264"
+	},
+	"MOMENT-OF-INERTIA_Y": {
+		"label": "Moment of Inertia in the Y axis",
+		"broader": "MomentOfInertia"
+	},
+	"MOMENT-OF-INERTIA_Z": {
+		"label": "Moment of Inertia in the Z axis",
+		"broader": "MomentOfInertia"
+	},
+	"MomentOfForce": {
+		"label": "Moment of Force",
+		"wikidata": "Q17232562"
+	},
+	"MomentOfInertia": {
+		"label": "Moment of Inertia",
+		"wikidata": "Q165618"
+	},
+	"MomentOfInertia_Y": {
+		"label": "Moment of Inertia in the Y Axis",
+		"broader": "MomentOfInertia"
+	},
+	"MomentOfInertia_Z": {
+		"label": "Moment of Inertia in the Z Axis",
+		"broader": "MomentOfInertia"
+	},
+	"Momentum": {
+		"label": "Momentum",
+		"wikidata": "Q41273"
+	},
+	"MomentumPerAngle": {
+		"label": "Momentum per Angle"
+	},
+	"MorbidityRate": {
+		"label": "Morbidity Rate",
+		"broader": "IncidenceProportion"
+	},
+	"MortalityRate": {
+		"label": "Mortality Rate",
+		"broader": "IncidenceProportion"
+	},
+	"MotorConstant": {
+		"label": "Motor Constant"
+	},
+	"MultiplicationFactor": {
+		"label": "Multiplication Factor",
+		"wikidata": "Q99440471"
+	},
+	"MutualInductance": {
+		"label": "Mutual Inductance",
+		"broader": "Inductance",
+		"wikidata": "Q78101401"
+	},
+	"NapierianAbsorbance": {
+		"label": "Napierian Absorbance",
+		"wikidata": "Q85664557"
+	},
+	"NaturalLogarithmicMedianInformationFlow": {
+		"label": "Median Information Flow (from a Source of Information), Expressed as a Natural Logarithm "
+	},
+	"NeelTemperature": {
+		"label": "Neel Temperature",
+		"broader": "Temperature"
+	},
+	"NetTonnage": {
+		"label": "Net Tonnage",
+		"broader": "Volume"
+	},
+	"NeutralRatio": {
+		"label": "Neutral Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"NeutronDiffusionCoefficient": {
+		"label": "Diffusion Coefficient",
+		"wikidata": "Q105623303"
+	},
+	"NeutronDiffusionLength": {
+		"label": "Neutron Diffusion Length",
+		"broader": "Length"
+	},
+	"NeutronNumber": {
+		"label": "Neutron Number",
+		"broader": "Count",
+		"wikidata": "Q970319"
+	},
+	"NeutronYieldPerAbsorption": {
+		"label": "Neutron Yield per Absorption",
+		"wikidata": "Q99159075"
+	},
+	"NeutronYieldPerFission": {
+		"label": "Neutron Yield per Fission",
+		"wikidata": "Q99157909"
+	},
+	"NOMINAL-ASCENT-PROPELLANT-MASS": {
+		"label": "Nominal Ascent Propellant Mass",
+		"broader": "Mass"
+	},
+	"Non-LeakageProbability": {
+		"label": "Non-Leakage Probability",
+		"wikidata": "Q99415566"
+	},
+	"NonActivePower": {
+		"label": "Non-active Power",
+		"broader": "ElectricPower",
+		"wikidata": "Q79813060"
+	},
+	"NonLeakageProbability": {
+		"label": "Non-Leakage Probability",
+		"wikidata": "Q99415566"
+	},
+	"NonNegativeLength": {
+		"label": "Positive Length",
+		"broader": "Length"
+	},
+	"NormalizedDimensionlessRatio": {
+		"label": "Positive Dimensionless Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"NormalStress": {
+		"label": "Normal Stress",
+		"broader": "Stress",
+		"wikidata": "Q11425837"
+	},
+	"NuclearEnergy": {
+		"label": "Nuclear Energy",
+		"broader": "Energy"
+	},
+	"NuclearQuadrupoleMoment": {
+		"label": "Nuclear Quadrupole Moment",
+		"broader": "Area",
+		"wikidata": "Q97921226"
+	},
+	"NuclearRadius": {
+		"label": "Nuclear Radius",
+		"broader": "Length",
+		"wikidata": "Q3535676"
+	},
+	"NuclearSpinQuantumNumber": {
+		"label": "Spin Quantum Number",
+		"broader": "SpinQuantumNumber",
+		"wikidata": "Q97577403"
+	},
+	"NucleonNumber": {
+		"label": "Nucleon Number",
+		"broader": "Count"
+	},
+	"NumberDensity": {
+		"label": "Number Density",
+		"wikidata": "Q176449"
+	},
+	"NumberOfElectricalPhases": {
+		"label": "Number of Electrical Phases",
+		"broader": "Count"
+	},
+	"NumberOfParticles": {
+		"label": "Number of Particles",
+		"broader": "Count"
+	},
+	"OlfactoryThreshold": {
+		"label": "Olfactory Threshold",
+		"broader": "Concentration"
+	},
+	"OpeningRatio": {
+		"label": "Opening Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"OrbitalAngularMomentumPerMass": {
+		"label": "Orbital Angular Momentum per Mass"
+	},
+	"OrbitalAngularMomentumQuantumNumber": {
+		"label": "Orbital Angular Momentum Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q1916324"
+	},
+	"OrbitalRadialDistance": {
+		"label": "Orbital Radial Distance",
+		"broader": "Length"
+	},
+	"OrderOfReflection": {
+		"label": "Order of Reflection",
+		"wikidata": "Q105488155"
+	},
+	"OsmoticCoefficient": {
+		"label": "Osmotic Coefficient",
+		"wikidata": "Q5776102"
+	},
+	"OsmoticConcentration": {
+		"label": "Osmotic Concentration"
+	},
+	"OsmoticPressure": {
+		"label": "Osmotic Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q193135"
+	},
+	"OverRangeDistance": {
+		"label": "Over-range Distance",
+		"broader": "Length"
+	},
+	"Pace": {
+		"label": "Pace"
+	},
+	"PackingFraction": {
+		"label": "Packing Fraction",
+		"wikidata": "Q98058276"
+	},
+	"PartialPressure": {
+		"label": "Partial Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q27165"
+	},
+	"ParticleCurrent": {
+		"label": "Particle Current",
+		"broader": "CountRate",
+		"wikidata": "Q2400689"
+	},
+	"ParticleCurrentDensity": {
+		"label": "Particle Current Density"
+	},
+	"ParticleFluence": {
+		"label": "Particle Fluence",
+		"wikidata": "Q82965908"
+	},
+	"ParticleFluenceRate": {
+		"label": "Particle Fluence Rate",
+		"wikidata": "Q98497410"
+	},
+	"ParticleNumberDensity": {
+		"label": "Particle Number Density",
+		"broader": "NumberDensity",
+		"wikidata": "Q98601569"
+	},
+	"ParticlePositionVector": {
+		"label": "Particle Position Vector",
+		"broader": "Length",
+		"wikidata": "Q105533324"
+	},
+	"ParticleSourceDensity": {
+		"label": "Particle Source Density",
+		"wikidata": "Q98915762"
+	},
+	"PathLength": {
+		"label": "Path Length",
+		"broader": "Length",
+		"wikidata": "Q670036"
+	},
+	"PayloadMass": {
+		"label": "Payload Mass",
+		"broader": "Mass"
+	},
+	"PayloadRatio": {
+		"label": "Payload Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"PeltierCoefficient": {
+		"label": "Peltier Coefficient",
+		"wikidata": "Q105801003"
+	},
+	"Period": {
+		"label": "Period",
+		"broader": "Time",
+		"wikidata": "Q2642727"
+	},
+	"Permeability": {
+		"label": "Permeability"
+	},
+	"PermeabilityRatio": {
+		"label": "Permeability Ratio"
+	},
+	"Permeance": {
+		"label": "Permeance",
+		"wikidata": "Q77997985"
+	},
+	"Permittivity": {
+		"label": "Permittivity",
+		"wikidata": "Q211569"
+	},
+	"PermittivityRatio": {
+		"label": "Permittivity Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"PhaseCoefficient": {
+		"label": "Phase Coefficient",
+		"wikidata": "Q32745742"
+	},
+	"PhaseDifference": {
+		"label": "Phase Difference",
+		"broader": "Angle",
+		"wikidata": "Q78514588"
+	},
+	"PhaseSpeedOfSound": {
+		"label": "Phase Speed of Sound",
+		"broader": "SpeedOfSound",
+		"wikidata": "Q86501878"
+	},
+	"PhononMeanFreePath": {
+		"label": "Phonon Mean Free Path",
+		"broader": "Length",
+		"wikidata": "Q105672255"
+	},
+	"PhotonIntensity": {
+		"label": "Photon Intensity",
+		"wikidata": "Q83853335"
+	},
+	"PhotonLuminance": {
+		"label": "Photon Luminance"
+	},
+	"PhotonRadiance": {
+		"label": "Photon Radiance",
+		"wikidata": "Q10498337"
+	},
+	"PhotosyntheticPhotonFlux": {
+		"label": "Photosynthetic Photon Flux"
+	},
+	"PhotosyntheticPhotonFluxDensity": {
+		"label": "Photosynthetic Photon Flux Density"
+	},
+	"PhotoThresholdOfAwarenessFunction": {
+		"label": "Photo Threshold of Awareness Function"
+	},
+	"PictureElement": {
+		"label": "Picture Element"
+	},
+	"Piece": {
+		"label": "Piece",
+		"broader": "Count"
+	},
+	"PlanarForce": {
+		"label": "Planar Force",
+		"broader": "ForcePerArea"
+	},
+	"PlanckFunction": {
+		"label": "Planck Function",
+		"broader": "Energy",
+		"wikidata": "Q76364998"
+	},
+	"PlaneAngle": {
+		"label": "Plane Angle"
+	},
+	"PlasmaLevel": {
+		"label": "Plasma Level",
+		"broader": "AmountOfSubstanceConcentration"
+	},
+	"PoissonRatio": {
+		"label": "Poisson Ratio"
+	},
+	"Polarizability": {
+		"label": "Polarisability",
+		"wikidata": "Q869891"
+	},
+	"PolarizationField": {
+		"label": "Polarization Field",
+		"broader": "ElectricChargePerArea"
+	},
+	"PolarMomentOfInertia": {
+		"label": "Polar Moment of Inertia",
+		"broader": "MomentOfInertia"
+	},
+	"Population": {
+		"label": "Population",
+		"broader": "Count"
+	},
+	"PositionVector": {
+		"label": "Position Vector",
+		"broader": "Length",
+		"wikidata": "Q192388"
+	},
+	"PositiveDimensionlessRatio": {
+		"label": "Positive Dimensionless Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"PositiveLength": {
+		"label": "Positive Length",
+		"broader": "NonNegativeLength"
+	},
+	"PositivePlaneAngle": {
+		"label": "Positive Plane Angle",
+		"broader": "Angle"
+	},
+	"PotentialEnergy": {
+		"label": "Potential Energy",
+		"broader": "Energy",
+		"wikidata": "Q155640"
+	},
+	"Power": {
+		"label": "Power",
+		"wikidata": "Q25342"
+	},
+	"PowerArea": {
+		"label": "Power Area"
+	},
+	"PowerAreaPerSolidAngle": {
+		"label": "Power Area per Solid Angle"
+	},
+	"PowerConstant": {
+		"label": "Power Constant"
+	},
+	"PowerDensity": {
+		"label": "Power Density"
+	},
+	"PowerFactor": {
+		"label": "Power Factor",
+		"wikidata": "Q750454"
+	},
+	"PowerPerArea": {
+		"label": "Power per Area"
+	},
+	"PowerPerAreaAngle": {
+		"label": "Power per Area Angle"
+	},
+	"PowerPerAreaQuarticTemperature": {
+		"label": "Power per Area Quartic Temperature"
+	},
+	"PowerPerElectricCharge": {
+		"label": "Power per Electric Charge"
+	},
+	"PowerPerVolume": {
+		"label": "Power per Volume"
+	},
+	"PoyntingVector": {
+		"label": "Poynting Vector",
+		"wikidata": "Q504186"
+	},
+	"PREDICTED-MASS": {
+		"label": "Predicted Mass",
+		"broader": "Mass"
+	},
+	"Pressure": {
+		"label": "Pressure",
+		"broader": "ForcePerArea",
+		"wikidata": "Q39552"
+	},
+	"PressureBasedAmountOfSubstanceConcentration": {
+		"label": "Pressure-based Amount-of-substance Concentration"
+	},
+	"PressureBasedDensity": {
+		"label": "Pressure-based Density"
+	},
+	"PressureBasedDynamicViscosity": {
+		"label": "Pressure-based Dynamic Viscosity"
+	},
+	"PressureBasedElectricCurrent": {
+		"label": "Pressure-based Electric Current"
+	},
+	"PressureBasedElectricVoltage": {
+		"label": "Pressure-based Electric Voltage"
+	},
+	"PressureBasedKinematicViscosity": {
+		"label": "Pressure-based Kinematic Viscosity"
+	},
+	"PressureBasedLength": {
+		"label": "Pressure-based Length"
+	},
+	"PressureBasedMass": {
+		"label": "Pressure-based Mass"
+	},
+	"PressureBasedMassFlow": {
+		"label": "Pressure-based Mass Flow"
+	},
+	"PressureBasedMolality": {
+		"label": "Pressure-based Molality"
+	},
+	"PressureBasedQuantity": {
+		"label": "Pressure-based Quantity"
+	},
+	"PressureBasedTemperature": {
+		"label": "Pressure-based Temperature"
+	},
+	"PressureBasedVelocity": {
+		"label": "Pressure-based Velocity"
+	},
+	"PressureBasedVolume": {
+		"label": "Pressure-based Volume"
+	},
+	"PressureBasedVolumeFlow": {
+		"label": "Pressure-based Volume Flow"
+	},
+	"PressureBurningRateConstant": {
+		"label": "Pressure Burning Rate Constant",
+		"broader": "Dimensionless"
+	},
+	"PressureBurningRateIndex": {
+		"label": "Pressure Burning Rate Index",
+		"broader": "Dimensionless"
+	},
+	"PressureCoefficient": {
+		"label": "Pressure Coefficient",
+		"wikidata": "Q74762732"
+	},
+	"PressureGradient": {
+		"label": "Pressure Gradient"
+	},
+	"PressureInRelationToVolumeFlow": {
+		"label": "Pressure in Relation to Volume Flow"
+	},
+	"PressureInRelationToVolumeFlowRate": {
+		"label": "Pressure in Relation to Volume Flow Rate"
+	},
+	"PressureLossPerLength": {
+		"label": "Pressure Loss per Length"
+	},
+	"PressureRatio": {
+		"label": "Pressure Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"Prevalence": {
+		"label": "Prevalence",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q719602"
+	},
+	"PrincipalQuantumNumber": {
+		"label": "Principal Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q867448"
+	},
+	"PRODUCT-OF-INERTIA": {
+		"label": "Product of Inertia"
+	},
+	"PRODUCT-OF-INERTIA_X": {
+		"label": "Product of Inertia in the X axis",
+		"broader": "ProductOfInertia"
+	},
+	"PRODUCT-OF-INERTIA_Y": {
+		"label": "Product of Inertia in the Y axis",
+		"broader": "ProductOfInertia"
+	},
+	"PRODUCT-OF-INERTIA_Z": {
+		"label": "Product of Inertia in the Z axis",
+		"broader": "ProductOfInertia"
+	},
+	"ProductOfInertia": {
+		"label": "Product of Inertia"
+	},
+	"ProductOfInertia_X": {
+		"label": "Product of Inertia in the X Axis",
+		"broader": "ProductOfInertia"
+	},
+	"ProductOfInertia_Y": {
+		"label": "Product of Inertia in the Y Axis",
+		"broader": "ProductOfInertia"
+	},
+	"ProductOfInertia_Z": {
+		"label": "Product of Inertia in the Z Axis",
+		"broader": "ProductOfInertia"
+	},
+	"PropagationCoefficient": {
+		"label": "Propagation Coefficient",
+		"wikidata": "Q1434913"
+	},
+	"QualityFactor": {
+		"label": "Quality Factor",
+		"wikidata": "Q79467569"
+	},
+	"QuantityOfLight": {
+		"label": "Quantity of Light"
+	},
+	"QuantumNumber": {
+		"label": "Quantum Number",
+		"broader": "Dimensionless",
+		"wikidata": "Q232431"
+	},
+	"QuarticElectricDipoleMomentPerCubicEnergy": {
+		"label": "Quartic Electric Dipole Moment per Cubic Energy"
+	},
+	"RadialDistance": {
+		"label": "Radial Distance",
+		"broader": "Length",
+		"wikidata": "Q1578234"
+	},
+	"Radiance": {
+		"label": "Radiance",
+		"broader": "PowerPerAreaAngle",
+		"wikidata": "Q1411145"
+	},
+	"RadianceFactor": {
+		"label": "Radiance Factor",
+		"wikidata": "Q85811846"
+	},
+	"RadiantEmmitance": {
+		"label": "Radiant Emmitance",
+		"broader": "PowerPerArea"
+	},
+	"RadiantEnergy": {
+		"label": "Radiant Energy",
+		"broader": "Energy",
+		"wikidata": "Q10932713"
+	},
+	"RadiantEnergyDensity": {
+		"label": "Radiant Energy Density",
+		"broader": "EnergyDensity",
+		"wikidata": "Q15054312"
+	},
+	"RadiantEnergyExposure": {
+		"label": "Radiant Energy Exposure"
+	},
+	"RadiantExposure": {
+		"label": "Radiant Exposure",
+		"broader": "EnergyPerArea",
+		"wikidata": "Q1418023"
+	},
+	"RadiantFluence": {
+		"label": "Radiant Fluence",
+		"broader": "EnergyPerArea"
+	},
+	"RadiantFluenceRate": {
+		"label": "Radiant Fluence Rate",
+		"broader": "PowerPerArea"
+	},
+	"RadiantFlux": {
+		"label": "Radiant Flux",
+		"broader": "Power",
+		"wikidata": "Q1253356"
+	},
+	"RadiantIntensity": {
+		"label": "Radiant Intensity",
+		"wikidata": "Q1253365"
+	},
+	"RadiativeHeatTransfer": {
+		"label": "Radiative Heat Transfer",
+		"broader": "HeatFlowRate"
+	},
+	"RadioactiveDecay": {
+		"label": "Radioactive Decay",
+		"broader": "StochasticProcess"
+	},
+	"Radioactivity": {
+		"label": "Radioactivity"
+	},
+	"Radiosity": {
+		"label": "Radiosity",
+		"broader": "PowerPerArea"
+	},
+	"Radius": {
+		"label": "Radius",
+		"broader": "Length",
+		"wikidata": "Q173817"
+	},
+	"RadiusOfCurvature": {
+		"label": "Radius of Curvature",
+		"broader": "Length",
+		"wikidata": "Q1136069"
+	},
+	"RankineTemperature": {
+		"label": "Rankine Temperature",
+		"broader": "ThermodynamicTemperature"
+	},
+	"RateOfChange": {
+		"label": "Rate of Change",
+		"broader": "InverseTime"
+	},
+	"RateOfChangeOfFrequency": {
+		"label": "Rate of Change of Frequency",
+		"broader": "InverseSquareTime"
+	},
+	"RateOfRiseOfOffStateVoltage": {
+		"label": "Rise of Off-state Voltage"
+	},
+	"RateOfRiseOfVoltage": {
+		"label": "Rate of Rise of Voltage"
+	},
+	"Ratio": {
+		"label": "Ratio"
+	},
+	"RatioOfSpecificHeatCapacities": {
+		"label": "Ratio of Specific Heat Capacities"
+	},
+	"Reactance": {
+		"label": "Reactance",
+		"broader": "Resistance"
+	},
+	"ReactionEnergy": {
+		"label": "Reaction Energy",
+		"broader": "Energy",
+		"wikidata": "Q98164745"
+	},
+	"ReactiveCharge": {
+		"label": "Reactive Charge",
+		"broader": "MolarEquivalent"
+	},
+	"ReactiveChargePerMass": {
+		"label": "Reactive Charge per Mass"
+	},
+	"ReactiveEnergy": {
+		"label": "Reactive Energy",
+		"broader": "ElectricEnergy",
+		"wikidata": "Q12373673"
+	},
+	"ReactivePower": {
+		"label": "Reactive Power",
+		"broader": "ElectricPower",
+		"wikidata": "Q2144613"
+	},
+	"Reactivity": {
+		"label": "Reactivity"
+	},
+	"ReactorTimeConstant": {
+		"label": "Reactor Time Constant",
+		"broader": "Time",
+		"wikidata": "Q99518950"
+	},
+	"ReciprocalElectricResistance": {
+		"label": "Reciprocal Electric Resistance"
+	},
+	"ReciprocalEnergy": {
+		"label": "Reciprocal Energy"
+	},
+	"ReciprocalPlaneAngle": {
+		"label": "Reciprocal Plane Angle"
+	},
+	"ReciprocalVoltage": {
+		"label": "Reciprocal Voltage"
+	},
+	"RecombinationCoefficient": {
+		"label": "Recombination Coefficient",
+		"broader": "VolumePerTime",
+		"wikidata": "Q98842099"
+	},
+	"Reflectance": {
+		"label": "Reflectance",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q663650"
+	},
+	"ReflectanceFactor": {
+		"label": "Reflectance Factor",
+		"wikidata": "Q86078369"
+	},
+	"Reflectivity": {
+		"label": "Reflectivity",
+		"broader": "Reflectance"
+	},
+	"RefractiveIndex": {
+		"label": "Refractive Index",
+		"wikidata": "Q174102"
+	},
+	"RelativeAtomicMass": {
+		"label": "Relative Atomic Mass",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q41377"
+	},
+	"RelativeHumidity": {
+		"label": "Relative Humidity",
+		"broader": "RelativePartialPressure",
+		"wikidata": "Q2499617"
+	},
+	"RelativeMassConcentrationOfVapour": {
+		"label": "Relative Mass Concentration of Vapour",
+		"wikidata": "Q76379357"
+	},
+	"RelativeMassDefect": {
+		"label": "Relative Mass Defect",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q98038718"
+	},
+	"RelativeMassDensity": {
+		"label": "Relative Mass Density"
+	},
+	"RelativeMassExcess": {
+		"label": "Relative Mass Excess",
+		"wikidata": "Q98038610"
+	},
+	"RelativeMassRatioOfVapour": {
+		"label": "Relative Mass Ratio of Vapour",
+		"wikidata": "Q76379414"
+	},
+	"RelativeMolecularMass": {
+		"label": "Relative Molecular Mass",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q21697817"
+	},
+	"RelativePartialPressure": {
+		"label": "Relative Partial Pressure",
+		"broader": "PressureRatio"
+	},
+	"RelativePressureCoefficient": {
+		"label": "Relative Pressure Coefficient",
+		"broader": "InverseTemperature",
+		"wikidata": "Q74761852"
+	},
+	"RelaxationTime": {
+		"label": "Relaxation Time",
+		"broader": "Time",
+		"wikidata": "Q102310909"
+	},
+	"RelaxationTIme": {
+		"label": "Relaxation Time",
+		"broader": "Time",
+		"wikidata": "Q102310909"
+	},
+	"Reluctance": {
+		"label": "Reluctance"
+	},
+	"Repetency": {
+		"label": "Repetency"
+	},
+	"RESERVE-MASS": {
+		"label": "Reserve Mass",
+		"broader": "Mass"
+	},
+	"ResidualResistivity": {
+		"label": "Residual Resistivity",
+		"wikidata": "Q25098876"
+	},
+	"Resistance": {
+		"label": "Resistance"
+	},
+	"ResistanceBasedInductance": {
+		"label": "Resistance-based Inductance"
+	},
+	"ResistanceRatio": {
+		"label": "Resistance Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"Resistivity": {
+		"label": "Resistivity"
+	},
+	"ResonanceEnergy": {
+		"label": "Resonance Energy",
+		"broader": "Energy",
+		"wikidata": "Q98165187"
+	},
+	"ResonanceEscapeProbability": {
+		"label": "Resonance Escape Probability",
+		"wikidata": "Q4108072"
+	},
+	"ResonanceEscapeProbabilityForFission": {
+		"label": "Resonance Escape Probability for Fission",
+		"broader": "Dimensionless"
+	},
+	"RespiratoryRate": {
+		"label": "Respiratory Rate",
+		"broader": "CountRate",
+		"wikidata": "Q754250"
+	},
+	"RestEnergy": {
+		"label": "Rest Energy",
+		"broader": "Energy",
+		"wikidata": "Q11663629"
+	},
+	"RestMass": {
+		"label": "Rest Mass",
+		"broader": "Mass",
+		"wikidata": "Q96941619"
+	},
+	"ReverberationTime": {
+		"label": "Reverberation Time",
+		"broader": "Time",
+		"wikidata": "Q606646"
+	},
+	"ReynoldsNumber": {
+		"label": "Reynolds Number",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q178932"
+	},
+	"RF-Power": {
+		"label": "RF-Power Level",
+		"broader": "SignalStrength"
+	},
+	"RFPower": {
+		"label": "RF-Power Level",
+		"broader": "SignalStrength"
+	},
+	"RichardsonConstant": {
+		"label": "Richardson Constant",
+		"wikidata": "Q105883079"
+	},
+	"RiseOfOffStateVoltage": {
+		"label": "rise of off-state voltage"
+	},
+	"Rotary-TranslatoryMotionConversion": {
+		"label": "rotary-translatory motion conversion"
+	},
+	"RotaryShock": {
+		"label": "Rotary Shock"
+	},
+	"RotaryTranslatoryMotionConversion": {
+		"label": "Rotary-translatory Motion Conversion"
+	},
+	"RotationalFrequency": {
+		"label": "Rotational Frequency"
+	},
+	"RotationalMass": {
+		"label": "Rotational Mass"
+	},
+	"RotationalStiffness": {
+		"label": "Rotational Stiffness",
+		"broader": "TorquePerAngle"
+	},
+	"RotationalVelocity": {
+		"label": "Rotational Frequency"
+	},
+	"ScalarMagneticPotential": {
+		"label": "Scalar Magnetic Potential"
+	},
+	"SecondAxialMomentOfArea": {
+		"label": "Second Axial Moment of Area",
+		"broader": "SecondMomentOfArea",
+		"wikidata": "Q91405496"
+	},
+	"SecondMomentOfArea": {
+		"label": "Second Moment of Area",
+		"wikidata": "Q835065"
+	},
+	"SecondOrderReactionRateConstant": {
+		"label": "Reaction Rate Constant"
+	},
+	"SecondPolarMomentOfArea": {
+		"label": "Second Polar Moment of Area",
+		"broader": "SecondMomentOfArea",
+		"wikidata": "Q1049636"
+	},
+	"SecondRadiationConstant": {
+		"label": "Second Radiation Constant"
+	},
+	"SectionAreaIntegral": {
+		"label": "Section Area Integral"
+	},
+	"SectionModulus": {
+		"label": "Section Modulus",
+		"wikidata": "Q1930808"
+	},
+	"SeebeckCoefficient": {
+		"label": "Seebeck Coefficient",
+		"wikidata": "Q1091448"
+	},
+	"SerumLevel": {
+		"label": "Serum Level",
+		"broader": "AmountOfSubstanceConcentration"
+	},
+	"SerumOrPlasmaLevel": {
+		"label": "Serum or Plasma Level",
+		"broader": "AmountOfSubstancePerVolume"
+	},
+	"ServiceFactor": {
+		"label": "Service Factor",
+		"broader": "DimensionlessRatio"
+	},
+	"ShannonDiversityIndex": {
+		"label": "Shannon Diversity Index",
+		"broader": "InformationEntropy"
+	},
+	"ShearModulus": {
+		"label": "Shear Modulus",
+		"broader": "ModulusOfElasticity",
+		"wikidata": "Q461466"
+	},
+	"ShearStrain": {
+		"label": "Shear Strain",
+		"broader": "LengthRatio",
+		"wikidata": "Q7561704"
+	},
+	"ShearStress": {
+		"label": "Shear Stress",
+		"broader": "Stress",
+		"wikidata": "Q657936"
+	},
+	"Short-RangeOrderParameter": {
+		"label": "Short-Range Order Parameter",
+		"wikidata": "Q105495979"
+	},
+	"ShortRangeOrderParameter": {
+		"label": "Short-Range Order Parameter",
+		"wikidata": "Q105495979"
+	},
+	"SignalDetectionThreshold": {
+		"label": "Signal Detection Threshold"
+	},
+	"SignalStrength": {
+		"label": "Signal Strength",
+		"broader": "ElectricField"
+	},
+	"Slowing-DownArea": {
+		"label": "Slowing-Down Area",
+		"broader": "Area",
+		"wikidata": "Q98950918"
+	},
+	"Slowing-DownDensity": {
+		"label": "Slowing-Down Density",
+		"wikidata": "Q98915830"
+	},
+	"Slowing-DownLength": {
+		"label": "Slowing-Down Length",
+		"broader": "Length",
+		"wikidata": "Q98996963"
+	},
+	"SlowingDownArea": {
+		"label": "Slowing-Down Area",
+		"broader": "Area",
+		"wikidata": "Q98950918"
+	},
+	"SlowingDownDensity": {
+		"label": "Slowing-Down Density",
+		"wikidata": "Q98915830"
+	},
+	"SlowingDownLength": {
+		"label": "Slowing-Down Length",
+		"broader": "Length",
+		"wikidata": "Q98996963"
+	},
+	"SoilAdsorptionCoefficient": {
+		"label": "Soil Adsorption Coefficient",
+		"broader": "SpecificVolume"
+	},
+	"SolidAngle": {
+		"label": "Solid Angle",
+		"wikidata": "Q208476"
+	},
+	"SolidStateDiffusionLength": {
+		"label": "Diffusion Length (Solid State Physics)",
+		"broader": "Length",
+		"wikidata": "Q106097176"
+	},
+	"Solubility_Water": {
+		"label": "Water Solubility",
+		"broader": "AmountOfSubstancePerVolume"
+	},
+	"SoundEnergyDensity": {
+		"label": "Sound Energy Density",
+		"broader": "EnergyDensity",
+		"wikidata": "Q2230505"
+	},
+	"SoundExposure": {
+		"label": "Sound Exposure",
+		"wikidata": "Q2230528"
+	},
+	"SoundExposureLevel": {
+		"label": "Sound Exposure Level",
+		"wikidata": "Q87543983"
+	},
+	"SoundIntensity": {
+		"label": "Sound Intensity",
+		"broader": "PowerPerArea",
+		"wikidata": "Q1140289"
+	},
+	"SoundParticleAcceleration": {
+		"label": "Sound Particle Acceleration",
+		"broader": "Acceleration",
+		"wikidata": "Q7140491"
+	},
+	"SoundParticleDisplacement": {
+		"label": "Sound Particle Displacement",
+		"broader": "Length",
+		"wikidata": "Q779457"
+	},
+	"SoundParticleVelocity": {
+		"label": "Sound Particle Velocity",
+		"broader": "LinearVelocity",
+		"wikidata": "Q336894"
+	},
+	"SoundPower": {
+		"label": "Sound Power",
+		"broader": "Power",
+		"wikidata": "Q1588477"
+	},
+	"SoundPowerLevel": {
+		"label": "Sound Power Level",
+		"wikidata": "Q2157873"
+	},
+	"SoundPressure": {
+		"label": "Sound Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q1068172"
+	},
+	"SoundPressureLevel": {
+		"label": "Sound Pressure Level",
+		"wikidata": "Q14515278"
+	},
+	"SoundReductionIndex": {
+		"label": "Sound Reduction Index",
+		"wikidata": "Q2230459"
+	},
+	"SoundVolumeVelocity": {
+		"label": "Sound Volume Velocity",
+		"broader": "VolumePerTime",
+		"wikidata": "Q1640308"
+	},
+	"SourceVoltage": {
+		"label": "Source Voltage",
+		"broader": "ElectricPotential",
+		"wikidata": "Q185329"
+	},
+	"SourceVoltageBetweenSubstances": {
+		"label": "Source Voltage Between Substances",
+		"broader": "ElectricPotential"
+	},
+	"SpatialSummationFunction": {
+		"label": "Spatial Summation Function",
+		"broader": "Length"
+	},
+	"SpecificAcousticImpedance": {
+		"label": "Specific Acoustic Impedance"
+	},
+	"SpecificActivity": {
+		"label": "Specific Activity",
+		"wikidata": "Q2823748"
+	},
+	"SpecificElectricCharge": {
+		"label": "Specific Electric Charge"
+	},
+	"SpecificElectricCurrent": {
+		"label": "Specific Electrical Current"
+	},
+	"SpecificEnergy": {
+		"label": "Specific Energy",
+		"wikidata": "Q3023293"
+	},
+	"SpecificEnergyImparted": {
+		"label": "Specific Energy Imparted",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q99566195"
+	},
+	"SpecificEnthalpy": {
+		"label": "Specific Enthalpy",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q21572993"
+	},
+	"SpecificEntropy": {
+		"label": "Specific Entropy",
+		"wikidata": "Q69423705"
+	},
+	"SpecificGibbsEnergy": {
+		"label": "Specific Gibbs Energy",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q76360636"
+	},
+	"SpecificHeatCapacity": {
+		"label": "Specific Heat Capacity",
+		"wikidata": "Q487756"
+	},
+	"SpecificHeatCapacityAtConstantPressure": {
+		"label": "Specific Heat Capacity at Constant Pressure",
+		"broader": "SpecificHeatCapacity",
+		"wikidata": "Q75774282"
+	},
+	"SpecificHeatCapacityAtConstantVolume": {
+		"label": "Specific Heat Capacity at Constant Volume",
+		"broader": "SpecificHeatCapacity",
+		"wikidata": "Q75774757"
+	},
+	"SpecificHeatCapacityAtSaturation": {
+		"label": "Specific Heat Capacity at Saturation",
+		"broader": "SpecificHeatCapacity",
+		"wikidata": "Q75775005"
+	},
+	"SpecificHeatPressure": {
+		"label": "Specific Heat Pressure"
+	},
+	"SpecificHeatsRatio": {
+		"label": "Specific Heats Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"SpecificHeatVolume": {
+		"label": "Specific Heat Volume"
+	},
+	"SpecificHelmholtzEnergy": {
+		"label": "Specific Helmholtz Energy",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q76359554"
+	},
+	"SpecificHumidity": {
+		"label": "Specific Humidity",
+		"broader": "MassRatio"
+	},
+	"SpecificImpulse": {
+		"label": "Specific Impulse",
+		"broader": "Time"
+	},
+	"SpecificImpulseByMass": {
+		"label": "Specific Impulse by Mass",
+		"broader": "LinearVelocity",
+		"wikidata": "Q100793317"
+	},
+	"SpecificImpulseByWeight": {
+		"label": "Specific Impulse by Weight",
+		"broader": "SpecificImpulse",
+		"wikidata": "Q100828354"
+	},
+	"SpecificInternalEnergy": {
+		"label": "Specific Internal Energy",
+		"broader": "SpecificEnergy",
+		"wikidata": "Q76357367"
+	},
+	"SpecificModulus": {
+		"label": "Specific Modulus"
+	},
+	"SpecificOpticalRotationalAbility": {
+		"label": "Specific Optical Rotational Ability"
+	},
+	"SpecificOpticalRotatoryPower": {
+		"label": "Specific Optical Rotatory Power"
+	},
+	"SpecificPower": {
+		"label": "Specific Power"
+	},
+	"SpecificSurfaceArea": {
+		"label": "Specific Surface Area",
+		"broader": "MassAttenuationCoefficient"
+	},
+	"SpecificThrust": {
+		"label": "Specific Thrust"
+	},
+	"SpecificVolume": {
+		"label": "Specific Volume",
+		"wikidata": "Q683556"
+	},
+	"SpecificWeight": {
+		"label": "Specific Weight"
+	},
+	"SpectralAngularCrossSection": {
+		"label": "Spectral Angular Cross-section",
+		"wikidata": "Q98269571"
+	},
+	"SpectralConcentrationOfRadiantEnergyDensity": {
+		"label": "Spectral Concentration of Radiant Energy Density"
+	},
+	"SpectralConcentrationOfVibrationalModes": {
+		"label": "Spectral Concentration of Vibrational Modes (in Terms of Angular Frequency)"
+	},
+	"SpectralCrossSection": {
+		"label": "Spectral Cross-section",
+		"wikidata": "Q98267245"
+	},
+	"SpectralDensityOfVibrationalModes": {
+		"label": "Spectral Density of Vibrational Modes"
+	},
+	"SpectralEmittance": {
+		"label": "Measurement Unit of Spectral Emittance"
+	},
+	"SpectralIrradiance": {
+		"label": "Measurement Unit of Spectral Irradiance"
+	},
+	"SpectralLuminousEfficiency": {
+		"label": "Spectral Luminous Efficiency"
+	},
+	"SpectralRadiance": {
+		"label": "Measurement Unit of Spectral Radiance"
+	},
+	"SpectralRadiantEnergyDensity": {
+		"label": "Spectral Radiant Energy Density"
+	},
+	"SpectralRadiantEnergyDensityInTermsOfWavelength": {
+		"label": "Spectral Radiant Energy Density in Terms of Wavelength"
+	},
+	"Speed": {
+		"label": "Speed",
+		"wikidata": "Q3711325"
+	},
+	"SpeedOfLight": {
+		"label": "Speed of Light",
+		"broader": "Speed"
+	},
+	"SpeedOfSound": {
+		"label": "Speed of Sound",
+		"broader": "Speed",
+		"wikidata": "Q124003"
+	},
+	"SpeedRatio": {
+		"label": "Speed Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"SphericalIlluminance": {
+		"label": "Illuminance",
+		"broader": "Illuminance"
+	},
+	"Spin": {
+		"label": "Spin",
+		"broader": "AngularImpulse",
+		"wikidata": "Q133673"
+	},
+	"SpinQuantumNumber": {
+		"label": "Spin Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q3879445"
+	},
+	"SquareEnergy": {
+		"label": "Square Energy"
+	},
+	"SquareTime": {
+		"label": "Square Time"
+	},
+	"StandardAbsoluteActivity": {
+		"label": "Standard Absolute Activity",
+		"wikidata": "Q89406159"
+	},
+	"StandardChemicalPotential": {
+		"label": "Standard Chemical Potential",
+		"broader": "ChemicalPotential",
+		"wikidata": "Q89333468"
+	},
+	"StandardGravitationalParameter": {
+		"label": "Standard Gravitational Parameter",
+		"wikidata": "Q579338"
+	},
+	"StateDensity": {
+		"label": "State Density"
+	},
+	"StateDensityAsExpressionOfAngularFrequency": {
+		"label": "State Density as Expression of Angular Frequency)"
+	},
+	"StateOfCharge": {
+		"label": "State of Charge",
+		"broader": "DimensionlessRatio"
+	},
+	"StaticFriction": {
+		"label": "Static Friction",
+		"broader": "Friction",
+		"wikidata": "Q90862568"
+	},
+	"StaticFrictionCoefficient": {
+		"label": "Static Friction Coefficient",
+		"broader": "FrictionCoefficient"
+	},
+	"StaticPressure": {
+		"label": "Static Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q2406217"
+	},
+	"StatisticalWeight": {
+		"label": "Statistical Weight"
+	},
+	"StochasticProcess": {
+		"label": "Stochastic Process"
+	},
+	"StoichiometricNumber": {
+		"label": "Stoichiometric Number",
+		"broader": "Dimensionless",
+		"wikidata": "Q17326453"
+	},
+	"Strain": {
+		"label": "Strain",
+		"broader": "LengthRatio"
+	},
+	"StrainEnergyDensity": {
+		"label": "Strain Energy Density",
+		"broader": "EnergyDensity"
+	},
+	"StrainEnergyReleaseRate": {
+		"label": "Strain Energy Release Rate",
+		"broader": "EnergyPerArea"
+	},
+	"Stress": {
+		"label": "Stress",
+		"broader": "ForcePerArea",
+		"wikidata": "Q206175"
+	},
+	"StressIntensityFactor": {
+		"label": "Stress Intensity Factor"
+	},
+	"StressOpticCoefficient": {
+		"label": "Stress-Optic Coefficient"
+	},
+	"StructuralEfficiency": {
+		"label": "Structural Efficiency",
+		"broader": "Dimensionless"
+	},
+	"StructureFactor": {
+		"label": "Structure Factor",
+		"wikidata": "Q900684"
+	},
+	"SunProtectionFactorOfAProduct": {
+		"label": "Sun Protection Factor of a Product"
+	},
+	"SuperconductionTransitionTemperature": {
+		"label": "Superconduction Transition Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q106103037"
+	},
+	"SuperconductorEnergyGap": {
+		"label": "Superconductor Energy Gap",
+		"broader": "GapEnergy",
+		"wikidata": "Q106127898"
+	},
+	"SurfaceActivityDensity": {
+		"label": "Surface Activity Density",
+		"wikidata": "Q98103005"
+	},
+	"SurfaceCoefficientOfHeatTransfer": {
+		"label": "Surface Coefficient of Heat Transfer",
+		"broader": "CoefficientOfHeatTransfer",
+		"wikidata": "Q74770365"
+	},
+	"SurfaceDensity": {
+		"label": "Surface Density",
+		"broader": "MassPerArea"
+	},
+	"SurfaceRelatedVolumeFlow": {
+		"label": "Surface-related Volume Flow"
+	},
+	"SurfaceRelatedVolumeFlowRate": {
+		"label": "Surface‑related Volume Flow Rate"
+	},
+	"SurfaceTension": {
+		"label": "Surface Tension",
+		"broader": "EnergyPerArea",
+		"wikidata": "Q170749"
+	},
+	"SurgeImpedanceOfTheMedium": {
+		"label": "Surge Impedance of the Medium"
+	},
+	"Susceptance": {
+		"label": "Susceptance",
+		"wikidata": "Q509598"
+	},
+	"SymbolTransmissionRate": {
+		"label": "Symbol Transmission Rate"
+	},
+	"SystolicBloodPressure": {
+		"label": "Systolic Blood Pressure",
+		"broader": "Pressure",
+		"wikidata": "Q42015775"
+	},
+	"TARGET-BOGIE-MASS": {
+		"label": "Target Bogie Mass",
+		"broader": "Mass"
+	},
+	"Temperature": {
+		"label": "Temperature",
+		"wikidata": "Q11466"
+	},
+	"TemperatureAmountOfSubstance": {
+		"label": "Temperature Amount of Substance"
+	},
+	"TemperatureBasedAmountOfSubstanceConcentration": {
+		"label": "Temperature-based Amount-of-substance Concentration"
+	},
+	"TemperatureBasedDensity": {
+		"label": "Temperature-based Density"
+	},
+	"TemperatureBasedDynamicViscosity": {
+		"label": "Temperature-based Dynamic Viscosity"
+	},
+	"TemperatureBasedKinematicViscosity": {
+		"label": "Temperature-based Kinematic Viscosity"
+	},
+	"TemperatureBasedLength": {
+		"label": "Temperature-based Length"
+	},
+	"TemperatureBasedMass": {
+		"label": "Temperature-based Mass"
+	},
+	"TemperatureBasedMassFlowRate": {
+		"label": "Temperature-based Mass Flow Rate"
+	},
+	"TemperatureBasedQuantity": {
+		"label": "Temperature-based Quantity"
+	},
+	"TemperatureBasedVelocity": {
+		"label": "Temperature-based Velocity"
+	},
+	"TemperatureBasedVolumeFlowRate": {
+		"label": "Temperature-based Volume Flow Rate"
+	},
+	"TemperatureDifference": {
+		"label": "Temperature Difference",
+		"broader": "Temperature"
+	},
+	"TemperatureGradient": {
+		"label": "Temperature Gradient"
+	},
+	"TemperaturePerMagneticFluxDensity": {
+		"label": "Temperature per Magnetic Flux Density"
+	},
+	"TemperaturePerSquareTime": {
+		"label": "Temperature per Square Time"
+	},
+	"TemperaturePerTime": {
+		"label": "Temperature per Time"
+	},
+	"TemperaturePerTime_Squared": {
+		"label": "Temperature per Time Squared"
+	},
+	"TemperatureRateOfChange": {
+		"label": "Temperature Rate of Change",
+		"broader": "TemperaturePerTime"
+	},
+	"TemperatureRatio": {
+		"label": "Temperature Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"TemperatureRelatedMolarMass": {
+		"label": "Temperature-related Molar Mass"
+	},
+	"TemperatureRelatedVolume": {
+		"label": "Temperature-related Volume  "
+	},
+	"TemperatureVariance": {
+		"label": "Temperature Variance"
+	},
+	"TemperatureVariance_NEON": {
+		"label": "Temperature Variance, NEON"
+	},
+	"TemporalSummationFunction": {
+		"label": "Temporal Summation Function"
+	},
+	"Tension": {
+		"label": "Tension",
+		"broader": "ForceMagnitude",
+		"wikidata": "Q908584"
+	},
+	"ThermalAdmittance": {
+		"label": "Thermal Admittance",
+		"broader": "CoefficientOfHeatTransfer"
+	},
+	"ThermalCapacitance": {
+		"label": "Thermal Capacitance"
+	},
+	"ThermalCoefficientOfLinearExpansion": {
+		"label": "Thermal Coefficient of Linear Expansion"
+	},
+	"ThermalConductance": {
+		"label": "Thermal Conductance",
+		"wikidata": "Q17176562"
+	},
+	"ThermalConductivity": {
+		"label": "Thermal Conductivity",
+		"wikidata": "Q487005"
+	},
+	"ThermalDiffusionFactor": {
+		"label": "Thermal Diffusion Factor",
+		"wikidata": "Q96249629"
+	},
+	"ThermalDiffusionRatio": {
+		"label": "Thermal Diffusion Ratio",
+		"wikidata": "Q96249433"
+	},
+	"ThermalDiffusionRatioCoefficient": {
+		"label": "Thermal Diffusion Coefficient",
+		"wikidata": "Q96249751"
+	},
+	"ThermalDiffusivity": {
+		"label": "Thermal Diffusivity",
+		"broader": "AreaPerTime",
+		"wikidata": "Q3381809"
+	},
+	"ThermalEfficiency": {
+		"label": "Thermal Efficiency",
+		"broader": "Efficiency",
+		"wikidata": "Q1452104"
+	},
+	"ThermalEnergy": {
+		"label": "Thermal Energy",
+		"broader": "Energy",
+		"wikidata": "Q209233"
+	},
+	"ThermalEnergyLength": {
+		"label": "Thermal Energy Length"
+	},
+	"ThermalExpansionCoefficient": {
+		"label": "Thermal Expansion Coefficient",
+		"broader": "ExpansionRatio"
+	},
+	"ThermalInertia": {
+		"label": "Measurement Unit of Thermal Inertia"
+	},
+	"ThermalInsulance": {
+		"label": "Thermal Insulance",
+		"wikidata": "Q2596212"
+	},
+	"ThermalInsulation": {
+		"label": "Thermal Insulation"
+	},
+	"ThermalPower": {
+		"label": "Thermal Power",
+		"broader": "Power",
+		"wikidata": "Q2419903"
+	},
+	"ThermalResistance": {
+		"label": "Thermal Resistance",
+		"wikidata": "Q899628"
+	},
+	"ThermalResistivity": {
+		"label": "Thermal Resistivity",
+		"wikidata": "Q66311516"
+	},
+	"ThermalTransmittance": {
+		"label": "Thermal Transmittance",
+		"broader": "CoefficientOfHeatTransfer"
+	},
+	"ThermalUtilizationFactor": {
+		"label": "Thermal Utilization Factor",
+		"wikidata": "Q99197650"
+	},
+	"ThermalUtilizationFactorForFission": {
+		"label": "Thermal Utilization Factor for Fission",
+		"broader": "Dimensionless"
+	},
+	"ThermodynamicCriticalMagneticFluxDensity": {
+		"label": "Thermodynamic Critical Magnetic Flux Density",
+		"broader": "MagneticFluxDensity",
+		"wikidata": "Q106103200"
+	},
+	"ThermodynamicEnergy": {
+		"label": "Thermodynamic Energy",
+		"broader": "Energy"
+	},
+	"ThermodynamicEntropy": {
+		"label": "Thermodynamic Entropy",
+		"broader": "EnergyPerTemperature"
+	},
+	"ThermodynamicTemperature": {
+		"label": "Thermodynamic Temperature",
+		"broader": "Temperature",
+		"wikidata": "Q264647"
+	},
+	"Thickness": {
+		"label": "Thickness",
+		"broader": "Length",
+		"wikidata": "Q3589038"
+	},
+	"ThomsonCoefficient": {
+		"label": "Thomson Coefficient",
+		"wikidata": "Q105801233"
+	},
+	"Thrust": {
+		"label": "Thrust",
+		"broader": "Force",
+		"wikidata": "Q533668"
+	},
+	"ThrustCoefficient": {
+		"label": "Thrust Coefficient",
+		"wikidata": "Q102040931"
+	},
+	"ThrustToMassRatio": {
+		"label": "Thrust to Mass Ratio",
+		"broader": "Acceleration"
+	},
+	"ThrustToWeightRatio": {
+		"label": "Thrust to Weight Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"Tilt": {
+		"label": "Tilt",
+		"broader": "Angle"
+	},
+	"Time": {
+		"label": "Time",
+		"wikidata": "Q2199864"
+	},
+	"Time_Squared": {
+		"label": "Time Squared"
+	},
+	"TimeAveragedSoundIntensity": {
+		"label": "Time Averaged Sound Intensity",
+		"broader": "SoundIntensity",
+		"wikidata": "Q86827342"
+	},
+	"TimeConstant_Inductance": {
+		"label": "time constant (inductance based)"
+	},
+	"TimePerCount": {
+		"label": "Time per Count"
+	},
+	"TimeRatio": {
+		"label": "Time Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"TimeRelatedLogarithmicRatio": {
+		"label": "Time-related Logarithmic Ratio"
+	},
+	"TimeTemperature": {
+		"label": "Time Temperature"
+	},
+	"Torque": {
+		"label": "Torque",
+		"wikidata": "Q48103"
+	},
+	"TorqueConstant": {
+		"label": "Torque Constant"
+	},
+	"TorquePerAngle": {
+		"label": "Torque per Angle"
+	},
+	"TorquePerLength": {
+		"label": "Torque per Length"
+	},
+	"TorsionalRigidity": {
+		"label": "Torsional Rigidity",
+		"broader": "TorquePerAngle"
+	},
+	"TorsionalSpringConstant": {
+		"label": "Torsional Spring Constant",
+		"broader": "TorquePerAngle"
+	},
+	"TotalAngularMomentum": {
+		"label": "Total Angular Momentum",
+		"broader": "AngularImpulse",
+		"wikidata": "Q97496506"
+	},
+	"TotalAngularMomentumQuantumNumber": {
+		"label": "Total Angular Momentum Quantum Number",
+		"broader": "QuantumNumber",
+		"wikidata": "Q1141095"
+	},
+	"TotalAtomicStoppingPower": {
+		"label": "Total Atomic Stopping Power",
+		"wikidata": "Q112725871"
+	},
+	"TotalCrossSection": {
+		"label": "Total Cross-section",
+		"broader": "CrossSection",
+		"wikidata": "Q98206553"
+	},
+	"TotalCurrent": {
+		"label": "Total Current",
+		"broader": "ElectricCurrent",
+		"wikidata": "Q77679732"
+	},
+	"TotalCurrentDensity": {
+		"label": "Total Current Density",
+		"wikidata": "Q77680811"
+	},
+	"TotalIonization": {
+		"label": "Total Ionization",
+		"wikidata": "Q98690787"
+	},
+	"TotalLinearStoppingPower": {
+		"label": "Total Linear Stopping Power",
+		"wikidata": "Q908474"
+	},
+	"TotalMassStoppingPower": {
+		"label": "Total Mass Stopping Power",
+		"wikidata": "Q98642795"
+	},
+	"TotalPressure": {
+		"label": "Total Pressure",
+		"broader": "Pressure"
+	},
+	"TotalRadiance": {
+		"label": "Total Radiance"
+	},
+	"TouchThresholds": {
+		"label": "Touch Thresholds"
+	},
+	"TrafficIntensity": {
+		"label": "Traffic Intensity"
+	},
+	"TransmissionRatioBetweenRotationAndTranslation": {
+		"label": "Transmission Ratio Between Rotation and Translation"
+	},
+	"Transmittance": {
+		"label": "Transmittance",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q1427863"
+	},
+	"TransmittanceDensity": {
+		"label": "Transmittance Density"
+	},
+	"Turbidity": {
+		"label": "Turbidity",
+		"wikidata": "Q898574"
+	},
+	"Turns": {
+		"label": "Turns",
+		"broader": "Count"
+	},
+	"Unbalance": {
+		"label": "Unbalance"
+	},
+	"Unknown": {
+		"label": "Unknown"
+	},
+	"UpperCriticalMagneticFluxDensity": {
+		"label": "Upper Critical Magnetic Flux Density",
+		"broader": "MagneticFluxDensity",
+		"wikidata": "Q106127634"
+	},
+	"VacuumThrust": {
+		"label": "Vacuum Thrust",
+		"broader": "Thrust"
+	},
+	"VaporPermeability": {
+		"label": "Vapour Permeability"
+	},
+	"VaporPermeance": {
+		"label": "Vapour Permeance"
+	},
+	"VaporPressure": {
+		"label": "Vapour Pressure",
+		"broader": "Pressure"
+	},
+	"VapourPermeability": {
+		"label": "Vapour Permeability"
+	},
+	"VapourPermeance": {
+		"label": "Vapour Permeance"
+	},
+	"VapourPressure": {
+		"label": "Vapour Pressure",
+		"broader": "Pressure"
+	},
+	"Velocity": {
+		"label": "Velocity",
+		"wikidata": "Q11465"
+	},
+	"VentilationRatePerFloorArea": {
+		"label": "Ventilation Rate per Floor Area",
+		"broader": "SurfaceRelatedVolumeFlow"
+	},
+	"VerticalVelocity": {
+		"label": "Vertical Velocity",
+		"broader": "LinearVelocity"
+	},
+	"VibrationalDensityOfStates": {
+		"label": "Vibrational Density of States",
+		"wikidata": "Q230895"
+	},
+	"VideoFrameRate": {
+		"label": "Video Frame Rate"
+	},
+	"Viscosity": {
+		"label": "Viscosity",
+		"wikidata": "Q128709"
+	},
+	"VisibleRadiantEnergy": {
+		"label": "Visible Radiant Energy",
+		"broader": "Energy"
+	},
+	"VisionThresholds": {
+		"label": "Vision Thresholds"
+	},
+	"Voltage": {
+		"label": "Voltage",
+		"wikidata": "Q25428"
+	},
+	"VoltageImbalance": {
+		"label": "Voltage Imbalance",
+		"broader": "DimensionlessRatio"
+	},
+	"VoltagePhasor": {
+		"label": "Voltage Phasor",
+		"wikidata": "Q78514605"
+	},
+	"VoltageRatio": {
+		"label": "Voltage Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"Volume": {
+		"label": "Volume",
+		"wikidata": "Q39297"
+	},
+	"VolumeDensityOfCharge": {
+		"label": "Volume Density of Charge"
+	},
+	"VolumeFlowRate": {
+		"label": "Volume Flow Rate",
+		"broader": "VolumePerTime",
+		"wikidata": "Q1134348"
+	},
+	"VolumeFlowRate_SurfaceRelated": {
+		"label": "surface‑related volume flow rate"
+	},
+	"VolumeFlowRatio": {
+		"label": "Volume Flow Ratio",
+		"broader": "DimensionlessRatio"
+	},
+	"VolumeFraction": {
+		"label": "Volume Fraction",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q909482"
+	},
+	"VolumeOrSectionModulus": {
+		"label": "volume or section modulus"
+	},
+	"VolumePerArea": {
+		"label": "Volume per Unit Area"
+	},
+	"VolumePerTime": {
+		"label": "Volume per Time"
+	},
+	"VolumeStrain": {
+		"label": "Volume Strain",
+		"broader": "DimensionlessRatio",
+		"wikidata": "Q73432507"
+	},
+	"VolumeThermalExpansion": {
+		"label": "Volume Thermal Expansion"
+	},
+	"VolumetricBitDensity": {
+		"label": "Volumic Bit Density"
+	},
+	"VolumetricElectricCharge": {
+		"label": "Volumic Electric Charge"
+	},
+	"VolumetricEntityDensity": {
+		"label": "Volumetric Entity Density"
+	},
+	"VolumetricFlux": {
+		"label": "Volumetric Flux"
+	},
+	"VolumetricHeatCapacity": {
+		"label": "Volumetric Heat Capacity",
+		"wikidata": "Q900661"
+	},
+	"VolumetricOutputPower": {
+		"label": "Volumic Output Power"
+	},
+	"VolumicAmountOfSubstance": {
+		"label": "Volumic Amount of Substance"
+	},
+	"VolumicDataQuantity": {
+		"label": "Volumic Data Quantity"
+	},
+	"VolumicElectromagneticEnergy": {
+		"label": "Volumic Electromagnetic Energy",
+		"broader": "EnergyDensity"
+	},
+	"VolumicOutput": {
+		"label": "Volumic Output"
+	},
+	"Vorticity": {
+		"label": "Vorticity",
+		"broader": "AngularFrequency",
+		"wikidata": "Q1143513"
+	},
+	"WarmReceptorThreshold": {
+		"label": "Warm Receptor Threshold"
+	},
+	"WarpingConstant": {
+		"label": "Warping Constant"
+	},
+	"WarpingMoment": {
+		"label": "Warping Moment"
+	},
+	"WaterHorsepower": {
+		"label": "Water Horsepower",
+		"broader": "Power"
+	},
+	"WaterSolubility": {
+		"label": "Water Solubility",
+		"broader": "AmountOfSubstanceConcentration"
+	},
+	"WaterVaporDiffusionCoefficient": {
+		"label": "Water vapour diffusion coefficient"
+	},
+	"WaterVapourDiffusionCoefficient": {
+		"label": "Water Vapour Diffusion Coefficient"
+	},
+	"WaterVapourPermeability": {
+		"label": "Water Vapour Permeability"
+	},
+	"Wavelength": {
+		"label": "Wavelength",
+		"broader": "Length",
+		"wikidata": "Q41364"
+	},
+	"Wavenumber": {
+		"label": "Wavenumber",
+		"wikidata": "Q192510"
+	},
+	"WebTime": {
+		"label": "Web Time",
+		"broader": "Time"
+	},
+	"WebTimeAveragePressure": {
+		"label": "Web Time Average Pressure",
+		"broader": "Pressure"
+	},
+	"WebTimeAverageThrust": {
+		"label": "Web Time Average Thrust",
+		"broader": "Thrust"
+	},
+	"Weight": {
+		"label": "Weight",
+		"broader": "Force",
+		"wikidata": "Q25288"
+	},
+	"WetBulbTemperature": {
+		"label": "Wet Bulb Temperature",
+		"broader": "Temperature"
+	},
+	"Width": {
+		"label": "Width",
+		"broader": "Length",
+		"wikidata": "Q35059"
+	},
+	"Work": {
+		"label": "Work",
+		"broader": "Energy",
+		"wikidata": "Q42213"
+	},
+	"WorkFunction": {
+		"label": "Work Function",
+		"broader": "Energy",
+		"wikidata": "Q783800"
+	},
+	"ZenithAngle": {
+		"label": "Zenith Angle",
+		"broader": "Angle"
+	}
+}

@@ -1,0 +1,13 @@
+title:
+  en: Trichlorofluoromethane
+refs:
+  - registry_id: ashrae_34
+    term: R-11
+    match: exact
+  - registry_id: wikidata
+    term: Q423000
+    match: exact
+substance:
+  safety_class: A1
+  formula: CCl3F
+  gwp: 4660

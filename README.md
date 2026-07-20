@@ -21,5 +21,5 @@ Public npm packages (see `packages/`).
 Keep published packages Node-clean:
 
 1. **Correctness tests run on Node** in CI, across the `engines` range.
-2. **No `bun:*` imports or Bun globals** anywhere — everything runs on Node.
+2. **No `bun:*` imports or Bun globals**.
 3. **CI installs with pnpm.** Run via the pnpm scripts (`pnpm test`, `pnpm typecheck`, `pnpm generate`). Install with pnpm.

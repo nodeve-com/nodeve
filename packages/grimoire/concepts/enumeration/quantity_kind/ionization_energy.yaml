@@ -1,0 +1,11 @@
+title:
+  en: Ionization Energy
+refs:
+  - registry_id: qudt_quantity_kind
+    term: IonizationEnergy
+    match: exact
+  - registry_id: wikidata
+    term: Q483769
+    match: exact
+identity:
+  broader: energy

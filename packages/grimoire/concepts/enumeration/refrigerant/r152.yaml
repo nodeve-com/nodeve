@@ -1,0 +1,9 @@
+title:
+  en: 1,2-difluoroethane
+refs:
+  - registry_id: ashrae_34
+    term: R-152
+    match: exact
+substance:
+  formula: C2H4F2
+  gwp: 16

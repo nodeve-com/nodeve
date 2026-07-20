@@ -1,0 +1,8 @@
+title:
+  en: Payload Mass
+refs:
+  - registry_id: qudt_quantity_kind
+    term: PayloadMass
+    match: exact
+identity:
+  broader: mass

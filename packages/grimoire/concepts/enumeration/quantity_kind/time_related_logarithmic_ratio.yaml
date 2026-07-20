@@ -1,0 +1,6 @@
+title:
+  en: Time-related Logarithmic Ratio
+refs:
+  - registry_id: qudt_quantity_kind
+    term: TimeRelatedLogarithmicRatio
+    match: exact

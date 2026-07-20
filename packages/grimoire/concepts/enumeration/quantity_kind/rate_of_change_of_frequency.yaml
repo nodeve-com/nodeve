@@ -1,0 +1,8 @@
+title:
+  en: Rate of Change of Frequency
+refs:
+  - registry_id: qudt_quantity_kind
+    term: RateOfChangeOfFrequency
+    match: exact
+identity:
+  broader: inverse_square_time

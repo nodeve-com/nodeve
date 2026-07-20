@@ -1,0 +1,13 @@
+title: { en: Composition, pt: Composição }
+description:
+  en: "A mixture's components — each a pure member of its own enumeration plus its
+    mass fraction. On a refrigerant blend (R-410A = 50% R-32 + 50% R-125) this
+    is the ASHRAE-34 formulation; the blend's GWP derives from it rather than
+    being restated. A LIST — `array: true`."
+concept_settings:
+  is_array: true
+feature_settings:
+  prop:
+    mass_fraction: { schema: { required: true } }
+  enums:
+    - refrigerant # each component IS a pure refrigerant member (self-referential enumeration)

@@ -1,11 +1,18 @@
 title:
-  en: Apparent power
+  en: Apparent Power
   pt: Potência aparente
 refs:
-  - { registry_id: qudt_quantity_kind, term: ApparentPower, match: exact }
-  - { registry_id: ha_device_class, term: apparent_power, match: exact }
+  - registry_id: qudt_quantity_kind
+    term: ApparentPower
+    match: exact
+  - registry_id: wikidata
+    term: Q1930258
+    match: exact
+  - registry_id: ha_device_class
+    term: apparent_power
+    match: exact
 identity:
-  broader: power
+  broader: electric_power
 measurand:
   si_unit: VA
   accumulation: instantaneous

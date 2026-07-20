@@ -1,0 +1,38 @@
+title: { en: Archetype settings, pt: Configurações de arquétipo }
+description:
+  en: The def-language grammar only an ARCHETYPE may carry — the two assembly
+    maps, kept out of the shared concept_settings block so a feature def can
+    never reach them.
+  pt: A gramática de def que só um ARQUÉTIPO pode transportar — os dois mapas de
+    montagem, mantidos fora do bloco partilhado concept_settings para que uma
+    def de elemento nunca lhes chegue.
+body:
+  en: >
+    ASSEMBLY — the class-level half of the def language, the counterpart to
+    features/concept_settings.yaml. `feature_slots` nests features;
+    `archetype_slots` nests sibling classes as named slots. Both are `<slug>:
+    overlay` maps where the key IS the slug (use-site renames don't exist —
+    they'd break the name→def lookup); a `{ archetype: <slug> }` / `{ feature:
+    <slug> }` overlay rebinds a slot's shape so the slot name may differ.
+
+
+    WHY A SEPARATE BLOCK, not two more props on `concept_settings`: that block
+    is composed by BOTH archetypes/feature.yaml and archetypes/archetype.yaml,
+    so a slot added there is legal on a feature def too — and assembly is
+    exactly what a feature must never do (a feature groups props and reaches a
+    sibling's shape through `compose`, one layer, no nesting). Splitting the
+    archetype-only verbs into their own feature makes "archetype-level only"
+    true BY CONSTRUCTION: only archetypes/archetype.yaml declares this slot, so
+    `feature_slots` on a feature def is an undeclared key and the closed
+    projection rejects it. Convention enforced by a guard script is what this
+    replaces — see the archetype.yaml body.
+
+
+    Interiors are LEGALIZED, NOT VALIDATED: each map's keys must be slugs, its
+    values are handed to kit/compile.ts. Resolving every slot against the
+    concept its key names is the follow-up that closes them — the same
+    def-language contract feature.yaml defers.
+feature_settings:
+  prop:
+    feature_slots: {}
+    archetype_slots: {}

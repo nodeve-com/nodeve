@@ -1,0 +1,18 @@
+title:
+  en: R-414A
+refs:
+  - registry_id: ashrae_34
+    term: R-414A
+    match: exact
+composition:
+  - refrigerant: r22
+    mass_fraction: 0.51
+  - refrigerant: r124a
+    mass_fraction: 0.285
+  - refrigerant: r600a
+    mass_fraction: 0.04
+  - refrigerant: r142b
+    mass_fraction: 0.165
+substance:
+  safety_class: A1
+  gwp: 1452

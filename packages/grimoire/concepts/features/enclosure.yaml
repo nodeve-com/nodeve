@@ -18,5 +18,6 @@ refs:
 # the sensor's readable span, and the derate sub-bands a power-derate condition points at).
 concept_settings:
   is_specification: true
-prop:
-  temperature: {}
+feature_settings:
+  prop:
+    temperature: {}

@@ -14,7 +14,7 @@ export const schema: TSchema = Type.Object({ "invalidRanges": Type.Optional(inva
 
 export type ModbusConstraints = { "invalidRanges"?: invalidRanges_.InvalidRanges; "individualReadRanges"?: individualReadRanges_.IndividualReadRanges };
 
-type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_constraints" }; readonly "prop": { readonly "individualReadRanges": typeof individualReadRanges_; readonly "invalidRanges": typeof invalidRanges_ } };
+type DataT = { readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "modbus_constraints" }; readonly "prop": { readonly "individualReadRanges": typeof individualReadRanges_; readonly "invalidRanges": typeof invalidRanges_ }; readonly "title": { readonly "en": "Modbus Constraints" } };
 
 const _data: DataT = {
 	"identity": {
@@ -24,6 +24,9 @@ const _data: DataT = {
 	"prop": {
 		"individualReadRanges": individualReadRanges_,
 		"invalidRanges": invalidRanges_
+	},
+	"title": {
+		"en": "Modbus Constraints"
 	}
 };
-export const { identity, prop } = _data;
+export const { identity, prop, title } = _data;

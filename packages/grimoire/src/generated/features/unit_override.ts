@@ -13,7 +13,7 @@ export const schema: TSchema = Type.Object({ "unit": Type.Optional(unit_.schema)
 
 export type UnitOverride = { "unit"?: unit_.Unit };
 
-type DataT = { readonly "body": { readonly "en": "A UNIT override — `unit`, stated only when a value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, degC vs K, L/day vs m3/s). The single place the `unit` key is defined: every atom carrying a number whose unit can differ from canonical composes this. OPTIONAL (omit => canonical SI; naked numbers are SI); a feature where the unit is REQUIRED (quantity_value) makes it required at its boundary.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unit_override" }; readonly "prop": { readonly "unit": typeof unit_ } };
+type DataT = { readonly "body": { readonly "en": "A UNIT override — `unit`, stated only when a value isn't in its quantity kind's canonical SI/coherent unit (kW vs W, degC vs K, L/day vs m3/s). The single place the `unit` key is defined: every atom carrying a number whose unit can differ from canonical composes this. OPTIONAL (omit => canonical SI; naked numbers are SI); a feature where the unit is REQUIRED (quantity_value) makes it required at its boundary.\n" }; readonly "identity": { readonly "archetypeId": "feature"; readonly "slug": "unit_override" }; readonly "prop": { readonly "unit": typeof unit_ }; readonly "title": { readonly "en": "Unit Override" } };
 
 const _data: DataT = {
 	"body": {
@@ -25,6 +25,9 @@ const _data: DataT = {
 	},
 	"prop": {
 		"unit": unit_
+	},
+	"title": {
+		"en": "Unit Override"
 	}
 };
-export const { body, identity, prop } = _data;
+export const { body, identity, prop, title } = _data;

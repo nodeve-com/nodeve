@@ -1,0 +1,6 @@
+title:
+  en: kinematic viscosity or diffusion constant or thermal diffusivity
+refs:
+  - registry_id: qudt_quantity_kind
+    term: KinematicViscosityOrDiffusionConstantOrThermalDiffusivity
+    match: exact

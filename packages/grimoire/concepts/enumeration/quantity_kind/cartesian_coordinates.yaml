@@ -1,0 +1,8 @@
+title:
+  en: Cartesian Coordinates
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CartesianCoordinates
+    match: exact
+identity:
+  broader: length

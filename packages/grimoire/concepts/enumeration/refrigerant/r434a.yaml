@@ -1,0 +1,18 @@
+title:
+  en: R-434A
+refs:
+  - registry_id: ashrae_34
+    term: R-434A
+    match: exact
+composition:
+  - refrigerant: r125
+    mass_fraction: 0.632
+  - refrigerant: r143a
+    mass_fraction: 0.18
+  - refrigerant: r134a
+    mass_fraction: 0.16
+  - refrigerant: r600a
+    mass_fraction: 0.027999999999999997
+substance:
+  safety_class: A1
+  gwp: 3076

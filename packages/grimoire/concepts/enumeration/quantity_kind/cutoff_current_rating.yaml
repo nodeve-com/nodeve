@@ -1,0 +1,6 @@
+title:
+  en: I²t-value
+refs:
+  - registry_id: qudt_quantity_kind
+    term: CutoffCurrentRating
+    match: exact
