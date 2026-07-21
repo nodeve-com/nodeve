@@ -1,0 +1,25 @@
+id: https://nodeve.com/schema/network
+name: nodeve-network
+default_prefix: nodeve
+default_range: string
+classes:
+  NetworkInterface:
+    annotations:
+      sql_table: network_interface
+    slots: [node, slug, interface_type, link_speed]
+    slot_usage:
+      interface_type: { required: true }
+
+  ServiceBinding:
+    annotations:
+      sql_table: service_binding
+    slots: [node, slug, port, service_protocol, network_interface]
+    slot_usage:
+      service_protocol: { required: true }
+      network_interface: { required: true }
+slots:
+  link_speed: { range: integer, annotations: { camel: linkSpeed } }
+  port: { range: integer }
+  interface_type: { range: InterfaceType, annotations: { camel: interfaceType } }
+  network_interface: { range: NetworkInterface, annotations: { camel: networkInterface } }
+  service_protocol: { range: ServiceProtocol, annotations: { camel: serviceProtocol } }

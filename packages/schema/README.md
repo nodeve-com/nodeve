@@ -24,8 +24,9 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 
 | file | is |
 | --- | --- |
-| `linkml/nodeve.yaml` | the one schema — describes normalized rows; authored YAML normalizes into them |
-| `linkml/nodeve-slots.yaml` | current shared slots + enums |
+| `linkml/nodeve.yaml` | schema root — prefixes, defaults, import assembly |
+| `linkml/{core,taxonomy,features,product,network,modbus}.yaml` | domain classes with owned slots |
+| `linkml/shared.yaml` | shared slots + enums |
 | `format.ts` | formatting gate over authored yaml (`--check` for precommit) |
 | `project-overlay.ts` | registry rows → `gen/nodeve-projected.yaml`, the validation overlay |
 | `check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |

@@ -1,0 +1,65 @@
+id: https://nodeve.com/schema/modbus
+name: nodeve-modbus
+default_prefix: nodeve
+default_range: string
+classes:
+  # ── comms layer: OUT of the device. Shared per manufacturer-family;
+  # many products FK the same map. ──
+  RegisterMap:
+    annotations:
+      sql_table: register_map
+    slots: [node, slug, unit_id, register_type, word_order, registers, constraint_ranges]
+
+  RegisterRange:
+    annotations:
+      sql_table: register_range
+    description: Named invalid / individual-read range on a map.
+    slots: [node, range_type, start, end, note]
+    slot_usage:
+      start: { required: true }
+      end: { required: true }
+
+  ModbusRegister:
+    annotations:
+      sql_table: modbus_register
+    description: >-
+      One register → one measurand. The measurand link is the relational rewrite of grimoire's interval_item: FK to the feature row + the quantity/part/channel discriminators.
+    slots:
+      [
+        node,
+        address,
+        quantity_kind,
+        part,
+        flow_direction,
+        period,
+        scale,
+        decimals,
+        unit,
+        datatype,
+        feature,
+      ]
+    slot_usage:
+      datatype: { required: true }
+      feature: { required: true }
+slots:
+  address: { range: integer, required: true }
+  decimals: { range: integer }
+  end: { range: integer }
+  note: {}
+  range_type:
+    { range: string, description: invalid | individual_read, annotations: { camel: rangeType } }
+  scale: { range: float }
+  start: { range: integer }
+  unit_id: { range: integer, annotations: { camel: unitId } }
+  constraint_ranges:
+    {
+      range: RegisterRange,
+      multivalued: true,
+      inlined_as_list: true,
+      annotations: { camel: constraintRanges },
+    }
+  datatype: { range: RegisterDatatype }
+  feature: { range: FeatureOfInterest, description: FK — which feature-of-interest row this reads }
+  register_type: { range: RegisterType, annotations: { camel: registerType } }
+  registers: { range: ModbusRegister, multivalued: true, inlined_as_list: true }
+  word_order: { range: WordOrder, annotations: { camel: wordOrder } }

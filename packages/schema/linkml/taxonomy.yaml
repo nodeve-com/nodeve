@@ -1,0 +1,132 @@
+id: https://nodeve.com/schema/taxonomy
+name: nodeve-taxonomy
+default_prefix: nodeve
+default_range: string
+classes:
+  # The definition registry AS DATA — grimoire's feature layer becomes rows.
+  # One row per feature type. (Resolves the metaclass gap the honest way:
+  # definitions the schema can't be meta about are themselves rows the catalog
+  # FKs.) Each row binds which quantities its features may carry (QuantityBinding
+  # rows — aspect flags, not two sets). The VALIDATION overlay
+  # (nodeve-projected.yaml) is this table restated as LinkML, one stencil
+  # per row — never fed to gen-sqlddl, or each stencil becomes a table and
+  # fragments the uniform ones.
+  FeatureType:
+    annotations:
+      sql_table: feature_type
+    slots: [node, slug, quantity_bindings, contents]
+
+  # The device-type registry — the archetype layer as rows, exactly parallel to
+  # FeatureType. A new device type (dehumidifier, ac-meter) is an INSERT here
+  # plus its FeatureType rows; no table is added, no column changes. The socket
+  # contract (which feature types are required, which roles exist) lands here
+  # in a later pass — today it is still implied by the archetype's slot names.
+  DeviceType:
+    annotations:
+      sql_table: device_type
+    slots: [node, slug, socket_bindings, contents]
+
+  # One row per device type × socket. Was implied by the overlay's role enums
+  # and required-ness — now the data those are GENERATED from.
+  SocketBinding:
+    annotations:
+      sql_table: socket_binding
+      # authored form: a map keyed by this slot (socket_binding: {out: …})
+      keyed_by: role
+    slots: [node, feature_type, role, required]
+
+  # The quantity master list AS ROWS — bulk-loaded from QUDT (grimoire's
+  # concepts/enumeration/quantity_kind), never hand-extended. Was an enum; an
+  # enum can't be refined (LinkML `is_a` on enums neither constrains nor
+  # inherits — a typo'd projected value just becomes a new permissible value),
+  # so the master list is a table and every citation is an FK. Adding a kind is
+  # an INSERT, exactly like feature type and device type.
+  QuantityKind:
+    annotations:
+      sql_table: quantity_kind
+    slots:
+      [
+        node,
+        slug,
+        si_unit,
+        accumulation,
+        deprecated,
+        deprecated_in,
+        replaced_by,
+        broader,
+        refs,
+        contents,
+      ]
+
+  # One row per feature type × quantity — the feature type's admissible set as
+  # data. The overlay projects ONE enum per feature type from these rows,
+  # validated once on Interval. Membership is the whole contract: which facets
+  # an interval carries is a fact of the model, not the type.
+  QuantityBinding:
+    annotations:
+      sql_table: quantity_binding
+      # authored form: a map keyed by this slot's range (quantity_binding: {voltage: …})
+      keyed_by: quantity_kind
+    slots: [node, quantity_kind]
+slots:
+  accumulation:
+    {
+      range: string,
+      description: 'instantaneous | cumulative — upstream measurand fact, carried not re-derived',
+    }
+  deprecated:
+    {
+      range: boolean,
+      description: 'upstream retired this term. The row STAYS — existing refs still point at it and the URI still resolves; it is superseded, not absent',
+    }
+  deprecated_in:
+    {
+      range: string,
+      description: 'upstream version that retired it (QUDT "3.1.11")',
+      annotations: { camel: deprecatedIn },
+    }
+  required:
+    {
+      range: boolean,
+      description: 'socket binding — the device type must carry a feature row for this role',
+    }
+  si_unit:
+    {
+      range: string,
+      description: 'SI unit of the kind; an interval overrides per-row via `unit`',
+      annotations: { camel: siUnit },
+    }
+  broader:
+    {
+      range: QuantityKind,
+      description: 'self-FK — upstream hierarchy (active_power broader electric_power)',
+    }
+  quantity_bindings:
+    {
+      range: QuantityBinding,
+      multivalued: true,
+      inlined_as_list: true,
+      description: 'one row per feature type × quantity with aspect flags — replaces the two admissible-set slots',
+      annotations: { camel: quantityBindings },
+    }
+  refs:
+    {
+      range: Ref,
+      multivalued: true,
+      inlined_as_list: true,
+      description: 'external-registry mappings for the row — the ONE way any row links out. Downstream (wikidata, HA) reads these',
+    }
+  replaced_by:
+    {
+      range: QuantityKind,
+      description: 'self-FK — the current kind upstream redirects to (Conductivity → ElectricConductivity)',
+      annotations: { camel: replacedBy },
+    }
+  socket_bindings:
+    {
+      range: SocketBinding,
+      multivalued: true,
+      inlined_as_list: true,
+      description: "the device type's socket contract AS ROWS — which feature type fills which role. Projects to the role enums and required-ness the overlay validates",
+      annotations: { camel: socketBindings },
+    }

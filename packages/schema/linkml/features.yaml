@@ -1,0 +1,139 @@
+id: https://nodeve.com/schema/features
+name: nodeve-features
+default_prefix: nodeve
+default_range: string
+classes:
+  # ── feature layer: reusable tables ──
+  # The valued-range table (grimoire features/valued_range.yaml): one
+  # distinguished point + the band around it — absolute (tolerance) and
+  # relative (margin) families, symmetric + asymmetric. A width facet of
+  # Interval: its own table, sharing the interval's node.
+  ValuedRange:
+    annotations:
+      sql_table: valued_range
+    description: >-
+      A single point (value) plus the tolerated band around it (min/max OPTIONAL — value-only, one-sided, or full all legal; never fabricate a band). Quantity-agnostic: the owning row supplies the quantity; unit stays here with the numbers it scales.
+    slots:
+      - node
+      - min
+      - max
+      - value
+      - unit
+      - tolerance
+      - tolerance_lower
+      - tolerance_upper
+      - margin
+      - margin_lower
+      - margin_upper
+
+  # Interval is the ONE quantity-band table — every quantity assertion on a
+  # feature is an Interval row; quantity admissibility is validated HERE, once.
+  # Specification / Measurement are 1:1 WIDTH EXTENSIONS sharing the interval's
+  # node row (the Product-on-DeviceModel trick) — narrow tables, no repeated
+  # core columns. Uniqueness: one row per (feature, quantity_kind, part, slug).
+  Interval:
+    annotations:
+      sql_table: interval
+    description: >-
+      One quantity band on one feature. part null = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
+    slots: [node, quantity_kind, valued_range, part, slug]
+    slot_usage:
+      # the discriminator, not decoration — (quantity_kind, part, slug) is the
+      # row's identity and its node path segment. Absent slug = no derivable node.
+      slug: { required: true }
+
+  Specification:
+    annotations:
+      sql_table: specification
+    description: >-
+      BEHAVIOURAL payload — spec rating, operating zone, severity tier, or condition-gated derate. Shares its interval's node row.
+    slots: [node, conditions, rating, zone, severity, duration, trigger_on]
+
+  Measurement:
+    annotations:
+      sql_table: measurement
+    description: >-
+      MEASURABLE-channel payload — what a sensor reports: resolution and the energy-channel discriminators. Shares its interval's node row.
+    slots: [node, flow_direction, period, resolution]
+
+  Condition:
+    annotations:
+      sql_table: condition
+    description: >-
+      Gate on an interval — either a commissioning-setting equality or a pointer at another interval (the derate anchor).
+    slots: [node, setting_key, equals, gated_by]
+
+  FeatureOfInterest:
+    annotations:
+      sql_table: feature_of_interest
+    abstract: true
+    description: >-
+      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature owning three part rows. Parts are per-model (a/b/c, l1/l2, 1/2/3) because models differ; part NULL on an interval = combined, the whole feature.
+    slots: [node, feature_type, role, parts, intervals, specifications, measurements, contents]
+    slot_usage:
+      role: { required: true }
+      feature_type: { required: true }
+slots:
+  duration: { range: integer, description: seconds }
+  equals: {}
+  margin: { range: float, description: symmetric RELATIVE band (±0.05 = ±5%) }
+  margin_lower:
+    {
+      range: float,
+      description: 'asymmetric RELATIVE below; fraction_lower sugar desugars into this',
+      annotations: { camel: marginLower },
+    }
+  margin_upper:
+    {
+      range: float,
+      description: 'asymmetric RELATIVE above; fraction_upper sugar desugars into this',
+      annotations: { camel: marginUpper },
+    }
+  max: { range: float }
+  min: { range: float }
+  resolution: { range: float }
+  setting_key: { annotations: { camel: settingKey } }
+  tolerance: { range: float, description: 'symmetric ABSOLUTE band (±200, in unit)' }
+  tolerance_lower: { range: float, annotations: { camel: toleranceLower } }
+  tolerance_upper: { range: float, annotations: { camel: toleranceUpper } }
+  value: { range: float }
+  conditions: { range: Condition, multivalued: true, inlined_as_list: true }
+  gated_by:
+    {
+      range: Interval,
+      description: FK to the anchoring interval row,
+      annotations: { camel: gatedBy },
+    }
+  intervals: { range: Interval, multivalued: true, inlined_as_list: true }
+  measurements:
+    {
+      range: Measurement,
+      multivalued: true,
+      inlined_as_list: true,
+      description: "measurement width-extension rows — each shares its interval's node",
+    }
+  parts:
+    {
+      range: Part,
+      multivalued: true,
+      inlined_as_list: true,
+      description: 'how THIS feature subdivides — a, b, c for three-phase; l1, l2 for split; 1, 2, 3 for trackers. Zero rows = combined only. Per-model, because models differ',
+    }
+  rating: { range: Rating }
+  severity: { range: Severity }
+  specifications:
+    {
+      range: Specification,
+      multivalued: true,
+      inlined_as_list: true,
+      description: "specification width-extension rows — each shares its interval's node",
+    }
+  trigger_on: { range: TriggerOn, annotations: { camel: triggerOn } }
+  valued_range:
+    {
+      range: ValuedRange,
+      inlined: true,
+      description: FK — the point + band this row states,
+      annotations: { camel: valuedRange },
+    }
+  zone: { range: Zone }

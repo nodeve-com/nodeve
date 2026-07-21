@@ -9,10 +9,27 @@ export const atRoot = (p: string) => fileURLToPath(new URL(`../${p}`, import.met
 export type ClassDef = { annotations?: Record<string, string>; slots?: string[] };
 export type SlotDef = { range?: string; pattern?: string };
 
-export const schema = parse(readFileSync(atRoot('linkml/nodeve.yaml'), 'utf8'));
-const shared = parse(readFileSync(atRoot('linkml/nodeve-slots.yaml'), 'utf8'));
-export const slotByName: Record<string, SlotDef> = { ...shared.slots, ...schema.slots };
-export const classByName: Record<string, ClassDef> = schema.classes;
+type Schema = {
+	imports?: string[];
+	classes?: Record<string, ClassDef>;
+	slots?: Record<string, SlotDef>;
+};
+
+const loadSchema = (name: string, seen = new Set<string>()): Schema => {
+	if (seen.has(name) || name.includes(':')) return {};
+	seen.add(name);
+	const source: Schema = parse(readFileSync(atRoot(`linkml/${name}.yaml`), 'utf8'));
+	const imports = (source.imports ?? []).map((dependency) => loadSchema(dependency, seen));
+	return {
+		...source,
+		classes: Object.assign({}, ...imports.map(({ classes }) => classes), source.classes),
+		slots: Object.assign({}, ...imports.map(({ slots }) => slots), source.slots),
+	};
+};
+
+export const schema = loadSchema('nodeve');
+export const slotByName: Record<string, SlotDef> = schema.slots ?? {};
+export const classByName: Record<string, ClassDef> = schema.classes ?? {};
 export const classByTable: Record<string, string> = Object.fromEntries(
 	Object.entries(classByName).flatMap(([name, c]) =>
 		c.annotations?.sql_table ? [[c.annotations.sql_table, name]] : [],
@@ -30,5 +47,5 @@ export const fkTable = (slot: string): string | undefined => {
 
 // the slug grammar comes off the slug SLOT — the schema owns it, never a TS copy
 const slugPattern = slotByName.slug?.pattern;
-if (!slugPattern) throw new Error('nodeve-slots.yaml: slug slot has no pattern');
+if (!slugPattern) throw new Error('nodeve schema: slug slot has no pattern');
 export const SLUG = new RegExp(slugPattern);

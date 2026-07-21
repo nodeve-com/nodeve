@@ -1,37 +1,37 @@
 {
-  "name": "@nodeve/root",
-  "private": true,
-  "license": "MIT",
-  "type": "module",
-  "engines": {
-    "node": ">=24"
-  },
-  "packageManager": "pnpm@11.4.0",
-  "scripts": {
-    "prepare": "lefthook install || true",
-    "build": "pnpm -r --if-present build",
-    "test": "pnpm -r --if-present test",
-    "lint": "eslint .",
-    "typecheck": "pnpm -r --if-present typecheck",
-    "clean": "pnpm -r --if-present clean",
-    "release": "pnpm build && changeset publish",
-    "check": "nodeve-check && eslint .",
-    "check:gate": "lefthook run pre-commit"
-  },
-  "devDependencies": {
-    "@changesets/cli": "catalog:",
-    "@eslint/compat": "catalog:",
-    "@eslint/js": "catalog:",
-    "@nodeve/checks": "workspace:*",
-    "@nodeve/config": "workspace:*",
-    "date-fns": "catalog:",
-    "eslint": "catalog:",
-    "eslint-config-prettier": "catalog:",
-    "globals": "catalog:",
-    "prettier": "catalog:",
-    "remeda-humps": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:",
-    "yaml": "catalog:"
-  }
+	"name": "@nodeve/root",
+	"private": true,
+	"license": "MIT",
+	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
+	"packageManager": "pnpm@11.5.3",
+	"scripts": {
+		"prepare": "lefthook install || true",
+		"build": "pnpm -r --if-present build",
+		"test": "pnpm -r --if-present test",
+		"lint": "eslint .",
+		"typecheck": "pnpm -r --if-present typecheck",
+		"clean": "pnpm -r --if-present clean",
+		"release": "pnpm build && changeset publish",
+		"check": "nodeve-check && eslint .",
+		"check:gate": "lefthook run pre-commit"
+	},
+	"devDependencies": {
+		"@changesets/cli": "catalog:",
+		"@eslint/compat": "catalog:",
+		"@eslint/js": "catalog:",
+		"@nodeve/checks": "workspace:*",
+		"@nodeve/config": "workspace:*",
+		"date-fns": "catalog:",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"globals": "catalog:",
+		"prettier": "catalog:",
+		"remeda-humps": "catalog:",
+		"typescript": "catalog:",
+		"typescript-eslint": "catalog:",
+		"yaml": "catalog:"
+	}
 }

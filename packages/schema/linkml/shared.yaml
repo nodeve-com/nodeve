@@ -1,0 +1,113 @@
+# Shared slot + enum layer. Imported once by nodeve.yaml.
+# Object-valued slots range over classes DEFINED IN THE IMPORTER; LinkML
+# resolves names over the merged import closure, so this file only stands
+# alone alongside it.
+id: https://nodeve.com/schema/slots
+name: nodeve-slots
+# prefixes live ONCE, on the aggregate root (nodeve.yaml) — the legacy
+# SchemaLoader the SQL generators use resolves this file's CURIEs against the
+# root's namespaces, so a local block would be the duplicate, not this absence
+default_prefix: nodeve
+default_range: string
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only (rating, severity, …) live here as
+# schema enums. Part vocabularies (phase a/b/c, l1/l2, tracker positions) are
+# Part ROWS on the feature — per-model, so a new subdivision is a new row,
+# never a new column or a DDL migration.
+enums:
+  FlowDirection:
+    permissible_values: { in: {}, out: {}, net: {} }
+  InterfaceType:
+    permissible_values: { ethernet_csmacd: {}, ieee80211: {} }
+  MatchStrength:
+    description: SKOS mapping strength — closed grammar, so an enum and not a table.
+    permissible_values:
+      exact: { meaning: skos:exactMatch }
+      close: { meaning: skos:closeMatch }
+      broad: { meaning: skos:broadMatch }
+      narrow: { meaning: skos:narrowMatch }
+      related: { meaning: skos:relatedMatch }
+  Period:
+    permissible_values: { daily: {} }
+  Rating:
+    permissible_values:
+      continuous: {}
+      intermittent: {}
+      short_term: {}
+      startup: {}
+      shutdown: {}
+      survival: {}
+      protection_required: {}
+  RegisterDatatype:
+    permissible_values: { uint16: {}, int16: {}, uint32: {}, int32: {} }
+  RegisterType:
+    permissible_values: { holding: {}, input: {} }
+  ServiceProtocol:
+    permissible_values: { modbus_tcp: {}, https: {}, http: {}, mqtt: {} }
+  Severity:
+    permissible_values:
+      {
+        best: {},
+        better: {},
+        good: {},
+        nominal: {},
+        notice: {},
+        caution: {},
+        warning: {},
+        critical: {},
+        fatal: {},
+      }
+  TriggerOn:
+    permissible_values: { above: {}, below: {} }
+  WordOrder:
+    permissible_values: { high_first: {}, low_first: {} }
+  Zone:
+    permissible_values: { mppt: {}, mpp: {}, open_circuit: {}, off: {}, idle: {}, running: {} }
+
+# ─── SLOTS (grimoire properties) ─────────────────────────────────────────────
+# One definition per field name, schema-wide — the global-by-default invariant
+# grimoire hand-enforces is LinkML's native behaviour. Classes refine locally
+# via slot_usage without forking the definition.
+slots:
+  flow_direction: { range: FlowDirection, annotations: { camel: flowDirection } }
+  part:
+    {
+      range: string,
+      required: true,
+      pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$',
+      description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part.",
+    }
+  period: { range: Period }
+  role:
+    {
+      range: string,
+      description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.',
+    }
+  slug:
+    {
+      range: string,
+      pattern: '^[a-z0-9]+(-[a-z0-9]+)*$',
+      description: 'hand-authored machine key + url segment, kebab-case; wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref',
+    }
+  unit: { range: string, description: only when not the feature type's SI unit }
+  contents: { range: Content, multivalued: true, inlined_as_list: true }
+  feature_type:
+    {
+      range: FeatureType,
+      description: FK — which feature definition this row instantiates,
+      annotations: { camel: featureType },
+    }
+  node:
+    {
+      identifier: true,
+      range: Node,
+      description: "PK + FK to Node — every row's identity IS its Node row; the one permalink space",
+    }
+  quantity_kind:
+    {
+      range: QuantityKind,
+      required: true,
+      description: 'FK to the quantity_kind table — the bulk-loaded QUDT master list. Membership is the FK, not an enum: a new kind is an INSERT',
+      annotations: { camel: quantityKind },
+    }
