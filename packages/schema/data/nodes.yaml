@@ -1,0 +1,27 @@
+# Node rows minted by format.ts — APPEND-ONLY. slug_qualified = permalink PK, code = url hash tail.
+# Renaming a slug mints a NEW row only if the old one is deleted by hand; minted facts never re-derive.
+
+- { slug_qualified: node:feature-type/ac-phase-three, code: C2AJM5H5 }
+- { slug_qualified: node:feature-type/ac-phase-three/phase, code: 2M5MQNF3 }
+- { slug_qualified: node:feature-type/ac-phase-three/phase/a, code: 2TJGZ31P }
+- { slug_qualified: node:feature-type/ac-phase-three/phase/b, code: MRJ7EDHT }
+- { slug_qualified: node:feature-type/ac-phase-three/phase/c, code: PMGCZ0TD }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh, code: XJ40F6RZ }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/ac-grid, code: 61T1JKMV }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/ac-out, code: B3AKYBW8 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/enclosure, code: KK04N42C }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/eth0, code: 7B7YW4AP }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/foxess-h3-smart, code: DWQC3R0X }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/modbus-tcp, code: 9MKNWV91 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/web-ui, code: 1HY0GT3Y }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/wlan0, code: CH7C8GN1 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/pv1, code: ABMWZ711 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/pv2, code: 97B46PS1 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/pv3, code: Y0DMG67V }
+- { slug_qualified: node:feature-type/ac-phase, code: AXR4EVZF }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/1, code: D7YAQKAH }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/2, code: QZP4K7ZW }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/3, code: P5ZWE3FD }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/a, code: YS513WR5 }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/b, code: 99A68X0N }
+- { slug_qualified: node:inverter/foxess-h3-ps10sh/c, code: HWMBQ202 }

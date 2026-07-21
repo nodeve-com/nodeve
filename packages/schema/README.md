@@ -1,1 +1,65 @@
-We need to test the use of LinkML to express a relational database schema. We would like to replace the schema definition layer of grimoire with it. We'd like to take the opportunity to test what an inverter would look like expressed in LinkML but with the confines of a relational database in mind. properties are slots, features are classes of properties, archetypes are classes of classes. I'm not sure there is a way to enforce this. Sometimes an archetype is composed of tables/features that all share a common uuid PK, so the join is very easy. But other times (when more than one field references another table) it requires the many side of the many-to-one to have unique ids. This was not previously expressed in grimoire, but needs to be more transparent in the LinkML re-creation. The important, perhaps unique aspect of what we are trying to do, is create re-usable tables that archetypes assemble. This is instead of having wide tables that repeat column names. A content table for example might have [title, lede (description), body, lang] and be used everywhere, anytime that information needs to be stored. grimore confused what would normally be an enum like `en` or `pt` language tags for a property name and also for 3-phase connections like l1 (a), l2 (b), l3 (c). Those are likely enums on a table, not some special "part" mechanism. We have thousands of catalog items to add, so needing to author in yaml isn't strictly necessary. We might use a database. It just is nice to support expressing the database in yaml form at the start. The communication layer that is defined on inverter currently with modbus registers probably doees not belong within the device itself since it is often shared between many devices a manufacturer has. We probably define register ranges independently and then link to those named ranges from the individual products.
+# @nodeve/schema
+
+Hardware catalog schema as a **relational** model, authored in [LinkML](https://linkml.io). One source projects to SQL DDL, JSON Schema, TS types, and Pydantic.
+
+Replaces grimoire's *shape* layer. See [levels.md](docs/levels.md) for the level grammar.
+
+## Files
+
+| file | is |
+| --- | --- |
+| `linkml/nodeve-energy.yaml` | the schema — classes = tables |
+| `linkml/nodeve-energy-slots.yaml` | slots + enums, imported by the above |
+| `linkml/nodeve-energy-projected.yaml` | validation overlay — per-device-type stencils (`Inverter`). Never generates tables |
+| `format.ts` | sort + desugar gate over the yaml (`--check` for precommit) |
+| `data/` | rows — one catalog entry, the definition registry, minted nodes |
+| `gen/` | SQL exports, gitignored — not a layer we commit yet |
+
+## Commands
+
+```sh
+uvx --from linkml linkml-validate -s linkml/nodeve-energy-projected.yaml -C Inverter data/foxess_h3_ps10sh.yaml
+uvx --from linkml gen-sqltables linkml/nodeve-energy.yaml > gen/nodeve-energy.sql
+node format.ts                                       # sort, desugar, mint nodes
+```
+
+LinkML is not in nixpkgs; `uv` is in the flake and `uvx` fetches it.
+
+## Design
+
+Reusable tables that device types assemble — not wide tables repeating column names.
+
+| grimoire | LinkML | note |
+| --- | --- | --- |
+| property | slot | global-by-default — the invariant grimoire hand-enforces is native |
+| prop overlay | `slot_usage` | per-class refinement, no fork |
+| (anti-slop rule) | zero `attributes:` | attributes = anonymous class-local slots; banned — every field is a global slot, one generic name (`range_kind`, not `kind`) |
+| feature | class → table | `AcPort` is ONE table; out/grid/eps/load are four FKs to it |
+| archetype | `DeviceType` row + projection | see [levels.md](docs/levels.md) — validation above the DB, not a table |
+| `product:` block + mfr cascade | `Product` → `Manufacturer` tables | cascade = shared FK row |
+| `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |
+| part (l1/l2/l3) | `Part` row FK | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity, lang) |
+| i18n keys (en/pt) | `Content(lang)` rows | one reusable [title, lede, body, lang] table |
+| repeated + instances | `ordinal` column | null = default template row; set = sparse override |
+| energy channels | `flow_direction` + `period` columns | four rows on one kind |
+| combined vs per-leg | `part` nullity + `part_scope` | combined = all discriminators absent; enforced via `value_presence` |
+| modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
+
+### Identity
+
+Every class `is_a Node` — one id space. A slot with `range: Node` takes any entity, a 1:1 extension reuses its owner's id (shared PK), and minting is one table's business.
+
+`gen-sqltables` FLATTENS inheritance: each table repeats `id` as its own PK with no emitted `FOREIGN KEY (id) REFERENCES Node(id)`. One-line-per-table DDL post-step, or `gen-sqla` joined-table inheritance. The schema carries the intent, not the constraint.
+
+### PK/FK
+
+- single-valued object slot → FK column on the parent (`Inverter.ac_out_id`)
+- multivalued inlined slot → backref FK on the child (`Interval."AcPort_id"`)
+
+## Open
+
+- **No metaclass.** Layer discipline (feature never carries slots-of-classes, device type never carries scalar slots) stays a lint, not a schema fact.
+- **Backref FK columns are quoted CamelCase** (`"AcPort_id"`); `Content` grows one nullable FK per referencing class. A production cut wants explicit association classes or tuned `gen-sqla` naming.
+- **Cross-row semantics are not LinkML's.** `gated_by`, interval bounds within envelope, offered-kinds-only — LinkML validates shape. Those stay owned checks.
+- **Desugaring is owned**, in `format.ts`: sugared yaml in, canonical rows out, `linkml-validate` sees only the flat form.
+- **`mintNodes` reads a top-level `archetype` key**; data rows carry `device_type`. Stale rename — verify it still mints.

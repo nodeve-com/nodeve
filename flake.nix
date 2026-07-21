@@ -16,6 +16,7 @@
             nodejs_26
             pnpm
             lefthook
+            uv # linkml runner: uvx --from linkml linkml-validate / gen-sqlddl
           ];
 
           shellHook = ''

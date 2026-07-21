@@ -16,3 +16,4 @@
 - [grimoire settings external sensors](grimoire-settings-external-sensors.md) — settings_schema will grow external-sensor refs (ESPHome import pattern); setting gates stay pointed at the same keys
 - [grimoire shape slop cleanup](grimoire-shape-slop-cleanup.md) — hand-authored shapes, dup defs, opaque Obj bags all trace to one missing desugar-at-openSite edge; multi-thread cleanup, gate currently red
 - [grimoire global slots](grimoire-global-slots.md) — global-by-default property defs are a wanted invariant, hand-enforced many ways; native in LinkML
+- [nodeve identity model](nodeve-identity-model.md) — Node table permalink PK (slug_qualified, mint-once), derived code, kebab slugs; no uuid
