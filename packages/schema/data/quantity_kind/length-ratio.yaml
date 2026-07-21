@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: length-ratio-en
-    lang: en
+    language: en
     title: Length Ratio
+    about: node:quantity-kind/length-ratio

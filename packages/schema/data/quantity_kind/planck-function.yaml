@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: planck-function-en
-    lang: en
+    language: en
     title: Planck Function
+    about: node:quantity-kind/planck-function

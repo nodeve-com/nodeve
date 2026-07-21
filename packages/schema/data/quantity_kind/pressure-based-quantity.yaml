@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-quantity-en
-    lang: en
+    language: en
     title: Pressure-based Quantity
+    about: node:quantity-kind/pressure-based-quantity

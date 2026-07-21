@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: loss-factor-en
-    lang: en
+    language: en
     title: Loss Factor
+    about: node:quantity-kind/loss-factor

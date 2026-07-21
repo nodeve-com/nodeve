@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: asset-en
-    lang: en
+    language: en
     title: Asset
+    about: node:quantity-kind/asset

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: moment-of-inertia-y-en
-    lang: en
+    language: en
     title: Moment of Inertia in the Y Axis
+    about: node:quantity-kind/moment-of-inertia-y

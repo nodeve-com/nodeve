@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-electric-charge-en
-    lang: en
+    language: en
     title: Specific Electric Charge
+    about: node:quantity-kind/specific-electric-charge

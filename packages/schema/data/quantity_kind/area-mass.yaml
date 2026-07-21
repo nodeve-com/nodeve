@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: area-mass-en
-    lang: en
+    language: en
     title: Areic Mass
+    about: node:quantity-kind/area-mass

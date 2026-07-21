@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: rf-power-en
-    lang: en
+    language: en
     title: RF-Power Level
+    about: node:quantity-kind/rf-power

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: equivalent-absorption-area-en
-    lang: en
+    language: en
     title: Equivalent Absorption Area
+    about: node:quantity-kind/equivalent-absorption-area

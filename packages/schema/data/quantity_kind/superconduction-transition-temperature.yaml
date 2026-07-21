@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: superconduction-transition-temperature-en
-    lang: en
+    language: en
     title: Superconduction Transition Temperature
+    about: node:quantity-kind/superconduction-transition-temperature

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mean-mass-range-en
-    lang: en
+    language: en
     title: Mean Mass Range
+    about: node:quantity-kind/mean-mass-range

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: source-voltage-between-substances-en
-    lang: en
+    language: en
     title: Source Voltage Between Substances
+    about: node:quantity-kind/source-voltage-between-substances

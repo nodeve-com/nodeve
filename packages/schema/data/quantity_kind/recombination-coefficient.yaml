@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: recombination-coefficient-en
-    lang: en
+    language: en
     title: Recombination Coefficient
+    about: node:quantity-kind/recombination-coefficient

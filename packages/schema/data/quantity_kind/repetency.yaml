@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: repetency-en
-    lang: en
+    language: en
     title: Repetency
+    about: node:quantity-kind/repetency

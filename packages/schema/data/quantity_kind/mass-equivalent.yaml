@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-equivalent-en
-    lang: en
+    language: en
     title: Mass Equivalent
+    about: node:quantity-kind/mass-equivalent

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: breadth-en
-    lang: en
+    language: en
     title: Breadth
+    about: node:quantity-kind/breadth

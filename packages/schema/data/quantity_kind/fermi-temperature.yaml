@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: fermi-temperature-en
-    lang: en
+    language: en
     title: Fermi Temperature
+    about: node:quantity-kind/fermi-temperature

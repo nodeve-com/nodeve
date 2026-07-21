@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linear-attenuation-coefficient-en
-    lang: en
+    language: en
     title: Linear Attenuation Coefficient
+    about: node:quantity-kind/linear-attenuation-coefficient

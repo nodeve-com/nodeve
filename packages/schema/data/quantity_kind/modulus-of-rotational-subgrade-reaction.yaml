@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-rotational-subgrade-reaction-en
-    lang: en
+    language: en
     title: Modulus of Rotational Subgrade Reaction
+    about: node:quantity-kind/modulus-of-rotational-subgrade-reaction

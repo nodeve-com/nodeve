@@ -9,5 +9,6 @@ refs:
     match: exact
 contents:
   - node: areic-charge-density-or-electric-flux-density-or-electric-polarization-en
-    lang: en
+    language: en
     title: areic charge density or electric flux density or electric polarization
+    about: node:quantity-kind/areic-charge-density-or-electric-flux-density-or-electric-polarization

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: einstein-coefficients-en
-    lang: en
+    language: en
     title: Einstein Coefficients
+    about: node:quantity-kind/einstein-coefficients

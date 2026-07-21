@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: packing-fraction-en
-    lang: en
+    language: en
     title: Packing Fraction
+    about: node:quantity-kind/packing-fraction

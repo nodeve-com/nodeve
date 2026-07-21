@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: friction-en
-    lang: en
+    language: en
     title: Friction
+    about: node:quantity-kind/friction

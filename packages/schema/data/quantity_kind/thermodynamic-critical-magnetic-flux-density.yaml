@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: thermodynamic-critical-magnetic-flux-density-en
-    lang: en
+    language: en
     title: Thermodynamic Critical Magnetic Flux Density
+    about: node:quantity-kind/thermodynamic-critical-magnetic-flux-density

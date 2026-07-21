@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: heat-flow-rate-per-area-en
-    lang: en
+    language: en
     title: Heat Flow Rate per Unit Area
+    about: node:quantity-kind/heat-flow-rate-per-area

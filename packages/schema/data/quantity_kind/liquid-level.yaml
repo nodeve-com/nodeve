@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: liquid-level-en
-    lang: en
+    language: en
     title: Liquid Level
+    about: node:quantity-kind/liquid-level

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: radial-distance-en
-    lang: en
+    language: en
     title: Radial Distance
+    about: node:quantity-kind/radial-distance

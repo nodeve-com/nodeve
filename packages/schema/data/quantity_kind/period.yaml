@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: period-en
-    lang: en
+    language: en
     title: Period
+    about: node:quantity-kind/period

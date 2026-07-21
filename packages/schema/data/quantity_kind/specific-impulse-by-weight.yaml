@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-impulse-by-weight-en
-    lang: en
+    language: en
     title: Specific Impulse by Weight
+    about: node:quantity-kind/specific-impulse-by-weight

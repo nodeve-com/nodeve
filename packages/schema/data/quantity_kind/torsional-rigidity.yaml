@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: torsional-rigidity-en
-    lang: en
+    language: en
     title: Torsional Rigidity
+    about: node:quantity-kind/torsional-rigidity

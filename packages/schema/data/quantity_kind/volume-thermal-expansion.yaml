@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volume-thermal-expansion-en
-    lang: en
+    language: en
     title: Volume Thermal Expansion
+    about: node:quantity-kind/volume-thermal-expansion

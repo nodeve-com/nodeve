@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: equivalent-concentration-en
-    lang: en
+    language: en
     title: Equivalent Concentration
+    about: node:quantity-kind/equivalent-concentration

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: acceptor-ionization-energy-en
-    lang: en
+    language: en
     title: Acceptor Ionization Energy
+    about: node:quantity-kind/acceptor-ionization-energy

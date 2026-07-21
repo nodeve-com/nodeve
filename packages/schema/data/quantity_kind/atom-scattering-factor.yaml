@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: atom-scattering-factor-en
-    lang: en
+    language: en
     title: Atom Scattering Factor
+    about: node:quantity-kind/atom-scattering-factor

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: thermal-transmittance-en
-    lang: en
+    language: en
     title: Thermal Transmittance
+    about: node:quantity-kind/thermal-transmittance

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: time-per-count-en
-    lang: en
+    language: en
     title: Time per Count
+    about: node:quantity-kind/time-per-count

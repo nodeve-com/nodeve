@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: relative-mass-defect-en
-    lang: en
+    language: en
     title: Relative Mass Defect
+    about: node:quantity-kind/relative-mass-defect

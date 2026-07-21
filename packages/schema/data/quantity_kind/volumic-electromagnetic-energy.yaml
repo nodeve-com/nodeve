@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: volumic-electromagnetic-energy-en
-    lang: en
+    language: en
     title: Volumic Electromagnetic Energy
+    about: node:quantity-kind/volumic-electromagnetic-energy

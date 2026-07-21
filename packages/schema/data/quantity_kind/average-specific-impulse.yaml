@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: average-specific-impulse-en
-    lang: en
+    language: en
     title: Average Specific Impulse
+    about: node:quantity-kind/average-specific-impulse

@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: flight-performance-reserve-propellant-mass-en
-    lang: en
+    language: en
     title: Flight Performance Reserve Propellant Mass
+    about: node:quantity-kind/flight-performance-reserve-propellant-mass

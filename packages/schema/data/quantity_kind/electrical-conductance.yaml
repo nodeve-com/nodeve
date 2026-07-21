@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electrical-conductance-en
-    lang: en
+    language: en
     title: Electrical Conductance
+    about: node:quantity-kind/electrical-conductance

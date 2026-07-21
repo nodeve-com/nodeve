@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: g-factor-of-nucleus-en
-    lang: en
+    language: en
     title: g-Factor of Nucleus
+    about: node:quantity-kind/g-factor-of-nucleus

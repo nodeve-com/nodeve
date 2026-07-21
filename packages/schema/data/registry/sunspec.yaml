@@ -3,8 +3,10 @@ slug: sunspec
 url: https://sunspec.org/
 contents:
   - node: sunspec-en
-    lang: en
+    language: en
     title: SunSpec Modbus information models
+    about: node:registry/sunspec
   - node: sunspec-pt
-    lang: pt
+    language: pt
     title: Modelos de informação Modbus SunSpec
+    about: node:registry/sunspec

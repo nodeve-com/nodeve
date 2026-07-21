@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: gravitational-attraction-en
-    lang: en
+    language: en
     title: Gravitational Attraction
+    about: node:quantity-kind/gravitational-attraction

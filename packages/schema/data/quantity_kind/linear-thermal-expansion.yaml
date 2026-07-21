@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-thermal-expansion-en
-    lang: en
+    language: en
     title: Linear Thermal Expansion
+    about: node:quantity-kind/linear-thermal-expansion

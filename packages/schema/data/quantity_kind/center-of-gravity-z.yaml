@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: center-of-gravity-z-en
-    lang: en
+    language: en
     title: Center of Gravity in the Z Axis
+    about: node:quantity-kind/center-of-gravity-z

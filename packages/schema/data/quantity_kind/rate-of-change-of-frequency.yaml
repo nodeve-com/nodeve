@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: rate-of-change-of-frequency-en
-    lang: en
+    language: en
     title: Rate of Change of Frequency
+    about: node:quantity-kind/rate-of-change-of-frequency

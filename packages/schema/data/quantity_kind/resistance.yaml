@@ -9,8 +9,10 @@ refs:
     match: exact
 contents:
   - node: resistance-en
-    lang: en
+    language: en
     title: Resistance
+    about: node:quantity-kind/resistance
   - node: resistance-pt
-    lang: pt
+    language: pt
     title: Resistência
+    about: node:quantity-kind/resistance

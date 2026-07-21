@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: predicted-mass-en
-    lang: en
+    language: en
     title: Predicted Mass
+    about: node:quantity-kind/predicted-mass

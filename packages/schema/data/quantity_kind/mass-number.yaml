@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-number-en
-    lang: en
+    language: en
     title: Mass Number
+    about: node:quantity-kind/mass-number

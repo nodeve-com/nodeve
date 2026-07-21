@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: debye-waller-factor-en
-    lang: en
+    language: en
     title: Debye-Waller Factor
+    about: node:quantity-kind/debye-waller-factor

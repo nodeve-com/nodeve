@@ -9,5 +9,6 @@ refs:
     match: exact
 contents:
   - node: volume-or-section-modulus-en
-    lang: en
+    language: en
     title: volume or section modulus
+    about: node:quantity-kind/volume-or-section-modulus

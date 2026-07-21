@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: energy-per-temperature-en
-    lang: en
+    language: en
     title: Energy per Temperature
+    about: node:quantity-kind/energy-per-temperature

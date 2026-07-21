@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-per-time-en
-    lang: en
+    language: en
     title: Area per Time
+    about: node:quantity-kind/area-per-time

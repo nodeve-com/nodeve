@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumic-amount-of-substance-en
-    lang: en
+    language: en
     title: Volumic Amount of Substance
+    about: node:quantity-kind/volumic-amount-of-substance

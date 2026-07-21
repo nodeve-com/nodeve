@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: fission-fuel-utilization-factor-en
-    lang: en
+    language: en
     title: Fission Fuel Utilization Factor
+    about: node:quantity-kind/fission-fuel-utilization-factor

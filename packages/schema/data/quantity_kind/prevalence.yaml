@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: prevalence-en
-    lang: en
+    language: en
     title: Prevalence
+    about: node:quantity-kind/prevalence

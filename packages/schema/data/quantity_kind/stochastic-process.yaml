@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: stochastic-process-en
-    lang: en
+    language: en
     title: Stochastic Process
+    about: node:quantity-kind/stochastic-process

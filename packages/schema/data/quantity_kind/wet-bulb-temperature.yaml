@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: wet-bulb-temperature-en
-    lang: en
+    language: en
     title: Wet Bulb Temperature
+    about: node:quantity-kind/wet-bulb-temperature

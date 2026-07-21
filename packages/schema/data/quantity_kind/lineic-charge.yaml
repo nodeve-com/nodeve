@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-charge-en
-    lang: en
+    language: en
     title: Lineic Charge
+    about: node:quantity-kind/lineic-charge

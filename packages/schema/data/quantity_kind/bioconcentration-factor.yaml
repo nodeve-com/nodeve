@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: bioconcentration-factor-en
-    lang: en
+    language: en
     title: Bioconcentration Factor
+    about: node:quantity-kind/bioconcentration-factor

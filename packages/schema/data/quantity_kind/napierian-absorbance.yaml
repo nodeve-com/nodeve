@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: napierian-absorbance-en
-    lang: en
+    language: en
     title: Napierian Absorbance
+    about: node:quantity-kind/napierian-absorbance

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: count-en
-    lang: en
+    language: en
     title: Count
+    about: node:quantity-kind/count

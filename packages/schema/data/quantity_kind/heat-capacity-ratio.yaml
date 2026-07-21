@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: heat-capacity-ratio-en
-    lang: en
+    language: en
     title: Heat Capacity Ratio
+    about: node:quantity-kind/heat-capacity-ratio

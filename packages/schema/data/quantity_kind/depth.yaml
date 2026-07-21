@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: depth-en
-    lang: en
+    language: en
     title: Depth
+    about: node:quantity-kind/depth

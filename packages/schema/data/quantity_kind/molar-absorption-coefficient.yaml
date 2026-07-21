@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: molar-absorption-coefficient-en
-    lang: en
+    language: en
     title: Molar Absorption Coefficient
+    about: node:quantity-kind/molar-absorption-coefficient

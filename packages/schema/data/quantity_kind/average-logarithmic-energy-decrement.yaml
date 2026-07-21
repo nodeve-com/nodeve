@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: average-logarithmic-energy-decrement-en
-    lang: en
+    language: en
     title: Average Logarithmic Energy Decrement
+    about: node:quantity-kind/average-logarithmic-energy-decrement

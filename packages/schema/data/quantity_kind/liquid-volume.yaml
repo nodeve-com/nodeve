@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: liquid-volume-en
-    lang: en
+    language: en
     title: Liquid Volume
+    about: node:quantity-kind/liquid-volume

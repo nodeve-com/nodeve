@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linear-density-en
-    lang: en
+    language: en
     title: Linear Density
+    about: node:quantity-kind/linear-density

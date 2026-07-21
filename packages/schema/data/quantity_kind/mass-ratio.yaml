@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mass-ratio-en
-    lang: en
+    language: en
     title: Mass Ratio
+    about: node:quantity-kind/mass-ratio

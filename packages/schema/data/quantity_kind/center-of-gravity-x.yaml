@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: center-of-gravity-x-en
-    lang: en
+    language: en
     title: Center of Gravity in the X Axis
+    about: node:quantity-kind/center-of-gravity-x

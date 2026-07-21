@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: total-current-density-en
-    lang: en
+    language: en
     title: Total Current Density
+    about: node:quantity-kind/total-current-density

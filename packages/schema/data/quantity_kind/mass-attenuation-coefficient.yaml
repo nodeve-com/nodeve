@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mass-attenuation-coefficient-en
-    lang: en
+    language: en
     title: Mass Attenuation Coefficient
+    about: node:quantity-kind/mass-attenuation-coefficient

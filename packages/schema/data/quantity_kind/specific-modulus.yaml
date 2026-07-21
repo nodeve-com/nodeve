@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-modulus-en
-    lang: en
+    language: en
     title: Specific Modulus
+    about: node:quantity-kind/specific-modulus

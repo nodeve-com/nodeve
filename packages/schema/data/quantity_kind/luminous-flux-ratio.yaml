@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: luminous-flux-ratio-en
-    lang: en
+    language: en
     title: Luminous Flux Ratio
+    about: node:quantity-kind/luminous-flux-ratio

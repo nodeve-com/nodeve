@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: relative-mass-density-en
-    lang: en
+    language: en
     title: Relative Mass Density
+    about: node:quantity-kind/relative-mass-density

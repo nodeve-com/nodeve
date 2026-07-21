@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-electric-voltage-en
-    lang: en
+    language: en
     title: Pressure-based Electric Voltage
+    about: node:quantity-kind/pressure-based-electric-voltage

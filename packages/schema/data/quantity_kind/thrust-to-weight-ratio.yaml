@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: thrust-to-weight-ratio-en
-    lang: en
+    language: en
     title: Thrust to Weight Ratio
+    about: node:quantity-kind/thrust-to-weight-ratio

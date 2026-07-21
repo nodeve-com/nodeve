@@ -18,8 +18,10 @@ refs:
     match: exact
 contents:
   - node: apparent-power-en
-    lang: en
+    language: en
     title: Apparent Power
+    about: node:quantity-kind/apparent-power
   - node: apparent-power-pt
-    lang: pt
+    language: pt
     title: Potência aparente
+    about: node:quantity-kind/apparent-power

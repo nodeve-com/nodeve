@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-subgrade-reaction-en
-    lang: en
+    language: en
     title: Modulus of Subgrade Reaction
+    about: node:quantity-kind/modulus-of-subgrade-reaction

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: dry-volume-en
-    lang: en
+    language: en
     title: Dry Volume
+    about: node:quantity-kind/dry-volume

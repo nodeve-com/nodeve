@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: nuclear-quadrupole-moment-en
-    lang: en
+    language: en
     title: Nuclear Quadrupole Moment
+    about: node:quantity-kind/nuclear-quadrupole-moment

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volume-density-of-charge-en
-    lang: en
+    language: en
     title: Volume Density of Charge
+    about: node:quantity-kind/volume-density-of-charge

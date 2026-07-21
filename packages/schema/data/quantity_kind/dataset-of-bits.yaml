@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: dataset-of-bits-en
-    lang: en
+    language: en
     title: Dataset of Bits
+    about: node:quantity-kind/dataset-of-bits

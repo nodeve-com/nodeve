@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: web-time-average-pressure-en
-    lang: en
+    language: en
     title: Web Time Average Pressure
+    about: node:quantity-kind/web-time-average-pressure

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: grand-canonical-partition-function-en
-    lang: en
+    language: en
     title: Grand Canonical Partition Function
+    about: node:quantity-kind/grand-canonical-partition-function

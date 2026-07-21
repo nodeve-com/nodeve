@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: information-content-en
-    lang: en
+    language: en
     title: Information Content
+    about: node:quantity-kind/information-content

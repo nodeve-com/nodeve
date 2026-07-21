@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: positive-dimensionless-ratio-en
-    lang: en
+    language: en
     title: Positive Dimensionless Ratio
+    about: node:quantity-kind/positive-dimensionless-ratio

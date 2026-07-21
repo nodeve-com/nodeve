@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-related-electrical-current-en
-    lang: en
+    language: en
     title: Mass-related Electrical Current
+    about: node:quantity-kind/mass-related-electrical-current

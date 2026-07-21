@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: fission-multiplication-factor-en
-    lang: en
+    language: en
     title: Fission Multiplication Factor
+    about: node:quantity-kind/fission-multiplication-factor

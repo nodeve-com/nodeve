@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-molality-en
-    lang: en
+    language: en
     title: Pressure-based Molality
+    about: node:quantity-kind/pressure-based-molality

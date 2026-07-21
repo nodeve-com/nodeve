@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: strain-energy-density-en
-    lang: en
+    language: en
     title: Strain Energy Density
+    about: node:quantity-kind/strain-energy-density

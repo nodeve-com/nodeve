@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: product-of-inertia-en
-    lang: en
+    language: en
     title: Product of Inertia
+    about: node:quantity-kind/product-of-inertia

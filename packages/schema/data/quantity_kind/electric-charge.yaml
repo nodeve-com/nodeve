@@ -13,8 +13,10 @@ refs:
     match: exact
 contents:
   - node: electric-charge-en
-    lang: en
+    language: en
     title: Electric Charge
+    about: node:quantity-kind/electric-charge
   - node: electric-charge-pt
-    lang: pt
+    language: pt
     title: Carga elétrica
+    about: node:quantity-kind/electric-charge

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: scalar-magnetic-potential-en
-    lang: en
+    language: en
     title: Scalar Magnetic Potential
+    about: node:quantity-kind/scalar-magnetic-potential

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: ratio-of-specific-heat-capacities-en
-    lang: en
+    language: en
     title: Ratio of Specific Heat Capacities
+    about: node:quantity-kind/ratio-of-specific-heat-capacities

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: conductive-heat-transfer-rate-en
-    lang: en
+    language: en
     title: Conductive Heat Transfer Rate
+    about: node:quantity-kind/conductive-heat-transfer-rate

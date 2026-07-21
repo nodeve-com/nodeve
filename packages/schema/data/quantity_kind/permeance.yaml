@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: permeance-en
-    lang: en
+    language: en
     title: Permeance
+    about: node:quantity-kind/permeance

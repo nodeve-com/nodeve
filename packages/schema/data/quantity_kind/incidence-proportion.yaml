@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: incidence-proportion-en
-    lang: en
+    language: en
     title: Incidence Proportion
+    about: node:quantity-kind/incidence-proportion

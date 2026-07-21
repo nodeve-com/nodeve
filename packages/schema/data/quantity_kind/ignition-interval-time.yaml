@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: ignition-interval-time-en
-    lang: en
+    language: en
     title: Ignition Interval Time
+    about: node:quantity-kind/ignition-interval-time

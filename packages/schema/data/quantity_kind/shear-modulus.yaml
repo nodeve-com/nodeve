@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: shear-modulus-en
-    lang: en
+    language: en
     title: Shear Modulus
+    about: node:quantity-kind/shear-modulus

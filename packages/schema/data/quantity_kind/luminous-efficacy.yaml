@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: luminous-efficacy-en
-    lang: en
+    language: en
     title: Luminous Efficacy
+    about: node:quantity-kind/luminous-efficacy

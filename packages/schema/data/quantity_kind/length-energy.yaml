@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: length-energy-en
-    lang: en
+    language: en
     title: Length Energy
+    about: node:quantity-kind/length-energy

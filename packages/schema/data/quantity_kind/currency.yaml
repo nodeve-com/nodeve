@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: currency-en
-    lang: en
+    language: en
     title: Currency
+    about: node:quantity-kind/currency

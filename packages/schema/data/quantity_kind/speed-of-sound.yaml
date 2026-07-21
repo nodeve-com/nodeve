@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: speed-of-sound-en
-    lang: en
+    language: en
     title: Speed of Sound
+    about: node:quantity-kind/speed-of-sound

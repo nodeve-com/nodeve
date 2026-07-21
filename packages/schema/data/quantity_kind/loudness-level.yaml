@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: loudness-level-en
-    lang: en
+    language: en
     title: Loudness Level
+    about: node:quantity-kind/loudness-level

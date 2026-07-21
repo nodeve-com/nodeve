@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-linear-subgrade-reaction-en
-    lang: en
+    language: en
     title: Modulus of Linear Subgrade Reaction
+    about: node:quantity-kind/modulus-of-linear-subgrade-reaction

@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: mass-margin-en
-    lang: en
+    language: en
     title: Mass Margin
+    about: node:quantity-kind/mass-margin

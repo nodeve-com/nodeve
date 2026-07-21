@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: emissivity-en
-    lang: en
+    language: en
     title: Emissivity
+    about: node:quantity-kind/emissivity

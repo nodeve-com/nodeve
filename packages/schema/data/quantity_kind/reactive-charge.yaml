@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: reactive-charge-en
-    lang: en
+    language: en
     title: Reactive Charge
+    about: node:quantity-kind/reactive-charge

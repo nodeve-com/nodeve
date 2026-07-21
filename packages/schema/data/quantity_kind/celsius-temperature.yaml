@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: celsius-temperature-en
-    lang: en
+    language: en
     title: Celsius Temperature
+    about: node:quantity-kind/celsius-temperature

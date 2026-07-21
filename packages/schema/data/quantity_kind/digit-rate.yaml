@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: digit-rate-en
-    lang: en
+    language: en
     title: Digit Rate
+    about: node:quantity-kind/digit-rate

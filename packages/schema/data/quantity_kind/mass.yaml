@@ -11,8 +11,10 @@ refs:
     match: exact
 contents:
   - node: mass-en
-    lang: en
+    language: en
     title: Mass
+    about: node:quantity-kind/mass
   - node: mass-pt
-    lang: pt
+    language: pt
     title: Massa (kg)
+    about: node:quantity-kind/mass

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: dynamic-pressure-en
-    lang: en
+    language: en
     title: Dynamic Pressure
+    about: node:quantity-kind/dynamic-pressure

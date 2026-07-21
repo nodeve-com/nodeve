@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: slowing-down-density-en
-    lang: en
+    language: en
     title: Slowing-Down Density
+    about: node:quantity-kind/slowing-down-density

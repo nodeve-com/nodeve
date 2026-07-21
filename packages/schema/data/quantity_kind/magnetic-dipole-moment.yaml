@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: magnetic-dipole-moment-en
-    lang: en
+    language: en
     title: Magnetic Dipole Moment
+    about: node:quantity-kind/magnetic-dipole-moment

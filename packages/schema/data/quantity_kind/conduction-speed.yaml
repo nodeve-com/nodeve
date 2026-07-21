@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: conduction-speed-en
-    lang: en
+    language: en
     title: Conduction Speed
+    about: node:quantity-kind/conduction-speed

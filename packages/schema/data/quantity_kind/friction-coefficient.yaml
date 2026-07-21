@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: friction-coefficient-en
-    lang: en
+    language: en
     title: Friction Coefficient
+    about: node:quantity-kind/friction-coefficient

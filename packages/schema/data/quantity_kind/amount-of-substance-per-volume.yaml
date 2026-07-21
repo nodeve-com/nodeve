@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: amount-of-substance-per-volume-en
-    lang: en
+    language: en
     title: Amount of Substance per Volume
+    about: node:quantity-kind/amount-of-substance-per-volume

@@ -17,8 +17,10 @@ refs:
     match: exact
 contents:
   - node: electric-current-en
-    lang: en
+    language: en
     title: Electric Current
+    about: node:quantity-kind/electric-current
   - node: electric-current-pt
-    lang: pt
+    language: pt
     title: Corrente
+    about: node:quantity-kind/electric-current

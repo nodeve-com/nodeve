@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: failure-rate-en
-    lang: en
+    language: en
     title: Failure Rate
+    about: node:quantity-kind/failure-rate

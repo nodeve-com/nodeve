@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: static-friction-en
-    lang: en
+    language: en
     title: Static Friction
+    about: node:quantity-kind/static-friction

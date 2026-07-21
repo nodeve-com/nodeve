@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: log-octanol-water-partition-coefficient-en
-    lang: en
+    language: en
     title: Logarithm of Octanol Water Partition Coefficient
+    about: node:quantity-kind/log-octanol-water-partition-coefficient

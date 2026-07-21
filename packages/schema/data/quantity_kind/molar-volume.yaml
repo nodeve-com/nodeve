@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: molar-volume-en
-    lang: en
+    language: en
     title: Molar Volume
+    about: node:quantity-kind/molar-volume

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-quadrupole-moment-en
-    lang: en
+    language: en
     title: Electric Quadrupole Moment
+    about: node:quantity-kind/electric-quadrupole-moment

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: relative-mass-ratio-of-vapour-en
-    lang: en
+    language: en
     title: Relative Mass Ratio of Vapour
+    about: node:quantity-kind/relative-mass-ratio-of-vapour

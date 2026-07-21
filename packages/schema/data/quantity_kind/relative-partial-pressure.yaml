@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: relative-partial-pressure-en
-    lang: en
+    language: en
     title: Relative Partial Pressure
+    about: node:quantity-kind/relative-partial-pressure

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: distance-traveled-during-burn-en
-    lang: en
+    language: en
     title: Distance Traveled During a Burn
+    about: node:quantity-kind/distance-traveled-during-burn

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: total-linear-stopping-power-en
-    lang: en
+    language: en
     title: Total Linear Stopping Power
+    about: node:quantity-kind/total-linear-stopping-power

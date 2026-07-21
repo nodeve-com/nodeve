@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: pressure-ratio-en
-    lang: en
+    language: en
     title: Pressure Ratio
+    about: node:quantity-kind/pressure-ratio

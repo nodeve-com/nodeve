@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: luminous-exposure-en
-    lang: en
+    language: en
     title: Luminous Exposure
+    about: node:quantity-kind/luminous-exposure

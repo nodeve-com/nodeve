@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mass-fraction-of-water-en
-    lang: en
+    language: en
     title: Mass Fraction of Water
+    about: node:quantity-kind/mass-fraction-of-water

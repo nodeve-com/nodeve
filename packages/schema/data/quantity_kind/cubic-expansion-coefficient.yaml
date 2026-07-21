@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: cubic-expansion-coefficient-en
-    lang: en
+    language: en
     title: Cubic Expansion Coefficient
+    about: node:quantity-kind/cubic-expansion-coefficient

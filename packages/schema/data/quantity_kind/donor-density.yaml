@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: donor-density-en
-    lang: en
+    language: en
     title: Donor Density
+    about: node:quantity-kind/donor-density

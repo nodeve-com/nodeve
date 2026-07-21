@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-current-per-energy-en
-    lang: en
+    language: en
     title: Electric Current per Energy
+    about: node:quantity-kind/electric-current-per-energy

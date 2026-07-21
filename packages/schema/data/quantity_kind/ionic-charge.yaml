@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: ionic-charge-en
-    lang: en
+    language: en
     title: Ionic Charge
+    about: node:quantity-kind/ionic-charge

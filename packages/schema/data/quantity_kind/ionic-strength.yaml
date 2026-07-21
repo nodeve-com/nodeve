@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: ionic-strength-en
-    lang: en
+    language: en
     title: Ionic Strength
+    about: node:quantity-kind/ionic-strength

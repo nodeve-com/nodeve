@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: exposure-of-ionizing-radiation-en
-    lang: en
+    language: en
     title: Exposure of Ionizing Radiation
+    about: node:quantity-kind/exposure-of-ionizing-radiation

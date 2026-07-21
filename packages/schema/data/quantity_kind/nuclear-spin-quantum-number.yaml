@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: nuclear-spin-quantum-number-en
-    lang: en
+    language: en
     title: Spin Quantum Number
+    about: node:quantity-kind/nuclear-spin-quantum-number

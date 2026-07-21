@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: massic-power-en
-    lang: en
+    language: en
     title: Massic Power
+    about: node:quantity-kind/massic-power

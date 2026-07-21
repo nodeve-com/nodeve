@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: micro-canonical-partition-function-en
-    lang: en
+    language: en
     title: Micro Canonical Partition Function
+    about: node:quantity-kind/micro-canonical-partition-function

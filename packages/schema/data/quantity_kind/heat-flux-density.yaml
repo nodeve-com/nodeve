@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: heat-flux-density-en
-    lang: en
+    language: en
     title: Heat Flux Density
+    about: node:quantity-kind/heat-flux-density

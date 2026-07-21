@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: product-of-inertia-x-en
-    lang: en
+    language: en
     title: Product of Inertia in the X Axis
+    about: node:quantity-kind/product-of-inertia-x

@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: rise-of-off-state-voltage-en
-    lang: en
+    language: en
     title: rise of off-state voltage
+    about: node:quantity-kind/rise-of-off-state-voltage

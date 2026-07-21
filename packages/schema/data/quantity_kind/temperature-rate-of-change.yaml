@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: temperature-rate-of-change-en
-    lang: en
+    language: en
     title: Temperature Rate of Change
+    about: node:quantity-kind/temperature-rate-of-change

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mean-lifetime-en
-    lang: en
+    language: en
     title: Mean Lifetime
+    about: node:quantity-kind/mean-lifetime

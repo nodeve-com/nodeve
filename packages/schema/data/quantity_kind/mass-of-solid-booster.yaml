@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-of-solid-booster-en
-    lang: en
+    language: en
     title: Mass of Solid Booster
+    about: node:quantity-kind/mass-of-solid-booster

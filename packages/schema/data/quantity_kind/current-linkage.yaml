@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: current-linkage-en
-    lang: en
+    language: en
     title: Current Linkage
+    about: node:quantity-kind/current-linkage

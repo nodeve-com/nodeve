@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linear-strain-en
-    lang: en
+    language: en
     title: Linear Strain
+    about: node:quantity-kind/linear-strain

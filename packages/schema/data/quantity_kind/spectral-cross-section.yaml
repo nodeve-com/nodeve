@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: spectral-cross-section-en
-    lang: en
+    language: en
     title: Spectral Cross-section
+    about: node:quantity-kind/spectral-cross-section

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: inverse-volume-en
-    lang: en
+    language: en
     title: Inverse Volume
+    about: node:quantity-kind/inverse-volume

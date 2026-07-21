@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: symbol-transmission-rate-en
-    lang: en
+    language: en
     title: Symbol Transmission Rate
+    about: node:quantity-kind/symbol-transmission-rate

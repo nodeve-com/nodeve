@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: quality-factor-en
-    lang: en
+    language: en
     title: Quality Factor
+    about: node:quantity-kind/quality-factor

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: reynolds-number-en
-    lang: en
+    language: en
     title: Reynolds Number
+    about: node:quantity-kind/reynolds-number

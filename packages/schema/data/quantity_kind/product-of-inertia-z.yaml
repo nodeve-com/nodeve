@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: product-of-inertia-z-en
-    lang: en
+    language: en
     title: Product of Inertia in the Z Axis
+    about: node:quantity-kind/product-of-inertia-z

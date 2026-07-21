@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: equilibrium-constant-on-pressure-basis-en
-    lang: en
+    language: en
     title: Equilibrium Constant On Pressure Basis
+    about: node:quantity-kind/equilibrium-constant-on-pressure-basis

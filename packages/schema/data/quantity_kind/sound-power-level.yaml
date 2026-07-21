@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: sound-power-level-en
-    lang: en
+    language: en
     title: Sound Power Level
+    about: node:quantity-kind/sound-power-level

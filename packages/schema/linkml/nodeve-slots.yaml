@@ -10,13 +10,14 @@ prefixes:
   nodeve: https://nodeve.com/schema/
   node: https://nodeve.com/node/
   qudt: http://qudt.org/schema/qudt/
+  schema: https://schema.org/
 default_prefix: nodeve
 default_range: string
 imports:
   - linkml:types
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
-# CLOSED GRAMMAR vocabularies only (rating, severity, lang, …) live here as
+# CLOSED GRAMMAR vocabularies only (rating, severity, …) live here as
 # schema enums. Part vocabularies (phase a/b/c, l1/l2, tracker positions) are
 # Part ROWS on the feature — per-model, so a new subdivision is a new row,
 # never a new column or a DDL migration.
@@ -25,8 +26,6 @@ enums:
     permissible_values: { in: {}, out: {}, net: {} }
   InterfaceType:
     permissible_values: { ethernet_csmacd: {}, ieee80211: {} }
-  Lang:
-    permissible_values: { en: {}, pt: {} }
   MatchStrength:
     description: SKOS mapping strength — closed grammar, so an enum and not a table.
     permissible_values:
@@ -84,7 +83,7 @@ slots:
   flow_direction: { range: FlowDirection, annotations: { camel: flowDirection } }
   interface_type: { range: InterfaceType, annotations: { camel: interfaceType } }
   iri_template: { range: string, description: 'resolves a term to its IRI — {id} is the term slot (http://qudt.org/property/quantitykind/{id}); absent when the registry has no resolvable form', annotations: { camel: iriTemplate } }
-  lang: { range: Lang, required: true }
+  language: { range: string, required: true, slot_uri: schema:inLanguage, description: 'BCP 47 language tag' }
   lede: { description: short description }
   link_speed: { range: integer, annotations: { camel: linkSpeed } }
   margin: { range: float, description: symmetric RELATIVE band (±0.05 = ±5%) }
@@ -130,6 +129,7 @@ slots:
   zone: { range: Zone }
   # object-valued slots — FKs / owned row sets; global like everything else,
   # classes narrow via slot_usage only when the shared def is too loose
+  about: { range: Node, required: true, slot_uri: schema:about, description: 'the node this content describes' }
   ac_ports: { range: FeatureOfInterest, multivalued: true, inlined_as_list: true, description: 'AC port ROWS — which socket each fills lives in its role, never a column name; phase count is the feature''s part rows (a/b/c, l1/l2, or none), never the type', annotations: { camel: acPorts } }
   broader: { range: QuantityKind, description: 'self-FK — upstream hierarchy (active_power broader electric_power)' }
   conditions: { range: Condition, multivalued: true, inlined_as_list: true }

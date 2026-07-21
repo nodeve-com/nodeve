@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: rate-of-rise-of-off-state-voltage-en
-    lang: en
+    language: en
     title: Rise of Off-state Voltage
+    about: node:quantity-kind/rate-of-rise-of-off-state-voltage

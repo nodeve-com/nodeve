@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: exposure-en
-    lang: en
+    language: en
     title: Exposure
+    about: node:quantity-kind/exposure

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-resolution-en
-    lang: en
+    language: en
     title: Lineic Resolution
+    about: node:quantity-kind/lineic-resolution

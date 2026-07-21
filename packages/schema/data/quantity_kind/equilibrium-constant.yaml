@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: equilibrium-constant-en
-    lang: en
+    language: en
     title: Equilibrium Constant
+    about: node:quantity-kind/equilibrium-constant

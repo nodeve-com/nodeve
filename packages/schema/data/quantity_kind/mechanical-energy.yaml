@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mechanical-energy-en
-    lang: en
+    language: en
     title: Mechanical Energy
+    about: node:quantity-kind/mechanical-energy

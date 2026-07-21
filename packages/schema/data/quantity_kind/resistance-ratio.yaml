@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: resistance-ratio-en
-    lang: en
+    language: en
     title: Resistance Ratio
+    about: node:quantity-kind/resistance-ratio

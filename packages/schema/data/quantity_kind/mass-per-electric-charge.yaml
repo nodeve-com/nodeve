@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-per-electric-charge-en
-    lang: en
+    language: en
     title: Mass per Electric Charge
+    about: node:quantity-kind/mass-per-electric-charge

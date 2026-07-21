@@ -14,8 +14,10 @@ refs:
     match: exact
 contents:
   - node: phase-difference-en
-    lang: en
+    language: en
     title: Phase Difference
+    about: node:quantity-kind/phase-difference
   - node: phase-difference-pt
-    lang: pt
+    language: pt
     title: Ângulo de fase
+    about: node:quantity-kind/phase-difference

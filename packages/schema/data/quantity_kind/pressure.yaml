@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: pressure-en
-    lang: en
+    language: en
     title: Pressure
+    about: node:quantity-kind/pressure

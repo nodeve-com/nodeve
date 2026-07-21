@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: quartic-electric-dipole-moment-per-cubic-energy-en
-    lang: en
+    language: en
     title: Quartic Electric Dipole Moment per Cubic Energy
+    about: node:quantity-kind/quartic-electric-dipole-moment-per-cubic-energy

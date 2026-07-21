@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-conductivity-en
-    lang: en
+    language: en
     title: Thermal Conductivity
+    about: node:quantity-kind/thermal-conductivity

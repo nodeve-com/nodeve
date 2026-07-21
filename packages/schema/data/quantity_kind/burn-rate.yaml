@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: burn-rate-en
-    lang: en
+    language: en
     title: Burn Rate
+    about: node:quantity-kind/burn-rate

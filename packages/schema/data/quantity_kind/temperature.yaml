@@ -17,8 +17,10 @@ refs:
     match: exact
 contents:
   - node: temperature-en
-    lang: en
+    language: en
     title: Temperature
+    about: node:quantity-kind/temperature
   - node: temperature-pt
-    lang: pt
+    language: pt
     title: Temperatura
+    about: node:quantity-kind/temperature

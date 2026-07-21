@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: information-entropy-en
-    lang: en
+    language: en
     title: Information Entropy
+    about: node:quantity-kind/information-entropy

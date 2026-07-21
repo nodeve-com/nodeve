@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: energy-squared-en
-    lang: en
+    language: en
     title: Square Energy
+    about: node:quantity-kind/energy-squared

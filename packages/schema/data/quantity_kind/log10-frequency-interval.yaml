@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: log10-frequency-interval-en
-    lang: en
+    language: en
     title: Logarithmic Frequency Interval to Base 10
+    about: node:quantity-kind/log10-frequency-interval

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reciprocal-energy-en
-    lang: en
+    language: en
     title: Reciprocal Energy
+    about: node:quantity-kind/reciprocal-energy

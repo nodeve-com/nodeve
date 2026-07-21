@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: peltier-coefficient-en
-    lang: en
+    language: en
     title: Peltier Coefficient
+    about: node:quantity-kind/peltier-coefficient

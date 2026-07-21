@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: conductivity-variance-neon-en
-    lang: en
+    language: en
     title: Conductivity Variance, NEON
+    about: node:quantity-kind/conductivity-variance-neon

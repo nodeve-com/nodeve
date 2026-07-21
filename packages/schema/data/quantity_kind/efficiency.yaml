@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: efficiency-en
-    lang: en
+    language: en
     title: Efficiency
+    about: node:quantity-kind/efficiency

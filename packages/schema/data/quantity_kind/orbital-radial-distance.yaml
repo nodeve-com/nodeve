@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: orbital-radial-distance-en
-    lang: en
+    language: en
     title: Orbital Radial Distance
+    about: node:quantity-kind/orbital-radial-distance

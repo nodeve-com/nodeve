@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: coherence-length-en
-    lang: en
+    language: en
     title: Coherence Length
+    about: node:quantity-kind/coherence-length

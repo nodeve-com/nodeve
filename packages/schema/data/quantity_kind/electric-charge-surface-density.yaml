@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-surface-density-en
-    lang: en
+    language: en
     title: Electric Charge Surface Density
+    about: node:quantity-kind/electric-charge-surface-density

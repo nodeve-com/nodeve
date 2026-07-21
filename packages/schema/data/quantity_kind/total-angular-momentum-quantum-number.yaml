@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: total-angular-momentum-quantum-number-en
-    lang: en
+    language: en
     title: Total Angular Momentum Quantum Number
+    about: node:quantity-kind/total-angular-momentum-quantum-number

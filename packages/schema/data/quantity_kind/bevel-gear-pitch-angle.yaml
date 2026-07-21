@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: bevel-gear-pitch-angle-en
-    lang: en
+    language: en
     title: Bevel Gear Pitch Angle
+    about: node:quantity-kind/bevel-gear-pitch-angle

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: average-energy-loss-per-elementary-charge-produced-en
-    lang: en
+    language: en
     title: Average Energy Loss per Elementary Charge Produced
+    about: node:quantity-kind/average-energy-loss-per-elementary-charge-produced

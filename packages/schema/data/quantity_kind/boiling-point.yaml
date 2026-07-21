@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: boiling-point-en
-    lang: en
+    language: en
     title: Boiling Point Temperature
+    about: node:quantity-kind/boiling-point

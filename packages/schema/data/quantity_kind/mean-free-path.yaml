@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mean-free-path-en
-    lang: en
+    language: en
     title: Mean Free Path
+    about: node:quantity-kind/mean-free-path

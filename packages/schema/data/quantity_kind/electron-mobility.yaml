@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electron-mobility-en
-    lang: en
+    language: en
     title: Electron Mobility
+    about: node:quantity-kind/electron-mobility

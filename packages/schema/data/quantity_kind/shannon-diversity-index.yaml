@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: shannon-diversity-index-en
-    lang: en
+    language: en
     title: Shannon Diversity Index
+    about: node:quantity-kind/shannon-diversity-index

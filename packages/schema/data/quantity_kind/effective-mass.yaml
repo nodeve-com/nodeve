@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: effective-mass-en
-    lang: en
+    language: en
     title: Effective Mass
+    about: node:quantity-kind/effective-mass

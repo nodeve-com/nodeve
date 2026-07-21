@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: atomic-attenuation-coefficient-en
-    lang: en
+    language: en
     title: Atomic Attenuation Coefficient
+    about: node:quantity-kind/atomic-attenuation-coefficient

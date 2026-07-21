@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: blood-glucose-level-en
-    lang: en
+    language: en
     title: Blood Glucose Level
+    about: node:quantity-kind/blood-glucose-level

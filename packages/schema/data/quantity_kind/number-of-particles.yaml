@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: number-of-particles-en
-    lang: en
+    language: en
     title: Number of Particles
+    about: node:quantity-kind/number-of-particles

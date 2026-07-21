@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electromagnetic-energy-density-en
-    lang: en
+    language: en
     title: Electromagnetic Energy Density
+    about: node:quantity-kind/electromagnetic-energy-density

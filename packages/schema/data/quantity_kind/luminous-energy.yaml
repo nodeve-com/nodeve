@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: luminous-energy-en
-    lang: en
+    language: en
     title: Luminous Energy
+    about: node:quantity-kind/luminous-energy

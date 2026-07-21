@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: amount-of-substance-fraction-en
-    lang: en
+    language: en
     title: Fractional Amount of Substance
+    about: node:quantity-kind/amount-of-substance-fraction

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: propagation-coefficient-en
-    lang: en
+    language: en
     title: Propagation Coefficient
+    about: node:quantity-kind/propagation-coefficient

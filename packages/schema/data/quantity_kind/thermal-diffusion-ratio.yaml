@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-diffusion-ratio-en
-    lang: en
+    language: en
     title: Thermal Diffusion Ratio
+    about: node:quantity-kind/thermal-diffusion-ratio

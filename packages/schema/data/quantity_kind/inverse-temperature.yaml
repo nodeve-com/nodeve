@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: inverse-temperature-en
-    lang: en
+    language: en
     title: Inverse Temperature
+    about: node:quantity-kind/inverse-temperature

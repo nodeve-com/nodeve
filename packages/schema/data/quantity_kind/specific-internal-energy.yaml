@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-internal-energy-en
-    lang: en
+    language: en
     title: Specific Internal Energy
+    about: node:quantity-kind/specific-internal-energy

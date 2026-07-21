@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-field-en
-    lang: en
+    language: en
     title: Electric Field
+    about: node:quantity-kind/electric-field

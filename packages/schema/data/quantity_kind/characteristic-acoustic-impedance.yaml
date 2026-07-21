@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: characteristic-acoustic-impedance-en
-    lang: en
+    language: en
     title: Characteristic Acoustic Impedance
+    about: node:quantity-kind/characteristic-acoustic-impedance

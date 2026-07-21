@@ -15,5 +15,6 @@ refs:
     match: exact
 contents:
   - node: relaxation-t-ime-en
-    lang: en
+    language: en
     title: Relaxation Time
+    about: node:quantity-kind/relaxation-t-ime

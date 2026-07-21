@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-elasticity-en
-    lang: en
+    language: en
     title: Modulus of Elasticity
+    about: node:quantity-kind/modulus-of-elasticity

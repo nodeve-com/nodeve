@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: neutron-diffusion-coefficient-en
-    lang: en
+    language: en
     title: Diffusion Coefficient
+    about: node:quantity-kind/neutron-diffusion-coefficient

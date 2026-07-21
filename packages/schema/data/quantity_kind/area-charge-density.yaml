@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: area-charge-density-en
-    lang: en
+    language: en
     title: Areic Charge Density
+    about: node:quantity-kind/area-charge-density

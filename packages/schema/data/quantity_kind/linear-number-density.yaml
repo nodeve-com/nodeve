@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-number-density-en
-    lang: en
+    language: en
     title: Linear Number Density
+    about: node:quantity-kind/linear-number-density

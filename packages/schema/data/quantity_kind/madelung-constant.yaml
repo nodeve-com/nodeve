@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: madelung-constant-en
-    lang: en
+    language: en
     title: Madelung Constant
+    about: node:quantity-kind/madelung-constant

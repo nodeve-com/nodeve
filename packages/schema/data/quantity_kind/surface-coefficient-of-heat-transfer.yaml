@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: surface-coefficient-of-heat-transfer-en
-    lang: en
+    language: en
     title: Surface Coefficient of Heat Transfer
+    about: node:quantity-kind/surface-coefficient-of-heat-transfer

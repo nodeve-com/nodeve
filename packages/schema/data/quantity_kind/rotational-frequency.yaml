@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: rotational-frequency-en
-    lang: en
+    language: en
     title: Rotational Frequency
+    about: node:quantity-kind/rotational-frequency

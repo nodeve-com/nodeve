@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: plasma-level-en
-    lang: en
+    language: en
     title: Plasma Level
+    about: node:quantity-kind/plasma-level

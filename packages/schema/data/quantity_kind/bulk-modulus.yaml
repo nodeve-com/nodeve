@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: bulk-modulus-en
-    lang: en
+    language: en
     title: Bulk Modulus
+    about: node:quantity-kind/bulk-modulus

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mach-number-en
-    lang: en
+    language: en
     title: Mach Number
+    about: node:quantity-kind/mach-number

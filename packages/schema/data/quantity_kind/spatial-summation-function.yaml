@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: spatial-summation-function-en
-    lang: en
+    language: en
     title: Spatial Summation Function
+    about: node:quantity-kind/spatial-summation-function

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: phonon-mean-free-path-en
-    lang: en
+    language: en
     title: Phonon Mean Free Path
+    about: node:quantity-kind/phonon-mean-free-path

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: web-time-en
-    lang: en
+    language: en
     title: Web Time
+    about: node:quantity-kind/web-time

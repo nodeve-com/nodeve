@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: volume-strain-en
-    lang: en
+    language: en
     title: Volume Strain
+    about: node:quantity-kind/volume-strain

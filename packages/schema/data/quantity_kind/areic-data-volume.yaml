@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: areic-data-volume-en
-    lang: en
+    language: en
     title: Areic Data Volume
+    about: node:quantity-kind/areic-data-volume

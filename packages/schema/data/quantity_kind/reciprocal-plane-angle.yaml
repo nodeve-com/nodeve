@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reciprocal-plane-angle-en
-    lang: en
+    language: en
     title: Reciprocal Plane Angle
+    about: node:quantity-kind/reciprocal-plane-angle

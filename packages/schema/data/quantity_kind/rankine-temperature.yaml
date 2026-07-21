@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: rankine-temperature-en
-    lang: en
+    language: en
     title: Rankine Temperature
+    about: node:quantity-kind/rankine-temperature

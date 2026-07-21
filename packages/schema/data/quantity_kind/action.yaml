@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: action-en
-    lang: en
+    language: en
     title: Action
+    about: node:quantity-kind/action

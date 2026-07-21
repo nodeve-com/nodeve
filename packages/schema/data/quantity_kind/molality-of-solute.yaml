@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: molality-of-solute-en
-    lang: en
+    language: en
     title: Molality of Solute
+    about: node:quantity-kind/molality-of-solute

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: stress-optic-coefficient-en
-    lang: en
+    language: en
     title: Stress-Optic Coefficient
+    about: node:quantity-kind/stress-optic-coefficient

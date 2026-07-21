@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: admittance-en
-    lang: en
+    language: en
     title: Admittance
+    about: node:quantity-kind/admittance

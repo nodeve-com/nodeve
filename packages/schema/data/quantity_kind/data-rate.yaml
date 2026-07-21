@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: data-rate-en
-    lang: en
+    language: en
     title: Data Rate
+    about: node:quantity-kind/data-rate

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: thermodynamic-entropy-en
-    lang: en
+    language: en
     title: Thermodynamic Entropy
+    about: node:quantity-kind/thermodynamic-entropy

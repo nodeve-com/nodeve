@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: molecular-mass-en
-    lang: en
+    language: en
     title: Molecular Mass
+    about: node:quantity-kind/molecular-mass

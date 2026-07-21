@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: molar-entropy-en
-    lang: en
+    language: en
     title: Molar Entropy
+    about: node:quantity-kind/molar-entropy

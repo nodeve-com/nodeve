@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: radiant-energy-density-en
-    lang: en
+    language: en
     title: Radiant Energy Density
+    about: node:quantity-kind/radiant-energy-density

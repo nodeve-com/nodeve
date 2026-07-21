@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-torque-en
-    lang: en
+    language: en
     title: Lineic Torque
+    about: node:quantity-kind/linear-torque

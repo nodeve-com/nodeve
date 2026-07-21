@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: stress-en
-    lang: en
+    language: en
     title: Stress
+    about: node:quantity-kind/stress

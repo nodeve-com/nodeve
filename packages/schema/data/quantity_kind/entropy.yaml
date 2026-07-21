@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: entropy-en
-    lang: en
+    language: en
     title: Entropy
+    about: node:quantity-kind/entropy

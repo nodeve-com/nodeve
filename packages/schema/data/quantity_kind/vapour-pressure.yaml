@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: vapour-pressure-en
-    lang: en
+    language: en
     title: Vapour Pressure
+    about: node:quantity-kind/vapour-pressure

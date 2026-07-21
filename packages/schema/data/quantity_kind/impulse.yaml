@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: impulse-en
-    lang: en
+    language: en
     title: Impulse
+    about: node:quantity-kind/impulse

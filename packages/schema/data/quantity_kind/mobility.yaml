@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mobility-en
-    lang: en
+    language: en
     title: Mobility
+    about: node:quantity-kind/mobility

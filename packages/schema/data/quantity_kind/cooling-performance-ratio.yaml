@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: cooling-performance-ratio-en
-    lang: en
+    language: en
     title: Cooling Performance Ratio
+    about: node:quantity-kind/cooling-performance-ratio

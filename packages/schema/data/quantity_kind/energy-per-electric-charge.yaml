@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: energy-per-electric-charge-en
-    lang: en
+    language: en
     title: Energy per Electric Charge
+    about: node:quantity-kind/energy-per-electric-charge

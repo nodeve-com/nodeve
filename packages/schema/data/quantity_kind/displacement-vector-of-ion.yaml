@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: displacement-vector-of-ion-en
-    lang: en
+    language: en
     title: Displacement Vector of Ion
+    about: node:quantity-kind/displacement-vector-of-ion

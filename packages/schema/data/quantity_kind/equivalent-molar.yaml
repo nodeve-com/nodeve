@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: equivalent-molar-en
-    lang: en
+    language: en
     title: Molar Equivalent
+    about: node:quantity-kind/equivalent-molar

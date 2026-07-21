@@ -1,17 +1,14 @@
 // LinkML schema formatter: sort + desugar passes over a comment-preserving
 // yaml Document. `--check` exits 1 on drift (gate mode); default writes.
-import { createHash } from 'node:crypto'
-import { readFileSync, writeFileSync, existsSync, globSync } from 'node:fs'
+import { readFileSync, writeFileSync, globSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { parseDocument, isMap, isSeq, Document, type Node, type Pair, type Scalar, type YAMLMap } from 'yaml'
+import { parseDocument, isMap, isSeq, type Node, type Pair, type Scalar, type YAMLMap } from 'yaml'
 
 const FILE = fileURLToPath(new URL('linkml/nodeve-slots.yaml', import.meta.url))
-// every authored row — one file per thing, sharded by class. nodes.yaml is the
-// mint ledger, not an entry, so it stays out.
+// every authored row — one file per thing, sharded by class
 const EXAMPLES = globSync('data/*/*.yaml', {
   cwd: fileURLToPath(new URL('.', import.meta.url)),
 }).map((p) => fileURLToPath(new URL(p, import.meta.url)))
-const NODES = fileURLToPath(new URL('data/nodes.yaml', import.meta.url))
 
 type MapPair = Pair<Scalar<string>, YAMLMap>
 
@@ -98,64 +95,133 @@ function injectPartScope(node: Node | null) {
   for (const p of node.items) injectPartScope(p.value as Node)
 }
 
-// ─── node minting ────────────────────────────────────────────────────────────
-// slug_qualified (ancestor slug trail) is the permalink PK; code = Crockford
-// base32 of sha1(slug_qualified)'s last 5 bytes (40 bits = 8 chars) — a url
-// shortener over the PK, nothing more.
-// Hashes the CURIE, never a url: the domain is a deployment fact, and folding
-// it in meant moving domains silently invalidated every code.
-// Mint-once: rows already in nodes.yaml are frozen — renames never re-derive.
-
-const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
-
-function codeOf(slugQualified: string): string {
-  const tail = createHash('sha1').update(slugQualified).digest().subarray(-5)
-  let bits = 0n
-  for (const b of tail) bits = (bits << 8n) | BigInt(b)
-  let out = ''
-  for (let i = 7; i >= 0; i--) out += CROCKFORD[Number((bits >> BigInt(i * 5)) & 31n)]
-  return out
+/** Content is an addressable child: its own node identifies it; `about`
+ * always points to the node of the row containing the authored contents. */
+function injectContentAbout(node: Node | null) {
+  if (isSeq(node)) {
+    for (const item of node.items) injectContentAbout(item as Node)
+    return
+  }
+  if (!isMap(node)) return
+  const owner = node.get('node')
+  const contents = node.get('contents')
+  if (typeof owner === 'string' && isSeq(contents)) {
+    for (const content of contents.items) if (isMap(content)) content.set('about', owner)
+  }
+  for (const pair of node.items) injectContentAbout(pair.value as Node)
 }
 
-/** every map carrying a slug names a thing; its path is the ancestor slug trail */
-function collectPaths(node: Node | null, trail: string[], out: string[]) {
-  if (isMap(node)) {
-    const slug = node.get('slug')
-    const next = typeof slug === 'string' ? [...trail, slug] : trail
-    if (typeof slug === 'string') out.push(next.join('/'))
-    for (const p of node.items) collectPaths(p.value as Node, next, out)
-  } else if (isSeq(node)) {
-    for (const item of node.items) collectPaths(item as Node, trail, out)
+const curieTail = (value: unknown) =>
+  typeof value === 'string' ? value.replace(/^node:/, '').split('/').at(-1) : undefined
+
+/** Stamp the model → feature → part → interval identity trail. Facets share
+ * their interval/model node; references follow rewritten identities. */
+function stampModelNodes(node: Node | null) {
+  if (!isMap(node) || typeof node.get('device_type') !== 'string' || typeof node.get('slug') !== 'string') return
+  const root = `node:${curieTail(node.get('device_type'))}/${node.get('slug')}`
+  const rewrites = new Map<string, string>()
+  const stamp = (row: YAMLMap, value: string) => {
+    const old = row.get('node')
+    if (typeof old === 'string') rewrites.set(old, value)
+    row.set('node', value)
   }
+  stamp(node, root)
+  const product = node.get('product')
+  if (isMap(product)) stamp(product, root)
+
+  const features: YAMLMap[] = []
+  for (const pair of node.items) {
+    if (!isSeq(pair.value)) continue
+    for (const item of pair.value.items) if (isMap(item) && typeof item.get('role') === 'string') features.push(item)
+  }
+  const intervalRows = new Map<string, YAMLMap>()
+  const intervalFacets = new Map<string, YAMLMap[]>()
+  for (const feature of features) {
+    const featureType = curieTail(feature.get('feature_type'))
+    if (!featureType) throw new Error(`${feature.get('role')}: feature has no feature_type`)
+    const featureNode = `${root}/${featureType}/${feature.get('role')}`
+    stamp(feature, featureNode)
+    const parts = feature.get('parts')
+    if (isSeq(parts)) for (const part of parts.items) if (isMap(part)) stamp(part, `${featureNode}/${part.get('slug')}`)
+    const intervals = feature.get('intervals')
+    if (isSeq(intervals)) for (const interval of intervals.items) {
+      if (!isMap(interval) || typeof interval.get('node') !== 'string') continue
+      intervalRows.set(interval.get('node') as string, interval)
+    }
+    for (const key of ['specifications', 'measurements']) {
+      const facets = feature.get(key)
+      if (!isSeq(facets)) continue
+      for (const facet of facets.items) {
+        if (!isMap(facet) || typeof facet.get('node') !== 'string') continue
+        const id = facet.get('node') as string
+        intervalFacets.set(id, [...(intervalFacets.get(id) ?? []), facet])
+      }
+    }
+  }
+
+  const derivedSlug = (id: string, stack = new Set<string>()): string | undefined => {
+    const interval = intervalRows.get(id)
+    if (!interval) return curieTail(id)
+    if (typeof interval.get('slug') === 'string') return interval.get('slug') as string
+    if (stack.has(id)) throw new Error(`${id}: cyclic interval gate`)
+    stack.add(id)
+    const facets = intervalFacets.get(id) ?? []
+    const spec = facets.find((row) => row.has('rating') || row.has('zone') || row.has('severity'))
+    const measurement = facets.find((row) => row.has('flow_direction') || row.has('period'))
+    const tokens: string[] = []
+    const range = interval.get('valued_range')
+    if (spec?.has('zone')) tokens.push(spec.get('zone') as string)
+    else if (isMap(range) && range.has('value') && !range.has('min') && !range.has('max')) tokens.push('nominal')
+    if (spec?.has('severity') && spec.get('severity') !== 'nominal') tokens.push(spec.get('severity') as string)
+    if (measurement?.has('flow_direction')) tokens.push(measurement.get('flow_direction') as string)
+    if (measurement?.has('period')) tokens.push(measurement.get('period') as string)
+    if (!tokens.length && spec?.has('rating')) tokens.push(spec.get('rating') as string)
+    const conditions = spec?.get('conditions')
+    if (isSeq(conditions)) for (const condition of conditions.items) {
+      if (!isMap(condition)) continue
+      if (typeof condition.get('equals') === 'string') tokens.push(condition.get('equals') as string)
+      else if (typeof condition.get('gated_by') === 'string') tokens.push(derivedSlug(condition.get('gated_by') as string, stack)!)
+    }
+    stack.delete(id)
+    return tokens.length ? tokens.join('_') : undefined
+  }
+
+  for (const feature of features) {
+    const featureNode = feature.get('node') as string
+    const intervals = feature.get('intervals')
+    if (!isSeq(intervals)) continue
+    for (const interval of intervals.items) {
+      if (!isMap(interval)) continue
+      const old = interval.get('node')
+      const slug = typeof old === 'string' ? derivedSlug(old) : undefined
+      if (!slug) throw new Error(`${old}: interval has no derivable slug`)
+      interval.set('slug', slug)
+      const part = interval.get('part')
+      const partSlug = typeof part === 'string' ? curieTail(rewrites.get(part) ?? part) : '_'
+      const quantity = curieTail(interval.get('quantity_kind'))
+      const value = `${featureNode}/${partSlug}/${quantity}/${slug}`
+      stamp(interval, value)
+      const range = interval.get('valued_range')
+      if (isMap(range)) stamp(range, value)
+      for (const facet of intervalFacets.get(old as string) ?? []) stamp(facet, value)
+    }
+  }
+
+  const rewriteRefs = (value: Node | null) => {
+    if (isSeq(value)) for (const item of value.items) rewriteRefs(item as Node)
+    else if (isMap(value)) for (const pair of value.items) {
+      const raw = typeof pair.value === 'string' ? pair.value : isScalarString(pair.value) ? pair.value.value : undefined
+      if (pair.key && (pair.key as Scalar).value !== 'node' && raw !== undefined) {
+        const replacement = rewrites.get(raw)
+        if (replacement) pair.value = replacement as never
+      } else rewriteRefs(pair.value as Node)
+    }
+  }
+  rewriteRefs(node)
 }
 
-function mintNodes(): string {
-  const doc = existsSync(NODES) ? parseDocument(readFileSync(NODES, 'utf8')) : new Document([])
-  const rows = (doc.contents ?? doc.createNode([])) as unknown as { items: YAMLMap[] }
-  const frozen = new Set(rows.items.map((r) => r.get('slug_qualified')))
-  const paths: string[] = []
-  for (const [file, { contents }] of exampleDocs) {
-    // permalink root = the doc's device_type, last segment (node:device-type/inverter
-    // → inverter). Definition docs carry no device_type — their own node CURIE
-    // already names the layer (node:feature-type/ac-phase → feature-type).
-    const designator = isMap(contents) ? contents.get('device_type') ?? contents.get('node') : undefined
-    if (typeof designator !== 'string') throw new Error(`${file}: no device_type or node designator`)
-    const segments = designator.replace(/^node:/, '').split('/')
-    const root = contents.has('device_type') ? segments.at(-1)! : segments[0]
-    collectPaths(contents, [root], paths)
-  }
-  for (const path of paths.sort()) {
-    const slugQualified = `node:${path}`
-    if (frozen.has(slugQualified)) continue
-    rows.items.push(
-      doc.createNode({ slug_qualified: slugQualified, code: codeOf(slugQualified) }, { flow: true }) as unknown as YAMLMap,
-    )
-  }
-  doc.contents = rows as never
-  if (!doc.commentBefore)
-    doc.commentBefore =
-      ' Node rows minted by format.ts — APPEND-ONLY. slug_qualified = permalink PK,\n code = sha1(slug_qualified) tail as Crockford base32 — a url shortener over the PK.\n Renaming a slug mints a NEW row only if the old one is deleted by hand; minted facts never re-derive.'
-  return doc.toString({ lineWidth: 0 })
+function isScalarString(node: Node | null): node is Scalar<string> {
+  return typeof node === 'object' && node !== null && 'value' in node && typeof (node as Scalar).value === 'string'
 }
 
 // ─── cli ─────────────────────────────────────────────────────────────────────
@@ -173,14 +239,17 @@ injectCamel(doc)
 
 const exampleSrc = new Map(EXAMPLES.map((f) => [f, readFileSync(f, 'utf8')]))
 const exampleDocs = new Map([...exampleSrc].map(([f, s]) => [f, parseDocument(s)]))
-for (const ex of exampleDocs.values()) injectPartScope(ex.contents)
+for (const ex of exampleDocs.values()) {
+  stampModelNodes(ex.contents)
+  injectPartScope(ex.contents)
+  injectContentAbout(ex.contents)
+}
 
 const outputs: Array<[string, string, string]> = [
   [FILE, src, doc.toString({ lineWidth: 0 })],
   ...[...exampleDocs].map(
     ([f, d]) => [f, exampleSrc.get(f)!, d.toString({ lineWidth: 0 })] as [string, string, string],
   ),
-  [NODES, existsSync(NODES) ? readFileSync(NODES, 'utf8') : '', mintNodes()],
 ]
 const dirty = outputs.filter(([, before, after]) => before !== after)
 if (!dirty.length) process.exit(0)

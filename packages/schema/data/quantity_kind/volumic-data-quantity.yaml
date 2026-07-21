@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumic-data-quantity-en
-    lang: en
+    language: en
     title: Volumic Data Quantity
+    about: node:quantity-kind/volumic-data-quantity

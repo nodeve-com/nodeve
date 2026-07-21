@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-density-en
-    lang: en
+    language: en
     title: Mass Density
+    about: node:quantity-kind/mass-density

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: specific-surface-area-en
-    lang: en
+    language: en
     title: Specific Surface Area
+    about: node:quantity-kind/specific-surface-area

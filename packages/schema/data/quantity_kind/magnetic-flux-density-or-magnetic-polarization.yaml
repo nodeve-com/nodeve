@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: magnetic-flux-density-or-magnetic-polarization-en
-    lang: en
+    language: en
     title: magnetic flux density or magnetic polarization
+    about: node:quantity-kind/magnetic-flux-density-or-magnetic-polarization

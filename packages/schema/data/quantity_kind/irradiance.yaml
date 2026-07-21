@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: irradiance-en
-    lang: en
+    language: en
     title: Irradiance
+    about: node:quantity-kind/irradiance

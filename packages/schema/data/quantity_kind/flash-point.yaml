@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: flash-point-en
-    lang: en
+    language: en
     title: Flash Point Temperature
+    about: node:quantity-kind/flash-point

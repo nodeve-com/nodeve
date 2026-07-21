@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: plane-angle-en
-    lang: en
+    language: en
     title: Plane Angle
+    about: node:quantity-kind/plane-angle

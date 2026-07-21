@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-bit-density-en
-    lang: en
+    language: en
     title: Lineic Bit Density
+    about: node:quantity-kind/linear-bit-density

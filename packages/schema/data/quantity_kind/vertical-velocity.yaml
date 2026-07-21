@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: vertical-velocity-en
-    lang: en
+    language: en
     title: Vertical Velocity
+    about: node:quantity-kind/vertical-velocity

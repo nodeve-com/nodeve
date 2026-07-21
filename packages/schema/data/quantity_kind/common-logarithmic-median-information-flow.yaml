@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: common-logarithmic-median-information-flow-en
-    lang: en
+    language: en
     title: "Median Information Flow (from a Source of Information), Expressed as a Common Logarithm "
+    about: node:quantity-kind/common-logarithmic-median-information-flow

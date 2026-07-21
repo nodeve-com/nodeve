@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: luminous-intensity-distribution-en
-    lang: en
+    language: en
     title: Ion Concentration
+    about: node:quantity-kind/luminous-intensity-distribution

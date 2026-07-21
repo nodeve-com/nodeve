@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: radiant-exposure-en
-    lang: en
+    language: en
     title: Radiant Exposure
+    about: node:quantity-kind/radiant-exposure

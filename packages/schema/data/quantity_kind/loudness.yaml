@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: loudness-en
-    lang: en
+    language: en
     title: Loudness
+    about: node:quantity-kind/loudness

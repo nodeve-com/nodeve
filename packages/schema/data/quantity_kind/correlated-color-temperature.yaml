@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: correlated-color-temperature-en
-    lang: en
+    language: en
     title: Correlated Colour Temperature
+    about: node:quantity-kind/correlated-color-temperature

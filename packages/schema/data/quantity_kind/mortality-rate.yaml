@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mortality-rate-en
-    lang: en
+    language: en
     title: Mortality Rate
+    about: node:quantity-kind/mortality-rate

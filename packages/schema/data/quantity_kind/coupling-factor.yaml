@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: coupling-factor-en
-    lang: en
+    language: en
     title: Coupling Factor
+    about: node:quantity-kind/coupling-factor

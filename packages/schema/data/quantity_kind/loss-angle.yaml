@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: loss-angle-en
-    lang: en
+    language: en
     title: Loss Angle
+    about: node:quantity-kind/loss-angle

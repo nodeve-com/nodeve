@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: energy-level-en
-    lang: en
+    language: en
     title: Energy Level
+    about: node:quantity-kind/energy-level

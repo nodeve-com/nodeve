@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: battery-capacity-en
-    lang: en
+    language: en
     title: Battery Capacity
+    about: node:quantity-kind/battery-capacity

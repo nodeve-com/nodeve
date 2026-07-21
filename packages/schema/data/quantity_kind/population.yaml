@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: population-en
-    lang: en
+    language: en
     title: Population
+    about: node:quantity-kind/population

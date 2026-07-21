@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-quantity-en
-    lang: en
+    language: en
     title: Lineic Quantity
+    about: node:quantity-kind/lineic-quantity

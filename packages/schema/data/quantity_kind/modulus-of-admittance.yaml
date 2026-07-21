@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-admittance-en
-    lang: en
+    language: en
     title: Modulus of Admittance
+    about: node:quantity-kind/modulus-of-admittance

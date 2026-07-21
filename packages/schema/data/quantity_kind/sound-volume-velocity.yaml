@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: sound-volume-velocity-en
-    lang: en
+    language: en
     title: Sound Volume Velocity
+    about: node:quantity-kind/sound-volume-velocity

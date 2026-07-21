@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: angular-distance-en
-    lang: en
+    language: en
     title: Angular Distance
+    about: node:quantity-kind/angular-distance

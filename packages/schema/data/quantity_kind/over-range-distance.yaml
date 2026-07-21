@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: over-range-distance-en
-    lang: en
+    language: en
     title: Over-range Distance
+    about: node:quantity-kind/over-range-distance

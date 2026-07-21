@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: specific-volume-en
-    lang: en
+    language: en
     title: Specific Volume
+    about: node:quantity-kind/specific-volume

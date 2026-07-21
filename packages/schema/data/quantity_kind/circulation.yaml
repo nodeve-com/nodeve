@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: circulation-en
-    lang: en
+    language: en
     title: Circulation
+    about: node:quantity-kind/circulation

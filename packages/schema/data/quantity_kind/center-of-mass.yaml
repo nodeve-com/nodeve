@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: center-of-mass-en
-    lang: en
+    language: en
     title: Center of Mass (CoM)
+    about: node:quantity-kind/center-of-mass

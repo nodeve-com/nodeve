@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: length-mass-en
-    lang: en
+    language: en
     title: Length Mass
+    about: node:quantity-kind/length-mass

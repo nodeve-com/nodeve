@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: particle-current-en
-    lang: en
+    language: en
     title: Particle Current
+    about: node:quantity-kind/particle-current

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: einstein-transition-probability-for-spontaneous-or-induced-emission-and-absorption-en
-    lang: en
+    language: en
     title: Einstein Transition Probability for Spontaneous Or Induced Emission and Absorption
+    about: node:quantity-kind/einstein-transition-probability-for-spontaneous-or-induced-emission-and-absorption

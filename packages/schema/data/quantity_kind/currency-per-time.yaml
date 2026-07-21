@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: currency-per-time-en
-    lang: en
+    language: en
     title: Currency per Time
+    about: node:quantity-kind/currency-per-time

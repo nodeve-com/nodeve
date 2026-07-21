@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: work-en
-    lang: en
+    language: en
     title: Work
+    about: node:quantity-kind/work

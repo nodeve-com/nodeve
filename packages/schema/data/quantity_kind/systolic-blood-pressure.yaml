@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: systolic-blood-pressure-en
-    lang: en
+    language: en
     title: Systolic Blood Pressure
+    about: node:quantity-kind/systolic-blood-pressure

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electric-power-en
-    lang: en
+    language: en
     title: Electric Power
+    about: node:quantity-kind/electric-power

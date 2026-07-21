@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: final-or-current-vehicle-mass-en
-    lang: en
+    language: en
     title: Final Or Current Vehicle Mass
+    about: node:quantity-kind/final-or-current-vehicle-mass

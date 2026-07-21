@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: curie-temperature-en
-    lang: en
+    language: en
     title: Curie Temperature
+    about: node:quantity-kind/curie-temperature

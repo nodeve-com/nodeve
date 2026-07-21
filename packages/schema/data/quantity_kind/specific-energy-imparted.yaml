@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-energy-imparted-en
-    lang: en
+    language: en
     title: Specific Energy Imparted
+    about: node:quantity-kind/specific-energy-imparted

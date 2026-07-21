@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: cartesian-volume-en
-    lang: en
+    language: en
     title: Volume
+    about: node:quantity-kind/cartesian-volume

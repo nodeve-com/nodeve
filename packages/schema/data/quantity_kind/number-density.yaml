@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: number-density-en
-    lang: en
+    language: en
     title: Number Density
+    about: node:quantity-kind/number-density

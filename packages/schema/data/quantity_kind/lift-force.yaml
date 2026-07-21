@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: lift-force-en
-    lang: en
+    language: en
     title: Lift Force
+    about: node:quantity-kind/lift-force

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gene-family-abundance-en
-    lang: en
+    language: en
     title: Gene Family Abundance
+    about: node:quantity-kind/gene-family-abundance

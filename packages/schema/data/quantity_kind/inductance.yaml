@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: inductance-en
-    lang: en
+    language: en
     title: Inductance
+    about: node:quantity-kind/inductance

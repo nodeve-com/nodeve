@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: displacement-current-density-en
-    lang: en
+    language: en
     title: Displacement Current Density
+    about: node:quantity-kind/displacement-current-density

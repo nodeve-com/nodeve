@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: chromaticity-en
-    lang: en
+    language: en
     title: Chromaticity
+    about: node:quantity-kind/chromaticity

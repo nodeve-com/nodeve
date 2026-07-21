@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mass-fraction-of-dry-matter-en
-    lang: en
+    language: en
     title: Mass Fraction of Dry Matter
+    about: node:quantity-kind/mass-fraction-of-dry-matter

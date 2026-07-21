@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: sound-particle-displacement-en
-    lang: en
+    language: en
     title: Sound Particle Displacement
+    about: node:quantity-kind/sound-particle-displacement

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: solid-angle-en
-    lang: en
+    language: en
     title: Solid Angle
+    about: node:quantity-kind/solid-angle

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-per-power-en
-    lang: en
+    language: en
     title: Area per Heating Load
+    about: node:quantity-kind/area-per-power

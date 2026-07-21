@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: quantum-number-en
-    lang: en
+    language: en
     title: Quantum Number
+    about: node:quantity-kind/quantum-number

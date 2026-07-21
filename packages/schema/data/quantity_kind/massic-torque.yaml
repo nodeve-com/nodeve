@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: massic-torque-en
-    lang: en
+    language: en
     title: Massic Torque
+    about: node:quantity-kind/massic-torque

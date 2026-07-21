@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: reverberation-time-en
-    lang: en
+    language: en
     title: Reverberation Time
+    about: node:quantity-kind/reverberation-time

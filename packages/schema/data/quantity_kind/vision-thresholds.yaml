@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: vision-thresholds-en
-    lang: en
+    language: en
     title: Vision Thresholds
+    about: node:quantity-kind/vision-thresholds

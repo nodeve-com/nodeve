@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: dry-mass-en
-    lang: en
+    language: en
     title: Dry Mass
+    about: node:quantity-kind/dry-mass

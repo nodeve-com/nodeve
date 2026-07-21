@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: information-flow-rate-en
-    lang: en
+    language: en
     title: Information Flow Rate
+    about: node:quantity-kind/information-flow-rate

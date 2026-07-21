@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: specific-heats-ratio-en
-    lang: en
+    language: en
     title: Specific Heats Ratio
+    about: node:quantity-kind/specific-heats-ratio

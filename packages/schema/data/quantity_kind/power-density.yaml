@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-density-en
-    lang: en
+    language: en
     title: Power Density
+    about: node:quantity-kind/power-density

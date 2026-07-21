@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumic-output-en
-    lang: en
+    language: en
     title: Volumic Output
+    about: node:quantity-kind/volumic-output

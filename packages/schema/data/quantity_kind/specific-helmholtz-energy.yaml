@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-helmholtz-energy-en
-    lang: en
+    language: en
     title: Specific Helmholtz Energy
+    about: node:quantity-kind/specific-helmholtz-energy

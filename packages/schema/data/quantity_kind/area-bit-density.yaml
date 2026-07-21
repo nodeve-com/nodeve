@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-bit-density-en
-    lang: en
+    language: en
     title: Areic Bit Density
+    about: node:quantity-kind/area-bit-density

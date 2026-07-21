@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: resonance-escape-probability-for-fission-en
-    lang: en
+    language: en
     title: Resonance Escape Probability for Fission
+    about: node:quantity-kind/resonance-escape-probability-for-fission

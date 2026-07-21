@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: dots-per-inch-en
-    lang: en
+    language: en
     title: Dots per Inch
+    about: node:quantity-kind/dots-per-inch

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: thermal-coefficient-of-linear-expansion-en
-    lang: en
+    language: en
     title: Thermal Coefficient of Linear Expansion
+    about: node:quantity-kind/thermal-coefficient-of-linear-expansion

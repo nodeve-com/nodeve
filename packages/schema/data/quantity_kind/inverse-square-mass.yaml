@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: inverse-square-mass-en
-    lang: en
+    language: en
     title: Inverse Square Mass
+    about: node:quantity-kind/inverse-square-mass

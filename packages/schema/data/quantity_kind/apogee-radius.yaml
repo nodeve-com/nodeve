@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: apogee-radius-en
-    lang: en
+    language: en
     title: Apogee Radius
+    about: node:quantity-kind/apogee-radius

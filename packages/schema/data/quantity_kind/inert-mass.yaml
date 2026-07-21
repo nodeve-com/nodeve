@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: inert-mass-en
-    lang: en
+    language: en
     title: Inert Mass
+    about: node:quantity-kind/inert-mass

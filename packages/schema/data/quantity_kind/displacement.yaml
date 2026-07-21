@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: displacement-en
-    lang: en
+    language: en
     title: Displacement
+    about: node:quantity-kind/displacement

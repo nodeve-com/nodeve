@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: target-bogie-mass-en
-    lang: en
+    language: en
     title: Target Bogie Mass
+    about: node:quantity-kind/target-bogie-mass

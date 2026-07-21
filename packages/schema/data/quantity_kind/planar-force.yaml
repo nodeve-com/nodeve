@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: planar-force-en
-    lang: en
+    language: en
     title: Planar Force
+    about: node:quantity-kind/planar-force

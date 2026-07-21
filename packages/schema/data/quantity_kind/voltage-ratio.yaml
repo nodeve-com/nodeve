@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: voltage-ratio-en
-    lang: en
+    language: en
     title: Voltage Ratio
+    about: node:quantity-kind/voltage-ratio

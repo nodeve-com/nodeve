@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: temperature-variance-neon-en
-    lang: en
+    language: en
     title: Temperature Variance, NEON
+    about: node:quantity-kind/temperature-variance-neon

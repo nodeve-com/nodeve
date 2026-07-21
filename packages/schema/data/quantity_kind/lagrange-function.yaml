@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: lagrange-function-en
-    lang: en
+    language: en
     title: Lagrange Function
+    about: node:quantity-kind/lagrange-function

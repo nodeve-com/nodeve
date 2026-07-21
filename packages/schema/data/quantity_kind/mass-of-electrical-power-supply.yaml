@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-of-electrical-power-supply-en
-    lang: en
+    language: en
     title: Mass of Electrical Power Supply
+    about: node:quantity-kind/mass-of-electrical-power-supply

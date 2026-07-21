@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-voltage-coefficient-en
-    lang: en
+    language: en
     title: Linear Voltage Coefficient
+    about: node:quantity-kind/linear-voltage-coefficient

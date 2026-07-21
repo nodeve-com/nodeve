@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: max-expected-operating-thrust-en
-    lang: en
+    language: en
     title: Maximum Expected Operating Thrust
+    about: node:quantity-kind/max-expected-operating-thrust

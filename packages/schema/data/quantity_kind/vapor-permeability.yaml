@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: vapor-permeability-en
-    lang: en
+    language: en
     title: Vapour Permeability
+    about: node:quantity-kind/vapor-permeability

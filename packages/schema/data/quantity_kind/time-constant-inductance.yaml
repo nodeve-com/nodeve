@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: time-constant-inductance-en
-    lang: en
+    language: en
     title: time constant (inductance based)
+    about: node:quantity-kind/time-constant-inductance

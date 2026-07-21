@@ -14,5 +14,6 @@ refs:
     match: exact
 contents:
   - node: density-of-states-en
-    lang: en
+    language: en
     title: Density of states
+    about: node:quantity-kind/density-of-states

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mechanical-mobility-en
-    lang: en
+    language: en
     title: Mechanical Mobility
+    about: node:quantity-kind/mechanical-mobility

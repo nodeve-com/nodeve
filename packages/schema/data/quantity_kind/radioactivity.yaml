@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: radioactivity-en
-    lang: en
+    language: en
     title: Radioactivity
+    about: node:quantity-kind/radioactivity

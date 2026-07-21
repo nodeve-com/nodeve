@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: shear-stress-en
-    lang: en
+    language: en
     title: Shear Stress
+    about: node:quantity-kind/shear-stress

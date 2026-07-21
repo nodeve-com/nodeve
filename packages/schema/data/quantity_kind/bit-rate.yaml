@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: bit-rate-en
-    lang: en
+    language: en
     title: Bit Rate
+    about: node:quantity-kind/bit-rate

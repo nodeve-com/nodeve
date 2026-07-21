@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: average-vacuum-thrust-en
-    lang: en
+    language: en
     title: Average Vacuum Thrust
+    about: node:quantity-kind/average-vacuum-thrust

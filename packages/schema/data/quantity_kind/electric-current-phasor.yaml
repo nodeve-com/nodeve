@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electric-current-phasor-en
-    lang: en
+    language: en
     title: Electric Current Phasor
+    about: node:quantity-kind/electric-current-phasor

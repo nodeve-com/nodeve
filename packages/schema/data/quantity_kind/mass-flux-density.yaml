@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-flux-density-en
-    lang: en
+    language: en
     title: Mass Flux Density
+    about: node:quantity-kind/mass-flux-density

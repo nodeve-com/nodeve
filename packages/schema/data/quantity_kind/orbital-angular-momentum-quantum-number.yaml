@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: orbital-angular-momentum-quantum-number-en
-    lang: en
+    language: en
     title: Orbital Angular Momentum Quantum Number
+    about: node:quantity-kind/orbital-angular-momentum-quantum-number

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: state-density-as-expression-of-angular-frequency-en
-    lang: en
+    language: en
     title: State Density as Expression of Angular Frequency)
+    about: node:quantity-kind/state-density-as-expression-of-angular-frequency

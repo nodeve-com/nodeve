@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-angle-en
-    lang: en
+    language: en
     title: Area Angle
+    about: node:quantity-kind/area-angle

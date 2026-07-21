@@ -17,8 +17,10 @@ refs:
     match: exact
 contents:
   - node: power-factor-en
-    lang: en
+    language: en
     title: Power Factor
+    about: node:quantity-kind/power-factor
   - node: power-factor-pt
-    lang: pt
+    language: pt
     title: Fator de potência
+    about: node:quantity-kind/power-factor

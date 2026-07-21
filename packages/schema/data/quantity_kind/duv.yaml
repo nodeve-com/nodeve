@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: duv-en
-    lang: en
+    language: en
     title: Delta u,v
+    about: node:quantity-kind/duv

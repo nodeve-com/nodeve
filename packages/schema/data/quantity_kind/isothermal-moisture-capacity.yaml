@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: isothermal-moisture-capacity-en
-    lang: en
+    language: en
     title: Isothermal Moisture Capacity
+    about: node:quantity-kind/isothermal-moisture-capacity

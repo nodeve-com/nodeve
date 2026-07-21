@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electric-polarization-en
-    lang: en
+    language: en
     title: Electric Polarization
+    about: node:quantity-kind/electric-polarization

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: dose-equivalent-quality-factor-en
-    lang: en
+    language: en
     title: Dose Equivalent Quality Factor
+    about: node:quantity-kind/dose-equivalent-quality-factor

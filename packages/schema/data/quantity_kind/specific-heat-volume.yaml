@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-heat-volume-en
-    lang: en
+    language: en
     title: Specific Heat Volume
+    about: node:quantity-kind/specific-heat-volume

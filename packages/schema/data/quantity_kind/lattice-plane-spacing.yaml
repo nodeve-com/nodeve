@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: lattice-plane-spacing-en
-    lang: en
+    language: en
     title: Lattice Plane Spacing
+    about: node:quantity-kind/lattice-plane-spacing

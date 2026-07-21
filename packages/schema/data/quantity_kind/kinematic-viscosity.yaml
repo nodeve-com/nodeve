@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: kinematic-viscosity-en
-    lang: en
+    language: en
     title: Kinematic Viscosity
+    about: node:quantity-kind/kinematic-viscosity

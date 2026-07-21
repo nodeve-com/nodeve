@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: time-ratio-en
-    lang: en
+    language: en
     title: Time Ratio
+    about: node:quantity-kind/time-ratio

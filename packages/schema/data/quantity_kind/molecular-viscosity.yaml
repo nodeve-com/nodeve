@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: molecular-viscosity-en
-    lang: en
+    language: en
     title: Molecular Viscosity
+    about: node:quantity-kind/molecular-viscosity

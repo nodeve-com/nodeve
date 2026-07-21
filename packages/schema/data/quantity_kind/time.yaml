@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: time-en
-    lang: en
+    language: en
     title: Time
+    about: node:quantity-kind/time

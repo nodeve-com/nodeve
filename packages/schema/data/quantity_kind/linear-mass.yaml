@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-mass-en
-    lang: en
+    language: en
     title: Lineic Mass
+    about: node:quantity-kind/linear-mass

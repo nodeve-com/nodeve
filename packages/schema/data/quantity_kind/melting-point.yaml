@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: melting-point-en
-    lang: en
+    language: en
     title: Melting Point Temperature
+    about: node:quantity-kind/melting-point

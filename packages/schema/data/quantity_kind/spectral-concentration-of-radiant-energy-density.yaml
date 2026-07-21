@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: spectral-concentration-of-radiant-energy-density-en
-    lang: en
+    language: en
     title: Spectral Concentration of Radiant Energy Density
+    about: node:quantity-kind/spectral-concentration-of-radiant-energy-density

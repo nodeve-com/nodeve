@@ -3,8 +3,10 @@ slug: iec-60381
 url: https://webstore.iec.ch/publication/2050
 contents:
   - node: iec-60381-en
-    lang: en
+    language: en
     title: IEC 60381 (Analogue signals for process control systems)
+    about: node:registry/iec-60381
   - node: iec-60381-pt
-    lang: pt
+    language: pt
     title: IEC 60381 (Sinais analógicos para sistemas de controlo de processos)
+    about: node:registry/iec-60381

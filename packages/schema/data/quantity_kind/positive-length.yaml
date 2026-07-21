@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: positive-length-en
-    lang: en
+    language: en
     title: Positive Length
+    about: node:quantity-kind/positive-length

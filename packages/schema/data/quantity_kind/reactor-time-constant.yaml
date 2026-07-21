@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: reactor-time-constant-en
-    lang: en
+    language: en
     title: Reactor Time Constant
+    about: node:quantity-kind/reactor-time-constant

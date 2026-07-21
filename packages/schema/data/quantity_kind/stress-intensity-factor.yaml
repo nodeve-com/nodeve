@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: stress-intensity-factor-en
-    lang: en
+    language: en
     title: Stress Intensity Factor
+    about: node:quantity-kind/stress-intensity-factor

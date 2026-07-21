@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: modulus-of-impedance-en
-    lang: en
+    language: en
     title: Modulus of Impedance
+    about: node:quantity-kind/modulus-of-impedance

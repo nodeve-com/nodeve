@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-temperature-en
-    lang: en
+    language: en
     title: Area Temperature
+    about: node:quantity-kind/area-temperature

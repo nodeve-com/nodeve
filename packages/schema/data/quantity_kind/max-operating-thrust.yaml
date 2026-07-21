@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: max-operating-thrust-en
-    lang: en
+    language: en
     title: Max Operating Thrust
+    about: node:quantity-kind/max-operating-thrust

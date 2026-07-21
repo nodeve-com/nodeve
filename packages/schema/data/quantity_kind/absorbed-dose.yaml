@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: absorbed-dose-en
-    lang: en
+    language: en
     title: Absorbed Dose
+    about: node:quantity-kind/absorbed-dose

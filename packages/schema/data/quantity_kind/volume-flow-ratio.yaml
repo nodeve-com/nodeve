@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: volume-flow-ratio-en
-    lang: en
+    language: en
     title: Volume Flow Ratio
+    about: node:quantity-kind/volume-flow-ratio

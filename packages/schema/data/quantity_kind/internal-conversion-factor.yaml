@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: internal-conversion-factor-en
-    lang: en
+    language: en
     title: Internal Conversion Factor
+    about: node:quantity-kind/internal-conversion-factor

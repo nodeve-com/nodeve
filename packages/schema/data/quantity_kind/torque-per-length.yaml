@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: torque-per-length-en
-    lang: en
+    language: en
     title: Torque per Length
+    about: node:quantity-kind/torque-per-length

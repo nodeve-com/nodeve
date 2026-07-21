@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: gustatory-threshold-en
-    lang: en
+    language: en
     title: Gustatory Threshold
+    about: node:quantity-kind/gustatory-threshold

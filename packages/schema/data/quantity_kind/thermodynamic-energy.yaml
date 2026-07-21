@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: thermodynamic-energy-en
-    lang: en
+    language: en
     title: Thermodynamic Energy
+    about: node:quantity-kind/thermodynamic-energy

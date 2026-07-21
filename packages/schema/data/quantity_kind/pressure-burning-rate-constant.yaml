@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: pressure-burning-rate-constant-en
-    lang: en
+    language: en
     title: Pressure Burning Rate Constant
+    about: node:quantity-kind/pressure-burning-rate-constant

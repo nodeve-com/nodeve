@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: pressure-coefficient-en
-    lang: en
+    language: en
     title: Pressure Coefficient
+    about: node:quantity-kind/pressure-coefficient

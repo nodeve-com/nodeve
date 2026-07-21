@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-resistance-en
-    lang: en
+    language: en
     title: Thermal Resistance
+    about: node:quantity-kind/thermal-resistance

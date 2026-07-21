@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: solid-state-diffusion-length-en
-    lang: en
+    language: en
     title: Diffusion Length (Solid State Physics)
+    about: node:quantity-kind/solid-state-diffusion-length

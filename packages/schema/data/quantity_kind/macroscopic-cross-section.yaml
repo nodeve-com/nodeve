@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: macroscopic-cross-section-en
-    lang: en
+    language: en
     title: Macroscopic Cross-section
+    about: node:quantity-kind/macroscopic-cross-section

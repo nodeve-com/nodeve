@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electric-energy-en
-    lang: en
+    language: en
     title: Electric Energy
+    about: node:quantity-kind/electric-energy

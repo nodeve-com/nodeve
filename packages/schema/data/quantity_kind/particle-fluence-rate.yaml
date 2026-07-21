@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: particle-fluence-rate-en
-    lang: en
+    language: en
     title: Particle Fluence Rate
+    about: node:quantity-kind/particle-fluence-rate

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: soil-adsorption-coefficient-en
-    lang: en
+    language: en
     title: Soil Adsorption Coefficient
+    about: node:quantity-kind/soil-adsorption-coefficient

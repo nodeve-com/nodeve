@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: torque-en
-    lang: en
+    language: en
     title: Torque
+    about: node:quantity-kind/torque

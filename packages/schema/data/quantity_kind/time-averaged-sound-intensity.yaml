@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: time-averaged-sound-intensity-en
-    lang: en
+    language: en
     title: Time Averaged Sound Intensity
+    about: node:quantity-kind/time-averaged-sound-intensity

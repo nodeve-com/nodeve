@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thrust-coefficient-en
-    lang: en
+    language: en
     title: Thrust Coefficient
+    about: node:quantity-kind/thrust-coefficient

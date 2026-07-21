@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: payload-ratio-en
-    lang: en
+    language: en
     title: Payload Ratio
+    about: node:quantity-kind/payload-ratio

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: shear-strain-en
-    lang: en
+    language: en
     title: Shear Strain
+    about: node:quantity-kind/shear-strain

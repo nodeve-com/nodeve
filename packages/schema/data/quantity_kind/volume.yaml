@@ -16,8 +16,10 @@ refs:
     match: exact
 contents:
   - node: volume-en
-    lang: en
+    language: en
     title: Volume
+    about: node:quantity-kind/volume
   - node: volume-pt
-    lang: pt
+    language: pt
     title: Volume
+    about: node:quantity-kind/volume

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: photo-threshold-of-awareness-function-en
-    lang: en
+    language: en
     title: Photo Threshold of Awareness Function
+    about: node:quantity-kind/photo-threshold-of-awareness-function

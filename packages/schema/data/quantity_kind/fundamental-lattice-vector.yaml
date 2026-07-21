@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: fundamental-lattice-vector-en
-    lang: en
+    language: en
     title: Fundamental Lattice Vector
+    about: node:quantity-kind/fundamental-lattice-vector

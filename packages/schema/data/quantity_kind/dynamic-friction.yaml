@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: dynamic-friction-en
-    lang: en
+    language: en
     title: Dynamic Friction
+    about: node:quantity-kind/dynamic-friction

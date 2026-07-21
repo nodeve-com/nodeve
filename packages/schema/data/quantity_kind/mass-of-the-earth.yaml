@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-of-the-earth-en
-    lang: en
+    language: en
     title: Mass of the Earth
+    about: node:quantity-kind/mass-of-the-earth

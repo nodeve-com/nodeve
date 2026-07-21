@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: bandwidth-length-product-en
-    lang: en
+    language: en
     title: Bandwidth Length Product
+    about: node:quantity-kind/bandwidth-length-product

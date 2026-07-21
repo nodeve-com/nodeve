@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electromagnetic-wave-phase-speed-en
-    lang: en
+    language: en
     title: Electromagnetic Wave Phase Speed
+    about: node:quantity-kind/electromagnetic-wave-phase-speed

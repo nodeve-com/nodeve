@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-per-volume-en
-    lang: en
+    language: en
     title: Power per Volume
+    about: node:quantity-kind/power-per-volume

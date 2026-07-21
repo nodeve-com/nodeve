@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: absolute-humidity-en
-    lang: en
+    language: en
     title: Absolute Humidity
+    about: node:quantity-kind/absolute-humidity

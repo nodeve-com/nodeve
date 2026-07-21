@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: amount-of-substance-per-mass-pressure-en
-    lang: en
+    language: en
     title: Molar Mass Variation Due to Pressure
+    about: node:quantity-kind/amount-of-substance-per-mass-pressure

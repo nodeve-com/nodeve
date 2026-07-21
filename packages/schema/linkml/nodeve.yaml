@@ -4,12 +4,6 @@
 # gen-sqlddl / gen-pydantic / gen-json-schema all consume this one file.
 id: https://nodeve.com/schema
 name: nodeve
-prefixes:
-  linkml: https://w3id.org/linkml/
-  nodeve: https://nodeve.com/schema/
-  node: https://nodeve.com/node/
-  skos: http://www.w3.org/2004/02/skos/core#
-  qudt: http://qudt.org/schema/qudt/
 default_prefix: nodeve
 default_range: string
 imports:
@@ -79,6 +73,9 @@ classes:
     annotations:
       sql_table: catalog
     attributes:
+      # DERIVED, not a data dir — bundle.ts mints one row per authored thing from
+      # its path. Every other slot's range names a class whose sql_table is its dir.
+      nodes: { range: Node, multivalued: true, inlined_as_list: true }
       registries: { range: Registry, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
@@ -121,18 +118,18 @@ classes:
       sql_table: quantity_binding
     slots: [node, quantity_kind, spec, measurable]
 
-  # Reusable content table — [title, lede, body, lang], used by every entity
-  # that carries prose. Replaces per-node inline i18n maps: one row per lang.
+  # Reusable localized content. Each row has its own node; `about` points to
+  # the described node. No class-specific parent FK.
   Content:
     annotations:
       sql_table: content
-    slots: [node, lang, title, lede, body]
+    slots: [node, about, language, title, lede, body]
 
   # ── feature layer: reusable tables ──
   # The valued-range table (grimoire features/valued_range.yaml): one
   # distinguished point + the band around it — absolute (tolerance) and
-  # relative (margin) families, symmetric + asymmetric. Its OWN table;
-  # Interval and Measurement each FK one row via valued_range.
+  # relative (margin) families, symmetric + asymmetric. A width facet of
+  # Interval: its own table, sharing the interval's node.
   ValuedRange:
     annotations:
       sql_table: valued_range
@@ -167,6 +164,10 @@ classes:
       discriminates multiple rows per (quantity_kind, part). Aspect payloads
       hang off as width extensions — THEY point here (shared node), never back.
     slots: [node, quantity_kind, valued_range, part, slug]
+    slot_usage:
+      # the discriminator, not decoration — (quantity_kind, part, slug) is the
+      # row's identity and its node path segment. Absent slug = no derivable node.
+      slug: { required: true }
 
   Specification:
     annotations:

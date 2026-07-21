@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: mass-delivered-en
-    lang: en
+    language: en
     title: Mass Delivered
+    about: node:quantity-kind/mass-delivered

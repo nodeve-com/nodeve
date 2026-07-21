@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: neutron-yield-per-fission-en
-    lang: en
+    language: en
     title: Neutron Yield per Fission
+    about: node:quantity-kind/neutron-yield-per-fission

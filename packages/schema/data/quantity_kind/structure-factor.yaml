@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: structure-factor-en
-    lang: en
+    language: en
     title: Structure Factor
+    about: node:quantity-kind/structure-factor

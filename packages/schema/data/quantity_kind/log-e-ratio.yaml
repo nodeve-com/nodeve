@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: log-e-ratio-en
-    lang: en
+    language: en
     title: Logarithmic Ratio to Base e
+    about: node:quantity-kind/log-e-ratio

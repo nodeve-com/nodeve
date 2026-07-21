@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: london-penetration-depth-en
-    lang: en
+    language: en
     title: London Penetration Depth
+    about: node:quantity-kind/london-penetration-depth

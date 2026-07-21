@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: thrust-en
-    lang: en
+    language: en
     title: Thrust
+    about: node:quantity-kind/thrust

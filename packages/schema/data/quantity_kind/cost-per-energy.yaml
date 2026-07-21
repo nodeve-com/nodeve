@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: cost-per-energy-en
-    lang: en
+    language: en
     title: Energy Cost
+    about: node:quantity-kind/cost-per-energy

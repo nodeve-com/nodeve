@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: total-pressure-en
-    lang: en
+    language: en
     title: Total Pressure
+    about: node:quantity-kind/total-pressure

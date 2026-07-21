@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: volume-fraction-en
-    lang: en
+    language: en
     title: Volume Fraction
+    about: node:quantity-kind/volume-fraction

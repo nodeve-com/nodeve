@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electric-current-imbalance-en
-    lang: en
+    language: en
     title: Electric Current Imbalance
+    about: node:quantity-kind/electric-current-imbalance

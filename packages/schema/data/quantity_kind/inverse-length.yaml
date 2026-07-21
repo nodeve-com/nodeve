@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: inverse-length-en
-    lang: en
+    language: en
     title: Inverse Length
+    about: node:quantity-kind/inverse-length

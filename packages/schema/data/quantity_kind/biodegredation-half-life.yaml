@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: biodegredation-half-life-en
-    lang: en
+    language: en
     title: Biodegredation Half Life
+    about: node:quantity-kind/biodegredation-half-life

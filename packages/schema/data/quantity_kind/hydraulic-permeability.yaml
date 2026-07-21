@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: hydraulic-permeability-en
-    lang: en
+    language: en
     title: Hydraulic Permeability
+    about: node:quantity-kind/hydraulic-permeability

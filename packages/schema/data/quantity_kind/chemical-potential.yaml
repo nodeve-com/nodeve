@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: chemical-potential-en
-    lang: en
+    language: en
     title: Chemical Potential
+    about: node:quantity-kind/chemical-potential

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: spectral-luminous-efficiency-en
-    lang: en
+    language: en
     title: Spectral Luminous Efficiency
+    about: node:quantity-kind/spectral-luminous-efficiency

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: visible-radiant-energy-en
-    lang: en
+    language: en
     title: Visible Radiant Energy
+    about: node:quantity-kind/visible-radiant-energy

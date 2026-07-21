@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-area-en
-    lang: en
+    language: en
     title: Power Area
+    about: node:quantity-kind/power-area

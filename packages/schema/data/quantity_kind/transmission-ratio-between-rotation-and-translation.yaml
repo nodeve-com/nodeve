@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: transmission-ratio-between-rotation-and-translation-en
-    lang: en
+    language: en
     title: Transmission Ratio Between Rotation and Translation
+    about: node:quantity-kind/transmission-ratio-between-rotation-and-translation

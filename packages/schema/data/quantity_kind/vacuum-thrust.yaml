@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: vacuum-thrust-en
-    lang: en
+    language: en
     title: Vacuum Thrust
+    about: node:quantity-kind/vacuum-thrust

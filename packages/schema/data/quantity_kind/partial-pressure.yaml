@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: partial-pressure-en
-    lang: en
+    language: en
     title: Partial Pressure
+    about: node:quantity-kind/partial-pressure

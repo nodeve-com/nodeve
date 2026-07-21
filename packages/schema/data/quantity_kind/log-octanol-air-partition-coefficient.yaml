@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: log-octanol-air-partition-coefficient-en
-    lang: en
+    language: en
     title: Octanol Air Partition Coefficient
+    about: node:quantity-kind/log-octanol-air-partition-coefficient

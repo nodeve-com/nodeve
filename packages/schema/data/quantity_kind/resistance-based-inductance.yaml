@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: resistance-based-inductance-en
-    lang: en
+    language: en
     title: Resistance-based Inductance
+    about: node:quantity-kind/resistance-based-inductance

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thomson-coefficient-en
-    lang: en
+    language: en
     title: Thomson Coefficient
+    about: node:quantity-kind/thomson-coefficient

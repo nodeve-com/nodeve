@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: bit-data-volume-en
-    lang: en
+    language: en
     title: Bit Data Volume
+    about: node:quantity-kind/bit-data-volume

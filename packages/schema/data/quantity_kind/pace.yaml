@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pace-en
-    lang: en
+    language: en
     title: Pace
+    about: node:quantity-kind/pace

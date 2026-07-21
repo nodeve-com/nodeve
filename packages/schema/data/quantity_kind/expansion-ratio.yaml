@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: expansion-ratio-en
-    lang: en
+    language: en
     title: Expansion Ratio
+    about: node:quantity-kind/expansion-ratio

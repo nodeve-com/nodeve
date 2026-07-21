@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: linear-energy-transfer-en
-    lang: en
+    language: en
     title: Linear Energy Transfer
+    about: node:quantity-kind/linear-energy-transfer

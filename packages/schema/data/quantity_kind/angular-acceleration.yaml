@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: angular-acceleration-en
-    lang: en
+    language: en
     title: Angular Acceleration
+    about: node:quantity-kind/angular-acceleration

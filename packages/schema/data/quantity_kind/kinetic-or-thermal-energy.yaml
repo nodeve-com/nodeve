@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: kinetic-or-thermal-energy-en
-    lang: en
+    language: en
     title: kinetic or thermal energy
+    about: node:quantity-kind/kinetic-or-thermal-energy

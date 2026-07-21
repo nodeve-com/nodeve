@@ -18,8 +18,10 @@ refs:
     match: exact
 contents:
   - node: frequency-en
-    lang: en
+    language: en
     title: Frequency
+    about: node:quantity-kind/frequency
   - node: frequency-pt
-    lang: pt
+    language: pt
     title: Frequência
+    about: node:quantity-kind/frequency

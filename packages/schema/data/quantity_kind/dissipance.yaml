@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: dissipance-en
-    lang: en
+    language: en
     title: Dissipance
+    about: node:quantity-kind/dissipance

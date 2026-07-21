@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: force-per-area-time-en
-    lang: en
+    language: en
     title: Force per Area Time
+    about: node:quantity-kind/force-per-area-time

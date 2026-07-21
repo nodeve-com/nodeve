@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: fundamental-reciprocal-lattice-vector-en
-    lang: en
+    language: en
     title: Fundamental Reciprocal Lattice Vector
+    about: node:quantity-kind/fundamental-reciprocal-lattice-vector

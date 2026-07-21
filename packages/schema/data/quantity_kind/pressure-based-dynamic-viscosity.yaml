@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-dynamic-viscosity-en
-    lang: en
+    language: en
     title: Pressure-based Dynamic Viscosity
+    about: node:quantity-kind/pressure-based-dynamic-viscosity

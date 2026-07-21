@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: cross-sectional-area-en
-    lang: en
+    language: en
     title: Cross-sectional Area
+    about: node:quantity-kind/cross-sectional-area

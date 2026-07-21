@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: rotational-mass-en
-    lang: en
+    language: en
     title: Rotational Mass
+    about: node:quantity-kind/rotational-mass

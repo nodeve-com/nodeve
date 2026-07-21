@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: curvature-from-radius-en
-    lang: en
+    language: en
     title: Curvature
+    about: node:quantity-kind/curvature-from-radius

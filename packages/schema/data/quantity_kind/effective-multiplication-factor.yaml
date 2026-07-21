@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: effective-multiplication-factor-en
-    lang: en
+    language: en
     title: Effective Multiplication Factor
+    about: node:quantity-kind/effective-multiplication-factor

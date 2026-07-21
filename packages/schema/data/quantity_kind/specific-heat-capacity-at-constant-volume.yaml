@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-heat-capacity-at-constant-volume-en
-    lang: en
+    language: en
     title: Specific Heat Capacity at Constant Volume
+    about: node:quantity-kind/specific-heat-capacity-at-constant-volume

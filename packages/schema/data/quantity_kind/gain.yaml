@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gain-en
-    lang: en
+    language: en
     title: Gain
+    about: node:quantity-kind/gain

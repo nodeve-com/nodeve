@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-specific-biogeochemical-rate-en
-    lang: en
+    language: en
     title: Mass Specific Biogeochemical Rate
+    about: node:quantity-kind/mass-specific-biogeochemical-rate

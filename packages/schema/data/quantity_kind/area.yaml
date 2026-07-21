@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: area-en
-    lang: en
+    language: en
     title: Area
+    about: node:quantity-kind/area

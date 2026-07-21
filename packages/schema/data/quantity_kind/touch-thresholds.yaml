@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: touch-thresholds-en
-    lang: en
+    language: en
     title: Touch Thresholds
+    about: node:quantity-kind/touch-thresholds

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: spherical-illuminance-en
-    lang: en
+    language: en
     title: Illuminance
+    about: node:quantity-kind/spherical-illuminance

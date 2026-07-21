@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: radiant-emmitance-en
-    lang: en
+    language: en
     title: Radiant Emmitance
+    about: node:quantity-kind/radiant-emmitance

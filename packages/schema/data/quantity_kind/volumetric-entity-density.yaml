@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumetric-entity-density-en
-    lang: en
+    language: en
     title: Volumetric Entity Density
+    about: node:quantity-kind/volumetric-entity-density

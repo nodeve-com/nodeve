@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: areic-heat-flow-rate-en
-    lang: en
+    language: en
     title: Aeric Heat Flow Rate
+    about: node:quantity-kind/areic-heat-flow-rate

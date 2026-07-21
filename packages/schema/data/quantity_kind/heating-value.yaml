@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: heating-value-en
-    lang: en
+    language: en
     title: Calorific Value
+    about: node:quantity-kind/heating-value

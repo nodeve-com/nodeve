@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: energy-fluence-en
-    lang: en
+    language: en
     title: Energy Fluence
+    about: node:quantity-kind/energy-fluence

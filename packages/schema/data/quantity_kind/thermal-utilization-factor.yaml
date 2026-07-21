@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-utilization-factor-en
-    lang: en
+    language: en
     title: Thermal Utilization Factor
+    about: node:quantity-kind/thermal-utilization-factor

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: bit-transmission-rate-en
-    lang: en
+    language: en
     title: Bit Transmission Rate
+    about: node:quantity-kind/bit-transmission-rate

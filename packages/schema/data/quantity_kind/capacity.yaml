@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: capacity-en
-    lang: en
+    language: en
     title: Capacity
+    about: node:quantity-kind/capacity

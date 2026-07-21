@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electron-radius-en
-    lang: en
+    language: en
     title: Electron Radius
+    about: node:quantity-kind/electron-radius

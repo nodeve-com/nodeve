@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: kerma-rate-en
-    lang: en
+    language: en
     title: Kerma Rate
+    about: node:quantity-kind/kerma-rate

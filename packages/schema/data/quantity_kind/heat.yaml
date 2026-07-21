@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: heat-en
-    lang: en
+    language: en
     title: Heat
+    about: node:quantity-kind/heat

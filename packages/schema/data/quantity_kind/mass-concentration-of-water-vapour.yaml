@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-concentration-of-water-vapour-en
-    lang: en
+    language: en
     title: Mass Concentration of Water Vapour
+    about: node:quantity-kind/mass-concentration-of-water-vapour

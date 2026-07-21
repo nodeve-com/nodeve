@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: mass-growth-allowance-en
-    lang: en
+    language: en
     title: Mass Growth Allowance
+    about: node:quantity-kind/mass-growth-allowance

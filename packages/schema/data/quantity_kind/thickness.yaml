@@ -12,8 +12,10 @@ refs:
     match: exact
 contents:
   - node: thickness-en
-    lang: en
+    language: en
     title: Thickness
+    about: node:quantity-kind/thickness
   - node: thickness-pt
-    lang: pt
+    language: pt
     title: Espessura (mm)
+    about: node:quantity-kind/thickness

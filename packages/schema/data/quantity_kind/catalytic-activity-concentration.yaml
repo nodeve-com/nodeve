@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: catalytic-activity-concentration-en
-    lang: en
+    language: en
     title: Catalytic Activity Concentration
+    about: node:quantity-kind/catalytic-activity-concentration

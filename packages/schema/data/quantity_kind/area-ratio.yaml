@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: area-ratio-en
-    lang: en
+    language: en
     title: Area Ratio
+    about: node:quantity-kind/area-ratio

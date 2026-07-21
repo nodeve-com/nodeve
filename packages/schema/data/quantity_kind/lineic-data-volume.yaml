@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-data-volume-en
-    lang: en
+    language: en
     title: Lineic Data Volume
+    about: node:quantity-kind/lineic-data-volume

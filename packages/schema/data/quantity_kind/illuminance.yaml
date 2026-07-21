@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: illuminance-en
-    lang: en
+    language: en
     title: Illuminance
+    about: node:quantity-kind/illuminance

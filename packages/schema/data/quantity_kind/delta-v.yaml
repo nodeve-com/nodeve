@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: delta-v-en
-    lang: en
+    language: en
     title: Delta-V
+    about: node:quantity-kind/delta-v

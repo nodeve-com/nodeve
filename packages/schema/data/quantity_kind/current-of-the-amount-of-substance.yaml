@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: current-of-the-amount-of-substance-en
-    lang: en
+    language: en
     title: Current of the Amount of Substance
+    about: node:quantity-kind/current-of-the-amount-of-substance

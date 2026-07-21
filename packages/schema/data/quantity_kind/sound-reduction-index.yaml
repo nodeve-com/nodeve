@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: sound-reduction-index-en
-    lang: en
+    language: en
     title: Sound Reduction Index
+    about: node:quantity-kind/sound-reduction-index

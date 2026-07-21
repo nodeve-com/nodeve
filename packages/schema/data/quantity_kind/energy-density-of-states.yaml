@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: energy-density-of-states-en
-    lang: en
+    language: en
     title: Energy Density of States
+    about: node:quantity-kind/energy-density-of-states

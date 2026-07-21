@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: energy-per-mass-amount-of-substance-en
-    lang: en
+    language: en
     title: Energy and Work per Mass Amount of Substance
+    about: node:quantity-kind/energy-per-mass-amount-of-substance

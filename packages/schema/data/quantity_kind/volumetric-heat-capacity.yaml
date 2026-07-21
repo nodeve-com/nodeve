@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: volumetric-heat-capacity-en
-    lang: en
+    language: en
     title: Volumetric Heat Capacity
+    about: node:quantity-kind/volumetric-heat-capacity

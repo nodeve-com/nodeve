@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: logarithmic-median-information-flow-source-to-base-e-en
-    lang: en
+    language: en
     title: "median information flow (from a source of information), expressed as a natural logarithm "
+    about: node:quantity-kind/logarithmic-median-information-flow-source-to-base-e

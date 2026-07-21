@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: attenuation-coefficient-en
-    lang: en
+    language: en
     title: Attenuation Coefficient
+    about: node:quantity-kind/attenuation-coefficient

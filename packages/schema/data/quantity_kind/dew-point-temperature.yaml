@@ -14,8 +14,10 @@ refs:
     match: broad
 contents:
   - node: dew-point-temperature-en
-    lang: en
+    language: en
     title: Dew Point Temperature
+    about: node:quantity-kind/dew-point-temperature
   - node: dew-point-temperature-pt
-    lang: pt
+    language: pt
     title: Ponto de orvalho
+    about: node:quantity-kind/dew-point-temperature

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: photon-radiance-en
-    lang: en
+    language: en
     title: Photon Radiance
+    about: node:quantity-kind/photon-radiance

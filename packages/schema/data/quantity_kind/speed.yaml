@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: speed-en
-    lang: en
+    language: en
     title: Speed
+    about: node:quantity-kind/speed

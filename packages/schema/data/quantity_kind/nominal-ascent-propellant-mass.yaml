@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: nominal-ascent-propellant-mass-en
-    lang: en
+    language: en
     title: Nominal Ascent Propellant Mass
+    about: node:quantity-kind/nominal-ascent-propellant-mass

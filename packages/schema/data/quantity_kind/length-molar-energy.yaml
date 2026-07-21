@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: length-molar-energy-en
-    lang: en
+    language: en
     title: Length Molar Energy
+    about: node:quantity-kind/length-molar-energy

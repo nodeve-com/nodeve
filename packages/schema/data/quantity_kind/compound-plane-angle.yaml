@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: compound-plane-angle-en
-    lang: en
+    language: en
     title: Compound Plane Angle
+    about: node:quantity-kind/compound-plane-angle

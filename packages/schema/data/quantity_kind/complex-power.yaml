@@ -15,5 +15,6 @@ refs:
     match: exact
 contents:
   - node: complex-power-en
-    lang: en
+    language: en
     title: Complex Power
+    about: node:quantity-kind/complex-power

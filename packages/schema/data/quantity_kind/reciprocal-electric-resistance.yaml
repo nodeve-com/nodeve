@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reciprocal-electric-resistance-en
-    lang: en
+    language: en
     title: Reciprocal Electric Resistance
+    about: node:quantity-kind/reciprocal-electric-resistance

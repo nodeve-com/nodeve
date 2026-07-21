@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: charge-number-en
-    lang: en
+    language: en
     title: Charge Number
+    about: node:quantity-kind/charge-number

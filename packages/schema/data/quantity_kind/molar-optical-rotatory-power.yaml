@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: molar-optical-rotatory-power-en
-    lang: en
+    language: en
     title: Molar Optical Rotatory Power
+    about: node:quantity-kind/molar-optical-rotatory-power

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: inverse-area-en
-    lang: en
+    language: en
     title: Inverse Area
+    about: node:quantity-kind/inverse-area

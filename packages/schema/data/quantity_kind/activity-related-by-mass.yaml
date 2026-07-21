@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: activity-related-by-mass-en
-    lang: en
+    language: en
     title: Activity Related by Mass
+    about: node:quantity-kind/activity-related-by-mass

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: flux-en
-    lang: en
+    language: en
     title: Flux
+    about: node:quantity-kind/flux

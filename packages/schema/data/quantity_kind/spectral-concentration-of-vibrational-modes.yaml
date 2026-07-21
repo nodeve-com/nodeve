@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: spectral-concentration-of-vibrational-modes-en
-    lang: en
+    language: en
     title: Spectral Concentration of Vibrational Modes (in Terms of Angular Frequency)
+    about: node:quantity-kind/spectral-concentration-of-vibrational-modes

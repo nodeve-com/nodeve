@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: byte-rate-en
-    lang: en
+    language: en
     title: Byte Rate
+    about: node:quantity-kind/byte-rate

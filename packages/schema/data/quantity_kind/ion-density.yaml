@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: ion-density-en
-    lang: en
+    language: en
     title: Ion Density
+    about: node:quantity-kind/ion-density

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-per-area-en
-    lang: en
+    language: en
     title: Electric Charge per Area
+    about: node:quantity-kind/electric-charge-per-area

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: acidity-en
-    lang: en
+    language: en
     title: Acidity
+    about: node:quantity-kind/acidity

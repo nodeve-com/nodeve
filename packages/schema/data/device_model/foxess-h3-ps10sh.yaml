@@ -10,117 +10,117 @@ product:
   series: H3
   manufacturer: mfr-foxess # FK — Manufacturer row shared by every FoxESS product
 contents:
-  - { node: c1, lang: en, title: FoxESS H3 Smart 10 kW, lede: Grid-tied 3-phase hybrid inverter }
+  - { node: c1, language: en, title: FoxESS H3 Smart 10 kW, lede: Grid-tied 3-phase hybrid inverter, about: node:inverter/foxess-h3-ps10sh }
 
 # role IS the socket name — no slug on feature rows, one row per socket
 ac_ports:
-  - node: node:inverter/foxess-h3-ps10sh/ac-out
+  - node: node:inverter/foxess-h3-ps10sh/ac-phase/out
     role: out
     feature_type: node:feature-type/ac-phase # FK — the definition row; quantity bindings only
     # THIS model's subdivision — three-phase. A split-phase model authors l1/l2
     # against the same feature_type; desugaring writes these from `phases: three`.
     parts:
-      - { node: node:inverter/foxess-h3-ps10sh/ac-out/phase/a, slug: a, ordinal: 1 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-out/phase/b, slug: b, ordinal: 2 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-out/phase/c, slug: c, ordinal: 3 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, slug: a, ordinal: 1 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/b, slug: b, ordinal: 2 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/c, slug: c, ordinal: 3 }
     intervals:
       # combined active_power tiers (part null = whole port)
-      - { node: i1, quantity_kind: node:quantity-kind/active-power, valued_range: { node: vr-i1, min: -11000, max: 10000 } }
-      - { node: i2, quantity_kind: node:quantity-kind/active-power, valued_range: { node: vr-i2, min: -12000, max: 11000 } }
-      - { node: i3, quantity_kind: node:quantity-kind/active-power, valued_range: { node: vr-i3, min: -10000, max: 9000 } }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous, min: -11000, max: 10000 }, slug: continuous_continuous }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, min: -12000, max: 11000 }, slug: short_term }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent, min: -10000, max: 9000 }, slug: continuous_intermittent }
       # per-phase voltage: commissioning choice gated on a setting, one row each
-      - { node: i4, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-out/phase/a, valued_range: { node: vr-i4, value: 230 } } # template row; b/c identical in full cut
-      - { node: i5, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-out/phase/a, valued_range: { node: vr-i5, value: 220 } }
-      - { node: m1, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-out/phase/a, valued_range: { node: vr-m1, min: 0, max: 250 } }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, value: 230 }, slug: nominal_eu_230v_50hz } # template row; b/c identical in full cut
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, value: 220 }, slug: nominal_br_220v_60hz }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, slug: range, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, min: 0, max: 250 } }
       # energy channels: four interval rows on ONE feature_type, discriminated by the
       # measurement extensions' flow_direction + period
-      - { node: m2, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: vr-m2, min: 0, unit: kWh } }
-      - { node: m3, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: vr-m3, min: 0, unit: kWh } }
-      - { node: m4, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: vr-m4, min: 0, unit: kWh } }
-      - { node: m5, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: vr-m5, min: 0, unit: kWh } }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, min: 0, unit: kWh }, slug: out }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, min: 0, unit: kWh }, slug: out_daily }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, min: 0, unit: kWh }, slug: in }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, min: 0, unit: kWh }, slug: in_daily }
     # width extensions — node = the interval row extended, the FK direction
     specifications:
-      - node: i1
+      - node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous
         rating: continuous
         conditions:
-          - { node: cd1, gated_by: i-env-cont } # ambient ≤45 °C band
+          - { node: cd1, gated_by: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous } # ambient ≤45 °C band
         part_scope: combined
-      - { node: i2, rating: short_term, duration: 30, part_scope: combined }
-      - node: i3
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, rating: short_term, duration: 30, part_scope: combined }
+      - node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent
         rating: continuous
         conditions:
-          - { node: cd2, gated_by: i-env-int } # 45–60 °C derate
+          - { node: cd2, gated_by: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent } # 45–60 °C derate
         part_scope: combined
-      - { node: i4, severity: nominal, conditions: [ { node: cd3, setting_key: grid_region, equals: eu_230v_50hz } ], part_scope: member }
-      - { node: i5, severity: nominal, conditions: [ { node: cd4, setting_key: grid_region, equals: br_220v_60hz } ], part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, severity: nominal, conditions: [ { node: cd3, setting_key: grid_region, equals: eu_230v_50hz } ], part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, severity: nominal, conditions: [ { node: cd4, setting_key: grid_region, equals: br_220v_60hz } ], part_scope: member }
     measurements:
-      - { node: m1, resolution: 0.1 }
-      - { node: m2, flow_direction: out, resolution: 0.01 }
-      - { node: m3, flow_direction: out, period: daily, resolution: 0.01 }
-      - { node: m4, flow_direction: in, resolution: 0.01 }
-      - { node: m5, flow_direction: in, period: daily, resolution: 0.01 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, resolution: 0.1 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, flow_direction: out, resolution: 0.01 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, flow_direction: out, period: daily, resolution: 0.01 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, flow_direction: in, resolution: 0.01 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, flow_direction: in, period: daily, resolution: 0.01 }
 
-  - node: node:inverter/foxess-h3-ps10sh/ac-grid
+  - node: node:inverter/foxess-h3-ps10sh/ac-phase/grid
     role: grid
     feature_type: node:feature-type/ac-phase
     intervals:
-      - { node: g1, quantity_kind: node:quantity-kind/active-power, valued_range: { node: vr-g1, min: -15, max: 15, unit: kW } }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, slug: range, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, min: -15, max: 15, unit: kW } }
     measurements:
-      - { node: g1, resolution: 0.001 }
+      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, resolution: 0.001 }
 
 # ONE tracker feature; three trackers = three PART rows. Tracker 3 carries its
 # own weaker continuous band — a per-part interval, not a separate feature.
 dc_ports:
-  - node: node:inverter/foxess-h3-ps10sh/pv
+  - node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker
     role: pv-tracker
     feature_type: node:feature-type/dc-port
     parts:
-      - { node: node:inverter/foxess-h3-ps10sh/pv/1, slug: '1', ordinal: 1 }
-      - { node: node:inverter/foxess-h3-ps10sh/pv/2, slug: '2', ordinal: 2 }
-      - { node: node:inverter/foxess-h3-ps10sh/pv/3, slug: '3', ordinal: 3 }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, slug: '1', ordinal: 1 }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, slug: '2', ordinal: 2 }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, slug: '3', ordinal: 3 }
     intervals:
-      - { node: pv1-surv, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/1, valued_range: { node: vr-pv1s, max: 1000 } }
-      - { node: pv1-run, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/1, valued_range: { node: vr-pv1r, min: 90, max: 140 } }
-      - { node: pv1-cont, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/1, valued_range: { node: vr-pv1c, min: 175, value: 620, max: 850 } }
-      - { node: pv2-surv, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/2, valued_range: { node: vr-pv2s, max: 1000 } }
-      - { node: pv2-run, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/2, valued_range: { node: vr-pv2r, min: 90, max: 140 } }
-      - { node: pv2-cont, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/2, valued_range: { node: vr-pv2c, min: 175, value: 620, max: 850 } }
-      - { node: pv3-surv, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/3, valued_range: { node: vr-pv3s, max: 1000 } }
-      - { node: pv3-run, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/3, valued_range: { node: vr-pv3r, min: 90, max: 140 } }
-      - { node: pv3-cont, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/pv/3, valued_range: { node: vr-pv3c, min: 60, value: 480 } }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, max: 1000 }, slug: survival }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, min: 90, max: 140 }, slug: running }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, min: 175, value: 620, max: 850 }, slug: mppt }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, max: 1000 }, slug: survival }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, min: 90, max: 140 }, slug: running }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, min: 175, value: 620, max: 850 }, slug: mppt }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, max: 1000 }, slug: survival }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, min: 90, max: 140 }, slug: running }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, min: 60, value: 480 }, slug: nominal }
     specifications:
-      - { node: pv1-surv, rating: survival, part_scope: member }
-      - { node: pv1-run, zone: running, trigger_on: above, part_scope: member }
-      - { node: pv1-cont, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
-      - { node: pv2-surv, rating: survival, part_scope: member }
-      - { node: pv2-run, zone: running, trigger_on: above, part_scope: member }
-      - { node: pv2-cont, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
-      - { node: pv3-surv, rating: survival, part_scope: member }
-      - { node: pv3-run, zone: running, trigger_on: above, part_scope: member }
-      - { node: pv3-cont, rating: continuous, severity: nominal, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, rating: survival, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, zone: running, trigger_on: above, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, rating: survival, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, zone: running, trigger_on: above, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, rating: survival, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, zone: running, trigger_on: above, part_scope: member }
+      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, rating: continuous, severity: nominal, part_scope: member }
 
 # the enclosure/ambient conflation, resolved by the role vocabulary:
 # ambient = rated operating conditions (what derates gate on),
 # enclosure = the internal temperature sensor channel
 environments:
-  - node: node:inverter/foxess-h3-ps10sh/ambient
+  - node: node:inverter/foxess-h3-ps10sh/environment/ambient
     role: ambient
     feature_type: node:feature-type/environment
     intervals:
-      - { node: i-env-surv, quantity_kind: node:quantity-kind/temperature, valued_range: { node: vr-es, min: -40, max: 80, unit: °C } }
-      - { node: i-env-int, quantity_kind: node:quantity-kind/temperature, valued_range: { node: vr-ei, min: -25, max: 60, unit: °C } }
-      - { node: i-env-cont, quantity_kind: node:quantity-kind/temperature, valued_range: { node: vr-ec, min: -20, max: 45, unit: °C } }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, min: -40, max: 80, unit: °C }, slug: survival }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, min: -25, max: 60, unit: °C }, slug: intermittent }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, min: -20, max: 45, unit: °C }, slug: continuous }
     specifications:
-      - { node: i-env-surv, rating: survival, part_scope: combined }
-      - { node: i-env-int, rating: intermittent, part_scope: combined }
-      - { node: i-env-cont, rating: continuous, part_scope: combined }
-  - node: node:inverter/foxess-h3-ps10sh/enclosure
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, rating: survival, part_scope: combined }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, rating: intermittent, part_scope: combined }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, rating: continuous, part_scope: combined }
+  - node: node:inverter/foxess-h3-ps10sh/environment/enclosure
     role: enclosure
     feature_type: node:feature-type/environment
     intervals:
-      - { node: m-enc, quantity_kind: node:quantity-kind/temperature, valued_range: { node: vr-em, min: -40, max: 100, unit: °C } }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, slug: range, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, min: -40, max: 100, unit: °C } }
     measurements:
-      - { node: m-enc, resolution: 0.1 }
+      - { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, resolution: 0.1 }
 
 network_interfaces:
   - { node: node:inverter/foxess-h3-ps10sh/wlan0, slug: wlan0, interface_type: ieee80211 }
@@ -141,7 +141,7 @@ register_map:
     - { node: rr1, range_type: invalid, start: 41001, end: 41006, note: 'unspecified 410xx, unverified' }
     - { node: rr2, range_type: individual_read, start: 37609, end: 37620, note: 'BMS telemetry, not read today' }
   registers:
-    - { node: r1, address: 39070, datatype: uint16, scale: 0.1, decimals: 1, feature: node:inverter/foxess-h3-ps10sh/pv1, quantity_kind: node:quantity-kind/voltage }
-    - { node: r2, address: 39248, datatype: int32, scale: 0.001, decimals: 3, unit: kW, feature: node:inverter/foxess-h3-ps10sh/ac-out, quantity_kind: node:quantity-kind/active-power, part: node:inverter/foxess-h3-ps10sh/ac-out/phase/a }
-    - { node: r3, address: 39621, datatype: uint32, scale: 0.01, decimals: 2, unit: kWh, feature: node:inverter/foxess-h3-ps10sh/ac-out, quantity_kind: node:quantity-kind/active-energy, flow_direction: out }
-    - { node: r4, address: 39141, datatype: int16, scale: 0.1, decimals: 1, unit: °C, feature: node:inverter/foxess-h3-ps10sh/enclosure, quantity_kind: node:quantity-kind/temperature }
+    - { node: r1, address: 39070, datatype: uint16, scale: 0.1, decimals: 1, feature: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1 }
+    - { node: r2, address: 39248, datatype: int32, scale: 0.001, decimals: 3, unit: kW, feature: node:inverter/foxess-h3-ps10sh/ac-phase/out, quantity_kind: node:quantity-kind/active-power, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a }
+    - { node: r3, address: 39621, datatype: uint32, scale: 0.01, decimals: 2, unit: kWh, feature: node:inverter/foxess-h3-ps10sh/ac-phase/out, quantity_kind: node:quantity-kind/active-energy, flow_direction: out }
+    - { node: r4, address: 39141, datatype: int16, scale: 0.1, decimals: 1, unit: °C, feature: node:inverter/foxess-h3-ps10sh/environment/enclosure, quantity_kind: node:quantity-kind/temperature }

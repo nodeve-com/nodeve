@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: first-moment-of-area-en
-    lang: en
+    language: en
     title: First Moment of Area
+    about: node:quantity-kind/first-moment-of-area

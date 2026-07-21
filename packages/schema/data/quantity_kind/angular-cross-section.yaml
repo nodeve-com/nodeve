@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: angular-cross-section-en
-    lang: en
+    language: en
     title: Angular Cross-section
+    about: node:quantity-kind/angular-cross-section

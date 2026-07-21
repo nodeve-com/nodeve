@@ -18,8 +18,10 @@ refs:
     match: exact
 contents:
   - node: volume-flow-rate-en
-    lang: en
+    language: en
     title: Volume Flow Rate
+    about: node:quantity-kind/volume-flow-rate
   - node: volume-flow-rate-pt
-    lang: pt
+    language: pt
     title: Caudal volumétrico
+    about: node:quantity-kind/volume-flow-rate

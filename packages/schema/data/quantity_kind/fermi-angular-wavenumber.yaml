@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: fermi-angular-wavenumber-en
-    lang: en
+    language: en
     title: Fermi Angular Wavenumber
+    about: node:quantity-kind/fermi-angular-wavenumber

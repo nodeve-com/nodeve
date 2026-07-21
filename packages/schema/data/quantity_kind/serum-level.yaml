@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: serum-level-en
-    lang: en
+    language: en
     title: Serum Level
+    about: node:quantity-kind/serum-level

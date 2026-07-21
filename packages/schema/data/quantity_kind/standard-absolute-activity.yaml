@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: standard-absolute-activity-en
-    lang: en
+    language: en
     title: Standard Absolute Activity
+    about: node:quantity-kind/standard-absolute-activity

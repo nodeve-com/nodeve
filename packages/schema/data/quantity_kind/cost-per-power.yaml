@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: cost-per-power-en
-    lang: en
+    language: en
     title: Cost per Power
+    about: node:quantity-kind/cost-per-power

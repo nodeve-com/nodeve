@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: einstein-transition-probability-en
-    lang: en
+    language: en
     title: Einstein Transition Probability
+    about: node:quantity-kind/einstein-transition-probability

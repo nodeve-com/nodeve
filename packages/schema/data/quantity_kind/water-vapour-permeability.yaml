@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: water-vapour-permeability-en
-    lang: en
+    language: en
     title: Water Vapour Permeability
+    about: node:quantity-kind/water-vapour-permeability

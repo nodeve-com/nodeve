@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volume-per-time-en
-    lang: en
+    language: en
     title: Volume per Time
+    about: node:quantity-kind/volume-per-time

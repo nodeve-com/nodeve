@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: binding-fraction-en
-    lang: en
+    language: en
     title: Binding Fraction
+    about: node:quantity-kind/binding-fraction

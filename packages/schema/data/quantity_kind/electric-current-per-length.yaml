@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electric-current-per-length-en
-    lang: en
+    language: en
     title: Electric Current per Length
+    about: node:quantity-kind/electric-current-per-length

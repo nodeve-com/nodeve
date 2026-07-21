@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reactivity-en
-    lang: en
+    language: en
     title: Reactivity
+    about: node:quantity-kind/reactivity

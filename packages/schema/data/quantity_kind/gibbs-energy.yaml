@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gibbs-energy-en
-    lang: en
+    language: en
     title: Gibbs Energy
+    about: node:quantity-kind/gibbs-energy

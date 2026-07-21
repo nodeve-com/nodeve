@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: control-mass-en
-    lang: en
+    language: en
     title: Control Mass.
+    about: node:quantity-kind/control-mass

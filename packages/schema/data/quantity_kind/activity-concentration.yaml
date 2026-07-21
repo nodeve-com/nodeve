@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: activity-concentration-en
-    lang: en
+    language: en
     title: Activity Concentration
+    about: node:quantity-kind/activity-concentration

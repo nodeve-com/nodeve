@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: resonance-energy-en
-    lang: en
+    language: en
     title: Resonance Energy
+    about: node:quantity-kind/resonance-energy

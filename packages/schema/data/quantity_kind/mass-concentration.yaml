@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-concentration-en
-    lang: en
+    language: en
     title: Mass Concentration
+    about: node:quantity-kind/mass-concentration

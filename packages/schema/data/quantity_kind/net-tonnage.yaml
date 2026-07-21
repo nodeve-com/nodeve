@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: net-tonnage-en
-    lang: en
+    language: en
     title: Net Tonnage
+    about: node:quantity-kind/net-tonnage

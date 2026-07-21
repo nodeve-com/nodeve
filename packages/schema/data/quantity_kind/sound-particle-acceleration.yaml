@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: sound-particle-acceleration-en
-    lang: en
+    language: en
     title: Sound Particle Acceleration
+    about: node:quantity-kind/sound-particle-acceleration

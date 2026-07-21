@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: surface-density-en
-    lang: en
+    language: en
     title: Surface Density
+    about: node:quantity-kind/surface-density

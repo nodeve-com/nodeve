@@ -4,8 +4,10 @@ url: https://www.w3.org/TR/skos-reference/
 iri_template: http://www.w3.org/2004/02/skos/core#{id}
 contents:
   - node: skos-en
-    lang: en
+    language: en
     title: W3C SKOS (Simple Knowledge Organization System)
+    about: node:registry/skos
   - node: skos-pt
-    lang: pt
+    language: pt
     title: W3C SKOS (Sistema Simples de Organização do Conhecimento)
+    about: node:registry/skos

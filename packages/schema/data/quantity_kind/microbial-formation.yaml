@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: microbial-formation-en
-    lang: en
+    language: en
     title: Microbial Formation
+    about: node:quantity-kind/microbial-formation

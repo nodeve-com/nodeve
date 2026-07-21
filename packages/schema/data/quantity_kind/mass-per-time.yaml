@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-per-time-en
-    lang: en
+    language: en
     title: Mass per Time
+    about: node:quantity-kind/mass-per-time

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: spin-en
-    lang: en
+    language: en
     title: Spin
+    about: node:quantity-kind/spin

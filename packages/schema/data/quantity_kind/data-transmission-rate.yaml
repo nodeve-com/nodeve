@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: data-transmission-rate-en
-    lang: en
+    language: en
     title: Data Transmission Rate
+    about: node:quantity-kind/data-transmission-rate

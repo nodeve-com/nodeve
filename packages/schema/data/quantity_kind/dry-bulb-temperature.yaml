@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: dry-bulb-temperature-en
-    lang: en
+    language: en
     title: Dry Bulb Temperature
+    about: node:quantity-kind/dry-bulb-temperature

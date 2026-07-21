@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-diffusion-factor-en
-    lang: en
+    language: en
     title: Thermal Diffusion Factor
+    about: node:quantity-kind/thermal-diffusion-factor

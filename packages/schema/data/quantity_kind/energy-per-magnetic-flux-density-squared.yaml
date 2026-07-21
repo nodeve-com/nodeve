@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: energy-per-magnetic-flux-density-squared-en
-    lang: en
+    language: en
     title: Energy Per Square Magnetic Flux Density
+    about: node:quantity-kind/energy-per-magnetic-flux-density-squared

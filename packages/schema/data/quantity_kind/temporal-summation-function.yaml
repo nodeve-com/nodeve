@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: temporal-summation-function-en
-    lang: en
+    language: en
     title: Temporal Summation Function
+    about: node:quantity-kind/temporal-summation-function

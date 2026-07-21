@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: thermal-inertia-en
-    lang: en
+    language: en
     title: Measurement Unit of Thermal Inertia
+    about: node:quantity-kind/thermal-inertia

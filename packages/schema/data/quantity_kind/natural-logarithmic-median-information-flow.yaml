@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: natural-logarithmic-median-information-flow-en
-    lang: en
+    language: en
     title: "Median Information Flow (from a Source of Information), Expressed as a Natural Logarithm "
+    about: node:quantity-kind/natural-logarithmic-median-information-flow

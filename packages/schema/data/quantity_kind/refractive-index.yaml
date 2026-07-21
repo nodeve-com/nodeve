@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: refractive-index-en
-    lang: en
+    language: en
     title: Refractive Index
+    about: node:quantity-kind/refractive-index

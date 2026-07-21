@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: superconductor-energy-gap-en
-    lang: en
+    language: en
     title: Superconductor Energy Gap
+    about: node:quantity-kind/superconductor-energy-gap

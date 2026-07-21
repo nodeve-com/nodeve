@@ -7,3 +7,4 @@ coverage/
 .turbo/
 .direnv/
 .pnpm-store
+__pycache__/

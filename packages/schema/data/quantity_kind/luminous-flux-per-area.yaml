@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: luminous-flux-per-area-en
-    lang: en
+    language: en
     title: Luminous Flux per Area
+    about: node:quantity-kind/luminous-flux-per-area

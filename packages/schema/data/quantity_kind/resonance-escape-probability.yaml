@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: resonance-escape-probability-en
-    lang: en
+    language: en
     title: Resonance Escape Probability
+    about: node:quantity-kind/resonance-escape-probability

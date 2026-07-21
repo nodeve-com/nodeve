@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: particle-position-vector-en
-    lang: en
+    language: en
     title: Particle Position Vector
+    about: node:quantity-kind/particle-position-vector

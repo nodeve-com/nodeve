@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: density-en
-    lang: en
+    language: en
     title: Density
+    about: node:quantity-kind/density

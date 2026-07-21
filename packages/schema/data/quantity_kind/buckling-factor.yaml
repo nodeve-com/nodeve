@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: buckling-factor-en
-    lang: en
+    language: en
     title: Buckling Factor
+    about: node:quantity-kind/buckling-factor

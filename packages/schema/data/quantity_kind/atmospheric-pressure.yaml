@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: atmospheric-pressure-en
-    lang: en
+    language: en
     title: Atmospheric Pressure
+    about: node:quantity-kind/atmospheric-pressure

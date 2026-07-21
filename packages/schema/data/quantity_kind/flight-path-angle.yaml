@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: flight-path-angle-en
-    lang: en
+    language: en
     title: Flight Path Angle
+    about: node:quantity-kind/flight-path-angle

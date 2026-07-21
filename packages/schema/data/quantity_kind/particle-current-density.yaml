@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: particle-current-density-en
-    lang: en
+    language: en
     title: Particle Current Density
+    about: node:quantity-kind/particle-current-density

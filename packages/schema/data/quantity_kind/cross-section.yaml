@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: cross-section-en
-    lang: en
+    language: en
     title: Cross-section
+    about: node:quantity-kind/cross-section

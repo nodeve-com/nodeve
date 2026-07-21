@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-conductivity-en
-    lang: en
+    language: en
     title: Electric Conductivity
+    about: node:quantity-kind/electric-conductivity

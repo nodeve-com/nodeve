@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electron-affinity-en
-    lang: en
+    language: en
     title: Electron Affinity
+    about: node:quantity-kind/electron-affinity

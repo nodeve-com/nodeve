@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: molar-optical-rotational-ability-en
-    lang: en
+    language: en
     title: Molar Optical Rotational Ability
+    about: node:quantity-kind/molar-optical-rotational-ability

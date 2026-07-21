@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: molar-equivalent-en
-    lang: en
+    language: en
     title: Molar Equivalent
+    about: node:quantity-kind/molar-equivalent

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: angle-of-attack-en
-    lang: en
+    language: en
     title: Angle of Attack
+    about: node:quantity-kind/angle-of-attack

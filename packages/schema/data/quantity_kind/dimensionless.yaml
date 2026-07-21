@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: dimensionless-en
-    lang: en
+    language: en
     title: Dimensionless
+    about: node:quantity-kind/dimensionless

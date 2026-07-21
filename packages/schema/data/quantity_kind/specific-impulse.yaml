@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: specific-impulse-en
-    lang: en
+    language: en
     title: Specific Impulse
+    about: node:quantity-kind/specific-impulse

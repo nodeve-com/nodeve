@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: information-content-expressed-as-a-logarithm-to-base-e-en
-    lang: en
+    language: en
     title: Information Content Expressed as a Logarithm to Base e
+    about: node:quantity-kind/information-content-expressed-as-a-logarithm-to-base-e

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diffusion-coefficient-en
-    lang: en
+    language: en
     title: Diffusion Coefficient
+    about: node:quantity-kind/diffusion-coefficient

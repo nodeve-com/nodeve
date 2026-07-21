@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: moment-of-force-en
-    lang: en
+    language: en
     title: Moment of Force
+    about: node:quantity-kind/moment-of-force

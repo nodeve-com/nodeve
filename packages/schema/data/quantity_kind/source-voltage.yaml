@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: source-voltage-en
-    lang: en
+    language: en
     title: Source Voltage
+    about: node:quantity-kind/source-voltage

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-current-per-temperature-en
-    lang: en
+    language: en
     title: Electric Current per Temperature
+    about: node:quantity-kind/electric-current-per-temperature

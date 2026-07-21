@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mean-linear-range-en
-    lang: en
+    language: en
     title: Mean Linear Range
+    about: node:quantity-kind/mean-linear-range

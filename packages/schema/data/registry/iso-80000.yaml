@@ -3,8 +3,10 @@ slug: iso-80000
 url: https://www.iso.org/standard/76921.html
 contents:
   - node: iso-80000-en
-    lang: en
+    language: en
     title: ISO 80000 (Quantities and units)
+    about: node:registry/iso-80000
   - node: iso-80000-pt
-    lang: pt
+    language: pt
     title: ISO 80000 (Grandezas e unidades)
+    about: node:registry/iso-80000

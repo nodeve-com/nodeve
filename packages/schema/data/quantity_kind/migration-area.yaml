@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: migration-area-en
-    lang: en
+    language: en
     title: Migration Area
+    about: node:quantity-kind/migration-area

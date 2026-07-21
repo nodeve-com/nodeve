@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: length-en
-    lang: en
+    language: en
     title: Length
+    about: node:quantity-kind/length

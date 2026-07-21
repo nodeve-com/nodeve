@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-heat-pressure-en
-    lang: en
+    language: en
     title: Specific Heat Pressure
+    about: node:quantity-kind/specific-heat-pressure

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diastolic-blood-pressure-en
-    lang: en
+    language: en
     title: Diastolic Blood Pressure
+    about: node:quantity-kind/diastolic-blood-pressure

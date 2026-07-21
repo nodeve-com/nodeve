@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: molar-flow-rate-en
-    lang: en
+    language: en
     title: Molar Flow Rate
+    about: node:quantity-kind/molar-flow-rate

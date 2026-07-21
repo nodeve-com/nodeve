@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: polarizability-en
-    lang: en
+    language: en
     title: Polarisability
+    about: node:quantity-kind/polarizability

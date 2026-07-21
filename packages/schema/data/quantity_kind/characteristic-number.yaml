@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: characteristic-number-en
-    lang: en
+    language: en
     title: Characteristic Number
+    about: node:quantity-kind/characteristic-number

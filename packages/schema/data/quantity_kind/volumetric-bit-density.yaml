@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumetric-bit-density-en
-    lang: en
+    language: en
     title: Volumic Bit Density
+    about: node:quantity-kind/volumetric-bit-density

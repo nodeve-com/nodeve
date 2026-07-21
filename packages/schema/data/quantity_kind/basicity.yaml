@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: basicity-en
-    lang: en
+    language: en
     title: Basicity
+    about: node:quantity-kind/basicity

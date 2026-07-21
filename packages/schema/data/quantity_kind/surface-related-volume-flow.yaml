@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: surface-related-volume-flow-en
-    lang: en
+    language: en
     title: Surface-related Volume Flow
+    about: node:quantity-kind/surface-related-volume-flow

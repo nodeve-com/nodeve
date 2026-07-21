@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: long-range-order-parameter-en
-    lang: en
+    language: en
     title: Long-Range Order Parameter
+    about: node:quantity-kind/long-range-order-parameter

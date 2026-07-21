@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: coefficient-of-heat-transfer-en
-    lang: en
+    language: en
     title: Coefficient of Heat Transfer
+    about: node:quantity-kind/coefficient-of-heat-transfer

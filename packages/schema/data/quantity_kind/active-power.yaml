@@ -18,8 +18,10 @@ refs:
     match: broad
 contents:
   - node: active-power-en
-    lang: en
+    language: en
     title: Active Power
+    about: node:quantity-kind/active-power
   - node: active-power-pt
-    lang: pt
+    language: pt
     title: Potência ativa
+    about: node:quantity-kind/active-power

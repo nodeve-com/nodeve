@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: hall-coefficient-en
-    lang: en
+    language: en
     title: Hall Coefficient
+    about: node:quantity-kind/hall-coefficient

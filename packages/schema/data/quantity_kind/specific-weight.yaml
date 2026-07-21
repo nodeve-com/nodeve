@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-weight-en
-    lang: en
+    language: en
     title: Specific Weight
+    about: node:quantity-kind/specific-weight

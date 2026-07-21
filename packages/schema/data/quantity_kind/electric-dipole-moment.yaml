@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electric-dipole-moment-en
-    lang: en
+    language: en
     title: Electric Dipole Moment
+    about: node:quantity-kind/electric-dipole-moment

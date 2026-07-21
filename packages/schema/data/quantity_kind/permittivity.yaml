@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: permittivity-en
-    lang: en
+    language: en
     title: Permittivity
+    about: node:quantity-kind/permittivity

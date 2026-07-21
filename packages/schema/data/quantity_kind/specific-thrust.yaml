@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-thrust-en
-    lang: en
+    language: en
     title: Specific Thrust
+    about: node:quantity-kind/specific-thrust

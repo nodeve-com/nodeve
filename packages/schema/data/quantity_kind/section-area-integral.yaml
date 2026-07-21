@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: section-area-integral-en
-    lang: en
+    language: en
     title: Section Area Integral
+    about: node:quantity-kind/section-area-integral

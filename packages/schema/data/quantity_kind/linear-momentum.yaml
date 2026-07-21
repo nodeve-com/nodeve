@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-momentum-en
-    lang: en
+    language: en
     title: Linear Momentum
+    about: node:quantity-kind/linear-momentum

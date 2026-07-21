@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: displacement-current-en
-    lang: en
+    language: en
     title: Displacement Current
+    about: node:quantity-kind/displacement-current

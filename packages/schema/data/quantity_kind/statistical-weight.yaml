@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: statistical-weight-en
-    lang: en
+    language: en
     title: Statistical Weight
+    about: node:quantity-kind/statistical-weight

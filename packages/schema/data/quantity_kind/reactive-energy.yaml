@@ -14,8 +14,10 @@ refs:
     match: exact
 contents:
   - node: reactive-energy-en
-    lang: en
+    language: en
     title: Reactive Energy
+    about: node:quantity-kind/reactive-energy
   - node: reactive-energy-pt
-    lang: pt
+    language: pt
     title: Energia reativa
+    about: node:quantity-kind/reactive-energy

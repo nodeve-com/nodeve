@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: temperature-based-kinematic-viscosity-en
-    lang: en
+    language: en
     title: Temperature-based Kinematic Viscosity
+    about: node:quantity-kind/temperature-based-kinematic-viscosity

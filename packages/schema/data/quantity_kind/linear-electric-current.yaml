@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: linear-electric-current-en
-    lang: en
+    language: en
     title: Linear Electric Current
+    about: node:quantity-kind/linear-electric-current

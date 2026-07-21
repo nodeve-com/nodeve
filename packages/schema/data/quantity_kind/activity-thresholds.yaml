@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: activity-thresholds-en
-    lang: en
+    language: en
     title: Activity Thresholds
+    about: node:quantity-kind/activity-thresholds

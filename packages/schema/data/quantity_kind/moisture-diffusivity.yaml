@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: moisture-diffusivity-en
-    lang: en
+    language: en
     title: Moisture Diffusivity
+    about: node:quantity-kind/moisture-diffusivity

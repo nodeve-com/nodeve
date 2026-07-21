@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: activity-coefficient-en
-    lang: en
+    language: en
     title: Activity Coefficient
+    about: node:quantity-kind/activity-coefficient

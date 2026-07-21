@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: dynamic-friction-coefficient-en
-    lang: en
+    language: en
     title: Dynamic Friction Coefficient
+    about: node:quantity-kind/dynamic-friction-coefficient

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-absorption-coefficient-en
-    lang: en
+    language: en
     title: Mass Absorption Coefficient
+    about: node:quantity-kind/mass-absorption-coefficient

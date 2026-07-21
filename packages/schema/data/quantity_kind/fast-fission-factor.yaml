@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: fast-fission-factor-en
-    lang: en
+    language: en
     title: Fast Fission Factor
+    about: node:quantity-kind/fast-fission-factor

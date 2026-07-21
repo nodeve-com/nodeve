@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: luminous-flux-en
-    lang: en
+    language: en
     title: Luminous Flux
+    about: node:quantity-kind/luminous-flux

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: kerma-en
-    lang: en
+    language: en
     title: Kerma
+    about: node:quantity-kind/kerma

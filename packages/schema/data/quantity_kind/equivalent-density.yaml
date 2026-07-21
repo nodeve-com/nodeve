@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: equivalent-density-en
-    lang: en
+    language: en
     title: Equivalent Density
+    about: node:quantity-kind/equivalent-density

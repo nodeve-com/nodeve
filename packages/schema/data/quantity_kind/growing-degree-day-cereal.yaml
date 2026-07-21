@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: growing-degree-day-cereal-en
-    lang: en
+    language: en
     title: Growing Degree Days (Cereals)
+    about: node:quantity-kind/growing-degree-day-cereal

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: exposure-rate-of-ionizing-radiation-en
-    lang: en
+    language: en
     title: Exposure Rate of Ionizing Radiation
+    about: node:quantity-kind/exposure-rate-of-ionizing-radiation

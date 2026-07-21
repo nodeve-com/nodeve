@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: transmittance-density-en
-    lang: en
+    language: en
     title: Transmittance Density
+    about: node:quantity-kind/transmittance-density

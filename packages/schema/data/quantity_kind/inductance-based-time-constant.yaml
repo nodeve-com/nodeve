@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: inductance-based-time-constant-en
-    lang: en
+    language: en
     title: Inductance Based Time Constant
+    about: node:quantity-kind/inductance-based-time-constant

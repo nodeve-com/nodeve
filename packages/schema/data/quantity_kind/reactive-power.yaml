@@ -18,8 +18,10 @@ refs:
     match: exact
 contents:
   - node: reactive-power-en
-    lang: en
+    language: en
     title: Reactive Power
+    about: node:quantity-kind/reactive-power
   - node: reactive-power-pt
-    lang: pt
+    language: pt
     title: Potência reativa
+    about: node:quantity-kind/reactive-power

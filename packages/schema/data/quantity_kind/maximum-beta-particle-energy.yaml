@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: maximum-beta-particle-energy-en
-    lang: en
+    language: en
     title: Maximum Beta-Particle Energy
+    about: node:quantity-kind/maximum-beta-particle-energy

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: magnetic-quantum-number-en
-    lang: en
+    language: en
     title: Magnetic Quantum Number
+    about: node:quantity-kind/magnetic-quantum-number

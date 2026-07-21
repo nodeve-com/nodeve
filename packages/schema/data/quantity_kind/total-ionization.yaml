@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: total-ionization-en
-    lang: en
+    language: en
     title: Total Ionization
+    about: node:quantity-kind/total-ionization

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electrolytic-conductivity-en
-    lang: en
+    language: en
     title: Electrolytic Conductivity
+    about: node:quantity-kind/electrolytic-conductivity

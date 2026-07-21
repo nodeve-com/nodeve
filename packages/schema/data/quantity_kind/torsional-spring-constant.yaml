@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: torsional-spring-constant-en
-    lang: en
+    language: en
     title: Torsional Spring Constant
+    about: node:quantity-kind/torsional-spring-constant

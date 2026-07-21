@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: canonical-partition-function-en
-    lang: en
+    language: en
     title: Canonical Partition Function
+    about: node:quantity-kind/canonical-partition-function

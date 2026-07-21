@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: reaction-energy-en
-    lang: en
+    language: en
     title: Reaction Energy
+    about: node:quantity-kind/reaction-energy

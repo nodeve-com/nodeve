@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-insulance-en
-    lang: en
+    language: en
     title: Thermal Insulance
+    about: node:quantity-kind/thermal-insulance

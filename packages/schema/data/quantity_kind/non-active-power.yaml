@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: non-active-power-en
-    lang: en
+    language: en
     title: Non-active Power
+    about: node:quantity-kind/non-active-power

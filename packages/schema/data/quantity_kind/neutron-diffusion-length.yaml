@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: neutron-diffusion-length-en
-    lang: en
+    language: en
     title: Neutron Diffusion Length
+    about: node:quantity-kind/neutron-diffusion-length

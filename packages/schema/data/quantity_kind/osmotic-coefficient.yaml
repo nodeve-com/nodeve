@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: osmotic-coefficient-en
-    lang: en
+    language: en
     title: Osmotic Coefficient
+    about: node:quantity-kind/osmotic-coefficient

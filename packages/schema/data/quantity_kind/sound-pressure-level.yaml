@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: sound-pressure-level-en
-    lang: en
+    language: en
     title: Sound Pressure Level
+    about: node:quantity-kind/sound-pressure-level

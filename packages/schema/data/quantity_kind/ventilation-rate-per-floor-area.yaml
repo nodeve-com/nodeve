@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: ventilation-rate-per-floor-area-en
-    lang: en
+    language: en
     title: Ventilation Rate per Floor Area
+    about: node:quantity-kind/ventilation-rate-per-floor-area

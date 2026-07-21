@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: gradient-en
-    lang: en
+    language: en
     title: Gradient
+    about: node:quantity-kind/gradient

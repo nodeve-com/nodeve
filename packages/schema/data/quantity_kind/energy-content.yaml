@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: energy-content-en
-    lang: en
+    language: en
     title: Energy Content
+    about: node:quantity-kind/energy-content

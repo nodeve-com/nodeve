@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: density-in-combustion-chamber-en
-    lang: en
+    language: en
     title: Density in Combustion Chamber
+    about: node:quantity-kind/density-in-combustion-chamber

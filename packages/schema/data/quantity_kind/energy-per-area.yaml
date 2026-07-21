@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: energy-per-area-en
-    lang: en
+    language: en
     title: Energy per Area
+    about: node:quantity-kind/energy-per-area

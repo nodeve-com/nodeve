@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-logarithmic-ratio-en
-    lang: en
+    language: en
     title: Lineic Logarithmic Ratio
+    about: node:quantity-kind/lineic-logarithmic-ratio

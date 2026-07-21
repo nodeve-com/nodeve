@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: rotary-translatory-motion-conversion-en
-    lang: en
+    language: en
     title: Rotary-translatory Motion Conversion
+    about: node:quantity-kind/rotary-translatory-motion-conversion

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: piece-en
-    lang: en
+    language: en
     title: Piece
+    about: node:quantity-kind/piece

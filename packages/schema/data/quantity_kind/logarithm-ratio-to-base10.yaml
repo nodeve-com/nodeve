@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: logarithm-ratio-to-base10-en
-    lang: en
+    language: en
     title: Logarithm Ratio to Base 10
+    about: node:quantity-kind/logarithm-ratio-to-base10

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: drag-force-en
-    lang: en
+    language: en
     title: Drag Force
+    about: node:quantity-kind/drag-force

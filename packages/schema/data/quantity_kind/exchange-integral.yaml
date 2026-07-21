@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: exchange-integral-en
-    lang: en
+    language: en
     title: Exchange Integral
+    about: node:quantity-kind/exchange-integral

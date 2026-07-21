@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: atomic-mass-en
-    lang: en
+    language: en
     title: Atomic Mass
+    about: node:quantity-kind/atomic-mass

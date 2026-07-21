@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gap-energy-en
-    lang: en
+    language: en
     title: Gap Energy
+    about: node:quantity-kind/gap-energy

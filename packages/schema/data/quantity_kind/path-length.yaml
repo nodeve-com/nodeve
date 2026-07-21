@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: path-length-en
-    lang: en
+    language: en
     title: Path Length
+    about: node:quantity-kind/path-length

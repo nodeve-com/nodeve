@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: thrust-to-mass-ratio-en
-    lang: en
+    language: en
     title: Thrust to Mass Ratio
+    about: node:quantity-kind/thrust-to-mass-ratio

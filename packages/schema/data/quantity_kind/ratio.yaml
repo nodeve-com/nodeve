@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: ratio-en
-    lang: en
+    language: en
     title: Ratio
+    about: node:quantity-kind/ratio

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electromotive-force-en
-    lang: en
+    language: en
     title: Electromotive Force
+    about: node:quantity-kind/electromotive-force

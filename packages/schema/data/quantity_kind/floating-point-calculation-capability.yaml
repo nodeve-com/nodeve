@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: floating-point-calculation-capability-en
-    lang: en
+    language: en
     title: Floating Point Calculation Capability
+    about: node:quantity-kind/floating-point-calculation-capability

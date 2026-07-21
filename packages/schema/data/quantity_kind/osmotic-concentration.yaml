@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: osmotic-concentration-en
-    lang: en
+    language: en
     title: Osmotic Concentration
+    about: node:quantity-kind/osmotic-concentration

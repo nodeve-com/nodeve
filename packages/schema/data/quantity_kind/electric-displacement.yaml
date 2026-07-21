@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electric-displacement-en
-    lang: en
+    language: en
     title: Electric Displacement
+    about: node:quantity-kind/electric-displacement

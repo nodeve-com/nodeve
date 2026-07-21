@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: slowing-down-area-en
-    lang: en
+    language: en
     title: Slowing-Down Area
+    about: node:quantity-kind/slowing-down-area

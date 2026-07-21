@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: seebeck-coefficient-en
-    lang: en
+    language: en
     title: Seebeck Coefficient
+    about: node:quantity-kind/seebeck-coefficient

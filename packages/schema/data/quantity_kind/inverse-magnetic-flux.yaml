@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: inverse-magnetic-flux-en
-    lang: en
+    language: en
     title: Inverse Magnetic Flux
+    about: node:quantity-kind/inverse-magnetic-flux

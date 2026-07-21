@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: cutoff-current-rating-en
-    lang: en
+    language: en
     title: I²t-value
+    about: node:quantity-kind/cutoff-current-rating

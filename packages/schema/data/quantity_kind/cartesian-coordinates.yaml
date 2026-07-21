@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: cartesian-coordinates-en
-    lang: en
+    language: en
     title: Cartesian Coordinates
+    about: node:quantity-kind/cartesian-coordinates

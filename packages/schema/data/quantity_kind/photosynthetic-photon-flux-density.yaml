@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: photosynthetic-photon-flux-density-en
-    lang: en
+    language: en
     title: Photosynthetic Photon Flux Density
+    about: node:quantity-kind/photosynthetic-photon-flux-density

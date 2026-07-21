@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: energy-density-en
-    lang: en
+    language: en
     title: Energy Density
+    about: node:quantity-kind/energy-density

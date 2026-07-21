@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-optical-rotational-ability-en
-    lang: en
+    language: en
     title: Specific Optical Rotational Ability
+    about: node:quantity-kind/specific-optical-rotational-ability

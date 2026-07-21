@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: particle-fluence-en
-    lang: en
+    language: en
     title: Particle Fluence
+    about: node:quantity-kind/particle-fluence

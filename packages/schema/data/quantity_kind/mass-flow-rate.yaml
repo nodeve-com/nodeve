@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-flow-rate-en
-    lang: en
+    language: en
     title: Mass Flow Rate
+    about: node:quantity-kind/mass-flow-rate

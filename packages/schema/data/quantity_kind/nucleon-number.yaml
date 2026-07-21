@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: nucleon-number-en
-    lang: en
+    language: en
     title: Nucleon Number
+    about: node:quantity-kind/nucleon-number

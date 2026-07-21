@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: unbalance-en
-    lang: en
+    language: en
     title: Unbalance
+    about: node:quantity-kind/unbalance

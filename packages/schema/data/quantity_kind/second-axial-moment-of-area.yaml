@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: second-axial-moment-of-area-en
-    lang: en
+    language: en
     title: Second Axial Moment of Area
+    about: node:quantity-kind/second-axial-moment-of-area

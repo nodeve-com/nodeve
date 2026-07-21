@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: warm-receptor-threshold-en
-    lang: en
+    language: en
     title: Warm Receptor Threshold
+    about: node:quantity-kind/warm-receptor-threshold

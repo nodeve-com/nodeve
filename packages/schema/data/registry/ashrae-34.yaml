@@ -3,8 +3,10 @@ slug: ashrae-34
 url: https://www.ashrae.org/technical-resources/standards-and-guidelines
 contents:
   - node: ashrae-34-en
-    lang: en
+    language: en
     title: ASHRAE Standard 34 — Refrigerant designations & safety classification
+    about: node:registry/ashrae-34
   - node: ashrae-34-pt
-    lang: pt
+    language: pt
     title: ASHRAE Standard 34 — Designações e classificação de segurança de refrigerantes
+    about: node:registry/ashrae-34

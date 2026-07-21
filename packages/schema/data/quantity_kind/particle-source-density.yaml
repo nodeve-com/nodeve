@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: particle-source-density-en
-    lang: en
+    language: en
     title: Particle Source Density
+    about: node:quantity-kind/particle-source-density

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: turbidity-en
-    lang: en
+    language: en
     title: Turbidity
+    about: node:quantity-kind/turbidity

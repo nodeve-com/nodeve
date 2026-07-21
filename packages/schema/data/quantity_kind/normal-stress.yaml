@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: normal-stress-en
-    lang: en
+    language: en
     title: Normal Stress
+    about: node:quantity-kind/normal-stress

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: thermal-diffusion-ratio-coefficient-en
-    lang: en
+    language: en
     title: Thermal Diffusion Coefficient
+    about: node:quantity-kind/thermal-diffusion-ratio-coefficient

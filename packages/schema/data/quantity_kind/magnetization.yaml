@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: magnetization-en
-    lang: en
+    language: en
     title: Magnetization
+    about: node:quantity-kind/magnetization

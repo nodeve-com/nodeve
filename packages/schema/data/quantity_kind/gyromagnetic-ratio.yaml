@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: gyromagnetic-ratio-en
-    lang: en
+    language: en
     title: Gyromagnetic Ratio
+    about: node:quantity-kind/gyromagnetic-ratio

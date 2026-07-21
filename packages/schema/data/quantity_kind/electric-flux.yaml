@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electric-flux-en
-    lang: en
+    language: en
     title: Electric Flux
+    about: node:quantity-kind/electric-flux

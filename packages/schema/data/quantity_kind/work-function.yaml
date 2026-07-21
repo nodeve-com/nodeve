@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: work-function-en
-    lang: en
+    language: en
     title: Work Function
+    about: node:quantity-kind/work-function

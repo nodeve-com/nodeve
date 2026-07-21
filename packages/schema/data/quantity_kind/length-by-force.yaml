@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: length-by-force-en
-    lang: en
+    language: en
     title: Length Force
+    about: node:quantity-kind/length-by-force

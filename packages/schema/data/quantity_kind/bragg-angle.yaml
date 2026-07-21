@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: bragg-angle-en
-    lang: en
+    language: en
     title: Bragg Angle
+    about: node:quantity-kind/bragg-angle

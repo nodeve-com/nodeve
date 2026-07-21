@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: second-polar-moment-of-area-en
-    lang: en
+    language: en
     title: Second Polar Moment of Area
+    about: node:quantity-kind/second-polar-moment-of-area

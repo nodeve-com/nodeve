@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: cost-per-mass-en
-    lang: en
+    language: en
     title: Cost per Mass
+    about: node:quantity-kind/cost-per-mass

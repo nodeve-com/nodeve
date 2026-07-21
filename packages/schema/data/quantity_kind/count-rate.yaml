@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: count-rate-en
-    lang: en
+    language: en
     title: Count Rate
+    about: node:quantity-kind/count-rate

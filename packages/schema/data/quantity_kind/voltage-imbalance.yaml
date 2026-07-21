@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: voltage-imbalance-en
-    lang: en
+    language: en
     title: Voltage Imbalance
+    about: node:quantity-kind/voltage-imbalance

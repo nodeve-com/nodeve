@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: acceleration-of-gravity-en
-    lang: en
+    language: en
     title: Acceleration of Gravity
+    about: node:quantity-kind/acceleration-of-gravity

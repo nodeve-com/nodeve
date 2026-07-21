@@ -8,8 +8,10 @@ refs:
     match: exact
 contents:
   - node: azimuth-en
-    lang: en
+    language: en
     title: Azimuth
+    about: node:quantity-kind/azimuth
   - node: azimuth-pt
-    lang: pt
+    language: pt
     title: Azimute
+    about: node:quantity-kind/azimuth

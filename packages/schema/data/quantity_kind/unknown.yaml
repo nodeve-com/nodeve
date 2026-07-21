@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: unknown-en
-    lang: en
+    language: en
     title: Unknown
+    about: node:quantity-kind/unknown

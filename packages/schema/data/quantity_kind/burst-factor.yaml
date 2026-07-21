@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: burst-factor-en
-    lang: en
+    language: en
     title: Burst Factor
+    about: node:quantity-kind/burst-factor

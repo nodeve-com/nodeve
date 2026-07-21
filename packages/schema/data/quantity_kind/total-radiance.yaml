@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: total-radiance-en
-    lang: en
+    language: en
     title: Total Radiance
+    about: node:quantity-kind/total-radiance

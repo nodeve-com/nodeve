@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: generalized-coordinate-en
-    lang: en
+    language: en
     title: Generalized Coordinate
+    about: node:quantity-kind/generalized-coordinate

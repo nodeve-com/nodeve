@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: migration-length-en
-    lang: en
+    language: en
     title: Migration Length
+    about: node:quantity-kind/migration-length

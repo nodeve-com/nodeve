@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: eccentricity-of-orbit-en
-    lang: en
+    language: en
     title: Eccentricity of Orbit
+    about: node:quantity-kind/eccentricity-of-orbit

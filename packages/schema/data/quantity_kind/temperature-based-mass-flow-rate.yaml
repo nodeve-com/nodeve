@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: temperature-based-mass-flow-rate-en
-    lang: en
+    language: en
     title: Temperature-based Mass Flow Rate
+    about: node:quantity-kind/temperature-based-mass-flow-rate

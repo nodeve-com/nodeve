@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: thermodynamic-temperature-en
-    lang: en
+    language: en
     title: Thermodynamic Temperature
+    about: node:quantity-kind/thermodynamic-temperature

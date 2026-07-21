@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: mechanical-impedance-en
-    lang: en
+    language: en
     title: Mechanical Impedance
+    about: node:quantity-kind/mechanical-impedance

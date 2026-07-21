@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: energy-fluence-rate-en
-    lang: en
+    language: en
     title: Energy Fluence Rate
+    about: node:quantity-kind/energy-fluence-rate

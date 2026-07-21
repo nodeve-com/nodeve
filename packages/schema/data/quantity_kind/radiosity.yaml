@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: radiosity-en
-    lang: en
+    language: en
     title: Radiosity
+    about: node:quantity-kind/radiosity

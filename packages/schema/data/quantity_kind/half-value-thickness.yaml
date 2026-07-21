@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: half-value-thickness-en
-    lang: en
+    language: en
     title: Half-Value Thickness
+    about: node:quantity-kind/half-value-thickness

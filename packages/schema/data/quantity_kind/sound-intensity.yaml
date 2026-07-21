@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: sound-intensity-en
-    lang: en
+    language: en
     title: Sound Intensity
+    about: node:quantity-kind/sound-intensity

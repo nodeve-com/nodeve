@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: byte-data-volume-en
-    lang: en
+    language: en
     title: Byte Data Volume
+    about: node:quantity-kind/byte-data-volume

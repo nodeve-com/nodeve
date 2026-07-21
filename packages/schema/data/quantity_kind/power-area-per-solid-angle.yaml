@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-area-per-solid-angle-en
-    lang: en
+    language: en
     title: Power Area per Solid Angle
+    about: node:quantity-kind/power-area-per-solid-angle

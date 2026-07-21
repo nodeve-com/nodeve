@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-line-density-en
-    lang: en
+    language: en
     title: Electric Charge Line Density
+    about: node:quantity-kind/electric-charge-line-density

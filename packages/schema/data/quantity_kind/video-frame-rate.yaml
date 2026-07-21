@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: video-frame-rate-en
-    lang: en
+    language: en
     title: Video Frame Rate
+    about: node:quantity-kind/video-frame-rate

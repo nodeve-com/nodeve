@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: atomic-number-en
-    lang: en
+    language: en
     title: Atomic Number
+    about: node:quantity-kind/atomic-number

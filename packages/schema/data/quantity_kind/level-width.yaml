@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: level-width-en
-    lang: en
+    language: en
     title: Level Width
+    about: node:quantity-kind/level-width

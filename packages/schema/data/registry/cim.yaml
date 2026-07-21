@@ -4,8 +4,10 @@ url: https://cim.ucaiug.io/
 iri_template: http://iec.ch/TC57/CIM100#{id}
 contents:
   - node: cim-en
-    lang: en
+    language: en
     title: IEC CIM (Common Information Model, IEC 61970/61968)
+    about: node:registry/cim
   - node: cim-pt
-    lang: pt
+    language: pt
     title: IEC CIM (Modelo de Informação Comum, IEC 61970/61968)
+    about: node:registry/cim

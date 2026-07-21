@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: linear-acceleration-en
-    lang: en
+    language: en
     title: Linear Acceleration
+    about: node:quantity-kind/linear-acceleration

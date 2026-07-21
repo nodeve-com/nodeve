@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: hyperfine-structure-quantum-number-en
-    lang: en
+    language: en
     title: Hyperfine Structure Quantum Number
+    about: node:quantity-kind/hyperfine-structure-quantum-number

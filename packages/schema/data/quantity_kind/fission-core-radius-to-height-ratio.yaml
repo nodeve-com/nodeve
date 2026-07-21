@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: fission-core-radius-to-height-ratio-en
-    lang: en
+    language: en
     title: Fission Core Radius to Height Ratio
+    about: node:quantity-kind/fission-core-radius-to-height-ratio

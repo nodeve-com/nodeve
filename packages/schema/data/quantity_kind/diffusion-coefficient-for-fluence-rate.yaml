@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diffusion-coefficient-for-fluence-rate-en
-    lang: en
+    language: en
     title: Diffusion Coefficient for Fluence Rate
+    about: node:quantity-kind/diffusion-coefficient-for-fluence-rate

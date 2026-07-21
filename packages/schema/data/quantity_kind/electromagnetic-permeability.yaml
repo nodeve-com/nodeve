@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electromagnetic-permeability-en
-    lang: en
+    language: en
     title: Permeability
+    about: node:quantity-kind/electromagnetic-permeability

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linear-absorption-coefficient-en
-    lang: en
+    language: en
     title: Linear Absorption Coefficient
+    about: node:quantity-kind/linear-absorption-coefficient

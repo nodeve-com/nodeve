@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: byte-transmission-rate-en
-    lang: en
+    language: en
     title: Byte Transmission Rate
+    about: node:quantity-kind/byte-transmission-rate

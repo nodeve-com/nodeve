@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: surface-activity-density-en
-    lang: en
+    language: en
     title: Surface Activity Density
+    about: node:quantity-kind/surface-activity-density

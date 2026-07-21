@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: upper-critical-magnetic-flux-density-en
-    lang: en
+    language: en
     title: Upper Critical Magnetic Flux Density
+    about: node:quantity-kind/upper-critical-magnetic-flux-density

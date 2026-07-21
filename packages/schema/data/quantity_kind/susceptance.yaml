@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: susceptance-en
-    lang: en
+    language: en
     title: Susceptance
+    about: node:quantity-kind/susceptance

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: strain-energy-release-rate-en
-    lang: en
+    language: en
     title: Strain Energy Release Rate
+    about: node:quantity-kind/strain-energy-release-rate

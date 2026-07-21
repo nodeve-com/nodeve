@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: surge-impedance-of-the-medium-en
-    lang: en
+    language: en
     title: Surge Impedance of the Medium
+    about: node:quantity-kind/surge-impedance-of-the-medium

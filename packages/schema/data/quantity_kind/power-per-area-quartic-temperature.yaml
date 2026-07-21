@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-per-area-quartic-temperature-en
-    lang: en
+    language: en
     title: Power per Area Quartic Temperature
+    about: node:quantity-kind/power-per-area-quartic-temperature

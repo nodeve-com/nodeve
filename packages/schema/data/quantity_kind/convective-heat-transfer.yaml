@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: convective-heat-transfer-en
-    lang: en
+    language: en
     title: Convective Heat Transfer
+    about: node:quantity-kind/convective-heat-transfer

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: infinite-multiplication-factor-en
-    lang: en
+    language: en
     title: Infinite Multiplication Factor
+    about: node:quantity-kind/infinite-multiplication-factor

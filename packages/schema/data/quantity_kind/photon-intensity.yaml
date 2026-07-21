@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: photon-intensity-en
-    lang: en
+    language: en
     title: Photon Intensity
+    about: node:quantity-kind/photon-intensity

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: coercivity-en
-    lang: en
+    language: en
     title: Coercivity
+    about: node:quantity-kind/coercivity

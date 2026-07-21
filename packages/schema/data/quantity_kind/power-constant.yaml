@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-constant-en
-    lang: en
+    language: en
     title: Power Constant
+    about: node:quantity-kind/power-constant

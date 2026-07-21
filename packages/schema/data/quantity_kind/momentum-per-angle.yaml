@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: momentum-per-angle-en
-    lang: en
+    language: en
     title: Momentum per Angle
+    about: node:quantity-kind/momentum-per-angle

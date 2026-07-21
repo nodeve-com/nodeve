@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: concentration-en
-    lang: en
+    language: en
     title: Concentration
+    about: node:quantity-kind/concentration

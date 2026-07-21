@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linear-expansion-coefficient-en
-    lang: en
+    language: en
     title: Linear Expansion Coefficient
+    about: node:quantity-kind/linear-expansion-coefficient

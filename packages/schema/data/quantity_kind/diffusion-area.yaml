@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diffusion-area-en
-    lang: en
+    language: en
     title: Diffusion Area
+    about: node:quantity-kind/diffusion-area

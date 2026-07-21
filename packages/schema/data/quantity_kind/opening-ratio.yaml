@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: opening-ratio-en
-    lang: en
+    language: en
     title: Opening Ratio
+    about: node:quantity-kind/opening-ratio

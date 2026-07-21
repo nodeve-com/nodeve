@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: constringence-en
-    lang: en
+    language: en
     title: Constringence
+    about: node:quantity-kind/constringence

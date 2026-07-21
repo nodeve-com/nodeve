@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-energy-transfer-coefficient-en
-    lang: en
+    language: en
     title: Mass Energy Transfer Coefficient
+    about: node:quantity-kind/mass-energy-transfer-coefficient

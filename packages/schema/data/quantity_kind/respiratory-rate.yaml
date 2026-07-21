@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: respiratory-rate-en
-    lang: en
+    language: en
     title: Respiratory Rate
+    about: node:quantity-kind/respiratory-rate

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: force-per-angle-en
-    lang: en
+    language: en
     title: Force per Angle
+    about: node:quantity-kind/force-per-angle

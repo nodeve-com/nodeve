@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: total-current-en
-    lang: en
+    language: en
     title: Total Current
+    about: node:quantity-kind/total-current

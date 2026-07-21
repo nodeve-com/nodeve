@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diameter-en
-    lang: en
+    language: en
     title: Diameter
+    about: node:quantity-kind/diameter

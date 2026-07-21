@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: conductance-en
-    lang: en
+    language: en
     title: Conductance
+    about: node:quantity-kind/conductance

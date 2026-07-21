@@ -9,5 +9,6 @@ refs:
     match: exact
 contents:
   - node: kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity-en
-    lang: en
+    language: en
     title: kinematic viscosity or diffusion constant or thermal diffusivity
+    about: node:quantity-kind/kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity

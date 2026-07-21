@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: lineic-resistance-en
-    lang: en
+    language: en
     title: Lineic Resistance
+    about: node:quantity-kind/lineic-resistance

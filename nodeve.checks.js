@@ -4,20 +4,26 @@
 // date-fns exports) — regen with `nodeve-build-lib-names` after a bump so a local
 // fn can't quietly reinvent a blessed-lib function.
 
-// grimoire's generated/ is machine output — never hand-maintained, so the name/size/clone
-// gates (whose remedy is "extract & import" / "split responsibilities") don't apply. Excluded
-// from every file-scanning check via the shared `ignore` glob.
-const GENERATED = 'packages/grimoire/src/generated/**';
+// Legacy package: frozen while schema replaces it.
+const GRIMOIRE = 'packages/grimoire/**';
 
 export default {
 	docTokens: {
 		globs: ['README.md', 'packages/*/README.md'],
+		ignore: [GRIMOIRE],
+	},
+	reshape: {
+		ignore: [GRIMOIRE],
+	},
+	pluralArrays: {
+		ignore: [GRIMOIRE],
+		allowlist: [],
 	},
 	clones: {
-		ignore: [GENERATED],
+		ignore: [GRIMOIRE],
 	},
 	inlineDupes: {
-		ignore: [GENERATED],
+		ignore: [GRIMOIRE],
 		// nodeve is library-only (no route files), so an exported name in 2+ modules is a second
 		// source of truth just like a private one — flag both. Also covers type/interface decls.
 		includeExported: true,
@@ -30,15 +36,10 @@ export default {
 		allowlist: [],
 	},
 	fileSize: {
-		ignore: [GENERATED],
-		// generate.ts is one cohesive codegen orchestrator (DATA-first bake, one responsibility
-		// that runs long); the emit helpers already live in kit/.
-		overrides: [{ glob: 'packages/grimoire/kit/generate.ts', tiers: { fail: { maxLines: 400 } } }],
-	},
-	pluralArrays: {
-		// `parts` is a single SensorIdParts bag, not a list — the local mirrors its type name, and
-		// scopedSensorId/sensorId take the same `parts: SensorIdParts` param. Renaming reads worse.
-		allowlist: ['packages/grimoire/src/bake-site.ts::parts'],
+		ignore: [GRIMOIRE],
+		warn: { maxLines: 225 },
+		fail: { maxLines: 300 },
+		overrides: [],
 	},
 	helperCollisions: {
 		libs: ['remeda', 'date-fns', 'remeda-humps'],

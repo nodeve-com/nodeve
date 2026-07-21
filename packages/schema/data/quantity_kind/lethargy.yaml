@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: lethargy-en
-    lang: en
+    language: en
     title: Lethargy
+    about: node:quantity-kind/lethargy

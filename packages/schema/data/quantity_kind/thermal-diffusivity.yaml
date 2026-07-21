@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: thermal-diffusivity-en
-    lang: en
+    language: en
     title: Thermal Diffusivity
+    about: node:quantity-kind/thermal-diffusivity

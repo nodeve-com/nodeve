@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: henrys-law-volatility-constant-en
-    lang: en
+    language: en
     title: Henry's Law Volatility Constant
+    about: node:quantity-kind/henrys-law-volatility-constant

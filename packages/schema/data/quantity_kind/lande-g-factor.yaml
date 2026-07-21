@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: lande-g-factor-en
-    lang: en
+    language: en
     title: Lande g-Factor
+    about: node:quantity-kind/lande-g-factor

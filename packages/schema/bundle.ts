@@ -2,6 +2,7 @@
 // linkml-sqldb dumps. The slot→dir mapping is READ from the Catalog class —
 // each bundle slot's range names a class, and that class's sql_table names its
 // data dir. Adding a table to the container is the only edit.
+import { createHash } from 'node:crypto'
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { parse, stringify } from 'yaml'
@@ -15,6 +16,7 @@ if (!container) throw new Error('nodeve.yaml: no Catalog container class')
 
 const bundle: Record<string, unknown[]> = {}
 for (const [slot, { range }] of Object.entries(container)) {
+  if (range === 'Node') continue // derived below, no data dir
   const dir = classes[range]?.annotations?.sql_table
   if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`)
   bundle[slot] = readdirSync(at(`data/${dir}`))
@@ -22,6 +24,62 @@ for (const [slot, { range }] of Object.entries(container)) {
     .sort()
     .map((f) => parse(readFileSync(at(`data/${dir}/${f}`), 'utf8')))
 }
+
+// ─── node rows ───────────────────────────────────────────────────────────────
+// The id space, DERIVED — where a thing is authored already states its identity,
+// so storing it back would be a second copy of the directory structure.
+// slug_qualified = the ancestor trail (docs/levels.md); code = Crockford base32
+// of sha1(trail)'s last 5 bytes, a url shortener over the PK. The CURIE is
+// hashed, never a url — domains are a deployment fact.
+
+const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+
+function codeOf(slugQualified: string): string {
+  const tail = createHash('sha1').update(slugQualified).digest().subarray(-5)
+  let bits = 0n
+  for (const b of tail) bits = (bits << 8n) | BigInt(b)
+  let out = ''
+  for (let i = 7; i >= 0; i--) out += CROCKFORD[Number((bits >> BigInt(i * 5)) & 31n)]
+  return out
+}
+
+/** every map naming a thing carries `slug` or `role` — features key by role,
+ * everything else by slug. One segment per level, no segment dissolves. */
+function collectPaths(value: unknown, trail: string[], out: string[]) {
+  if (Array.isArray(value)) {
+    for (const item of value) collectPaths(item, trail, out)
+    return
+  }
+  if (!value || typeof value !== 'object') return
+  const row = value as Record<string, unknown>
+  const segment = [row.slug, row.role].find((s) => typeof s === 'string') as string | undefined
+  const next = segment === undefined ? trail : [...trail, segment]
+  if (segment !== undefined) out.push(next.join('/'))
+  for (const child of Object.values(row)) collectPaths(child, next, out)
+}
+
+const paths: string[] = []
+for (const rows of Object.values(bundle)) {
+  for (const row of rows) {
+    // permalink root: a catalog row roots at its device_type's last segment
+    // (node:device-type/inverter → inverter); a definition row's own CURIE
+    // already names its layer (node:feature-type/ac-phase → feature-type).
+    const doc = row as Record<string, unknown>
+    const designator = doc.device_type ?? doc.node
+    if (typeof designator !== 'string') throw new Error(`${JSON.stringify(doc.slug)}: no device_type or node designator`)
+    const segments = designator.replace(/^node:/, '').split('/')
+    collectPaths(doc, [doc.device_type ? segments.at(-1)! : segments[0]], paths)
+  }
+}
+
+const seen = new Set<string>()
+for (const path of paths) {
+  if (seen.has(path)) throw new Error(`duplicate node path: node:${path}`)
+  seen.add(path)
+}
+bundle.nodes = [...seen]
+  .sort()
+  .map((path) => ({ slug_qualified: `node:${path}`, code: codeOf(`node:${path}`) }))
 
 mkdirSync(at('gen'), { recursive: true })
 writeFileSync(

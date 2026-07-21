@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: elevation-relative-to-nap-en
-    lang: en
+    language: en
     title: Elevation Relative to NAP
+    about: node:quantity-kind/elevation-relative-to-nap

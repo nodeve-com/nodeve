@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: luminous-intensity-en
-    lang: en
+    language: en
     title: Luminous Intensity
+    about: node:quantity-kind/luminous-intensity

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electron-density-en
-    lang: en
+    language: en
     title: Electron Density
+    about: node:quantity-kind/electron-density

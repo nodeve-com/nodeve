@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: time-temperature-en
-    lang: en
+    language: en
     title: Time Temperature
+    about: node:quantity-kind/time-temperature

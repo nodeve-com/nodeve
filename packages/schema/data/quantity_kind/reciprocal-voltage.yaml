@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reciprocal-voltage-en
-    lang: en
+    language: en
     title: Reciprocal Voltage
+    about: node:quantity-kind/reciprocal-voltage

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mean-energy-imparted-en
-    lang: en
+    language: en
     title: Mean Energy Imparted
+    about: node:quantity-kind/mean-energy-imparted

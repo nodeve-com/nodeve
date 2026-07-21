@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-volume-flow-en
-    lang: en
+    language: en
     title: Pressure-based Volume Flow
+    about: node:quantity-kind/pressure-based-volume-flow

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: motor-constant-en
-    lang: en
+    language: en
     title: Motor Constant
+    about: node:quantity-kind/motor-constant

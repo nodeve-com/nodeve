@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: olfactory-threshold-en
-    lang: en
+    language: en
     title: Olfactory Threshold
+    about: node:quantity-kind/olfactory-threshold

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: logarithmic-frequency-interval-en
-    lang: en
+    language: en
     title: Logarithmic Frequency Interval
+    about: node:quantity-kind/logarithmic-frequency-interval

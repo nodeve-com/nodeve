@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: time-related-logarithmic-ratio-en
-    lang: en
+    language: en
     title: Time-related Logarithmic Ratio
+    about: node:quantity-kind/time-related-logarithmic-ratio

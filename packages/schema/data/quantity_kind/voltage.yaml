@@ -17,8 +17,10 @@ refs:
     match: exact
 contents:
   - node: voltage-en
-    lang: en
+    language: en
     title: Voltage
+    about: node:quantity-kind/voltage
   - node: voltage-pt
-    lang: pt
+    language: pt
     title: Tensão
+    about: node:quantity-kind/voltage

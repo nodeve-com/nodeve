@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gross-tonnage-en
-    lang: en
+    language: en
     title: Gross Tonnage
+    about: node:quantity-kind/gross-tonnage

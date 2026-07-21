@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: angle-of-optical-rotation-en
-    lang: en
+    language: en
     title: Angle of Optical Rotation
+    about: node:quantity-kind/angle-of-optical-rotation

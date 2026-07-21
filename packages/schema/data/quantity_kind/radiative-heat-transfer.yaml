@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: radiative-heat-transfer-en
-    lang: en
+    language: en
     title: Radiative Heat Transfer
+    about: node:quantity-kind/radiative-heat-transfer

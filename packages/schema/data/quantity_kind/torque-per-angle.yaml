@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: torque-per-angle-en
-    lang: en
+    language: en
     title: Torque per Angle
+    about: node:quantity-kind/torque-per-angle

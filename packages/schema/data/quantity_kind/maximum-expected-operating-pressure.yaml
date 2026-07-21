@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: maximum-expected-operating-pressure-en
-    lang: en
+    language: en
     title: Maximum Expected Operating Pressure
+    about: node:quantity-kind/maximum-expected-operating-pressure

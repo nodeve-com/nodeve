@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: burn-time-en
-    lang: en
+    language: en
     title: Burn Time
+    about: node:quantity-kind/burn-time

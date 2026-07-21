@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-polarizability-en
-    lang: en
+    language: en
     title: Electric Polarizability
+    about: node:quantity-kind/electric-polarizability

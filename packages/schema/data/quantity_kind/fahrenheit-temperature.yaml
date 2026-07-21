@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: fahrenheit-temperature-en
-    lang: en
+    language: en
     title: Fahrenheit Temperature
+    about: node:quantity-kind/fahrenheit-temperature

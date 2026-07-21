@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: specific-heat-capacity-en
-    lang: en
+    language: en
     title: Specific Heat Capacity
+    about: node:quantity-kind/specific-heat-capacity

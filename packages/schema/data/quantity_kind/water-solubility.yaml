@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: water-solubility-en
-    lang: en
+    language: en
     title: Water Solubility
+    about: node:quantity-kind/water-solubility

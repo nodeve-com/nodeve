@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: strain-en
-    lang: en
+    language: en
     title: Strain
+    about: node:quantity-kind/strain

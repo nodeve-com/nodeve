@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: generalized-force-en
-    lang: en
+    language: en
     title: Generalized Force
+    about: node:quantity-kind/generalized-force

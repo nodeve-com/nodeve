@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-impulse-by-mass-en
-    lang: en
+    language: en
     title: Specific Impulse by Mass
+    about: node:quantity-kind/specific-impulse-by-mass

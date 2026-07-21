@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mole-fraction-en
-    lang: en
+    language: en
     title: Mole Fraction
+    about: node:quantity-kind/mole-fraction

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: absorptance-en
-    lang: en
+    language: en
     title: Absorptance
+    about: node:quantity-kind/absorptance

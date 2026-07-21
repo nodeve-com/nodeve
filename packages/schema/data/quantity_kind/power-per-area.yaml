@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-per-area-en
-    lang: en
+    language: en
     title: Power per Area
+    about: node:quantity-kind/power-per-area

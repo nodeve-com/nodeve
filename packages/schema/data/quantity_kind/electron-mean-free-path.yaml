@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: electron-mean-free-path-en
-    lang: en
+    language: en
     title: Electron Mean Free Path
+    about: node:quantity-kind/electron-mean-free-path

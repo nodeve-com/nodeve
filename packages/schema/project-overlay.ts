@@ -18,6 +18,7 @@ const curieSlug = (curie: string) => curie.split('/').pop()!
 
 const featureTypes = load('data/feature_type/')
 const deviceTypes = load('data/device_type/')
+const { prefixes } = parse(readFileSync(dir('linkml/nodeve-slots.yaml'), 'utf8'))
 
 const enums: Record<string, unknown> = {}
 const classes: Record<string, unknown> = {}
@@ -84,11 +85,7 @@ for (const dt of deviceTypes) {
 const overlay = {
   id: 'https://nodeve.com/schema/projected',
   name: 'nodeve-projected',
-  prefixes: {
-    linkml: 'https://w3id.org/linkml/',
-    nodeve: 'https://nodeve.com/schema/',
-    node: 'https://nodeve.com/node/',
-  },
+  prefixes,
   default_prefix: 'nodeve',
   default_range: 'string',
   imports: ['../linkml/nodeve'],

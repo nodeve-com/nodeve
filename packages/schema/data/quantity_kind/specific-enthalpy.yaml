@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-enthalpy-en
-    lang: en
+    language: en
     title: Specific Enthalpy
+    about: node:quantity-kind/specific-enthalpy

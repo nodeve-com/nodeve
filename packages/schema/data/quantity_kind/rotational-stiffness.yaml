@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: rotational-stiffness-en
-    lang: en
+    language: en
     title: Rotational Stiffness
+    about: node:quantity-kind/rotational-stiffness

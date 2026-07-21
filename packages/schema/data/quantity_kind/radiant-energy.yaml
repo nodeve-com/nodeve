@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: radiant-energy-en
-    lang: en
+    language: en
     title: Radiant Energy
+    about: node:quantity-kind/radiant-energy

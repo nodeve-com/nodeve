@@ -3,8 +3,10 @@ slug: rfc-5424
 url: https://www.rfc-editor.org/rfc/rfc5424
 contents:
   - node: rfc-5424-en
-    lang: en
+    language: en
     title: Syslog severity (RFC 5424)
+    about: node:registry/rfc-5424
   - node: rfc-5424-pt
-    lang: pt
+    language: pt
     title: Severidade Syslog (RFC 5424)
+    about: node:registry/rfc-5424

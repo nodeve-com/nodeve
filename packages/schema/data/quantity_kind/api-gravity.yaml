@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: api-gravity-en
-    lang: en
+    language: en
     title: API Gravity
+    about: node:quantity-kind/api-gravity

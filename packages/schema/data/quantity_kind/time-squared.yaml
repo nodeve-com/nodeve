@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: time-squared-en
-    lang: en
+    language: en
     title: Time Squared
+    about: node:quantity-kind/time-squared

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: max-sea-level-thrust-en
-    lang: en
+    language: en
     title: Max Sea Level Thrust
+    about: node:quantity-kind/max-sea-level-thrust

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: sound-exposure-level-en
-    lang: en
+    language: en
     title: Sound Exposure Level
+    about: node:quantity-kind/sound-exposure-level

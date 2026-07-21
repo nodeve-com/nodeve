@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: inverse-pressure-en
-    lang: en
+    language: en
     title: Inverse Pressure
+    about: node:quantity-kind/inverse-pressure

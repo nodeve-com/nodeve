@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: cyclotron-angular-frequency-en
-    lang: en
+    language: en
     title: Larmor Angular Frequency
+    about: node:quantity-kind/cyclotron-angular-frequency

@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: reserve-mass-en
-    lang: en
+    language: en
     title: Reserve Mass
+    about: node:quantity-kind/reserve-mass

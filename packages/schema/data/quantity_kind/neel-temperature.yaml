@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: neel-temperature-en
-    lang: en
+    language: en
     title: Neel Temperature
+    about: node:quantity-kind/neel-temperature

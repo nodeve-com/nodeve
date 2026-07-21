@@ -3,8 +3,10 @@ slug: modbus-org
 url: https://www.modbus.org/specs.php
 contents:
   - node: modbus-org-en
-    lang: en
+    language: en
     title: Modbus Organization
+    about: node:registry/modbus-org
   - node: modbus-org-pt
-    lang: pt
+    language: pt
     title: Modbus Organization
+    about: node:registry/modbus-org

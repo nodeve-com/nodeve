@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: gruneisen-parameter-en
-    lang: en
+    language: en
     title: Gruneisen Parameter
+    about: node:quantity-kind/gruneisen-parameter

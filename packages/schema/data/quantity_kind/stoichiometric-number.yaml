@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: stoichiometric-number-en
-    lang: en
+    language: en
     title: Stoichiometric Number
+    about: node:quantity-kind/stoichiometric-number

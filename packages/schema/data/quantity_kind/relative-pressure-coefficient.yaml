@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: relative-pressure-coefficient-en
-    lang: en
+    language: en
     title: Relative Pressure Coefficient
+    about: node:quantity-kind/relative-pressure-coefficient

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: poisson-ratio-en
-    lang: en
+    language: en
     title: Poisson Ratio
+    about: node:quantity-kind/poisson-ratio

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: magnetic-flux-density-en
-    lang: en
+    language: en
     title: Magnetic Flux Density
+    about: node:quantity-kind/magnetic-flux-density

@@ -8,8 +8,10 @@ refs:
     match: exact
 contents:
   - node: tilt-en
-    lang: en
+    language: en
     title: Tilt
+    about: node:quantity-kind/tilt
   - node: tilt-pt
-    lang: pt
+    language: pt
     title: Inclinação
+    about: node:quantity-kind/tilt

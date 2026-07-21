@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: chemical-consumption-per-mass-en
-    lang: en
+    language: en
     title: Chemical Consumption per Mass
+    about: node:quantity-kind/chemical-consumption-per-mass

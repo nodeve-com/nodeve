@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-per-area-en
-    lang: en
+    language: en
     title: Mass per Area
+    about: node:quantity-kind/mass-per-area

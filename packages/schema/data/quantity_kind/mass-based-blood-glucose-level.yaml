@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mass-based-blood-glucose-level-en
-    lang: en
+    language: en
     title: Blood Glucose Level by Mass
+    about: node:quantity-kind/mass-based-blood-glucose-level

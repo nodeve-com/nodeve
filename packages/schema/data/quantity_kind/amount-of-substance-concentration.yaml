@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: amount-of-substance-concentration-en
-    lang: en
+    language: en
     title: Amount of Substance of Concentration
+    about: node:quantity-kind/amount-of-substance-concentration

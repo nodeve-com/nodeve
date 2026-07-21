@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: specific-acoustic-impedance-en
-    lang: en
+    language: en
     title: Specific Acoustic Impedance
+    about: node:quantity-kind/specific-acoustic-impedance

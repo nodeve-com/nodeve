@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: conductivity-variance-en
-    lang: en
+    language: en
     title: Conductivity Variance
+    about: node:quantity-kind/conductivity-variance

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: equivalence-dose-output-en
-    lang: en
+    language: en
     title: Equivalence Dose Output
+    about: node:quantity-kind/equivalence-dose-output

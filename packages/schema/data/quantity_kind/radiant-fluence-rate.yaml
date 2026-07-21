@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: radiant-fluence-rate-en
-    lang: en
+    language: en
     title: Radiant Fluence Rate
+    about: node:quantity-kind/radiant-fluence-rate

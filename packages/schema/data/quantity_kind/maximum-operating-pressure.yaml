@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: maximum-operating-pressure-en
-    lang: en
+    language: en
     title: Maximum Operating Pressure
+    about: node:quantity-kind/maximum-operating-pressure

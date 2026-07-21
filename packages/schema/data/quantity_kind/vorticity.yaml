@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: vorticity-en
-    lang: en
+    language: en
     title: Vorticity
+    about: node:quantity-kind/vorticity

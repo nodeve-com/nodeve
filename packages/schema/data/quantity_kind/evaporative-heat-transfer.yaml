@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: evaporative-heat-transfer-en
-    lang: en
+    language: en
     title: Evaporative Heat Transfer
+    about: node:quantity-kind/evaporative-heat-transfer

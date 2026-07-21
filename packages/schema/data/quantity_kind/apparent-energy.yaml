@@ -10,8 +10,10 @@ refs:
     match: exact
 contents:
   - node: apparent-energy-en
-    lang: en
+    language: en
     title: Apparent Energy
+    about: node:quantity-kind/apparent-energy
   - node: apparent-energy-pt
-    lang: pt
+    language: pt
     title: Energia aparente
+    about: node:quantity-kind/apparent-energy

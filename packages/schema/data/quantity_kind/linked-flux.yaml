@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: linked-flux-en
-    lang: en
+    language: en
     title: Linked Flux
+    about: node:quantity-kind/linked-flux

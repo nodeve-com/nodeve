@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: drag-coefficient-en
-    lang: en
+    language: en
     title: Drag Coefficient
+    about: node:quantity-kind/drag-coefficient

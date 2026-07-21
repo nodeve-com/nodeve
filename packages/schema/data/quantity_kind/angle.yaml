@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: angle-en
-    lang: en
+    language: en
     title: Angle
+    about: node:quantity-kind/angle

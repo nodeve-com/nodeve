@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: magnetomotive-force-en
-    lang: en
+    language: en
     title: Magnetomotive Force
+    about: node:quantity-kind/magnetomotive-force

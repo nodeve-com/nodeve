@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mass-excess-en
-    lang: en
+    language: en
     title: Mass Excess
+    about: node:quantity-kind/mass-excess

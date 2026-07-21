@@ -15,5 +15,6 @@ refs:
     match: exact
 contents:
   - node: intinsic-carrier-density-en
-    lang: en
+    language: en
     title: Intrinsic Carrier Density
+    about: node:quantity-kind/intinsic-carrier-density

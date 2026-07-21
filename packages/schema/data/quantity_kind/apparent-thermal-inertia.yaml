@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: apparent-thermal-inertia-en
-    lang: en
+    language: en
     title: Measurement Unit for a Quantity Approximately Proportional to Thermal Inertia
+    about: node:quantity-kind/apparent-thermal-inertia

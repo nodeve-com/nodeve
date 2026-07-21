@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: specific-entropy-en
-    lang: en
+    language: en
     title: Specific Entropy
+    about: node:quantity-kind/specific-entropy

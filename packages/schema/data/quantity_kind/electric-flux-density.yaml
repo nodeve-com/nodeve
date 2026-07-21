@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: electric-flux-density-en
-    lang: en
+    language: en
     title: Electric Flux Density
+    about: node:quantity-kind/electric-flux-density

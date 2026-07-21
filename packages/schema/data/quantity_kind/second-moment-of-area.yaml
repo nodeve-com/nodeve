@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: second-moment-of-area-en
-    lang: en
+    language: en
     title: Second Moment of Area
+    about: node:quantity-kind/second-moment-of-area

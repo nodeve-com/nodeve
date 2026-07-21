@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: neutron-yield-per-absorption-en
-    lang: en
+    language: en
     title: Neutron Yield per Absorption
+    about: node:quantity-kind/neutron-yield-per-absorption

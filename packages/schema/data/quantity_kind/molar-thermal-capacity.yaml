@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: molar-thermal-capacity-en
-    lang: en
+    language: en
     title: Molar Thermal Capacity
+    about: node:quantity-kind/molar-thermal-capacity

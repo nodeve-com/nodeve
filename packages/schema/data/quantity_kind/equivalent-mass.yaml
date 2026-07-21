@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: equivalent-mass-en
-    lang: en
+    language: en
     title: Mass Equivalent
+    about: node:quantity-kind/equivalent-mass

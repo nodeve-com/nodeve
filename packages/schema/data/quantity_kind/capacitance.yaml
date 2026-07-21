@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: capacitance-en
-    lang: en
+    language: en
     title: Capacitance
+    about: node:quantity-kind/capacitance

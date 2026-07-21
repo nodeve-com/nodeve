@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: cation-exchange-capacity-en
-    lang: en
+    language: en
     title: Cation Exchange Capacity
+    about: node:quantity-kind/cation-exchange-capacity

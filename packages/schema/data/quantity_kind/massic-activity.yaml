@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: massic-activity-en
-    lang: en
+    language: en
     title: Massic Activity
+    about: node:quantity-kind/massic-activity

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: isentropic-exponent-en
-    lang: en
+    language: en
     title: Isentropic Exponent
+    about: node:quantity-kind/isentropic-exponent

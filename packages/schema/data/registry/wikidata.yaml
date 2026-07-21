@@ -4,8 +4,10 @@ url: https://www.wikidata.org/
 iri_template: https://www.wikidata.org/wiki/{id}
 contents:
   - node: wikidata-en
-    lang: en
+    language: en
     title: Wikidata
+    about: node:registry/wikidata
   - node: wikidata-pt
-    lang: pt
+    language: pt
     title: Wikidata
+    about: node:registry/wikidata

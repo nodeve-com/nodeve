@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: cold-receptor-threshold-en
-    lang: en
+    language: en
     title: Cold Receptor Threshold
+    about: node:quantity-kind/cold-receptor-threshold

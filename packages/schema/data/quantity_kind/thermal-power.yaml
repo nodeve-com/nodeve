@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: thermal-power-en
-    lang: en
+    language: en
     title: Thermal Power
+    about: node:quantity-kind/thermal-power

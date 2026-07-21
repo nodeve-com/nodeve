@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: pressure-burning-rate-index-en
-    lang: en
+    language: en
     title: Pressure Burning Rate Index
+    about: node:quantity-kind/pressure-burning-rate-index

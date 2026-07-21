@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: average-head-end-pressure-en
-    lang: en
+    language: en
     title: Average Head End Pressure
+    about: node:quantity-kind/average-head-end-pressure

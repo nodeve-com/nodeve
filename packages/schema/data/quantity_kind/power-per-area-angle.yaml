@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: power-per-area-angle-en
-    lang: en
+    language: en
     title: Power per Area Angle
+    about: node:quantity-kind/power-per-area-angle

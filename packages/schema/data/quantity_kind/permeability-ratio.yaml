@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: permeability-ratio-en
-    lang: en
+    language: en
     title: Permeability Ratio
+    about: node:quantity-kind/permeability-ratio

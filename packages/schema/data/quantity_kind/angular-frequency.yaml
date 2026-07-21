@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: angular-frequency-en
-    lang: en
+    language: en
     title: Angular Frequency
+    about: node:quantity-kind/angular-frequency

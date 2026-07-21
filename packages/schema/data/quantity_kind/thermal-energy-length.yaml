@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: thermal-energy-length-en
-    lang: en
+    language: en
     title: Thermal Energy Length
+    about: node:quantity-kind/thermal-energy-length

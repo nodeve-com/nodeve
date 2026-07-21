@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: dimensionless-ratio-en
-    lang: en
+    language: en
     title: Dimensionless Ratio
+    about: node:quantity-kind/dimensionless-ratio

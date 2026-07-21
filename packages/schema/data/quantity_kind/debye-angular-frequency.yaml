@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: debye-angular-frequency-en
-    lang: en
+    language: en
     title: Debye Angular Frequency
+    about: node:quantity-kind/debye-angular-frequency

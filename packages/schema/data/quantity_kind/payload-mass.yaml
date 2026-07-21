@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: payload-mass-en
-    lang: en
+    language: en
     title: Payload Mass
+    about: node:quantity-kind/payload-mass

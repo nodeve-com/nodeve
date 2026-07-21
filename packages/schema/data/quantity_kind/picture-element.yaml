@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: picture-element-en
-    lang: en
+    language: en
     title: Picture Element
+    about: node:quantity-kind/picture-element

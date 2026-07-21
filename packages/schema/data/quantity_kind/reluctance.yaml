@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reluctance-en
-    lang: en
+    language: en
     title: Reluctance
+    about: node:quantity-kind/reluctance

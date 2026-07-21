@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: reactance-en
-    lang: en
+    language: en
     title: Reactance
+    about: node:quantity-kind/reactance

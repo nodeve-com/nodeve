@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: complex-frequency-imaginary-en
-    lang: en
+    language: en
     title: Imaginary Part of Complex Frequency
+    about: node:quantity-kind/complex-frequency-imaginary

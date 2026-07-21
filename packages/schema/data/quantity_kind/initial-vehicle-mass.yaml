@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: initial-vehicle-mass-en
-    lang: en
+    language: en
     title: Initial Vehicle Mass
+    about: node:quantity-kind/initial-vehicle-mass

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: richardson-constant-en
-    lang: en
+    language: en
     title: Richardson Constant
+    about: node:quantity-kind/richardson-constant

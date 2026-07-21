@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: specific-humidity-en
-    lang: en
+    language: en
     title: Specific Humidity
+    about: node:quantity-kind/specific-humidity

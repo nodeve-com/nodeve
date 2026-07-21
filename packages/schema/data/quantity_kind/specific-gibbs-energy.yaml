@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: specific-gibbs-energy-en
-    lang: en
+    language: en
     title: Specific Gibbs Energy
+    about: node:quantity-kind/specific-gibbs-energy

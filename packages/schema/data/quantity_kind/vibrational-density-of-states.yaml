@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: vibrational-density-of-states-en
-    lang: en
+    language: en
     title: Vibrational Density of States
+    about: node:quantity-kind/vibrational-density-of-states

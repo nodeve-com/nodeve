@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: landau-ginzburg-number-en
-    lang: en
+    language: en
     title: Landau-Ginzburg Number
+    about: node:quantity-kind/landau-ginzburg-number

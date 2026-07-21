@@ -12,8 +12,10 @@ refs:
     match: exact
 contents:
   - node: height-en
-    lang: en
+    language: en
     title: Height
+    about: node:quantity-kind/height
   - node: height-pt
-    lang: pt
+    language: pt
     title: Altura (mm)
+    about: node:quantity-kind/height

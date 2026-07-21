@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-linear-density-en
-    lang: en
+    language: en
     title: Electric Charge Linear Density
+    about: node:quantity-kind/electric-charge-linear-density

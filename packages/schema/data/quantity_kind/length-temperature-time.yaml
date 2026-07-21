@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: length-temperature-time-en
-    lang: en
+    language: en
     title: Length Temperature Time
+    about: node:quantity-kind/length-temperature-time

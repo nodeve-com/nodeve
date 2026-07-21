@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: isothermal-compressibility-en
-    lang: en
+    language: en
     title: Isothermal Compressibility
+    about: node:quantity-kind/isothermal-compressibility

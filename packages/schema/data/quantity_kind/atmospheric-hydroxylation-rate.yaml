@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: atmospheric-hydroxylation-rate-en
-    lang: en
+    language: en
     title: Atmospheric Hydroxylation Rate
+    about: node:quantity-kind/atmospheric-hydroxylation-rate

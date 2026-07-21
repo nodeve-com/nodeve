@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: photosynthetic-photon-flux-en
-    lang: en
+    language: en
     title: Photosynthetic Photon Flux
+    about: node:quantity-kind/photosynthetic-photon-flux

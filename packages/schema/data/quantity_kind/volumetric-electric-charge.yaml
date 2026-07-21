@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumetric-electric-charge-en
-    lang: en
+    language: en
     title: Volumic Electric Charge
+    about: node:quantity-kind/volumetric-electric-charge

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: atomic-energy-en
-    lang: en
+    language: en
     title: Atomic Energy
+    about: node:quantity-kind/atomic-energy

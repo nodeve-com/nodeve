@@ -10,5 +10,6 @@ refs:
     match: exact
 contents:
   - node: inverse-energy-squared-en
-    lang: en
+    language: en
     title: Inverse Square Energy
+    about: node:quantity-kind/inverse-energy-squared

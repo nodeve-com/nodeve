@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: service-factor-en
-    lang: en
+    language: en
     title: Service Factor
+    about: node:quantity-kind/service-factor

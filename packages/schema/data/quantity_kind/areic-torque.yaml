@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: areic-torque-en
-    lang: en
+    language: en
     title: Areic Torque
+    about: node:quantity-kind/areic-torque

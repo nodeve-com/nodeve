@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: particle-number-density-en
-    lang: en
+    language: en
     title: Particle Number Density
+    about: node:quantity-kind/particle-number-density

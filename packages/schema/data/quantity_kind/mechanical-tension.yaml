@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: mechanical-tension-en
-    lang: en
+    language: en
     title: Mechanical Tension
+    about: node:quantity-kind/mechanical-tension

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: radiant-energy-exposure-en
-    lang: en
+    language: en
     title: Radiant Energy Exposure
+    about: node:quantity-kind/radiant-energy-exposure

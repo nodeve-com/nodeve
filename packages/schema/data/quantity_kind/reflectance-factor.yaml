@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: reflectance-factor-en
-    lang: en
+    language: en
     title: Reflectance Factor
+    about: node:quantity-kind/reflectance-factor

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: radioactive-decay-en
-    lang: en
+    language: en
     title: Radioactive Decay
+    about: node:quantity-kind/radioactive-decay

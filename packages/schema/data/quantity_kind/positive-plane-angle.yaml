@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: positive-plane-angle-en
-    lang: en
+    language: en
     title: Positive Plane Angle
+    about: node:quantity-kind/positive-plane-angle

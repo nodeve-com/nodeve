@@ -12,8 +12,10 @@ refs:
     match: exact
 contents:
   - node: width-en
-    lang: en
+    language: en
     title: Width
+    about: node:quantity-kind/width
   - node: width-pt
-    lang: pt
+    language: pt
     title: Largura (mm)
+    about: node:quantity-kind/width

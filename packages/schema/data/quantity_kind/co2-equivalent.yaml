@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: co2-equivalent-en
-    lang: en
+    language: en
     title: CO2Equivalent
+    about: node:quantity-kind/co2-equivalent

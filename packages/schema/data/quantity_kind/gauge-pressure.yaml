@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: gauge-pressure-en
-    lang: en
+    language: en
     title: Gauge Pressure
+    about: node:quantity-kind/gauge-pressure

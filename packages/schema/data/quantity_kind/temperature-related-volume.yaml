@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: temperature-related-volume-en
-    lang: en
+    language: en
     title: "Temperature-related Volume  "
+    about: node:quantity-kind/temperature-related-volume

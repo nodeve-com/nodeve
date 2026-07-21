@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: force-magnitude-en
-    lang: en
+    language: en
     title: Force Magnitude
+    about: node:quantity-kind/force-magnitude

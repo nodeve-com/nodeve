@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-based-density-en
-    lang: en
+    language: en
     title: Pressure-based Density
+    about: node:quantity-kind/pressure-based-density

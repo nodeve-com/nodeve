@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: action-time-en
-    lang: en
+    language: en
     title: Action Time
+    about: node:quantity-kind/action-time

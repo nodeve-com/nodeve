@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: spectral-radiant-energy-density-en
-    lang: en
+    language: en
     title: Spectral Radiant Energy Density
+    about: node:quantity-kind/spectral-radiant-energy-density

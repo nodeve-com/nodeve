@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: rest-energy-en
-    lang: en
+    language: en
     title: Rest Energy
+    about: node:quantity-kind/rest-energy

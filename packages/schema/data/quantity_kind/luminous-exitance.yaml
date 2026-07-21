@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: luminous-exitance-en
-    lang: en
+    language: en
     title: Luminous Exitance
+    about: node:quantity-kind/luminous-exitance

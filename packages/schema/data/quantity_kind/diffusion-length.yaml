@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: diffusion-length-en
-    lang: en
+    language: en
     title: Diffusion Length
+    about: node:quantity-kind/diffusion-length

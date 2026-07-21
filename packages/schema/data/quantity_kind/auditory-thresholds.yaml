@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: auditory-thresholds-en
-    lang: en
+    language: en
     title: Auditory Thresholds
+    about: node:quantity-kind/auditory-thresholds

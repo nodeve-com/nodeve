@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: spectral-radiant-energy-density-in-terms-of-wavelength-en
-    lang: en
+    language: en
     title: Spectral Radiant Energy Density in Terms of Wavelength
+    about: node:quantity-kind/spectral-radiant-energy-density-in-terms-of-wavelength

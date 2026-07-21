@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mechanical-surface-impedance-en
-    lang: en
+    language: en
     title: Mechanical Surface Impedance
+    about: node:quantity-kind/mechanical-surface-impedance

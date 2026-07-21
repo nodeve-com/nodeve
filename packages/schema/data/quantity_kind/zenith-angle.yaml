@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: zenith-angle-en
-    lang: en
+    language: en
     title: Zenith Angle
+    about: node:quantity-kind/zenith-angle

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: amount-of-cloud-cover-en
-    lang: en
+    language: en
     title: Amount of Cloud Cover
+    about: node:quantity-kind/amount-of-cloud-cover

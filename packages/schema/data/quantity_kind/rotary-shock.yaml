@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: rotary-shock-en
-    lang: en
+    language: en
     title: Rotary Shock
+    about: node:quantity-kind/rotary-shock

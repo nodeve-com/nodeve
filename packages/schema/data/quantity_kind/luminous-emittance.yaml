@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: luminous-emittance-en
-    lang: en
+    language: en
     title: Luminous Emmitance
+    about: node:quantity-kind/luminous-emittance

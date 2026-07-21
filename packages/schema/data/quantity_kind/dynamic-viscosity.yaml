@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: dynamic-viscosity-en
-    lang: en
+    language: en
     title: Dynamic Viscosity
+    about: node:quantity-kind/dynamic-viscosity

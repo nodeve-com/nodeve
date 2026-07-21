@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: molar-conductivity-en
-    lang: en
+    language: en
     title: Molar Conductivity
+    about: node:quantity-kind/molar-conductivity

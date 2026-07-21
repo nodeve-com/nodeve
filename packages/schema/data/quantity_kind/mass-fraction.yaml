@@ -11,8 +11,10 @@ refs:
     match: exact
 contents:
   - node: mass-fraction-en
-    lang: en
+    language: en
     title: Mass Fraction
+    about: node:quantity-kind/mass-fraction
   - node: mass-fraction-pt
-    lang: pt
+    language: pt
     title: Fração mássica
+    about: node:quantity-kind/mass-fraction

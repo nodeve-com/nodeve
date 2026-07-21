@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: lift-coefficient-en
-    lang: en
+    language: en
     title: Lift Coefficient
+    about: node:quantity-kind/lift-coefficient

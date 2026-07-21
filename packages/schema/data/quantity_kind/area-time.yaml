@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-time-en
-    lang: en
+    language: en
     title: Area Time
+    about: node:quantity-kind/area-time

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-gradient-en
-    lang: en
+    language: en
     title: Pressure Gradient
+    about: node:quantity-kind/pressure-gradient

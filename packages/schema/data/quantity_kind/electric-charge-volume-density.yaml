@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-volume-density-en
-    lang: en
+    language: en
     title: Electric Charge Volume Density
+    about: node:quantity-kind/electric-charge-volume-density

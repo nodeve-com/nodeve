@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: electric-charge-density-en
-    lang: en
+    language: en
     title: Electric Charge Density
+    about: node:quantity-kind/electric-charge-density

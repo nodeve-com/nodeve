@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: morbidity-rate-en
-    lang: en
+    language: en
     title: Morbidity Rate
+    about: node:quantity-kind/morbidity-rate

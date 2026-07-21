@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: volumetric-flux-en
-    lang: en
+    language: en
     title: Volumetric Flux
+    about: node:quantity-kind/volumetric-flux

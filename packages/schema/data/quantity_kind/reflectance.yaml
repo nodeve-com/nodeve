@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: reflectance-en
-    lang: en
+    language: en
     title: Reflectance
+    about: node:quantity-kind/reflectance

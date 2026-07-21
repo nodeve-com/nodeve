@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: structural-efficiency-en
-    lang: en
+    language: en
     title: Structural Efficiency
+    about: node:quantity-kind/structural-efficiency

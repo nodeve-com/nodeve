@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: mass-per-area-time-en
-    lang: en
+    language: en
     title: Mass per Area Time
+    about: node:quantity-kind/mass-per-area-time

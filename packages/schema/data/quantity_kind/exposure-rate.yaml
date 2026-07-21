@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: exposure-rate-en
-    lang: en
+    language: en
     title: Exposure Rate
+    about: node:quantity-kind/exposure-rate

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: beta-disintegration-energy-en
-    lang: en
+    language: en
     title: Beta Disintegration Energy
+    about: node:quantity-kind/beta-disintegration-energy

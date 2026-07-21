@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: decay-constant-en
-    lang: en
+    language: en
     title: Decay Constant
+    about: node:quantity-kind/decay-constant

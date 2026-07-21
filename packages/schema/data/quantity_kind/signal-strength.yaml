@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: signal-strength-en
-    lang: en
+    language: en
     title: Signal Strength
+    about: node:quantity-kind/signal-strength

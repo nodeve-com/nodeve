@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: nuclear-radius-en
-    lang: en
+    language: en
     title: Nuclear Radius
+    about: node:quantity-kind/nuclear-radius

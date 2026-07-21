@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: burgers-vector-en
-    lang: en
+    language: en
     title: Burgers Vector
+    about: node:quantity-kind/burgers-vector

@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: specific-activity-en
-    lang: en
+    language: en
     title: Specific Activity
+    about: node:quantity-kind/specific-activity

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: pressure-in-relation-to-volume-flow-rate-en
-    lang: en
+    language: en
     title: Pressure in Relation to Volume Flow Rate
+    about: node:quantity-kind/pressure-in-relation-to-volume-flow-rate

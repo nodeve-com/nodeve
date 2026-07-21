@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: turns-en
-    lang: en
+    language: en
     title: Turns
+    about: node:quantity-kind/turns

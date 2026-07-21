@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: water-vapour-diffusion-coefficient-en
-    lang: en
+    language: en
     title: Water Vapour Diffusion Coefficient
+    about: node:quantity-kind/water-vapour-diffusion-coefficient

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: traffic-intensity-en
-    lang: en
+    language: en
     title: Traffic Intensity
+    about: node:quantity-kind/traffic-intensity

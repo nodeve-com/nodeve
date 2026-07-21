@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: compressibility-factor-en
-    lang: en
+    language: en
     title: Compressibility Factor
+    about: node:quantity-kind/compressibility-factor

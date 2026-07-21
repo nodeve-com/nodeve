@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: speed-of-light-en
-    lang: en
+    language: en
     title: Speed of Light
+    about: node:quantity-kind/speed-of-light

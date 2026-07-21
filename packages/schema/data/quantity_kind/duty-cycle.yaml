@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: duty-cycle-en
-    lang: en
+    language: en
     title: Duty Cycle
+    about: node:quantity-kind/duty-cycle

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: mutual-inductance-en
-    lang: en
+    language: en
     title: Mutual Inductance
+    about: node:quantity-kind/mutual-inductance

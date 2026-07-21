@@ -14,5 +14,6 @@ refs:
     match: exact
 contents:
   - node: heat-flow-rate-en
-    lang: en
+    language: en
     title: Heat Flow Rate
+    about: node:quantity-kind/heat-flow-rate

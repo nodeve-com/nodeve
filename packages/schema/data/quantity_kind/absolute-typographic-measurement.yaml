@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: absolute-typographic-measurement-en
-    lang: en
+    language: en
     title: Absolute Typographic Measurement
+    about: node:quantity-kind/absolute-typographic-measurement

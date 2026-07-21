@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: short-range-order-parameter-en
-    lang: en
+    language: en
     title: Short-Range Order Parameter
+    about: node:quantity-kind/short-range-order-parameter

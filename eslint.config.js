@@ -12,7 +12,7 @@ import base from '@nodeve/config/eslint/base';
 export default defineConfig(
 	includeIgnoreFile(path.resolve(import.meta.dirname, '.gitignore')),
 	globalIgnores([
-		'**/src/generated/**', // grimoire codegen output
+		'packages/grimoire/**', // frozen while schema replaces it
 		'**/nodeve.checks.defaults.js', // built copy of checks defaults
 	]),
 	...base,

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: area-thermal-expansion-en
-    lang: en
+    language: en
     title: Area Thermal Expansion
+    about: node:quantity-kind/area-thermal-expansion

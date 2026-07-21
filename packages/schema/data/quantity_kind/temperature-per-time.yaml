@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: temperature-per-time-en
-    lang: en
+    language: en
     title: Temperature per Time
+    about: node:quantity-kind/temperature-per-time

@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: equilibrium-constant-on-concentration-basis-en
-    lang: en
+    language: en
     title: Equilibrium Constant On Concentration Basis
+    about: node:quantity-kind/equilibrium-constant-on-concentration-basis

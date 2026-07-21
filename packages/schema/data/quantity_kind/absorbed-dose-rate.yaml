@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: absorbed-dose-rate-en
-    lang: en
+    language: en
     title: Absorbed Dose Rate
+    about: node:quantity-kind/absorbed-dose-rate

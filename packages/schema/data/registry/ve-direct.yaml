@@ -3,8 +3,10 @@ slug: ve-direct
 url: https://www.victronenergy.com/support-and-downloads/technical-information
 contents:
   - node: ve-direct-en
-    lang: en
+    language: en
     title: VE.Direct Protocol
+    about: node:registry/ve-direct
   - node: ve-direct-pt
-    lang: pt
+    language: pt
     title: Protocolo VE.Direct
+    about: node:registry/ve-direct

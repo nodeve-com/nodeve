@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: reactive-charge-per-mass-en
-    lang: en
+    language: en
     title: Reactive Charge per Mass
+    about: node:quantity-kind/reactive-charge-per-mass

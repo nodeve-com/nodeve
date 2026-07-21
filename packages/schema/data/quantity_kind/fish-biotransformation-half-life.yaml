@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: fish-biotransformation-half-life-en
-    lang: en
+    language: en
     title: Fish Biotransformation Half Life
+    about: node:quantity-kind/fish-biotransformation-half-life

@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: head-end-pressure-en
-    lang: en
+    language: en
     title: Head End Pressure
+    about: node:quantity-kind/head-end-pressure

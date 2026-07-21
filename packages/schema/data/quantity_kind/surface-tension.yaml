@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: surface-tension-en
-    lang: en
+    language: en
     title: Surface Tension
+    about: node:quantity-kind/surface-tension

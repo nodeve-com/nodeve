@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: carrier-lifetime-en
-    lang: en
+    language: en
     title: Carrier Lifetime
+    about: node:quantity-kind/carrier-lifetime

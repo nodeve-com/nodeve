@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: inverse-length-temperature-en
-    lang: en
+    language: en
     title: Inverse Length Temperature
+    about: node:quantity-kind/inverse-length-temperature

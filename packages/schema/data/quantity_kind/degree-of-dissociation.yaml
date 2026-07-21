@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: degree-of-dissociation-en
-    lang: en
+    language: en
     title: Degree of Dissociation
+    about: node:quantity-kind/degree-of-dissociation

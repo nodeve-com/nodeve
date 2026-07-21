@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: quantity-of-light-en
-    lang: en
+    language: en
     title: Quantity of Light
+    about: node:quantity-kind/quantity-of-light

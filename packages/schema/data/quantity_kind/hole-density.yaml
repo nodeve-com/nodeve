@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: hole-density-en
-    lang: en
+    language: en
     title: Hole Density
+    about: node:quantity-kind/hole-density

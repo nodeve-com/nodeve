@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: neutron-number-en
-    lang: en
+    language: en
     title: Neutron Number
+    about: node:quantity-kind/neutron-number

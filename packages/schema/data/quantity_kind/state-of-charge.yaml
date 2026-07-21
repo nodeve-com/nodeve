@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: state-of-charge-en
-    lang: en
+    language: en
     title: State of Charge
+    about: node:quantity-kind/state-of-charge

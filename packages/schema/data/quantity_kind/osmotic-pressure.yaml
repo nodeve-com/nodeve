@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: osmotic-pressure-en
-    lang: en
+    language: en
     title: Osmotic Pressure
+    about: node:quantity-kind/osmotic-pressure

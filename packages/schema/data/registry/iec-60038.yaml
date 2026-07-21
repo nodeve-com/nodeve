@@ -3,8 +3,10 @@ slug: iec-60038
 url: https://webstore.iec.ch/publication/153
 contents:
   - node: iec-60038-en
-    lang: en
+    language: en
     title: IEC 60038 (IEC standard voltages)
+    about: node:registry/iec-60038
   - node: iec-60038-pt
-    lang: pt
+    language: pt
     title: IEC 60038 (Tensões normalizadas IEC)
+    about: node:registry/iec-60038

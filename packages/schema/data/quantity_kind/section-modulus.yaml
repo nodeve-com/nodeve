@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: section-modulus-en
-    lang: en
+    language: en
     title: Section Modulus
+    about: node:quantity-kind/section-modulus

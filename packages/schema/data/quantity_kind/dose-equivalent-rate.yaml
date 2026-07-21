@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: dose-equivalent-rate-en
-    lang: en
+    language: en
     title: Dose Equivalent Rate
+    about: node:quantity-kind/dose-equivalent-rate

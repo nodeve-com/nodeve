@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: molar-flux-density-en
-    lang: en
+    language: en
     title: Molar Flux Density
+    about: node:quantity-kind/molar-flux-density

@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: signal-detection-threshold-en
-    lang: en
+    language: en
     title: Signal Detection Threshold
+    about: node:quantity-kind/signal-detection-threshold

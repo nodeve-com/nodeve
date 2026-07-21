@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: total-angular-momentum-en
-    lang: en
+    language: en
     title: Total Angular Momentum
+    about: node:quantity-kind/total-angular-momentum

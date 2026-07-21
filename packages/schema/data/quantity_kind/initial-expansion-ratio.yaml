@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: initial-expansion-ratio-en
-    lang: en
+    language: en
     title: Initial Expansion Ratio
+    about: node:quantity-kind/initial-expansion-ratio

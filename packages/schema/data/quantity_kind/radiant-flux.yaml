@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: radiant-flux-en
-    lang: en
+    language: en
     title: Radiant Flux
+    about: node:quantity-kind/radiant-flux

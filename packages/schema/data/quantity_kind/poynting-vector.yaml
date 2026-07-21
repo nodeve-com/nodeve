@@ -11,5 +11,6 @@ refs:
     match: exact
 contents:
   - node: poynting-vector-en
-    lang: en
+    language: en
     title: Poynting Vector
+    about: node:quantity-kind/poynting-vector

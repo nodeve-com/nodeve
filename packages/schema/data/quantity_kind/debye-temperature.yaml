@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: debye-temperature-en
-    lang: en
+    language: en
     title: Debye Temperature
+    about: node:quantity-kind/debye-temperature

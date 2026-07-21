@@ -8,5 +8,6 @@ refs:
     match: exact
 contents:
   - node: polar-moment-of-inertia-en
-    lang: en
+    language: en
     title: Polar Moment of Inertia
+    about: node:quantity-kind/polar-moment-of-inertia

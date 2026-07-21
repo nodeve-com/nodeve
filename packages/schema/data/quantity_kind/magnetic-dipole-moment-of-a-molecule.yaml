@@ -7,5 +7,6 @@ refs:
     match: exact
 contents:
   - node: magnetic-dipole-moment-of-a-molecule-en
-    lang: en
+    language: en
     title: Magnetic Dipole Moment of a Molecule
+    about: node:quantity-kind/magnetic-dipole-moment-of-a-molecule

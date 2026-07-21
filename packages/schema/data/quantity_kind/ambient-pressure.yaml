@@ -12,5 +12,6 @@ refs:
     match: exact
 contents:
   - node: ambient-pressure-en
-    lang: en
+    language: en
     title: Ambient Pressure
+    about: node:quantity-kind/ambient-pressure
