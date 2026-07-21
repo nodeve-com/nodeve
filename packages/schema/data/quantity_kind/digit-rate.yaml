@@ -1,0 +1,11 @@
+node: node:quantity-kind/digit-rate
+slug: digit-rate
+refs:
+  - node: digit-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DigitRate
+    match: exact
+contents:
+  - node: digit-rate-en
+    lang: en
+    title: Digit Rate

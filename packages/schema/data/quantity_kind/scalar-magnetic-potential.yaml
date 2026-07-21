@@ -1,0 +1,11 @@
+node: node:quantity-kind/scalar-magnetic-potential
+slug: scalar-magnetic-potential
+refs:
+  - node: scalar-magnetic-potential-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ScalarMagneticPotential
+    match: exact
+contents:
+  - node: scalar-magnetic-potential-en
+    lang: en
+    title: Scalar Magnetic Potential

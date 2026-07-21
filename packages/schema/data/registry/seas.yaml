@@ -1,0 +1,11 @@
+node: node:registry/seas
+slug: seas
+url: https://w3id.org/seas/
+iri_template: https://w3id.org/seas/{id}
+contents:
+  - node: seas-en
+    lang: en
+    title: SEAS ontology (Smart Energy Aware Systems)
+  - node: seas-pt
+    lang: pt
+    title: Ontologia SEAS (Sistemas Inteligentes Conscientes de Energia)

@@ -1,0 +1,16 @@
+node: node:quantity-kind/equilibrium-constant-on-concentration-basis
+slug: equilibrium-constant-on-concentration-basis
+broader: node:quantity-kind/equilibrium-constant
+refs:
+  - node: equilibrium-constant-on-concentration-basis-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EquilibriumConstantOnConcentrationBasis
+    match: exact
+  - node: equilibrium-constant-on-concentration-basis-wikidata
+    registry: node:registry/wikidata
+    term: Q96096049
+    match: exact
+contents:
+  - node: equilibrium-constant-on-concentration-basis-en
+    lang: en
+    title: Equilibrium Constant On Concentration Basis

@@ -1,0 +1,12 @@
+node: node:quantity-kind/liquid-volume
+slug: liquid-volume
+broader: node:quantity-kind/volume
+refs:
+  - node: liquid-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LiquidVolume
+    match: exact
+contents:
+  - node: liquid-volume-en
+    lang: en
+    title: Liquid Volume

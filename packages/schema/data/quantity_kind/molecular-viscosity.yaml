@@ -1,0 +1,11 @@
+node: node:quantity-kind/molecular-viscosity
+slug: molecular-viscosity
+refs:
+  - node: molecular-viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolecularViscosity
+    match: exact
+contents:
+  - node: molecular-viscosity-en
+    lang: en
+    title: Molecular Viscosity

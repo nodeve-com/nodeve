@@ -1,6 +1,0 @@
-title:
-  en: Luminous Flux per Area
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LuminousFluxPerArea
-    match: exact

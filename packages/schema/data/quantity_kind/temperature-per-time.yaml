@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-per-time
+slug: temperature-per-time
+refs:
+  - node: temperature-per-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperaturePerTime
+    match: exact
+contents:
+  - node: temperature-per-time-en
+    lang: en
+    title: Temperature per Time

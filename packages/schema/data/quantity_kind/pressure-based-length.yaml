@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-length
+slug: pressure-based-length
+refs:
+  - node: pressure-based-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedLength
+    match: exact
+contents:
+  - node: pressure-based-length-en
+    lang: en
+    title: Pressure-based Length

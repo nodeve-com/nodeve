@@ -1,8 +1,0 @@
-title:
-  en: Web Time Average Pressure
-refs:
-  - registry_id: qudt_quantity_kind
-    term: WebTimeAveragePressure
-    match: exact
-identity:
-  broader: pressure

@@ -1,8 +1,0 @@
-title:
-  en: Effective Multiplication Factor
-refs:
-  - registry_id: qudt_quantity_kind
-    term: EffectiveMultiplicationFactor
-    match: exact
-identity:
-  broader: multiplication_factor

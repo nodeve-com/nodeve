@@ -1,0 +1,12 @@
+node: node:quantity-kind/web-time-average-pressure
+slug: web-time-average-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: web-time-average-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WebTimeAveragePressure
+    match: exact
+contents:
+  - node: web-time-average-pressure-en
+    lang: en
+    title: Web Time Average Pressure

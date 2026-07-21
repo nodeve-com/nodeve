@@ -1,0 +1,11 @@
+node: node:quantity-kind/temporal-summation-function
+slug: temporal-summation-function
+refs:
+  - node: temporal-summation-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemporalSummationFunction
+    match: exact
+contents:
+  - node: temporal-summation-function-en
+    lang: en
+    title: Temporal Summation Function

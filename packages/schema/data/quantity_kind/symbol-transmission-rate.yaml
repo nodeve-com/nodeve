@@ -1,0 +1,11 @@
+node: node:quantity-kind/symbol-transmission-rate
+slug: symbol-transmission-rate
+refs:
+  - node: symbol-transmission-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SymbolTransmissionRate
+    match: exact
+contents:
+  - node: symbol-transmission-rate-en
+    lang: en
+    title: Symbol Transmission Rate

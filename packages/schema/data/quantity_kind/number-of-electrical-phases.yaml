@@ -1,0 +1,12 @@
+node: node:quantity-kind/number-of-electrical-phases
+slug: number-of-electrical-phases
+broader: node:quantity-kind/count
+refs:
+  - node: number-of-electrical-phases-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NumberOfElectricalPhases
+    match: exact
+contents:
+  - node: number-of-electrical-phases-en
+    lang: en
+    title: Number of Electrical Phases

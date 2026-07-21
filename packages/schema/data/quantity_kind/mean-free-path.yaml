@@ -1,0 +1,16 @@
+node: node:quantity-kind/mean-free-path
+slug: mean-free-path
+broader: node:quantity-kind/length
+refs:
+  - node: mean-free-path-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MeanFreePath
+    match: exact
+  - node: mean-free-path-wikidata
+    registry: node:registry/wikidata
+    term: Q756307
+    match: exact
+contents:
+  - node: mean-free-path-en
+    lang: en
+    title: Mean Free Path

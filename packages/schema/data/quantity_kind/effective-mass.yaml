@@ -1,0 +1,16 @@
+node: node:quantity-kind/effective-mass
+slug: effective-mass
+broader: node:quantity-kind/mass
+refs:
+  - node: effective-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EffectiveMass
+    match: exact
+  - node: effective-mass-wikidata
+    registry: node:registry/wikidata
+    term: Q1064434
+    match: exact
+contents:
+  - node: effective-mass-en
+    lang: en
+    title: Effective Mass

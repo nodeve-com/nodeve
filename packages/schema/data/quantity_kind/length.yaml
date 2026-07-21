@@ -1,0 +1,15 @@
+node: node:quantity-kind/length
+slug: length
+refs:
+  - node: length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Length
+    match: exact
+  - node: length-wikidata
+    registry: node:registry/wikidata
+    term: Q36253
+    match: exact
+contents:
+  - node: length-en
+    lang: en
+    title: Length

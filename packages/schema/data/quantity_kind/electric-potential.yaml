@@ -1,0 +1,15 @@
+node: node:quantity-kind/electric-potential
+slug: electric-potential
+refs:
+  - node: electric-potential-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricPotential
+    match: exact
+  - node: electric-potential-wikidata
+    registry: node:registry/wikidata
+    term: Q55451
+    match: exact
+contents:
+  - node: electric-potential-en
+    lang: en
+    title: Electric Potential

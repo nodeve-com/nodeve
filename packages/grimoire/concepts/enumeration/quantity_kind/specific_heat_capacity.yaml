@@ -1,9 +1,0 @@
-title:
-  en: Specific Heat Capacity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SpecificHeatCapacity
-    match: exact
-  - registry_id: wikidata
-    term: Q487756
-    match: exact

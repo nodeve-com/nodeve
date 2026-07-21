@@ -1,0 +1,12 @@
+node: node:quantity-kind/specific-heats-ratio
+slug: specific-heats-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: specific-heats-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificHeatsRatio
+    match: exact
+contents:
+  - node: specific-heats-ratio-en
+    lang: en
+    title: Specific Heats Ratio

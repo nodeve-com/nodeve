@@ -1,0 +1,15 @@
+node: node:quantity-kind/gruneisen-parameter
+slug: gruneisen-parameter
+refs:
+  - node: gruneisen-parameter-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GruneisenParameter
+    match: exact
+  - node: gruneisen-parameter-wikidata
+    registry: node:registry/wikidata
+    term: Q105658620
+    match: exact
+contents:
+  - node: gruneisen-parameter-en
+    lang: en
+    title: Gruneisen Parameter

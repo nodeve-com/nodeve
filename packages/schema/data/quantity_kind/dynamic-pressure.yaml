@@ -1,0 +1,16 @@
+node: node:quantity-kind/dynamic-pressure
+slug: dynamic-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: dynamic-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DynamicPressure
+    match: exact
+  - node: dynamic-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q949674
+    match: exact
+contents:
+  - node: dynamic-pressure-en
+    lang: en
+    title: Dynamic Pressure

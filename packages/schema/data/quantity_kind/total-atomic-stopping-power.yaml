@@ -1,0 +1,15 @@
+node: node:quantity-kind/total-atomic-stopping-power
+slug: total-atomic-stopping-power
+refs:
+  - node: total-atomic-stopping-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TotalAtomicStoppingPower
+    match: exact
+  - node: total-atomic-stopping-power-wikidata
+    registry: node:registry/wikidata
+    term: Q112725871
+    match: exact
+contents:
+  - node: total-atomic-stopping-power-en
+    lang: en
+    title: Total Atomic Stopping Power

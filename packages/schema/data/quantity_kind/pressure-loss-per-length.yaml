@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-loss-per-length
+slug: pressure-loss-per-length
+refs:
+  - node: pressure-loss-per-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureLossPerLength
+    match: exact
+contents:
+  - node: pressure-loss-per-length-en
+    lang: en
+    title: Pressure Loss per Length

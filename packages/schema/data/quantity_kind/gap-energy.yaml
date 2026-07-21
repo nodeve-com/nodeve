@@ -1,0 +1,12 @@
+node: node:quantity-kind/gap-energy
+slug: gap-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: gap-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GapEnergy
+    match: exact
+contents:
+  - node: gap-energy-en
+    lang: en
+    title: Gap Energy

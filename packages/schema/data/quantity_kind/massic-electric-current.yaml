@@ -1,0 +1,11 @@
+node: node:quantity-kind/massic-electric-current
+slug: massic-electric-current
+refs:
+  - node: massic-electric-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassicElectricCurrent
+    match: exact
+contents:
+  - node: massic-electric-current-en
+    lang: en
+    title: Massic Electric Current

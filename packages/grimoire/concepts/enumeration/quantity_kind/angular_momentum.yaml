@@ -1,9 +1,0 @@
-title:
-  en: Angular Momentum
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AngularMomentum
-    match: exact
-  - registry_id: wikidata
-    term: Q161254
-    match: exact

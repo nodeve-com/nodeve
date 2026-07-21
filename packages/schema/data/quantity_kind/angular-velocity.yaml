@@ -1,0 +1,15 @@
+node: node:quantity-kind/angular-velocity
+slug: angular-velocity
+refs:
+  - node: angular-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngularVelocity
+    match: exact
+  - node: angular-velocity-wikidata
+    registry: node:registry/wikidata
+    term: Q161635
+    match: exact
+contents:
+  - node: angular-velocity-en
+    lang: en
+    title: Angular Velocity

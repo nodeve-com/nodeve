@@ -1,0 +1,16 @@
+node: node:quantity-kind/stoichiometric-number
+slug: stoichiometric-number
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: stoichiometric-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StoichiometricNumber
+    match: exact
+  - node: stoichiometric-number-wikidata
+    registry: node:registry/wikidata
+    term: Q17326453
+    match: exact
+contents:
+  - node: stoichiometric-number-en
+    lang: en
+    title: Stoichiometric Number

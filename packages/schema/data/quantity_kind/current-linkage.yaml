@@ -1,0 +1,16 @@
+node: node:quantity-kind/current-linkage
+slug: current-linkage
+broader: node:quantity-kind/electric-current
+refs:
+  - node: current-linkage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CurrentLinkage
+    match: exact
+  - node: current-linkage-wikidata
+    registry: node:registry/wikidata
+    term: Q77995703
+    match: exact
+contents:
+  - node: current-linkage-en
+    lang: en
+    title: Current Linkage

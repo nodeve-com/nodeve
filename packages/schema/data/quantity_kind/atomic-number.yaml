@@ -1,0 +1,16 @@
+node: node:quantity-kind/atomic-number
+slug: atomic-number
+broader: node:quantity-kind/count
+refs:
+  - node: atomic-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AtomicNumber
+    match: exact
+  - node: atomic-number-wikidata
+    registry: node:registry/wikidata
+    term: Q23809
+    match: exact
+contents:
+  - node: atomic-number-en
+    lang: en
+    title: Atomic Number

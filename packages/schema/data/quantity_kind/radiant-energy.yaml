@@ -1,0 +1,16 @@
+node: node:quantity-kind/radiant-energy
+slug: radiant-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: radiant-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadiantEnergy
+    match: exact
+  - node: radiant-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q10932713
+    match: exact
+contents:
+  - node: radiant-energy-en
+    lang: en
+    title: Radiant Energy

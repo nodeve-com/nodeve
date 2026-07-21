@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-based-volume-flow-rate
+slug: temperature-based-volume-flow-rate
+refs:
+  - node: temperature-based-volume-flow-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureBasedVolumeFlowRate
+    match: exact
+contents:
+  - node: temperature-based-volume-flow-rate-en
+    lang: en
+    title: Temperature-based Volume Flow Rate

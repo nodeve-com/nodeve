@@ -1,8 +1,0 @@
-title:
-  en: Morbidity Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MorbidityRate
-    match: exact
-identity:
-  broader: incidence_proportion

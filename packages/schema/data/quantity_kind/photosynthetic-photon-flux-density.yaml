@@ -1,0 +1,11 @@
+node: node:quantity-kind/photosynthetic-photon-flux-density
+slug: photosynthetic-photon-flux-density
+refs:
+  - node: photosynthetic-photon-flux-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhotosyntheticPhotonFluxDensity
+    match: exact
+contents:
+  - node: photosynthetic-photon-flux-density-en
+    lang: en
+    title: Photosynthetic Photon Flux Density

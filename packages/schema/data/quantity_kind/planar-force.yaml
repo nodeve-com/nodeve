@@ -1,0 +1,12 @@
+node: node:quantity-kind/planar-force
+slug: planar-force
+broader: node:quantity-kind/force-per-area
+refs:
+  - node: planar-force-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PlanarForce
+    match: exact
+contents:
+  - node: planar-force-en
+    lang: en
+    title: Planar Force

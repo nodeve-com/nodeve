@@ -1,0 +1,11 @@
+node: node:quantity-kind/electric-charge-volume-density
+slug: electric-charge-volume-density
+refs:
+  - node: electric-charge-volume-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricChargeVolumeDensity
+    match: exact
+contents:
+  - node: electric-charge-volume-density-en
+    lang: en
+    title: Electric Charge Volume Density

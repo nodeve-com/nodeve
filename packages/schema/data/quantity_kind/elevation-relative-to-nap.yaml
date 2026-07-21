@@ -1,0 +1,12 @@
+node: node:quantity-kind/elevation-relative-to-nap
+slug: elevation-relative-to-nap
+broader: node:quantity-kind/altitude
+refs:
+  - node: elevation-relative-to-nap-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElevationRelativeToNAP
+    match: exact
+contents:
+  - node: elevation-relative-to-nap-en
+    lang: en
+    title: Elevation Relative to NAP

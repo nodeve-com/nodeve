@@ -1,0 +1,16 @@
+node: node:quantity-kind/atomic-attenuation-coefficient
+slug: atomic-attenuation-coefficient
+broader: node:quantity-kind/area
+refs:
+  - node: atomic-attenuation-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AtomicAttenuationCoefficient
+    match: exact
+  - node: atomic-attenuation-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q98592911
+    match: exact
+contents:
+  - node: atomic-attenuation-coefficient-en
+    lang: en
+    title: Atomic Attenuation Coefficient

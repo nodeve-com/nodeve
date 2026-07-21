@@ -1,0 +1,12 @@
+node: node:quantity-kind/neel-temperature
+slug: neel-temperature
+broader: node:quantity-kind/temperature
+refs:
+  - node: neel-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NeelTemperature
+    match: exact
+contents:
+  - node: neel-temperature-en
+    lang: en
+    title: Neel Temperature

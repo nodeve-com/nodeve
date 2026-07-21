@@ -1,6 +1,0 @@
-title:
-  en: Magnetic Dipole Moment of a Molecule
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MagneticDipoleMomentOfAMolecule
-    match: exact

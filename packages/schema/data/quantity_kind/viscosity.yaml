@@ -1,0 +1,15 @@
+node: node:quantity-kind/viscosity
+slug: viscosity
+refs:
+  - node: viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Viscosity
+    match: exact
+  - node: viscosity-wikidata
+    registry: node:registry/wikidata
+    term: Q128709
+    match: exact
+contents:
+  - node: viscosity-en
+    lang: en
+    title: Viscosity

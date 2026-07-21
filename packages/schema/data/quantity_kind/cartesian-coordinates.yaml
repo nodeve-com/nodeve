@@ -1,0 +1,12 @@
+node: node:quantity-kind/cartesian-coordinates
+slug: cartesian-coordinates
+broader: node:quantity-kind/length
+refs:
+  - node: cartesian-coordinates-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CartesianCoordinates
+    match: exact
+contents:
+  - node: cartesian-coordinates-en
+    lang: en
+    title: Cartesian Coordinates

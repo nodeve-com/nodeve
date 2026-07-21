@@ -1,8 +1,0 @@
-title:
-  en: Electrical Power to Mass Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricalPowerToMassRatio
-    match: exact
-identity:
-  broader: specific_power

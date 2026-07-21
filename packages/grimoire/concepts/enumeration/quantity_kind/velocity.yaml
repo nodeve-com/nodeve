@@ -1,9 +1,0 @@
-title:
-  en: Velocity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Velocity
-    match: exact
-  - registry_id: wikidata
-    term: Q11465
-    match: exact

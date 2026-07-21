@@ -1,8 +1,0 @@
-title:
-  en: Contract End Item (CEI) Specification Mass.
-refs:
-  - registry_id: qudt_quantity_kind
-    term: CONTRACT-END-ITEM-SPECIFICATION-MASS
-    match: exact
-identity:
-  broader: mass

@@ -1,0 +1,12 @@
+node: node:quantity-kind/fish-biotransformation-half-life
+slug: fish-biotransformation-half-life
+broader: node:quantity-kind/time
+refs:
+  - node: fish-biotransformation-half-life-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FishBiotransformationHalfLife
+    match: exact
+contents:
+  - node: fish-biotransformation-half-life-en
+    lang: en
+    title: Fish Biotransformation Half Life

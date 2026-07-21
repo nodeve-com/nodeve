@@ -1,0 +1,15 @@
+node: node:quantity-kind/amount-of-substance
+slug: amount-of-substance
+refs:
+  - node: amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AmountOfSubstance
+    match: exact
+  - node: amount-of-substance-wikidata
+    registry: node:registry/wikidata
+    term: Q104946
+    match: exact
+contents:
+  - node: amount-of-substance-en
+    lang: en
+    title: Amount of Substance

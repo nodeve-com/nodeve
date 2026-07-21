@@ -1,8 +1,0 @@
-title:
-  en: Fission Core Radius to Height Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: FissionCoreRadiusToHeightRatio
-    match: exact
-identity:
-  broader: dimensionless_ratio

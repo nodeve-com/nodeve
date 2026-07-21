@@ -1,0 +1,12 @@
+node: node:quantity-kind/eccentricity-of-orbit
+slug: eccentricity-of-orbit
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: eccentricity-of-orbit-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EccentricityOfOrbit
+    match: exact
+contents:
+  - node: eccentricity-of-orbit-en
+    lang: en
+    title: Eccentricity of Orbit

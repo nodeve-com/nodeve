@@ -1,6 +1,0 @@
-title:
-  en: Magnetic Reluctivity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MagneticReluctivity
-    match: exact

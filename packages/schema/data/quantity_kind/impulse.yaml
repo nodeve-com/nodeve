@@ -1,0 +1,11 @@
+node: node:quantity-kind/impulse
+slug: impulse
+refs:
+  - node: impulse-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Impulse
+    match: exact
+contents:
+  - node: impulse-en
+    lang: en
+    title: Impulse

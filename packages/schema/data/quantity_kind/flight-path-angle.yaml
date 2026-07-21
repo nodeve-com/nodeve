@@ -1,0 +1,12 @@
+node: node:quantity-kind/flight-path-angle
+slug: flight-path-angle
+broader: node:quantity-kind/angle
+refs:
+  - node: flight-path-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FlightPathAngle
+    match: exact
+contents:
+  - node: flight-path-angle-en
+    lang: en
+    title: Flight Path Angle

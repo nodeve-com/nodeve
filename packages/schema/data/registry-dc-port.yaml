@@ -1,9 +1,0 @@
-# Sockets using this type (pv-tracker, battery) are feature ROWS; how many
-# trackers or battery ports each has is that feature's PART rows.
-# linkml-validate -s ../nodeve-energy.yaml -C FeatureType registry-dc-port.yaml
-node: node:feature-type/dc-port
-slug: dc-port
-quantity_bindings:
-  - { node: node:feature-type/dc-port/voltage, quantity_kind: voltage, spec: true, measurable: true }
-  - { node: node:feature-type/dc-port/electric-current, quantity_kind: electric_current, spec: true, measurable: true }
-  - { node: node:feature-type/dc-port/active-power, quantity_kind: active_power, spec: true, measurable: true }

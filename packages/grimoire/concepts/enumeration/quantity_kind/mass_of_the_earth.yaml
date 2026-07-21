@@ -1,8 +1,0 @@
-title:
-  en: Mass of the Earth
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassOfTheEarth
-    match: exact
-identity:
-  broader: mass

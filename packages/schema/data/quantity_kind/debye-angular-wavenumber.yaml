@@ -1,0 +1,16 @@
+node: node:quantity-kind/debye-angular-wavenumber
+slug: debye-angular-wavenumber
+broader: node:quantity-kind/angular-wavenumber
+refs:
+  - node: debye-angular-wavenumber-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DebyeAngularWavenumber
+    match: exact
+  - node: debye-angular-wavenumber-wikidata
+    registry: node:registry/wikidata
+    term: Q105554370
+    match: exact
+contents:
+  - node: debye-angular-wavenumber-en
+    lang: en
+    title: Debye Angular Wavenumber

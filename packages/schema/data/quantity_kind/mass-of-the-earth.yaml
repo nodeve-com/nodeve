@@ -1,0 +1,12 @@
+node: node:quantity-kind/mass-of-the-earth
+slug: mass-of-the-earth
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-of-the-earth-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassOfTheEarth
+    match: exact
+contents:
+  - node: mass-of-the-earth-en
+    lang: en
+    title: Mass of the Earth

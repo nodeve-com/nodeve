@@ -1,0 +1,15 @@
+node: node:quantity-kind/moment-of-force
+slug: moment-of-force
+refs:
+  - node: moment-of-force-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MomentOfForce
+    match: exact
+  - node: moment-of-force-wikidata
+    registry: node:registry/wikidata
+    term: Q17232562
+    match: exact
+contents:
+  - node: moment-of-force-en
+    lang: en
+    title: Moment of Force

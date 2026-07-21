@@ -1,0 +1,16 @@
+node: node:quantity-kind/electron-affinity
+slug: electron-affinity
+broader: node:quantity-kind/energy
+refs:
+  - node: electron-affinity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectronAffinity
+    match: exact
+  - node: electron-affinity-wikidata
+    registry: node:registry/wikidata
+    term: Q105846486
+    match: exact
+contents:
+  - node: electron-affinity-en
+    lang: en
+    title: Electron Affinity

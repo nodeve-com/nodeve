@@ -1,0 +1,15 @@
+node: node:quantity-kind/molar-attenuation-coefficient
+slug: molar-attenuation-coefficient
+refs:
+  - node: molar-attenuation-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarAttenuationCoefficient
+    match: exact
+  - node: molar-attenuation-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q900239
+    match: exact
+contents:
+  - node: molar-attenuation-coefficient-en
+    lang: en
+    title: Molar Attenuation Coefficient

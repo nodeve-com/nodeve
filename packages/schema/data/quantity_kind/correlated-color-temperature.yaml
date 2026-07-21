@@ -1,0 +1,12 @@
+node: node:quantity-kind/correlated-color-temperature
+slug: correlated-color-temperature
+broader: node:quantity-kind/thermodynamic-temperature
+refs:
+  - node: correlated-color-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CorrelatedColorTemperature
+    match: exact
+contents:
+  - node: correlated-color-temperature-en
+    lang: en
+    title: Correlated Colour Temperature

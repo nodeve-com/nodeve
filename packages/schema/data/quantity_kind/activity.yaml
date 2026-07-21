@@ -1,0 +1,16 @@
+node: node:quantity-kind/activity
+slug: activity
+broader: node:quantity-kind/stochastic-process
+refs:
+  - node: activity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Activity
+    match: exact
+  - node: activity-wikidata
+    registry: node:registry/wikidata
+    term: Q317949
+    match: exact
+contents:
+  - node: activity-en
+    lang: en
+    title: Activity

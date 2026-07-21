@@ -1,8 +1,0 @@
-title:
-  en: Blood Glucose Level by Mass
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassBasedBloodGlucoseLevel
-    match: exact
-identity:
-  broader: mass_concentration

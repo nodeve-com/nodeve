@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-data-volume
+slug: lineic-data-volume
+refs:
+  - node: lineic-data-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicDataVolume
+    match: exact
+contents:
+  - node: lineic-data-volume-en
+    lang: en
+    title: Lineic Data Volume

@@ -1,0 +1,14 @@
+node: node:quantity-kind/contract-end-item-specification-mass
+slug: contract-end-item-specification-mass
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: contract-end-item-specification-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CONTRACT-END-ITEM-SPECIFICATION-MASS
+    match: exact
+contents:
+  - node: contract-end-item-specification-mass-en
+    lang: en
+    title: Contract End Item (CEI) Specification Mass.

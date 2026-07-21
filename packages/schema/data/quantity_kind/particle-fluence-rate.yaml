@@ -1,0 +1,15 @@
+node: node:quantity-kind/particle-fluence-rate
+slug: particle-fluence-rate
+refs:
+  - node: particle-fluence-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ParticleFluenceRate
+    match: exact
+  - node: particle-fluence-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q98497410
+    match: exact
+contents:
+  - node: particle-fluence-rate-en
+    lang: en
+    title: Particle Fluence Rate

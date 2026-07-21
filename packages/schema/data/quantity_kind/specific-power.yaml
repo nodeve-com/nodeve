@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-power
+slug: specific-power
+refs:
+  - node: specific-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificPower
+    match: exact
+contents:
+  - node: specific-power-en
+    lang: en
+    title: Specific Power

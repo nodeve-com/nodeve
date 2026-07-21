@@ -1,0 +1,16 @@
+node: node:quantity-kind/intrinsic-carrier-density
+slug: intrinsic-carrier-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: intrinsic-carrier-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IntrinsicCarrierDensity
+    match: exact
+  - node: intrinsic-carrier-density-wikidata
+    registry: node:registry/wikidata
+    term: Q1303188
+    match: exact
+contents:
+  - node: intrinsic-carrier-density-en
+    lang: en
+    title: Intrinsic Carrier Density

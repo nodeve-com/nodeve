@@ -1,8 +1,0 @@
-title:
-  en: Specific Surface Area
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SpecificSurfaceArea
-    match: exact
-identity:
-  broader: mass_attenuation_coefficient

@@ -1,0 +1,14 @@
+node: node:quantity-kind/delta-v
+slug: delta-v
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/velocity
+refs:
+  - node: delta-v-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DELTA-V
+    match: exact
+contents:
+  - node: delta-v-en
+    lang: en
+    title: Delta-V

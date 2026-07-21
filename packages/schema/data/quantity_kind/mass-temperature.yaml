@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-temperature
+slug: mass-temperature
+refs:
+  - node: mass-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassTemperature
+    match: exact
+contents:
+  - node: mass-temperature-en
+    lang: en
+    title: Mass Temperature

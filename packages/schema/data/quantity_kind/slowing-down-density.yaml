@@ -1,0 +1,15 @@
+node: node:quantity-kind/slowing-down-density
+slug: slowing-down-density
+refs:
+  - node: slowing-down-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SlowingDownDensity
+    match: exact
+  - node: slowing-down-density-wikidata
+    registry: node:registry/wikidata
+    term: Q98915830
+    match: exact
+contents:
+  - node: slowing-down-density-en
+    lang: en
+    title: Slowing-Down Density

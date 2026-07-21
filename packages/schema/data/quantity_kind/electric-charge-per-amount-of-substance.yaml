@@ -1,0 +1,15 @@
+node: node:quantity-kind/electric-charge-per-amount-of-substance
+slug: electric-charge-per-amount-of-substance
+refs:
+  - node: electric-charge-per-amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricChargePerAmountOfSubstance
+    match: exact
+  - node: electric-charge-per-amount-of-substance-wikidata
+    registry: node:registry/wikidata
+    term: Q97061171
+    match: exact
+contents:
+  - node: electric-charge-per-amount-of-substance-en
+    lang: en
+    title: Electric Charge per Amount of Substance

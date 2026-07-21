@@ -1,0 +1,18 @@
+node: node:quantity-kind/density-of-states
+slug: density-of-states
+deprecated: true
+deprecated_in: 3.1.5
+replaced_by: node:quantity-kind/vibrational-density-of-states
+refs:
+  - node: density-of-states-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DensityOfStates
+    match: exact
+  - node: density-of-states-wikidata
+    registry: node:registry/wikidata
+    term: Q230895
+    match: exact
+contents:
+  - node: density-of-states-en
+    lang: en
+    title: Density of states

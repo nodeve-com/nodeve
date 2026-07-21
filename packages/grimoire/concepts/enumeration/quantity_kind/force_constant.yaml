@@ -1,6 +1,0 @@
-title:
-  en: Force Constant
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ForceConstant
-    match: exact

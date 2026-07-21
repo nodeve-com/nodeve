@@ -1,0 +1,16 @@
+node: node:quantity-kind/mass-flow-rate
+slug: mass-flow-rate
+broader: node:quantity-kind/mass-per-time
+refs:
+  - node: mass-flow-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassFlowRate
+    match: exact
+  - node: mass-flow-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q1366187
+    match: exact
+contents:
+  - node: mass-flow-rate-en
+    lang: en
+    title: Mass Flow Rate

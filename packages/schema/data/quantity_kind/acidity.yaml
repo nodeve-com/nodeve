@@ -1,0 +1,11 @@
+node: node:quantity-kind/acidity
+slug: acidity
+refs:
+  - node: acidity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Acidity
+    match: exact
+contents:
+  - node: acidity-en
+    lang: en
+    title: Acidity

@@ -1,8 +1,0 @@
-title:
-  en: Soil Adsorption Coefficient
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SoilAdsorptionCoefficient
-    match: exact
-identity:
-  broader: specific_volume

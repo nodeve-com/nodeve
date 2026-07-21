@@ -1,0 +1,11 @@
+node: node:quantity-kind/logarithmic-frequency-interval-to-base10
+slug: logarithmic-frequency-interval-to-base10
+refs:
+  - node: logarithmic-frequency-interval-to-base10-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LogarithmicFrequencyIntervalToBase10
+    match: exact
+contents:
+  - node: logarithmic-frequency-interval-to-base10-en
+    lang: en
+    title: Logarithmic Frequency Interval to Base 10

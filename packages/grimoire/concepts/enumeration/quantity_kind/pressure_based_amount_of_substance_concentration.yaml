@@ -1,6 +1,0 @@
-title:
-  en: Pressure-based Amount-of-substance Concentration
-refs:
-  - registry_id: qudt_quantity_kind
-    term: PressureBasedAmountOfSubstanceConcentration
-    match: exact

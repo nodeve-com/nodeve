@@ -1,8 +1,0 @@
-title:
-  en: Biodegredation Half Life
-refs:
-  - registry_id: qudt_quantity_kind
-    term: BiodegredationHalfLife
-    match: exact
-identity:
-  broader: time

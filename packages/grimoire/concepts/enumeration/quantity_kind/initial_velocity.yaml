@@ -1,8 +1,0 @@
-title:
-  en: Initial Velocity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: InitialVelocity
-    match: exact
-identity:
-  broader: linear_velocity

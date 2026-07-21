@@ -1,0 +1,16 @@
+node: node:quantity-kind/ionic-strength
+slug: ionic-strength
+broader: node:quantity-kind/amount-of-substance-per-mass
+refs:
+  - node: ionic-strength-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IonicStrength
+    match: exact
+  - node: ionic-strength-wikidata
+    registry: node:registry/wikidata
+    term: Q898396
+    match: exact
+contents:
+  - node: ionic-strength-en
+    lang: en
+    title: Ionic Strength

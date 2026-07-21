@@ -1,0 +1,11 @@
+node: node:quantity-kind/incidence
+slug: incidence
+refs:
+  - node: incidence-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Incidence
+    match: exact
+contents:
+  - node: incidence-en
+    lang: en
+    title: Incidence

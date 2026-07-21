@@ -1,0 +1,12 @@
+node: node:quantity-kind/area-ratio
+slug: area-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: area-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreaRatio
+    match: exact
+contents:
+  - node: area-ratio-en
+    lang: en
+    title: Area Ratio

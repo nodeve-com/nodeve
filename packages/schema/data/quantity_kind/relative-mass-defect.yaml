@@ -1,0 +1,16 @@
+node: node:quantity-kind/relative-mass-defect
+slug: relative-mass-defect
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: relative-mass-defect-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RelativeMassDefect
+    match: exact
+  - node: relative-mass-defect-wikidata
+    registry: node:registry/wikidata
+    term: Q98038718
+    match: exact
+contents:
+  - node: relative-mass-defect-en
+    lang: en
+    title: Relative Mass Defect

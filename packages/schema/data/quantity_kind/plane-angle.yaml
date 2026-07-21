@@ -1,0 +1,11 @@
+node: node:quantity-kind/plane-angle
+slug: plane-angle
+refs:
+  - node: plane-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PlaneAngle
+    match: exact
+contents:
+  - node: plane-angle-en
+    lang: en
+    title: Plane Angle

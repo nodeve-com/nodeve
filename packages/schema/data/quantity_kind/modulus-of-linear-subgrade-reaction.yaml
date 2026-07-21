@@ -1,0 +1,12 @@
+node: node:quantity-kind/modulus-of-linear-subgrade-reaction
+slug: modulus-of-linear-subgrade-reaction
+broader: node:quantity-kind/force-per-area
+refs:
+  - node: modulus-of-linear-subgrade-reaction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ModulusOfLinearSubgradeReaction
+    match: exact
+contents:
+  - node: modulus-of-linear-subgrade-reaction-en
+    lang: en
+    title: Modulus of Linear Subgrade Reaction

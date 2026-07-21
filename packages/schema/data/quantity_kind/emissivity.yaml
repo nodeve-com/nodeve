@@ -1,0 +1,15 @@
+node: node:quantity-kind/emissivity
+slug: emissivity
+refs:
+  - node: emissivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Emissivity
+    match: exact
+  - node: emissivity-wikidata
+    registry: node:registry/wikidata
+    term: Q899670
+    match: exact
+contents:
+  - node: emissivity-en
+    lang: en
+    title: Emissivity

@@ -1,0 +1,11 @@
+node: node:quantity-kind/spectral-density-of-vibrational-modes
+slug: spectral-density-of-vibrational-modes
+refs:
+  - node: spectral-density-of-vibrational-modes-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpectralDensityOfVibrationalModes
+    match: exact
+contents:
+  - node: spectral-density-of-vibrational-modes-en
+    lang: en
+    title: Spectral Density of Vibrational Modes

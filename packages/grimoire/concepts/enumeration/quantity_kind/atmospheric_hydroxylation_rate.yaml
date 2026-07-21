@@ -1,8 +1,0 @@
-title:
-  en: Atmospheric Hydroxylation Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AtmosphericHydroxylationRate
-    match: exact
-identity:
-  broader: second_order_reaction_rate_constant

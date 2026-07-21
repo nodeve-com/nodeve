@@ -1,0 +1,16 @@
+node: node:quantity-kind/heat-capacity-ratio
+slug: heat-capacity-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: heat-capacity-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HeatCapacityRatio
+    match: exact
+  - node: heat-capacity-ratio-wikidata
+    registry: node:registry/wikidata
+    term: Q503869
+    match: exact
+contents:
+  - node: heat-capacity-ratio-en
+    lang: en
+    title: Heat Capacity Ratio

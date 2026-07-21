@@ -1,0 +1,16 @@
+node: node:quantity-kind/energy-fluence-rate
+slug: energy-fluence-rate
+broader: node:quantity-kind/power-per-area
+refs:
+  - node: energy-fluence-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EnergyFluenceRate
+    match: exact
+  - node: energy-fluence-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q65274525
+    match: exact
+contents:
+  - node: energy-fluence-rate-en
+    lang: en
+    title: Energy Fluence Rate

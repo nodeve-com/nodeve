@@ -1,0 +1,16 @@
+node: node:quantity-kind/radiance
+slug: radiance
+broader: node:quantity-kind/power-per-area-angle
+refs:
+  - node: radiance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Radiance
+    match: exact
+  - node: radiance-wikidata
+    registry: node:registry/wikidata
+    term: Q1411145
+    match: exact
+contents:
+  - node: radiance-en
+    lang: en
+    title: Radiance

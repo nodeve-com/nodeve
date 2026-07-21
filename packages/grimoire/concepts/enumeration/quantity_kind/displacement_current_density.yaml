@@ -1,9 +1,0 @@
-title:
-  en: Displacement Current Density
-refs:
-  - registry_id: qudt_quantity_kind
-    term: DisplacementCurrentDensity
-    match: exact
-  - registry_id: wikidata
-    term: Q77614612
-    match: exact

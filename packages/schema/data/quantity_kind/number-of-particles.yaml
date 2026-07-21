@@ -1,0 +1,12 @@
+node: node:quantity-kind/number-of-particles
+slug: number-of-particles
+broader: node:quantity-kind/count
+refs:
+  - node: number-of-particles-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NumberOfParticles
+    match: exact
+contents:
+  - node: number-of-particles-en
+    lang: en
+    title: Number of Particles

@@ -1,0 +1,15 @@
+node: node:quantity-kind/molar-heat-capacity
+slug: molar-heat-capacity
+refs:
+  - node: molar-heat-capacity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarHeatCapacity
+    match: exact
+  - node: molar-heat-capacity-wikidata
+    registry: node:registry/wikidata
+    term: Q2937190
+    match: exact
+contents:
+  - node: molar-heat-capacity-en
+    lang: en
+    title: Molar Heat Capacity

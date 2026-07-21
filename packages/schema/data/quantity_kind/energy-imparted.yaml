@@ -1,0 +1,16 @@
+node: node:quantity-kind/energy-imparted
+slug: energy-imparted
+broader: node:quantity-kind/energy
+refs:
+  - node: energy-imparted-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EnergyImparted
+    match: exact
+  - node: energy-imparted-wikidata
+    registry: node:registry/wikidata
+    term: Q99526944
+    match: exact
+contents:
+  - node: energy-imparted-en
+    lang: en
+    title: Energy Imparted

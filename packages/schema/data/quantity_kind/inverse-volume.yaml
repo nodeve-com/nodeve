@@ -1,0 +1,15 @@
+node: node:quantity-kind/inverse-volume
+slug: inverse-volume
+refs:
+  - node: inverse-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseVolume
+    match: exact
+  - node: inverse-volume-wikidata
+    registry: node:registry/wikidata
+    term: Q98690867
+    match: exact
+contents:
+  - node: inverse-volume-en
+    lang: en
+    title: Inverse Volume

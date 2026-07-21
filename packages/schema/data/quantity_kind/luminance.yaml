@@ -1,0 +1,15 @@
+node: node:quantity-kind/luminance
+slug: luminance
+refs:
+  - node: luminance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Luminance
+    match: exact
+  - node: luminance-wikidata
+    registry: node:registry/wikidata
+    term: Q355386
+    match: exact
+contents:
+  - node: luminance-en
+    lang: en
+    title: Luminance

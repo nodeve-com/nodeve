@@ -1,0 +1,12 @@
+node: node:quantity-kind/initial-velocity
+slug: initial-velocity
+broader: node:quantity-kind/linear-velocity
+refs:
+  - node: initial-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InitialVelocity
+    match: exact
+contents:
+  - node: initial-velocity-en
+    lang: en
+    title: Initial Velocity

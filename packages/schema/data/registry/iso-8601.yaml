@@ -1,0 +1,10 @@
+node: node:registry/iso-8601
+slug: iso-8601
+url: https://www.iso.org/iso-8601-date-and-time-format.html
+contents:
+  - node: iso-8601-en
+    lang: en
+    title: ISO 8601 (Date/time & durations)
+  - node: iso-8601-pt
+    lang: pt
+    title: ISO 8601 (Data/hora e durações)

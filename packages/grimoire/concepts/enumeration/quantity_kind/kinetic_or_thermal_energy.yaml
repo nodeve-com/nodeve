@@ -1,8 +1,0 @@
-title:
-  en: kinetic or thermal energy
-refs:
-  - registry_id: qudt_quantity_kind
-    term: KineticOrThermalEnergy
-    match: exact
-identity:
-  broader: energy

@@ -1,0 +1,16 @@
+node: node:quantity-kind/slowing-down-area
+slug: slowing-down-area
+broader: node:quantity-kind/area
+refs:
+  - node: slowing-down-area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SlowingDownArea
+    match: exact
+  - node: slowing-down-area-wikidata
+    registry: node:registry/wikidata
+    term: Q98950918
+    match: exact
+contents:
+  - node: slowing-down-area-en
+    lang: en
+    title: Slowing-Down Area

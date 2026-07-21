@@ -1,0 +1,12 @@
+node: node:quantity-kind/head-end-pressure
+slug: head-end-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: head-end-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HeadEndPressure
+    match: exact
+contents:
+  - node: head-end-pressure-en
+    lang: en
+    title: Head End Pressure

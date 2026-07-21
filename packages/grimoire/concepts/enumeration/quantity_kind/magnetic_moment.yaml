@@ -1,9 +1,0 @@
-title:
-  en: Magnetic Moment
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MagneticMoment
-    match: exact
-  - registry_id: wikidata
-    term: Q242657
-    match: exact

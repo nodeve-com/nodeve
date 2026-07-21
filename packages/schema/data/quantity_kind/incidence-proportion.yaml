@@ -1,0 +1,15 @@
+node: node:quantity-kind/incidence-proportion
+slug: incidence-proportion
+refs:
+  - node: incidence-proportion-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IncidenceProportion
+    match: exact
+  - node: incidence-proportion-wikidata
+    registry: node:registry/wikidata
+    term: Q217690
+    match: exact
+contents:
+  - node: incidence-proportion-en
+    lang: en
+    title: Incidence Proportion

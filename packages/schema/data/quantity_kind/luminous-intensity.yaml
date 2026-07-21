@@ -1,0 +1,15 @@
+node: node:quantity-kind/luminous-intensity
+slug: luminous-intensity
+refs:
+  - node: luminous-intensity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousIntensity
+    match: exact
+  - node: luminous-intensity-wikidata
+    registry: node:registry/wikidata
+    term: Q104831
+    match: exact
+contents:
+  - node: luminous-intensity-en
+    lang: en
+    title: Luminous Intensity

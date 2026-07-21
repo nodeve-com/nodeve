@@ -1,0 +1,15 @@
+node: node:quantity-kind/time
+slug: time
+refs:
+  - node: time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Time
+    match: exact
+  - node: time-wikidata
+    registry: node:registry/wikidata
+    term: Q2199864
+    match: exact
+contents:
+  - node: time-en
+    lang: en
+    title: Time

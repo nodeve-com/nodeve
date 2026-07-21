@@ -1,0 +1,12 @@
+node: node:quantity-kind/auditory-thresholds
+slug: auditory-thresholds
+broader: node:quantity-kind/sound-power-level
+refs:
+  - node: auditory-thresholds-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AuditoryThresholds
+    match: exact
+contents:
+  - node: auditory-thresholds-en
+    lang: en
+    title: Auditory Thresholds

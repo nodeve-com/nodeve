@@ -1,0 +1,12 @@
+node: node:quantity-kind/hydraulic-permeability
+slug: hydraulic-permeability
+broader: node:quantity-kind/area
+refs:
+  - node: hydraulic-permeability-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HydraulicPermeability
+    match: exact
+contents:
+  - node: hydraulic-permeability-en
+    lang: en
+    title: Hydraulic Permeability

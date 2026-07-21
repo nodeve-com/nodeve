@@ -1,0 +1,16 @@
+node: node:quantity-kind/radius
+slug: radius
+broader: node:quantity-kind/length
+refs:
+  - node: radius-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Radius
+    match: exact
+  - node: radius-wikidata
+    registry: node:registry/wikidata
+    term: Q173817
+    match: exact
+contents:
+  - node: radius-en
+    lang: en
+    title: Radius

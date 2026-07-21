@@ -1,8 +1,0 @@
-title:
-  en: Friction Coefficient
-refs:
-  - registry_id: qudt_quantity_kind
-    term: FrictionCoefficient
-    match: exact
-identity:
-  broader: dimensionless_ratio

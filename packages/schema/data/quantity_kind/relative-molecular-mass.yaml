@@ -1,0 +1,16 @@
+node: node:quantity-kind/relative-molecular-mass
+slug: relative-molecular-mass
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: relative-molecular-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RelativeMolecularMass
+    match: exact
+  - node: relative-molecular-mass-wikidata
+    registry: node:registry/wikidata
+    term: Q21697817
+    match: exact
+contents:
+  - node: relative-molecular-mass-en
+    lang: en
+    title: Relative Molecular Mass

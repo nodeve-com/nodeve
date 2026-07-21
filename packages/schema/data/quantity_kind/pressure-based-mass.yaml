@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-mass
+slug: pressure-based-mass
+refs:
+  - node: pressure-based-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedMass
+    match: exact
+contents:
+  - node: pressure-based-mass-en
+    lang: en
+    title: Pressure-based Mass

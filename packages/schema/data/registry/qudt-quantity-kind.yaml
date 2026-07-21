@@ -1,0 +1,11 @@
+node: node:registry/qudt-quantity-kind
+slug: qudt-quantity-kind
+url: http://qudt.org/
+iri_template: https://qudt.org/vocab/quantitykind/{id}
+contents:
+  - node: qudt-quantity-kind-en
+    lang: en
+    title: QUDT QuantityKind
+  - node: qudt-quantity-kind-pt
+    lang: pt
+    title: QUDT QuantityKind

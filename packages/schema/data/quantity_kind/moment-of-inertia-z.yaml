@@ -1,0 +1,12 @@
+node: node:quantity-kind/moment-of-inertia-z
+slug: moment-of-inertia-z
+broader: node:quantity-kind/moment-of-inertia
+refs:
+  - node: moment-of-inertia-z-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MomentOfInertia_Z
+    match: exact
+contents:
+  - node: moment-of-inertia-z-en
+    lang: en
+    title: Moment of Inertia in the Z Axis

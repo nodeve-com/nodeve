@@ -1,0 +1,15 @@
+node: node:quantity-kind/canonical-partition-function
+slug: canonical-partition-function
+refs:
+  - node: canonical-partition-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CanonicalPartitionFunction
+    match: exact
+  - node: canonical-partition-function-wikidata
+    registry: node:registry/wikidata
+    term: Q96142389
+    match: exact
+contents:
+  - node: canonical-partition-function-en
+    lang: en
+    title: Canonical Partition Function

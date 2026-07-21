@@ -1,0 +1,16 @@
+node: node:quantity-kind/radiant-flux
+slug: radiant-flux
+broader: node:quantity-kind/power
+refs:
+  - node: radiant-flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadiantFlux
+    match: exact
+  - node: radiant-flux-wikidata
+    registry: node:registry/wikidata
+    term: Q1253356
+    match: exact
+contents:
+  - node: radiant-flux-en
+    lang: en
+    title: Radiant Flux

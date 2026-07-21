@@ -1,0 +1,16 @@
+node: node:quantity-kind/magnetization
+slug: magnetization
+broader: node:quantity-kind/linear-electric-current
+refs:
+  - node: magnetization-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Magnetization
+    match: exact
+  - node: magnetization-wikidata
+    registry: node:registry/wikidata
+    term: Q856711
+    match: exact
+contents:
+  - node: magnetization-en
+    lang: en
+    title: Magnetization

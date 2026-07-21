@@ -1,6 +1,0 @@
-title:
-  en: "Temperature-related Volume  "
-refs:
-  - registry_id: qudt_quantity_kind
-    term: TemperatureRelatedVolume
-    match: exact

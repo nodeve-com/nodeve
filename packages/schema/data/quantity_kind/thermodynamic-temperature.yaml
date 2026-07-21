@@ -1,0 +1,16 @@
+node: node:quantity-kind/thermodynamic-temperature
+slug: thermodynamic-temperature
+broader: node:quantity-kind/temperature
+refs:
+  - node: thermodynamic-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermodynamicTemperature
+    match: exact
+  - node: thermodynamic-temperature-wikidata
+    registry: node:registry/wikidata
+    term: Q264647
+    match: exact
+contents:
+  - node: thermodynamic-temperature-en
+    lang: en
+    title: Thermodynamic Temperature

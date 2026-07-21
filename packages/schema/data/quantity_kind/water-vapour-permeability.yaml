@@ -1,0 +1,11 @@
+node: node:quantity-kind/water-vapour-permeability
+slug: water-vapour-permeability
+refs:
+  - node: water-vapour-permeability-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WaterVapourPermeability
+    match: exact
+contents:
+  - node: water-vapour-permeability-en
+    lang: en
+    title: Water Vapour Permeability

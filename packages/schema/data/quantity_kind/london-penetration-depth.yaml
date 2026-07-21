@@ -1,0 +1,16 @@
+node: node:quantity-kind/london-penetration-depth
+slug: london-penetration-depth
+broader: node:quantity-kind/length
+refs:
+  - node: london-penetration-depth-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LondonPenetrationDepth
+    match: exact
+  - node: london-penetration-depth-wikidata
+    registry: node:registry/wikidata
+    term: Q3277853
+    match: exact
+contents:
+  - node: london-penetration-depth-en
+    lang: en
+    title: London Penetration Depth

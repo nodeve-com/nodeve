@@ -1,6 +1,0 @@
-title:
-  en: "Median Information Flow (from a Source of Information), Expressed as a Natural Logarithm "
-refs:
-  - registry_id: qudt_quantity_kind
-    term: NaturalLogarithmicMedianInformationFlow
-    match: exact

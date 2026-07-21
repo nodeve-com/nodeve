@@ -1,0 +1,12 @@
+node: node:quantity-kind/serum-level
+slug: serum-level
+broader: node:quantity-kind/amount-of-substance-concentration
+refs:
+  - node: serum-level-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SerumLevel
+    match: exact
+contents:
+  - node: serum-level-en
+    lang: en
+    title: Serum Level

@@ -1,0 +1,12 @@
+node: node:quantity-kind/ion-density
+slug: ion-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: ion-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IonDensity
+    match: exact
+contents:
+  - node: ion-density-en
+    lang: en
+    title: Ion Density

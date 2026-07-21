@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumetric-flux
+slug: volumetric-flux
+refs:
+  - node: volumetric-flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumetricFlux
+    match: exact
+contents:
+  - node: volumetric-flux-en
+    lang: en
+    title: Volumetric Flux

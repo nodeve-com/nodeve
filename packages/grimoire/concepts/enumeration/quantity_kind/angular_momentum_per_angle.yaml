@@ -1,6 +1,0 @@
-title:
-  en: Angular Momentum per Angle
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AngularMomentumPerAngle
-    match: exact

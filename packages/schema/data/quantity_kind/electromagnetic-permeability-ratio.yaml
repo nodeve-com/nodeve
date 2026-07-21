@@ -1,0 +1,15 @@
+node: node:quantity-kind/electromagnetic-permeability-ratio
+slug: electromagnetic-permeability-ratio
+refs:
+  - node: electromagnetic-permeability-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectromagneticPermeabilityRatio
+    match: exact
+  - node: electromagnetic-permeability-ratio-wikidata
+    registry: node:registry/wikidata
+    term: Q77785645
+    match: exact
+contents:
+  - node: electromagnetic-permeability-ratio-en
+    lang: en
+    title: Electromagnetic Permeability Ratio

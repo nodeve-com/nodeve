@@ -1,0 +1,11 @@
+node: node:quantity-kind/photosynthetic-photon-flux
+slug: photosynthetic-photon-flux
+refs:
+  - node: photosynthetic-photon-flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhotosyntheticPhotonFlux
+    match: exact
+contents:
+  - node: photosynthetic-photon-flux-en
+    lang: en
+    title: Photosynthetic Photon Flux

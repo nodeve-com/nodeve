@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-temperature
+slug: pressure-based-temperature
+refs:
+  - node: pressure-based-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedTemperature
+    match: exact
+contents:
+  - node: pressure-based-temperature-en
+    lang: en
+    title: Pressure-based Temperature

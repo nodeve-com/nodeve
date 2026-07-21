@@ -1,0 +1,11 @@
+node: node:quantity-kind/vapour-permeance
+slug: vapour-permeance
+refs:
+  - node: vapour-permeance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VapourPermeance
+    match: exact
+contents:
+  - node: vapour-permeance-en
+    lang: en
+    title: Vapour Permeance

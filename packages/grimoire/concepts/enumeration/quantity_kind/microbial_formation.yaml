@@ -1,6 +1,0 @@
-title:
-  en: Microbial Formation
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MicrobialFormation
-    match: exact

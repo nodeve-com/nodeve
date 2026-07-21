@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-square-mass
+slug: inverse-square-mass
+refs:
+  - node: inverse-square-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseSquareMass
+    match: exact
+contents:
+  - node: inverse-square-mass-en
+    lang: en
+    title: Inverse Square Mass

@@ -1,0 +1,10 @@
+node: node:registry/usb-class
+slug: usb-class
+url: https://www.usb.org/
+contents:
+  - node: usb-class-en
+    lang: en
+    title: USB Implementers Forum
+  - node: usb-class-pt
+    lang: pt
+    title: USB Implementers Forum

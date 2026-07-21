@@ -1,0 +1,15 @@
+node: node:quantity-kind/magnetic-polarization
+slug: magnetic-polarization
+refs:
+  - node: magnetic-polarization-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MagneticPolarization
+    match: exact
+  - node: magnetic-polarization-wikidata
+    registry: node:registry/wikidata
+    term: Q1884336
+    match: exact
+contents:
+  - node: magnetic-polarization-en
+    lang: en
+    title: Magnetic Polarization

@@ -1,0 +1,16 @@
+node: node:quantity-kind/curie-temperature
+slug: curie-temperature
+broader: node:quantity-kind/temperature
+refs:
+  - node: curie-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CurieTemperature
+    match: exact
+  - node: curie-temperature-wikidata
+    registry: node:registry/wikidata
+    term: Q191073
+    match: exact
+contents:
+  - node: curie-temperature-en
+    lang: en
+    title: Curie Temperature

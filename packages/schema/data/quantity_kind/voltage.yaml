@@ -1,0 +1,24 @@
+node: node:quantity-kind/voltage
+slug: voltage
+si_unit: V
+accumulation: instantaneous
+refs:
+  - node: voltage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Voltage
+    match: exact
+  - node: voltage-wikidata
+    registry: node:registry/wikidata
+    term: Q25428
+    match: exact
+  - node: voltage-ha-device-class
+    registry: node:registry/ha-device-class
+    term: voltage
+    match: exact
+contents:
+  - node: voltage-en
+    lang: en
+    title: Voltage
+  - node: voltage-pt
+    lang: pt
+    title: Tensão

@@ -1,8 +1,0 @@
-title:
-  en: Ventilation Rate per Floor Area
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VentilationRatePerFloorArea
-    match: exact
-identity:
-  broader: surface_related_volume_flow

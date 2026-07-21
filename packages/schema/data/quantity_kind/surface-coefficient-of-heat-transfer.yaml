@@ -1,0 +1,16 @@
+node: node:quantity-kind/surface-coefficient-of-heat-transfer
+slug: surface-coefficient-of-heat-transfer
+broader: node:quantity-kind/coefficient-of-heat-transfer
+refs:
+  - node: surface-coefficient-of-heat-transfer-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SurfaceCoefficientOfHeatTransfer
+    match: exact
+  - node: surface-coefficient-of-heat-transfer-wikidata
+    registry: node:registry/wikidata
+    term: Q74770365
+    match: exact
+contents:
+  - node: surface-coefficient-of-heat-transfer-en
+    lang: en
+    title: Surface Coefficient of Heat Transfer

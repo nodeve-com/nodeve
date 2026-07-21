@@ -1,9 +1,0 @@
-title:
-  en: Sound Reduction Index
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SoundReductionIndex
-    match: exact
-  - registry_id: wikidata
-    term: Q2230459
-    match: exact

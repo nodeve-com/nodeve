@@ -1,0 +1,12 @@
+node: node:quantity-kind/shannon-diversity-index
+slug: shannon-diversity-index
+broader: node:quantity-kind/information-entropy
+refs:
+  - node: shannon-diversity-index-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ShannonDiversityIndex
+    match: exact
+contents:
+  - node: shannon-diversity-index-en
+    lang: en
+    title: Shannon Diversity Index

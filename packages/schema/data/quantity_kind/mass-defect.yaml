@@ -1,0 +1,16 @@
+node: node:quantity-kind/mass-defect
+slug: mass-defect
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-defect-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassDefect
+    match: exact
+  - node: mass-defect-wikidata
+    registry: node:registry/wikidata
+    term: Q26897126
+    match: exact
+contents:
+  - node: mass-defect-en
+    lang: en
+    title: Mass Defect

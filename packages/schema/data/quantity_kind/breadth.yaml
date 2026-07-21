@@ -1,0 +1,16 @@
+node: node:quantity-kind/breadth
+slug: breadth
+broader: node:quantity-kind/length
+refs:
+  - node: breadth-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Breadth
+    match: exact
+  - node: breadth-wikidata
+    registry: node:registry/wikidata
+    term: Q77835705
+    match: exact
+contents:
+  - node: breadth-en
+    lang: en
+    title: Breadth

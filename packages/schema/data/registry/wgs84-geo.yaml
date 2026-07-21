@@ -1,0 +1,11 @@
+node: node:registry/wgs84-geo
+slug: wgs84-geo
+url: https://www.w3.org/2003/01/geo/
+iri_template: http://www.w3.org/2003/01/geo/wgs84_pos#{id}
+contents:
+  - node: wgs84-geo-en
+    lang: en
+    title: W3C Basic Geo (WGS84 lat/long) vocabulary
+  - node: wgs84-geo-pt
+    lang: pt
+    title: Vocabulário W3C Basic Geo (WGS84 lat/long)

@@ -1,0 +1,16 @@
+node: node:quantity-kind/linear-strain
+slug: linear-strain
+broader: node:quantity-kind/length-ratio
+refs:
+  - node: linear-strain-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearStrain
+    match: exact
+  - node: linear-strain-wikidata
+    registry: node:registry/wikidata
+    term: Q1990546
+    match: exact
+contents:
+  - node: linear-strain-en
+    lang: en
+    title: Linear Strain

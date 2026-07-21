@@ -1,0 +1,16 @@
+node: node:quantity-kind/specific-gibbs-energy
+slug: specific-gibbs-energy
+broader: node:quantity-kind/specific-energy
+refs:
+  - node: specific-gibbs-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificGibbsEnergy
+    match: exact
+  - node: specific-gibbs-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q76360636
+    match: exact
+contents:
+  - node: specific-gibbs-energy-en
+    lang: en
+    title: Specific Gibbs Energy

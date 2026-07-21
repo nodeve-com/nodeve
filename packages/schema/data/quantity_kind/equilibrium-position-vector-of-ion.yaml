@@ -1,0 +1,16 @@
+node: node:quantity-kind/equilibrium-position-vector-of-ion
+slug: equilibrium-position-vector-of-ion
+broader: node:quantity-kind/length
+refs:
+  - node: equilibrium-position-vector-of-ion-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EquilibriumPositionVectorOfIon
+    match: exact
+  - node: equilibrium-position-vector-of-ion-wikidata
+    registry: node:registry/wikidata
+    term: Q105533477
+    match: exact
+contents:
+  - node: equilibrium-position-vector-of-ion-en
+    lang: en
+    title: Equilibrium Position Vector of Ion

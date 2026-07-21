@@ -1,0 +1,11 @@
+node: node:quantity-kind/power-per-area-angle
+slug: power-per-area-angle
+refs:
+  - node: power-per-area-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PowerPerAreaAngle
+    match: exact
+contents:
+  - node: power-per-area-angle-en
+    lang: en
+    title: Power per Area Angle

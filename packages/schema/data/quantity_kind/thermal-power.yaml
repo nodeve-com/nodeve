@@ -1,0 +1,16 @@
+node: node:quantity-kind/thermal-power
+slug: thermal-power
+broader: node:quantity-kind/power
+refs:
+  - node: thermal-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalPower
+    match: exact
+  - node: thermal-power-wikidata
+    registry: node:registry/wikidata
+    term: Q2419903
+    match: exact
+contents:
+  - node: thermal-power-en
+    lang: en
+    title: Thermal Power

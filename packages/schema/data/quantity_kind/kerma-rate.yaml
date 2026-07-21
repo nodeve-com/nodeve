@@ -1,0 +1,16 @@
+node: node:quantity-kind/kerma-rate
+slug: kerma-rate
+broader: node:quantity-kind/specific-power
+refs:
+  - node: kerma-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: KermaRate
+    match: exact
+  - node: kerma-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q1739280
+    match: exact
+contents:
+  - node: kerma-rate-en
+    lang: en
+    title: Kerma Rate

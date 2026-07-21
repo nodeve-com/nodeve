@@ -1,0 +1,16 @@
+node: node:quantity-kind/displacement-current
+slug: displacement-current
+broader: node:quantity-kind/electric-current
+refs:
+  - node: displacement-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DisplacementCurrent
+    match: exact
+  - node: displacement-current-wikidata
+    registry: node:registry/wikidata
+    term: Q853178
+    match: exact
+contents:
+  - node: displacement-current-en
+    lang: en
+    title: Displacement Current

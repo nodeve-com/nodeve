@@ -1,9 +1,0 @@
-title:
-  en: Inductance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Inductance
-    match: exact
-  - registry_id: wikidata
-    term: Q177897
-    match: exact

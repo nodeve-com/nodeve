@@ -1,0 +1,16 @@
+node: node:quantity-kind/debye-angular-frequency
+slug: debye-angular-frequency
+broader: node:quantity-kind/angular-frequency
+refs:
+  - node: debye-angular-frequency-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DebyeAngularFrequency
+    match: exact
+  - node: debye-angular-frequency-wikidata
+    registry: node:registry/wikidata
+    term: Q105580986
+    match: exact
+contents:
+  - node: debye-angular-frequency-en
+    lang: en
+    title: Debye Angular Frequency

@@ -1,0 +1,15 @@
+node: node:quantity-kind/mass-ratio
+slug: mass-ratio
+refs:
+  - node: mass-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassRatio
+    match: exact
+  - node: mass-ratio-wikidata
+    registry: node:registry/wikidata
+    term: Q1563068
+    match: exact
+contents:
+  - node: mass-ratio-en
+    lang: en
+    title: Mass Ratio

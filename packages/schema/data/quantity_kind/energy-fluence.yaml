@@ -1,0 +1,16 @@
+node: node:quantity-kind/energy-fluence
+slug: energy-fluence
+broader: node:quantity-kind/energy-per-area
+refs:
+  - node: energy-fluence-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EnergyFluence
+    match: exact
+  - node: energy-fluence-wikidata
+    registry: node:registry/wikidata
+    term: Q98538612
+    match: exact
+contents:
+  - node: energy-fluence-en
+    lang: en
+    title: Energy Fluence

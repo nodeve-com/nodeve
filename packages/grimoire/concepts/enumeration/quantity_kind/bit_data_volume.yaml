@@ -1,6 +1,0 @@
-title:
-  en: Bit Data Volume
-refs:
-  - registry_id: qudt_quantity_kind
-    term: BitDataVolume
-    match: exact

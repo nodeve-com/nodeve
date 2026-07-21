@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-optical-rotational-ability
+slug: specific-optical-rotational-ability
+refs:
+  - node: specific-optical-rotational-ability-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificOpticalRotationalAbility
+    match: exact
+contents:
+  - node: specific-optical-rotational-ability-en
+    lang: en
+    title: Specific Optical Rotational Ability

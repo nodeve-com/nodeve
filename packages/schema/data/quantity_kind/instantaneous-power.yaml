@@ -1,0 +1,12 @@
+node: node:quantity-kind/instantaneous-power
+slug: instantaneous-power
+broader: node:quantity-kind/electric-power
+refs:
+  - node: instantaneous-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InstantaneousPower
+    match: exact
+contents:
+  - node: instantaneous-power-en
+    lang: en
+    title: Instantaneous Power

@@ -1,0 +1,15 @@
+node: node:quantity-kind/generalized-velocity
+slug: generalized-velocity
+refs:
+  - node: generalized-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GeneralizedVelocity
+    match: exact
+  - node: generalized-velocity-wikidata
+    registry: node:registry/wikidata
+    term: Q74317892
+    match: exact
+contents:
+  - node: generalized-velocity-en
+    lang: en
+    title: Generalized Velocity

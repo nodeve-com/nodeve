@@ -1,0 +1,14 @@
+node: node:quantity-kind/gross-lift-off-weight
+slug: gross-lift-off-weight
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: gross-lift-off-weight-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GROSS-LIFT-OFF-WEIGHT
+    match: exact
+contents:
+  - node: gross-lift-off-weight-en
+    lang: en
+    title: Gross Lift-Off Weight

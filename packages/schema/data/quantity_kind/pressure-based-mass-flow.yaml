@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-mass-flow
+slug: pressure-based-mass-flow
+refs:
+  - node: pressure-based-mass-flow-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedMassFlow
+    match: exact
+contents:
+  - node: pressure-based-mass-flow-en
+    lang: en
+    title: Pressure-based Mass Flow

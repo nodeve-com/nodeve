@@ -1,0 +1,11 @@
+node: node:quantity-kind/warping-constant
+slug: warping-constant
+refs:
+  - node: warping-constant-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WarpingConstant
+    match: exact
+contents:
+  - node: warping-constant-en
+    lang: en
+    title: Warping Constant

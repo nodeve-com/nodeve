@@ -1,0 +1,20 @@
+node: node:quantity-kind/electric-charge
+slug: electric-charge
+si_unit: C
+accumulation: instantaneous
+refs:
+  - node: electric-charge-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCharge
+    match: exact
+  - node: electric-charge-wikidata
+    registry: node:registry/wikidata
+    term: Q1111
+    match: exact
+contents:
+  - node: electric-charge-en
+    lang: en
+    title: Electric Charge
+  - node: electric-charge-pt
+    lang: pt
+    title: Carga elétrica

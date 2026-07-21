@@ -1,0 +1,15 @@
+node: node:quantity-kind/inverse-magnetic-flux
+slug: inverse-magnetic-flux
+refs:
+  - node: inverse-magnetic-flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseMagneticFlux
+    match: exact
+  - node: inverse-magnetic-flux-wikidata
+    registry: node:registry/wikidata
+    term: Q101194934
+    match: exact
+contents:
+  - node: inverse-magnetic-flux-en
+    lang: en
+    title: Inverse Magnetic Flux

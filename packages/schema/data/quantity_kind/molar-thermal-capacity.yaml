@@ -1,0 +1,11 @@
+node: node:quantity-kind/molar-thermal-capacity
+slug: molar-thermal-capacity
+refs:
+  - node: molar-thermal-capacity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarThermalCapacity
+    match: exact
+contents:
+  - node: molar-thermal-capacity-en
+    lang: en
+    title: Molar Thermal Capacity

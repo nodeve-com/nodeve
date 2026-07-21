@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumetric-bit-density
+slug: volumetric-bit-density
+refs:
+  - node: volumetric-bit-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumetricBitDensity
+    match: exact
+contents:
+  - node: volumetric-bit-density-en
+    lang: en
+    title: Volumic Bit Density

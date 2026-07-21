@@ -1,0 +1,11 @@
+node: node:quantity-kind/transmittance-density
+slug: transmittance-density
+refs:
+  - node: transmittance-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TransmittanceDensity
+    match: exact
+contents:
+  - node: transmittance-density-en
+    lang: en
+    title: Transmittance Density

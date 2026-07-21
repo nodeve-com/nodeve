@@ -1,0 +1,16 @@
+node: node:quantity-kind/specific-helmholtz-energy
+slug: specific-helmholtz-energy
+broader: node:quantity-kind/specific-energy
+refs:
+  - node: specific-helmholtz-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificHelmholtzEnergy
+    match: exact
+  - node: specific-helmholtz-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q76359554
+    match: exact
+contents:
+  - node: specific-helmholtz-energy-en
+    lang: en
+    title: Specific Helmholtz Energy

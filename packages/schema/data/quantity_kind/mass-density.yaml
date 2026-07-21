@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-density
+slug: mass-density
+refs:
+  - node: mass-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassDensity
+    match: exact
+contents:
+  - node: mass-density-en
+    lang: en
+    title: Mass Density

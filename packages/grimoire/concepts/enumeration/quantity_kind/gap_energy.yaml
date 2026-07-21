@@ -1,8 +1,0 @@
-title:
-  en: Gap Energy
-refs:
-  - registry_id: qudt_quantity_kind
-    term: GapEnergy
-    match: exact
-identity:
-  broader: energy

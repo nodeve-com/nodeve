@@ -1,0 +1,12 @@
+node: node:quantity-kind/plasma-level
+slug: plasma-level
+broader: node:quantity-kind/amount-of-substance-concentration
+refs:
+  - node: plasma-level-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PlasmaLevel
+    match: exact
+contents:
+  - node: plasma-level-en
+    lang: en
+    title: Plasma Level

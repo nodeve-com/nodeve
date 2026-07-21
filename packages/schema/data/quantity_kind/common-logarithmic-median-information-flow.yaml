@@ -1,0 +1,11 @@
+node: node:quantity-kind/common-logarithmic-median-information-flow
+slug: common-logarithmic-median-information-flow
+refs:
+  - node: common-logarithmic-median-information-flow-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CommonLogarithmicMedianInformationFlow
+    match: exact
+contents:
+  - node: common-logarithmic-median-information-flow-en
+    lang: en
+    title: "Median Information Flow (from a Source of Information), Expressed as a Common Logarithm "

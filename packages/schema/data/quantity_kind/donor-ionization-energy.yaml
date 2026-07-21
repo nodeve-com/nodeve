@@ -1,0 +1,16 @@
+node: node:quantity-kind/donor-ionization-energy
+slug: donor-ionization-energy
+broader: node:quantity-kind/ionization-energy
+refs:
+  - node: donor-ionization-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DonorIonizationEnergy
+    match: exact
+  - node: donor-ionization-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q112958103
+    match: exact
+contents:
+  - node: donor-ionization-energy-en
+    lang: en
+    title: Donor Ionization Energy

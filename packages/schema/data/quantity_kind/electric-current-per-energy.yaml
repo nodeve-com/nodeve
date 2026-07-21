@@ -1,0 +1,11 @@
+node: node:quantity-kind/electric-current-per-energy
+slug: electric-current-per-energy
+refs:
+  - node: electric-current-per-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCurrentPerEnergy
+    match: exact
+contents:
+  - node: electric-current-per-energy-en
+    lang: en
+    title: Electric Current per Energy

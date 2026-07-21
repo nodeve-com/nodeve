@@ -1,8 +1,0 @@
-title:
-  en: Max Operating Thrust
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MaxOperatingThrust
-    match: exact
-identity:
-  broader: thrust

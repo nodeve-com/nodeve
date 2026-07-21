@@ -1,8 +1,0 @@
-title:
-  en: Gauge Pressure
-refs:
-  - registry_id: qudt_quantity_kind
-    term: GaugePressure
-    match: exact
-identity:
-  broader: pressure

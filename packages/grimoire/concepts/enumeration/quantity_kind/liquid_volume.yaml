@@ -1,8 +1,0 @@
-title:
-  en: Liquid Volume
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LiquidVolume
-    match: exact
-identity:
-  broader: volume

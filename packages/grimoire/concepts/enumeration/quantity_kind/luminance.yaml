@@ -1,9 +1,0 @@
-title:
-  en: Luminance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Luminance
-    match: exact
-  - registry_id: wikidata
-    term: Q355386
-    match: exact

@@ -1,0 +1,15 @@
+node: node:quantity-kind/neutron-yield-per-fission
+slug: neutron-yield-per-fission
+refs:
+  - node: neutron-yield-per-fission-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NeutronYieldPerFission
+    match: exact
+  - node: neutron-yield-per-fission-wikidata
+    registry: node:registry/wikidata
+    term: Q99157909
+    match: exact
+contents:
+  - node: neutron-yield-per-fission-en
+    lang: en
+    title: Neutron Yield per Fission

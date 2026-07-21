@@ -1,0 +1,11 @@
+node: node:quantity-kind/luminous-intensity-distribution
+slug: luminous-intensity-distribution
+refs:
+  - node: luminous-intensity-distribution-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousIntensityDistribution
+    match: exact
+contents:
+  - node: luminous-intensity-distribution-en
+    lang: en
+    title: Ion Concentration

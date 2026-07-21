@@ -1,8 +1,0 @@
-title:
-  en: Drag Force
-refs:
-  - registry_id: qudt_quantity_kind
-    term: DragForce
-    match: exact
-identity:
-  broader: force

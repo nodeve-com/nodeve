@@ -1,0 +1,15 @@
+node: node:quantity-kind/equivalent-mass
+slug: equivalent-mass
+deprecated: true
+deprecated_in: 3.1.3
+replaced_by: node:quantity-kind/mass-equivalent
+broader: node:quantity-kind/mass
+refs:
+  - node: equivalent-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Equivalent_Mass
+    match: exact
+contents:
+  - node: equivalent-mass-en
+    lang: en
+    title: Mass Equivalent

@@ -1,0 +1,14 @@
+node: node:quantity-kind/mass-margin
+slug: mass-margin
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-margin-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MASS-MARGIN
+    match: exact
+contents:
+  - node: mass-margin-en
+    lang: en
+    title: Mass Margin

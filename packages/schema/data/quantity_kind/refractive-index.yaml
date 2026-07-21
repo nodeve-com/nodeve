@@ -1,0 +1,15 @@
+node: node:quantity-kind/refractive-index
+slug: refractive-index
+refs:
+  - node: refractive-index-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RefractiveIndex
+    match: exact
+  - node: refractive-index-wikidata
+    registry: node:registry/wikidata
+    term: Q174102
+    match: exact
+contents:
+  - node: refractive-index-en
+    lang: en
+    title: Refractive Index

@@ -1,0 +1,11 @@
+node: node:quantity-kind/time-related-logarithmic-ratio
+slug: time-related-logarithmic-ratio
+refs:
+  - node: time-related-logarithmic-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TimeRelatedLogarithmicRatio
+    match: exact
+contents:
+  - node: time-related-logarithmic-ratio-en
+    lang: en
+    title: Time-related Logarithmic Ratio

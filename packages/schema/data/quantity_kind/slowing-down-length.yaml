@@ -1,0 +1,16 @@
+node: node:quantity-kind/slowing-down-length
+slug: slowing-down-length
+broader: node:quantity-kind/length
+refs:
+  - node: slowing-down-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SlowingDownLength
+    match: exact
+  - node: slowing-down-length-wikidata
+    registry: node:registry/wikidata
+    term: Q98996963
+    match: exact
+contents:
+  - node: slowing-down-length-en
+    lang: en
+    title: Slowing-Down Length

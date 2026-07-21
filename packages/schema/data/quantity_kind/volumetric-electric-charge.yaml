@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumetric-electric-charge
+slug: volumetric-electric-charge
+refs:
+  - node: volumetric-electric-charge-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumetricElectricCharge
+    match: exact
+contents:
+  - node: volumetric-electric-charge-en
+    lang: en
+    title: Volumic Electric Charge

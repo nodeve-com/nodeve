@@ -1,8 +1,0 @@
-title:
-  en: Volume Flow Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VolumeFlowRatio
-    match: exact
-identity:
-  broader: dimensionless_ratio

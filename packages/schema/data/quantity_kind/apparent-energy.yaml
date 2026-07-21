@@ -1,0 +1,17 @@
+node: node:quantity-kind/apparent-energy
+slug: apparent-energy
+si_unit: VA·s
+accumulation: cumulative_monotonic
+broader: node:quantity-kind/electric-energy
+refs:
+  - node: apparent-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ApparentEnergy
+    match: exact
+contents:
+  - node: apparent-energy-en
+    lang: en
+    title: Apparent Energy
+  - node: apparent-energy-pt
+    lang: pt
+    title: Energia aparente

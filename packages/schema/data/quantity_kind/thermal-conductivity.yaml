@@ -1,0 +1,15 @@
+node: node:quantity-kind/thermal-conductivity
+slug: thermal-conductivity
+refs:
+  - node: thermal-conductivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalConductivity
+    match: exact
+  - node: thermal-conductivity-wikidata
+    registry: node:registry/wikidata
+    term: Q487005
+    match: exact
+contents:
+  - node: thermal-conductivity-en
+    lang: en
+    title: Thermal Conductivity

@@ -1,0 +1,16 @@
+node: node:quantity-kind/prevalence
+slug: prevalence
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: prevalence-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Prevalence
+    match: exact
+  - node: prevalence-wikidata
+    registry: node:registry/wikidata
+    term: Q719602
+    match: exact
+contents:
+  - node: prevalence-en
+    lang: en
+    title: Prevalence

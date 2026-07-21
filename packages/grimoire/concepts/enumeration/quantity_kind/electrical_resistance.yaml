@@ -1,6 +1,0 @@
-title:
-  en: Electrical Resistance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricalResistance
-    match: exact

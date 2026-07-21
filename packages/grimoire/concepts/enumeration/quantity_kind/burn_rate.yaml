@@ -1,8 +1,0 @@
-title:
-  en: Burn Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: BurnRate
-    match: exact
-identity:
-  broader: linear_velocity

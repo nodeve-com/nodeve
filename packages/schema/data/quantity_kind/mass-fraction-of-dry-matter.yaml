@@ -1,0 +1,15 @@
+node: node:quantity-kind/mass-fraction-of-dry-matter
+slug: mass-fraction-of-dry-matter
+refs:
+  - node: mass-fraction-of-dry-matter-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassFractionOfDryMatter
+    match: exact
+  - node: mass-fraction-of-dry-matter-wikidata
+    registry: node:registry/wikidata
+    term: Q76379189
+    match: exact
+contents:
+  - node: mass-fraction-of-dry-matter-en
+    lang: en
+    title: Mass Fraction of Dry Matter

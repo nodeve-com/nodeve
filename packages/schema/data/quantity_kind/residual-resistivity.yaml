@@ -1,0 +1,15 @@
+node: node:quantity-kind/residual-resistivity
+slug: residual-resistivity
+refs:
+  - node: residual-resistivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ResidualResistivity
+    match: exact
+  - node: residual-resistivity-wikidata
+    registry: node:registry/wikidata
+    term: Q25098876
+    match: exact
+contents:
+  - node: residual-resistivity-en
+    lang: en
+    title: Residual Resistivity

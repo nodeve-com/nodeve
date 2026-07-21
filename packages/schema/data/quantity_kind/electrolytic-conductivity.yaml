@@ -1,0 +1,15 @@
+node: node:quantity-kind/electrolytic-conductivity
+slug: electrolytic-conductivity
+refs:
+  - node: electrolytic-conductivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectrolyticConductivity
+    match: exact
+  - node: electrolytic-conductivity-wikidata
+    registry: node:registry/wikidata
+    term: Q907564
+    match: exact
+contents:
+  - node: electrolytic-conductivity-en
+    lang: en
+    title: Electrolytic Conductivity

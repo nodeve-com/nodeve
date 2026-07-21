@@ -1,0 +1,19 @@
+node: node:quantity-kind/energy-internal
+slug: energy-internal
+deprecated: true
+deprecated_in: 3.2.0
+replaced_by: node:quantity-kind/internal-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: energy-internal-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EnergyInternal
+    match: exact
+  - node: energy-internal-wikidata
+    registry: node:registry/wikidata
+    term: Q180241
+    match: exact
+contents:
+  - node: energy-internal-en
+    lang: en
+    title: internal energy

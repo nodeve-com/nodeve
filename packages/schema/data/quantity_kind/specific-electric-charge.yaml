@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-electric-charge
+slug: specific-electric-charge
+refs:
+  - node: specific-electric-charge-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificElectricCharge
+    match: exact
+contents:
+  - node: specific-electric-charge-en
+    lang: en
+    title: Specific Electric Charge

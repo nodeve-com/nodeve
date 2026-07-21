@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-weight
+slug: specific-weight
+refs:
+  - node: specific-weight-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificWeight
+    match: exact
+contents:
+  - node: specific-weight-en
+    lang: en
+    title: Specific Weight

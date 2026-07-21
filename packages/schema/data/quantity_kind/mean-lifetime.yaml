@@ -1,0 +1,16 @@
+node: node:quantity-kind/mean-lifetime
+slug: mean-lifetime
+broader: node:quantity-kind/time
+refs:
+  - node: mean-lifetime-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MeanLifetime
+    match: exact
+  - node: mean-lifetime-wikidata
+    registry: node:registry/wikidata
+    term: Q1758559
+    match: exact
+contents:
+  - node: mean-lifetime-en
+    lang: en
+    title: Mean Lifetime

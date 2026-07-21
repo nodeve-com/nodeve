@@ -1,0 +1,16 @@
+node: node:quantity-kind/kerma
+slug: kerma
+broader: node:quantity-kind/specific-energy
+refs:
+  - node: kerma-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Kerma
+    match: exact
+  - node: kerma-wikidata
+    registry: node:registry/wikidata
+    term: Q1739288
+    match: exact
+contents:
+  - node: kerma-en
+    lang: en
+    title: Kerma

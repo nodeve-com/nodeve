@@ -1,8 +1,0 @@
-title:
-  en: CO2Equivalent
-refs:
-  - registry_id: qudt_quantity_kind
-    term: CO2Equivalent
-    match: exact
-identity:
-  broader: mass_equivalent

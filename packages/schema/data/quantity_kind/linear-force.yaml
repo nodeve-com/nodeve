@@ -1,0 +1,12 @@
+node: node:quantity-kind/linear-force
+slug: linear-force
+broader: node:quantity-kind/force-per-length
+refs:
+  - node: linear-force-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearForce
+    match: exact
+contents:
+  - node: linear-force-en
+    lang: en
+    title: Linear Force

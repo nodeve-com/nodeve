@@ -1,8 +1,0 @@
-title:
-  en: Luminous Emmitance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LuminousEmittance
-    match: exact
-identity:
-  broader: luminous_flux_per_area

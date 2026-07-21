@@ -1,0 +1,11 @@
+node: node:quantity-kind/linear-velocity
+slug: linear-velocity
+refs:
+  - node: linear-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearVelocity
+    match: exact
+contents:
+  - node: linear-velocity-en
+    lang: en
+    title: Linear Velocity

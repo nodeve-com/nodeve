@@ -1,0 +1,25 @@
+node: node:quantity-kind/relative-humidity
+slug: relative-humidity
+si_unit: "%"
+accumulation: instantaneous
+broader: node:quantity-kind/relative-partial-pressure
+refs:
+  - node: relative-humidity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RelativeHumidity
+    match: exact
+  - node: relative-humidity-wikidata
+    registry: node:registry/wikidata
+    term: Q2499617
+    match: exact
+  - node: relative-humidity-ha-device-class
+    registry: node:registry/ha-device-class
+    term: humidity
+    match: exact
+contents:
+  - node: relative-humidity-en
+    lang: en
+    title: Relative Humidity
+  - node: relative-humidity-pt
+    lang: pt
+    title: Humidade relativa

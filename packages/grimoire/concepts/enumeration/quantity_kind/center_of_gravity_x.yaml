@@ -1,8 +1,0 @@
-title:
-  en: Center of Gravity in the X Axis
-refs:
-  - registry_id: qudt_quantity_kind
-    term: CenterOfGravity_X
-    match: exact
-identity:
-  broader: length

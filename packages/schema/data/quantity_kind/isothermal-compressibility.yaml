@@ -1,0 +1,16 @@
+node: node:quantity-kind/isothermal-compressibility
+slug: isothermal-compressibility
+broader: node:quantity-kind/compressibility
+refs:
+  - node: isothermal-compressibility-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IsothermalCompressibility
+    match: exact
+  - node: isothermal-compressibility-wikidata
+    registry: node:registry/wikidata
+    term: Q2990696
+    match: exact
+contents:
+  - node: isothermal-compressibility-en
+    lang: en
+    title: Isothermal Compressibility

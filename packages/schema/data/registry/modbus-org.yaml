@@ -1,0 +1,10 @@
+node: node:registry/modbus-org
+slug: modbus-org
+url: https://www.modbus.org/specs.php
+contents:
+  - node: modbus-org-en
+    lang: en
+    title: Modbus Organization
+  - node: modbus-org-pt
+    lang: pt
+    title: Modbus Organization

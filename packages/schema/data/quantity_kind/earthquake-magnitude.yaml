@@ -1,0 +1,11 @@
+node: node:quantity-kind/earthquake-magnitude
+slug: earthquake-magnitude
+refs:
+  - node: earthquake-magnitude-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EarthquakeMagnitude
+    match: exact
+contents:
+  - node: earthquake-magnitude-en
+    lang: en
+    title: Earthquake Magnitude

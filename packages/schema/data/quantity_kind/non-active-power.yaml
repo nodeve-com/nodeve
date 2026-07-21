@@ -1,0 +1,16 @@
+node: node:quantity-kind/non-active-power
+slug: non-active-power
+broader: node:quantity-kind/electric-power
+refs:
+  - node: non-active-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NonActivePower
+    match: exact
+  - node: non-active-power-wikidata
+    registry: node:registry/wikidata
+    term: Q79813060
+    match: exact
+contents:
+  - node: non-active-power-en
+    lang: en
+    title: Non-active Power

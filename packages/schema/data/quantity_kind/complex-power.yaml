@@ -1,0 +1,19 @@
+node: node:quantity-kind/complex-power
+slug: complex-power
+deprecated: true
+deprecated_in: 3.1.1
+replaced_by: node:quantity-kind/electric-power
+broader: node:quantity-kind/electric-power
+refs:
+  - node: complex-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ComplexPower
+    match: exact
+  - node: complex-power-wikidata
+    registry: node:registry/wikidata
+    term: Q65239736
+    match: exact
+contents:
+  - node: complex-power-en
+    lang: en
+    title: Complex Power

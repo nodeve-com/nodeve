@@ -1,0 +1,11 @@
+node: node:quantity-kind/currency
+slug: currency
+refs:
+  - node: currency-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Currency
+    match: exact
+contents:
+  - node: currency-en
+    lang: en
+    title: Currency

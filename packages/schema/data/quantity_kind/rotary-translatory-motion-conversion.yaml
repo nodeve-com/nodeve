@@ -1,0 +1,11 @@
+node: node:quantity-kind/rotary-translatory-motion-conversion
+slug: rotary-translatory-motion-conversion
+refs:
+  - node: rotary-translatory-motion-conversion-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RotaryTranslatoryMotionConversion
+    match: exact
+contents:
+  - node: rotary-translatory-motion-conversion-en
+    lang: en
+    title: Rotary-translatory Motion Conversion

@@ -1,0 +1,16 @@
+node: node:quantity-kind/celsius-temperature
+slug: celsius-temperature
+broader: node:quantity-kind/temperature
+refs:
+  - node: celsius-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CelsiusTemperature
+    match: exact
+  - node: celsius-temperature-wikidata
+    registry: node:registry/wikidata
+    term: Q74758530
+    match: exact
+contents:
+  - node: celsius-temperature-en
+    lang: en
+    title: Celsius Temperature

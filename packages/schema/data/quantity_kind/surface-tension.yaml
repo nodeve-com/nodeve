@@ -1,0 +1,16 @@
+node: node:quantity-kind/surface-tension
+slug: surface-tension
+broader: node:quantity-kind/energy-per-area
+refs:
+  - node: surface-tension-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SurfaceTension
+    match: exact
+  - node: surface-tension-wikidata
+    registry: node:registry/wikidata
+    term: Q170749
+    match: exact
+contents:
+  - node: surface-tension-en
+    lang: en
+    title: Surface Tension

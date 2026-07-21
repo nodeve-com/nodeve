@@ -1,6 +1,0 @@
-title:
-  en: Mass Specific Biogeochemical Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassSpecificBiogeochemicalRate
-    match: exact

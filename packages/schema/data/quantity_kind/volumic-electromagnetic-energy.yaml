@@ -1,0 +1,12 @@
+node: node:quantity-kind/volumic-electromagnetic-energy
+slug: volumic-electromagnetic-energy
+broader: node:quantity-kind/energy-density
+refs:
+  - node: volumic-electromagnetic-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumicElectromagneticEnergy
+    match: exact
+contents:
+  - node: volumic-electromagnetic-energy-en
+    lang: en
+    title: Volumic Electromagnetic Energy

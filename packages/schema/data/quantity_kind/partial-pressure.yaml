@@ -1,0 +1,16 @@
+node: node:quantity-kind/partial-pressure
+slug: partial-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: partial-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PartialPressure
+    match: exact
+  - node: partial-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q27165
+    match: exact
+contents:
+  - node: partial-pressure-en
+    lang: en
+    title: Partial Pressure

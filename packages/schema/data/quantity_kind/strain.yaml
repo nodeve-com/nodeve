@@ -1,0 +1,12 @@
+node: node:quantity-kind/strain
+slug: strain
+broader: node:quantity-kind/length-ratio
+refs:
+  - node: strain-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Strain
+    match: exact
+contents:
+  - node: strain-en
+    lang: en
+    title: Strain

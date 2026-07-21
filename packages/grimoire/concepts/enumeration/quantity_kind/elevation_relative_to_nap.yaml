@@ -1,8 +1,0 @@
-title:
-  en: Elevation Relative to NAP
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElevationRelativeToNAP
-    match: exact
-identity:
-  broader: altitude

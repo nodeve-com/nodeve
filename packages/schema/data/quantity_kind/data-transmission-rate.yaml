@@ -1,0 +1,11 @@
+node: node:quantity-kind/data-transmission-rate
+slug: data-transmission-rate
+refs:
+  - node: data-transmission-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DataTransmissionRate
+    match: exact
+contents:
+  - node: data-transmission-rate-en
+    lang: en
+    title: Data Transmission Rate

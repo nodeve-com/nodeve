@@ -1,0 +1,16 @@
+node: node:quantity-kind/specific-heat-capacity-at-constant-pressure
+slug: specific-heat-capacity-at-constant-pressure
+broader: node:quantity-kind/specific-heat-capacity
+refs:
+  - node: specific-heat-capacity-at-constant-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificHeatCapacityAtConstantPressure
+    match: exact
+  - node: specific-heat-capacity-at-constant-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q75774282
+    match: exact
+contents:
+  - node: specific-heat-capacity-at-constant-pressure-en
+    lang: en
+    title: Specific Heat Capacity at Constant Pressure

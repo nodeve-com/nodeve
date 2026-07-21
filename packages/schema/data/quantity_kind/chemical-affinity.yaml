@@ -1,0 +1,15 @@
+node: node:quantity-kind/chemical-affinity
+slug: chemical-affinity
+refs:
+  - node: chemical-affinity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ChemicalAffinity
+    match: exact
+  - node: chemical-affinity-wikidata
+    registry: node:registry/wikidata
+    term: Q382783
+    match: exact
+contents:
+  - node: chemical-affinity-en
+    lang: en
+    title: Chemical Affinity

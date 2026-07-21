@@ -1,0 +1,16 @@
+node: node:quantity-kind/mean-energy-imparted
+slug: mean-energy-imparted
+broader: node:quantity-kind/energy
+refs:
+  - node: mean-energy-imparted-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MeanEnergyImparted
+    match: exact
+  - node: mean-energy-imparted-wikidata
+    registry: node:registry/wikidata
+    term: Q99526969
+    match: exact
+contents:
+  - node: mean-energy-imparted-en
+    lang: en
+    title: Mean Energy Imparted

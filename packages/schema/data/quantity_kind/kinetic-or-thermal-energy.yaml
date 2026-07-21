@@ -1,0 +1,14 @@
+node: node:quantity-kind/kinetic-or-thermal-energy
+slug: kinetic-or-thermal-energy
+deprecated: true
+deprecated_in: 3.1.4
+broader: node:quantity-kind/energy
+refs:
+  - node: kinetic-or-thermal-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: KineticOrThermalEnergy
+    match: exact
+contents:
+  - node: kinetic-or-thermal-energy-en
+    lang: en
+    title: kinetic or thermal energy

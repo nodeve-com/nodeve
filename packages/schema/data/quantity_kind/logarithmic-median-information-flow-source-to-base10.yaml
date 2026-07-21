@@ -1,0 +1,14 @@
+node: node:quantity-kind/logarithmic-median-information-flow-source-to-base10
+slug: logarithmic-median-information-flow-source-to-base10
+deprecated: true
+deprecated_in: 3.1.3
+replaced_by: node:quantity-kind/common-logarithmic-median-information-flow
+refs:
+  - node: logarithmic-median-information-flow-source-to-base10-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LogarithmicMedianInformationFlow_SourceToBase10
+    match: exact
+contents:
+  - node: logarithmic-median-information-flow-source-to-base10-en
+    lang: en
+    title: "median information flow (from a source of information), expressed as a common logarithm "

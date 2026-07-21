@@ -1,0 +1,12 @@
+node: node:quantity-kind/log-octanol-air-partition-coefficient
+slug: log-octanol-air-partition-coefficient
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: log-octanol-air-partition-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LogOctanolAirPartitionCoefficient
+    match: exact
+contents:
+  - node: log-octanol-air-partition-coefficient-en
+    lang: en
+    title: Octanol Air Partition Coefficient

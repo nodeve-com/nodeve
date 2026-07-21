@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-gradient
+slug: pressure-gradient
+refs:
+  - node: pressure-gradient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureGradient
+    match: exact
+contents:
+  - node: pressure-gradient-en
+    lang: en
+    title: Pressure Gradient

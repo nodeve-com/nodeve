@@ -1,0 +1,12 @@
+node: node:quantity-kind/specific-humidity
+slug: specific-humidity
+broader: node:quantity-kind/mass-ratio
+refs:
+  - node: specific-humidity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificHumidity
+    match: exact
+contents:
+  - node: specific-humidity-en
+    lang: en
+    title: Specific Humidity

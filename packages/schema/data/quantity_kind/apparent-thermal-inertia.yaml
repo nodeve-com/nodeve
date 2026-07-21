@@ -1,0 +1,12 @@
+node: node:quantity-kind/apparent-thermal-inertia
+slug: apparent-thermal-inertia
+broader: node:quantity-kind/inverse-temperature
+refs:
+  - node: apparent-thermal-inertia-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ApparentThermalInertia
+    match: exact
+contents:
+  - node: apparent-thermal-inertia-en
+    lang: en
+    title: Measurement Unit for a Quantity Approximately Proportional to Thermal Inertia

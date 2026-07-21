@@ -1,0 +1,12 @@
+node: node:quantity-kind/resistance-ratio
+slug: resistance-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: resistance-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ResistanceRatio
+    match: exact
+contents:
+  - node: resistance-ratio-en
+    lang: en
+    title: Resistance Ratio

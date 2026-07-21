@@ -1,0 +1,15 @@
+node: node:quantity-kind/entropy
+slug: entropy
+refs:
+  - node: entropy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Entropy
+    match: exact
+  - node: entropy-wikidata
+    registry: node:registry/wikidata
+    term: Q45003
+    match: exact
+contents:
+  - node: entropy-en
+    lang: en
+    title: Entropy

@@ -1,0 +1,12 @@
+node: node:quantity-kind/over-range-distance
+slug: over-range-distance
+broader: node:quantity-kind/length
+refs:
+  - node: over-range-distance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OverRangeDistance
+    match: exact
+contents:
+  - node: over-range-distance-en
+    lang: en
+    title: Over-range Distance

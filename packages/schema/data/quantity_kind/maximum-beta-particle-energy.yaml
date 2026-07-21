@@ -1,0 +1,16 @@
+node: node:quantity-kind/maximum-beta-particle-energy
+slug: maximum-beta-particle-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: maximum-beta-particle-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MaximumBetaParticleEnergy
+    match: exact
+  - node: maximum-beta-particle-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q98148038
+    match: exact
+contents:
+  - node: maximum-beta-particle-energy-en
+    lang: en
+    title: Maximum Beta-Particle Energy

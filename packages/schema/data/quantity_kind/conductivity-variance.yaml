@@ -1,0 +1,11 @@
+node: node:quantity-kind/conductivity-variance
+slug: conductivity-variance
+refs:
+  - node: conductivity-variance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ConductivityVariance
+    match: exact
+contents:
+  - node: conductivity-variance-en
+    lang: en
+    title: Conductivity Variance

@@ -1,0 +1,11 @@
+node: node:quantity-kind/massic-heat-capacity
+slug: massic-heat-capacity
+refs:
+  - node: massic-heat-capacity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassicHeatCapacity
+    match: exact
+contents:
+  - node: massic-heat-capacity-en
+    lang: en
+    title: Massic Heat Capacity

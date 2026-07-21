@@ -1,0 +1,16 @@
+node: node:quantity-kind/volume-fraction
+slug: volume-fraction
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: volume-fraction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumeFraction
+    match: exact
+  - node: volume-fraction-wikidata
+    registry: node:registry/wikidata
+    term: Q909482
+    match: exact
+contents:
+  - node: volume-fraction-en
+    lang: en
+    title: Volume Fraction

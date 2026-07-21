@@ -1,0 +1,11 @@
+node: node:quantity-kind/flux
+slug: flux
+refs:
+  - node: flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Flux
+    match: exact
+contents:
+  - node: flux-en
+    lang: en
+    title: Flux

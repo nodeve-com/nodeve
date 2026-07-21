@@ -1,0 +1,12 @@
+node: node:quantity-kind/radioactive-decay
+slug: radioactive-decay
+broader: node:quantity-kind/stochastic-process
+refs:
+  - node: radioactive-decay-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadioactiveDecay
+    match: exact
+contents:
+  - node: radioactive-decay-en
+    lang: en
+    title: Radioactive Decay

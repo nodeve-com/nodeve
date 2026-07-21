@@ -1,8 +1,0 @@
-title:
-  en: Closest Approach Radius
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ClosestApproachRadius
-    match: exact
-identity:
-  broader: radius

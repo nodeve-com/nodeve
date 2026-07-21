@@ -1,0 +1,15 @@
+node: node:quantity-kind/molar-volume
+slug: molar-volume
+refs:
+  - node: molar-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarVolume
+    match: exact
+  - node: molar-volume-wikidata
+    registry: node:registry/wikidata
+    term: Q487112
+    match: exact
+contents:
+  - node: molar-volume-en
+    lang: en
+    title: Molar Volume

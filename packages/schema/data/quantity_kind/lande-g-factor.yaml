@@ -1,0 +1,15 @@
+node: node:quantity-kind/lande-g-factor
+slug: lande-g-factor
+refs:
+  - node: lande-g-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LandeGFactor
+    match: exact
+  - node: lande-g-factor-wikidata
+    registry: node:registry/wikidata
+    term: Q1191684
+    match: exact
+contents:
+  - node: lande-g-factor-en
+    lang: en
+    title: Lande g-Factor

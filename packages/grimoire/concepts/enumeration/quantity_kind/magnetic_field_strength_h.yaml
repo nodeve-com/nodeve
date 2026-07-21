@@ -1,8 +1,0 @@
-title:
-  en: magnetic field strength
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MagneticFieldStrength_H
-    match: exact
-identity:
-  broader: electric_current_per_length

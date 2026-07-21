@@ -1,0 +1,16 @@
+node: node:quantity-kind/orbital-angular-momentum-quantum-number
+slug: orbital-angular-momentum-quantum-number
+broader: node:quantity-kind/quantum-number
+refs:
+  - node: orbital-angular-momentum-quantum-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OrbitalAngularMomentumQuantumNumber
+    match: exact
+  - node: orbital-angular-momentum-quantum-number-wikidata
+    registry: node:registry/wikidata
+    term: Q1916324
+    match: exact
+contents:
+  - node: orbital-angular-momentum-quantum-number-en
+    lang: en
+    title: Orbital Angular Momentum Quantum Number

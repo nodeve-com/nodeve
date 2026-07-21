@@ -1,0 +1,24 @@
+node: node:quantity-kind/temperature
+slug: temperature
+si_unit: K
+accumulation: instantaneous
+refs:
+  - node: temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Temperature
+    match: exact
+  - node: temperature-wikidata
+    registry: node:registry/wikidata
+    term: Q11466
+    match: exact
+  - node: temperature-ha-device-class
+    registry: node:registry/ha-device-class
+    term: temperature
+    match: exact
+contents:
+  - node: temperature-en
+    lang: en
+    title: Temperature
+  - node: temperature-pt
+    lang: pt
+    title: Temperatura

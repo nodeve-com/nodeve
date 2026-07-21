@@ -1,0 +1,12 @@
+node: node:quantity-kind/isothermal-moisture-capacity
+slug: isothermal-moisture-capacity
+broader: node:quantity-kind/specific-volume
+refs:
+  - node: isothermal-moisture-capacity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IsothermalMoistureCapacity
+    match: exact
+contents:
+  - node: isothermal-moisture-capacity-en
+    lang: en
+    title: Isothermal Moisture Capacity

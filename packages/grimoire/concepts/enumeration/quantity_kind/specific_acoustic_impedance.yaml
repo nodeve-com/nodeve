@@ -1,6 +1,0 @@
-title:
-  en: Specific Acoustic Impedance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SpecificAcousticImpedance
-    match: exact

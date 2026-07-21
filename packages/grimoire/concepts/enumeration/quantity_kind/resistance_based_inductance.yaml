@@ -1,6 +1,0 @@
-title:
-  en: Resistance-based Inductance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ResistanceBasedInductance
-    match: exact

@@ -1,9 +1,0 @@
-title:
-  en: Electric Charge Density
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricChargeDensity
-    match: exact
-  - registry_id: wikidata
-    term: Q69425629
-    match: exact

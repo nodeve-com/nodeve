@@ -1,0 +1,12 @@
+node: node:quantity-kind/service-factor
+slug: service-factor
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: service-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ServiceFactor
+    match: exact
+contents:
+  - node: service-factor-en
+    lang: en
+    title: Service Factor

@@ -1,0 +1,16 @@
+node: node:quantity-kind/angle-of-optical-rotation
+slug: angle-of-optical-rotation
+broader: node:quantity-kind/angle
+refs:
+  - node: angle-of-optical-rotation-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngleOfOpticalRotation
+    match: exact
+  - node: angle-of-optical-rotation-wikidata
+    registry: node:registry/wikidata
+    term: Q96323385
+    match: exact
+contents:
+  - node: angle-of-optical-rotation-en
+    lang: en
+    title: Angle of Optical Rotation

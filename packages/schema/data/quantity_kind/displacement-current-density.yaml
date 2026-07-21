@@ -1,0 +1,15 @@
+node: node:quantity-kind/displacement-current-density
+slug: displacement-current-density
+refs:
+  - node: displacement-current-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DisplacementCurrentDensity
+    match: exact
+  - node: displacement-current-density-wikidata
+    registry: node:registry/wikidata
+    term: Q77614612
+    match: exact
+contents:
+  - node: displacement-current-density-en
+    lang: en
+    title: Displacement Current Density

@@ -1,0 +1,16 @@
+node: node:quantity-kind/thrust
+slug: thrust
+broader: node:quantity-kind/force
+refs:
+  - node: thrust-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Thrust
+    match: exact
+  - node: thrust-wikidata
+    registry: node:registry/wikidata
+    term: Q533668
+    match: exact
+contents:
+  - node: thrust-en
+    lang: en
+    title: Thrust

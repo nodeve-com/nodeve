@@ -1,0 +1,21 @@
+node: node:quantity-kind/dew-point-temperature
+slug: dew-point-temperature
+si_unit: K
+accumulation: instantaneous
+broader: node:quantity-kind/temperature
+refs:
+  - node: dew-point-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DewPointTemperature
+    match: exact
+  - node: dew-point-temperature-ha-device-class
+    registry: node:registry/ha-device-class
+    term: temperature
+    match: broad
+contents:
+  - node: dew-point-temperature-en
+    lang: en
+    title: Dew Point Temperature
+  - node: dew-point-temperature-pt
+    lang: pt
+    title: Ponto de orvalho

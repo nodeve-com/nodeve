@@ -1,0 +1,15 @@
+node: node:quantity-kind/osmotic-coefficient
+slug: osmotic-coefficient
+refs:
+  - node: osmotic-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OsmoticCoefficient
+    match: exact
+  - node: osmotic-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q5776102
+    match: exact
+contents:
+  - node: osmotic-coefficient-en
+    lang: en
+    title: Osmotic Coefficient

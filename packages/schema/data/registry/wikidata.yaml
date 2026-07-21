@@ -1,0 +1,11 @@
+node: node:registry/wikidata
+slug: wikidata
+url: https://www.wikidata.org/
+iri_template: https://www.wikidata.org/wiki/{id}
+contents:
+  - node: wikidata-en
+    lang: en
+    title: Wikidata
+  - node: wikidata-pt
+    lang: pt
+    title: Wikidata

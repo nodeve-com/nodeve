@@ -1,0 +1,12 @@
+node: node:quantity-kind/mechanical-tension
+slug: mechanical-tension
+broader: node:quantity-kind/force-per-area
+refs:
+  - node: mechanical-tension-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MechanicalTension
+    match: exact
+contents:
+  - node: mechanical-tension-en
+    lang: en
+    title: Mechanical Tension

@@ -1,0 +1,15 @@
+node: node:quantity-kind/energy-density-of-states
+slug: energy-density-of-states
+refs:
+  - node: energy-density-of-states-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EnergyDensityOfStates
+    match: exact
+  - node: energy-density-of-states-wikidata
+    registry: node:registry/wikidata
+    term: Q105687031
+    match: exact
+contents:
+  - node: energy-density-of-states-en
+    lang: en
+    title: Energy Density of States

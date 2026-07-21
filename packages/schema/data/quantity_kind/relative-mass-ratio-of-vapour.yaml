@@ -1,0 +1,15 @@
+node: node:quantity-kind/relative-mass-ratio-of-vapour
+slug: relative-mass-ratio-of-vapour
+refs:
+  - node: relative-mass-ratio-of-vapour-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RelativeMassRatioOfVapour
+    match: exact
+  - node: relative-mass-ratio-of-vapour-wikidata
+    registry: node:registry/wikidata
+    term: Q76379414
+    match: exact
+contents:
+  - node: relative-mass-ratio-of-vapour-en
+    lang: en
+    title: Relative Mass Ratio of Vapour

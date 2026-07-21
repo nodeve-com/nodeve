@@ -1,8 +1,0 @@
-title:
-  en: Number of Electrical Phases
-refs:
-  - registry_id: qudt_quantity_kind
-    term: NumberOfElectricalPhases
-    match: exact
-identity:
-  broader: count

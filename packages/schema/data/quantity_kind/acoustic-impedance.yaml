@@ -1,0 +1,12 @@
+node: node:quantity-kind/acoustic-impedance
+slug: acoustic-impedance
+broader: node:quantity-kind/mass-per-area-time
+refs:
+  - node: acoustic-impedance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AcousticImpedance
+    match: exact
+contents:
+  - node: acoustic-impedance-en
+    lang: en
+    title: Acoustic Impediance

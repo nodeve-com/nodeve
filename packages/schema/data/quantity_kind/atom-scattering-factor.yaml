@@ -1,0 +1,15 @@
+node: node:quantity-kind/atom-scattering-factor
+slug: atom-scattering-factor
+refs:
+  - node: atom-scattering-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AtomScatteringFactor
+    match: exact
+  - node: atom-scattering-factor-wikidata
+    registry: node:registry/wikidata
+    term: Q837866
+    match: exact
+contents:
+  - node: atom-scattering-factor-en
+    lang: en
+    title: Atom Scattering Factor

@@ -1,0 +1,12 @@
+node: node:quantity-kind/absolute-humidity
+slug: absolute-humidity
+broader: node:quantity-kind/density
+refs:
+  - node: absolute-humidity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AbsoluteHumidity
+    match: exact
+contents:
+  - node: absolute-humidity-en
+    lang: en
+    title: Absolute Humidity

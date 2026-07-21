@@ -1,0 +1,12 @@
+node: node:quantity-kind/burn-time
+slug: burn-time
+broader: node:quantity-kind/time
+refs:
+  - node: burn-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BurnTime
+    match: exact
+contents:
+  - node: burn-time-en
+    lang: en
+    title: Burn Time

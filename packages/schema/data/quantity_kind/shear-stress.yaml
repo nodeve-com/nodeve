@@ -1,0 +1,16 @@
+node: node:quantity-kind/shear-stress
+slug: shear-stress
+broader: node:quantity-kind/stress
+refs:
+  - node: shear-stress-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ShearStress
+    match: exact
+  - node: shear-stress-wikidata
+    registry: node:registry/wikidata
+    term: Q657936
+    match: exact
+contents:
+  - node: shear-stress-en
+    lang: en
+    title: Shear Stress

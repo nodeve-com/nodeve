@@ -1,0 +1,12 @@
+node: node:quantity-kind/complex-frequency-imaginary
+slug: complex-frequency-imaginary
+broader: node:quantity-kind/frequency
+refs:
+  - node: complex-frequency-imaginary-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ComplexFrequency_Imaginary
+    match: exact
+contents:
+  - node: complex-frequency-imaginary-en
+    lang: en
+    title: Imaginary Part of Complex Frequency

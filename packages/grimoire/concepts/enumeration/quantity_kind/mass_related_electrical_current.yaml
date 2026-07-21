@@ -1,6 +1,0 @@
-title:
-  en: Mass-related Electrical Current
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassRelatedElectricalCurrent
-    match: exact

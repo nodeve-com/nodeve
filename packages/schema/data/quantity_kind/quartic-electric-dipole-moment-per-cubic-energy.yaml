@@ -1,0 +1,11 @@
+node: node:quantity-kind/quartic-electric-dipole-moment-per-cubic-energy
+slug: quartic-electric-dipole-moment-per-cubic-energy
+refs:
+  - node: quartic-electric-dipole-moment-per-cubic-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: QuarticElectricDipoleMomentPerCubicEnergy
+    match: exact
+contents:
+  - node: quartic-electric-dipole-moment-per-cubic-energy-en
+    lang: en
+    title: Quartic Electric Dipole Moment per Cubic Energy

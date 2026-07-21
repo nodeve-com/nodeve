@@ -1,0 +1,11 @@
+node: node:quantity-kind/ratio
+slug: ratio
+refs:
+  - node: ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Ratio
+    match: exact
+contents:
+  - node: ratio-en
+    lang: en
+    title: Ratio

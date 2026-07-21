@@ -1,0 +1,15 @@
+node: node:quantity-kind/spectral-cross-section
+slug: spectral-cross-section
+refs:
+  - node: spectral-cross-section-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpectralCrossSection
+    match: exact
+  - node: spectral-cross-section-wikidata
+    registry: node:registry/wikidata
+    term: Q98267245
+    match: exact
+contents:
+  - node: spectral-cross-section-en
+    lang: en
+    title: Spectral Cross-section

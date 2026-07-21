@@ -1,8 +1,0 @@
-title:
-  en: Vertical Velocity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VerticalVelocity
-    match: exact
-identity:
-  broader: linear_velocity

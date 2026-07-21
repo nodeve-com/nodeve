@@ -1,8 +1,0 @@
-title:
-  en: Equivalent Concentration
-refs:
-  - registry_id: qudt_quantity_kind
-    term: EquivalentConcentration
-    match: exact
-identity:
-  broader: concentration

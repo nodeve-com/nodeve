@@ -1,0 +1,12 @@
+node: node:quantity-kind/net-tonnage
+slug: net-tonnage
+broader: node:quantity-kind/volume
+refs:
+  - node: net-tonnage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NetTonnage
+    match: exact
+contents:
+  - node: net-tonnage-en
+    lang: en
+    title: Net Tonnage

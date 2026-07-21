@@ -1,8 +1,0 @@
-title:
-  en: Dots per Inch
-refs:
-  - registry_id: qudt_quantity_kind
-    term: DotsPerInch
-    match: exact
-identity:
-  broader: lineic_resolution

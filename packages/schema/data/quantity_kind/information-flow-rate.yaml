@@ -1,0 +1,11 @@
+node: node:quantity-kind/information-flow-rate
+slug: information-flow-rate
+refs:
+  - node: information-flow-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InformationFlowRate
+    match: exact
+contents:
+  - node: information-flow-rate-en
+    lang: en
+    title: Information Flow Rate

@@ -1,0 +1,14 @@
+node: node:quantity-kind/mass-delivered
+slug: mass-delivered
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-delivered-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MASS-DELIVERED
+    match: exact
+contents:
+  - node: mass-delivered-en
+    lang: en
+    title: Mass Delivered

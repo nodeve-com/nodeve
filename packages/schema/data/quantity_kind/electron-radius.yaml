@@ -1,0 +1,12 @@
+node: node:quantity-kind/electron-radius
+slug: electron-radius
+broader: node:quantity-kind/length
+refs:
+  - node: electron-radius-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectronRadius
+    match: exact
+contents:
+  - node: electron-radius-en
+    lang: en
+    title: Electron Radius

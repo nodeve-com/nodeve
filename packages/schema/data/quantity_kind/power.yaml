@@ -1,0 +1,20 @@
+node: node:quantity-kind/power
+slug: power
+si_unit: W
+accumulation: instantaneous
+refs:
+  - node: power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Power
+    match: exact
+  - node: power-wikidata
+    registry: node:registry/wikidata
+    term: Q25342
+    match: exact
+contents:
+  - node: power-en
+    lang: en
+    title: Power
+  - node: power-pt
+    lang: pt
+    title: Potência

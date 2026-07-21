@@ -1,0 +1,10 @@
+node: node:registry/iso-11898
+slug: iso-11898
+url: https://www.iso.org/standard/63648.html
+contents:
+  - node: iso-11898-en
+    lang: en
+    title: ISO 11898 (Road vehicles — Controller area network)
+  - node: iso-11898-pt
+    lang: pt
+    title: ISO 11898 (Veículos rodoviários — Rede de área do controlador)

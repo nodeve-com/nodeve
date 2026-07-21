@@ -1,0 +1,11 @@
+node: node:quantity-kind/bit-data-volume
+slug: bit-data-volume
+refs:
+  - node: bit-data-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BitDataVolume
+    match: exact
+contents:
+  - node: bit-data-volume-en
+    lang: en
+    title: Bit Data Volume

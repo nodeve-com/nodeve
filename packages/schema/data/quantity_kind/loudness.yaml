@@ -1,0 +1,12 @@
+node: node:quantity-kind/loudness
+slug: loudness
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: loudness-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Loudness
+    match: exact
+contents:
+  - node: loudness-en
+    lang: en
+    title: Loudness

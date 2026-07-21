@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-related-electrical-current
+slug: mass-related-electrical-current
+refs:
+  - node: mass-related-electrical-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassRelatedElectricalCurrent
+    match: exact
+contents:
+  - node: mass-related-electrical-current-en
+    lang: en
+    title: Mass-related Electrical Current

@@ -1,8 +1,0 @@
-title:
-  en: Thrust to Mass Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ThrustToMassRatio
-    match: exact
-identity:
-  broader: acceleration

@@ -1,0 +1,14 @@
+node: node:quantity-kind/nominal-ascent-propellant-mass
+slug: nominal-ascent-propellant-mass
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: nominal-ascent-propellant-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NOMINAL-ASCENT-PROPELLANT-MASS
+    match: exact
+contents:
+  - node: nominal-ascent-propellant-mass-en
+    lang: en
+    title: Nominal Ascent Propellant Mass

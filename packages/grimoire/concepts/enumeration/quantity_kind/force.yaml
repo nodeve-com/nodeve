@@ -1,9 +1,0 @@
-title:
-  en: Force
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Force
-    match: exact
-  - registry_id: wikidata
-    term: Q11402
-    match: exact

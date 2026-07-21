@@ -1,0 +1,10 @@
+node: node:registry/posix
+slug: posix
+url: https://pubs.opengroup.org/onlinepubs/9699919799/
+contents:
+  - node: posix-en
+    lang: en
+    title: POSIX (IEEE Std 1003.1)
+  - node: posix-pt
+    lang: pt
+    title: POSIX (IEEE Std 1003.1)

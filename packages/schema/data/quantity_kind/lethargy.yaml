@@ -1,0 +1,15 @@
+node: node:quantity-kind/lethargy
+slug: lethargy
+refs:
+  - node: lethargy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Lethargy
+    match: exact
+  - node: lethargy-wikidata
+    registry: node:registry/wikidata
+    term: Q25508781
+    match: exact
+contents:
+  - node: lethargy-en
+    lang: en
+    title: Lethargy

@@ -1,0 +1,15 @@
+node: node:quantity-kind/richardson-constant
+slug: richardson-constant
+refs:
+  - node: richardson-constant-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RichardsonConstant
+    match: exact
+  - node: richardson-constant-wikidata
+    registry: node:registry/wikidata
+    term: Q105883079
+    match: exact
+contents:
+  - node: richardson-constant-en
+    lang: en
+    title: Richardson Constant

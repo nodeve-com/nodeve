@@ -1,0 +1,12 @@
+node: node:quantity-kind/strain-energy-density
+slug: strain-energy-density
+broader: node:quantity-kind/energy-density
+refs:
+  - node: strain-energy-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StrainEnergyDensity
+    match: exact
+contents:
+  - node: strain-energy-density-en
+    lang: en
+    title: Strain Energy Density

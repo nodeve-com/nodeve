@@ -1,8 +1,0 @@
-title:
-  en: Gain
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Gain
-    match: exact
-identity:
-  broader: dimensionless_ratio

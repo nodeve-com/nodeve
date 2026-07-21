@@ -1,0 +1,16 @@
+node: node:quantity-kind/specific-impulse-by-mass
+slug: specific-impulse-by-mass
+broader: node:quantity-kind/linear-velocity
+refs:
+  - node: specific-impulse-by-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificImpulseByMass
+    match: exact
+  - node: specific-impulse-by-mass-wikidata
+    registry: node:registry/wikidata
+    term: Q100793317
+    match: exact
+contents:
+  - node: specific-impulse-by-mass-en
+    lang: en
+    title: Specific Impulse by Mass

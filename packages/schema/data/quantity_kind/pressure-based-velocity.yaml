@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-velocity
+slug: pressure-based-velocity
+refs:
+  - node: pressure-based-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedVelocity
+    match: exact
+contents:
+  - node: pressure-based-velocity-en
+    lang: en
+    title: Pressure-based Velocity

@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-in-relation-to-volume-flow-rate
+slug: pressure-in-relation-to-volume-flow-rate
+refs:
+  - node: pressure-in-relation-to-volume-flow-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureInRelationToVolumeFlowRate
+    match: exact
+contents:
+  - node: pressure-in-relation-to-volume-flow-rate-en
+    lang: en
+    title: Pressure in Relation to Volume Flow Rate

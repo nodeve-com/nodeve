@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-charge
+slug: lineic-charge
+refs:
+  - node: lineic-charge-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicCharge
+    match: exact
+contents:
+  - node: lineic-charge-en
+    lang: en
+    title: Lineic Charge

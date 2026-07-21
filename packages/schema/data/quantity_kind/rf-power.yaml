@@ -1,0 +1,12 @@
+node: node:quantity-kind/rf-power
+slug: rf-power
+broader: node:quantity-kind/signal-strength
+refs:
+  - node: rf-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RFPower
+    match: exact
+contents:
+  - node: rf-power-en
+    lang: en
+    title: RF-Power Level

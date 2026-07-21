@@ -1,0 +1,15 @@
+node: node:quantity-kind/molar-energy
+slug: molar-energy
+refs:
+  - node: molar-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarEnergy
+    match: exact
+  - node: molar-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q69427512
+    match: exact
+contents:
+  - node: molar-energy-en
+    lang: en
+    title: Molar Energy

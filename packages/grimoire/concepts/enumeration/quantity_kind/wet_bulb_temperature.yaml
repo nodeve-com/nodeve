@@ -1,8 +1,0 @@
-title:
-  en: Wet Bulb Temperature
-refs:
-  - registry_id: qudt_quantity_kind
-    term: WetBulbTemperature
-    match: exact
-identity:
-  broader: temperature

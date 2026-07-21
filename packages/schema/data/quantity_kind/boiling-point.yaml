@@ -1,0 +1,12 @@
+node: node:quantity-kind/boiling-point
+slug: boiling-point
+broader: node:quantity-kind/temperature
+refs:
+  - node: boiling-point-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BoilingPoint
+    match: exact
+contents:
+  - node: boiling-point-en
+    lang: en
+    title: Boiling Point Temperature

@@ -1,0 +1,10 @@
+node: node:registry/ve-direct
+slug: ve-direct
+url: https://www.victronenergy.com/support-and-downloads/technical-information
+contents:
+  - node: ve-direct-en
+    lang: en
+    title: VE.Direct Protocol
+  - node: ve-direct-pt
+    lang: pt
+    title: Protocolo VE.Direct

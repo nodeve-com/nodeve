@@ -1,0 +1,15 @@
+node: node:quantity-kind/multiplication-factor
+slug: multiplication-factor
+refs:
+  - node: multiplication-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MultiplicationFactor
+    match: exact
+  - node: multiplication-factor-wikidata
+    registry: node:registry/wikidata
+    term: Q99440471
+    match: exact
+contents:
+  - node: multiplication-factor-en
+    lang: en
+    title: Multiplication Factor

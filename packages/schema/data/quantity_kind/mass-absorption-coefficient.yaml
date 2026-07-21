@@ -1,0 +1,16 @@
+node: node:quantity-kind/mass-absorption-coefficient
+slug: mass-absorption-coefficient
+broader: node:quantity-kind/mass-attenuation-coefficient
+refs:
+  - node: mass-absorption-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassAbsorptionCoefficient
+    match: exact
+  - node: mass-absorption-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q86202147
+    match: exact
+contents:
+  - node: mass-absorption-coefficient-en
+    lang: en
+    title: Mass Absorption Coefficient

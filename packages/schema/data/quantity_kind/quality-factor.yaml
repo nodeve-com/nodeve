@@ -1,0 +1,15 @@
+node: node:quantity-kind/quality-factor
+slug: quality-factor
+refs:
+  - node: quality-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: QualityFactor
+    match: exact
+  - node: quality-factor-wikidata
+    registry: node:registry/wikidata
+    term: Q79467569
+    match: exact
+contents:
+  - node: quality-factor-en
+    lang: en
+    title: Quality Factor

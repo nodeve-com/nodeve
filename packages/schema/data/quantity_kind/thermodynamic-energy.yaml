@@ -1,0 +1,12 @@
+node: node:quantity-kind/thermodynamic-energy
+slug: thermodynamic-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: thermodynamic-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermodynamicEnergy
+    match: exact
+contents:
+  - node: thermodynamic-energy-en
+    lang: en
+    title: Thermodynamic Energy

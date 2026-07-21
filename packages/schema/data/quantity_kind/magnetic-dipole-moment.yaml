@@ -1,0 +1,15 @@
+node: node:quantity-kind/magnetic-dipole-moment
+slug: magnetic-dipole-moment
+refs:
+  - node: magnetic-dipole-moment-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MagneticDipoleMoment
+    match: exact
+  - node: magnetic-dipole-moment-wikidata
+    registry: node:registry/wikidata
+    term: Q71008556
+    match: exact
+contents:
+  - node: magnetic-dipole-moment-en
+    lang: en
+    title: Magnetic Dipole Moment

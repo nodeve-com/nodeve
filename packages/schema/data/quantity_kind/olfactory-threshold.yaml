@@ -1,0 +1,12 @@
+node: node:quantity-kind/olfactory-threshold
+slug: olfactory-threshold
+broader: node:quantity-kind/concentration
+refs:
+  - node: olfactory-threshold-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OlfactoryThreshold
+    match: exact
+contents:
+  - node: olfactory-threshold-en
+    lang: en
+    title: Olfactory Threshold

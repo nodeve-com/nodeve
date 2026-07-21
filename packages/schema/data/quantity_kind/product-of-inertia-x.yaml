@@ -1,0 +1,12 @@
+node: node:quantity-kind/product-of-inertia-x
+slug: product-of-inertia-x
+broader: node:quantity-kind/product-of-inertia
+refs:
+  - node: product-of-inertia-x-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ProductOfInertia_X
+    match: exact
+contents:
+  - node: product-of-inertia-x-en
+    lang: en
+    title: Product of Inertia in the X Axis

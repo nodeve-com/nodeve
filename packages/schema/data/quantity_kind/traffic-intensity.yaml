@@ -1,0 +1,11 @@
+node: node:quantity-kind/traffic-intensity
+slug: traffic-intensity
+refs:
+  - node: traffic-intensity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TrafficIntensity
+    match: exact
+contents:
+  - node: traffic-intensity-en
+    lang: en
+    title: Traffic Intensity

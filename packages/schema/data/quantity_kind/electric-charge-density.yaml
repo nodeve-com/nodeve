@@ -1,0 +1,15 @@
+node: node:quantity-kind/electric-charge-density
+slug: electric-charge-density
+refs:
+  - node: electric-charge-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricChargeDensity
+    match: exact
+  - node: electric-charge-density-wikidata
+    registry: node:registry/wikidata
+    term: Q69425629
+    match: exact
+contents:
+  - node: electric-charge-density-en
+    lang: en
+    title: Electric Charge Density

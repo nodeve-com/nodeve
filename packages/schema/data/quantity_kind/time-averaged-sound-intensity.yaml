@@ -1,0 +1,16 @@
+node: node:quantity-kind/time-averaged-sound-intensity
+slug: time-averaged-sound-intensity
+broader: node:quantity-kind/sound-intensity
+refs:
+  - node: time-averaged-sound-intensity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TimeAveragedSoundIntensity
+    match: exact
+  - node: time-averaged-sound-intensity-wikidata
+    registry: node:registry/wikidata
+    term: Q86827342
+    match: exact
+contents:
+  - node: time-averaged-sound-intensity-en
+    lang: en
+    title: Time Averaged Sound Intensity

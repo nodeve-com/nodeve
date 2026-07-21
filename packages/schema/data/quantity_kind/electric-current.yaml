@@ -1,0 +1,24 @@
+node: node:quantity-kind/electric-current
+slug: electric-current
+si_unit: A
+accumulation: instantaneous
+refs:
+  - node: electric-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCurrent
+    match: exact
+  - node: electric-current-wikidata
+    registry: node:registry/wikidata
+    term: Q29996
+    match: exact
+  - node: electric-current-ha-device-class
+    registry: node:registry/ha-device-class
+    term: current
+    match: exact
+contents:
+  - node: electric-current-en
+    lang: en
+    title: Electric Current
+  - node: electric-current-pt
+    lang: pt
+    title: Corrente

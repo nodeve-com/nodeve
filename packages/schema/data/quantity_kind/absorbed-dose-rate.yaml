@@ -1,0 +1,16 @@
+node: node:quantity-kind/absorbed-dose-rate
+slug: absorbed-dose-rate
+broader: node:quantity-kind/specific-power
+refs:
+  - node: absorbed-dose-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AbsorbedDoseRate
+    match: exact
+  - node: absorbed-dose-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q69428958
+    match: exact
+contents:
+  - node: absorbed-dose-rate-en
+    lang: en
+    title: Absorbed Dose Rate

@@ -1,0 +1,16 @@
+node: node:quantity-kind/hole-density
+slug: hole-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: hole-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HoleDensity
+    match: exact
+  - node: hole-density-wikidata
+    registry: node:registry/wikidata
+    term: Q105971101
+    match: exact
+contents:
+  - node: hole-density-en
+    lang: en
+    title: Hole Density

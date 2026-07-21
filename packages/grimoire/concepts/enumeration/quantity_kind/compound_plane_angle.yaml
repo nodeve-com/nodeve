@@ -1,8 +1,0 @@
-title:
-  en: Compound Plane Angle
-refs:
-  - registry_id: qudt_quantity_kind
-    term: CompoundPlaneAngle
-    match: exact
-identity:
-  broader: angle

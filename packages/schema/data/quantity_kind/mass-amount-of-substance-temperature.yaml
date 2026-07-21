@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-amount-of-substance-temperature
+slug: mass-amount-of-substance-temperature
+refs:
+  - node: mass-amount-of-substance-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassAmountOfSubstanceTemperature
+    match: exact
+contents:
+  - node: mass-amount-of-substance-temperature-en
+    lang: en
+    title: Mass Amount of Substance Temperature

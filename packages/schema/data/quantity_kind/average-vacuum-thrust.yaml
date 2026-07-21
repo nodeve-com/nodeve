@@ -1,0 +1,12 @@
+node: node:quantity-kind/average-vacuum-thrust
+slug: average-vacuum-thrust
+broader: node:quantity-kind/vacuum-thrust
+refs:
+  - node: average-vacuum-thrust-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AverageVacuumThrust
+    match: exact
+contents:
+  - node: average-vacuum-thrust-en
+    lang: en
+    title: Average Vacuum Thrust

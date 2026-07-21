@@ -1,0 +1,15 @@
+node: node:quantity-kind/radiant-intensity
+slug: radiant-intensity
+refs:
+  - node: radiant-intensity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadiantIntensity
+    match: exact
+  - node: radiant-intensity-wikidata
+    registry: node:registry/wikidata
+    term: Q1253365
+    match: exact
+contents:
+  - node: radiant-intensity-en
+    lang: en
+    title: Radiant Intensity

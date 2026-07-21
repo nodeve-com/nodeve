@@ -1,0 +1,12 @@
+node: node:quantity-kind/linear-electric-current
+slug: linear-electric-current
+broader: node:quantity-kind/linear-electric-current-density
+refs:
+  - node: linear-electric-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearElectricCurrent
+    match: exact
+contents:
+  - node: linear-electric-current-en
+    lang: en
+    title: Linear Electric Current

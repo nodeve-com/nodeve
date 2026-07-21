@@ -1,0 +1,14 @@
+node: node:quantity-kind/water-vapor-diffusion-coefficient
+slug: water-vapor-diffusion-coefficient
+deprecated: true
+deprecated_in: 3.2.0
+replaced_by: node:quantity-kind/water-vapour-diffusion-coefficient
+refs:
+  - node: water-vapor-diffusion-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WaterVaporDiffusionCoefficient
+    match: exact
+contents:
+  - node: water-vapor-diffusion-coefficient-en
+    lang: en
+    title: Water vapour diffusion coefficient

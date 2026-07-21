@@ -1,0 +1,11 @@
+node: node:quantity-kind/photon-luminance
+slug: photon-luminance
+refs:
+  - node: photon-luminance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhotonLuminance
+    match: exact
+contents:
+  - node: photon-luminance-en
+    lang: en
+    title: Photon Luminance

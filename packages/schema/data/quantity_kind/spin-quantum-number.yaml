@@ -1,0 +1,16 @@
+node: node:quantity-kind/spin-quantum-number
+slug: spin-quantum-number
+broader: node:quantity-kind/quantum-number
+refs:
+  - node: spin-quantum-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpinQuantumNumber
+    match: exact
+  - node: spin-quantum-number-wikidata
+    registry: node:registry/wikidata
+    term: Q3879445
+    match: exact
+contents:
+  - node: spin-quantum-number-en
+    lang: en
+    title: Spin Quantum Number

@@ -1,8 +1,0 @@
-title:
-  en: Dimensionless Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: DimensionlessRatio
-    match: exact
-identity:
-  broader: dimensionless

@@ -1,0 +1,12 @@
+node: node:quantity-kind/morbidity-rate
+slug: morbidity-rate
+broader: node:quantity-kind/incidence-proportion
+refs:
+  - node: morbidity-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MorbidityRate
+    match: exact
+contents:
+  - node: morbidity-rate-en
+    lang: en
+    title: Morbidity Rate

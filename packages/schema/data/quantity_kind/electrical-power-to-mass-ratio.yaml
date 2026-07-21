@@ -1,0 +1,12 @@
+node: node:quantity-kind/electrical-power-to-mass-ratio
+slug: electrical-power-to-mass-ratio
+broader: node:quantity-kind/specific-power
+refs:
+  - node: electrical-power-to-mass-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricalPowerToMassRatio
+    match: exact
+contents:
+  - node: electrical-power-to-mass-ratio-en
+    lang: en
+    title: Electrical Power to Mass Ratio

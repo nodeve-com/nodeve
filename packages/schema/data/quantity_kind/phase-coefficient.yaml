@@ -1,0 +1,15 @@
+node: node:quantity-kind/phase-coefficient
+slug: phase-coefficient
+refs:
+  - node: phase-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhaseCoefficient
+    match: exact
+  - node: phase-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q32745742
+    match: exact
+contents:
+  - node: phase-coefficient-en
+    lang: en
+    title: Phase Coefficient

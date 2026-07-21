@@ -1,0 +1,12 @@
+node: node:quantity-kind/ignition-interval-time
+slug: ignition-interval-time
+broader: node:quantity-kind/time
+refs:
+  - node: ignition-interval-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IgnitionIntervalTime
+    match: exact
+contents:
+  - node: ignition-interval-time-en
+    lang: en
+    title: Ignition Interval Time

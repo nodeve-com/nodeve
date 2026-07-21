@@ -1,0 +1,15 @@
+node: node:quantity-kind/electric-flux
+slug: electric-flux
+refs:
+  - node: electric-flux-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricFlux
+    match: exact
+  - node: electric-flux-wikidata
+    registry: node:registry/wikidata
+    term: Q501267
+    match: exact
+contents:
+  - node: electric-flux-en
+    lang: en
+    title: Electric Flux

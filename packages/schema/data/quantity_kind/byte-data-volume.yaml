@@ -1,0 +1,11 @@
+node: node:quantity-kind/byte-data-volume
+slug: byte-data-volume
+refs:
+  - node: byte-data-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ByteDataVolume
+    match: exact
+contents:
+  - node: byte-data-volume-en
+    lang: en
+    title: Byte Data Volume

@@ -1,0 +1,11 @@
+node: node:quantity-kind/radioactivity
+slug: radioactivity
+refs:
+  - node: radioactivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Radioactivity
+    match: exact
+contents:
+  - node: radioactivity-en
+    lang: en
+    title: Radioactivity

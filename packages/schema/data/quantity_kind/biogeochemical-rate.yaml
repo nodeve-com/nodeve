@@ -1,0 +1,11 @@
+node: node:quantity-kind/biogeochemical-rate
+slug: biogeochemical-rate
+refs:
+  - node: biogeochemical-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BiogeochemicalRate
+    match: exact
+contents:
+  - node: biogeochemical-rate-en
+    lang: en
+    title: Biogeochemical Rate

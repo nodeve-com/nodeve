@@ -1,0 +1,16 @@
+node: node:quantity-kind/gravitational-attraction
+slug: gravitational-attraction
+broader: node:quantity-kind/force
+refs:
+  - node: gravitational-attraction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GravitationalAttraction
+    match: exact
+  - node: gravitational-attraction-wikidata
+    registry: node:registry/wikidata
+    term: Q78337869
+    match: exact
+contents:
+  - node: gravitational-attraction-en
+    lang: en
+    title: Gravitational Attraction

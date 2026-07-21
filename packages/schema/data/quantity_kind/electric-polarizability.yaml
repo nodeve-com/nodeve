@@ -1,0 +1,11 @@
+node: node:quantity-kind/electric-polarizability
+slug: electric-polarizability
+refs:
+  - node: electric-polarizability-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricPolarizability
+    match: exact
+contents:
+  - node: electric-polarizability-en
+    lang: en
+    title: Electric Polarizability

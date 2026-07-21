@@ -1,0 +1,15 @@
+node: node:quantity-kind/particle-fluence
+slug: particle-fluence
+refs:
+  - node: particle-fluence-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ParticleFluence
+    match: exact
+  - node: particle-fluence-wikidata
+    registry: node:registry/wikidata
+    term: Q82965908
+    match: exact
+contents:
+  - node: particle-fluence-en
+    lang: en
+    title: Particle Fluence

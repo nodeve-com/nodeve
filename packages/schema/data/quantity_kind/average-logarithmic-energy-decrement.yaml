@@ -1,0 +1,15 @@
+node: node:quantity-kind/average-logarithmic-energy-decrement
+slug: average-logarithmic-energy-decrement
+refs:
+  - node: average-logarithmic-energy-decrement-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AverageLogarithmicEnergyDecrement
+    match: exact
+  - node: average-logarithmic-energy-decrement-wikidata
+    registry: node:registry/wikidata
+    term: Q1940739
+    match: exact
+contents:
+  - node: average-logarithmic-energy-decrement-en
+    lang: en
+    title: Average Logarithmic Energy Decrement

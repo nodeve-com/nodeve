@@ -1,6 +1,0 @@
-title:
-  en: Length Molar Energy
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LengthMolarEnergy
-    match: exact

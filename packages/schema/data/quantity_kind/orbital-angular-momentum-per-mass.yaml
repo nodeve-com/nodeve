@@ -1,0 +1,11 @@
+node: node:quantity-kind/orbital-angular-momentum-per-mass
+slug: orbital-angular-momentum-per-mass
+refs:
+  - node: orbital-angular-momentum-per-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OrbitalAngularMomentumPerMass
+    match: exact
+contents:
+  - node: orbital-angular-momentum-per-mass-en
+    lang: en
+    title: Orbital Angular Momentum per Mass

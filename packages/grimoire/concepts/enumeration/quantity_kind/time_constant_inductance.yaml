@@ -1,6 +1,0 @@
-title:
-  en: time constant (inductance based)
-refs:
-  - registry_id: qudt_quantity_kind
-    term: TimeConstant_Inductance
-    match: exact

@@ -1,0 +1,12 @@
+node: node:quantity-kind/massic-power
+slug: massic-power
+broader: node:quantity-kind/specific-power
+refs:
+  - node: massic-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassicPower
+    match: exact
+contents:
+  - node: massic-power-en
+    lang: en
+    title: Massic Power

@@ -1,8 +1,0 @@
-title:
-  en: Service Factor
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ServiceFactor
-    match: exact
-identity:
-  broader: dimensionless_ratio

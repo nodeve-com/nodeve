@@ -1,0 +1,15 @@
+node: node:quantity-kind/generalized-momentum
+slug: generalized-momentum
+refs:
+  - node: generalized-momentum-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GeneralizedMomentum
+    match: exact
+  - node: generalized-momentum-wikidata
+    registry: node:registry/wikidata
+    term: Q6806305
+    match: exact
+contents:
+  - node: generalized-momentum-en
+    lang: en
+    title: Generalized Force

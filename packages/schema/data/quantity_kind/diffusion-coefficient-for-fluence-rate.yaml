@@ -1,0 +1,16 @@
+node: node:quantity-kind/diffusion-coefficient-for-fluence-rate
+slug: diffusion-coefficient-for-fluence-rate
+broader: node:quantity-kind/length
+refs:
+  - node: diffusion-coefficient-for-fluence-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DiffusionCoefficientForFluenceRate
+    match: exact
+  - node: diffusion-coefficient-for-fluence-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q98876254
+    match: exact
+contents:
+  - node: diffusion-coefficient-for-fluence-rate-en
+    lang: en
+    title: Diffusion Coefficient for Fluence Rate

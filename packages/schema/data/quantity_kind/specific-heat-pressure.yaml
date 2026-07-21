@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-heat-pressure
+slug: specific-heat-pressure
+refs:
+  - node: specific-heat-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificHeatPressure
+    match: exact
+contents:
+  - node: specific-heat-pressure-en
+    lang: en
+    title: Specific Heat Pressure

@@ -1,0 +1,12 @@
+node: node:quantity-kind/flash-point
+slug: flash-point
+broader: node:quantity-kind/temperature
+refs:
+  - node: flash-point-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FlashPoint
+    match: exact
+contents:
+  - node: flash-point-en
+    lang: en
+    title: Flash Point Temperature

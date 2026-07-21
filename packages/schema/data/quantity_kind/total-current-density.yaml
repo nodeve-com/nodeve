@@ -1,0 +1,15 @@
+node: node:quantity-kind/total-current-density
+slug: total-current-density
+refs:
+  - node: total-current-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TotalCurrentDensity
+    match: exact
+  - node: total-current-density-wikidata
+    registry: node:registry/wikidata
+    term: Q77680811
+    match: exact
+contents:
+  - node: total-current-density-en
+    lang: en
+    title: Total Current Density

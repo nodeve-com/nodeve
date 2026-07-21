@@ -1,0 +1,11 @@
+node: node:quantity-kind/video-frame-rate
+slug: video-frame-rate
+refs:
+  - node: video-frame-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VideoFrameRate
+    match: exact
+contents:
+  - node: video-frame-rate-en
+    lang: en
+    title: Video Frame Rate

@@ -1,0 +1,15 @@
+node: node:quantity-kind/angular-reciprocal-lattice-vector
+slug: angular-reciprocal-lattice-vector
+refs:
+  - node: angular-reciprocal-lattice-vector-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngularReciprocalLatticeVector
+    match: exact
+  - node: angular-reciprocal-lattice-vector-wikidata
+    registry: node:registry/wikidata
+    term: Q105475278
+    match: exact
+contents:
+  - node: angular-reciprocal-lattice-vector-en
+    lang: en
+    title: Angular Reciprocal Lattice Vector

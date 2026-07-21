@@ -1,0 +1,16 @@
+node: node:quantity-kind/particle-number-density
+slug: particle-number-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: particle-number-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ParticleNumberDensity
+    match: exact
+  - node: particle-number-density-wikidata
+    registry: node:registry/wikidata
+    term: Q98601569
+    match: exact
+contents:
+  - node: particle-number-density-en
+    lang: en
+    title: Particle Number Density

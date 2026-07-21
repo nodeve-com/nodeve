@@ -1,0 +1,16 @@
+node: node:quantity-kind/electron-density
+slug: electron-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: electron-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectronDensity
+    match: exact
+  - node: electron-density-wikidata
+    registry: node:registry/wikidata
+    term: Q105971077
+    match: exact
+contents:
+  - node: electron-density-en
+    lang: en
+    title: Electron Density

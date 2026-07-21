@@ -1,0 +1,15 @@
+node: node:quantity-kind/density
+slug: density
+refs:
+  - node: density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Density
+    match: exact
+  - node: density-wikidata
+    registry: node:registry/wikidata
+    term: Q29539
+    match: exact
+contents:
+  - node: density-en
+    lang: en
+    title: Density

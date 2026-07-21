@@ -1,8 +1,0 @@
-title:
-  en: Molar Equivalent
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Equivalent_Molar
-    match: exact
-identity:
-  broader: amount_of_substance

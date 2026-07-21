@@ -1,6 +1,0 @@
-title:
-  en: Force per Electric Charge
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ForcePerElectricCharge
-    match: exact

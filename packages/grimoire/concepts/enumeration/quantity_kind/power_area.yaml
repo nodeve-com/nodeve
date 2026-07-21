@@ -1,6 +1,0 @@
-title:
-  en: Power Area
-refs:
-  - registry_id: qudt_quantity_kind
-    term: PowerArea
-    match: exact

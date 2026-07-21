@@ -1,8 +1,0 @@
-title:
-  en: Reactive Charge
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ReactiveCharge
-    match: exact
-identity:
-  broader: molar_equivalent

@@ -1,0 +1,11 @@
+node: node:quantity-kind/electric-current-per-temperature
+slug: electric-current-per-temperature
+refs:
+  - node: electric-current-per-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCurrentPerTemperature
+    match: exact
+contents:
+  - node: electric-current-per-temperature-en
+    lang: en
+    title: Electric Current per Temperature

@@ -1,0 +1,15 @@
+node: node:quantity-kind/angle
+slug: angle
+refs:
+  - node: angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Angle
+    match: exact
+  - node: angle-wikidata
+    registry: node:registry/wikidata
+    term: Q1357788
+    match: exact
+contents:
+  - node: angle-en
+    lang: en
+    title: Angle

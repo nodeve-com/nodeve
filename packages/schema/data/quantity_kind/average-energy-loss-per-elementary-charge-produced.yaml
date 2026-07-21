@@ -1,0 +1,16 @@
+node: node:quantity-kind/average-energy-loss-per-elementary-charge-produced
+slug: average-energy-loss-per-elementary-charge-produced
+broader: node:quantity-kind/energy
+refs:
+  - node: average-energy-loss-per-elementary-charge-produced-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AverageEnergyLossPerElementaryChargeProduced
+    match: exact
+  - node: average-energy-loss-per-elementary-charge-produced-wikidata
+    registry: node:registry/wikidata
+    term: Q98793042
+    match: exact
+contents:
+  - node: average-energy-loss-per-elementary-charge-produced-en
+    lang: en
+    title: Average Energy Loss per Elementary Charge Produced

@@ -1,0 +1,12 @@
+node: node:quantity-kind/dots-per-inch
+slug: dots-per-inch
+broader: node:quantity-kind/lineic-resolution
+refs:
+  - node: dots-per-inch-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DotsPerInch
+    match: exact
+contents:
+  - node: dots-per-inch-en
+    lang: en
+    title: Dots per Inch

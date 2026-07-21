@@ -1,0 +1,16 @@
+node: node:quantity-kind/speed-of-sound
+slug: speed-of-sound
+broader: node:quantity-kind/speed
+refs:
+  - node: speed-of-sound-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpeedOfSound
+    match: exact
+  - node: speed-of-sound-wikidata
+    registry: node:registry/wikidata
+    term: Q124003
+    match: exact
+contents:
+  - node: speed-of-sound-en
+    lang: en
+    title: Speed of Sound

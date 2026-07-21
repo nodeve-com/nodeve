@@ -1,0 +1,12 @@
+node: node:quantity-kind/electric-current-per-length
+slug: electric-current-per-length
+broader: node:quantity-kind/linear-electric-current-density
+refs:
+  - node: electric-current-per-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCurrentPerLength
+    match: exact
+contents:
+  - node: electric-current-per-length-en
+    lang: en
+    title: Electric Current per Length

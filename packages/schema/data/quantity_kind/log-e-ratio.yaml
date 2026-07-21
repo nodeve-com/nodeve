@@ -1,0 +1,11 @@
+node: node:quantity-kind/log-e-ratio
+slug: log-e-ratio
+refs:
+  - node: log-e-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LogERatio
+    match: exact
+contents:
+  - node: log-e-ratio-en
+    lang: en
+    title: Logarithmic Ratio to Base e

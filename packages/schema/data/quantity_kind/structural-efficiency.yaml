@@ -1,0 +1,12 @@
+node: node:quantity-kind/structural-efficiency
+slug: structural-efficiency
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: structural-efficiency-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StructuralEfficiency
+    match: exact
+contents:
+  - node: structural-efficiency-en
+    lang: en
+    title: Structural Efficiency

@@ -1,0 +1,12 @@
+node: node:quantity-kind/thermal-admittance
+slug: thermal-admittance
+broader: node:quantity-kind/coefficient-of-heat-transfer
+refs:
+  - node: thermal-admittance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalAdmittance
+    match: exact
+contents:
+  - node: thermal-admittance-en
+    lang: en
+    title: Thermal Admittance

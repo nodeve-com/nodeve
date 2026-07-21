@@ -1,0 +1,12 @@
+node: node:quantity-kind/static-friction-coefficient
+slug: static-friction-coefficient
+broader: node:quantity-kind/friction-coefficient
+refs:
+  - node: static-friction-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StaticFrictionCoefficient
+    match: exact
+contents:
+  - node: static-friction-coefficient-en
+    lang: en
+    title: Static Friction Coefficient

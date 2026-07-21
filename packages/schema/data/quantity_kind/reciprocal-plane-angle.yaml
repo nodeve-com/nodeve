@@ -1,0 +1,11 @@
+node: node:quantity-kind/reciprocal-plane-angle
+slug: reciprocal-plane-angle
+refs:
+  - node: reciprocal-plane-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ReciprocalPlaneAngle
+    match: exact
+contents:
+  - node: reciprocal-plane-angle-en
+    lang: en
+    title: Reciprocal Plane Angle

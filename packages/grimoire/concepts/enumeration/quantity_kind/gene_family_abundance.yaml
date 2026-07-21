@@ -1,8 +1,0 @@
-title:
-  en: Gene Family Abundance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: GeneFamilyAbundance
-    match: exact
-identity:
-  broader: dimensionless_ratio

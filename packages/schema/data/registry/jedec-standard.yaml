@@ -1,0 +1,10 @@
+node: node:registry/jedec-standard
+slug: jedec-standard
+url: https://www.jedec.org/standards-documents/docs/jesd8
+contents:
+  - node: jedec-standard-en
+    lang: en
+    title: JEDEC interface standards (JESD8 family)
+  - node: jedec-standard-pt
+    lang: pt
+    title: Normas de interface JEDEC (família JESD8)

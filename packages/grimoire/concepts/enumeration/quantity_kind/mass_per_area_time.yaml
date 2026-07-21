@@ -1,6 +1,0 @@
-title:
-  en: Mass per Area Time
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassPerAreaTime
-    match: exact

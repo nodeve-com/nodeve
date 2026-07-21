@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-amount-of-substance
+slug: mass-amount-of-substance
+refs:
+  - node: mass-amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassAmountOfSubstance
+    match: exact
+contents:
+  - node: mass-amount-of-substance-en
+    lang: en
+    title: Mass Amount of Substance

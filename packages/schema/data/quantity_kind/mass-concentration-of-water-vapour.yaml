@@ -1,0 +1,16 @@
+node: node:quantity-kind/mass-concentration-of-water-vapour
+slug: mass-concentration-of-water-vapour
+broader: node:quantity-kind/mass-concentration
+refs:
+  - node: mass-concentration-of-water-vapour-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassConcentrationOfWaterVapour
+    match: exact
+  - node: mass-concentration-of-water-vapour-wikidata
+    registry: node:registry/wikidata
+    term: Q76378808
+    match: exact
+contents:
+  - node: mass-concentration-of-water-vapour-en
+    lang: en
+    title: Mass Concentration of Water Vapour

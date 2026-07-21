@@ -1,0 +1,16 @@
+node: node:quantity-kind/reactor-time-constant
+slug: reactor-time-constant
+broader: node:quantity-kind/time
+refs:
+  - node: reactor-time-constant-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ReactorTimeConstant
+    match: exact
+  - node: reactor-time-constant-wikidata
+    registry: node:registry/wikidata
+    term: Q99518950
+    match: exact
+contents:
+  - node: reactor-time-constant-en
+    lang: en
+    title: Reactor Time Constant

@@ -1,0 +1,15 @@
+node: node:quantity-kind/specific-energy
+slug: specific-energy
+refs:
+  - node: specific-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificEnergy
+    match: exact
+  - node: specific-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q3023293
+    match: exact
+contents:
+  - node: specific-energy-en
+    lang: en
+    title: Specific Energy

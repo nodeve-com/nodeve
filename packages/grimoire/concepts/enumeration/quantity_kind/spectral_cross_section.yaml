@@ -1,9 +1,0 @@
-title:
-  en: Spectral Cross-section
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SpectralCrossSection
-    match: exact
-  - registry_id: wikidata
-    term: Q98267245
-    match: exact

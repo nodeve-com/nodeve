@@ -1,0 +1,16 @@
+node: node:quantity-kind/cubic-expansion-coefficient
+slug: cubic-expansion-coefficient
+broader: node:quantity-kind/expansion-ratio
+refs:
+  - node: cubic-expansion-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CubicExpansionCoefficient
+    match: exact
+  - node: cubic-expansion-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q74761076
+    match: exact
+contents:
+  - node: cubic-expansion-coefficient-en
+    lang: en
+    title: Cubic Expansion Coefficient

@@ -1,0 +1,16 @@
+node: node:quantity-kind/lift-force
+slug: lift-force
+broader: node:quantity-kind/force
+refs:
+  - node: lift-force-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LiftForce
+    match: exact
+  - node: lift-force-wikidata
+    registry: node:registry/wikidata
+    term: Q101960694
+    match: exact
+contents:
+  - node: lift-force-en
+    lang: en
+    title: Lift Force

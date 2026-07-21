@@ -1,8 +1,0 @@
-title:
-  en: Hydraulic Permeability
-refs:
-  - registry_id: qudt_quantity_kind
-    term: HydraulicPermeability
-    match: exact
-identity:
-  broader: area

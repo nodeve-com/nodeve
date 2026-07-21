@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-resistance
+slug: lineic-resistance
+refs:
+  - node: lineic-resistance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicResistance
+    match: exact
+contents:
+  - node: lineic-resistance-en
+    lang: en
+    title: Lineic Resistance

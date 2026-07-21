@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-concentration-rate-of-change
+slug: mass-concentration-rate-of-change
+refs:
+  - node: mass-concentration-rate-of-change-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassConcentrationRateOfChange
+    match: exact
+contents:
+  - node: mass-concentration-rate-of-change-en
+    lang: en
+    title: Mass Concentration Rate of Change

@@ -1,8 +1,0 @@
-title:
-  en: Product of Inertia in the X Axis
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ProductOfInertia_X
-    match: exact
-identity:
-  broader: product_of_inertia

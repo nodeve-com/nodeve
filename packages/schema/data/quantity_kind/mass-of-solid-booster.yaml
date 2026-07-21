@@ -1,0 +1,12 @@
+node: node:quantity-kind/mass-of-solid-booster
+slug: mass-of-solid-booster
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-of-solid-booster-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassOfSolidBooster
+    match: exact
+contents:
+  - node: mass-of-solid-booster-en
+    lang: en
+    title: Mass of Solid Booster

@@ -1,0 +1,12 @@
+node: node:quantity-kind/angular-distance
+slug: angular-distance
+broader: node:quantity-kind/angle
+refs:
+  - node: angular-distance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngularDistance
+    match: exact
+contents:
+  - node: angular-distance-en
+    lang: en
+    title: Angular Distance

@@ -1,0 +1,11 @@
+node: node:quantity-kind/bandwidth-distance-product
+slug: bandwidth-distance-product
+refs:
+  - node: bandwidth-distance-product-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BandwidthDistanceProduct
+    match: exact
+contents:
+  - node: bandwidth-distance-product-en
+    lang: en
+    title: Bandwidth Distance Product

@@ -1,0 +1,12 @@
+node: node:quantity-kind/constringence
+slug: constringence
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: constringence-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Constringence
+    match: exact
+contents:
+  - node: constringence-en
+    lang: en
+    title: Constringence

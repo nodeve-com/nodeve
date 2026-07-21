@@ -1,0 +1,12 @@
+node: node:quantity-kind/heat-flux-density
+slug: heat-flux-density
+broader: node:quantity-kind/power-per-area
+refs:
+  - node: heat-flux-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HeatFluxDensity
+    match: exact
+contents:
+  - node: heat-flux-density-en
+    lang: en
+    title: Heat Flux Density

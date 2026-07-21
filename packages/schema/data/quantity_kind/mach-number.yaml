@@ -1,0 +1,16 @@
+node: node:quantity-kind/mach-number
+slug: mach-number
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: mach-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MachNumber
+    match: exact
+  - node: mach-number-wikidata
+    registry: node:registry/wikidata
+    term: Q160669
+    match: exact
+contents:
+  - node: mach-number-en
+    lang: en
+    title: Mach Number

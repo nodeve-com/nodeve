@@ -1,0 +1,12 @@
+node: node:quantity-kind/center-of-gravity-x
+slug: center-of-gravity-x
+broader: node:quantity-kind/length
+refs:
+  - node: center-of-gravity-x-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CenterOfGravity_X
+    match: exact
+contents:
+  - node: center-of-gravity-x-en
+    lang: en
+    title: Center of Gravity in the X Axis

@@ -1,8 +1,0 @@
-title:
-  en: Specific Impulse
-refs:
-  - registry_id: qudt_quantity_kind
-    term: SpecificImpulse
-    match: exact
-identity:
-  broader: time

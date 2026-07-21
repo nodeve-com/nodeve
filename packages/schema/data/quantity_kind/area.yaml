@@ -1,0 +1,15 @@
+node: node:quantity-kind/area
+slug: area
+refs:
+  - node: area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Area
+    match: exact
+  - node: area-wikidata
+    registry: node:registry/wikidata
+    term: Q11500
+    match: exact
+contents:
+  - node: area-en
+    lang: en
+    title: Area

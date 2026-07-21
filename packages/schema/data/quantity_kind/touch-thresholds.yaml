@@ -1,0 +1,11 @@
+node: node:quantity-kind/touch-thresholds
+slug: touch-thresholds
+refs:
+  - node: touch-thresholds-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TouchThresholds
+    match: exact
+contents:
+  - node: touch-thresholds-en
+    lang: en
+    title: Touch Thresholds

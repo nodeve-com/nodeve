@@ -1,8 +1,0 @@
-title:
-  en: Byte Transmission Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ByteTransmissionRate
-    match: exact
-identity:
-  broader: byte_rate

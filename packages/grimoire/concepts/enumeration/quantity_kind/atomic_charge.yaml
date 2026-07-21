@@ -1,8 +1,0 @@
-title:
-  en: Atomic Charge
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AtomicCharge
-    match: exact
-identity:
-  broader: electric_charge

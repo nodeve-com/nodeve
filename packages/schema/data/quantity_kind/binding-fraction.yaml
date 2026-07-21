@@ -1,0 +1,15 @@
+node: node:quantity-kind/binding-fraction
+slug: binding-fraction
+refs:
+  - node: binding-fraction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BindingFraction
+    match: exact
+  - node: binding-fraction-wikidata
+    registry: node:registry/wikidata
+    term: Q98058362
+    match: exact
+contents:
+  - node: binding-fraction-en
+    lang: en
+    title: Binding Fraction

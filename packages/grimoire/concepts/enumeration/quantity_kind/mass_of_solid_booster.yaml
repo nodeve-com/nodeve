@@ -1,8 +1,0 @@
-title:
-  en: Mass of Solid Booster
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MassOfSolidBooster
-    match: exact
-identity:
-  broader: mass

@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumic-output
+slug: volumic-output
+refs:
+  - node: volumic-output-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumicOutput
+    match: exact
+contents:
+  - node: volumic-output-en
+    lang: en
+    title: Volumic Output

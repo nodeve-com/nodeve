@@ -1,0 +1,11 @@
+node: node:quantity-kind/length-temperature-time
+slug: length-temperature-time
+refs:
+  - node: length-temperature-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LengthTemperatureTime
+    match: exact
+contents:
+  - node: length-temperature-time-en
+    lang: en
+    title: Length Temperature Time

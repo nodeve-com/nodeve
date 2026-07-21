@@ -1,9 +1,0 @@
-title:
-  en: Electric Susceptibility
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricSusceptibility
-    match: exact
-  - registry_id: wikidata
-    term: Q598305
-    match: exact

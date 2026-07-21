@@ -1,0 +1,12 @@
+node: node:quantity-kind/complex-frequency-real
+slug: complex-frequency-real
+broader: node:quantity-kind/frequency
+refs:
+  - node: complex-frequency-real-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ComplexFrequency_Real
+    match: exact
+contents:
+  - node: complex-frequency-real-en
+    lang: en
+    title: Real Part of Complex Frequency

@@ -1,0 +1,15 @@
+node: node:quantity-kind/mass-fraction-of-water
+slug: mass-fraction-of-water
+refs:
+  - node: mass-fraction-of-water-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassFractionOfWater
+    match: exact
+  - node: mass-fraction-of-water-wikidata
+    registry: node:registry/wikidata
+    term: Q76379025
+    match: exact
+contents:
+  - node: mass-fraction-of-water-en
+    lang: en
+    title: Mass Fraction of Water

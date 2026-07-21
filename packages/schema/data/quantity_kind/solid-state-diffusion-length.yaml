@@ -1,0 +1,16 @@
+node: node:quantity-kind/solid-state-diffusion-length
+slug: solid-state-diffusion-length
+broader: node:quantity-kind/length
+refs:
+  - node: solid-state-diffusion-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SolidStateDiffusionLength
+    match: exact
+  - node: solid-state-diffusion-length-wikidata
+    registry: node:registry/wikidata
+    term: Q106097176
+    match: exact
+contents:
+  - node: solid-state-diffusion-length-en
+    lang: en
+    title: Diffusion Length (Solid State Physics)

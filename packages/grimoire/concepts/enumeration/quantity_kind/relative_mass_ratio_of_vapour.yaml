@@ -1,9 +1,0 @@
-title:
-  en: Relative Mass Ratio of Vapour
-refs:
-  - registry_id: qudt_quantity_kind
-    term: RelativeMassRatioOfVapour
-    match: exact
-  - registry_id: wikidata
-    term: Q76379414
-    match: exact

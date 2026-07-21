@@ -1,0 +1,16 @@
+node: node:quantity-kind/dynamic-friction
+slug: dynamic-friction
+broader: node:quantity-kind/friction
+refs:
+  - node: dynamic-friction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DynamicFriction
+    match: exact
+  - node: dynamic-friction-wikidata
+    registry: node:registry/wikidata
+    term: Q99492067
+    match: exact
+contents:
+  - node: dynamic-friction-en
+    lang: en
+    title: Dynamic Friction

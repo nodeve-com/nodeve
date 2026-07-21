@@ -1,8 +1,0 @@
-title:
-  en: Resonance Escape Probability for Fission
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ResonanceEscapeProbabilityForFission
-    match: exact
-identity:
-  broader: dimensionless

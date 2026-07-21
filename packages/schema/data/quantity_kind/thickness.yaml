@@ -1,0 +1,19 @@
+node: node:quantity-kind/thickness
+slug: thickness
+broader: node:quantity-kind/length
+refs:
+  - node: thickness-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Thickness
+    match: exact
+  - node: thickness-wikidata
+    registry: node:registry/wikidata
+    term: Q3589038
+    match: exact
+contents:
+  - node: thickness-en
+    lang: en
+    title: Thickness
+  - node: thickness-pt
+    lang: pt
+    title: Espessura (mm)

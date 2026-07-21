@@ -1,8 +1,0 @@
-title:
-  en: Fahrenheit Temperature
-refs:
-  - registry_id: qudt_quantity_kind
-    term: FahrenheitTemperature
-    match: exact
-identity:
-  broader: temperature

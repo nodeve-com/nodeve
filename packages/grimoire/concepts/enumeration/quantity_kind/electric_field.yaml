@@ -1,6 +1,0 @@
-title:
-  en: Electric Field
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricField
-    match: exact

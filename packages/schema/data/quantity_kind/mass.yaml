@@ -1,0 +1,18 @@
+node: node:quantity-kind/mass
+slug: mass
+refs:
+  - node: mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Mass
+    match: exact
+  - node: mass-wikidata
+    registry: node:registry/wikidata
+    term: Q11423
+    match: exact
+contents:
+  - node: mass-en
+    lang: en
+    title: Mass
+  - node: mass-pt
+    lang: pt
+    title: Massa (kg)

@@ -1,0 +1,15 @@
+node: node:quantity-kind/molar-absorption-coefficient
+slug: molar-absorption-coefficient
+refs:
+  - node: molar-absorption-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarAbsorptionCoefficient
+    match: exact
+  - node: molar-absorption-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q11784888
+    match: exact
+contents:
+  - node: molar-absorption-coefficient-en
+    lang: en
+    title: Molar Absorption Coefficient

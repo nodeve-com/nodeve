@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-amount-of-substance
+slug: temperature-amount-of-substance
+refs:
+  - node: temperature-amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureAmountOfSubstance
+    match: exact
+contents:
+  - node: temperature-amount-of-substance-en
+    lang: en
+    title: Temperature Amount of Substance

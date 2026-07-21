@@ -1,0 +1,11 @@
+node: node:quantity-kind/spectral-concentration-of-vibrational-modes
+slug: spectral-concentration-of-vibrational-modes
+refs:
+  - node: spectral-concentration-of-vibrational-modes-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpectralConcentrationOfVibrationalModes
+    match: exact
+contents:
+  - node: spectral-concentration-of-vibrational-modes-en
+    lang: en
+    title: Spectral Concentration of Vibrational Modes (in Terms of Angular Frequency)

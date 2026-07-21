@@ -1,6 +1,0 @@
-title:
-  en: Force per Area Time
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ForcePerAreaTime
-    match: exact

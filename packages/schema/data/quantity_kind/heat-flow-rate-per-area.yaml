@@ -1,0 +1,12 @@
+node: node:quantity-kind/heat-flow-rate-per-area
+slug: heat-flow-rate-per-area
+broader: node:quantity-kind/power-per-area
+refs:
+  - node: heat-flow-rate-per-area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HeatFlowRatePerArea
+    match: exact
+contents:
+  - node: heat-flow-rate-per-area-en
+    lang: en
+    title: Heat Flow Rate per Unit Area

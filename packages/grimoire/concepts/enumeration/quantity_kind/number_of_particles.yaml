@@ -1,8 +1,0 @@
-title:
-  en: Number of Particles
-refs:
-  - registry_id: qudt_quantity_kind
-    term: NumberOfParticles
-    match: exact
-identity:
-  broader: count

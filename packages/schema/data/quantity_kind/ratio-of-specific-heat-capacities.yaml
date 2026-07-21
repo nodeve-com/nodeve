@@ -1,0 +1,11 @@
+node: node:quantity-kind/ratio-of-specific-heat-capacities
+slug: ratio-of-specific-heat-capacities
+refs:
+  - node: ratio-of-specific-heat-capacities-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RatioOfSpecificHeatCapacities
+    match: exact
+contents:
+  - node: ratio-of-specific-heat-capacities-en
+    lang: en
+    title: Ratio of Specific Heat Capacities

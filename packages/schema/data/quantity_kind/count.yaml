@@ -1,0 +1,11 @@
+node: node:quantity-kind/count
+slug: count
+refs:
+  - node: count-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Count
+    match: exact
+contents:
+  - node: count-en
+    lang: en
+    title: Count

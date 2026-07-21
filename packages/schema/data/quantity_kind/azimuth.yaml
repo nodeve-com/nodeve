@@ -1,0 +1,15 @@
+node: node:quantity-kind/azimuth
+slug: azimuth
+broader: node:quantity-kind/angle
+refs:
+  - node: azimuth-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Azimuth
+    match: exact
+contents:
+  - node: azimuth-en
+    lang: en
+    title: Azimuth
+  - node: azimuth-pt
+    lang: pt
+    title: Azimute

@@ -1,0 +1,12 @@
+node: node:quantity-kind/electric-displacement
+slug: electric-displacement
+broader: node:quantity-kind/electric-charge-per-area
+refs:
+  - node: electric-displacement-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricDisplacement
+    match: exact
+contents:
+  - node: electric-displacement-en
+    lang: en
+    title: Electric Displacement

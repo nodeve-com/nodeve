@@ -1,0 +1,16 @@
+node: node:quantity-kind/diffusion-coefficient
+slug: diffusion-coefficient
+broader: node:quantity-kind/area-per-time
+refs:
+  - node: diffusion-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DiffusionCoefficient
+    match: exact
+  - node: diffusion-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q604008
+    match: exact
+contents:
+  - node: diffusion-coefficient-en
+    lang: en
+    title: Diffusion Coefficient

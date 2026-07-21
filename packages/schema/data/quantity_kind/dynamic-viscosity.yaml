@@ -1,0 +1,15 @@
+node: node:quantity-kind/dynamic-viscosity
+slug: dynamic-viscosity
+refs:
+  - node: dynamic-viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DynamicViscosity
+    match: exact
+  - node: dynamic-viscosity-wikidata
+    registry: node:registry/wikidata
+    term: Q15152757
+    match: exact
+contents:
+  - node: dynamic-viscosity-en
+    lang: en
+    title: Dynamic Viscosity

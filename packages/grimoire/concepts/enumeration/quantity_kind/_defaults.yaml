@@ -1,4 +1,0 @@
-identity:
-  archetype_id: quantity_kind
-# Every kind is a numeric measurand by default; a kind needing another value type overrides `schema`.
-schema: { type: number }

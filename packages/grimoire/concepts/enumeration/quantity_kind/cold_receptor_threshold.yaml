@@ -1,8 +1,0 @@
-title:
-  en: Cold Receptor Threshold
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ColdReceptorThreshold
-    match: exact
-identity:
-  broader: temperature

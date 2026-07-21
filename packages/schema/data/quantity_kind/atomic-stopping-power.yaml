@@ -1,0 +1,11 @@
+node: node:quantity-kind/atomic-stopping-power
+slug: atomic-stopping-power
+refs:
+  - node: atomic-stopping-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AtomicStoppingPower
+    match: exact
+contents:
+  - node: atomic-stopping-power-en
+    lang: en
+    title: Atomic Stopping Power

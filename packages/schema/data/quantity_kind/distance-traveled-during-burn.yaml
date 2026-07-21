@@ -1,0 +1,12 @@
+node: node:quantity-kind/distance-traveled-during-burn
+slug: distance-traveled-during-burn
+broader: node:quantity-kind/distance
+refs:
+  - node: distance-traveled-during-burn-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DistanceTraveledDuringBurn
+    match: exact
+contents:
+  - node: distance-traveled-during-burn-en
+    lang: en
+    title: Distance Traveled During a Burn

@@ -1,0 +1,15 @@
+node: node:quantity-kind/madelung-constant
+slug: madelung-constant
+refs:
+  - node: madelung-constant-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MadelungConstant
+    match: exact
+  - node: madelung-constant-wikidata
+    registry: node:registry/wikidata
+    term: Q898781
+    match: exact
+contents:
+  - node: madelung-constant-en
+    lang: en
+    title: Madelung Constant

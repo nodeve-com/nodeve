@@ -1,0 +1,11 @@
+node: node:quantity-kind/photo-threshold-of-awareness-function
+slug: photo-threshold-of-awareness-function
+refs:
+  - node: photo-threshold-of-awareness-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhotoThresholdOfAwarenessFunction
+    match: exact
+contents:
+  - node: photo-threshold-of-awareness-function-en
+    lang: en
+    title: Photo Threshold of Awareness Function

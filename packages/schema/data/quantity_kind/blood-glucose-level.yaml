@@ -1,0 +1,11 @@
+node: node:quantity-kind/blood-glucose-level
+slug: blood-glucose-level
+refs:
+  - node: blood-glucose-level-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BloodGlucoseLevel
+    match: exact
+contents:
+  - node: blood-glucose-level-en
+    lang: en
+    title: Blood Glucose Level

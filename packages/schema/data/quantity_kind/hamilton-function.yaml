@@ -1,0 +1,12 @@
+node: node:quantity-kind/hamilton-function
+slug: hamilton-function
+broader: node:quantity-kind/energy
+refs:
+  - node: hamilton-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HamiltonFunction
+    match: exact
+contents:
+  - node: hamilton-function-en
+    lang: en
+    title: Hamilton Function

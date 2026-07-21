@@ -1,0 +1,12 @@
+node: node:quantity-kind/voltage-ratio
+slug: voltage-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: voltage-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VoltageRatio
+    match: exact
+contents:
+  - node: voltage-ratio-en
+    lang: en
+    title: Voltage Ratio

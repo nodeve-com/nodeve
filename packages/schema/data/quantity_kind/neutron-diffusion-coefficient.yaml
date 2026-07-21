@@ -1,0 +1,15 @@
+node: node:quantity-kind/neutron-diffusion-coefficient
+slug: neutron-diffusion-coefficient
+refs:
+  - node: neutron-diffusion-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NeutronDiffusionCoefficient
+    match: exact
+  - node: neutron-diffusion-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q105623303
+    match: exact
+contents:
+  - node: neutron-diffusion-coefficient-en
+    lang: en
+    title: Diffusion Coefficient

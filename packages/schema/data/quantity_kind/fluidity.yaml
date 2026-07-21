@@ -1,0 +1,11 @@
+node: node:quantity-kind/fluidity
+slug: fluidity
+refs:
+  - node: fluidity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Fluidity
+    match: exact
+contents:
+  - node: fluidity-en
+    lang: en
+    title: Fluidity

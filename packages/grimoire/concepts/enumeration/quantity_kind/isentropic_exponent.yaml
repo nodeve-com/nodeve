@@ -1,9 +1,0 @@
-title:
-  en: Isentropic Exponent
-refs:
-  - registry_id: qudt_quantity_kind
-    term: IsentropicExponent
-    match: exact
-  - registry_id: wikidata
-    term: Q75775739
-    match: exact

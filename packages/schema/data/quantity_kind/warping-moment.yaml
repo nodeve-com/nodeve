@@ -1,0 +1,11 @@
+node: node:quantity-kind/warping-moment
+slug: warping-moment
+refs:
+  - node: warping-moment-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WarpingMoment
+    match: exact
+contents:
+  - node: warping-moment-en
+    lang: en
+    title: Warping Moment

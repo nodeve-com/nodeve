@@ -1,0 +1,16 @@
+node: node:quantity-kind/transmittance
+slug: transmittance
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: transmittance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Transmittance
+    match: exact
+  - node: transmittance-wikidata
+    registry: node:registry/wikidata
+    term: Q1427863
+    match: exact
+contents:
+  - node: transmittance-en
+    lang: en
+    title: Transmittance

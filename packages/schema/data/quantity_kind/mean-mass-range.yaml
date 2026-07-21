@@ -1,0 +1,16 @@
+node: node:quantity-kind/mean-mass-range
+slug: mean-mass-range
+broader: node:quantity-kind/mass-per-area
+refs:
+  - node: mean-mass-range-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MeanMassRange
+    match: exact
+  - node: mean-mass-range-wikidata
+    registry: node:registry/wikidata
+    term: Q98681670
+    match: exact
+contents:
+  - node: mean-mass-range-en
+    lang: en
+    title: Mean Mass Range

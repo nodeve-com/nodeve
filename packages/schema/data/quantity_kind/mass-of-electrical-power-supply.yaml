@@ -1,0 +1,12 @@
+node: node:quantity-kind/mass-of-electrical-power-supply
+slug: mass-of-electrical-power-supply
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-of-electrical-power-supply-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassOfElectricalPowerSupply
+    match: exact
+contents:
+  - node: mass-of-electrical-power-supply-en
+    lang: en
+    title: Mass of Electrical Power Supply

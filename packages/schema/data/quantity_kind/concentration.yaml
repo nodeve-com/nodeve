@@ -1,0 +1,15 @@
+node: node:quantity-kind/concentration
+slug: concentration
+refs:
+  - node: concentration-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Concentration
+    match: exact
+  - node: concentration-wikidata
+    registry: node:registry/wikidata
+    term: Q3686031
+    match: exact
+contents:
+  - node: concentration-en
+    lang: en
+    title: Concentration

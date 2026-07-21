@@ -1,0 +1,11 @@
+node: node:quantity-kind/area-time-temperature
+slug: area-time-temperature
+refs:
+  - node: area-time-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreaTimeTemperature
+    match: exact
+contents:
+  - node: area-time-temperature-en
+    lang: en
+    title: Area Time Temperature

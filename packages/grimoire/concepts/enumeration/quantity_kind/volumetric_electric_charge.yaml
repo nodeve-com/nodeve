@@ -1,6 +1,0 @@
-title:
-  en: Volumic Electric Charge
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VolumetricElectricCharge
-    match: exact

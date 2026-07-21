@@ -1,0 +1,16 @@
+node: node:quantity-kind/spin
+slug: spin
+broader: node:quantity-kind/angular-impulse
+refs:
+  - node: spin-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Spin
+    match: exact
+  - node: spin-wikidata
+    registry: node:registry/wikidata
+    term: Q133673
+    match: exact
+contents:
+  - node: spin-en
+    lang: en
+    title: Spin

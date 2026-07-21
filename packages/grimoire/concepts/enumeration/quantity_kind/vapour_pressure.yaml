@@ -1,8 +1,0 @@
-title:
-  en: Vapour Pressure
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VapourPressure
-    match: exact
-identity:
-  broader: pressure

@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-electric-current
+slug: specific-electric-current
+refs:
+  - node: specific-electric-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificElectricCurrent
+    match: exact
+contents:
+  - node: specific-electric-current-en
+    lang: en
+    title: Specific Electrical Current

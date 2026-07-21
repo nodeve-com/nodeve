@@ -1,0 +1,16 @@
+node: node:quantity-kind/half-life
+slug: half-life
+broader: node:quantity-kind/time
+refs:
+  - node: half-life-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HalfLife
+    match: exact
+  - node: half-life-wikidata
+    registry: node:registry/wikidata
+    term: Q98118544
+    match: exact
+contents:
+  - node: half-life-en
+    lang: en
+    title: Half-life

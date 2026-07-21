@@ -1,0 +1,16 @@
+node: node:quantity-kind/ionization-energy
+slug: ionization-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: ionization-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IonizationEnergy
+    match: exact
+  - node: ionization-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q483769
+    match: exact
+contents:
+  - node: ionization-energy-en
+    lang: en
+    title: Ionization Energy

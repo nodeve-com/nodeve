@@ -1,0 +1,16 @@
+node: node:quantity-kind/atomic-mass
+slug: atomic-mass
+broader: node:quantity-kind/mass
+refs:
+  - node: atomic-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AtomicMass
+    match: exact
+  - node: atomic-mass-wikidata
+    registry: node:registry/wikidata
+    term: Q3840065
+    match: exact
+contents:
+  - node: atomic-mass-en
+    lang: en
+    title: Atomic Mass

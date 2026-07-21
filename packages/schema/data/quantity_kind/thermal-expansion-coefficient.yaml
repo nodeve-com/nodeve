@@ -1,0 +1,12 @@
+node: node:quantity-kind/thermal-expansion-coefficient
+slug: thermal-expansion-coefficient
+broader: node:quantity-kind/expansion-ratio
+refs:
+  - node: thermal-expansion-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalExpansionCoefficient
+    match: exact
+contents:
+  - node: thermal-expansion-coefficient-en
+    lang: en
+    title: Thermal Expansion Coefficient

@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-based-mass
+slug: temperature-based-mass
+refs:
+  - node: temperature-based-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureBasedMass
+    match: exact
+contents:
+  - node: temperature-based-mass-en
+    lang: en
+    title: Temperature-based Mass

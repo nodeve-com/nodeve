@@ -1,0 +1,11 @@
+node: node:quantity-kind/linear-thermal-expansion
+slug: linear-thermal-expansion
+refs:
+  - node: linear-thermal-expansion-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearThermalExpansion
+    match: exact
+contents:
+  - node: linear-thermal-expansion-en
+    lang: en
+    title: Linear Thermal Expansion

@@ -1,0 +1,16 @@
+node: node:quantity-kind/sound-pressure
+slug: sound-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: sound-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SoundPressure
+    match: exact
+  - node: sound-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q1068172
+    match: exact
+contents:
+  - node: sound-pressure-en
+    lang: en
+    title: Sound Pressure

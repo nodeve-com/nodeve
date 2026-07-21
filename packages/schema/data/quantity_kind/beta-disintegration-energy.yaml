@@ -1,0 +1,16 @@
+node: node:quantity-kind/beta-disintegration-energy
+slug: beta-disintegration-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: beta-disintegration-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BetaDisintegrationEnergy
+    match: exact
+  - node: beta-disintegration-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q98148340
+    match: exact
+contents:
+  - node: beta-disintegration-energy-en
+    lang: en
+    title: Beta Disintegration Energy

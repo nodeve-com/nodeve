@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-electric-current
+slug: pressure-based-electric-current
+refs:
+  - node: pressure-based-electric-current-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedElectricCurrent
+    match: exact
+contents:
+  - node: pressure-based-electric-current-en
+    lang: en
+    title: Pressure-based Electric Current

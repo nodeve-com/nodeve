@@ -1,0 +1,14 @@
+node: node:quantity-kind/mass-property-uncertainty
+slug: mass-property-uncertainty
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: mass-property-uncertainty-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MASS-PROPERTY-UNCERTAINTY
+    match: exact
+contents:
+  - node: mass-property-uncertainty-en
+    lang: en
+    title: Mass Property Uncertainty

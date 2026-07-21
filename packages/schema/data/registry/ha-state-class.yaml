@@ -1,0 +1,10 @@
+node: node:registry/ha-state-class
+slug: ha-state-class
+url: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
+contents:
+  - node: ha-state-class-en
+    lang: en
+    title: Home Assistant sensor state_class
+  - node: ha-state-class-pt
+    lang: pt
+    title: state_class de sensor do Home Assistant

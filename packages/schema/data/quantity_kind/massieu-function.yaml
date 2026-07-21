@@ -1,0 +1,15 @@
+node: node:quantity-kind/massieu-function
+slug: massieu-function
+refs:
+  - node: massieu-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassieuFunction
+    match: exact
+  - node: massieu-function-wikidata
+    registry: node:registry/wikidata
+    term: Q3077625
+    match: exact
+contents:
+  - node: massieu-function-en
+    lang: en
+    title: Massieu Function

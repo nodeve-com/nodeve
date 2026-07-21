@@ -1,0 +1,11 @@
+node: node:quantity-kind/spectral-radiance
+slug: spectral-radiance
+refs:
+  - node: spectral-radiance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpectralRadiance
+    match: exact
+contents:
+  - node: spectral-radiance-en
+    lang: en
+    title: Measurement Unit of Spectral Radiance

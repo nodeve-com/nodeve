@@ -1,0 +1,11 @@
+node: node:quantity-kind/mechanical-surface-impedance
+slug: mechanical-surface-impedance
+refs:
+  - node: mechanical-surface-impedance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MechanicalSurfaceImpedance
+    match: exact
+contents:
+  - node: mechanical-surface-impedance-en
+    lang: en
+    title: Mechanical Surface Impedance

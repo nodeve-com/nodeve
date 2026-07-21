@@ -1,0 +1,11 @@
+node: node:quantity-kind/stress-intensity-factor
+slug: stress-intensity-factor
+refs:
+  - node: stress-intensity-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StressIntensityFactor
+    match: exact
+contents:
+  - node: stress-intensity-factor-en
+    lang: en
+    title: Stress Intensity Factor

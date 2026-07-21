@@ -1,0 +1,15 @@
+node: node:quantity-kind/gyromagnetic-ratio
+slug: gyromagnetic-ratio
+refs:
+  - node: gyromagnetic-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GyromagneticRatio
+    match: exact
+  - node: gyromagnetic-ratio-wikidata
+    registry: node:registry/wikidata
+    term: Q634552
+    match: exact
+contents:
+  - node: gyromagnetic-ratio-en
+    lang: en
+    title: Gyromagnetic Ratio

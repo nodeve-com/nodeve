@@ -1,0 +1,12 @@
+node: node:quantity-kind/electric-current-imbalance
+slug: electric-current-imbalance
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: electric-current-imbalance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricCurrentImbalance
+    match: exact
+contents:
+  - node: electric-current-imbalance-en
+    lang: en
+    title: Electric Current Imbalance

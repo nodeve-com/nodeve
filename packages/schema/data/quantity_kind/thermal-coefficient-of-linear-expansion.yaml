@@ -1,0 +1,11 @@
+node: node:quantity-kind/thermal-coefficient-of-linear-expansion
+slug: thermal-coefficient-of-linear-expansion
+refs:
+  - node: thermal-coefficient-of-linear-expansion-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalCoefficientOfLinearExpansion
+    match: exact
+contents:
+  - node: thermal-coefficient-of-linear-expansion-en
+    lang: en
+    title: Thermal Coefficient of Linear Expansion

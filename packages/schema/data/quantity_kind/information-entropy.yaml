@@ -1,0 +1,16 @@
+node: node:quantity-kind/information-entropy
+slug: information-entropy
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: information-entropy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InformationEntropy
+    match: exact
+  - node: information-entropy-wikidata
+    registry: node:registry/wikidata
+    term: Q204570
+    match: exact
+contents:
+  - node: information-entropy-en
+    lang: en
+    title: Information Entropy

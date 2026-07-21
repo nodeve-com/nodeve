@@ -1,0 +1,12 @@
+node: node:quantity-kind/areic-energy-flow
+slug: areic-energy-flow
+broader: node:quantity-kind/power-per-area
+refs:
+  - node: areic-energy-flow-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreicEnergyFlow
+    match: exact
+contents:
+  - node: areic-energy-flow-en
+    lang: en
+    title: Areic Energy Flow

@@ -1,0 +1,16 @@
+node: node:quantity-kind/micro-canonical-partition-function
+slug: micro-canonical-partition-function
+broader: node:quantity-kind/canonical-partition-function
+refs:
+  - node: micro-canonical-partition-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MicroCanonicalPartitionFunction
+    match: exact
+  - node: micro-canonical-partition-function-wikidata
+    registry: node:registry/wikidata
+    term: Q96106546
+    match: exact
+contents:
+  - node: micro-canonical-partition-function-en
+    lang: en
+    title: Micro Canonical Partition Function

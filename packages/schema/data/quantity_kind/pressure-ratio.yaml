@@ -1,0 +1,12 @@
+node: node:quantity-kind/pressure-ratio
+slug: pressure-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: pressure-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureRatio
+    match: exact
+contents:
+  - node: pressure-ratio-en
+    lang: en
+    title: Pressure Ratio

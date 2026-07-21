@@ -1,0 +1,15 @@
+node: node:quantity-kind/inverse-length
+slug: inverse-length
+refs:
+  - node: inverse-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseLength
+    match: exact
+  - node: inverse-length-wikidata
+    registry: node:registry/wikidata
+    term: Q1028259
+    match: exact
+contents:
+  - node: inverse-length-en
+    lang: en
+    title: Inverse Length

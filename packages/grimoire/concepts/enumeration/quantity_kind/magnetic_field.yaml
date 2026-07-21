@@ -1,6 +1,0 @@
-title:
-  en: Magnetic Field
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MagneticField
-    match: exact

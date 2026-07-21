@@ -1,6 +1,0 @@
-title:
-  en: Byte Data Volume
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ByteDataVolume
-    match: exact

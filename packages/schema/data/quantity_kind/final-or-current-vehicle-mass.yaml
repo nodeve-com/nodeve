@@ -1,0 +1,14 @@
+node: node:quantity-kind/final-or-current-vehicle-mass
+slug: final-or-current-vehicle-mass
+deprecated: true
+deprecated_in: 3.1.4
+broader: node:quantity-kind/mass
+refs:
+  - node: final-or-current-vehicle-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FinalOrCurrentVehicleMass
+    match: exact
+contents:
+  - node: final-or-current-vehicle-mass-en
+    lang: en
+    title: Final Or Current Vehicle Mass

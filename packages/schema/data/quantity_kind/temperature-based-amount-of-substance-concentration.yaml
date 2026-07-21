@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-based-amount-of-substance-concentration
+slug: temperature-based-amount-of-substance-concentration
+refs:
+  - node: temperature-based-amount-of-substance-concentration-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureBasedAmountOfSubstanceConcentration
+    match: exact
+contents:
+  - node: temperature-based-amount-of-substance-concentration-en
+    lang: en
+    title: Temperature-based Amount-of-substance Concentration

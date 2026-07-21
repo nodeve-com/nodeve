@@ -1,6 +1,0 @@
-title:
-  en: Reactive Charge per Mass
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ReactiveChargePerMass
-    match: exact

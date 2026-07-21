@@ -1,0 +1,12 @@
+node: node:quantity-kind/co2-equivalent
+slug: co2-equivalent
+broader: node:quantity-kind/mass-equivalent
+refs:
+  - node: co2-equivalent-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CO2Equivalent
+    match: exact
+contents:
+  - node: co2-equivalent-en
+    lang: en
+    title: CO2Equivalent

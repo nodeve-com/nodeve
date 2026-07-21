@@ -1,0 +1,12 @@
+node: node:quantity-kind/reactance
+slug: reactance
+broader: node:quantity-kind/resistance
+refs:
+  - node: reactance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Reactance
+    match: exact
+contents:
+  - node: reactance-en
+    lang: en
+    title: Reactance

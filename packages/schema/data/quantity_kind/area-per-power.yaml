@@ -1,0 +1,11 @@
+node: node:quantity-kind/area-per-power
+slug: area-per-power
+refs:
+  - node: area-per-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreaPerPower
+    match: exact
+contents:
+  - node: area-per-power-en
+    lang: en
+    title: Area per Heating Load

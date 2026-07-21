@@ -1,0 +1,19 @@
+node: node:quantity-kind/intinsic-carrier-density
+slug: intinsic-carrier-density
+deprecated: true
+deprecated_in: 3.2.0
+replaced_by: node:quantity-kind/intrinsic-carrier-density
+broader: node:quantity-kind/number-density
+refs:
+  - node: intinsic-carrier-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IntinsicCarrierDensity
+    match: exact
+  - node: intinsic-carrier-density-wikidata
+    registry: node:registry/wikidata
+    term: Q1303188
+    match: exact
+contents:
+  - node: intinsic-carrier-density-en
+    lang: en
+    title: Intrinsic Carrier Density

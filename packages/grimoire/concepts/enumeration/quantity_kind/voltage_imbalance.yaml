@@ -1,8 +1,0 @@
-title:
-  en: Voltage Imbalance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: VoltageImbalance
-    match: exact
-identity:
-  broader: dimensionless_ratio

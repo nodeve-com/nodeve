@@ -1,0 +1,11 @@
+node: node:quantity-kind/information-content
+slug: information-content
+refs:
+  - node: information-content-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InformationContent
+    match: exact
+contents:
+  - node: information-content-en
+    lang: en
+    title: Information Content

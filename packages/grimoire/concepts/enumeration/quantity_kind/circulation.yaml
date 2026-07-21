@@ -1,8 +1,0 @@
-title:
-  en: Circulation
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Circulation
-    match: exact
-identity:
-  broader: area_per_time

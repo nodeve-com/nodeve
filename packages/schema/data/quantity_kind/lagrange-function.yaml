@@ -1,0 +1,16 @@
+node: node:quantity-kind/lagrange-function
+slug: lagrange-function
+broader: node:quantity-kind/energy
+refs:
+  - node: lagrange-function-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LagrangeFunction
+    match: exact
+  - node: lagrange-function-wikidata
+    registry: node:registry/wikidata
+    term: Q74318512
+    match: exact
+contents:
+  - node: lagrange-function-en
+    lang: en
+    title: Lagrange Function

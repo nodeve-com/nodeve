@@ -1,0 +1,16 @@
+node: node:quantity-kind/rest-mass
+slug: rest-mass
+broader: node:quantity-kind/mass
+refs:
+  - node: rest-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RestMass
+    match: exact
+  - node: rest-mass-wikidata
+    registry: node:registry/wikidata
+    term: Q96941619
+    match: exact
+contents:
+  - node: rest-mass-en
+    lang: en
+    title: Rest Mass

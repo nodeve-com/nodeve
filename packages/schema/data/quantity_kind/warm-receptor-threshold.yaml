@@ -1,0 +1,11 @@
+node: node:quantity-kind/warm-receptor-threshold
+slug: warm-receptor-threshold
+refs:
+  - node: warm-receptor-threshold-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WarmReceptorThreshold
+    match: exact
+contents:
+  - node: warm-receptor-threshold-en
+    lang: en
+    title: Warm Receptor Threshold

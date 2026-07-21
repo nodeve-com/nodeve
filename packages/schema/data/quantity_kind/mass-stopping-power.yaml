@@ -1,0 +1,11 @@
+node: node:quantity-kind/mass-stopping-power
+slug: mass-stopping-power
+refs:
+  - node: mass-stopping-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassStoppingPower
+    match: exact
+contents:
+  - node: mass-stopping-power-en
+    lang: en
+    title: Mass Stopping Power

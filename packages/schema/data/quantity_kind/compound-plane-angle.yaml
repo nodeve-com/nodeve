@@ -1,0 +1,12 @@
+node: node:quantity-kind/compound-plane-angle
+slug: compound-plane-angle
+broader: node:quantity-kind/angle
+refs:
+  - node: compound-plane-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CompoundPlaneAngle
+    match: exact
+contents:
+  - node: compound-plane-angle-en
+    lang: en
+    title: Compound Plane Angle

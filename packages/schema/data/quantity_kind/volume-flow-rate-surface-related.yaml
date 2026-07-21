@@ -1,0 +1,14 @@
+node: node:quantity-kind/volume-flow-rate-surface-related
+slug: volume-flow-rate-surface-related
+deprecated: true
+deprecated_in: 3.1.3
+replaced_by: node:quantity-kind/surface-related-volume-flow-rate
+refs:
+  - node: volume-flow-rate-surface-related-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumeFlowRate_SurfaceRelated
+    match: exact
+contents:
+  - node: volume-flow-rate-surface-related-en
+    lang: en
+    title: surface‑related volume flow rate

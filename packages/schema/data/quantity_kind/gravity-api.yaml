@@ -1,0 +1,19 @@
+node: node:quantity-kind/gravity-api
+slug: gravity-api
+deprecated: true
+deprecated_in: 3.1.3
+replaced_by: node:quantity-kind/api-gravity
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: gravity-api-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Gravity_API
+    match: exact
+  - node: gravity-api-wikidata
+    registry: node:registry/wikidata
+    term: Q29246
+    match: exact
+contents:
+  - node: gravity-api-en
+    lang: en
+    title: API Gravity

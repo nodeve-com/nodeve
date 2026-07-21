@@ -1,0 +1,15 @@
+node: node:quantity-kind/degree-of-dissociation
+slug: degree-of-dissociation
+refs:
+  - node: degree-of-dissociation-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DegreeOfDissociation
+    match: exact
+  - node: degree-of-dissociation-wikidata
+    registry: node:registry/wikidata
+    term: Q907334
+    match: exact
+contents:
+  - node: degree-of-dissociation-en
+    lang: en
+    title: Degree of Dissociation

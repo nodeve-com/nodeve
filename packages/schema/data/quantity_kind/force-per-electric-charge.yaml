@@ -1,0 +1,11 @@
+node: node:quantity-kind/force-per-electric-charge
+slug: force-per-electric-charge
+refs:
+  - node: force-per-electric-charge-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ForcePerElectricCharge
+    match: exact
+contents:
+  - node: force-per-electric-charge-en
+    lang: en
+    title: Force per Electric Charge

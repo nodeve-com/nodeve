@@ -1,0 +1,12 @@
+node: node:quantity-kind/molar-thermodynamic-energy
+slug: molar-thermodynamic-energy
+broader: node:quantity-kind/molar-energy
+refs:
+  - node: molar-thermodynamic-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarThermodynamicEnergy
+    match: exact
+contents:
+  - node: molar-thermodynamic-energy-en
+    lang: en
+    title: Molar Thermodynamic Energy

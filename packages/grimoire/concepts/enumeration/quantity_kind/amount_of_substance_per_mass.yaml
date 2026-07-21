@@ -1,6 +1,0 @@
-title:
-  en: Amount of Substance per Mass
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AmountOfSubstancePerMass
-    match: exact

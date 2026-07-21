@@ -1,9 +1,0 @@
-title:
-  en: Electric Field Strength
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ElectricFieldStrength
-    match: exact
-  - registry_id: wikidata
-    term: Q20989
-    match: exact

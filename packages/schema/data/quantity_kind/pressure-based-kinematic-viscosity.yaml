@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-kinematic-viscosity
+slug: pressure-based-kinematic-viscosity
+refs:
+  - node: pressure-based-kinematic-viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedKinematicViscosity
+    match: exact
+contents:
+  - node: pressure-based-kinematic-viscosity-en
+    lang: en
+    title: Pressure-based Kinematic Viscosity

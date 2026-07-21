@@ -1,0 +1,16 @@
+node: node:quantity-kind/fundamental-lattice-vector
+slug: fundamental-lattice-vector
+broader: node:quantity-kind/lattice-vector
+refs:
+  - node: fundamental-lattice-vector-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FundamentalLatticeVector
+    match: exact
+  - node: fundamental-lattice-vector-wikidata
+    registry: node:registry/wikidata
+    term: Q105451063
+    match: exact
+contents:
+  - node: fundamental-lattice-vector-en
+    lang: en
+    title: Fundamental Lattice Vector

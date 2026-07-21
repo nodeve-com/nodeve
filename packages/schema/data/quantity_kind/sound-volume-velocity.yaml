@@ -1,0 +1,16 @@
+node: node:quantity-kind/sound-volume-velocity
+slug: sound-volume-velocity
+broader: node:quantity-kind/volume-per-time
+refs:
+  - node: sound-volume-velocity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SoundVolumeVelocity
+    match: exact
+  - node: sound-volume-velocity-wikidata
+    registry: node:registry/wikidata
+    term: Q1640308
+    match: exact
+contents:
+  - node: sound-volume-velocity-en
+    lang: en
+    title: Sound Volume Velocity

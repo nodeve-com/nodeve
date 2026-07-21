@@ -1,0 +1,16 @@
+node: node:quantity-kind/electric-power
+slug: electric-power
+broader: node:quantity-kind/power
+refs:
+  - node: electric-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricPower
+    match: exact
+  - node: electric-power-wikidata
+    registry: node:registry/wikidata
+    term: Q27137
+    match: exact
+contents:
+  - node: electric-power-en
+    lang: en
+    title: Electric Power

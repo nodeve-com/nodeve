@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-length-temperature
+slug: inverse-length-temperature
+refs:
+  - node: inverse-length-temperature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseLengthTemperature
+    match: exact
+contents:
+  - node: inverse-length-temperature-en
+    lang: en
+    title: Inverse Length Temperature

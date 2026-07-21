@@ -1,0 +1,12 @@
+node: node:quantity-kind/bioconcentration-factor
+slug: bioconcentration-factor
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: bioconcentration-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BioconcentrationFactor
+    match: exact
+contents:
+  - node: bioconcentration-factor-en
+    lang: en
+    title: Bioconcentration Factor

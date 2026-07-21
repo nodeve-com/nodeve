@@ -1,8 +1,0 @@
-title:
-  en: Areic Mass
-refs:
-  - registry_id: qudt_quantity_kind
-    term: AreicMass
-    match: exact
-identity:
-  broader: mass_per_area

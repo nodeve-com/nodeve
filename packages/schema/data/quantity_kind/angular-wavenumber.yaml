@@ -1,0 +1,15 @@
+node: node:quantity-kind/angular-wavenumber
+slug: angular-wavenumber
+refs:
+  - node: angular-wavenumber-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngularWavenumber
+    match: exact
+  - node: angular-wavenumber-wikidata
+    registry: node:registry/wikidata
+    term: Q30338487
+    match: exact
+contents:
+  - node: angular-wavenumber-en
+    lang: en
+    title: Angular Wavenumber

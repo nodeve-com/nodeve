@@ -1,8 +1,0 @@
-title:
-  en: Flash Point Temperature
-refs:
-  - registry_id: qudt_quantity_kind
-    term: FlashPoint
-    match: exact
-identity:
-  broader: temperature

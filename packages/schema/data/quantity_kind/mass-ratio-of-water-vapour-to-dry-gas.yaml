@@ -1,0 +1,15 @@
+node: node:quantity-kind/mass-ratio-of-water-vapour-to-dry-gas
+slug: mass-ratio-of-water-vapour-to-dry-gas
+refs:
+  - node: mass-ratio-of-water-vapour-to-dry-gas-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassRatioOfWaterVapourToDryGas
+    match: exact
+  - node: mass-ratio-of-water-vapour-to-dry-gas-wikidata
+    registry: node:registry/wikidata
+    term: Q17232415
+    match: exact
+contents:
+  - node: mass-ratio-of-water-vapour-to-dry-gas-en
+    lang: en
+    title: Mass Ratio of Water Vapour to Dry Gas

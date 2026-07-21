@@ -1,0 +1,15 @@
+node: node:quantity-kind/electric-field-strength
+slug: electric-field-strength
+refs:
+  - node: electric-field-strength-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectricFieldStrength
+    match: exact
+  - node: electric-field-strength-wikidata
+    registry: node:registry/wikidata
+    term: Q20989
+    match: exact
+contents:
+  - node: electric-field-strength-en
+    lang: en
+    title: Electric Field Strength

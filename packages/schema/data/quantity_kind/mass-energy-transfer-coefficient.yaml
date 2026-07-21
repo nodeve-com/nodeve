@@ -1,0 +1,16 @@
+node: node:quantity-kind/mass-energy-transfer-coefficient
+slug: mass-energy-transfer-coefficient
+broader: node:quantity-kind/mass-attenuation-coefficient
+refs:
+  - node: mass-energy-transfer-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassEnergyTransferCoefficient
+    match: exact
+  - node: mass-energy-transfer-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q99714619
+    match: exact
+contents:
+  - node: mass-energy-transfer-coefficient-en
+    lang: en
+    title: Mass Energy Transfer Coefficient

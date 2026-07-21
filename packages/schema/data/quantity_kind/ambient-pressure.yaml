@@ -1,0 +1,16 @@
+node: node:quantity-kind/ambient-pressure
+slug: ambient-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: ambient-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AmbientPressure
+    match: exact
+  - node: ambient-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q789775
+    match: exact
+contents:
+  - node: ambient-pressure-en
+    lang: en
+    title: Ambient Pressure

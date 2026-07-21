@@ -1,0 +1,15 @@
+node: node:quantity-kind/logarithmic-frequency-interval
+slug: logarithmic-frequency-interval
+refs:
+  - node: logarithmic-frequency-interval-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LogarithmicFrequencyInterval
+    match: exact
+  - node: logarithmic-frequency-interval-wikidata
+    registry: node:registry/wikidata
+    term: Q86499668
+    match: exact
+contents:
+  - node: logarithmic-frequency-interval-en
+    lang: en
+    title: Logarithmic Frequency Interval

@@ -1,0 +1,12 @@
+node: node:quantity-kind/water-horsepower
+slug: water-horsepower
+broader: node:quantity-kind/power
+refs:
+  - node: water-horsepower-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WaterHorsepower
+    match: exact
+contents:
+  - node: water-horsepower-en
+    lang: en
+    title: Water Horsepower

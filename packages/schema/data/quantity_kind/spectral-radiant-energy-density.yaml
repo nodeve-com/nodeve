@@ -1,0 +1,11 @@
+node: node:quantity-kind/spectral-radiant-energy-density
+slug: spectral-radiant-energy-density
+refs:
+  - node: spectral-radiant-energy-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpectralRadiantEnergyDensity
+    match: exact
+contents:
+  - node: spectral-radiant-energy-density-en
+    lang: en
+    title: Spectral Radiant Energy Density

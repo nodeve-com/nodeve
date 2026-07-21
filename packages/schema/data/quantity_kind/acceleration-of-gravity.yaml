@@ -1,0 +1,16 @@
+node: node:quantity-kind/acceleration-of-gravity
+slug: acceleration-of-gravity
+broader: node:quantity-kind/acceleration
+refs:
+  - node: acceleration-of-gravity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AccelerationOfGravity
+    match: exact
+  - node: acceleration-of-gravity-wikidata
+    registry: node:registry/wikidata
+    term: Q30006
+    match: exact
+contents:
+  - node: acceleration-of-gravity-en
+    lang: en
+    title: Acceleration of Gravity

@@ -1,6 +1,0 @@
-title:
-  en: Molar Optical Rotational Ability
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MolarOpticalRotationalAbility
-    match: exact

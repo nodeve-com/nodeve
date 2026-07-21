@@ -1,0 +1,15 @@
+node: node:quantity-kind/standard-absolute-activity
+slug: standard-absolute-activity
+refs:
+  - node: standard-absolute-activity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StandardAbsoluteActivity
+    match: exact
+  - node: standard-absolute-activity-wikidata
+    registry: node:registry/wikidata
+    term: Q89406159
+    match: exact
+contents:
+  - node: standard-absolute-activity-en
+    lang: en
+    title: Standard Absolute Activity

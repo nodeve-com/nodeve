@@ -1,0 +1,12 @@
+node: node:quantity-kind/initial-expansion-ratio
+slug: initial-expansion-ratio
+broader: node:quantity-kind/expansion-ratio
+refs:
+  - node: initial-expansion-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InitialExpansionRatio
+    match: exact
+contents:
+  - node: initial-expansion-ratio-en
+    lang: en
+    title: Initial Expansion Ratio

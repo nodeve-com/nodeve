@@ -1,0 +1,11 @@
+node: node:quantity-kind/repetency
+slug: repetency
+refs:
+  - node: repetency-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Repetency
+    match: exact
+contents:
+  - node: repetency-en
+    lang: en
+    title: Repetency

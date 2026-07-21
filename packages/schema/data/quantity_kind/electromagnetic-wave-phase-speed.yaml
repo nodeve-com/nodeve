@@ -1,0 +1,12 @@
+node: node:quantity-kind/electromagnetic-wave-phase-speed
+slug: electromagnetic-wave-phase-speed
+broader: node:quantity-kind/speed
+refs:
+  - node: electromagnetic-wave-phase-speed-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ElectromagneticWavePhaseSpeed
+    match: exact
+contents:
+  - node: electromagnetic-wave-phase-speed-en
+    lang: en
+    title: Electromagnetic Wave Phase Speed

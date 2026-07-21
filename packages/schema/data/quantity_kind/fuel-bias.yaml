@@ -1,0 +1,14 @@
+node: node:quantity-kind/fuel-bias
+slug: fuel-bias
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: fuel-bias-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FUEL-BIAS
+    match: exact
+contents:
+  - node: fuel-bias-en
+    lang: en
+    title: Fuel Bias

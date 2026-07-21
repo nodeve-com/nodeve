@@ -1,0 +1,19 @@
+node: node:quantity-kind/relaxation-t-ime
+slug: relaxation-t-ime
+deprecated: true
+deprecated_in: 3.2.0
+replaced_by: node:quantity-kind/relaxation-time
+broader: node:quantity-kind/time
+refs:
+  - node: relaxation-t-ime-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RelaxationTIme
+    match: exact
+  - node: relaxation-t-ime-wikidata
+    registry: node:registry/wikidata
+    term: Q102310909
+    match: exact
+contents:
+  - node: relaxation-t-ime-en
+    lang: en
+    title: Relaxation Time

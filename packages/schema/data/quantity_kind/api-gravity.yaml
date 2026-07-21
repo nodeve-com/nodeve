@@ -1,0 +1,16 @@
+node: node:quantity-kind/api-gravity
+slug: api-gravity
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: api-gravity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: APIGravity
+    match: exact
+  - node: api-gravity-wikidata
+    registry: node:registry/wikidata
+    term: Q29246
+    match: exact
+contents:
+  - node: api-gravity-en
+    lang: en
+    title: API Gravity

@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-optical-rotatory-power
+slug: specific-optical-rotatory-power
+refs:
+  - node: specific-optical-rotatory-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificOpticalRotatoryPower
+    match: exact
+contents:
+  - node: specific-optical-rotatory-power-en
+    lang: en
+    title: Specific Optical Rotatory Power

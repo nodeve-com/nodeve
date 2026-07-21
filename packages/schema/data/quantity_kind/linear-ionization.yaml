@@ -1,0 +1,15 @@
+node: node:quantity-kind/linear-ionization
+slug: linear-ionization
+refs:
+  - node: linear-ionization-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearIonization
+    match: exact
+  - node: linear-ionization-wikidata
+    registry: node:registry/wikidata
+    term: Q98690755
+    match: exact
+contents:
+  - node: linear-ionization-en
+    lang: en
+    title: Linear Ionization

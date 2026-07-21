@@ -1,0 +1,15 @@
+node: node:quantity-kind/exposure-rate
+slug: exposure-rate
+refs:
+  - node: exposure-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ExposureRate
+    match: exact
+  - node: exposure-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q99720212
+    match: exact
+contents:
+  - node: exposure-rate-en
+    lang: en
+    title: Exposure Rate

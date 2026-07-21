@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-based-mass-flow-rate
+slug: temperature-based-mass-flow-rate
+refs:
+  - node: temperature-based-mass-flow-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureBasedMassFlowRate
+    match: exact
+contents:
+  - node: temperature-based-mass-flow-rate-en
+    lang: en
+    title: Temperature-based Mass Flow Rate

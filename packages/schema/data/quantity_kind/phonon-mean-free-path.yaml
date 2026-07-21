@@ -1,0 +1,16 @@
+node: node:quantity-kind/phonon-mean-free-path
+slug: phonon-mean-free-path
+broader: node:quantity-kind/length
+refs:
+  - node: phonon-mean-free-path-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhononMeanFreePath
+    match: exact
+  - node: phonon-mean-free-path-wikidata
+    registry: node:registry/wikidata
+    term: Q105672255
+    match: exact
+contents:
+  - node: phonon-mean-free-path-en
+    lang: en
+    title: Phonon Mean Free Path

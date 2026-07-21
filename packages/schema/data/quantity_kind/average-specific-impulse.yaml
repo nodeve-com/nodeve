@@ -1,0 +1,12 @@
+node: node:quantity-kind/average-specific-impulse
+slug: average-specific-impulse
+broader: node:quantity-kind/specific-impulse
+refs:
+  - node: average-specific-impulse-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AverageSpecificImpulse
+    match: exact
+contents:
+  - node: average-specific-impulse-en
+    lang: en
+    title: Average Specific Impulse

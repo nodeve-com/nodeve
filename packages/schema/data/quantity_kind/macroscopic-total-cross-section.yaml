@@ -1,0 +1,16 @@
+node: node:quantity-kind/macroscopic-total-cross-section
+slug: macroscopic-total-cross-section
+broader: node:quantity-kind/cross-section
+refs:
+  - node: macroscopic-total-cross-section-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MacroscopicTotalCrossSection
+    match: exact
+  - node: macroscopic-total-cross-section-wikidata
+    registry: node:registry/wikidata
+    term: Q98280548
+    match: exact
+contents:
+  - node: macroscopic-total-cross-section-en
+    lang: en
+    title: Macroscopic Total Cross-section

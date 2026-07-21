@@ -1,5 +1,0 @@
-# Device-type registry row — the archetype layer as DATA. A dehumidifier or
-# ac-meter is another row here plus its FeatureType rows; no DDL either time.
-# linkml-validate -s ../nodeve-energy.yaml -C DeviceType device-type-inverter.yaml
-node: node:device-type/inverter
-slug: inverter

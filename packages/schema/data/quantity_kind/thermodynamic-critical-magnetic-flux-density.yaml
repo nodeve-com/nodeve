@@ -1,0 +1,16 @@
+node: node:quantity-kind/thermodynamic-critical-magnetic-flux-density
+slug: thermodynamic-critical-magnetic-flux-density
+broader: node:quantity-kind/magnetic-flux-density
+refs:
+  - node: thermodynamic-critical-magnetic-flux-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermodynamicCriticalMagneticFluxDensity
+    match: exact
+  - node: thermodynamic-critical-magnetic-flux-density-wikidata
+    registry: node:registry/wikidata
+    term: Q106103200
+    match: exact
+contents:
+  - node: thermodynamic-critical-magnetic-flux-density-en
+    lang: en
+    title: Thermodynamic Critical Magnetic Flux Density

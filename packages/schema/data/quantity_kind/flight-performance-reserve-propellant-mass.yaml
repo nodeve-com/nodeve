@@ -1,0 +1,14 @@
+node: node:quantity-kind/flight-performance-reserve-propellant-mass
+slug: flight-performance-reserve-propellant-mass
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: flight-performance-reserve-propellant-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS
+    match: exact
+contents:
+  - node: flight-performance-reserve-propellant-mass-en
+    lang: en
+    title: Flight Performance Reserve Propellant Mass

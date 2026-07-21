@@ -1,0 +1,25 @@
+node: node:quantity-kind/apparent-power
+slug: apparent-power
+si_unit: VA
+accumulation: instantaneous
+broader: node:quantity-kind/electric-power
+refs:
+  - node: apparent-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ApparentPower
+    match: exact
+  - node: apparent-power-wikidata
+    registry: node:registry/wikidata
+    term: Q1930258
+    match: exact
+  - node: apparent-power-ha-device-class
+    registry: node:registry/ha-device-class
+    term: apparent_power
+    match: exact
+contents:
+  - node: apparent-power-en
+    lang: en
+    title: Apparent Power
+  - node: apparent-power-pt
+    lang: pt
+    title: Potência aparente

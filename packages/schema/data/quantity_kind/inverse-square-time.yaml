@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-square-time
+slug: inverse-square-time
+refs:
+  - node: inverse-square-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseSquareTime
+    match: exact
+contents:
+  - node: inverse-square-time-en
+    lang: en
+    title: Inverse Square Time

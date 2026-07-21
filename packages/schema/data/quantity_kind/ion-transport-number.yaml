@@ -1,0 +1,16 @@
+node: node:quantity-kind/ion-transport-number
+slug: ion-transport-number
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: ion-transport-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IonTransportNumber
+    match: exact
+  - node: ion-transport-number-wikidata
+    registry: node:registry/wikidata
+    term: Q331854
+    match: exact
+contents:
+  - node: ion-transport-number-en
+    lang: en
+    title: Ion Transport Number

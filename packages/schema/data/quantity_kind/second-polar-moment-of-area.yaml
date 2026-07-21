@@ -1,0 +1,16 @@
+node: node:quantity-kind/second-polar-moment-of-area
+slug: second-polar-moment-of-area
+broader: node:quantity-kind/second-moment-of-area
+refs:
+  - node: second-polar-moment-of-area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SecondPolarMomentOfArea
+    match: exact
+  - node: second-polar-moment-of-area-wikidata
+    registry: node:registry/wikidata
+    term: Q1049636
+    match: exact
+contents:
+  - node: second-polar-moment-of-area-en
+    lang: en
+    title: Second Polar Moment of Area

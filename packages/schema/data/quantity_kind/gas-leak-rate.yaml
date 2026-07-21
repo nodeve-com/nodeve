@@ -1,0 +1,12 @@
+node: node:quantity-kind/gas-leak-rate
+slug: gas-leak-rate
+broader: node:quantity-kind/energy-fluence
+refs:
+  - node: gas-leak-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GasLeakRate
+    match: exact
+contents:
+  - node: gas-leak-rate-en
+    lang: en
+    title: Gas Leak Rate

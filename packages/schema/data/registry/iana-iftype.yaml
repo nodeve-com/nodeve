@@ -1,0 +1,10 @@
+node: node:registry/iana-iftype
+slug: iana-iftype
+url: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib
+contents:
+  - node: iana-iftype-en
+    lang: en
+    title: IANA Interface Types (IANAifType-MIB)
+  - node: iana-iftype-pt
+    lang: pt
+    title: Tipos de Interface IANA (IANAifType-MIB)

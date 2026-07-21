@@ -1,0 +1,15 @@
+node: node:quantity-kind/luminous-energy
+slug: luminous-energy
+refs:
+  - node: luminous-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousEnergy
+    match: exact
+  - node: luminous-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q900164
+    match: exact
+contents:
+  - node: luminous-energy-en
+    lang: en
+    title: Luminous Energy

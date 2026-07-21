@@ -1,6 +1,0 @@
-title:
-  en: Inverse Time Temperature
-refs:
-  - registry_id: qudt_quantity_kind
-    term: InverseTimeTemperature
-    match: exact

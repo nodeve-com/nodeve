@@ -1,0 +1,12 @@
+node: node:quantity-kind/luminous-flux-ratio
+slug: luminous-flux-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: luminous-flux-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousFluxRatio
+    match: exact
+contents:
+  - node: luminous-flux-ratio-en
+    lang: en
+    title: Luminous Flux Ratio

@@ -1,0 +1,16 @@
+node: node:quantity-kind/exposure
+slug: exposure
+broader: node:quantity-kind/electric-charge-per-mass
+refs:
+  - node: exposure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Exposure
+    match: exact
+  - node: exposure-wikidata
+    registry: node:registry/wikidata
+    term: Q336938
+    match: exact
+contents:
+  - node: exposure-en
+    lang: en
+    title: Exposure

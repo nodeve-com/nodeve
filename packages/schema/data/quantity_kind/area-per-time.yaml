@@ -1,0 +1,11 @@
+node: node:quantity-kind/area-per-time
+slug: area-per-time
+refs:
+  - node: area-per-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreaPerTime
+    match: exact
+contents:
+  - node: area-per-time-en
+    lang: en
+    title: Area per Time

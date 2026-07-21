@@ -1,0 +1,11 @@
+node: node:quantity-kind/angular-momentum-per-angle
+slug: angular-momentum-per-angle
+refs:
+  - node: angular-momentum-per-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AngularMomentumPerAngle
+    match: exact
+contents:
+  - node: angular-momentum-per-angle-en
+    lang: en
+    title: Angular Momentum per Angle

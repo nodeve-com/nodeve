@@ -1,0 +1,11 @@
+node: node:quantity-kind/conductance
+slug: conductance
+refs:
+  - node: conductance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Conductance
+    match: exact
+contents:
+  - node: conductance-en
+    lang: en
+    title: Conductance

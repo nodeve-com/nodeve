@@ -1,0 +1,11 @@
+node: node:quantity-kind/modulus-of-rotational-subgrade-reaction
+slug: modulus-of-rotational-subgrade-reaction
+refs:
+  - node: modulus-of-rotational-subgrade-reaction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ModulusOfRotationalSubgradeReaction
+    match: exact
+contents:
+  - node: modulus-of-rotational-subgrade-reaction-en
+    lang: en
+    title: Modulus of Rotational Subgrade Reaction

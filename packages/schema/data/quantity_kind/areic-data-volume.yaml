@@ -1,0 +1,11 @@
+node: node:quantity-kind/areic-data-volume
+slug: areic-data-volume
+refs:
+  - node: areic-data-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: AreicDataVolume
+    match: exact
+contents:
+  - node: areic-data-volume-en
+    lang: en
+    title: Areic Data Volume

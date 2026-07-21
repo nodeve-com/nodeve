@@ -1,0 +1,11 @@
+node: node:quantity-kind/resistance-based-inductance
+slug: resistance-based-inductance
+refs:
+  - node: resistance-based-inductance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ResistanceBasedInductance
+    match: exact
+contents:
+  - node: resistance-based-inductance-en
+    lang: en
+    title: Resistance-based Inductance

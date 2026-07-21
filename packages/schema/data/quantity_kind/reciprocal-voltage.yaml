@@ -1,0 +1,11 @@
+node: node:quantity-kind/reciprocal-voltage
+slug: reciprocal-voltage
+refs:
+  - node: reciprocal-voltage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ReciprocalVoltage
+    match: exact
+contents:
+  - node: reciprocal-voltage-en
+    lang: en
+    title: Reciprocal Voltage

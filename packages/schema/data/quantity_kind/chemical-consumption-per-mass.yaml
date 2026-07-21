@@ -1,0 +1,12 @@
+node: node:quantity-kind/chemical-consumption-per-mass
+slug: chemical-consumption-per-mass
+broader: node:quantity-kind/specific-volume
+refs:
+  - node: chemical-consumption-per-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ChemicalConsumptionPerMass
+    match: exact
+contents:
+  - node: chemical-consumption-per-mass-en
+    lang: en
+    title: Chemical Consumption per Mass

@@ -1,0 +1,11 @@
+node: node:quantity-kind/reluctance
+slug: reluctance
+refs:
+  - node: reluctance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Reluctance
+    match: exact
+contents:
+  - node: reluctance-en
+    lang: en
+    title: Reluctance

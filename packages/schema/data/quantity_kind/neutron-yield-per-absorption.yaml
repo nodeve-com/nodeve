@@ -1,0 +1,15 @@
+node: node:quantity-kind/neutron-yield-per-absorption
+slug: neutron-yield-per-absorption
+refs:
+  - node: neutron-yield-per-absorption-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NeutronYieldPerAbsorption
+    match: exact
+  - node: neutron-yield-per-absorption-wikidata
+    registry: node:registry/wikidata
+    term: Q99159075
+    match: exact
+contents:
+  - node: neutron-yield-per-absorption-en
+    lang: en
+    title: Neutron Yield per Absorption

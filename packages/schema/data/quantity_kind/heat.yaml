@@ -1,0 +1,16 @@
+node: node:quantity-kind/heat
+slug: heat
+broader: node:quantity-kind/thermal-energy
+refs:
+  - node: heat-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Heat
+    match: exact
+  - node: heat-wikidata
+    registry: node:registry/wikidata
+    term: Q44432
+    match: exact
+contents:
+  - node: heat-en
+    lang: en
+    title: Heat

@@ -1,0 +1,16 @@
+node: node:quantity-kind/reflectance
+slug: reflectance
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: reflectance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Reflectance
+    match: exact
+  - node: reflectance-wikidata
+    registry: node:registry/wikidata
+    term: Q663650
+    match: exact
+contents:
+  - node: reflectance-en
+    lang: en
+    title: Reflectance

@@ -1,6 +1,0 @@
-title:
-  en: Photo Threshold of Awareness Function
-refs:
-  - registry_id: qudt_quantity_kind
-    term: PhotoThresholdOfAwarenessFunction
-    match: exact

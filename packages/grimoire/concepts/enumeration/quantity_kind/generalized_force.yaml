@@ -1,9 +1,0 @@
-title:
-  en: Generalized Force
-refs:
-  - registry_id: qudt_quantity_kind
-    term: GeneralizedForce
-    match: exact
-  - registry_id: wikidata
-    term: Q1153787
-    match: exact

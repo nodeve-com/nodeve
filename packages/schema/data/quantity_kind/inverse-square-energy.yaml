@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-square-energy
+slug: inverse-square-energy
+refs:
+  - node: inverse-square-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseSquareEnergy
+    match: exact
+contents:
+  - node: inverse-square-energy-en
+    lang: en
+    title: Inverse Square Energy

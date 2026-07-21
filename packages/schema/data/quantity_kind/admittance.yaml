@@ -1,0 +1,15 @@
+node: node:quantity-kind/admittance
+slug: admittance
+refs:
+  - node: admittance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Admittance
+    match: exact
+  - node: admittance-wikidata
+    registry: node:registry/wikidata
+    term: Q214518
+    match: exact
+contents:
+  - node: admittance-en
+    lang: en
+    title: Admittance

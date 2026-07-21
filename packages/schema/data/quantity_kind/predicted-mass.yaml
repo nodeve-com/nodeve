@@ -1,0 +1,14 @@
+node: node:quantity-kind/predicted-mass
+slug: predicted-mass
+deprecated: true
+deprecated_in: 3.2.0
+broader: node:quantity-kind/mass
+refs:
+  - node: predicted-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PREDICTED-MASS
+    match: exact
+contents:
+  - node: predicted-mass-en
+    lang: en
+    title: Predicted Mass

@@ -1,0 +1,16 @@
+node: node:quantity-kind/distance
+slug: distance
+broader: node:quantity-kind/length
+refs:
+  - node: distance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Distance
+    match: exact
+  - node: distance-wikidata
+    registry: node:registry/wikidata
+    term: Q126017
+    match: exact
+contents:
+  - node: distance-en
+    lang: en
+    title: Distance

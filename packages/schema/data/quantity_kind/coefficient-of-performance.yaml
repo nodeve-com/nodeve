@@ -1,0 +1,12 @@
+node: node:quantity-kind/coefficient-of-performance
+slug: coefficient-of-performance
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: coefficient-of-performance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CoefficientOfPerformance
+    match: exact
+contents:
+  - node: coefficient-of-performance-en
+    lang: en
+    title: Coefficient of Performance

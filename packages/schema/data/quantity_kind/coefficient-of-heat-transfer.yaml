@@ -1,0 +1,11 @@
+node: node:quantity-kind/coefficient-of-heat-transfer
+slug: coefficient-of-heat-transfer
+refs:
+  - node: coefficient-of-heat-transfer-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: CoefficientOfHeatTransfer
+    match: exact
+contents:
+  - node: coefficient-of-heat-transfer-en
+    lang: en
+    title: Coefficient of Heat Transfer

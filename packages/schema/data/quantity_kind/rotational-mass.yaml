@@ -1,0 +1,11 @@
+node: node:quantity-kind/rotational-mass
+slug: rotational-mass
+refs:
+  - node: rotational-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RotationalMass
+    match: exact
+contents:
+  - node: rotational-mass-en
+    lang: en
+    title: Rotational Mass

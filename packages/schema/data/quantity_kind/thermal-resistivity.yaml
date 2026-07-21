@@ -1,0 +1,15 @@
+node: node:quantity-kind/thermal-resistivity
+slug: thermal-resistivity
+refs:
+  - node: thermal-resistivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalResistivity
+    match: exact
+  - node: thermal-resistivity-wikidata
+    registry: node:registry/wikidata
+    term: Q66311516
+    match: exact
+contents:
+  - node: thermal-resistivity-en
+    lang: en
+    title: Thermal Resistivity

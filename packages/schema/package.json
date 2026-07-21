@@ -1,0 +1,25 @@
+{
+	"name": "@nodeve/schema",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Hardware catalog schema as a relational model, authored in LinkML. One source projects to SQL DDL, JSON Schema, TS types, and Pydantic.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/schema"
+	},
+	"type": "module",
+	"scripts": {
+		"generate": "node project-overlay.ts && node format.ts && node bundle.ts",
+		"build": "pnpm generate && pnpm build:ddl && pnpm build:db",
+		"build:ddl": "cd linkml && uvx --from linkml gen-sqltables nodeve.yaml > ../gen/nodeve.sql",
+		"build:db": "cd linkml && uvx --from linkml linkml-sqldb dump -s nodeve.yaml -C Catalog -D ../gen/catalog.db ../gen/catalog.yaml",
+		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/device_model/foxess-h3-ps10sh.yaml",
+		"check": "node format.ts --check",
+		"check:refs": "node check-refs.ts"
+	},
+	"devDependencies": {
+		"yaml": "catalog:"
+	}
+}

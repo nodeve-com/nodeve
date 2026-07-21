@@ -1,0 +1,11 @@
+node: node:registry/saref4grid
+slug: saref4grid
+url: https://saref.etsi.org/saref4grid/
+iri_template: https://saref.etsi.org/saref4grid/{id}
+contents:
+  - node: saref4grid-en
+    lang: en
+    title: SAREF4GRID (ETSI SAREF smart-grid extension)
+  - node: saref4grid-pt
+    lang: pt
+    title: SAREF4GRID (extensão de rede inteligente ETSI SAREF)

@@ -1,0 +1,16 @@
+node: node:quantity-kind/extent-of-reaction
+slug: extent-of-reaction
+broader: node:quantity-kind/amount-of-substance
+refs:
+  - node: extent-of-reaction-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ExtentOfReaction
+    match: exact
+  - node: extent-of-reaction-wikidata
+    registry: node:registry/wikidata
+    term: Q899046
+    match: exact
+contents:
+  - node: extent-of-reaction-en
+    lang: en
+    title: Extent of Reaction

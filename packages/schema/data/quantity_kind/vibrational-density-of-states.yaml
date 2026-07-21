@@ -1,0 +1,15 @@
+node: node:quantity-kind/vibrational-density-of-states
+slug: vibrational-density-of-states
+refs:
+  - node: vibrational-density-of-states-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VibrationalDensityOfStates
+    match: exact
+  - node: vibrational-density-of-states-wikidata
+    registry: node:registry/wikidata
+    term: Q230895
+    match: exact
+contents:
+  - node: vibrational-density-of-states-en
+    lang: en
+    title: Vibrational Density of States

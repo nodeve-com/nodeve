@@ -1,0 +1,16 @@
+node: node:quantity-kind/body-mass-index
+slug: body-mass-index
+broader: node:quantity-kind/mass-per-area
+refs:
+  - node: body-mass-index-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BodyMassIndex
+    match: exact
+  - node: body-mass-index-wikidata
+    registry: node:registry/wikidata
+    term: Q131191
+    match: exact
+contents:
+  - node: body-mass-index-en
+    lang: en
+    title: Body Mass Index

@@ -1,0 +1,11 @@
+node: node:quantity-kind/linear-compressibility
+slug: linear-compressibility
+refs:
+  - node: linear-compressibility-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearCompressibility
+    match: exact
+contents:
+  - node: linear-compressibility-en
+    lang: en
+    title: Linear Compressibility

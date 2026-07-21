@@ -1,0 +1,16 @@
+node: node:quantity-kind/linear-density
+slug: linear-density
+broader: node:quantity-kind/mass-per-length
+refs:
+  - node: linear-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LinearDensity
+    match: exact
+  - node: linear-density-wikidata
+    registry: node:registry/wikidata
+    term: Q56298294
+    match: exact
+contents:
+  - node: linear-density-en
+    lang: en
+    title: Linear Density

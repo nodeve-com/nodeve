@@ -1,0 +1,11 @@
+node: node:quantity-kind/molar-flux-density-variance
+slug: molar-flux-density-variance
+refs:
+  - node: molar-flux-density-variance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MolarFluxDensityVariance
+    match: exact
+contents:
+  - node: molar-flux-density-variance-en
+    lang: en
+    title: Molar Flux Density Variance

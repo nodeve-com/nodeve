@@ -1,8 +1,0 @@
-title:
-  en: Mass Property Uncertainty
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MASS-PROPERTY-UNCERTAINTY
-    match: exact
-identity:
-  broader: mass

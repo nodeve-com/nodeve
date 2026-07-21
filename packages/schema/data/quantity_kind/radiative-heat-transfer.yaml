@@ -1,0 +1,12 @@
+node: node:quantity-kind/radiative-heat-transfer
+slug: radiative-heat-transfer
+broader: node:quantity-kind/heat-flow-rate
+refs:
+  - node: radiative-heat-transfer-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadiativeHeatTransfer
+    match: exact
+contents:
+  - node: radiative-heat-transfer-en
+    lang: en
+    title: Radiative Heat Transfer

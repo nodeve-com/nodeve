@@ -1,0 +1,16 @@
+node: node:quantity-kind/respiratory-rate
+slug: respiratory-rate
+broader: node:quantity-kind/count-rate
+refs:
+  - node: respiratory-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RespiratoryRate
+    match: exact
+  - node: respiratory-rate-wikidata
+    registry: node:registry/wikidata
+    term: Q754250
+    match: exact
+contents:
+  - node: respiratory-rate-en
+    lang: en
+    title: Respiratory Rate

@@ -1,0 +1,12 @@
+node: node:quantity-kind/expansion-ratio
+slug: expansion-ratio
+broader: node:quantity-kind/inverse-temperature
+refs:
+  - node: expansion-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ExpansionRatio
+    match: exact
+contents:
+  - node: expansion-ratio-en
+    lang: en
+    title: Expansion Ratio

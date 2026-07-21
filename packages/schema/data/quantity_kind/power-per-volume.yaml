@@ -1,0 +1,11 @@
+node: node:quantity-kind/power-per-volume
+slug: power-per-volume
+refs:
+  - node: power-per-volume-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PowerPerVolume
+    match: exact
+contents:
+  - node: power-per-volume-en
+    lang: en
+    title: Power per Volume

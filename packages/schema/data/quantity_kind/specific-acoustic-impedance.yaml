@@ -1,0 +1,11 @@
+node: node:quantity-kind/specific-acoustic-impedance
+slug: specific-acoustic-impedance
+refs:
+  - node: specific-acoustic-impedance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificAcousticImpedance
+    match: exact
+contents:
+  - node: specific-acoustic-impedance-en
+    lang: en
+    title: Specific Acoustic Impedance

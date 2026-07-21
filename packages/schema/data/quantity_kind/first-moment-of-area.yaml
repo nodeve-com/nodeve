@@ -1,0 +1,16 @@
+node: node:quantity-kind/first-moment-of-area
+slug: first-moment-of-area
+broader: node:quantity-kind/volume
+refs:
+  - node: first-moment-of-area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FirstMomentOfArea
+    match: exact
+  - node: first-moment-of-area-wikidata
+    registry: node:registry/wikidata
+    term: Q920601
+    match: exact
+contents:
+  - node: first-moment-of-area-en
+    lang: en
+    title: First Moment of Area

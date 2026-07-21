@@ -1,0 +1,11 @@
+node: node:quantity-kind/stress-optic-coefficient
+slug: stress-optic-coefficient
+refs:
+  - node: stress-optic-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: StressOpticCoefficient
+    match: exact
+contents:
+  - node: stress-optic-coefficient-en
+    lang: en
+    title: Stress-Optic Coefficient

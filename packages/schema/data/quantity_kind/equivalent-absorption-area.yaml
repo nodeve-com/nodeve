@@ -1,0 +1,16 @@
+node: node:quantity-kind/equivalent-absorption-area
+slug: equivalent-absorption-area
+broader: node:quantity-kind/area
+refs:
+  - node: equivalent-absorption-area-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: EquivalentAbsorptionArea
+    match: exact
+  - node: equivalent-absorption-area-wikidata
+    registry: node:registry/wikidata
+    term: Q87745170
+    match: exact
+contents:
+  - node: equivalent-absorption-area-en
+    lang: en
+    title: Equivalent Absorption Area

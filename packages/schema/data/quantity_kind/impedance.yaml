@@ -1,0 +1,16 @@
+node: node:quantity-kind/impedance
+slug: impedance
+broader: node:quantity-kind/resistance
+refs:
+  - node: impedance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Impedance
+    match: exact
+  - node: impedance-wikidata
+    registry: node:registry/wikidata
+    term: Q179043
+    match: exact
+contents:
+  - node: impedance-en
+    lang: en
+    title: Impedance

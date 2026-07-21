@@ -1,0 +1,12 @@
+node: node:quantity-kind/opening-ratio
+slug: opening-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: opening-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: OpeningRatio
+    match: exact
+contents:
+  - node: opening-ratio-en
+    lang: en
+    title: Opening Ratio

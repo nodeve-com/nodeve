@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-logarithmic-ratio
+slug: lineic-logarithmic-ratio
+refs:
+  - node: lineic-logarithmic-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicLogarithmicRatio
+    match: exact
+contents:
+  - node: lineic-logarithmic-ratio-en
+    lang: en
+    title: Lineic Logarithmic Ratio

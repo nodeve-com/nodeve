@@ -1,0 +1,16 @@
+node: node:quantity-kind/radius-of-curvature
+slug: radius-of-curvature
+broader: node:quantity-kind/length
+refs:
+  - node: radius-of-curvature-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadiusOfCurvature
+    match: exact
+  - node: radius-of-curvature-wikidata
+    registry: node:registry/wikidata
+    term: Q1136069
+    match: exact
+contents:
+  - node: radius-of-curvature-en
+    lang: en
+    title: Radius of Curvature

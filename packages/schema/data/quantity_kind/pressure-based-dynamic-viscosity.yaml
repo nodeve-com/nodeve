@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-dynamic-viscosity
+slug: pressure-based-dynamic-viscosity
+refs:
+  - node: pressure-based-dynamic-viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedDynamicViscosity
+    match: exact
+contents:
+  - node: pressure-based-dynamic-viscosity-en
+    lang: en
+    title: Pressure-based Dynamic Viscosity

@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-resolution
+slug: lineic-resolution
+refs:
+  - node: lineic-resolution-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicResolution
+    match: exact
+contents:
+  - node: lineic-resolution-en
+    lang: en
+    title: Lineic Resolution

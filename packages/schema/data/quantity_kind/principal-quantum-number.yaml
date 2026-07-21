@@ -1,0 +1,16 @@
+node: node:quantity-kind/principal-quantum-number
+slug: principal-quantum-number
+broader: node:quantity-kind/quantum-number
+refs:
+  - node: principal-quantum-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PrincipalQuantumNumber
+    match: exact
+  - node: principal-quantum-number-wikidata
+    registry: node:registry/wikidata
+    term: Q867448
+    match: exact
+contents:
+  - node: principal-quantum-number-en
+    lang: en
+    title: Principal Quantum Number

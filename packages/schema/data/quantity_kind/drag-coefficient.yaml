@@ -1,0 +1,16 @@
+node: node:quantity-kind/drag-coefficient
+slug: drag-coefficient
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: drag-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DragCoefficient
+    match: exact
+  - node: drag-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q1778961
+    match: exact
+contents:
+  - node: drag-coefficient-en
+    lang: en
+    title: Drag Coefficient

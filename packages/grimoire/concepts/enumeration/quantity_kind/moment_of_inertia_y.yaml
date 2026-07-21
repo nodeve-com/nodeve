@@ -1,8 +1,0 @@
-title:
-  en: Moment of Inertia in the Y Axis
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MomentOfInertia_Y
-    match: exact
-identity:
-  broader: moment_of_inertia

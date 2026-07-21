@@ -1,0 +1,12 @@
+node: node:quantity-kind/gross-tonnage
+slug: gross-tonnage
+broader: node:quantity-kind/volume
+refs:
+  - node: gross-tonnage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GrossTonnage
+    match: exact
+contents:
+  - node: gross-tonnage-en
+    lang: en
+    title: Gross Tonnage

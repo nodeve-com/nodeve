@@ -1,0 +1,12 @@
+node: node:quantity-kind/gibbs-energy
+slug: gibbs-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: gibbs-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: GibbsEnergy
+    match: exact
+contents:
+  - node: gibbs-energy-en
+    lang: en
+    title: Gibbs Energy

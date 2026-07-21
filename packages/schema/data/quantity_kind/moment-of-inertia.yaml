@@ -1,0 +1,15 @@
+node: node:quantity-kind/moment-of-inertia
+slug: moment-of-inertia
+refs:
+  - node: moment-of-inertia-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MomentOfInertia
+    match: exact
+  - node: moment-of-inertia-wikidata
+    registry: node:registry/wikidata
+    term: Q165618
+    match: exact
+contents:
+  - node: moment-of-inertia-en
+    lang: en
+    title: Moment of Inertia

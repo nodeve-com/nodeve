@@ -1,0 +1,11 @@
+node: node:quantity-kind/surface-related-volume-flow
+slug: surface-related-volume-flow
+refs:
+  - node: surface-related-volume-flow-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SurfaceRelatedVolumeFlow
+    match: exact
+contents:
+  - node: surface-related-volume-flow-en
+    lang: en
+    title: Surface-related Volume Flow

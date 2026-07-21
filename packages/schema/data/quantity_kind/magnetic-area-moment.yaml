@@ -1,0 +1,11 @@
+node: node:quantity-kind/magnetic-area-moment
+slug: magnetic-area-moment
+refs:
+  - node: magnetic-area-moment-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MagneticAreaMoment
+    match: exact
+contents:
+  - node: magnetic-area-moment-en
+    lang: en
+    title: Magnetic Area Moment

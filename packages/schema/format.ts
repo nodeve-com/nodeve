@@ -1,14 +1,16 @@
 // LinkML schema formatter: sort + desugar passes over a comment-preserving
 // yaml Document. `--check` exits 1 on drift (gate mode); default writes.
 import { createHash } from 'node:crypto'
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, globSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { parseDocument, isMap, isSeq, Document, type Node, type Pair, type Scalar, type YAMLMap } from 'yaml'
 
-const FILE = fileURLToPath(new URL('linkml/nodeve-energy-slots.yaml', import.meta.url))
-const EXAMPLES = ['data/foxess_h3_ps10sh.yaml', 'data/registry.yaml'].map((p) =>
-  fileURLToPath(new URL(p, import.meta.url)),
-)
+const FILE = fileURLToPath(new URL('linkml/nodeve-slots.yaml', import.meta.url))
+// every authored row — one file per thing, sharded by class. nodes.yaml is the
+// mint ledger, not an entry, so it stays out.
+const EXAMPLES = globSync('data/*/*.yaml', {
+  cwd: fileURLToPath(new URL('.', import.meta.url)),
+}).map((p) => fileURLToPath(new URL(p, import.meta.url)))
 const NODES = fileURLToPath(new URL('data/nodes.yaml', import.meta.url))
 
 type MapPair = Pair<Scalar<string>, YAMLMap>
@@ -98,13 +100,16 @@ function injectPartScope(node: Node | null) {
 
 // ─── node minting ────────────────────────────────────────────────────────────
 // slug_qualified (ancestor slug trail) is the permalink PK; code = Crockford
-// base32 of sha1(permalink url)'s last 5 bytes (40 bits = 8 chars).
+// base32 of sha1(slug_qualified)'s last 5 bytes (40 bits = 8 chars) — a url
+// shortener over the PK, nothing more.
+// Hashes the CURIE, never a url: the domain is a deployment fact, and folding
+// it in meant moving domains silently invalidated every code.
 // Mint-once: rows already in nodes.yaml are frozen — renames never re-derive.
 
 const CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 
-function codeOf(path: string): string {
-  const tail = createHash('sha1').update(`https://nodeve.dev/node/${path}`).digest().subarray(-5)
+function codeOf(slugQualified: string): string {
+  const tail = createHash('sha1').update(slugQualified).digest().subarray(-5)
   let bits = 0n
   for (const b of tail) bits = (bits << 8n) | BigInt(b)
   let out = ''
@@ -140,15 +145,16 @@ function mintNodes(): string {
     collectPaths(contents, [root], paths)
   }
   for (const path of paths.sort()) {
-    if (frozen.has(`node:${path}`)) continue
+    const slugQualified = `node:${path}`
+    if (frozen.has(slugQualified)) continue
     rows.items.push(
-      doc.createNode({ slug_qualified: `node:${path}`, code: codeOf(path) }, { flow: true }) as unknown as YAMLMap,
+      doc.createNode({ slug_qualified: slugQualified, code: codeOf(slugQualified) }, { flow: true }) as unknown as YAMLMap,
     )
   }
   doc.contents = rows as never
   if (!doc.commentBefore)
     doc.commentBefore =
-      ' Node rows minted by format.ts — APPEND-ONLY. slug_qualified = permalink PK, code = url hash tail.\n Renaming a slug mints a NEW row only if the old one is deleted by hand; minted facts never re-derive.'
+      ' Node rows minted by format.ts — APPEND-ONLY. slug_qualified = permalink PK,\n code = sha1(slug_qualified) tail as Crockford base32 — a url shortener over the PK.\n Renaming a slug mints a NEW row only if the old one is deleted by hand; minted facts never re-derive.'
   return doc.toString({ lineWidth: 0 })
 }
 

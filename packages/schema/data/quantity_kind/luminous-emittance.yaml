@@ -1,0 +1,12 @@
+node: node:quantity-kind/luminous-emittance
+slug: luminous-emittance
+broader: node:quantity-kind/luminous-flux-per-area
+refs:
+  - node: luminous-emittance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousEmittance
+    match: exact
+contents:
+  - node: luminous-emittance-en
+    lang: en
+    title: Luminous Emmitance

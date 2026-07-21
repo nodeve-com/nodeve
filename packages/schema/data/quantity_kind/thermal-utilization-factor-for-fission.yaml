@@ -1,0 +1,12 @@
+node: node:quantity-kind/thermal-utilization-factor-for-fission
+slug: thermal-utilization-factor-for-fission
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: thermal-utilization-factor-for-fission-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalUtilizationFactorForFission
+    match: exact
+contents:
+  - node: thermal-utilization-factor-for-fission-en
+    lang: en
+    title: Thermal Utilization Factor for Fission

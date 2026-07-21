@@ -1,8 +1,0 @@
-title:
-  en: Equivalent Density
-refs:
-  - registry_id: qudt_quantity_kind
-    term: EquivalentDensity
-    match: exact
-identity:
-  broader: density

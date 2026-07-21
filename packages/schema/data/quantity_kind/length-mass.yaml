@@ -1,0 +1,11 @@
+node: node:quantity-kind/length-mass
+slug: length-mass
+refs:
+  - node: length-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LengthMass
+    match: exact
+contents:
+  - node: length-mass-en
+    lang: en
+    title: Length Mass

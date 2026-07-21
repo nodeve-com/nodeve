@@ -1,0 +1,15 @@
+node: node:quantity-kind/radiance-factor
+slug: radiance-factor
+refs:
+  - node: radiance-factor-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadianceFactor
+    match: exact
+  - node: radiance-factor-wikidata
+    registry: node:registry/wikidata
+    term: Q85811846
+    match: exact
+contents:
+  - node: radiance-factor-en
+    lang: en
+    title: Radiance Factor

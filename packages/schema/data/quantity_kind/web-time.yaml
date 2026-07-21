@@ -1,0 +1,12 @@
+node: node:quantity-kind/web-time
+slug: web-time
+broader: node:quantity-kind/time
+refs:
+  - node: web-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: WebTime
+    match: exact
+contents:
+  - node: web-time-en
+    lang: en
+    title: Web Time

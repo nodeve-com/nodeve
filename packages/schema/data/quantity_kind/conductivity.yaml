@@ -1,0 +1,14 @@
+node: node:quantity-kind/conductivity
+slug: conductivity
+deprecated: true
+deprecated_in: 3.1.11
+replaced_by: node:quantity-kind/electric-conductivity
+refs:
+  - node: conductivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Conductivity
+    match: exact
+contents:
+  - node: conductivity-en
+    lang: en
+    title: Conductivity

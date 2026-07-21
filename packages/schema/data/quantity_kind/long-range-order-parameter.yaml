@@ -1,0 +1,15 @@
+node: node:quantity-kind/long-range-order-parameter
+slug: long-range-order-parameter
+refs:
+  - node: long-range-order-parameter-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LongRangeOrderParameter
+    match: exact
+  - node: long-range-order-parameter-wikidata
+    registry: node:registry/wikidata
+    term: Q105496124
+    match: exact
+contents:
+  - node: long-range-order-parameter-en
+    lang: en
+    title: Long-Range Order Parameter

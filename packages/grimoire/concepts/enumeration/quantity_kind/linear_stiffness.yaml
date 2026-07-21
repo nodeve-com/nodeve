@@ -1,8 +1,0 @@
-title:
-  en: Linear Force
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LinearStiffness
-    match: exact
-identity:
-  broader: force_per_length

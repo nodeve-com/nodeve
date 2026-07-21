@@ -1,0 +1,16 @@
+node: node:quantity-kind/systolic-blood-pressure
+slug: systolic-blood-pressure
+broader: node:quantity-kind/pressure
+refs:
+  - node: systolic-blood-pressure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SystolicBloodPressure
+    match: exact
+  - node: systolic-blood-pressure-wikidata
+    registry: node:registry/wikidata
+    term: Q42015775
+    match: exact
+contents:
+  - node: systolic-blood-pressure-en
+    lang: en
+    title: Systolic Blood Pressure

@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-mass
+slug: inverse-mass
+refs:
+  - node: inverse-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseMass
+    match: exact
+contents:
+  - node: inverse-mass-en
+    lang: en
+    title: Reciprocal Mass

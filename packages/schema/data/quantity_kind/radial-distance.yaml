@@ -1,0 +1,16 @@
+node: node:quantity-kind/radial-distance
+slug: radial-distance
+broader: node:quantity-kind/length
+refs:
+  - node: radial-distance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RadialDistance
+    match: exact
+  - node: radial-distance-wikidata
+    registry: node:registry/wikidata
+    term: Q1578234
+    match: exact
+contents:
+  - node: radial-distance-en
+    lang: en
+    title: Radial Distance

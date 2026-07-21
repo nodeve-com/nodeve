@@ -1,0 +1,15 @@
+node: node:quantity-kind/peltier-coefficient
+slug: peltier-coefficient
+refs:
+  - node: peltier-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PeltierCoefficient
+    match: exact
+  - node: peltier-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q105801003
+    match: exact
+contents:
+  - node: peltier-coefficient-en
+    lang: en
+    title: Peltier Coefficient

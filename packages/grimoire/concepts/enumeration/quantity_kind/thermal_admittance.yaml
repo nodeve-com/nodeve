@@ -1,8 +1,0 @@
-title:
-  en: Thermal Admittance
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ThermalAdmittance
-    match: exact
-identity:
-  broader: coefficient_of_heat_transfer

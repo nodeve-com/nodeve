@@ -1,9 +1,0 @@
-title:
-  en: Relative Mass Concentration of Vapour
-refs:
-  - registry_id: qudt_quantity_kind
-    term: RelativeMassConcentrationOfVapour
-    match: exact
-  - registry_id: wikidata
-    term: Q76379357
-    match: exact

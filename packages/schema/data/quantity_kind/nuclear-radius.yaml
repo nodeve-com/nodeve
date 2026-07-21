@@ -1,0 +1,16 @@
+node: node:quantity-kind/nuclear-radius
+slug: nuclear-radius
+broader: node:quantity-kind/length
+refs:
+  - node: nuclear-radius-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: NuclearRadius
+    match: exact
+  - node: nuclear-radius-wikidata
+    registry: node:registry/wikidata
+    term: Q3535676
+    match: exact
+contents:
+  - node: nuclear-radius-en
+    lang: en
+    title: Nuclear Radius

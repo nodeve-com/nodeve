@@ -1,0 +1,11 @@
+node: node:quantity-kind/rate-of-rise-of-off-state-voltage
+slug: rate-of-rise-of-off-state-voltage
+refs:
+  - node: rate-of-rise-of-off-state-voltage-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RateOfRiseOfOffStateVoltage
+    match: exact
+contents:
+  - node: rate-of-rise-of-off-state-voltage-en
+    lang: en
+    title: Rise of Off-state Voltage

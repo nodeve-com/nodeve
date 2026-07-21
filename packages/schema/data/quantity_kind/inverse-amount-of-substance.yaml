@@ -1,0 +1,15 @@
+node: node:quantity-kind/inverse-amount-of-substance
+slug: inverse-amount-of-substance
+refs:
+  - node: inverse-amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InverseAmountOfSubstance
+    match: exact
+  - node: inverse-amount-of-substance-wikidata
+    registry: node:registry/wikidata
+    term: Q93421670
+    match: exact
+contents:
+  - node: inverse-amount-of-substance-en
+    lang: en
+    title: Inverse Amount of Substance

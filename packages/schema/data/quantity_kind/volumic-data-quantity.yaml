@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumic-data-quantity
+slug: volumic-data-quantity
+refs:
+  - node: volumic-data-quantity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumicDataQuantity
+    match: exact
+contents:
+  - node: volumic-data-quantity-en
+    lang: en
+    title: Volumic Data Quantity

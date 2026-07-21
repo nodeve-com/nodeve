@@ -1,0 +1,10 @@
+node: node:registry/ha-device-class
+slug: ha-device-class
+url: https://www.home-assistant.io/integrations/sensor/#device-class
+contents:
+  - node: ha-device-class-en
+    lang: en
+    title: Home Assistant sensor device_class
+  - node: ha-device-class-pt
+    lang: pt
+    title: device_class de sensor do Home Assistant

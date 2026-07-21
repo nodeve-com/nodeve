@@ -1,0 +1,11 @@
+node: node:quantity-kind/pressure-based-amount-of-substance-concentration
+slug: pressure-based-amount-of-substance-concentration
+refs:
+  - node: pressure-based-amount-of-substance-concentration-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PressureBasedAmountOfSubstanceConcentration
+    match: exact
+contents:
+  - node: pressure-based-amount-of-substance-concentration-en
+    lang: en
+    title: Pressure-based Amount-of-substance Concentration

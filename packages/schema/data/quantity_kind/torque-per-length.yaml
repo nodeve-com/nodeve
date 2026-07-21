@@ -1,0 +1,11 @@
+node: node:quantity-kind/torque-per-length
+slug: torque-per-length
+refs:
+  - node: torque-per-length-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TorquePerLength
+    match: exact
+contents:
+  - node: torque-per-length-en
+    lang: en
+    title: Torque per Length

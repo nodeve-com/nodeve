@@ -1,0 +1,14 @@
+node: node:quantity-kind/magnetic-flux-density-or-magnetic-polarization
+slug: magnetic-flux-density-or-magnetic-polarization
+deprecated: true
+deprecated_in: 3.1.4
+replaced_by: node:quantity-kind/magnetic-flux-density
+refs:
+  - node: magnetic-flux-density-or-magnetic-polarization-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MagneticFluxDensityOrMagneticPolarization
+    match: exact
+contents:
+  - node: magnetic-flux-density-or-magnetic-polarization-en
+    lang: en
+    title: magnetic flux density or magnetic polarization

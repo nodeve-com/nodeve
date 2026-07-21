@@ -1,0 +1,12 @@
+node: node:quantity-kind/population
+slug: population
+broader: node:quantity-kind/count
+refs:
+  - node: population-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Population
+    match: exact
+contents:
+  - node: population-en
+    lang: en
+    title: Population

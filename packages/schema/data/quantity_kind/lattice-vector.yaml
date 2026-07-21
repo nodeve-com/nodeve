@@ -1,0 +1,16 @@
+node: node:quantity-kind/lattice-vector
+slug: lattice-vector
+broader: node:quantity-kind/length
+refs:
+  - node: lattice-vector-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LatticeVector
+    match: exact
+  - node: lattice-vector-wikidata
+    registry: node:registry/wikidata
+    term: Q105435234
+    match: exact
+contents:
+  - node: lattice-vector-en
+    lang: en
+    title: Lattice Vector

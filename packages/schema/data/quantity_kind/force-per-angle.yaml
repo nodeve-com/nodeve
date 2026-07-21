@@ -1,0 +1,11 @@
+node: node:quantity-kind/force-per-angle
+slug: force-per-angle
+refs:
+  - node: force-per-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ForcePerAngle
+    match: exact
+contents:
+  - node: force-per-angle-en
+    lang: en
+    title: Force per Angle

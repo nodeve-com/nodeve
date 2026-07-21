@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-quantity
+slug: lineic-quantity
+refs:
+  - node: lineic-quantity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicQuantity
+    match: exact
+contents:
+  - node: lineic-quantity-en
+    lang: en
+    title: Lineic Quantity

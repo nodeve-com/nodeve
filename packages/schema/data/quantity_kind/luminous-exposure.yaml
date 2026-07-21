@@ -1,0 +1,15 @@
+node: node:quantity-kind/luminous-exposure
+slug: luminous-exposure
+refs:
+  - node: luminous-exposure-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LuminousExposure
+    match: exact
+  - node: luminous-exposure-wikidata
+    registry: node:registry/wikidata
+    term: Q815588
+    match: exact
+contents:
+  - node: luminous-exposure-en
+    lang: en
+    title: Luminous Exposure

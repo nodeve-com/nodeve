@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-torque
+slug: lineic-torque
+refs:
+  - node: lineic-torque-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicTorque
+    match: exact
+contents:
+  - node: lineic-torque-en
+    lang: en
+    title: Lineic Torque

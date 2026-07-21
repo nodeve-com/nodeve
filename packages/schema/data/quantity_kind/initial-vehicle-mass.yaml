@@ -1,0 +1,12 @@
+node: node:quantity-kind/initial-vehicle-mass
+slug: initial-vehicle-mass
+broader: node:quantity-kind/mass
+refs:
+  - node: initial-vehicle-mass-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InitialVehicleMass
+    match: exact
+contents:
+  - node: initial-vehicle-mass-en
+    lang: en
+    title: Initial Vehicle Mass

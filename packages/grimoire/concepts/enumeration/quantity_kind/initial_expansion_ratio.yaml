@@ -1,8 +1,0 @@
-title:
-  en: Initial Expansion Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: InitialExpansionRatio
-    match: exact
-identity:
-  broader: expansion_ratio

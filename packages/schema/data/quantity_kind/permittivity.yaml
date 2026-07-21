@@ -1,0 +1,15 @@
+node: node:quantity-kind/permittivity
+slug: permittivity
+refs:
+  - node: permittivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Permittivity
+    match: exact
+  - node: permittivity-wikidata
+    registry: node:registry/wikidata
+    term: Q211569
+    match: exact
+contents:
+  - node: permittivity-en
+    lang: en
+    title: Permittivity

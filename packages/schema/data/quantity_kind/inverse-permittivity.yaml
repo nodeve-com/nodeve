@@ -1,0 +1,11 @@
+node: node:quantity-kind/inverse-permittivity
+slug: inverse-permittivity
+refs:
+  - node: inverse-permittivity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: InversePermittivity
+    match: exact
+contents:
+  - node: inverse-permittivity-en
+    lang: en
+    title: Inverse Permittivity

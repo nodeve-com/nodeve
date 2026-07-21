@@ -1,0 +1,15 @@
+node: node:quantity-kind/section-modulus
+slug: section-modulus
+refs:
+  - node: section-modulus-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SectionModulus
+    match: exact
+  - node: section-modulus-wikidata
+    registry: node:registry/wikidata
+    term: Q1930808
+    match: exact
+contents:
+  - node: section-modulus-en
+    lang: en
+    title: Section Modulus

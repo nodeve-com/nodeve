@@ -1,6 +1,0 @@
-title:
-  en: median information flow (from a source of information), expressed as a binary logarithm
-refs:
-  - registry_id: qudt_quantity_kind
-    term: LogarithmicMedianInformationFlow_SourceToBase2
-    match: exact

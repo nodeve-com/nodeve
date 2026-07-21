@@ -1,0 +1,11 @@
+node: node:quantity-kind/torque-per-angle
+slug: torque-per-angle
+refs:
+  - node: torque-per-angle-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TorquePerAngle
+    match: exact
+contents:
+  - node: torque-per-angle-en
+    lang: en
+    title: Torque per Angle

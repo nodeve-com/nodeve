@@ -1,0 +1,11 @@
+node: node:quantity-kind/time-per-count
+slug: time-per-count
+refs:
+  - node: time-per-count-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TimePerCount
+    match: exact
+contents:
+  - node: time-per-count-en
+    lang: en
+    title: Time per Count

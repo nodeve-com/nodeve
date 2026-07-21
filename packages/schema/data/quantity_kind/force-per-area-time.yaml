@@ -1,0 +1,11 @@
+node: node:quantity-kind/force-per-area-time
+slug: force-per-area-time
+refs:
+  - node: force-per-area-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ForcePerAreaTime
+    match: exact
+contents:
+  - node: force-per-area-time-en
+    lang: en
+    title: Force per Area Time

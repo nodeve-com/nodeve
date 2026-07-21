@@ -1,8 +1,0 @@
-title:
-  en: Thermal Utilization Factor for Fission
-refs:
-  - registry_id: qudt_quantity_kind
-    term: ThermalUtilizationFactorForFission
-    match: exact
-identity:
-  broader: dimensionless

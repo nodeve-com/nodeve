@@ -1,0 +1,12 @@
+node: node:quantity-kind/speed-ratio
+slug: speed-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: speed-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpeedRatio
+    match: exact
+contents:
+  - node: speed-ratio-en
+    lang: en
+    title: Speed Ratio

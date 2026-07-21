@@ -1,0 +1,12 @@
+node: node:quantity-kind/massic-activity
+slug: massic-activity
+broader: node:quantity-kind/specific-activity
+refs:
+  - node: massic-activity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MassicActivity
+    match: exact
+contents:
+  - node: massic-activity-en
+    lang: en
+    title: Massic Activity

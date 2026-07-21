@@ -1,0 +1,11 @@
+node: node:quantity-kind/exposure-rate-of-ionizing-radiation
+slug: exposure-rate-of-ionizing-radiation
+refs:
+  - node: exposure-rate-of-ionizing-radiation-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ExposureRateOfIonizingRadiation
+    match: exact
+contents:
+  - node: exposure-rate-of-ionizing-radiation-en
+    lang: en
+    title: Exposure Rate of Ionizing Radiation

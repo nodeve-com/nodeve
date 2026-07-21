@@ -1,0 +1,11 @@
+node: node:quantity-kind/lineic-power
+slug: lineic-power
+refs:
+  - node: lineic-power-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LineicPower
+    match: exact
+contents:
+  - node: lineic-power-en
+    lang: en
+    title: Lineic Power

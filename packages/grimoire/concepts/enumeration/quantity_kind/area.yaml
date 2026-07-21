@@ -1,9 +1,0 @@
-title:
-  en: Area
-refs:
-  - registry_id: qudt_quantity_kind
-    term: Area
-    match: exact
-  - registry_id: wikidata
-    term: Q11500
-    match: exact

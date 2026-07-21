@@ -1,3 +1,0 @@
-# Registry catalog entries — external Classes a crosswalk points into (ref.registry_id FKs here).
-# Each carries its resolver + publisher via registry_publication. Single archetype for the subtree.
-archetype_id: registry

@@ -1,0 +1,11 @@
+node: node:quantity-kind/volumic-amount-of-substance
+slug: volumic-amount-of-substance
+refs:
+  - node: volumic-amount-of-substance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumicAmountOfSubstance
+    match: exact
+contents:
+  - node: volumic-amount-of-substance-en
+    lang: en
+    title: Volumic Amount of Substance

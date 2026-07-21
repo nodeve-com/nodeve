@@ -1,8 +1,0 @@
-title:
-  en: Moisture Diffusivity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MoistureDiffusivity
-    match: exact
-identity:
-  broader: volume_flow_rate

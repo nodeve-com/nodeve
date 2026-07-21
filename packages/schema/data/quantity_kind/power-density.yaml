@@ -1,0 +1,11 @@
+node: node:quantity-kind/power-density
+slug: power-density
+refs:
+  - node: power-density-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PowerDensity
+    match: exact
+contents:
+  - node: power-density-en
+    lang: en
+    title: Power Density

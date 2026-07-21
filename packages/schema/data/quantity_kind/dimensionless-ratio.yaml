@@ -1,0 +1,12 @@
+node: node:quantity-kind/dimensionless-ratio
+slug: dimensionless-ratio
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: dimensionless-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: DimensionlessRatio
+    match: exact
+contents:
+  - node: dimensionless-ratio-en
+    lang: en
+    title: Dimensionless Ratio

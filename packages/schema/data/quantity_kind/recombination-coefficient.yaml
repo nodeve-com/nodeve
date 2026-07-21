@@ -1,0 +1,16 @@
+node: node:quantity-kind/recombination-coefficient
+slug: recombination-coefficient
+broader: node:quantity-kind/volume-per-time
+refs:
+  - node: recombination-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: RecombinationCoefficient
+    match: exact
+  - node: recombination-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q98842099
+    match: exact
+contents:
+  - node: recombination-coefficient-en
+    lang: en
+    title: Recombination Coefficient

@@ -1,0 +1,15 @@
+node: node:quantity-kind/photon-radiance
+slug: photon-radiance
+refs:
+  - node: photon-radiance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PhotonRadiance
+    match: exact
+  - node: photon-radiance-wikidata
+    registry: node:registry/wikidata
+    term: Q10498337
+    match: exact
+contents:
+  - node: photon-radiance-en
+    lang: en
+    title: Photon Radiance

@@ -1,8 +1,0 @@
-title:
-  en: Radiant Fluence Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: RadiantFluenceRate
-    match: exact
-identity:
-  broader: power_per_area

@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-based-kinematic-viscosity
+slug: temperature-based-kinematic-viscosity
+refs:
+  - node: temperature-based-kinematic-viscosity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperatureBasedKinematicViscosity
+    match: exact
+contents:
+  - node: temperature-based-kinematic-viscosity-en
+    lang: en
+    title: Temperature-based Kinematic Viscosity

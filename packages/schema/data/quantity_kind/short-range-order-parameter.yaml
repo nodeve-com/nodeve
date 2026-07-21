@@ -1,0 +1,15 @@
+node: node:quantity-kind/short-range-order-parameter
+slug: short-range-order-parameter
+refs:
+  - node: short-range-order-parameter-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ShortRangeOrderParameter
+    match: exact
+  - node: short-range-order-parameter-wikidata
+    registry: node:registry/wikidata
+    term: Q105495979
+    match: exact
+contents:
+  - node: short-range-order-parameter-en
+    lang: en
+    title: Short-Range Order Parameter

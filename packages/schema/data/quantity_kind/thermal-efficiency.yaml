@@ -1,0 +1,16 @@
+node: node:quantity-kind/thermal-efficiency
+slug: thermal-efficiency
+broader: node:quantity-kind/efficiency
+refs:
+  - node: thermal-efficiency-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalEfficiency
+    match: exact
+  - node: thermal-efficiency-wikidata
+    registry: node:registry/wikidata
+    term: Q1452104
+    match: exact
+contents:
+  - node: thermal-efficiency-en
+    lang: en
+    title: Thermal Efficiency

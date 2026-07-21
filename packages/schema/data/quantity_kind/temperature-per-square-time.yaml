@@ -1,0 +1,11 @@
+node: node:quantity-kind/temperature-per-square-time
+slug: temperature-per-square-time
+refs:
+  - node: temperature-per-square-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: TemperaturePerSquareTime
+    match: exact
+contents:
+  - node: temperature-per-square-time-en
+    lang: en
+    title: Temperature per Square Time

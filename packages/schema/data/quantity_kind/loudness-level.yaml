@@ -1,0 +1,12 @@
+node: node:quantity-kind/loudness-level
+slug: loudness-level
+broader: node:quantity-kind/dimensionless
+refs:
+  - node: loudness-level-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LoudnessLevel
+    match: exact
+contents:
+  - node: loudness-level-en
+    lang: en
+    title: Loudness Level

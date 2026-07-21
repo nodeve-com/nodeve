@@ -1,8 +1,0 @@
-title:
-  en: Strain Energy Release Rate
-refs:
-  - registry_id: qudt_quantity_kind
-    term: StrainEnergyReleaseRate
-    match: exact
-identity:
-  broader: energy_per_area

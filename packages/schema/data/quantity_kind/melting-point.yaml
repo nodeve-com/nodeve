@@ -1,0 +1,12 @@
+node: node:quantity-kind/melting-point
+slug: melting-point
+broader: node:quantity-kind/temperature
+refs:
+  - node: melting-point-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: MeltingPoint
+    match: exact
+contents:
+  - node: melting-point-en
+    lang: en
+    title: Melting Point Temperature

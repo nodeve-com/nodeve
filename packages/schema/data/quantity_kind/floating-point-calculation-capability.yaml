@@ -1,0 +1,11 @@
+node: node:quantity-kind/floating-point-calculation-capability
+slug: floating-point-calculation-capability
+refs:
+  - node: floating-point-calculation-capability-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: FloatingPointCalculationCapability
+    match: exact
+contents:
+  - node: floating-point-calculation-capability-en
+    lang: en
+    title: Floating Point Calculation Capability

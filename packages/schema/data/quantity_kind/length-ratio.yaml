@@ -1,0 +1,12 @@
+node: node:quantity-kind/length-ratio
+slug: length-ratio
+broader: node:quantity-kind/dimensionless-ratio
+refs:
+  - node: length-ratio-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: LengthRatio
+    match: exact
+contents:
+  - node: length-ratio-en
+    lang: en
+    title: Length Ratio

@@ -1,0 +1,11 @@
+node: node:quantity-kind/unbalance
+slug: unbalance
+refs:
+  - node: unbalance-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Unbalance
+    match: exact
+contents:
+  - node: unbalance-en
+    lang: en
+    title: Unbalance

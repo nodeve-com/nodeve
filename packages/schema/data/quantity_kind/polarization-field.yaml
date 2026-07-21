@@ -1,0 +1,12 @@
+node: node:quantity-kind/polarization-field
+slug: polarization-field
+broader: node:quantity-kind/electric-charge-per-area
+refs:
+  - node: polarization-field-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PolarizationField
+    match: exact
+contents:
+  - node: polarization-field-en
+    lang: en
+    title: Polarization Field

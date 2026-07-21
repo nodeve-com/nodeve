@@ -1,0 +1,16 @@
+node: node:quantity-kind/potential-energy
+slug: potential-energy
+broader: node:quantity-kind/energy
+refs:
+  - node: potential-energy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PotentialEnergy
+    match: exact
+  - node: potential-energy-wikidata
+    registry: node:registry/wikidata
+    term: Q155640
+    match: exact
+contents:
+  - node: potential-energy-en
+    lang: en
+    title: Potential Energy

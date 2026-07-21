@@ -1,0 +1,11 @@
+node: node:quantity-kind/basicity
+slug: basicity
+refs:
+  - node: basicity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Basicity
+    match: exact
+contents:
+  - node: basicity-en
+    lang: en
+    title: Basicity

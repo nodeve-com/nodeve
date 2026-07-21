@@ -1,0 +1,10 @@
+node: node:registry/iana-uri-scheme
+slug: iana-uri-scheme
+url: https://www.iana.org/assignments/uri-schemes/
+contents:
+  - node: iana-uri-scheme-en
+    lang: en
+    title: IANA Uniform Resource Identifier (URI) Schemes
+  - node: iana-uri-scheme-pt
+    lang: pt
+    title: Esquemas de URI da IANA

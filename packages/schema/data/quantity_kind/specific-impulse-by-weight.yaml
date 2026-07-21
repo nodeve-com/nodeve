@@ -1,0 +1,16 @@
+node: node:quantity-kind/specific-impulse-by-weight
+slug: specific-impulse-by-weight
+broader: node:quantity-kind/specific-impulse
+refs:
+  - node: specific-impulse-by-weight-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: SpecificImpulseByWeight
+    match: exact
+  - node: specific-impulse-by-weight-wikidata
+    registry: node:registry/wikidata
+    term: Q100828354
+    match: exact
+contents:
+  - node: specific-impulse-by-weight-en
+    lang: en
+    title: Specific Impulse by Weight

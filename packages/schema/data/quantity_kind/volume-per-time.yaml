@@ -1,0 +1,11 @@
+node: node:quantity-kind/volume-per-time
+slug: volume-per-time
+refs:
+  - node: volume-per-time-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: VolumePerTime
+    match: exact
+contents:
+  - node: volume-per-time-en
+    lang: en
+    title: Volume per Time

@@ -1,0 +1,16 @@
+node: node:quantity-kind/enthalpy
+slug: enthalpy
+broader: node:quantity-kind/energy
+refs:
+  - node: enthalpy-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Enthalpy
+    match: exact
+  - node: enthalpy-wikidata
+    registry: node:registry/wikidata
+    term: Q161064
+    match: exact
+contents:
+  - node: enthalpy-en
+    lang: en
+    title: Enthalpy

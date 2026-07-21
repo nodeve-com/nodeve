@@ -1,0 +1,11 @@
+node: node:quantity-kind/power-constant
+slug: power-constant
+refs:
+  - node: power-constant-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: PowerConstant
+    match: exact
+contents:
+  - node: power-constant-en
+    lang: en
+    title: Power Constant

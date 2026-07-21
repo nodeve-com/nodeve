@@ -1,8 +1,0 @@
-title:
-  en: Payload Ratio
-refs:
-  - registry_id: qudt_quantity_kind
-    term: PayloadRatio
-    match: exact
-identity:
-  broader: dimensionless_ratio

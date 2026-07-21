@@ -1,0 +1,16 @@
+node: node:quantity-kind/hyperfine-structure-quantum-number
+slug: hyperfine-structure-quantum-number
+broader: node:quantity-kind/quantum-number
+refs:
+  - node: hyperfine-structure-quantum-number-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: HyperfineStructureQuantumNumber
+    match: exact
+  - node: hyperfine-structure-quantum-number-wikidata
+    registry: node:registry/wikidata
+    term: Q97577449
+    match: exact
+contents:
+  - node: hyperfine-structure-quantum-number-en
+    lang: en
+    title: Hyperfine Structure Quantum Number

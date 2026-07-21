@@ -1,0 +1,12 @@
+node: node:quantity-kind/bit-transmission-rate
+slug: bit-transmission-rate
+broader: node:quantity-kind/bit-rate
+refs:
+  - node: bit-transmission-rate-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BitTransmissionRate
+    match: exact
+contents:
+  - node: bit-transmission-rate-en
+    lang: en
+    title: Bit Transmission Rate

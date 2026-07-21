@@ -1,0 +1,12 @@
+node: node:quantity-kind/battery-capacity
+slug: battery-capacity
+broader: node:quantity-kind/electric-charge
+refs:
+  - node: battery-capacity-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: BatteryCapacity
+    match: exact
+contents:
+  - node: battery-capacity-en
+    lang: en
+    title: Battery Capacity

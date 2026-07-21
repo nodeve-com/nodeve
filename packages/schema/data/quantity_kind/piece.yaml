@@ -1,0 +1,12 @@
+node: node:quantity-kind/piece
+slug: piece
+broader: node:quantity-kind/count
+refs:
+  - node: piece-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: Piece
+    match: exact
+contents:
+  - node: piece-en
+    lang: en
+    title: Piece

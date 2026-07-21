@@ -1,0 +1,16 @@
+node: node:quantity-kind/isentropic-compressibility
+slug: isentropic-compressibility
+broader: node:quantity-kind/compressibility
+refs:
+  - node: isentropic-compressibility-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: IsentropicCompressibility
+    match: exact
+  - node: isentropic-compressibility-wikidata
+    registry: node:registry/wikidata
+    term: Q2990695
+    match: exact
+contents:
+  - node: isentropic-compressibility-en
+    lang: en
+    title: Isentropic Compressibility

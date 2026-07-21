@@ -1,0 +1,15 @@
+node: node:quantity-kind/thermal-diffusion-ratio-coefficient
+slug: thermal-diffusion-ratio-coefficient
+refs:
+  - node: thermal-diffusion-ratio-coefficient-qudt-quantity-kind
+    registry: node:registry/qudt-quantity-kind
+    term: ThermalDiffusionRatioCoefficient
+    match: exact
+  - node: thermal-diffusion-ratio-coefficient-wikidata
+    registry: node:registry/wikidata
+    term: Q96249751
+    match: exact
+contents:
+  - node: thermal-diffusion-ratio-coefficient-en
+    lang: en
+    title: Thermal Diffusion Coefficient

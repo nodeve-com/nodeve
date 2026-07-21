@@ -1,6 +1,0 @@
-title:
-  en: Molar Refractivity
-refs:
-  - registry_id: qudt_quantity_kind
-    term: MolarRefractivity
-    match: exact
