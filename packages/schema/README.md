@@ -68,11 +68,11 @@ Reusable tables that device types assemble — not wide tables repeating column 
 | archetype | `DeviceType` + binding rows | projected into a validation class; never a type-specific table |
 | `product:` block + mfr cascade | `Product` → `Manufacturer` tables | cascade = shared FK row |
 | `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |
-| part (l1/l2/l3) | `Part` row FK | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
+| part (l1/l2/l3) | `Part` row | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
 | i18n keys (en/pt) | `Content(language)` rows | localized content with BCP 47 language tags |
-| repeated + instances | `ordinal` column | null = default template row; set = sparse override |
+| repeated + instances | `Part` rows + `ordinal` | one row per instance; `ordinal` is its sort key, assigned from authored position, never hand-typed |
 | energy channels | `flow_direction` + `period` columns | four rows on one kind |
-| combined vs per-leg | `part` nullity + `part_scope` | combined = all discriminators absent; enforced via `value_presence` |
+| combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |
 | modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
 
 ### Identity

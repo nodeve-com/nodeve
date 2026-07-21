@@ -107,7 +107,19 @@ classes:
   QuantityKind:
     annotations:
       sql_table: quantity_kind
-    slots: [node, slug, si_unit, accumulation, deprecated, deprecated_in, replaced_by, broader, refs, contents]
+    slots:
+      [
+        node,
+        slug,
+        si_unit,
+        accumulation,
+        deprecated,
+        deprecated_in,
+        replaced_by,
+        broader,
+        refs,
+        contents,
+      ]
 
   # One row per feature type × quantity — the feature type's admissible set as data. The
   # overlay projects ONE enum per feature type from these rows, validated once on
@@ -134,10 +146,7 @@ classes:
     annotations:
       sql_table: valued_range
     description: >-
-      A single point (value) plus the tolerated band around it (min/max
-      OPTIONAL — value-only, one-sided, or full all legal; never fabricate a
-      band). Quantity-agnostic: the owning row supplies the quantity; unit
-      stays here with the numbers it scales.
+      A single point (value) plus the tolerated band around it (min/max OPTIONAL — value-only, one-sided, or full all legal; never fabricate a band). Quantity-agnostic: the owning row supplies the quantity; unit stays here with the numbers it scales.
     slots:
       - node
       - min
@@ -160,9 +169,7 @@ classes:
     annotations:
       sql_table: interval
     description: >-
-      One quantity band on one feature. part null = combined; slug
-      discriminates multiple rows per (quantity_kind, part). Aspect payloads
-      hang off as width extensions — THEY point here (shared node), never back.
+      One quantity band on one feature. part null = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
     slots: [node, quantity_kind, valued_range, part, slug]
     slot_usage:
       # the discriminator, not decoration — (quantity_kind, part, slug) is the
@@ -173,27 +180,21 @@ classes:
     annotations:
       sql_table: specification
     description: >-
-      BEHAVIOURAL payload — spec rating, operating zone, severity tier, or
-      condition-gated derate. Shares its interval's node row. part_scope
-      disambiguates a NULL-part interval — combined vs default fallback;
-      measurements never need it, a channel is always concrete.
-    slots: [node, conditions, part_scope, rating, zone, severity, duration, trigger_on]
+      BEHAVIOURAL payload — spec rating, operating zone, severity tier, or condition-gated derate. Shares its interval's node row.
+    slots: [node, conditions, rating, zone, severity, duration, trigger_on]
 
   Measurement:
     annotations:
       sql_table: measurement
     description: >-
-      MEASURABLE-channel payload — what a sensor reports: resolution and the
-      energy-channel discriminators. Shares its interval's node row.
+      MEASURABLE-channel payload — what a sensor reports: resolution and the energy-channel discriminators. Shares its interval's node row.
     slots: [node, flow_direction, period, resolution]
-
 
   Condition:
     annotations:
       sql_table: condition
     description: >-
-      Gate on an interval — either a commissioning-setting equality or a
-      pointer at another interval (the derate anchor).
+      Gate on an interval — either a commissioning-setting equality or a pointer at another interval (the derate anchor).
     slots: [node, setting_key, equals, gated_by]
 
   FeatureOfInterest:
@@ -201,14 +202,7 @@ classes:
       sql_table: feature_of_interest
     abstract: true
     description: >-
-      The ONE feature table (SOSA feature-of-interest): a named attachment
-      point that refines all possible measurands to a known admissible set —
-      a temperature attaches to an environment row exactly as a voltage
-      attaches to a port row. role IS the socket name (out, grid, pv-tracker,
-      battery, ambient) — one row per socket. Repetition within a socket is
-      PARTS, not rows: three trackers = one pv-tracker feature owning three
-      part rows. Parts are per-model (a/b/c, l1/l2, 1/2/3) because models
-      differ; part NULL on an interval = combined, the whole feature.
+      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature owning three part rows. Parts are per-model (a/b/c, l1/l2, 1/2/3) because models differ; part NULL on an interval = combined, the whole feature.
     slots: [node, feature_type, role, parts, intervals, specifications, measurements, contents]
     slot_usage:
       role: { required: true }
@@ -263,10 +257,21 @@ classes:
     annotations:
       sql_table: modbus_register
     description: >-
-      One register → one measurand. The measurand link is the relational
-      rewrite of grimoire's interval_item: FK to the feature row + the
-      quantity/part/channel discriminators.
-    slots: [node, address, quantity_kind, part, flow_direction, period, scale, decimals, unit, datatype, feature]
+      One register → one measurand. The measurand link is the relational rewrite of grimoire's interval_item: FK to the feature row + the quantity/part/channel discriminators.
+    slots:
+      [
+        node,
+        address,
+        quantity_kind,
+        part,
+        flow_direction,
+        period,
+        scale,
+        decimals,
+        unit,
+        datatype,
+        feature,
+      ]
     slot_usage:
       datatype: { required: true }
       feature: { required: true }
@@ -281,7 +286,20 @@ classes:
     annotations:
       sql_table: device_model
     description: A catalogued device model — the assembly of feature-of-interest rows its type calls for.
-    slots: [node, device_type, slug, product, contents, network_interfaces, services, register_map, ac_ports, dc_ports, environments]
+    slots:
+      [
+        node,
+        device_type,
+        slug,
+        product,
+        contents,
+        network_interfaces,
+        services,
+        register_map,
+        ac_ports,
+        dc_ports,
+        environments,
+      ]
     slot_usage:
       product: { required: true }
       device_type: { required: true }

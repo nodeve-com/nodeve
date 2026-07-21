@@ -20,17 +20,16 @@ Every level is stored in a shared table. `DeviceType` and `FeatureType` rows als
 
 `Inverter` is generated validation syntax, not another stored entity or SQL table. Adding a device type adds rows, then regenerates the overlay. Base DDL stays unchanged.
 
-| level | table | keyed by | example |
-| --- | --- | --- | --- |
-| device type | `DeviceType` | `slug` | `inverter` |
-| model | `DeviceModel` | `slug` | `foxess-h3-ps10sh` |
-| feature type | `FeatureType` | `slug` | `ac-phase` |
-| feature | `FeatureOfInterest` | `role` | `out` |
-| part | `Part` | `slug` | `a` |
-| interval | `Interval` | `quantity_kind` + `slug` | `voltage/running` |
+| level        | table               | keyed by                 | example            |
+| ------------ | ------------------- | ------------------------ | ------------------ |
+| device type  | `DeviceType`        | `slug`                   | `inverter`         |
+| model        | `DeviceModel`       | `slug`                   | `foxess-h3-ps10sh` |
+| feature type | `FeatureType`       | `slug`                   | `ac-phase`         |
+| feature      | `FeatureOfInterest` | `role`                   | `out`              |
+| part         | `Part`              | `slug`                   | `a`                |
+| interval     | `Interval`          | `quantity_kind` + `slug` | `voltage/running`  |
 
-`Specification`, `Measurement`, and `ValuedRange` are width facets of
-`Interval`. They share its `node`; none adds a path segment or identity.
+`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval`. They share its `node`; none adds a path segment or identity.
 
 ## Validation across levels
 
@@ -60,37 +59,34 @@ One rule gets one normative source. Generated LinkML and DDL are enforcement art
 
 Narrow tables have two forms:
 
-| form | identity | relation |
-| --- | --- | --- |
-| facet | same thing | shares the thing's node as its primary key |
+| form  | identity                    | relation                                          |
+| ----- | --------------------------- | ------------------------------------------------- |
+| facet | same thing                  | shares the thing's node as its primary key        |
 | child | distinct, addressable thing | has its own node and references the parent's node |
 
-`Interval` identifies a quantity assertion. `Specification`, `Measurement`, and
-`ValuedRange` are facets of that assertion. They must share the interval's node;
-none mints another.
+`Interval` identifies a quantity assertion. `Specification`, `Measurement`, and `ValuedRange` are facets of that assertion. They must share the interval's node; none mints another.
 
 Each localized `Content` row is a child. Several may describe one parent and each may be pointed to independently. Its relational shape is:
 
-| column | means |
-| --- | --- |
-| `node` | this content row's identity; PK and FK to `Node` |
-| `about` | described thing; FK to `Node`; maps to `schema:about` |
-| `language` | BCP 47 language tag; maps to `schema:inLanguage` |
-| `title`, `lede`, `body` | payload |
+| column                  | means                                                 |
+| ----------------------- | ----------------------------------------------------- |
+| `node`                  | this content row's identity; PK and FK to `Node`      |
+| `about`                 | described thing; FK to `Node`; maps to `schema:about` |
+| `language`              | BCP 47 language tag; maps to `schema:inLanguage`      |
+| `title`, `lede`, `body` | payload                                               |
 
 Thus content needs two node references, but no parent-class reference. `Content.about` can target a `Registry`, `QuantityKind`, model, or any future node without adding columns. Constraint: `UNIQUE (about, language)`.
 
 ### The path is the identity
 
-`Node` is the one id space. Every domain row's PK is an FK into it. A node row is
-two columns: the path, and a short code hashed from it.
+`Node` is the one id space. Every domain row's PK is an FK into it. A node row is two columns: the path, and a short code hashed from it.
 
 The path is the **level trail**, one segment per level, in level order:
 
 ```
 node:<device-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
 node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/running
-node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/range
+node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/_
 ```
 
 Segment rules:
@@ -101,90 +97,57 @@ Segment rules:
 | model | `DeviceModel.slug` | never, on catalog rows |
 | feature-type | referenced `FeatureType.slug` | never |
 | feature-role | `FeatureOfInterest.role` | never |
-| part | `Part.slug`, or `_` when NULL | never — a NULL part becomes `_`, it does not dissolve |
+| part | `Interval.part` verbatim — a member slug, `_`, or `*` | never — the column is non-null, so the segment never dissolves |
 | quantity-kind | `Interval.quantity_kind` | never on an interval |
-| interval-slug | `Interval.slug` | never |
+| interval-slug | `Interval.slug` | never — `_` when the quantity carries one unnamed interval |
 
-`quantity_kind` is a **segment**, not the leaf. The leaf is the interval slug, and
-it exists only to discriminate siblings:
+`quantity_kind` is a **segment**, not the leaf. The leaf is the interval slug, and it exists only to discriminate siblings:
 
-| path | is |
-| --- | --- |
-| `…/ac-phase/out/a/voltage/running` | phase A running-voltage band |
-| `…/ac-phase/out/a/voltage/range` | phase A measurable-voltage range |
-| `…/ac-phase/out/_/voltage/range` | the output's measurable combined-voltage range |
-| `…/ac-phase/out/_/frequency/range` | frequency — never per-phase |
+| path                               | is                                                  |
+| ---------------------------------- | --------------------------------------------------- |
+| `…/ac-phase/out/a/voltage/running` | phase A running-voltage band                        |
+| `…/ac-phase/out/a/voltage/_`       | phase A voltage, one unnamed interval               |
+| `…/ac-phase/out/_/voltage/_`       | the output's combined voltage, one unnamed interval |
+| `…/ac-phase/out/_/frequency/_`     | frequency — never per-phase, one unnamed interval   |
 
-Every level holds one segment, always. No segment dissolves, so position is
-never ambiguous and a part slug can never alias a quantity kind.
+Every level holds one segment, always. No segment dissolves, so position is never ambiguous and a part slug can never alias a quantity kind.
 
-### `_` — the part that isn't
+### `_` — the segment that asserts nothing
 
-`_` marks a quantity attached to the **feature itself**. It makes no claim about
-why no part is named. Three unrelated situations produce it:
+`_` is reserved at two levels. Both readings are the same move: the column has no value and every candidate word would supply one.
 
-| situation | example |
-| --- | --- |
-| the quantity is never per-part | frequency on an ac port |
-| it aggregates over the parts | the port's voltage across a, b, c |
-| this model never subdivided the feature | enclosure temperature |
+| position      | means                                                    |
+| ------------- | -------------------------------------------------------- |
+| part          | the quantity attaches to the feature itself              |
+| interval slug | this quantity carries one interval, and it needs no name |
 
-A word would have to pick one. `combined` and `composite` assert aggregation —
-false for frequency, which is not combined from anything. `whole` asserts
-intactness, `all` asserts coverage, `effective` asserts resolution (and collides
-with `part_scope: default`, a real and different idea), `mono` reads as
-single-phase in an electrical model. The absence has three causes, the `part`
-column records none of them, and every candidate word supplies one. `_` supplies
-nothing — the only honest reading, and the same reason NULL is not spelled
-`missing`.
+`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it is a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
 
-### Precedent — the whole is not instance one
+At the leaf, any word would be a claim about content, not identity. The interval is unnamed because nothing needs discriminating; `_` says exactly that.
 
-A reserved marker for the whole, distinct from part 1, is the mainstream shape:
+`_` is stored, not omitted. `Interval.slug` stays non-null and the path keeps full arity, so position never shifts. It elides only when rendering an address for a reader — `…/switch/0/power/_` displays as `…/switch/0/power`. A six-segment address parses back as `slug = _`; seven reads its leaf literally.
 
-| ecosystem | marker for the whole | instances |
-| --- | --- | --- |
-| IEC 61850 | `LLN0` — device-common data (mode, health, nameplate) | `LN1`, `LN2`… |
-| Zigbee | endpoint 0 — the device itself (ZDO) | 1–240 |
-| Matter | endpoint 0 — root node | 1..n |
-| SNMP | instance `.0` — scalar objects | `.1`, `.2`… |
+A second interval on the same `(feature, part, quantity_kind)` forces both to be named. `_` never quietly becomes one band among several.
 
-61850 is the same domain and the same reason: a logical device's common data is
-not any one logical node's, so it got `LLN0` rather than `LN1`.
+As a part, `_` makes no claim about why no part is named. Three unrelated situations produce it:
 
-This settles "why not just make it part `1`". A lone part that could have
-siblings — one MPPT tracker, one battery port — IS part `1`, `part_scope:
-member`. But frequency on a three-phase port is not part 1; calling it that
-invents a part and implies a `2` and `3` that would carry frequency too.
+| situation                               | example                           |
+| --------------------------------------- | --------------------------------- |
+| the quantity is never per-part          | frequency on an ac port           |
+| it aggregates over the parts            | the port's voltage across a, b, c |
+| this model never subdivided the feature | enclosure temperature             |
 
-Those specs write the marker as `0` because their index space is **allocated by
-the spec** — no one can author a conflicting endpoint 0. Part slugs here are
-authored strings, and `0` is a legal one, so `0` would demote reservation back to
-a lint. It also reads as a sibling in a numeric sequence (`out/0` beside
-`out/1`), and half the features are not numbered at all (`a`, `b`, `c`). The
-precedent establishes the shape, not the token.
+Any word would pick one of the three. `_` picks none.
 
-It is reserved **structurally, not by rule**: slugs match
-`^[a-z0-9]+(-[a-z0-9]+)*$`, which cannot produce a bare `_`. No part can ever
-collide with it and no lint has to say so. (`-` would not work — it is the slug
-separator and reads as an empty segment.)
+A lone part that could have siblings — one MPPT tracker, one battery port — IS part `1`. Frequency on a three-phase port is not: calling it part 1 invents a part and implies a `2` and `3` that would carry frequency too.
 
-Cost, stated plainly: `out/_/frequency` is less legible cold than a word would
-be. Position carries the meaning instead — slot four is always the part — and a
-reader who does not know that cannot parse the rest of the path either.
+Both markers are reserved **structurally, not by rule**: slugs match `^[a-z0-9]+(-[a-z0-9]+)*$`, which cannot produce a bare `_` or `*`. No part can ever collide with them and no lint has to say so.
+
+Position carries the meaning: slot four is always the part.
 
 ### Uniqueness falls out
 
-There is no separate "slug unique per part" constraint to write. Two rows that
-would collide on `(feature, part, quantity_kind, slug)` derive the *same* path,
-and the path is the PK — the mint hits a duplicate. Uniqueness is the identity
-rule, not a check bolted beside it.
-
-Required interval slugs make every band explicit. A second band under the same
-`(feature type, feature, part, quantity kind)` differs at the final segment or
-collides with the same primary key.
-
-
+There is no separate "slug unique per part" constraint to write. Two rows that would collide on `(feature, part, quantity_kind, slug)` derive the _same_ path, and the path is the PK — the mint hits a duplicate.
 
 | feature_type | feature    | part | interval                |
 | ------------ | ---------- | ---- | ----------------------- |
@@ -196,66 +159,62 @@ collides with the same primary key.
 | dc-port      | pv-tracker | 2    | `{voltage}`             |
 | dc-port      | pv-tracker | 3    | `{voltage}`             |
 | dc-port      | battery    | 1    | `{voltage}`             |
-| ac-phase     | grid       | NULL | `{frequency}`           |
+| ac-phase     | grid       | `_`  | `{frequency}`           |
 | ac-phase     | load       | a    | `{voltage, continuous}` |
-| environment  | enclosure  | NULL | `{temperature}`         |
-| environment  | ambient    | NULL | `{temperature}`         |
+| environment  | enclosure  | `_`  | `{temperature}`         |
+| environment  | ambient    | `_`  | `{temperature}`         |
 
 ## Many intervals per (feature, part, quantity)
 
 `slug` is the discriminator. One band is never enough — a quantity carries several specs, several channels, or both.
 
-| feature / part / quantity  | slug         | payload                                           |
-| -------------------------- | ------------ | ------------------------------------------------- |
-| pv-tracker / 1 / voltage   | `survival`   | spec: `rating: survival`, max 1000                |
-| pv-tracker / 1 / voltage   | `running`    | spec: `zone: running`, 90–140                     |
-| pv-tracker / 1 / voltage   | `continuous` | spec: `rating: continuous, severity: nominal`     |
-| out / NULL / active_energy | `lifetime`   | measurement: `flow_direction: out`                |
-| out / NULL / active_energy | `daily`      | measurement: `flow_direction: out, period: daily` |
-| grid / a / voltage         | `range`      | measurement: resolution 0.1                       |
+| feature / part / quantity | slug | payload |
+| --- | --- | --- |
+| pv-tracker / 1 / voltage | `survival` | spec: `rating: survival`, max 1000 |
+| pv-tracker / 1 / voltage | `running` | spec: `zone: running`, 90–140 |
+| pv-tracker / 1 / voltage | `continuous` | spec: `rating: continuous, severity: nominal` |
+| out / _ / active_energy | `lifetime` | measurement: `flow_direction: out` |
+| out / _ / active_energy | `daily` | measurement: `flow_direction: out, period: daily` |
+| grid / a / voltage | `_` | measurement: resolution 0.1 — no sibling to name against |
 
 ## Part keys
 
-Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. `ordinal` on the part row carries sort/join order.
+Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. `ordinal` on the part row carries sort/join order, derived from authored position rather than typed.
 
-Members belong to the feature type — no separate vocabulary row.
+Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Three trackers or two battery ports; split-phase `l1, l2` or three-phase `a, b, c`. A `Part` row is that fact; a part with no intervals still exists as a row.
 
-| feature_type | members |
-| ------------ | ------- |
-| ac-phase     | a, b, c |
-| dc-port      | 1, 2, 3 |
-| environment  | —       |
+| feature type | one model's parts | another's |
+| ------------ | ----------------- | --------- |
+| ac-phase     | a, b, c           | l1, l2    |
+| dc-port      | 1, 2, 3           | 1         |
+| environment  | —                 | —         |
 
-## NULL part = combined
+## The part column
 
-The whole feature, not one of its parts. Some quantities are only ever combined (frequency); others carry both.
+Every interval has a part, always — the column is non-null and holds the path's part segment verbatim. There is no separate scope enum: the segment already says which of the three things it is, and a second column could only repeat it or contradict it.
 
-| row                                 | means                         |
-| ----------------------------------- | ----------------------------- |
-| `ac-phase / out / a / voltage`      | phase A voltage               |
-| `ac-phase / out / NULL / voltage`   | the output's combined voltage |
-| `ac-phase / out / NULL / frequency` | frequency — never per-phase   |
-| `ac-phase / grid / a / voltage`     | phase A of the grid port      |
+| part | means                                                         |
+| ---- | ------------------------------------------------------------- |
+| `a`  | phase A                                                       |
+| `_`  | the whole feature                                             |
+| `*`  | the default — applies to each part that doesn't state its own |
 
-## part_scope — the default part
+| row                              | means                                                |
+| -------------------------------- | ---------------------------------------------------- |
+| `ac-phase / out / a / voltage`   | phase A voltage                                      |
+| `ac-phase / out / _ / voltage`   | the output's combined voltage                        |
+| `ac-phase / out / _ / frequency` | frequency — never per-phase                          |
+| `ac-phase / out / * / voltage`   | the voltage each phase gets unless it states its own |
 
-`Specification` only. A measurement channel is always concrete; a spec often states one band for every remaining leg. NULL part alone can't say which.
+A measurement channel is always concrete, so `*` is in practice a specification move: one band stated once instead of repeated per leg. Nothing forbids it elsewhere, and no rule has to.
 
-| part | `part_scope` | means                                |
-| ---- | ------------ | ------------------------------------ |
-| `a`  | `member`     | phase A                              |
-| NULL | `combined`   | the whole feature                    |
-| NULL | `default`    | every member with no own row         |
-
-Rule: `part_scope = member ⟺ the interval's part is present` — same `value_presence` shape as phase⇒no-ordinal.
-
-Resolved at query time, never expanded into rows. The member list lives on `FeatureType`, so a baked expansion of `a, b, c` goes stale the moment a part is added. Own row wins, `default` fills the gap:
+`*` resolves at query time against the feature's own `Part` rows, never expanded into per-part rows — a baked expansion of `a, b, c` goes stale the moment a part is added. A part's own value wins; `*` supplies the rest:
 
 ```sql
-select distinct on (i.quantity_kind, i.slug) i.*, s.*
-from Interval i join Specification s on s.node = i.node
-where i.feature = $1 and (i.part = $2 or s.part_scope = 'default')
-order by i.quantity_kind, i.slug, (i.part is not null) desc
+select distinct on (i.quantity_kind, i.slug) i.*
+from Interval i
+where i.feature = $1 and i.part in ($2, '*')
+order by i.quantity_kind, i.slug, (i.part = '*')
 ```
 
-Not a reserved slug: `default` as a magic part key collides with a real member of that name and forces every consumer to string-compare.
+`part` is not an FK — two of its values name no row. Member validity is an owned check against the feature's `Part` rows.
