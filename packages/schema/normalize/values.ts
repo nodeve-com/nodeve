@@ -8,7 +8,6 @@ import { columns, die, isMap, type Doc } from './registers.ts';
 type ChannelState = { row: Doc; empty?: string; members: Map<string, Doc> };
 
 export class ValueContracts {
-	private readonly settings = new Map<string, Set<string>>();
 	private readonly channels = new Map<string, ChannelState>();
 
 	private readonly node: string;
@@ -32,7 +31,6 @@ export class ValueContracts {
 			const members = member.map((m, i) =>
 				this.memberRow(m, { owner: sNode, ordinal: i + 1, trail: `${t}.member[${i}]` }),
 			);
-			this.settings.set(slug, new Set(members.map((m) => m.slug as string)));
 			return { node: sNode, slug, ...columns('Setting', cols, t), members };
 		});
 	}
@@ -73,12 +71,23 @@ export class ValueContracts {
 		return m.node as string;
 	}
 
-	/** a `{setting, equals}` gate → its two FK halves, both membership-checked */
-	settingGate(setting: unknown, equals: unknown, trail: string): Doc {
-		const members = this.settings.get(String(setting)) ?? die(trail, `unknown setting ${setting}`);
-		if (typeof equals !== 'string' || !members.has(equals))
-			die(trail, `${equals} is not a member of ${setting}`);
-		return { setting: `${this.node}/${setting}`, equals: `${this.node}/${setting}/${equals}` };
+	/** one condition row — both authored forms are coordinates; the FK paths
+	 * assemble verbatim, and integrity is the database's FK check (ddl.py dump) */
+	gate(at: { node: string; trail: string }, ref: unknown): Doc {
+		if (!isMap(ref)) die(at.trail, 'expected a condition map');
+		const gate: Doc = { node: at.node };
+		if ('setting' in ref) {
+			const { setting, equals, ...rest } = ref;
+			if (Object.keys(rest).length) die(at.trail, `unexpected keys ${Object.keys(rest)}`);
+			gate.setting = `${this.node}/${setting}`;
+			gate.equals = `${gate.setting}/${equals}`;
+		} else {
+			const { feature, part, quantity, interval, ...rest } = ref;
+			if (Object.keys(rest).length) die(at.trail, `unexpected keys ${Object.keys(rest)}`);
+			if (!isMap(feature)) die(at.trail, 'feature must be { type, role }');
+			gate.interval = `${this.node}/${feature.type}/${feature.role}/${part ?? '_'}/${quantity}/${interval}`;
+		}
+		return gate;
 	}
 
 	/** members accrete while registers lower — the empty member joins last */

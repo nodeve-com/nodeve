@@ -7,7 +7,7 @@ import { parse } from 'yaml';
 export const atRoot = (p: string) => fileURLToPath(new URL(`../${p}`, import.meta.url));
 
 export type ClassDef = { annotations?: Record<string, string>; slots?: string[] };
-export type SlotDef = { range?: string; pattern?: string };
+export type SlotDef = { range?: string; pattern?: string; inlined_as_list?: boolean };
 
 type Schema = {
 	imports?: string[];

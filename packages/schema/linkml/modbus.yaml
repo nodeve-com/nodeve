@@ -106,7 +106,8 @@ slots:
   interval:
     {
       range: Interval,
-      description: "FK — the interval row this register reads; a `*`-part interval resolves per-instance via the register's own part",
+      description: "FK — the interval row this points at: a register's read target (a `*`-part interval resolves per-instance via the register's own part) or a condition's anchoring band",
+      close_mappings: ['ssn-system:Condition'],
     }
   member:
     {

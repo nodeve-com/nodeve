@@ -75,7 +75,7 @@ Reusable tables that device types assemble — not wide tables repeating column 
 | energy channels | `flow_direction` + `period` columns | four rows on one kind |
 | combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |
 | modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
-| settings_schema | `Setting` + `DomainMember` rows | commissioning knob; a gate FKs the setting AND the member, so a typo'd value dies at normalize |
+| settings_schema | `Setting` + `DomainMember` rows | commissioning knob; a gate FKs the setting AND the member, so a typo'd value dies at the database's FK gate |
 | modbus decode | `Channel` + `RegisterFlag` rows | categorical sibling of `Interval` — enum-valued, no quantity_kind. Flag words are registers in the ONE map (`flag:` list, index = bit, null = unidentified); channel members mint from the labels + `empty`. Semantics on the model, wire mapping on the map |
 
 ### Identity
@@ -95,6 +95,6 @@ Addressable identity, facets, and node paths: [levels.md](docs/levels.md#node--a
 - **61 kinds are deprecated upstream**, now flagged with `replaced_by`. Nothing prefers the replacement yet — a binding may still cite a superseded kind, and only the flag says so.
 - **9 registry `iri_template`s are untested** (`brick`, `cim`, `saref4grid`, `seas`, `skos`, `sosa`, `ssn`, `ssn-system`, `vim`) — no ref samples them, so `check:refs` cannot exercise them. The QUDT one was 404ing undetected until it was.
 - **Kind-level value domains are dropped.** grimoire's per-kind `schema:` block (`count` integer >= 1, `mass` > 0) fed the old JSON-Schema shape layer. `ValuedRange` already owns bounds, and a kind-level floor is only checkable by joining Interval → ValuedRange → QuantityKind. If it matters, it is an owned check, not columns.
-- **Cross-row semantics are not LinkML's.** `gated_by`, interval bounds within envelope, offered-kinds-only — LinkML validates shape. Those stay owned checks.
+- **Cross-row semantics are not LinkML's.** `conditions`, interval bounds within envelope, offered-kinds-only — LinkML validates shape. Those stay owned checks.
 - **Upstream codes were discarded at seed time.** grimoire registries carry their own `code` (`wikidata: JDV86GJS`); the ledger minted fresh ones from the permalink, so the same thing has two handles until grimoire is gone.
 - **`code` is 40 bits.** No collisions at 1247 rows, but it is a birthday problem — ~1-in-2000 odds by 50k rows, near-certain by 1M. `format.ts` does not check; a collision would mint a duplicate silently.

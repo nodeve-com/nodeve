@@ -63,10 +63,10 @@ feature_of_interest:
             valued_range: { min: -11000, max: 10000 }
             specification:
               rating: continuous
-              gated_by:
-                feature: { type: environment, role: ambient }
-                quantity: temperature
-                interval: continuous
+              conditions: # list — every gate must hold (AND); one Condition row each
+                - feature: { type: environment, role: ambient }
+                  quantity: temperature
+                  interval: continuous
       '*':
         voltage:
           _:

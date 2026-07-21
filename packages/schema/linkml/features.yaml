@@ -65,8 +65,8 @@ classes:
     annotations:
       sql_table: condition
     description: >-
-      Gate on an interval — either a commissioning-setting equality (both halves FKs, so a typo dies at normalize) or a pointer at another interval (the derate anchor).
-    slots: [node, setting, equals, gated_by]
+      One condition a specification holds under — either a commissioning-setting equality or a pointer at another interval (the derate anchor). All values are FKs assembled from authored coordinates; a typo dies at the database's FK gate.
+    slots: [node, setting, equals, interval]
 
   FeatureOfInterest:
     annotations:
@@ -164,18 +164,20 @@ slots:
       description: 'the magnitude of a valued quantity, in the stated unit — alone an exact point; with a band (tolerance/margin/min/max) the designated centre that band sits around',
       close_mappings: [qudt:Quantity],
     }
-  conditions: { range: Condition, multivalued: true, inlined_as_list: true }
+  conditions:
+    {
+      range: Condition,
+      multivalued: true,
+      inlined_as_list: true,
+      title: Conditions,
+      description: 'the conditions under which this specification holds — ALL must hold (AND); each is one Condition row',
+      close_mappings: ['ssn-system:inCondition', 'vim:4.9'],
+    }
   equals:
     {
       range: DomainMember,
       title: Equals,
       description: 'FK — the member the gated setting must hold for the band to apply; one value per gate — a band valid for several values is several bands (OR = separate bands)',
-    }
-  gated_by:
-    {
-      range: Interval,
-      description: FK to the anchoring interval row,
-      annotations: { camel: gatedBy },
     }
   intervals: { range: Interval, multivalued: true, inlined_as_list: true }
   measurements:

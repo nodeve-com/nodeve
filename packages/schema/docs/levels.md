@@ -49,7 +49,7 @@ Use base LinkML for unconditional local shape: types, cardinality, requiredness,
 
 Use SQL for integrity the relational model represents directly: primary keys, uniqueness, nullability, and foreign keys. SQL confirms that a cited `QuantityKind` exists; it does not confirm that the model's `FeatureType` admits it.
 
-Use an owned check when evaluation needs joins, ordering, arithmetic, implication across rows, or domain resolution. Examples: `gated_by`, bounds within an envelope, aspect compatibility, and slug derivation.
+Use an owned check when evaluation needs joins, ordering, arithmetic, implication across rows, or domain resolution. Examples: `conditions`, bounds within an envelope, aspect compatibility, and slug derivation.
 
 One rule gets one normative source. Generated LinkML and DDL are enforcement artifacts, never competing declarations.
 

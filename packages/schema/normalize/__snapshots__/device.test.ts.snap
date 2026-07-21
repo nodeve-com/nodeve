@@ -15,10 +15,10 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/web-ui",
   "inverter/foxess-h3-ps10sh/ac-phase/out",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
@@ -26,14 +26,14 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
@@ -41,7 +41,7 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/gate",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b",
@@ -520,8 +520,8 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
         {
           "conditions": [
             {
-              "gated_by": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/gate",
+              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/condition/1",
             },
           ],
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
@@ -535,8 +535,8 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
         {
           "conditions": [
             {
-              "gated_by": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/gate",
+              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/condition/1",
             },
           ],
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
@@ -546,7 +546,7 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "conditions": [
             {
               "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/gate",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/condition/1",
               "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
             },
           ],
@@ -557,7 +557,7 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "conditions": [
             {
               "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/gate",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/condition/1",
               "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
             },
           ],
@@ -568,7 +568,7 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "conditions": [
             {
               "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/gate",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/condition/1",
               "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
             },
           ],
@@ -579,7 +579,7 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "conditions": [
             {
               "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/gate",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/condition/1",
               "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
             },
           ],
@@ -601,8 +601,8 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
         {
           "conditions": [
             {
-              "gated_by": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/gate",
+              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
             },
           ],
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",

@@ -98,15 +98,8 @@ export type WalkState = {
 	values: ValueContracts;
 };
 
-export type PendingGate = { gate: Doc; ref: Doc; trail: string };
-
 /** structured measurand ref → the referenced interval's node path */
-export function intervalRef(
-	walk: WalkState,
-	ref: Doc,
-	opts: { trail: string; named: boolean },
-): string {
-	const { trail } = opts;
+export function intervalRef(walk: WalkState, ref: Doc, trail: string): string {
 	const { feature, part, quantity, interval, ...rest } = ref;
 	if (Object.keys(rest).length) die(trail, `unexpected keys ${Object.keys(rest)}`);
 	if (!isMap(feature) || typeof feature.type !== 'string' || typeof feature.role !== 'string')
@@ -114,8 +107,7 @@ export function intervalRef(
 	if (typeof quantity !== 'string') die(trail, 'quantity must be a slug');
 	const p = part === undefined ? '_' : String(part);
 	const base = `${walk.node}/${feature.type}/${feature.role}`;
-	if (interval !== undefined || opts.named)
-		return named(`${base}/${p}/${quantity}`, interval, { walk, trail });
+	if (interval !== undefined) return named(`${base}/${p}/${quantity}`, interval, { walk, trail });
 	// interval absent = the one measurable channel of (feature, part, quantity);
 	// the `*` default row applies only when the exact part carries none
 	const at = (prefix: string) => [...walk.measurable].filter((n) => n.startsWith(prefix));
@@ -173,7 +165,7 @@ function registerRow(at: { walk: WalkState; mNode: string }, row: unknown, trail
 	if ('channel' in target) return channelRow(at.walk, { base, target, flag }, trail);
 	if (flag !== undefined) die(`${trail}.flag`, 'flags need a channel target');
 	base.part = target.part === undefined ? '_' : String(target.part);
-	base.interval = intervalRef(at.walk, target, { trail: `${trail}.target`, named: false });
+	base.interval = intervalRef(at.walk, target, `${trail}.target`);
 	return base;
 }
 

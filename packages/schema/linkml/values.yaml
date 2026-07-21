@@ -14,7 +14,7 @@ classes:
       # authored form: a map keyed by this slot (setting: {grid-region: …})
       keyed_by: slug
     description: >-
-      Commissioning knob — single-valued, fixed at install. Its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at normalize instead of silently never matching.
+      Commissioning knob — single-valued, fixed at install. Its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching.
     slots: [node, slug, required, members, contents]
     slot_usage:
       slug: { required: true }

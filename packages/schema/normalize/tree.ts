@@ -7,21 +7,19 @@
 //   facet keys     → classes by sql_table; columns validated against slots
 // Every trail key is stringified as read; every error carries its key trail.
 import { basename, dirname } from 'node:path';
-import { classByName, classByTable, keysOf, slotByName, SLUG } from './model.ts';
+import { classByName, classByTable, fkTable, keysOf, seg, slotByName, SLUG } from './model.ts';
 import {
 	columns,
 	deviceTypeBySlug,
 	die,
 	expandKey,
 	featureTypeBySlug,
-	intervalRef,
 	isMap,
 	loadDoc,
 	partSetBySlug,
 	registerMap,
 	siblingRefs,
 	type Doc,
-	type PendingGate,
 	type WalkState,
 } from './registers.ts';
 import { ValueContracts } from './values.ts';
@@ -46,7 +44,6 @@ class DeviceWalk implements WalkState {
 	private readonly doc: Doc;
 	private readonly sockets: Record<string, Doc>;
 	private readonly addPath: (p: string) => void;
-	private readonly pendingGates: PendingGate[] = [];
 	readonly values: ValueContracts;
 	private readonly model: Doc;
 	private readonly rootSlot: string;
@@ -92,8 +89,6 @@ class DeviceWalk implements WalkState {
 			this.model.register_map = registerMap(this, registerBlock, `${this.slug}.register_map`);
 		const channels = this.values.channelRows(`${this.slug}.channel`);
 		if (channels) this.model.channels = channels;
-		for (const g of this.pendingGates)
-			g.gate.gated_by = intervalRef(this, g.ref, { trail: g.trail, named: true });
 		return this.model;
 	}
 
@@ -264,30 +259,26 @@ class DeviceWalk implements WalkState {
 			ctx.list.measurements.push({ node: iNode, ...columns(cls, cols, at.trail) });
 			this.measurable.add(iNode);
 		} else if (at.facet === 'specification')
-			ctx.list.specifications.push(this.specification(iNode, cols, at.trail));
+			ctx.list.specifications.push(this.specification({ node: iNode, cls, trail: at.trail }, cols));
 		else die(at.trail, `${cls} is not an interval facet`);
 	}
 
-	/** specification facet — `gated_by` lowers to a Condition row */
-	private specification(iNode: string, payload: unknown, trail: string): Doc {
-		if (!isMap(payload)) die(trail, 'expected a map of columns');
-		const { gated_by, ...cols } = payload;
-		const row: Doc = { node: iNode, ...columns('Specification', cols, trail) };
-		if (gated_by !== undefined) row.conditions = [this.gate(iNode, gated_by, `${trail}.gated_by`)];
-		return row;
-	}
-
-	private gate(iNode: string, ref: unknown, trail: string): Doc {
-		if (!isMap(ref)) die(trail, 'expected a gate map');
-		const gate: Doc = { node: this.mint(`${iNode}/gate`) };
-		if ('setting' in ref) {
-			const { setting, equals, ...rest } = ref;
-			if (Object.keys(rest).length) die(trail, `unexpected keys ${Object.keys(rest)}`);
-			Object.assign(gate, this.values.settingGate(setting, equals, trail));
-			// gates resolve AFTER the whole tree — a derate may point at a feature
-			// that is walked later (ac-phase → environment)
-		} else this.pendingGates.push({ gate, ref, trail });
-		return gate;
+	/** specification facet — an inlined_as_list slot (schema fact) lowers each entry to a child row (list = AND) */
+	private specification(at: { node: string; cls: string; trail: string }, payload: unknown): Doc {
+		if (!isMap(payload)) die(at.trail, 'expected a map of columns');
+		const row: Doc = { node: at.node };
+		const cols: Doc = {};
+		for (const [k, v] of Object.entries(payload)) {
+			const table = slotByName[k]?.inlined_as_list ? fkTable(k) : undefined;
+			if (!table) cols[k] = v;
+			else if (!Array.isArray(v) || !v.length) die(`${at.trail}.${k}`, 'expected a non-empty list');
+			else
+				row[k] = v.map((g, i) => {
+					const node = this.mint(`${at.node}/${seg(table)}/${i + 1}`);
+					return this.values.gate({ node, trail: `${at.trail}.${k}[${i}]` }, g);
+				});
+		}
+		return Object.assign(row, columns(at.cls, cols, at.trail));
 	}
 }
 

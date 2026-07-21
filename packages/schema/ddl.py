@@ -102,5 +102,13 @@ if "dump" in sys.argv[1:]:
     sys.argv = ["linkml-sqldb", "dump", "-s", SCHEMA, "-C", TOP_CLASS,
                 "-D", "../gen/catalog.db", "../gen/catalog.json"]
     main()
+
+    # SQLite declares but does not enforce FKs by default — this is THE
+    # integrity gate: every assembled path must land on a real row.
+    import sqlite3
+
+    bad = sqlite3.connect("../gen/catalog.db").execute("PRAGMA foreign_key_check").fetchall()
+    if bad:
+        sys.exit(f"foreign_key_check: {len(bad)} dangling FK rows, e.g. {bad[:5]}")
 else:
     print(SQLTableGenerator(SchemaView(SCHEMA).schema).generate_ddl(top_class=TOP_CLASS))

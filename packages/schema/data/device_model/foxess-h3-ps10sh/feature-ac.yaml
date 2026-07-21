@@ -15,10 +15,10 @@ feature_of_interest:
             valued_range: { min: -11000, max: 10000 }
             specification:
               rating: continuous
-              gated_by:
-                feature: { type: environment, role: ambient }
-                quantity: temperature
-                interval: continuous
+              conditions:
+                - feature: { type: environment, role: ambient }
+                  quantity: temperature
+                  interval: continuous
               # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a
               # spec-carrying altitude band to point at — pending a generic altitude
               # feature (the site supplies install altitude; geo-fence is undesigned).
@@ -30,10 +30,10 @@ feature_of_interest:
             valued_range: { min: -10000, max: 9000 }
             specification:
               rating: continuous
-              gated_by:
-                feature: { type: environment, role: ambient }
-                quantity: temperature
-                interval: intermittent
+              conditions:
+                - feature: { type: environment, role: ambient }
+                  quantity: temperature
+                  interval: intermittent
           # whole-port reading (foxess inv_power, 39134) — no rated band stated
           measured:
             measurement: { resolution: 0.001 }
@@ -66,12 +66,12 @@ feature_of_interest:
             valued_range: { value: 220 }
             specification:
               severity: nominal
-              gated_by: { setting: grid-region, equals: br-220v-60hz }
+              conditions: [{ setting: grid-region, equals: br-220v-60hz }]
           nominal-eu-230v-50hz:
             valued_range: { value: 230 }
             specification:
               severity: nominal
-              gated_by: { setting: grid-region, equals: eu-230v-50hz }
+              conditions: [{ setting: grid-region, equals: eu-230v-50hz }]
           measured:
             valued_range: { min: 0, max: 250 }
             measurement: { resolution: 0.1 }
@@ -82,12 +82,12 @@ feature_of_interest:
             valued_range: { value: 60, margin: 0.05 }
             specification:
               severity: nominal
-              gated_by: { setting: grid-region, equals: br-220v-60hz }
+              conditions: [{ setting: grid-region, equals: br-220v-60hz }]
           nominal-eu-230v-50hz:
             valued_range: { value: 50, margin: 0.05 }
             specification:
               severity: nominal
-              gated_by: { setting: grid-region, equals: eu-230v-50hz }
+              conditions: [{ setting: grid-region, equals: eu-230v-50hz }]
         electric-current:
           continuous:
             valued_range: { max: 15.2 }
@@ -114,10 +114,10 @@ feature_of_interest:
             specification:
               rating: continuous
               severity: nominal
-              gated_by:
-                feature: { type: environment, role: ambient }
-                quantity: temperature
-                interval: continuous
+              conditions:
+                - feature: { type: environment, role: ambient }
+                  quantity: temperature
+                  interval: continuous
               # TODO(altitude-derate): per-phase full power only below 2000 m —
               # same deferred altitude band as the combined total above.
           measured:
