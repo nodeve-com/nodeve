@@ -1,147 +1,1038 @@
-# FoxESS H3 PS-10.0-SH as an Inverter instance — sampled, not the full register map.
-# Validates with: linkml-validate -s ../../gen/nodeve-projected.yaml -C Inverter foxess-h3-ps10sh.yaml
-device_type: node:device-type/inverter
-node: node:inverter/foxess-h3-ps10sh
-slug: foxess-h3-ps10sh
+# FoxESS PS-10.0-SH (box label H3 SMART) — authored form, ported whole from
+# grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml. Filename is the slug.
+#
+# One entry for the whole box: its electrical envelope AND how it is talked to.
+# Replaces the old split between spec sheet and modbus register map.
+device_type: inverter
+
 product:
-  # 1:1 width extension — shares the owner's Node row, no identity of its own
-  node: node:inverter/foxess-h3-ps10sh
-  model: H3-10.0-Smart
+  model: H3-10.0-Smart # box reports Inv.H3_SMART
   series: H3
-  manufacturer: mfr-foxess # FK — Manufacturer row shared by every FoxESS product
-contents:
-  - { node: c1, language: en, title: FoxESS H3 Smart 10 kW, lede: Grid-tied 3-phase hybrid inverter, about: node:inverter/foxess-h3-ps10sh }
+  manufacturer: foxess # grimoire took this from fox-ess/_defaults.yaml
 
-# role IS the socket name — no slug on feature rows, one row per socket
-ac_ports:
-  - node: node:inverter/foxess-h3-ps10sh/ac-phase/out
-    role: out
-    feature_type: node:feature-type/ac-phase # FK — the definition row; quantity bindings only
-    # THIS model's subdivision — three-phase. A split-phase model authors l1/l2
-    # against the same feature_type; desugaring writes these from `phases: three`.
-    parts:
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, slug: a, ordinal: 1 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/b, slug: b, ordinal: 2 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/c, slug: c, ordinal: 3 }
-    intervals:
-      # combined active_power tiers (part null = whole port)
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous, min: -11000, max: 10000 }, slug: continuous_continuous }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, min: -12000, max: 11000 }, slug: short_term }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent, min: -10000, max: 9000 }, slug: continuous_intermittent }
-      # per-phase voltage: commissioning choice gated on a setting, one row each
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, value: 230 }, slug: nominal_eu_230v_50hz } # template row; b/c identical in full cut
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, value: 220 }, slug: nominal_br_220v_60hz }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, slug: range, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, min: 0, max: 250 } }
-      # energy channels: four interval rows on ONE feature_type, discriminated by the
-      # measurement extensions' flow_direction + period
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, min: 0, unit: kWh }, slug: out }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, min: 0, unit: kWh }, slug: out_daily }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, min: 0, unit: kWh }, slug: in }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, quantity_kind: node:quantity-kind/active-energy, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, min: 0, unit: kWh }, slug: in_daily }
-    # width extensions — node = the interval row extended, the FK direction
-    specifications:
-      - node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_continuous
-        rating: continuous
-        conditions:
-          - { node: cd1, gated_by: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous } # ambient ≤45 °C band
-        part_scope: combined
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short_term, rating: short_term, duration: 30, part_scope: combined }
-      - node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous_intermittent
-        rating: continuous
-        conditions:
-          - { node: cd2, gated_by: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent } # 45–60 °C derate
-        part_scope: combined
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_eu_230v_50hz, severity: nominal, conditions: [ { node: cd3, setting_key: grid_region, equals: eu_230v_50hz } ], part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal_br_220v_60hz, severity: nominal, conditions: [ { node: cd4, setting_key: grid_region, equals: br_220v_60hz } ], part_scope: member }
-    measurements:
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/range, resolution: 0.1 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out, flow_direction: out, resolution: 0.01 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out_daily, flow_direction: out, period: daily, resolution: 0.01 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in, flow_direction: in, resolution: 0.01 }
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in_daily, flow_direction: in, period: daily, resolution: 0.01 }
+# Commissioning knob — the grid region the box is wired for. The site fixes it
+# once at install; the nominal voltage/frequency bands below gate on it.
+setting:
+  grid_region:
+    required: true
+    one_of: [eu-230v-50hz, br-220v-60hz]
 
-  - node: node:inverter/foxess-h3-ps10sh/ac-phase/grid
-    role: grid
-    feature_type: node:feature-type/ac-phase
-    intervals:
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, slug: range, quantity_kind: node:quantity-kind/active-power, valued_range: { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, min: -15, max: 15, unit: kW } }
-    measurements:
-      - { node: node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/range, resolution: 0.001 }
+content:
+  en:
+    title: FoxESS H3 Smart 10 kW
+    lede: Grid-tied 3-phase hybrid inverter
+    body: >
+      FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
+      
+      
+      Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
+      
+      
+      AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
+      
+      
+      AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
+      
+      
+      The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.
+      
+      
+      PV tracker bands: `rating:` is the capability ENVELOPE tier (continuous/intermittent/short_term/survival/ startup/shutdown/protection_required/nominal); `zone:` is a NAMED operating region (mppt, off/idle/running) — where it actually sits, graded into sub-ranges by `severity`. Each carries its own bounds; use `rating:` for a rated limit, `zone:` for a named operating region.
+      
+      
+      NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
+      
+      
+      Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent) directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
+      
+      
+      Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).
+      
+      
+      How to TALK to the box: the modbus connectivity medium. The box's OWN grid-CT reading (foxess grid_ct, 388xx) IS here now — the inverter meters the utility point directly; the separate Chint DTSU666 entry is an independent higher-resolution tap of the same. Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART; scope is only the registers backing entities we consume today (write/control registers out of scope — see docs/solar/inverter.md).
+      
+      
+      PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both ranges are copied verbatim from the foxess_modbus HA integration's H3_SMART_REGISTERS (inverter_profiles.py, traceable to github.com/nathanmarlor/foxess_modbus discussion #792). NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a single register we poll (ours are all 39xxx). Do NOT architect a hard split boundary around these until a live probe confirms the hazard:
+      
+      
+        mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid_ranges: exception vs clean?
+        mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
+      
+      
+      invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On the SMART the actual
+        control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so this is defensive padding
+        around an empty region, likely inert. individual_read_ranges: the real one — overlaps the BMS
+        battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.
+      
+      
+      modbus_decodes — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
+      
+      
+      Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one. Bits stay in the group the device puts them in — the word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].
 
-# ONE tracker feature; three trackers = three PART rows. Tracker 3 carries its
-# own weaker continuous band — a per-part interval, not a separate feature.
-dc_ports:
-  - node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker
-    role: pv-tracker
-    feature_type: node:feature-type/dc-port
-    parts:
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, slug: '1', ordinal: 1 }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, slug: '2', ordinal: 2 }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, slug: '3', ordinal: 3 }
-    intervals:
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, max: 1000 }, slug: survival }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, min: 90, max: 140 }, slug: running }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, min: 175, value: 620, max: 850 }, slug: mppt }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, max: 1000 }, slug: survival }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, min: 90, max: 140 }, slug: running }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, min: 175, value: 620, max: 850 }, slug: mppt }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, max: 1000 }, slug: survival }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, min: 90, max: 140 }, slug: running }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3, valued_range: { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, min: 60, value: 480 }, slug: nominal }
-    specifications:
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/survival, rating: survival, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/running, zone: running, trigger_on: above, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1/voltage/mppt, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/survival, rating: survival, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/running, zone: running, trigger_on: above, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2/voltage/mppt, rating: continuous, zone: mppt, severity: nominal, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/survival, rating: survival, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/running, zone: running, trigger_on: above, part_scope: member }
-      - { node: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/nominal, rating: continuous, severity: nominal, part_scope: member }
+feature:
+  ac-phase:
+    # The inverter's OWN grid-tie AC output (foxess grid_voltage / inv_current /
+    # inv_power). The real grid CT is the `grid` feature below.
+    out:
+      $: { part_set: three-phase }
+      # The three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
+      # (a 10 kW box can't sustain 3×3.3 kW). Authored because it isn't derivable.
+      _:
+        # Power is throughput, not a setpoint — no nominal, so the symmetric
+        # export/import rows collapse to one signed range per tier. Tiers
+        # classify by AXES, not by name.
+        active-power:
+          continuous:
+            valued_range: { min: -11000, max: 10000 }
+            specification:
+              rating: continuous
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: continuous
+              # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a
+              # spec-carrying altitude band to point at — pending a generic altitude
+              # feature (the site supplies install altitude; geo-fence is undesigned).
+              # Deferred, not dropped.
+          short-term:
+            valued_range: { min: -12000, max: 11000 }
+            specification: { rating: short_term, duration: 30 } # box self-protects beyond 30 s
+          derated:
+            valued_range: { min: -10000, max: 9000 }
+            specification:
+              rating: continuous
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: intermittent
+        # Lifetime + daily throughput (foxess total_yield / input_energy). ONE
+        # quantity; the four channels are intervals keyed by flow_direction
+        # (out = yield, in = input) + period (absent = lifetime).
+        active-energy:
+          out:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, resolution: 0.01 }
+          out-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, period: daily, resolution: 0.01 }
+          in:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, resolution: 0.01 }
+          in-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, period: daily, resolution: 0.01 }
+        reactive-power:
+          measured:
+            valued_range: { min: -11, max: 11, unit: kvar }
+            measurement: { resolution: 0.001 }
+      '*':
+        voltage:
+          # 220/230 are a commissioning choice, not two simultaneous limits:
+          # each gates on the single-valued grid_region setting, so exactly one
+          # resolves. A lone nominal IS the nameplate rating.
+          nominal-br-220v-60hz:
+            valued_range: { value: 220 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: br-220v-60hz }
+          nominal-eu-230v-50hz:
+            valued_range: { value: 230 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+          measured:
+            valued_range: { min: 0, max: 250 }
+            measurement: { resolution: 0.1 }
+        frequency:
+          # nominal + margin is still a nominal — a spread AROUND the value,
+          # not a min/max envelope.
+          nominal-br-220v-60hz:
+            valued_range: { value: 60, margin: 0.05 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: br-220v-60hz }
+          nominal-eu-230v-50hz:
+            valued_range: { value: 50, margin: 0.05 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+        electric-current:
+          continuous:
+            valued_range: { max: 15.2 }
+            specification: { rating: continuous }
+          survival:
+            valued_range: { max: 16.7 }
+            specification: { rating: survival }
+          protection-required:
+            valued_range: { max: 25 }
+            specification: { rating: protection_required }
+        active-power:
+          continuous:
+            valued_range: { value: 3333, max: 3666 }
+            specification:
+              rating: continuous
+              severity: nominal
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: continuous
+              # TODO(altitude-derate): per-phase full power only below 2000 m —
+              # same deferred altitude band as the combined total above.
+          measured:
+            valued_range: { min: 0, max: 5, unit: kW }
+      a: {}
+      b: {}
+      c: {}
 
-# the enclosure/ambient conflation, resolved by the role vocabulary:
-# ambient = rated operating conditions (what derates gate on),
-# enclosure = the internal temperature sensor channel
-environments:
-  - node: node:inverter/foxess-h3-ps10sh/environment/ambient
-    role: ambient
-    feature_type: node:feature-type/environment
-    intervals:
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, min: -40, max: 80, unit: °C }, slug: survival }
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, min: -25, max: 60, unit: °C }, slug: intermittent }
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, min: -20, max: 45, unit: °C }, slug: continuous }
-    specifications:
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival, rating: survival, part_scope: combined }
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent, rating: intermittent, part_scope: combined }
-      - { node: node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous, rating: continuous, part_scope: combined }
-  - node: node:inverter/foxess-h3-ps10sh/environment/enclosure
-    role: enclosure
-    feature_type: node:feature-type/environment
-    intervals:
-      - { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, slug: range, quantity_kind: node:quantity-kind/temperature, valued_range: { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, min: -40, max: 100, unit: °C } }
-    measurements:
-      - { node: node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/range, resolution: 0.1 }
+    # The GRID CT / utility meter (foxess grid_ct) — net power at the grid
+    # connection point. This is the metering point (cim:ExternalNetworkInjection /
+    # saref4grid:PowerLine), distinct from the inverter's own AC output above.
+    grid:
+      $: { part_set: three-phase }
+      _:
+        # Signed: feed-in / export +, grid consumption / import −. Direction is
+        # the sign; one measurable channel.
+        active-power:
+          measured:
+            valued_range: { min: -15, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+        # Directional energy — feed-in vs grid-consumption, each lifetime + daily.
+        active-energy:
+          out:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, resolution: 0.01 }
+          out-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, period: daily, resolution: 0.01 }
+          in:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, resolution: 0.01 }
+          in-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, period: daily, resolution: 0.01 }
+      '*':
+        # per-leg net grid power (foxess grid_ct R/S/T), signed like the total.
+        active-power:
+          measured:
+            valued_range: { min: -8, max: 8, unit: kW }
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
 
-network_interfaces:
-  - { node: node:inverter/foxess-h3-ps10sh/wlan0, slug: wlan0, interface_type: ieee80211 }
-  - { node: node:inverter/foxess-h3-ps10sh/eth0, slug: eth0, interface_type: ethernet_csmacd, link_speed: 100 }
-services:
-  - { node: node:inverter/foxess-h3-ps10sh/modbus-tcp, slug: modbus-tcp, service_protocol: modbus_tcp, network_interface: node:inverter/foxess-h3-ps10sh/eth0, port: 502 }
-  - { node: node:inverter/foxess-h3-ps10sh/web-ui, slug: web-ui, service_protocol: https, network_interface: node:inverter/foxess-h3-ps10sh/eth0, port: 443 }
+    # Separate EPS port — export only; its own per-phase telemetry.
+    eps:
+      $: { part_set: three-phase }
+      _:
+        active-power:
+          continuous:
+            valued_range: { max: 10000 } # rated EPS export, all legs together
+            specification: { rating: continuous }
+      '*':
+        voltage:
+          nominal:
+            valued_range: { value: 230, min: 200, max: 260 }
+            specification: { rating: continuous, severity: nominal }
+          measured:
+            valued_range: { min: 0, max: 300 }
+            measurement: { resolution: 0.1 }
+        frequency:
+          nominal:
+            valued_range: { value: 50 } # lone nominal — nameplate reference
+            specification: { severity: nominal }
+        electric-current:
+          measured:
+            valued_range: { min: 0, max: 50 }
+            measurement: { resolution: 0.01 }
+        active-power:
+          measured:
+            valued_range: { min: -3.3, max: 3.3, unit: kW } # unit override — canonical is W
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
 
-# Family-level map — lives OUTSIDE the device in the real cut (own table,
-# many H3 variants FK it); inlined here so the example is one file.
+    # Household load the box meters (foxess load_power) — downstream of the box's
+    # own AC port; the inverter's view of the home, so it lives on this entry.
+    load:
+      $: { part_set: three-phase }
+      _:
+        active-power:
+          measured:
+            valued_range: { min: 0, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+        active-energy:
+          lifetime:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { resolution: 0.01 }
+          daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { period: daily, resolution: 0.01 }
+      '*':
+        # Signed like the foxess entity (validate −100..100): a leg reads negative
+        # when the box back-feeds through it. This is a plausible envelope, not a rating.
+        active-power:
+          measured:
+            valued_range: { min: -5, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
+
+  dc-port:
+    # `rating:` is the capability ENVELOPE tier; `zone:` is a NAMED operating
+    # region (mppt, running) — where it actually sits, graded by `severity`.
+    pv-tracker:
+      $: { count: 3 }
+      _:
+        active-power:
+          survival:
+            valued_range: { max: 20000 }
+            specification: { rating: survival }
+          continuous:
+            valued_range: { max: 18000 }
+            specification: { rating: continuous }
+        # PV generation energy — undirected, one direction only.
+        active-energy:
+          lifetime:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { resolution: 0.01 }
+          daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { period: daily, resolution: 0.01 }
+      '*':
+        voltage:
+          survival:
+            valued_range: { max: 1000 }
+            specification: { rating: survival }
+          running:
+            valued_range: { min: 90, max: 140 }
+            specification: { zone: running, trigger_on: above }
+          mppt-notice:
+            valued_range: { min: 120, max: 950 }
+            specification: { rating: continuous, zone: mppt, severity: notice }
+          mppt:
+            valued_range: { min: 175, value: 620, max: 850 }
+            specification: { rating: continuous, zone: mppt, severity: nominal }
+          measured:
+            valued_range: { min: 0, max: 1000 }
+            measurement: { resolution: 0.1 }
+        electric-current:
+          survival:
+            valued_range: { max: 25 }
+            specification: { rating: survival }
+          continuous:
+            valued_range: { max: 20 }
+            specification: { rating: continuous }
+          measured:
+            valued_range: { min: 0, max: 30 }
+            measurement: { resolution: 0.01 }
+        active-power:
+          continuous:
+            valued_range: { max: 10000 }
+            specification: { rating: continuous }
+      '1': {}
+      '2': {}
+      # String 3 replaces only the mppt nominal; every other interval stays inherited.
+      '3':
+        voltage:
+          mppt:
+            valued_range: { min: 60, value: 480 }
+            specification: { rating: continuous, severity: nominal }
+
+  environment:
+    # The thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor
+    # set — the active-power derates above point at these intervals directly, no
+    # custom zone. Numbers in °C (unit override — canonical is K).
+    ambient:
+      _:
+        temperature:
+          survival:
+            valued_range: { min: -40, max: 80, unit: °C }
+            specification: { rating: survival }
+          intermittent:
+            valued_range: { min: -25, max: 60, unit: °C }
+            specification: { rating: intermittent }
+          continuous:
+            valued_range: { min: -20, max: 45, unit: °C }
+            specification: { rating: continuous }
+    # What the sensor actually reads.
+    enclosure:
+      _:
+        temperature:
+          measured:
+            valued_range: { min: -40, max: 100, unit: °C }
+            measurement: { resolution: 0.1 }
+
+# Each NIC is one row; the box ships a WiFi radio and a 100 Mb Ethernet port.
+network_interface:
+  wlan0: { interface_type: ieee80211 }
+  eth0: { interface_type: ethernet_csmacd, link_speed: 100 }
+
+# Services this box OFFERS — the network surfaces a consumer reaches. Each binds
+# to a NIC above; the site overlay fills that NIC's address.
+service:
+  modbus-tcp: { service_protocol: modbus_tcp, network_interface: eth0, port: 502 }
+  web-ui: { service_protocol: https, network_interface: eth0, port: 443 }
+
+# How to TALK to the box. The reachable surface (port 502, its NIC) is in
+# `service` above — this is the DECODE contract: framing + register map.
+#
+# Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART.
+# Scope is the registers backing entities we consume today; write/control
+# registers are out of scope.
 register_map:
-  node: node:inverter/foxess-h3-ps10sh/foxess-h3-smart
-  slug: foxess-h3-smart
-  unit_id: 247
+  slug: foxess-h3-smart # own row — many H3 variants FK it
+  unit_id: 247 # FoxESS H3 AUX default; overridable downstream
+  # All H3_SMART data registers are HOLDING. 32-bit values span two registers,
+  # high word at the LOWER address; 16-bit registers are big-endian (Modbus std).
   register_type: holding
   word_order: high_first
-  constraint_ranges:
-    - { node: rr1, range_type: invalid, start: 41001, end: 41006, note: 'unspecified 410xx, unverified' }
-    - { node: rr2, range_type: individual_read, start: 37609, end: 37620, note: 'BMS telemetry, not read today' }
-  registers:
-    - { node: r1, address: 39070, datatype: uint16, scale: 0.1, decimals: 1, feature: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker, quantity_kind: node:quantity-kind/voltage, part: node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1 }
-    - { node: r2, address: 39248, datatype: int32, scale: 0.001, decimals: 3, unit: kW, feature: node:inverter/foxess-h3-ps10sh/ac-phase/out, quantity_kind: node:quantity-kind/active-power, part: node:inverter/foxess-h3-ps10sh/ac-phase/out/a }
-    - { node: r3, address: 39621, datatype: uint32, scale: 0.01, decimals: 2, unit: kWh, feature: node:inverter/foxess-h3-ps10sh/ac-phase/out, quantity_kind: node:quantity-kind/active-energy, flow_direction: out }
-    - { node: r4, address: 39141, datatype: int16, scale: 0.1, decimals: 1, unit: °C, feature: node:inverter/foxess-h3-ps10sh/environment/enclosure, quantity_kind: node:quantity-kind/temperature }
+
+  # PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both range
+  # kinds are copied verbatim from foxess_modbus's H3_SMART_REGISTERS
+  # (inverter_profiles.py, traceable to nathanmarlor/foxess_modbus discussion #792).
+  # NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a
+  # single register we poll (ours are all 39xxx/38xxx). Do NOT architect a hard
+  # split boundary around these until a live probe confirms the hazard:
+  #
+  #   mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid: exception vs clean?
+  #   mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
+  #
+  # invalid: all in the 410xx block upstream leaves unspecified. On the SMART the
+  # actual control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so
+  # this is defensive padding around an empty region, likely inert.
+  # individual_read: the real one — overlaps the BMS battery block (a known FoxESS
+  # BMS-passthrough quirk), but dormant until we add battery telemetry.
+  constraint_range:
+    - { range_type: invalid, start: 41001, end: 41006, note: unspecified 410xx; unverified }
+    - { range_type: invalid, start: 41012, end: 41013, note: unspecified 410xx; unverified }
+    - { range_type: invalid, start: 41015, end: 41015, note: unspecified 410xx; unverified }
+    - {
+        range_type: individual_read,
+        start: 37609,
+        end: 37620,
+        note: battery + BMS telemetry (V,
+        I,
+        SoC,
+        temp,
+        cell temps/mV); unverified,
+        not read today,
+      }
+    - {
+        range_type: individual_read,
+        start: 37632,
+        end: 37636,
+        note: BMS energy registers (kWh remaining); unverified,
+        not read today,
+      }
+
+  # Each register LINKS to an interval the feature tree offers. The topic is
+  # DERIVED from that link downstream, not authored here. `unit` appears ONLY when
+  # it isn't the kind's SI/coherent unit (V/A/W/K omitted; kW, kWh, °C kept).
+  # For 32-bit values the address is the high word; the low word is address + 1.
+  register:
+    # --- PV: lifetime generation (foxess solar_energy_total) ---
+    - address: 39601
+      datatype: uint32
+      scale: 0.01
+      decimals: 2
+      unit: kWh
+      target:
+        {
+          feature: { type: dc-port, role: pv-tracker },
+          part: _,
+          quantity: active-energy,
+          interval: lifetime,
+        }
+    # --- PV: daily generation (foxess solar_energy_today) ---
+    - address: 39603
+      datatype: uint32
+      scale: 0.01
+      decimals: 2
+      unit: kWh
+      target:
+        {
+          feature: { type: dc-port, role: pv-tracker },
+          part: _,
+          quantity: active-energy,
+          interval: daily,
+        }
+    # --- PV string 1 (foxess pv1_*) ---
+    - {
+        address: 39070,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: voltage },
+      }
+    - {
+        address: 39071,
+        datatype: uint16,
+        scale: 0.01,
+        decimals: 2,
+        target:
+          { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: electric-current },
+      }
+    - {
+        address: 39279,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: active-power },
+      }
+    # --- PV string 2 (foxess pv2_*) ---
+    - {
+        address: 39072,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: voltage },
+      }
+    - {
+        address: 39073,
+        datatype: uint16,
+        scale: 0.01,
+        decimals: 2,
+        target:
+          { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: electric-current },
+      }
+    - {
+        address: 39281,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: active-power },
+      }
+    # --- PV string 3 (foxess pv3_*) ---
+    - {
+        address: 39074,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: voltage },
+      }
+    - {
+        address: 39075,
+        datatype: uint16,
+        scale: 0.01,
+        decimals: 2,
+        target:
+          { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: electric-current },
+      }
+    - {
+        address: 39283,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: active-power },
+      }
+
+    # --- AC out: per-phase active power (foxess inv_power_R/S/T → legs a/b/c) ---
+    - {
+        address: 39248,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39250,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39252,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: active-power },
+      }
+    # --- AC out: per-phase voltage (foxess grid_voltage_R/S/T) ---
+    - {
+        address: 39123,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: voltage },
+      }
+    - {
+        address: 39124,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: voltage },
+      }
+    - {
+        address: 39125,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: voltage },
+      }
+    # --- AC out: per-phase current (foxess inv_current_R/S/T) ---
+    - {
+        address: 39126,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: electric-current },
+      }
+    - {
+        address: 39128,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: electric-current },
+      }
+    - {
+        address: 39130,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: electric-current },
+      }
+    # --- AC out: per-phase reactive power (foxess inv_power_Q_R/S/T) ---
+    - {
+        address: 39256,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: reactive-power },
+      }
+    - {
+        address: 39258,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: reactive-power },
+      }
+    - {
+        address: 39260,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: reactive-power },
+      }
+    # --- AC out: per-phase apparent power (foxess rpower_S_R/S/T) ---
+    - {
+        address: 39264,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: apparent-power },
+      }
+    - {
+        address: 39266,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: apparent-power },
+      }
+    - {
+        address: 39268,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: apparent-power },
+      }
+    # --- AC out: whole-port totals (foxess inv_power / inv_power_Q) ---
+    - {
+        address: 39134,
+        datatype: int32,
+        scale: 0.000001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: _, quantity: active-power },
+        note: reported in mW despite spec,
+      }
+    - {
+        address: 39136,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: _, quantity: reactive-power },
+      }
+    # --- AC out: lifetime + daily energy (foxess total_yield / input_energy) ---
+    - {
+        address: 39621,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: out,
+          },
+      }
+    - {
+        address: 39623,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: out-daily,
+          },
+      }
+    - {
+        address: 39625,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: in,
+          },
+      }
+    - {
+        address: 39627,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: in-daily,
+          },
+      }
+
+    # --- EPS: per-phase voltage / current / power (foxess eps_rvolt/rcurrent/power R/S/T) ---
+    - {
+        address: 39201,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: voltage },
+      }
+    - {
+        address: 39202,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: voltage },
+      }
+    - {
+        address: 39203,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: voltage },
+      }
+    - {
+        address: 39204,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: electric-current },
+      }
+    - {
+        address: 39206,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: electric-current },
+      }
+    - {
+        address: 39208,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: electric-current },
+      }
+    - {
+        address: 39212,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39214,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39216,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: active-power },
+      }
+
+    # --- Load: total + per leg (foxess load_power, load_power_r/s/t) ---
+    - {
+        address: 39225,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: _, quantity: active-power },
+      }
+    - {
+        address: 39219,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39221,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39223,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: c, quantity: active-power },
+      }
+    # --- Load: lifetime + daily energy (foxess load_power total / load_energy_today) ---
+    - {
+        address: 39629,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: load },
+            part: _,
+            quantity: active-energy,
+            interval: lifetime,
+          },
+      }
+    - {
+        address: 39631,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: load },
+            part: _,
+            quantity: active-energy,
+            interval: daily,
+          },
+      }
+
+    # --- Grid CT: net power, signed — feed-in +, consumption − (foxess grid_ct) ---
+    - {
+        address: 38814,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: _, quantity: active-power },
+      }
+    - {
+        address: 38816,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: a, quantity: active-power },
+      }
+    - {
+        address: 38818,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: b, quantity: active-power },
+      }
+    - {
+        address: 38820,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: c, quantity: active-power },
+      }
+    # --- Grid CT: directional energy (foxess feed_in_energy / grid_consumption_energy) ---
+    - {
+        address: 39613,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: out,
+          },
+      }
+    - {
+        address: 39615,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: out-daily,
+          },
+      }
+    - {
+        address: 39617,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: in,
+          },
+      }
+    - {
+        address: 39619,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: in-daily,
+          },
+      }
+
+    # --- Enclosure temperature (foxess invtemp) ---
+    - {
+        address: 39141,
+        datatype: int16,
+        scale: 0.1,
+        decimals: 1,
+        unit: °C,
+        target: { feature: { type: environment, role: enclosure }, part: _, quantity: temperature },
+      }
+
+# Categorical observables of the WHOLE box — a run mode or fault set aggregates
+# across PV, grid, BMS and temperature, so no sub-feature owns them; their
+# feature-of-interest is the model root. Enum-valued, not VIM-ranged, so they
+# carry no quantity kind.
+#
+# Reported as a SET — EVERY set bit across the group, not collapsed to one. Bits
+# stay in the group the device puts them in: the word1-bit6 fault flag is reported
+# under run-state, where it physically lives, not relocated onto fault-code.
+#
+# Each word pairs its address with its own bit labels; list position IS the bit
+# number, `null` a bit not yet identified.
+decode:
+  run-state:
+    kind: flags
+    empty: unknown
+    join: '; '
+    word:
+      - address: 39063
+        label: [standby, null, on-grid, null, null, null, fault]
+      - address: 39064
+        label: [] # read as part of the group; its bits aren't identified yet
+      - address: 39065
+        label: [off-grid]
+  fault-code:
+    kind: flags
+    empty: none
+    join: '; '
+    word:
+      - address: 39067
+        label:
+          - fault-pv-voltage-over
+          - fault-dc-arc
+          - fault-pv-string-connection-reverse
+          - null
+          - null
+          - null
+          - null
+          - fault-grid-lost
+          - fault-grid-voltage
+          - null
+          - null
+          - fault-grid-frequency
+          - null
+          - null
+          - fault-output-current-over
+          - fault-output-dc-current-over
+      - address: 39068
+        label:
+          - fault-residual-current-consistency
+          - fault-ground-connection
+          - fault-insulation-resistance-low
+          - fault-inverter-temperature-over
+          - null
+          - null
+          - null
+          - null
+          - null
+          - fault-energy-storage-equipment-abnormal
+          - fault-island-isolated
+          - null
+          - null
+          - null
+          - fault-off-grid-output-overload
+          - null
+      - address: 39069
+        label:
+          - null
+          - null
+          - null
+          - fault-fan-external
+          - fault-energy-storage-connection-reverse
+          - null
+          - null
+          - null
+          - null
+          - fault-meter-lost
+          - fault-bms-lost

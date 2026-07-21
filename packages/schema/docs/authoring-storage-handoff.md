@@ -1,28 +1,5 @@
 # Authoring/storage split — next-thread handoff
 
-## Start here
-
-Read, in order:
-
-1. repository `README.md`
-2. `packages/schema/CLAUDE.md`
-3. `packages/schema/docs/levels.md`
-4. this document
-
-Inspect the worktree before editing. It contains broad uncommitted schema work. Preserve unrelated changes. No commit from the node-path discussion was made.
-
-## Problem
-
-Current device-model YAML tries to be all three:
-
-- ergonomic authored document
-- LinkML validation instance
-- normalized SQL input with explicit PK/FK values
-
-`format.ts` consequently acts as an implicit compiler. It derives interval slugs, stamps paths, rewrites references, expands facets, and repairs authored data. This is difficult to reason about and unsafe to extend.
-
-Formatting and semantic compilation must separate.
-
 ## Direction
 
 Use two LinkML schemas with a deterministic compiler between them:
@@ -31,7 +8,7 @@ Use two LinkML schemas with a deterministic compiler between them:
 authored YAML
   → authoring LinkML validation
   → compile.ts
-  → normalized catalog YAML
+  → normalized catalog JSON
   → storage LinkML validation
   → SQL/database
 ```
@@ -46,7 +23,7 @@ Human-facing nested device description:
 - structured references, never authored node paths
 - useful validation errors at source locations
 
-**Nesting is the identity.** Each level is a map keyed by that level's slug, in level order — the authored document has the same shape as the node path, so no authored row repeats a coordinate its position already states.
+**Nesting is the identity.** Each level is a map keyed by that level's slug, in level order — the authored document has the same shape as the node path, so no authored row repeats a coordinate its position already states. The filename is the root slug, the same rule one level up.
 
 Three key forms, three meanings:
 
@@ -57,8 +34,8 @@ Three key forms, three meanings:
 | a named facet key | a co-row sharing this row's node, no segment    |
 
 ```yaml
+# foxess-h3-ps10sh.yaml — the filename is the slug
 device_type: inverter
-slug: foxess-h3-ps10sh
 
 feature:
   ac-phase:
@@ -158,6 +135,8 @@ Machine-facing normalized rows:
 - suitable for LinkML SQL generation
 - generated device-model rows; never hand-authored
 
+The catalog is **JSON**, one giant file.
+
 `Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval`. All use exactly the interval node. They add no identity segment.
 
 ## Identity
@@ -236,27 +215,28 @@ packages/schema/
 
 Exact modules should emerge from repeated structure, not speculative taxonomy. Preserve uniform composition, maximal reuse, and the authoring/storage boundary.
 
-## Migration scope
+## What the compiler is
 
-Start with `device_model/foxess-h3-ps10sh.yaml` only. Registry, quantity-kind, feature-type, and device-type files are already table-like; do not force them through the device authoring DSL without a demonstrated need.
+**Destructure a nested, author-friendly set of documents into one catalog ready for further processing.** Devices are the first input kind.
 
-Recommended sequence:
+Every stage is kind-agnostic: read a key trail, validate a key against its level's vocabulary, emit a row. Kind-specific knowledge lives in the schema, never in compiler branches.
 
-1. Freeze current normalized FoxESS output as a golden fixture.
-2. Define minimal authoring LinkML classes needed by FoxESS.
-3. Write explicit coordinate/path types and constructor.
-4. Compile features, parts, intervals, and three interval facets.
-5. Compile structured `gated_by`, register feature, part, and interval targets.
-6. Validate generated rows with the storage schema.
-7. Replace FoxESS source with node-free authored YAML.
-8. Reduce `format.ts` to presentation-only formatting.
-9. Remove obsolete stamping/desugaring only after parity tests pass.
+The reference input is [`grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml`](../../grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml) — register map and prose included. `data/device_model/foxess-h3-ps10sh.yaml` is a fixture derived from it, not the source. Port what it inherits from grimoire's `_defaults.yaml` explicitly; the cascade does not come along, `Manufacturer` replaces it.
 
-Avoid a repository-wide migration until this example is clean.
+Build order:
+
+1. Generic trail walk: descend on slug keys, lift `$`, expand facets, assign `ordinal`.
+2. Validate keys against level vocabularies (`part_set`, `count`, quantity kinds).
+3. Resolve structured references against compiled coordinates.
+4. Authoring LinkML classes covering the reference document.
+5. Emit the catalog; validate against the storage schema; build the database.
+
+Registry, quantity-kind, feature-type, and device-type files are already table-like — they enter the catalog as rows, and the trail walk handles them as a one-level case rather than a special one.
 
 ## Acceptance
 
-- Authored FoxESS contains no `node` keys.
+- No authored document contains a `node` key.
+- No compiler stage names a kind; adding a kind adds schema, not branches.
 - Every coordinate comes from a map key; no authored value repeats its position.
 - Every interval slug is a key, `_` included; none is inferred from payload.
 - Changing feature type changes generated descendant paths predictably.
@@ -267,8 +247,3 @@ Avoid a repository-wide migration until this example is clean.
 - Generated catalog passes storage LinkML validation.
 - Generated database builds.
 - Compiler output is deterministic and snapshot-tested.
-- `format.ts` performs no identity or reference semantics.
-
-## Current experiment
-
-The worktree currently includes an experimental `stampModelNodes` pass in `format.ts` plus rewritten FoxESS nodes and `levels.md` edits. Treat these as evidence and possible fixture material, not architecture to preserve. Audit the diff before deciding what to retain.
