@@ -1,3 +1,4 @@
+bound_as: ac_ports
 quantity_binding:
   voltage: {}
   electric-current: {}

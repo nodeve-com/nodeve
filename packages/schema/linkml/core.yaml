@@ -33,6 +33,8 @@ classes:
       # its path. Every other slot's range names a class whose sql_table is its dir.
       nodes: { range: Node, multivalued: true, inlined_as_list: true }
       registries: { range: Registry, multivalued: true, inlined_as_list: true }
+      manufacturers: { range: Manufacturer, multivalued: true, inlined_as_list: true }
+      part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
       device_types: { range: DeviceType, multivalued: true, inlined_as_list: true }
@@ -71,11 +73,13 @@ slots:
   code:
     {
       range: string,
+      title: Short code,
       description: "8-char Crockford human handle DERIVED from the permalink's hash tail (40 bits); minted with the row, never recomputed",
     }
   iri_template:
     {
       range: string,
+      title: IRI template,
       description: 'resolves a term to its IRI — {id} is the term slot (http://qudt.org/property/quantitykind/{id}); absent when the registry has no resolvable form',
       annotations: { camel: iriTemplate },
     }
@@ -91,12 +95,14 @@ slots:
     {
       range: integer,
       minimum_value: 1,
+      title: Ordinal,
       description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here.",
     }
   slug_qualified:
     {
       identifier: true,
       range: uriorcurie,
+      title: Qualified slug,
       description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it',
       annotations: { camel: slugQualified },
     }
@@ -104,10 +110,11 @@ slots:
     {
       range: string,
       required: true,
+      title: Term,
       description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized',
     }
   title: {}
-  url: { range: uri, description: registry homepage }
+  url: { range: uri, title: URL, description: registry homepage }
   # object-valued slots — FKs / owned row sets; global like everything else,
   # classes narrow via slot_usage only when the shared def is too loose
   about:
@@ -117,10 +124,17 @@ slots:
       slot_uri: schema:about,
       description: 'the node this content describes',
     }
-  match: { range: MatchStrength, required: true }
+  match:
+    {
+      range: MatchStrength,
+      required: true,
+      title: Match,
+      description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths',
+    }
   registry:
     {
       range: Registry,
       required: true,
+      title: Registry,
       description: 'FK — which external registry the term belongs to',
     }

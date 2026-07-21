@@ -6,6 +6,7 @@ classes:
   NetworkInterface:
     annotations:
       sql_table: network_interface
+      keyed_by: slug
     slots: [node, slug, interface_type, link_speed]
     slot_usage:
       interface_type: { required: true }
@@ -13,13 +14,25 @@ classes:
   ServiceBinding:
     annotations:
       sql_table: service_binding
+      keyed_by: slug
     slots: [node, slug, port, service_protocol, network_interface]
     slot_usage:
       service_protocol: { required: true }
       network_interface: { required: true }
 slots:
-  link_speed: { range: integer, annotations: { camel: linkSpeed } }
-  port: { range: integer }
+  link_speed:
+    {
+      range: integer,
+      title: Link speed,
+      description: 'negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)',
+      annotations: { camel: linkSpeed },
+    }
+  port:
+    {
+      range: integer,
+      title: Port,
+      description: "TCP/UDP port number; omit to fall back to the scheme's well-known default",
+    }
   interface_type: { range: InterfaceType, annotations: { camel: interfaceType } }
   network_interface: { range: NetworkInterface, annotations: { camel: networkInterface } }
   service_protocol: { range: ServiceProtocol, annotations: { camel: serviceProtocol } }

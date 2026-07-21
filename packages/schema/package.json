@@ -12,7 +12,8 @@
 	"type": "module",
 	"scripts": {
 		"generate": "node project-overlay.ts && node format.ts && node normalize/catalog.ts",
-		"build": "pnpm generate && pnpm build:ddl && pnpm build:db",
+		"build": "pnpm generate && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
+		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",
 		"build:ddl": "cd linkml && uvx --from linkml python ../ddl.py > ../gen/nodeve.sql",
 		"build:db": "cd linkml && uvx --from linkml python ../ddl.py dump",
 		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/device_model/foxess-h3-ps10sh.yaml",

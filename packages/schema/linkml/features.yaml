@@ -34,13 +34,17 @@ classes:
   Interval:
     annotations:
       sql_table: interval
+      # authored form: three stacked map levels, one key per listed slot —
+      # part → quantity → interval slug assemble ONE row
+      keyed_by: part quantity_kind slug
     description: >-
       One quantity band on one feature. part null = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
     slots: [node, quantity_kind, valued_range, part, slug]
     slot_usage:
       # the discriminator, not decoration — (quantity_kind, part, slug) is the
       # row's identity and its node path segment. Absent slug = no derivable node.
-      slug: { required: true }
+      # `_` = the one unnamed interval — stored verbatim, elided only on render.
+      slug: { required: true, pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' }
 
   Specification:
     annotations:
@@ -66,37 +70,105 @@ classes:
   FeatureOfInterest:
     annotations:
       sql_table: feature_of_interest
+      # authored form: feature_of_interest: {<type>: {<role>: …}} — two levels
+      keyed_by: feature_type role
     abstract: true
+    close_mappings: [sosa:FeatureOfInterest]
     description: >-
       The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature owning three part rows. Parts are per-model (a/b/c, l1/l2, 1/2/3) because models differ; part NULL on an interval = combined, the whole feature.
-    slots: [node, feature_type, role, parts, intervals, specifications, measurements, contents]
+    slots:
+      [
+        node,
+        feature_type,
+        role,
+        part_set,
+        count,
+        parts,
+        intervals,
+        specifications,
+        measurements,
+        contents,
+      ]
     slot_usage:
       role: { required: true }
       feature_type: { required: true }
 slots:
-  duration: { range: integer, description: seconds }
-  equals: {}
-  margin: { range: float, description: symmetric RELATIVE band (±0.05 = ±5%) }
+  count:
+    {
+      range: integer,
+      minimum_value: 1,
+      description: 'cardinality subdivision — n of the same thing; part keys must be 1…n. Exclusive with part_set; both absent = no parts',
+    }
+  duration:
+    {
+      range: integer,
+      title: Duration,
+      description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating)',
+      close_mappings: [cim:OperationalLimitType.acceptableDuration],
+    }
+  equals:
+    {
+      title: Equals,
+      description: 'the value the gated setting must hold for the band to apply — one value per gate; a band valid for several values is several bands (OR = separate bands)',
+    }
+  margin: { range: float, title: Margin, description: symmetric RELATIVE band (±0.05 = ±5%) }
   margin_lower:
     {
       range: float,
+      title: Margin lower,
       description: 'asymmetric RELATIVE below; fraction_lower sugar desugars into this',
       annotations: { camel: marginLower },
     }
   margin_upper:
     {
       range: float,
+      title: Margin upper,
       description: 'asymmetric RELATIVE above; fraction_upper sugar desugars into this',
       annotations: { camel: marginUpper },
     }
-  max: { range: float }
-  min: { range: float }
-  resolution: { range: float }
+  max:
+    {
+      range: float,
+      title: Maximum,
+      description: "inclusive high end of a closed interval, in the enclosing row's unit",
+    }
+  min:
+    {
+      range: float,
+      title: Minimum,
+      description: "inclusive low end of a closed interval, in the enclosing row's unit",
+    }
+  resolution:
+    {
+      range: float,
+      title: Resolution,
+      description: "quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14); omit when the datasheet doesn't state it, never fabricate",
+      exact_mappings: ['vim:4.14', ssn-system:Resolution],
+    }
   setting_key: { annotations: { camel: settingKey } }
-  tolerance: { range: float, description: 'symmetric ABSOLUTE band (±200, in unit)' }
-  tolerance_lower: { range: float, annotations: { camel: toleranceLower } }
-  tolerance_upper: { range: float, annotations: { camel: toleranceUpper } }
-  value: { range: float }
+  tolerance:
+    { range: float, title: Tolerance, description: 'symmetric ABSOLUTE band (±200, in unit)' }
+  tolerance_lower:
+    {
+      range: float,
+      title: Tolerance lower,
+      description: 'asymmetric ABSOLUTE below (low edge = value − tolerance_lower); pairs with tolerance_upper',
+      annotations: { camel: toleranceLower },
+    }
+  tolerance_upper:
+    {
+      range: float,
+      title: Tolerance upper,
+      description: 'asymmetric ABSOLUTE above (high edge = value + tolerance_upper); pairs with tolerance_lower',
+      annotations: { camel: toleranceUpper },
+    }
+  value:
+    {
+      range: float,
+      title: Value,
+      description: 'the magnitude of a valued quantity, in the stated unit — alone an exact point; with a band (tolerance/margin/min/max) the designated centre that band sits around',
+      close_mappings: [qudt:Quantity],
+    }
   conditions: { range: Condition, multivalued: true, inlined_as_list: true }
   gated_by:
     {
@@ -111,6 +183,12 @@ slots:
       multivalued: true,
       inlined_as_list: true,
       description: "measurement width-extension rows — each shares its interval's node",
+    }
+  part_set:
+    {
+      range: PartSet,
+      description: "FK — the named closed set this feature's part keys must belong to. Exclusive with count",
+      annotations: { camel: partSet },
     }
   parts:
     {
@@ -128,7 +206,13 @@ slots:
       inlined_as_list: true,
       description: "specification width-extension rows — each shares its interval's node",
     }
-  trigger_on: { range: TriggerOn, annotations: { camel: triggerOn } }
+  trigger_on:
+    {
+      range: TriggerOn,
+      title: Trigger on,
+      description: 'which side turns a stateful zone ON — below ⇒ ON under min, OFF above max; above ⇒ the reverse; between the edges the state HOLDS (the [min,max] deadband is what makes it stateful)',
+      annotations: { camel: triggerOn },
+    }
   valued_range:
     {
       range: ValuedRange,

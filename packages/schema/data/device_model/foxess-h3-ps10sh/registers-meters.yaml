@@ -1,0 +1,245 @@
+register_map:
+  register:
+    # --- EPS: per-phase voltage / current / power (foxess eps_rvolt/rcurrent/power R/S/T) ---
+    - {
+        address: 39201,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: voltage },
+      }
+    - {
+        address: 39202,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: voltage },
+      }
+    - {
+        address: 39203,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: voltage },
+      }
+    - {
+        address: 39204,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: electric-current },
+      }
+    - {
+        address: 39206,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: electric-current },
+      }
+    - {
+        address: 39208,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: electric-current },
+      }
+    - {
+        address: 39212,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39214,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39216,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: eps }, part: c, quantity: active-power },
+      }
+
+    # --- Load: total + per leg (foxess load_power, load_power_r/s/t) ---
+    - {
+        address: 39225,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: _, quantity: active-power },
+      }
+    - {
+        address: 39219,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39221,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39223,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: load }, part: c, quantity: active-power },
+      }
+    # --- Load: lifetime + daily energy (foxess load_power total / load_energy_today) ---
+    - {
+        address: 39629,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: load },
+            part: _,
+            quantity: active-energy,
+            interval: lifetime,
+          },
+      }
+    - {
+        address: 39631,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: load },
+            part: _,
+            quantity: active-energy,
+            interval: daily,
+          },
+      }
+
+    # --- Grid CT: net power, signed — feed-in +, consumption − (foxess grid_ct) ---
+    - {
+        address: 38814,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: _, quantity: active-power },
+      }
+    - {
+        address: 38816,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: a, quantity: active-power },
+      }
+    - {
+        address: 38818,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: b, quantity: active-power },
+      }
+    - {
+        address: 38820,
+        datatype: int32,
+        scale: 0.0001,
+        decimals: 2,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: grid }, part: c, quantity: active-power },
+      }
+    # --- Grid CT: directional energy (foxess feed_in_energy / grid_consumption_energy) ---
+    - {
+        address: 39613,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: out,
+          },
+      }
+    - {
+        address: 39615,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: out-daily,
+          },
+      }
+    - {
+        address: 39617,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: in,
+          },
+      }
+    - {
+        address: 39619,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: grid },
+            part: _,
+            quantity: active-energy,
+            interval: in-daily,
+          },
+      }
+
+    # --- Enclosure temperature (foxess invtemp) ---
+    - {
+        address: 39141,
+        datatype: int16,
+        scale: 0.1,
+        decimals: 1,
+        unit: °C,
+        target: { feature: { type: environment, role: enclosure }, part: _, quantity: temperature },
+      }
+
+# Categorical observables of the WHOLE box — a run mode or fault set aggregates
+# across PV, grid, BMS and temperature, so no sub-feature owns them; their
+# feature-of-interest is the model root. Enum-valued, not VIM-ranged, so they
+# carry no quantity kind.
+#
+# Reported as a SET — EVERY set bit across the group, not collapsed to one. Bits
+# stay in the group the device puts them in: the word1-bit6 fault flag is reported
+# under run-state, where it physically lives, not relocated onto fault-code.
+#
+# Each word pairs its address with its own bit labels; list position IS the bit
+# number, `null` a bit not yet identified.

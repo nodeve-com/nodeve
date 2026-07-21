@@ -1,0 +1,196 @@
+register_map:
+  register:
+    # --- AC out: per-phase active power (foxess inv_power_R/S/T → legs a/b/c) ---
+    - {
+        address: 39248,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: active-power },
+      }
+    - {
+        address: 39250,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: active-power },
+      }
+    - {
+        address: 39252,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: active-power },
+      }
+    # --- AC out: per-phase voltage (foxess grid_voltage_R/S/T) ---
+    - {
+        address: 39123,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: voltage },
+      }
+    - {
+        address: 39124,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: voltage },
+      }
+    - {
+        address: 39125,
+        datatype: uint16,
+        scale: 0.1,
+        decimals: 1,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: voltage },
+      }
+    # --- AC out: per-phase current (foxess inv_current_R/S/T) ---
+    - {
+        address: 39126,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: electric-current },
+      }
+    - {
+        address: 39128,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: electric-current },
+      }
+    - {
+        address: 39130,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: electric-current },
+      }
+    # --- AC out: per-phase reactive power (foxess inv_power_Q_R/S/T) ---
+    - {
+        address: 39256,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: reactive-power },
+      }
+    - {
+        address: 39258,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: reactive-power },
+      }
+    - {
+        address: 39260,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: reactive-power },
+      }
+    # --- AC out: per-phase apparent power (foxess rpower_S_R/S/T) ---
+    - {
+        address: 39264,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: a, quantity: apparent-power },
+      }
+    - {
+        address: 39266,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: b, quantity: apparent-power },
+      }
+    - {
+        address: 39268,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kVA,
+        target: { feature: { type: ac-phase, role: out }, part: c, quantity: apparent-power },
+      }
+    # --- AC out: whole-port totals (foxess inv_power / inv_power_Q) ---
+    - {
+        address: 39134,
+        datatype: int32,
+        scale: 0.000001,
+        decimals: 3,
+        unit: kW,
+        target: { feature: { type: ac-phase, role: out }, part: _, quantity: active-power },
+        note: reported in mW despite spec,
+      }
+    - {
+        address: 39136,
+        datatype: int32,
+        scale: 0.001,
+        decimals: 3,
+        unit: kvar,
+        target: { feature: { type: ac-phase, role: out }, part: _, quantity: reactive-power },
+      }
+    # --- AC out: lifetime + daily energy (foxess total_yield / input_energy) ---
+    - {
+        address: 39621,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: out,
+          },
+      }
+    - {
+        address: 39623,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: out-daily,
+          },
+      }
+    - {
+        address: 39625,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: in,
+          },
+      }
+    - {
+        address: 39627,
+        datatype: uint32,
+        scale: 0.01,
+        decimals: 2,
+        unit: kWh,
+        target:
+          {
+            feature: { type: ac-phase, role: out },
+            part: _,
+            quantity: active-energy,
+            interval: in-daily,
+          },
+      }

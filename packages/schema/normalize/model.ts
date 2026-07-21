@@ -39,6 +39,11 @@ export const classByTable: Record<string, string> = Object.fromEntries(
 /** node path segments are kebab; sql_table is snake (quantity_kind → quantity-kind) */
 export const seg = (table: string) => table.replaceAll('_', '-');
 
+/** a class's authored key trail — keyed_by as an ordered slot list. One entry
+ * = a keyed child map; several = stacked map levels assembling one row. */
+export const keysOf = (className: string): string[] =>
+	(classByName[className]?.annotations?.keyed_by ?? '').split(' ').filter(Boolean);
+
 /** a slot's FK target table, when it ranges a table-backed class */
 export const fkTable = (slot: string): string | undefined => {
 	const range = slotByName[slot]?.range;

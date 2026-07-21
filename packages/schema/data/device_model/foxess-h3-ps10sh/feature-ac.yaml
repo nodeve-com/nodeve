@@ -1,0 +1,223 @@
+feature_of_interest:
+  ac-phase:
+    # The inverter's OWN grid-tie AC output (foxess grid_voltage / inv_current /
+    # inv_power). The real grid CT is the `grid` feature below.
+    out:
+      $: { part_set: three-phase }
+      # The three legs as ONE — the box's whole-AC-side total, NOT 3×per-phase
+      # (a 10 kW box can't sustain 3×3.3 kW). Authored because it isn't derivable.
+      _:
+        # Power is throughput, not a setpoint — no nominal, so the symmetric
+        # export/import rows collapse to one signed range per tier. Tiers
+        # classify by AXES, not by name.
+        active-power:
+          continuous:
+            valued_range: { min: -11000, max: 10000 }
+            specification:
+              rating: continuous
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: continuous
+              # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a
+              # spec-carrying altitude band to point at — pending a generic altitude
+              # feature (the site supplies install altitude; geo-fence is undesigned).
+              # Deferred, not dropped.
+          short-term:
+            valued_range: { min: -12000, max: 11000 }
+            specification: { rating: short_term, duration: 30 } # box self-protects beyond 30 s
+          derated:
+            valued_range: { min: -10000, max: 9000 }
+            specification:
+              rating: continuous
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: intermittent
+          # whole-port reading (foxess inv_power, 39134) — no rated band stated
+          measured:
+            measurement: { resolution: 0.001 }
+        # Lifetime + daily throughput (foxess total_yield / input_energy). ONE
+        # quantity; the four channels are intervals keyed by flow_direction
+        # (out = yield, in = input) + period (absent = lifetime).
+        active-energy:
+          out:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, resolution: 0.01 }
+          out-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, period: daily, resolution: 0.01 }
+          in:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, resolution: 0.01 }
+          in-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, period: daily, resolution: 0.01 }
+        reactive-power:
+          _:
+            valued_range: { min: -11, max: 11, unit: kvar }
+            measurement: { resolution: 0.001 }
+      '*':
+        voltage:
+          # 220/230 are a commissioning choice, not two simultaneous limits:
+          # each gates on the single-valued grid_region setting, so exactly one
+          # resolves. A lone nominal IS the nameplate rating.
+          nominal-br-220v-60hz:
+            valued_range: { value: 220 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: br-220v-60hz }
+          nominal-eu-230v-50hz:
+            valued_range: { value: 230 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+          measured:
+            valued_range: { min: 0, max: 250 }
+            measurement: { resolution: 0.1 }
+        frequency:
+          # nominal + margin is still a nominal — a spread AROUND the value,
+          # not a min/max envelope.
+          nominal-br-220v-60hz:
+            valued_range: { value: 60, margin: 0.05 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: br-220v-60hz }
+          nominal-eu-230v-50hz:
+            valued_range: { value: 50, margin: 0.05 }
+            specification:
+              severity: nominal
+              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+        electric-current:
+          continuous:
+            valued_range: { max: 15.2 }
+            specification: { rating: continuous }
+          survival:
+            valued_range: { max: 16.7 }
+            specification: { rating: survival }
+          protection-required:
+            valued_range: { max: 25 }
+            specification: { rating: protection_required }
+          # per-leg reading (foxess inv_current R/S/T) — signed, no band stated
+          measured:
+            measurement: { resolution: 0.001 }
+        # per-leg readings the registers link (foxess inv_power_Q / rpower_S R/S/T)
+        reactive-power:
+          _:
+            measurement: { resolution: 0.001 }
+        apparent-power:
+          _:
+            measurement: { resolution: 0.001 }
+        active-power:
+          continuous:
+            valued_range: { value: 3333, max: 3666 }
+            specification:
+              rating: continuous
+              severity: nominal
+              gated_by:
+                feature: { type: environment, role: ambient }
+                quantity: temperature
+                interval: continuous
+              # TODO(altitude-derate): per-phase full power only below 2000 m —
+              # same deferred altitude band as the combined total above.
+          measured:
+            valued_range: { min: 0, max: 5, unit: kW }
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
+
+    # The GRID CT / utility meter (foxess grid_ct) — net power at the grid
+    # connection point. This is the metering point (cim:ExternalNetworkInjection /
+    # saref4grid:PowerLine), distinct from the inverter's own AC output above.
+    grid:
+      $: { part_set: three-phase }
+      _:
+        # Signed: feed-in / export +, grid consumption / import −. Direction is
+        # the sign; one measurable channel.
+        active-power:
+          _:
+            valued_range: { min: -15, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+        # Directional energy — feed-in vs grid-consumption, each lifetime + daily.
+        active-energy:
+          out:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, resolution: 0.01 }
+          out-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: out, period: daily, resolution: 0.01 }
+          in:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, resolution: 0.01 }
+          in-daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { flow_direction: in, period: daily, resolution: 0.01 }
+      '*':
+        # per-leg net grid power (foxess grid_ct R/S/T), signed like the total.
+        active-power:
+          _:
+            valued_range: { min: -8, max: 8, unit: kW }
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
+
+    # Separate EPS port — export only; its own per-phase telemetry.
+    eps:
+      $: { part_set: three-phase }
+      _:
+        active-power:
+          continuous:
+            valued_range: { max: 10000 } # rated EPS export, all legs together
+            specification: { rating: continuous }
+      '*':
+        voltage:
+          nominal:
+            valued_range: { value: 230, min: 200, max: 260 }
+            specification: { rating: continuous, severity: nominal }
+          measured:
+            valued_range: { min: 0, max: 300 }
+            measurement: { resolution: 0.1 }
+        frequency:
+          nominal:
+            valued_range: { value: 50 } # lone nominal — nameplate reference
+            specification: { severity: nominal }
+        electric-current:
+          _:
+            valued_range: { min: 0, max: 50 }
+            measurement: { resolution: 0.01 }
+        active-power:
+          _:
+            valued_range: { min: -3.3, max: 3.3, unit: kW } # unit override — canonical is W
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}
+
+    # Household load the box meters (foxess load_power) — downstream of the box's
+    # own AC port; the inverter's view of the home, so it lives on this entry.
+    load:
+      $: { part_set: three-phase }
+      _:
+        active-power:
+          _:
+            valued_range: { min: 0, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+        active-energy:
+          lifetime:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { resolution: 0.01 }
+          daily:
+            valued_range: { min: 0, unit: kWh }
+            measurement: { period: daily, resolution: 0.01 }
+      '*':
+        # Signed like the foxess entity (validate −100..100): a leg reads negative
+        # when the box back-feeds through it. This is a plausible envelope, not a rating.
+        active-power:
+          _:
+            valued_range: { min: -5, max: 15, unit: kW }
+            measurement: { resolution: 0.001 }
+      a: {}
+      b: {}
+      c: {}

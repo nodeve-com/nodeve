@@ -10,6 +10,11 @@ prefixes:
   nodeve: https://nodeve.com/schema/
   node: https://nodeve.com/node/
   qudt: http://qudt.org/schema/qudt/
+  # mapping targets (grimoire property refs → *_mappings)
+  sosa: http://www.w3.org/ns/sosa/
+  cim: 'http://iec.ch/TC57/CIM100#'
+  ssn-system: http://www.w3.org/ns/ssn/systems/
+  vim: https://jcgm.bipm.org/vim/en/
   schema: http://schema.org/ # linkml:types defines it http-form; a mismatch fails the merge
 default_prefix: nodeve
 default_range: string

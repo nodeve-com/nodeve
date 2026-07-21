@@ -47,7 +47,9 @@ Three key forms, three meanings:
 # foxess-h3-ps10sh.yaml — the filename is the slug
 device_type: inverter
 
-feature:
+# every block key is a sql_table name; the nested key levels are the class's
+# keyed_by slots, in order (feature_of_interest: feature_type, role)
+feature_of_interest:
   ac-phase:
     out:
       $: { part_set: split-phase }

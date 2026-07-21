@@ -75,6 +75,7 @@ slots:
     {
       range: string,
       required: true,
+      title: Part,
       pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$',
       description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part.",
     }
@@ -88,9 +89,15 @@ slots:
     {
       range: string,
       pattern: '^[a-z0-9]+(-[a-z0-9]+)*$',
+      title: Slug,
       description: 'hand-authored machine key + url segment, kebab-case; wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref',
     }
-  unit: { range: string, description: only when not the feature type's SI unit }
+  unit:
+    {
+      range: string,
+      title: Unit,
+      description: "non-SI unit override of a stated value — only when the value isn't in the quantity kind's canonical SI unit (kW vs W, °C vs K); omit ⇒ SI unit",
+    }
   contents: { range: Content, multivalued: true, inlined_as_list: true }
   feature_type:
     {

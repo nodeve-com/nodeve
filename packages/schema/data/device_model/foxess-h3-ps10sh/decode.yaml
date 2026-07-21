@@ -1,0 +1,66 @@
+decode:
+  run-state:
+    kind: flags
+    empty: unknown
+    join: '; '
+    word:
+      - address: 39063
+        label: [standby, null, on-grid, null, null, null, fault]
+      - address: 39064
+        label: [] # read as part of the group; its bits aren't identified yet
+      - address: 39065
+        label: [off-grid]
+  fault-code:
+    kind: flags
+    empty: none
+    join: '; '
+    word:
+      - address: 39067
+        label:
+          - fault-pv-voltage-over
+          - fault-dc-arc
+          - fault-pv-string-connection-reverse
+          - null
+          - null
+          - null
+          - null
+          - fault-grid-lost
+          - fault-grid-voltage
+          - null
+          - null
+          - fault-grid-frequency
+          - null
+          - null
+          - fault-output-current-over
+          - fault-output-dc-current-over
+      - address: 39068
+        label:
+          - fault-residual-current-consistency
+          - fault-ground-connection
+          - fault-insulation-resistance-low
+          - fault-inverter-temperature-over
+          - null
+          - null
+          - null
+          - null
+          - null
+          - fault-energy-storage-equipment-abnormal
+          - fault-island-isolated
+          - null
+          - null
+          - null
+          - fault-off-grid-output-overload
+          - null
+      - address: 39069
+        label:
+          - null
+          - null
+          - null
+          - fault-fan-external
+          - fault-energy-storage-connection-reverse
+          - null
+          - null
+          - null
+          - null
+          - fault-meter-lost
+          - fault-bms-lost

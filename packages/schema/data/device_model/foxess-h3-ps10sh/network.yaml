@@ -1,0 +1,16 @@
+network_interface:
+  wlan0: { interface_type: ieee80211 }
+  eth0: { interface_type: ethernet_csmacd, link_speed: 100 }
+
+# Services this box OFFERS — the network surfaces a consumer reaches. Each binds
+# to a NIC above; the site overlay fills that NIC's address.
+service_binding:
+  modbus-tcp: { service_protocol: modbus_tcp, network_interface: eth0, port: 502 }
+  web-ui: { service_protocol: https, network_interface: eth0, port: 443 }
+
+# How to TALK to the box. The reachable surface (port 502, its NIC) is in
+# `service` above — this is the DECODE contract: framing + register map.
+#
+# Registers extracted from the foxess_modbus HA integration for Inv.H3_SMART.
+# Scope is the registers backing entities we consume today; write/control
+# registers are out of scope.

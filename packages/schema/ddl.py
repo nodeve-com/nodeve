@@ -100,7 +100,7 @@ if "dump" in sys.argv[1:]:
     from linkml.utils.sqlutils import main
 
     sys.argv = ["linkml-sqldb", "dump", "-s", SCHEMA, "-C", TOP_CLASS,
-                "-D", "../gen/catalog.db", "../gen/catalog.yaml"]
+                "-D", "../gen/catalog.db", "../gen/catalog.json"]
     main()
 else:
     print(SQLTableGenerator(SchemaView(SCHEMA).schema).generate_ddl(top_class=TOP_CLASS))

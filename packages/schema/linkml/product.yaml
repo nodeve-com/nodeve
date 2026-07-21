@@ -26,6 +26,9 @@ classes:
   DeviceModel:
     annotations:
       sql_table: device_model
+      # permalink root = the device TYPE's slug, not this table's name — the
+      # normalizer reads the named slot's value as the path root
+      path_root: device_type
     description: A catalogued device model — the assembly of feature-of-interest rows its type calls for.
     slots:
       [
@@ -45,7 +48,11 @@ classes:
       product: { required: true }
       device_type: { required: true }
 slots:
-  model: {}
+  model:
+    {
+      title: Model,
+      description: 'what the thing is called — the model designation on the nameplate',
+    }
   series: {}
   ac_ports:
     {
@@ -76,7 +83,12 @@ slots:
       inlined_as_list: true,
       description: 'environment ROWS — the things a temperature/humidity reading attaches to; role says which (ambient = rated operating conditions, enclosure = internal sensor)',
     }
-  manufacturer: { range: Manufacturer }
+  manufacturer:
+    {
+      range: Manufacturer,
+      title: Manufacturer,
+      description: 'FK — the organization that made this thing',
+    }
   network_interfaces:
     {
       range: NetworkInterface,

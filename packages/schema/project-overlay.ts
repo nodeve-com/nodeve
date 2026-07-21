@@ -76,11 +76,9 @@ for (const dt of deviceTypes) {
 			is_a: `${ftName}Feature`,
 			slot_usage: { role: { range: `${dtName}${ftName}Role` } },
 		};
-		// the DeviceModel slot this feature type fills, and whether any socket on
-		// it is mandatory — required-ness is a binding row, not a hand decision
-		const slot = { 'ac-phase': 'ac_ports', 'dc-port': 'dc_ports', environment: 'environments' }[
-			ftSlug
-		];
+		// the DeviceModel slot this feature type fills (its bound_as row fact), and
+		// whether any socket on it is mandatory — both binding data, no hand map
+		const slot = featureTypes.find((f) => f.slug === ftSlug)?.bound_as as string | undefined;
 		if (slot)
 			slotUsage[slot] = {
 				range: socketClass,

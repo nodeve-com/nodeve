@@ -1,0 +1,44 @@
+register_map:
+  slug: foxess-h3-smart # own row — many H3 variants FK it
+  unit_id: 247 # FoxESS H3 AUX default; overridable downstream
+  # All H3_SMART data registers are HOLDING. 32-bit values span two registers,
+  # high word at the LOWER address; 16-bit registers are big-endian (Modbus std).
+  register_type: holding
+  word_order: high_first
+
+  # PROVENANCE + STATUS (investigated 2026-07, not device-confirmed): both range
+  # kinds are copied verbatim from foxess_modbus's H3_SMART_REGISTERS
+  # (inverter_profiles.py, traceable to nathanmarlor/foxess_modbus discussion #792).
+  # NOT our own measurement — treat as SUSPECT, not load-bearing. Neither guards a
+  # single register we poll (ours are all 39xxx/38xxx). Do NOT architect a hard
+  # split boundary around these until a live probe confirms the hazard:
+  #
+  #   mbpoll -m tcp -a 247 -t 4 -r 41001 -c 15 <ip>   # invalid: exception vs clean?
+  #   mbpoll -m tcp -a 247 -t 4 -r 37609 -c 28 <ip>   # individual_read: garbage vs sane?
+  #
+  # invalid: all in the 410xx block upstream leaves unspecified. On the SMART the
+  # actual control/write registers live at 46xxx/49xxx — nothing is at 41xxx — so
+  # this is defensive padding around an empty region, likely inert.
+  # individual_read: the real one — overlaps the BMS battery block (a known FoxESS
+  # BMS-passthrough quirk), but dormant until we add battery telemetry.
+  constraint_range:
+    - { range_type: invalid, start: 41001, end: 41006, note: unspecified 410xx; unverified }
+    - { range_type: invalid, start: 41012, end: 41013, note: unspecified 410xx; unverified }
+    - { range_type: invalid, start: 41015, end: 41015, note: unspecified 410xx; unverified }
+    - {
+        range_type: individual_read,
+        start: 37609,
+        end: 37620,
+        note: 'battery + BMS telemetry (V, I, SoC, temp, cell temps/mV); unverified, not read today',
+      }
+    - {
+        range_type: individual_read,
+        start: 37632,
+        end: 37636,
+        note: 'BMS energy registers (kWh remaining); unverified, not read today',
+      }
+
+  # Each register LINKS to an interval the feature tree offers. The topic is
+  # DERIVED from that link downstream, not authored here. `unit` appears ONLY when
+  # it isn't the kind's SI/coherent unit (V/A/W/K omitted; kW, kWh, °C kept).
+  # For 32-bit values the address is the high word; the low word is address + 1.

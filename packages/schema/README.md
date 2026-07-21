@@ -30,7 +30,7 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 | `format.ts` | formatting gate over authored yaml (`--check` for precommit) |
 | `project-overlay.ts` | registry rows → `gen/nodeve-projected.yaml`, the validation overlay |
 | `check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |
-| `normalize/catalog.ts` | THE normalizer — authored docs → normalized rows → `gen/catalog.yaml`, the one root object `linkml-sqldb` ingests; pass a data file to print its rows |
+| `normalize/catalog.ts` | THE normalizer — authored docs → normalized rows → `gen/catalog.json`, the one root object `linkml-sqldb` ingests; pass a data file to print its rows |
 | `ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no hook over backref columns |
 | `data/device_model/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | table-like authored vocabularies and policy rows. **Placeholder fixtures — not normative** |
