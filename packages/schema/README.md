@@ -75,6 +75,8 @@ Reusable tables that device types assemble — not wide tables repeating column 
 | energy channels | `flow_direction` + `period` columns | four rows on one kind |
 | combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |
 | modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
+| settings_schema | `Setting` + `DomainMember` rows | commissioning knob; a gate FKs the setting AND the member, so a typo'd value dies at normalize |
+| modbus decode | `Channel` + `RegisterFlag` rows | categorical sibling of `Interval` — enum-valued, no quantity_kind. Flag words are registers in the ONE map (`flag:` list, index = bit, null = unidentified); channel members mint from the labels + `empty`. Semantics on the model, wire mapping on the map |
 
 ### Identity
 

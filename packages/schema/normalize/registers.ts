@@ -5,6 +5,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename } from 'node:path';
 import { parse } from 'yaml';
 import { atRoot, classByName, fkTable, seg, SLUG } from './model.ts';
+import type { ValueContracts } from './values.ts';
 
 export type Doc = Record<string, unknown>;
 export const isMap = (v: unknown): v is Doc => !!v && typeof v === 'object' && !Array.isArray(v);
@@ -94,6 +95,7 @@ export type WalkState = {
 	intervals: Set<string>;
 	measurable: Set<string>;
 	mint(path: string): string;
+	values: ValueContracts;
 };
 
 export type PendingGate = { gate: Doc; ref: Doc; trail: string };
@@ -156,16 +158,47 @@ export function registerMap(walk: WalkState, body: unknown, trail: string): Doc 
 const list = (v: unknown, trail: string): unknown[] =>
 	Array.isArray(v) ? v : die(trail, 'expected a list');
 
-/** one register → its interval FK + the instance-picking part */
+/** one register → its target FK: an interval (quantitative, + the
+ * instance-picking part) or a channel (categorical, + its bit flags) */
 function registerRow(at: { walk: WalkState; mNode: string }, row: unknown, trail: string): Doc {
 	if (!isMap(row)) die(trail, 'expected a map');
-	const { target, ...cols } = row;
+	const { target, flag, ...cols } = row;
 	if (!isMap(target)) die(`${trail}.target`, 'expected a measurand ref');
-	return {
+	for (const k of ['node', 'part', 'interval', 'channel', 'flags'])
+		if (k in cols) die(`${trail}.${k}`, 'derived — author target/flag instead');
+	const base: Doc = {
 		...columns('ModbusRegister', cols, trail),
-		// derived last — authored node/part/interval must never override these
 		node: at.walk.mint(`${at.mNode}/${cols.address}`),
-		part: target.part === undefined ? '_' : String(target.part),
-		interval: intervalRef(at.walk, target, { trail: `${trail}.target`, named: false }),
 	};
+	if ('channel' in target) return channelRow(at.walk, { base, target, flag }, trail);
+	if (flag !== undefined) die(`${trail}.flag`, 'flags need a channel target');
+	base.part = target.part === undefined ? '_' : String(target.part);
+	base.interval = intervalRef(at.walk, target, { trail: `${trail}.target`, named: false });
+	return base;
+}
+
+/** a categorical register — channel FK + the word's identified bits */
+function channelRow(
+	walk: WalkState,
+	row: { base: Doc; target: Doc; flag: unknown },
+	trail: string,
+): Doc {
+	const { base } = row;
+	const { channel, ...rest } = row.target;
+	if (Object.keys(rest).length) die(`${trail}.target`, `unexpected keys ${Object.keys(rest)}`);
+	if (typeof channel !== 'string') die(`${trail}.target.channel`, 'expected a channel slug');
+	base.channel = walk.values.channelNode(channel, `${trail}.target.channel`);
+	if (row.flag !== undefined)
+		base.flags = list(row.flag, `${trail}.flag`).flatMap((label, bit) =>
+			label === null
+				? []
+				: [
+						{
+							node: walk.mint(`${base.node}/${bit}`),
+							bit,
+							member: walk.values.channelMember(channel, String(label), `${trail}.flag[${bit}]`),
+						},
+					],
+		);
+	return base;
 }

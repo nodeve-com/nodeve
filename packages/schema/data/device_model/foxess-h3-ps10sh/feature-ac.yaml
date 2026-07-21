@@ -60,18 +60,18 @@ feature_of_interest:
       '*':
         voltage:
           # 220/230 are a commissioning choice, not two simultaneous limits:
-          # each gates on the single-valued grid_region setting, so exactly one
+          # each gates on the single-valued grid-region setting, so exactly one
           # resolves. A lone nominal IS the nameplate rating.
           nominal-br-220v-60hz:
             valued_range: { value: 220 }
             specification:
               severity: nominal
-              gated_by: { setting: grid_region, equals: br-220v-60hz }
+              gated_by: { setting: grid-region, equals: br-220v-60hz }
           nominal-eu-230v-50hz:
             valued_range: { value: 230 }
             specification:
               severity: nominal
-              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+              gated_by: { setting: grid-region, equals: eu-230v-50hz }
           measured:
             valued_range: { min: 0, max: 250 }
             measurement: { resolution: 0.1 }
@@ -82,12 +82,12 @@ feature_of_interest:
             valued_range: { value: 60, margin: 0.05 }
             specification:
               severity: nominal
-              gated_by: { setting: grid_region, equals: br-220v-60hz }
+              gated_by: { setting: grid-region, equals: br-220v-60hz }
           nominal-eu-230v-50hz:
             valued_range: { value: 50, margin: 0.05 }
             specification:
               severity: nominal
-              gated_by: { setting: grid_region, equals: eu-230v-50hz }
+              gated_by: { setting: grid-region, equals: eu-230v-50hz }
         electric-current:
           continuous:
             valued_range: { max: 15.2 }

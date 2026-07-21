@@ -45,6 +45,7 @@ classes:
       # row's identity and its node path segment. Absent slug = no derivable node.
       # `_` = the one unnamed interval — stored verbatim, elided only on render.
       slug: { required: true, pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' }
+      part: { required: true }
 
   Specification:
     annotations:
@@ -64,8 +65,8 @@ classes:
     annotations:
       sql_table: condition
     description: >-
-      Gate on an interval — either a commissioning-setting equality or a pointer at another interval (the derate anchor).
-    slots: [node, setting_key, equals, gated_by]
+      Gate on an interval — either a commissioning-setting equality (both halves FKs, so a typo dies at normalize) or a pointer at another interval (the derate anchor).
+    slots: [node, setting, equals, gated_by]
 
   FeatureOfInterest:
     annotations:
@@ -106,11 +107,6 @@ slots:
       description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating)',
       close_mappings: [cim:OperationalLimitType.acceptableDuration],
     }
-  equals:
-    {
-      title: Equals,
-      description: 'the value the gated setting must hold for the band to apply — one value per gate; a band valid for several values is several bands (OR = separate bands)',
-    }
   margin: { range: float, title: Margin, description: symmetric RELATIVE band (±0.05 = ±5%) }
   margin_lower:
     {
@@ -145,7 +141,6 @@ slots:
       description: "quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14); omit when the datasheet doesn't state it, never fabricate",
       exact_mappings: ['vim:4.14', ssn-system:Resolution],
     }
-  setting_key: { annotations: { camel: settingKey } }
   tolerance:
     { range: float, title: Tolerance, description: 'symmetric ABSOLUTE band (±200, in unit)' }
   tolerance_lower:
@@ -170,6 +165,12 @@ slots:
       close_mappings: [qudt:Quantity],
     }
   conditions: { range: Condition, multivalued: true, inlined_as_list: true }
+  equals:
+    {
+      range: DomainMember,
+      title: Equals,
+      description: 'FK — the member the gated setting must hold for the band to apply; one value per gate — a band valid for several values is several bands (OR = separate bands)',
+    }
   gated_by:
     {
       range: Interval,
@@ -198,6 +199,8 @@ slots:
       description: 'how THIS feature subdivides — a, b, c for three-phase; l1, l2 for split; 1, 2, 3 for trackers. Zero rows = combined only. Per-model, because models differ',
     }
   rating: { range: Rating }
+  setting:
+    { range: Setting, title: Setting, description: 'FK — the commissioning knob this gate tests' }
   severity: { range: Severity }
   specifications:
     {

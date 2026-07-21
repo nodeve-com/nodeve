@@ -23,11 +23,20 @@ classes:
     annotations:
       sql_table: modbus_register
     description: >-
-      One register → one measurand: FK to the interval row it reads (the relational rewrite of grimoire's interval_item) + `part` naming WHICH instance when the interval is a `*` default. Quantity, feature, and channel all derive from the interval — no discriminator columns.
-    slots: [node, address, part, interval, scale, decimals, unit, datatype, note]
+      One register → one measurand, quantitative OR categorical (exactly one of interval / channel, enforced at normalize). Quantitative: FK to the interval row it reads (the relational rewrite of grimoire's interval_item) + `part` naming WHICH instance when the interval is a `*` default — quantity, feature, and energy channel all derive from the interval, no discriminator columns. Categorical: FK to the Channel it feeds; its identified bits are RegisterFlag rows.
+    slots: [node, address, part, interval, channel, scale, decimals, unit, datatype, flags, note]
     slot_usage:
       datatype: { required: true }
-      interval: { required: true }
+
+  RegisterFlag:
+    annotations:
+      sql_table: register_flag
+    description: >-
+      One identified bit of a flag word — bit position → the channel member it raises. Unmapped bits have no row; a word read as part of a group with no identified bits has a register row and zero flags.
+    slots: [node, bit, member]
+    slot_usage:
+      bit: { required: true }
+      member: { required: true }
 slots:
   address:
     {
@@ -35,6 +44,14 @@ slots:
       required: true,
       title: Register address,
       description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)',
+    }
+  bit:
+    {
+      range: integer,
+      minimum_value: 0,
+      maximum_value: 15,
+      title: Bit,
+      description: 'bit position within the 16-bit word, 0 = LSB',
     }
   decimals:
     {
@@ -60,6 +77,12 @@ slots:
       description: 'Modbus slave/unit id — a known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)',
       annotations: { camel: unitId },
     }
+  channel:
+    {
+      range: Channel,
+      title: Channel,
+      description: "FK — the categorical channel this register feeds; the register's flag labels mint that channel's members",
+    }
   constraint_ranges:
     {
       range: RegisterRange,
@@ -73,10 +96,23 @@ slots:
       title: Value type,
       description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it',
     }
+  flags:
+    {
+      range: RegisterFlag,
+      multivalued: true,
+      inlined_as_list: true,
+      description: "this word's identified bits; authored as a `flag` label list where index = bit, null = unidentified",
+    }
   interval:
     {
       range: Interval,
       description: "FK — the interval row this register reads; a `*`-part interval resolves per-instance via the register's own part",
+    }
+  member:
+    {
+      range: DomainMember,
+      title: Member,
+      description: 'FK — the channel member this bit raises when set',
     }
   register_type:
     {

@@ -13,9 +13,9 @@ product:
 # Commissioning knob — the grid region the box is wired for. The site fixes it
 # once at install; the nominal voltage/frequency bands below gate on it.
 setting:
-  grid_region:
+  grid-region:
     required: true
-    one_of: [eu-230v-50hz, br-220v-60hz]
+    member: [eu-230v-50hz, br-220v-60hz]
 
 content:
   en:
@@ -31,7 +31,7 @@ content:
       AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
       
       
-      AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid_region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
+      AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid-region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
       
       
       The GRID CT / utility meter (foxess grid_ct) — net power at the grid connection point, signed (feed-in / export +, grid consumption / import −), plus the directional lifetime + daily energy accumulators. This is the metering point (cim:ExternalNetworkInjection / saref4grid:PowerLine), distinct from the inverter's own AC output above.
@@ -65,7 +65,4 @@ content:
         battery block (a known FoxESS BMS-passthrough quirk), but dormant until we add battery telemetry.
       
       
-      modbus_decodes — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). They link `feature_id: inverter` + a category field (`state` / `fault`) instead of a quantity_kind, since they're enum-valued, not VIM-ranged. The slug property stays inline here.
-      
-      
-      Inverter run state (foxess inverter_state) — the device's status GROUP, words 1/2/3 at 39063/39064/39065, reported as a SET — EVERY set bit across the group, not collapsed to one. Bits stay in the group the device puts them in — the word1-bit6 fault flag is reported HERE, where it physically lives, not relocated onto the separate fault_code group (39067–69). `empty: unknown` when no bit is set. word2 (39064) is read as part of the group; its bits aren't identified yet. labels[i] maps addresses[i].
+      Channels — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). Enum-valued, not VIM-ranged: no quantity_kind, no interval. Each flag word is a register in the ONE map targeting its channel; the channel's members mint from the flag labels plus `empty`. Per-word bit identities live with the registers in decode.yaml.

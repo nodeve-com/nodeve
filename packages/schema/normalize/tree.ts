@@ -24,6 +24,7 @@ import {
 	type PendingGate,
 	type WalkState,
 } from './registers.ts';
+import { ValueContracts } from './values.ts';
 
 /** one authored feature in flight — trail, vocabularies, accumulated rows */
 type FeatureCtx = {
@@ -46,6 +47,7 @@ class DeviceWalk implements WalkState {
 	private readonly sockets: Record<string, Doc>;
 	private readonly addPath: (p: string) => void;
 	private readonly pendingGates: PendingGate[] = [];
+	readonly values: ValueContracts;
 	private readonly model: Doc;
 	private readonly rootSlot: string;
 
@@ -64,6 +66,7 @@ class DeviceWalk implements WalkState {
 		this.sockets = (deviceTypeBySlug[dt]?.socket_binding ??
 			die(this.slug, `unknown device_type ${dt}`)) as Record<string, Doc>;
 		this.node = this.mint(`node:${dt}/${this.slug}`);
+		this.values = new ValueContracts(this.node, (p) => this.mint(p));
 		this.model = { node: this.node, slug: this.slug, [rootSlot]: `node:device-type/${dt}` };
 	}
 
@@ -87,6 +90,8 @@ class DeviceWalk implements WalkState {
 			this.featureType(String(ftSlug), roleMap);
 		if (registerBlock !== undefined)
 			this.model.register_map = registerMap(this, registerBlock, `${this.slug}.register_map`);
+		const channels = this.values.channelRows(`${this.slug}.channel`);
+		if (channels) this.model.channels = channels;
 		for (const g of this.pendingGates)
 			g.gate.gated_by = intervalRef(this, g.ref, { trail: g.trail, named: true });
 		return this.model;
@@ -98,15 +103,15 @@ class DeviceWalk implements WalkState {
 		const trail = `${this.slug}.${key}`;
 		if (key === this.rootSlot) return; // already lifted in the constructor
 		const cls = classByTable[key];
-		if (cls) {
+		if (cls === 'Setting') this.model.settings = this.values.settingRows(value, trail);
+		else if (cls === 'Channel') this.values.channelBlock(value, trail);
+		else if (cls) {
 			const owner = (classByName.DeviceModel.slots ?? []).find((s) => slotByName[s]?.range === cls);
 			if (!owner) die(trail, `DeviceModel has no slot ranging ${cls}`);
 			this.model[owner!] = keysOf(cls).length
 				? this.childRows(cls, value, trail)
 				: { node: this.node, ...columns(cls, value, trail) };
-		} else if (key === 'setting' || key === 'decode')
-			console.warn(`SKIP ${trail}: no schema yet — block dropped from catalog`);
-		else die(trail, 'unrecognized authored key');
+		} else die(trail, 'unrecognized authored key');
 	}
 
 	/** keyed child map → rows under this model's node; the key slot and the
@@ -278,8 +283,7 @@ class DeviceWalk implements WalkState {
 		if ('setting' in ref) {
 			const { setting, equals, ...rest } = ref;
 			if (Object.keys(rest).length) die(trail, `unexpected keys ${Object.keys(rest)}`);
-			gate.setting_key = setting;
-			gate.equals = equals;
+			Object.assign(gate, this.values.settingGate(setting, equals, trail));
 			// gates resolve AFTER the whole tree — a derate may point at a feature
 			// that is walked later (ac-phase → environment)
 		} else this.pendingGates.push({ gate, ref, trail });

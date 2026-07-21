@@ -40,6 +40,8 @@ classes:
         network_interfaces,
         services,
         register_map,
+        settings,
+        channels,
         ac_ports,
         dc_ports,
         environments,

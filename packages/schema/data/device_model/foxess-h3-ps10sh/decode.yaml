@@ -1,66 +1,85 @@
-decode:
+# Categorical channels of the WHOLE box — a run mode / fault set aggregates
+# across PV, grid, BMS, temp; no sub-feature owns them. Enum-valued, not
+# VIM-ranged: no quantity_kind, no interval. Each flag word is a register in
+# the ONE map (address planning sees the whole read set); its `flag` list maps
+# bit → member (index = bit, null = unidentified). Channel members derive from
+# those labels — authored once, at the wire.
+channel:
+  # foxess inverter_state — the status GROUP, words 1/2/3 at 39063–39065,
+  # reported as a SET: EVERY set bit across the group. Bits stay in the word
+  # the device puts them in — the word1-bit6 fault flag lives HERE, not
+  # relocated onto fault-code. `empty: unknown` when no bit is set.
   run-state:
-    kind: flags
     empty: unknown
-    join: '; '
-    word:
-      - address: 39063
-        label: [standby, null, on-grid, null, null, null, fault]
-      - address: 39064
-        label: [] # read as part of the group; its bits aren't identified yet
-      - address: 39065
-        label: [off-grid]
+  # foxess fault_code — words 1/2/3 at 39067–39069.
   fault-code:
-    kind: flags
     empty: none
-    join: '; '
-    word:
-      - address: 39067
-        label:
-          - fault-pv-voltage-over
-          - fault-dc-arc
-          - fault-pv-string-connection-reverse
-          - null
-          - null
-          - null
-          - null
-          - fault-grid-lost
-          - fault-grid-voltage
-          - null
-          - null
-          - fault-grid-frequency
-          - null
-          - null
-          - fault-output-current-over
-          - fault-output-dc-current-over
-      - address: 39068
-        label:
-          - fault-residual-current-consistency
-          - fault-ground-connection
-          - fault-insulation-resistance-low
-          - fault-inverter-temperature-over
-          - null
-          - null
-          - null
-          - null
-          - null
-          - fault-energy-storage-equipment-abnormal
-          - fault-island-isolated
-          - null
-          - null
-          - null
-          - fault-off-grid-output-overload
-          - null
-      - address: 39069
-        label:
-          - null
-          - null
-          - null
-          - fault-fan-external
-          - fault-energy-storage-connection-reverse
-          - null
-          - null
-          - null
-          - null
-          - fault-meter-lost
-          - fault-bms-lost
+register_map:
+  register:
+    - address: 39063
+      datatype: uint16
+      target: { channel: run-state }
+      flag: [standby, null, on-grid, null, null, null, fault]
+    - address: 39064
+      datatype: uint16
+      target: { channel: run-state }
+      flag: [] # read as part of the group; its bits aren't identified yet
+    - address: 39065
+      datatype: uint16
+      target: { channel: run-state }
+      flag: [off-grid]
+    - address: 39067
+      datatype: uint16
+      target: { channel: fault-code }
+      flag:
+        - fault-pv-voltage-over
+        - fault-dc-arc
+        - fault-pv-string-connection-reverse
+        - null
+        - null
+        - null
+        - null
+        - fault-grid-lost
+        - fault-grid-voltage
+        - null
+        - null
+        - fault-grid-frequency
+        - null
+        - null
+        - fault-output-current-over
+        - fault-output-dc-current-over
+    - address: 39068
+      datatype: uint16
+      target: { channel: fault-code }
+      flag:
+        - fault-residual-current-consistency
+        - fault-ground-connection
+        - fault-insulation-resistance-low
+        - fault-inverter-temperature-over
+        - null
+        - null
+        - null
+        - null
+        - null
+        - fault-energy-storage-equipment-abnormal
+        - fault-island-isolated
+        - null
+        - null
+        - null
+        - fault-off-grid-output-overload
+        - null
+    - address: 39069
+      datatype: uint16
+      target: { channel: fault-code }
+      flag:
+        - null
+        - null
+        - null
+        - fault-fan-external
+        - fault-energy-storage-connection-reverse
+        - null
+        - null
+        - null
+        - null
+        - fault-meter-lost
+        - fault-bms-lost

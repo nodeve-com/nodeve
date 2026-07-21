@@ -24,6 +24,7 @@ imports:
   - core
   - taxonomy
   - features
+  - values
   - product
   - network
   - modbus
