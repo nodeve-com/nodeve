@@ -2,17 +2,7 @@ si_unit: VA
 accumulation: instantaneous
 broader: electric-power
 ref:
-  qudt-quantity-kind:
-    term: ApparentPower
-    match: exact
-  wikidata:
-    term: Q1930258
-    match: exact
-  ha-device-class:
-    term: apparent_power
-    match: exact
-content:
-  en:
-    title: Apparent Power
-  pt:
-    title: Potência aparente
+  qudt-quantity-kind: { term: ApparentPower, match: exact }
+  wikidata: { term: Q1930258, match: exact }
+  ha-device-class: { term: apparent_power, match: exact }
+content: { en: { title: Apparent Power }, pt: { title: Potência aparente } }

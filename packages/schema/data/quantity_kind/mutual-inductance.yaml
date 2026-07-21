@@ -1,11 +1,5 @@
 broader: inductance
 ref:
-  qudt-quantity-kind:
-    term: MutualInductance
-    match: exact
-  wikidata:
-    term: Q78101401
-    match: exact
-content:
-  en:
-    title: Mutual Inductance
+  qudt-quantity-kind: { term: MutualInductance, match: exact }
+  wikidata: { term: Q78101401, match: exact }
+content: { en: { title: Mutual Inductance } }

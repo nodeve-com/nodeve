@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ReactiveChargePerMass
-    match: exact
-content:
-  en:
-    title: Reactive Charge per Mass
+ref: { qudt-quantity-kind: { term: ReactiveChargePerMass, match: exact } }
+content: { en: { title: Reactive Charge per Mass } }

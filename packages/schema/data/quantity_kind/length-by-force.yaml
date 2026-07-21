@@ -1,8 +1,3 @@
 broader: work
-ref:
-  qudt-quantity-kind:
-    term: LengthByForce
-    match: exact
-content:
-  en:
-    title: Length Force
+ref: { qudt-quantity-kind: { term: LengthByForce, match: exact } }
+content: { en: { title: Length Force } }

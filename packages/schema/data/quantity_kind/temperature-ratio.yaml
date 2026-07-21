@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: TemperatureRatio
-    match: exact
-content:
-  en:
-    title: Temperature Ratio
+ref: { qudt-quantity-kind: { term: TemperatureRatio, match: exact } }
+content: { en: { title: Temperature Ratio } }

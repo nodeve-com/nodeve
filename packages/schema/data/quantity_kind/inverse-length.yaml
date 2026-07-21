@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: InverseLength
-    match: exact
-  wikidata:
-    term: Q1028259
-    match: exact
-content:
-  en:
-    title: Inverse Length
+  qudt-quantity-kind: { term: InverseLength, match: exact }
+  wikidata: { term: Q1028259, match: exact }
+content: { en: { title: Inverse Length } }

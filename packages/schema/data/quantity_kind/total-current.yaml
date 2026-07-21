@@ -1,11 +1,5 @@
 broader: electric-current
 ref:
-  qudt-quantity-kind:
-    term: TotalCurrent
-    match: exact
-  wikidata:
-    term: Q77679732
-    match: exact
-content:
-  en:
-    title: Total Current
+  qudt-quantity-kind: { term: TotalCurrent, match: exact }
+  wikidata: { term: Q77679732, match: exact }
+content: { en: { title: Total Current } }

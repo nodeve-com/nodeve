@@ -1,8 +1,3 @@
 broader: concentration
-ref:
-  qudt-quantity-kind:
-    term: AmountOfSubstanceIonConcentration
-    match: exact
-content:
-  en:
-    title: Amount of Substance Ion Concentration
+ref: { qudt-quantity-kind: { term: AmountOfSubstanceIonConcentration, match: exact } }
+content: { en: { title: Amount of Substance Ion Concentration } }

@@ -7,12 +7,10 @@ register_map:
       decimals: 2
       unit: kWh
       target:
-        {
-          feature: { type: dc-port, role: pv-tracker },
-          part: _,
-          quantity: active-energy,
-          interval: lifetime,
-        }
+        feature: { type: dc-port, role: pv-tracker }
+        part: _
+        quantity: active-energy
+        interval: lifetime
     # --- PV: daily generation (foxess solar_energy_today) ---
     - address: 39603
       datatype: uint32
@@ -20,81 +18,67 @@ register_map:
       decimals: 2
       unit: kWh
       target:
-        {
-          feature: { type: dc-port, role: pv-tracker },
-          part: _,
-          quantity: active-energy,
-          interval: daily,
-        }
+        feature: { type: dc-port, role: pv-tracker }
+        part: _
+        quantity: active-energy
+        interval: daily
     # --- PV string 1 (foxess pv1_*) ---
-    - {
-        address: 39070,
-        datatype: uint16,
-        scale: 0.1,
-        decimals: 1,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: voltage },
-      }
-    - {
-        address: 39071,
-        datatype: uint16,
-        scale: 0.01,
-        decimals: 2,
-        target:
-          { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: electric-current },
-      }
-    - {
-        address: 39279,
-        datatype: int32,
-        scale: 0.001,
-        decimals: 3,
-        unit: kW,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: active-power },
-      }
+    - address: 39070
+      datatype: uint16
+      scale: 0.1
+      decimals: 1
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: voltage }
+    - address: 39071
+      datatype: uint16
+      scale: 0.01
+      decimals: 2
+      target:
+        feature: { type: dc-port, role: pv-tracker }
+        part: '1'
+        quantity: electric-current
+    - address: 39279
+      datatype: int32
+      scale: 0.001
+      decimals: 3
+      unit: kW
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '1', quantity: active-power }
     # --- PV string 2 (foxess pv2_*) ---
-    - {
-        address: 39072,
-        datatype: uint16,
-        scale: 0.1,
-        decimals: 1,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: voltage },
-      }
-    - {
-        address: 39073,
-        datatype: uint16,
-        scale: 0.01,
-        decimals: 2,
-        target:
-          { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: electric-current },
-      }
-    - {
-        address: 39281,
-        datatype: int32,
-        scale: 0.001,
-        decimals: 3,
-        unit: kW,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: active-power },
-      }
+    - address: 39072
+      datatype: uint16
+      scale: 0.1
+      decimals: 1
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: voltage }
+    - address: 39073
+      datatype: uint16
+      scale: 0.01
+      decimals: 2
+      target:
+        feature: { type: dc-port, role: pv-tracker }
+        part: '2'
+        quantity: electric-current
+    - address: 39281
+      datatype: int32
+      scale: 0.001
+      decimals: 3
+      unit: kW
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '2', quantity: active-power }
     # --- PV string 3 (foxess pv3_*) ---
-    - {
-        address: 39074,
-        datatype: uint16,
-        scale: 0.1,
-        decimals: 1,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: voltage },
-      }
-    - {
-        address: 39075,
-        datatype: uint16,
-        scale: 0.01,
-        decimals: 2,
-        target:
-          { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: electric-current },
-      }
-    - {
-        address: 39283,
-        datatype: int32,
-        scale: 0.001,
-        decimals: 3,
-        unit: kW,
-        target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: active-power },
-      }
+    - address: 39074
+      datatype: uint16
+      scale: 0.1
+      decimals: 1
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: voltage }
+    - address: 39075
+      datatype: uint16
+      scale: 0.01
+      decimals: 2
+      target:
+        feature: { type: dc-port, role: pv-tracker }
+        part: '3'
+        quantity: electric-current
+    - address: 39283
+      datatype: int32
+      scale: 0.001
+      decimals: 3
+      unit: kW
+      target: { feature: { type: dc-port, role: pv-tracker }, part: '3', quantity: active-power }

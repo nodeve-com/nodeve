@@ -1,6 +1,2 @@
 bound_as: dc_ports
-quantity_binding:
-  voltage: {}
-  electric-current: {}
-  active-power: {}
-  active-energy: {}
+quantity_binding: { voltage: {}, electric-current: {}, active-power: {}, active-energy: {} }

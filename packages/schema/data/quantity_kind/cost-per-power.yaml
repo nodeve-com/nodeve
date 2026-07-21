@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: CostPerPower
-    match: exact
-content:
-  en:
-    title: Cost per Power
+ref: { qudt-quantity-kind: { term: CostPerPower, match: exact } }
+content: { en: { title: Cost per Power } }

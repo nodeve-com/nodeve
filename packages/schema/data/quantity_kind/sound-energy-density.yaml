@@ -1,11 +1,5 @@
 broader: energy-density
 ref:
-  qudt-quantity-kind:
-    term: SoundEnergyDensity
-    match: exact
-  wikidata:
-    term: Q2230505
-    match: exact
-content:
-  en:
-    title: Sound Energy Density
+  qudt-quantity-kind: { term: SoundEnergyDensity, match: exact }
+  wikidata: { term: Q2230505, match: exact }
+content: { en: { title: Sound Energy Density } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureBasedMassFlow
-    match: exact
-content:
-  en:
-    title: Pressure-based Mass Flow
+ref: { qudt-quantity-kind: { term: PressureBasedMassFlow, match: exact } }
+content: { en: { title: Pressure-based Mass Flow } }

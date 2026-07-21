@@ -1,8 +1,3 @@
 broader: thermodynamic-temperature
-ref:
-  qudt-quantity-kind:
-    term: CorrelatedColorTemperature
-    match: exact
-content:
-  en:
-    title: Correlated Colour Temperature
+ref: { qudt-quantity-kind: { term: CorrelatedColorTemperature, match: exact } }
+content: { en: { title: Correlated Colour Temperature } }

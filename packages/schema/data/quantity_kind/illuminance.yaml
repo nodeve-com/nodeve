@@ -1,11 +1,5 @@
 broader: luminous-flux-per-area
 ref:
-  qudt-quantity-kind:
-    term: Illuminance
-    match: exact
-  wikidata:
-    term: Q194411
-    match: exact
-content:
-  en:
-    title: Illuminance
+  qudt-quantity-kind: { term: Illuminance, match: exact }
+  wikidata: { term: Q194411, match: exact }
+content: { en: { title: Illuminance } }

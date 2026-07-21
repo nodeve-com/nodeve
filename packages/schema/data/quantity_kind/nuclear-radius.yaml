@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: NuclearRadius
-    match: exact
-  wikidata:
-    term: Q3535676
-    match: exact
-content:
-  en:
-    title: Nuclear Radius
+  qudt-quantity-kind: { term: NuclearRadius, match: exact }
+  wikidata: { term: Q3535676, match: exact }
+content: { en: { title: Nuclear Radius } }

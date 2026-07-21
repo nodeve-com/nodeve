@@ -1,8 +1,3 @@
 broader: specific-power
-ref:
-  qudt-quantity-kind:
-    term: ElectricalPowerToMassRatio
-    match: exact
-content:
-  en:
-    title: Electrical Power to Mass Ratio
+ref: { qudt-quantity-kind: { term: ElectricalPowerToMassRatio, match: exact } }
+content: { en: { title: Electrical Power to Mass Ratio } }

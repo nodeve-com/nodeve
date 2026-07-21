@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricChargePerAmountOfSubstance
-    match: exact
-  wikidata:
-    term: Q97061171
-    match: exact
-content:
-  en:
-    title: Electric Charge per Amount of Substance
+  qudt-quantity-kind: { term: ElectricChargePerAmountOfSubstance, match: exact }
+  wikidata: { term: Q97061171, match: exact }
+content: { en: { title: Electric Charge per Amount of Substance } }

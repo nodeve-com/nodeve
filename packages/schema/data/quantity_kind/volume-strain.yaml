@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: VolumeStrain
-    match: exact
-  wikidata:
-    term: Q73432507
-    match: exact
-content:
-  en:
-    title: Volume Strain
+  qudt-quantity-kind: { term: VolumeStrain, match: exact }
+  wikidata: { term: Q73432507, match: exact }
+content: { en: { title: Volume Strain } }

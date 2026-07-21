@@ -1,11 +1,5 @@
 broader: impedance
 ref:
-  qudt-quantity-kind:
-    term: ModulusOfImpedance
-    match: exact
-  wikidata:
-    term: Q25457909
-    match: exact
-content:
-  en:
-    title: Modulus of Impedance
+  qudt-quantity-kind: { term: ModulusOfImpedance, match: exact }
+  wikidata: { term: Q25457909, match: exact }
+content: { en: { title: Modulus of Impedance } }

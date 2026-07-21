@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureRelatedVolume
-    match: exact
-content:
-  en:
-    title: 'Temperature-related Volume  '
+ref: { qudt-quantity-kind: { term: TemperatureRelatedVolume, match: exact } }
+content: { en: { title: 'Temperature-related Volume  ' } }

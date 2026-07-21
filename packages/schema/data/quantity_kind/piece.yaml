@@ -1,8 +1,3 @@
 broader: count
-ref:
-  qudt-quantity-kind:
-    term: Piece
-    match: exact
-content:
-  en:
-    title: Piece
+ref: { qudt-quantity-kind: { term: Piece, match: exact } }
+content: { en: { title: Piece } }

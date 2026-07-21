@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularAcceleration
-    match: exact
-  wikidata:
-    term: Q186300
-    match: exact
-content:
-  en:
-    title: Angular Acceleration
+  qudt-quantity-kind: { term: AngularAcceleration, match: exact }
+  wikidata: { term: Q186300, match: exact }
+content: { en: { title: Angular Acceleration } }

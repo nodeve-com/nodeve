@@ -1,11 +1,5 @@
 broader: stochastic-process
 ref:
-  qudt-quantity-kind:
-    term: Activity
-    match: exact
-  wikidata:
-    term: Q317949
-    match: exact
-content:
-  en:
-    title: Activity
+  qudt-quantity-kind: { term: Activity, match: exact }
+  wikidata: { term: Q317949, match: exact }
+content: { en: { title: Activity } }

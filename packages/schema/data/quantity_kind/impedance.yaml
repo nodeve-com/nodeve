@@ -1,11 +1,5 @@
 broader: resistance
 ref:
-  qudt-quantity-kind:
-    term: Impedance
-    match: exact
-  wikidata:
-    term: Q179043
-    match: exact
-content:
-  en:
-    title: Impedance
+  qudt-quantity-kind: { term: Impedance, match: exact }
+  wikidata: { term: Q179043, match: exact }
+content: { en: { title: Impedance } }

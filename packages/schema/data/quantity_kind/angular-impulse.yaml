@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularImpulse
-    match: exact
-  wikidata:
-    term: Q73428743
-    match: exact
-content:
-  en:
-    title: Angular Impulse
+  qudt-quantity-kind: { term: AngularImpulse, match: exact }
+  wikidata: { term: Q73428743, match: exact }
+content: { en: { title: Angular Impulse } }

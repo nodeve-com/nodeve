@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: Transmittance
-    match: exact
-  wikidata:
-    term: Q1427863
-    match: exact
-content:
-  en:
-    title: Transmittance
+  qudt-quantity-kind: { term: Transmittance, match: exact }
+  wikidata: { term: Q1427863, match: exact }
+content: { en: { title: Transmittance } }

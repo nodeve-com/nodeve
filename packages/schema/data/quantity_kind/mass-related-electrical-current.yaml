@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassRelatedElectricalCurrent
-    match: exact
-content:
-  en:
-    title: Mass-related Electrical Current
+ref: { qudt-quantity-kind: { term: MassRelatedElectricalCurrent, match: exact } }
+content: { en: { title: Mass-related Electrical Current } }

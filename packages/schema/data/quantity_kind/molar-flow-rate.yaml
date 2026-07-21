@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MolarFlowRate
-    match: exact
-content:
-  en:
-    title: Molar Flow Rate
+ref: { qudt-quantity-kind: { term: MolarFlowRate, match: exact } }
+content: { en: { title: Molar Flow Rate } }

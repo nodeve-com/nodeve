@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MassieuFunction
-    match: exact
-  wikidata:
-    term: Q3077625
-    match: exact
-content:
-  en:
-    title: Massieu Function
+  qudt-quantity-kind: { term: MassieuFunction, match: exact }
+  wikidata: { term: Q3077625, match: exact }
+content: { en: { title: Massieu Function } }

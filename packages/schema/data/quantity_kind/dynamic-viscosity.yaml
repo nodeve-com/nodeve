@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: DynamicViscosity
-    match: exact
-  wikidata:
-    term: Q15152757
-    match: exact
-content:
-  en:
-    title: Dynamic Viscosity
+  qudt-quantity-kind: { term: DynamicViscosity, match: exact }
+  wikidata: { term: Q15152757, match: exact }
+content: { en: { title: Dynamic Viscosity } }

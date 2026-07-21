@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: FundamentalReciprocalLatticeVector
-    match: exact
-  wikidata:
-    term: Q105475399
-    match: exact
-content:
-  en:
-    title: Fundamental Reciprocal Lattice Vector
+  qudt-quantity-kind: { term: FundamentalReciprocalLatticeVector, match: exact }
+  wikidata: { term: Q105475399, match: exact }
+content: { en: { title: Fundamental Reciprocal Lattice Vector } }

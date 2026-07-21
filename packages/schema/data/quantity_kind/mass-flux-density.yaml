@@ -1,8 +1,3 @@
 broader: mass-per-area-time
-ref:
-  qudt-quantity-kind:
-    term: MassFluxDensity
-    match: exact
-content:
-  en:
-    title: Mass Flux Density
+ref: { qudt-quantity-kind: { term: MassFluxDensity, match: exact } }
+content: { en: { title: Mass Flux Density } }

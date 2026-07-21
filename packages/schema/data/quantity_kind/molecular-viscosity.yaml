@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MolecularViscosity
-    match: exact
-content:
-  en:
-    title: Molecular Viscosity
+ref: { qudt-quantity-kind: { term: MolecularViscosity, match: exact } }
+content: { en: { title: Molecular Viscosity } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureBasedDensity
-    match: exact
-content:
-  en:
-    title: Temperature-based Density
+ref: { qudt-quantity-kind: { term: TemperatureBasedDensity, match: exact } }
+content: { en: { title: Temperature-based Density } }

@@ -1,11 +1,5 @@
 broader: magnetic-flux-density
 ref:
-  qudt-quantity-kind:
-    term: UpperCriticalMagneticFluxDensity
-    match: exact
-  wikidata:
-    term: Q106127634
-    match: exact
-content:
-  en:
-    title: Upper Critical Magnetic Flux Density
+  qudt-quantity-kind: { term: UpperCriticalMagneticFluxDensity, match: exact }
+  wikidata: { term: Q106127634, match: exact }
+content: { en: { title: Upper Critical Magnetic Flux Density } }

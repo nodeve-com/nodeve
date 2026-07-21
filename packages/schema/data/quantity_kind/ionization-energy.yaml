@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: IonizationEnergy
-    match: exact
-  wikidata:
-    term: Q483769
-    match: exact
-content:
-  en:
-    title: Ionization Energy
+  qudt-quantity-kind: { term: IonizationEnergy, match: exact }
+  wikidata: { term: Q483769, match: exact }
+content: { en: { title: Ionization Energy } }

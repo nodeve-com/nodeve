@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureGradient
-    match: exact
-content:
-  en:
-    title: Temperature Gradient
+ref: { qudt-quantity-kind: { term: TemperatureGradient, match: exact } }
+content: { en: { title: Temperature Gradient } }

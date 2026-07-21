@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: ParticlePositionVector
-    match: exact
-  wikidata:
-    term: Q105533324
-    match: exact
-content:
-  en:
-    title: Particle Position Vector
+  qudt-quantity-kind: { term: ParticlePositionVector, match: exact }
+  wikidata: { term: Q105533324, match: exact }
+content: { en: { title: Particle Position Vector } }

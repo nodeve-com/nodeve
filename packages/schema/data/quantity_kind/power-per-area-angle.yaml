@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PowerPerAreaAngle
-    match: exact
-content:
-  en:
-    title: Power per Area Angle
+ref: { qudt-quantity-kind: { term: PowerPerAreaAngle, match: exact } }
+content: { en: { title: Power per Area Angle } }

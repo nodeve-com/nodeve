@@ -1,11 +1,5 @@
 broader: expansion-ratio
 ref:
-  qudt-quantity-kind:
-    term: LinearExpansionCoefficient
-    match: exact
-  wikidata:
-    term: Q74760821
-    match: exact
-content:
-  en:
-    title: Linear Expansion Coefficient
+  qudt-quantity-kind: { term: LinearExpansionCoefficient, match: exact }
+  wikidata: { term: Q74760821, match: exact }
+content: { en: { title: Linear Expansion Coefficient } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ThermalDiffusionRatio
-    match: exact
-  wikidata:
-    term: Q96249433
-    match: exact
-content:
-  en:
-    title: Thermal Diffusion Ratio
+  qudt-quantity-kind: { term: ThermalDiffusionRatio, match: exact }
+  wikidata: { term: Q96249433, match: exact }
+content: { en: { title: Thermal Diffusion Ratio } }

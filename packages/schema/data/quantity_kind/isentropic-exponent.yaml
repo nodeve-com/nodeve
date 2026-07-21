@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: IsentropicExponent
-    match: exact
-  wikidata:
-    term: Q75775739
-    match: exact
-content:
-  en:
-    title: Isentropic Exponent
+  qudt-quantity-kind: { term: IsentropicExponent, match: exact }
+  wikidata: { term: Q75775739, match: exact }
+content: { en: { title: Isentropic Exponent } }

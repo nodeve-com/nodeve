@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarMass
-    match: exact
-  wikidata:
-    term: Q145623
-    match: exact
-content:
-  en:
-    title: Molar Mass
+  qudt-quantity-kind: { term: MolarMass, match: exact }
+  wikidata: { term: Q145623, match: exact }
+content: { en: { title: Molar Mass } }

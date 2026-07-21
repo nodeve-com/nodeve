@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: RadialDistance
-    match: exact
-  wikidata:
-    term: Q1578234
-    match: exact
-content:
-  en:
-    title: Radial Distance
+  qudt-quantity-kind: { term: RadialDistance, match: exact }
+  wikidata: { term: Q1578234, match: exact }
+content: { en: { title: Radial Distance } }

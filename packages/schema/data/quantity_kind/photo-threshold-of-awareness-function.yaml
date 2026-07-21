@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PhotoThresholdOfAwarenessFunction
-    match: exact
-content:
-  en:
-    title: Photo Threshold of Awareness Function
+ref: { qudt-quantity-kind: { term: PhotoThresholdOfAwarenessFunction, match: exact } }
+content: { en: { title: Photo Threshold of Awareness Function } }

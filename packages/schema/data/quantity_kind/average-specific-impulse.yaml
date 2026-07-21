@@ -1,8 +1,3 @@
 broader: specific-impulse
-ref:
-  qudt-quantity-kind:
-    term: AverageSpecificImpulse
-    match: exact
-content:
-  en:
-    title: Average Specific Impulse
+ref: { qudt-quantity-kind: { term: AverageSpecificImpulse, match: exact } }
+content: { en: { title: Average Specific Impulse } }

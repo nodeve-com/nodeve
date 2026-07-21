@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: GyromagneticRatio
-    match: exact
-  wikidata:
-    term: Q634552
-    match: exact
-content:
-  en:
-    title: Gyromagnetic Ratio
+  qudt-quantity-kind: { term: GyromagneticRatio, match: exact }
+  wikidata: { term: Q634552, match: exact }
+content: { en: { title: Gyromagnetic Ratio } }

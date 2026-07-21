@@ -1,11 +1,5 @@
 broader: acceleration
 ref:
-  qudt-quantity-kind:
-    term: SoundParticleAcceleration
-    match: exact
-  wikidata:
-    term: Q7140491
-    match: exact
-content:
-  en:
-    title: Sound Particle Acceleration
+  qudt-quantity-kind: { term: SoundParticleAcceleration, match: exact }
+  wikidata: { term: Q7140491, match: exact }
+content: { en: { title: Sound Particle Acceleration } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ForcePerArea
-    match: exact
-content:
-  en:
-    title: Force per Area
+ref: { qudt-quantity-kind: { term: ForcePerArea, match: exact } }
+content: { en: { title: Force per Area } }

@@ -2,14 +2,6 @@ si_unit: var·s
 accumulation: cumulative_monotonic
 broader: electric-energy
 ref:
-  qudt-quantity-kind:
-    term: ReactiveEnergy
-    match: exact
-  wikidata:
-    term: Q12373673
-    match: exact
-content:
-  en:
-    title: Reactive Energy
-  pt:
-    title: Energia reativa
+  qudt-quantity-kind: { term: ReactiveEnergy, match: exact }
+  wikidata: { term: Q12373673, match: exact }
+content: { en: { title: Reactive Energy }, pt: { title: Energia reativa } }

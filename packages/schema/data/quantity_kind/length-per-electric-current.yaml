@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LengthPerElectricCurrent
-    match: exact
-content:
-  en:
-    title: Length per Electric Current
+ref: { qudt-quantity-kind: { term: LengthPerElectricCurrent, match: exact } }
+content: { en: { title: Length per Electric Current } }

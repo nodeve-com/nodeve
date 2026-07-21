@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: CrossSection
-    match: exact
-  wikidata:
-    term: Q17128025
-    match: exact
-content:
-  en:
-    title: Cross-section
+  qudt-quantity-kind: { term: CrossSection, match: exact }
+  wikidata: { term: Q17128025, match: exact }
+content: { en: { title: Cross-section } }

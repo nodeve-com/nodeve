@@ -1,8 +1,3 @@
 broader: area
-ref:
-  qudt-quantity-kind:
-    term: HydraulicPermeability
-    match: exact
-content:
-  en:
-    title: Hydraulic Permeability
+ref: { qudt-quantity-kind: { term: HydraulicPermeability, match: exact } }
+content: { en: { title: Hydraulic Permeability } }

@@ -1,6 +1,2 @@
 url: https://www.usb.org/
-content:
-  en:
-    title: USB Implementers Forum
-  pt:
-    title: USB Implementers Forum
+content: { en: { title: USB Implementers Forum }, pt: { title: USB Implementers Forum } }

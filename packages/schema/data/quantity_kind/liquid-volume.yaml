@@ -1,8 +1,3 @@
 broader: volume
-ref:
-  qudt-quantity-kind:
-    term: LiquidVolume
-    match: exact
-content:
-  en:
-    title: Liquid Volume
+ref: { qudt-quantity-kind: { term: LiquidVolume, match: exact } }
+content: { en: { title: Liquid Volume } }

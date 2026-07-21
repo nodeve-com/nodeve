@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: InverseSquareTime
-    match: exact
-content:
-  en:
-    title: Inverse Square Time
+ref: { qudt-quantity-kind: { term: InverseSquareTime, match: exact } }
+content: { en: { title: Inverse Square Time } }

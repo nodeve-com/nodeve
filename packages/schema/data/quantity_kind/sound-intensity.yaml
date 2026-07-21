@@ -1,11 +1,5 @@
 broader: power-per-area
 ref:
-  qudt-quantity-kind:
-    term: SoundIntensity
-    match: exact
-  wikidata:
-    term: Q1140289
-    match: exact
-content:
-  en:
-    title: Sound Intensity
+  qudt-quantity-kind: { term: SoundIntensity, match: exact }
+  wikidata: { term: Q1140289, match: exact }
+content: { en: { title: Sound Intensity } }

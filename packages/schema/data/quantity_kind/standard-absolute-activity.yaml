@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: StandardAbsoluteActivity
-    match: exact
-  wikidata:
-    term: Q89406159
-    match: exact
-content:
-  en:
-    title: Standard Absolute Activity
+  qudt-quantity-kind: { term: StandardAbsoluteActivity, match: exact }
+  wikidata: { term: Q89406159, match: exact }
+content: { en: { title: Standard Absolute Activity } }

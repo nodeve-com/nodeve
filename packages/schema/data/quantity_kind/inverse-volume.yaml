@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: InverseVolume
-    match: exact
-  wikidata:
-    term: Q98690867
-    match: exact
-content:
-  en:
-    title: Inverse Volume
+  qudt-quantity-kind: { term: InverseVolume, match: exact }
+  wikidata: { term: Q98690867, match: exact }
+content: { en: { title: Inverse Volume } }

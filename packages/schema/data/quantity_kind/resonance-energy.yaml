@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: ResonanceEnergy
-    match: exact
-  wikidata:
-    term: Q98165187
-    match: exact
-content:
-  en:
-    title: Resonance Energy
+  qudt-quantity-kind: { term: ResonanceEnergy, match: exact }
+  wikidata: { term: Q98165187, match: exact }
+content: { en: { title: Resonance Energy } }

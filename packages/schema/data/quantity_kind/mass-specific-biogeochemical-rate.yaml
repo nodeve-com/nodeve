@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassSpecificBiogeochemicalRate
-    match: exact
-content:
-  en:
-    title: Mass Specific Biogeochemical Rate
+ref: { qudt-quantity-kind: { term: MassSpecificBiogeochemicalRate, match: exact } }
+content: { en: { title: Mass Specific Biogeochemical Rate } }

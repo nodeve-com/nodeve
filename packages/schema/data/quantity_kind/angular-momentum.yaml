@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularMomentum
-    match: exact
-  wikidata:
-    term: Q161254
-    match: exact
-content:
-  en:
-    title: Angular Momentum
+  qudt-quantity-kind: { term: AngularMomentum, match: exact }
+  wikidata: { term: Q161254, match: exact }
+content: { en: { title: Angular Momentum } }

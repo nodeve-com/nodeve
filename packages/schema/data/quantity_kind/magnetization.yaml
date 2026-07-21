@@ -1,11 +1,5 @@
 broader: linear-electric-current
 ref:
-  qudt-quantity-kind:
-    term: Magnetization
-    match: exact
-  wikidata:
-    term: Q856711
-    match: exact
-content:
-  en:
-    title: Magnetization
+  qudt-quantity-kind: { term: Magnetization, match: exact }
+  wikidata: { term: Q856711, match: exact }
+content: { en: { title: Magnetization } }

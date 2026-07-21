@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: VolumetricFlux
-    match: exact
-content:
-  en:
-    title: Volumetric Flux
+ref: { qudt-quantity-kind: { term: VolumetricFlux, match: exact } }
+content: { en: { title: Volumetric Flux } }

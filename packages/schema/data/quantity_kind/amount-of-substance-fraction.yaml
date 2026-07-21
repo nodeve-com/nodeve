@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AmountOfSubstanceFraction
-    match: exact
-content:
-  en:
-    title: Fractional Amount of Substance
+ref: { qudt-quantity-kind: { term: AmountOfSubstanceFraction, match: exact } }
+content: { en: { title: Fractional Amount of Substance } }

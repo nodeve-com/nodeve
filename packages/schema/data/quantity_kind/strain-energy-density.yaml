@@ -1,8 +1,3 @@
 broader: energy-density
-ref:
-  qudt-quantity-kind:
-    term: StrainEnergyDensity
-    match: exact
-content:
-  en:
-    title: Strain Energy Density
+ref: { qudt-quantity-kind: { term: StrainEnergyDensity, match: exact } }
+content: { en: { title: Strain Energy Density } }

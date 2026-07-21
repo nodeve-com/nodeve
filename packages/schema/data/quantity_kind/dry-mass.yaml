@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: DRY-MASS
-    match: exact
-content:
-  en:
-    title: Dry Mass
+ref: { qudt-quantity-kind: { term: DRY-MASS, match: exact } }
+content: { en: { title: Dry Mass } }

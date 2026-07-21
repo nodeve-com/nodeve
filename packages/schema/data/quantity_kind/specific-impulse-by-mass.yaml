@@ -1,11 +1,5 @@
 broader: linear-velocity
 ref:
-  qudt-quantity-kind:
-    term: SpecificImpulseByMass
-    match: exact
-  wikidata:
-    term: Q100793317
-    match: exact
-content:
-  en:
-    title: Specific Impulse by Mass
+  qudt-quantity-kind: { term: SpecificImpulseByMass, match: exact }
+  wikidata: { term: Q100793317, match: exact }
+content: { en: { title: Specific Impulse by Mass } }

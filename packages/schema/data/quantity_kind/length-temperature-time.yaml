@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LengthTemperatureTime
-    match: exact
-content:
-  en:
-    title: Length Temperature Time
+ref: { qudt-quantity-kind: { term: LengthTemperatureTime, match: exact } }
+content: { en: { title: Length Temperature Time } }

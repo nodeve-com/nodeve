@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: EquilibriumConstantBasedOnConcentration
-    match: exact
-content:
-  en:
-    title: Equilibrium Constant Based On Concentration
+ref: { qudt-quantity-kind: { term: EquilibriumConstantBasedOnConcentration, match: exact } }
+content: { en: { title: Equilibrium Constant Based On Concentration } }

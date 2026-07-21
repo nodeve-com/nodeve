@@ -1,11 +1,5 @@
 broader: speed-of-sound
 ref:
-  qudt-quantity-kind:
-    term: PhaseSpeedOfSound
-    match: exact
-  wikidata:
-    term: Q86501878
-    match: exact
-content:
-  en:
-    title: Phase Speed of Sound
+  qudt-quantity-kind: { term: PhaseSpeedOfSound, match: exact }
+  wikidata: { term: Q86501878, match: exact }
+content: { en: { title: Phase Speed of Sound } }

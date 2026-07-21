@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpecificHeatPressure
-    match: exact
-content:
-  en:
-    title: Specific Heat Pressure
+ref: { qudt-quantity-kind: { term: SpecificHeatPressure, match: exact } }
+content: { en: { title: Specific Heat Pressure } }

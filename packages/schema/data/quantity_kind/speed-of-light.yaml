@@ -1,8 +1,3 @@
 broader: speed
-ref:
-  qudt-quantity-kind:
-    term: SpeedOfLight
-    match: exact
-content:
-  en:
-    title: Speed of Light
+ref: { qudt-quantity-kind: { term: SpeedOfLight, match: exact } }
+content: { en: { title: Speed of Light } }

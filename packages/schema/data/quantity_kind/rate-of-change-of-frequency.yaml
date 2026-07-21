@@ -1,8 +1,3 @@
 broader: inverse-square-time
-ref:
-  qudt-quantity-kind:
-    term: RateOfChangeOfFrequency
-    match: exact
-content:
-  en:
-    title: Rate of Change of Frequency
+ref: { qudt-quantity-kind: { term: RateOfChangeOfFrequency, match: exact } }
+content: { en: { title: Rate of Change of Frequency } }

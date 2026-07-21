@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: InverseEnergy
-    match: exact
-content:
-  en:
-    title: Inverse Energy
+ref: { qudt-quantity-kind: { term: InverseEnergy, match: exact } }
+content: { en: { title: Inverse Energy } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: DoseEquivalentQualityFactor
-    match: exact
-  wikidata:
-    term: Q2122099
-    match: exact
-content:
-  en:
-    title: Dose Equivalent Quality Factor
+  qudt-quantity-kind: { term: DoseEquivalentQualityFactor, match: exact }
+  wikidata: { term: Q2122099, match: exact }
+content: { en: { title: Dose Equivalent Quality Factor } }

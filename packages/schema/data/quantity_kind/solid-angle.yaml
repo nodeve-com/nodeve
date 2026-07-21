@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SolidAngle
-    match: exact
-  wikidata:
-    term: Q208476
-    match: exact
-content:
-  en:
-    title: Solid Angle
+  qudt-quantity-kind: { term: SolidAngle, match: exact }
+  wikidata: { term: Q208476, match: exact }
+content: { en: { title: Solid Angle } }

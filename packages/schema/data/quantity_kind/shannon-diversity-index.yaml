@@ -1,8 +1,3 @@
 broader: information-entropy
-ref:
-  qudt-quantity-kind:
-    term: ShannonDiversityIndex
-    match: exact
-content:
-  en:
-    title: Shannon Diversity Index
+ref: { qudt-quantity-kind: { term: ShannonDiversityIndex, match: exact } }
+content: { en: { title: Shannon Diversity Index } }

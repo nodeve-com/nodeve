@@ -1,8 +1,3 @@
 broader: number-density
-ref:
-  qudt-quantity-kind:
-    term: IonDensity
-    match: exact
-content:
-  en:
-    title: Ion Density
+ref: { qudt-quantity-kind: { term: IonDensity, match: exact } }
+content: { en: { title: Ion Density } }

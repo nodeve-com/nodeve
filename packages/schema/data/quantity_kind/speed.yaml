@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Speed
-    match: exact
-  wikidata:
-    term: Q3711325
-    match: exact
-content:
-  en:
-    title: Speed
+  qudt-quantity-kind: { term: Speed, match: exact }
+  wikidata: { term: Q3711325, match: exact }
+content: { en: { title: Speed } }

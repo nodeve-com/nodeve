@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: Fluidity
-    match: exact
-content:
-  en:
-    title: Fluidity
+ref: { qudt-quantity-kind: { term: Fluidity, match: exact } }
+content: { en: { title: Fluidity } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureBasedDynamicViscosity
-    match: exact
-content:
-  en:
-    title: Pressure-based Dynamic Viscosity
+ref: { qudt-quantity-kind: { term: PressureBasedDynamicViscosity, match: exact } }
+content: { en: { title: Pressure-based Dynamic Viscosity } }

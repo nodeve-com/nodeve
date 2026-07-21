@@ -1,8 +1,3 @@
 broader: torque-per-angle
-ref:
-  qudt-quantity-kind:
-    term: RotationalStiffness
-    match: exact
-content:
-  en:
-    title: Rotational Stiffness
+ref: { qudt-quantity-kind: { term: RotationalStiffness, match: exact } }
+content: { en: { title: Rotational Stiffness } }

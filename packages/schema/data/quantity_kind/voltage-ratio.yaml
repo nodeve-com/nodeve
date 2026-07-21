@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: VoltageRatio
-    match: exact
-content:
-  en:
-    title: Voltage Ratio
+ref: { qudt-quantity-kind: { term: VoltageRatio, match: exact } }
+content: { en: { title: Voltage Ratio } }

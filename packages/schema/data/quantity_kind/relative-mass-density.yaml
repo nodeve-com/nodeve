@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: RelativeMassDensity
-    match: exact
-content:
-  en:
-    title: Relative Mass Density
+ref: { qudt-quantity-kind: { term: RelativeMassDensity, match: exact } }
+content: { en: { title: Relative Mass Density } }

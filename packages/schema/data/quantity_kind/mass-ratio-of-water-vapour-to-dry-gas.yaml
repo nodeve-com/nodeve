@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MassRatioOfWaterVapourToDryGas
-    match: exact
-  wikidata:
-    term: Q17232415
-    match: exact
-content:
-  en:
-    title: Mass Ratio of Water Vapour to Dry Gas
+  qudt-quantity-kind: { term: MassRatioOfWaterVapourToDryGas, match: exact }
+  wikidata: { term: Q17232415, match: exact }
+content: { en: { title: Mass Ratio of Water Vapour to Dry Gas } }

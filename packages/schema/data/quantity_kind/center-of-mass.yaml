@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: position-vector
-ref:
-  qudt-quantity-kind:
-    term: CENTER-OF-MASS
-    match: exact
-content:
-  en:
-    title: Center of Mass (CoM)
+ref: { qudt-quantity-kind: { term: CENTER-OF-MASS, match: exact } }
+content: { en: { title: Center of Mass (CoM) } }

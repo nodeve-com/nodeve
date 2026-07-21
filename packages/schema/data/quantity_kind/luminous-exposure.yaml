@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LuminousExposure
-    match: exact
-  wikidata:
-    term: Q815588
-    match: exact
-content:
-  en:
-    title: Luminous Exposure
+  qudt-quantity-kind: { term: LuminousExposure, match: exact }
+  wikidata: { term: Q815588, match: exact }
+content: { en: { title: Luminous Exposure } }

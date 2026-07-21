@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SymbolTransmissionRate
-    match: exact
-content:
-  en:
-    title: Symbol Transmission Rate
+ref: { qudt-quantity-kind: { term: SymbolTransmissionRate, match: exact } }
+content: { en: { title: Symbol Transmission Rate } }

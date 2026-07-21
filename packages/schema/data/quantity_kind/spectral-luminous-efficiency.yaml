@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpectralLuminousEfficiency
-    match: exact
-content:
-  en:
-    title: Spectral Luminous Efficiency
+ref: { qudt-quantity-kind: { term: SpectralLuminousEfficiency, match: exact } }
+content: { en: { title: Spectral Luminous Efficiency } }

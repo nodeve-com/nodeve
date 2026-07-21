@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ForcePerElectricCharge
-    match: exact
-content:
-  en:
-    title: Force per Electric Charge
+ref: { qudt-quantity-kind: { term: ForcePerElectricCharge, match: exact } }
+content: { en: { title: Force per Electric Charge } }

@@ -1,8 +1,3 @@
 broader: energy
-ref:
-  qudt-quantity-kind:
-    term: EnergyLevel
-    match: exact
-content:
-  en:
-    title: Energy Level
+ref: { qudt-quantity-kind: { term: EnergyLevel, match: exact } }
+content: { en: { title: Energy Level } }

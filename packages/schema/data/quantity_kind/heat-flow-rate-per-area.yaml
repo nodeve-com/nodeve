@@ -1,8 +1,3 @@
 broader: power-per-area
-ref:
-  qudt-quantity-kind:
-    term: HeatFlowRatePerArea
-    match: exact
-content:
-  en:
-    title: Heat Flow Rate per Unit Area
+ref: { qudt-quantity-kind: { term: HeatFlowRatePerArea, match: exact } }
+content: { en: { title: Heat Flow Rate per Unit Area } }

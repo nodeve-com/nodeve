@@ -1,11 +1,5 @@
 broader: electric-current
 ref:
-  qudt-quantity-kind:
-    term: DisplacementCurrent
-    match: exact
-  wikidata:
-    term: Q853178
-    match: exact
-content:
-  en:
-    title: Displacement Current
+  qudt-quantity-kind: { term: DisplacementCurrent, match: exact }
+  wikidata: { term: Q853178, match: exact }
+content: { en: { title: Displacement Current } }

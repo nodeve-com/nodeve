@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Permeance
-    match: exact
-  wikidata:
-    term: Q77997985
-    match: exact
-content:
-  en:
-    title: Permeance
+  qudt-quantity-kind: { term: Permeance, match: exact }
+  wikidata: { term: Q77997985, match: exact }
+content: { en: { title: Permeance } }

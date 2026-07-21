@@ -1,8 +1,3 @@
 broader: dimensionless
-ref:
-  qudt-quantity-kind:
-    term: FissionMultiplicationFactor
-    match: exact
-content:
-  en:
-    title: Fission Multiplication Factor
+ref: { qudt-quantity-kind: { term: FissionMultiplicationFactor, match: exact } }
+content: { en: { title: Fission Multiplication Factor } }

@@ -1,8 +1,3 @@
 broader: reflectance
-ref:
-  qudt-quantity-kind:
-    term: Reflectivity
-    match: exact
-content:
-  en:
-    title: Reflectivity
+ref: { qudt-quantity-kind: { term: Reflectivity, match: exact } }
+content: { en: { title: Reflectivity } }

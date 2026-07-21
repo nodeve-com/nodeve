@@ -1,11 +1,5 @@
 broader: quantum-number
 ref:
-  qudt-quantity-kind:
-    term: TotalAngularMomentumQuantumNumber
-    match: exact
-  wikidata:
-    term: Q1141095
-    match: exact
-content:
-  en:
-    title: Total Angular Momentum Quantum Number
+  qudt-quantity-kind: { term: TotalAngularMomentumQuantumNumber, match: exact }
+  wikidata: { term: Q1141095, match: exact }
+content: { en: { title: Total Angular Momentum Quantum Number } }

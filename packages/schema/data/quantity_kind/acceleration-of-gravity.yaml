@@ -1,11 +1,5 @@
 broader: acceleration
 ref:
-  qudt-quantity-kind:
-    term: AccelerationOfGravity
-    match: exact
-  wikidata:
-    term: Q30006
-    match: exact
-content:
-  en:
-    title: Acceleration of Gravity
+  qudt-quantity-kind: { term: AccelerationOfGravity, match: exact }
+  wikidata: { term: Q30006, match: exact }
+content: { en: { title: Acceleration of Gravity } }

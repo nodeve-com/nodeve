@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MomentOfForce
-    match: exact
-  wikidata:
-    term: Q17232562
-    match: exact
-content:
-  en:
-    title: Moment of Force
+  qudt-quantity-kind: { term: MomentOfForce, match: exact }
+  wikidata: { term: Q17232562, match: exact }
+content: { en: { title: Moment of Force } }

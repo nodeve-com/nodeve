@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SpecificHeatCapacity
-    match: exact
-  wikidata:
-    term: Q487756
-    match: exact
-content:
-  en:
-    title: Specific Heat Capacity
+  qudt-quantity-kind: { term: SpecificHeatCapacity, match: exact }
+  wikidata: { term: Q487756, match: exact }
+content: { en: { title: Specific Heat Capacity } }

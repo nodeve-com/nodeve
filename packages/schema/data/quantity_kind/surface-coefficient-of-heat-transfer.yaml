@@ -1,11 +1,5 @@
 broader: coefficient-of-heat-transfer
 ref:
-  qudt-quantity-kind:
-    term: SurfaceCoefficientOfHeatTransfer
-    match: exact
-  wikidata:
-    term: Q74770365
-    match: exact
-content:
-  en:
-    title: Surface Coefficient of Heat Transfer
+  qudt-quantity-kind: { term: SurfaceCoefficientOfHeatTransfer, match: exact }
+  wikidata: { term: Q74770365, match: exact }
+content: { en: { title: Surface Coefficient of Heat Transfer } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperaturePerMagneticFluxDensity
-    match: exact
-content:
-  en:
-    title: Temperature per Magnetic Flux Density
+ref: { qudt-quantity-kind: { term: TemperaturePerMagneticFluxDensity, match: exact } }
+content: { en: { title: Temperature per Magnetic Flux Density } }

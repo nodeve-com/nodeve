@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SoundPowerLevel
-    match: exact
-  wikidata:
-    term: Q2157873
-    match: exact
-content:
-  en:
-    title: Sound Power Level
+  qudt-quantity-kind: { term: SoundPowerLevel, match: exact }
+  wikidata: { term: Q2157873, match: exact }
+content: { en: { title: Sound Power Level } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ThomsonCoefficient
-    match: exact
-  wikidata:
-    term: Q105801233
-    match: exact
-content:
-  en:
-    title: Thomson Coefficient
+  qudt-quantity-kind: { term: ThomsonCoefficient, match: exact }
+  wikidata: { term: Q105801233, match: exact }
+content: { en: { title: Thomson Coefficient } }

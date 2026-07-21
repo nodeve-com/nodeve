@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: MeanFreePath
-    match: exact
-  wikidata:
-    term: Q756307
-    match: exact
-content:
-  en:
-    title: Mean Free Path
+  qudt-quantity-kind: { term: MeanFreePath, match: exact }
+  wikidata: { term: Q756307, match: exact }
+content: { en: { title: Mean Free Path } }

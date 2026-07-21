@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Entropy
-    match: exact
-  wikidata:
-    term: Q45003
-    match: exact
-content:
-  en:
-    title: Entropy
+  qudt-quantity-kind: { term: Entropy, match: exact }
+  wikidata: { term: Q45003, match: exact }
+content: { en: { title: Entropy } }

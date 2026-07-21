@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ConductivityVariance
-    match: exact
-content:
-  en:
-    title: Conductivity Variance
+ref: { qudt-quantity-kind: { term: ConductivityVariance, match: exact } }
+content: { en: { title: Conductivity Variance } }

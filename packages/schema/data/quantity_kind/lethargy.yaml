@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Lethargy
-    match: exact
-  wikidata:
-    term: Q25508781
-    match: exact
-content:
-  en:
-    title: Lethargy
+  qudt-quantity-kind: { term: Lethargy, match: exact }
+  wikidata: { term: Q25508781, match: exact }
+content: { en: { title: Lethargy } }

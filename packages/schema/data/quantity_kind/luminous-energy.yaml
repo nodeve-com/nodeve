@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LuminousEnergy
-    match: exact
-  wikidata:
-    term: Q900164
-    match: exact
-content:
-  en:
-    title: Luminous Energy
+  qudt-quantity-kind: { term: LuminousEnergy, match: exact }
+  wikidata: { term: Q900164, match: exact }
+content: { en: { title: Luminous Energy } }

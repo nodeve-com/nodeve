@@ -1,9 +1,4 @@
 deprecated: true
 deprecated_in: 3.1.4
-ref:
-  qudt-quantity-kind:
-    term: VolumeOrSectionModulus
-    match: exact
-content:
-  en:
-    title: volume or section modulus
+ref: { qudt-quantity-kind: { term: VolumeOrSectionModulus, match: exact } }
+content: { en: { title: volume or section modulus } }

@@ -1,11 +1,5 @@
 broader: angle
 ref:
-  qudt-quantity-kind:
-    term: BraggAngle
-    match: exact
-  wikidata:
-    term: Q105488118
-    match: exact
-content:
-  en:
-    title: Bragg Angle
+  qudt-quantity-kind: { term: BraggAngle, match: exact }
+  wikidata: { term: Q105488118, match: exact }
+content: { en: { title: Bragg Angle } }

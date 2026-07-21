@@ -1,11 +1,5 @@
 broader: electric-current
 ref:
-  qudt-quantity-kind:
-    term: ElectricCurrentPhasor
-    match: exact
-  wikidata:
-    term: Q78514596
-    match: exact
-content:
-  en:
-    title: Electric Current Phasor
+  qudt-quantity-kind: { term: ElectricCurrentPhasor, match: exact }
+  wikidata: { term: Q78514596, match: exact }
+content: { en: { title: Electric Current Phasor } }

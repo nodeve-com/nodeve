@@ -1,13 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Width
-    match: exact
-  wikidata:
-    term: Q35059
-    match: exact
-content:
-  en:
-    title: Width
-  pt:
-    title: Largura (mm)
+  qudt-quantity-kind: { term: Width, match: exact }
+  wikidata: { term: Q35059, match: exact }
+content: { en: { title: Width }, pt: { title: Largura (mm) } }

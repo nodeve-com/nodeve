@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: GeneFamilyAbundance
-    match: exact
-content:
-  en:
-    title: Gene Family Abundance
+ref: { qudt-quantity-kind: { term: GeneFamilyAbundance, match: exact } }
+content: { en: { title: Gene Family Abundance } }

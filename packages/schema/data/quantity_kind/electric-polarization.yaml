@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricPolarization
-    match: exact
-  wikidata:
-    term: Q1050425
-    match: exact
-content:
-  en:
-    title: Electric Polarization
+  qudt-quantity-kind: { term: ElectricPolarization, match: exact }
+  wikidata: { term: Q1050425, match: exact }
+content: { en: { title: Electric Polarization } }

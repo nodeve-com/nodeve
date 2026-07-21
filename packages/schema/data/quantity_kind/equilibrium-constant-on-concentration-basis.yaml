@@ -1,11 +1,5 @@
 broader: equilibrium-constant
 ref:
-  qudt-quantity-kind:
-    term: EquilibriumConstantOnConcentrationBasis
-    match: exact
-  wikidata:
-    term: Q96096049
-    match: exact
-content:
-  en:
-    title: Equilibrium Constant On Concentration Basis
+  qudt-quantity-kind: { term: EquilibriumConstantOnConcentrationBasis, match: exact }
+  wikidata: { term: Q96096049, match: exact }
+content: { en: { title: Equilibrium Constant On Concentration Basis } }

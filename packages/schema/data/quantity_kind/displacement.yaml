@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Displacement
-    match: exact
-  wikidata:
-    term: Q190291
-    match: exact
-content:
-  en:
-    title: Displacement
+  qudt-quantity-kind: { term: Displacement, match: exact }
+  wikidata: { term: Q190291, match: exact }
+content: { en: { title: Displacement } }

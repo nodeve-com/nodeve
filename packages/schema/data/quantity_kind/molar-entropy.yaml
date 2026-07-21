@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarEntropy
-    match: exact
-  wikidata:
-    term: Q68972876
-    match: exact
-content:
-  en:
-    title: Molar Entropy
+  qudt-quantity-kind: { term: MolarEntropy, match: exact }
+  wikidata: { term: Q68972876, match: exact }
+content: { en: { title: Molar Entropy } }

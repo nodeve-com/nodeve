@@ -1,11 +1,5 @@
 broader: volume-per-time
 ref:
-  qudt-quantity-kind:
-    term: SoundVolumeVelocity
-    match: exact
-  wikidata:
-    term: Q1640308
-    match: exact
-content:
-  en:
-    title: Sound Volume Velocity
+  qudt-quantity-kind: { term: SoundVolumeVelocity, match: exact }
+  wikidata: { term: Q1640308, match: exact }
+content: { en: { title: Sound Volume Velocity } }

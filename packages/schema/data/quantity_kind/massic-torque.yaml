@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassicTorque
-    match: exact
-content:
-  en:
-    title: Massic Torque
+ref: { qudt-quantity-kind: { term: MassicTorque, match: exact } }
+content: { en: { title: Massic Torque } }

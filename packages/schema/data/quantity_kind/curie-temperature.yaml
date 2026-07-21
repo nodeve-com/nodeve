@@ -1,11 +1,5 @@
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: CurieTemperature
-    match: exact
-  wikidata:
-    term: Q191073
-    match: exact
-content:
-  en:
-    title: Curie Temperature
+  qudt-quantity-kind: { term: CurieTemperature, match: exact }
+  wikidata: { term: Q191073, match: exact }
+content: { en: { title: Curie Temperature } }

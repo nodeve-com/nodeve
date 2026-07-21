@@ -1,8 +1,3 @@
 broader: sound-power-level
-ref:
-  qudt-quantity-kind:
-    term: AuditoryThresholds
-    match: exact
-content:
-  en:
-    title: Auditory Thresholds
+ref: { qudt-quantity-kind: { term: AuditoryThresholds, match: exact } }
+content: { en: { title: Auditory Thresholds } }

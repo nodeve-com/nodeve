@@ -1,11 +1,5 @@
 broader: electric-current
 ref:
-  qudt-quantity-kind:
-    term: MagneticTension
-    match: exact
-  wikidata:
-    term: Q77993836
-    match: exact
-content:
-  en:
-    title: Magnetic Tension
+  qudt-quantity-kind: { term: MagneticTension, match: exact }
+  wikidata: { term: Q77993836, match: exact }
+content: { en: { title: Magnetic Tension } }

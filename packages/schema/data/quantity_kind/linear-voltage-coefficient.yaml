@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LinearVoltageCoefficient
-    match: exact
-content:
-  en:
-    title: Linear Voltage Coefficient
+ref: { qudt-quantity-kind: { term: LinearVoltageCoefficient, match: exact } }
+content: { en: { title: Linear Voltage Coefficient } }

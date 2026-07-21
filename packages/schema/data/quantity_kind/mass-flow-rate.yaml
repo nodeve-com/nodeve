@@ -1,11 +1,5 @@
 broader: mass-per-time
 ref:
-  qudt-quantity-kind:
-    term: MassFlowRate
-    match: exact
-  wikidata:
-    term: Q1366187
-    match: exact
-content:
-  en:
-    title: Mass Flow Rate
+  qudt-quantity-kind: { term: MassFlowRate, match: exact }
+  wikidata: { term: Q1366187, match: exact }
+content: { en: { title: Mass Flow Rate } }

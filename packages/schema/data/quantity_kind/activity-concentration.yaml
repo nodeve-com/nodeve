@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ActivityConcentration
-    match: exact
-  wikidata:
-    term: Q423263
-    match: exact
-content:
-  en:
-    title: Activity Concentration
+  qudt-quantity-kind: { term: ActivityConcentration, match: exact }
+  wikidata: { term: Q423263, match: exact }
+content: { en: { title: Activity Concentration } }

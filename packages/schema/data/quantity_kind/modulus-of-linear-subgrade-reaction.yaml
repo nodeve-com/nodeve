@@ -1,8 +1,3 @@
 broader: force-per-area
-ref:
-  qudt-quantity-kind:
-    term: ModulusOfLinearSubgradeReaction
-    match: exact
-content:
-  en:
-    title: Modulus of Linear Subgrade Reaction
+ref: { qudt-quantity-kind: { term: ModulusOfLinearSubgradeReaction, match: exact } }
+content: { en: { title: Modulus of Linear Subgrade Reaction } }

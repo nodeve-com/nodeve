@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LuminousFlux
-    match: exact
-  wikidata:
-    term: Q107780
-    match: exact
-content:
-  en:
-    title: Luminous Flux
+  qudt-quantity-kind: { term: LuminousFlux, match: exact }
+  wikidata: { term: Q107780, match: exact }
+content: { en: { title: Luminous Flux } }

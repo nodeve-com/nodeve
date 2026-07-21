@@ -2,10 +2,5 @@ deprecated: true
 deprecated_in: 3.2.0
 broader: pressure
 replaced_by: vapour-pressure
-ref:
-  qudt-quantity-kind:
-    term: VaporPressure
-    match: exact
-content:
-  en:
-    title: Vapour Pressure
+ref: { qudt-quantity-kind: { term: VaporPressure, match: exact } }
+content: { en: { title: Vapour Pressure } }

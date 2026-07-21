@@ -1,6 +1,4 @@
 url: https://www.iana.org/assignments/uri-schemes/
 content:
-  en:
-    title: IANA Uniform Resource Identifier (URI) Schemes
-  pt:
-    title: Esquemas de URI da IANA
+  en: { title: IANA Uniform Resource Identifier (URI) Schemes }
+  pt: { title: Esquemas de URI da IANA }

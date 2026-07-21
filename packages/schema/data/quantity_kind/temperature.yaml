@@ -1,17 +1,7 @@
 si_unit: K
 accumulation: instantaneous
 ref:
-  qudt-quantity-kind:
-    term: Temperature
-    match: exact
-  wikidata:
-    term: Q11466
-    match: exact
-  ha-device-class:
-    term: temperature
-    match: exact
-content:
-  en:
-    title: Temperature
-  pt:
-    title: Temperatura
+  qudt-quantity-kind: { term: Temperature, match: exact }
+  wikidata: { term: Q11466, match: exact }
+  ha-device-class: { term: temperature, match: exact }
+content: { en: { title: Temperature }, pt: { title: Temperatura } }

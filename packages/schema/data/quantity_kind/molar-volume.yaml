@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarVolume
-    match: exact
-  wikidata:
-    term: Q487112
-    match: exact
-content:
-  en:
-    title: Molar Volume
+  qudt-quantity-kind: { term: MolarVolume, match: exact }
+  wikidata: { term: Q487112, match: exact }
+content: { en: { title: Molar Volume } }

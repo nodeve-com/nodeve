@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: WorkFunction
-    match: exact
-  wikidata:
-    term: Q783800
-    match: exact
-content:
-  en:
-    title: Work Function
+  qudt-quantity-kind: { term: WorkFunction, match: exact }
+  wikidata: { term: Q783800, match: exact }
+content: { en: { title: Work Function } }

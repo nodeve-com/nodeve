@@ -3,12 +3,6 @@ deprecated_in: 3.1.1
 broader: electric-power
 replaced_by: electric-power
 ref:
-  qudt-quantity-kind:
-    term: ComplexPower
-    match: exact
-  wikidata:
-    term: Q65239736
-    match: exact
-content:
-  en:
-    title: Complex Power
+  qudt-quantity-kind: { term: ComplexPower, match: exact }
+  wikidata: { term: Q65239736, match: exact }
+content: { en: { title: Complex Power } }

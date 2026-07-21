@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MolarDensity
-    match: exact
-content:
-  en:
-    title: Molar Density
+ref: { qudt-quantity-kind: { term: MolarDensity, match: exact } }
+content: { en: { title: Molar Density } }

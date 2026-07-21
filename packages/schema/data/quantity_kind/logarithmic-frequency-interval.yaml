@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LogarithmicFrequencyInterval
-    match: exact
-  wikidata:
-    term: Q86499668
-    match: exact
-content:
-  en:
-    title: Logarithmic Frequency Interval
+  qudt-quantity-kind: { term: LogarithmicFrequencyInterval, match: exact }
+  wikidata: { term: Q86499668, match: exact }
+content: { en: { title: Logarithmic Frequency Interval } }

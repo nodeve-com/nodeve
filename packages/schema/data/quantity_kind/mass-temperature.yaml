@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassTemperature
-    match: exact
-content:
-  en:
-    title: Mass Temperature
+ref: { qudt-quantity-kind: { term: MassTemperature, match: exact } }
+content: { en: { title: Mass Temperature } }

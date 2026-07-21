@@ -1,11 +1,5 @@
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: SuperconductionTransitionTemperature
-    match: exact
-  wikidata:
-    term: Q106103037
-    match: exact
-content:
-  en:
-    title: Superconduction Transition Temperature
+  qudt-quantity-kind: { term: SuperconductionTransitionTemperature, match: exact }
+  wikidata: { term: Q106103037, match: exact }
+content: { en: { title: Superconduction Transition Temperature } }

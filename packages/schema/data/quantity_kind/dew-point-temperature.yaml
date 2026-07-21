@@ -2,14 +2,6 @@ si_unit: K
 accumulation: instantaneous
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: DewPointTemperature
-    match: exact
-  ha-device-class:
-    term: temperature
-    match: broad
-content:
-  en:
-    title: Dew Point Temperature
-  pt:
-    title: Ponto de orvalho
+  qudt-quantity-kind: { term: DewPointTemperature, match: exact }
+  ha-device-class: { term: temperature, match: broad }
+content: { en: { title: Dew Point Temperature }, pt: { title: Ponto de orvalho } }

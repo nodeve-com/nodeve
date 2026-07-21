@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: SolidStateDiffusionLength
-    match: exact
-  wikidata:
-    term: Q106097176
-    match: exact
-content:
-  en:
-    title: Diffusion Length (Solid State Physics)
+  qudt-quantity-kind: { term: SolidStateDiffusionLength, match: exact }
+  wikidata: { term: Q106097176, match: exact }
+content: { en: { title: Diffusion Length (Solid State Physics) } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PowerPerAreaQuarticTemperature
-    match: exact
-content:
-  en:
-    title: Power per Area Quartic Temperature
+ref: { qudt-quantity-kind: { term: PowerPerAreaQuarticTemperature, match: exact } }
+content: { en: { title: Power per Area Quartic Temperature } }

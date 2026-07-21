@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SquareTime
-    match: exact
-content:
-  en:
-    title: Square Time
+ref: { qudt-quantity-kind: { term: SquareTime, match: exact } }
+content: { en: { title: Square Time } }

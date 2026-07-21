@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureBasedVolumeFlowRate
-    match: exact
-content:
-  en:
-    title: Temperature-based Volume Flow Rate
+ref: { qudt-quantity-kind: { term: TemperatureBasedVolumeFlowRate, match: exact } }
+content: { en: { title: Temperature-based Volume Flow Rate } }

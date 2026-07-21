@@ -1,8 +1,3 @@
 broader: concentration
-ref:
-  qudt-quantity-kind:
-    term: AmountOfSubstanceConcentration
-    match: exact
-content:
-  en:
-    title: Amount of Substance of Concentration
+ref: { qudt-quantity-kind: { term: AmountOfSubstanceConcentration, match: exact } }
+content: { en: { title: Amount of Substance of Concentration } }

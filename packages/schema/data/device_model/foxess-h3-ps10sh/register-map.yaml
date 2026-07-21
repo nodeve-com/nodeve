@@ -25,19 +25,14 @@ register_map:
     - { range_type: invalid, start: 41001, end: 41006, note: unspecified 410xx; unverified }
     - { range_type: invalid, start: 41012, end: 41013, note: unspecified 410xx; unverified }
     - { range_type: invalid, start: 41015, end: 41015, note: unspecified 410xx; unverified }
-    - {
-        range_type: individual_read,
-        start: 37609,
-        end: 37620,
-        note: 'battery + BMS telemetry (V, I, SoC, temp, cell temps/mV); unverified, not read today',
-      }
-    - {
-        range_type: individual_read,
-        start: 37632,
-        end: 37636,
-        note: 'BMS energy registers (kWh remaining); unverified, not read today',
-      }
-
+    - range_type: individual_read
+      start: 37609
+      end: 37620
+      note: 'battery + BMS telemetry (V, I, SoC, temp, cell temps/mV); unverified, not read today'
+    - range_type: individual_read
+      start: 37632
+      end: 37636
+      note: 'BMS energy registers (kWh remaining); unverified, not read today'
   # Each register LINKS to an interval the feature tree offers. The topic is
   # DERIVED from that link downstream, not authored here. `unit` appears ONLY when
   # it isn't the kind's SI/coherent unit (V/A/W/K omitted; kW, kWh, °C kept).

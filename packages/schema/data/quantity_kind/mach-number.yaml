@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: MachNumber
-    match: exact
-  wikidata:
-    term: Q160669
-    match: exact
-content:
-  en:
-    title: Mach Number
+  qudt-quantity-kind: { term: MachNumber, match: exact }
+  wikidata: { term: Q160669, match: exact }
+content: { en: { title: Mach Number } }

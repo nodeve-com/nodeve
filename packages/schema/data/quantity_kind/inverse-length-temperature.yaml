@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: InverseLengthTemperature
-    match: exact
-content:
-  en:
-    title: Inverse Length Temperature
+ref: { qudt-quantity-kind: { term: InverseLengthTemperature, match: exact } }
+content: { en: { title: Inverse Length Temperature } }

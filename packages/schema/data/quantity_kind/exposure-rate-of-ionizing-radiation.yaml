@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ExposureRateOfIonizingRadiation
-    match: exact
-content:
-  en:
-    title: Exposure Rate of Ionizing Radiation
+ref: { qudt-quantity-kind: { term: ExposureRateOfIonizingRadiation, match: exact } }
+content: { en: { title: Exposure Rate of Ionizing Radiation } }

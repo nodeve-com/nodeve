@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: OpeningRatio
-    match: exact
-content:
-  en:
-    title: Opening Ratio
+ref: { qudt-quantity-kind: { term: OpeningRatio, match: exact } }
+content: { en: { title: Opening Ratio } }

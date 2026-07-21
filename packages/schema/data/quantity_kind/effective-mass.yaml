@@ -1,11 +1,5 @@
 broader: mass
 ref:
-  qudt-quantity-kind:
-    term: EffectiveMass
-    match: exact
-  wikidata:
-    term: Q1064434
-    match: exact
-content:
-  en:
-    title: Effective Mass
+  qudt-quantity-kind: { term: EffectiveMass, match: exact }
+  wikidata: { term: Q1064434, match: exact }
+content: { en: { title: Effective Mass } }

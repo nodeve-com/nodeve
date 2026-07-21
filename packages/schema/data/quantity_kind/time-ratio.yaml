@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: TimeRatio
-    match: exact
-content:
-  en:
-    title: Time Ratio
+ref: { qudt-quantity-kind: { term: TimeRatio, match: exact } }
+content: { en: { title: Time Ratio } }

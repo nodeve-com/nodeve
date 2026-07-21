@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: MechanicalEnergy
-    match: exact
-  wikidata:
-    term: Q184550
-    match: exact
-content:
-  en:
-    title: Mechanical Energy
+  qudt-quantity-kind: { term: MechanicalEnergy, match: exact }
+  wikidata: { term: Q184550, match: exact }
+content: { en: { title: Mechanical Energy } }

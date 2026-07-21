@@ -1,11 +1,5 @@
 broader: time
 ref:
-  qudt-quantity-kind:
-    term: Period
-    match: exact
-  wikidata:
-    term: Q2642727
-    match: exact
-content:
-  en:
-    title: Period
+  qudt-quantity-kind: { term: Period, match: exact }
+  wikidata: { term: Q2642727, match: exact }
+content: { en: { title: Period } }

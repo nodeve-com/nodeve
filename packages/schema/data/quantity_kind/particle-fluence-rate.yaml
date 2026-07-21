@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ParticleFluenceRate
-    match: exact
-  wikidata:
-    term: Q98497410
-    match: exact
-content:
-  en:
-    title: Particle Fluence Rate
+  qudt-quantity-kind: { term: ParticleFluenceRate, match: exact }
+  wikidata: { term: Q98497410, match: exact }
+content: { en: { title: Particle Fluence Rate } }

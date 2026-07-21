@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: Gradient
-    match: exact
-content:
-  en:
-    title: Gradient
+ref: { qudt-quantity-kind: { term: Gradient, match: exact } }
+content: { en: { title: Gradient } }

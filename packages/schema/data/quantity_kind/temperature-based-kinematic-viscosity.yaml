@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureBasedKinematicViscosity
-    match: exact
-content:
-  en:
-    title: Temperature-based Kinematic Viscosity
+ref: { qudt-quantity-kind: { term: TemperatureBasedKinematicViscosity, match: exact } }
+content: { en: { title: Temperature-based Kinematic Viscosity } }

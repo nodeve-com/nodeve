@@ -2,12 +2,6 @@ deprecated: true
 deprecated_in: 3.1.5
 replaced_by: vibrational-density-of-states
 ref:
-  qudt-quantity-kind:
-    term: DensityOfStates
-    match: exact
-  wikidata:
-    term: Q230895
-    match: exact
-content:
-  en:
-    title: Density of states
+  qudt-quantity-kind: { term: DensityOfStates, match: exact }
+  wikidata: { term: Q230895, match: exact }
+content: { en: { title: Density of states } }

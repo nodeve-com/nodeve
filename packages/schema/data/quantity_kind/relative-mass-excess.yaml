@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: RelativeMassExcess
-    match: exact
-  wikidata:
-    term: Q98038610
-    match: exact
-content:
-  en:
-    title: Relative Mass Excess
+  qudt-quantity-kind: { term: RelativeMassExcess, match: exact }
+  wikidata: { term: Q98038610, match: exact }
+content: { en: { title: Relative Mass Excess } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: InverseAmountOfSubstance
-    match: exact
-  wikidata:
-    term: Q93421670
-    match: exact
-content:
-  en:
-    title: Inverse Amount of Substance
+  qudt-quantity-kind: { term: InverseAmountOfSubstance, match: exact }
+  wikidata: { term: Q93421670, match: exact }
+content: { en: { title: Inverse Amount of Substance } }

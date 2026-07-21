@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureBasedTemperature
-    match: exact
-content:
-  en:
-    title: Pressure-based Temperature
+ref: { qudt-quantity-kind: { term: PressureBasedTemperature, match: exact } }
+content: { en: { title: Pressure-based Temperature } }

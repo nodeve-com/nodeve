@@ -1,11 +1,5 @@
 broader: force-per-area
 ref:
-  qudt-quantity-kind:
-    term: Stress
-    match: exact
-  wikidata:
-    term: Q206175
-    match: exact
-content:
-  en:
-    title: Stress
+  qudt-quantity-kind: { term: Stress, match: exact }
+  wikidata: { term: Q206175, match: exact }
+content: { en: { title: Stress } }

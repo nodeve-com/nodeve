@@ -1,11 +1,5 @@
 broader: equilibrium-constant
 ref:
-  qudt-quantity-kind:
-    term: EquilibriumConstantOnPressureBasis
-    match: exact
-  wikidata:
-    term: Q96096019
-    match: exact
-content:
-  en:
-    title: Equilibrium Constant On Pressure Basis
+  qudt-quantity-kind: { term: EquilibriumConstantOnPressureBasis, match: exact }
+  wikidata: { term: Q96096019, match: exact }
+content: { en: { title: Equilibrium Constant On Pressure Basis } }

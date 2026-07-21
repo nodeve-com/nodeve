@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: RadiantIntensity
-    match: exact
-  wikidata:
-    term: Q1253365
-    match: exact
-content:
-  en:
-    title: Radiant Intensity
+  qudt-quantity-kind: { term: RadiantIntensity, match: exact }
+  wikidata: { term: Q1253365, match: exact }
+content: { en: { title: Radiant Intensity } }

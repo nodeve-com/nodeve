@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: BloodGlucoseLevel
-    match: exact
-content:
-  en:
-    title: Blood Glucose Level
+ref: { qudt-quantity-kind: { term: BloodGlucoseLevel, match: exact } }
+content: { en: { title: Blood Glucose Level } }

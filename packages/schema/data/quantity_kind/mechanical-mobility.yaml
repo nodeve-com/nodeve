@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MechanicalMobility
-    match: exact
-content:
-  en:
-    title: Mechanical Mobility
+ref: { qudt-quantity-kind: { term: MechanicalMobility, match: exact } }
+content: { en: { title: Mechanical Mobility } }

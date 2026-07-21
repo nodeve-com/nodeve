@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 replaced_by: linear-electric-charge-density
-ref:
-  qudt-quantity-kind:
-    term: ElectricChargeLinearDensity
-    match: exact
-content:
-  en:
-    title: Electric Charge Linear Density
+ref: { qudt-quantity-kind: { term: ElectricChargeLinearDensity, match: exact } }
+content: { en: { title: Electric Charge Linear Density } }

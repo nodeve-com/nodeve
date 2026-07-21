@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassConcentrationRateOfChange
-    match: exact
-content:
-  en:
-    title: Mass Concentration Rate of Change
+ref: { qudt-quantity-kind: { term: MassConcentrationRateOfChange, match: exact } }
+content: { en: { title: Mass Concentration Rate of Change } }

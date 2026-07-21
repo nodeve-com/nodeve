@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MicrobialFormation
-    match: exact
-content:
-  en:
-    title: Microbial Formation
+ref: { qudt-quantity-kind: { term: MicrobialFormation, match: exact } }
+content: { en: { title: Microbial Formation } }

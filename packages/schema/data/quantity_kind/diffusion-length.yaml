@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: DiffusionLength
-    match: exact
-  wikidata:
-    term: Q98997762
-    match: exact
-content:
-  en:
-    title: Diffusion Length
+  qudt-quantity-kind: { term: DiffusionLength, match: exact }
+  wikidata: { term: Q98997762, match: exact }
+content: { en: { title: Diffusion Length } }

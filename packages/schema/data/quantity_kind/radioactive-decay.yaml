@@ -1,8 +1,3 @@
 broader: stochastic-process
-ref:
-  qudt-quantity-kind:
-    term: RadioactiveDecay
-    match: exact
-content:
-  en:
-    title: Radioactive Decay
+ref: { qudt-quantity-kind: { term: RadioactiveDecay, match: exact } }
+content: { en: { title: Radioactive Decay } }

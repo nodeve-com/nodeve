@@ -1,6 +1,4 @@
 url: https://webstore.iec.ch/publication/153
 content:
-  en:
-    title: IEC 60038 (IEC standard voltages)
-  pt:
-    title: IEC 60038 (Tensões normalizadas IEC)
+  en: { title: IEC 60038 (IEC standard voltages) }
+  pt: { title: IEC 60038 (Tensões normalizadas IEC) }

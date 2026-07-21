@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectromagneticPermeability
-    match: exact
-  wikidata:
-    term: Q28352
-    match: exact
-content:
-  en:
-    title: Permeability
+  qudt-quantity-kind: { term: ElectromagneticPermeability, match: exact }
+  wikidata: { term: Q28352, match: exact }
+content: { en: { title: Permeability } }

@@ -15,9 +15,8 @@ classes:
       keyed_by: slug
     description: >-
       Commissioning knob — single-valued, fixed at install. Its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching.
-    slots: [node, slug, required, members, contents]
-    slot_usage:
-      slug: { required: true }
+    slots: [ node, slug, required, members, contents ]
+    slot_usage: { slug: { required: true } }
 
   Channel:
     annotations:
@@ -26,32 +25,24 @@ classes:
       keyed_by: slug
     description: >-
       Categorical observable of the device root (run state, fault set) — enum-valued, not VIM-ranged: no quantity_kind, no interval. Reported as a SET of members; `empty` is the member reported when none apply. Members derive from register flag labels plus `empty` — authored ONCE, at the wire mapping.
-    slots: [node, slug, empty, members, contents]
-    slot_usage:
-      slug: { required: true }
+    slots: [ node, slug, empty, members, contents ]
+    slot_usage: { slug: { required: true } }
 
   DomainMember:
-    annotations:
-      sql_table: domain_member
-      keyed_by: slug
+    annotations: { sql_table: domain_member, keyed_by: slug }
     description: >-
       One member of a categorical vocabulary — a Setting option or a Channel state/fault. Ordered by authored position, like Part.
-    slots: [node, slug, ordinal, contents]
-    slot_usage:
-      slug: { required: true }
+    slots: [ node, slug, ordinal, contents ]
+    slot_usage: { slug: { required: true } }
 slots:
   channels: { range: Channel, multivalued: true, inlined_as_list: true }
   empty:
-    {
-      range: DomainMember,
-      title: Empty member,
-      description: 'FK — the member reported when no flag bit is set (unknown, none); a member like any other, just wired to no bit',
-    }
+    range: DomainMember
+    title: Empty member
+    description: 'FK — the member reported when no flag bit is set (unknown, none); a member like any other, just wired to no bit'
   members:
-    {
-      range: DomainMember,
-      multivalued: true,
-      inlined_as_list: true,
-      description: 'the vocabulary — one row per admissible value, ordinal from authored position',
-    }
+    range: DomainMember
+    multivalued: true
+    inlined_as_list: true
+    description: 'the vocabulary — one row per admissible value, ordinal from authored position'
   settings: { range: Setting, multivalued: true, inlined_as_list: true }

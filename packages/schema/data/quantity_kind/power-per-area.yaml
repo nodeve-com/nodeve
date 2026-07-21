@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PowerPerArea
-    match: exact
-content:
-  en:
-    title: Power per Area
+ref: { qudt-quantity-kind: { term: PowerPerArea, match: exact } }
+content: { en: { title: Power per Area } }

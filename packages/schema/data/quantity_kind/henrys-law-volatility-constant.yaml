@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: HenrysLawVolatilityConstant
-    match: exact
-content:
-  en:
-    title: Henry's Law Volatility Constant
+ref: { qudt-quantity-kind: { term: HenrysLawVolatilityConstant, match: exact } }
+content: { en: { title: Henry's Law Volatility Constant } }

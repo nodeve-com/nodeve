@@ -1,11 +1,5 @@
 broader: force
 ref:
-  qudt-quantity-kind:
-    term: Thrust
-    match: exact
-  wikidata:
-    term: Q533668
-    match: exact
-content:
-  en:
-    title: Thrust
+  qudt-quantity-kind: { term: Thrust, match: exact }
+  wikidata: { term: Q533668, match: exact }
+content: { en: { title: Thrust } }

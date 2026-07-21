@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: DiffusionCoefficientForFluenceRate
-    match: exact
-  wikidata:
-    term: Q98876254
-    match: exact
-content:
-  en:
-    title: Diffusion Coefficient for Fluence Rate
+  qudt-quantity-kind: { term: DiffusionCoefficientForFluenceRate, match: exact }
+  wikidata: { term: Q98876254, match: exact }
+content: { en: { title: Diffusion Coefficient for Fluence Rate } }

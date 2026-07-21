@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ElectricCurrentPerAngle
-    match: exact
-content:
-  en:
-    title: Electric Current per Angle
+ref: { qudt-quantity-kind: { term: ElectricCurrentPerAngle, match: exact } }
+content: { en: { title: Electric Current per Angle } }

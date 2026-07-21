@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.4
 broader: amount-of-substance-per-volume
-ref:
-  qudt-quantity-kind:
-    term: SerumOrPlasmaLevel
-    match: exact
-content:
-  en:
-    title: Serum or Plasma Level
+ref: { qudt-quantity-kind: { term: SerumOrPlasmaLevel, match: exact } }
+content: { en: { title: Serum or Plasma Level } }

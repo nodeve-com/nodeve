@@ -1,11 +1,5 @@
 broader: efficiency
 ref:
-  qudt-quantity-kind:
-    term: ThermalEfficiency
-    match: exact
-  wikidata:
-    term: Q1452104
-    match: exact
-content:
-  en:
-    title: Thermal Efficiency
+  qudt-quantity-kind: { term: ThermalEfficiency, match: exact }
+  wikidata: { term: Q1452104, match: exact }
+content: { en: { title: Thermal Efficiency } }

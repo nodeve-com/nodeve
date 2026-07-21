@@ -35,8 +35,7 @@ feature_of_interest:
                   quantity: temperature
                   interval: intermittent
           # whole-port reading (foxess inv_power, 39134) — no rated band stated
-          measured:
-            measurement: { resolution: 0.001 }
+          measured: { measurement: { resolution: 0.001 } }
         # Lifetime + daily throughput (foxess total_yield / input_energy). ONE
         # quantity; the four channels are intervals keyed by flow_direction
         # (out = yield, in = input) + period (absent = lifetime).
@@ -66,15 +65,13 @@ feature_of_interest:
             valued_range: { value: 220 }
             specification:
               severity: nominal
-              conditions: [{ setting: grid-region, equals: br-220v-60hz }]
+              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
           nominal-eu-230v-50hz:
             valued_range: { value: 230 }
             specification:
               severity: nominal
-              conditions: [{ setting: grid-region, equals: eu-230v-50hz }]
-          measured:
-            valued_range: { min: 0, max: 250 }
-            measurement: { resolution: 0.1 }
+              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
+          measured: { valued_range: { min: 0, max: 250 }, measurement: { resolution: 0.1 } }
         frequency:
           # nominal + margin is still a nominal — a spread AROUND the value,
           # not a min/max envelope.
@@ -82,32 +79,23 @@ feature_of_interest:
             valued_range: { value: 60, margin: 0.05 }
             specification:
               severity: nominal
-              conditions: [{ setting: grid-region, equals: br-220v-60hz }]
+              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
           nominal-eu-230v-50hz:
             valued_range: { value: 50, margin: 0.05 }
             specification:
               severity: nominal
-              conditions: [{ setting: grid-region, equals: eu-230v-50hz }]
+              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
         electric-current:
-          continuous:
-            valued_range: { max: 15.2 }
-            specification: { rating: continuous }
-          survival:
-            valued_range: { max: 16.7 }
-            specification: { rating: survival }
+          continuous: { valued_range: { max: 15.2 }, specification: { rating: continuous } }
+          survival: { valued_range: { max: 16.7 }, specification: { rating: survival } }
           protection-required:
             valued_range: { max: 25 }
             specification: { rating: protection_required }
           # per-leg reading (foxess inv_current R/S/T) — signed, no band stated
-          measured:
-            measurement: { resolution: 0.001 }
+          measured: { measurement: { resolution: 0.001 } }
         # per-leg readings the registers link (foxess inv_power_Q / rpower_S R/S/T)
-        reactive-power:
-          _:
-            measurement: { resolution: 0.001 }
-        apparent-power:
-          _:
-            measurement: { resolution: 0.001 }
+        reactive-power: { _: { measurement: { resolution: 0.001 } } }
+        apparent-power: { _: { measurement: { resolution: 0.001 } } }
         active-power:
           continuous:
             valued_range: { value: 3333, max: 3666 }
@@ -136,9 +124,7 @@ feature_of_interest:
         # Signed: feed-in / export +, grid consumption / import −. Direction is
         # the sign; one measurable channel.
         active-power:
-          _:
-            valued_range: { min: -15, max: 15, unit: kW }
-            measurement: { resolution: 0.001 }
+          _: { valued_range: { min: -15, max: 15, unit: kW }, measurement: { resolution: 0.001 } }
         # Directional energy — feed-in vs grid-consumption, each lifetime + daily.
         active-energy:
           out:
@@ -156,9 +142,7 @@ feature_of_interest:
       '*':
         # per-leg net grid power (foxess grid_ct R/S/T), signed like the total.
         active-power:
-          _:
-            valued_range: { min: -8, max: 8, unit: kW }
-            measurement: { resolution: 0.001 }
+          _: { valued_range: { min: -8, max: 8, unit: kW }, measurement: { resolution: 0.001 } }
       a: {}
       b: {}
       c: {}
@@ -176,17 +160,13 @@ feature_of_interest:
           nominal:
             valued_range: { value: 230, min: 200, max: 260 }
             specification: { rating: continuous, severity: nominal }
-          measured:
-            valued_range: { min: 0, max: 300 }
-            measurement: { resolution: 0.1 }
+          measured: { valued_range: { min: 0, max: 300 }, measurement: { resolution: 0.1 } }
         frequency:
           nominal:
             valued_range: { value: 50 } # lone nominal — nameplate reference
             specification: { severity: nominal }
         electric-current:
-          _:
-            valued_range: { min: 0, max: 50 }
-            measurement: { resolution: 0.01 }
+          _: { valued_range: { min: 0, max: 50 }, measurement: { resolution: 0.01 } }
         active-power:
           _:
             valued_range: { min: -3.3, max: 3.3, unit: kW } # unit override — canonical is W
@@ -201,13 +181,9 @@ feature_of_interest:
       $: { part_set: three-phase }
       _:
         active-power:
-          _:
-            valued_range: { min: 0, max: 15, unit: kW }
-            measurement: { resolution: 0.001 }
+          _: { valued_range: { min: 0, max: 15, unit: kW }, measurement: { resolution: 0.001 } }
         active-energy:
-          lifetime:
-            valued_range: { min: 0, unit: kWh }
-            measurement: { resolution: 0.01 }
+          lifetime: { valued_range: { min: 0, unit: kWh }, measurement: { resolution: 0.01 } }
           daily:
             valued_range: { min: 0, unit: kWh }
             measurement: { period: daily, resolution: 0.01 }
@@ -215,9 +191,7 @@ feature_of_interest:
         # Signed like the foxess entity (validate −100..100): a leg reads negative
         # when the box back-feeds through it. This is a plausible envelope, not a rating.
         active-power:
-          _:
-            valued_range: { min: -5, max: 15, unit: kW }
-            measurement: { resolution: 0.001 }
+          _: { valued_range: { min: -5, max: 15, unit: kW }, measurement: { resolution: 0.001 } }
       a: {}
       b: {}
       c: {}

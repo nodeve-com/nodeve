@@ -2,17 +2,7 @@ si_unit: m
 accumulation: instantaneous
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Altitude
-    match: exact
-  wikidata:
-    term: Q190200
-    match: exact
-  wgs84-geo:
-    term: alt
-    match: exact
-content:
-  en:
-    title: Altitude
-  pt:
-    title: Altitude
+  qudt-quantity-kind: { term: Altitude, match: exact }
+  wikidata: { term: Q190200, match: exact }
+  wgs84-geo: { term: alt, match: exact }
+content: { en: { title: Altitude }, pt: { title: Altitude } }

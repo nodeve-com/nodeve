@@ -1,8 +1,3 @@
 broader: length
-ref:
-  qudt-quantity-kind:
-    term: CartesianCoordinates
-    match: exact
-content:
-  en:
-    title: Cartesian Coordinates
+ref: { qudt-quantity-kind: { term: CartesianCoordinates, match: exact } }
+content: { en: { title: Cartesian Coordinates } }

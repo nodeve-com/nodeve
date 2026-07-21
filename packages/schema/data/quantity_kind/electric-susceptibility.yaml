@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricSusceptibility
-    match: exact
-  wikidata:
-    term: Q598305
-    match: exact
-content:
-  en:
-    title: Electric Susceptibility
+  qudt-quantity-kind: { term: ElectricSusceptibility, match: exact }
+  wikidata: { term: Q598305, match: exact }
+content: { en: { title: Electric Susceptibility } }

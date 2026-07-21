@@ -1,11 +1,5 @@
 broader: force
 ref:
-  qudt-quantity-kind:
-    term: LiftForce
-    match: exact
-  wikidata:
-    term: Q101960694
-    match: exact
-content:
-  en:
-    title: Lift Force
+  qudt-quantity-kind: { term: LiftForce, match: exact }
+  wikidata: { term: Q101960694, match: exact }
+content: { en: { title: Lift Force } }

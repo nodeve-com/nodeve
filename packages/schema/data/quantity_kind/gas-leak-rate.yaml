@@ -1,8 +1,3 @@
 broader: energy-fluence
-ref:
-  qudt-quantity-kind:
-    term: GasLeakRate
-    match: exact
-content:
-  en:
-    title: Gas Leak Rate
+ref: { qudt-quantity-kind: { term: GasLeakRate, match: exact } }
+content: { en: { title: Gas Leak Rate } }

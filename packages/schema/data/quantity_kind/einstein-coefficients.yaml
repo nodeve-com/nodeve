@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: EinsteinCoefficients
-    match: exact
-content:
-  en:
-    title: Einstein Coefficients
+ref: { qudt-quantity-kind: { term: EinsteinCoefficients, match: exact } }
+content: { en: { title: Einstein Coefficients } }

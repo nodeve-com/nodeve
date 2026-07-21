@@ -1,8 +1,3 @@
 broader: electric-potential
-ref:
-  qudt-quantity-kind:
-    term: SourceVoltageBetweenSubstances
-    match: exact
-content:
-  en:
-    title: Source Voltage Between Substances
+ref: { qudt-quantity-kind: { term: SourceVoltageBetweenSubstances, match: exact } }
+content: { en: { title: Source Voltage Between Substances } }

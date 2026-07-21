@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: NumberDensity
-    match: exact
-  wikidata:
-    term: Q176449
-    match: exact
-content:
-  en:
-    title: Number Density
+  qudt-quantity-kind: { term: NumberDensity, match: exact }
+  wikidata: { term: Q176449, match: exact }
+content: { en: { title: Number Density } }

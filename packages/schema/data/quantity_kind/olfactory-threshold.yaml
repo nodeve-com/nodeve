@@ -1,8 +1,3 @@
 broader: concentration
-ref:
-  qudt-quantity-kind:
-    term: OlfactoryThreshold
-    match: exact
-content:
-  en:
-    title: Olfactory Threshold
+ref: { qudt-quantity-kind: { term: OlfactoryThreshold, match: exact } }
+content: { en: { title: Olfactory Threshold } }

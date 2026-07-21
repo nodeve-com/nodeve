@@ -1,11 +1,5 @@
 broader: inverse-time
 ref:
-  qudt-quantity-kind:
-    term: DecayConstant
-    match: exact
-  wikidata:
-    term: Q11477200
-    match: exact
-content:
-  en:
-    title: Decay Constant
+  qudt-quantity-kind: { term: DecayConstant, match: exact }
+  wikidata: { term: Q11477200, match: exact }
+content: { en: { title: Decay Constant } }

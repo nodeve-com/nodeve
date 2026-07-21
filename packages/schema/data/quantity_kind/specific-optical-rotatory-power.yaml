@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpecificOpticalRotatoryPower
-    match: exact
-content:
-  en:
-    title: Specific Optical Rotatory Power
+ref: { qudt-quantity-kind: { term: SpecificOpticalRotatoryPower, match: exact } }
+content: { en: { title: Specific Optical Rotatory Power } }

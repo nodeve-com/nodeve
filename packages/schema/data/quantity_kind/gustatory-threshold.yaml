@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: GustatoryThreshold
-    match: exact
-content:
-  en:
-    title: Gustatory Threshold
+ref: { qudt-quantity-kind: { term: GustatoryThreshold, match: exact } }
+content: { en: { title: Gustatory Threshold } }

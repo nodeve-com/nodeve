@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: WaterVapourPermeability
-    match: exact
-content:
-  en:
-    title: Water Vapour Permeability
+ref: { qudt-quantity-kind: { term: WaterVapourPermeability, match: exact } }
+content: { en: { title: Water Vapour Permeability } }

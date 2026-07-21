@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: RelativeMolecularMass
-    match: exact
-  wikidata:
-    term: Q21697817
-    match: exact
-content:
-  en:
-    title: Relative Molecular Mass
+  qudt-quantity-kind: { term: RelativeMolecularMass, match: exact }
+  wikidata: { term: Q21697817, match: exact }
+content: { en: { title: Relative Molecular Mass } }

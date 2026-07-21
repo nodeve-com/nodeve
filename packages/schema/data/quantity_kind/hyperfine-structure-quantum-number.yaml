@@ -1,11 +1,5 @@
 broader: quantum-number
 ref:
-  qudt-quantity-kind:
-    term: HyperfineStructureQuantumNumber
-    match: exact
-  wikidata:
-    term: Q97577449
-    match: exact
-content:
-  en:
-    title: Hyperfine Structure Quantum Number
+  qudt-quantity-kind: { term: HyperfineStructureQuantumNumber, match: exact }
+  wikidata: { term: Q97577449, match: exact }
+content: { en: { title: Hyperfine Structure Quantum Number } }

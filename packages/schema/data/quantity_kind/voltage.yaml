@@ -1,17 +1,7 @@
 si_unit: V
 accumulation: instantaneous
 ref:
-  qudt-quantity-kind:
-    term: Voltage
-    match: exact
-  wikidata:
-    term: Q25428
-    match: exact
-  ha-device-class:
-    term: voltage
-    match: exact
-content:
-  en:
-    title: Voltage
-  pt:
-    title: Tensão
+  qudt-quantity-kind: { term: Voltage, match: exact }
+  wikidata: { term: Q25428, match: exact }
+  ha-device-class: { term: voltage, match: exact }
+content: { en: { title: Voltage }, pt: { title: Tensão } }

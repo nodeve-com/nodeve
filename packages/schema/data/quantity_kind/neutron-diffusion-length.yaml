@@ -1,8 +1,3 @@
 broader: length
-ref:
-  qudt-quantity-kind:
-    term: NeutronDiffusionLength
-    match: exact
-content:
-  en:
-    title: Neutron Diffusion Length
+ref: { qudt-quantity-kind: { term: NeutronDiffusionLength, match: exact } }
+content: { en: { title: Neutron Diffusion Length } }

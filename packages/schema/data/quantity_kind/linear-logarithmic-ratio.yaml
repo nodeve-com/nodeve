@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LinearLogarithmicRatio
-    match: exact
-content:
-  en:
-    title: Lineic Logarithmic Ratio
+ref: { qudt-quantity-kind: { term: LinearLogarithmicRatio, match: exact } }
+content: { en: { title: Lineic Logarithmic Ratio } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: CatalyticActivity
-    match: exact
-  wikidata:
-    term: Q1735592
-    match: exact
-content:
-  en:
-    title: Catalytic Activity
+  qudt-quantity-kind: { term: CatalyticActivity, match: exact }
+  wikidata: { term: Q1735592, match: exact }
+content: { en: { title: Catalytic Activity } }

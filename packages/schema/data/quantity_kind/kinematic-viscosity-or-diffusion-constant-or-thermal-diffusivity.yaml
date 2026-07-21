@@ -4,6 +4,4 @@ ref:
   qudt-quantity-kind:
     term: KinematicViscosityOrDiffusionConstantOrThermalDiffusivity
     match: exact
-content:
-  en:
-    title: kinematic viscosity or diffusion constant or thermal diffusivity
+content: { en: { title: kinematic viscosity or diffusion constant or thermal diffusivity } }

@@ -1,11 +1,5 @@
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: ThermodynamicTemperature
-    match: exact
-  wikidata:
-    term: Q264647
-    match: exact
-content:
-  en:
-    title: Thermodynamic Temperature
+  qudt-quantity-kind: { term: ThermodynamicTemperature, match: exact }
+  wikidata: { term: Q264647, match: exact }
+content: { en: { title: Thermodynamic Temperature } }

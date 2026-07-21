@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: AlphaDisintegrationEnergy
-    match: exact
-  wikidata:
-    term: Q98146025
-    match: exact
-content:
-  en:
-    title: Alpha Disintegration Energy
+  qudt-quantity-kind: { term: AlphaDisintegrationEnergy, match: exact }
+  wikidata: { term: Q98146025, match: exact }
+content: { en: { title: Alpha Disintegration Energy } }

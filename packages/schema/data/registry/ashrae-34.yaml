@@ -1,6 +1,4 @@
 url: https://www.ashrae.org/technical-resources/standards-and-guidelines
 content:
-  en:
-    title: ASHRAE Standard 34 — Refrigerant designations & safety classification
-  pt:
-    title: ASHRAE Standard 34 — Designações e classificação de segurança de refrigerantes
+  en: { title: ASHRAE Standard 34 — Refrigerant designations & safety classification }
+  pt: { title: ASHRAE Standard 34 — Designações e classificação de segurança de refrigerantes }

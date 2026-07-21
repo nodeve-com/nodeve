@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AreaAngle
-    match: exact
-content:
-  en:
-    title: Area Angle
+ref: { qudt-quantity-kind: { term: AreaAngle, match: exact } }
+content: { en: { title: Area Angle } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarConductivity
-    match: exact
-  wikidata:
-    term: Q1943278
-    match: exact
-content:
-  en:
-    title: Molar Conductivity
+  qudt-quantity-kind: { term: MolarConductivity, match: exact }
+  wikidata: { term: Q1943278, match: exact }
+content: { en: { title: Molar Conductivity } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MassFractionOfWater
-    match: exact
-  wikidata:
-    term: Q76379025
-    match: exact
-content:
-  en:
-    title: Mass Fraction of Water
+  qudt-quantity-kind: { term: MassFractionOfWater, match: exact }
+  wikidata: { term: Q76379025, match: exact }
+content: { en: { title: Mass Fraction of Water } }

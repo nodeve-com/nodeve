@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureLossPerLength
-    match: exact
-content:
-  en:
-    title: Pressure Loss per Length
+ref: { qudt-quantity-kind: { term: PressureLossPerLength, match: exact } }
+content: { en: { title: Pressure Loss per Length } }

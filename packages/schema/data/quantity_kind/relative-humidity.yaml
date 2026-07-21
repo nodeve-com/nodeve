@@ -2,17 +2,7 @@ si_unit: '%'
 accumulation: instantaneous
 broader: relative-partial-pressure
 ref:
-  qudt-quantity-kind:
-    term: RelativeHumidity
-    match: exact
-  wikidata:
-    term: Q2499617
-    match: exact
-  ha-device-class:
-    term: humidity
-    match: exact
-content:
-  en:
-    title: Relative Humidity
-  pt:
-    title: Humidade relativa
+  qudt-quantity-kind: { term: RelativeHumidity, match: exact }
+  wikidata: { term: Q2499617, match: exact }
+  ha-device-class: { term: humidity, match: exact }
+content: { en: { title: Relative Humidity }, pt: { title: Humidade relativa } }

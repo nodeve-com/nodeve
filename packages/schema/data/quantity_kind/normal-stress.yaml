@@ -1,11 +1,5 @@
 broader: stress
 ref:
-  qudt-quantity-kind:
-    term: NormalStress
-    match: exact
-  wikidata:
-    term: Q11425837
-    match: exact
-content:
-  en:
-    title: Normal Stress
+  qudt-quantity-kind: { term: NormalStress, match: exact }
+  wikidata: { term: Q11425837, match: exact }
+content: { en: { title: Normal Stress } }

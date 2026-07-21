@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ByteDataVolume
-    match: exact
-content:
-  en:
-    title: Byte Data Volume
+ref: { qudt-quantity-kind: { term: ByteDataVolume, match: exact } }
+content: { en: { title: Byte Data Volume } }

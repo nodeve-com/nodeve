@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LinearBitDensity
-    match: exact
-content:
-  en:
-    title: Lineic Bit Density
+ref: { qudt-quantity-kind: { term: LinearBitDensity, match: exact } }
+content: { en: { title: Lineic Bit Density } }

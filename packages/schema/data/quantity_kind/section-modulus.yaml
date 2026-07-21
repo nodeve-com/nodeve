@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SectionModulus
-    match: exact
-  wikidata:
-    term: Q1930808
-    match: exact
-content:
-  en:
-    title: Section Modulus
+  qudt-quantity-kind: { term: SectionModulus, match: exact }
+  wikidata: { term: Q1930808, match: exact }
+content: { en: { title: Section Modulus } }

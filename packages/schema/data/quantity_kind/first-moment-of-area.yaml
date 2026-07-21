@@ -1,11 +1,5 @@
 broader: volume
 ref:
-  qudt-quantity-kind:
-    term: FirstMomentOfArea
-    match: exact
-  wikidata:
-    term: Q920601
-    match: exact
-content:
-  en:
-    title: First Moment of Area
+  qudt-quantity-kind: { term: FirstMomentOfArea, match: exact }
+  wikidata: { term: Q920601, match: exact }
+content: { en: { title: First Moment of Area } }

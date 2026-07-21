@@ -2,17 +2,7 @@ si_unit: Hz
 accumulation: instantaneous
 broader: inverse-time
 ref:
-  qudt-quantity-kind:
-    term: Frequency
-    match: exact
-  wikidata:
-    term: Q11652
-    match: exact
-  ha-device-class:
-    term: frequency
-    match: exact
-content:
-  en:
-    title: Frequency
-  pt:
-    title: Frequência
+  qudt-quantity-kind: { term: Frequency, match: exact }
+  wikidata: { term: Q11652, match: exact }
+  ha-device-class: { term: frequency, match: exact }
+content: { en: { title: Frequency }, pt: { title: Frequência } }

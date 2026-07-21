@@ -1,11 +1,5 @@
 broader: inverse-temperature
 ref:
-  qudt-quantity-kind:
-    term: RelativePressureCoefficient
-    match: exact
-  wikidata:
-    term: Q74761852
-    match: exact
-content:
-  en:
-    title: Relative Pressure Coefficient
+  qudt-quantity-kind: { term: RelativePressureCoefficient, match: exact }
+  wikidata: { term: Q74761852, match: exact }
+content: { en: { title: Relative Pressure Coefficient } }

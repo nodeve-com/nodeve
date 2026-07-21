@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.4
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: FinalOrCurrentVehicleMass
-    match: exact
-content:
-  en:
-    title: Final Or Current Vehicle Mass
+ref: { qudt-quantity-kind: { term: FinalOrCurrentVehicleMass, match: exact } }
+content: { en: { title: Final Or Current Vehicle Mass } }

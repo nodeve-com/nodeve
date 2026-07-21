@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MagneticAreaMoment
-    match: exact
-content:
-  en:
-    title: Magnetic Area Moment
+ref: { qudt-quantity-kind: { term: MagneticAreaMoment, match: exact } }
+content: { en: { title: Magnetic Area Moment } }

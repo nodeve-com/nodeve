@@ -2,3 +2,8 @@
 # generator that rewrites it. Mirrors the globalIgnores in eslint.config.js.
 packages/grimoire/src/generated/**
 nodeve.checks.defaults.js
+
+# Schema yaml — format.ts owns its collection style (deterministic
+# flow-when-short, block-when-long). prettier would re-explode long flow maps
+# into lone `{` / `}` lines; the two fought. format.ts is the sole authority.
+packages/schema/**/*.yaml

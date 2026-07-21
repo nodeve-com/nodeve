@@ -1,11 +1,5 @@
 broader: mass
 ref:
-  qudt-quantity-kind:
-    term: AtomicMass
-    match: exact
-  wikidata:
-    term: Q3840065
-    match: exact
-content:
-  en:
-    title: Atomic Mass
+  qudt-quantity-kind: { term: AtomicMass, match: exact }
+  wikidata: { term: Q3840065, match: exact }
+content: { en: { title: Atomic Mass } }

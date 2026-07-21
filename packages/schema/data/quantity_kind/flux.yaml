@@ -1,7 +1,1 @@
-ref:
-  qudt-quantity-kind:
-    term: Flux
-    match: exact
-content:
-  en:
-    title: Flux
+{ ref: { qudt-quantity-kind: { term: Flux, match: exact } }, content: { en: { title: Flux } } }

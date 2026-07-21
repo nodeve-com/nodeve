@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: GeneralizedCoordinate
-    match: exact
-  wikidata:
-    term: Q1057607
-    match: exact
-content:
-  en:
-    title: Generalized Coordinate
+  qudt-quantity-kind: { term: GeneralizedCoordinate, match: exact }
+  wikidata: { term: Q1057607, match: exact }
+content: { en: { title: Generalized Coordinate } }

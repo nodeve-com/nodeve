@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Radius
-    match: exact
-  wikidata:
-    term: Q173817
-    match: exact
-content:
-  en:
-    title: Radius
+  qudt-quantity-kind: { term: Radius, match: exact }
+  wikidata: { term: Q173817, match: exact }
+content: { en: { title: Radius } }

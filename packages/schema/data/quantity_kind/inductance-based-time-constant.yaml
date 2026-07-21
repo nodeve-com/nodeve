@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: InductanceBasedTimeConstant
-    match: exact
-content:
-  en:
-    title: Inductance Based Time Constant
+ref: { qudt-quantity-kind: { term: InductanceBasedTimeConstant, match: exact } }
+content: { en: { title: Inductance Based Time Constant } }

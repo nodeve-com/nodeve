@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ElectricCurrentPerTemperature
-    match: exact
-content:
-  en:
-    title: Electric Current per Temperature
+ref: { qudt-quantity-kind: { term: ElectricCurrentPerTemperature, match: exact } }
+content: { en: { title: Electric Current per Temperature } }

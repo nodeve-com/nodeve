@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PictureElement
-    match: exact
-content:
-  en:
-    title: Picture Element
+ref: { qudt-quantity-kind: { term: PictureElement, match: exact } }
+content: { en: { title: Picture Element } }

@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: ReactionEnergy
-    match: exact
-  wikidata:
-    term: Q98164745
-    match: exact
-content:
-  en:
-    title: Reaction Energy
+  qudt-quantity-kind: { term: ReactionEnergy, match: exact }
+  wikidata: { term: Q98164745, match: exact }
+content: { en: { title: Reaction Energy } }

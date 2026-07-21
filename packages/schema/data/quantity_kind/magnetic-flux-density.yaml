@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MagneticFluxDensity
-    match: exact
-  wikidata:
-    term: Q30204
-    match: exact
-content:
-  en:
-    title: Magnetic Flux Density
+  qudt-quantity-kind: { term: MagneticFluxDensity, match: exact }
+  wikidata: { term: Q30204, match: exact }
+content: { en: { title: Magnetic Flux Density } }

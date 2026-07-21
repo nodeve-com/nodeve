@@ -6,25 +6,17 @@ feature_of_interest:
       $: { count: 3 }
       _:
         active-power:
-          survival:
-            valued_range: { max: 20000 }
-            specification: { rating: survival }
-          continuous:
-            valued_range: { max: 18000 }
-            specification: { rating: continuous }
+          survival: { valued_range: { max: 20000 }, specification: { rating: survival } }
+          continuous: { valued_range: { max: 18000 }, specification: { rating: continuous } }
         # PV generation energy — undirected, one direction only.
         active-energy:
-          lifetime:
-            valued_range: { min: 0, unit: kWh }
-            measurement: { resolution: 0.01 }
+          lifetime: { valued_range: { min: 0, unit: kWh }, measurement: { resolution: 0.01 } }
           daily:
             valued_range: { min: 0, unit: kWh }
             measurement: { period: daily, resolution: 0.01 }
       '*':
         voltage:
-          survival:
-            valued_range: { max: 1000 }
-            specification: { rating: survival }
+          survival: { valued_range: { max: 1000 }, specification: { rating: survival } }
           running:
             valued_range: { min: 90, max: 140 }
             specification: { zone: running, trigger_on: above }
@@ -34,26 +26,15 @@ feature_of_interest:
           mppt:
             valued_range: { min: 175, value: 620, max: 850 }
             specification: { rating: continuous, zone: mppt, severity: nominal }
-          measured:
-            valued_range: { min: 0, max: 1000 }
-            measurement: { resolution: 0.1 }
+          measured: { valued_range: { min: 0, max: 1000 }, measurement: { resolution: 0.1 } }
         electric-current:
-          survival:
-            valued_range: { max: 25 }
-            specification: { rating: survival }
-          continuous:
-            valued_range: { max: 20 }
-            specification: { rating: continuous }
-          measured:
-            valued_range: { min: 0, max: 30 }
-            measurement: { resolution: 0.01 }
+          survival: { valued_range: { max: 25 }, specification: { rating: survival } }
+          continuous: { valued_range: { max: 20 }, specification: { rating: continuous } }
+          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
         active-power:
-          continuous:
-            valued_range: { max: 10000 }
-            specification: { rating: continuous }
+          continuous: { valued_range: { max: 10000 }, specification: { rating: continuous } }
           # per-string reading (foxess pv1/2/3 power) — no band stated
-          measured:
-            measurement: { resolution: 0.001 }
+          measured: { measurement: { resolution: 0.001 } }
       '1': {}
       '2': {}
       # String 3 replaces only the mppt nominal; every other interval stays inherited.
@@ -83,8 +64,6 @@ feature_of_interest:
     enclosure:
       _:
         temperature:
-          _:
-            valued_range: { min: -40, max: 100, unit: °C }
-            measurement: { resolution: 0.1 }
+          _: { valued_range: { min: -40, max: 100, unit: °C }, measurement: { resolution: 0.1 } }
 
 # Each NIC is one row; the box ships a WiFi radio and a 100 Mb Ethernet port.

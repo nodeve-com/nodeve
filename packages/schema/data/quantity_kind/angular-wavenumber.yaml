@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularWavenumber
-    match: exact
-  wikidata:
-    term: Q30338487
-    match: exact
-content:
-  en:
-    title: Angular Wavenumber
+  qudt-quantity-kind: { term: AngularWavenumber, match: exact }
+  wikidata: { term: Q30338487, match: exact }
+content: { en: { title: Angular Wavenumber } }

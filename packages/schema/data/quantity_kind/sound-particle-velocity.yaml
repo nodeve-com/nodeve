@@ -1,11 +1,5 @@
 broader: linear-velocity
 ref:
-  qudt-quantity-kind:
-    term: SoundParticleVelocity
-    match: exact
-  wikidata:
-    term: Q336894
-    match: exact
-content:
-  en:
-    title: Sound Particle Velocity
+  qudt-quantity-kind: { term: SoundParticleVelocity, match: exact }
+  wikidata: { term: Q336894, match: exact }
+content: { en: { title: Sound Particle Velocity } }

@@ -1,8 +1,3 @@
 broader: dimensionless
-ref:
-  qudt-quantity-kind:
-    term: DimensionlessRatio
-    match: exact
-content:
-  en:
-    title: Dimensionless Ratio
+ref: { qudt-quantity-kind: { term: DimensionlessRatio, match: exact } }
+content: { en: { title: Dimensionless Ratio } }

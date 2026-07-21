@@ -1,21 +1,10 @@
 socket_binding:
-  in:
-    feature_type: ac-phase
-  out:
-    feature_type: ac-phase
-    required: true
-  grid:
-    feature_type: ac-phase
-  load:
-    feature_type: ac-phase
-  eps:
-    feature_type: ac-phase
-  pv-tracker:
-    feature_type: dc-port
-    required: true
-  battery:
-    feature_type: dc-port
-  ambient:
-    feature_type: environment
-  enclosure:
-    feature_type: environment
+  in: { feature_type: ac-phase }
+  out: { feature_type: ac-phase, required: true }
+  grid: { feature_type: ac-phase }
+  load: { feature_type: ac-phase }
+  eps: { feature_type: ac-phase }
+  pv-tracker: { feature_type: dc-port, required: true }
+  battery: { feature_type: dc-port }
+  ambient: { feature_type: environment }
+  enclosure: { feature_type: environment }

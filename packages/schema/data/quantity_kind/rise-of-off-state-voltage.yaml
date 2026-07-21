@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 replaced_by: rate-of-rise-of-off-state-voltage
-ref:
-  qudt-quantity-kind:
-    term: RiseOfOffStateVoltage
-    match: exact
-content:
-  en:
-    title: rise of off-state voltage
+ref: { qudt-quantity-kind: { term: RiseOfOffStateVoltage, match: exact } }
+content: { en: { title: rise of off-state voltage } }

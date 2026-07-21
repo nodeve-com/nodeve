@@ -1,11 +1,5 @@
 broader: power
 ref:
-  qudt-quantity-kind:
-    term: ElectricPower
-    match: exact
-  wikidata:
-    term: Q27137
-    match: exact
-content:
-  en:
-    title: Electric Power
+  qudt-quantity-kind: { term: ElectricPower, match: exact }
+  wikidata: { term: Q27137, match: exact }
+content: { en: { title: Electric Power } }

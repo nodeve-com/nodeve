@@ -1,11 +1,5 @@
 broader: speed-of-sound
 ref:
-  qudt-quantity-kind:
-    term: GroupSpeedOfSound
-    match: exact
-  wikidata:
-    term: Q86508881
-    match: exact
-content:
-  en:
-    title: Group Speed of Sound
+  qudt-quantity-kind: { term: GroupSpeedOfSound, match: exact }
+  wikidata: { term: Q86508881, match: exact }
+content: { en: { title: Group Speed of Sound } }

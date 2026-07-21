@@ -1,8 +1,3 @@
 broader: electric-charge-per-area
-ref:
-  qudt-quantity-kind:
-    term: PolarizationField
-    match: exact
-content:
-  en:
-    title: Polarization Field
+ref: { qudt-quantity-kind: { term: PolarizationField, match: exact } }
+content: { en: { title: Polarization Field } }

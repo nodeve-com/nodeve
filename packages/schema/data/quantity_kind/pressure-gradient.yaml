@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureGradient
-    match: exact
-content:
-  en:
-    title: Pressure Gradient
+ref: { qudt-quantity-kind: { term: PressureGradient, match: exact } }
+content: { en: { title: Pressure Gradient } }

@@ -1,11 +1,5 @@
 broader: power-per-area
 ref:
-  qudt-quantity-kind:
-    term: Irradiance
-    match: exact
-  wikidata:
-    term: Q830654
-    match: exact
-content:
-  en:
-    title: Irradiance
+  qudt-quantity-kind: { term: Irradiance, match: exact }
+  wikidata: { term: Q830654, match: exact }
+content: { en: { title: Irradiance } }

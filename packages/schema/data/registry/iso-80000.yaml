@@ -1,6 +1,4 @@
 url: https://www.iso.org/standard/76921.html
 content:
-  en:
-    title: ISO 80000 (Quantities and units)
-  pt:
-    title: ISO 80000 (Grandezas e unidades)
+  en: { title: ISO 80000 (Quantities and units) }
+  pt: { title: ISO 80000 (Grandezas e unidades) }

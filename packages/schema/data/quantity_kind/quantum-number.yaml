@@ -1,11 +1,5 @@
 broader: dimensionless
 ref:
-  qudt-quantity-kind:
-    term: QuantumNumber
-    match: exact
-  wikidata:
-    term: Q232431
-    match: exact
-content:
-  en:
-    title: Quantum Number
+  qudt-quantity-kind: { term: QuantumNumber, match: exact }
+  wikidata: { term: Q232431, match: exact }
+content: { en: { title: Quantum Number } }

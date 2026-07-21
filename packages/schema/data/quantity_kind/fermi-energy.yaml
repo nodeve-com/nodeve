@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: FermiEnergy
-    match: exact
-  wikidata:
-    term: Q431335
-    match: exact
-content:
-  en:
-    title: Fermi Energy
+  qudt-quantity-kind: { term: FermiEnergy, match: exact }
+  wikidata: { term: Q431335, match: exact }
+content: { en: { title: Fermi Energy } }

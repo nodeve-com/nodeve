@@ -1,11 +1,5 @@
 broader: specific-energy
 ref:
-  qudt-quantity-kind:
-    term: SpecificEnthalpy
-    match: exact
-  wikidata:
-    term: Q21572993
-    match: exact
-content:
-  en:
-    title: Specific Enthalpy
+  qudt-quantity-kind: { term: SpecificEnthalpy, match: exact }
+  wikidata: { term: Q21572993, match: exact }
+content: { en: { title: Specific Enthalpy } }

@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: ElectricEnergy
-    match: exact
-  wikidata:
-    term: Q206799
-    match: exact
-content:
-  en:
-    title: Electric Energy
+  qudt-quantity-kind: { term: ElectricEnergy, match: exact }
+  wikidata: { term: Q206799, match: exact }
+content: { en: { title: Electric Energy } }

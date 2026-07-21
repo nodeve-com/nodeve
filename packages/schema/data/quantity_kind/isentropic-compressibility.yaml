@@ -1,11 +1,5 @@
 broader: compressibility
 ref:
-  qudt-quantity-kind:
-    term: IsentropicCompressibility
-    match: exact
-  wikidata:
-    term: Q2990695
-    match: exact
-content:
-  en:
-    title: Isentropic Compressibility
+  qudt-quantity-kind: { term: IsentropicCompressibility, match: exact }
+  wikidata: { term: Q2990695, match: exact }
+content: { en: { title: Isentropic Compressibility } }

@@ -1,11 +1,5 @@
 broader: friction
 ref:
-  qudt-quantity-kind:
-    term: StaticFriction
-    match: exact
-  wikidata:
-    term: Q90862568
-    match: exact
-content:
-  en:
-    title: Static Friction
+  qudt-quantity-kind: { term: StaticFriction, match: exact }
+  wikidata: { term: Q90862568, match: exact }
+content: { en: { title: Static Friction } }

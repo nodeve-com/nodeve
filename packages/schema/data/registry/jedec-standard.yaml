@@ -1,6 +1,4 @@
 url: https://www.jedec.org/standards-documents/docs/jesd8
 content:
-  en:
-    title: JEDEC interface standards (JESD8 family)
-  pt:
-    title: Normas de interface JEDEC (família JESD8)
+  en: { title: JEDEC interface standards (JESD8 family) }
+  pt: { title: Normas de interface JEDEC (família JESD8) }

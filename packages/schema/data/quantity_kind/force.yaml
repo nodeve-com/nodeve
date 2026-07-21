@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Force
-    match: exact
-  wikidata:
-    term: Q11402
-    match: exact
-content:
-  en:
-    title: Force
+  qudt-quantity-kind: { term: Force, match: exact }
+  wikidata: { term: Q11402, match: exact }
+content: { en: { title: Force } }

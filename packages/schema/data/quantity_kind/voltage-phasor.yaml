@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: VoltagePhasor
-    match: exact
-  wikidata:
-    term: Q78514605
-    match: exact
-content:
-  en:
-    title: Voltage Phasor
+  qudt-quantity-kind: { term: VoltagePhasor, match: exact }
+  wikidata: { term: Q78514605, match: exact }
+content: { en: { title: Voltage Phasor } }

@@ -4,18 +4,15 @@ default_prefix: nodeve
 default_range: string
 classes:
   Manufacturer:
-    annotations:
-      sql_table: manufacturer
+    annotations: { sql_table: manufacturer }
     description: Own table — the relational analog of the _defaults cascade; every FoxESS product FKs one row.
-    slots: [node, slug, contents]
+    slots: [ node, slug, contents ]
 
   Product:
-    annotations:
-      sql_table: product
+    annotations: { sql_table: product }
     description: Product identity feature — what grimoire's `product:` block was.
-    slots: [node, model, series, manufacturer]
-    slot_usage:
-      manufacturer: { required: true }
+    slots: [ node, model, series, manufacturer ]
+    slot_usage: { manufacturer: { required: true } }
 
   # ── device layer: ONE table ──
   # Rows are MODELS (manufacturer + model number); device_type says which kind
@@ -31,79 +28,59 @@ classes:
       path_root: device_type
     description: A catalogued device model — the assembly of feature-of-interest rows its type calls for.
     slots:
-      [
-        node,
-        device_type,
-        slug,
-        product,
-        contents,
-        network_interfaces,
-        services,
-        register_map,
-        settings,
-        channels,
-        ac_ports,
-        dc_ports,
-        environments,
-      ]
-    slot_usage:
-      product: { required: true }
-      device_type: { required: true }
+      - node
+      - device_type
+      - slug
+      - product
+      - contents
+      - network_interfaces
+      - services
+      - register_map
+      - settings
+      - channels
+      - ac_ports
+      - dc_ports
+      - environments
+    slot_usage: { product: { required: true }, device_type: { required: true } }
 slots:
   model:
-    {
-      title: Model,
-      description: 'what the thing is called — the model designation on the nameplate',
-    }
+    title: Model
+    description: 'what the thing is called — the model designation on the nameplate'
   series: {}
   ac_ports:
-    {
-      range: FeatureOfInterest,
-      multivalued: true,
-      inlined_as_list: true,
-      description: "AC port ROWS — which socket each fills lives in its role, never a column name; phase count is the feature's part rows (a/b/c, l1/l2, or none), never the type",
-      annotations: { camel: acPorts },
-    }
+    range: FeatureOfInterest
+    multivalued: true
+    inlined_as_list: true
+    description: "AC port ROWS — which socket each fills lives in its role, never a column name; phase count is the feature's part rows (a/b/c, l1/l2, or none), never the type"
+    annotations: { camel: acPorts }
   dc_ports:
-    {
-      range: FeatureOfInterest,
-      multivalued: true,
-      inlined_as_list: true,
-      description: "DC port ROWS — one per socket (pv-tracker, battery); how MANY trackers or battery ports is that feature's part rows",
-      annotations: { camel: dcPorts },
-    }
+    range: FeatureOfInterest
+    multivalued: true
+    inlined_as_list: true
+    description: "DC port ROWS — one per socket (pv-tracker, battery); how MANY trackers or battery ports is that feature's part rows"
+    annotations: { camel: dcPorts }
   device_type:
-    {
-      range: DeviceType,
-      description: 'FK — which device type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new device type is an INSERT, never a DDL migration. Permalink root = its slug',
-      annotations: { camel: deviceType },
-    }
+    range: DeviceType
+    description: 'FK — which device type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new device type is an INSERT, never a DDL migration. Permalink root = its slug'
+    annotations: { camel: deviceType }
   environments:
-    {
-      range: FeatureOfInterest,
-      multivalued: true,
-      inlined_as_list: true,
-      description: 'environment ROWS — the things a temperature/humidity reading attaches to; role says which (ambient = rated operating conditions, enclosure = internal sensor)',
-    }
+    range: FeatureOfInterest
+    multivalued: true
+    inlined_as_list: true
+    description: 'environment ROWS — the things a temperature/humidity reading attaches to; role says which (ambient = rated operating conditions, enclosure = internal sensor)'
   manufacturer:
-    {
-      range: Manufacturer,
-      title: Manufacturer,
-      description: 'FK — the organization that made this thing',
-    }
+    range: Manufacturer
+    title: Manufacturer
+    description: 'FK — the organization that made this thing'
   network_interfaces:
-    {
-      range: NetworkInterface,
-      multivalued: true,
-      inlined_as_list: true,
-      annotations: { camel: networkInterfaces },
-    }
+    range: NetworkInterface
+    multivalued: true
+    inlined_as_list: true
+    annotations: { camel: networkInterfaces }
   product: { range: Product, inlined: true }
   register_map:
-    {
-      range: RegisterMap,
-      inlined: true,
-      description: 'FK to the shared family map — inlined only for the single-file example',
-      annotations: { camel: registerMap },
-    }
+    range: RegisterMap
+    inlined: true
+    description: 'FK to the shared family map — inlined only for the single-file example'
+    annotations: { camel: registerMap }
   services: { range: ServiceBinding, multivalued: true, inlined_as_list: true }

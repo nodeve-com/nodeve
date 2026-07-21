@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LogarithmicFrequencyIntervalToBase10
-    match: exact
-content:
-  en:
-    title: Logarithmic Frequency Interval to Base 10
+ref: { qudt-quantity-kind: { term: LogarithmicFrequencyIntervalToBase10, match: exact } }
+content: { en: { title: Logarithmic Frequency Interval to Base 10 } }

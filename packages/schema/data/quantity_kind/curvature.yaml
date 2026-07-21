@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Curvature
-    match: exact
-  wikidata:
-    term: Q214881
-    match: exact
-content:
-  en:
-    title: Curvature
+  qudt-quantity-kind: { term: Curvature, match: exact }
+  wikidata: { term: Q214881, match: exact }
+content: { en: { title: Curvature } }

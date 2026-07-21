@@ -1,11 +1,5 @@
 broader: area-per-time
 ref:
-  qudt-quantity-kind:
-    term: KinematicViscosity
-    match: exact
-  wikidata:
-    term: Q15106259
-    match: exact
-content:
-  en:
-    title: Kinematic Viscosity
+  qudt-quantity-kind: { term: KinematicViscosity, match: exact }
+  wikidata: { term: Q15106259, match: exact }
+content: { en: { title: Kinematic Viscosity } }

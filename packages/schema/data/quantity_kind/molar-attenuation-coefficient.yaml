@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarAttenuationCoefficient
-    match: exact
-  wikidata:
-    term: Q900239
-    match: exact
-content:
-  en:
-    title: Molar Attenuation Coefficient
+  qudt-quantity-kind: { term: MolarAttenuationCoefficient, match: exact }
+  wikidata: { term: Q900239, match: exact }
+content: { en: { title: Molar Attenuation Coefficient } }

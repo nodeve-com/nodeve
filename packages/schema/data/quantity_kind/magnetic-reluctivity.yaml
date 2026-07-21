@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MagneticReluctivity
-    match: exact
-content:
-  en:
-    title: Magnetic Reluctivity
+ref: { qudt-quantity-kind: { term: MagneticReluctivity, match: exact } }
+content: { en: { title: Magnetic Reluctivity } }

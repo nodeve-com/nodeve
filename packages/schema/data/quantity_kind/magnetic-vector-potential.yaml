@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MagneticVectorPotential
-    match: exact
-  wikidata:
-    term: Q2299100
-    match: exact
-content:
-  en:
-    title: Magnetic Vector Potential
+  qudt-quantity-kind: { term: MagneticVectorPotential, match: exact }
+  wikidata: { term: Q2299100, match: exact }
+content: { en: { title: Magnetic Vector Potential } }

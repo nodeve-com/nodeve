@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LorenzCoefficient
-    match: exact
-  wikidata:
-    term: Q105728754
-    match: exact
-content:
-  en:
-    title: Lorenz Coefficient
+  qudt-quantity-kind: { term: LorenzCoefficient, match: exact }
+  wikidata: { term: Q105728754, match: exact }
+content: { en: { title: Lorenz Coefficient } }

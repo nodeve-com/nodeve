@@ -1,8 +1,3 @@
 broader: temperature
-ref:
-  qudt-quantity-kind:
-    term: ColdReceptorThreshold
-    match: exact
-content:
-  en:
-    title: Cold Receptor Threshold
+ref: { qudt-quantity-kind: { term: ColdReceptorThreshold, match: exact } }
+content: { en: { title: Cold Receptor Threshold } }

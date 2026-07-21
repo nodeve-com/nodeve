@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureBasedVelocity
-    match: exact
-content:
-  en:
-    title: Temperature-based Velocity
+ref: { qudt-quantity-kind: { term: TemperatureBasedVelocity, match: exact } }
+content: { en: { title: Temperature-based Velocity } }

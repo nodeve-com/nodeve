@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ParticleCurrentDensity
-    match: exact
-content:
-  en:
-    title: Particle Current Density
+ref: { qudt-quantity-kind: { term: ParticleCurrentDensity, match: exact } }
+content: { en: { title: Particle Current Density } }

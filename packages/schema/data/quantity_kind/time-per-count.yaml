@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TimePerCount
-    match: exact
-content:
-  en:
-    title: Time per Count
+ref: { qudt-quantity-kind: { term: TimePerCount, match: exact } }
+content: { en: { title: Time per Count } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: Conductance
-    match: exact
-content:
-  en:
-    title: Conductance
+ref: { qudt-quantity-kind: { term: Conductance, match: exact } }
+content: { en: { title: Conductance } }

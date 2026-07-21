@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: AtomicAttenuationCoefficient
-    match: exact
-  wikidata:
-    term: Q98592911
-    match: exact
-content:
-  en:
-    title: Atomic Attenuation Coefficient
+  qudt-quantity-kind: { term: AtomicAttenuationCoefficient, match: exact }
+  wikidata: { term: Q98592911, match: exact }
+content: { en: { title: Atomic Attenuation Coefficient } }

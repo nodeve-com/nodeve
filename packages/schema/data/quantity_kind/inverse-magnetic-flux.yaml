@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: InverseMagneticFlux
-    match: exact
-  wikidata:
-    term: Q101194934
-    match: exact
-content:
-  en:
-    title: Inverse Magnetic Flux
+  qudt-quantity-kind: { term: InverseMagneticFlux, match: exact }
+  wikidata: { term: Q101194934, match: exact }
+content: { en: { title: Inverse Magnetic Flux } }

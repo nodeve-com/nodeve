@@ -6,127 +6,105 @@ classes:
   # ── comms layer: OUT of the device. Shared per manufacturer-family;
   # many products FK the same map. ──
   RegisterMap:
-    annotations:
-      sql_table: register_map
-    slots: [node, slug, unit_id, register_type, word_order, registers, constraint_ranges]
+    annotations: { sql_table: register_map }
+    slots: [ node, slug, unit_id, register_type, word_order, registers, constraint_ranges ]
 
   RegisterRange:
-    annotations:
-      sql_table: register_range
+    annotations: { sql_table: register_range }
     description: Named invalid / individual-read range on a map.
-    slots: [node, range_type, start, end, note]
-    slot_usage:
-      start: { required: true }
-      end: { required: true }
+    slots: [ node, range_type, start, end, note ]
+    slot_usage: { start: { required: true }, end: { required: true } }
 
   ModbusRegister:
-    annotations:
-      sql_table: modbus_register
+    annotations: { sql_table: modbus_register }
     description: >-
       One register → one measurand, quantitative OR categorical (exactly one of interval / channel, enforced at normalize). Quantitative: FK to the interval row it reads (the relational rewrite of grimoire's interval_item) + `part` naming WHICH instance when the interval is a `*` default — quantity, feature, and energy channel all derive from the interval, no discriminator columns. Categorical: FK to the Channel it feeds; its identified bits are RegisterFlag rows.
-    slots: [node, address, part, interval, channel, scale, decimals, unit, datatype, flags, note]
-    slot_usage:
-      datatype: { required: true }
+    slots:
+      - node
+      - address
+      - part
+      - interval
+      - channel
+      - scale
+      - decimals
+      - unit
+      - datatype
+      - flags
+      - note
+    slot_usage: { datatype: { required: true } }
 
   RegisterFlag:
-    annotations:
-      sql_table: register_flag
+    annotations: { sql_table: register_flag }
     description: >-
       One identified bit of a flag word — bit position → the channel member it raises. Unmapped bits have no row; a word read as part of a group with no identified bits has a register row and zero flags.
-    slots: [node, bit, member]
-    slot_usage:
-      bit: { required: true }
-      member: { required: true }
+    slots: [ node, bit, member ]
+    slot_usage: { bit: { required: true }, member: { required: true } }
 slots:
   address:
-    {
-      range: integer,
-      required: true,
-      title: Register address,
-      description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)',
-    }
+    range: integer
+    required: true
+    title: Register address
+    description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)'
   bit:
-    {
-      range: integer,
-      minimum_value: 0,
-      maximum_value: 15,
-      title: Bit,
-      description: 'bit position within the 16-bit word, 0 = LSB',
-    }
+    range: integer
+    minimum_value: 0
+    maximum_value: 15
+    title: Bit
+    description: 'bit position within the 16-bit word, 0 = LSB'
   decimals:
-    {
-      range: integer,
-      title: Resolved decimals,
-      description: 'decimal places the sensor actually resolves; the published value is rounded to it — decoding leaks precision the sensor never measured. Omit only when scale already lands on the real resolution',
-    }
+    range: integer
+    title: Resolved decimals
+    description: 'decimal places the sensor actually resolves; the published value is rounded to it — decoding leaks precision the sensor never measured. Omit only when scale already lands on the real resolution'
   end: { range: integer }
   note: {}
   range_type:
-    { range: string, description: invalid | individual_read, annotations: { camel: rangeType } }
+    range: string
+    description: invalid | individual_read
+    annotations: { camel: rangeType }
   scale:
-    {
-      range: float,
-      title: Scale,
-      description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1',
-    }
+    range: float
+    title: Scale
+    description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1'
   start: { range: integer }
   unit_id:
-    {
-      range: integer,
-      title: Unit id,
-      description: 'Modbus slave/unit id — a known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)',
-      annotations: { camel: unitId },
-    }
+    range: integer
+    title: Unit id
+    description: 'Modbus slave/unit id — a known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)'
+    annotations: { camel: unitId }
   channel:
-    {
-      range: Channel,
-      title: Channel,
-      description: "FK — the categorical channel this register feeds; the register's flag labels mint that channel's members",
-    }
+    range: Channel
+    title: Channel
+    description: "FK — the categorical channel this register feeds; the register's flag labels mint that channel's members"
   constraint_ranges:
-    {
-      range: RegisterRange,
-      multivalued: true,
-      inlined_as_list: true,
-      annotations: { camel: constraintRanges },
-    }
+    range: RegisterRange
+    multivalued: true
+    inlined_as_list: true
+    annotations: { camel: constraintRanges }
   datatype:
-    {
-      range: RegisterDatatype,
-      title: Value type,
-      description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it',
-    }
+    range: RegisterDatatype
+    title: Value type
+    description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it'
   flags:
-    {
-      range: RegisterFlag,
-      multivalued: true,
-      inlined_as_list: true,
-      description: "this word's identified bits; authored as a `flag` label list where index = bit, null = unidentified",
-    }
+    range: RegisterFlag
+    multivalued: true
+    inlined_as_list: true
+    description: "this word's identified bits; authored as a `flag` label list where index = bit, null = unidentified"
   interval:
-    {
-      range: Interval,
-      description: "FK — the interval row this points at: a register's read target (a `*`-part interval resolves per-instance via the register's own part) or a condition's anchoring band",
-      close_mappings: ['ssn-system:Condition'],
-    }
+    range: Interval
+    description: "FK — the interval row this points at: a register's read target (a `*`-part interval resolves per-instance via the register's own part) or a condition's anchoring band"
+    close_mappings: [ 'ssn-system:Condition' ]
   member:
-    {
-      range: DomainMember,
-      title: Member,
-      description: 'FK — the channel member this bit raises when set',
-    }
+    range: DomainMember
+    title: Member
+    description: 'FK — the channel member this bit raises when set'
   register_type:
-    {
-      range: RegisterType,
-      title: Register type,
-      description: 'which Modbus register space a read targets — holding = function 03, input = function 04',
-      annotations: { camel: registerType },
-    }
+    range: RegisterType
+    title: Register type
+    description: 'which Modbus register space a read targets — holding = function 03, input = function 04'
+    annotations: { camel: registerType }
   registers: { range: ModbusRegister, multivalued: true, inlined_as_list: true }
   word_order:
-    {
-      range: WordOrder,
-      title: Word order,
-      description: 'for 32-bit values — high_first puts the high word at the lower address; 16-bit registers are always big-endian (Modbus standard)',
-      annotations: { camel: wordOrder },
-    }
+    range: WordOrder
+    title: Word order
+    description: 'for 32-bit values — high_first puts the high word at the lower address; 16-bit registers are always big-endian (Modbus standard)'
+    annotations: { camel: wordOrder }

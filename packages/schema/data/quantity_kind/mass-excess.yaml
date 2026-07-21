@@ -1,11 +1,5 @@
 broader: mass
 ref:
-  qudt-quantity-kind:
-    term: MassExcess
-    match: exact
-  wikidata:
-    term: Q1571163
-    match: exact
-content:
-  en:
-    title: Mass Excess
+  qudt-quantity-kind: { term: MassExcess, match: exact }
+  wikidata: { term: Q1571163, match: exact }
+content: { en: { title: Mass Excess } }

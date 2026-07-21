@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: CostPerArea
-    match: exact
-content:
-  en:
-    title: Cost per Area
+ref: { qudt-quantity-kind: { term: CostPerArea, match: exact } }
+content: { en: { title: Cost per Area } }

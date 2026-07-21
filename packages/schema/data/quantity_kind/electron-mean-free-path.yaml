@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: ElectronMeanFreePath
-    match: exact
-  wikidata:
-    term: Q105672307
-    match: exact
-content:
-  en:
-    title: Electron Mean Free Path
+  qudt-quantity-kind: { term: ElectronMeanFreePath, match: exact }
+  wikidata: { term: Q105672307, match: exact }
+content: { en: { title: Electron Mean Free Path } }

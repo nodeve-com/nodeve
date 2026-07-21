@@ -1,11 +1,5 @@
 broader: attenuation-coefficient
 ref:
-  qudt-quantity-kind:
-    term: LinearAttenuationCoefficient
-    match: exact
-  wikidata:
-    term: Q86204330
-    match: exact
-content:
-  en:
-    title: Linear Attenuation Coefficient
+  qudt-quantity-kind: { term: LinearAttenuationCoefficient, match: exact }
+  wikidata: { term: Q86204330, match: exact }
+content: { en: { title: Linear Attenuation Coefficient } }

@@ -1,11 +1,5 @@
 broader: force-magnitude
 ref:
-  qudt-quantity-kind:
-    term: Tension
-    match: exact
-  wikidata:
-    term: Q908584
-    match: exact
-content:
-  en:
-    title: Tension
+  qudt-quantity-kind: { term: Tension, match: exact }
+  wikidata: { term: Q908584, match: exact }
+content: { en: { title: Tension } }

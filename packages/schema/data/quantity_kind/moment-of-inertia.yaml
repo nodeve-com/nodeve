@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MomentOfInertia
-    match: exact
-  wikidata:
-    term: Q165618
-    match: exact
-content:
-  en:
-    title: Moment of Inertia
+  qudt-quantity-kind: { term: MomentOfInertia, match: exact }
+  wikidata: { term: Q165618, match: exact }
+content: { en: { title: Moment of Inertia } }

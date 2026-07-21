@@ -2,17 +2,7 @@ si_unit: W
 accumulation: instantaneous
 broader: electric-power
 ref:
-  qudt-quantity-kind:
-    term: ActivePower
-    match: exact
-  wikidata:
-    term: Q12713281
-    match: exact
-  ha-device-class:
-    term: power
-    match: broad
-content:
-  en:
-    title: Active Power
-  pt:
-    title: Potência ativa
+  qudt-quantity-kind: { term: ActivePower, match: exact }
+  wikidata: { term: Q12713281, match: exact }
+  ha-device-class: { term: power, match: broad }
+content: { en: { title: Active Power }, pt: { title: Potência ativa } }

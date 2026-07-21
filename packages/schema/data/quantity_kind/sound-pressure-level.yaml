@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SoundPressureLevel
-    match: exact
-  wikidata:
-    term: Q14515278
-    match: exact
-content:
-  en:
-    title: Sound Pressure Level
+  qudt-quantity-kind: { term: SoundPressureLevel, match: exact }
+  wikidata: { term: Q14515278, match: exact }
+content: { en: { title: Sound Pressure Level } }

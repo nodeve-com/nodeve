@@ -1,11 +1,5 @@
 broader: quantum-number
 ref:
-  qudt-quantity-kind:
-    term: PrincipalQuantumNumber
-    match: exact
-  wikidata:
-    term: Q867448
-    match: exact
-content:
-  en:
-    title: Principal Quantum Number
+  qudt-quantity-kind: { term: PrincipalQuantumNumber, match: exact }
+  wikidata: { term: Q867448, match: exact }
+content: { en: { title: Principal Quantum Number } }

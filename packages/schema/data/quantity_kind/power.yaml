@@ -1,14 +1,6 @@
 si_unit: W
 accumulation: instantaneous
 ref:
-  qudt-quantity-kind:
-    term: Power
-    match: exact
-  wikidata:
-    term: Q25342
-    match: exact
-content:
-  en:
-    title: Power
-  pt:
-    title: Potência
+  qudt-quantity-kind: { term: Power, match: exact }
+  wikidata: { term: Q25342, match: exact }
+content: { en: { title: Power }, pt: { title: Potência } }

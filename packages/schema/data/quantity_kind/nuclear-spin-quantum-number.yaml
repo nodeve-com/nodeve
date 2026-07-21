@@ -1,11 +1,5 @@
 broader: spin-quantum-number
 ref:
-  qudt-quantity-kind:
-    term: NuclearSpinQuantumNumber
-    match: exact
-  wikidata:
-    term: Q97577403
-    match: exact
-content:
-  en:
-    title: Spin Quantum Number
+  qudt-quantity-kind: { term: NuclearSpinQuantumNumber, match: exact }
+  wikidata: { term: Q97577403, match: exact }
+content: { en: { title: Spin Quantum Number } }

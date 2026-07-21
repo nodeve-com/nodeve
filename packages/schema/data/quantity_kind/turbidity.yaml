@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Turbidity
-    match: exact
-  wikidata:
-    term: Q898574
-    match: exact
-content:
-  en:
-    title: Turbidity
+  qudt-quantity-kind: { term: Turbidity, match: exact }
+  wikidata: { term: Q898574, match: exact }
+content: { en: { title: Turbidity } }

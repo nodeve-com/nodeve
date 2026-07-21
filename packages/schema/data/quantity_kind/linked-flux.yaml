@@ -1,11 +1,5 @@
 broader: magnetic-flux
 ref:
-  qudt-quantity-kind:
-    term: LinkedFlux
-    match: exact
-  wikidata:
-    term: Q118540114
-    match: exact
-content:
-  en:
-    title: Linked Flux
+  qudt-quantity-kind: { term: LinkedFlux, match: exact }
+  wikidata: { term: Q118540114, match: exact }
+content: { en: { title: Linked Flux } }

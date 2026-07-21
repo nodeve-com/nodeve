@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: GruneisenParameter
-    match: exact
-  wikidata:
-    term: Q105658620
-    match: exact
-content:
-  en:
-    title: Gruneisen Parameter
+  qudt-quantity-kind: { term: GruneisenParameter, match: exact }
+  wikidata: { term: Q105658620, match: exact }
+content: { en: { title: Gruneisen Parameter } }

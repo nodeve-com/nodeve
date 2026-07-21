@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: Chromaticity
-    match: exact
-content:
-  en:
-    title: Chromaticity
+ref: { qudt-quantity-kind: { term: Chromaticity, match: exact } }
+content: { en: { title: Chromaticity } }

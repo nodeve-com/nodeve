@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Breadth
-    match: exact
-  wikidata:
-    term: Q77835705
-    match: exact
-content:
-  en:
-    title: Breadth
+  qudt-quantity-kind: { term: Breadth, match: exact }
+  wikidata: { term: Q77835705, match: exact }
+content: { en: { title: Breadth } }

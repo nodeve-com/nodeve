@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: Efficiency
-    match: exact
-  wikidata:
-    term: Q11945244
-    match: exact
-content:
-  en:
-    title: Efficiency
+  qudt-quantity-kind: { term: Efficiency, match: exact }
+  wikidata: { term: Q11945244, match: exact }
+content: { en: { title: Efficiency } }

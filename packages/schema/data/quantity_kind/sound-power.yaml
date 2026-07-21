@@ -1,11 +1,5 @@
 broader: power
 ref:
-  qudt-quantity-kind:
-    term: SoundPower
-    match: exact
-  wikidata:
-    term: Q1588477
-    match: exact
-content:
-  en:
-    title: Sound Power
+  qudt-quantity-kind: { term: SoundPower, match: exact }
+  wikidata: { term: Q1588477, match: exact }
+content: { en: { title: Sound Power } }

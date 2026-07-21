@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ElectricQuadrupoleMoment
-    match: exact
-content:
-  en:
-    title: Electric Quadrupole Moment
+ref: { qudt-quantity-kind: { term: ElectricQuadrupoleMoment, match: exact } }
+content: { en: { title: Electric Quadrupole Moment } }

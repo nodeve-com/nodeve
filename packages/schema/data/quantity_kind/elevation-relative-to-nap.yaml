@@ -1,8 +1,3 @@
 broader: altitude
-ref:
-  qudt-quantity-kind:
-    term: ElevationRelativeToNAP
-    match: exact
-content:
-  en:
-    title: Elevation Relative to NAP
+ref: { qudt-quantity-kind: { term: ElevationRelativeToNAP, match: exact } }
+content: { en: { title: Elevation Relative to NAP } }

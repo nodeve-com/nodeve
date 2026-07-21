@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LineicQuantity
-    match: exact
-content:
-  en:
-    title: Lineic Quantity
+ref: { qudt-quantity-kind: { term: LineicQuantity, match: exact } }
+content: { en: { title: Lineic Quantity } }

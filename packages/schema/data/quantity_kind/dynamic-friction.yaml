@@ -1,11 +1,5 @@
 broader: friction
 ref:
-  qudt-quantity-kind:
-    term: DynamicFriction
-    match: exact
-  wikidata:
-    term: Q99492067
-    match: exact
-content:
-  en:
-    title: Dynamic Friction
+  qudt-quantity-kind: { term: DynamicFriction, match: exact }
+  wikidata: { term: Q99492067, match: exact }
+content: { en: { title: Dynamic Friction } }

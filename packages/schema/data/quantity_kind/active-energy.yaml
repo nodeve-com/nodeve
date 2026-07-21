@@ -2,17 +2,7 @@ si_unit: J
 accumulation: cumulative_monotonic
 broader: electric-energy
 ref:
-  qudt-quantity-kind:
-    term: ActiveEnergy
-    match: exact
-  wikidata:
-    term: Q79813678
-    match: exact
-  ha-device-class:
-    term: energy
-    match: exact
-content:
-  en:
-    title: Active Energy
-  pt:
-    title: Energia ativa
+  qudt-quantity-kind: { term: ActiveEnergy, match: exact }
+  wikidata: { term: Q79813678, match: exact }
+  ha-device-class: { term: energy, match: exact }
+content: { en: { title: Active Energy }, pt: { title: Energia ativa } }

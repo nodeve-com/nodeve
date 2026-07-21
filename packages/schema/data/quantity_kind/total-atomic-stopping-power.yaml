@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: TotalAtomicStoppingPower
-    match: exact
-  wikidata:
-    term: Q112725871
-    match: exact
-content:
-  en:
-    title: Total Atomic Stopping Power
+  qudt-quantity-kind: { term: TotalAtomicStoppingPower, match: exact }
+  wikidata: { term: Q112725871, match: exact }
+content: { en: { title: Total Atomic Stopping Power } }

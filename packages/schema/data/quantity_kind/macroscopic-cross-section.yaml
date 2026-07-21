@@ -1,11 +1,5 @@
 broader: cross-section
 ref:
-  qudt-quantity-kind:
-    term: MacroscopicCrossSection
-    match: exact
-  wikidata:
-    term: Q98280520
-    match: exact
-content:
-  en:
-    title: Macroscopic Cross-section
+  qudt-quantity-kind: { term: MacroscopicCrossSection, match: exact }
+  wikidata: { term: Q98280520, match: exact }
+content: { en: { title: Macroscopic Cross-section } }

@@ -1,11 +1,5 @@
 broader: canonical-partition-function
 ref:
-  qudt-quantity-kind:
-    term: MicroCanonicalPartitionFunction
-    match: exact
-  wikidata:
-    term: Q96106546
-    match: exact
-content:
-  en:
-    title: Micro Canonical Partition Function
+  qudt-quantity-kind: { term: MicroCanonicalPartitionFunction, match: exact }
+  wikidata: { term: Q96106546, match: exact }
+content: { en: { title: Micro Canonical Partition Function } }

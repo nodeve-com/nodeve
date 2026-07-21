@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LongRangeOrderParameter
-    match: exact
-  wikidata:
-    term: Q105496124
-    match: exact
-content:
-  en:
-    title: Long-Range Order Parameter
+  qudt-quantity-kind: { term: LongRangeOrderParameter, match: exact }
+  wikidata: { term: Q105496124, match: exact }
+content: { en: { title: Long-Range Order Parameter } }

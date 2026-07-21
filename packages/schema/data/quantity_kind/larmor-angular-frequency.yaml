@@ -1,11 +1,5 @@
 broader: angular-frequency
 ref:
-  qudt-quantity-kind:
-    term: LarmorAngularFrequency
-    match: exact
-  wikidata:
-    term: Q97617059
-    match: exact
-content:
-  en:
-    title: Larmor Angular Frequency
+  qudt-quantity-kind: { term: LarmorAngularFrequency, match: exact }
+  wikidata: { term: Q97617059, match: exact }
+content: { en: { title: Larmor Angular Frequency } }

@@ -16,10 +16,8 @@ default_range: string
 # Part ROWS on the feature — per-model, so a new subdivision is a new row,
 # never a new column or a DDL migration.
 enums:
-  FlowDirection:
-    permissible_values: { in: {}, out: {}, net: {} }
-  InterfaceType:
-    permissible_values: { ethernet_csmacd: {}, ieee80211: {} }
+  FlowDirection: { permissible_values: { in: {}, out: {}, net: {} } }
+  InterfaceType: { permissible_values: { ethernet_csmacd: {}, ieee80211: {} } }
   MatchStrength:
     description: SKOS mapping strength — closed grammar, so an enum and not a table.
     permissible_values:
@@ -28,8 +26,7 @@ enums:
       broad: { meaning: skos:broadMatch }
       narrow: { meaning: skos:narrowMatch }
       related: { meaning: skos:relatedMatch }
-  Period:
-    permissible_values: { daily: {} }
+  Period: { permissible_values: { daily: {} } }
   Rating:
     permissible_values:
       continuous: {}
@@ -39,29 +36,22 @@ enums:
       shutdown: {}
       survival: {}
       protection_required: {}
-  RegisterDatatype:
-    permissible_values: { uint16: {}, int16: {}, uint32: {}, int32: {} }
-  RegisterType:
-    permissible_values: { holding: {}, input: {} }
-  ServiceProtocol:
-    permissible_values: { modbus_tcp: {}, https: {}, http: {}, mqtt: {} }
+  RegisterDatatype: { permissible_values: { uint16: {}, int16: {}, uint32: {}, int32: {} } }
+  RegisterType: { permissible_values: { holding: {}, input: {} } }
+  ServiceProtocol: { permissible_values: { modbus_tcp: {}, https: {}, http: {}, mqtt: {} } }
   Severity:
     permissible_values:
-      {
-        best: {},
-        better: {},
-        good: {},
-        nominal: {},
-        notice: {},
-        caution: {},
-        warning: {},
-        critical: {},
-        fatal: {},
-      }
-  TriggerOn:
-    permissible_values: { above: {}, below: {} }
-  WordOrder:
-    permissible_values: { high_first: {}, low_first: {} }
+      best: {}
+      better: {}
+      good: {}
+      nominal: {}
+      notice: {}
+      caution: {}
+      warning: {}
+      critical: {}
+      fatal: {}
+  TriggerOn: { permissible_values: { above: {}, below: {} } }
+  WordOrder: { permissible_values: { high_first: {}, low_first: {} } }
   Zone:
     permissible_values: { mppt: {}, mpp: {}, open_circuit: {}, off: {}, idle: {}, running: {} }
 
@@ -72,48 +62,34 @@ enums:
 slots:
   flow_direction: { range: FlowDirection, annotations: { camel: flowDirection } }
   part:
-    {
-      range: string,
-      title: Part,
-      pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$',
-      description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part.",
-    }
+    range: string
+    title: Part
+    pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$'
+    description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part."
   period: { range: Period }
   role:
-    {
-      range: string,
-      description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.',
-    }
+    range: string
+    description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
   slug:
-    {
-      range: string,
-      pattern: '^[a-z0-9]+(-[a-z0-9]+)*$',
-      title: Slug,
-      description: 'hand-authored machine key + url segment, kebab-case; wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref',
-    }
+    range: string
+    pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
+    title: Slug
+    description: 'hand-authored machine key + url segment, kebab-case; wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref'
   unit:
-    {
-      range: string,
-      title: Unit,
-      description: "non-SI unit override of a stated value — only when the value isn't in the quantity kind's canonical SI unit (kW vs W, °C vs K); omit ⇒ SI unit",
-    }
+    range: string
+    title: Unit
+    description: "non-SI unit override of a stated value — only when the value isn't in the quantity kind's canonical SI unit (kW vs W, °C vs K); omit ⇒ SI unit"
   contents: { range: Content, multivalued: true, inlined_as_list: true }
   feature_type:
-    {
-      range: FeatureType,
-      description: FK — which feature definition this row instantiates,
-      annotations: { camel: featureType },
-    }
+    range: FeatureType
+    description: FK — which feature definition this row instantiates
+    annotations: { camel: featureType }
   node:
-    {
-      identifier: true,
-      range: Node,
-      description: "PK + FK to Node — every row's identity IS its Node row; the one permalink space",
-    }
+    identifier: true
+    range: Node
+    description: "PK + FK to Node — every row's identity IS its Node row; the one permalink space"
   quantity_kind:
-    {
-      range: QuantityKind,
-      required: true,
-      description: 'FK to the quantity_kind table — the bulk-loaded QUDT master list. Membership is the FK, not an enum: a new kind is an INSERT',
-      annotations: { camel: quantityKind },
-    }
+    range: QuantityKind
+    required: true
+    description: 'FK to the quantity_kind table — the bulk-loaded QUDT master list. Membership is the FK, not an enum: a new kind is an INSERT'
+    annotations: { camel: quantityKind }

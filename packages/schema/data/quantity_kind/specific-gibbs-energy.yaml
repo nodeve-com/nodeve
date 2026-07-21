@@ -1,11 +1,5 @@
 broader: specific-energy
 ref:
-  qudt-quantity-kind:
-    term: SpecificGibbsEnergy
-    match: exact
-  wikidata:
-    term: Q76360636
-    match: exact
-content:
-  en:
-    title: Specific Gibbs Energy
+  qudt-quantity-kind: { term: SpecificGibbsEnergy, match: exact }
+  wikidata: { term: Q76360636, match: exact }
+content: { en: { title: Specific Gibbs Energy } }

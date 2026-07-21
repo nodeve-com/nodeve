@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ModulusOfAdmittance
-    match: exact
-  wikidata:
-    term: Q79466359
-    match: exact
-content:
-  en:
-    title: Modulus of Admittance
+  qudt-quantity-kind: { term: ModulusOfAdmittance, match: exact }
+  wikidata: { term: Q79466359, match: exact }
+content: { en: { title: Modulus of Admittance } }

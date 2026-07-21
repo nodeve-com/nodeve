@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SeebeckCoefficient
-    match: exact
-  wikidata:
-    term: Q1091448
-    match: exact
-content:
-  en:
-    title: Seebeck Coefficient
+  qudt-quantity-kind: { term: SeebeckCoefficient, match: exact }
+  wikidata: { term: Q1091448, match: exact }
+content: { en: { title: Seebeck Coefficient } }

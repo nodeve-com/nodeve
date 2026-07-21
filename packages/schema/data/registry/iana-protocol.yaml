@@ -1,6 +1,2 @@
 url: https://www.iana.org/assignments/protocol-numbers/
-content:
-  en:
-    title: IANA Protocol Numbers
-  pt:
-    title: Números de Protocolo IANA
+content: { en: { title: IANA Protocol Numbers }, pt: { title: Números de Protocolo IANA } }

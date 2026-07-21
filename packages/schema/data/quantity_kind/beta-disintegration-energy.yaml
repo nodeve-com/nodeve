@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: BetaDisintegrationEnergy
-    match: exact
-  wikidata:
-    term: Q98148340
-    match: exact
-content:
-  en:
-    title: Beta Disintegration Energy
+  qudt-quantity-kind: { term: BetaDisintegrationEnergy, match: exact }
+  wikidata: { term: Q98148340, match: exact }
+content: { en: { title: Beta Disintegration Energy } }

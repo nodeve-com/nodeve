@@ -1,8 +1,3 @@
 broader: thrust
-ref:
-  qudt-quantity-kind:
-    term: MaxOperatingThrust
-    match: exact
-content:
-  en:
-    title: Max Operating Thrust
+ref: { qudt-quantity-kind: { term: MaxOperatingThrust, match: exact } }
+content: { en: { title: Max Operating Thrust } }

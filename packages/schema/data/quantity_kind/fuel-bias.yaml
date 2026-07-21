@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: dimensionless
-ref:
-  qudt-quantity-kind:
-    term: FUEL-BIAS
-    match: exact
-content:
-  en:
-    title: Fuel Bias
+ref: { qudt-quantity-kind: { term: FUEL-BIAS, match: exact } }
+content: { en: { title: Fuel Bias } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: FloatingPointCalculationCapability
-    match: exact
-content:
-  en:
-    title: Floating Point Calculation Capability
+ref: { qudt-quantity-kind: { term: FloatingPointCalculationCapability, match: exact } }
+content: { en: { title: Floating Point Calculation Capability } }

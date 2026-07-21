@@ -1,11 +1,5 @@
 broader: mass-per-area
 ref:
-  qudt-quantity-kind:
-    term: BodyMassIndex
-    match: exact
-  wikidata:
-    term: Q131191
-    match: exact
-content:
-  en:
-    title: Body Mass Index
+  qudt-quantity-kind: { term: BodyMassIndex, match: exact }
+  wikidata: { term: Q131191, match: exact }
+content: { en: { title: Body Mass Index } }

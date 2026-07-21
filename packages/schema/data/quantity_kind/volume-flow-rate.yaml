@@ -2,17 +2,7 @@ si_unit: m³/s
 accumulation: instantaneous
 broader: volume-per-time
 ref:
-  qudt-quantity-kind:
-    term: VolumeFlowRate
-    match: exact
-  wikidata:
-    term: Q1134348
-    match: exact
-  ha-device-class:
-    term: volume_flow_rate
-    match: exact
-content:
-  en:
-    title: Volume Flow Rate
-  pt:
-    title: Caudal volumétrico
+  qudt-quantity-kind: { term: VolumeFlowRate, match: exact }
+  wikidata: { term: Q1134348, match: exact }
+  ha-device-class: { term: volume_flow_rate, match: exact }
+content: { en: { title: Volume Flow Rate }, pt: { title: Caudal volumétrico } }

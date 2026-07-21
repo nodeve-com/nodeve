@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: RotaryTranslatoryMotionConversion
-    match: exact
-content:
-  en:
-    title: Rotary-translatory Motion Conversion
+ref: { qudt-quantity-kind: { term: RotaryTranslatoryMotionConversion, match: exact } }
+content: { en: { title: Rotary-translatory Motion Conversion } }

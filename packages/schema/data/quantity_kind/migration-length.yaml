@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: MigrationLength
-    match: exact
-  wikidata:
-    term: Q98998318
-    match: exact
-content:
-  en:
-    title: Migration Length
+  qudt-quantity-kind: { term: MigrationLength, match: exact }
+  wikidata: { term: Q98998318, match: exact }
+content: { en: { title: Migration Length } }

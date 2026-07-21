@@ -1,7 +1,5 @@
 url: https://jcgm.bipm.org/vim/en/
 iri_template: https://jcgm.bipm.org/vim/en/{id}.html
 content:
-  en:
-    title: International Property of Metrology (VIM, JCGM 200:2012)
-  pt:
-    title: Propertyulário Internacional de Metrologia (VIM, JCGM 200:2012)
+  en: { title: "International Property of Metrology (VIM, JCGM 200:2012)" }
+  pt: { title: "Propertyulário Internacional de Metrologia (VIM, JCGM 200:2012)" }

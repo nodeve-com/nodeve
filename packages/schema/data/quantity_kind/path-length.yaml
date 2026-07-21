@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: PathLength
-    match: exact
-  wikidata:
-    term: Q670036
-    match: exact
-content:
-  en:
-    title: Path Length
+  qudt-quantity-kind: { term: PathLength, match: exact }
+  wikidata: { term: Q670036, match: exact }
+content: { en: { title: Path Length } }

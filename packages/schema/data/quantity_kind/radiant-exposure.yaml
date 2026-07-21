@@ -1,11 +1,5 @@
 broader: energy-per-area
 ref:
-  qudt-quantity-kind:
-    term: RadiantExposure
-    match: exact
-  wikidata:
-    term: Q1418023
-    match: exact
-content:
-  en:
-    title: Radiant Exposure
+  qudt-quantity-kind: { term: RadiantExposure, match: exact }
+  wikidata: { term: Q1418023, match: exact }
+content: { en: { title: Radiant Exposure } }

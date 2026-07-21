@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: MASS-MARGIN
-    match: exact
-content:
-  en:
-    title: Mass Margin
+ref: { qudt-quantity-kind: { term: MASS-MARGIN, match: exact } }
+content: { en: { title: Mass Margin } }

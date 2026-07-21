@@ -1,11 +1,5 @@
 broader: area-per-time
 ref:
-  qudt-quantity-kind:
-    term: DiffusionCoefficient
-    match: exact
-  wikidata:
-    term: Q604008
-    match: exact
-content:
-  en:
-    title: Diffusion Coefficient
+  qudt-quantity-kind: { term: DiffusionCoefficient, match: exact }
+  wikidata: { term: Q604008, match: exact }
+content: { en: { title: Diffusion Coefficient } }

@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: PotentialEnergy
-    match: exact
-  wikidata:
-    term: Q155640
-    match: exact
-content:
-  en:
-    title: Potential Energy
+  qudt-quantity-kind: { term: PotentialEnergy, match: exact }
+  wikidata: { term: Q155640, match: exact }
+content: { en: { title: Potential Energy } }

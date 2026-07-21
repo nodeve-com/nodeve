@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: PhononMeanFreePath
-    match: exact
-  wikidata:
-    term: Q105672255
-    match: exact
-content:
-  en:
-    title: Phonon Mean Free Path
+  qudt-quantity-kind: { term: PhononMeanFreePath, match: exact }
+  wikidata: { term: Q105672255, match: exact }
+content: { en: { title: Phonon Mean Free Path } }

@@ -1,11 +1,5 @@
 broader: force
 ref:
-  qudt-quantity-kind:
-    term: Friction
-    match: exact
-  wikidata:
-    term: Q82580
-    match: exact
-content:
-  en:
-    title: Friction
+  qudt-quantity-kind: { term: Friction, match: exact }
+  wikidata: { term: Q82580, match: exact }
+content: { en: { title: Friction } }

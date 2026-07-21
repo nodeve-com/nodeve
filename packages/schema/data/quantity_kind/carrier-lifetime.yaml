@@ -1,11 +1,5 @@
 broader: time
 ref:
-  qudt-quantity-kind:
-    term: CarrierLifetime
-    match: exact
-  wikidata:
-    term: Q5046374
-    match: exact
-content:
-  en:
-    title: Carrier Lifetime
+  qudt-quantity-kind: { term: CarrierLifetime, match: exact }
+  wikidata: { term: Q5046374, match: exact }
+content: { en: { title: Carrier Lifetime } }

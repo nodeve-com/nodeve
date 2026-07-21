@@ -1,8 +1,3 @@
 broader: temperature
-ref:
-  qudt-quantity-kind:
-    term: DryBulbTemperature
-    match: exact
-content:
-  en:
-    title: Dry Bulb Temperature
+ref: { qudt-quantity-kind: { term: DryBulbTemperature, match: exact } }
+content: { en: { title: Dry Bulb Temperature } }

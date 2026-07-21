@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: StressIntensityFactor
-    match: exact
-content:
-  en:
-    title: Stress Intensity Factor
+ref: { qudt-quantity-kind: { term: StressIntensityFactor, match: exact } }
+content: { en: { title: Stress Intensity Factor } }

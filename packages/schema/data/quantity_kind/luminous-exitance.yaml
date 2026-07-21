@@ -1,8 +1,3 @@
 broader: luminous-flux-per-area
-ref:
-  qudt-quantity-kind:
-    term: LuminousExitance
-    match: exact
-content:
-  en:
-    title: Luminous Exitance
+ref: { qudt-quantity-kind: { term: LuminousExitance, match: exact } }
+content: { en: { title: Luminous Exitance } }

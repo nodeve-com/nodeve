@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: DigitRate
-    match: exact
-content:
-  en:
-    title: Digit Rate
+ref: { qudt-quantity-kind: { term: DigitRate, match: exact } }
+content: { en: { title: Digit Rate } }

@@ -1,8 +1,3 @@
 broader: molar-energy
-ref:
-  qudt-quantity-kind:
-    term: MolarInternalEnergy
-    match: exact
-content:
-  en:
-    title: Molar Internal Energy
+ref: { qudt-quantity-kind: { term: MolarInternalEnergy, match: exact } }
+content: { en: { title: Molar Internal Energy } }

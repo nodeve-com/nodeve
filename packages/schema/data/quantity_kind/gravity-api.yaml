@@ -3,12 +3,6 @@ deprecated_in: 3.1.3
 broader: dimensionless-ratio
 replaced_by: api-gravity
 ref:
-  qudt-quantity-kind:
-    term: Gravity_API
-    match: exact
-  wikidata:
-    term: Q29246
-    match: exact
-content:
-  en:
-    title: API Gravity
+  qudt-quantity-kind: { term: Gravity_API, match: exact }
+  wikidata: { term: Q29246, match: exact }
+content: { en: { title: API Gravity } }

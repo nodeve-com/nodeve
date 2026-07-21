@@ -4,6 +4,4 @@ ref:
   qudt-quantity-kind:
     term: AreicChargeDensityOrElectricFluxDensityOrElectricPolarization
     match: exact
-content:
-  en:
-    title: areic charge density or electric flux density or electric polarization
+content: { en: { title: areic charge density or electric flux density or electric polarization } }

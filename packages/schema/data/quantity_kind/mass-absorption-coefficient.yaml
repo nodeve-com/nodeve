@@ -1,11 +1,5 @@
 broader: mass-attenuation-coefficient
 ref:
-  qudt-quantity-kind:
-    term: MassAbsorptionCoefficient
-    match: exact
-  wikidata:
-    term: Q86202147
-    match: exact
-content:
-  en:
-    title: Mass Absorption Coefficient
+  qudt-quantity-kind: { term: MassAbsorptionCoefficient, match: exact }
+  wikidata: { term: Q86202147, match: exact }
+content: { en: { title: Mass Absorption Coefficient } }

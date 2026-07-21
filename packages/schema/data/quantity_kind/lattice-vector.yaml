@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: LatticeVector
-    match: exact
-  wikidata:
-    term: Q105435234
-    match: exact
-content:
-  en:
-    title: Lattice Vector
+  qudt-quantity-kind: { term: LatticeVector, match: exact }
+  wikidata: { term: Q105435234, match: exact }
+content: { en: { title: Lattice Vector } }

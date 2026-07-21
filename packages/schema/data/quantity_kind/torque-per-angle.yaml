@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TorquePerAngle
-    match: exact
-content:
-  en:
-    title: Torque per Angle
+ref: { qudt-quantity-kind: { term: TorquePerAngle, match: exact } }
+content: { en: { title: Torque per Angle } }

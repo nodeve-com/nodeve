@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: EnergyPerMassAmountOfSubstance
-    match: exact
-content:
-  en:
-    title: Energy and Work per Mass Amount of Substance
+ref: { qudt-quantity-kind: { term: EnergyPerMassAmountOfSubstance, match: exact } }
+content: { en: { title: Energy and Work per Mass Amount of Substance } }

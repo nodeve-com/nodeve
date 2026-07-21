@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Time
-    match: exact
-  wikidata:
-    term: Q2199864
-    match: exact
-content:
-  en:
-    title: Time
+  qudt-quantity-kind: { term: Time, match: exact }
+  wikidata: { term: Q2199864, match: exact }
+content: { en: { title: Time } }

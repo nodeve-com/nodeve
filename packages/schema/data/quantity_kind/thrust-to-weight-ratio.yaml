@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: ThrustToWeightRatio
-    match: exact
-content:
-  en:
-    title: Thrust to Weight Ratio
+ref: { qudt-quantity-kind: { term: ThrustToWeightRatio, match: exact } }
+content: { en: { title: Thrust to Weight Ratio } }

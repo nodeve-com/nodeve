@@ -1,8 +1,3 @@
 broader: energy-per-area
-ref:
-  qudt-quantity-kind:
-    term: StrainEnergyReleaseRate
-    match: exact
-content:
-  en:
-    title: Strain Energy Release Rate
+ref: { qudt-quantity-kind: { term: StrainEnergyReleaseRate, match: exact } }
+content: { en: { title: Strain Energy Release Rate } }

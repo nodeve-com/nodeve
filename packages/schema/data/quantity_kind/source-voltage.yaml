@@ -1,11 +1,5 @@
 broader: electric-potential
 ref:
-  qudt-quantity-kind:
-    term: SourceVoltage
-    match: exact
-  wikidata:
-    term: Q185329
-    match: exact
-content:
-  en:
-    title: Source Voltage
+  qudt-quantity-kind: { term: SourceVoltage, match: exact }
+  wikidata: { term: Q185329, match: exact }
+content: { en: { title: Source Voltage } }

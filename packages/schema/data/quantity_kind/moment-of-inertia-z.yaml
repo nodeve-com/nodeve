@@ -1,8 +1,3 @@
 broader: moment-of-inertia
-ref:
-  qudt-quantity-kind:
-    term: MomentOfInertia_Z
-    match: exact
-content:
-  en:
-    title: Moment of Inertia in the Z Axis
+ref: { qudt-quantity-kind: { term: MomentOfInertia_Z, match: exact } }
+content: { en: { title: Moment of Inertia in the Z Axis } }

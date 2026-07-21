@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: RelativeAtomicMass
-    match: exact
-  wikidata:
-    term: Q41377
-    match: exact
-content:
-  en:
-    title: Relative Atomic Mass
+  qudt-quantity-kind: { term: RelativeAtomicMass, match: exact }
+  wikidata: { term: Q41377, match: exact }
+content: { en: { title: Relative Atomic Mass } }

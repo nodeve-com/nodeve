@@ -9,25 +9,20 @@ channel:
   # reported as a SET: EVERY set bit across the group. Bits stay in the word
   # the device puts them in — the word1-bit6 fault flag lives HERE, not
   # relocated onto fault-code. `empty: unknown` when no bit is set.
-  run-state:
-    empty: unknown
+  run-state: { empty: unknown }
   # foxess fault_code — words 1/2/3 at 39067–39069.
-  fault-code:
-    empty: none
+  fault-code: { empty: none }
 register_map:
   register:
     - address: 39063
       datatype: uint16
       target: { channel: run-state }
-      flag: [standby, null, on-grid, null, null, null, fault]
+      flag: [ standby, null, on-grid, null, null, null, fault ]
     - address: 39064
       datatype: uint16
       target: { channel: run-state }
       flag: [] # read as part of the group; its bits aren't identified yet
-    - address: 39065
-      datatype: uint16
-      target: { channel: run-state }
-      flag: [off-grid]
+    - { address: 39065, datatype: uint16, target: { channel: run-state }, flag: [ off-grid ] }
     - address: 39067
       datatype: uint16
       target: { channel: fault-code }

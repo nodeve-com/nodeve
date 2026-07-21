@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.3
 replaced_by: inverse-square-time
-ref:
-  qudt-quantity-kind:
-    term: InverseTime_Squared
-    match: exact
-content:
-  en:
-    title: Inverse Square Time
+ref: { qudt-quantity-kind: { term: InverseTime_Squared, match: exact } }
+content: { en: { title: Inverse Square Time } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpectralIrradiance
-    match: exact
-content:
-  en:
-    title: Measurement Unit of Spectral Irradiance
+ref: { qudt-quantity-kind: { term: SpectralIrradiance, match: exact } }
+content: { en: { title: Measurement Unit of Spectral Irradiance } }

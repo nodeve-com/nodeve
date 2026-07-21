@@ -1,8 +1,3 @@
 broader: angle
-ref:
-  qudt-quantity-kind:
-    term: CompoundPlaneAngle
-    match: exact
-content:
-  en:
-    title: Compound Plane Angle
+ref: { qudt-quantity-kind: { term: CompoundPlaneAngle, match: exact } }
+content: { en: { title: Compound Plane Angle } }

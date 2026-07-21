@@ -1,11 +1,5 @@
 broader: specific-power
 ref:
-  qudt-quantity-kind:
-    term: AbsorbedDoseRate
-    match: exact
-  wikidata:
-    term: Q69428958
-    match: exact
-content:
-  en:
-    title: Absorbed Dose Rate
+  qudt-quantity-kind: { term: AbsorbedDoseRate, match: exact }
+  wikidata: { term: Q69428958, match: exact }
+content: { en: { title: Absorbed Dose Rate } }

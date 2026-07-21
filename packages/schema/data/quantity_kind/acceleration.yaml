@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Acceleration
-    match: exact
-  wikidata:
-    term: Q11376
-    match: exact
-content:
-  en:
-    title: Acceleration
+  qudt-quantity-kind: { term: Acceleration, match: exact }
+  wikidata: { term: Q11376, match: exact }
+content: { en: { title: Acceleration } }

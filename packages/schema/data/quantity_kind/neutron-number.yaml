@@ -1,11 +1,5 @@
 broader: count
 ref:
-  qudt-quantity-kind:
-    term: NeutronNumber
-    match: exact
-  wikidata:
-    term: Q970319
-    match: exact
-content:
-  en:
-    title: Neutron Number
+  qudt-quantity-kind: { term: NeutronNumber, match: exact }
+  wikidata: { term: Q970319, match: exact }
+content: { en: { title: Neutron Number } }

@@ -1,11 +1,5 @@
 broader: area-per-time
 ref:
-  qudt-quantity-kind:
-    term: ThermalDiffusivity
-    match: exact
-  wikidata:
-    term: Q3381809
-    match: exact
-content:
-  en:
-    title: Thermal Diffusivity
+  qudt-quantity-kind: { term: ThermalDiffusivity, match: exact }
+  wikidata: { term: Q3381809, match: exact }
+content: { en: { title: Thermal Diffusivity } }

@@ -1,8 +1,3 @@
 broader: torque-per-angle
-ref:
-  qudt-quantity-kind:
-    term: TorsionalSpringConstant
-    match: exact
-content:
-  en:
-    title: Torsional Spring Constant
+ref: { qudt-quantity-kind: { term: TorsionalSpringConstant, match: exact } }
+content: { en: { title: Torsional Spring Constant } }

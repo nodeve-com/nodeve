@@ -1,11 +1,5 @@
 broader: mass-concentration
 ref:
-  qudt-quantity-kind:
-    term: MassConcentrationOfWater
-    match: exact
-  wikidata:
-    term: Q76378758
-    match: exact
-content:
-  en:
-    title: Mass Concentration of Water
+  qudt-quantity-kind: { term: MassConcentrationOfWater, match: exact }
+  wikidata: { term: Q76378758, match: exact }
+content: { en: { title: Mass Concentration of Water } }

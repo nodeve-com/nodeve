@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: KineticEnergy
-    match: exact
-  wikidata:
-    term: Q46276
-    match: exact
-content:
-  en:
-    title: Kinetic Energy
+  qudt-quantity-kind: { term: KineticEnergy, match: exact }
+  wikidata: { term: Q46276, match: exact }
+content: { en: { title: Kinetic Energy } }

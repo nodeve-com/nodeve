@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SignalDetectionThreshold
-    match: exact
-content:
-  en:
-    title: Signal Detection Threshold
+ref: { qudt-quantity-kind: { term: SignalDetectionThreshold, match: exact } }
+content: { en: { title: Signal Detection Threshold } }

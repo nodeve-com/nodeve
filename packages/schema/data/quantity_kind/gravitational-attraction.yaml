@@ -1,11 +1,5 @@
 broader: force
 ref:
-  qudt-quantity-kind:
-    term: GravitationalAttraction
-    match: exact
-  wikidata:
-    term: Q78337869
-    match: exact
-content:
-  en:
-    title: Gravitational Attraction
+  qudt-quantity-kind: { term: GravitationalAttraction, match: exact }
+  wikidata: { term: Q78337869, match: exact }
+content: { en: { title: Gravitational Attraction } }

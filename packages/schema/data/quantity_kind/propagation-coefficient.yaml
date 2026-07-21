@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: PropagationCoefficient
-    match: exact
-  wikidata:
-    term: Q1434913
-    match: exact
-content:
-  en:
-    title: Propagation Coefficient
+  qudt-quantity-kind: { term: PropagationCoefficient, match: exact }
+  wikidata: { term: Q1434913, match: exact }
+content: { en: { title: Propagation Coefficient } }

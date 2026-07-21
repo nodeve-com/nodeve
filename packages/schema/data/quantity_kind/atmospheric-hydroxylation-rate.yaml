@@ -1,8 +1,3 @@
 broader: second-order-reaction-rate-constant
-ref:
-  qudt-quantity-kind:
-    term: AtmosphericHydroxylationRate
-    match: exact
-content:
-  en:
-    title: Atmospheric Hydroxylation Rate
+ref: { qudt-quantity-kind: { term: AtmosphericHydroxylationRate, match: exact } }
+content: { en: { title: Atmospheric Hydroxylation Rate } }

@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AttenuationCoefficient
-    match: exact
-  wikidata:
-    term: Q902086
-    match: exact
-content:
-  en:
-    title: Attenuation Coefficient
+  qudt-quantity-kind: { term: AttenuationCoefficient, match: exact }
+  wikidata: { term: Q902086, match: exact }
+content: { en: { title: Attenuation Coefficient } }

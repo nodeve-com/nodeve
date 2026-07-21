@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpectralDensityOfVibrationalModes
-    match: exact
-content:
-  en:
-    title: Spectral Density of Vibrational Modes
+ref: { qudt-quantity-kind: { term: SpectralDensityOfVibrationalModes, match: exact } }
+content: { en: { title: Spectral Density of Vibrational Modes } }

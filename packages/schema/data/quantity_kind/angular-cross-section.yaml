@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularCrossSection
-    match: exact
-  wikidata:
-    term: Q98266630
-    match: exact
-content:
-  en:
-    title: Angular Cross-section
+  qudt-quantity-kind: { term: AngularCrossSection, match: exact }
+  wikidata: { term: Q98266630, match: exact }
+content: { en: { title: Angular Cross-section } }

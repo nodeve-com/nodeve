@@ -1,11 +1,5 @@
 broader: lattice-vector
 ref:
-  qudt-quantity-kind:
-    term: FundamentalLatticeVector
-    match: exact
-  wikidata:
-    term: Q105451063
-    match: exact
-content:
-  en:
-    title: Fundamental Lattice Vector
+  qudt-quantity-kind: { term: FundamentalLatticeVector, match: exact }
+  wikidata: { term: Q105451063, match: exact }
+content: { en: { title: Fundamental Lattice Vector } }

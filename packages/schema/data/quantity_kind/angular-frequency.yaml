@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AngularFrequency
-    match: exact
-  wikidata:
-    term: Q834020
-    match: exact
-content:
-  en:
-    title: Angular Frequency
+  qudt-quantity-kind: { term: AngularFrequency, match: exact }
+  wikidata: { term: Q834020, match: exact }
+content: { en: { title: Angular Frequency } }

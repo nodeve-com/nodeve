@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Viscosity
-    match: exact
-  wikidata:
-    term: Q128709
-    match: exact
-content:
-  en:
-    title: Viscosity
+  qudt-quantity-kind: { term: Viscosity, match: exact }
+  wikidata: { term: Q128709, match: exact }
+content: { en: { title: Viscosity } }

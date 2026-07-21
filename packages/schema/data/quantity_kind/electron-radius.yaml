@@ -1,8 +1,3 @@
 broader: length
-ref:
-  qudt-quantity-kind:
-    term: ElectronRadius
-    match: exact
-content:
-  en:
-    title: Electron Radius
+ref: { qudt-quantity-kind: { term: ElectronRadius, match: exact } }
+content: { en: { title: Electron Radius } }

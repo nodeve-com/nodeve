@@ -1,8 +1,3 @@
 broader: multiplication-factor
-ref:
-  qudt-quantity-kind:
-    term: EffectiveMultiplicationFactor
-    match: exact
-content:
-  en:
-    title: Effective Multiplication Factor
+ref: { qudt-quantity-kind: { term: EffectiveMultiplicationFactor, match: exact } }
+content: { en: { title: Effective Multiplication Factor } }

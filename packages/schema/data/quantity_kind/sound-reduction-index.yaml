@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SoundReductionIndex
-    match: exact
-  wikidata:
-    term: Q2230459
-    match: exact
-content:
-  en:
-    title: Sound Reduction Index
+  qudt-quantity-kind: { term: SoundReductionIndex, match: exact }
+  wikidata: { term: Q2230459, match: exact }
+content: { en: { title: Sound Reduction Index } }

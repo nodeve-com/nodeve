@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: CubicElectricDipoleMomentPerSquareEnergy
-    match: exact
-content:
-  en:
-    title: Cubic Electric Dipole Moment per Square Energy
+ref: { qudt-quantity-kind: { term: CubicElectricDipoleMomentPerSquareEnergy, match: exact } }
+content: { en: { title: Cubic Electric Dipole Moment per Square Energy } }

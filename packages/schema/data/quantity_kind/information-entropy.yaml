@@ -1,11 +1,5 @@
 broader: dimensionless
 ref:
-  qudt-quantity-kind:
-    term: InformationEntropy
-    match: exact
-  wikidata:
-    term: Q204570
-    match: exact
-content:
-  en:
-    title: Information Entropy
+  qudt-quantity-kind: { term: InformationEntropy, match: exact }
+  wikidata: { term: Q204570, match: exact }
+content: { en: { title: Information Entropy } }

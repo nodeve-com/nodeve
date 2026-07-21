@@ -1,8 +1,3 @@
 broader: density
-ref:
-  qudt-quantity-kind:
-    term: DensityInCombustionChamber
-    match: exact
-content:
-  en:
-    title: Density in Combustion Chamber
+ref: { qudt-quantity-kind: { term: DensityInCombustionChamber, match: exact } }
+content: { en: { title: Density in Combustion Chamber } }

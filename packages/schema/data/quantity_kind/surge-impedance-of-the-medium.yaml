@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SurgeImpedanceOfTheMedium
-    match: exact
-content:
-  en:
-    title: Surge Impedance of the Medium
+ref: { qudt-quantity-kind: { term: SurgeImpedanceOfTheMedium, match: exact } }
+content: { en: { title: Surge Impedance of the Medium } }

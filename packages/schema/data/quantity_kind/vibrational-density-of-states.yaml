@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: VibrationalDensityOfStates
-    match: exact
-  wikidata:
-    term: Q230895
-    match: exact
-content:
-  en:
-    title: Vibrational Density of States
+  qudt-quantity-kind: { term: VibrationalDensityOfStates, match: exact }
+  wikidata: { term: Q230895, match: exact }
+content: { en: { title: Vibrational Density of States } }

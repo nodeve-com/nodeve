@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: LiquidLevel
-    match: exact
-  wikidata:
-    term: Q1481422
-    match: exact
-content:
-  en:
-    title: Liquid Level
+  qudt-quantity-kind: { term: LiquidLevel, match: exact }
+  wikidata: { term: Q1481422, match: exact }
+content: { en: { title: Liquid Level } }

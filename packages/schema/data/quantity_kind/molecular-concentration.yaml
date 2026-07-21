@@ -1,11 +1,5 @@
 broader: number-density
 ref:
-  qudt-quantity-kind:
-    term: MolecularConcentration
-    match: exact
-  wikidata:
-    term: Q88865973
-    match: exact
-content:
-  en:
-    title: Molecular Concentration
+  qudt-quantity-kind: { term: MolecularConcentration, match: exact }
+  wikidata: { term: Q88865973, match: exact }
+content: { en: { title: Molecular Concentration } }

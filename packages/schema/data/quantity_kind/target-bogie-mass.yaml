@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: TARGET-BOGIE-MASS
-    match: exact
-content:
-  en:
-    title: Target Bogie Mass
+ref: { qudt-quantity-kind: { term: TARGET-BOGIE-MASS, match: exact } }
+content: { en: { title: Target Bogie Mass } }

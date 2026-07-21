@@ -1,11 +1,5 @@
 broader: length-ratio
 ref:
-  qudt-quantity-kind:
-    term: ShearStrain
-    match: exact
-  wikidata:
-    term: Q7561704
-    match: exact
-content:
-  en:
-    title: Shear Strain
+  qudt-quantity-kind: { term: ShearStrain, match: exact }
+  wikidata: { term: Q7561704, match: exact }
+content: { en: { title: Shear Strain } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: VolumetricEntityDensity
-    match: exact
-content:
-  en:
-    title: Volumetric Entity Density
+ref: { qudt-quantity-kind: { term: VolumetricEntityDensity, match: exact } }
+content: { en: { title: Volumetric Entity Density } }

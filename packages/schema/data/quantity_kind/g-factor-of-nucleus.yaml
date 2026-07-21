@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: GFactorOfNucleus
-    match: exact
-  wikidata:
-    term: Q97591250
-    match: exact
-content:
-  en:
-    title: g-Factor of Nucleus
+  qudt-quantity-kind: { term: GFactorOfNucleus, match: exact }
+  wikidata: { term: Q97591250, match: exact }
+content: { en: { title: g-Factor of Nucleus } }

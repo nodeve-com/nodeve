@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: InversePermittivity
-    match: exact
-content:
-  en:
-    title: Inverse Permittivity
+ref: { qudt-quantity-kind: { term: InversePermittivity, match: exact } }
+content: { en: { title: Inverse Permittivity } }

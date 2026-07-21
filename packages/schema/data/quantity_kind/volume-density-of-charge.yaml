@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: VolumeDensityOfCharge
-    match: exact
-content:
-  en:
-    title: Volume Density of Charge
+ref: { qudt-quantity-kind: { term: VolumeDensityOfCharge, match: exact } }
+content: { en: { title: Volume Density of Charge } }

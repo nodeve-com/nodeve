@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectrolyticConductivity
-    match: exact
-  wikidata:
-    term: Q907564
-    match: exact
-content:
-  en:
-    title: Electrolytic Conductivity
+  qudt-quantity-kind: { term: ElectrolyticConductivity, match: exact }
+  wikidata: { term: Q907564, match: exact }
+content: { en: { title: Electrolytic Conductivity } }

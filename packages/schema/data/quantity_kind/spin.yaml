@@ -1,11 +1,5 @@
 broader: angular-impulse
 ref:
-  qudt-quantity-kind:
-    term: Spin
-    match: exact
-  wikidata:
-    term: Q133673
-    match: exact
-content:
-  en:
-    title: Spin
+  qudt-quantity-kind: { term: Spin, match: exact }
+  wikidata: { term: Q133673, match: exact }
+content: { en: { title: Spin } }

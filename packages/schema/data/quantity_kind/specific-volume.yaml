@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SpecificVolume
-    match: exact
-  wikidata:
-    term: Q683556
-    match: exact
-content:
-  en:
-    title: Specific Volume
+  qudt-quantity-kind: { term: SpecificVolume, match: exact }
+  wikidata: { term: Q683556, match: exact }
+content: { en: { title: Specific Volume } }

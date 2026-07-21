@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: MoleFraction
-    match: exact
-  wikidata:
-    term: Q125264
-    match: exact
-content:
-  en:
-    title: Mole Fraction
+  qudt-quantity-kind: { term: MoleFraction, match: exact }
+  wikidata: { term: Q125264, match: exact }
+content: { en: { title: Mole Fraction } }

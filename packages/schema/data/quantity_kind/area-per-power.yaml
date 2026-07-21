@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AreaPerPower
-    match: exact
-content:
-  en:
-    title: Area per Heating Load
+ref: { qudt-quantity-kind: { term: AreaPerPower, match: exact } }
+content: { en: { title: Area per Heating Load } }

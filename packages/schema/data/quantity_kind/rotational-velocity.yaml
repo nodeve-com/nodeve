@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: RotationalVelocity
-    match: exact
-content:
-  en:
-    title: Rotational Frequency
+ref: { qudt-quantity-kind: { term: RotationalVelocity, match: exact } }
+content: { en: { title: Rotational Frequency } }

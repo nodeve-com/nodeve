@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.3
 replaced_by: vapour-permeability
-ref:
-  qudt-quantity-kind:
-    term: VaporPermeability
-    match: exact
-content:
-  en:
-    title: Vapour Permeability
+ref: { qudt-quantity-kind: { term: VaporPermeability, match: exact } }
+content: { en: { title: Vapour Permeability } }

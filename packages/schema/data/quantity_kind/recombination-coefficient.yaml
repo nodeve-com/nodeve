@@ -1,11 +1,5 @@
 broader: volume-per-time
 ref:
-  qudt-quantity-kind:
-    term: RecombinationCoefficient
-    match: exact
-  wikidata:
-    term: Q98842099
-    match: exact
-content:
-  en:
-    title: Recombination Coefficient
+  qudt-quantity-kind: { term: RecombinationCoefficient, match: exact }
+  wikidata: { term: Q98842099, match: exact }
+content: { en: { title: Recombination Coefficient } }

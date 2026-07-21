@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: EquilibriumConstant
-    match: exact
-  wikidata:
-    term: Q857809
-    match: exact
-content:
-  en:
-    title: Equilibrium Constant
+  qudt-quantity-kind: { term: EquilibriumConstant, match: exact }
+  wikidata: { term: Q857809, match: exact }
+content: { en: { title: Equilibrium Constant } }

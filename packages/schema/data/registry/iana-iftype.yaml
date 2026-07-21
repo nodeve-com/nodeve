@@ -1,6 +1,4 @@
 url: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib
 content:
-  en:
-    title: IANA Interface Types (IANAifType-MIB)
-  pt:
-    title: Tipos de Interface IANA (IANAifType-MIB)
+  en: { title: IANA Interface Types (IANAifType-MIB) }
+  pt: { title: Tipos de Interface IANA (IANAifType-MIB) }

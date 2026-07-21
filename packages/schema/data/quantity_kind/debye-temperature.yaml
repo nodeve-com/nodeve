@@ -1,11 +1,5 @@
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: DebyeTemperature
-    match: exact
-  wikidata:
-    term: Q3517821
-    match: exact
-content:
-  en:
-    title: Debye Temperature
+  qudt-quantity-kind: { term: DebyeTemperature, match: exact }
+  wikidata: { term: Q3517821, match: exact }
+content: { en: { title: Debye Temperature } }

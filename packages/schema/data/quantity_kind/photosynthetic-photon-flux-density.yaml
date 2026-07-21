@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PhotosyntheticPhotonFluxDensity
-    match: exact
-content:
-  en:
-    title: Photosynthetic Photon Flux Density
+ref: { qudt-quantity-kind: { term: PhotosyntheticPhotonFluxDensity, match: exact } }
+content: { en: { title: Photosynthetic Photon Flux Density } }

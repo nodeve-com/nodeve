@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ChemicalAffinity
-    match: exact
-  wikidata:
-    term: Q382783
-    match: exact
-content:
-  en:
-    title: Chemical Affinity
+  qudt-quantity-kind: { term: ChemicalAffinity, match: exact }
+  wikidata: { term: Q382783, match: exact }
+content: { en: { title: Chemical Affinity } }

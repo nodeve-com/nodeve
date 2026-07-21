@@ -1,11 +1,5 @@
 broader: modulus-of-elasticity
 ref:
-  qudt-quantity-kind:
-    term: BulkModulus
-    match: exact
-  wikidata:
-    term: Q900371
-    match: exact
-content:
-  en:
-    title: Bulk Modulus
+  qudt-quantity-kind: { term: BulkModulus, match: exact }
+  wikidata: { term: Q900371, match: exact }
+content: { en: { title: Bulk Modulus } }

@@ -1,11 +1,5 @@
 broader: time
 ref:
-  qudt-quantity-kind:
-    term: RelaxationTime
-    match: exact
-  wikidata:
-    term: Q102310909
-    match: exact
-content:
-  en:
-    title: Relaxation Time
+  qudt-quantity-kind: { term: RelaxationTime, match: exact }
+  wikidata: { term: Q102310909, match: exact }
+content: { en: { title: Relaxation Time } }

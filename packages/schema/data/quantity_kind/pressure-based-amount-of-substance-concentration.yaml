@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureBasedAmountOfSubstanceConcentration
-    match: exact
-content:
-  en:
-    title: Pressure-based Amount-of-substance Concentration
+ref: { qudt-quantity-kind: { term: PressureBasedAmountOfSubstanceConcentration, match: exact } }
+content: { en: { title: Pressure-based Amount-of-substance Concentration } }

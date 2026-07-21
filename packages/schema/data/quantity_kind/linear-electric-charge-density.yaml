@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LinearElectricChargeDensity
-    match: exact
-content:
-  en:
-    title: Electric Charge Linear Density
+ref: { qudt-quantity-kind: { term: LinearElectricChargeDensity, match: exact } }
+content: { en: { title: Electric Charge Linear Density } }

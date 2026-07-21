@@ -1,8 +1,3 @@
 broader: dimensionless
-ref:
-  qudt-quantity-kind:
-    term: StructuralEfficiency
-    match: exact
-content:
-  en:
-    title: Structural Efficiency
+ref: { qudt-quantity-kind: { term: StructuralEfficiency, match: exact } }
+content: { en: { title: Structural Efficiency } }

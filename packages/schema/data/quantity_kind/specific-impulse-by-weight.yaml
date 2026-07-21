@@ -1,11 +1,5 @@
 broader: specific-impulse
 ref:
-  qudt-quantity-kind:
-    term: SpecificImpulseByWeight
-    match: exact
-  wikidata:
-    term: Q100828354
-    match: exact
-content:
-  en:
-    title: Specific Impulse by Weight
+  qudt-quantity-kind: { term: SpecificImpulseByWeight, match: exact }
+  wikidata: { term: Q100828354, match: exact }
+content: { en: { title: Specific Impulse by Weight } }

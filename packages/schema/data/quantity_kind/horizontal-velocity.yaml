@@ -1,8 +1,3 @@
 broader: linear-velocity
-ref:
-  qudt-quantity-kind:
-    term: HorizontalVelocity
-    match: exact
-content:
-  en:
-    title: Horizontal Velocity
+ref: { qudt-quantity-kind: { term: HorizontalVelocity, match: exact } }
+content: { en: { title: Horizontal Velocity } }

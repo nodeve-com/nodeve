@@ -1,11 +1,5 @@
 broader: density
 ref:
-  qudt-quantity-kind:
-    term: MassConcentration
-    match: exact
-  wikidata:
-    term: Q589446
-    match: exact
-content:
-  en:
-    title: Mass Concentration
+  qudt-quantity-kind: { term: MassConcentration, match: exact }
+  wikidata: { term: Q589446, match: exact }
+content: { en: { title: Mass Concentration } }

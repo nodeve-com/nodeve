@@ -1,11 +1,5 @@
 broader: pressure
 ref:
-  qudt-quantity-kind:
-    term: SystolicBloodPressure
-    match: exact
-  wikidata:
-    term: Q42015775
-    match: exact
-content:
-  en:
-    title: Systolic Blood Pressure
+  qudt-quantity-kind: { term: SystolicBloodPressure, match: exact }
+  wikidata: { term: Q42015775, match: exact }
+content: { en: { title: Systolic Blood Pressure } }

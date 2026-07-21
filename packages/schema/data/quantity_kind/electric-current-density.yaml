@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricCurrentDensity
-    match: exact
-  wikidata:
-    term: Q234072
-    match: exact
-content:
-  en:
-    title: Electric Current Density
+  qudt-quantity-kind: { term: ElectricCurrentDensity, match: exact }
+  wikidata: { term: Q234072, match: exact }
+content: { en: { title: Electric Current Density } }

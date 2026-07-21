@@ -1,11 +1,5 @@
 broader: number-density
 ref:
-  qudt-quantity-kind:
-    term: ParticleNumberDensity
-    match: exact
-  wikidata:
-    term: Q98601569
-    match: exact
-content:
-  en:
-    title: Particle Number Density
+  qudt-quantity-kind: { term: ParticleNumberDensity, match: exact }
+  wikidata: { term: Q98601569, match: exact }
+content: { en: { title: Particle Number Density } }

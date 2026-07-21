@@ -1,8 +1,3 @@
 broader: surface-related-volume-flow
-ref:
-  qudt-quantity-kind:
-    term: VentilationRatePerFloorArea
-    match: exact
-content:
-  en:
-    title: Ventilation Rate per Floor Area
+ref: { qudt-quantity-kind: { term: VentilationRatePerFloorArea, match: exact } }
+content: { en: { title: Ventilation Rate per Floor Area } }

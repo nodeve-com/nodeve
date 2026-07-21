@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricDipoleMoment
-    match: exact
-  wikidata:
-    term: Q735135
-    match: exact
-content:
-  en:
-    title: Electric Dipole Moment
+  qudt-quantity-kind: { term: ElectricDipoleMoment, match: exact }
+  wikidata: { term: Q735135, match: exact }
+content: { en: { title: Electric Dipole Moment } }

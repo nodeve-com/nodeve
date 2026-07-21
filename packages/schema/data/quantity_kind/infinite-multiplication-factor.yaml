@@ -1,11 +1,5 @@
 broader: multiplication-factor
 ref:
-  qudt-quantity-kind:
-    term: InfiniteMultiplicationFactor
-    match: exact
-  wikidata:
-    term: Q99440487
-    match: exact
-content:
-  en:
-    title: Infinite Multiplication Factor
+  qudt-quantity-kind: { term: InfiniteMultiplicationFactor, match: exact }
+  wikidata: { term: Q99440487, match: exact }
+content: { en: { title: Infinite Multiplication Factor } }

@@ -1,12 +1,5 @@
 si_unit: VA·s
 accumulation: cumulative_monotonic
 broader: electric-energy
-ref:
-  qudt-quantity-kind:
-    term: ApparentEnergy
-    match: exact
-content:
-  en:
-    title: Apparent Energy
-  pt:
-    title: Energia aparente
+ref: { qudt-quantity-kind: { term: ApparentEnergy, match: exact } }
+content: { en: { title: Apparent Energy }, pt: { title: Energia aparente } }

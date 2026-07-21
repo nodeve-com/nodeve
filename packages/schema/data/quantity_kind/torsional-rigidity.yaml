@@ -1,8 +1,3 @@
 broader: torque-per-angle
-ref:
-  qudt-quantity-kind:
-    term: TorsionalRigidity
-    match: exact
-content:
-  en:
-    title: Torsional Rigidity
+ref: { qudt-quantity-kind: { term: TorsionalRigidity, match: exact } }
+content: { en: { title: Torsional Rigidity } }

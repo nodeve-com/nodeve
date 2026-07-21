@@ -1,8 +1,3 @@
 broader: product-of-inertia
-ref:
-  qudt-quantity-kind:
-    term: ProductOfInertia_X
-    match: exact
-content:
-  en:
-    title: Product of Inertia in the X Axis
+ref: { qudt-quantity-kind: { term: ProductOfInertia_X, match: exact } }
+content: { en: { title: Product of Inertia in the X Axis } }

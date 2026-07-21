@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: RadiantEnergy
-    match: exact
-  wikidata:
-    term: Q10932713
-    match: exact
-content:
-  en:
-    title: Radiant Energy
+  qudt-quantity-kind: { term: RadiantEnergy, match: exact }
+  wikidata: { term: Q10932713, match: exact }
+content: { en: { title: Radiant Energy } }

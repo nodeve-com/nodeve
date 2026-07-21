@@ -1,11 +1,5 @@
 broader: number-density
 ref:
-  qudt-quantity-kind:
-    term: ElectronDensity
-    match: exact
-  wikidata:
-    term: Q105971077
-    match: exact
-content:
-  en:
-    title: Electron Density
+  qudt-quantity-kind: { term: ElectronDensity, match: exact }
+  wikidata: { term: Q105971077, match: exact }
+content: { en: { title: Electron Density } }

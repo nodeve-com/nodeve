@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: ElectricCurrentImbalance
-    match: exact
-content:
-  en:
-    title: Electric Current Imbalance
+ref: { qudt-quantity-kind: { term: ElectricCurrentImbalance, match: exact } }
+content: { en: { title: Electric Current Imbalance } }

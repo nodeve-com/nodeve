@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Length
-    match: exact
-  wikidata:
-    term: Q36253
-    match: exact
-content:
-  en:
-    title: Length
+  qudt-quantity-kind: { term: Length, match: exact }
+  wikidata: { term: Q36253, match: exact }
+content: { en: { title: Length } }

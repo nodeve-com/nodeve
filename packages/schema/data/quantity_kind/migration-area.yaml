@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: MigrationArea
-    match: exact
-  wikidata:
-    term: Q98966325
-    match: exact
-content:
-  en:
-    title: Migration Area
+  qudt-quantity-kind: { term: MigrationArea, match: exact }
+  wikidata: { term: Q98966325, match: exact }
+content: { en: { title: Migration Area } }

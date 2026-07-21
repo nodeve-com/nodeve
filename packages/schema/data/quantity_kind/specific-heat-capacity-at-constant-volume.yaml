@@ -1,11 +1,5 @@
 broader: specific-heat-capacity
 ref:
-  qudt-quantity-kind:
-    term: SpecificHeatCapacityAtConstantVolume
-    match: exact
-  wikidata:
-    term: Q75774757
-    match: exact
-content:
-  en:
-    title: Specific Heat Capacity at Constant Volume
+  qudt-quantity-kind: { term: SpecificHeatCapacityAtConstantVolume, match: exact }
+  wikidata: { term: Q75774757, match: exact }
+content: { en: { title: Specific Heat Capacity at Constant Volume } }

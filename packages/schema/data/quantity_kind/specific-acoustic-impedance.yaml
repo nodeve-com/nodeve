@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpecificAcousticImpedance
-    match: exact
-content:
-  en:
-    title: Specific Acoustic Impedance
+ref: { qudt-quantity-kind: { term: SpecificAcousticImpedance, match: exact } }
+content: { en: { title: Specific Acoustic Impedance } }

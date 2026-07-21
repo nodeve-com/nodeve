@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: PackingFraction
-    match: exact
-  wikidata:
-    term: Q98058276
-    match: exact
-content:
-  en:
-    title: Packing Fraction
+  qudt-quantity-kind: { term: PackingFraction, match: exact }
+  wikidata: { term: Q98058276, match: exact }
+content: { en: { title: Packing Fraction } }

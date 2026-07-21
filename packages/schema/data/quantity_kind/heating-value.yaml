@@ -1,8 +1,3 @@
 broader: specific-energy
-ref:
-  qudt-quantity-kind:
-    term: HeatingValue
-    match: exact
-content:
-  en:
-    title: Calorific Value
+ref: { qudt-quantity-kind: { term: HeatingValue, match: exact } }
+content: { en: { title: Calorific Value } }

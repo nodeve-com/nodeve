@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricChargeDensity
-    match: exact
-  wikidata:
-    term: Q69425629
-    match: exact
-content:
-  en:
-    title: Electric Charge Density
+  qudt-quantity-kind: { term: ElectricChargeDensity, match: exact }
+  wikidata: { term: Q69425629, match: exact }
+content: { en: { title: Electric Charge Density } }

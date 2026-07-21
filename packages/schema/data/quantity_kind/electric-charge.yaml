@@ -1,14 +1,6 @@
 si_unit: C
 accumulation: instantaneous
 ref:
-  qudt-quantity-kind:
-    term: ElectricCharge
-    match: exact
-  wikidata:
-    term: Q1111
-    match: exact
-content:
-  en:
-    title: Electric Charge
-  pt:
-    title: Carga elétrica
+  qudt-quantity-kind: { term: ElectricCharge, match: exact }
+  wikidata: { term: Q1111, match: exact }
+content: { en: { title: Electric Charge }, pt: { title: Carga elétrica } }

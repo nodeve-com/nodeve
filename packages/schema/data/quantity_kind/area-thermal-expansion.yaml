@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AreaThermalExpansion
-    match: exact
-content:
-  en:
-    title: Area Thermal Expansion
+ref: { qudt-quantity-kind: { term: AreaThermalExpansion, match: exact } }
+content: { en: { title: Area Thermal Expansion } }

@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.11
 replaced_by: electric-conductivity
-ref:
-  qudt-quantity-kind:
-    term: Conductivity
-    match: exact
-content:
-  en:
-    title: Conductivity
+ref: { qudt-quantity-kind: { term: Conductivity, match: exact } }
+content: { en: { title: Conductivity } }

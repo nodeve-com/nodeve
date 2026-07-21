@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: HeatCapacityRatio
-    match: exact
-  wikidata:
-    term: Q503869
-    match: exact
-content:
-  en:
-    title: Heat Capacity Ratio
+  qudt-quantity-kind: { term: HeatCapacityRatio, match: exact }
+  wikidata: { term: Q503869, match: exact }
+content: { en: { title: Heat Capacity Ratio } }

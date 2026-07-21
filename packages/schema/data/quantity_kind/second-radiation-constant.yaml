@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SecondRadiationConstant
-    match: exact
-content:
-  en:
-    title: Second Radiation Constant
+ref: { qudt-quantity-kind: { term: SecondRadiationConstant, match: exact } }
+content: { en: { title: Second Radiation Constant } }

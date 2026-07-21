@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: SoundParticleDisplacement
-    match: exact
-  wikidata:
-    term: Q779457
-    match: exact
-content:
-  en:
-    title: Sound Particle Displacement
+  qudt-quantity-kind: { term: SoundParticleDisplacement, match: exact }
+  wikidata: { term: Q779457, match: exact }
+content: { en: { title: Sound Particle Displacement } }

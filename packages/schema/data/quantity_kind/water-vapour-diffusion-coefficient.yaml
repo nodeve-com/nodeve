@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: WaterVapourDiffusionCoefficient
-    match: exact
-content:
-  en:
-    title: Water Vapour Diffusion Coefficient
+ref: { qudt-quantity-kind: { term: WaterVapourDiffusionCoefficient, match: exact } }
+content: { en: { title: Water Vapour Diffusion Coefficient } }

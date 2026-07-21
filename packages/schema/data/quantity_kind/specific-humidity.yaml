@@ -1,8 +1,3 @@
 broader: mass-ratio
-ref:
-  qudt-quantity-kind:
-    term: SpecificHumidity
-    match: exact
-content:
-  en:
-    title: Specific Humidity
+ref: { qudt-quantity-kind: { term: SpecificHumidity, match: exact } }
+content: { en: { title: Specific Humidity } }

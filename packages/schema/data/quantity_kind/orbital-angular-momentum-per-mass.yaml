@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: OrbitalAngularMomentumPerMass
-    match: exact
-content:
-  en:
-    title: Orbital Angular Momentum per Mass
+ref: { qudt-quantity-kind: { term: OrbitalAngularMomentumPerMass, match: exact } }
+content: { en: { title: Orbital Angular Momentum per Mass } }

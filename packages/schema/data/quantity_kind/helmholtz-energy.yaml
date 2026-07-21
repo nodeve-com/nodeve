@@ -1,8 +1,3 @@
 broader: energy
-ref:
-  qudt-quantity-kind:
-    term: HelmholtzEnergy
-    match: exact
-content:
-  en:
-    title: Helmholtz Energy
+ref: { qudt-quantity-kind: { term: HelmholtzEnergy, match: exact } }
+content: { en: { title: Helmholtz Energy } }

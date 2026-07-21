@@ -3,12 +3,6 @@ deprecated_in: 3.2.0
 broader: energy
 replaced_by: kinetic-energy
 ref:
-  qudt-quantity-kind:
-    term: EnergyKinetic
-    match: exact
-  wikidata:
-    term: Q46276
-    match: exact
-content:
-  en:
-    title: kinetic energy
+  qudt-quantity-kind: { term: EnergyKinetic, match: exact }
+  wikidata: { term: Q46276, match: exact }
+content: { en: { title: kinetic energy } }

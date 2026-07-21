@@ -1,11 +1,4 @@
 si_unit: Ω
 accumulation: instantaneous
-ref:
-  qudt-quantity-kind:
-    term: Resistance
-    match: exact
-content:
-  en:
-    title: Resistance
-  pt:
-    title: Resistência
+ref: { qudt-quantity-kind: { term: Resistance, match: exact } }
+content: { en: { title: Resistance }, pt: { title: Resistência } }

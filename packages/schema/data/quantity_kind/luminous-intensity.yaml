@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: LuminousIntensity
-    match: exact
-  wikidata:
-    term: Q104831
-    match: exact
-content:
-  en:
-    title: Luminous Intensity
+  qudt-quantity-kind: { term: LuminousIntensity, match: exact }
+  wikidata: { term: Q104831, match: exact }
+content: { en: { title: Luminous Intensity } }

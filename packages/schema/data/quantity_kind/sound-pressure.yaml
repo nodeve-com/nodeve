@@ -1,11 +1,5 @@
 broader: pressure
 ref:
-  qudt-quantity-kind:
-    term: SoundPressure
-    match: exact
-  wikidata:
-    term: Q1068172
-    match: exact
-content:
-  en:
-    title: Sound Pressure
+  qudt-quantity-kind: { term: SoundPressure, match: exact }
+  wikidata: { term: Q1068172, match: exact }
+content: { en: { title: Sound Pressure } }

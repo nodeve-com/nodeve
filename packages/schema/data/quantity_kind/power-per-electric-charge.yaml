@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PowerPerElectricCharge
-    match: exact
-content:
-  en:
-    title: Power per Electric Charge
+ref: { qudt-quantity-kind: { term: PowerPerElectricCharge, match: exact } }
+content: { en: { title: Power per Electric Charge } }

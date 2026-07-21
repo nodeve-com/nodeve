@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: SpecificOpticalRotationalAbility
-    match: exact
-content:
-  en:
-    title: Specific Optical Rotational Ability
+ref: { qudt-quantity-kind: { term: SpecificOpticalRotationalAbility, match: exact } }
+content: { en: { title: Specific Optical Rotational Ability } }

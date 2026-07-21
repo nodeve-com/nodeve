@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: CrossSectionalArea
-    match: exact
-  wikidata:
-    term: Q29325024
-    match: exact
-content:
-  en:
-    title: Cross-sectional Area
+  qudt-quantity-kind: { term: CrossSectionalArea, match: exact }
+  wikidata: { term: Q29325024, match: exact }
+content: { en: { title: Cross-sectional Area } }

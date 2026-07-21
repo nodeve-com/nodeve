@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MolarOpticalRotatoryPower
-    match: exact
-  wikidata:
-    term: Q96346994
-    match: exact
-content:
-  en:
-    title: Molar Optical Rotatory Power
+  qudt-quantity-kind: { term: MolarOpticalRotatoryPower, match: exact }
+  wikidata: { term: Q96346994, match: exact }
+content: { en: { title: Molar Optical Rotatory Power } }

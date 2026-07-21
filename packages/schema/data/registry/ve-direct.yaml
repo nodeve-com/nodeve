@@ -1,6 +1,2 @@
 url: https://www.victronenergy.com/support-and-downloads/technical-information
-content:
-  en:
-    title: VE.Direct Protocol
-  pt:
-    title: Protocolo VE.Direct
+content: { en: { title: VE.Direct Protocol }, pt: { title: Protocolo VE.Direct } }

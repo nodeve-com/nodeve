@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ThermalResistivity
-    match: exact
-  wikidata:
-    term: Q66311516
-    match: exact
-content:
-  en:
-    title: Thermal Resistivity
+  qudt-quantity-kind: { term: ThermalResistivity, match: exact }
+  wikidata: { term: Q66311516, match: exact }
+content: { en: { title: Thermal Resistivity } }

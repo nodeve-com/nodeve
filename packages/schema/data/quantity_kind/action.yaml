@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Action
-    match: exact
-  wikidata:
-    term: Q846785
-    match: exact
-content:
-  en:
-    title: Action
+  qudt-quantity-kind: { term: Action, match: exact }
+  wikidata: { term: Q846785, match: exact }
+content: { en: { title: Action } }

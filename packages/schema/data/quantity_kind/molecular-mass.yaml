@@ -1,11 +1,5 @@
 broader: mass
 ref:
-  qudt-quantity-kind:
-    term: MolecularMass
-    match: exact
-  wikidata:
-    term: Q182854
-    match: exact
-content:
-  en:
-    title: Molecular Mass
+  qudt-quantity-kind: { term: MolecularMass, match: exact }
+  wikidata: { term: Q182854, match: exact }
+content: { en: { title: Molecular Mass } }

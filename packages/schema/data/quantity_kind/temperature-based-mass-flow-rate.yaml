@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: TemperatureBasedMassFlowRate
-    match: exact
-content:
-  en:
-    title: Temperature-based Mass Flow Rate
+ref: { qudt-quantity-kind: { term: TemperatureBasedMassFlowRate, match: exact } }
+content: { en: { title: Temperature-based Mass Flow Rate } }

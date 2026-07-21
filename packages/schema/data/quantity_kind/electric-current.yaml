@@ -1,17 +1,7 @@
 si_unit: A
 accumulation: instantaneous
 ref:
-  qudt-quantity-kind:
-    term: ElectricCurrent
-    match: exact
-  wikidata:
-    term: Q29996
-    match: exact
-  ha-device-class:
-    term: current
-    match: exact
-content:
-  en:
-    title: Electric Current
-  pt:
-    title: Corrente
+  qudt-quantity-kind: { term: ElectricCurrent, match: exact }
+  wikidata: { term: Q29996, match: exact }
+  ha-device-class: { term: current, match: exact }
+content: { en: { title: Electric Current }, pt: { title: Corrente } }

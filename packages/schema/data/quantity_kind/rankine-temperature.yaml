@@ -1,8 +1,3 @@
 broader: thermodynamic-temperature
-ref:
-  qudt-quantity-kind:
-    term: RankineTemperature
-    match: exact
-content:
-  en:
-    title: Rankine Temperature
+ref: { qudt-quantity-kind: { term: RankineTemperature, match: exact } }
+content: { en: { title: Rankine Temperature } }

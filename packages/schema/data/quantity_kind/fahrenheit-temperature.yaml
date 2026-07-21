@@ -1,8 +1,3 @@
 broader: temperature
-ref:
-  qudt-quantity-kind:
-    term: FahrenheitTemperature
-    match: exact
-content:
-  en:
-    title: Fahrenheit Temperature
+ref: { qudt-quantity-kind: { term: FahrenheitTemperature, match: exact } }
+content: { en: { title: Fahrenheit Temperature } }

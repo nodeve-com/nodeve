@@ -1,8 +1,3 @@
 broader: heat-flow-rate
-ref:
-  qudt-quantity-kind:
-    term: ConvectiveHeatTransfer
-    match: exact
-content:
-  en:
-    title: Convective Heat Transfer
+ref: { qudt-quantity-kind: { term: ConvectiveHeatTransfer, match: exact } }
+content: { en: { title: Convective Heat Transfer } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AreaTimeTemperature
-    match: exact
-content:
-  en:
-    title: Area Time Temperature
+ref: { qudt-quantity-kind: { term: AreaTimeTemperature, match: exact } }
+content: { en: { title: Area Time Temperature } }

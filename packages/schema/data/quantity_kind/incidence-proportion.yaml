@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: IncidenceProportion
-    match: exact
-  wikidata:
-    term: Q217690
-    match: exact
-content:
-  en:
-    title: Incidence Proportion
+  qudt-quantity-kind: { term: IncidenceProportion, match: exact }
+  wikidata: { term: Q217690, match: exact }
+content: { en: { title: Incidence Proportion } }

@@ -1,8 +1,3 @@
 broader: non-negative-length
-ref:
-  qudt-quantity-kind:
-    term: PositiveLength
-    match: exact
-content:
-  en:
-    title: Positive Length
+ref: { qudt-quantity-kind: { term: PositiveLength, match: exact } }
+content: { en: { title: Positive Length } }

@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: LondonPenetrationDepth
-    match: exact
-  wikidata:
-    term: Q3277853
-    match: exact
-content:
-  en:
-    title: London Penetration Depth
+  qudt-quantity-kind: { term: LondonPenetrationDepth, match: exact }
+  wikidata: { term: Q3277853, match: exact }
+content: { en: { title: London Penetration Depth } }

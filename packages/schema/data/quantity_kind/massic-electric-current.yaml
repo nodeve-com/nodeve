@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassicElectricCurrent
-    match: exact
-content:
-  en:
-    title: Massic Electric Current
+ref: { qudt-quantity-kind: { term: MassicElectricCurrent, match: exact } }
+content: { en: { title: Massic Electric Current } }

@@ -3,20 +3,14 @@ name: nodeve-core
 default_prefix: nodeve
 default_range: string
 classes:
-  Node:
-    annotations:
-      sql_table: node
-    slots: [slug_qualified, code]
+  Node: { annotations: { sql_table: node }, slots: [ slug_qualified, code ] }
 
   # Parts belong to the FEATURE, not its type: how a model subdivides a port is
   # a per-model fact (3 trackers vs 2 battery ports; split-phase l1/l2 vs
   # three-phase a/b/c). A part with no intervals still exists — it is a row.
   # Authoring stays terse via desugaring (`phases: split` → two rows); the
   # schema only ever sees the flat rows.
-  Part:
-    annotations:
-      sql_table: part
-    slots: [node, slug, ordinal, contents]
+  Part: { annotations: { sql_table: part }, slots: [ node, slug, ordinal, contents ] }
 
   # The ingest container — linkml-sqldb needs ONE root object per dump, so the
   # sharded data/ rows bundle under this. NOT a table: tree_root exists to be
@@ -26,8 +20,7 @@ classes:
   # `registries` would be meaningless on any other class.
   Catalog:
     tree_root: true
-    annotations:
-      sql_table: catalog
+    annotations: { sql_table: catalog }
     attributes:
       # DERIVED, not a data dir — bundle.ts mints one row per authored thing from
       # its path. Every other slot's range names a class whose sql_table is its dir.
@@ -44,9 +37,8 @@ classes:
   # wikidata, ha_device_class). A new registry is an INSERT; the iri_template
   # lives here so a term is stored exactly as that registry spells it.
   Registry:
-    annotations:
-      sql_table: registry
-    slots: [node, slug, url, iri_template, contents]
+    annotations: { sql_table: registry }
+    slots: [ node, slug, url, iri_template, contents ]
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
@@ -57,7 +49,7 @@ classes:
       # authored form: a map keyed by this slot's range (ref: {wikidata: …});
       # keys are bare registry slugs, the normalizer expands them to CURIEs
       keyed_by: registry
-    slots: [node, registry, term, match]
+    slots: [ node, registry, term, match ]
 
   # Reusable localized content. Each row has its own node; `about` points to
   # the described node. No class-specific parent FK.
@@ -67,74 +59,56 @@ classes:
       # authored form: a map keyed by this slot (content: {en: …, pt: …});
       # the normalizer reads it here, never hardcodes it
       keyed_by: language
-    slots: [node, about, language, title, lede, body]
+    slots: [ node, about, language, title, lede, body ]
 slots:
   body: {}
   code:
-    {
-      range: string,
-      title: Short code,
-      description: "8-char Crockford human handle DERIVED from the permalink's hash tail (40 bits); minted with the row, never recomputed",
-    }
+    range: string
+    title: Short code
+    description: "8-char Crockford human handle DERIVED from the permalink's hash tail (40 bits); minted with the row, never recomputed"
   iri_template:
-    {
-      range: string,
-      title: IRI template,
-      description: 'resolves a term to its IRI — {id} is the term slot (http://qudt.org/property/quantitykind/{id}); absent when the registry has no resolvable form',
-      annotations: { camel: iriTemplate },
-    }
+    range: string
+    title: IRI template
+    description: 'resolves a term to its IRI — {id} is the term slot (http://qudt.org/property/quantitykind/{id}); absent when the registry has no resolvable form'
+    annotations: { camel: iriTemplate }
   language:
-    {
-      range: string,
-      required: true,
-      slot_uri: schema:inLanguage,
-      description: 'BCP 47 language tag',
-    }
+    range: string
+    required: true
+    slot_uri: schema:inLanguage
+    description: 'BCP 47 language tag'
   lede: { description: short description }
   ordinal:
-    {
-      range: integer,
-      minimum_value: 1,
-      title: Ordinal,
-      description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here.",
-    }
+    range: integer
+    minimum_value: 1
+    title: Ordinal
+    description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
   slug_qualified:
-    {
-      identifier: true,
-      range: uriorcurie,
-      title: Qualified slug,
-      description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it',
-      annotations: { camel: slugQualified },
-    }
+    identifier: true
+    range: uriorcurie
+    title: Qualified slug
+    description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
+    annotations: { camel: slugQualified }
   term:
-    {
-      range: string,
-      required: true,
-      title: Term,
-      description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized',
-    }
+    range: string
+    required: true
+    title: Term
+    description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized'
   title: {}
   url: { range: uri, title: URL, description: registry homepage }
   # object-valued slots — FKs / owned row sets; global like everything else,
   # classes narrow via slot_usage only when the shared def is too loose
   about:
-    {
-      range: Node,
-      required: true,
-      slot_uri: schema:about,
-      description: 'the node this content describes',
-    }
+    range: Node
+    required: true
+    slot_uri: schema:about
+    description: 'the node this content describes'
   match:
-    {
-      range: MatchStrength,
-      required: true,
-      title: Match,
-      description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths',
-    }
+    range: MatchStrength
+    required: true
+    title: Match
+    description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths'
   registry:
-    {
-      range: Registry,
-      required: true,
-      title: Registry,
-      description: 'FK — which external registry the term belongs to',
-    }
+    range: Registry
+    required: true
+    title: Registry
+    description: 'FK — which external registry the term belongs to'

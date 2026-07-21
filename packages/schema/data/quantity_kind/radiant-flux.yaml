@@ -1,11 +1,5 @@
 broader: power
 ref:
-  qudt-quantity-kind:
-    term: RadiantFlux
-    match: exact
-  wikidata:
-    term: Q1253356
-    match: exact
-content:
-  en:
-    title: Radiant Flux
+  qudt-quantity-kind: { term: RadiantFlux, match: exact }
+  wikidata: { term: Q1253356, match: exact }
+content: { en: { title: Radiant Flux } }

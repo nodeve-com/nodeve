@@ -1,11 +1,5 @@
 broader: count-rate
 ref:
-  qudt-quantity-kind:
-    term: ParticleCurrent
-    match: exact
-  wikidata:
-    term: Q2400689
-    match: exact
-content:
-  en:
-    title: Particle Current
+  qudt-quantity-kind: { term: ParticleCurrent, match: exact }
+  wikidata: { term: Q2400689, match: exact }
+content: { en: { title: Particle Current } }

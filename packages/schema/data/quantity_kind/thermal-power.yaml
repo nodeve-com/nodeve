@@ -1,11 +1,5 @@
 broader: power
 ref:
-  qudt-quantity-kind:
-    term: ThermalPower
-    match: exact
-  wikidata:
-    term: Q2419903
-    match: exact
-content:
-  en:
-    title: Thermal Power
+  qudt-quantity-kind: { term: ThermalPower, match: exact }
+  wikidata: { term: Q2419903, match: exact }
+content: { en: { title: Thermal Power } }

@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MechanicalSurfaceImpedance
-    match: exact
-content:
-  en:
-    title: Mechanical Surface Impedance
+ref: { qudt-quantity-kind: { term: MechanicalSurfaceImpedance, match: exact } }
+content: { en: { title: Mechanical Surface Impedance } }

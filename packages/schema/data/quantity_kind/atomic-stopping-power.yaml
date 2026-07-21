@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AtomicStoppingPower
-    match: exact
-content:
-  en:
-    title: Atomic Stopping Power
+ref: { qudt-quantity-kind: { term: AtomicStoppingPower, match: exact } }
+content: { en: { title: Atomic Stopping Power } }

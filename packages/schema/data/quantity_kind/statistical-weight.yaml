@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: StatisticalWeight
-    match: exact
-content:
-  en:
-    title: Statistical Weight
+ref: { qudt-quantity-kind: { term: StatisticalWeight, match: exact } }
+content: { en: { title: Statistical Weight } }

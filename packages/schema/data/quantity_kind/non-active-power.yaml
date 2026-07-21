@@ -1,11 +1,5 @@
 broader: electric-power
 ref:
-  qudt-quantity-kind:
-    term: NonActivePower
-    match: exact
-  wikidata:
-    term: Q79813060
-    match: exact
-content:
-  en:
-    title: Non-active Power
+  qudt-quantity-kind: { term: NonActivePower, match: exact }
+  wikidata: { term: Q79813060, match: exact }
+content: { en: { title: Non-active Power } }

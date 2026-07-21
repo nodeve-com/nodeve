@@ -1,11 +1,5 @@
 broader: specific-energy
 ref:
-  qudt-quantity-kind:
-    term: SpecificEnergyImparted
-    match: exact
-  wikidata:
-    term: Q99566195
-    match: exact
-content:
-  en:
-    title: Specific Energy Imparted
+  qudt-quantity-kind: { term: SpecificEnergyImparted, match: exact }
+  wikidata: { term: Q99566195, match: exact }
+content: { en: { title: Specific Energy Imparted } }

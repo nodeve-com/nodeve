@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: AmountOfBiologicallyActiveSubstance
-    match: exact
-content:
-  en:
-    title: Amount of Biologically Active Substance
+ref: { qudt-quantity-kind: { term: AmountOfBiologicallyActiveSubstance, match: exact } }
+content: { en: { title: Amount of Biologically Active Substance } }

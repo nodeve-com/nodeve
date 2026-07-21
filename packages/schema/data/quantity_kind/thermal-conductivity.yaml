@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ThermalConductivity
-    match: exact
-  wikidata:
-    term: Q487005
-    match: exact
-content:
-  en:
-    title: Thermal Conductivity
+  qudt-quantity-kind: { term: ThermalConductivity, match: exact }
+  wikidata: { term: Q487005, match: exact }
+content: { en: { title: Thermal Conductivity } }

@@ -1,11 +1,5 @@
 broader: specific-power
 ref:
-  qudt-quantity-kind:
-    term: KermaRate
-    match: exact
-  wikidata:
-    term: Q1739280
-    match: exact
-content:
-  en:
-    title: Kerma Rate
+  qudt-quantity-kind: { term: KermaRate, match: exact }
+  wikidata: { term: Q1739280, match: exact }
+content: { en: { title: Kerma Rate } }

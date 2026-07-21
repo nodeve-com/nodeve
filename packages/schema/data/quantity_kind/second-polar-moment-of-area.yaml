@@ -1,11 +1,5 @@
 broader: second-moment-of-area
 ref:
-  qudt-quantity-kind:
-    term: SecondPolarMomentOfArea
-    match: exact
-  wikidata:
-    term: Q1049636
-    match: exact
-content:
-  en:
-    title: Second Polar Moment of Area
+  qudt-quantity-kind: { term: SecondPolarMomentOfArea, match: exact }
+  wikidata: { term: Q1049636, match: exact }
+content: { en: { title: Second Polar Moment of Area } }

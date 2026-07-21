@@ -1,8 +1,3 @@
 broader: power-per-area
-ref:
-  qudt-quantity-kind:
-    term: Radiosity
-    match: exact
-content:
-  en:
-    title: Radiosity
+ref: { qudt-quantity-kind: { term: Radiosity, match: exact } }
+content: { en: { title: Radiosity } }

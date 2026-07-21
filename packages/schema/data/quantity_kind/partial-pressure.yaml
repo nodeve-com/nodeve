@@ -1,11 +1,5 @@
 broader: pressure
 ref:
-  qudt-quantity-kind:
-    term: PartialPressure
-    match: exact
-  wikidata:
-    term: Q27165
-    match: exact
-content:
-  en:
-    title: Partial Pressure
+  qudt-quantity-kind: { term: PartialPressure, match: exact }
+  wikidata: { term: Q27165, match: exact }
+content: { en: { title: Partial Pressure } }

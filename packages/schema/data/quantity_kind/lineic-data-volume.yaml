@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LineicDataVolume
-    match: exact
-content:
-  en:
-    title: Lineic Data Volume
+ref: { qudt-quantity-kind: { term: LineicDataVolume, match: exact } }
+content: { en: { title: Lineic Data Volume } }

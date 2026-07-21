@@ -1,8 +1,3 @@
 broader: radius
-ref:
-  qudt-quantity-kind:
-    term: ClosestApproachRadius
-    match: exact
-content:
-  en:
-    title: Closest Approach Radius
+ref: { qudt-quantity-kind: { term: ClosestApproachRadius, match: exact } }
+content: { en: { title: Closest Approach Radius } }

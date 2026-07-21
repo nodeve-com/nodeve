@@ -1,7 +1,4 @@
-ref:
-  qudt-quantity-kind:
-    term: BinaryLogarithmicMedianInformationFlow
-    match: exact
+ref: { qudt-quantity-kind: { term: BinaryLogarithmicMedianInformationFlow, match: exact } }
 content:
   en:
     title: Median Information Flow (from a Source of Information), Expressed as a Binary Logarithm

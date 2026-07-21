@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: ScalarMagneticPotential
-    match: exact
-content:
-  en:
-    title: Scalar Magnetic Potential
+ref: { qudt-quantity-kind: { term: ScalarMagneticPotential, match: exact } }
+content: { en: { title: Scalar Magnetic Potential } }

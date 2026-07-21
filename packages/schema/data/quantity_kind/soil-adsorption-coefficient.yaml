@@ -1,8 +1,3 @@
 broader: specific-volume
-ref:
-  qudt-quantity-kind:
-    term: SoilAdsorptionCoefficient
-    match: exact
-content:
-  en:
-    title: Soil Adsorption Coefficient
+ref: { qudt-quantity-kind: { term: SoilAdsorptionCoefficient, match: exact } }
+content: { en: { title: Soil Adsorption Coefficient } }

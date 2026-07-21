@@ -1,6 +1,2 @@
 url: https://pubs.opengroup.org/onlinepubs/9699919799/
-content:
-  en:
-    title: POSIX (IEEE Std 1003.1)
-  pt:
-    title: POSIX (IEEE Std 1003.1)
+content: { en: { title: POSIX (IEEE Std 1003.1) }, pt: { title: POSIX (IEEE Std 1003.1) } }

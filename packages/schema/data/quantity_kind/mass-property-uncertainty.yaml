@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: MASS-PROPERTY-UNCERTAINTY
-    match: exact
-content:
-  en:
-    title: Mass Property Uncertainty
+ref: { qudt-quantity-kind: { term: MASS-PROPERTY-UNCERTAINTY, match: exact } }
+content: { en: { title: Mass Property Uncertainty } }

@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS
-    match: exact
-content:
-  en:
-    title: Flight Performance Reserve Propellant Mass
+ref: { qudt-quantity-kind: { term: FLIGHT-PERFORMANCE-RESERVE-PROPELLANT-MASS, match: exact } }
+content: { en: { title: Flight Performance Reserve Propellant Mass } }

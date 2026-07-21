@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: LevelWidth
-    match: exact
-  wikidata:
-    term: Q98082340
-    match: exact
-content:
-  en:
-    title: Level Width
+  qudt-quantity-kind: { term: LevelWidth, match: exact }
+  wikidata: { term: Q98082340, match: exact }
+content: { en: { title: Level Width } }

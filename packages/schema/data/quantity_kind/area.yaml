@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: Area
-    match: exact
-  wikidata:
-    term: Q11500
-    match: exact
-content:
-  en:
-    title: Area
+  qudt-quantity-kind: { term: Area, match: exact }
+  wikidata: { term: Q11500, match: exact }
+content: { en: { title: Area } }

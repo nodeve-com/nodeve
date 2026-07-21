@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: AtomScatteringFactor
-    match: exact
-  wikidata:
-    term: Q837866
-    match: exact
-content:
-  en:
-    title: Atom Scattering Factor
+  qudt-quantity-kind: { term: AtomScatteringFactor, match: exact }
+  wikidata: { term: Q837866, match: exact }
+content: { en: { title: Atom Scattering Factor } }

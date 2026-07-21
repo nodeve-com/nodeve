@@ -1,8 +1,3 @@
 broader: dimensionless
-ref:
-  qudt-quantity-kind:
-    term: PressureBurningRateConstant
-    match: exact
-content:
-  en:
-    title: Pressure Burning Rate Constant
+ref: { qudt-quantity-kind: { term: PressureBurningRateConstant, match: exact } }
+content: { en: { title: Pressure Burning Rate Constant } }

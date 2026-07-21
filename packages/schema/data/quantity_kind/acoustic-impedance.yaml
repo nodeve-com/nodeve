@@ -1,8 +1,3 @@
 broader: mass-per-area-time
-ref:
-  qudt-quantity-kind:
-    term: AcousticImpedance
-    match: exact
-content:
-  en:
-    title: Acoustic Impediance
+ref: { qudt-quantity-kind: { term: AcousticImpedance, match: exact } }
+content: { en: { title: Acoustic Impediance } }

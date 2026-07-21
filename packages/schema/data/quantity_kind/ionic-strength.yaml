@@ -1,11 +1,5 @@
 broader: amount-of-substance-per-mass
 ref:
-  qudt-quantity-kind:
-    term: IonicStrength
-    match: exact
-  wikidata:
-    term: Q898396
-    match: exact
-content:
-  en:
-    title: Ionic Strength
+  qudt-quantity-kind: { term: IonicStrength, match: exact }
+  wikidata: { term: Q898396, match: exact }
+content: { en: { title: Ionic Strength } }

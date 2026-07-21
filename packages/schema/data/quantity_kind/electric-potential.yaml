@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricPotential
-    match: exact
-  wikidata:
-    term: Q55451
-    match: exact
-content:
-  en:
-    title: Electric Potential
+  qudt-quantity-kind: { term: ElectricPotential, match: exact }
+  wikidata: { term: Q55451, match: exact }
+content: { en: { title: Electric Potential } }

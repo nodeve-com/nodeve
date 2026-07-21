@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: Prevalence
-    match: exact
-  wikidata:
-    term: Q719602
-    match: exact
-content:
-  en:
-    title: Prevalence
+  qudt-quantity-kind: { term: Prevalence, match: exact }
+  wikidata: { term: Q719602, match: exact }
+content: { en: { title: Prevalence } }

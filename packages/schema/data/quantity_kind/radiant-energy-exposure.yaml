@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: RadiantEnergyExposure
-    match: exact
-content:
-  en:
-    title: Radiant Energy Exposure
+ref: { qudt-quantity-kind: { term: RadiantEnergyExposure, match: exact } }
+content: { en: { title: Radiant Energy Exposure } }

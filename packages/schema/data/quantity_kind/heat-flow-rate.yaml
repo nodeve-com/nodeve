@@ -2,12 +2,6 @@ si_unit: W
 accumulation: instantaneous
 broader: power
 ref:
-  qudt-quantity-kind:
-    term: HeatFlowRate
-    match: broad
-  wikidata:
-    term: Q12160631
-    match: exact
-content:
-  en:
-    title: Heat Flow Rate
+  qudt-quantity-kind: { term: HeatFlowRate, match: broad }
+  wikidata: { term: Q12160631, match: exact }
+content: { en: { title: Heat Flow Rate } }

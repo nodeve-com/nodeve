@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LineicMass
-    match: exact
-content:
-  en:
-    title: Lineic Mass
+ref: { qudt-quantity-kind: { term: LineicMass, match: exact } }
+content: { en: { title: Lineic Mass } }

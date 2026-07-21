@@ -1,8 +1,3 @@
 broader: illuminance
-ref:
-  qudt-quantity-kind:
-    term: SphericalIlluminance
-    match: exact
-content:
-  en:
-    title: Illuminance
+ref: { qudt-quantity-kind: { term: SphericalIlluminance, match: exact } }
+content: { en: { title: Illuminance } }

@@ -1,8 +1,3 @@
 broader: time
-ref:
-  qudt-quantity-kind:
-    term: ActionTime
-    match: exact
-content:
-  en:
-    title: Action Time
+ref: { qudt-quantity-kind: { term: ActionTime, match: exact } }
+content: { en: { title: Action Time } }

@@ -1,11 +1,5 @@
 broader: angular-impulse
 ref:
-  qudt-quantity-kind:
-    term: TotalAngularMomentum
-    match: exact
-  wikidata:
-    term: Q97496506
-    match: exact
-content:
-  en:
-    title: Total Angular Momentum
+  qudt-quantity-kind: { term: TotalAngularMomentum, match: exact }
+  wikidata: { term: Q97496506, match: exact }
+content: { en: { title: Total Angular Momentum } }

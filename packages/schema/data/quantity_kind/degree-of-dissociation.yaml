@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: DegreeOfDissociation
-    match: exact
-  wikidata:
-    term: Q907334
-    match: exact
-content:
-  en:
-    title: Degree of Dissociation
+  qudt-quantity-kind: { term: DegreeOfDissociation, match: exact }
+  wikidata: { term: Q907334, match: exact }
+content: { en: { title: Degree of Dissociation } }

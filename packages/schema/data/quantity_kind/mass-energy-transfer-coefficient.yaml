@@ -1,11 +1,5 @@
 broader: mass-attenuation-coefficient
 ref:
-  qudt-quantity-kind:
-    term: MassEnergyTransferCoefficient
-    match: exact
-  wikidata:
-    term: Q99714619
-    match: exact
-content:
-  en:
-    title: Mass Energy Transfer Coefficient
+  qudt-quantity-kind: { term: MassEnergyTransferCoefficient, match: exact }
+  wikidata: { term: Q99714619, match: exact }
+content: { en: { title: Mass Energy Transfer Coefficient } }

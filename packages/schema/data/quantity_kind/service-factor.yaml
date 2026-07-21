@@ -1,8 +1,3 @@
 broader: dimensionless-ratio
-ref:
-  qudt-quantity-kind:
-    term: ServiceFactor
-    match: exact
-content:
-  en:
-    title: Service Factor
+ref: { qudt-quantity-kind: { term: ServiceFactor, match: exact } }
+content: { en: { title: Service Factor } }

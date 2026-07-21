@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.2.0
 broader: mass
-ref:
-  qudt-quantity-kind:
-    term: CONTRACT-END-ITEM-SPECIFICATION-MASS
-    match: exact
-content:
-  en:
-    title: Contract End Item (CEI) Specification Mass.
+ref: { qudt-quantity-kind: { term: CONTRACT-END-ITEM-SPECIFICATION-MASS, match: exact } }
+content: { en: { title: Contract End Item (CEI) Specification Mass. } }

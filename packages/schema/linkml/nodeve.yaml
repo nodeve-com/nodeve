@@ -18,13 +18,4 @@ prefixes:
   schema: http://schema.org/ # linkml:types defines it http-form; a mismatch fails the merge
 default_prefix: nodeve
 default_range: string
-imports:
-  - linkml:types
-  - shared
-  - core
-  - taxonomy
-  - features
-  - values
-  - product
-  - network
-  - modbus
+imports: [ linkml:types, shared, core, taxonomy, features, values, product, network, modbus ]

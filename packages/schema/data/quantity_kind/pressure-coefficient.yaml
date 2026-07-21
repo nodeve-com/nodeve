@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: PressureCoefficient
-    match: exact
-  wikidata:
-    term: Q74762732
-    match: exact
-content:
-  en:
-    title: Pressure Coefficient
+  qudt-quantity-kind: { term: PressureCoefficient, match: exact }
+  wikidata: { term: Q74762732, match: exact }
+content: { en: { title: Pressure Coefficient } }

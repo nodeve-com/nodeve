@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MagneticMoment
-    match: exact
-  wikidata:
-    term: Q242657
-    match: exact
-content:
-  en:
-    title: Magnetic Moment
+  qudt-quantity-kind: { term: MagneticMoment, match: exact }
+  wikidata: { term: Q242657, match: exact }
+content: { en: { title: Magnetic Moment } }

@@ -1,11 +1,5 @@
 broader: temperature
 ref:
-  qudt-quantity-kind:
-    term: CelsiusTemperature
-    match: exact
-  wikidata:
-    term: Q74758530
-    match: exact
-content:
-  en:
-    title: Celsius Temperature
+  qudt-quantity-kind: { term: CelsiusTemperature, match: exact }
+  wikidata: { term: Q74758530, match: exact }
+content: { en: { title: Celsius Temperature } }

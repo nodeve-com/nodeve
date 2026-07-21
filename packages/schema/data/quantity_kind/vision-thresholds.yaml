@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: VisionThresholds
-    match: exact
-content:
-  en:
-    title: Vision Thresholds
+ref: { qudt-quantity-kind: { term: VisionThresholds, match: exact } }
+content: { en: { title: Vision Thresholds } }

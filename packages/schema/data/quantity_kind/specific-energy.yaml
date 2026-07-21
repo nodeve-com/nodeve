@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SpecificEnergy
-    match: exact
-  wikidata:
-    term: Q3023293
-    match: exact
-content:
-  en:
-    title: Specific Energy
+  qudt-quantity-kind: { term: SpecificEnergy, match: exact }
+  wikidata: { term: Q3023293, match: exact }
+content: { en: { title: Specific Energy } }

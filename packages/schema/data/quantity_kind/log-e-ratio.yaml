@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: LogERatio
-    match: exact
-content:
-  en:
-    title: Logarithmic Ratio to Base e
+ref: { qudt-quantity-kind: { term: LogERatio, match: exact } }
+content: { en: { title: Logarithmic Ratio to Base e } }

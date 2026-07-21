@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ShortRangeOrderParameter
-    match: exact
-  wikidata:
-    term: Q105495979
-    match: exact
-content:
-  en:
-    title: Short-Range Order Parameter
+  qudt-quantity-kind: { term: ShortRangeOrderParameter, match: exact }
+  wikidata: { term: Q105495979, match: exact }
+content: { en: { title: Short-Range Order Parameter } }

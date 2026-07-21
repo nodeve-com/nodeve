@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: NuclearQuadrupoleMoment
-    match: exact
-  wikidata:
-    term: Q97921226
-    match: exact
-content:
-  en:
-    title: Nuclear Quadrupole Moment
+  qudt-quantity-kind: { term: NuclearQuadrupoleMoment, match: exact }
+  wikidata: { term: Q97921226, match: exact }
+content: { en: { title: Nuclear Quadrupole Moment } }

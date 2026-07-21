@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: PressureBasedLength
-    match: exact
-content:
-  en:
-    title: Pressure-based Length
+ref: { qudt-quantity-kind: { term: PressureBasedLength, match: exact } }
+content: { en: { title: Pressure-based Length } }

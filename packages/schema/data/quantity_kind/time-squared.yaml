@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.3
 replaced_by: square-time
-ref:
-  qudt-quantity-kind:
-    term: Time_Squared
-    match: exact
-content:
-  en:
-    title: Time Squared
+ref: { qudt-quantity-kind: { term: Time_Squared, match: exact } }
+content: { en: { title: Time Squared } }

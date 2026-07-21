@@ -1,11 +1,5 @@
 broader: dimensionless-ratio
 ref:
-  qudt-quantity-kind:
-    term: APIGravity
-    match: exact
-  wikidata:
-    term: Q29246
-    match: exact
-content:
-  en:
-    title: API Gravity
+  qudt-quantity-kind: { term: APIGravity, match: exact }
+  wikidata: { term: Q29246, match: exact }
+content: { en: { title: API Gravity } }

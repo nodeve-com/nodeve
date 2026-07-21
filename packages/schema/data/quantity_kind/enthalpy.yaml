@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: Enthalpy
-    match: exact
-  wikidata:
-    term: Q161064
-    match: exact
-content:
-  en:
-    title: Enthalpy
+  qudt-quantity-kind: { term: Enthalpy, match: exact }
+  wikidata: { term: Q161064, match: exact }
+content: { en: { title: Enthalpy } }

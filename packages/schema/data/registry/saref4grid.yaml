@@ -1,7 +1,5 @@
 url: https://saref.etsi.org/saref4grid/
 iri_template: https://saref.etsi.org/saref4grid/{id}
 content:
-  en:
-    title: SAREF4GRID (ETSI SAREF smart-grid extension)
-  pt:
-    title: SAREF4GRID (extensão de rede inteligente ETSI SAREF)
+  en: { title: SAREF4GRID (ETSI SAREF smart-grid extension) }
+  pt: { title: SAREF4GRID (extensão de rede inteligente ETSI SAREF) }

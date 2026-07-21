@@ -1,12 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: MassFraction
-    match: exact
-  wikidata:
-    term: Q899138
-    match: exact
-content:
-  en:
-    title: Mass Fraction
-  pt:
-    title: Fração mássica
+  qudt-quantity-kind: { term: MassFraction, match: exact }
+  wikidata: { term: Q899138, match: exact }
+content: { en: { title: Mass Fraction }, pt: { title: Fração mássica } }

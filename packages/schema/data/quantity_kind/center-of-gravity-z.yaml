@@ -1,8 +1,3 @@
 broader: length
-ref:
-  qudt-quantity-kind:
-    term: CenterOfGravity_Z
-    match: exact
-content:
-  en:
-    title: Center of Gravity in the Z Axis
+ref: { qudt-quantity-kind: { term: CenterOfGravity_Z, match: exact } }
+content: { en: { title: Center of Gravity in the Z Axis } }

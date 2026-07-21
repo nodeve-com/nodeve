@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ThermalDiffusionFactor
-    match: exact
-  wikidata:
-    term: Q96249629
-    match: exact
-content:
-  en:
-    title: Thermal Diffusion Factor
+  qudt-quantity-kind: { term: ThermalDiffusionFactor, match: exact }
+  wikidata: { term: Q96249629, match: exact }
+content: { en: { title: Thermal Diffusion Factor } }

@@ -1,8 +1,3 @@
 broader: head-end-pressure
-ref:
-  qudt-quantity-kind:
-    term: AverageHeadEndPressure
-    match: exact
-content:
-  en:
-    title: Average Head End Pressure
+ref: { qudt-quantity-kind: { term: AverageHeadEndPressure, match: exact } }
+content: { en: { title: Average Head End Pressure } }

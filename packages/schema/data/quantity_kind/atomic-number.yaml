@@ -1,11 +1,5 @@
 broader: count
 ref:
-  qudt-quantity-kind:
-    term: AtomicNumber
-    match: exact
-  wikidata:
-    term: Q23809
-    match: exact
-content:
-  en:
-    title: Atomic Number
+  qudt-quantity-kind: { term: AtomicNumber, match: exact }
+  wikidata: { term: Q23809, match: exact }
+content: { en: { title: Atomic Number } }

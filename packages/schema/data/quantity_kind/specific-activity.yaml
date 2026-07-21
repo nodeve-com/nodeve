@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: SpecificActivity
-    match: exact
-  wikidata:
-    term: Q2823748
-    match: exact
-content:
-  en:
-    title: Specific Activity
+  qudt-quantity-kind: { term: SpecificActivity, match: exact }
+  wikidata: { term: Q2823748, match: exact }
+content: { en: { title: Specific Activity } }

@@ -1,8 +1,3 @@
 broader: amount-of-substance-per-mass
-ref:
-  qudt-quantity-kind:
-    term: MolalityOfSolute
-    match: exact
-content:
-  en:
-    title: Molality of Solute
+ref: { qudt-quantity-kind: { term: MolalityOfSolute, match: exact } }
+content: { en: { title: Molality of Solute } }

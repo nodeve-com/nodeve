@@ -1,7 +1,2 @@
-ref:
-  qudt-quantity-kind:
-    term: MassPerLength
-    match: exact
-content:
-  en:
-    title: Mass per Length
+ref: { qudt-quantity-kind: { term: MassPerLength, match: exact } }
+content: { en: { title: Mass per Length } }

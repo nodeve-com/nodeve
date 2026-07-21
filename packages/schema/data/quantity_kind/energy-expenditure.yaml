@@ -1,8 +1,3 @@
 broader: massic-power
-ref:
-  qudt-quantity-kind:
-    term: EnergyExpenditure
-    match: exact
-content:
-  en:
-    title: Energy Expenditure
+ref: { qudt-quantity-kind: { term: EnergyExpenditure, match: exact } }
+content: { en: { title: Energy Expenditure } }

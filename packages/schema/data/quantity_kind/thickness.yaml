@@ -1,13 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: Thickness
-    match: exact
-  wikidata:
-    term: Q3589038
-    match: exact
-content:
-  en:
-    title: Thickness
-  pt:
-    title: Espessura (mm)
+  qudt-quantity-kind: { term: Thickness, match: exact }
+  wikidata: { term: Q3589038, match: exact }
+content: { en: { title: Thickness }, pt: { title: Espessura (mm) } }

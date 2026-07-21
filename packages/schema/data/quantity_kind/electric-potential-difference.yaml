@@ -1,10 +1,4 @@
 ref:
-  qudt-quantity-kind:
-    term: ElectricPotentialDifference
-    match: exact
-  wikidata:
-    term: Q77597807
-    match: exact
-content:
-  en:
-    title: Electric Potential Difference
+  qudt-quantity-kind: { term: ElectricPotentialDifference, match: exact }
+  wikidata: { term: Q77597807, match: exact }
+content: { en: { title: Electric Potential Difference } }

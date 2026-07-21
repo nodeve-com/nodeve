@@ -1,8 +1,3 @@
 broader: byte-rate
-ref:
-  qudt-quantity-kind:
-    term: ByteTransmissionRate
-    match: exact
-content:
-  en:
-    title: Byte Transmission Rate
+ref: { qudt-quantity-kind: { term: ByteTransmissionRate, match: exact } }
+content: { en: { title: Byte Transmission Rate } }

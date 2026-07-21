@@ -1,11 +1,5 @@
 broader: dimensionless
 ref:
-  qudt-quantity-kind:
-    term: DragCoefficient
-    match: exact
-  wikidata:
-    term: Q1778961
-    match: exact
-content:
-  en:
-    title: Drag Coefficient
+  qudt-quantity-kind: { term: DragCoefficient, match: exact }
+  wikidata: { term: Q1778961, match: exact }
+content: { en: { title: Drag Coefficient } }

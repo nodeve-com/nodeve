@@ -1,11 +1,5 @@
 broader: specific-energy
 ref:
-  qudt-quantity-kind:
-    term: Kerma
-    match: exact
-  wikidata:
-    term: Q1739288
-    match: exact
-content:
-  en:
-    title: Kerma
+  qudt-quantity-kind: { term: Kerma, match: exact }
+  wikidata: { term: Q1739288, match: exact }
+content: { en: { title: Kerma } }

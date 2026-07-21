@@ -1,11 +1,5 @@
 broader: length
 ref:
-  qudt-quantity-kind:
-    term: DisplacementVectorOfIon
-    match: exact
-  wikidata:
-    term: Q105533558
-    match: exact
-content:
-  en:
-    title: Displacement Vector of Ion
+  qudt-quantity-kind: { term: DisplacementVectorOfIon, match: exact }
+  wikidata: { term: Q105533558, match: exact }
+content: { en: { title: Displacement Vector of Ion } }

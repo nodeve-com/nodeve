@@ -1,10 +1,5 @@
 deprecated: true
 deprecated_in: 3.1.4
 replaced_by: magnetic-flux-density
-ref:
-  qudt-quantity-kind:
-    term: MagneticFluxDensityOrMagneticPolarization
-    match: exact
-content:
-  en:
-    title: magnetic flux density or magnetic polarization
+ref: { qudt-quantity-kind: { term: MagneticFluxDensityOrMagneticPolarization, match: exact } }
+content: { en: { title: magnetic flux density or magnetic polarization } }

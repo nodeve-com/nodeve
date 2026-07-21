@@ -1,11 +1,5 @@
 broader: energy
 ref:
-  qudt-quantity-kind:
-    term: ElectronAffinity
-    match: exact
-  wikidata:
-    term: Q105846486
-    match: exact
-content:
-  en:
-    title: Electron Affinity
+  qudt-quantity-kind: { term: ElectronAffinity, match: exact }
+  wikidata: { term: Q105846486, match: exact }
+content: { en: { title: Electron Affinity } }

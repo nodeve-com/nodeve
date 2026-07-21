@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: DiffusionArea
-    match: exact
-  wikidata:
-    term: Q98966292
-    match: exact
-content:
-  en:
-    title: Diffusion Area
+  qudt-quantity-kind: { term: DiffusionArea, match: exact }
+  wikidata: { term: Q98966292, match: exact }
+content: { en: { title: Diffusion Area } }

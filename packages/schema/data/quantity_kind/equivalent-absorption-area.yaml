@@ -1,11 +1,5 @@
 broader: area
 ref:
-  qudt-quantity-kind:
-    term: EquivalentAbsorptionArea
-    match: exact
-  wikidata:
-    term: Q87745170
-    match: exact
-content:
-  en:
-    title: Equivalent Absorption Area
+  qudt-quantity-kind: { term: EquivalentAbsorptionArea, match: exact }
+  wikidata: { term: Q87745170, match: exact }
+content: { en: { title: Equivalent Absorption Area } }
