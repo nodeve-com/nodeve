@@ -36,6 +36,7 @@ export default {
 		allowlist: [],
 	},
 	fileSize: {
+		globs: ['apps/*.ts', 'packages/*.ts', 'packages/schema/*.yaml'],
 		ignore: [GRIMOIRE],
 		warn: { maxLines: 225 },
 		fail: { maxLines: 300 },

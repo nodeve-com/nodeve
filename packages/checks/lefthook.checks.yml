@@ -85,7 +85,7 @@ pre-commit:
             run: node_modules/.bin/nodeve-check page-size {staged_files}
 
           - name: file-size
-            glob: '*.ts'
+            glob: '*.{ts,yaml}'
             run: node_modules/.bin/nodeve-check file-size {staged_files}
 
           # Whole-tree property — every manifest's deps must single-source from a
