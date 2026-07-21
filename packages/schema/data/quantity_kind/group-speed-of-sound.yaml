@@ -1,17 +1,11 @@
-node: node:quantity-kind/group-speed-of-sound
-slug: group-speed-of-sound
-broader: node:quantity-kind/speed-of-sound
-refs:
-  - node: group-speed-of-sound-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: speed-of-sound
+ref:
+  qudt-quantity-kind:
     term: GroupSpeedOfSound
     match: exact
-  - node: group-speed-of-sound-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q86508881
     match: exact
-contents:
-  - node: group-speed-of-sound-en
-    language: en
+content:
+  en:
     title: Group Speed of Sound
-    about: node:quantity-kind/group-speed-of-sound

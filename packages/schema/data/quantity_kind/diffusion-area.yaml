@@ -1,17 +1,11 @@
-node: node:quantity-kind/diffusion-area
-slug: diffusion-area
-broader: node:quantity-kind/area
-refs:
-  - node: diffusion-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area
+ref:
+  qudt-quantity-kind:
     term: DiffusionArea
     match: exact
-  - node: diffusion-area-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98966292
     match: exact
-contents:
-  - node: diffusion-area-en
-    language: en
+content:
+  en:
     title: Diffusion Area
-    about: node:quantity-kind/diffusion-area

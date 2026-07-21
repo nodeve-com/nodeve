@@ -1,12 +1,7 @@
-node: node:quantity-kind/power-per-area-quartic-temperature
-slug: power-per-area-quartic-temperature
-refs:
-  - node: power-per-area-quartic-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerPerAreaQuarticTemperature
     match: exact
-contents:
-  - node: power-per-area-quartic-temperature-en
-    language: en
+content:
+  en:
     title: Power per Area Quartic Temperature
-    about: node:quantity-kind/power-per-area-quartic-temperature

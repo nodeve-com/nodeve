@@ -1,15 +1,10 @@
-node: node:quantity-kind/rise-of-off-state-voltage
-slug: rise-of-off-state-voltage
 deprecated: true
 deprecated_in: 3.2.0
-replaced_by: node:quantity-kind/rate-of-rise-of-off-state-voltage
-refs:
-  - node: rise-of-off-state-voltage-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: rate-of-rise-of-off-state-voltage
+ref:
+  qudt-quantity-kind:
     term: RiseOfOffStateVoltage
     match: exact
-contents:
-  - node: rise-of-off-state-voltage-en
-    language: en
+content:
+  en:
     title: rise of off-state voltage
-    about: node:quantity-kind/rise-of-off-state-voltage

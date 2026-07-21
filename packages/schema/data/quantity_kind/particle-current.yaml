@@ -1,17 +1,11 @@
-node: node:quantity-kind/particle-current
-slug: particle-current
-broader: node:quantity-kind/count-rate
-refs:
-  - node: particle-current-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: count-rate
+ref:
+  qudt-quantity-kind:
     term: ParticleCurrent
     match: exact
-  - node: particle-current-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2400689
     match: exact
-contents:
-  - node: particle-current-en
-    language: en
+content:
+  en:
     title: Particle Current
-    about: node:quantity-kind/particle-current

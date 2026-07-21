@@ -1,17 +1,11 @@
-node: node:quantity-kind/path-length
-slug: path-length
-broader: node:quantity-kind/length
-refs:
-  - node: path-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: PathLength
     match: exact
-  - node: path-length-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q670036
     match: exact
-contents:
-  - node: path-length-en
-    language: en
+content:
+  en:
     title: Path Length
-    about: node:quantity-kind/path-length

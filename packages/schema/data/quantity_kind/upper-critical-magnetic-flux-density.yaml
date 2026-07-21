@@ -1,17 +1,11 @@
-node: node:quantity-kind/upper-critical-magnetic-flux-density
-slug: upper-critical-magnetic-flux-density
-broader: node:quantity-kind/magnetic-flux-density
-refs:
-  - node: upper-critical-magnetic-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: magnetic-flux-density
+ref:
+  qudt-quantity-kind:
     term: UpperCriticalMagneticFluxDensity
     match: exact
-  - node: upper-critical-magnetic-flux-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q106127634
     match: exact
-contents:
-  - node: upper-critical-magnetic-flux-density-en
-    language: en
+content:
+  en:
     title: Upper Critical Magnetic Flux Density
-    about: node:quantity-kind/upper-critical-magnetic-flux-density

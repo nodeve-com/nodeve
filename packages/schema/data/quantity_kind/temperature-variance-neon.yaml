@@ -1,15 +1,10 @@
-node: node:quantity-kind/temperature-variance-neon
-slug: temperature-variance-neon
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/temperature-variance
-refs:
-  - node: temperature-variance-neon-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: temperature-variance
+ref:
+  qudt-quantity-kind:
     term: TemperatureVariance_NEON
     match: exact
-contents:
-  - node: temperature-variance-neon-en
-    language: en
+content:
+  en:
     title: Temperature Variance, NEON
-    about: node:quantity-kind/temperature-variance-neon

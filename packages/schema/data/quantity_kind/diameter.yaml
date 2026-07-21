@@ -1,17 +1,11 @@
-node: node:quantity-kind/diameter
-slug: diameter
-broader: node:quantity-kind/length
-refs:
-  - node: diameter-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Diameter
     match: exact
-  - node: diameter-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q37221
     match: exact
-contents:
-  - node: diameter-en
-    language: en
+content:
+  en:
     title: Diameter
-    about: node:quantity-kind/diameter

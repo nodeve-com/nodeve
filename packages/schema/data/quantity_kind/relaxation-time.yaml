@@ -1,17 +1,11 @@
-node: node:quantity-kind/relaxation-time
-slug: relaxation-time
-broader: node:quantity-kind/time
-refs:
-  - node: relaxation-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: RelaxationTime
     match: exact
-  - node: relaxation-time-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q102310909
     match: exact
-contents:
-  - node: relaxation-time-en
-    language: en
+content:
+  en:
     title: Relaxation Time
-    about: node:quantity-kind/relaxation-time

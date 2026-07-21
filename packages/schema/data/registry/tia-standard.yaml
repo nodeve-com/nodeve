@@ -1,12 +1,6 @@
-node: node:registry/tia-standard
-slug: tia-standard
 url: https://tiaonline.org/
-contents:
-  - node: tia-standard-en
-    language: en
+content:
+  en:
     title: TIA standards (ANSI/TIA, formerly EIA)
-    about: node:registry/tia-standard
-  - node: tia-standard-pt
-    language: pt
+  pt:
     title: Normas TIA (ANSI/TIA, antes EIA)
-    about: node:registry/tia-standard

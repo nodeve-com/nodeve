@@ -1,16 +1,10 @@
-node: node:quantity-kind/sound-pressure-level
-slug: sound-pressure-level
-refs:
-  - node: sound-pressure-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SoundPressureLevel
     match: exact
-  - node: sound-pressure-level-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q14515278
     match: exact
-contents:
-  - node: sound-pressure-level-en
-    language: en
+content:
+  en:
     title: Sound Pressure Level
-    about: node:quantity-kind/sound-pressure-level

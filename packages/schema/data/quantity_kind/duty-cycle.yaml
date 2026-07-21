@@ -1,13 +1,8 @@
-node: node:quantity-kind/duty-cycle
-slug: duty-cycle
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: duty-cycle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: DutyCycle
     match: exact
-contents:
-  - node: duty-cycle-en
-    language: en
+content:
+  en:
     title: Duty Cycle
-    about: node:quantity-kind/duty-cycle

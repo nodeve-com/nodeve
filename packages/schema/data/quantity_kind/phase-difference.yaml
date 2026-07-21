@@ -1,23 +1,15 @@
-node: node:quantity-kind/phase-difference
-slug: phase-difference
 si_unit: rad
 accumulation: instantaneous
-broader: node:quantity-kind/angle
-refs:
-  - node: phase-difference-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: PhaseDifference
     match: exact
-  - node: phase-difference-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q78514588
     match: exact
-contents:
-  - node: phase-difference-en
-    language: en
+content:
+  en:
     title: Phase Difference
-    about: node:quantity-kind/phase-difference
-  - node: phase-difference-pt
-    language: pt
+  pt:
     title: Ângulo de fase
-    about: node:quantity-kind/phase-difference

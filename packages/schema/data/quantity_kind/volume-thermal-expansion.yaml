@@ -1,12 +1,7 @@
-node: node:quantity-kind/volume-thermal-expansion
-slug: volume-thermal-expansion
-refs:
-  - node: volume-thermal-expansion-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumeThermalExpansion
     match: exact
-contents:
-  - node: volume-thermal-expansion-en
-    language: en
+content:
+  en:
     title: Volume Thermal Expansion
-    about: node:quantity-kind/volume-thermal-expansion

@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-per-area-time
-slug: mass-per-area-time
-refs:
-  - node: mass-per-area-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassPerAreaTime
     match: exact
-contents:
-  - node: mass-per-area-time-en
-    language: en
+content:
+  en:
     title: Mass per Area Time
-    about: node:quantity-kind/mass-per-area-time

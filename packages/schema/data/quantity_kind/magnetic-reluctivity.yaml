@@ -1,12 +1,7 @@
-node: node:quantity-kind/magnetic-reluctivity
-slug: magnetic-reluctivity
-refs:
-  - node: magnetic-reluctivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticReluctivity
     match: exact
-contents:
-  - node: magnetic-reluctivity-en
-    language: en
+content:
+  en:
     title: Magnetic Reluctivity
-    about: node:quantity-kind/magnetic-reluctivity

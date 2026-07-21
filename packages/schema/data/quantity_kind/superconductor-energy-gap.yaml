@@ -1,17 +1,11 @@
-node: node:quantity-kind/superconductor-energy-gap
-slug: superconductor-energy-gap
-broader: node:quantity-kind/gap-energy
-refs:
-  - node: superconductor-energy-gap-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: gap-energy
+ref:
+  qudt-quantity-kind:
     term: SuperconductorEnergyGap
     match: exact
-  - node: superconductor-energy-gap-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q106127898
     match: exact
-contents:
-  - node: superconductor-energy-gap-en
-    language: en
+content:
+  en:
     title: Superconductor Energy Gap
-    about: node:quantity-kind/superconductor-energy-gap

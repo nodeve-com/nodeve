@@ -1,17 +1,11 @@
-node: node:quantity-kind/total-angular-momentum
-slug: total-angular-momentum
-broader: node:quantity-kind/angular-impulse
-refs:
-  - node: total-angular-momentum-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angular-impulse
+ref:
+  qudt-quantity-kind:
     term: TotalAngularMomentum
     match: exact
-  - node: total-angular-momentum-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q97496506
     match: exact
-contents:
-  - node: total-angular-momentum-en
-    language: en
+content:
+  en:
     title: Total Angular Momentum
-    about: node:quantity-kind/total-angular-momentum

@@ -1,12 +1,7 @@
-node: node:quantity-kind/linear-mass
-slug: linear-mass
-refs:
-  - node: linear-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearMass
     match: exact
-contents:
-  - node: linear-mass-en
-    language: en
+content:
+  en:
     title: Lineic Mass
-    about: node:quantity-kind/linear-mass

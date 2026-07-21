@@ -1,13 +1,8 @@
-node: node:quantity-kind/reflectivity
-slug: reflectivity
-broader: node:quantity-kind/reflectance
-refs:
-  - node: reflectivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: reflectance
+ref:
+  qudt-quantity-kind:
     term: Reflectivity
     match: exact
-contents:
-  - node: reflectivity-en
-    language: en
+content:
+  en:
     title: Reflectivity
-    about: node:quantity-kind/reflectivity

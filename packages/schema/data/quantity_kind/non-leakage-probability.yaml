@@ -1,16 +1,10 @@
-node: node:quantity-kind/non-leakage-probability
-slug: non-leakage-probability
-refs:
-  - node: non-leakage-probability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: NonLeakageProbability
     match: exact
-  - node: non-leakage-probability-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q99415566
     match: exact
-contents:
-  - node: non-leakage-probability-en
-    language: en
+content:
+  en:
     title: Non-Leakage Probability
-    about: node:quantity-kind/non-leakage-probability

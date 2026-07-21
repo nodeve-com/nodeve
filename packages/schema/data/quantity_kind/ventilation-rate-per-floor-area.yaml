@@ -1,13 +1,8 @@
-node: node:quantity-kind/ventilation-rate-per-floor-area
-slug: ventilation-rate-per-floor-area
-broader: node:quantity-kind/surface-related-volume-flow
-refs:
-  - node: ventilation-rate-per-floor-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: surface-related-volume-flow
+ref:
+  qudt-quantity-kind:
     term: VentilationRatePerFloorArea
     match: exact
-contents:
-  - node: ventilation-rate-per-floor-area-en
-    language: en
+content:
+  en:
     title: Ventilation Rate per Floor Area
-    about: node:quantity-kind/ventilation-rate-per-floor-area

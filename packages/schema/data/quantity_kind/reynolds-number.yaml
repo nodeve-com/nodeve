@@ -1,17 +1,11 @@
-node: node:quantity-kind/reynolds-number
-slug: reynolds-number
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: reynolds-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: ReynoldsNumber
     match: exact
-  - node: reynolds-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q178932
     match: exact
-contents:
-  - node: reynolds-number-en
-    language: en
+content:
+  en:
     title: Reynolds Number
-    about: node:quantity-kind/reynolds-number

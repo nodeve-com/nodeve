@@ -1,13 +1,8 @@
-node: node:quantity-kind/orbital-radial-distance
-slug: orbital-radial-distance
-broader: node:quantity-kind/length
-refs:
-  - node: orbital-radial-distance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: OrbitalRadialDistance
     match: exact
-contents:
-  - node: orbital-radial-distance-en
-    language: en
+content:
+  en:
     title: Orbital Radial Distance
-    about: node:quantity-kind/orbital-radial-distance

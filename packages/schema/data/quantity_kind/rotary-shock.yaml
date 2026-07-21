@@ -1,12 +1,7 @@
-node: node:quantity-kind/rotary-shock
-slug: rotary-shock
-refs:
-  - node: rotary-shock-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: RotaryShock
     match: exact
-contents:
-  - node: rotary-shock-en
-    language: en
+content:
+  en:
     title: Rotary Shock
-    about: node:quantity-kind/rotary-shock

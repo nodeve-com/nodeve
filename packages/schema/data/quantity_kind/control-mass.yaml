@@ -1,15 +1,10 @@
-node: node:quantity-kind/control-mass
-slug: control-mass
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/mass
-refs:
-  - node: control-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: CONTROL-MASS
     match: exact
-contents:
-  - node: control-mass-en
-    language: en
+content:
+  en:
     title: Control Mass.
-    about: node:quantity-kind/control-mass

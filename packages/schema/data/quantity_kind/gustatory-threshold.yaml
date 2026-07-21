@@ -1,12 +1,7 @@
-node: node:quantity-kind/gustatory-threshold
-slug: gustatory-threshold
-refs:
-  - node: gustatory-threshold-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: GustatoryThreshold
     match: exact
-contents:
-  - node: gustatory-threshold-en
-    language: en
+content:
+  en:
     title: Gustatory Threshold
-    about: node:quantity-kind/gustatory-threshold

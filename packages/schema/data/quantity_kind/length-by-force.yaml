@@ -1,13 +1,8 @@
-node: node:quantity-kind/length-by-force
-slug: length-by-force
-broader: node:quantity-kind/work
-refs:
-  - node: length-by-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: work
+ref:
+  qudt-quantity-kind:
     term: LengthByForce
     match: exact
-contents:
-  - node: length-by-force-en
-    language: en
+content:
+  en:
     title: Length Force
-    about: node:quantity-kind/length-by-force

@@ -1,13 +1,8 @@
-node: node:quantity-kind/nucleon-number
-slug: nucleon-number
-broader: node:quantity-kind/count
-refs:
-  - node: nucleon-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: count
+ref:
+  qudt-quantity-kind:
     term: NucleonNumber
     match: exact
-contents:
-  - node: nucleon-number-en
-    language: en
+content:
+  en:
     title: Nucleon Number
-    about: node:quantity-kind/nucleon-number

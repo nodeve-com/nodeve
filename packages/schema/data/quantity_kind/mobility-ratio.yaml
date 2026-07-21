@@ -1,16 +1,10 @@
-node: node:quantity-kind/mobility-ratio
-slug: mobility-ratio
-refs:
-  - node: mobility-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MobilityRatio
     match: exact
-  - node: mobility-ratio-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q106010255
     match: exact
-contents:
-  - node: mobility-ratio-en
-    language: en
+content:
+  en:
     title: Mobility Ratio
-    about: node:quantity-kind/mobility-ratio

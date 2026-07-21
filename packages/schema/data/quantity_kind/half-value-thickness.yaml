@@ -1,17 +1,11 @@
-node: node:quantity-kind/half-value-thickness
-slug: half-value-thickness
-broader: node:quantity-kind/length
-refs:
-  - node: half-value-thickness-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: HalfValueThickness
     match: exact
-  - node: half-value-thickness-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q127526
     match: exact
-contents:
-  - node: half-value-thickness-en
-    language: en
+content:
+  en:
     title: Half-Value Thickness
-    about: node:quantity-kind/half-value-thickness

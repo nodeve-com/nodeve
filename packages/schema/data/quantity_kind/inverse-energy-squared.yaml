@@ -1,15 +1,10 @@
-node: node:quantity-kind/inverse-energy-squared
-slug: inverse-energy-squared
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/inverse-square-energy
-refs:
-  - node: inverse-energy-squared-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: inverse-square-energy
+ref:
+  qudt-quantity-kind:
     term: InverseEnergy_Squared
     match: exact
-contents:
-  - node: inverse-energy-squared-en
-    language: en
+content:
+  en:
     title: Inverse Square Energy
-    about: node:quantity-kind/inverse-energy-squared

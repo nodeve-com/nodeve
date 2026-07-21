@@ -1,12 +1,7 @@
-node: node:quantity-kind/leakage-factor
-slug: leakage-factor
-refs:
-  - node: leakage-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LeakageFactor
     match: exact
-contents:
-  - node: leakage-factor-en
-    language: en
+content:
+  en:
     title: Leakage Factor
-    about: node:quantity-kind/leakage-factor

@@ -1,12 +1,7 @@
-node: node:quantity-kind/capacity
-slug: capacity
-refs:
-  - node: capacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Capacity
     match: exact
-contents:
-  - node: capacity-en
-    language: en
+content:
+  en:
     title: Capacity
-    about: node:quantity-kind/capacity

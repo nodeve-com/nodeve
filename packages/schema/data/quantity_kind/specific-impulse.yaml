@@ -1,13 +1,8 @@
-node: node:quantity-kind/specific-impulse
-slug: specific-impulse
-broader: node:quantity-kind/time
-refs:
-  - node: specific-impulse-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: SpecificImpulse
     match: exact
-contents:
-  - node: specific-impulse-en
-    language: en
+content:
+  en:
     title: Specific Impulse
-    about: node:quantity-kind/specific-impulse

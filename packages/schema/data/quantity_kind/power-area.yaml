@@ -1,12 +1,7 @@
-node: node:quantity-kind/power-area
-slug: power-area
-refs:
-  - node: power-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerArea
     match: exact
-contents:
-  - node: power-area-en
-    language: en
+content:
+  en:
     title: Power Area
-    about: node:quantity-kind/power-area

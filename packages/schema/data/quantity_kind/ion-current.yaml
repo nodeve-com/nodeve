@@ -1,13 +1,8 @@
-node: node:quantity-kind/ion-current
-slug: ion-current
-broader: node:quantity-kind/electric-current
-refs:
-  - node: ion-current-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-current
+ref:
+  qudt-quantity-kind:
     term: IonCurrent
     match: exact
-contents:
-  - node: ion-current-en
-    language: en
+content:
+  en:
     title: Ion Current
-    about: node:quantity-kind/ion-current

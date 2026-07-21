@@ -1,17 +1,11 @@
-node: node:quantity-kind/macroscopic-cross-section
-slug: macroscopic-cross-section
-broader: node:quantity-kind/cross-section
-refs:
-  - node: macroscopic-cross-section-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: cross-section
+ref:
+  qudt-quantity-kind:
     term: MacroscopicCrossSection
     match: exact
-  - node: macroscopic-cross-section-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98280520
     match: exact
-contents:
-  - node: macroscopic-cross-section-en
-    language: en
+content:
+  en:
     title: Macroscopic Cross-section
-    about: node:quantity-kind/macroscopic-cross-section

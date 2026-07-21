@@ -1,15 +1,10 @@
-node: node:quantity-kind/molar-flux-density-variance-neon
-slug: molar-flux-density-variance-neon
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/molar-flux-density-variance
-refs:
-  - node: molar-flux-density-variance-neon-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: molar-flux-density-variance
+ref:
+  qudt-quantity-kind:
     term: MolarFluxDensityVariance_NEON
     match: exact
-contents:
-  - node: molar-flux-density-variance-neon-en
-    language: en
+content:
+  en:
     title: Molar Flux Density Variance, NEON
-    about: node:quantity-kind/molar-flux-density-variance-neon

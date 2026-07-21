@@ -1,13 +1,8 @@
-node: node:quantity-kind/temperature-difference
-slug: temperature-difference
-broader: node:quantity-kind/temperature
-refs:
-  - node: temperature-difference-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: TemperatureDifference
     match: exact
-contents:
-  - node: temperature-difference-en
-    language: en
+content:
+  en:
     title: Temperature Difference
-    about: node:quantity-kind/temperature-difference

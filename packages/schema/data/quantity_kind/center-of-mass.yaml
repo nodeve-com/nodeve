@@ -1,15 +1,10 @@
-node: node:quantity-kind/center-of-mass
-slug: center-of-mass
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/position-vector
-refs:
-  - node: center-of-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: position-vector
+ref:
+  qudt-quantity-kind:
     term: CENTER-OF-MASS
     match: exact
-contents:
-  - node: center-of-mass-en
-    language: en
+content:
+  en:
     title: Center of Mass (CoM)
-    about: node:quantity-kind/center-of-mass

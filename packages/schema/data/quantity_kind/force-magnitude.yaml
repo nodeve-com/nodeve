@@ -1,13 +1,8 @@
-node: node:quantity-kind/force-magnitude
-slug: force-magnitude
-broader: node:quantity-kind/force
-refs:
-  - node: force-magnitude-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force
+ref:
+  qudt-quantity-kind:
     term: ForceMagnitude
     match: exact
-contents:
-  - node: force-magnitude-en
-    language: en
+content:
+  en:
     title: Force Magnitude
-    about: node:quantity-kind/force-magnitude

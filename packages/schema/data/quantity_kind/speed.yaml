@@ -1,16 +1,10 @@
-node: node:quantity-kind/speed
-slug: speed
-refs:
-  - node: speed-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Speed
     match: exact
-  - node: speed-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q3711325
     match: exact
-contents:
-  - node: speed-en
-    language: en
+content:
+  en:
     title: Speed
-    about: node:quantity-kind/speed

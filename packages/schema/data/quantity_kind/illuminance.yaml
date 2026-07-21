@@ -1,17 +1,11 @@
-node: node:quantity-kind/illuminance
-slug: illuminance
-broader: node:quantity-kind/luminous-flux-per-area
-refs:
-  - node: illuminance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: luminous-flux-per-area
+ref:
+  qudt-quantity-kind:
     term: Illuminance
     match: exact
-  - node: illuminance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q194411
     match: exact
-contents:
-  - node: illuminance-en
-    language: en
+content:
+  en:
     title: Illuminance
-    about: node:quantity-kind/illuminance

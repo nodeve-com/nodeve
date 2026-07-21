@@ -1,16 +1,10 @@
-node: node:quantity-kind/magnetic-flux
-slug: magnetic-flux
-refs:
-  - node: magnetic-flux-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticFlux
     match: exact
-  - node: magnetic-flux-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q177831
     match: exact
-contents:
-  - node: magnetic-flux-en
-    language: en
+content:
+  en:
     title: Magnetic Flux
-    about: node:quantity-kind/magnetic-flux

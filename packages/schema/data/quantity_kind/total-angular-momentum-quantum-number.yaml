@@ -1,17 +1,11 @@
-node: node:quantity-kind/total-angular-momentum-quantum-number
-slug: total-angular-momentum-quantum-number
-broader: node:quantity-kind/quantum-number
-refs:
-  - node: total-angular-momentum-quantum-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: quantum-number
+ref:
+  qudt-quantity-kind:
     term: TotalAngularMomentumQuantumNumber
     match: exact
-  - node: total-angular-momentum-quantum-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1141095
     match: exact
-contents:
-  - node: total-angular-momentum-quantum-number-en
-    language: en
+content:
+  en:
     title: Total Angular Momentum Quantum Number
-    about: node:quantity-kind/total-angular-momentum-quantum-number

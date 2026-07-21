@@ -1,13 +1,8 @@
-node: node:quantity-kind/max-operating-thrust
-slug: max-operating-thrust
-broader: node:quantity-kind/thrust
-refs:
-  - node: max-operating-thrust-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: thrust
+ref:
+  qudt-quantity-kind:
     term: MaxOperatingThrust
     match: exact
-contents:
-  - node: max-operating-thrust-en
-    language: en
+content:
+  en:
     title: Max Operating Thrust
-    about: node:quantity-kind/max-operating-thrust

@@ -1,16 +1,11 @@
-node: node:quantity-kind/equivalent-molar
-slug: equivalent-molar
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/molar-equivalent
-broader: node:quantity-kind/amount-of-substance
-refs:
-  - node: equivalent-molar-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: amount-of-substance
+replaced_by: molar-equivalent
+ref:
+  qudt-quantity-kind:
     term: Equivalent_Molar
     match: exact
-contents:
-  - node: equivalent-molar-en
-    language: en
+content:
+  en:
     title: Molar Equivalent
-    about: node:quantity-kind/equivalent-molar

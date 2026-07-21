@@ -1,16 +1,10 @@
-node: node:quantity-kind/thermal-diffusion-ratio
-slug: thermal-diffusion-ratio
-refs:
-  - node: thermal-diffusion-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalDiffusionRatio
     match: exact
-  - node: thermal-diffusion-ratio-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q96249433
     match: exact
-contents:
-  - node: thermal-diffusion-ratio-en
-    language: en
+content:
+  en:
     title: Thermal Diffusion Ratio
-    about: node:quantity-kind/thermal-diffusion-ratio

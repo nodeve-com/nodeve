@@ -1,12 +1,7 @@
-node: node:quantity-kind/area-angle
-slug: area-angle
-refs:
-  - node: area-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreaAngle
     match: exact
-contents:
-  - node: area-angle-en
-    language: en
+content:
+  en:
     title: Area Angle
-    about: node:quantity-kind/area-angle

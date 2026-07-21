@@ -1,17 +1,11 @@
-node: node:quantity-kind/work-function
-slug: work-function
-broader: node:quantity-kind/energy
-refs:
-  - node: work-function-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: WorkFunction
     match: exact
-  - node: work-function-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q783800
     match: exact
-contents:
-  - node: work-function-en
-    language: en
+content:
+  en:
     title: Work Function
-    about: node:quantity-kind/work-function

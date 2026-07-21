@@ -1,12 +1,7 @@
-node: node:quantity-kind/relative-mass-density
-slug: relative-mass-density
-refs:
-  - node: relative-mass-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: RelativeMassDensity
     match: exact
-contents:
-  - node: relative-mass-density-en
-    language: en
+content:
+  en:
     title: Relative Mass Density
-    about: node:quantity-kind/relative-mass-density

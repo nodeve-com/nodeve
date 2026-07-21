@@ -1,13 +1,8 @@
-node: node:quantity-kind/center-of-gravity-z
-slug: center-of-gravity-z
-broader: node:quantity-kind/length
-refs:
-  - node: center-of-gravity-z-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: CenterOfGravity_Z
     match: exact
-contents:
-  - node: center-of-gravity-z-en
-    language: en
+content:
+  en:
     title: Center of Gravity in the Z Axis
-    about: node:quantity-kind/center-of-gravity-z

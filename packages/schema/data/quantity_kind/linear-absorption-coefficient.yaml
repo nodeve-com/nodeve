@@ -1,17 +1,11 @@
-node: node:quantity-kind/linear-absorption-coefficient
-slug: linear-absorption-coefficient
-broader: node:quantity-kind/attenuation-coefficient
-refs:
-  - node: linear-absorption-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: attenuation-coefficient
+ref:
+  qudt-quantity-kind:
     term: LinearAbsorptionCoefficient
     match: exact
-  - node: linear-absorption-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q86204782
     match: exact
-contents:
-  - node: linear-absorption-coefficient-en
-    language: en
+content:
+  en:
     title: Linear Absorption Coefficient
-    about: node:quantity-kind/linear-absorption-coefficient

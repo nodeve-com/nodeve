@@ -1,17 +1,11 @@
-node: node:quantity-kind/heat-capacity
-slug: heat-capacity
-broader: node:quantity-kind/energy-per-temperature
-refs:
-  - node: heat-capacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-per-temperature
+ref:
+  qudt-quantity-kind:
     term: HeatCapacity
     match: exact
-  - node: heat-capacity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q179388
     match: exact
-contents:
-  - node: heat-capacity-en
-    language: en
+content:
+  en:
     title: Heat Capacity
-    about: node:quantity-kind/heat-capacity

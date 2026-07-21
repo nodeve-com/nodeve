@@ -1,12 +1,7 @@
-node: node:quantity-kind/pressure-based-density
-slug: pressure-based-density
-refs:
-  - node: pressure-based-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PressureBasedDensity
     match: exact
-contents:
-  - node: pressure-based-density-en
-    language: en
+content:
+  en:
     title: Pressure-based Density
-    about: node:quantity-kind/pressure-based-density

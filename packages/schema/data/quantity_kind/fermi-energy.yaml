@@ -1,17 +1,11 @@
-node: node:quantity-kind/fermi-energy
-slug: fermi-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: fermi-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: FermiEnergy
     match: exact
-  - node: fermi-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q431335
     match: exact
-contents:
-  - node: fermi-energy-en
-    language: en
+content:
+  en:
     title: Fermi Energy
-    about: node:quantity-kind/fermi-energy

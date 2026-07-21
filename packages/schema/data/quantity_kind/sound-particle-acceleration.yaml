@@ -1,17 +1,11 @@
-node: node:quantity-kind/sound-particle-acceleration
-slug: sound-particle-acceleration
-broader: node:quantity-kind/acceleration
-refs:
-  - node: sound-particle-acceleration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: acceleration
+ref:
+  qudt-quantity-kind:
     term: SoundParticleAcceleration
     match: exact
-  - node: sound-particle-acceleration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q7140491
     match: exact
-contents:
-  - node: sound-particle-acceleration-en
-    language: en
+content:
+  en:
     title: Sound Particle Acceleration
-    about: node:quantity-kind/sound-particle-acceleration

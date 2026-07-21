@@ -11,15 +11,19 @@
 	},
 	"type": "module",
 	"scripts": {
-		"generate": "node project-overlay.ts && node format.ts && node bundle.ts",
+		"generate": "node project-overlay.ts && node format.ts && node normalize/catalog.ts",
 		"build": "pnpm generate && pnpm build:ddl && pnpm build:db",
 		"build:ddl": "cd linkml && uvx --from linkml python ../ddl.py > ../gen/nodeve.sql",
 		"build:db": "cd linkml && uvx --from linkml python ../ddl.py dump",
 		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/device_model/foxess-h3-ps10sh.yaml",
 		"check": "node format.ts --check",
-		"check:refs": "node check-refs.ts"
+		"check:refs": "node check-refs.ts",
+		"test": "vitest run"
 	},
 	"devDependencies": {
+		"@nodeve/encoding": "workspace:*",
+		"@nodeve/text": "workspace:*",
+		"vitest": "catalog:",
 		"yaml": "catalog:"
 	}
 }

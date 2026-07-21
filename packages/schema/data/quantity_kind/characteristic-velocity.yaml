@@ -1,13 +1,8 @@
-node: node:quantity-kind/characteristic-velocity
-slug: characteristic-velocity
-broader: node:quantity-kind/linear-velocity
-refs:
-  - node: characteristic-velocity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: linear-velocity
+ref:
+  qudt-quantity-kind:
     term: CharacteristicVelocity
     match: exact
-contents:
-  - node: characteristic-velocity-en
-    language: en
+content:
+  en:
     title: Characteristic Velocity
-    about: node:quantity-kind/characteristic-velocity

@@ -1,26 +1,17 @@
-node: node:quantity-kind/electric-current
-slug: electric-current
 si_unit: A
 accumulation: instantaneous
-refs:
-  - node: electric-current-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricCurrent
     match: exact
-  - node: electric-current-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q29996
     match: exact
-  - node: electric-current-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: current
     match: exact
-contents:
-  - node: electric-current-en
-    language: en
+content:
+  en:
     title: Electric Current
-    about: node:quantity-kind/electric-current
-  - node: electric-current-pt
-    language: pt
+  pt:
     title: Corrente
-    about: node:quantity-kind/electric-current

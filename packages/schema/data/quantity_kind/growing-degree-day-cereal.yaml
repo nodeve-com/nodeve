@@ -1,16 +1,11 @@
-node: node:quantity-kind/growing-degree-day-cereal
-slug: growing-degree-day-cereal
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/growing-degree-day
-broader: node:quantity-kind/time-temperature
-refs:
-  - node: growing-degree-day-cereal-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time-temperature
+replaced_by: growing-degree-day
+ref:
+  qudt-quantity-kind:
     term: GrowingDegreeDay_Cereal
     match: exact
-contents:
-  - node: growing-degree-day-cereal-en
-    language: en
+content:
+  en:
     title: Growing Degree Days (Cereals)
-    about: node:quantity-kind/growing-degree-day-cereal

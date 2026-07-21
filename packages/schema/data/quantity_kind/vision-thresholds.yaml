@@ -1,12 +1,7 @@
-node: node:quantity-kind/vision-thresholds
-slug: vision-thresholds
-refs:
-  - node: vision-thresholds-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VisionThresholds
     match: exact
-contents:
-  - node: vision-thresholds-en
-    language: en
+content:
+  en:
     title: Vision Thresholds
-    about: node:quantity-kind/vision-thresholds

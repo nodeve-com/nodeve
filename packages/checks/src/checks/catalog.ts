@@ -23,7 +23,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { type Check } from '../lib/runner.js';
-import { type Catalog, readWorkspace, workspaceManifests } from '../lib/repo.js';
+import { type Catalog, readWorkspace, type Workspace, workspaceManifests } from '../lib/repo.js';
 
 const DEP_FIELDS = [
 	'dependencies',
@@ -46,8 +46,6 @@ function missingCatalogFailure() {
 		],
 	};
 }
-
-type Workspace = NonNullable<ReturnType<typeof readWorkspace>>;
 
 function catalogEntryError({
 	manifest,

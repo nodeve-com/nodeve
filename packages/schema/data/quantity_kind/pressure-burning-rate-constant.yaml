@@ -1,13 +1,8 @@
-node: node:quantity-kind/pressure-burning-rate-constant
-slug: pressure-burning-rate-constant
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: pressure-burning-rate-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: PressureBurningRateConstant
     match: exact
-contents:
-  - node: pressure-burning-rate-constant-en
-    language: en
+content:
+  en:
     title: Pressure Burning Rate Constant
-    about: node:quantity-kind/pressure-burning-rate-constant

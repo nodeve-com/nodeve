@@ -1,27 +1,18 @@
-node: node:quantity-kind/reactive-power
-slug: reactive-power
 si_unit: var
 accumulation: instantaneous
-broader: node:quantity-kind/electric-power
-refs:
-  - node: reactive-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-power
+ref:
+  qudt-quantity-kind:
     term: ReactivePower
     match: exact
-  - node: reactive-power-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2144613
     match: exact
-  - node: reactive-power-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: reactive_power
     match: exact
-contents:
-  - node: reactive-power-en
-    language: en
+content:
+  en:
     title: Reactive Power
-    about: node:quantity-kind/reactive-power
-  - node: reactive-power-pt
-    language: pt
+  pt:
     title: Potência reativa
-    about: node:quantity-kind/reactive-power

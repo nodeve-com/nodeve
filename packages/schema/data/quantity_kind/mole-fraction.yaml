@@ -1,17 +1,11 @@
-node: node:quantity-kind/mole-fraction
-slug: mole-fraction
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: mole-fraction-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: MoleFraction
     match: exact
-  - node: mole-fraction-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q125264
     match: exact
-contents:
-  - node: mole-fraction-en
-    language: en
+content:
+  en:
     title: Mole Fraction
-    about: node:quantity-kind/mole-fraction

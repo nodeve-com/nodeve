@@ -1,16 +1,10 @@
-node: node:quantity-kind/inverse-time
-slug: inverse-time
-refs:
-  - node: inverse-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InverseTime
     match: exact
-  - node: inverse-time-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98690850
     match: exact
-contents:
-  - node: inverse-time-en
-    language: en
+content:
+  en:
     title: Inverse Time
-    about: node:quantity-kind/inverse-time

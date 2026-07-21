@@ -1,12 +1,7 @@
-node: node:quantity-kind/area-per-time
-slug: area-per-time
-refs:
-  - node: area-per-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreaPerTime
     match: exact
-contents:
-  - node: area-per-time-en
-    language: en
+content:
+  en:
     title: Area per Time
-    about: node:quantity-kind/area-per-time

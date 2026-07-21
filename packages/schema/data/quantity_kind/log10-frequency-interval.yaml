@@ -1,12 +1,7 @@
-node: node:quantity-kind/log10-frequency-interval
-slug: log10-frequency-interval
-refs:
-  - node: log10-frequency-interval-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Log10FrequencyInterval
     match: exact
-contents:
-  - node: log10-frequency-interval-en
-    language: en
+content:
+  en:
     title: Logarithmic Frequency Interval to Base 10
-    about: node:quantity-kind/log10-frequency-interval

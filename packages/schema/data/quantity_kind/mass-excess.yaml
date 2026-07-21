@@ -1,17 +1,11 @@
-node: node:quantity-kind/mass-excess
-slug: mass-excess
-broader: node:quantity-kind/mass
-refs:
-  - node: mass-excess-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: MassExcess
     match: exact
-  - node: mass-excess-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1571163
     match: exact
-contents:
-  - node: mass-excess-en
-    language: en
+content:
+  en:
     title: Mass Excess
-    about: node:quantity-kind/mass-excess

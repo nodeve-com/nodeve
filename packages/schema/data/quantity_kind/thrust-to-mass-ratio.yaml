@@ -1,13 +1,8 @@
-node: node:quantity-kind/thrust-to-mass-ratio
-slug: thrust-to-mass-ratio
-broader: node:quantity-kind/acceleration
-refs:
-  - node: thrust-to-mass-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: acceleration
+ref:
+  qudt-quantity-kind:
     term: ThrustToMassRatio
     match: exact
-contents:
-  - node: thrust-to-mass-ratio-en
-    language: en
+content:
+  en:
     title: Thrust to Mass Ratio
-    about: node:quantity-kind/thrust-to-mass-ratio

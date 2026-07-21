@@ -1,17 +1,11 @@
-node: node:quantity-kind/total-cross-section
-slug: total-cross-section
-broader: node:quantity-kind/cross-section
-refs:
-  - node: total-cross-section-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: cross-section
+ref:
+  qudt-quantity-kind:
     term: TotalCrossSection
     match: exact
-  - node: total-cross-section-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98206553
     match: exact
-contents:
-  - node: total-cross-section-en
-    language: en
+content:
+  en:
     title: Total Cross-section
-    about: node:quantity-kind/total-cross-section

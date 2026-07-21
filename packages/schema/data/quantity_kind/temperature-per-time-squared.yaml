@@ -1,15 +1,10 @@
-node: node:quantity-kind/temperature-per-time-squared
-slug: temperature-per-time-squared
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/temperature-per-square-time
-refs:
-  - node: temperature-per-time-squared-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: temperature-per-square-time
+ref:
+  qudt-quantity-kind:
     term: TemperaturePerTime_Squared
     match: exact
-contents:
-  - node: temperature-per-time-squared-en
-    language: en
+content:
+  en:
     title: Temperature per Time Squared
-    about: node:quantity-kind/temperature-per-time-squared

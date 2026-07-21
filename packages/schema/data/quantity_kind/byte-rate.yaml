@@ -1,13 +1,8 @@
-node: node:quantity-kind/byte-rate
-slug: byte-rate
-broader: node:quantity-kind/data-rate
-refs:
-  - node: byte-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: data-rate
+ref:
+  qudt-quantity-kind:
     term: ByteRate
     match: exact
-contents:
-  - node: byte-rate-en
-    language: en
+content:
+  en:
     title: Byte Rate
-    about: node:quantity-kind/byte-rate

@@ -1,12 +1,7 @@
-node: node:quantity-kind/amount-of-cloud-cover
-slug: amount-of-cloud-cover
-refs:
-  - node: amount-of-cloud-cover-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AmountOfCloudCover
     match: exact
-contents:
-  - node: amount-of-cloud-cover-en
-    language: en
+content:
+  en:
     title: Amount of Cloud Cover
-    about: node:quantity-kind/amount-of-cloud-cover

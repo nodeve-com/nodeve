@@ -1,13 +1,8 @@
-node: node:quantity-kind/radiant-fluence
-slug: radiant-fluence
-broader: node:quantity-kind/energy-per-area
-refs:
-  - node: radiant-fluence-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-per-area
+ref:
+  qudt-quantity-kind:
     term: RadiantFluence
     match: exact
-contents:
-  - node: radiant-fluence-en
-    language: en
+content:
+  en:
     title: Radiant Fluence
-    about: node:quantity-kind/radiant-fluence

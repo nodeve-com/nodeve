@@ -1,12 +1,7 @@
-node: node:quantity-kind/activity-thresholds
-slug: activity-thresholds
-refs:
-  - node: activity-thresholds-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ActivityThresholds
     match: exact
-contents:
-  - node: activity-thresholds-en
-    language: en
+content:
+  en:
     title: Activity Thresholds
-    about: node:quantity-kind/activity-thresholds

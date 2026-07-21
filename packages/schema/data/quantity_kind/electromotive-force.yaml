@@ -1,17 +1,11 @@
-node: node:quantity-kind/electromotive-force
-slug: electromotive-force
-broader: node:quantity-kind/electric-potential
-refs:
-  - node: electromotive-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-potential
+ref:
+  qudt-quantity-kind:
     term: ElectromotiveForce
     match: exact
-  - node: electromotive-force-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q185329
     match: exact
-contents:
-  - node: electromotive-force-en
-    language: en
+content:
+  en:
     title: Electromotive Force
-    about: node:quantity-kind/electromotive-force

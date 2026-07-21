@@ -1,12 +1,7 @@
-node: node:quantity-kind/electric-quadrupole-moment
-slug: electric-quadrupole-moment
-refs:
-  - node: electric-quadrupole-moment-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricQuadrupoleMoment
     match: exact
-contents:
-  - node: electric-quadrupole-moment-en
-    language: en
+content:
+  en:
     title: Electric Quadrupole Moment
-    about: node:quantity-kind/electric-quadrupole-moment

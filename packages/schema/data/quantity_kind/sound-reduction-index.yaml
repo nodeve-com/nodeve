@@ -1,16 +1,10 @@
-node: node:quantity-kind/sound-reduction-index
-slug: sound-reduction-index
-refs:
-  - node: sound-reduction-index-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SoundReductionIndex
     match: exact
-  - node: sound-reduction-index-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2230459
     match: exact
-contents:
-  - node: sound-reduction-index-en
-    language: en
+content:
+  en:
     title: Sound Reduction Index
-    about: node:quantity-kind/sound-reduction-index

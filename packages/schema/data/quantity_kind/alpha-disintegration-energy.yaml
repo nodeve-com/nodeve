@@ -1,17 +1,11 @@
-node: node:quantity-kind/alpha-disintegration-energy
-slug: alpha-disintegration-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: alpha-disintegration-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: AlphaDisintegrationEnergy
     match: exact
-  - node: alpha-disintegration-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98146025
     match: exact
-contents:
-  - node: alpha-disintegration-energy-en
-    language: en
+content:
+  en:
     title: Alpha Disintegration Energy
-    about: node:quantity-kind/alpha-disintegration-energy

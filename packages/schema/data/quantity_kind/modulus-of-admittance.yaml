@@ -1,16 +1,10 @@
-node: node:quantity-kind/modulus-of-admittance
-slug: modulus-of-admittance
-refs:
-  - node: modulus-of-admittance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ModulusOfAdmittance
     match: exact
-  - node: modulus-of-admittance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q79466359
     match: exact
-contents:
-  - node: modulus-of-admittance-en
-    language: en
+content:
+  en:
     title: Modulus of Admittance
-    about: node:quantity-kind/modulus-of-admittance

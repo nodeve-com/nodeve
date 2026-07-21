@@ -1,16 +1,10 @@
-node: node:quantity-kind/second-moment-of-area
-slug: second-moment-of-area
-refs:
-  - node: second-moment-of-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SecondMomentOfArea
     match: exact
-  - node: second-moment-of-area-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q835065
     match: exact
-contents:
-  - node: second-moment-of-area-en
-    language: en
+content:
+  en:
     title: Second Moment of Area
-    about: node:quantity-kind/second-moment-of-area

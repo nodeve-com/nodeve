@@ -1,13 +1,8 @@
-node: node:quantity-kind/absolute-typographic-measurement
-slug: absolute-typographic-measurement
-broader: node:quantity-kind/length
-refs:
-  - node: absolute-typographic-measurement-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: AbsoluteTypographicMeasurement
     match: exact
-contents:
-  - node: absolute-typographic-measurement-en
-    language: en
+content:
+  en:
     title: Absolute Typographic Measurement
-    about: node:quantity-kind/absolute-typographic-measurement

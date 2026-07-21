@@ -1,17 +1,11 @@
-node: node:quantity-kind/source-voltage
-slug: source-voltage
-broader: node:quantity-kind/electric-potential
-refs:
-  - node: source-voltage-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-potential
+ref:
+  qudt-quantity-kind:
     term: SourceVoltage
     match: exact
-  - node: source-voltage-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q185329
     match: exact
-contents:
-  - node: source-voltage-en
-    language: en
+content:
+  en:
     title: Source Voltage
-    about: node:quantity-kind/source-voltage

@@ -1,17 +1,11 @@
-node: node:quantity-kind/phase-speed-of-sound
-slug: phase-speed-of-sound
-broader: node:quantity-kind/speed-of-sound
-refs:
-  - node: phase-speed-of-sound-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: speed-of-sound
+ref:
+  qudt-quantity-kind:
     term: PhaseSpeedOfSound
     match: exact
-  - node: phase-speed-of-sound-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q86501878
     match: exact
-contents:
-  - node: phase-speed-of-sound-en
-    language: en
+content:
+  en:
     title: Phase Speed of Sound
-    about: node:quantity-kind/phase-speed-of-sound

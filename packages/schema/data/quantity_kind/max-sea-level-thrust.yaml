@@ -1,13 +1,8 @@
-node: node:quantity-kind/max-sea-level-thrust
-slug: max-sea-level-thrust
-broader: node:quantity-kind/thrust
-refs:
-  - node: max-sea-level-thrust-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: thrust
+ref:
+  qudt-quantity-kind:
     term: MaxSeaLevelThrust
     match: exact
-contents:
-  - node: max-sea-level-thrust-en
-    language: en
+content:
+  en:
     title: Max Sea Level Thrust
-    about: node:quantity-kind/max-sea-level-thrust

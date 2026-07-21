@@ -1,12 +1,7 @@
-node: node:quantity-kind/cost-per-power
-slug: cost-per-power
-refs:
-  - node: cost-per-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CostPerPower
     match: exact
-contents:
-  - node: cost-per-power-en
-    language: en
+content:
+  en:
     title: Cost per Power
-    about: node:quantity-kind/cost-per-power

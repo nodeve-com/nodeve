@@ -1,12 +1,7 @@
-node: node:quantity-kind/asset
-slug: asset
-refs:
-  - node: asset-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Asset
     match: exact
-contents:
-  - node: asset-en
-    language: en
+content:
+  en:
     title: Asset
-    about: node:quantity-kind/asset

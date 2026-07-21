@@ -1,13 +1,8 @@
-node: node:quantity-kind/torsional-rigidity
-slug: torsional-rigidity
-broader: node:quantity-kind/torque-per-angle
-refs:
-  - node: torsional-rigidity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: torque-per-angle
+ref:
+  qudt-quantity-kind:
     term: TorsionalRigidity
     match: exact
-contents:
-  - node: torsional-rigidity-en
-    language: en
+content:
+  en:
     title: Torsional Rigidity
-    about: node:quantity-kind/torsional-rigidity

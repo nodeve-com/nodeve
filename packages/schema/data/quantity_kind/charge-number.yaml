@@ -1,17 +1,11 @@
-node: node:quantity-kind/charge-number
-slug: charge-number
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: charge-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: ChargeNumber
     match: exact
-  - node: charge-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1800063
     match: exact
-contents:
-  - node: charge-number-en
-    language: en
+content:
+  en:
     title: Charge Number
-    about: node:quantity-kind/charge-number

@@ -1,16 +1,10 @@
-node: node:quantity-kind/photon-intensity
-slug: photon-intensity
-refs:
-  - node: photon-intensity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PhotonIntensity
     match: exact
-  - node: photon-intensity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q83853335
     match: exact
-contents:
-  - node: photon-intensity-en
-    language: en
+content:
+  en:
     title: Photon Intensity
-    about: node:quantity-kind/photon-intensity

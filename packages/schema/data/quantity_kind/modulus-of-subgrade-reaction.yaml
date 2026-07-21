@@ -1,12 +1,7 @@
-node: node:quantity-kind/modulus-of-subgrade-reaction
-slug: modulus-of-subgrade-reaction
-refs:
-  - node: modulus-of-subgrade-reaction-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ModulusOfSubgradeReaction
     match: exact
-contents:
-  - node: modulus-of-subgrade-reaction-en
-    language: en
+content:
+  en:
     title: Modulus of Subgrade Reaction
-    about: node:quantity-kind/modulus-of-subgrade-reaction

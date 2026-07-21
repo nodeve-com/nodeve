@@ -1,13 +1,8 @@
-node: node:quantity-kind/gain
-slug: gain
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: gain-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: Gain
     match: exact
-contents:
-  - node: gain-en
-    language: en
+content:
+  en:
     title: Gain
-    about: node:quantity-kind/gain

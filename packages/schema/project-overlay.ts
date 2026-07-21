@@ -3,103 +3,112 @@
 // device_type.socket_bindings    → the role vocabulary + required-ness per socket.
 // Data is the source; the overlay is derived. Never hand-edit the output — a
 // new quantity or socket is an INSERT here, and the stencil follows.
-import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
-import { parse, stringify } from 'yaml'
+import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { parse, stringify } from 'yaml';
+import { normalize } from './normalize/catalog.ts';
 
-const dir = (p: string) => fileURLToPath(new URL(p, import.meta.url))
-const load = (d: string) =>
-  readdirSync(dir(d))
-    .filter((f) => f.endsWith('.yaml'))
-    .map((f) => parse(readFileSync(dir(d) + f, 'utf8')))
+const dir = (p: string) => fileURLToPath(new URL(p, import.meta.url));
+// authored docs enter as NORMALIZED rows — this projector sees only storage shape
+const loadDocs = (d: string) =>
+	readdirSync(dir(d))
+		.filter((f) => f.endsWith('.yaml'))
+		.map((f) => {
+			const [root, ...children] = normalize(dir(d) + f);
+			const doc = { ...root } as Record<string, unknown[]>;
+			for (const c of children) (doc[c.$slot as string] ??= []).push(c);
+			return doc;
+		});
 
-const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase())
-const curieSlug = (curie: string) => curie.split('/').pop()!
+const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
+const curieSlug = (curie: string) => curie.split('/').pop()!;
 
-const featureTypes = load('data/feature_type/')
-const deviceTypes = load('data/device_type/')
-const { prefixes } = parse(readFileSync(dir('linkml/nodeve-slots.yaml'), 'utf8'))
+const featureTypes = loadDocs('data/feature_type/');
+const deviceTypes = loadDocs('data/device_type/');
+const { prefixes } = parse(readFileSync(dir('linkml/nodeve-slots.yaml'), 'utf8'));
 
-const enums: Record<string, unknown> = {}
-const classes: Record<string, unknown> = {}
+const overlayEnum: Record<string, unknown> = {};
+const overlayClass: Record<string, unknown> = {};
 
 for (const ft of featureTypes) {
-  const name = pascal(ft.slug)
-  // quantity_kind is an FK, not an enum — the admissible set is a closed
-  // any_of of the bound CURIEs. An unbound quantity fails; a typo fails twice
-  // (no matching row upstream, no matching branch here).
-  classes[`${name}Interval`] = {
-    is_a: 'Interval',
-    slot_usage: {
-      quantity_kind: {
-        any_of: ft.quantity_bindings.map((b: { quantity_kind: string }) => ({
-          equals_string: b.quantity_kind,
-        })),
-      },
-    },
-  }
-  classes[`${name}Feature`] = {
-    is_a: 'FeatureOfInterest',
-    slot_usage: {
-      intervals: { range: `${name}Interval` },
-      feature_type: { equals_string: ft.node },
-    },
-  }
+	const name = pascal(ft.slug);
+	// quantity_kind is an FK, not an enum — the admissible set is a closed
+	// any_of of the bound CURIEs. An unbound quantity fails; a typo fails twice
+	// (no matching row upstream, no matching branch here).
+	overlayClass[`${name}Interval`] = {
+		is_a: 'Interval',
+		slot_usage: {
+			quantity_kind: {
+				any_of: ft.quantity_bindings.map((b: { quantity_kind: string }) => ({
+					equals_string: b.quantity_kind,
+				})),
+			},
+		},
+	};
+	overlayClass[`${name}Feature`] = {
+		is_a: 'FeatureOfInterest',
+		slot_usage: {
+			intervals: { range: `${name}Interval` },
+			feature_type: { equals_string: ft.node },
+		},
+	};
 }
 
 for (const dt of deviceTypes) {
-  const dtName = pascal(dt.slug)
-  const byFeature = new Map<string, { role: string; required?: boolean }[]>()
-  for (const b of dt.socket_bindings ?? []) {
-    const key = curieSlug(b.feature_type)
-    byFeature.set(key, [...(byFeature.get(key) ?? []), b])
-  }
+	const dtName = pascal(dt.slug);
+	const byFeature = new Map<string, { role: string; required?: boolean }[]>();
+	for (const b of dt.socket_bindings ?? []) {
+		const key = curieSlug(b.feature_type);
+		byFeature.set(key, [...(byFeature.get(key) ?? []), b]);
+	}
 
-  const slotUsage: Record<string, unknown> = {
-    device_type: { equals_string: dt.node },
-  }
+	const slotUsage: Record<string, unknown> = {
+		device_type: { equals_string: dt.node },
+	};
 
-  for (const [ftSlug, bindings] of byFeature) {
-    const ftName = pascal(ftSlug)
-    const socketClass = `${dtName}${ftName}Feature`
-    enums[`${dtName}${ftName}Role`] = {
-      permissible_values: Object.fromEntries(bindings.map((b) => [b.role, {}])),
-    }
-    classes[socketClass] = {
-      is_a: `${ftName}Feature`,
-      slot_usage: { role: { range: `${dtName}${ftName}Role` } },
-    }
-    // the DeviceModel slot this feature type fills, and whether any socket on
-    // it is mandatory — required-ness is a binding row, not a hand decision
-    const slot = { 'ac-phase': 'ac_ports', 'dc-port': 'dc_ports', environment: 'environments' }[ftSlug]
-    if (slot)
-      slotUsage[slot] = {
-        range: socketClass,
-        ...(bindings.some((b) => b.required) && { required: true }),
-      }
-  }
+	for (const [ftSlug, bindings] of byFeature) {
+		const ftName = pascal(ftSlug);
+		const socketClass = `${dtName}${ftName}Feature`;
+		overlayEnum[`${dtName}${ftName}Role`] = {
+			permissible_values: Object.fromEntries(bindings.map((b) => [b.role, {}])),
+		};
+		overlayClass[socketClass] = {
+			is_a: `${ftName}Feature`,
+			slot_usage: { role: { range: `${dtName}${ftName}Role` } },
+		};
+		// the DeviceModel slot this feature type fills, and whether any socket on
+		// it is mandatory — required-ness is a binding row, not a hand decision
+		const slot = { 'ac-phase': 'ac_ports', 'dc-port': 'dc_ports', environment: 'environments' }[
+			ftSlug
+		];
+		if (slot)
+			slotUsage[slot] = {
+				range: socketClass,
+				...(bindings.some((b) => b.required) && { required: true }),
+			};
+	}
 
-  classes[dtName] = { is_a: 'DeviceModel', slot_usage: slotUsage }
+	overlayClass[dtName] = { is_a: 'DeviceModel', slot_usage: slotUsage };
 }
 
 const overlay = {
-  id: 'https://nodeve.com/schema/projected',
-  name: 'nodeve-projected',
-  prefixes,
-  default_prefix: 'nodeve',
-  default_range: 'string',
-  imports: ['../linkml/nodeve'],
-  enums,
-  classes,
-}
+	id: 'https://nodeve.com/schema/projected',
+	name: 'nodeve-projected',
+	prefixes,
+	default_prefix: 'nodeve',
+	default_range: 'string',
+	imports: ['../linkml/nodeve'],
+	enums: overlayEnum,
+	classes: overlayClass,
+};
 
-mkdirSync(dir('gen/'), { recursive: true })
+mkdirSync(dir('gen/'), { recursive: true });
 writeFileSync(
-  dir('gen/nodeve-projected.yaml'),
-  '# GENERATED by project-overlay.ts from data/ — do not hand-edit.\n' +
-    '# Consumed ONLY by linkml-validate; gen-sqltables reads the base schema.\n' +
-    stringify(overlay, { lineWidth: 0 }),
-)
+	dir('gen/nodeve-projected.yaml'),
+	'# GENERATED by project-overlay.ts from data/ — do not hand-edit.\n' +
+		'# Consumed ONLY by linkml-validate; gen-sqltables reads the base schema.\n' +
+		stringify(overlay, { lineWidth: 0 }),
+);
 console.log(
-  `${Object.keys(classes).length} classes, ${Object.keys(enums).length} enums → gen/nodeve-projected.yaml`,
-)
+	`${Object.keys(overlayClass).length} classes, ${Object.keys(overlayEnum).length} enums → gen/nodeve-projected.yaml`,
+);

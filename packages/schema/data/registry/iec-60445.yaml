@@ -1,12 +1,6 @@
-node: node:registry/iec-60445
-slug: iec-60445
 url: https://webstore.iec.ch/publication/26662
-contents:
-  - node: iec-60445-en
-    language: en
+content:
+  en:
     title: IEC 60445 (Identification of equipment terminals and conductors)
-    about: node:registry/iec-60445
-  - node: iec-60445-pt
-    language: pt
+  pt:
     title: IEC 60445 (Identificação de terminais de equipamento e condutores)
-    about: node:registry/iec-60445

@@ -1,13 +1,8 @@
-node: node:quantity-kind/electron-mobility
-slug: electron-mobility
-broader: node:quantity-kind/mobility
-refs:
-  - node: electron-mobility-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mobility
+ref:
+  qudt-quantity-kind:
     term: ElectronMobility
     match: exact
-contents:
-  - node: electron-mobility-en
-    language: en
+content:
+  en:
     title: Electron Mobility
-    about: node:quantity-kind/electron-mobility

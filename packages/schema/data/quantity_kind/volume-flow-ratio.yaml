@@ -1,13 +1,8 @@
-node: node:quantity-kind/volume-flow-ratio
-slug: volume-flow-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: volume-flow-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: VolumeFlowRatio
     match: exact
-contents:
-  - node: volume-flow-ratio-en
-    language: en
+content:
+  en:
     title: Volume Flow Ratio
-    about: node:quantity-kind/volume-flow-ratio

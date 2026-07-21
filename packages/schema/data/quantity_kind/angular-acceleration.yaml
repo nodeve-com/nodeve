@@ -1,16 +1,10 @@
-node: node:quantity-kind/angular-acceleration
-slug: angular-acceleration
-refs:
-  - node: angular-acceleration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AngularAcceleration
     match: exact
-  - node: angular-acceleration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q186300
     match: exact
-contents:
-  - node: angular-acceleration-en
-    language: en
+content:
+  en:
     title: Angular Acceleration
-    about: node:quantity-kind/angular-acceleration

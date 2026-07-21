@@ -1,12 +1,7 @@
-node: node:quantity-kind/electric-field
-slug: electric-field
-refs:
-  - node: electric-field-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricField
     match: exact
-contents:
-  - node: electric-field-en
-    language: en
+content:
+  en:
     title: Electric Field
-    about: node:quantity-kind/electric-field

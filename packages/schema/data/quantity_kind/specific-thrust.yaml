@@ -1,12 +1,7 @@
-node: node:quantity-kind/specific-thrust
-slug: specific-thrust
-refs:
-  - node: specific-thrust-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpecificThrust
     match: exact
-contents:
-  - node: specific-thrust-en
-    language: en
+content:
+  en:
     title: Specific Thrust
-    about: node:quantity-kind/specific-thrust

@@ -1,16 +1,10 @@
-node: node:quantity-kind/curvature
-slug: curvature
-refs:
-  - node: curvature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Curvature
     match: exact
-  - node: curvature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q214881
     match: exact
-contents:
-  - node: curvature-en
-    language: en
+content:
+  en:
     title: Curvature
-    about: node:quantity-kind/curvature

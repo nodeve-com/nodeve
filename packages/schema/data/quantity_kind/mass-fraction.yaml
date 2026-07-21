@@ -1,20 +1,12 @@
-node: node:quantity-kind/mass-fraction
-slug: mass-fraction
-refs:
-  - node: mass-fraction-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassFraction
     match: exact
-  - node: mass-fraction-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q899138
     match: exact
-contents:
-  - node: mass-fraction-en
-    language: en
+content:
+  en:
     title: Mass Fraction
-    about: node:quantity-kind/mass-fraction
-  - node: mass-fraction-pt
-    language: pt
+  pt:
     title: Fração mássica
-    about: node:quantity-kind/mass-fraction

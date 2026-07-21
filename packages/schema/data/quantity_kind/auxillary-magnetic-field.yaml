@@ -1,13 +1,8 @@
-node: node:quantity-kind/auxillary-magnetic-field
-slug: auxillary-magnetic-field
-broader: node:quantity-kind/magnetic-field-strength
-refs:
-  - node: auxillary-magnetic-field-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: magnetic-field-strength
+ref:
+  qudt-quantity-kind:
     term: AuxillaryMagneticField
     match: exact
-contents:
-  - node: auxillary-magnetic-field-en
-    language: en
+content:
+  en:
     title: Auxillary Magnetic Field
-    about: node:quantity-kind/auxillary-magnetic-field

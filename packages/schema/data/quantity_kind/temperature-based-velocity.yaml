@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-based-velocity
-slug: temperature-based-velocity
-refs:
-  - node: temperature-based-velocity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureBasedVelocity
     match: exact
-contents:
-  - node: temperature-based-velocity-en
-    language: en
+content:
+  en:
     title: Temperature-based Velocity
-    about: node:quantity-kind/temperature-based-velocity

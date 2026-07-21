@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-variance
-slug: temperature-variance
-refs:
-  - node: temperature-variance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureVariance
     match: exact
-contents:
-  - node: temperature-variance-en
-    language: en
+content:
+  en:
     title: Temperature Variance
-    about: node:quantity-kind/temperature-variance

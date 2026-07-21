@@ -1,13 +1,8 @@
-node: node:quantity-kind/positive-plane-angle
-slug: positive-plane-angle
-broader: node:quantity-kind/angle
-refs:
-  - node: positive-plane-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: PositivePlaneAngle
     match: exact
-contents:
-  - node: positive-plane-angle-en
-    language: en
+content:
+  en:
     title: Positive Plane Angle
-    about: node:quantity-kind/positive-plane-angle

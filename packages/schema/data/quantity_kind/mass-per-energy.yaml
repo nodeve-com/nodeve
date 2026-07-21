@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-per-energy
-slug: mass-per-energy
-refs:
-  - node: mass-per-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassPerEnergy
     match: exact
-contents:
-  - node: mass-per-energy-en
-    language: en
+content:
+  en:
     title: Mass per Energy
-    about: node:quantity-kind/mass-per-energy

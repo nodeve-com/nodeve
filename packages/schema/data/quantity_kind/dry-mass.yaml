@@ -1,15 +1,10 @@
-node: node:quantity-kind/dry-mass
-slug: dry-mass
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/mass
-refs:
-  - node: dry-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: DRY-MASS
     match: exact
-contents:
-  - node: dry-mass-en
-    language: en
+content:
+  en:
     title: Dry Mass
-    about: node:quantity-kind/dry-mass

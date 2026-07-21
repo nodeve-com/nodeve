@@ -1,12 +1,7 @@
-node: node:quantity-kind/reactivity
-slug: reactivity
-refs:
-  - node: reactivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Reactivity
     match: exact
-contents:
-  - node: reactivity-en
-    language: en
+content:
+  en:
     title: Reactivity
-    about: node:quantity-kind/reactivity

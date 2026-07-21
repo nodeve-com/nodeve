@@ -1,16 +1,10 @@
-node: node:quantity-kind/molar-optical-rotatory-power
-slug: molar-optical-rotatory-power
-refs:
-  - node: molar-optical-rotatory-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarOpticalRotatoryPower
     match: exact
-  - node: molar-optical-rotatory-power-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q96346994
     match: exact
-contents:
-  - node: molar-optical-rotatory-power-en
-    language: en
+content:
+  en:
     title: Molar Optical Rotatory Power
-    about: node:quantity-kind/molar-optical-rotatory-power

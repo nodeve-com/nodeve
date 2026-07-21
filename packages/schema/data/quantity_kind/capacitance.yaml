@@ -1,16 +1,10 @@
-node: node:quantity-kind/capacitance
-slug: capacitance
-refs:
-  - node: capacitance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Capacitance
     match: exact
-  - node: capacitance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q164399
     match: exact
-contents:
-  - node: capacitance-en
-    language: en
+content:
+  en:
     title: Capacitance
-    about: node:quantity-kind/capacitance

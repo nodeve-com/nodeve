@@ -1,16 +1,10 @@
-node: node:quantity-kind/lorenz-coefficient
-slug: lorenz-coefficient
-refs:
-  - node: lorenz-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LorenzCoefficient
     match: exact
-  - node: lorenz-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105728754
     match: exact
-contents:
-  - node: lorenz-coefficient-en
-    language: en
+content:
+  en:
     title: Lorenz Coefficient
-    about: node:quantity-kind/lorenz-coefficient

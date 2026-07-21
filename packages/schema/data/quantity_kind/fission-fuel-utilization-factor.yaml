@@ -1,13 +1,8 @@
-node: node:quantity-kind/fission-fuel-utilization-factor
-slug: fission-fuel-utilization-factor
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: fission-fuel-utilization-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: FissionFuelUtilizationFactor
     match: exact
-contents:
-  - node: fission-fuel-utilization-factor-en
-    language: en
+content:
+  en:
     title: Fission Fuel Utilization Factor
-    about: node:quantity-kind/fission-fuel-utilization-factor

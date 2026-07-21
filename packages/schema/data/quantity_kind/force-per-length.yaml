@@ -1,12 +1,7 @@
-node: node:quantity-kind/force-per-length
-slug: force-per-length
-refs:
-  - node: force-per-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ForcePerLength
     match: exact
-contents:
-  - node: force-per-length-en
-    language: en
+content:
+  en:
     title: Force per Length
-    about: node:quantity-kind/force-per-length

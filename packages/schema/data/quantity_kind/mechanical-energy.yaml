@@ -1,17 +1,11 @@
-node: node:quantity-kind/mechanical-energy
-slug: mechanical-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: mechanical-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: MechanicalEnergy
     match: exact
-  - node: mechanical-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q184550
     match: exact
-contents:
-  - node: mechanical-energy-en
-    language: en
+content:
+  en:
     title: Mechanical Energy
-    about: node:quantity-kind/mechanical-energy

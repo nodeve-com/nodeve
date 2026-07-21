@@ -1,13 +1,8 @@
-node: node:quantity-kind/pressure-burning-rate-index
-slug: pressure-burning-rate-index
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: pressure-burning-rate-index-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: PressureBurningRateIndex
     match: exact
-contents:
-  - node: pressure-burning-rate-index-en
-    language: en
+content:
+  en:
     title: Pressure Burning Rate Index
-    about: node:quantity-kind/pressure-burning-rate-index

@@ -1,16 +1,10 @@
-node: node:quantity-kind/order-of-reflection
-slug: order-of-reflection
-refs:
-  - node: order-of-reflection-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: OrderOfReflection
     match: exact
-  - node: order-of-reflection-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105488155
     match: exact
-contents:
-  - node: order-of-reflection-en
-    language: en
+content:
+  en:
     title: Order of Reflection
-    about: node:quantity-kind/order-of-reflection

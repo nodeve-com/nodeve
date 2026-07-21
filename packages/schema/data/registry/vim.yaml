@@ -1,13 +1,7 @@
-node: node:registry/vim
-slug: vim
 url: https://jcgm.bipm.org/vim/en/
 iri_template: https://jcgm.bipm.org/vim/en/{id}.html
-contents:
-  - node: vim-en
-    language: en
+content:
+  en:
     title: International Property of Metrology (VIM, JCGM 200:2012)
-    about: node:registry/vim
-  - node: vim-pt
-    language: pt
+  pt:
     title: Propertyulário Internacional de Metrologia (VIM, JCGM 200:2012)
-    about: node:registry/vim

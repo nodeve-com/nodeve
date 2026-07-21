@@ -1,17 +1,11 @@
-node: node:quantity-kind/internal-energy
-slug: internal-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: internal-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: InternalEnergy
     match: exact
-  - node: internal-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q180241
     match: exact
-contents:
-  - node: internal-energy-en
-    language: en
+content:
+  en:
     title: Internal Energy
-    about: node:quantity-kind/internal-energy

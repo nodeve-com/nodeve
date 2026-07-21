@@ -1,17 +1,11 @@
-node: node:quantity-kind/mutual-inductance
-slug: mutual-inductance
-broader: node:quantity-kind/inductance
-refs:
-  - node: mutual-inductance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: inductance
+ref:
+  qudt-quantity-kind:
     term: MutualInductance
     match: exact
-  - node: mutual-inductance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q78101401
     match: exact
-contents:
-  - node: mutual-inductance-en
-    language: en
+content:
+  en:
     title: Mutual Inductance
-    about: node:quantity-kind/mutual-inductance

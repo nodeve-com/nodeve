@@ -1,16 +1,10 @@
-node: node:quantity-kind/acceleration
-slug: acceleration
-refs:
-  - node: acceleration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Acceleration
     match: exact
-  - node: acceleration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11376
     match: exact
-contents:
-  - node: acceleration-en
-    language: en
+content:
+  en:
     title: Acceleration
-    about: node:quantity-kind/acceleration

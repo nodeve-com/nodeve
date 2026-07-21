@@ -1,13 +1,8 @@
-node: node:quantity-kind/dry-volume
-slug: dry-volume
-broader: node:quantity-kind/volume
-refs:
-  - node: dry-volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: volume
+ref:
+  qudt-quantity-kind:
     term: DryVolume
     match: exact
-contents:
-  - node: dry-volume-en
-    language: en
+content:
+  en:
     title: Dry Volume
-    about: node:quantity-kind/dry-volume

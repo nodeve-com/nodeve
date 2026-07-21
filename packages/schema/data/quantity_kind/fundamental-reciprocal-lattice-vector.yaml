@@ -1,16 +1,10 @@
-node: node:quantity-kind/fundamental-reciprocal-lattice-vector
-slug: fundamental-reciprocal-lattice-vector
-refs:
-  - node: fundamental-reciprocal-lattice-vector-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: FundamentalReciprocalLatticeVector
     match: exact
-  - node: fundamental-reciprocal-lattice-vector-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105475399
     match: exact
-contents:
-  - node: fundamental-reciprocal-lattice-vector-en
-    language: en
+content:
+  en:
     title: Fundamental Reciprocal Lattice Vector
-    about: node:quantity-kind/fundamental-reciprocal-lattice-vector

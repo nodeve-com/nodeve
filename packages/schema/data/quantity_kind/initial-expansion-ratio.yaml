@@ -1,13 +1,8 @@
-node: node:quantity-kind/initial-expansion-ratio
-slug: initial-expansion-ratio
-broader: node:quantity-kind/expansion-ratio
-refs:
-  - node: initial-expansion-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: expansion-ratio
+ref:
+  qudt-quantity-kind:
     term: InitialExpansionRatio
     match: exact
-contents:
-  - node: initial-expansion-ratio-en
-    language: en
+content:
+  en:
     title: Initial Expansion Ratio
-    about: node:quantity-kind/initial-expansion-ratio

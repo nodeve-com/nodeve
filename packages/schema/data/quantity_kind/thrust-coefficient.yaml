@@ -1,16 +1,10 @@
-node: node:quantity-kind/thrust-coefficient
-slug: thrust-coefficient
-refs:
-  - node: thrust-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThrustCoefficient
     match: exact
-  - node: thrust-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q102040931
     match: exact
-contents:
-  - node: thrust-coefficient-en
-    language: en
+content:
+  en:
     title: Thrust Coefficient
-    about: node:quantity-kind/thrust-coefficient

@@ -1,17 +1,11 @@
-node: node:quantity-kind/shear-modulus
-slug: shear-modulus
-broader: node:quantity-kind/modulus-of-elasticity
-refs:
-  - node: shear-modulus-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: modulus-of-elasticity
+ref:
+  qudt-quantity-kind:
     term: ShearModulus
     match: exact
-  - node: shear-modulus-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q461466
     match: exact
-contents:
-  - node: shear-modulus-en
-    language: en
+content:
+  en:
     title: Shear Modulus
-    about: node:quantity-kind/shear-modulus

@@ -1,17 +1,11 @@
-node: node:quantity-kind/mass-concentration-of-water
-slug: mass-concentration-of-water
-broader: node:quantity-kind/mass-concentration
-refs:
-  - node: mass-concentration-of-water-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-concentration
+ref:
+  qudt-quantity-kind:
     term: MassConcentrationOfWater
     match: exact
-  - node: mass-concentration-of-water-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q76378758
     match: exact
-contents:
-  - node: mass-concentration-of-water-en
-    language: en
+content:
+  en:
     title: Mass Concentration of Water
-    about: node:quantity-kind/mass-concentration-of-water

@@ -1,16 +1,10 @@
-node: node:quantity-kind/activity-concentration
-slug: activity-concentration
-refs:
-  - node: activity-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ActivityConcentration
     match: exact
-  - node: activity-concentration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q423263
     match: exact
-contents:
-  - node: activity-concentration-en
-    language: en
+content:
+  en:
     title: Activity Concentration
-    about: node:quantity-kind/activity-concentration

@@ -1,12 +1,7 @@
-node: node:quantity-kind/electric-current-per-angle
-slug: electric-current-per-angle
-refs:
-  - node: electric-current-per-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricCurrentPerAngle
     match: exact
-contents:
-  - node: electric-current-per-angle-en
-    language: en
+content:
+  en:
     title: Electric Current per Angle
-    about: node:quantity-kind/electric-current-per-angle

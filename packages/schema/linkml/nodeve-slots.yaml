@@ -136,11 +136,6 @@ slots:
     }
   match: { range: MatchStrength, required: true }
   max: { range: float }
-  measurable:
-    {
-      range: boolean,
-      description: 'binding aspect flag — the feature type admits MEASUREMENT rows of this quantity (daily energy measured never specced)',
-    }
   min: { range: float }
   model: {}
   note: {}
@@ -149,6 +144,13 @@ slots:
       range: integer,
       minimum_value: 1,
       description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here.",
+    }
+  part:
+    {
+      range: string,
+      required: true,
+      pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$',
+      description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part.",
     }
   period: { range: Period }
   port: { range: integer }
@@ -190,11 +192,6 @@ slots:
       range: uriorcurie,
       description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it',
       annotations: { camel: slugQualified },
-    }
-  spec:
-    {
-      range: boolean,
-      description: 'binding aspect flag — the feature type admits SPECIFICATION rows of this quantity (survival voltage specced never measured)',
     }
   start: { range: integer }
   term:
@@ -301,13 +298,6 @@ slots:
       identifier: true,
       range: Node,
       description: "PK + FK to Node — every row's identity IS its Node row; the one permalink space",
-    }
-  part:
-    {
-      range: string,
-      required: true,
-      pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$',
-      description: "THE ONE part discriminator, and the path's part segment verbatim. A member slug names a part row of the OWNING feature (a phase leg, a circuit, a tracker position). `_` = the whole feature — some quantities are only ever combined (frequency). `*` = the default, applied to each part that doesn't state its own. A `*` row is resolved against the OWNING feature's part rows at query time and never expanded into per-part rows — a baked expansion goes stale the moment a part is added. The slug pattern produces neither marker, so neither can collide with an authored part.",
     }
   parts:
     {

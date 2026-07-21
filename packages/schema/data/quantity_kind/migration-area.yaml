@@ -1,17 +1,11 @@
-node: node:quantity-kind/migration-area
-slug: migration-area
-broader: node:quantity-kind/area
-refs:
-  - node: migration-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area
+ref:
+  qudt-quantity-kind:
     term: MigrationArea
     match: exact
-  - node: migration-area-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98966325
     match: exact
-contents:
-  - node: migration-area-en
-    language: en
+content:
+  en:
     title: Migration Area
-    about: node:quantity-kind/migration-area

@@ -1,17 +1,11 @@
-node: node:quantity-kind/modulus-of-impedance
-slug: modulus-of-impedance
-broader: node:quantity-kind/impedance
-refs:
-  - node: modulus-of-impedance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: impedance
+ref:
+  qudt-quantity-kind:
     term: ModulusOfImpedance
     match: exact
-  - node: modulus-of-impedance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q25457909
     match: exact
-contents:
-  - node: modulus-of-impedance-en
-    language: en
+content:
+  en:
     title: Modulus of Impedance
-    about: node:quantity-kind/modulus-of-impedance

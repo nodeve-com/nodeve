@@ -1,17 +1,11 @@
-node: node:quantity-kind/molecular-concentration
-slug: molecular-concentration
-broader: node:quantity-kind/number-density
-refs:
-  - node: molecular-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: number-density
+ref:
+  qudt-quantity-kind:
     term: MolecularConcentration
     match: exact
-  - node: molecular-concentration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q88865973
     match: exact
-contents:
-  - node: molecular-concentration-en
-    language: en
+content:
+  en:
     title: Molecular Concentration
-    about: node:quantity-kind/molecular-concentration

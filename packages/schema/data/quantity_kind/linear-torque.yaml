@@ -1,12 +1,7 @@
-node: node:quantity-kind/linear-torque
-slug: linear-torque
-refs:
-  - node: linear-torque-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearTorque
     match: exact
-contents:
-  - node: linear-torque-en
-    language: en
+content:
+  en:
     title: Lineic Torque
-    about: node:quantity-kind/linear-torque

@@ -1,13 +1,8 @@
-node: node:quantity-kind/spherical-illuminance
-slug: spherical-illuminance
-broader: node:quantity-kind/illuminance
-refs:
-  - node: spherical-illuminance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: illuminance
+ref:
+  qudt-quantity-kind:
     term: SphericalIlluminance
     match: exact
-contents:
-  - node: spherical-illuminance-en
-    language: en
+content:
+  en:
     title: Illuminance
-    about: node:quantity-kind/spherical-illuminance

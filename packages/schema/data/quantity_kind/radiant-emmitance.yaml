@@ -1,13 +1,8 @@
-node: node:quantity-kind/radiant-emmitance
-slug: radiant-emmitance
-broader: node:quantity-kind/power-per-area
-refs:
-  - node: radiant-emmitance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power-per-area
+ref:
+  qudt-quantity-kind:
     term: RadiantEmmitance
     match: exact
-contents:
-  - node: radiant-emmitance-en
-    language: en
+content:
+  en:
     title: Radiant Emmitance
-    about: node:quantity-kind/radiant-emmitance

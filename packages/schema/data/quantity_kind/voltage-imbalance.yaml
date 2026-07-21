@@ -1,13 +1,8 @@
-node: node:quantity-kind/voltage-imbalance
-slug: voltage-imbalance
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: voltage-imbalance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: VoltageImbalance
     match: exact
-contents:
-  - node: voltage-imbalance-en
-    language: en
+content:
+  en:
     title: Voltage Imbalance
-    about: node:quantity-kind/voltage-imbalance

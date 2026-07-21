@@ -1,16 +1,10 @@
-node: node:quantity-kind/loss-factor
-slug: loss-factor
-refs:
-  - node: loss-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LossFactor
     match: exact
-  - node: loss-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q79468728
     match: exact
-contents:
-  - node: loss-factor-en
-    language: en
+content:
+  en:
     title: Loss Factor
-    about: node:quantity-kind/loss-factor

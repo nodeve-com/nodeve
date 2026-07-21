@@ -1,16 +1,10 @@
-node: node:quantity-kind/voltage-phasor
-slug: voltage-phasor
-refs:
-  - node: voltage-phasor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VoltagePhasor
     match: exact
-  - node: voltage-phasor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q78514605
     match: exact
-contents:
-  - node: voltage-phasor-en
-    language: en
+content:
+  en:
     title: Voltage Phasor
-    about: node:quantity-kind/voltage-phasor

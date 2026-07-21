@@ -1,13 +1,8 @@
-node: node:quantity-kind/landau-ginzburg-number
-slug: landau-ginzburg-number
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: landau-ginzburg-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: LandauGinzburgNumber
     match: exact
-contents:
-  - node: landau-ginzburg-number-en
-    language: en
+content:
+  en:
     title: Landau-Ginzburg Number
-    about: node:quantity-kind/landau-ginzburg-number

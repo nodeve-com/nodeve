@@ -1,12 +1,7 @@
-node: node:quantity-kind/amount-of-substance-per-mass
-slug: amount-of-substance-per-mass
-refs:
-  - node: amount-of-substance-per-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AmountOfSubstancePerMass
     match: exact
-contents:
-  - node: amount-of-substance-per-mass-en
-    language: en
+content:
+  en:
     title: Amount of Substance per Mass
-    about: node:quantity-kind/amount-of-substance-per-mass

@@ -1,17 +1,11 @@
-node: node:quantity-kind/level-width
-slug: level-width
-broader: node:quantity-kind/energy
-refs:
-  - node: level-width-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: LevelWidth
     match: exact
-  - node: level-width-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98082340
     match: exact
-contents:
-  - node: level-width-en
-    language: en
+content:
+  en:
     title: Level Width
-    about: node:quantity-kind/level-width

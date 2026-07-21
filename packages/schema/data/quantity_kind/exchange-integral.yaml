@@ -1,17 +1,11 @@
-node: node:quantity-kind/exchange-integral
-slug: exchange-integral
-broader: node:quantity-kind/energy
-refs:
-  - node: exchange-integral-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: ExchangeIntegral
     match: exact
-  - node: exchange-integral-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q10882959
     match: exact
-contents:
-  - node: exchange-integral-en
-    language: en
+content:
+  en:
     title: Exchange Integral
-    about: node:quantity-kind/exchange-integral

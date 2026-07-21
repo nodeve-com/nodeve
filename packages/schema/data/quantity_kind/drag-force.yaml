@@ -1,13 +1,8 @@
-node: node:quantity-kind/drag-force
-slug: drag-force
-broader: node:quantity-kind/force
-refs:
-  - node: drag-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force
+ref:
+  qudt-quantity-kind:
     term: DragForce
     match: exact
-contents:
-  - node: drag-force-en
-    language: en
+content:
+  en:
     title: Drag Force
-    about: node:quantity-kind/drag-force

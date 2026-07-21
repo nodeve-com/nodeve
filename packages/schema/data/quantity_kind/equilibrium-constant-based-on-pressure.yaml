@@ -1,12 +1,7 @@
-node: node:quantity-kind/equilibrium-constant-based-on-pressure
-slug: equilibrium-constant-based-on-pressure
-refs:
-  - node: equilibrium-constant-based-on-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EquilibriumConstantBasedOnPressure
     match: exact
-contents:
-  - node: equilibrium-constant-based-on-pressure-en
-    language: en
+content:
+  en:
     title: Equilibrium Constant Based On Pressure
-    about: node:quantity-kind/equilibrium-constant-based-on-pressure

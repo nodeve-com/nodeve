@@ -1,17 +1,11 @@
-node: node:quantity-kind/chemical-potential
-slug: chemical-potential
-broader: node:quantity-kind/molar-energy
-refs:
-  - node: chemical-potential-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: molar-energy
+ref:
+  qudt-quantity-kind:
     term: ChemicalPotential
     match: exact
-  - node: chemical-potential-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q737004
     match: exact
-contents:
-  - node: chemical-potential-en
-    language: en
+content:
+  en:
     title: Chemical Potential
-    about: node:quantity-kind/chemical-potential

@@ -1,17 +1,11 @@
-node: node:quantity-kind/efficiency
-slug: efficiency
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: efficiency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: Efficiency
     match: exact
-  - node: efficiency-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11945244
     match: exact
-contents:
-  - node: efficiency-en
-    language: en
+content:
+  en:
     title: Efficiency
-    about: node:quantity-kind/efficiency

@@ -1,13 +1,8 @@
-node: node:quantity-kind/byte-transmission-rate
-slug: byte-transmission-rate
-broader: node:quantity-kind/byte-rate
-refs:
-  - node: byte-transmission-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: byte-rate
+ref:
+  qudt-quantity-kind:
     term: ByteTransmissionRate
     match: exact
-contents:
-  - node: byte-transmission-rate-en
-    language: en
+content:
+  en:
     title: Byte Transmission Rate
-    about: node:quantity-kind/byte-transmission-rate

@@ -1,16 +1,10 @@
-node: node:quantity-kind/poynting-vector
-slug: poynting-vector
-refs:
-  - node: poynting-vector-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PoyntingVector
     match: exact
-  - node: poynting-vector-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q504186
     match: exact
-contents:
-  - node: poynting-vector-en
-    language: en
+content:
+  en:
     title: Poynting Vector
-    about: node:quantity-kind/poynting-vector

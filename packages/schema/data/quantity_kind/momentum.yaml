@@ -1,16 +1,10 @@
-node: node:quantity-kind/momentum
-slug: momentum
-refs:
-  - node: momentum-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Momentum
     match: exact
-  - node: momentum-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q41273
     match: exact
-contents:
-  - node: momentum-en
-    language: en
+content:
+  en:
     title: Momentum
-    about: node:quantity-kind/momentum

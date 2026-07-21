@@ -13,8 +13,8 @@ import { forEachTsNode, unwrap } from '../lib/ast.js';
 import { locationRows } from '../lib/report.js';
 import { type Check } from '../lib/runner.js';
 
-type Kind = 'identity' | 'spread-clone' | 'projection' | 'passthrough';
-type Hit = { kind: Kind; keys: string };
+type ReshapeKind = 'identity' | 'spread-clone' | 'projection' | 'passthrough';
+type Hit = { kind: ReshapeKind; keys: string };
 
 /** The single returned expression of a concise arrow or a `return`-only body. */
 function returnExpr(fn: ts.ArrowFunction | ts.FunctionExpression): ts.Expression | null {
@@ -119,7 +119,7 @@ function classify(fn: ts.ArrowFunction | ts.FunctionExpression): Hit | null {
 	return null;
 }
 
-type Finding = { rel: string; line: number; kind: Kind; keys: string };
+type ReshapeFinding = { rel: string; line: number; kind: ReshapeKind; keys: string };
 
 export const reshape: Check<'reshape'> = {
 	name: 'reshape',
@@ -132,7 +132,7 @@ match keeps the smell. --warn downgrades this to report-only.`,
 
 	run(gate) {
 		const { allowlist } = gate;
-		const findings: Finding[] = [];
+		const findings: ReshapeFinding[] = [];
 
 		forEachTsNode(
 			gate,

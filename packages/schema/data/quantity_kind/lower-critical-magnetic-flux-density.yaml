@@ -1,17 +1,11 @@
-node: node:quantity-kind/lower-critical-magnetic-flux-density
-slug: lower-critical-magnetic-flux-density
-broader: node:quantity-kind/magnetic-flux-density
-refs:
-  - node: lower-critical-magnetic-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: magnetic-flux-density
+ref:
+  qudt-quantity-kind:
     term: LowerCriticalMagneticFluxDensity
     match: exact
-  - node: lower-critical-magnetic-flux-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q106127355
     match: exact
-contents:
-  - node: lower-critical-magnetic-flux-density-en
-    language: en
+content:
+  en:
     title: Lower Critical Magnetic Flux Density
-    about: node:quantity-kind/lower-critical-magnetic-flux-density

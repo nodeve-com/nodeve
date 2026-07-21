@@ -1,12 +1,7 @@
-node: node:quantity-kind/current-of-the-amount-of-substance
-slug: current-of-the-amount-of-substance
-refs:
-  - node: current-of-the-amount-of-substance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CurrentOfTheAmountOfSubstance
     match: exact
-contents:
-  - node: current-of-the-amount-of-substance-en
-    language: en
+content:
+  en:
     title: Current of the Amount of Substance
-    about: node:quantity-kind/current-of-the-amount-of-substance

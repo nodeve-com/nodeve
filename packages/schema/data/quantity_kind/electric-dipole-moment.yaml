@@ -1,16 +1,10 @@
-node: node:quantity-kind/electric-dipole-moment
-slug: electric-dipole-moment
-refs:
-  - node: electric-dipole-moment-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricDipoleMoment
     match: exact
-  - node: electric-dipole-moment-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q735135
     match: exact
-contents:
-  - node: electric-dipole-moment-en
-    language: en
+content:
+  en:
     title: Electric Dipole Moment
-    about: node:quantity-kind/electric-dipole-moment

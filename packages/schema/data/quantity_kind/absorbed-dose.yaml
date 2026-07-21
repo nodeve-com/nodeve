@@ -1,17 +1,11 @@
-node: node:quantity-kind/absorbed-dose
-slug: absorbed-dose
-broader: node:quantity-kind/specific-energy
-refs:
-  - node: absorbed-dose-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-energy
+ref:
+  qudt-quantity-kind:
     term: AbsorbedDose
     match: exact
-  - node: absorbed-dose-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q215313
     match: exact
-contents:
-  - node: absorbed-dose-en
-    language: en
+content:
+  en:
     title: Absorbed Dose
-    about: node:quantity-kind/absorbed-dose

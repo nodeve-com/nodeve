@@ -1,12 +1,7 @@
-node: node:quantity-kind/length-molar-energy
-slug: length-molar-energy
-refs:
-  - node: length-molar-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LengthMolarEnergy
     match: exact
-contents:
-  - node: length-molar-energy-en
-    language: en
+content:
+  en:
     title: Length Molar Energy
-    about: node:quantity-kind/length-molar-energy

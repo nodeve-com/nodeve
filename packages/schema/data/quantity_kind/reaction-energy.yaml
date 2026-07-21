@@ -1,17 +1,11 @@
-node: node:quantity-kind/reaction-energy
-slug: reaction-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: reaction-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: ReactionEnergy
     match: exact
-  - node: reaction-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98164745
     match: exact
-contents:
-  - node: reaction-energy-en
-    language: en
+content:
+  en:
     title: Reaction Energy
-    about: node:quantity-kind/reaction-energy

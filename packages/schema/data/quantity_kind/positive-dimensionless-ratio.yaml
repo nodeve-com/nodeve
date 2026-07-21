@@ -1,13 +1,8 @@
-node: node:quantity-kind/positive-dimensionless-ratio
-slug: positive-dimensionless-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: positive-dimensionless-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: PositiveDimensionlessRatio
     match: exact
-contents:
-  - node: positive-dimensionless-ratio-en
-    language: en
+content:
+  en:
     title: Positive Dimensionless Ratio
-    about: node:quantity-kind/positive-dimensionless-ratio

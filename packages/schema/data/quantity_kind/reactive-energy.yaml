@@ -1,23 +1,15 @@
-node: node:quantity-kind/reactive-energy
-slug: reactive-energy
 si_unit: var·s
 accumulation: cumulative_monotonic
-broader: node:quantity-kind/electric-energy
-refs:
-  - node: reactive-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-energy
+ref:
+  qudt-quantity-kind:
     term: ReactiveEnergy
     match: exact
-  - node: reactive-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q12373673
     match: exact
-contents:
-  - node: reactive-energy-en
-    language: en
+content:
+  en:
     title: Reactive Energy
-    about: node:quantity-kind/reactive-energy
-  - node: reactive-energy-pt
-    language: pt
+  pt:
     title: Energia reativa
-    about: node:quantity-kind/reactive-energy

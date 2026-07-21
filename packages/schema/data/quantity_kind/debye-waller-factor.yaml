@@ -1,16 +1,10 @@
-node: node:quantity-kind/debye-waller-factor
-slug: debye-waller-factor
-refs:
-  - node: debye-waller-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: DebyeWallerFactor
     match: exact
-  - node: debye-waller-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q902587
     match: exact
-contents:
-  - node: debye-waller-factor-en
-    language: en
+content:
+  en:
     title: Debye-Waller Factor
-    about: node:quantity-kind/debye-waller-factor

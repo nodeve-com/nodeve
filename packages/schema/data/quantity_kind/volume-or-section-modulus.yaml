@@ -1,14 +1,9 @@
-node: node:quantity-kind/volume-or-section-modulus
-slug: volume-or-section-modulus
 deprecated: true
 deprecated_in: 3.1.4
-refs:
-  - node: volume-or-section-modulus-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumeOrSectionModulus
     match: exact
-contents:
-  - node: volume-or-section-modulus-en
-    language: en
+content:
+  en:
     title: volume or section modulus
-    about: node:quantity-kind/volume-or-section-modulus

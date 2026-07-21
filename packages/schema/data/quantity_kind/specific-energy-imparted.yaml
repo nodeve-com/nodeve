@@ -1,17 +1,11 @@
-node: node:quantity-kind/specific-energy-imparted
-slug: specific-energy-imparted
-broader: node:quantity-kind/specific-energy
-refs:
-  - node: specific-energy-imparted-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-energy
+ref:
+  qudt-quantity-kind:
     term: SpecificEnergyImparted
     match: exact
-  - node: specific-energy-imparted-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q99566195
     match: exact
-contents:
-  - node: specific-energy-imparted-en
-    language: en
+content:
+  en:
     title: Specific Energy Imparted
-    about: node:quantity-kind/specific-energy-imparted

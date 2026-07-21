@@ -1,12 +1,7 @@
-node: node:quantity-kind/pressure-based-quantity
-slug: pressure-based-quantity
-refs:
-  - node: pressure-based-quantity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PressureBasedQuantity
     match: exact
-contents:
-  - node: pressure-based-quantity-en
-    language: en
+content:
+  en:
     title: Pressure-based Quantity
-    about: node:quantity-kind/pressure-based-quantity

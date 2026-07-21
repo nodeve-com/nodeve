@@ -1,13 +1,8 @@
-node: node:quantity-kind/heating-value
-slug: heating-value
-broader: node:quantity-kind/specific-energy
-refs:
-  - node: heating-value-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-energy
+ref:
+  qudt-quantity-kind:
     term: HeatingValue
     match: exact
-contents:
-  - node: heating-value-en
-    language: en
+content:
+  en:
     title: Calorific Value
-    about: node:quantity-kind/heating-value

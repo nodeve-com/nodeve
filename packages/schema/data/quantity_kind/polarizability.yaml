@@ -1,16 +1,10 @@
-node: node:quantity-kind/polarizability
-slug: polarizability
-refs:
-  - node: polarizability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Polarizability
     match: exact
-  - node: polarizability-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q869891
     match: exact
-contents:
-  - node: polarizability-en
-    language: en
+content:
+  en:
     title: Polarisability
-    about: node:quantity-kind/polarizability

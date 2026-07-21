@@ -1,12 +1,6 @@
-node: node:registry/prometheus
-slug: prometheus
 url: https://prometheus.io/docs/concepts/metric_types/
-contents:
-  - node: prometheus-en
-    language: en
+content:
+  en:
     title: Prometheus / OpenMetrics metric type
-    about: node:registry/prometheus
-  - node: prometheus-pt
-    language: pt
+  pt:
     title: Tipo de métrica Prometheus / OpenMetrics
-    about: node:registry/prometheus

@@ -1,13 +1,8 @@
-node: node:quantity-kind/max-expected-operating-thrust
-slug: max-expected-operating-thrust
-broader: node:quantity-kind/max-operating-thrust
-refs:
-  - node: max-expected-operating-thrust-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: max-operating-thrust
+ref:
+  qudt-quantity-kind:
     term: MaxExpectedOperatingThrust
     match: exact
-contents:
-  - node: max-expected-operating-thrust-en
-    language: en
+content:
+  en:
     title: Maximum Expected Operating Thrust
-    about: node:quantity-kind/max-expected-operating-thrust

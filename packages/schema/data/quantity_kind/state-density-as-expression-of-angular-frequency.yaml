@@ -1,12 +1,7 @@
-node: node:quantity-kind/state-density-as-expression-of-angular-frequency
-slug: state-density-as-expression-of-angular-frequency
-refs:
-  - node: state-density-as-expression-of-angular-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: StateDensityAsExpressionOfAngularFrequency
     match: exact
-contents:
-  - node: state-density-as-expression-of-angular-frequency-en
-    language: en
+content:
+  en:
     title: State Density as Expression of Angular Frequency)
-    about: node:quantity-kind/state-density-as-expression-of-angular-frequency

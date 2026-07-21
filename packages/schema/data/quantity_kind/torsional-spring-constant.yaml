@@ -1,13 +1,8 @@
-node: node:quantity-kind/torsional-spring-constant
-slug: torsional-spring-constant
-broader: node:quantity-kind/torque-per-angle
-refs:
-  - node: torsional-spring-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: torque-per-angle
+ref:
+  qudt-quantity-kind:
     term: TorsionalSpringConstant
     match: exact
-contents:
-  - node: torsional-spring-constant-en
-    language: en
+content:
+  en:
     title: Torsional Spring Constant
-    about: node:quantity-kind/torsional-spring-constant

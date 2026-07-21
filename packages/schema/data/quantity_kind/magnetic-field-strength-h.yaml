@@ -1,16 +1,11 @@
-node: node:quantity-kind/magnetic-field-strength-h
-slug: magnetic-field-strength-h
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/magnetic-field-strength
-broader: node:quantity-kind/electric-current-per-length
-refs:
-  - node: magnetic-field-strength-h-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-current-per-length
+replaced_by: magnetic-field-strength
+ref:
+  qudt-quantity-kind:
     term: MagneticFieldStrength_H
     match: exact
-contents:
-  - node: magnetic-field-strength-h-en
-    language: en
+content:
+  en:
     title: magnetic field strength
-    about: node:quantity-kind/magnetic-field-strength-h

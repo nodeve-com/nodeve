@@ -1,13 +1,8 @@
-node: node:quantity-kind/compressibility-factor
-slug: compressibility-factor
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: compressibility-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: CompressibilityFactor
     match: exact
-contents:
-  - node: compressibility-factor-en
-    language: en
+content:
+  en:
     title: Compressibility Factor
-    about: node:quantity-kind/compressibility-factor

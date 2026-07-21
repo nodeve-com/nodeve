@@ -1,21 +1,13 @@
-node: node:quantity-kind/thickness
-slug: thickness
-broader: node:quantity-kind/length
-refs:
-  - node: thickness-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Thickness
     match: exact
-  - node: thickness-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q3589038
     match: exact
-contents:
-  - node: thickness-en
-    language: en
+content:
+  en:
     title: Thickness
-    about: node:quantity-kind/thickness
-  - node: thickness-pt
-    language: pt
+  pt:
     title: Espessura (mm)
-    about: node:quantity-kind/thickness

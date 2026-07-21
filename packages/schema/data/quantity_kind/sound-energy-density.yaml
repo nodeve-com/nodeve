@@ -1,17 +1,11 @@
-node: node:quantity-kind/sound-energy-density
-slug: sound-energy-density
-broader: node:quantity-kind/energy-density
-refs:
-  - node: sound-energy-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-density
+ref:
+  qudt-quantity-kind:
     term: SoundEnergyDensity
     match: exact
-  - node: sound-energy-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2230505
     match: exact
-contents:
-  - node: sound-energy-density-en
-    language: en
+content:
+  en:
     title: Sound Energy Density
-    about: node:quantity-kind/sound-energy-density

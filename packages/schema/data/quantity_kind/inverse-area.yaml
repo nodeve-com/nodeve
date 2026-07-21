@@ -1,12 +1,7 @@
-node: node:quantity-kind/inverse-area
-slug: inverse-area
-refs:
-  - node: inverse-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InverseArea
     match: exact
-contents:
-  - node: inverse-area-en
-    language: en
+content:
+  en:
     title: Inverse Area
-    about: node:quantity-kind/inverse-area

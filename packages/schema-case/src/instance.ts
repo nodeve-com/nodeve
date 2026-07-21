@@ -6,14 +6,18 @@
 import { isPlainObject } from 'remeda';
 import { KEY_MAP } from './camelize-schema.ts';
 
-type Obj = Record<string, unknown>;
-
 /** The snake→camel map a camelized object schema node carries ({} when no key differs). */
-const keyMapOf = (schema: Obj): Record<string, string> => (schema[KEY_MAP] as Record<string, string>) ?? {};
+const keyMapOf = (schema: Record<string, unknown>): Record<string, string> =>
+	(schema[KEY_MAP] as Record<string, string>) ?? {};
 
 /** camel key → the snake spelling it renamed from, for one object schema node ({} when none). */
 export const snakeKeyByCamel = (schema: unknown): Record<string, string> =>
-	Object.fromEntries(Object.entries(isPlainObject(schema) ? keyMapOf(schema) : {}).map(([snake, camel]) => [camel, snake]));
+	Object.fromEntries(
+		Object.entries(isPlainObject(schema) ? keyMapOf(schema) : {}).map(([snake, camel]) => [
+			camel,
+			snake,
+		]),
+	);
 
 /**
  * Rename a snake_case instance's declared keys to their camel spelling, driven by the schema's
@@ -25,9 +29,12 @@ export function camelizeInstance(schema: unknown, data: unknown): unknown {
 	if (!isPlainObject(schema)) return data;
 	// Combinator branches AND the node's own declarations both apply — a node may carry both
 	// (properties beside an allOf cross-field rule); neither shadows the other.
-	if (Array.isArray(schema.anyOf)) data = (schema.anyOf as unknown[]).reduce((d, s) => camelizeInstance(s, d), data);
-	if (Array.isArray(schema.allOf)) data = (schema.allOf as unknown[]).reduce((d, s) => camelizeInstance(s, d), data);
-	if (Array.isArray(data)) return isPlainObject(schema.items) ? data.map((d) => camelizeInstance(schema.items, d)) : data;
+	if (Array.isArray(schema.anyOf))
+		data = (schema.anyOf as unknown[]).reduce((d, s) => camelizeInstance(s, d), data);
+	if (Array.isArray(schema.allOf))
+		data = (schema.allOf as unknown[]).reduce((d, s) => camelizeInstance(s, d), data);
+	if (Array.isArray(data))
+		return isPlainObject(schema.items) ? data.map((d) => camelizeInstance(schema.items, d)) : data;
 	if (!isPlainObject(data)) return data;
 	const props = schema.properties;
 	if (isPlainObject(props)) {
@@ -40,7 +47,9 @@ export function camelizeInstance(schema: unknown, data: unknown): unknown {
 		);
 	}
 	if (isPlainObject(schema.additionalProperties))
-		return Object.fromEntries(Object.entries(data).map(([k, v]) => [k, camelizeInstance(schema.additionalProperties, v)]));
+		return Object.fromEntries(
+			Object.entries(data).map(([k, v]) => [k, camelizeInstance(schema.additionalProperties, v)]),
+		);
 	return data;
 }
 
@@ -51,11 +60,15 @@ const step = (schema: unknown, seg: string): { snake: string; next: unknown } =>
 	if (/^\d+$/.test(seg) && schema.items !== undefined) return { snake: seg, next: schema.items };
 	if (isPlainObject(schema.properties) && seg in schema.properties)
 		return { snake: snakeKeyByCamel(schema)[seg] ?? seg, next: schema.properties[seg] };
-	for (const branch of [...(Array.isArray(schema.anyOf) ? schema.anyOf : []), ...(Array.isArray(schema.allOf) ? schema.allOf : [])]) {
+	for (const branch of [
+		...(Array.isArray(schema.anyOf) ? schema.anyOf : []),
+		...(Array.isArray(schema.allOf) ? schema.allOf : []),
+	]) {
 		const r = step(branch, seg);
 		if (r.next !== undefined || r.snake !== seg) return r;
 	}
-	if (isPlainObject(schema.additionalProperties)) return { snake: seg, next: schema.additionalProperties };
+	if (isPlainObject(schema.additionalProperties))
+		return { snake: seg, next: schema.additionalProperties };
 	return { snake: seg, next: undefined };
 };
 

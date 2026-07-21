@@ -1,17 +1,21 @@
-# Device-type registry row — the archetype layer as DATA. A dehumidifier or
-# ac-meter is another row here plus its FeatureType rows; no DDL either time.
-# linkml-validate -s ../../linkml/nodeve.yaml -C DeviceType inverter.yaml
-node: node:device-type/inverter
-slug: inverter
-# the socket contract AS ROWS — role vocabularies and required-ness in the
-# generated overlay are projected from exactly these.
-socket_bindings:
-  - { node: node:device-type/inverter/ac-in, feature_type: node:feature-type/ac-phase, role: in }
-  - { node: node:device-type/inverter/ac-out, feature_type: node:feature-type/ac-phase, role: out, required: true }
-  - { node: node:device-type/inverter/ac-grid, feature_type: node:feature-type/ac-phase, role: grid }
-  - { node: node:device-type/inverter/ac-load, feature_type: node:feature-type/ac-phase, role: load }
-  - { node: node:device-type/inverter/ac-eps, feature_type: node:feature-type/ac-phase, role: eps }
-  - { node: node:device-type/inverter/dc-pv-tracker, feature_type: node:feature-type/dc-port, role: pv-tracker, required: true }
-  - { node: node:device-type/inverter/dc-battery, feature_type: node:feature-type/dc-port, role: battery }
-  - { node: node:device-type/inverter/env-ambient, feature_type: node:feature-type/environment, role: ambient }
-  - { node: node:device-type/inverter/env-enclosure, feature_type: node:feature-type/environment, role: enclosure }
+socket_binding:
+  in:
+    feature_type: ac-phase
+  out:
+    feature_type: ac-phase
+    required: true
+  grid:
+    feature_type: ac-phase
+  load:
+    feature_type: ac-phase
+  eps:
+    feature_type: ac-phase
+  pv-tracker:
+    feature_type: dc-port
+    required: true
+  battery:
+    feature_type: dc-port
+  ambient:
+    feature_type: environment
+  enclosure:
+    feature_type: environment

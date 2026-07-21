@@ -1,13 +1,8 @@
-node: node:quantity-kind/equivalence-dose-output
-slug: equivalence-dose-output
-broader: node:quantity-kind/dose-equivalent-rate
-refs:
-  - node: equivalence-dose-output-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dose-equivalent-rate
+ref:
+  qudt-quantity-kind:
     term: EquivalenceDoseOutput
     match: exact
-contents:
-  - node: equivalence-dose-output-en
-    language: en
+content:
+  en:
     title: Equivalence Dose Output
-    about: node:quantity-kind/equivalence-dose-output

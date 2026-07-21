@@ -1,16 +1,10 @@
-node: node:quantity-kind/generalized-coordinate
-slug: generalized-coordinate
-refs:
-  - node: generalized-coordinate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: GeneralizedCoordinate
     match: exact
-  - node: generalized-coordinate-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1057607
     match: exact
-contents:
-  - node: generalized-coordinate-en
-    language: en
+content:
+  en:
     title: Generalized Coordinate
-    about: node:quantity-kind/generalized-coordinate

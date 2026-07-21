@@ -1,12 +1,7 @@
-node: node:quantity-kind/product-of-inertia
-slug: product-of-inertia
-refs:
-  - node: product-of-inertia-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ProductOfInertia
     match: exact
-contents:
-  - node: product-of-inertia-en
-    language: en
+content:
+  en:
     title: Product of Inertia
-    about: node:quantity-kind/product-of-inertia

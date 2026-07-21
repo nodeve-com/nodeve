@@ -1,13 +1,8 @@
-node: node:quantity-kind/speed-of-light
-slug: speed-of-light
-broader: node:quantity-kind/speed
-refs:
-  - node: speed-of-light-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: speed
+ref:
+  qudt-quantity-kind:
     term: SpeedOfLight
     match: exact
-contents:
-  - node: speed-of-light-en
-    language: en
+content:
+  en:
     title: Speed of Light
-    about: node:quantity-kind/speed-of-light

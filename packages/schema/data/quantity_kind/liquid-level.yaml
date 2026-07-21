@@ -1,17 +1,11 @@
-node: node:quantity-kind/liquid-level
-slug: liquid-level
-broader: node:quantity-kind/length
-refs:
-  - node: liquid-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: LiquidLevel
     match: exact
-  - node: liquid-level-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1481422
     match: exact
-contents:
-  - node: liquid-level-en
-    language: en
+content:
+  en:
     title: Liquid Level
-    about: node:quantity-kind/liquid-level

@@ -1,13 +1,8 @@
-node: node:quantity-kind/log-octanol-water-partition-coefficient
-slug: log-octanol-water-partition-coefficient
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: log-octanol-water-partition-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: LogOctanolWaterPartitionCoefficient
     match: exact
-contents:
-  - node: log-octanol-water-partition-coefficient-en
-    language: en
+content:
+  en:
     title: Logarithm of Octanol Water Partition Coefficient
-    about: node:quantity-kind/log-octanol-water-partition-coefficient

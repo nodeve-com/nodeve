@@ -1,13 +1,8 @@
-node: node:quantity-kind/mass-of-solid-booster
-slug: mass-of-solid-booster
-broader: node:quantity-kind/mass
-refs:
-  - node: mass-of-solid-booster-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: MassOfSolidBooster
     match: exact
-contents:
-  - node: mass-of-solid-booster-en
-    language: en
+content:
+  en:
     title: Mass of Solid Booster
-    about: node:quantity-kind/mass-of-solid-booster

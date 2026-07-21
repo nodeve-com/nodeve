@@ -1,16 +1,10 @@
-node: node:quantity-kind/thermal-conductance
-slug: thermal-conductance
-refs:
-  - node: thermal-conductance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalConductance
     match: exact
-  - node: thermal-conductance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q17176562
     match: exact
-contents:
-  - node: thermal-conductance-en
-    language: en
+content:
+  en:
     title: Thermal Conductance
-    about: node:quantity-kind/thermal-conductance

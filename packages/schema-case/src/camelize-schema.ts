@@ -10,8 +10,6 @@ import { isPlainObject, toCamelCase } from 'remeda';
 /** The stored-alias keyword stamped on renamed object nodes: `{ snake_key: 'camelKey', … }`. */
 export const KEY_MAP = 'x-key-map';
 
-type Obj = Record<string, unknown>;
-
 // Positions holding one subschema, a list of subschemas, or a name-keyed / free-keyed map of them.
 const one = (v: unknown): unknown => camelizeSchema(v);
 const listOrOne = (v: unknown): unknown => (Array.isArray(v) ? v.map(one) : one(v));
@@ -19,7 +17,7 @@ const camelizeValues = (v: unknown): unknown =>
 	isPlainObject(v) ? Object.fromEntries(Object.entries(v).map(([k, s]) => [k, one(s)])) : v;
 
 function camelizeProperties(properties: Record<string, unknown>): {
-	properties: Obj;
+	properties: Record<string, unknown>;
 	keyMap: Record<string, string>;
 } {
 	const keyMap: Record<string, string> = {};
@@ -31,7 +29,7 @@ function camelizeProperties(properties: Record<string, unknown>): {
 	return { properties: Object.fromEntries(entries), keyMap };
 }
 
-function camelizeDependencies(dependencies: Record<string, unknown>): Obj {
+function camelizeDependencies(dependencies: Record<string, unknown>): Record<string, unknown> {
 	return Object.fromEntries(
 		Object.entries(dependencies).map(([name, dependency]) => [
 			toCamelCase(name),
@@ -42,7 +40,7 @@ function camelizeDependencies(dependencies: Record<string, unknown>): Obj {
 	);
 }
 
-function camelizeSubschemas(out: Obj): void {
+function camelizeSubschemas(out: Record<string, unknown>): void {
 	for (const key of [
 		'additionalItems',
 		'additionalProperties',
@@ -69,7 +67,7 @@ function camelizeSubschemas(out: Obj): void {
  */
 export function camelizeSchema(schema: unknown): unknown {
 	if (!isPlainObject(schema)) return schema; // boolean schemas (`false` forbids), non-schema leaves
-	const out: Obj = { ...schema };
+	const out: Record<string, unknown> = { ...schema };
 
 	if (out.properties !== undefined && isPlainObject(out.properties)) {
 		const { properties, keyMap } = camelizeProperties(out.properties);

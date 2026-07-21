@@ -1,12 +1,7 @@
-node: node:quantity-kind/section-area-integral
-slug: section-area-integral
-refs:
-  - node: section-area-integral-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SectionAreaIntegral
     match: exact
-contents:
-  - node: section-area-integral-en
-    language: en
+content:
+  en:
     title: Section Area Integral
-    about: node:quantity-kind/section-area-integral

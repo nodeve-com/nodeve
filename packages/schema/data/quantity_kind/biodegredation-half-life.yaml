@@ -1,13 +1,8 @@
-node: node:quantity-kind/biodegredation-half-life
-slug: biodegredation-half-life
-broader: node:quantity-kind/time
-refs:
-  - node: biodegredation-half-life-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: BiodegredationHalfLife
     match: exact
-contents:
-  - node: biodegredation-half-life-en
-    language: en
+content:
+  en:
     title: Biodegredation Half Life
-    about: node:quantity-kind/biodegredation-half-life

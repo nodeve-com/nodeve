@@ -1,16 +1,10 @@
-node: node:quantity-kind/angular-cross-section
-slug: angular-cross-section
-refs:
-  - node: angular-cross-section-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AngularCrossSection
     match: exact
-  - node: angular-cross-section-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98266630
     match: exact
-contents:
-  - node: angular-cross-section-en
-    language: en
+content:
+  en:
     title: Angular Cross-section
-    about: node:quantity-kind/angular-cross-section

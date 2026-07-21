@@ -1,12 +1,7 @@
-node: node:quantity-kind/exposure-of-ionizing-radiation
-slug: exposure-of-ionizing-radiation
-refs:
-  - node: exposure-of-ionizing-radiation-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ExposureOfIonizingRadiation
     match: exact
-contents:
-  - node: exposure-of-ionizing-radiation-en
-    language: en
+content:
+  en:
     title: Exposure of Ionizing Radiation
-    about: node:quantity-kind/exposure-of-ionizing-radiation

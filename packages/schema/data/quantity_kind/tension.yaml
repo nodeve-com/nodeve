@@ -1,17 +1,11 @@
-node: node:quantity-kind/tension
-slug: tension
-broader: node:quantity-kind/force-magnitude
-refs:
-  - node: tension-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force-magnitude
+ref:
+  qudt-quantity-kind:
     term: Tension
     match: exact
-  - node: tension-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q908584
     match: exact
-contents:
-  - node: tension-en
-    language: en
+content:
+  en:
     title: Tension
-    about: node:quantity-kind/tension

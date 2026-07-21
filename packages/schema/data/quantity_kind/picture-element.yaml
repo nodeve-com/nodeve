@@ -1,12 +1,7 @@
-node: node:quantity-kind/picture-element
-slug: picture-element
-refs:
-  - node: picture-element-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PictureElement
     match: exact
-contents:
-  - node: picture-element-en
-    language: en
+content:
+  en:
     title: Picture Element
-    about: node:quantity-kind/picture-element

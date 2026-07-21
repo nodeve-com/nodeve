@@ -1,13 +1,8 @@
-node: node:quantity-kind/mass-flux-density
-slug: mass-flux-density
-broader: node:quantity-kind/mass-per-area-time
-refs:
-  - node: mass-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-per-area-time
+ref:
+  qudt-quantity-kind:
     term: MassFluxDensity
     match: exact
-contents:
-  - node: mass-flux-density-en
-    language: en
+content:
+  en:
     title: Mass Flux Density
-    about: node:quantity-kind/mass-flux-density

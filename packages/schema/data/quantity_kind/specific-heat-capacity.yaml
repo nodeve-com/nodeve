@@ -1,16 +1,10 @@
-node: node:quantity-kind/specific-heat-capacity
-slug: specific-heat-capacity
-refs:
-  - node: specific-heat-capacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpecificHeatCapacity
     match: exact
-  - node: specific-heat-capacity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q487756
     match: exact
-contents:
-  - node: specific-heat-capacity-en
-    language: en
+content:
+  en:
     title: Specific Heat Capacity
-    about: node:quantity-kind/specific-heat-capacity

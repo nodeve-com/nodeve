@@ -1,12 +1,7 @@
-node: node:quantity-kind/area-bit-density
-slug: area-bit-density
-refs:
-  - node: area-bit-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreaBitDensity
     match: exact
-contents:
-  - node: area-bit-density-en
-    language: en
+content:
+  en:
     title: Areic Bit Density
-    about: node:quantity-kind/area-bit-density

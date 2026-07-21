@@ -1,13 +1,8 @@
-node: node:quantity-kind/dynamic-friction-coefficient
-slug: dynamic-friction-coefficient
-broader: node:quantity-kind/friction-coefficient
-refs:
-  - node: dynamic-friction-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: friction-coefficient
+ref:
+  qudt-quantity-kind:
     term: DynamicFrictionCoefficient
     match: exact
-contents:
-  - node: dynamic-friction-coefficient-en
-    language: en
+content:
+  en:
     title: Dynamic Friction Coefficient
-    about: node:quantity-kind/dynamic-friction-coefficient

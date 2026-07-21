@@ -1,12 +1,7 @@
-node: node:quantity-kind/momentum-per-angle
-slug: momentum-per-angle
-refs:
-  - node: momentum-per-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MomentumPerAngle
     match: exact
-contents:
-  - node: momentum-per-angle-en
-    language: en
+content:
+  en:
     title: Momentum per Angle
-    about: node:quantity-kind/momentum-per-angle

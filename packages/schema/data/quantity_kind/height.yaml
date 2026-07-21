@@ -1,21 +1,13 @@
-node: node:quantity-kind/height
-slug: height
-broader: node:quantity-kind/length
-refs:
-  - node: height-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Height
     match: exact
-  - node: height-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q208826
     match: exact
-contents:
-  - node: height-en
-    language: en
+content:
+  en:
     title: Height
-    about: node:quantity-kind/height
-  - node: height-pt
-    language: pt
+  pt:
     title: Altura (mm)
-    about: node:quantity-kind/height

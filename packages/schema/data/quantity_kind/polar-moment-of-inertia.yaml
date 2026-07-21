@@ -1,13 +1,8 @@
-node: node:quantity-kind/polar-moment-of-inertia
-slug: polar-moment-of-inertia
-broader: node:quantity-kind/moment-of-inertia
-refs:
-  - node: polar-moment-of-inertia-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: moment-of-inertia
+ref:
+  qudt-quantity-kind:
     term: PolarMomentOfInertia
     match: exact
-contents:
-  - node: polar-moment-of-inertia-en
-    language: en
+content:
+  en:
     title: Polar Moment of Inertia
-    about: node:quantity-kind/polar-moment-of-inertia

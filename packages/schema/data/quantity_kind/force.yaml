@@ -1,16 +1,10 @@
-node: node:quantity-kind/force
-slug: force
-refs:
-  - node: force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Force
     match: exact
-  - node: force-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11402
     match: exact
-contents:
-  - node: force-en
-    language: en
+content:
+  en:
     title: Force
-    about: node:quantity-kind/force

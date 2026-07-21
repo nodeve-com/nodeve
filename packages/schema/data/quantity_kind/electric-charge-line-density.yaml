@@ -1,12 +1,7 @@
-node: node:quantity-kind/electric-charge-line-density
-slug: electric-charge-line-density
-refs:
-  - node: electric-charge-line-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricChargeLineDensity
     match: exact
-contents:
-  - node: electric-charge-line-density-en
-    language: en
+content:
+  en:
     title: Electric Charge Line Density
-    about: node:quantity-kind/electric-charge-line-density

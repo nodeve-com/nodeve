@@ -1,12 +1,7 @@
-node: node:quantity-kind/equilibrium-constant-based-on-concentration
-slug: equilibrium-constant-based-on-concentration
-refs:
-  - node: equilibrium-constant-based-on-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EquilibriumConstantBasedOnConcentration
     match: exact
-contents:
-  - node: equilibrium-constant-based-on-concentration-en
-    language: en
+content:
+  en:
     title: Equilibrium Constant Based On Concentration
-    about: node:quantity-kind/equilibrium-constant-based-on-concentration

@@ -1,6 +1,2 @@
-# Combined-only feature_type — humidity/pressure join later as new binding rows.
-# linkml-validate -s ../../linkml/nodeve.yaml -C FeatureType environment.yaml
-node: node:feature-type/environment
-slug: environment
-quantity_bindings:
-  - { node: node:feature-type/environment/temperature, quantity_kind: node:quantity-kind/temperature, spec: true, measurable: true }
+quantity_binding:
+  temperature: {}

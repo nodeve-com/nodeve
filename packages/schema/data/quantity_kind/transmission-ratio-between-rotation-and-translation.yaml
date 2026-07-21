@@ -1,12 +1,7 @@
-node: node:quantity-kind/transmission-ratio-between-rotation-and-translation
-slug: transmission-ratio-between-rotation-and-translation
-refs:
-  - node: transmission-ratio-between-rotation-and-translation-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TransmissionRatioBetweenRotationAndTranslation
     match: exact
-contents:
-  - node: transmission-ratio-between-rotation-and-translation-en
-    language: en
+content:
+  en:
     title: Transmission Ratio Between Rotation and Translation
-    about: node:quantity-kind/transmission-ratio-between-rotation-and-translation

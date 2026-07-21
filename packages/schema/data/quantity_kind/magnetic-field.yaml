@@ -1,12 +1,7 @@
-node: node:quantity-kind/magnetic-field
-slug: magnetic-field
-refs:
-  - node: magnetic-field-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticField
     match: exact
-contents:
-  - node: magnetic-field-en
-    language: en
+content:
+  en:
     title: Magnetic Field
-    about: node:quantity-kind/magnetic-field

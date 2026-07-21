@@ -1,12 +1,7 @@
-node: node:quantity-kind/particle-current-density
-slug: particle-current-density
-refs:
-  - node: particle-current-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ParticleCurrentDensity
     match: exact
-contents:
-  - node: particle-current-density-en
-    language: en
+content:
+  en:
     title: Particle Current Density
-    about: node:quantity-kind/particle-current-density

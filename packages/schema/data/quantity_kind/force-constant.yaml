@@ -1,12 +1,7 @@
-node: node:quantity-kind/force-constant
-slug: force-constant
-refs:
-  - node: force-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ForceConstant
     match: exact
-contents:
-  - node: force-constant-en
-    language: en
+content:
+  en:
     title: Force Constant
-    about: node:quantity-kind/force-constant

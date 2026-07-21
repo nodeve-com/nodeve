@@ -4,9 +4,7 @@ Small text utilities shared across nodeve tooling.
 
 ## `@nodeve/text/similarity`
 
-Fuzzy identifier matching by token set rather than character sequence — so
-`byGroup` and `groupBy` (a token transposition) score as identical, while
-edit-distance would miss them.
+Fuzzy identifier matching by token set rather than character sequence — so `byGroup` and `groupBy` (a token transposition) score as identical, while edit-distance would miss them.
 
 ```ts
 import { identifierSimilarity, tokenizeIdentifier } from '@nodeve/text/similarity';
@@ -17,8 +15,7 @@ tokenizeIdentifier('groupSpotsByZone'); // → ['group', 'spot', 'by', 'zone']
 
 ## `@nodeve/text/damerau-levenshtein`
 
-The unrestricted Damerau-Levenshtein edit distance the similarity scorer builds
-on, exported on its own for direct use (e.g. typo-tolerant suggestion matching).
+The unrestricted Damerau-Levenshtein edit distance the similarity scorer builds on, exported on its own for direct use (e.g. typo-tolerant suggestion matching).
 
 ```ts
 import { damerauLevenshtein } from '@nodeve/text/damerau-levenshtein';
@@ -28,8 +25,7 @@ damerauLevenshtein('gmial.com', 'gmail.com'); // → { steps: 1, relative, simil
 
 ## `@nodeve/text/trim`
 
-Boundary-aware trimming: collapse whitespace and cut to a length budget,
-preferring a sentence boundary and falling back to a word boundary.
+Boundary-aware trimming: collapse whitespace and cut to a length budget, preferring a sentence boundary and falling back to a word boundary.
 
 ```ts
 import { trimText } from '@nodeve/text/trim';
@@ -39,21 +35,19 @@ trimText(longDocstring, { max: 120, ellipsis: '...' });
 
 ## `@nodeve/text/slugify`
 
-URL-safe slugs with charmap transliteration (accents, currency, cyrillic, …),
-plus a `uniqueSlug` helper that dedupes against a `seen` set with a
-caller-supplied deterministic suffix.
+URL-safe slugs with charmap transliteration (accents, currency, cyrillic, …), plus a `uniqueSlug` helper that dedupes against a `seen` set with a caller-supplied deterministic suffix. `isSlug`/`SLUG_PATTERN` guard the shape: exactly the non-empty fixed points of `slugify`.
 
 ```ts
-import { slugify, uniqueSlug } from '@nodeve/text/slugify';
+import { isSlug, slugify, uniqueSlug } from '@nodeve/text/slugify';
 
 slugify('café Latte'); // → 'cafe-latte'
+isSlug('cafe-latte'); // → true (isSlug(s) === (s !== '' && slugify(s) === s))
 uniqueSlug('Hello World', 'abc123', seen); // → 'hello-world' (then 'hello-world-abc123' on collision)
 ```
 
 ## `@nodeve/text/wrap-text`
 
-Greedy word-wrap to a character budget. Collapses whitespace, never splits a
-word mid-character (long words overflow their own line).
+Greedy word-wrap to a character budget. Collapses whitespace, never splits a word mid-character (long words overflow their own line).
 
 ```ts
 import { wrapText } from '@nodeve/text/wrap-text';
@@ -63,9 +57,7 @@ wrapText('Kitchen Sockets', 8); // → ['Kitchen', 'Sockets']
 
 ## `@nodeve/text/lone-surrogates`
 
-Replace unpaired UTF-16 surrogates with U+FFFD so values are valid Unicode and
-safe for a Postgres `jsonb` boundary. `replaceLoneSurrogatesDeep` walks arrays
-and plain objects.
+Replace unpaired UTF-16 surrogates with U+FFFD so values are valid Unicode and safe for a Postgres `jsonb` boundary. `replaceLoneSurrogatesDeep` walks arrays and plain objects.
 
 ```ts
 import { replaceLoneSurrogates, replaceLoneSurrogatesDeep } from '@nodeve/text/lone-surrogates';
@@ -75,9 +67,7 @@ replaceLoneSurrogates('cut\uD83D&rest'); // → 'cut�&rest'
 
 ## `@nodeve/text/text-format`
 
-Number and date display helpers: `formatSigned` (explicit leading sign,
-zero-aligned) and the `isIsoDateString` guard. For Title Case use remeda's
-`toTitleCase` (`createdAt` → `Created At`).
+Number and date display helpers: `formatSigned` (explicit leading sign, zero-aligned) and the `isIsoDateString` guard. For Title Case use remeda's `toTitleCase` (`createdAt` → `Created At`).
 
 ```ts
 import { formatSigned, isIsoDateString } from '@nodeve/text/text-format';

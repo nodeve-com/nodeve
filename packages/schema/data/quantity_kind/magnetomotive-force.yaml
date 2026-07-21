@@ -1,16 +1,10 @@
-node: node:quantity-kind/magnetomotive-force
-slug: magnetomotive-force
-refs:
-  - node: magnetomotive-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagnetomotiveForce
     match: exact
-  - node: magnetomotive-force-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1266982
     match: exact
-contents:
-  - node: magnetomotive-force-en
-    language: en
+content:
+  en:
     title: Magnetomotive Force
-    about: node:quantity-kind/magnetomotive-force

@@ -1,13 +1,8 @@
-node: node:quantity-kind/source-voltage-between-substances
-slug: source-voltage-between-substances
-broader: node:quantity-kind/electric-potential
-refs:
-  - node: source-voltage-between-substances-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-potential
+ref:
+  qudt-quantity-kind:
     term: SourceVoltageBetweenSubstances
     match: exact
-contents:
-  - node: source-voltage-between-substances-en
-    language: en
+content:
+  en:
     title: Source Voltage Between Substances
-    about: node:quantity-kind/source-voltage-between-substances

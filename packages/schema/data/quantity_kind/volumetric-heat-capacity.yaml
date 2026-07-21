@@ -1,16 +1,10 @@
-node: node:quantity-kind/volumetric-heat-capacity
-slug: volumetric-heat-capacity
-refs:
-  - node: volumetric-heat-capacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumetricHeatCapacity
     match: exact
-  - node: volumetric-heat-capacity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q900661
     match: exact
-contents:
-  - node: volumetric-heat-capacity-en
-    language: en
+content:
+  en:
     title: Volumetric Heat Capacity
-    about: node:quantity-kind/volumetric-heat-capacity

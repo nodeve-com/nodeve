@@ -1,13 +1,8 @@
-node: node:quantity-kind/thrust-to-weight-ratio
-slug: thrust-to-weight-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: thrust-to-weight-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: ThrustToWeightRatio
     match: exact
-contents:
-  - node: thrust-to-weight-ratio-en
-    language: en
+content:
+  en:
     title: Thrust to Weight Ratio
-    about: node:quantity-kind/thrust-to-weight-ratio

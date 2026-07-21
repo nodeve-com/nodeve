@@ -1,12 +1,7 @@
-node: node:quantity-kind/permeability-ratio
-slug: permeability-ratio
-refs:
-  - node: permeability-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PermeabilityRatio
     match: exact
-contents:
-  - node: permeability-ratio-en
-    language: en
+content:
+  en:
     title: Permeability Ratio
-    about: node:quantity-kind/permeability-ratio

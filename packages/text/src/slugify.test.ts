@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { slugify, uniqueSlug } from './slugify.ts';
+import { isSlug, slugify, uniqueSlug } from './slugify.ts';
 
 describe('slugify', () => {
 	it('lowercases and hyphenates words', () => {
@@ -133,5 +133,28 @@ describe('uniqueSlug', () => {
 			uniqueSlug('Hello World', 'ccc', seen),
 		];
 		expect(slugs).toEqual(['hello-world', 'hello-world-bbb', 'hello-world-ccc']);
+	});
+});
+
+describe('isSlug', () => {
+	it('accepts kebab-case lowercase alphanumerics', () => {
+		for (const s of ['a', 'hello-world', 'iec-60038', 'h3-10', '0', 'l1']) {
+			expect(isSlug(s)).toBe(true);
+		}
+	});
+
+	it('rejects everything else', () => {
+		for (const s of ['', '-a', 'a-', 'a--b', 'Hello', 'a_b', 'a b', 'café', '*', '_', '$']) {
+			expect(isSlug(s)).toBe(false);
+		}
+	});
+
+	it('accepts exactly the non-empty fixed points of slugify', () => {
+		const inputs = ['Hello World', 'café Latte', 'a--b', 'IEC 60038', 'x', '—', 'already-a-slug'];
+		for (const input of inputs) {
+			const slug = slugify(input);
+			if (slug !== '') expect(isSlug(slug)).toBe(true);
+			expect(isSlug(input)).toBe(slugify(input) === input && input !== '');
+		}
 	});
 });

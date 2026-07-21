@@ -1,16 +1,10 @@
-node: node:quantity-kind/wavenumber
-slug: wavenumber
-refs:
-  - node: wavenumber-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Wavenumber
     match: exact
-  - node: wavenumber-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q192510
     match: exact
-contents:
-  - node: wavenumber-en
-    language: en
+content:
+  en:
     title: Wavenumber
-    about: node:quantity-kind/wavenumber

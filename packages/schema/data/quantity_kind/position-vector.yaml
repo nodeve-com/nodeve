@@ -1,17 +1,11 @@
-node: node:quantity-kind/position-vector
-slug: position-vector
-broader: node:quantity-kind/length
-refs:
-  - node: position-vector-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: PositionVector
     match: exact
-  - node: position-vector-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q192388
     match: exact
-contents:
-  - node: position-vector-en
-    language: en
+content:
+  en:
     title: Position Vector
-    about: node:quantity-kind/position-vector

@@ -1,13 +1,8 @@
-node: node:quantity-kind/bevel-gear-pitch-angle
-slug: bevel-gear-pitch-angle
-broader: node:quantity-kind/angle
-refs:
-  - node: bevel-gear-pitch-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: BevelGearPitchAngle
     match: exact
-contents:
-  - node: bevel-gear-pitch-angle-en
-    language: en
+content:
+  en:
     title: Bevel Gear Pitch Angle
-    about: node:quantity-kind/bevel-gear-pitch-angle

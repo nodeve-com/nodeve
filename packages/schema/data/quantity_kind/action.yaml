@@ -1,16 +1,10 @@
-node: node:quantity-kind/action
-slug: action
-refs:
-  - node: action-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Action
     match: exact
-  - node: action-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q846785
     match: exact
-contents:
-  - node: action-en
-    language: en
+content:
+  en:
     title: Action
-    about: node:quantity-kind/action

@@ -1,17 +1,11 @@
-node: node:quantity-kind/relative-pressure-coefficient
-slug: relative-pressure-coefficient
-broader: node:quantity-kind/inverse-temperature
-refs:
-  - node: relative-pressure-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: inverse-temperature
+ref:
+  qudt-quantity-kind:
     term: RelativePressureCoefficient
     match: exact
-  - node: relative-pressure-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q74761852
     match: exact
-contents:
-  - node: relative-pressure-coefficient-en
-    language: en
+content:
+  en:
     title: Relative Pressure Coefficient
-    about: node:quantity-kind/relative-pressure-coefficient

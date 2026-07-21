@@ -1,17 +1,11 @@
-node: node:quantity-kind/specific-heat-capacity-at-saturation
-slug: specific-heat-capacity-at-saturation
-broader: node:quantity-kind/specific-heat-capacity
-refs:
-  - node: specific-heat-capacity-at-saturation-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-heat-capacity
+ref:
+  qudt-quantity-kind:
     term: SpecificHeatCapacityAtSaturation
     match: exact
-  - node: specific-heat-capacity-at-saturation-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q75775005
     match: exact
-contents:
-  - node: specific-heat-capacity-at-saturation-en
-    language: en
+content:
+  en:
     title: Specific Heat Capacity at Saturation
-    about: node:quantity-kind/specific-heat-capacity-at-saturation

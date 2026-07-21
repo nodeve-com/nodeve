@@ -1,17 +1,11 @@
-node: node:quantity-kind/static-friction
-slug: static-friction
-broader: node:quantity-kind/friction
-refs:
-  - node: static-friction-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: friction
+ref:
+  qudt-quantity-kind:
     term: StaticFriction
     match: exact
-  - node: static-friction-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q90862568
     match: exact
-contents:
-  - node: static-friction-en
-    language: en
+content:
+  en:
     title: Static Friction
-    about: node:quantity-kind/static-friction

@@ -1,18 +1,11 @@
-node: node:quantity-kind/resistance
-slug: resistance
 si_unit: Ω
 accumulation: instantaneous
-refs:
-  - node: resistance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Resistance
     match: exact
-contents:
-  - node: resistance-en
-    language: en
+content:
+  en:
     title: Resistance
-    about: node:quantity-kind/resistance
-  - node: resistance-pt
-    language: pt
+  pt:
     title: Resistência
-    about: node:quantity-kind/resistance

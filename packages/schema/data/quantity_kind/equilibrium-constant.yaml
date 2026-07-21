@@ -1,16 +1,10 @@
-node: node:quantity-kind/equilibrium-constant
-slug: equilibrium-constant
-refs:
-  - node: equilibrium-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EquilibriumConstant
     match: exact
-  - node: equilibrium-constant-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q857809
     match: exact
-contents:
-  - node: equilibrium-constant-en
-    language: en
+content:
+  en:
     title: Equilibrium Constant
-    about: node:quantity-kind/equilibrium-constant

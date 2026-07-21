@@ -1,12 +1,7 @@
-node: node:quantity-kind/signal-detection-threshold
-slug: signal-detection-threshold
-refs:
-  - node: signal-detection-threshold-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SignalDetectionThreshold
     match: exact
-contents:
-  - node: signal-detection-threshold-en
-    language: en
+content:
+  en:
     title: Signal Detection Threshold
-    about: node:quantity-kind/signal-detection-threshold

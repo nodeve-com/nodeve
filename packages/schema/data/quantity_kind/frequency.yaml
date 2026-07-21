@@ -1,27 +1,18 @@
-node: node:quantity-kind/frequency
-slug: frequency
 si_unit: Hz
 accumulation: instantaneous
-broader: node:quantity-kind/inverse-time
-refs:
-  - node: frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: inverse-time
+ref:
+  qudt-quantity-kind:
     term: Frequency
     match: exact
-  - node: frequency-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11652
     match: exact
-  - node: frequency-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: frequency
     match: exact
-contents:
-  - node: frequency-en
-    language: en
+content:
+  en:
     title: Frequency
-    about: node:quantity-kind/frequency
-  - node: frequency-pt
-    language: pt
+  pt:
     title: Frequência
-    about: node:quantity-kind/frequency

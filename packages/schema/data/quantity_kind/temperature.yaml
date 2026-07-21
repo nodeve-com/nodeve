@@ -1,26 +1,17 @@
-node: node:quantity-kind/temperature
-slug: temperature
 si_unit: K
 accumulation: instantaneous
-refs:
-  - node: temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Temperature
     match: exact
-  - node: temperature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11466
     match: exact
-  - node: temperature-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: temperature
     match: exact
-contents:
-  - node: temperature-en
-    language: en
+content:
+  en:
     title: Temperature
-    about: node:quantity-kind/temperature
-  - node: temperature-pt
-    language: pt
+  pt:
     title: Temperatura
-    about: node:quantity-kind/temperature

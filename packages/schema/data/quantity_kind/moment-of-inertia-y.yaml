@@ -1,13 +1,8 @@
-node: node:quantity-kind/moment-of-inertia-y
-slug: moment-of-inertia-y
-broader: node:quantity-kind/moment-of-inertia
-refs:
-  - node: moment-of-inertia-y-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: moment-of-inertia
+ref:
+  qudt-quantity-kind:
     term: MomentOfInertia_Y
     match: exact
-contents:
-  - node: moment-of-inertia-y-en
-    language: en
+content:
+  en:
     title: Moment of Inertia in the Y Axis
-    about: node:quantity-kind/moment-of-inertia-y

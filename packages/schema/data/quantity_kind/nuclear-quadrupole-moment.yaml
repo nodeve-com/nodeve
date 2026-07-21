@@ -1,17 +1,11 @@
-node: node:quantity-kind/nuclear-quadrupole-moment
-slug: nuclear-quadrupole-moment
-broader: node:quantity-kind/area
-refs:
-  - node: nuclear-quadrupole-moment-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area
+ref:
+  qudt-quantity-kind:
     term: NuclearQuadrupoleMoment
     match: exact
-  - node: nuclear-quadrupole-moment-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q97921226
     match: exact
-contents:
-  - node: nuclear-quadrupole-moment-en
-    language: en
+content:
+  en:
     title: Nuclear Quadrupole Moment
-    about: node:quantity-kind/nuclear-quadrupole-moment

@@ -1,12 +1,7 @@
-node: node:quantity-kind/magnetic-flux-per-length
-slug: magnetic-flux-per-length
-refs:
-  - node: magnetic-flux-per-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticFluxPerLength
     match: exact
-contents:
-  - node: magnetic-flux-per-length-en
-    language: en
+content:
+  en:
     title: Magnetic Flux per Length
-    about: node:quantity-kind/magnetic-flux-per-length

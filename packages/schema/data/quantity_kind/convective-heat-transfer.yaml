@@ -1,13 +1,8 @@
-node: node:quantity-kind/convective-heat-transfer
-slug: convective-heat-transfer
-broader: node:quantity-kind/heat-flow-rate
-refs:
-  - node: convective-heat-transfer-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: heat-flow-rate
+ref:
+  qudt-quantity-kind:
     term: ConvectiveHeatTransfer
     match: exact
-contents:
-  - node: convective-heat-transfer-en
-    language: en
+content:
+  en:
     title: Convective Heat Transfer
-    about: node:quantity-kind/convective-heat-transfer

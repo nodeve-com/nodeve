@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-based-quantity
-slug: temperature-based-quantity
-refs:
-  - node: temperature-based-quantity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureBasedQuantity
     match: exact
-contents:
-  - node: temperature-based-quantity-en
-    language: en
+content:
+  en:
     title: Temperature-based Quantity
-    about: node:quantity-kind/temperature-based-quantity

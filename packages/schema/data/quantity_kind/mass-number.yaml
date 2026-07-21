@@ -1,17 +1,11 @@
-node: node:quantity-kind/mass-number
-slug: mass-number
-broader: node:quantity-kind/count
-refs:
-  - node: mass-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: count
+ref:
+  qudt-quantity-kind:
     term: MassNumber
     match: exact
-  - node: mass-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q101395
     match: exact
-contents:
-  - node: mass-number-en
-    language: en
+content:
+  en:
     title: Mass Number
-    about: node:quantity-kind/mass-number

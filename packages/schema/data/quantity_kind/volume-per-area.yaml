@@ -1,12 +1,7 @@
-node: node:quantity-kind/volume-per-area
-slug: volume-per-area
-refs:
-  - node: volume-per-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumePerArea
     match: exact
-contents:
-  - node: volume-per-area-en
-    language: en
+content:
+  en:
     title: Volume per Unit Area
-    about: node:quantity-kind/volume-per-area

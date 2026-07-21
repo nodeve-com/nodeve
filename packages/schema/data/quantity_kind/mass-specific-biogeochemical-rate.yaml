@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-specific-biogeochemical-rate
-slug: mass-specific-biogeochemical-rate
-refs:
-  - node: mass-specific-biogeochemical-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassSpecificBiogeochemicalRate
     match: exact
-contents:
-  - node: mass-specific-biogeochemical-rate-en
-    language: en
+content:
+  en:
     title: Mass Specific Biogeochemical Rate
-    about: node:quantity-kind/mass-specific-biogeochemical-rate

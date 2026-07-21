@@ -208,7 +208,7 @@ Every interval has a part, always — the column is non-null and holds the path'
 
 A measurement channel is always concrete, so `*` is in practice a specification move: one band stated once instead of repeated per leg. Nothing forbids it elsewhere, and no rule has to.
 
-`*` resolves at query time against the feature's own `Part` rows, never expanded into per-part rows — a baked expansion of `a, b, c` goes stale the moment a part is added. A part's own value wins; `*` supplies the rest:
+`*` is stored as-is and resolves at query time against the feature's own `Part` rows. A part's own value wins; `*` supplies the rest:
 
 ```sql
 select distinct on (i.quantity_kind, i.slug) i.*

@@ -1,17 +1,11 @@
-node: node:quantity-kind/lift-coefficient
-slug: lift-coefficient
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: lift-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: LiftCoefficient
     match: exact
-  - node: lift-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q760106
     match: exact
-contents:
-  - node: lift-coefficient-en
-    language: en
+content:
+  en:
     title: Lift Coefficient
-    about: node:quantity-kind/lift-coefficient

@@ -1,17 +1,11 @@
-node: node:quantity-kind/equilibrium-constant-on-pressure-basis
-slug: equilibrium-constant-on-pressure-basis
-broader: node:quantity-kind/equilibrium-constant
-refs:
-  - node: equilibrium-constant-on-pressure-basis-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: equilibrium-constant
+ref:
+  qudt-quantity-kind:
     term: EquilibriumConstantOnPressureBasis
     match: exact
-  - node: equilibrium-constant-on-pressure-basis-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q96096019
     match: exact
-contents:
-  - node: equilibrium-constant-on-pressure-basis-en
-    language: en
+content:
+  en:
     title: Equilibrium Constant On Pressure Basis
-    about: node:quantity-kind/equilibrium-constant-on-pressure-basis

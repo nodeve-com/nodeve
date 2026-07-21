@@ -1,17 +1,11 @@
-node: node:quantity-kind/bending-moment-of-force
-slug: bending-moment-of-force
-broader: node:quantity-kind/moment-of-force
-refs:
-  - node: bending-moment-of-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: moment-of-force
+ref:
+  qudt-quantity-kind:
     term: BendingMomentOfForce
     match: exact
-  - node: bending-moment-of-force-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q857244
     match: exact
-contents:
-  - node: bending-moment-of-force-en
-    language: en
+content:
+  en:
     title: Bending Moment of Force
-    about: node:quantity-kind/bending-moment-of-force

@@ -1,17 +1,10 @@
-node: node:quantity-kind/azimuth
-slug: azimuth
-broader: node:quantity-kind/angle
-refs:
-  - node: azimuth-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: Azimuth
     match: exact
-contents:
-  - node: azimuth-en
-    language: en
+content:
+  en:
     title: Azimuth
-    about: node:quantity-kind/azimuth
-  - node: azimuth-pt
-    language: pt
+  pt:
     title: Azimute
-    about: node:quantity-kind/azimuth

@@ -1,13 +1,8 @@
-node: node:quantity-kind/area-charge-density
-slug: area-charge-density
-broader: node:quantity-kind/electric-charge-per-area
-refs:
-  - node: area-charge-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-charge-per-area
+ref:
+  qudt-quantity-kind:
     term: AreaChargeDensity
     match: exact
-contents:
-  - node: area-charge-density-en
-    language: en
+content:
+  en:
     title: Areic Charge Density
-    about: node:quantity-kind/area-charge-density

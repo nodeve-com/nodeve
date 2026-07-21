@@ -1,13 +1,8 @@
-node: node:quantity-kind/areic-heat-flow-rate
-slug: areic-heat-flow-rate
-broader: node:quantity-kind/power-per-area
-refs:
-  - node: areic-heat-flow-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power-per-area
+ref:
+  qudt-quantity-kind:
     term: AreicHeatFlowRate
     match: exact
-contents:
-  - node: areic-heat-flow-rate-en
-    language: en
+content:
+  en:
     title: Aeric Heat Flow Rate
-    about: node:quantity-kind/areic-heat-flow-rate

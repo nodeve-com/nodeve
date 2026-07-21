@@ -1,17 +1,11 @@
-node: node:quantity-kind/fugacity
-slug: fugacity
-broader: node:quantity-kind/pressure
-refs:
-  - node: fugacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: Fugacity
     match: exact
-  - node: fugacity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q898412
     match: exact
-contents:
-  - node: fugacity-en
-    language: en
+content:
+  en:
     title: Fugacity
-    about: node:quantity-kind/fugacity

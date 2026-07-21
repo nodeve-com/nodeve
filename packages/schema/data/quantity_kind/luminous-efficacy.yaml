@@ -1,16 +1,10 @@
-node: node:quantity-kind/luminous-efficacy
-slug: luminous-efficacy
-refs:
-  - node: luminous-efficacy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LuminousEfficacy
     match: exact
-  - node: luminous-efficacy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1504173
     match: exact
-contents:
-  - node: luminous-efficacy-en
-    language: en
+content:
+  en:
     title: Luminous Efficacy
-    about: node:quantity-kind/luminous-efficacy

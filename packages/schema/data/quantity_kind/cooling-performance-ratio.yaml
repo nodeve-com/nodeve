@@ -1,13 +1,8 @@
-node: node:quantity-kind/cooling-performance-ratio
-slug: cooling-performance-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: cooling-performance-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: CoolingPerformanceRatio
     match: exact
-contents:
-  - node: cooling-performance-ratio-en
-    language: en
+content:
+  en:
     title: Cooling Performance Ratio
-    about: node:quantity-kind/cooling-performance-ratio

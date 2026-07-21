@@ -1,12 +1,7 @@
-node: node:quantity-kind/rotational-frequency
-slug: rotational-frequency
-refs:
-  - node: rotational-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: RotationalFrequency
     match: exact
-contents:
-  - node: rotational-frequency-en
-    language: en
+content:
+  en:
     title: Rotational Frequency
-    about: node:quantity-kind/rotational-frequency

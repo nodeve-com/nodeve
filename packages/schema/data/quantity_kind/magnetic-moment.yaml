@@ -1,16 +1,10 @@
-node: node:quantity-kind/magnetic-moment
-slug: magnetic-moment
-refs:
-  - node: magnetic-moment-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticMoment
     match: exact
-  - node: magnetic-moment-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q242657
     match: exact
-contents:
-  - node: magnetic-moment-en
-    language: en
+content:
+  en:
     title: Magnetic Moment
-    about: node:quantity-kind/magnetic-moment

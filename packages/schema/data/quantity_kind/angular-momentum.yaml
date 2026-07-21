@@ -1,16 +1,10 @@
-node: node:quantity-kind/angular-momentum
-slug: angular-momentum
-refs:
-  - node: angular-momentum-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AngularMomentum
     match: exact
-  - node: angular-momentum-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q161254
     match: exact
-contents:
-  - node: angular-momentum-en
-    language: en
+content:
+  en:
     title: Angular Momentum
-    about: node:quantity-kind/angular-momentum

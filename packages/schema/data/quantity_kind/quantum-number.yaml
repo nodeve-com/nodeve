@@ -1,17 +1,11 @@
-node: node:quantity-kind/quantum-number
-slug: quantum-number
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: quantum-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: QuantumNumber
     match: exact
-  - node: quantum-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q232431
     match: exact
-contents:
-  - node: quantum-number-en
-    language: en
+content:
+  en:
     title: Quantum Number
-    about: node:quantity-kind/quantum-number

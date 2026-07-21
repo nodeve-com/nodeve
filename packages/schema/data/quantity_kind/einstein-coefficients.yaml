@@ -1,12 +1,7 @@
-node: node:quantity-kind/einstein-coefficients
-slug: einstein-coefficients
-refs:
-  - node: einstein-coefficients-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EinsteinCoefficients
     match: exact
-contents:
-  - node: einstein-coefficients-en
-    language: en
+content:
+  en:
     title: Einstein Coefficients
-    about: node:quantity-kind/einstein-coefficients

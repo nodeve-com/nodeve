@@ -1,12 +1,7 @@
-node: node:quantity-kind/osmotic-concentration
-slug: osmotic-concentration
-refs:
-  - node: osmotic-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: OsmoticConcentration
     match: exact
-contents:
-  - node: osmotic-concentration-en
-    language: en
+content:
+  en:
     title: Osmotic Concentration
-    about: node:quantity-kind/osmotic-concentration

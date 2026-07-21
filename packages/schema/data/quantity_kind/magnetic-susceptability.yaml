@@ -1,12 +1,7 @@
-node: node:quantity-kind/magnetic-susceptability
-slug: magnetic-susceptability
-refs:
-  - node: magnetic-susceptability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticSusceptability
     match: exact
-contents:
-  - node: magnetic-susceptability-en
-    language: en
+content:
+  en:
     title: Magnetic Susceptability
-    about: node:quantity-kind/magnetic-susceptability

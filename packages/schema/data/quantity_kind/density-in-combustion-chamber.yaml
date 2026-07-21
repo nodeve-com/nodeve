@@ -1,13 +1,8 @@
-node: node:quantity-kind/density-in-combustion-chamber
-slug: density-in-combustion-chamber
-broader: node:quantity-kind/density
-refs:
-  - node: density-in-combustion-chamber-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: density
+ref:
+  qudt-quantity-kind:
     term: DensityInCombustionChamber
     match: exact
-contents:
-  - node: density-in-combustion-chamber-en
-    language: en
+content:
+  en:
     title: Density in Combustion Chamber
-    about: node:quantity-kind/density-in-combustion-chamber

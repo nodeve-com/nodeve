@@ -1,12 +1,7 @@
-node: node:quantity-kind/surge-impedance-of-the-medium
-slug: surge-impedance-of-the-medium
-refs:
-  - node: surge-impedance-of-the-medium-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SurgeImpedanceOfTheMedium
     match: exact
-contents:
-  - node: surge-impedance-of-the-medium-en
-    language: en
+content:
+  en:
     title: Surge Impedance of the Medium
-    about: node:quantity-kind/surge-impedance-of-the-medium

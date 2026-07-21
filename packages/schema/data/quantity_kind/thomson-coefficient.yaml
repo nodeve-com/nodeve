@@ -1,16 +1,10 @@
-node: node:quantity-kind/thomson-coefficient
-slug: thomson-coefficient
-refs:
-  - node: thomson-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThomsonCoefficient
     match: exact
-  - node: thomson-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105801233
     match: exact
-contents:
-  - node: thomson-coefficient-en
-    language: en
+content:
+  en:
     title: Thomson Coefficient
-    about: node:quantity-kind/thomson-coefficient

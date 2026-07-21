@@ -1,16 +1,10 @@
-node: node:quantity-kind/curvature-from-radius
-slug: curvature-from-radius
-refs:
-  - node: curvature-from-radius-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CurvatureFromRadius
     match: exact
-  - node: curvature-from-radius-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q214881
     match: exact
-contents:
-  - node: curvature-from-radius-en
-    language: en
+content:
+  en:
     title: Curvature
-    about: node:quantity-kind/curvature-from-radius

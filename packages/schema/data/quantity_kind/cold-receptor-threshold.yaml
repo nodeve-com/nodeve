@@ -1,13 +1,8 @@
-node: node:quantity-kind/cold-receptor-threshold
-slug: cold-receptor-threshold
-broader: node:quantity-kind/temperature
-refs:
-  - node: cold-receptor-threshold-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: ColdReceptorThreshold
     match: exact
-contents:
-  - node: cold-receptor-threshold-en
-    language: en
+content:
+  en:
     title: Cold Receptor Threshold
-    about: node:quantity-kind/cold-receptor-threshold

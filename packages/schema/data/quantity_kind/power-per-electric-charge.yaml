@@ -1,12 +1,7 @@
-node: node:quantity-kind/power-per-electric-charge
-slug: power-per-electric-charge
-refs:
-  - node: power-per-electric-charge-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerPerElectricCharge
     match: exact
-contents:
-  - node: power-per-electric-charge-en
-    language: en
+content:
+  en:
     title: Power per Electric Charge
-    about: node:quantity-kind/power-per-electric-charge

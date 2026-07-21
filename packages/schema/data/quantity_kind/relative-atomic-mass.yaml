@@ -1,17 +1,11 @@
-node: node:quantity-kind/relative-atomic-mass
-slug: relative-atomic-mass
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: relative-atomic-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: RelativeAtomicMass
     match: exact
-  - node: relative-atomic-mass-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q41377
     match: exact
-contents:
-  - node: relative-atomic-mass-en
-    language: en
+content:
+  en:
     title: Relative Atomic Mass
-    about: node:quantity-kind/relative-atomic-mass

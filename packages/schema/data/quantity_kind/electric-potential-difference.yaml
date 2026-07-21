@@ -1,16 +1,10 @@
-node: node:quantity-kind/electric-potential-difference
-slug: electric-potential-difference
-refs:
-  - node: electric-potential-difference-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricPotentialDifference
     match: exact
-  - node: electric-potential-difference-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q77597807
     match: exact
-contents:
-  - node: electric-potential-difference-en
-    language: en
+content:
+  en:
     title: Electric Potential Difference
-    about: node:quantity-kind/electric-potential-difference

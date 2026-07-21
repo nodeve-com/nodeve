@@ -1,12 +1,7 @@
-node: node:quantity-kind/microbial-formation
-slug: microbial-formation
-refs:
-  - node: microbial-formation-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MicrobialFormation
     match: exact
-contents:
-  - node: microbial-formation-en
-    language: en
+content:
+  en:
     title: Microbial Formation
-    about: node:quantity-kind/microbial-formation

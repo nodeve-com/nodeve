@@ -1,12 +1,7 @@
-node: node:quantity-kind/poisson-ratio
-slug: poisson-ratio
-refs:
-  - node: poisson-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PoissonRatio
     match: exact
-contents:
-  - node: poisson-ratio-en
-    language: en
+content:
+  en:
     title: Poisson Ratio
-    about: node:quantity-kind/poisson-ratio

@@ -1,12 +1,7 @@
-node: node:quantity-kind/sun-protection-factor-of-a-product
-slug: sun-protection-factor-of-a-product
-refs:
-  - node: sun-protection-factor-of-a-product-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SunProtectionFactorOfAProduct
     match: exact
-contents:
-  - node: sun-protection-factor-of-a-product-en
-    language: en
+content:
+  en:
     title: Sun Protection Factor of a Product
-    about: node:quantity-kind/sun-protection-factor-of-a-product

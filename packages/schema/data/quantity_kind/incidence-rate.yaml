@@ -1,12 +1,7 @@
-node: node:quantity-kind/incidence-rate
-slug: incidence-rate
-refs:
-  - node: incidence-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: IncidenceRate
     match: exact
-contents:
-  - node: incidence-rate-en
-    language: en
+content:
+  en:
     title: Incidence Rate
-    about: node:quantity-kind/incidence-rate

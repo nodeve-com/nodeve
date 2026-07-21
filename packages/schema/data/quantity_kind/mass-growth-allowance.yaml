@@ -1,15 +1,10 @@
-node: node:quantity-kind/mass-growth-allowance
-slug: mass-growth-allowance
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/mass
-refs:
-  - node: mass-growth-allowance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: MASS-GROWTH-ALLOWANCE
     match: exact
-contents:
-  - node: mass-growth-allowance-en
-    language: en
+content:
+  en:
     title: Mass Growth Allowance
-    about: node:quantity-kind/mass-growth-allowance

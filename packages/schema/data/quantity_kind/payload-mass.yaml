@@ -1,13 +1,8 @@
-node: node:quantity-kind/payload-mass
-slug: payload-mass
-broader: node:quantity-kind/mass
-refs:
-  - node: payload-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: PayloadMass
     match: exact
-contents:
-  - node: payload-mass-en
-    language: en
+content:
+  en:
     title: Payload Mass
-    about: node:quantity-kind/payload-mass

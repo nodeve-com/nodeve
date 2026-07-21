@@ -1,17 +1,11 @@
-node: node:quantity-kind/linear-expansion-coefficient
-slug: linear-expansion-coefficient
-broader: node:quantity-kind/expansion-ratio
-refs:
-  - node: linear-expansion-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: expansion-ratio
+ref:
+  qudt-quantity-kind:
     term: LinearExpansionCoefficient
     match: exact
-  - node: linear-expansion-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q74760821
     match: exact
-contents:
-  - node: linear-expansion-coefficient-en
-    language: en
+content:
+  en:
     title: Linear Expansion Coefficient
-    about: node:quantity-kind/linear-expansion-coefficient

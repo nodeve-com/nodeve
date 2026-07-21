@@ -1,12 +1,7 @@
-node: node:quantity-kind/energy-per-temperature
-slug: energy-per-temperature
-refs:
-  - node: energy-per-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EnergyPerTemperature
     match: exact
-contents:
-  - node: energy-per-temperature-en
-    language: en
+content:
+  en:
     title: Energy per Temperature
-    about: node:quantity-kind/energy-per-temperature

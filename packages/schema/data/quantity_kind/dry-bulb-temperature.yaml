@@ -1,13 +1,8 @@
-node: node:quantity-kind/dry-bulb-temperature
-slug: dry-bulb-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: dry-bulb-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: DryBulbTemperature
     match: exact
-contents:
-  - node: dry-bulb-temperature-en
-    language: en
+content:
+  en:
     title: Dry Bulb Temperature
-    about: node:quantity-kind/dry-bulb-temperature

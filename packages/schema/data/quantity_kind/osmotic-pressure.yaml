@@ -1,17 +1,11 @@
-node: node:quantity-kind/osmotic-pressure
-slug: osmotic-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: osmotic-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: OsmoticPressure
     match: exact
-  - node: osmotic-pressure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q193135
     match: exact
-contents:
-  - node: osmotic-pressure-en
-    language: en
+content:
+  en:
     title: Osmotic Pressure
-    about: node:quantity-kind/osmotic-pressure

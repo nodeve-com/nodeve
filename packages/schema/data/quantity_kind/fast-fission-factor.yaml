@@ -1,16 +1,10 @@
-node: node:quantity-kind/fast-fission-factor
-slug: fast-fission-factor
-refs:
-  - node: fast-fission-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: FastFissionFactor
     match: exact
-  - node: fast-fission-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q99197493
     match: exact
-contents:
-  - node: fast-fission-factor-en
-    language: en
+content:
+  en:
     title: Fast Fission Factor
-    about: node:quantity-kind/fast-fission-factor

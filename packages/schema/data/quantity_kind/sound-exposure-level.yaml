@@ -1,16 +1,10 @@
-node: node:quantity-kind/sound-exposure-level
-slug: sound-exposure-level
-refs:
-  - node: sound-exposure-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SoundExposureLevel
     match: exact
-  - node: sound-exposure-level-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q87543983
     match: exact
-contents:
-  - node: sound-exposure-level-en
-    language: en
+content:
+  en:
     title: Sound Exposure Level
-    about: node:quantity-kind/sound-exposure-level

@@ -1,12 +1,7 @@
-node: node:quantity-kind/absolute-activity
-slug: absolute-activity
-refs:
-  - node: absolute-activity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AbsoluteActivity
     match: exact
-contents:
-  - node: absolute-activity-en
-    language: en
+content:
+  en:
     title: Absolute Activity
-    about: node:quantity-kind/absolute-activity

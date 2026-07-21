@@ -1,17 +1,11 @@
-node: node:quantity-kind/total-current
-slug: total-current
-broader: node:quantity-kind/electric-current
-refs:
-  - node: total-current-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-current
+ref:
+  qudt-quantity-kind:
     term: TotalCurrent
     match: exact
-  - node: total-current-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q77679732
     match: exact
-contents:
-  - node: total-current-en
-    language: en
+content:
+  en:
     title: Total Current
-    about: node:quantity-kind/total-current

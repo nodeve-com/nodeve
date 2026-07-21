@@ -1,27 +1,18 @@
-node: node:quantity-kind/active-energy
-slug: active-energy
 si_unit: J
 accumulation: cumulative_monotonic
-broader: node:quantity-kind/electric-energy
-refs:
-  - node: active-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-energy
+ref:
+  qudt-quantity-kind:
     term: ActiveEnergy
     match: exact
-  - node: active-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q79813678
     match: exact
-  - node: active-energy-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: energy
     match: exact
-contents:
-  - node: active-energy-en
-    language: en
+content:
+  en:
     title: Active Energy
-    about: node:quantity-kind/active-energy
-  - node: active-energy-pt
-    language: pt
+  pt:
     title: Energia ativa
-    about: node:quantity-kind/active-energy

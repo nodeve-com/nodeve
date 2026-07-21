@@ -1,12 +1,7 @@
-node: node:quantity-kind/amount-of-substance-fraction
-slug: amount-of-substance-fraction
-refs:
-  - node: amount-of-substance-fraction-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AmountOfSubstanceFraction
     match: exact
-contents:
-  - node: amount-of-substance-fraction-en
-    language: en
+content:
+  en:
     title: Fractional Amount of Substance
-    about: node:quantity-kind/amount-of-substance-fraction

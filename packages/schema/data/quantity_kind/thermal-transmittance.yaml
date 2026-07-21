@@ -1,13 +1,8 @@
-node: node:quantity-kind/thermal-transmittance
-slug: thermal-transmittance
-broader: node:quantity-kind/coefficient-of-heat-transfer
-refs:
-  - node: thermal-transmittance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: coefficient-of-heat-transfer
+ref:
+  qudt-quantity-kind:
     term: ThermalTransmittance
     match: exact
-contents:
-  - node: thermal-transmittance-en
-    language: en
+content:
+  en:
     title: Thermal Transmittance
-    about: node:quantity-kind/thermal-transmittance

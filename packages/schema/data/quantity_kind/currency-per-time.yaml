@@ -1,12 +1,7 @@
-node: node:quantity-kind/currency-per-time
-slug: currency-per-time
-refs:
-  - node: currency-per-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CurrencyPerTime
     match: exact
-contents:
-  - node: currency-per-time-en
-    language: en
+content:
+  en:
     title: Currency per Time
-    about: node:quantity-kind/currency-per-time

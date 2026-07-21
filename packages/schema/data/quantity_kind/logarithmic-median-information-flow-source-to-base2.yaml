@@ -1,15 +1,10 @@
-node: node:quantity-kind/logarithmic-median-information-flow-source-to-base2
-slug: logarithmic-median-information-flow-source-to-base2
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/binary-logarithmic-median-information-flow
-refs:
-  - node: logarithmic-median-information-flow-source-to-base2-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: binary-logarithmic-median-information-flow
+ref:
+  qudt-quantity-kind:
     term: LogarithmicMedianInformationFlow_SourceToBase2
     match: exact
-contents:
-  - node: logarithmic-median-information-flow-source-to-base2-en
-    language: en
+content:
+  en:
     title: median information flow (from a source of information), expressed as a binary logarithm
-    about: node:quantity-kind/logarithmic-median-information-flow-source-to-base2

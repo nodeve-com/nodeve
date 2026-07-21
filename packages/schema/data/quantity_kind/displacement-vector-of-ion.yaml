@@ -1,17 +1,11 @@
-node: node:quantity-kind/displacement-vector-of-ion
-slug: displacement-vector-of-ion
-broader: node:quantity-kind/length
-refs:
-  - node: displacement-vector-of-ion-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: DisplacementVectorOfIon
     match: exact
-  - node: displacement-vector-of-ion-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105533558
     match: exact
-contents:
-  - node: displacement-vector-of-ion-en
-    language: en
+content:
+  en:
     title: Displacement Vector of Ion
-    about: node:quantity-kind/displacement-vector-of-ion

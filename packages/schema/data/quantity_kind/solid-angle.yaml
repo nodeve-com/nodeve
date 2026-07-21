@@ -1,16 +1,10 @@
-node: node:quantity-kind/solid-angle
-slug: solid-angle
-refs:
-  - node: solid-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SolidAngle
     match: exact
-  - node: solid-angle-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q208476
     match: exact
-contents:
-  - node: solid-angle-en
-    language: en
+content:
+  en:
     title: Solid Angle
-    about: node:quantity-kind/solid-angle

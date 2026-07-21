@@ -1,13 +1,8 @@
-node: node:quantity-kind/electric-flux-density
-slug: electric-flux-density
-broader: node:quantity-kind/electric-charge-per-area
-refs:
-  - node: electric-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-charge-per-area
+ref:
+  qudt-quantity-kind:
     term: ElectricFluxDensity
     match: exact
-contents:
-  - node: electric-flux-density-en
-    language: en
+content:
+  en:
     title: Electric Flux Density
-    about: node:quantity-kind/electric-flux-density

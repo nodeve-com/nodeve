@@ -1,16 +1,10 @@
-node: node:quantity-kind/permeance
-slug: permeance
-refs:
-  - node: permeance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Permeance
     match: exact
-  - node: permeance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q77997985
     match: exact
-contents:
-  - node: permeance-en
-    language: en
+content:
+  en:
     title: Permeance
-    about: node:quantity-kind/permeance

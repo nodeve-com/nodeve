@@ -1,17 +1,10 @@
-node: node:quantity-kind/tilt
-slug: tilt
-broader: node:quantity-kind/angle
-refs:
-  - node: tilt-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: Tilt
     match: exact
-contents:
-  - node: tilt-en
-    language: en
+content:
+  en:
     title: Tilt
-    about: node:quantity-kind/tilt
-  - node: tilt-pt
-    language: pt
+  pt:
     title: Inclinação
-    about: node:quantity-kind/tilt

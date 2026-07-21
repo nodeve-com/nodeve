@@ -1,15 +1,10 @@
-node: node:quantity-kind/inert-mass
-slug: inert-mass
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/mass
-refs:
-  - node: inert-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: INERT-MASS
     match: exact
-contents:
-  - node: inert-mass-en
-    language: en
+content:
+  en:
     title: Inert Mass
-    about: node:quantity-kind/inert-mass

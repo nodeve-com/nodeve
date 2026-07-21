@@ -1,12 +1,7 @@
-node: node:quantity-kind/thermal-inertia
-slug: thermal-inertia
-refs:
-  - node: thermal-inertia-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalInertia
     match: exact
-contents:
-  - node: thermal-inertia-en
-    language: en
+content:
+  en:
     title: Measurement Unit of Thermal Inertia
-    about: node:quantity-kind/thermal-inertia

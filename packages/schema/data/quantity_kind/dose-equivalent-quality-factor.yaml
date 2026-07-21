@@ -1,16 +1,10 @@
-node: node:quantity-kind/dose-equivalent-quality-factor
-slug: dose-equivalent-quality-factor
-refs:
-  - node: dose-equivalent-quality-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: DoseEquivalentQualityFactor
     match: exact
-  - node: dose-equivalent-quality-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2122099
     match: exact
-contents:
-  - node: dose-equivalent-quality-factor-en
-    language: en
+content:
+  en:
     title: Dose Equivalent Quality Factor
-    about: node:quantity-kind/dose-equivalent-quality-factor

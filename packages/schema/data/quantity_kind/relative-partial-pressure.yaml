@@ -1,13 +1,8 @@
-node: node:quantity-kind/relative-partial-pressure
-slug: relative-partial-pressure
-broader: node:quantity-kind/pressure-ratio
-refs:
-  - node: relative-partial-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure-ratio
+ref:
+  qudt-quantity-kind:
     term: RelativePartialPressure
     match: exact
-contents:
-  - node: relative-partial-pressure-en
-    language: en
+content:
+  en:
     title: Relative Partial Pressure
-    about: node:quantity-kind/relative-partial-pressure

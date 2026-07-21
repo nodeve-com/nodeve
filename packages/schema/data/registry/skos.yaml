@@ -1,13 +1,7 @@
-node: node:registry/skos
-slug: skos
 url: https://www.w3.org/TR/skos-reference/
 iri_template: http://www.w3.org/2004/02/skos/core#{id}
-contents:
-  - node: skos-en
-    language: en
+content:
+  en:
     title: W3C SKOS (Simple Knowledge Organization System)
-    about: node:registry/skos
-  - node: skos-pt
-    language: pt
+  pt:
     title: W3C SKOS (Sistema Simples de Organização do Conhecimento)
-    about: node:registry/skos

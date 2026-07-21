@@ -1,17 +1,11 @@
-node: node:quantity-kind/angle-of-attack
-slug: angle-of-attack
-broader: node:quantity-kind/angle
-refs:
-  - node: angle-of-attack-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: AngleOfAttack
     match: exact
-  - node: angle-of-attack-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q370906
     match: exact
-contents:
-  - node: angle-of-attack-en
-    language: en
+content:
+  en:
     title: Angle of Attack
-    about: node:quantity-kind/angle-of-attack

@@ -1,15 +1,10 @@
-node: node:quantity-kind/serum-or-plasma-level
-slug: serum-or-plasma-level
 deprecated: true
 deprecated_in: 3.1.4
-broader: node:quantity-kind/amount-of-substance-per-volume
-refs:
-  - node: serum-or-plasma-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: amount-of-substance-per-volume
+ref:
+  qudt-quantity-kind:
     term: SerumOrPlasmaLevel
     match: exact
-contents:
-  - node: serum-or-plasma-level-en
-    language: en
+content:
+  en:
     title: Serum or Plasma Level
-    about: node:quantity-kind/serum-or-plasma-level

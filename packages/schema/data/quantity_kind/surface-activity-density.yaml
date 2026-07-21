@@ -1,16 +1,10 @@
-node: node:quantity-kind/surface-activity-density
-slug: surface-activity-density
-refs:
-  - node: surface-activity-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SurfaceActivityDensity
     match: exact
-  - node: surface-activity-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98103005
     match: exact
-contents:
-  - node: surface-activity-density-en
-    language: en
+content:
+  en:
     title: Surface Activity Density
-    about: node:quantity-kind/surface-activity-density

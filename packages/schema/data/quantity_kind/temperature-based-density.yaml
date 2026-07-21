@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-based-density
-slug: temperature-based-density
-refs:
-  - node: temperature-based-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureBasedDensity
     match: exact
-contents:
-  - node: temperature-based-density-en
-    language: en
+content:
+  en:
     title: Temperature-based Density
-    about: node:quantity-kind/temperature-based-density

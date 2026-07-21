@@ -1,13 +1,8 @@
-node: node:quantity-kind/magnetization-field
-slug: magnetization-field
-broader: node:quantity-kind/electric-current-per-length
-refs:
-  - node: magnetization-field-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-current-per-length
+ref:
+  qudt-quantity-kind:
     term: MagnetizationField
     match: exact
-contents:
-  - node: magnetization-field-en
-    language: en
+content:
+  en:
     title: Magnetization Field
-    about: node:quantity-kind/magnetization-field

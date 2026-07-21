@@ -1,16 +1,10 @@
-node: node:quantity-kind/specific-entropy
-slug: specific-entropy
-refs:
-  - node: specific-entropy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpecificEntropy
     match: exact
-  - node: specific-entropy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q69423705
     match: exact
-contents:
-  - node: specific-entropy-en
-    language: en
+content:
+  en:
     title: Specific Entropy
-    about: node:quantity-kind/specific-entropy

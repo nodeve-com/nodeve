@@ -1,12 +1,6 @@
-node: node:registry/iec-61850
-slug: iec-61850
 url: https://www.iec.ch/
-contents:
-  - node: iec-61850-en
-    language: en
+content:
+  en:
     title: IEC 61850 logical nodes (power utility automation)
-    about: node:registry/iec-61850
-  - node: iec-61850-pt
-    language: pt
+  pt:
     title: Nós lógicos IEC 61850 (automação de serviços de energia)
-    about: node:registry/iec-61850

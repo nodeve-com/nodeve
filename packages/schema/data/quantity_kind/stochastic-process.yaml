@@ -1,12 +1,7 @@
-node: node:quantity-kind/stochastic-process
-slug: stochastic-process
-refs:
-  - node: stochastic-process-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: StochasticProcess
     match: exact
-contents:
-  - node: stochastic-process-en
-    language: en
+content:
+  en:
     title: Stochastic Process
-    about: node:quantity-kind/stochastic-process

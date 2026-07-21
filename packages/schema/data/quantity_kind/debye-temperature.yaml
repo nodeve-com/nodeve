@@ -1,17 +1,11 @@
-node: node:quantity-kind/debye-temperature
-slug: debye-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: debye-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: DebyeTemperature
     match: exact
-  - node: debye-temperature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q3517821
     match: exact
-contents:
-  - node: debye-temperature-en
-    language: en
+content:
+  en:
     title: Debye Temperature
-    about: node:quantity-kind/debye-temperature

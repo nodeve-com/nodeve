@@ -1,17 +1,11 @@
-node: node:quantity-kind/specific-enthalpy
-slug: specific-enthalpy
-broader: node:quantity-kind/specific-energy
-refs:
-  - node: specific-enthalpy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-energy
+ref:
+  qudt-quantity-kind:
     term: SpecificEnthalpy
     match: exact
-  - node: specific-enthalpy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q21572993
     match: exact
-contents:
-  - node: specific-enthalpy-en
-    language: en
+content:
+  en:
     title: Specific Enthalpy
-    about: node:quantity-kind/specific-enthalpy

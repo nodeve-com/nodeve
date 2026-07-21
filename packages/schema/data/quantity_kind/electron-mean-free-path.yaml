@@ -1,17 +1,11 @@
-node: node:quantity-kind/electron-mean-free-path
-slug: electron-mean-free-path
-broader: node:quantity-kind/length
-refs:
-  - node: electron-mean-free-path-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: ElectronMeanFreePath
     match: exact
-  - node: electron-mean-free-path-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105672307
     match: exact
-contents:
-  - node: electron-mean-free-path-en
-    language: en
+content:
+  en:
     title: Electron Mean Free Path
-    about: node:quantity-kind/electron-mean-free-path

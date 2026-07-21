@@ -1,16 +1,10 @@
-node: node:quantity-kind/attenuation-coefficient
-slug: attenuation-coefficient
-refs:
-  - node: attenuation-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AttenuationCoefficient
     match: exact
-  - node: attenuation-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q902086
     match: exact
-contents:
-  - node: attenuation-coefficient-en
-    language: en
+content:
+  en:
     title: Attenuation Coefficient
-    about: node:quantity-kind/attenuation-coefficient

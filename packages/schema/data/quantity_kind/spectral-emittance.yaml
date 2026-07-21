@@ -1,12 +1,7 @@
-node: node:quantity-kind/spectral-emittance
-slug: spectral-emittance
-refs:
-  - node: spectral-emittance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpectralEmittance
     match: exact
-contents:
-  - node: spectral-emittance-en
-    language: en
+content:
+  en:
     title: Measurement Unit of Spectral Emittance
-    about: node:quantity-kind/spectral-emittance

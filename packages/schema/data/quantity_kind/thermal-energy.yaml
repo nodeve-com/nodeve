@@ -1,17 +1,11 @@
-node: node:quantity-kind/thermal-energy
-slug: thermal-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: thermal-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: ThermalEnergy
     match: exact
-  - node: thermal-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q209233
     match: exact
-contents:
-  - node: thermal-energy-en
-    language: en
+content:
+  en:
     title: Thermal Energy
-    about: node:quantity-kind/thermal-energy

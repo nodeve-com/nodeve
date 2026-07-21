@@ -1,12 +1,7 @@
-node: node:quantity-kind/spectral-luminous-efficiency
-slug: spectral-luminous-efficiency
-refs:
-  - node: spectral-luminous-efficiency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpectralLuminousEfficiency
     match: exact
-contents:
-  - node: spectral-luminous-efficiency-en
-    language: en
+content:
+  en:
     title: Spectral Luminous Efficiency
-    about: node:quantity-kind/spectral-luminous-efficiency

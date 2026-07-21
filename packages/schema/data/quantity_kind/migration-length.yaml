@@ -1,17 +1,11 @@
-node: node:quantity-kind/migration-length
-slug: migration-length
-broader: node:quantity-kind/length
-refs:
-  - node: migration-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: MigrationLength
     match: exact
-  - node: migration-length-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98998318
     match: exact
-contents:
-  - node: migration-length-en
-    language: en
+content:
+  en:
     title: Migration Length
-    about: node:quantity-kind/migration-length

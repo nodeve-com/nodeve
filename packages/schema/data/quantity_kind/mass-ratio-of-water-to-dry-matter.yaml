@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-ratio-of-water-to-dry-matter
-slug: mass-ratio-of-water-to-dry-matter
-refs:
-  - node: mass-ratio-of-water-to-dry-matter-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassRatioOfWaterToDryMatter
     match: exact
-contents:
-  - node: mass-ratio-of-water-to-dry-matter-en
-    language: en
+content:
+  en:
     title: Mass Concentration of Water to Dry Matter
-    about: node:quantity-kind/mass-ratio-of-water-to-dry-matter

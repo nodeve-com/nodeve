@@ -1,16 +1,10 @@
-node: node:quantity-kind/structure-factor
-slug: structure-factor
-refs:
-  - node: structure-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: StructureFactor
     match: exact
-  - node: structure-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q900684
     match: exact
-contents:
-  - node: structure-factor-en
-    language: en
+content:
+  en:
     title: Structure Factor
-    about: node:quantity-kind/structure-factor

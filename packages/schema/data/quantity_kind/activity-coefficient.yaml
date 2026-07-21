@@ -1,16 +1,10 @@
-node: node:quantity-kind/activity-coefficient
-slug: activity-coefficient
-refs:
-  - node: activity-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ActivityCoefficient
     match: exact
-  - node: activity-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q745224
     match: exact
-contents:
-  - node: activity-coefficient-en
-    language: en
+content:
+  en:
     title: Activity Coefficient
-    about: node:quantity-kind/activity-coefficient

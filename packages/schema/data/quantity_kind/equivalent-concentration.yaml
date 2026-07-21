@@ -1,13 +1,8 @@
-node: node:quantity-kind/equivalent-concentration
-slug: equivalent-concentration
-broader: node:quantity-kind/concentration
-refs:
-  - node: equivalent-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: concentration
+ref:
+  qudt-quantity-kind:
     term: EquivalentConcentration
     match: exact
-contents:
-  - node: equivalent-concentration-en
-    language: en
+content:
+  en:
     title: Equivalent Concentration
-    about: node:quantity-kind/equivalent-concentration

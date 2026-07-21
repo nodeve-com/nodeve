@@ -1,13 +1,8 @@
-node: node:quantity-kind/helmholtz-energy
-slug: helmholtz-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: helmholtz-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: HelmholtzEnergy
     match: exact
-contents:
-  - node: helmholtz-energy-en
-    language: en
+content:
+  en:
     title: Helmholtz Energy
-    about: node:quantity-kind/helmholtz-energy

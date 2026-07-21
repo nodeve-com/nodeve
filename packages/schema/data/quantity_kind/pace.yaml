@@ -1,12 +1,7 @@
-node: node:quantity-kind/pace
-slug: pace
-refs:
-  - node: pace-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Pace
     match: exact
-contents:
-  - node: pace-en
-    language: en
+content:
+  en:
     title: Pace
-    about: node:quantity-kind/pace

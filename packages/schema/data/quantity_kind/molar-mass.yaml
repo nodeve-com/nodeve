@@ -1,16 +1,10 @@
-node: node:quantity-kind/molar-mass
-slug: molar-mass
-refs:
-  - node: molar-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarMass
     match: exact
-  - node: molar-mass-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q145623
     match: exact
-contents:
-  - node: molar-mass-en
-    language: en
+content:
+  en:
     title: Molar Mass
-    about: node:quantity-kind/molar-mass

@@ -1,17 +1,11 @@
-node: node:quantity-kind/stress
-slug: stress
-broader: node:quantity-kind/force-per-area
-refs:
-  - node: stress-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force-per-area
+ref:
+  qudt-quantity-kind:
     term: Stress
     match: exact
-  - node: stress-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q206175
     match: exact
-contents:
-  - node: stress-en
-    language: en
+content:
+  en:
     title: Stress
-    about: node:quantity-kind/stress

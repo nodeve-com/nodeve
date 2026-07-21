@@ -1,12 +1,7 @@
-node: node:quantity-kind/areic-torque
-slug: areic-torque
-refs:
-  - node: areic-torque-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreicTorque
     match: exact
-contents:
-  - node: areic-torque-en
-    language: en
+content:
+  en:
     title: Areic Torque
-    about: node:quantity-kind/areic-torque

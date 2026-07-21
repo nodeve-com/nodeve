@@ -1,13 +1,8 @@
-node: node:quantity-kind/turns
-slug: turns
-broader: node:quantity-kind/count
-refs:
-  - node: turns-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: count
+ref:
+  qudt-quantity-kind:
     term: Turns
     match: exact
-contents:
-  - node: turns-en
-    language: en
+content:
+  en:
     title: Turns
-    about: node:quantity-kind/turns

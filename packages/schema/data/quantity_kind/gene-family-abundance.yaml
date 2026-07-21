@@ -1,13 +1,8 @@
-node: node:quantity-kind/gene-family-abundance
-slug: gene-family-abundance
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: gene-family-abundance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: GeneFamilyAbundance
     match: exact
-contents:
-  - node: gene-family-abundance-en
-    language: en
+content:
+  en:
     title: Gene Family Abundance
-    about: node:quantity-kind/gene-family-abundance

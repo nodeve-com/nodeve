@@ -1,16 +1,10 @@
-node: node:quantity-kind/total-ionization
-slug: total-ionization
-refs:
-  - node: total-ionization-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TotalIonization
     match: exact
-  - node: total-ionization-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98690787
     match: exact
-contents:
-  - node: total-ionization-en
-    language: en
+content:
+  en:
     title: Total Ionization
-    about: node:quantity-kind/total-ionization

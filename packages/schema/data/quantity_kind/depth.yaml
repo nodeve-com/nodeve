@@ -1,17 +1,11 @@
-node: node:quantity-kind/depth
-slug: depth
-broader: node:quantity-kind/length
-refs:
-  - node: depth-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Depth
     match: exact
-  - node: depth-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q930412
     match: exact
-contents:
-  - node: depth-en
-    language: en
+content:
+  en:
     title: Depth
-    about: node:quantity-kind/depth

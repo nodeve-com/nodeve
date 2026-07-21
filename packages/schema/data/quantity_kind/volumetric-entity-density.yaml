@@ -1,12 +1,7 @@
-node: node:quantity-kind/volumetric-entity-density
-slug: volumetric-entity-density
-refs:
-  - node: volumetric-entity-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumetricEntityDensity
     match: exact
-contents:
-  - node: volumetric-entity-density-en
-    language: en
+content:
+  en:
     title: Volumetric Entity Density
-    about: node:quantity-kind/volumetric-entity-density

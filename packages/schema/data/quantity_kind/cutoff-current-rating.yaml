@@ -1,12 +1,7 @@
-node: node:quantity-kind/cutoff-current-rating
-slug: cutoff-current-rating
-refs:
-  - node: cutoff-current-rating-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CutoffCurrentRating
     match: exact
-contents:
-  - node: cutoff-current-rating-en
-    language: en
+content:
+  en:
     title: I²t-value
-    about: node:quantity-kind/cutoff-current-rating

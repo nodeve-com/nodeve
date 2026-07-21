@@ -1,15 +1,10 @@
-node: node:quantity-kind/target-bogie-mass
-slug: target-bogie-mass
 deprecated: true
 deprecated_in: 3.2.0
-broader: node:quantity-kind/mass
-refs:
-  - node: target-bogie-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: TARGET-BOGIE-MASS
     match: exact
-contents:
-  - node: target-bogie-mass-en
-    language: en
+content:
+  en:
     title: Target Bogie Mass
-    about: node:quantity-kind/target-bogie-mass

@@ -1,16 +1,10 @@
-node: node:quantity-kind/sound-power-level
-slug: sound-power-level
-refs:
-  - node: sound-power-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SoundPowerLevel
     match: exact
-  - node: sound-power-level-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2157873
     match: exact
-contents:
-  - node: sound-power-level-en
-    language: en
+content:
+  en:
     title: Sound Power Level
-    about: node:quantity-kind/sound-power-level

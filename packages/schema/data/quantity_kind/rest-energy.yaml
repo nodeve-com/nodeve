@@ -1,17 +1,11 @@
-node: node:quantity-kind/rest-energy
-slug: rest-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: rest-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: RestEnergy
     match: exact
-  - node: rest-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11663629
     match: exact
-contents:
-  - node: rest-energy-en
-    language: en
+content:
+  en:
     title: Rest Energy
-    about: node:quantity-kind/rest-energy

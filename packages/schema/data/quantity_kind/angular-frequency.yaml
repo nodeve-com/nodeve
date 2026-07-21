@@ -1,16 +1,10 @@
-node: node:quantity-kind/angular-frequency
-slug: angular-frequency
-refs:
-  - node: angular-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AngularFrequency
     match: exact
-  - node: angular-frequency-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q834020
     match: exact
-contents:
-  - node: angular-frequency-en
-    language: en
+content:
+  en:
     title: Angular Frequency
-    about: node:quantity-kind/angular-frequency

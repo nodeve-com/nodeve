@@ -1,13 +1,8 @@
-node: node:quantity-kind/gauge-pressure
-slug: gauge-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: gauge-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: GaugePressure
     match: exact
-contents:
-  - node: gauge-pressure-en
-    language: en
+content:
+  en:
     title: Gauge Pressure
-    about: node:quantity-kind/gauge-pressure

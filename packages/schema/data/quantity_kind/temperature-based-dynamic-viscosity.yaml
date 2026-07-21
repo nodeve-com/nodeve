@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-based-dynamic-viscosity
-slug: temperature-based-dynamic-viscosity
-refs:
-  - node: temperature-based-dynamic-viscosity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureBasedDynamicViscosity
     match: exact
-contents:
-  - node: temperature-based-dynamic-viscosity-en
-    language: en
+content:
+  en:
     title: Temperature-based Dynamic Viscosity
-    about: node:quantity-kind/temperature-based-dynamic-viscosity

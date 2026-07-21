@@ -1,17 +1,11 @@
-node: node:quantity-kind/carrier-lifetime
-slug: carrier-lifetime
-broader: node:quantity-kind/time
-refs:
-  - node: carrier-lifetime-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: CarrierLifetime
     match: exact
-  - node: carrier-lifetime-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q5046374
     match: exact
-contents:
-  - node: carrier-lifetime-en
-    language: en
+content:
+  en:
     title: Carrier Lifetime
-    about: node:quantity-kind/carrier-lifetime

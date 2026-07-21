@@ -1,13 +1,8 @@
-node: node:quantity-kind/conductive-heat-transfer-rate
-slug: conductive-heat-transfer-rate
-broader: node:quantity-kind/heat-flow-rate
-refs:
-  - node: conductive-heat-transfer-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: heat-flow-rate
+ref:
+  qudt-quantity-kind:
     term: ConductiveHeatTransferRate
     match: exact
-contents:
-  - node: conductive-heat-transfer-rate-en
-    language: en
+content:
+  en:
     title: Conductive Heat Transfer Rate
-    about: node:quantity-kind/conductive-heat-transfer-rate

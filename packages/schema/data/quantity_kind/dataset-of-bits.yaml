@@ -1,12 +1,7 @@
-node: node:quantity-kind/dataset-of-bits
-slug: dataset-of-bits
-refs:
-  - node: dataset-of-bits-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: DatasetOfBits
     match: exact
-contents:
-  - node: dataset-of-bits-en
-    language: en
+content:
+  en:
     title: Dataset of Bits
-    about: node:quantity-kind/dataset-of-bits

@@ -1,16 +1,10 @@
-node: node:quantity-kind/absorptance
-slug: absorptance
-refs:
-  - node: absorptance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Absorptance
     match: exact
-  - node: absorptance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q16635541
     match: exact
-contents:
-  - node: absorptance-en
-    language: en
+content:
+  en:
     title: Absorptance
-    about: node:quantity-kind/absorptance

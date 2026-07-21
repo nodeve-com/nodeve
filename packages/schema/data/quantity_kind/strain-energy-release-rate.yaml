@@ -1,13 +1,8 @@
-node: node:quantity-kind/strain-energy-release-rate
-slug: strain-energy-release-rate
-broader: node:quantity-kind/energy-per-area
-refs:
-  - node: strain-energy-release-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-per-area
+ref:
+  qudt-quantity-kind:
     term: StrainEnergyReleaseRate
     match: exact
-contents:
-  - node: strain-energy-release-rate-en
-    language: en
+content:
+  en:
     title: Strain Energy Release Rate
-    about: node:quantity-kind/strain-energy-release-rate

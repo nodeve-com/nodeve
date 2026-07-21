@@ -1,12 +1,7 @@
-node: node:quantity-kind/thermal-capacitance
-slug: thermal-capacitance
-refs:
-  - node: thermal-capacitance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalCapacitance
     match: exact
-contents:
-  - node: thermal-capacitance-en
-    language: en
+content:
+  en:
     title: Thermal Capacitance
-    about: node:quantity-kind/thermal-capacitance

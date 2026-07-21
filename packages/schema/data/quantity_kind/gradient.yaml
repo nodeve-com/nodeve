@@ -1,12 +1,7 @@
-node: node:quantity-kind/gradient
-slug: gradient
-refs:
-  - node: gradient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Gradient
     match: exact
-contents:
-  - node: gradient-en
-    language: en
+content:
+  en:
     title: Gradient
-    about: node:quantity-kind/gradient

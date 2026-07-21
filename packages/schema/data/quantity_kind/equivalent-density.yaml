@@ -1,13 +1,8 @@
-node: node:quantity-kind/equivalent-density
-slug: equivalent-density
-broader: node:quantity-kind/density
-refs:
-  - node: equivalent-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: density
+ref:
+  qudt-quantity-kind:
     term: EquivalentDensity
     match: exact
-contents:
-  - node: equivalent-density-en
-    language: en
+content:
+  en:
     title: Equivalent Density
-    about: node:quantity-kind/equivalent-density

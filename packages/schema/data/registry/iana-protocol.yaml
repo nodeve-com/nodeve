@@ -1,12 +1,6 @@
-node: node:registry/iana-protocol
-slug: iana-protocol
 url: https://www.iana.org/assignments/protocol-numbers/
-contents:
-  - node: iana-protocol-en
-    language: en
+content:
+  en:
     title: IANA Protocol Numbers
-    about: node:registry/iana-protocol
-  - node: iana-protocol-pt
-    language: pt
+  pt:
     title: Números de Protocolo IANA
-    about: node:registry/iana-protocol

@@ -1,13 +1,8 @@
-node: node:quantity-kind/ion-concentration
-slug: ion-concentration
-broader: node:quantity-kind/concentration
-refs:
-  - node: ion-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: concentration
+ref:
+  qudt-quantity-kind:
     term: IonConcentration
     match: exact
-contents:
-  - node: ion-concentration-en
-    language: en
+content:
+  en:
     title: Ion Concentration
-    about: node:quantity-kind/ion-concentration

@@ -1,13 +1,8 @@
-node: node:quantity-kind/mass-based-blood-glucose-level
-slug: mass-based-blood-glucose-level
-broader: node:quantity-kind/mass-concentration
-refs:
-  - node: mass-based-blood-glucose-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-concentration
+ref:
+  qudt-quantity-kind:
     term: MassBasedBloodGlucoseLevel
     match: exact
-contents:
-  - node: mass-based-blood-glucose-level-en
-    language: en
+content:
+  en:
     title: Blood Glucose Level by Mass
-    about: node:quantity-kind/mass-based-blood-glucose-level

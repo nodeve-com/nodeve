@@ -1,25 +1,16 @@
-node: node:quantity-kind/volume
-slug: volume
 si_unit: m³
-refs:
-  - node: volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Volume
     match: exact
-  - node: volume-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q39297
     match: exact
-  - node: volume-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: volume
     match: exact
-contents:
-  - node: volume-en
-    language: en
+content:
+  en:
     title: Volume
-    about: node:quantity-kind/volume
-  - node: volume-pt
-    language: pt
+  pt:
     title: Volume
-    about: node:quantity-kind/volume

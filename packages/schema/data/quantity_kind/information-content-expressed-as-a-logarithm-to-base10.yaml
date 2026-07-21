@@ -1,12 +1,7 @@
-node: node:quantity-kind/information-content-expressed-as-a-logarithm-to-base10
-slug: information-content-expressed-as-a-logarithm-to-base10
-refs:
-  - node: information-content-expressed-as-a-logarithm-to-base10-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InformationContentExpressedAsALogarithmToBase10
     match: exact
-contents:
-  - node: information-content-expressed-as-a-logarithm-to-base10-en
-    language: en
+content:
+  en:
     title: Information Content Expressed as a Logarithm to Base 10
-    about: node:quantity-kind/information-content-expressed-as-a-logarithm-to-base10

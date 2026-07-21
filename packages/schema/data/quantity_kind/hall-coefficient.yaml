@@ -1,16 +1,10 @@
-node: node:quantity-kind/hall-coefficient
-slug: hall-coefficient
-refs:
-  - node: hall-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: HallCoefficient
     match: exact
-  - node: hall-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q997439
     match: exact
-contents:
-  - node: hall-coefficient-en
-    language: en
+content:
+  en:
     title: Hall Coefficient
-    about: node:quantity-kind/hall-coefficient

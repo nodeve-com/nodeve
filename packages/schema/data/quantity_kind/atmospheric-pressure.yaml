@@ -1,17 +1,11 @@
-node: node:quantity-kind/atmospheric-pressure
-slug: atmospheric-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: atmospheric-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: AtmosphericPressure
     match: exact
-  - node: atmospheric-pressure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q81809
     match: exact
-contents:
-  - node: atmospheric-pressure-en
-    language: en
+content:
+  en:
     title: Atmospheric Pressure
-    about: node:quantity-kind/atmospheric-pressure

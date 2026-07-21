@@ -1,13 +1,8 @@
-node: node:quantity-kind/atomic-energy
-slug: atomic-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: atomic-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: AtomicEnergy
     match: exact
-contents:
-  - node: atomic-energy-en
-    language: en
+content:
+  en:
     title: Atomic Energy
-    about: node:quantity-kind/atomic-energy

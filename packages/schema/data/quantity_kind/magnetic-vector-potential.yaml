@@ -1,16 +1,10 @@
-node: node:quantity-kind/magnetic-vector-potential
-slug: magnetic-vector-potential
-refs:
-  - node: magnetic-vector-potential-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MagneticVectorPotential
     match: exact
-  - node: magnetic-vector-potential-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2299100
     match: exact
-contents:
-  - node: magnetic-vector-potential-en
-    language: en
+content:
+  en:
     title: Magnetic Vector Potential
-    about: node:quantity-kind/magnetic-vector-potential

@@ -1,13 +1,8 @@
-node: node:quantity-kind/amount-of-substance-per-volume
-slug: amount-of-substance-per-volume
-broader: node:quantity-kind/concentration
-refs:
-  - node: amount-of-substance-per-volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: concentration
+ref:
+  qudt-quantity-kind:
     term: AmountOfSubstancePerVolume
     match: exact
-contents:
-  - node: amount-of-substance-per-volume-en
-    language: en
+content:
+  en:
     title: Amount of Substance per Volume
-    about: node:quantity-kind/amount-of-substance-per-volume

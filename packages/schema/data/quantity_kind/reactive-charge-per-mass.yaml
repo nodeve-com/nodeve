@@ -1,12 +1,7 @@
-node: node:quantity-kind/reactive-charge-per-mass
-slug: reactive-charge-per-mass
-refs:
-  - node: reactive-charge-per-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ReactiveChargePerMass
     match: exact
-contents:
-  - node: reactive-charge-per-mass-en
-    language: en
+content:
+  en:
     title: Reactive Charge per Mass
-    about: node:quantity-kind/reactive-charge-per-mass

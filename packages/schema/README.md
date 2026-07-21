@@ -2,7 +2,7 @@
 
 Central source of truth for **describing things**. [LinkML](https://linkml.io) schemas validate authored descriptions and normalized storage rows. Generated projections supply SQL DDL, validation schemas, program types, and databases.
 
-Replaces `@nodeve/grimoire`. See [levels.md](docs/levels.md) for the level grammar and [authoring-storage-handoff.md](docs/authoring-storage-handoff.md) for the target authoring/compiler/storage split.
+Replaces `@nodeve/grimoire`. See [levels.md](docs/levels.md) for the level grammar and [authoring-storage-handoff.md](docs/authoring-storage-handoff.md) for how authored docs normalize into schema-validated rows.
 
 ## Status
 
@@ -16,7 +16,7 @@ Break the schema, the data shape, and the generated DDL freely — no deprecatio
 2. Multiple facets and 1:1 extensions share their owner's node; they have no separate id space.
 3. Children have their own node and reference their parent node.
 4. Every interval has an authored slug; `quantity_kind` + `slug` is its key.
-5. A row that cannot compile is underspecified: author its identity axes, not a special case.
+5. A row that cannot normalize is underspecified: author its identity axes, not a special case.
 
 Answer identity questions from [levels.md](docs/levels.md) before inventing a scheme.
 
@@ -24,12 +24,12 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 
 | file | is |
 | --- | --- |
-| `linkml/nodeve.yaml` | current storage-oriented schema; split target documented in the handoff |
+| `linkml/nodeve.yaml` | the one schema — describes normalized rows; authored YAML normalizes into them |
 | `linkml/nodeve-slots.yaml` | current shared slots + enums |
 | `format.ts` | formatting gate over authored yaml (`--check` for precommit) |
 | `project-overlay.ts` | registry rows → `gen/nodeve-projected.yaml`, the validation overlay |
 | `check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |
-| `bundle.ts` | sharded rows → `gen/catalog.yaml`, the one root object `linkml-sqldb` ingests |
+| `normalize/catalog.ts` | THE normalizer — authored docs → normalized rows → `gen/catalog.yaml`, the one root object `linkml-sqldb` ingests; pass a data file to print its rows |
 | `ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no hook over backref columns |
 | `data/device_model/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | table-like authored vocabularies and policy rows. **Placeholder fixtures — not normative** |
@@ -40,7 +40,7 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 
 ```sh
 pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
-pnpm generate   # overlay + format + bundle, no python
+pnpm generate   # overlay + format + normalize, no python
 pnpm validate   # a device model against its generated stencil
 pnpm check      # format gate (--check), what precommit runs
 pnpm check:refs # do registry iri_templates actually resolve? (network)

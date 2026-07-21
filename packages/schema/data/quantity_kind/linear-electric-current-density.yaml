@@ -1,16 +1,10 @@
-node: node:quantity-kind/linear-electric-current-density
-slug: linear-electric-current-density
-refs:
-  - node: linear-electric-current-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearElectricCurrentDensity
     match: exact
-  - node: linear-electric-current-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2356741
     match: exact
-contents:
-  - node: linear-electric-current-density-en
-    language: en
+content:
+  en:
     title: Linear Electric Current Density
-    about: node:quantity-kind/linear-electric-current-density

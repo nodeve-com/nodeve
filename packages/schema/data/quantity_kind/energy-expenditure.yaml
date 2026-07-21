@@ -1,13 +1,8 @@
-node: node:quantity-kind/energy-expenditure
-slug: energy-expenditure
-broader: node:quantity-kind/massic-power
-refs:
-  - node: energy-expenditure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: massic-power
+ref:
+  qudt-quantity-kind:
     term: EnergyExpenditure
     match: exact
-contents:
-  - node: energy-expenditure-en
-    language: en
+content:
+  en:
     title: Energy Expenditure
-    about: node:quantity-kind/energy-expenditure

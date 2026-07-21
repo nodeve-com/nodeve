@@ -1,12 +1,7 @@
-node: node:quantity-kind/einstein-transition-probability
-slug: einstein-transition-probability
-refs:
-  - node: einstein-transition-probability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EinsteinTransitionProbability
     match: exact
-contents:
-  - node: einstein-transition-probability-en
-    language: en
+content:
+  en:
     title: Einstein Transition Probability
-    about: node:quantity-kind/einstein-transition-probability

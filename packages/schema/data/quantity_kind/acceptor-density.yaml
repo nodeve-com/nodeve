@@ -1,17 +1,11 @@
-node: node:quantity-kind/acceptor-density
-slug: acceptor-density
-broader: node:quantity-kind/number-density
-refs:
-  - node: acceptor-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: number-density
+ref:
+  qudt-quantity-kind:
     term: AcceptorDensity
     match: exact
-  - node: acceptor-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105979968
     match: exact
-contents:
-  - node: acceptor-density-en
-    language: en
+content:
+  en:
     title: Acceptor Density
-    about: node:quantity-kind/acceptor-density

@@ -1,13 +1,8 @@
-node: node:quantity-kind/radiosity
-slug: radiosity
-broader: node:quantity-kind/power-per-area
-refs:
-  - node: radiosity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power-per-area
+ref:
+  qudt-quantity-kind:
     term: Radiosity
     match: exact
-contents:
-  - node: radiosity-en
-    language: en
+content:
+  en:
     title: Radiosity
-    about: node:quantity-kind/radiosity

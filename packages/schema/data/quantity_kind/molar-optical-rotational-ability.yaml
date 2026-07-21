@@ -1,12 +1,7 @@
-node: node:quantity-kind/molar-optical-rotational-ability
-slug: molar-optical-rotational-ability
-refs:
-  - node: molar-optical-rotational-ability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarOpticalRotationalAbility
     match: exact
-contents:
-  - node: molar-optical-rotational-ability-en
-    language: en
+content:
+  en:
     title: Molar Optical Rotational Ability
-    about: node:quantity-kind/molar-optical-rotational-ability

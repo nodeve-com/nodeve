@@ -1,17 +1,11 @@
-node: node:quantity-kind/period
-slug: period
-broader: node:quantity-kind/time
-refs:
-  - node: period-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: Period
     match: exact
-  - node: period-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2642727
     match: exact
-contents:
-  - node: period-en
-    language: en
+content:
+  en:
     title: Period
-    about: node:quantity-kind/period

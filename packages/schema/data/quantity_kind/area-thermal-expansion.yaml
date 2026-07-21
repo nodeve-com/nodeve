@@ -1,12 +1,7 @@
-node: node:quantity-kind/area-thermal-expansion
-slug: area-thermal-expansion
-refs:
-  - node: area-thermal-expansion-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreaThermalExpansion
     match: exact
-contents:
-  - node: area-thermal-expansion-en
-    language: en
+content:
+  en:
     title: Area Thermal Expansion
-    about: node:quantity-kind/area-thermal-expansion

@@ -1,16 +1,10 @@
-node: node:quantity-kind/catalytic-activity
-slug: catalytic-activity
-refs:
-  - node: catalytic-activity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CatalyticActivity
     match: exact
-  - node: catalytic-activity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1735592
     match: exact
-contents:
-  - node: catalytic-activity-en
-    language: en
+content:
+  en:
     title: Catalytic Activity
-    about: node:quantity-kind/catalytic-activity

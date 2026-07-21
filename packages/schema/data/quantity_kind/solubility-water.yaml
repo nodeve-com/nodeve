@@ -1,16 +1,11 @@
-node: node:quantity-kind/solubility-water
-slug: solubility-water
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/water-solubility
-broader: node:quantity-kind/amount-of-substance-per-volume
-refs:
-  - node: solubility-water-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: amount-of-substance-per-volume
+replaced_by: water-solubility
+ref:
+  qudt-quantity-kind:
     term: Solubility_Water
     match: exact
-contents:
-  - node: solubility-water-en
-    language: en
+content:
+  en:
     title: Water Solubility
-    about: node:quantity-kind/solubility-water

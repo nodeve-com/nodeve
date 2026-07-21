@@ -1,12 +1,7 @@
-node: node:quantity-kind/length-per-electric-current
-slug: length-per-electric-current
-refs:
-  - node: length-per-electric-current-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LengthPerElectricCurrent
     match: exact
-contents:
-  - node: length-per-electric-current-en
-    language: en
+content:
+  en:
     title: Length per Electric Current
-    about: node:quantity-kind/length-per-electric-current

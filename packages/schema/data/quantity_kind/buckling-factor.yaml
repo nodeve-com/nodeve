@@ -1,13 +1,8 @@
-node: node:quantity-kind/buckling-factor
-slug: buckling-factor
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: buckling-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: BucklingFactor
     match: exact
-contents:
-  - node: buckling-factor-en
-    language: en
+content:
+  en:
     title: Buckling Factor
-    about: node:quantity-kind/buckling-factor

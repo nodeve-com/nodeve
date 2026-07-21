@@ -1,12 +1,7 @@
-node: node:quantity-kind/spectral-radiant-energy-density-in-terms-of-wavelength
-slug: spectral-radiant-energy-density-in-terms-of-wavelength
-refs:
-  - node: spectral-radiant-energy-density-in-terms-of-wavelength-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpectralRadiantEnergyDensityInTermsOfWavelength
     match: exact
-contents:
-  - node: spectral-radiant-energy-density-in-terms-of-wavelength-en
-    language: en
+content:
+  en:
     title: Spectral Radiant Energy Density in Terms of Wavelength
-    about: node:quantity-kind/spectral-radiant-energy-density-in-terms-of-wavelength

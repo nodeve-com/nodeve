@@ -1,13 +1,8 @@
-node: node:quantity-kind/burn-rate
-slug: burn-rate
-broader: node:quantity-kind/linear-velocity
-refs:
-  - node: burn-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: linear-velocity
+ref:
+  qudt-quantity-kind:
     term: BurnRate
     match: exact
-contents:
-  - node: burn-rate-en
-    language: en
+content:
+  en:
     title: Burn Rate
-    about: node:quantity-kind/burn-rate

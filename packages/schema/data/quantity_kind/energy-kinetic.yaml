@@ -1,20 +1,14 @@
-node: node:quantity-kind/energy-kinetic
-slug: energy-kinetic
 deprecated: true
 deprecated_in: 3.2.0
-replaced_by: node:quantity-kind/kinetic-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: energy-kinetic-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+replaced_by: kinetic-energy
+ref:
+  qudt-quantity-kind:
     term: EnergyKinetic
     match: exact
-  - node: energy-kinetic-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q46276
     match: exact
-contents:
-  - node: energy-kinetic-en
-    language: en
+content:
+  en:
     title: kinetic energy
-    about: node:quantity-kind/energy-kinetic

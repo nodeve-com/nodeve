@@ -1,13 +1,8 @@
-node: node:quantity-kind/temperature-ratio
-slug: temperature-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: temperature-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: TemperatureRatio
     match: exact
-contents:
-  - node: temperature-ratio-en
-    language: en
+content:
+  en:
     title: Temperature Ratio
-    about: node:quantity-kind/temperature-ratio

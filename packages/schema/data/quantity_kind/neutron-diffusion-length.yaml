@@ -1,13 +1,8 @@
-node: node:quantity-kind/neutron-diffusion-length
-slug: neutron-diffusion-length
-broader: node:quantity-kind/length
-refs:
-  - node: neutron-diffusion-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: NeutronDiffusionLength
     match: exact
-contents:
-  - node: neutron-diffusion-length-en
-    language: en
+content:
+  en:
     title: Neutron Diffusion Length
-    about: node:quantity-kind/neutron-diffusion-length

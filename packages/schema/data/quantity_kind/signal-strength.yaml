@@ -1,13 +1,8 @@
-node: node:quantity-kind/signal-strength
-slug: signal-strength
-broader: node:quantity-kind/electric-field
-refs:
-  - node: signal-strength-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-field
+ref:
+  qudt-quantity-kind:
     term: SignalStrength
     match: exact
-contents:
-  - node: signal-strength-en
-    language: en
+content:
+  en:
     title: Signal Strength
-    about: node:quantity-kind/signal-strength

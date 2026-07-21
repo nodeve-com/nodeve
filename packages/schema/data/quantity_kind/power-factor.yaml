@@ -1,26 +1,17 @@
-node: node:quantity-kind/power-factor
-slug: power-factor
-si_unit: "1"
+si_unit: '1'
 accumulation: instantaneous
-refs:
-  - node: power-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerFactor
     match: exact
-  - node: power-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q750454
     match: exact
-  - node: power-factor-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: power_factor
     match: exact
-contents:
-  - node: power-factor-en
-    language: en
+content:
+  en:
     title: Power Factor
-    about: node:quantity-kind/power-factor
-  - node: power-factor-pt
-    language: pt
+  pt:
     title: Fator de potência
-    about: node:quantity-kind/power-factor

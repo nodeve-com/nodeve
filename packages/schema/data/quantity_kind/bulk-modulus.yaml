@@ -1,17 +1,11 @@
-node: node:quantity-kind/bulk-modulus
-slug: bulk-modulus
-broader: node:quantity-kind/modulus-of-elasticity
-refs:
-  - node: bulk-modulus-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: modulus-of-elasticity
+ref:
+  qudt-quantity-kind:
     term: BulkModulus
     match: exact
-  - node: bulk-modulus-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q900371
     match: exact
-contents:
-  - node: bulk-modulus-en
-    language: en
+content:
+  en:
     title: Bulk Modulus
-    about: node:quantity-kind/bulk-modulus

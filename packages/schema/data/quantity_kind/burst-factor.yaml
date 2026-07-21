@@ -1,12 +1,7 @@
-node: node:quantity-kind/burst-factor
-slug: burst-factor
-refs:
-  - node: burst-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: BurstFactor
     match: exact
-contents:
-  - node: burst-factor-en
-    language: en
+content:
+  en:
     title: Burst Factor
-    about: node:quantity-kind/burst-factor

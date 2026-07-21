@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-gradient
-slug: temperature-gradient
-refs:
-  - node: temperature-gradient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureGradient
     match: exact
-contents:
-  - node: temperature-gradient-en
-    language: en
+content:
+  en:
     title: Temperature Gradient
-    about: node:quantity-kind/temperature-gradient

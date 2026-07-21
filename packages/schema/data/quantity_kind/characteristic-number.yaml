@@ -1,13 +1,8 @@
-node: node:quantity-kind/characteristic-number
-slug: characteristic-number
-broader: node:quantity-kind/dimensionless
-refs:
-  - node: characteristic-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless
+ref:
+  qudt-quantity-kind:
     term: CharacteristicNumber
     match: exact
-contents:
-  - node: characteristic-number-en
-    language: en
+content:
+  en:
     title: Characteristic Number
-    about: node:quantity-kind/characteristic-number

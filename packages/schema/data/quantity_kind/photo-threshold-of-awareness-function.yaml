@@ -1,12 +1,7 @@
-node: node:quantity-kind/photo-threshold-of-awareness-function
-slug: photo-threshold-of-awareness-function
-refs:
-  - node: photo-threshold-of-awareness-function-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PhotoThresholdOfAwarenessFunction
     match: exact
-contents:
-  - node: photo-threshold-of-awareness-function-en
-    language: en
+content:
+  en:
     title: Photo Threshold of Awareness Function
-    about: node:quantity-kind/photo-threshold-of-awareness-function

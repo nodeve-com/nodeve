@@ -1,17 +1,11 @@
-node: node:quantity-kind/sound-power
-slug: sound-power
-broader: node:quantity-kind/power
-refs:
-  - node: sound-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power
+ref:
+  qudt-quantity-kind:
     term: SoundPower
     match: exact
-  - node: sound-power-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1588477
     match: exact
-contents:
-  - node: sound-power-en
-    language: en
+content:
+  en:
     title: Sound Power
-    about: node:quantity-kind/sound-power

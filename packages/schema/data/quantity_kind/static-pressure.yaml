@@ -1,17 +1,11 @@
-node: node:quantity-kind/static-pressure
-slug: static-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: static-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: StaticPressure
     match: exact
-  - node: static-pressure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2406217
     match: exact
-contents:
-  - node: static-pressure-en
-    language: en
+content:
+  en:
     title: Static Pressure
-    about: node:quantity-kind/static-pressure

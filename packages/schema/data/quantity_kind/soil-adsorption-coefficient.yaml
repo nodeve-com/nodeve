@@ -1,13 +1,8 @@
-node: node:quantity-kind/soil-adsorption-coefficient
-slug: soil-adsorption-coefficient
-broader: node:quantity-kind/specific-volume
-refs:
-  - node: soil-adsorption-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-volume
+ref:
+  qudt-quantity-kind:
     term: SoilAdsorptionCoefficient
     match: exact
-contents:
-  - node: soil-adsorption-coefficient-en
-    language: en
+content:
+  en:
     title: Soil Adsorption Coefficient
-    about: node:quantity-kind/soil-adsorption-coefficient

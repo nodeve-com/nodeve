@@ -1,12 +1,7 @@
-node: node:quantity-kind/linear-voltage-coefficient
-slug: linear-voltage-coefficient
-refs:
-  - node: linear-voltage-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearVoltageCoefficient
     match: exact
-contents:
-  - node: linear-voltage-coefficient-en
-    language: en
+content:
+  en:
     title: Linear Voltage Coefficient
-    about: node:quantity-kind/linear-voltage-coefficient

@@ -1,12 +1,7 @@
-node: node:quantity-kind/electric-charge-per-area
-slug: electric-charge-per-area
-refs:
-  - node: electric-charge-per-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricChargePerArea
     match: exact
-contents:
-  - node: electric-charge-per-area-en
-    language: en
+content:
+  en:
     title: Electric Charge per Area
-    about: node:quantity-kind/electric-charge-per-area

@@ -1,17 +1,11 @@
-node: node:quantity-kind/radiant-exposure
-slug: radiant-exposure
-broader: node:quantity-kind/energy-per-area
-refs:
-  - node: radiant-exposure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-per-area
+ref:
+  qudt-quantity-kind:
     term: RadiantExposure
     match: exact
-  - node: radiant-exposure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1418023
     match: exact
-contents:
-  - node: radiant-exposure-en
-    language: en
+content:
+  en:
     title: Radiant Exposure
-    about: node:quantity-kind/radiant-exposure

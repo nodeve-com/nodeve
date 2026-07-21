@@ -1,17 +1,11 @@
-node: node:quantity-kind/coherence-length
-slug: coherence-length
-broader: node:quantity-kind/length
-refs:
-  - node: coherence-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: CoherenceLength
     match: exact
-  - node: coherence-length-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q7643174
     match: exact
-contents:
-  - node: coherence-length-en
-    language: en
+content:
+  en:
     title: Coherence Length
-    about: node:quantity-kind/coherence-length

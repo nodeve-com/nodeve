@@ -1,12 +1,7 @@
-node: node:quantity-kind/coupling-factor
-slug: coupling-factor
-refs:
-  - node: coupling-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CouplingFactor
     match: exact
-contents:
-  - node: coupling-factor-en
-    language: en
+content:
+  en:
     title: Coupling Factor
-    about: node:quantity-kind/coupling-factor

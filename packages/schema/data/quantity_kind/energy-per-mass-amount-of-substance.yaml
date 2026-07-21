@@ -1,12 +1,7 @@
-node: node:quantity-kind/energy-per-mass-amount-of-substance
-slug: energy-per-mass-amount-of-substance
-refs:
-  - node: energy-per-mass-amount-of-substance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EnergyPerMassAmountOfSubstance
     match: exact
-contents:
-  - node: energy-per-mass-amount-of-substance-en
-    language: en
+content:
+  en:
     title: Energy and Work per Mass Amount of Substance
-    about: node:quantity-kind/energy-per-mass-amount-of-substance

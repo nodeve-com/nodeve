@@ -1,13 +1,8 @@
-node: node:quantity-kind/positive-length
-slug: positive-length
-broader: node:quantity-kind/non-negative-length
-refs:
-  - node: positive-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: non-negative-length
+ref:
+  qudt-quantity-kind:
     term: PositiveLength
     match: exact
-contents:
-  - node: positive-length-en
-    language: en
+content:
+  en:
     title: Positive Length
-    about: node:quantity-kind/positive-length

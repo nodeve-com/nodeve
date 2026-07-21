@@ -1,17 +1,11 @@
-node: node:quantity-kind/sound-particle-displacement
-slug: sound-particle-displacement
-broader: node:quantity-kind/length
-refs:
-  - node: sound-particle-displacement-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: SoundParticleDisplacement
     match: exact
-  - node: sound-particle-displacement-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q779457
     match: exact
-contents:
-  - node: sound-particle-displacement-en
-    language: en
+content:
+  en:
     title: Sound Particle Displacement
-    about: node:quantity-kind/sound-particle-displacement

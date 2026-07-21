@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-per-length
-slug: mass-per-length
-refs:
-  - node: mass-per-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassPerLength
     match: exact
-contents:
-  - node: mass-per-length-en
-    language: en
+content:
+  en:
     title: Mass per Length
-    about: node:quantity-kind/mass-per-length

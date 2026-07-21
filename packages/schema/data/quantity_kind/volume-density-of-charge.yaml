@@ -1,12 +1,7 @@
-node: node:quantity-kind/volume-density-of-charge
-slug: volume-density-of-charge
-refs:
-  - node: volume-density-of-charge-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: VolumeDensityOfCharge
     match: exact
-contents:
-  - node: volume-density-of-charge-en
-    language: en
+content:
+  en:
     title: Volume Density of Charge
-    about: node:quantity-kind/volume-density-of-charge

@@ -1,13 +1,8 @@
-node: node:quantity-kind/molar-internal-energy
-slug: molar-internal-energy
-broader: node:quantity-kind/molar-energy
-refs:
-  - node: molar-internal-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: molar-energy
+ref:
+  qudt-quantity-kind:
     term: MolarInternalEnergy
     match: exact
-contents:
-  - node: molar-internal-energy-en
-    language: en
+content:
+  en:
     title: Molar Internal Energy
-    about: node:quantity-kind/molar-internal-energy

@@ -1,16 +1,10 @@
-node: node:quantity-kind/inverse-temperature
-slug: inverse-temperature
-refs:
-  - node: inverse-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InverseTemperature
     match: exact
-  - node: inverse-temperature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q107028650
     match: exact
-contents:
-  - node: inverse-temperature-en
-    language: en
+content:
+  en:
     title: Inverse Temperature
-    about: node:quantity-kind/inverse-temperature

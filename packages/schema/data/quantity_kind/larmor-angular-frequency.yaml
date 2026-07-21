@@ -1,17 +1,11 @@
-node: node:quantity-kind/larmor-angular-frequency
-slug: larmor-angular-frequency
-broader: node:quantity-kind/angular-frequency
-refs:
-  - node: larmor-angular-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angular-frequency
+ref:
+  qudt-quantity-kind:
     term: LarmorAngularFrequency
     match: exact
-  - node: larmor-angular-frequency-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q97617059
     match: exact
-contents:
-  - node: larmor-angular-frequency-en
-    language: en
+content:
+  en:
     title: Larmor Angular Frequency
-    about: node:quantity-kind/larmor-angular-frequency

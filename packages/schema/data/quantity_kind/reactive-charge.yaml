@@ -1,13 +1,8 @@
-node: node:quantity-kind/reactive-charge
-slug: reactive-charge
-broader: node:quantity-kind/molar-equivalent
-refs:
-  - node: reactive-charge-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: molar-equivalent
+ref:
+  qudt-quantity-kind:
     term: ReactiveCharge
     match: exact
-contents:
-  - node: reactive-charge-en
-    language: en
+content:
+  en:
     title: Reactive Charge
-    about: node:quantity-kind/reactive-charge

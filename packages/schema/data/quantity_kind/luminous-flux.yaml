@@ -1,16 +1,10 @@
-node: node:quantity-kind/luminous-flux
-slug: luminous-flux
-refs:
-  - node: luminous-flux-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LuminousFlux
     match: exact
-  - node: luminous-flux-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q107780
     match: exact
-contents:
-  - node: luminous-flux-en
-    language: en
+content:
+  en:
     title: Luminous Flux
-    about: node:quantity-kind/luminous-flux

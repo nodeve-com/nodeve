@@ -1,17 +1,11 @@
-node: node:quantity-kind/radiant-energy-density
-slug: radiant-energy-density
-broader: node:quantity-kind/energy-density
-refs:
-  - node: radiant-energy-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-density
+ref:
+  qudt-quantity-kind:
     term: RadiantEnergyDensity
     match: exact
-  - node: radiant-energy-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q15054312
     match: exact
-contents:
-  - node: radiant-energy-density-en
-    language: en
+content:
+  en:
     title: Radiant Energy Density
-    about: node:quantity-kind/radiant-energy-density

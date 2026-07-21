@@ -1,13 +1,8 @@
-node: node:quantity-kind/energy-level
-slug: energy-level
-broader: node:quantity-kind/energy
-refs:
-  - node: energy-level-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: EnergyLevel
     match: exact
-contents:
-  - node: energy-level-en
-    language: en
+content:
+  en:
     title: Energy Level
-    about: node:quantity-kind/energy-level

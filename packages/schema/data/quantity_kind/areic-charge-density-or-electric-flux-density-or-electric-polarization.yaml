@@ -1,14 +1,9 @@
-node: node:quantity-kind/areic-charge-density-or-electric-flux-density-or-electric-polarization
-slug: areic-charge-density-or-electric-flux-density-or-electric-polarization
 deprecated: true
 deprecated_in: 3.1.4
-refs:
-  - node: areic-charge-density-or-electric-flux-density-or-electric-polarization-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreicChargeDensityOrElectricFluxDensityOrElectricPolarization
     match: exact
-contents:
-  - node: areic-charge-density-or-electric-flux-density-or-electric-polarization-en
-    language: en
+content:
+  en:
     title: areic charge density or electric flux density or electric polarization
-    about: node:quantity-kind/areic-charge-density-or-electric-flux-density-or-electric-polarization

@@ -1,21 +1,13 @@
-node: node:quantity-kind/width
-slug: width
-broader: node:quantity-kind/length
-refs:
-  - node: width-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Width
     match: exact
-  - node: width-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q35059
     match: exact
-contents:
-  - node: width-en
-    language: en
+content:
+  en:
     title: Width
-    about: node:quantity-kind/width
-  - node: width-pt
-    language: pt
+  pt:
     title: Largura (mm)
-    about: node:quantity-kind/width

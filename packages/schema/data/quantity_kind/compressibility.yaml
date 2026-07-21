@@ -1,16 +1,10 @@
-node: node:quantity-kind/compressibility
-slug: compressibility
-refs:
-  - node: compressibility-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Compressibility
     match: exact
-  - node: compressibility-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q8067817
     match: exact
-contents:
-  - node: compressibility-en
-    language: en
+content:
+  en:
     title: Compressibility
-    about: node:quantity-kind/compressibility

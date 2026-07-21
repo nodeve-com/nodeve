@@ -1,13 +1,8 @@
-node: node:quantity-kind/rankine-temperature
-slug: rankine-temperature
-broader: node:quantity-kind/thermodynamic-temperature
-refs:
-  - node: rankine-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: thermodynamic-temperature
+ref:
+  qudt-quantity-kind:
     term: RankineTemperature
     match: exact
-contents:
-  - node: rankine-temperature-en
-    language: en
+content:
+  en:
     title: Rankine Temperature
-    about: node:quantity-kind/rankine-temperature

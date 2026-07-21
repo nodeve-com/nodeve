@@ -1,17 +1,11 @@
-node: node:quantity-kind/normal-stress
-slug: normal-stress
-broader: node:quantity-kind/stress
-refs:
-  - node: normal-stress-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: stress
+ref:
+  qudt-quantity-kind:
     term: NormalStress
     match: exact
-  - node: normal-stress-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11425837
     match: exact
-contents:
-  - node: normal-stress-en
-    language: en
+content:
+  en:
     title: Normal Stress
-    about: node:quantity-kind/normal-stress

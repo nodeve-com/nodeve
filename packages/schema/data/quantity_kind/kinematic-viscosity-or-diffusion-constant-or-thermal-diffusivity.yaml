@@ -1,14 +1,9 @@
-node: node:quantity-kind/kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity
-slug: kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity
 deprecated: true
 deprecated_in: 3.1.4
-refs:
-  - node: kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: KinematicViscosityOrDiffusionConstantOrThermalDiffusivity
     match: exact
-contents:
-  - node: kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity-en
-    language: en
+content:
+  en:
     title: kinematic viscosity or diffusion constant or thermal diffusivity
-    about: node:quantity-kind/kinematic-viscosity-or-diffusion-constant-or-thermal-diffusivity

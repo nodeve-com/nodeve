@@ -1,12 +1,7 @@
-node: node:quantity-kind/electrical-resistance
-slug: electrical-resistance
-refs:
-  - node: electrical-resistance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricalResistance
     match: exact
-contents:
-  - node: electrical-resistance-en
-    language: en
+content:
+  en:
     title: Electrical Resistance
-    about: node:quantity-kind/electrical-resistance

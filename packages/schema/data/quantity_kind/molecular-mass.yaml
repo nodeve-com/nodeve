@@ -1,17 +1,11 @@
-node: node:quantity-kind/molecular-mass
-slug: molecular-mass
-broader: node:quantity-kind/mass
-refs:
-  - node: molecular-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass
+ref:
+  qudt-quantity-kind:
     term: MolecularMass
     match: exact
-  - node: molecular-mass-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q182854
     match: exact
-contents:
-  - node: molecular-mass-en
-    language: en
+content:
+  en:
     title: Molecular Mass
-    about: node:quantity-kind/molecular-mass

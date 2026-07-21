@@ -1,17 +1,11 @@
-node: node:quantity-kind/mean-linear-range
-slug: mean-linear-range
-broader: node:quantity-kind/length
-refs:
-  - node: mean-linear-range-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: MeanLinearRange
     match: exact
-  - node: mean-linear-range-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98681589
     match: exact
-contents:
-  - node: mean-linear-range-en
-    language: en
+content:
+  en:
     title: Mean Linear Range
-    about: node:quantity-kind/mean-linear-range

@@ -1,12 +1,7 @@
-node: node:quantity-kind/data-rate
-slug: data-rate
-refs:
-  - node: data-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: DataRate
     match: exact
-contents:
-  - node: data-rate-en
-    language: en
+content:
+  en:
     title: Data Rate
-    about: node:quantity-kind/data-rate

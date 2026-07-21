@@ -1,12 +1,7 @@
-node: node:quantity-kind/pressure-based-electric-voltage
-slug: pressure-based-electric-voltage
-refs:
-  - node: pressure-based-electric-voltage-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PressureBasedElectricVoltage
     match: exact
-contents:
-  - node: pressure-based-electric-voltage-en
-    language: en
+content:
+  en:
     title: Pressure-based Electric Voltage
-    about: node:quantity-kind/pressure-based-electric-voltage

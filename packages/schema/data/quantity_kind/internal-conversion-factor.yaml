@@ -1,16 +1,10 @@
-node: node:quantity-kind/internal-conversion-factor
-slug: internal-conversion-factor
-refs:
-  - node: internal-conversion-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InternalConversionFactor
     match: exact
-  - node: internal-conversion-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q6047819
     match: exact
-contents:
-  - node: internal-conversion-factor-en
-    language: en
+content:
+  en:
     title: Internal Conversion Factor
-    about: node:quantity-kind/internal-conversion-factor

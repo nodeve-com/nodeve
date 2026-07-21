@@ -8,6 +8,15 @@ const transliterate = (input: string): string =>
 		})
 		.join('');
 
+/** The shape of every non-empty `slugify` output: kebab-case lowercase alphanumerics. */
+export const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/**
+ * Whether `input` already is a slug — exactly the non-empty fixed points of
+ * `slugify`: `isSlug(s) === (s !== '' && slugify(s) === s)`.
+ */
+export const isSlug = (input: string): boolean => SLUG_PATTERN.test(input);
+
 /**
  * Convert a string to a URL-safe slug.
  *

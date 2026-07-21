@@ -1,12 +1,7 @@
-node: node:quantity-kind/electrical-conductance
-slug: electrical-conductance
-refs:
-  - node: electrical-conductance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricalConductance
     match: exact
-contents:
-  - node: electrical-conductance-en
-    language: en
+content:
+  en:
     title: Electrical Conductance
-    about: node:quantity-kind/electrical-conductance

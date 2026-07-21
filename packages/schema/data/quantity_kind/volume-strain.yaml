@@ -1,17 +1,11 @@
-node: node:quantity-kind/volume-strain
-slug: volume-strain
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: volume-strain-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: VolumeStrain
     match: exact
-  - node: volume-strain-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q73432507
     match: exact
-contents:
-  - node: volume-strain-en
-    language: en
+content:
+  en:
     title: Volume Strain
-    about: node:quantity-kind/volume-strain

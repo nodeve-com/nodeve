@@ -1,17 +1,11 @@
-node: node:quantity-kind/work
-slug: work
-broader: node:quantity-kind/energy
-refs:
-  - node: work-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: Work
     match: exact
-  - node: work-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q42213
     match: exact
-contents:
-  - node: work-en
-    language: en
+content:
+  en:
     title: Work
-    about: node:quantity-kind/work

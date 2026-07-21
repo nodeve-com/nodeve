@@ -1,13 +1,8 @@
-node: node:quantity-kind/zenith-angle
-slug: zenith-angle
-broader: node:quantity-kind/angle
-refs:
-  - node: zenith-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: ZenithAngle
     match: exact
-contents:
-  - node: zenith-angle-en
-    language: en
+content:
+  en:
     title: Zenith Angle
-    about: node:quantity-kind/zenith-angle

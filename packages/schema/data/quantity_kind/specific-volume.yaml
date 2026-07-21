@@ -1,16 +1,10 @@
-node: node:quantity-kind/specific-volume
-slug: specific-volume
-refs:
-  - node: specific-volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpecificVolume
     match: exact
-  - node: specific-volume-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q683556
     match: exact
-contents:
-  - node: specific-volume-en
-    language: en
+content:
+  en:
     title: Specific Volume
-    about: node:quantity-kind/specific-volume

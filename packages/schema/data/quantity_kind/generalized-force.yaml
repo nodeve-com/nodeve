@@ -1,16 +1,10 @@
-node: node:quantity-kind/generalized-force
-slug: generalized-force
-refs:
-  - node: generalized-force-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: GeneralizedForce
     match: exact
-  - node: generalized-force-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1153787
     match: exact
-contents:
-  - node: generalized-force-en
-    language: en
+content:
+  en:
     title: Generalized Force
-    about: node:quantity-kind/generalized-force

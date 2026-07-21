@@ -1,13 +1,7 @@
-node: node:registry/brick
-slug: brick
 url: https://brickschema.org/
 iri_template: https://brickschema.org/schema/Brick#{id}
-contents:
-  - node: brick-en
-    language: en
+content:
+  en:
     title: Brick Schema (building/energy equipment ontology)
-    about: node:registry/brick
-  - node: brick-pt
-    language: pt
+  pt:
     title: Brick Schema (ontologia de equipamentos de edifícios/energia)
-    about: node:registry/brick

@@ -1,16 +1,10 @@
-node: node:quantity-kind/pressure-coefficient
-slug: pressure-coefficient
-refs:
-  - node: pressure-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PressureCoefficient
     match: exact
-  - node: pressure-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q74762732
     match: exact
-contents:
-  - node: pressure-coefficient-en
-    language: en
+content:
+  en:
     title: Pressure Coefficient
-    about: node:quantity-kind/pressure-coefficient

@@ -1,13 +1,8 @@
-node: node:quantity-kind/cation-exchange-capacity
-slug: cation-exchange-capacity
-broader: node:quantity-kind/reactive-charge-per-mass
-refs:
-  - node: cation-exchange-capacity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: reactive-charge-per-mass
+ref:
+  qudt-quantity-kind:
     term: CationExchangeCapacity
     match: exact
-contents:
-  - node: cation-exchange-capacity-en
-    language: en
+content:
+  en:
     title: Cation Exchange Capacity
-    about: node:quantity-kind/cation-exchange-capacity

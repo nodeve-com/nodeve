@@ -1,16 +1,10 @@
-node: node:quantity-kind/thermal-insulance
-slug: thermal-insulance
-refs:
-  - node: thermal-insulance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalInsulance
     match: exact
-  - node: thermal-insulance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2596212
     match: exact
-contents:
-  - node: thermal-insulance-en
-    language: en
+content:
+  en:
     title: Thermal Insulance
-    about: node:quantity-kind/thermal-insulance

@@ -1,17 +1,11 @@
-node: node:quantity-kind/planck-function
-slug: planck-function
-broader: node:quantity-kind/energy
-refs:
-  - node: planck-function-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: PlanckFunction
     match: exact
-  - node: planck-function-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q76364998
     match: exact
-contents:
-  - node: planck-function-en
-    language: en
+content:
+  en:
     title: Planck Function
-    about: node:quantity-kind/planck-function

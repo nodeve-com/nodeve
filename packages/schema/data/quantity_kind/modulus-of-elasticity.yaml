@@ -1,13 +1,8 @@
-node: node:quantity-kind/modulus-of-elasticity
-slug: modulus-of-elasticity
-broader: node:quantity-kind/force-per-area
-refs:
-  - node: modulus-of-elasticity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force-per-area
+ref:
+  qudt-quantity-kind:
     term: ModulusOfElasticity
     match: exact
-contents:
-  - node: modulus-of-elasticity-en
-    language: en
+content:
+  en:
     title: Modulus of Elasticity
-    about: node:quantity-kind/modulus-of-elasticity

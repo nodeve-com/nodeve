@@ -1,12 +1,7 @@
-node: node:quantity-kind/square-time
-slug: square-time
-refs:
-  - node: square-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SquareTime
     match: exact
-contents:
-  - node: square-time-en
-    language: en
+content:
+  en:
     title: Square Time
-    about: node:quantity-kind/square-time

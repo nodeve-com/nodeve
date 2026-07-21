@@ -1,16 +1,10 @@
-node: node:quantity-kind/turbidity
-slug: turbidity
-refs:
-  - node: turbidity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Turbidity
     match: exact
-  - node: turbidity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q898574
     match: exact
-contents:
-  - node: turbidity-en
-    language: en
+content:
+  en:
     title: Turbidity
-    about: node:quantity-kind/turbidity

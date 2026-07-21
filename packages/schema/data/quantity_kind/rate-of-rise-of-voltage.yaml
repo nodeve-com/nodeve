@@ -1,12 +1,7 @@
-node: node:quantity-kind/rate-of-rise-of-voltage
-slug: rate-of-rise-of-voltage
-refs:
-  - node: rate-of-rise-of-voltage-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: RateOfRiseOfVoltage
     match: exact
-contents:
-  - node: rate-of-rise-of-voltage-en
-    language: en
+content:
+  en:
     title: Rate of Rise of Voltage
-    about: node:quantity-kind/rate-of-rise-of-voltage

@@ -60,6 +60,8 @@ classes:
   SocketBinding:
     annotations:
       sql_table: socket_binding
+      # authored form: a map keyed by this slot (socket_binding: {out: …})
+      keyed_by: role
     slots: [node, feature_type, role, required]
 
   # The ingest container — linkml-sqldb needs ONE root object per dump, so the
@@ -96,6 +98,9 @@ classes:
   Ref:
     annotations:
       sql_table: ref
+      # authored form: a map keyed by this slot's range (ref: {wikidata: …});
+      # keys are bare registry slugs, the normalizer expands them to CURIEs
+      keyed_by: registry
     slots: [node, registry, term, match]
 
   # The quantity master list AS ROWS — bulk-loaded from QUDT (grimoire's
@@ -121,20 +126,25 @@ classes:
         contents,
       ]
 
-  # One row per feature type × quantity — the feature type's admissible set as data. The
-  # overlay projects ONE enum per feature type from these rows, validated once on
-  # Interval; the aspect flags (spec / measurable — which width extension a
-  # quantity's rows may carry) stay a bake check, like part-absence.
+  # One row per feature type × quantity — the feature type's admissible set as
+  # data. The overlay projects ONE enum per feature type from these rows,
+  # validated once on Interval. Membership is the whole contract: which facets
+  # an interval carries is a fact of the model, not the type.
   QuantityBinding:
     annotations:
       sql_table: quantity_binding
-    slots: [node, quantity_kind, spec, measurable]
+      # authored form: a map keyed by this slot's range (quantity_binding: {voltage: …})
+      keyed_by: quantity_kind
+    slots: [node, quantity_kind]
 
   # Reusable localized content. Each row has its own node; `about` points to
   # the described node. No class-specific parent FK.
   Content:
     annotations:
       sql_table: content
+      # authored form: a map keyed by this slot (content: {en: …, pt: …});
+      # the normalizer reads it here, never hardcodes it
+      keyed_by: language
     slots: [node, about, language, title, lede, body]
 
   # ── feature layer: reusable tables ──

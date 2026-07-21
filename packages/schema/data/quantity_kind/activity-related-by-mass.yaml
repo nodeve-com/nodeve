@@ -1,13 +1,8 @@
-node: node:quantity-kind/activity-related-by-mass
-slug: activity-related-by-mass
-broader: node:quantity-kind/massic-activity
-refs:
-  - node: activity-related-by-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: massic-activity
+ref:
+  qudt-quantity-kind:
     term: ActivityRelatedByMass
     match: exact
-contents:
-  - node: activity-related-by-mass-en
-    language: en
+content:
+  en:
     title: Activity Related by Mass
-    about: node:quantity-kind/activity-related-by-mass

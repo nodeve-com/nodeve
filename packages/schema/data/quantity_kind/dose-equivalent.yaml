@@ -1,17 +1,11 @@
-node: node:quantity-kind/dose-equivalent
-slug: dose-equivalent
-broader: node:quantity-kind/specific-energy
-refs:
-  - node: dose-equivalent-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: specific-energy
+ref:
+  qudt-quantity-kind:
     term: DoseEquivalent
     match: exact
-  - node: dose-equivalent-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q256106
     match: exact
-contents:
-  - node: dose-equivalent-en
-    language: en
+content:
+  en:
     title: Dose Equivalent
-    about: node:quantity-kind/dose-equivalent

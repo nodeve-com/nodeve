@@ -1,17 +1,11 @@
-node: node:quantity-kind/diastolic-blood-pressure
-slug: diastolic-blood-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: diastolic-blood-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: DiastolicBloodPressure
     match: exact
-  - node: diastolic-blood-pressure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q42015777
     match: exact
-contents:
-  - node: diastolic-blood-pressure-en
-    language: en
+content:
+  en:
     title: Diastolic Blood Pressure
-    about: node:quantity-kind/diastolic-blood-pressure

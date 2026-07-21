@@ -1,17 +1,11 @@
-node: node:quantity-kind/diffusion-length
-slug: diffusion-length
-broader: node:quantity-kind/length
-refs:
-  - node: diffusion-length-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: DiffusionLength
     match: exact
-  - node: diffusion-length-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98997762
     match: exact
-contents:
-  - node: diffusion-length-en
-    language: en
+content:
+  en:
     title: Diffusion Length
-    about: node:quantity-kind/diffusion-length

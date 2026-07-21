@@ -1,12 +1,7 @@
-node: node:quantity-kind/energy-per-square-magnetic-flux-density
-slug: energy-per-square-magnetic-flux-density
-refs:
-  - node: energy-per-square-magnetic-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EnergyPerSquareMagneticFluxDensity
     match: exact
-contents:
-  - node: energy-per-square-magnetic-flux-density-en
-    language: en
+content:
+  en:
     title: Energy per Square Magnetic Flux Density
-    about: node:quantity-kind/energy-per-square-magnetic-flux-density

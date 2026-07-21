@@ -1,17 +1,11 @@
-node: node:quantity-kind/kinetic-energy
-slug: kinetic-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: kinetic-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: KineticEnergy
     match: exact
-  - node: kinetic-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q46276
     match: exact
-contents:
-  - node: kinetic-energy-en
-    language: en
+content:
+  en:
     title: Kinetic Energy
-    about: node:quantity-kind/kinetic-energy

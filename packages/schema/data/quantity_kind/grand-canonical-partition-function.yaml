@@ -1,17 +1,11 @@
-node: node:quantity-kind/grand-canonical-partition-function
-slug: grand-canonical-partition-function
-broader: node:quantity-kind/canonical-partition-function
-refs:
-  - node: grand-canonical-partition-function-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: canonical-partition-function
+ref:
+  qudt-quantity-kind:
     term: GrandCanonicalPartitionFunction
     match: exact
-  - node: grand-canonical-partition-function-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q96176022
     match: exact
-contents:
-  - node: grand-canonical-partition-function-en
-    language: en
+content:
+  en:
     title: Grand Canonical Partition Function
-    about: node:quantity-kind/grand-canonical-partition-function

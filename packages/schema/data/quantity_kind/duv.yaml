@@ -1,12 +1,7 @@
-node: node:quantity-kind/duv
-slug: duv
-refs:
-  - node: duv-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Duv
     match: exact
-contents:
-  - node: duv-en
-    language: en
+content:
+  en:
     title: Delta u,v
-    about: node:quantity-kind/duv

@@ -1,13 +1,8 @@
-node: node:quantity-kind/maximum-operating-pressure
-slug: maximum-operating-pressure
-broader: node:quantity-kind/pressure
-refs:
-  - node: maximum-operating-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: pressure
+ref:
+  qudt-quantity-kind:
     term: MaximumOperatingPressure
     match: exact
-contents:
-  - node: maximum-operating-pressure-en
-    language: en
+content:
+  en:
     title: Maximum Operating Pressure
-    about: node:quantity-kind/maximum-operating-pressure

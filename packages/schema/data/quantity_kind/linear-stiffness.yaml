@@ -1,13 +1,8 @@
-node: node:quantity-kind/linear-stiffness
-slug: linear-stiffness
-broader: node:quantity-kind/force-per-length
-refs:
-  - node: linear-stiffness-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force-per-length
+ref:
+  qudt-quantity-kind:
     term: LinearStiffness
     match: exact
-contents:
-  - node: linear-stiffness-en
-    language: en
+content:
+  en:
     title: Linear Force
-    about: node:quantity-kind/linear-stiffness

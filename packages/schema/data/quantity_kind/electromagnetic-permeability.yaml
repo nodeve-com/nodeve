@@ -1,16 +1,10 @@
-node: node:quantity-kind/electromagnetic-permeability
-slug: electromagnetic-permeability
-refs:
-  - node: electromagnetic-permeability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectromagneticPermeability
     match: exact
-  - node: electromagnetic-permeability-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q28352
     match: exact
-contents:
-  - node: electromagnetic-permeability-en
-    language: en
+content:
+  en:
     title: Permeability
-    about: node:quantity-kind/electromagnetic-permeability

@@ -1,17 +1,11 @@
-node: node:quantity-kind/superconduction-transition-temperature
-slug: superconduction-transition-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: superconduction-transition-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: SuperconductionTransitionTemperature
     match: exact
-  - node: superconduction-transition-temperature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q106103037
     match: exact
-contents:
-  - node: superconduction-transition-temperature-en
-    language: en
+content:
+  en:
     title: Superconduction Transition Temperature
-    about: node:quantity-kind/superconduction-transition-temperature

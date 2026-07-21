@@ -1,12 +1,7 @@
-node: node:quantity-kind/power-area-per-solid-angle
-slug: power-area-per-solid-angle
-refs:
-  - node: power-area-per-solid-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerAreaPerSolidAngle
     match: exact
-contents:
-  - node: power-area-per-solid-angle-en
-    language: en
+content:
+  en:
     title: Power Area per Solid Angle
-    about: node:quantity-kind/power-area-per-solid-angle

@@ -1,17 +1,11 @@
-node: node:quantity-kind/electromagnetic-energy-density
-slug: electromagnetic-energy-density
-broader: node:quantity-kind/energy-density
-refs:
-  - node: electromagnetic-energy-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-density
+ref:
+  qudt-quantity-kind:
     term: ElectromagneticEnergyDensity
     match: exact
-  - node: electromagnetic-energy-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q77989624
     match: exact
-contents:
-  - node: electromagnetic-energy-density-en
-    language: en
+content:
+  en:
     title: Electromagnetic Energy Density
-    about: node:quantity-kind/electromagnetic-energy-density

@@ -1,13 +1,8 @@
-node: node:quantity-kind/electric-charge-surface-density
-slug: electric-charge-surface-density
-broader: node:quantity-kind/electric-charge-per-area
-refs:
-  - node: electric-charge-surface-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-charge-per-area
+ref:
+  qudt-quantity-kind:
     term: ElectricChargeSurfaceDensity
     match: exact
-contents:
-  - node: electric-charge-surface-density-en
-    language: en
+content:
+  en:
     title: Electric Charge Surface Density
-    about: node:quantity-kind/electric-charge-surface-density

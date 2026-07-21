@@ -1,16 +1,10 @@
-node: node:quantity-kind/particle-source-density
-slug: particle-source-density
-refs:
-  - node: particle-source-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ParticleSourceDensity
     match: exact
-  - node: particle-source-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98915762
     match: exact
-contents:
-  - node: particle-source-density-en
-    language: en
+content:
+  en:
     title: Particle Source Density
-    about: node:quantity-kind/particle-source-density

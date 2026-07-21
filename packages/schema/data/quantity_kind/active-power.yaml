@@ -1,27 +1,18 @@
-node: node:quantity-kind/active-power
-slug: active-power
 si_unit: W
 accumulation: instantaneous
-broader: node:quantity-kind/electric-power
-refs:
-  - node: active-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-power
+ref:
+  qudt-quantity-kind:
     term: ActivePower
     match: exact
-  - node: active-power-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q12713281
     match: exact
-  - node: active-power-ha-device-class
-    registry: node:registry/ha-device-class
+  ha-device-class:
     term: power
     match: broad
-contents:
-  - node: active-power-en
-    language: en
+content:
+  en:
     title: Active Power
-    about: node:quantity-kind/active-power
-  - node: active-power-pt
-    language: pt
+  pt:
     title: Potência ativa
-    about: node:quantity-kind/active-power

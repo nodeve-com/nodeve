@@ -1,17 +1,11 @@
-node: node:quantity-kind/weight
-slug: weight
-broader: node:quantity-kind/force
-refs:
-  - node: weight-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force
+ref:
+  qudt-quantity-kind:
     term: Weight
     match: exact
-  - node: weight-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q25288
     match: exact
-contents:
-  - node: weight-en
-    language: en
+content:
+  en:
     title: Weight
-    about: node:quantity-kind/weight

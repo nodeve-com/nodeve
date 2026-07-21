@@ -1,13 +1,8 @@
-node: node:quantity-kind/horizontal-velocity
-slug: horizontal-velocity
-broader: node:quantity-kind/linear-velocity
-refs:
-  - node: horizontal-velocity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: linear-velocity
+ref:
+  qudt-quantity-kind:
     term: HorizontalVelocity
     match: exact
-contents:
-  - node: horizontal-velocity-en
-    language: en
+content:
+  en:
     title: Horizontal Velocity
-    about: node:quantity-kind/horizontal-velocity

@@ -1,17 +1,11 @@
-node: node:quantity-kind/donor-density
-slug: donor-density
-broader: node:quantity-kind/number-density
-refs:
-  - node: donor-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: number-density
+ref:
+  qudt-quantity-kind:
     term: DonorDensity
     match: exact
-  - node: donor-density-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105979886
     match: exact
-contents:
-  - node: donor-density-en
-    language: en
+content:
+  en:
     title: Donor Density
-    about: node:quantity-kind/donor-density

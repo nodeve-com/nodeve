@@ -1,12 +1,7 @@
-node: node:quantity-kind/reciprocal-electric-resistance
-slug: reciprocal-electric-resistance
-refs:
-  - node: reciprocal-electric-resistance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ReciprocalElectricResistance
     match: exact
-contents:
-  - node: reciprocal-electric-resistance-en
-    language: en
+content:
+  en:
     title: Reciprocal Electric Resistance
-    about: node:quantity-kind/reciprocal-electric-resistance

@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-related-volume
-slug: temperature-related-volume
-refs:
-  - node: temperature-related-volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperatureRelatedVolume
     match: exact
-contents:
-  - node: temperature-related-volume-en
-    language: en
-    title: "Temperature-related Volume  "
-    about: node:quantity-kind/temperature-related-volume
+content:
+  en:
+    title: 'Temperature-related Volume  '

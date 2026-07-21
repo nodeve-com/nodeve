@@ -1,17 +1,11 @@
-node: node:quantity-kind/coercivity
-slug: coercivity
-broader: node:quantity-kind/magnetic-field-strength
-refs:
-  - node: coercivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: magnetic-field-strength
+ref:
+  qudt-quantity-kind:
     term: Coercivity
     match: exact
-  - node: coercivity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q432635
     match: exact
-contents:
-  - node: coercivity-en
-    language: en
+content:
+  en:
     title: Coercivity
-    about: node:quantity-kind/coercivity

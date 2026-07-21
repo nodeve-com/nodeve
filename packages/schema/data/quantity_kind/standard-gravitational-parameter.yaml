@@ -1,16 +1,10 @@
-node: node:quantity-kind/standard-gravitational-parameter
-slug: standard-gravitational-parameter
-refs:
-  - node: standard-gravitational-parameter-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: StandardGravitationalParameter
     match: exact
-  - node: standard-gravitational-parameter-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q579338
     match: exact
-contents:
-  - node: standard-gravitational-parameter-en
-    language: en
+content:
+  en:
     title: Standard Gravitational Parameter
-    about: node:quantity-kind/standard-gravitational-parameter

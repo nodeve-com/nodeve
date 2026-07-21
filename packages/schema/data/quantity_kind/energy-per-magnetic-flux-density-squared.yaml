@@ -1,15 +1,10 @@
-node: node:quantity-kind/energy-per-magnetic-flux-density-squared
-slug: energy-per-magnetic-flux-density-squared
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/energy-per-square-magnetic-flux-density
-refs:
-  - node: energy-per-magnetic-flux-density-squared-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: energy-per-square-magnetic-flux-density
+ref:
+  qudt-quantity-kind:
     term: EnergyPerMagneticFluxDensity_Squared
     match: exact
-contents:
-  - node: energy-per-magnetic-flux-density-squared-en
-    language: en
+content:
+  en:
     title: Energy Per Square Magnetic Flux Density
-    about: node:quantity-kind/energy-per-magnetic-flux-density-squared

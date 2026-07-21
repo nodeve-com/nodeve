@@ -1,16 +1,10 @@
-node: node:quantity-kind/angular-impulse
-slug: angular-impulse
-refs:
-  - node: angular-impulse-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AngularImpulse
     match: exact
-  - node: angular-impulse-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q73428743
     match: exact
-contents:
-  - node: angular-impulse-en
-    language: en
+content:
+  en:
     title: Angular Impulse
-    about: node:quantity-kind/angular-impulse

@@ -1,12 +1,7 @@
-node: node:quantity-kind/catalytic-activity-concentration
-slug: catalytic-activity-concentration
-refs:
-  - node: catalytic-activity-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CatalyticActivityConcentration
     match: exact
-contents:
-  - node: catalytic-activity-concentration-en
-    language: en
+content:
+  en:
     title: Catalytic Activity Concentration
-    about: node:quantity-kind/catalytic-activity-concentration

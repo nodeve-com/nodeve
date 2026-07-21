@@ -1,16 +1,10 @@
-node: node:quantity-kind/total-linear-stopping-power
-slug: total-linear-stopping-power
-refs:
-  - node: total-linear-stopping-power-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TotalLinearStoppingPower
     match: exact
-  - node: total-linear-stopping-power-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q908474
     match: exact
-contents:
-  - node: total-linear-stopping-power-en
-    language: en
+content:
+  en:
     title: Total Linear Stopping Power
-    about: node:quantity-kind/total-linear-stopping-power

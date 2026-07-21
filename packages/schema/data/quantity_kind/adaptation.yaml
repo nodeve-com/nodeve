@@ -1,13 +1,8 @@
-node: node:quantity-kind/adaptation
-slug: adaptation
-broader: node:quantity-kind/time
-refs:
-  - node: adaptation-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: Adaptation
     match: exact
-contents:
-  - node: adaptation-en
-    language: en
+content:
+  en:
     title: Adaptation
-    about: node:quantity-kind/adaptation

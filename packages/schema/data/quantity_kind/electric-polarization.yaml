@@ -1,16 +1,10 @@
-node: node:quantity-kind/electric-polarization
-slug: electric-polarization
-refs:
-  - node: electric-polarization-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricPolarization
     match: exact
-  - node: electric-polarization-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1050425
     match: exact
-contents:
-  - node: electric-polarization-en
-    language: en
+content:
+  en:
     title: Electric Polarization
-    about: node:quantity-kind/electric-polarization

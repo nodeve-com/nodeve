@@ -1,13 +1,8 @@
-node: node:quantity-kind/surface-density
-slug: surface-density
-broader: node:quantity-kind/mass-per-area
-refs:
-  - node: surface-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-per-area
+ref:
+  qudt-quantity-kind:
     term: SurfaceDensity
     match: exact
-contents:
-  - node: surface-density-en
-    language: en
+content:
+  en:
     title: Surface Density
-    about: node:quantity-kind/surface-density

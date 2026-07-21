@@ -1,12 +1,7 @@
-node: node:quantity-kind/quantity-of-light
-slug: quantity-of-light
-refs:
-  - node: quantity-of-light-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: QuantityOfLight
     match: exact
-contents:
-  - node: quantity-of-light-en
-    language: en
+content:
+  en:
     title: Quantity of Light
-    about: node:quantity-kind/quantity-of-light

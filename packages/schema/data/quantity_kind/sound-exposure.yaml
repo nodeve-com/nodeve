@@ -1,16 +1,10 @@
-node: node:quantity-kind/sound-exposure
-slug: sound-exposure
-refs:
-  - node: sound-exposure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SoundExposure
     match: exact
-  - node: sound-exposure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2230528
     match: exact
-contents:
-  - node: sound-exposure-en
-    language: en
+content:
+  en:
     title: Sound Exposure
-    about: node:quantity-kind/sound-exposure

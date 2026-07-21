@@ -1,17 +1,11 @@
-node: node:quantity-kind/linked-flux
-slug: linked-flux
-broader: node:quantity-kind/magnetic-flux
-refs:
-  - node: linked-flux-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: magnetic-flux
+ref:
+  qudt-quantity-kind:
     term: LinkedFlux
     match: exact
-  - node: linked-flux-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q118540114
     match: exact
-contents:
-  - node: linked-flux-en
-    language: en
+content:
+  en:
     title: Linked Flux
-    about: node:quantity-kind/linked-flux

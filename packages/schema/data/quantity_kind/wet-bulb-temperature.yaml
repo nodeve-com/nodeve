@@ -1,13 +1,8 @@
-node: node:quantity-kind/wet-bulb-temperature
-slug: wet-bulb-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: wet-bulb-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: WetBulbTemperature
     match: exact
-contents:
-  - node: wet-bulb-temperature-en
-    language: en
+content:
+  en:
     title: Wet Bulb Temperature
-    about: node:quantity-kind/wet-bulb-temperature

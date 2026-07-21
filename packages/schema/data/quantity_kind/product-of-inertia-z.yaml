@@ -1,13 +1,8 @@
-node: node:quantity-kind/product-of-inertia-z
-slug: product-of-inertia-z
-broader: node:quantity-kind/product-of-inertia
-refs:
-  - node: product-of-inertia-z-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: product-of-inertia
+ref:
+  qudt-quantity-kind:
     term: ProductOfInertia_Z
     match: exact
-contents:
-  - node: product-of-inertia-z-en
-    language: en
+content:
+  en:
     title: Product of Inertia in the Z Axis
-    about: node:quantity-kind/product-of-inertia-z

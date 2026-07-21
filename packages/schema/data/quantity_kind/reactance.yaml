@@ -1,13 +1,8 @@
-node: node:quantity-kind/reactance
-slug: reactance
-broader: node:quantity-kind/resistance
-refs:
-  - node: reactance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: resistance
+ref:
+  qudt-quantity-kind:
     term: Reactance
     match: exact
-contents:
-  - node: reactance-en
-    language: en
+content:
+  en:
     title: Reactance
-    about: node:quantity-kind/reactance

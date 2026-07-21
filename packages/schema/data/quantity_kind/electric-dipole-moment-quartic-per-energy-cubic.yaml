@@ -1,15 +1,10 @@
-node: node:quantity-kind/electric-dipole-moment-quartic-per-energy-cubic
-slug: electric-dipole-moment-quartic-per-energy-cubic
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/quartic-electric-dipole-moment-per-cubic-energy
-refs:
-  - node: electric-dipole-moment-quartic-per-energy-cubic-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: quartic-electric-dipole-moment-per-cubic-energy
+ref:
+  qudt-quantity-kind:
     term: ElectricDipoleMoment_QuarticPerEnergy_Cubic
     match: exact
-contents:
-  - node: electric-dipole-moment-quartic-per-energy-cubic-en
-    language: en
+content:
+  en:
     title: Quartic Electric Dipole Moment per Cubic Energy
-    about: node:quantity-kind/electric-dipole-moment-quartic-per-energy-cubic

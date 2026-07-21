@@ -1,16 +1,10 @@
-node: node:quantity-kind/molar-conductivity
-slug: molar-conductivity
-refs:
-  - node: molar-conductivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarConductivity
     match: exact
-  - node: molar-conductivity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1943278
     match: exact
-contents:
-  - node: molar-conductivity-en
-    language: en
+content:
+  en:
     title: Molar Conductivity
-    about: node:quantity-kind/molar-conductivity

@@ -1,12 +1,7 @@
-node: node:quantity-kind/inductance-based-time-constant
-slug: inductance-based-time-constant
-refs:
-  - node: inductance-based-time-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InductanceBasedTimeConstant
     match: exact
-contents:
-  - node: inductance-based-time-constant-en
-    language: en
+content:
+  en:
     title: Inductance Based Time Constant
-    about: node:quantity-kind/inductance-based-time-constant

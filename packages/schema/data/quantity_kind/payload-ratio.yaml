@@ -1,13 +1,8 @@
-node: node:quantity-kind/payload-ratio
-slug: payload-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: payload-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: PayloadRatio
     match: exact
-contents:
-  - node: payload-ratio-en
-    language: en
+content:
+  en:
     title: Payload Ratio
-    about: node:quantity-kind/payload-ratio

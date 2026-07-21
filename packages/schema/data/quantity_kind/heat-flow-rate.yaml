@@ -1,19 +1,13 @@
-node: node:quantity-kind/heat-flow-rate
-slug: heat-flow-rate
 si_unit: W
 accumulation: instantaneous
-broader: node:quantity-kind/power
-refs:
-  - node: heat-flow-rate-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power
+ref:
+  qudt-quantity-kind:
     term: HeatFlowRate
     match: broad
-  - node: heat-flow-rate-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q12160631
     match: exact
-contents:
-  - node: heat-flow-rate-en
-    language: en
+content:
+  en:
     title: Heat Flow Rate
-    about: node:quantity-kind/heat-flow-rate

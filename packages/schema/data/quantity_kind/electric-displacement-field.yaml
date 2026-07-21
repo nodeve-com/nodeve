@@ -1,17 +1,11 @@
-node: node:quantity-kind/electric-displacement-field
-slug: electric-displacement-field
-broader: node:quantity-kind/electric-charge-per-area
-refs:
-  - node: electric-displacement-field-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-charge-per-area
+ref:
+  qudt-quantity-kind:
     term: ElectricDisplacementField
     match: exact
-  - node: electric-displacement-field-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q371907
     match: exact
-contents:
-  - node: electric-displacement-field-en
-    language: en
+content:
+  en:
     title: Electric Displacement Field
-    about: node:quantity-kind/electric-displacement-field

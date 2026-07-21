@@ -1,16 +1,10 @@
-node: node:quantity-kind/thermal-diffusion-factor
-slug: thermal-diffusion-factor
-refs:
-  - node: thermal-diffusion-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ThermalDiffusionFactor
     match: exact
-  - node: thermal-diffusion-factor-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q96249629
     match: exact
-contents:
-  - node: thermal-diffusion-factor-en
-    language: en
+content:
+  en:
     title: Thermal Diffusion Factor
-    about: node:quantity-kind/thermal-diffusion-factor

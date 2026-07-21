@@ -1,12 +1,7 @@
-node: node:quantity-kind/length-energy
-slug: length-energy
-refs:
-  - node: length-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LengthEnergy
     match: exact
-contents:
-  - node: length-energy-en
-    language: en
+content:
+  en:
     title: Length Energy
-    about: node:quantity-kind/length-energy

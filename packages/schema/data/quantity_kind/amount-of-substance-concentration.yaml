@@ -1,13 +1,8 @@
-node: node:quantity-kind/amount-of-substance-concentration
-slug: amount-of-substance-concentration
-broader: node:quantity-kind/concentration
-refs:
-  - node: amount-of-substance-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: concentration
+ref:
+  qudt-quantity-kind:
     term: AmountOfSubstanceConcentration
     match: exact
-contents:
-  - node: amount-of-substance-concentration-en
-    language: en
+content:
+  en:
     title: Amount of Substance of Concentration
-    about: node:quantity-kind/amount-of-substance-concentration

@@ -1,13 +1,8 @@
-node: node:quantity-kind/thermodynamic-entropy
-slug: thermodynamic-entropy
-broader: node:quantity-kind/energy-per-temperature
-refs:
-  - node: thermodynamic-entropy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy-per-temperature
+ref:
+  qudt-quantity-kind:
     term: ThermodynamicEntropy
     match: exact
-contents:
-  - node: thermodynamic-entropy-en
-    language: en
+content:
+  en:
     title: Thermodynamic Entropy
-    about: node:quantity-kind/thermodynamic-entropy

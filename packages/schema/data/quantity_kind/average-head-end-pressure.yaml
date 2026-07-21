@@ -1,13 +1,8 @@
-node: node:quantity-kind/average-head-end-pressure
-slug: average-head-end-pressure
-broader: node:quantity-kind/head-end-pressure
-refs:
-  - node: average-head-end-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: head-end-pressure
+ref:
+  qudt-quantity-kind:
     term: AverageHeadEndPressure
     match: exact
-contents:
-  - node: average-head-end-pressure-en
-    language: en
+content:
+  en:
     title: Average Head End Pressure
-    about: node:quantity-kind/average-head-end-pressure

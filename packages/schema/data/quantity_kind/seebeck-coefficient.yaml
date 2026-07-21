@@ -1,16 +1,10 @@
-node: node:quantity-kind/seebeck-coefficient
-slug: seebeck-coefficient
-refs:
-  - node: seebeck-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SeebeckCoefficient
     match: exact
-  - node: seebeck-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1091448
     match: exact
-contents:
-  - node: seebeck-coefficient-en
-    language: en
+content:
+  en:
     title: Seebeck Coefficient
-    about: node:quantity-kind/seebeck-coefficient

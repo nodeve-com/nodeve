@@ -1,12 +1,7 @@
-node: node:quantity-kind/specific-modulus
-slug: specific-modulus
-refs:
-  - node: specific-modulus-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SpecificModulus
     match: exact
-contents:
-  - node: specific-modulus-en
-    language: en
+content:
+  en:
     title: Specific Modulus
-    about: node:quantity-kind/specific-modulus

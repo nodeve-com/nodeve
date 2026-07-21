@@ -1,12 +1,7 @@
-node: node:quantity-kind/time-temperature
-slug: time-temperature
-refs:
-  - node: time-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TimeTemperature
     match: exact
-contents:
-  - node: time-temperature-en
-    language: en
+content:
+  en:
     title: Time Temperature
-    about: node:quantity-kind/time-temperature

@@ -1,17 +1,11 @@
-node: node:quantity-kind/loss-angle
-slug: loss-angle
-broader: node:quantity-kind/angle
-refs:
-  - node: loss-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: LossAngle
     match: exact
-  - node: loss-angle-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q20820438
     match: exact
-contents:
-  - node: loss-angle-en
-    language: en
+content:
+  en:
     title: Loss Angle
-    about: node:quantity-kind/loss-angle

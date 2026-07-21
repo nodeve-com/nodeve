@@ -1,17 +1,11 @@
-node: node:quantity-kind/lattice-plane-spacing
-slug: lattice-plane-spacing
-broader: node:quantity-kind/length
-refs:
-  - node: lattice-plane-spacing-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: LatticePlaneSpacing
     match: exact
-  - node: lattice-plane-spacing-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105488046
     match: exact
-contents:
-  - node: lattice-plane-spacing-en
-    language: en
+content:
+  en:
     title: Lattice Plane Spacing
-    about: node:quantity-kind/lattice-plane-spacing

@@ -1,12 +1,7 @@
-node: node:quantity-kind/mass-per-time
-slug: mass-per-time
-refs:
-  - node: mass-per-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MassPerTime
     match: exact
-contents:
-  - node: mass-per-time-en
-    language: en
+content:
+  en:
     title: Mass per Time
-    about: node:quantity-kind/mass-per-time

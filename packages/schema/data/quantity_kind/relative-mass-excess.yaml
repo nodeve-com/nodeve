@@ -1,16 +1,10 @@
-node: node:quantity-kind/relative-mass-excess
-slug: relative-mass-excess
-refs:
-  - node: relative-mass-excess-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: RelativeMassExcess
     match: exact
-  - node: relative-mass-excess-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98038610
     match: exact
-contents:
-  - node: relative-mass-excess-en
-    language: en
+content:
+  en:
     title: Relative Mass Excess
-    about: node:quantity-kind/relative-mass-excess

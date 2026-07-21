@@ -1,12 +1,6 @@
-node: node:registry/isa-18-2
-slug: isa-18-2
 url: https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa18
-contents:
-  - node: isa-18-2-en
-    language: en
+content:
+  en:
     title: ISA-18.2 (Alarm priority)
-    about: node:registry/isa-18-2
-  - node: isa-18-2-pt
-    language: pt
+  pt:
     title: ISA-18.2 (Prioridade de alarme)
-    about: node:registry/isa-18-2

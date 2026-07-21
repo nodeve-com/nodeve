@@ -1,12 +1,7 @@
-node: node:quantity-kind/bandwidth-length-product
-slug: bandwidth-length-product
-refs:
-  - node: bandwidth-length-product-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: BandwidthLengthProduct
     match: exact
-contents:
-  - node: bandwidth-length-product-en
-    language: en
+content:
+  en:
     title: Bandwidth Length Product
-    about: node:quantity-kind/bandwidth-length-product

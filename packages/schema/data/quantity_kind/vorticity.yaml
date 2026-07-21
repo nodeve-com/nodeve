@@ -1,17 +1,11 @@
-node: node:quantity-kind/vorticity
-slug: vorticity
-broader: node:quantity-kind/angular-frequency
-refs:
-  - node: vorticity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angular-frequency
+ref:
+  qudt-quantity-kind:
     term: Vorticity
     match: exact
-  - node: vorticity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1143513
     match: exact
-contents:
-  - node: vorticity-en
-    language: en
+content:
+  en:
     title: Vorticity
-    about: node:quantity-kind/vorticity

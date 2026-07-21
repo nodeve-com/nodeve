@@ -1,13 +1,8 @@
-node: node:quantity-kind/center-of-gravity-y
-slug: center-of-gravity-y
-broader: node:quantity-kind/length
-refs:
-  - node: center-of-gravity-y-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: CenterOfGravity_Y
     match: exact
-contents:
-  - node: center-of-gravity-y-en
-    language: en
+content:
+  en:
     title: Center of Gravity in the Y Axis
-    about: node:quantity-kind/center-of-gravity-y

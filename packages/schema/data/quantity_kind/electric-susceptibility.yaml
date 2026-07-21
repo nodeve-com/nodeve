@@ -1,16 +1,10 @@
-node: node:quantity-kind/electric-susceptibility
-slug: electric-susceptibility
-refs:
-  - node: electric-susceptibility-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ElectricSusceptibility
     match: exact
-  - node: electric-susceptibility-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q598305
     match: exact
-contents:
-  - node: electric-susceptibility-en
-    language: en
+content:
+  en:
     title: Electric Susceptibility
-    about: node:quantity-kind/electric-susceptibility

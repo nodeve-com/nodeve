@@ -1,16 +1,10 @@
-node: node:quantity-kind/velocity
-slug: velocity
-refs:
-  - node: velocity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Velocity
     match: exact
-  - node: velocity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11465
     match: exact
-contents:
-  - node: velocity-en
-    language: en
+content:
+  en:
     title: Velocity
-    about: node:quantity-kind/velocity

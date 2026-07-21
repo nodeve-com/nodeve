@@ -1,13 +1,8 @@
-node: node:quantity-kind/atomic-charge
-slug: atomic-charge
-broader: node:quantity-kind/electric-charge
-refs:
-  - node: atomic-charge-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-charge
+ref:
+  qudt-quantity-kind:
     term: AtomicCharge
     match: exact
-contents:
-  - node: atomic-charge-en
-    language: en
+content:
+  en:
     title: Atomic Charge
-    about: node:quantity-kind/atomic-charge

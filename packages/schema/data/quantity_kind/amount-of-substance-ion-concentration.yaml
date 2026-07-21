@@ -1,13 +1,8 @@
-node: node:quantity-kind/amount-of-substance-ion-concentration
-slug: amount-of-substance-ion-concentration
-broader: node:quantity-kind/concentration
-refs:
-  - node: amount-of-substance-ion-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: concentration
+ref:
+  qudt-quantity-kind:
     term: AmountOfSubstanceIonConcentration
     match: exact
-contents:
-  - node: amount-of-substance-ion-concentration-en
-    language: en
+content:
+  en:
     title: Amount of Substance Ion Concentration
-    about: node:quantity-kind/amount-of-substance-ion-concentration

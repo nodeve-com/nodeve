@@ -1,17 +1,11 @@
-node: node:quantity-kind/fermi-temperature
-slug: fermi-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: fermi-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: FermiTemperature
     match: exact
-  - node: fermi-temperature-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105942324
     match: exact
-contents:
-  - node: fermi-temperature-en
-    language: en
+content:
+  en:
     title: Fermi Temperature
-    about: node:quantity-kind/fermi-temperature

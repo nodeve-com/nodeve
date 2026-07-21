@@ -1,12 +1,7 @@
-node: node:quantity-kind/chromaticity
-slug: chromaticity
-refs:
-  - node: chromaticity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Chromaticity
     match: exact
-contents:
-  - node: chromaticity-en
-    language: en
+content:
+  en:
     title: Chromaticity
-    about: node:quantity-kind/chromaticity

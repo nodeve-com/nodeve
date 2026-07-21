@@ -1,13 +1,8 @@
-node: node:quantity-kind/specific-surface-area
-slug: specific-surface-area
-broader: node:quantity-kind/mass-attenuation-coefficient
-refs:
-  - node: specific-surface-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-attenuation-coefficient
+ref:
+  qudt-quantity-kind:
     term: SpecificSurfaceArea
     match: exact
-contents:
-  - node: specific-surface-area-en
-    language: en
+content:
+  en:
     title: Specific Surface Area
-    about: node:quantity-kind/specific-surface-area

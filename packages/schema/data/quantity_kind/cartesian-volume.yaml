@@ -1,13 +1,8 @@
-node: node:quantity-kind/cartesian-volume
-slug: cartesian-volume
-broader: node:quantity-kind/volume
-refs:
-  - node: cartesian-volume-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: volume
+ref:
+  qudt-quantity-kind:
     term: CartesianVolume
     match: exact
-contents:
-  - node: cartesian-volume-en
-    language: en
+content:
+  en:
     title: Volume
-    about: node:quantity-kind/cartesian-volume

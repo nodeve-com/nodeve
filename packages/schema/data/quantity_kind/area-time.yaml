@@ -1,12 +1,7 @@
-node: node:quantity-kind/area-time
-slug: area-time
-refs:
-  - node: area-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: AreaTime
     match: exact
-contents:
-  - node: area-time-en
-    language: en
+content:
+  en:
     title: Area Time
-    about: node:quantity-kind/area-time

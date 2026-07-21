@@ -1,17 +1,11 @@
-node: node:quantity-kind/magnetic-tension
-slug: magnetic-tension
-broader: node:quantity-kind/electric-current
-refs:
-  - node: magnetic-tension-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: electric-current
+ref:
+  qudt-quantity-kind:
     term: MagneticTension
     match: exact
-  - node: magnetic-tension-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q77993836
     match: exact
-contents:
-  - node: magnetic-tension-en
-    language: en
+content:
+  en:
     title: Magnetic Tension
-    about: node:quantity-kind/magnetic-tension

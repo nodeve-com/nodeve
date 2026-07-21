@@ -1,12 +1,7 @@
-node: node:quantity-kind/cost-per-energy
-slug: cost-per-energy
-refs:
-  - node: cost-per-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: CostPerEnergy
     match: exact
-contents:
-  - node: cost-per-energy-en
-    language: en
+content:
+  en:
     title: Energy Cost
-    about: node:quantity-kind/cost-per-energy

@@ -1,12 +1,7 @@
-node: node:quantity-kind/logarithm-ratio-to-base10
-slug: logarithm-ratio-to-base10
-refs:
-  - node: logarithm-ratio-to-base10-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LogarithmRatioToBase10
     match: exact
-contents:
-  - node: logarithm-ratio-to-base10-en
-    language: en
+content:
+  en:
     title: Logarithm Ratio to Base 10
-    about: node:quantity-kind/logarithm-ratio-to-base10

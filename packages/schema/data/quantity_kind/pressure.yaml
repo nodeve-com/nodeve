@@ -1,17 +1,11 @@
-node: node:quantity-kind/pressure
-slug: pressure
-broader: node:quantity-kind/force-per-area
-refs:
-  - node: pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: force-per-area
+ref:
+  qudt-quantity-kind:
     term: Pressure
     match: exact
-  - node: pressure-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q39552
     match: exact
-contents:
-  - node: pressure-en
-    language: en
+content:
+  en:
     title: Pressure
-    about: node:quantity-kind/pressure

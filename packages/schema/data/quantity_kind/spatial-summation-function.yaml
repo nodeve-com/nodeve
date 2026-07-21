@@ -1,13 +1,8 @@
-node: node:quantity-kind/spatial-summation-function
-slug: spatial-summation-function
-broader: node:quantity-kind/length
-refs:
-  - node: spatial-summation-function-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: SpatialSummationFunction
     match: exact
-contents:
-  - node: spatial-summation-function-en
-    language: en
+content:
+  en:
     title: Spatial Summation Function
-    about: node:quantity-kind/spatial-summation-function

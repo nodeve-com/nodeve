@@ -1,13 +1,8 @@
-node: node:quantity-kind/visible-radiant-energy
-slug: visible-radiant-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: visible-radiant-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: VisibleRadiantEnergy
     match: exact
-contents:
-  - node: visible-radiant-energy-en
-    language: en
+content:
+  en:
     title: Visible Radiant Energy
-    about: node:quantity-kind/visible-radiant-energy

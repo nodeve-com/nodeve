@@ -1,17 +1,11 @@
-node: node:quantity-kind/sound-particle-velocity
-slug: sound-particle-velocity
-broader: node:quantity-kind/linear-velocity
-refs:
-  - node: sound-particle-velocity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: linear-velocity
+ref:
+  qudt-quantity-kind:
     term: SoundParticleVelocity
     match: exact
-  - node: sound-particle-velocity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q336894
     match: exact
-contents:
-  - node: sound-particle-velocity-en
-    language: en
+content:
+  en:
     title: Sound Particle Velocity
-    about: node:quantity-kind/sound-particle-velocity

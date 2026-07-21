@@ -20,6 +20,7 @@ import pluralize from 'pluralize';
 import ts from 'typescript';
 import { forEachTsNode, unwrap } from '../lib/ast.js';
 import { locationRows } from '../lib/report.js';
+import { type Gate } from '../lib/bin.js';
 import { type Check } from '../lib/runner.js';
 
 /** Constructors whose instances are keyed collections, not arrays. */
@@ -79,26 +80,17 @@ function isPluralName(name: string, plural: Set<string>, singular: Set<string>):
 	return pluralize.isPlural(name) && pluralize.singular(name) !== name;
 }
 
-type Finding = { rel: string; line: number; name: string; reason: string };
+type PluralFinding = { rel: string; line: number; name: string; reason: string };
 
-export const pluralArrays: Check<'pluralArrays'> = {
-	name: 'plural-arrays',
-	section: 'pluralArrays',
-	explain: `A count-plural name (\`users\`, \`tags\`) promises an array; binding it to a
-map/object makes every reader guess the shape. Rename to say what it holds —
-\`usersById\`, \`userMap\`, \`nameToId\`, \`userCount\` — or, if it really is a list, hold an
-array. \`pluralize\` decides what counts as plural: add a domain word it misreads to
-\`pluralArrays.plural\` (force plural) or \`pluralArrays.singular\` (never plural). A
-confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::name\`.
---warn downgrades this to report-only.`,
+function collectFindings(gate: Gate<'pluralArrays'>): PluralFinding[] {
+	const { cfg, allowlist } = gate;
+	const plural = new Set<string>(cfg.plural);
+	const singular = new Set<string>(cfg.singular);
+	const findings: PluralFinding[] = [];
 
-	run(gate) {
-		const { cfg, allowlist } = gate;
-		const plural = new Set(cfg.plural);
-		const singular = new Set(cfg.singular);
-		const findings: Finding[] = [];
-
-		forEachTsNode(gate, (node, rel, src) => {
+	forEachTsNode(
+		gate,
+		(node, rel, src) => {
 			if (
 				!ts.isVariableDeclaration(node) ||
 				!ts.isIdentifier(node.name) ||
@@ -116,14 +108,35 @@ confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::n
 				const { line } = src.getLineAndCharacterOfPosition(node.name.getStart());
 				findings.push({ rel, line: line + 1, name: node.name.text, reason });
 			}
-		}, true);
+		},
+		true,
+	);
+	return findings;
+}
 
+export const pluralArrays: Check<'pluralArrays'> = {
+	name: 'plural-arrays',
+	section: 'pluralArrays',
+	explain: `A count-plural name (\`users\`, \`tags\`) promises an array; binding it to a
+map/object makes every reader guess the shape. Rename to say what it holds —
+\`usersById\`, \`userMap\`, \`nameToId\`, \`userCount\` — or, if it really is a list, hold an
+array. \`pluralize\` decides what counts as plural: add a domain word it misreads to
+\`pluralArrays.plural\` (force plural) or \`pluralArrays.singular\` (never plural). A
+confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::name\`.
+--warn downgrades this to report-only.`,
+
+	run(gate) {
+		const findings = collectFindings(gate);
 		if (findings.length === 0) return { status: 'pass', summary: 'clean' };
 
 		return {
 			status: 'fail',
 			summary: `${findings.length} plural name(s) bound to a map/object instead of an array`,
-			rows: locationRows(findings, (f) => f.name, (f) => f.reason),
+			rows: locationRows(
+				findings,
+				(f) => f.name,
+				(f) => f.reason,
+			),
 		};
 	},
 };

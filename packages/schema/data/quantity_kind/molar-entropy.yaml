@@ -1,16 +1,10 @@
-node: node:quantity-kind/molar-entropy
-slug: molar-entropy
-refs:
-  - node: molar-entropy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarEntropy
     match: exact
-  - node: molar-entropy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q68972876
     match: exact
-contents:
-  - node: molar-entropy-en
-    language: en
+content:
+  en:
     title: Molar Entropy
-    about: node:quantity-kind/molar-entropy

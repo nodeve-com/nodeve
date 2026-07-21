@@ -1,17 +1,11 @@
-node: node:quantity-kind/cross-sectional-area
-slug: cross-sectional-area
-broader: node:quantity-kind/area
-refs:
-  - node: cross-sectional-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area
+ref:
+  qudt-quantity-kind:
     term: CrossSectionalArea
     match: exact
-  - node: cross-sectional-area-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q29325024
     match: exact
-contents:
-  - node: cross-sectional-area-en
-    language: en
+content:
+  en:
     title: Cross-sectional Area
-    about: node:quantity-kind/cross-sectional-area

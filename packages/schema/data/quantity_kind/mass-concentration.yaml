@@ -1,17 +1,11 @@
-node: node:quantity-kind/mass-concentration
-slug: mass-concentration
-broader: node:quantity-kind/density
-refs:
-  - node: mass-concentration-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: density
+ref:
+  qudt-quantity-kind:
     term: MassConcentration
     match: exact
-  - node: mass-concentration-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q589446
     match: exact
-contents:
-  - node: mass-concentration-en
-    language: en
+content:
+  en:
     title: Mass Concentration
-    about: node:quantity-kind/mass-concentration

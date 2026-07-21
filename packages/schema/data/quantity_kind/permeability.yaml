@@ -1,12 +1,7 @@
-node: node:quantity-kind/permeability
-slug: permeability
-refs:
-  - node: permeability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Permeability
     match: exact
-contents:
-  - node: permeability-en
-    language: en
+content:
+  en:
     title: Permeability
-    about: node:quantity-kind/permeability

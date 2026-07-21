@@ -1,13 +1,8 @@
-node: node:quantity-kind/temperature-rate-of-change
-slug: temperature-rate-of-change
-broader: node:quantity-kind/temperature-per-time
-refs:
-  - node: temperature-rate-of-change-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature-per-time
+ref:
+  qudt-quantity-kind:
     term: TemperatureRateOfChange
     match: exact
-contents:
-  - node: temperature-rate-of-change-en
-    language: en
+content:
+  en:
     title: Temperature Rate of Change
-    about: node:quantity-kind/temperature-rate-of-change

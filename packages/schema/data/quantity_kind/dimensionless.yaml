@@ -1,12 +1,7 @@
-node: node:quantity-kind/dimensionless
-slug: dimensionless
-refs:
-  - node: dimensionless-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Dimensionless
     match: exact
-contents:
-  - node: dimensionless-en
-    language: en
+content:
+  en:
     title: Dimensionless
-    about: node:quantity-kind/dimensionless

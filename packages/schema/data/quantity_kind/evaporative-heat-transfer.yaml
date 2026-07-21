@@ -1,12 +1,7 @@
-node: node:quantity-kind/evaporative-heat-transfer
-slug: evaporative-heat-transfer
-refs:
-  - node: evaporative-heat-transfer-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: EvaporativeHeatTransfer
     match: exact
-contents:
-  - node: evaporative-heat-transfer-en
-    language: en
+content:
+  en:
     title: Evaporative Heat Transfer
-    about: node:quantity-kind/evaporative-heat-transfer

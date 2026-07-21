@@ -1,13 +1,8 @@
-node: node:quantity-kind/apogee-radius
-slug: apogee-radius
-broader: node:quantity-kind/radius
-refs:
-  - node: apogee-radius-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: radius
+ref:
+  qudt-quantity-kind:
     term: ApogeeRadius
     match: exact
-contents:
-  - node: apogee-radius-en
-    language: en
+content:
+  en:
     title: Apogee Radius
-    about: node:quantity-kind/apogee-radius

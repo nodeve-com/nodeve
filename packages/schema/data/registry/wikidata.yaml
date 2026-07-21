@@ -1,13 +1,7 @@
-node: node:registry/wikidata
-slug: wikidata
 url: https://www.wikidata.org/
 iri_template: https://www.wikidata.org/wiki/{id}
-contents:
-  - node: wikidata-en
-    language: en
+content:
+  en:
     title: Wikidata
-    about: node:registry/wikidata
-  - node: wikidata-pt
-    language: pt
+  pt:
     title: Wikidata
-    about: node:registry/wikidata

@@ -1,13 +1,8 @@
-node: node:quantity-kind/fission-core-radius-to-height-ratio
-slug: fission-core-radius-to-height-ratio
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: fission-core-radius-to-height-ratio-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: FissionCoreRadiusToHeightRatio
     match: exact
-contents:
-  - node: fission-core-radius-to-height-ratio-en
-    language: en
+content:
+  en:
     title: Fission Core Radius to Height Ratio
-    about: node:quantity-kind/fission-core-radius-to-height-ratio

@@ -1,13 +1,8 @@
-node: node:quantity-kind/state-of-charge
-slug: state-of-charge
-broader: node:quantity-kind/dimensionless-ratio
-refs:
-  - node: state-of-charge-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: dimensionless-ratio
+ref:
+  qudt-quantity-kind:
     term: StateOfCharge
     match: exact
-contents:
-  - node: state-of-charge-en
-    language: en
+content:
+  en:
     title: State of Charge
-    about: node:quantity-kind/state-of-charge

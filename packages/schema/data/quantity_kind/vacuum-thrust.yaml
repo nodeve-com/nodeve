@@ -1,13 +1,8 @@
-node: node:quantity-kind/vacuum-thrust
-slug: vacuum-thrust
-broader: node:quantity-kind/thrust
-refs:
-  - node: vacuum-thrust-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: thrust
+ref:
+  qudt-quantity-kind:
     term: VacuumThrust
     match: exact
-contents:
-  - node: vacuum-thrust-en
-    language: en
+content:
+  en:
     title: Vacuum Thrust
-    about: node:quantity-kind/vacuum-thrust

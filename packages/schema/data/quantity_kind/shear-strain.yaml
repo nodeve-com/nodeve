@@ -1,17 +1,11 @@
-node: node:quantity-kind/shear-strain
-slug: shear-strain
-broader: node:quantity-kind/length-ratio
-refs:
-  - node: shear-strain-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length-ratio
+ref:
+  qudt-quantity-kind:
     term: ShearStrain
     match: exact
-  - node: shear-strain-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q7561704
     match: exact
-contents:
-  - node: shear-strain-en
-    language: en
+content:
+  en:
     title: Shear Strain
-    about: node:quantity-kind/shear-strain

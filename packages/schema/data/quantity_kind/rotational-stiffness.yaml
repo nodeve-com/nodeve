@@ -1,13 +1,8 @@
-node: node:quantity-kind/rotational-stiffness
-slug: rotational-stiffness
-broader: node:quantity-kind/torque-per-angle
-refs:
-  - node: rotational-stiffness-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: torque-per-angle
+ref:
+  qudt-quantity-kind:
     term: RotationalStiffness
     match: exact
-contents:
-  - node: rotational-stiffness-en
-    language: en
+content:
+  en:
     title: Rotational Stiffness
-    about: node:quantity-kind/rotational-stiffness

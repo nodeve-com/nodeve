@@ -1,12 +1,7 @@
-node: node:quantity-kind/motor-constant
-slug: motor-constant
-refs:
-  - node: motor-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MotorConstant
     match: exact
-contents:
-  - node: motor-constant-en
-    language: en
+content:
+  en:
     title: Motor Constant
-    about: node:quantity-kind/motor-constant

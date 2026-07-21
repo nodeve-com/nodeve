@@ -1,17 +1,11 @@
-node: node:quantity-kind/bragg-angle
-slug: bragg-angle
-broader: node:quantity-kind/angle
-refs:
-  - node: bragg-angle-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angle
+ref:
+  qudt-quantity-kind:
     term: BraggAngle
     match: exact
-  - node: bragg-angle-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q105488118
     match: exact
-contents:
-  - node: bragg-angle-en
-    language: en
+content:
+  en:
     title: Bragg Angle
-    about: node:quantity-kind/bragg-angle

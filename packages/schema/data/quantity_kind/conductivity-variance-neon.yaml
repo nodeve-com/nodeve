@@ -1,15 +1,10 @@
-node: node:quantity-kind/conductivity-variance-neon
-slug: conductivity-variance-neon
 deprecated: true
 deprecated_in: 3.1.3
-replaced_by: node:quantity-kind/conductivity-variance
-refs:
-  - node: conductivity-variance-neon-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: conductivity-variance
+ref:
+  qudt-quantity-kind:
     term: ConductivityVariance_NEON
     match: exact
-contents:
-  - node: conductivity-variance-neon-en
-    language: en
+content:
+  en:
     title: Conductivity Variance, NEON
-    about: node:quantity-kind/conductivity-variance-neon

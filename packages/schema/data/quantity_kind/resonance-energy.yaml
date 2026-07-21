@@ -1,17 +1,11 @@
-node: node:quantity-kind/resonance-energy
-slug: resonance-energy
-broader: node:quantity-kind/energy
-refs:
-  - node: resonance-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: ResonanceEnergy
     match: exact
-  - node: resonance-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q98165187
     match: exact
-contents:
-  - node: resonance-energy-en
-    language: en
+content:
+  en:
     title: Resonance Energy
-    about: node:quantity-kind/resonance-energy

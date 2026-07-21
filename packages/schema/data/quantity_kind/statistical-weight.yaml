@@ -1,12 +1,7 @@
-node: node:quantity-kind/statistical-weight
-slug: statistical-weight
-refs:
-  - node: statistical-weight-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: StatisticalWeight
     match: exact
-contents:
-  - node: statistical-weight-en
-    language: en
+content:
+  en:
     title: Statistical Weight
-    about: node:quantity-kind/statistical-weight

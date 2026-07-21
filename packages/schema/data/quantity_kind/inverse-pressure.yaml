@@ -1,12 +1,7 @@
-node: node:quantity-kind/inverse-pressure
-slug: inverse-pressure
-refs:
-  - node: inverse-pressure-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: InversePressure
     match: exact
-contents:
-  - node: inverse-pressure-en
-    language: en
+content:
+  en:
     title: Inverse Pressure
-    about: node:quantity-kind/inverse-pressure

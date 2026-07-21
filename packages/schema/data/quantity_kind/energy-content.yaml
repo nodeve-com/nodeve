@@ -1,13 +1,8 @@
-node: node:quantity-kind/energy-content
-slug: energy-content
-broader: node:quantity-kind/energy
-refs:
-  - node: energy-content-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: energy
+ref:
+  qudt-quantity-kind:
     term: EnergyContent
     match: exact
-contents:
-  - node: energy-content-en
-    language: en
+content:
+  en:
     title: Energy Content
-    about: node:quantity-kind/energy-content

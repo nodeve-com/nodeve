@@ -1,13 +1,8 @@
-node: node:quantity-kind/molality-of-solute
-slug: molality-of-solute
-broader: node:quantity-kind/amount-of-substance-per-mass
-refs:
-  - node: molality-of-solute-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: amount-of-substance-per-mass
+ref:
+  qudt-quantity-kind:
     term: MolalityOfSolute
     match: exact
-contents:
-  - node: molality-of-solute-en
-    language: en
+content:
+  en:
     title: Molality of Solute
-    about: node:quantity-kind/molality-of-solute

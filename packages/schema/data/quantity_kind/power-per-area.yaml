@@ -1,12 +1,7 @@
-node: node:quantity-kind/power-per-area
-slug: power-per-area
-refs:
-  - node: power-per-area-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PowerPerArea
     match: exact
-contents:
-  - node: power-per-area-en
-    language: en
+content:
+  en:
     title: Power per Area
-    about: node:quantity-kind/power-per-area

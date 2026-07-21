@@ -1,13 +1,8 @@
-node: node:quantity-kind/fahrenheit-temperature
-slug: fahrenheit-temperature
-broader: node:quantity-kind/temperature
-refs:
-  - node: fahrenheit-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: temperature
+ref:
+  qudt-quantity-kind:
     term: FahrenheitTemperature
     match: exact
-contents:
-  - node: fahrenheit-temperature-en
-    language: en
+content:
+  en:
     title: Fahrenheit Temperature
-    about: node:quantity-kind/fahrenheit-temperature

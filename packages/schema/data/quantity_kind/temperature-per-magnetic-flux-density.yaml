@@ -1,12 +1,7 @@
-node: node:quantity-kind/temperature-per-magnetic-flux-density
-slug: temperature-per-magnetic-flux-density
-refs:
-  - node: temperature-per-magnetic-flux-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: TemperaturePerMagneticFluxDensity
     match: exact
-contents:
-  - node: temperature-per-magnetic-flux-density-en
-    language: en
+content:
+  en:
     title: Temperature per Magnetic Flux Density
-    about: node:quantity-kind/temperature-per-magnetic-flux-density

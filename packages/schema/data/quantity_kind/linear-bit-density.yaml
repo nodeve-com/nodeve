@@ -1,12 +1,7 @@
-node: node:quantity-kind/linear-bit-density
-slug: linear-bit-density
-refs:
-  - node: linear-bit-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearBitDensity
     match: exact
-contents:
-  - node: linear-bit-density-en
-    language: en
+content:
+  en:
     title: Lineic Bit Density
-    about: node:quantity-kind/linear-bit-density

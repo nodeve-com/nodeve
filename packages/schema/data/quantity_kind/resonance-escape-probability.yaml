@@ -1,16 +1,10 @@
-node: node:quantity-kind/resonance-escape-probability
-slug: resonance-escape-probability
-refs:
-  - node: resonance-escape-probability-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: ResonanceEscapeProbability
     match: exact
-  - node: resonance-escape-probability-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q4108072
     match: exact
-contents:
-  - node: resonance-escape-probability-en
-    language: en
+content:
+  en:
     title: Resonance Escape Probability
-    about: node:quantity-kind/resonance-escape-probability

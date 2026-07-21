@@ -1,12 +1,7 @@
-node: node:quantity-kind/length-temperature
-slug: length-temperature
-refs:
-  - node: length-temperature-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LengthTemperature
     match: exact
-contents:
-  - node: length-temperature-en
-    language: en
+content:
+  en:
     title: Length Temperature
-    about: node:quantity-kind/length-temperature

@@ -1,17 +1,11 @@
-node: node:quantity-kind/irradiance
-slug: irradiance
-broader: node:quantity-kind/power-per-area
-refs:
-  - node: irradiance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: power-per-area
+ref:
+  qudt-quantity-kind:
     term: Irradiance
     match: exact
-  - node: irradiance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q830654
     match: exact
-contents:
-  - node: irradiance-en
-    language: en
+content:
+  en:
     title: Irradiance
-    about: node:quantity-kind/irradiance

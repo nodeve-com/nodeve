@@ -1,13 +1,8 @@
-node: node:quantity-kind/action-time
-slug: action-time
-broader: node:quantity-kind/time
-refs:
-  - node: action-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: ActionTime
     match: exact
-contents:
-  - node: action-time-en
-    language: en
+content:
+  en:
     title: Action Time
-    about: node:quantity-kind/action-time

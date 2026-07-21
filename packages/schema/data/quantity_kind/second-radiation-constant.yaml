@@ -1,12 +1,7 @@
-node: node:quantity-kind/second-radiation-constant
-slug: second-radiation-constant
-refs:
-  - node: second-radiation-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SecondRadiationConstant
     match: exact
-contents:
-  - node: second-radiation-constant-en
-    language: en
+content:
+  en:
     title: Second Radiation Constant
-    about: node:quantity-kind/second-radiation-constant

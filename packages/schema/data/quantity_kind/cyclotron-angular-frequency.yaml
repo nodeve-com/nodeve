@@ -1,17 +1,11 @@
-node: node:quantity-kind/cyclotron-angular-frequency
-slug: cyclotron-angular-frequency
-broader: node:quantity-kind/angular-frequency
-refs:
-  - node: cyclotron-angular-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: angular-frequency
+ref:
+  qudt-quantity-kind:
     term: CyclotronAngularFrequency
     match: exact
-  - node: cyclotron-angular-frequency-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q97708211
     match: exact
-contents:
-  - node: cyclotron-angular-frequency-en
-    language: en
+content:
+  en:
     title: Larmor Angular Frequency
-    about: node:quantity-kind/cyclotron-angular-frequency

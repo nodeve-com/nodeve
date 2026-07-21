@@ -1,12 +1,7 @@
-node: node:quantity-kind/water-vapour-diffusion-coefficient
-slug: water-vapour-diffusion-coefficient
-refs:
-  - node: water-vapour-diffusion-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: WaterVapourDiffusionCoefficient
     match: exact
-contents:
-  - node: water-vapour-diffusion-coefficient-en
-    language: en
+content:
+  en:
     title: Water Vapour Diffusion Coefficient
-    about: node:quantity-kind/water-vapour-diffusion-coefficient

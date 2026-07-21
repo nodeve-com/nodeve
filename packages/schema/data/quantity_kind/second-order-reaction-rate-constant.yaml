@@ -1,12 +1,7 @@
-node: node:quantity-kind/second-order-reaction-rate-constant
-slug: second-order-reaction-rate-constant
-refs:
-  - node: second-order-reaction-rate-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: SecondOrderReactionRateConstant
     match: exact
-contents:
-  - node: second-order-reaction-rate-constant-en
-    language: en
+content:
+  en:
     title: Reaction Rate Constant
-    about: node:quantity-kind/second-order-reaction-rate-constant

@@ -1,12 +1,7 @@
-node: node:quantity-kind/pressure-based-molality
-slug: pressure-based-molality
-refs:
-  - node: pressure-based-molality-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PressureBasedMolality
     match: exact
-contents:
-  - node: pressure-based-molality-en
-    language: en
+content:
+  en:
     title: Pressure-based Molality
-    about: node:quantity-kind/pressure-based-molality

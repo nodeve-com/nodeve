@@ -1,17 +1,11 @@
-node: node:quantity-kind/cross-section
-slug: cross-section
-broader: node:quantity-kind/area
-refs:
-  - node: cross-section-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area
+ref:
+  qudt-quantity-kind:
     term: CrossSection
     match: exact
-  - node: cross-section-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q17128025
     match: exact
-contents:
-  - node: cross-section-en
-    language: en
+content:
+  en:
     title: Cross-section
-    about: node:quantity-kind/cross-section

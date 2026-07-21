@@ -1,16 +1,10 @@
-node: node:quantity-kind/linear-energy-transfer
-slug: linear-energy-transfer
-refs:
-  - node: linear-energy-transfer-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearEnergyTransfer
     match: exact
-  - node: linear-energy-transfer-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1699996
     match: exact
-contents:
-  - node: linear-energy-transfer-en
-    language: en
+content:
+  en:
     title: Linear Energy Transfer
-    about: node:quantity-kind/linear-energy-transfer

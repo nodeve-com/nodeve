@@ -1,12 +1,7 @@
-node: node:quantity-kind/linear-electric-charge-density
-slug: linear-electric-charge-density
-refs:
-  - node: linear-electric-charge-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: LinearElectricChargeDensity
     match: exact
-contents:
-  - node: linear-electric-charge-density-en
-    language: en
+content:
+  en:
     title: Electric Charge Linear Density
-    about: node:quantity-kind/linear-electric-charge-density

@@ -1,17 +1,11 @@
-node: node:quantity-kind/acceptor-ionization-energy
-slug: acceptor-ionization-energy
-broader: node:quantity-kind/ionization-energy
-refs:
-  - node: acceptor-ionization-energy-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: ionization-energy
+ref:
+  qudt-quantity-kind:
     term: AcceptorIonizationEnergy
     match: exact
-  - node: acceptor-ionization-energy-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q112958122
     match: exact
-contents:
-  - node: acceptor-ionization-energy-en
-    language: en
+content:
+  en:
     title: Acceptor Ionization Energy
-    about: node:quantity-kind/acceptor-ionization-energy

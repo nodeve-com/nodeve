@@ -1,15 +1,10 @@
-node: node:quantity-kind/electric-charge-linear-density
-slug: electric-charge-linear-density
 deprecated: true
 deprecated_in: 3.2.0
-replaced_by: node:quantity-kind/linear-electric-charge-density
-refs:
-  - node: electric-charge-linear-density-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+replaced_by: linear-electric-charge-density
+ref:
+  qudt-quantity-kind:
     term: ElectricChargeLinearDensity
     match: exact
-contents:
-  - node: electric-charge-linear-density-en
-    language: en
+content:
+  en:
     title: Electric Charge Linear Density
-    about: node:quantity-kind/electric-charge-linear-density

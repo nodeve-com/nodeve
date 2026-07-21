@@ -1,13 +1,8 @@
-node: node:quantity-kind/rate-of-change-of-frequency
-slug: rate-of-change-of-frequency
-broader: node:quantity-kind/inverse-square-time
-refs:
-  - node: rate-of-change-of-frequency-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: inverse-square-time
+ref:
+  qudt-quantity-kind:
     term: RateOfChangeOfFrequency
     match: exact
-contents:
-  - node: rate-of-change-of-frequency-en
-    language: en
+content:
+  en:
     title: Rate of Change of Frequency
-    about: node:quantity-kind/rate-of-change-of-frequency

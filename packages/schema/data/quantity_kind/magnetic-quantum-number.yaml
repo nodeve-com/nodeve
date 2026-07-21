@@ -1,17 +1,11 @@
-node: node:quantity-kind/magnetic-quantum-number
-slug: magnetic-quantum-number
-broader: node:quantity-kind/quantum-number
-refs:
-  - node: magnetic-quantum-number-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: quantum-number
+ref:
+  qudt-quantity-kind:
     term: MagneticQuantumNumber
     match: exact
-  - node: magnetic-quantum-number-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q2009727
     match: exact
-contents:
-  - node: magnetic-quantum-number-en
-    language: en
+content:
+  en:
     title: Magnetic Quantum Number
-    about: node:quantity-kind/magnetic-quantum-number

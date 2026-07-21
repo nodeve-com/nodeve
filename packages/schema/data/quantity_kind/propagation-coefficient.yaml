@@ -1,16 +1,10 @@
-node: node:quantity-kind/propagation-coefficient
-slug: propagation-coefficient
-refs:
-  - node: propagation-coefficient-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: PropagationCoefficient
     match: exact
-  - node: propagation-coefficient-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q1434913
     match: exact
-contents:
-  - node: propagation-coefficient-en
-    language: en
+content:
+  en:
     title: Propagation Coefficient
-    about: node:quantity-kind/propagation-coefficient

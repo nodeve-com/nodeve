@@ -1,16 +1,10 @@
-node: node:quantity-kind/inductance
-slug: inductance
-refs:
-  - node: inductance-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: Inductance
     match: exact
-  - node: inductance-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q177897
     match: exact
-contents:
-  - node: inductance-en
-    language: en
+content:
+  en:
     title: Inductance
-    about: node:quantity-kind/inductance

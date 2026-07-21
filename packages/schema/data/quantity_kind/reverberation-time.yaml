@@ -1,17 +1,11 @@
-node: node:quantity-kind/reverberation-time
-slug: reverberation-time
-broader: node:quantity-kind/time
-refs:
-  - node: reverberation-time-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: time
+ref:
+  qudt-quantity-kind:
     term: ReverberationTime
     match: exact
-  - node: reverberation-time-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q606646
     match: exact
-contents:
-  - node: reverberation-time-en
-    language: en
+content:
+  en:
     title: Reverberation Time
-    about: node:quantity-kind/reverberation-time

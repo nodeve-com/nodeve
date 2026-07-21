@@ -1,13 +1,8 @@
-node: node:quantity-kind/effective-multiplication-factor
-slug: effective-multiplication-factor
-broader: node:quantity-kind/multiplication-factor
-refs:
-  - node: effective-multiplication-factor-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: multiplication-factor
+ref:
+  qudt-quantity-kind:
     term: EffectiveMultiplicationFactor
     match: exact
-contents:
-  - node: effective-multiplication-factor-en
-    language: en
+content:
+  en:
     title: Effective Multiplication Factor
-    about: node:quantity-kind/effective-multiplication-factor

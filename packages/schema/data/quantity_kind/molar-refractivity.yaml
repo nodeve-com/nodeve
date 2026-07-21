@@ -1,12 +1,7 @@
-node: node:quantity-kind/molar-refractivity
-slug: molar-refractivity
-refs:
-  - node: molar-refractivity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: MolarRefractivity
     match: exact
-contents:
-  - node: molar-refractivity-en
-    language: en
+content:
+  en:
     title: Molar Refractivity
-    about: node:quantity-kind/molar-refractivity

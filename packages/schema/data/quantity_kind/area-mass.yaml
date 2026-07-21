@@ -1,13 +1,8 @@
-node: node:quantity-kind/area-mass
-slug: area-mass
-broader: node:quantity-kind/mass-per-area
-refs:
-  - node: area-mass-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: mass-per-area
+ref:
+  qudt-quantity-kind:
     term: AreaMass
     match: exact
-contents:
-  - node: area-mass-en
-    language: en
+content:
+  en:
     title: Areic Mass
-    about: node:quantity-kind/area-mass

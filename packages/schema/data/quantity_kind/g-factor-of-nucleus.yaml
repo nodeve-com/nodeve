@@ -1,16 +1,10 @@
-node: node:quantity-kind/g-factor-of-nucleus
-slug: g-factor-of-nucleus
-refs:
-  - node: g-factor-of-nucleus-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+ref:
+  qudt-quantity-kind:
     term: GFactorOfNucleus
     match: exact
-  - node: g-factor-of-nucleus-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q97591250
     match: exact
-contents:
-  - node: g-factor-of-nucleus-en
-    language: en
+content:
+  en:
     title: g-Factor of Nucleus
-    about: node:quantity-kind/g-factor-of-nucleus

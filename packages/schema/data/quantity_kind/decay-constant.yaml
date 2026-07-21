@@ -1,17 +1,11 @@
-node: node:quantity-kind/decay-constant
-slug: decay-constant
-broader: node:quantity-kind/inverse-time
-refs:
-  - node: decay-constant-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: inverse-time
+ref:
+  qudt-quantity-kind:
     term: DecayConstant
     match: exact
-  - node: decay-constant-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q11477200
     match: exact
-contents:
-  - node: decay-constant-en
-    language: en
+content:
+  en:
     title: Decay Constant
-    about: node:quantity-kind/decay-constant

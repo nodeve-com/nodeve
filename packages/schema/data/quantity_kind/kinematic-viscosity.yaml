@@ -1,17 +1,11 @@
-node: node:quantity-kind/kinematic-viscosity
-slug: kinematic-viscosity
-broader: node:quantity-kind/area-per-time
-refs:
-  - node: kinematic-viscosity-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: area-per-time
+ref:
+  qudt-quantity-kind:
     term: KinematicViscosity
     match: exact
-  - node: kinematic-viscosity-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q15106259
     match: exact
-contents:
-  - node: kinematic-viscosity-en
-    language: en
+content:
+  en:
     title: Kinematic Viscosity
-    about: node:quantity-kind/kinematic-viscosity

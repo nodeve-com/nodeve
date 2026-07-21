@@ -1,27 +1,18 @@
-node: node:quantity-kind/altitude
-slug: altitude
 si_unit: m
 accumulation: instantaneous
-broader: node:quantity-kind/length
-refs:
-  - node: altitude-qudt-quantity-kind
-    registry: node:registry/qudt-quantity-kind
+broader: length
+ref:
+  qudt-quantity-kind:
     term: Altitude
     match: exact
-  - node: altitude-wikidata
-    registry: node:registry/wikidata
+  wikidata:
     term: Q190200
     match: exact
-  - node: altitude-wgs84-geo
-    registry: node:registry/wgs84-geo
+  wgs84-geo:
     term: alt
     match: exact
-contents:
-  - node: altitude-en
-    language: en
+content:
+  en:
     title: Altitude
-    about: node:quantity-kind/altitude
-  - node: altitude-pt
-    language: pt
+  pt:
     title: Altitude
-    about: node:quantity-kind/altitude
