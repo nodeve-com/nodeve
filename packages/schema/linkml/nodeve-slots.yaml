@@ -4,17 +4,11 @@
 # alone alongside it.
 id: https://nodeve.com/schema/slots
 name: nodeve-slots
-prefixes:
-  skos: http://www.w3.org/2004/02/skos/core#
-  linkml: https://w3id.org/linkml/
-  nodeve: https://nodeve.com/schema/
-  node: https://nodeve.com/node/
-  qudt: http://qudt.org/schema/qudt/
-  schema: https://schema.org/
+# prefixes live ONCE, on the aggregate root (nodeve.yaml) — the legacy
+# SchemaLoader the SQL generators use resolves this file's CURIEs against the
+# root's namespaces, so a local block would be the duplicate, not this absence
 default_prefix: nodeve
 default_range: string
-imports:
-  - linkml:types
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
 # CLOSED GRAMMAR vocabularies only (rating, severity, …) live here as

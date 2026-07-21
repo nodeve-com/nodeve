@@ -4,6 +4,13 @@
 # gen-sqlddl / gen-pydantic / gen-json-schema all consume this one file.
 id: https://nodeve.com/schema
 name: nodeve
+prefixes:
+  skos: http://www.w3.org/2004/02/skos/core#
+  linkml: https://w3id.org/linkml/
+  nodeve: https://nodeve.com/schema/
+  node: https://nodeve.com/node/
+  qudt: http://qudt.org/schema/qudt/
+  schema: http://schema.org/ # linkml:types defines it http-form; a mismatch fails the merge
 default_prefix: nodeve
 default_range: string
 imports:

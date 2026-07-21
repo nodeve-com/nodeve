@@ -25,7 +25,7 @@ const curieSlug = (curie: string) => curie.split('/').pop()!;
 
 const featureTypes = loadDocs('data/feature_type/');
 const deviceTypes = loadDocs('data/device_type/');
-const { prefixes } = parse(readFileSync(dir('linkml/nodeve-slots.yaml'), 'utf8'));
+const { prefixes } = parse(readFileSync(dir('linkml/nodeve.yaml'), 'utf8'));
 
 const overlayEnum: Record<string, unknown> = {};
 const overlayClass: Record<string, unknown> = {};
