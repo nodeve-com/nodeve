@@ -4,31 +4,24 @@ The gate has two engines. The TS checks run through `nodeve-check` (see [README]
 
 ## The house rules
 
-- **`Narration`** — prose addressing a prior version ("used to", "no longer", "RESOLVED", "correction:"). A doc is read fresh — the reader never saw the copy you're correcting, so the history is dead weight. State the current fact; git holds the history.
-- **`Ephemeral`** — words framing the doc's moment as transient ("uncommitted", "this session"). Docs persist past commit; these go stale on land.
-- **`Hedging`** — deferred-decision hedges ("if wanted") + vagueness hedges. Make the call or cut it.
-- **`SentenceLength`** — telegraphic cap (advisory).
+- **`Narration`** — prose addressing a prior version (`used to`, `no longer`, `RESOLVED`, `correction:`). Every reader reads a doc fresh — nobody saw the copy you correct, so the history is dead weight. State the current fact; git holds the history.
+- **`Ephemeral`** — words framing the doc's moment as transient (`uncommitted`, `this session`). Docs persist past commit; these go stale on land.
+- **`Hedging`** — deferred-decision hedges (`if wanted`) + vagueness hedges. Make the call or cut it.
+- **`Filler`** — low-value phrases that survive `write-good`/`proselint`: `in order to`, `note that`, `make sure to` (instruction narration). Cut, meaning survives.
+- **`SentenceLength`** — telegraphic cap.
 
 Generic word-list work (weasels, wordy phrases, passive voice) stays with the community `write-good` and `proselint` packages; `styles/nodeve/` holds only the house-specific judgment.
 
-## Consuming it
+## Consuming it — nothing to author
 
-Vale is a separate binary — install it via the repo's own toolchain (e.g. a Nix devShell), not `node_modules`. The rules ship as a **Vale package**: a consumer lists `node_modules/@nodeve/checks` in its `Packages`, and `vale sync` copies `styles/nodeve/` into its `StylesPath`. Vale doesn't inherit a package's severity block into the consumer's run, so a repo restates `BasedOnStyles` + severities — copy the canonical block from this package's [`.vale.ini`](.vale.ini):
+ALWAYS ON, no per-repo setup. Extending `lefthook.checks.yml` is the whole opt-in: its `vale` job runs `vale --config=node_modules/@nodeve/checks/.vale.ini`, this package's OWN config. The config vendors its styles beside it (`styles/nodeve` + committed `styles/write-good`, `styles/proselint`) — no `vale sync`, no consumer `.vale.ini`, no severity block to restate and drift. A repo can't extend the gate yet skip prose: the job carries no guard and fails the commit when `vale` leaves PATH.
 
-```ini
-# .vale.ini (consumer repo root)
-StylesPath = styles
-Packages   = write-good, proselint, node_modules/@nodeve/checks
-[*.md]
-BasedOnStyles = nodeve, write-good, proselint
-nodeve.Narration = error
-# … the rest of the block from @nodeve/checks/.vale.ini
-```
+You need only the `vale` binary — install it via the repo's toolchain (the Nix devShell ships it), NOT `node_modules`.
 
-Then `vale sync` once per clone — wire it into the repo's `prepare` script alongside `lefthook install`. The `vale` pre-commit job is already in `lefthook.checks.yml`, guarded to skip cleanly where `vale` isn't installed or no `.vale.ini` exists.
-
-> **Note.** Syncing a local-directory package, Vale renames that package's `.vale.ini` to `0-checks.ini` in place — so after a sync you'll see `node_modules/@nodeve/checks/0-checks.ini`. It's cosmetic and confined to disposable `node_modules` (a fresh install restores `.vale.ini`, and the styles copy the same either way). Never point `Packages` at this package's own git working tree, or it renames the tracked source.
+Every rule BLOCKS; there are no advisory warnings — a rule nobody obeys isn't worth flagging.
 
 ## Tuning
 
-Bump `@nodeve/checks` to change a rule everywhere. A repo tunes severity in its own `.vale.ini`: `= error` blocks the commit, `= warning`/`= suggestion` are advisory, `= NO` silences. Add a house rule with the `vale-house-rule` skill or by copying a sibling in `styles/nodeve/` — anchor every token (`\b…\b`) so legitimate technical prose survives, and test both a bad fixture and a legit near-miss before shipping.
+Bump `@nodeve/checks` to change a rule everywhere — severities live in this package's [`.vale.ini`](.vale.ini), one source for every repo. Add a house rule with the `vale-house-rule` skill or by copying a sibling in `styles/nodeve/`. Anchor every token (`\b…\b`) so real technical prose survives. Test a bad fixture AND a legit near-miss before shipping. Re-vendor third-party styles with `pnpm sync-styles` after a `Packages` bump. It runs `vale sync`, drops the upstream `README.md`s (their prose trips the gate), and re-applies the house `write-good.Passive` message — one idempotent step, nothing manual.
+
+> **Note.** `vale sync` renames this package's `.vale.ini` to `0-checks.ini` in place. Run it in a throwaway checkout, or restore the name after — never let the rename land on the tracked source.

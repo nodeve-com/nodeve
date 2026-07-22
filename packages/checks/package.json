@@ -52,6 +52,7 @@
 	"scripts": {
 		"build": "tsc -p tsconfig.json && cp dist/lib/defaults.js nodeve.checks.defaults.js",
 		"clean": "rm -rf dist",
+		"sync-styles": "node bin/sync-styles.mjs",
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},
 	"dependencies": {

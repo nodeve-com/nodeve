@@ -11,7 +11,7 @@ nodeve-check file-size --explain   # show its full remediation prose
 nodeve-check list            # list the check names
 ```
 
-Every check renders the **same uniform block** — `<glyph> <name> — <summary>`, indented detail rows, and the check's remediation guidance — so the parallel gate's failure output is scannable rather than a wall of per-check formats. `--explain` expands each check's bulky per-finding detail inline (clones code fragments, inline-dupes file lists), which is otherwise summarized. A bare `nodeve-check` prints a status line per check, a tally, then a detail block for each that failed or warned.
+Every check renders the **same uniform block**: `<glyph> <name> — <summary>`, indented detail rows, remediation guidance. So the parallel gate's failures scan cleanly, not a wall of per-check formats. `--explain` expands each check's bulky per-finding detail inline (clones code fragments, inline-dupes file lists), otherwise summarized. A bare `nodeve-check` prints a status line per check, a tally, then a detail block for each failure or warning.
 
 ## Install
 
@@ -51,9 +51,9 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 
 Run any of them as `nodeve-check <name>`. Each also has a standalone `nodeve-check-<name>` bin (identical behavior) for direct invocation.
 
-`commit-msg` is the one gate that runs on the `commit-msg` hook rather than `pre-commit`: lefthook hands it the message file (`{1}`). It validates the header against Conventional Commits — `<type>(<scope>)!: <subject>`, where `type` must be one of `commitMsg.types` (the standard set) and the subject stays under `maxSubjectLength`. Past `commitMsg.bodyRequiredOverLines` changed lines — measured from the **staged** diff, not the commit type — a body becomes mandatory, because at that size the subject alone can't carry the "why". Merge, revert, and `fixup!`/`squash!`/`amend!` messages are skipped (git or rebase owns those). Set `commitMsg: { enforce: false }` to opt out, or `requireScope: true` to also mandate a scope.
+`commit-msg` is the one gate that runs on the `commit-msg` hook rather than `pre-commit`: lefthook hands it the message file (`{1}`). It validates the header against Conventional Commits — `<type>(<scope>)!: <subject>`, where `type` must be one of `commitMsg.types` (the standard set) and the subject stays under `maxSubjectLength`. Past `commitMsg.bodyRequiredOverLines` changed lines — measured from the **staged** diff, not the commit type — a body becomes mandatory, because at that size the subject alone can't carry the "why". It skips merge, revert, and `fixup!`/`squash!`/`amend!` messages (git or rebase owns those). Set `commitMsg: { enforce: false }` to opt out, or `requireScope: true` to also mandate a scope.
 
-`doc-tokens`, `page-size` and `file-size` are one engine (`lib/length.ts`) over one config shape — scope `globs`, a default `warn` and/or `fail` tier, and per-glob `overrides`. A tier bounds `maxLines` and/or `maxTokens` (omit an axis to leave it unbounded); `fail` blocks the commit, `warn` only nudges. An override merges its tiers per-axis over the default for files matching its glob (later overrides win), or drops them with `tiers: 'exempt'` — that one mechanism covers a one-off bigger budget, a soft pre-warn, and a full exemption alike:
+`doc-tokens`, `page-size` and `file-size` are one engine (`lib/length.ts`) over one config shape — scope `globs`, a default `warn` and/or `fail` tier, and per-glob `overrides`. A tier bounds `maxLines` and/or `maxTokens` (omit an axis to leave it unbounded); `fail` blocks the commit, `warn` only nudges. An override merges its tiers per-axis over the default for files matching its glob (later overrides win), or drops them with `tiers: 'exempt'`. That one mechanism covers a one-off bigger budget, a soft pre-warn, and a full exemption alike:
 
 ```js
 export default {
@@ -67,11 +67,11 @@ export default {
 };
 ```
 
-`page-size` is the opt-in member: its default `globs` is empty, so only files a configured override glob matches get a budget. `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps — so it doesn't force the dep on packages that don't use it, it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
+`page-size` is the opt-in member: its default `globs` is empty, so only files a configured override glob matches get a budget. `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps. So it never forces the dep on packages that skip it — it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
 
-`catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses. A workspace is **required** to declare a catalog: a repo with none fails the gate, since the point is keeping versions aligned. Every dependency (deps, devDeps, and peers alike) across every installed manifest — each workspace package **and the root `package.json`** — must reference `catalog:` rather than a literal pin. Opt a repo out deliberately with `catalog: { enforce: false }`.
+`catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses. A workspace **must** declare a catalog: a repo with none fails the gate, since the point is keeping versions aligned. Every dependency (deps, devDeps, and peers alike) across every installed manifest — each workspace package **and the root `package.json`** — must reference `catalog:` rather than a literal pin. Opt a repo out deliberately with `catalog: { enforce: false }`.
 
-`plural-arrays` reads a count-plural variable name as a promise of a list, and fails when the binding provably isn't one — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. A `Set` is left alone on purpose: it's array-like (ordered, iterable, spreads to an array with `[...set]`), so a plural name over it reads fine. It only flags what it can prove from the declaration's type or initializer; a plural bound to an array, a `.map()` chain, an opaque call, or nothing is left alone. [`pluralize`](https://www.npmjs.com/package/pluralize) decides what reads as plural (so `status`, irregulars like `children`/`people`, and `xById`/`xMap`/`xToY` names are handled), and two word lists correct its domain misses — `plural` forces a word to count (`plural: ['props']`), `singular` exempts an `-s` noun it over-counts (seeded with `data`, `metadata`, `series`, `news`):
+`plural-arrays` reads a count-plural variable name as a promise of a list. It fails when the binding provably isn't one — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. It leaves a `Set` alone on purpose: array-like (ordered, iterable, spreads with `[...set]`), so a plural name over it reads fine. It flags only what the declaration's type or initializer proves; a plural bound to an array, a `.map()` chain, an opaque call, or nothing, it leaves alone. [`pluralize`](https://www.npmjs.com/package/pluralize) decides what reads as plural — it handles `status`, irregulars like `children`/`people`, and `xById`/`xMap`/`xToY` names. Two word lists correct its domain misses: `plural` forces a word to count (`plural: ['props']`), `singular` exempts an `-s` noun it over-counts (seeded with `data`, `metadata`, `series`, `news`):
 
 ```js
 export default {
@@ -83,7 +83,7 @@ export default {
 };
 ```
 
-`helper-collisions` compares local helper declarations to dependency function exports in `.nodeve/lib-names.json`. Some libraries expose generic function names whose domain is implied by the package name, such as `date-fns.format`; configure `helperCollisions.libKeywords` to also match each real export with those domain words appended/prepended:
+`helper-collisions` compares local helper declarations to dependency function exports in `.nodeve/lib-names.json`. Some libraries expose generic function names whose domain the package name implies, such as `date-fns.format`; configure `helperCollisions.libKeywords` to also match each real export with those domain words appended/prepended:
 
 ```js
 export default {
@@ -104,7 +104,7 @@ All blocking checks accept `--warn` (report-only, exit 0) and `--explain` (expan
 
 ## Prose gate (Vale)
 
-A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules this package ships in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `SentenceLength`), wired through a guarded `vale` job in `lefthook.checks.yml`. Setup, the consumer `.vale.ini` block, and rule authoring: **[PROSE.md](PROSE.md)**.
+A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules this package ships in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `Filler`, `SentenceLength`), wired through an unguarded `vale` job in `lefthook.checks.yml`. ALWAYS ON: the job runs the package's own `.vale.ini` with vendored styles, so extending the shared config is the whole opt-in — no per-repo `.vale.ini`, no `vale sync`. Fails the commit if `vale` isn't installed. Rules and authoring: **[PROSE.md](PROSE.md)**.
 
 ## Fixers
 
@@ -126,9 +126,9 @@ Quote globs so your shell doesn't expand them before the check sees them. Day to
 
 ## Generators
 
-- `nodeve-build-lib-names` — writes the committed lib-names index that `helper-collisions` matches against (regenerate after dependency bumps). The index is committed so the gate never needs the libs installed at check time.
+- `nodeve-build-lib-names` — writes the committed lib-names index that `helper-collisions` matches against (regenerate after dependency bumps). Committing the index lets the gate skip installing the libs at check time.
 - `nodeve-build-helper-manifest` — **opt-in**; writes a greppable index of the public export surface of the configured packages. Grep it before adding a generic helper.
 
 ## Notes for Bun repos
 
-The bins are plain Node ESM and run under Node from `node_modules/.bin`. lefthook in a Bun workspace still finds them on PATH; no `bunx` prefix is needed.
+The bins are plain Node ESM and run under Node from `node_modules/.bin`. lefthook in a Bun workspace still finds them on PATH; no `bunx` prefix needed.

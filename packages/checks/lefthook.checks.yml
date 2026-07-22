@@ -62,20 +62,18 @@ pre-commit:
             run: node_modules/.bin/nodeve-check doc-tokens {staged_files}
 
           # Prose gate — the OTHER engine. Not a `nodeve-check` bin: it's the `vale`
-          # binary (from the repo's nix devShell, NOT node_modules) reading the
-          # repo's `.vale.ini`, which pulls the org house rules from
-          # `node_modules/@nodeve/checks` via `Packages` + `vale sync`. Guarded so
-          # the shared config is safe in a repo that hasn't opted into prose yet:
-          # runs only when `vale` is on PATH AND a `.vale.ini` exists, else skips.
-          # When it runs, vale exits nonzero on `error`-level alerts and blocks;
-          # warning/suggestion are advisory. Opt in: add a `.vale.ini` (copy the
-          # block in @nodeve/checks/.vale.ini) and run `vale sync` once per clone.
+          # binary reading the org house rules straight from the package's OWN
+          # config (`--config=node_modules/@nodeve/checks/.vale.ini`), whose styles
+          # are vendored beside it. ALWAYS ON: extending this file turns it on, no
+          # per-repo `.vale.ini`, no `vale sync`, no opt-in to forget. UNGUARDED —
+          # if `vale` isn't on PATH the commit FAILS (install it: it's in the nix
+          # devShell). vale exits nonzero on `error` alerts; warning/suggestion are
+          # advisory.
           - name: vale
             glob: '*.md'
             run: |
-              if command -v vale >/dev/null 2>&1 && test -f .vale.ini; then
-                vale {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit). Tune severity in .vale.ini if a rule is wrong."; exit 1; }
-              fi
+              command -v vale >/dev/null 2>&1 || { echo "✖ vale is not installed — the org prose gate is mandatory. Install vale (it ships in the nix devShell: 'nix develop')."; exit 1; }
+              vale --config=node_modules/@nodeve/checks/.vale.ini {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit)."; exit 1; }
 
           - name: reshape
             glob: '*.ts'

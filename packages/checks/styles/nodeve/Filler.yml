@@ -1,0 +1,26 @@
+# Flag low-value filler that survives write-good/proselint — phrases that add words
+# without adding meaning. The house test: cut the phrase, does meaning survive? If
+# yes it's fat. These fire where the wordier gates stay silent. Anchored so real
+# uses ("in order theory", "make sure the flag is set" as an assertion) don't fire.
+extends: existence
+message: "'%s' is filler — cut it or state the fact plainly."
+ignorecase: true
+level: error
+nonword: true
+tokens:
+  # "in order to" → "to"; "so as to" → "to".
+  - '\bin order to\b'
+  - '\bso as to\b'
+  # Meta-throat-clearing before the actual statement.
+  - '\bnote that\b'
+  - '\bit(''s| is) worth noting that\b'
+  - '\bkeep in mind that\b'
+  - '\bplease note\b'
+  # Instruction narration — narrate the act instead of stating the value.
+  # "make sure to X" → "X"; "be sure to X" → "X".
+  - '\b(make|be) sure (to|that)\b'
+  - '\bmake sure you\b'
+  # Empty intensifiers past write-good.Weasel's set.
+  - '\bat the end of the day\b'
+  - '\bfor what it(''s| is) worth\b'
+  - '\bneedless to say\b'
