@@ -2,7 +2,11 @@
 // migrate scripts so neither carries its own copy of these derivations.
 import { abs, readYaml } from '../src/io.ts';
 
-export type ClassDef = { annotations?: Record<string, string>; slots?: string[] };
+export type ClassDef = {
+	annotations?: Record<string, string>;
+	slots?: string[];
+	attributes?: Record<string, SlotDef>;
+};
 export type SlotDef = {
 	range?: string;
 	pattern?: string;

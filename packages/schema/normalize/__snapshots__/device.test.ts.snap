@@ -357,6 +357,8 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "slug": "nominal-br-220v-60hz",
           "valued_range": {
             "margin": 0.05,
+            "max": 63,
+            "min": 57,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
             "value": 60,
           },
@@ -368,6 +370,8 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "slug": "nominal-eu-230v-50hz",
           "valued_range": {
             "margin": 0.05,
+            "max": 52.5,
+            "min": 47.5,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
             "value": 50,
           },

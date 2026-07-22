@@ -22,7 +22,8 @@ import {
 	type Doc,
 	type WalkState,
 } from './registers.ts';
-import { bandToMinMax } from './band-to-min-max.ts';
+import { expandValuedRange } from '../src/valued-range-expand.ts';
+import type { ValuedRange } from '../gen/schema.ts';
 import { ValueContracts } from './values.ts';
 
 /** one authored feature in flight — trail, vocabularies, accumulated rows */
@@ -53,7 +54,8 @@ class DeviceWalk implements WalkState {
 		this.addPath = addPath;
 		const table = basename(dirname(file));
 		const className = classByTable[table] ?? die(file, `no class has sql_table ${table}`);
-		const rootSlot = classByName[className].annotations?.path_root;
+		const rootSlot = (classByName[className] ?? die(file, `no class ${className}`)).annotations
+			?.path_root;
 		if (!rootSlot) die(file, `${className} has no path_root annotation`);
 		this.rootSlot = rootSlot;
 		this.slug = basename(file, '.yaml');
@@ -102,7 +104,9 @@ class DeviceWalk implements WalkState {
 		if (cls === 'Setting') this.model.settings = this.values.settingRows(value, trail);
 		else if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
-			const owner = (classByName.DeviceModel.slots ?? []).find((s) => slotByName[s]?.range === cls);
+			const owner = (classByName.DeviceModel?.slots ?? []).find(
+				(s) => slotByName[s]?.range === cls,
+			);
 			if (!owner) die(trail, `DeviceModel has no slot ranging ${cls}`);
 			this.model[owner!] = keysOf(cls).length
 				? this.childRows(cls, value, trail)
@@ -114,8 +118,8 @@ class DeviceWalk implements WalkState {
 	 * `about` backref both come off the schema */
 	private childRows(cls: string, value: unknown, trail: string): Doc[] {
 		if (!isMap(value)) die(trail, 'expected a keyed map');
-		const [keySlot] = keysOf(cls);
-		const about = classByName[cls].slots?.includes('about');
+		const [keySlot] = keysOf(cls) as [string, ...string[]];
+		const about = classByName[cls]?.slots?.includes('about');
 		return Object.entries(value).map(([k, v]) => ({
 			node: this.mint(`${this.node}/${k}`),
 			...(about ? { about: this.node } : {}),
@@ -143,7 +147,7 @@ class DeviceWalk implements WalkState {
 		if (!isMap(body)) die(trail, 'expected part keys');
 		const fNode = this.mint(`${this.node}/${ftSlug}/${role}`);
 		// the two authored levels bind the slots keyed_by lists, in order
-		const [ftSlot, roleSlot] = keysOf('FeatureOfInterest');
+		const [ftSlot, roleSlot] = keysOf('FeatureOfInterest') as [string, string];
 		const ctx: FeatureCtx = {
 			trail,
 			ftSlug,
@@ -237,7 +241,7 @@ class DeviceWalk implements WalkState {
 		this.intervals.add(iNode);
 		this.mint(iNode);
 		// three stacked levels → the three keyed_by slots, in order
-		const [partSlot, qkSlot, slugSlot] = keysOf('Interval');
+		const [partSlot, qkSlot, slugSlot] = keysOf('Interval') as [string, string, string];
 		const row: Doc = {
 			node: iNode,
 			[partSlot]: at.part,
@@ -254,16 +258,15 @@ class DeviceWalk implements WalkState {
 	private facet(ctx: FeatureCtx, at: { row: Doc; facet: string; trail: string }, cols: unknown) {
 		const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
 		const iNode = at.row.node as string;
-		if (at.facet === 'valued_range')
+		if (at.facet === 'valued_range') {
+			const vr = isMap(cols)
+				? (cols as unknown as ValuedRange)
+				: die(at.trail, 'expected a map of columns');
 			at.row.valued_range = {
 				node: iNode,
-				...columns(
-					cls,
-					bandToMinMax(isMap(cols) ? cols : die(at.trail, 'expected a map of columns'), at.trail),
-					at.trail,
-				),
+				...columns(cls, expandValuedRange(vr, at.trail), at.trail),
 			};
-		else if (at.facet === 'measurement') {
+		} else if (at.facet === 'measurement') {
 			ctx.list.measurements.push({ node: iNode, ...columns(cls, cols, at.trail) });
 			this.measurable.add(iNode);
 		} else if (at.facet === 'specification')

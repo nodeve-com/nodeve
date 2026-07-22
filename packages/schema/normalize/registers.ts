@@ -8,9 +8,11 @@ import type { ValueContracts } from './values.ts';
 
 export type Doc = Record<string, unknown>;
 export const isMap = (v: unknown): v is Doc => !!v && typeof v === 'object' && !Array.isArray(v);
-export const die = (trail: string, msg: string): never => {
+// function declaration, NOT an arrow const: control-flow narrowing after
+// `if (!guard) die(...)` only fires for never-returning function declarations.
+export function die(trail: string, msg: string): never {
 	throw new Error(`${trail}: ${msg}`);
-};
+}
 
 const loadDir = (dir: string): Record<string, Doc> =>
 	Object.fromEntries(
@@ -108,7 +110,7 @@ export function intervalRef(walk: WalkState, ref: Doc, trail: string): string {
 	const hit = exact.length ? exact : at(`${base}/*/${quantity}/`);
 	if (hit.length !== 1)
 		die(trail, `${hit.length} measurable intervals for ${base}/${p}/${quantity} — need exactly 1`);
-	return hit[0];
+	return hit[0]!;
 }
 
 /** exact part first, then the `*` default row */

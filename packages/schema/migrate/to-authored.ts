@@ -26,6 +26,7 @@ const authoredValue = (slot: string, value: unknown, trail: string): unknown => 
 /** a keyed_by child list → the authored map keyed by that slot */
 function authoredMap(childClass: string, items: Stored[], trail: string): Stored {
 	const child = classByName[childClass];
+	if (!child) throw new Error(`${trail}: no class ${childClass}`);
 	const keyedBy = child.annotations!.keyed_by!;
 	const map: Stored = {};
 	for (const item of items) {
@@ -50,7 +51,7 @@ function migrateFile(table: string, className: string, f: string): void {
 		console.log(`skip ${table}/${f} (already authored form)`);
 		return;
 	}
-	const ownSlots = classByName[className].slots ?? [];
+	const ownSlots = classByName[className]?.slots ?? [];
 	const slug = f.replace(/\.yaml$/, '');
 	if (doc.slug !== slug) throw new Error(`${table}/${f}: slug ${doc.slug} != filename`);
 	if (doc.node !== `node:${seg(table)}/${slug}`)
@@ -63,7 +64,7 @@ function migrateFile(table: string, className: string, f: string): void {
 		const childClass = slotByName[key]?.range ?? '';
 		const keyedBy = classByName[childClass]?.annotations?.keyed_by;
 		if (keyedBy) {
-			const authoredKey = classByName[childClass].annotations!.sql_table!;
+			const authoredKey = classByName[childClass]!.annotations!.sql_table!;
 			authored[authoredKey] = authoredMap(childClass, value as Stored[], `${slug}.${key}`);
 		} else {
 			authored[key] = authoredValue(key, value, `${slug}.${key}`);

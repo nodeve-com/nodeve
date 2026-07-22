@@ -74,7 +74,8 @@ function desugarBands(doc: Document) {
 			if ((pair.key as Scalar)?.value !== 'valued_range' || !isMap(pair.value)) return;
 			for (const p of (pair.value as YAMLMap).items) {
 				const k = p.key as Scalar<string>;
-				if (BAND_SUGAR[k.value]) k.value = BAND_SUGAR[k.value];
+				const mapped = BAND_SUGAR[k.value];
+				if (mapped) k.value = mapped;
 			}
 		},
 	});

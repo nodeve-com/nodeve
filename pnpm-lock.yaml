@@ -293,6 +293,9 @@ importers:
       '@nodeve/text':
         specifier: workspace:*
         version: link:../text
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
       vitest:
         specifier: 'catalog:'
         version: 3.2.6(@types/node@24.13.3)(yaml@2.9.0)

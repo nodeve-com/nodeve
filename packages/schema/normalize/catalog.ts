@@ -39,6 +39,7 @@ function keyedChildren(
 ): Row[] {
 	const { node, trail } = ctx;
 	const child = classByName[childClass];
+	if (!child) throw new Error(`${trail}: no class ${childClass}`);
 	const keyedBy = child.annotations?.keyed_by;
 	if (!keyedBy) throw new Error(`${trail}: ${childClass} has no keyed_by annotation`);
 	if (!value || typeof value !== 'object' || Array.isArray(value))
@@ -70,7 +71,7 @@ export function normalize(file: string): Row[] {
 	const table = basename(dirname(file));
 	const className = classByTable[table];
 	if (!className) throw new Error(`${file}: no class has sql_table ${table}`);
-	const ownSlots = classByName[className].slots ?? [];
+	const ownSlots = classByName[className]?.slots ?? [];
 
 	const slug = basename(file, '.yaml');
 	if (!SLUG.test(slug)) throw new Error(`${file}: filename is not a slug`);
@@ -109,7 +110,7 @@ const strip = (row: Row): Record<string, unknown> =>
 /** flat rows → one nested storage row; every node feeds the id space */
 function assemble(rows: Row[]): Record<string, unknown> {
 	for (const row of rows) paths.push((row.node as string).replace(/^node:/, ''));
-	const [root, ...children] = rows;
+	const [root, ...children] = rows as [Row, ...Row[]];
 	const nested = strip(root);
 	for (const child of children) ((nested[child.$slot!] ??= []) as unknown[]).push(strip(child));
 	return nested;
@@ -156,7 +157,7 @@ function mintNodes(): unknown[] {
 /** one data dir → its catalog rows: authored files normalized, legacy passed through */
 function tableRows(dir: string): unknown[] {
 	const out: unknown[] = [];
-	const nested = classByName[classByTable[dir]]?.annotations?.path_root;
+	const nested = classByName[classByTable[dir] ?? '']?.annotations?.path_root;
 	// a tree-walked entry may be a DIRECTORY (its name the slug, its children
 	// merged at load); flat tables stay one file per row
 	const entries = dirents(abs(`data/${dir}`)).filter(
@@ -169,7 +170,7 @@ function tableRows(dir: string): unknown[] {
 		}
 		const doc = readYaml(abs(`data/${dir}/${e}`)) as Record<string, unknown>;
 		if (typeof doc.node === 'string') {
-			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]]);
+			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]!]);
 			out.push(doc);
 		} else out.push(assemble(normalize(abs(`data/${dir}/${e}`))));
 	}

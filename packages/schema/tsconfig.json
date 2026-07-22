@@ -1,0 +1,11 @@
+{
+	"extends": "@nodeve/config/tsconfig",
+	"compilerOptions": {
+		"rootDir": ".",
+		"noEmit": true,
+		"rewriteRelativeImportExtensions": true,
+		"types": ["node"]
+	},
+	"include": [".", "gen/schema.ts"],
+	"exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

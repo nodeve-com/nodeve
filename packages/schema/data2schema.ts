@@ -8,19 +8,32 @@ import { dumpYaml } from './src/yaml-style.ts';
 import { normalize } from './normalize/catalog.ts';
 
 // authored docs enter as NORMALIZED rows — this projector sees only storage shape
-const loadDocs = (d: string) =>
+const loadDocs = (d: string): Record<string, unknown>[] =>
 	yamlNames(abs(d)).map((f) => {
 		const [root, ...children] = normalize(abs(d + f));
-		const doc = { ...root } as Record<string, unknown[]>;
-		for (const c of children) (doc[c.$slot as string] ??= []).push(c);
+		const doc: Record<string, unknown> = { ...root };
+		for (const c of children) ((doc[c.$slot as string] ??= []) as unknown[]).push(c);
 		return doc;
 	});
+
+// the two projected row shapes this projector reads off the normalized rows
+type FeatureTypeRow = {
+	slug: string;
+	node: string;
+	bound_as?: string;
+	quantity_bindings?: { quantity_kind: string }[];
+};
+type DeviceTypeRow = {
+	slug: string;
+	node: string;
+	socket_bindings?: { feature_type: string; role: string; required?: boolean }[];
+};
 
 const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
 const curieSlug = (curie: string) => curie.split('/').pop()!;
 
-const featureTypes = loadDocs('data/feature_type/');
-const deviceTypes = loadDocs('data/device_type/');
+const featureTypes = loadDocs('data/feature_type/') as unknown as FeatureTypeRow[];
+const deviceTypes = loadDocs('data/device_type/') as unknown as DeviceTypeRow[];
 const { prefixes } = readYaml<{ prefixes: unknown }>(abs('linkml/nodeve.yaml'));
 
 const projectedEnum: Record<string, unknown> = {};
@@ -35,7 +48,7 @@ for (const ft of featureTypes) {
 		is_a: 'Interval',
 		slot_usage: {
 			quantity_kind: {
-				any_of: ft.quantity_bindings.map((b: { quantity_kind: string }) => ({
+				any_of: (ft.quantity_bindings ?? []).map((b) => ({
 					equals_string: b.quantity_kind,
 				})),
 			},

@@ -12,16 +12,19 @@
 	"type": "module",
 	"scripts": {
 		"generate": "node format.ts && node normalize/catalog.ts && node data2schema.ts",
-		"build": "pnpm generate && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
+		"build": "pnpm generate && pnpm build:types && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
+		"build:types": "cd linkml && uvx --from linkml gen-typescript nodeve.yaml > ../gen/schema.ts",
 		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",
 		"build:ddl": "cd linkml && uvx --from linkml python ../ddl.py > ../gen/nodeve.sql",
 		"build:db": "cd linkml && uvx --from linkml python ../ddl.py dump",
 		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/device_model/foxess-h3-ps10sh.yaml",
 		"check": "node format.ts --check",
 		"check:refs": "node check-refs.ts",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"test": "vitest run"
 	},
 	"devDependencies": {
+		"@types/node": "catalog:",
 		"@nodeve/config": "workspace:*",
 		"@nodeve/encoding": "workspace:*",
 		"@nodeve/text": "workspace:*",
