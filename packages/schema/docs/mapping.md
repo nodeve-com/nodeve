@@ -15,7 +15,7 @@ How each grimoire construct lands in the relational LinkML model. Reusable table
 | `product:` + mfr cascade | `Product` → `Manufacturer` tables | cascade = shared FK row |
 | `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |
 | part (l1/l2/l3) | `Part` row | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
-| i18n keys (en/pt) | `Content(language)` rows | localized content, BCP 47 language tags |
+| i18n keys (en/pt) | schema `annotations.i18n` → projected `Content(language)` rows | translations authored on the slot/permissible value, never in `data/`; rows are the projection. See [concepts.md](concepts.md#translations) |
 | repeated + instances | `Part` rows + `ordinal` | one row per instance; `ordinal` sorts, drawn from authored position, never hand-typed |
 | energy channels | `flow_direction` + `period` columns | four rows on one kind |
 | combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |

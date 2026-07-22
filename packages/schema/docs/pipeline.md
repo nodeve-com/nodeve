@@ -2,7 +2,7 @@
 
 ## generate
 
-`pnpm generate` = format → normalize → data2schema. (No stage named "generate.")
+`pnpm generate` = format → normalize. (No stage named "generate.")
 
 ### format
 
@@ -15,10 +15,6 @@ Style authority for authored yaml (prettier ignores the tree). Comment-preservin
 ### normalize
 
 THE trail walk ([authoring-storage.md](authoring-storage.md)): nested docs → flat source-tagged rows → `gen/catalog.json`, the root object downstream ingests. Structural errors (bad slug, part outside its set, duplicate coordinate) die here with the key trail.
-
-### data2schema
-
-Data in, schema out. LinkML can't say "the valid set is whatever rows exist," so binding **rows** project into validation **syntax**: `quantity_bindings` → quantity set per feature type, `socket_bindings` → role vocabulary per socket. Output `gen/nodeve-projected.yaml`, the **projected schema**: generated classes (`Inverter`, `AcPhaseInterval`) over the hand-written one, checked by `pnpm validate`. Adding a device type is an INSERT; never hand-edited.
 
 ## `validate` / build
 

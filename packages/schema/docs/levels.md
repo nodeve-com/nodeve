@@ -9,7 +9,7 @@ device type → model → feature type → feature → part? → interval
 
 ## Storage and policy
 
-Every level is stored in a shared table. `DeviceType` and `FeatureType` rows also declare policy for later levels:
+A shared table holds every level. `DeviceType` and `FeatureType` rows also declare policy for later levels:
 
 | artifact | owns |
 | --- | --- |
@@ -18,7 +18,7 @@ Every level is stored in a shared table. `DeviceType` and `FeatureType` rows als
 | `DeviceModel` through `Interval` rows and interval facets | one model's facts |
 | generated `Inverter` class | executable LinkML view of the policy rows |
 
-`Inverter` is generated validation syntax, not another stored entity or SQL table. Adding a device type adds rows, then reruns data2schema. Base DDL stays unchanged.
+`Inverter` is validation syntax, not another stored entity or SQL table. Base DDL stays unchanged.
 
 | level        | table               | keyed by                 | example            |
 | ------------ | ------------------- | ------------------------ | ------------------ |
@@ -38,8 +38,8 @@ Rule ownership follows dependency, not importance:
 | rule | owner | reason |
 | --- | --- | --- |
 | interval `slug` required | base LinkML | fixed shape of every interval |
-| role is valid for an inverter | `SocketBinding` data → data2schema | closed set varies by device type |
-| quantity is valid for an AC feature | `QuantityBinding` data → data2schema | closed set varies by feature type |
+| role is valid for an inverter | `SocketBinding` → validation schema | closed set varies by device type |
+| quantity is valid for an AC feature | `QuantityBinding` → validation schema | closed set varies by feature type |
 | referenced quantity exists | SQL FK | referential integrity |
 | node path unique | SQL PK | storage identity |
 | interval lies inside an envelope | owned check | compares related rows |
@@ -66,14 +66,14 @@ Narrow tables have two forms:
 
 `Interval` identifies a quantity assertion. `Specification`, `Measurement`, and `ValuedRange` are facets of that assertion. They must share the interval's node; none mints another.
 
-Each localized `Content` row is a child. Several may describe one parent and each may be pointed to independently. Its relational shape is:
+Each localized `Content` row is a child, _projected_ from its parent's schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One parent may take more than one row, each addressable independently. Its relational shape is:
 
-| column                  | means                                                 |
-| ----------------------- | ----------------------------------------------------- |
-| `node`                  | this content row's identity; PK and FK to `Node`      |
-| `about`                 | described thing; FK to `Node`; maps to `schema:about` |
-| `language`              | BCP 47 language tag; maps to `schema:inLanguage`      |
-| `title`, `lede`, `body` | payload                                               |
+| column | means |
+| --- | --- |
+| `node` | this content row's identity; PK and FK to `Node` |
+| `about` | described thing; FK to `Node`; maps to `schema:about` |
+| `language` | BCP 47 language tag; maps to `schema:inLanguage` |
+| `title`, `lede`, `body` | payload (`lede` = the slot's LinkML `description` — same field, LinkML's name; see [concepts.md](concepts.md#description-is-lede--one-field-two-names)) |
 
 Thus content needs two node references, but no parent-class reference. `Content.about` can target a `Registry`, `QuantityKind`, model, or any future node without adding columns. Constraint: `UNIQUE (about, language)`.
 
@@ -114,22 +114,22 @@ Every level holds one segment, always. No segment dissolves, so position is neve
 
 ### `_` — the segment that asserts nothing
 
-`_` is reserved at two levels. Both readings are the same move: the column has no value and every candidate word would supply one.
+Two levels reserve `_`. Both readings are the same move: the column has no value, and every candidate word would supply one.
 
 | position      | means                                                    |
 | ------------- | -------------------------------------------------------- |
 | part          | the quantity attaches to the feature itself              |
 | interval slug | this quantity carries one interval, and it needs no name |
 
-`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it is a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
+`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
 
-At the leaf, any word would be a claim about content, not identity. The interval is unnamed because nothing needs discriminating; `_` says exactly that.
+At the leaf, any word would be a claim about content, not identity. The interval stays unnamed because nothing needs discriminating; `_` says exactly that.
 
-`_` is stored, not omitted. `Interval.slug` stays non-null and the path keeps full arity, so position never shifts. It elides only when rendering an address for a reader — `…/switch/0/power/_` displays as `…/switch/0/power`. A six-segment address parses back as `slug = _`; seven reads its leaf literally.
+The path stores `_`, never omits it. `Interval.slug` stays non-null and keeps full arity, so position never shifts. It elides only when rendering an address for a reader — `…/switch/0/power/_` displays as `…/switch/0/power`. A six-segment address parses back as `slug = _`; seven reads its leaf literally.
 
-A second interval on the same `(feature, part, quantity_kind)` forces both to be named. `_` never quietly becomes one band among several.
+A second interval on the same `(feature, part, quantity_kind)` forces both to take names. `_` never quietly becomes one band among others.
 
-As a part, `_` makes no claim about why no part is named. Three unrelated situations produce it:
+As a part, `_` makes no claim about why no part carries a name. Three unrelated situations produce it:
 
 | situation                               | example                           |
 | --------------------------------------- | --------------------------------- |
@@ -141,13 +141,13 @@ Any word would pick one of the three. `_` picks none.
 
 A lone part that could have siblings — one MPPT tracker, one battery port — IS part `1`. Frequency on a three-phase port is not: calling it part 1 invents a part and implies a `2` and `3` that would carry frequency too.
 
-Both markers are reserved **structurally, not by rule**: slugs match `^[a-z0-9]+(-[a-z0-9]+)*$`, which cannot produce a bare `_` or `*`. No part can ever collide with them and no lint has to say so.
+Structure reserves both markers, **not a rule**: slugs match `^[a-z0-9]+(-[a-z0-9]+)*$`, which cannot produce a bare `_` or `*`. No part can ever collide with them and no lint has to say so.
 
 Position carries the meaning: slot four is always the part.
 
 ### Uniqueness falls out
 
-There is no separate "slug unique per part" constraint to write. Two rows that would collide on `(feature, part, quantity_kind, slug)` derive the _same_ path, and the path is the PK — the mint hits a duplicate.
+No separate "slug unique per part" constraint needs writing. Two rows that would collide on `(feature, part, quantity_kind, slug)` derive the _same_ path, and the path is the PK — the mint hits a duplicate.
 
 | feature_type | feature    | part | interval                |
 | ------------ | ---------- | ---- | ----------------------- |
@@ -166,7 +166,7 @@ There is no separate "slug unique per part" constraint to write. Two rows that w
 
 ## Many intervals per (feature, part, quantity)
 
-`slug` is the discriminator. One band is never enough — a quantity carries several specs, several channels, or both.
+`slug` is the discriminator. One band is never enough — a quantity carries specs, channels, or both.
 
 | feature / part / quantity | slug | payload |
 | --- | --- | --- |
@@ -191,7 +191,7 @@ Parts belong to the **feature**, not its type — how a model subdivides a port 
 
 ## The part column
 
-Every interval has a part, always — the column is non-null and holds the path's part segment verbatim. There is no separate scope enum: the segment already says which of the three things it is, and a second column could only repeat it or contradict it.
+Every interval has a part, always — the column is non-null and holds the path's part segment verbatim. No separate scope enum exists: the segment already says which of the three things it names, and a second column could only repeat or contradict it.
 
 | part | means                                                         |
 | ---- | ------------------------------------------------------------- |
@@ -208,7 +208,7 @@ Every interval has a part, always — the column is non-null and holds the path'
 
 A measurement channel is always concrete, so `*` is in practice a specification move: one band stated once instead of repeated per leg. Nothing forbids it elsewhere, and no rule has to.
 
-`*` is stored as-is and resolves at query time against the feature's own `Part` rows. A part's own value wins; `*` supplies the rest:
+`*` persists as-is and resolves at query time against the feature's own `Part` rows. A part's own value wins; `*` supplies the rest:
 
 ```sql
 select distinct on (i.quantity_kind, i.slug) i.*

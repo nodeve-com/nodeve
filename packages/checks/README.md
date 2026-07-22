@@ -51,7 +51,7 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 
 Run any of them as `nodeve-check <name>`. Each also has a standalone `nodeve-check-<name>` bin (identical behavior) for direct invocation.
 
-`commit-msg` is the one gate that runs on the `commit-msg` hook rather than `pre-commit`: lefthook hands it the message file (`{1}`). It validates the header against Conventional Commits — `<type>(<scope>)!: <subject>`, where `type` must be one of `commitMsg.types` (the standard set) and the subject stays under `maxSubjectLength`. Past `commitMsg.bodyRequiredOverLines` changed lines — measured from the **staged** diff, not the commit type — a body becomes mandatory, because at that size the subject alone can't carry the "why". It skips merge, revert, and `fixup!`/`squash!`/`amend!` messages (git or rebase owns those). Set `commitMsg: { enforce: false }` to opt out, or `requireScope: true` to also mandate a scope.
+`commit-msg` is the one gate on the `commit-msg` hook, not `pre-commit`: lefthook hands it the message file (`{1}`). It checks the header against Conventional Commits — `<type>(<scope>)!: <subject>`, `type` one of `commitMsg.types`, subject under `maxSubjectLength`. Past `commitMsg.bodyRequiredOverLines` changed lines (from the **staged** diff, not the commit type) a body becomes mandatory — at that size the subject alone can't carry the "why". It skips merge, revert, and `fixup!`/`squash!`/`amend!` messages (git or rebase owns those). Set `commitMsg: { enforce: false }` to opt out, or `requireScope: true` to mandate a scope.
 
 `doc-tokens`, `page-size` and `file-size` are one engine (`lib/length.ts`) over one config shape — scope `globs`, a default `warn` and/or `fail` tier, and per-glob `overrides`. A tier bounds `maxLines` and/or `maxTokens` (omit an axis to leave it unbounded); `fail` blocks the commit, `warn` only nudges. An override merges its tiers per-axis over the default for files matching its glob (later overrides win), or drops them with `tiers: 'exempt'`. That one mechanism covers a one-off bigger budget, a soft pre-warn, and a full exemption alike:
 
@@ -67,11 +67,11 @@ export default {
 };
 ```
 
-`page-size` is the opt-in member: its default `globs` is empty, so only files a configured override glob matches get a budget. `require-deps` keeps the org's blessed libraries single-sourced and visibly expected: it fails when the workspace catalog (default or a named group) doesn't define a required name. It checks the catalog, not each package's deps. So it never forces the dep on packages that skip it — it just guarantees the version is there to adopt with `catalog:`. Defaults to requiring `remeda`; set `requireDeps: { deps: [] }` to opt out.
+`page-size` is the opt-in member: its default `globs` is empty, so only files a configured override glob matches get a budget. `require-deps` keeps the org's blessed libraries single-sourced: it fails when the workspace catalog (default or a named group) lacks a required name. It checks the catalog, not each package's deps. So it never forces the dep on a package that skips it — it just guarantees the version is there to adopt with `catalog:`. Defaults to `remeda`; set `requireDeps: { deps: [] }` to opt out.
 
-`catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`) — it auto-detects whichever the repo uses. A workspace **must** declare a catalog: a repo with none fails the gate, since the point is keeping versions aligned. Every dependency (deps, devDeps, and peers alike) across every installed manifest — each workspace package **and the root `package.json`** — must reference `catalog:` rather than a literal pin. Opt a repo out deliberately with `catalog: { enforce: false }`.
+`catalog` works with both pnpm (catalog in `pnpm-workspace.yaml`) and Bun (catalog in `package.json#workspaces`), auto-detecting whichever the repo uses. A workspace **must** declare a catalog — a repo with none fails, since the point is keeping versions aligned. Every dependency (deps, devDeps, peers) across every installed manifest — each workspace package **and the root `package.json`** — must reference `catalog:`, not a literal pin. Opt out with `catalog: { enforce: false }`.
 
-`plural-arrays` reads a count-plural variable name as a promise of a list. It fails when the binding provably isn't one — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. It leaves a `Set` alone on purpose: array-like (ordered, iterable, spreads with `[...set]`), so a plural name over it reads fine. It flags only what the declaration's type or initializer proves; a plural bound to an array, a `.map()` chain, an opaque call, or nothing, it leaves alone. [`pluralize`](https://www.npmjs.com/package/pluralize) decides what reads as plural — it handles `status`, irregulars like `children`/`people`, and `xById`/`xMap`/`xToY` names. Two word lists correct its domain misses: `plural` forces a word to count (`plural: ['props']`), `singular` exempts an `-s` noun it over-counts (seeded with `data`, `metadata`, `series`, `news`):
+`plural-arrays` reads a count-plural variable name as a promise of a list. It fails when the binding provably isn't one — an object literal, `new Map()`, a `Record<…>`/index-signature type, or an `Object.fromEntries()`-style builder. It leaves a `Set` alone: array-like (ordered, iterable, spreads with `[...set]`), so a plural name over it reads fine. It flags only what the type or initializer proves; a plural bound to an array, a `.map()` chain, an opaque call, or nothing stays. [`pluralize`](https://www.npmjs.com/package/pluralize) decides what reads as plural — it handles `status`, irregulars like `children`/`people`, and `xById`/`xMap`/`xToY` names. Two word lists correct its domain misses: `plural` forces a word to count (`plural: ['props']`), `singular` exempts an `-s` noun it over-counts (seeded with `data`, `metadata`, `series`, `news`):
 
 ```js
 export default {
@@ -96,15 +96,21 @@ export default {
 
 With that config, `formatDate` reports as a collision with `date-fns.format`, while the recommended function remains the real dependency export.
 
-A reinvention often borrows a _different_ library's name, which shares no tokens with the blessed export — lodash's `upperFirst` is remeda's `capitalize`. `helperCollisions.aliases` maps each real export to the other names it's known by, so those still match; the defaults seed the common lodash→remeda renames (`capitalize: ['upperFirst']`, `fromEntries: ['fromPairs']`, …).
+A reinvention often borrows a _different_ library's name, sharing no tokens with the blessed export — lodash's `upperFirst` is remeda's `capitalize`. `helperCollisions.aliases` maps each real export to its other known names so those still match; the defaults seed the common lodash→remeda renames (`capitalize: ['upperFirst']`, `fromEntries: ['fromPairs']`, …).
 
-`clones` is the structural counterpart to the name-based gates: it shells [jscpd v5](https://jscpd.dev) (a fast Rust copy-paste detector) over `clones.paths` and fails on any duplicated block past `clones.minTokens`/`minLines`. It catches reuse hiding in function _bodies_ that `inline-dupes`/`helper-collisions` can't see by name. Tune `minTokens`/`threshold`, narrow with `clones.ignore` globs, or `--warn` to downgrade. jscpd's native binary is an optional dependency, so the gate cleanly no-ops where it isn't installed rather than blocking a commit.
+`clones` is the structural counterpart to the name gates: it shells [jscpd v5](https://jscpd.dev) (a fast Rust copy-paste detector) over `clones.paths`, failing on any duplicated block past `clones.minTokens`/`minLines`. That's reuse hiding in function _bodies_ that `inline-dupes`/`helper-collisions` can't see by name. Tune `minTokens`/`threshold`, narrow with `clones.ignore` globs, or `--warn` to downgrade. jscpd's native binary is optional, so the gate no-ops where it isn't installed rather than blocking.
 
 All blocking checks accept `--warn` (report-only, exit 0) and `--explain` (expand the remediation prose under the result); `doc-tokens` accepts `--report` to list the whole backlog without failing. Pass explicit paths to scope a run (lefthook passes `{staged_files}`).
 
 ## Prose gate (Vale)
 
-A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules this package ships in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `Filler`, `SentenceLength`), wired through an unguarded `vale` job in `lefthook.checks.yml`. ALWAYS ON: the job runs the package's own `.vale.ini` with vendored styles, so extending the shared config is the whole opt-in — no per-repo `.vale.ini`, no `vale sync`. Fails the commit if `vale` isn't installed. Rules and authoring: **[PROSE.md](PROSE.md)**.
+A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `Filler`, `SentenceLength`), an unguarded `vale` job in `lefthook.checks.yml`. ALWAYS ON: it runs the package's own `.vale.ini` with vendored styles — extending the shared config is the whole opt-in, no per-repo `.vale.ini`, no `vale sync`. Fails the commit if `vale` isn't installed. Rules: **[PROSE.md](PROSE.md)**.
+
+Run the rules ad hoc with **`nodeve-prose`** — one jumpable error per line, no `--config`:
+
+```sh
+pnpm exec nodeve-prose docs/levels.md   # Bun: bunx nodeve-prose …
+```
 
 ## Fixers
 

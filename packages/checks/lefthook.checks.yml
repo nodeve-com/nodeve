@@ -73,7 +73,7 @@ pre-commit:
             glob: '*.md'
             run: |
               command -v vale >/dev/null 2>&1 || { echo "✖ vale is not installed — the org prose gate is mandatory. Install vale (it ships in the nix devShell: 'nix develop')."; exit 1; }
-              vale --config=node_modules/@nodeve/checks/.vale.ini {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit)."; exit 1; }
+              vale --config=node_modules/@nodeve/checks/.vale.ini {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit)."; echo "  Re-run on one file for jump-to-line detail:  pnpm exec nodeve-prose <file.md>"; exit 1; }
 
           - name: reshape
             glob: '*.ts'
