@@ -3,12 +3,12 @@
 // device_type.socket_bindings    → the role vocabulary + required-ness per socket.
 // Data is the source; the projected schema is derived. Never hand-edit it — a
 // new quantity or socket is an INSERT here, and the stencil follows.
-import { abs, readYaml, write, yamlNames } from './src/io.ts';
-import { dumpYaml } from './src/yaml-style.ts';
-import { normalize } from './normalize/catalog.ts';
+import { abs, readYaml, write, yamlNames } from '../src/io.ts';
+import { dumpYaml } from '../src/yaml-style.ts';
+import { normalize } from '../normalize/catalog.ts';
 
 // authored docs enter as NORMALIZED rows — this projector sees only storage shape
-const loadDocs = (d: string): Record<string, unknown>[] =>
+const loadRows = (d: string): Record<string, unknown>[] =>
 	yamlNames(abs(d)).map((f) => {
 		const [root, ...children] = normalize(abs(d + f));
 		const doc: Record<string, unknown> = { ...root };
@@ -32,8 +32,8 @@ type DeviceTypeRow = {
 const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
 const curieSlug = (curie: string) => curie.split('/').pop()!;
 
-const featureTypes = loadDocs('data/feature_type/') as unknown as FeatureTypeRow[];
-const deviceTypes = loadDocs('data/device_type/') as unknown as DeviceTypeRow[];
+const featureTypes = loadRows('data/feature_type/') as unknown as FeatureTypeRow[];
+const deviceTypes = loadRows('data/device_type/') as unknown as DeviceTypeRow[];
 const { prefixes } = readYaml<{ prefixes: unknown }>(abs('linkml/nodeve.yaml'));
 
 const projectedEnum: Record<string, unknown> = {};

@@ -3,7 +3,7 @@
 // fits the width budget AND holds no block child or comment; otherwise block.
 // Bottom-up — a child forced block forces its parent block, since a flow
 // collection cannot hold a block one. This is content-agnostic; domain/semantic
-// passes (key sorting by kind, band desugar) live in the format gate. The width
+// passes (key sorting by kind, band-key canonicalize) live in the format gate. The width
 // budget is the repo's ONE line-width — prettier's printWidth. Serialization
 // stays in io.ts; this only sets node.flow, then hands off to serializeYaml.
 import {

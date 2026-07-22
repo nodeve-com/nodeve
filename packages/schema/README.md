@@ -27,11 +27,11 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 | `linkml/nodeve.yaml` | schema root — prefixes, defaults, import assembly |
 | `linkml/{core,taxonomy,features,product,network,modbus}.yaml` | domain classes with owned slots |
 | `linkml/shared.yaml` | shared slots + enums |
-| `format.ts` | formatting gate over authored yaml (`--check` for precommit) |
-| `data2schema.ts` | binding rows → `gen/nodeve-projected.yaml`, the projected validation schema |
-| `check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |
+| `bin/format.ts` | formatting gate over authored yaml (`--check` for precommit) |
+| `bin/data2schema.ts` | binding rows → `gen/nodeve-projected.yaml`, the projected validation schema |
+| `bin/check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |
 | `normalize/catalog.ts` | THE normalizer — authored docs → normalized rows → `gen/catalog.json`, the one root object `linkml-sqldb` ingests; pass a data file to print its rows |
-| `ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no hook over backref columns |
+| `bin/ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no hook over backref columns |
 | `data/device_model/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | table-like authored vocabularies and policy rows. **Placeholder fixtures — not normative** |
 | `data/registry/`, `data/quantity_kind/` | bulk vocabularies — QUDT-derived, seeded once from grimoire. Authored here |
@@ -97,4 +97,4 @@ Addressable identity, facets, and node paths: [levels.md](docs/levels.md#node--a
 - **Kind-level value domains are dropped.** grimoire's per-kind `schema:` block (`count` integer >= 1, `mass` > 0) fed the old JSON-Schema shape layer. `ValuedRange` already owns bounds, and a kind-level floor is only checkable by joining Interval → ValuedRange → QuantityKind. If it matters, it is an owned check, not columns.
 - **Cross-row semantics are not LinkML's.** `conditions`, interval bounds within envelope, offered-kinds-only — LinkML validates shape. Those stay owned checks.
 - **Upstream codes were discarded at seed time.** grimoire registries carry their own `code` (`wikidata: JDV86GJS`); the ledger minted fresh ones from the permalink, so the same thing has two handles until grimoire is gone.
-- **`code` is 40 bits.** No collisions at 1247 rows, but it is a birthday problem — ~1-in-2000 odds by 50k rows, near-certain by 1M. `format.ts` does not check; a collision would mint a duplicate silently.
+- **`code` is 40 bits.** No collisions at 1247 rows, but it is a birthday problem — ~1-in-2000 odds by 50k rows, near-certain by 1M. `bin/format.ts` does not check; a collision would mint a duplicate silently.

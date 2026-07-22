@@ -2,7 +2,8 @@
 // around value — absolute (tolerance) or relative (margin), symmetric or
 // asymmetric. Add-only: a bound already present or a value-only range is left
 // untouched. The band spelling is authoring sugar; min/max are what storage
-// reads. `fraction_*` sugar is already margin_* by here (format.ts desugars it).
+// reads. A mis-authored `fraction_*` key is already corrected to margin_* by
+// here (format.ts canonicalizes it).
 import { die } from '../normalize/registers.ts';
 import type { ValuedRange } from '../gen/schema.ts';
 
