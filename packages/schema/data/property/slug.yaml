@@ -1,0 +1,5 @@
+content:
+  en: { lede: "Hand-authored machine key and URL segment, in kebab-case." }
+  pt:
+    title: Slug
+    lede: "Identificador de máquina e segmento de URL, escrito à mão em kebab-case."

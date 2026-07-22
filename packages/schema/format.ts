@@ -1,32 +1,18 @@
-// Authored-yaml formatter: sort + desugar passes on the linkml schema, a
-// deterministic flow/block restyle on every schema + data file. The sole style
-// authority (prettier ignores packages/schema/**/*.yaml). Runs over a
-// comment-preserving yaml Document. `--check` exits 1 on drift; default writes.
-import { readFileSync, writeFileSync, globSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import {
-	parseDocument,
-	visit,
-	stringify,
-	isMap,
-	isPair,
-	isCollection,
-	type Pair,
-	type Scalar,
-	type YAMLMap,
-	type YAMLSeq,
-	type Node,
-} from 'yaml';
+// Authored-yaml formatter: the SEMANTIC passes only — alpha-sort enums, sort
+// slots by kind on the linkml schema, band-sugar desugar on data. Content-
+// agnostic styling (deterministic flow/block collection style) is NOT here; it
+// happens on every save in io.dumpYaml, so a generated file gets it too. `dumpYaml`
+// applies it — this gate only reorders/desugars, then re-serializes. `--check`
+// exits 1 on drift; default writes.
+import { glob, parseDoc, read, write } from './src/io.ts';
+import { dumpYaml } from './src/yaml-style.ts';
+import { visit, isMap, type Document, type Pair, type Scalar, type YAMLMap } from 'yaml';
 
-const abs = (pattern: string) =>
-	globSync(pattern, { cwd: fileURLToPath(new URL('.', import.meta.url)) }).map((p) =>
-		fileURLToPath(new URL(p, import.meta.url)),
-	);
-// linkml schema files take the sort/desugar passes; authored data yaml takes
-// only the deterministic restyle. Both are the sole style authority for their
-// tree — prettier ignores all of packages/schema/**/*.yaml.
-const SCHEMA_FILES = abs('linkml/*.yaml');
-const DATA_FILES = abs('data/**/*.yaml');
+// linkml schema files take the sort passes; authored data yaml takes the
+// desugar. Both re-serialize through io.dumpYaml, which owns collection style —
+// prettier ignores all of packages/schema/**/*.yaml.
+const SCHEMA_FILES = glob('linkml/*.yaml');
+const DATA_FILES = glob('data/**/*.yaml');
 type MapPair = Pair<Scalar<string>, YAMLMap>;
 
 const keyOf = (p: MapPair) => p.key.value;
@@ -74,68 +60,32 @@ function sortSlots(doc: Document) {
 	if (bannerText && firstObject) firstObject.key.commentBefore = bannerText;
 }
 
-/** desugar: camel annotation is mechanical from the snake key — authors omit it,
- * the formatter injects it. */
-function injectCamel(doc: Document) {
-	const slots = mapAt(doc, ['slots']);
-	if (!slots) return;
-	for (const item of slots.items) {
-		const p = item as MapPair;
-		const name = keyOf(p);
-		if (!name.includes('_')) continue;
-		if (p.value?.hasIn(['annotations', 'camel'])) continue;
-		const camel = name.replace(/_([a-z0-9])/g, (_, c: string) => c.toUpperCase());
-		p.value.set('annotations', doc.createNode({ camel: camel }, { flow: true }));
-	}
-}
-
-/** Deterministic collection style: a map/seq stays inline flow only if its
- * one-line render fits the width budget AND holds no block child or comment;
- * otherwise it becomes block. Replaces prettier's multiline-flow — the lone `{`
- * / `}` lines a long flow map wraps into. Bottom-up: a child forced block forces
- * its parent block, since a flow collection cannot hold a block one. */
-const WIDTH = 100;
-type Coll = YAMLMap | YAMLSeq;
-const hasComment = (n: unknown): boolean => {
-	const c = n as { comment?: unknown; commentBefore?: unknown } | null;
-	return Boolean(c?.comment || c?.commentBefore);
+/** desugar: relative-band sugar in authored data — `fraction_lower` /
+ * `fraction_upper` in a valued_range payload rewrite to `margin_lower` /
+ * `margin_upper` (features.yaml), so the normalizer only sees canonical band
+ * columns. */
+const BAND_SUGAR: Record<string, string> = {
+	fraction_lower: 'margin_lower',
+	fraction_upper: 'margin_upper',
 };
-function restyle(doc: Document) {
-	const found: Array<{ node: Coll; depth: number; prefix: number }> = [];
+function desugarBands(doc: Document) {
 	visit(doc, {
-		Collection(_key, node, path) {
-			const parent = path[path.length - 1] as Node;
-			// column budget already spent before this collection opens: its own indent
-			// plus the `key: ` (map value) or `- ` (seq item) that precedes it
-			const prefix = isPair(parent) ? String((parent.key as Scalar).value).length + 2 : 2;
-			found.push({ node: node as Coll, depth: path.filter(isCollection).length, prefix });
+		Pair(_key, pair) {
+			if ((pair.key as Scalar)?.value !== 'valued_range' || !isMap(pair.value)) return;
+			for (const p of (pair.value as YAMLMap).items) {
+				const k = p.key as Scalar<string>;
+				if (BAND_SUGAR[k.value]) k.value = BAND_SUGAR[k.value];
+			}
 		},
 	});
-	found.sort((a, b) => b.depth - a.depth); // deepest first
-	for (const { node, depth, prefix } of found) {
-		const commented = node.items.some((it) =>
-			isPair(it) ? hasComment(it.key) || hasComment(it.value) || hasComment(it) : hasComment(it),
-		);
-		const blockChild = node.items.some((it) => {
-			const child = isPair(it) ? it.value : it;
-			return isCollection(child) && child.flow === false;
-		});
-		if (commented || blockChild) {
-			node.flow = false;
-			continue;
-		}
-		node.flow = true;
-		const width = depth * 2 + prefix + stringify(node, { lineWidth: 0 }).trimEnd().length;
-		node.flow = width <= WIDTH;
-	}
 }
 
 // ─── cli ─────────────────────────────────────────────────────────────────────
 
 const ALL_FILES = [...SCHEMA_FILES, ...DATA_FILES];
 const isSchema = new Set(SCHEMA_FILES);
-const sourceByFile = new Map(ALL_FILES.map((file) => [file, readFileSync(file, 'utf8')]));
-const docByFile = new Map([...sourceByFile].map(([file, source]) => [file, parseDocument(source)]));
+const sourceByFile = new Map(ALL_FILES.map((file) => [file, read(file)]));
+const docByFile = new Map([...sourceByFile].map(([file, source]) => [file, parseDoc(source)]));
 for (const [file, doc] of docByFile) {
 	if (doc.errors.length) {
 		console.error(doc.errors.map((e) => e.message).join('\n'));
@@ -144,14 +94,13 @@ for (const [file, doc] of docByFile) {
 	if (isSchema.has(file)) {
 		sortEnums(doc);
 		sortSlots(doc);
-		injectCamel(doc);
+	} else {
+		desugarBands(doc);
 	}
-	restyle(doc);
 }
 
 const outputs: Array<[string, string, string]> = [...docByFile].map(
-	([file, doc]) =>
-		[file, sourceByFile.get(file)!, doc.toString({ lineWidth: 0 })] as [string, string, string],
+	([file, doc]) => [file, sourceByFile.get(file)!, dumpYaml(doc)] as [string, string, string],
 );
 const dirty = outputs.filter(([, before, after]) => before !== after);
 if (!dirty.length) process.exit(0);
@@ -161,6 +110,6 @@ if (process.argv.includes('--check')) {
 	process.exit(1);
 }
 for (const [file, , after] of dirty) {
-	writeFileSync(file, after);
+	write(file, after);
 	console.log(`formatted ${file}`);
 }

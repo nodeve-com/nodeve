@@ -13,11 +13,10 @@
 // the presence of a `node` key: authored (normalized) or legacy storage rows
 // (passthrough until that kind's authored form lands). A file the normalizer
 // rejects is SKIPPED LOUDLY, never silently dropped.
-import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { shortCode } from '@nodeve/encoding/short-code';
 import { basename, dirname } from 'node:path';
-import { parse } from 'yaml';
-import { atRoot, classByName, classByTable, fkTable, seg, slotByName, SLUG } from './model.ts';
+import { abs, dirents, dumpJson, exists, readYaml, write, yamlNames } from '../src/io.ts';
+import { classByName, classByTable, fkTable, seg, slotByName, SLUG } from './model.ts';
 import { normalizeDevice } from './tree.ts';
 
 /** authored FK values are bare slugs; a slot ranging a table-backed class
@@ -76,7 +75,7 @@ export function normalize(file: string): Row[] {
 	const slug = basename(file, '.yaml');
 	if (!SLUG.test(slug)) throw new Error(`${file}: filename is not a slug`);
 	const node = `node:${seg(table)}/${slug}`;
-	const doc = parse(readFileSync(file, 'utf8')) as Record<string, unknown>;
+	const doc = readYaml(file) as Record<string, unknown>;
 
 	const row: Row = { node, slug, $trail: slug };
 	const rows = [row];
@@ -132,7 +131,7 @@ function collectPaths(value: unknown, trail: string[]) {
 }
 
 if (import.meta.main && process.argv[2]) {
-	console.log(JSON.stringify(normalize(process.argv[2]), null, 2));
+	console.log(dumpJson(normalize(process.argv[2]), 2));
 } else if (import.meta.main) {
 	build();
 }
@@ -160,21 +159,72 @@ function tableRows(dir: string): unknown[] {
 	const nested = classByName[classByTable[dir]]?.annotations?.path_root;
 	// a tree-walked entry may be a DIRECTORY (its name the slug, its children
 	// merged at load); flat tables stay one file per row
-	const entries = readdirSync(atRoot(`data/${dir}`), { withFileTypes: true }).filter(
+	const entries = dirents(abs(`data/${dir}`)).filter(
 		(e) => e.name.endsWith('.yaml') || (nested && e.isDirectory()),
 	);
 	for (const e of entries.map((e) => e.name).sort()) {
 		if (nested) {
-			out.push(normalizeDevice(atRoot(`data/${dir}/${e}`), (p) => paths.push(p)));
+			out.push(normalizeDevice(abs(`data/${dir}/${e}`), (p) => paths.push(p)));
 			continue;
 		}
-		const doc = parse(readFileSync(atRoot(`data/${dir}/${e}`), 'utf8')) as Record<string, unknown>;
+		const doc = readYaml(abs(`data/${dir}/${e}`)) as Record<string, unknown>;
 		if (typeof doc.node === 'string') {
 			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]]);
 			out.push(doc);
-		} else out.push(assemble(normalize(atRoot(`data/${dir}/${e}`))));
+		} else out.push(assemble(normalize(abs(`data/${dir}/${e}`))));
 	}
 	return out;
+}
+
+/** slots with a user-facing title project to Property rows. ONLY the en title is
+ * GENERATED from the schema (LinkML has no i18n). Content-author prose — the
+ * `lede` (short description) and `body` (full markdown), every language including
+ * en — is AUTHORED in data/property/<slug>.yaml and merged here about the same
+ * node. Schema `description:` is developer prose and never enters Content. A
+ * title-less slot is structural and gets no row. */
+/** Content rows for one titled slot: the generated en (title only) plus authored
+ * prose — en's lede/body merged in, other languages appended as their own rows */
+function propertyContents(en: Record<string, unknown>, authored: Row[], slug: string) {
+	const contents: Record<string, unknown>[] = [en];
+	for (const child of authored.slice(1)) {
+		const row = strip(child) as Record<string, unknown>;
+		if (row.language !== 'en') {
+			paths.push(child.node as string);
+			contents.push(row);
+			continue;
+		}
+		// authored en carries lede/body only — the title is generated
+		if (row.title) throw new Error(`data/property/${slug}.yaml: en title is GENERATED — drop it`);
+		if (row.lede !== undefined) en.lede = row.lede;
+		if (row.body !== undefined) en.body = row.body;
+	}
+	return contents;
+}
+
+function projectProperties(): unknown[] {
+	const dir = abs('data/property');
+	const authored = new Map<string, Row[]>(
+		exists(dir) ? yamlNames(dir).map((f) => [basename(f, '.yaml'), normalize(`${dir}/${f}`)]) : [],
+	);
+
+	const rows: unknown[] = [];
+	for (const [name, def] of Object.entries(slotByName)) {
+		if (!def.title) continue;
+		const slug = seg(name);
+		const node = `node:property/${slug}`;
+		paths.push(`property/${slug}`, `property/${slug}/en`);
+		const en: Record<string, unknown> = {
+			node: `${node}/en`,
+			about: node,
+			language: 'en',
+			title: def.title,
+		};
+		rows.push({ node, slug, contents: propertyContents(en, authored.get(slug) ?? [], slug) });
+		authored.delete(slug);
+	}
+	if (authored.size)
+		throw new Error(`data/property/: no titled slot for ${[...authored.keys()].join(', ')}`);
+	return rows;
 }
 
 function build() {
@@ -185,6 +235,10 @@ function build() {
 	const bundle: Record<string, unknown[]> = {};
 	for (const [slot, { range }] of Object.entries(container)) {
 		if (range === 'Node') continue; // derived below, no data dir
+		if (range === 'Property') {
+			bundle[slot] = projectProperties();
+			continue;
+		} // schema, not data
 		const dir = classByName[range]?.annotations?.sql_table;
 		if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`);
 		bundle[slot] = tableRows(dir);
@@ -192,8 +246,7 @@ function build() {
 
 	bundle.nodes = mintNodes();
 
-	mkdirSync(atRoot('gen'), { recursive: true });
-	writeFileSync(atRoot('gen/catalog.json'), JSON.stringify(bundle, null, '\t'));
+	write(abs('gen/catalog.json'), dumpJson(bundle));
 	console.log(
 		Object.entries(bundle)
 			.map(([k, v]) => `${v.length} ${k}`)

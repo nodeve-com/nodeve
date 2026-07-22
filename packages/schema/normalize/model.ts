@@ -1,13 +1,15 @@
 // The parsed schema as a lookup model — shared by the normalizer and the
 // migrate scripts so neither carries its own copy of these derivations.
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { parse } from 'yaml';
-
-export const atRoot = (p: string) => fileURLToPath(new URL(`../${p}`, import.meta.url));
+import { abs, readYaml } from '../src/io.ts';
 
 export type ClassDef = { annotations?: Record<string, string>; slots?: string[] };
-export type SlotDef = { range?: string; pattern?: string; inlined_as_list?: boolean };
+export type SlotDef = {
+	range?: string;
+	pattern?: string;
+	inlined_as_list?: boolean;
+	title?: string;
+	description?: string;
+};
 
 type Schema = {
 	imports?: string[];
@@ -18,7 +20,7 @@ type Schema = {
 const loadSchema = (name: string, seen = new Set<string>()): Schema => {
 	if (seen.has(name) || name.includes(':')) return {};
 	seen.add(name);
-	const source: Schema = parse(readFileSync(atRoot(`linkml/${name}.yaml`), 'utf8'));
+	const source: Schema = readYaml(abs(`linkml/${name}.yaml`));
 	const imports = (source.imports ?? []).map((dependency) => loadSchema(dependency, seen));
 	return {
 		...source,

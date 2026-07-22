@@ -5,9 +5,9 @@
 // any key it does not recognize.
 //
 //   node migrate/to-authored.ts <table> [<table>…]   # e.g. device_type
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
-import { parse, stringify } from 'yaml';
-import { atRoot, classByName, classByTable, fkTable, seg, slotByName } from '../normalize/model.ts';
+import { abs, readYaml, write, yamlNames } from '../src/io.ts';
+import { dumpYaml } from '../src/yaml-style.ts';
+import { classByName, classByTable, fkTable, seg, slotByName } from '../normalize/model.ts';
 
 type Stored = Record<string, unknown>;
 
@@ -44,8 +44,8 @@ function authoredMap(childClass: string, items: Stored[], trail: string): Stored
 }
 
 function migrateFile(table: string, className: string, f: string): void {
-	const path = atRoot(`data/${table}/${f}`);
-	const doc = parse(readFileSync(path, 'utf8')) as Stored;
+	const path = abs(`data/${table}/${f}`);
+	const doc = readYaml(path) as Stored;
 	if (!('node' in doc)) {
 		console.log(`skip ${table}/${f} (already authored form)`);
 		return;
@@ -69,15 +69,14 @@ function migrateFile(table: string, className: string, f: string): void {
 			authored[key] = authoredValue(key, value, `${slug}.${key}`);
 		}
 	}
-	writeFileSync(path, stringify(authored, { lineWidth: 0 }));
+	write(path, dumpYaml(authored));
 	console.log(`migrated ${table}/${f}`);
 }
 
 function migrate(table: string): void {
 	const className = classByTable[table];
 	if (!className) throw new Error(`no class has sql_table ${table}`);
-	const files = readdirSync(atRoot(`data/${table}`)).filter((f) => f.endsWith('.yaml'));
-	for (const f of files.sort()) migrateFile(table, className, f);
+	for (const f of yamlNames(abs(`data/${table}`))) migrateFile(table, className, f);
 }
 
 const tables = process.argv.slice(2);

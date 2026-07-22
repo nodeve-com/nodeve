@@ -22,6 +22,7 @@ import {
 	type Doc,
 	type WalkState,
 } from './registers.ts';
+import { bandToMinMax } from './band-to-min-max.ts';
 import { ValueContracts } from './values.ts';
 
 /** one authored feature in flight — trail, vocabularies, accumulated rows */
@@ -254,7 +255,14 @@ class DeviceWalk implements WalkState {
 		const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
 		const iNode = at.row.node as string;
 		if (at.facet === 'valued_range')
-			at.row.valued_range = { node: iNode, ...columns(cls, cols, at.trail) };
+			at.row.valued_range = {
+				node: iNode,
+				...columns(
+					cls,
+					bandToMinMax(isMap(cols) ? cols : die(at.trail, 'expected a map of columns'), at.trail),
+					at.trail,
+				),
+			};
 		else if (at.facet === 'measurement') {
 			ctx.list.measurements.push({ node: iNode, ...columns(cls, cols, at.trail) });
 			this.measurable.add(iNode);

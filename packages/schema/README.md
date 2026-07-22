@@ -2,7 +2,7 @@
 
 Central source of truth for **describing things**. [LinkML](https://linkml.io) schemas validate authored descriptions and normalized storage rows. Generated projections supply SQL DDL, validation schemas, program types, and databases.
 
-Replaces `@nodeve/grimoire`. See [levels.md](docs/levels.md) for the level grammar and [authoring-storage-handoff.md](docs/authoring-storage-handoff.md) for how authored docs normalize into schema-validated rows.
+Replaces `@nodeve/grimoire`. See [levels.md](docs/levels.md) for the level grammar, [authoring-storage.md](docs/authoring-storage.md) for how authored docs normalize into schema-validated rows, and [pipeline.md](docs/pipeline.md) for the named pipeline stages.
 
 ## Status
 
@@ -28,20 +28,20 @@ Answer identity questions from [levels.md](docs/levels.md) before inventing a sc
 | `linkml/{core,taxonomy,features,product,network,modbus}.yaml` | domain classes with owned slots |
 | `linkml/shared.yaml` | shared slots + enums |
 | `format.ts` | formatting gate over authored yaml (`--check` for precommit) |
-| `project-overlay.ts` | registry rows → `gen/nodeve-projected.yaml`, the validation overlay |
+| `data2schema.ts` | binding rows → `gen/nodeve-projected.yaml`, the projected validation schema |
 | `check-refs.ts` | resolves one sample IRI per registry — network, so NOT in the gate (`pnpm check:refs`) |
 | `normalize/catalog.ts` | THE normalizer — authored docs → normalized rows → `gen/catalog.json`, the one root object `linkml-sqldb` ingests; pass a data file to print its rows |
 | `ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no hook over backref columns |
 | `data/device_model/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | table-like authored vocabularies and policy rows. **Placeholder fixtures — not normative** |
 | `data/registry/`, `data/quantity_kind/` | bulk vocabularies — QUDT-derived, seeded once from grimoire. Authored here |
-| `gen/` | every build output — DDL, overlay, catalog bundle, SQLite db. Gitignored |
+| `gen/` | every build output — DDL, projected schema, catalog bundle, SQLite db. Gitignored |
 
 ## Commands
 
 ```sh
 pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
-pnpm generate   # overlay + format + normalize, no python
+pnpm generate   # format → normalize → data2schema, no python
 pnpm validate   # a device model against its generated stencil
 pnpm check      # format gate (--check), what precommit runs
 pnpm check:refs # do registry iri_templates actually resolve? (network)

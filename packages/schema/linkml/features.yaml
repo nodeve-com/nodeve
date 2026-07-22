@@ -110,10 +110,7 @@ slots:
     range: float
     title: Maximum
     description: "inclusive high end of a closed interval, in the enclosing row's unit"
-  min:
-    range: float
-    title: Minimum
-    description: "inclusive low end of a closed interval, in the enclosing row's unit"
+  min: { range: float, title: Minimum }
   resolution:
     range: float
     title: Resolution

@@ -284,6 +284,9 @@ importers:
 
   packages/schema:
     devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
       '@nodeve/encoding':
         specifier: workspace:*
         version: link:../encoding

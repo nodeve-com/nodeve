@@ -7,7 +7,7 @@ classes:
   # One row per feature type. (Resolves the metaclass gap the honest way:
   # definitions the schema can't be meta about are themselves rows the catalog
   # FKs.) Each row binds which quantities its features may carry (QuantityBinding
-  # rows — aspect flags, not two sets). The VALIDATION overlay
+  # rows — aspect flags, not two sets). The projected schema
   # (nodeve-projected.yaml) is this table restated as LinkML, one stencil
   # per row — never fed to gen-sqlddl, or each stencil becomes a table and
   # fragments the uniform ones.
@@ -24,7 +24,7 @@ classes:
     annotations: { sql_table: device_type }
     slots: [ node, slug, socket_bindings, contents ]
 
-  # One row per device type × socket. Was implied by the overlay's role enums
+  # One row per device type × socket. Was implied by the projected role enums
   # and required-ness — now the data those are GENERATED from.
   SocketBinding:
     annotations:
@@ -66,7 +66,7 @@ classes:
     slots: [ node, slug, ordinal ]
 
   # One row per feature type × quantity — the feature type's admissible set as
-  # data. The overlay projects ONE enum per feature type from these rows,
+  # data. data2schema projects ONE enum per feature type from these rows,
   # validated once on Interval. Membership is the whole contract: which facets
   # an interval carries is a fact of the model, not the type.
   QuantityBinding:
@@ -128,5 +128,5 @@ slots:
     range: SocketBinding
     multivalued: true
     inlined_as_list: true
-    description: "the device type's socket contract AS ROWS — which feature type fills which role. Projects to the role enums and required-ness the overlay validates"
+    description: "the device type's socket contract AS ROWS — which feature type fills which role. Projects to the role enums and required-ness the projected schema validates"
     annotations: { camel: socketBindings }

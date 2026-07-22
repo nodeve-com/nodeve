@@ -106,7 +106,7 @@ Neither is set when a feature has no parts — every interval is then `_`.
 
 Authored part keys are **validated**, never generated — a model names its parts, and the set or count rejects a mistyped or invented one. `ordinal` still comes from authored order.
 
-`part_set` members live on `FeatureType` as binding rows beside `QuantityBinding`, and project into the validation overlay the same way. `count` needs no vocabulary.
+`part_set` members live on `FeatureType` as binding rows beside `QuantityBinding`, and project into the projected schema the same way. `count` needs no vocabulary.
 
 ### `_` and `*` as keys
 

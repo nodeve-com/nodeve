@@ -11,7 +11,7 @@
 	},
 	"type": "module",
 	"scripts": {
-		"generate": "node project-overlay.ts && node format.ts && node normalize/catalog.ts",
+		"generate": "node format.ts && node normalize/catalog.ts && node data2schema.ts",
 		"build": "pnpm generate && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
 		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",
 		"build:ddl": "cd linkml && uvx --from linkml python ../ddl.py > ../gen/nodeve.sql",
@@ -22,6 +22,7 @@
 		"test": "vitest run"
 	},
 	"devDependencies": {
+		"@nodeve/config": "workspace:*",
 		"@nodeve/encoding": "workspace:*",
 		"@nodeve/text": "workspace:*",
 		"vitest": "catalog:",

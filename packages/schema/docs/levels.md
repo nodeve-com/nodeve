@@ -18,7 +18,7 @@ Every level is stored in a shared table. `DeviceType` and `FeatureType` rows als
 | `DeviceModel` through `Interval` rows and interval facets | one model's facts |
 | generated `Inverter` class | executable LinkML view of the policy rows |
 
-`Inverter` is generated validation syntax, not another stored entity or SQL table. Adding a device type adds rows, then regenerates the overlay. Base DDL stays unchanged.
+`Inverter` is generated validation syntax, not another stored entity or SQL table. Adding a device type adds rows, then reruns data2schema. Base DDL stays unchanged.
 
 | level        | table               | keyed by                 | example            |
 | ------------ | ------------------- | ------------------------ | ------------------ |
@@ -38,8 +38,8 @@ Rule ownership follows dependency, not importance:
 | rule | owner | reason |
 | --- | --- | --- |
 | interval `slug` required | base LinkML | fixed shape of every interval |
-| role is valid for an inverter | `SocketBinding` data → overlay | closed set varies by device type |
-| quantity is valid for an AC feature | `QuantityBinding` data → overlay | closed set varies by feature type |
+| role is valid for an inverter | `SocketBinding` data → data2schema | closed set varies by device type |
+| quantity is valid for an AC feature | `QuantityBinding` data → data2schema | closed set varies by feature type |
 | referenced quantity exists | SQL FK | referential integrity |
 | node path unique | SQL PK | storage identity |
 | interval lies inside an envelope | owned check | compares related rows |

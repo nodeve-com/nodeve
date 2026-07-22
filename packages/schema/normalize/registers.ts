@@ -1,10 +1,9 @@
 // Shared walk plumbing + the register-map lowering: authored data/ row access,
 // column validation against schema slots, and the structured measurand ref →
 // interval-node resolver both gates and registers use.
-import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename } from 'node:path';
-import { parse } from 'yaml';
-import { atRoot, classByName, fkTable, seg, SLUG } from './model.ts';
+import { abs, isDir, readYaml, yamlNames } from '../src/io.ts';
+import { classByName, fkTable, seg, SLUG } from './model.ts';
 import type { ValueContracts } from './values.ts';
 
 export type Doc = Record<string, unknown>;
@@ -15,25 +14,19 @@ export const die = (trail: string, msg: string): never => {
 
 const loadDir = (dir: string): Record<string, Doc> =>
 	Object.fromEntries(
-		readdirSync(atRoot(`data/${dir}`))
-			.filter((f) => f.endsWith('.yaml'))
-			.sort()
-			.map((f) => [
-				basename(f, '.yaml'),
-				parse(readFileSync(atRoot(`data/${dir}/${f}`), 'utf8')) as Doc,
-			]),
+		yamlNames(abs(`data/${dir}`)).map((f) => [
+			basename(f, '.yaml'),
+			readYaml(abs(`data/${dir}/${f}`)) as Doc,
+		]),
 	);
 
 /** an authored doc — one file, or a directory whose children merge at load:
  * maps deep-merge, lists concatenate, a scalar authored twice is a collision.
  * The directory name is the slug, exactly as a filename would be. */
 export function loadDoc(path: string): Doc {
-	if (!statSync(path).isDirectory()) return parse(readFileSync(path, 'utf8')) as Doc;
+	if (!isDir(path)) return readYaml(path) as Doc;
 	const merged: Doc = {};
-	for (const f of readdirSync(path)
-		.filter((f) => f.endsWith('.yaml'))
-		.sort())
-		mergeDoc(merged, parse(readFileSync(`${path}/${f}`, 'utf8')) as Doc, f);
+	for (const f of yamlNames(path)) mergeDoc(merged, readYaml(`${path}/${f}`) as Doc, f);
 	return merged;
 }
 

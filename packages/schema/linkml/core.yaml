@@ -26,6 +26,8 @@ classes:
       # its path. Every other slot's range names a class whose sql_table is its dir.
       nodes: { range: Node, multivalued: true, inlined_as_list: true }
       registries: { range: Registry, multivalued: true, inlined_as_list: true }
+      # GENERATED from schema slot titles, not a data dir — see build().
+      properties: { range: Property, multivalued: true, inlined_as_list: true }
       manufacturers: { range: Manufacturer, multivalued: true, inlined_as_list: true }
       part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
@@ -50,6 +52,13 @@ classes:
       # keys are bare registry slugs, the normalizer expands them to CURIEs
       keyed_by: registry
     slots: [ node, registry, term, match ]
+
+  # Every titled slot projects to a Property row so its user-facing form label
+  # can be localized. LinkML `title:` is ONE English string; a form field needs
+  # translations, so the en Content is GENERATED from the slot title and other
+  # languages are authored data about this node. Dev-facing `description:` stays
+  # schema meta — it is not a Property column and is never localized.
+  Property: { annotations: { sql_table: property }, slots: [ node, slug, contents ] }
 
   # Reusable localized content. Each row has its own node; `about` points to
   # the described node. No class-specific parent FK.

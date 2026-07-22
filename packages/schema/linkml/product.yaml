@@ -18,7 +18,7 @@ classes:
   # Rows are MODELS (manufacturer + model number); device_type says which kind
   # of device the model is. NO type-specific class lives here — that is the
   # invariant that keeps a new device type an INSERT: per-type classes exist
-  # ONLY in the validation overlay, which gen-sqlddl never reads. Adding one
+  # ONLY in the projected schema, which gen-sqlddl never reads. Adding one
   # must leave gen-sqltables output byte-identical.
   DeviceModel:
     annotations:
