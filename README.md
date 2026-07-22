@@ -2,6 +2,15 @@
 
 Public npm packages (see `packages/`).
 
+## Packages
+
+- **@nodeve/checks** — org-wide commit-gate checks (doc budgets, reshape/dup/helper smells, page size) + helper-index generators, config-driven via lefthook.
+- **@nodeve/config** — shared TypeScript, Prettier, and ESLint configuration.
+- **@nodeve/encoding** — cross-runtime encoding/hashing helpers (stable short-codes and more).
+- **@nodeve/schema** — central schema source authored as a relational LinkML model, projected for storage, validation, and code.
+- **@nodeve/schema-case** — casing projections of a snake_case JSON Schema: camelCase sibling schema + key map, instance renaming, path back-references.
+- **@nodeve/text** — small shared text utilities: fuzzy matching, boundary-aware trimming, slugify, word-wrap, sanitizing.
+
 ## Toolchain
 
 **pnpm** for everything. **Node** runs the scripts — no Bun in this repo.
