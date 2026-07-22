@@ -6,6 +6,14 @@
 extends:
   - node_modules/@nodeve/checks/lefthook.checks.yml
 
+# Quiet on success — print ONLY failures. `output` is an allowlist of what
+# lefthook prints; listing just `failure` drops the version banner, per-check
+# `❯ name ❯` headers, skip lines, and the summary tree on a clean run. A failing
+# check still surfaces (its self-labeled `✖ name — …` block). Top-level and NOT
+# inherited through `extends`, so it lives here, not in the shared checks config.
+output:
+  - failure
+
 # This repo IS the source of @nodeve/checks, but the gate runs the built `dist/`
 # (the shared config is written for consumer repos, which only have the artifact).
 # So a source edit to a check is invisible to its own commit until dist rebuilds.

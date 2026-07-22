@@ -30,6 +30,10 @@
 # `node_modules/.bin/nodeve-check doc-tokens --report`, or the whole suite at once
 # with `nodeve-check` (summary-first). The per-check `nodeve-check-<name>` bins
 # remain for direct invocation.
+#
+# Quiet-on-success (only failures print) is a top-level `output:` list. lefthook
+# does NOT merge that key through `extends` (it reads it only from the repo's own
+# lefthook.yml), so it can't ship here — each consumer sets it in its lefthook.yml.
 pre-commit:
   jobs:
     # Fixer, runs before the `checks` group so the gates see formatted, re-staged
