@@ -1,0 +1,6 @@
+# Three-phase power meter — one AC point read two ways: per-phase (a/b/c) and
+# line-to-line (ab/bc/ca). Two ac-phase sockets split those aspects; `phase`
+# also carries the whole-point totals (frequency, power, energy).
+socket_binding:
+  phase: { feature_type: ac-phase, required: true }
+  line: { feature_type: ac-phase }

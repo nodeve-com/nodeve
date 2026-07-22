@@ -1,0 +1,14 @@
+# The decode contract — serial-RTU framing + register banks. Shared per family;
+# the device path + unit_id are deployment defaults, overridable downstream.
+# The two banks (register-bank-a / register-bank-b files) merge into this ONE map.
+register_map:
+  slug: chint-dtsu666
+  unit_id: 1 # Modbus slave id, confirmed on the meter's front panel
+  register_type: holding # all values read via FC03
+  word_order: high_first # FP32 high word at the lower address (mbpoll -B, 2026-06-04)
+  serial_port: /dev/ttyUSB0 # first USB adapter; overridable / auto-discovered downstream
+  baud_rate: 9600
+  parity: none
+  data_bits: 8
+  stop_bits: 1
+  physical_layer: rs485 # Modbus RTU over RS-485

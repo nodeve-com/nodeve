@@ -7,7 +7,20 @@ classes:
   # many products FK the same map. ──
   RegisterMap:
     annotations: { sql_table: register_map }
-    slots: [ node, slug, unit_id, register_type, word_order, registers, constraint_ranges ]
+    slots:
+      - node
+      - slug
+      - unit_id
+      - register_type
+      - word_order
+      - serial_port
+      - baud_rate
+      - parity
+      - data_bits
+      - stop_bits
+      - physical_layer
+      - registers
+      - constraint_ranges
 
   RegisterRange:
     annotations: { sql_table: register_range }
@@ -45,12 +58,22 @@ slots:
     required: true
     title: Register address
     description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)'
+  baud_rate:
+    range: integer
+    title: Baud rate
+    description: 'serial line rate (9600, 19200, …); RTU only'
+    annotations: { camel: baudRate }
   bit:
     range: integer
     minimum_value: 0
     maximum_value: 15
     title: Bit
     description: 'bit position within the 16-bit word, 0 = LSB'
+  data_bits:
+    range: integer
+    title: Data bits
+    description: 'bits per serial character (RTU = 8); RTU only'
+    annotations: { camel: dataBits }
   decimals:
     range: integer
     title: Resolved decimals
@@ -65,7 +88,19 @@ slots:
     range: float
     title: Scale
     description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1'
+  # ── serial (Modbus-RTU) framing — absent on a TCP map. Shared per family map
+  # like unit_id; the device path is a deployment default, overridable downstream. ──
+  serial_port:
+    range: string
+    title: Serial port
+    description: 'RTU device path (/dev/ttyUSB0) — a known default, overridable / auto-discovered downstream, like unit_id'
+    annotations: { camel: serialPort }
   start: { range: integer }
+  stop_bits:
+    range: integer
+    title: Stop bits
+    description: 'serial stop bits (1 or 2); RTU only'
+    annotations: { camel: stopBits }
   unit_id:
     range: integer
     title: Unit id
@@ -97,6 +132,15 @@ slots:
     range: DomainMember
     title: Member
     description: 'FK — the channel member this bit raises when set'
+  parity:
+    range: Parity
+    title: Parity
+    description: 'serial parity bit (none / even / odd); RTU only'
+  physical_layer:
+    range: PhysicalLayer
+    title: Physical layer
+    description: 'electrical layer the RTU frames ride (rs485, rs232, rs422); absent for Modbus-TCP'
+    annotations: { camel: physicalLayer }
   register_type:
     range: RegisterType
     title: Register type

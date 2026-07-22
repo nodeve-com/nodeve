@@ -1,0 +1,148 @@
+# === BANK B — 0x1510 fast / 0x1000 slow (what the inverter polls; passive-tap). ===
+# Floats ALREADY in engineering units (scale 1.0 ⇒ omitted). Power is native
+# kW/kvar/kVA (unit kept — non-SI). Same (feature, part, quantity) link as bank A,
+# so these registers resolve to the SAME `measured` intervals.
+register_map:
+  register:
+    # Phase-neutral voltages (sniff idx 0-2, 0x1510/12/14)
+    - address: 5392
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: voltage }
+    - address: 5394
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: voltage }
+    - address: 5396
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: voltage }
+    # Phase currents (sniff idx 3-5, 0x1516/18/1A)
+    - address: 5398
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: electric-current }
+    - address: 5400
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: electric-current }
+    - address: 5402
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: electric-current }
+    # Active power (sniff idx 6-9, 0x151C/1E/20/22; native kW)
+    - address: 5404
+      datatype: float32
+      decimals: 3
+      unit: kW
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: active-power }
+    - address: 5406
+      datatype: float32
+      decimals: 3
+      unit: kW
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: active-power }
+    - address: 5408
+      datatype: float32
+      decimals: 3
+      unit: kW
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: active-power }
+    - address: 5410
+      datatype: float32
+      decimals: 3
+      unit: kW
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: active-power }
+    # Reactive power (sniff idx 10-13, 0x1524/26/28/2A; native kvar)
+    - address: 5412
+      datatype: float32
+      decimals: 3
+      unit: kvar
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: reactive-power }
+    - address: 5414
+      datatype: float32
+      decimals: 3
+      unit: kvar
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: reactive-power }
+    - address: 5416
+      datatype: float32
+      decimals: 3
+      unit: kvar
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: reactive-power }
+    - address: 5418
+      datatype: float32
+      decimals: 3
+      unit: kvar
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: reactive-power }
+    # Apparent power (sniff idx 14-17, 0x152C/2E/30/32; native kVA — bank B only)
+    - address: 5420
+      datatype: float32
+      decimals: 3
+      unit: kVA
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: apparent-power }
+    - address: 5422
+      datatype: float32
+      decimals: 3
+      unit: kVA
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: apparent-power }
+    - address: 5424
+      datatype: float32
+      decimals: 3
+      unit: kVA
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: apparent-power }
+    - address: 5426
+      datatype: float32
+      decimals: 3
+      unit: kVA
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: apparent-power }
+    # Power factor (sniff idx 18-21, 0x1534/36/38/3A; direct ratio)
+    - address: 5428
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: power-factor }
+    - address: 5430
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: power-factor }
+    - address: 5432
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: power-factor }
+    - address: 5434
+      datatype: float32
+      decimals: 3
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: power-factor }
+    # Per-phase displacement angle φ (sniff idx 22-24, 0x153C/3E/40; degrees)
+    - address: 5436
+      datatype: float32
+      decimals: 1
+      unit: deg
+      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: phase-difference }
+    - address: 5438
+      datatype: float32
+      decimals: 1
+      unit: deg
+      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: phase-difference }
+    - address: 5440
+      datatype: float32
+      decimals: 1
+      unit: deg
+      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: phase-difference }
+    # System frequency (sniff idx 31, 0x154E; direct Hz)
+    - address: 5454
+      datatype: float32
+      decimals: 2
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: frequency }
+    # Slow window (0x1000) energy accumulators — three distinct quantity kinds
+    - address: 4096
+      datatype: float32
+      decimals: 2
+      unit: kWh
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: active-energy }
+    - address: 4106
+      datatype: float32
+      decimals: 2
+      unit: kVAh
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: apparent-energy }
+    - address: 4144
+      datatype: float32
+      unit: kvarh
+      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: reactive-energy }

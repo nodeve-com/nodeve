@@ -1,6 +1,0 @@
-# Chint makes energy meters. Brand + archetype declared once; models below fill the atoms.
-identity:
-  archetype_id: ac_phase_three_meter
-
-product:
-  manufacturer_id: chint

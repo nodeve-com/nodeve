@@ -1,0 +1,71 @@
+feature_of_interest:
+  ac-phase:
+    # Per-leg (a/b/c) readings PLUS the whole-point totals — frequency, the
+    # power totals, and the energy accumulators. Both banks feed this socket;
+    # bank A and bank B map the same measurands, so two registers share one
+    # `measured` interval (they differ only in scale/decimals).
+    phase:
+      $: { part_set: three-phase }
+      _:
+        # Rated band + the readable span, told apart by whether it carries a
+        # specification (behavioural) or a measurement (measurable channel).
+        frequency:
+          rated: { valued_range: { min: 45, max: 65 }, specification: { rating: continuous } }
+          measured: { valued_range: { min: 45, max: 65 }, measurement: { resolution: 0.01 } }
+        # Whole-point totals — no rated band stated; just the measurable link.
+        active-power: { measured: { measurement: {} } }
+        reactive-power: { measured: { measurement: {} } }
+        apparent-power: { measured: { measurement: {} } }
+        power-factor: { measured: { measurement: {} } }
+        # Slow-window accumulators (0x1000) — three distinct quantity kinds, one
+        # combined channel each. scale 1.0 + decimals provisional (uncalibrated).
+        active-energy: { _: { measurement: {} } }
+        apparent-energy: { _: { measurement: {} } }
+        reactive-energy: { _: { measurement: {} } }
+      '*':
+        voltage:
+          # 220/230 are a commissioning choice, not two simultaneous limits:
+          # each gates on the single-valued grid-region setting.
+          nominal-br-220v-60hz:
+            valued_range: { value: 220, margin_lower: 0.3, margin_upper: 0.2 }
+            specification:
+              rating: continuous
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
+          nominal-eu-230v-50hz:
+            valued_range: { value: 230 }
+            specification:
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
+          measured: { valued_range: { min: 150, max: 280 }, measurement: {} }
+        electric-current: { measured: { measurement: {} } }
+        active-power: { measured: { measurement: {} } }
+        reactive-power: { measured: { measurement: {} } }
+        apparent-power: { measured: { measurement: {} } }
+        power-factor: { measured: { measurement: {} } }
+        # Fundamental displacement angle φ (bank B), degrees — resolves ~0.1°.
+        phase-difference: { measured: { measurement: { resolution: 0.1 } } }
+      a: {}
+      b: {}
+      c: {}
+
+    # Line-to-line voltages (ab/bc/ca). Nominal = √3 × the phase nominal —
+    # 380 V (br 3×220) / 400 V (eu 3×230), gated on the same grid-region setting.
+    line:
+      $: { part_set: three-phase-line }
+      '*':
+        voltage:
+          nominal-br-220v-60hz:
+            valued_range: { value: 380 }
+            specification:
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
+          nominal-eu-230v-50hz:
+            valued_range: { value: 400 }
+            specification:
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
+          measured: { valued_range: { min: 260, max: 480 }, measurement: {} }
+      ab: {}
+      bc: {}
+      ca: {}

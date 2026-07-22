@@ -6,4 +6,8 @@ quantity_binding:
   active-power: {}
   apparent-power: {}
   reactive-power: {}
+  power-factor: {}
+  phase-difference: {}
   active-energy: {}
+  apparent-energy: {}
+  reactive-energy: {}
