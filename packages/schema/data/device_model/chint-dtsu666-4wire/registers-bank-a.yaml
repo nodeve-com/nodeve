@@ -10,115 +10,115 @@ register_map:
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: line }, part: ab, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: ab, quantity: voltage }
     - address: 8194
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: line }, part: bc, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: bc, quantity: voltage }
     - address: 8196
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: line }, part: ca, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: ca, quantity: voltage }
     # Phase-to-neutral voltages (plugin Volts_L1/L2/L3, 0x2006/08/0A)
     - address: 8198
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: a, quantity: voltage }
     - address: 8200
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: b, quantity: voltage }
     - address: 8202
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: voltage }
+      target: { feature: { type: ac-phase, role: point }, part: c, quantity: voltage }
     # Phase currents (plugin Current_L1/L2/L3, 0x200C/0E/10)
     - address: 8204
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: electric-current }
+      target: { feature: { type: ac-phase, role: point }, part: a, quantity: electric-current }
     - address: 8206
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: electric-current }
+      target: { feature: { type: ac-phase, role: point }, part: b, quantity: electric-current }
     - address: 8208
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: electric-current }
+      target: { feature: { type: ac-phase, role: point }, part: c, quantity: electric-current }
     # Active power (plugin *_Active_Power, 0x2012 total then 0x2014/16/18 per phase)
     - address: 8210
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: active-power }
+      target: { feature: { type: ac-phase, role: point }, part: _, quantity: active-power }
     - address: 8212
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: active-power }
+      target: { feature: { type: ac-phase, role: point }, part: a, quantity: active-power }
     - address: 8214
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: active-power }
+      target: { feature: { type: ac-phase, role: point }, part: b, quantity: active-power }
     - address: 8216
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: active-power }
+      target: { feature: { type: ac-phase, role: point }, part: c, quantity: active-power }
     # Reactive power (plugin *_Reactive_Power, 0x201A total then 0x201C/1E/20 per phase)
     - address: 8218
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: reactive-power }
+      target: { feature: { type: ac-phase, role: point }, part: _, quantity: reactive-power }
     - address: 8220
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: reactive-power }
+      target: { feature: { type: ac-phase, role: point }, part: a, quantity: reactive-power }
     - address: 8222
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: reactive-power }
+      target: { feature: { type: ac-phase, role: point }, part: b, quantity: reactive-power }
     - address: 8224
       datatype: float32
       scale: 0.1
       decimals: 1
-      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: reactive-power }
+      target: { feature: { type: ac-phase, role: point }, part: c, quantity: reactive-power }
     # Power factor (plugin *_Power_Factor, 0x202A total then 0x202C/2E/30 per phase)
     - address: 8234
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: power-factor }
+      target: { feature: { type: ac-phase, role: point }, part: _, quantity: power-factor }
     - address: 8236
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: a, quantity: power-factor }
+      target: { feature: { type: ac-phase, role: point }, part: a, quantity: power-factor }
     - address: 8238
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: b, quantity: power-factor }
+      target: { feature: { type: ac-phase, role: point }, part: b, quantity: power-factor }
     - address: 8240
       datatype: float32
       scale: 0.001
       decimals: 3
-      target: { feature: { type: ac-phase, role: phase }, part: c, quantity: power-factor }
+      target: { feature: { type: ac-phase, role: point }, part: c, quantity: power-factor }
     # System frequency (plugin Frequency_Of_Supply_Voltages, 0x2044)
     - address: 8260
       datatype: float32
       scale: 0.01
       decimals: 2
-      target: { feature: { type: ac-phase, role: phase }, part: _, quantity: frequency }
+      target: { feature: { type: ac-phase, role: point }, part: _, quantity: frequency }

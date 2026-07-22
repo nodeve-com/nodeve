@@ -1,5 +1,8 @@
-// The trail walk is deterministic (acceptance: snapshot-tested); the snapshot
-// IS the normalized FoxESS fixture — review a diff here like a compiler diff.
+// Determinism guard for the trail walk — NOT a correctness oracle. FoxESS is a
+// half-migrated, actively-developed fixture; the snapshot pins its CURRENT
+// normalized output only to catch unintended walk drift. Expect frequent, legit
+// updates as FoxESS grows — on a real edit, `-u` then review the diff like a
+// compiler diff. A matching snapshot means "no accidental drift", never "correct".
 import { expect, it } from 'vitest';
 import { abs } from '../src/io.ts';
 import { normalizeDevice } from './tree.ts';

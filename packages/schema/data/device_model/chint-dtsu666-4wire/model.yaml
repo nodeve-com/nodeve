@@ -1,7 +1,7 @@
 # Chint DTSU666 4-wire three-phase power meter (FP32 over Modbus RTU) — one
 # catalog entry: its identity AND how it is talked to (the serial modbus map).
 # Ported from grimoire/concepts/catalog/chint/dtsu666.yaml. Filename is the slug.
-device_type: ac-phase-three-meter
+device_type: ac-power-meter
 
 product:
   model: DTSU666 # plain DTSU666 — NOT DDSU666 or DTSU666-H (different maps)
@@ -16,7 +16,7 @@ content:
     title: DTSU666 4-wire
     lede: Three-phase RS-485 power meter
     body: >
-      Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: the `ac-phase-three-meter` identity AND its serial modbus map.
+      Chint DTSU666 three-phase power meter (FP32 over Modbus RTU) — one catalog entry: the `ac-power-meter` identity AND its serial modbus map.
 
 
       This unit serves the SAME physical quantities in TWO register banks. The map documents both; it is NOT a poll script and does not say which bank to read — the gateway picks its path (master-poll or passive-listen) and which bank that path exposes. BANK A (0x2000 block, register-map-bank-a) is divisor-scaled FP32, read as a master over the USB-RS485 → Modbus-TCP bridge or an isolated segment. BANK B (0x1510 fast + 0x1000 slow, register-map-bank-b) is what the FoxESS inverter polls, so what a passive RS-485 tap captures — floats already in engineering units (scale 1.0), richer than A.
@@ -25,7 +25,7 @@ content:
       Bank A from the DTSU666-Modbus plugin + on-board tap reads; verified high-word-first, 9600 8N1, slave 1, FC03 (mbpoll 2026-06-04). Bank B word order/units from sniff frames (2026-06-07). Native bus: the FoxESS inverter masters this RS-485; a second master can't coexist, so the direct path is valid only against an isolated segment or the TCP bridge (172.26.68.1:502, slave 1). Going forward we PASSIVELY tap the inverter's polling (bank B window).
 
 
-      The two banks split into two sockets: `phase` (per-leg a/b/c plus whole-point totals — frequency, power, energy) and `line` (line-to-line ab/bc/ca voltage; nominal = √3 × the phase nominal, gated on the same grid-region setting). Per-phase displacement angle φ (bank B, 0x153C/3E/40; degrees) is the FUNDAMENTAL displacement (cosφ₁), NOT acos(power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included).
+      Both banks feed ONE socket — `point`, a single three-phase connection. Its parts: the legs a/b/c (per-leg readings plus the whole-point `_` totals — frequency, power, energy) and the line-to-line pairs ab/bc/ca (line voltage; nominal = √3 × the leg nominal, gated on the same grid-region setting). Per-phase displacement angle φ (bank B, 0x153C/3E/40; degrees) is the FUNDAMENTAL displacement (cosφ₁), NOT acos(power_factor) — the bank's power_factor is TRUE PF (P/S, harmonics included).
 
 
       Slow window (0x1000) energy: THREE DISTINCT quantity kinds — active (kWh), apparent (kVAh), reactive (kvarh), each its own combined accumulator, no topic collision. NOT YET CALIBRATED — divisors + energy scale provisional until a front-panel check. Deliberately NOT polled: bank A energy totals + Q1–Q4 at 0x4000 (returns "Illegal data address" on this firmware), bank B energy quadrants, neutral current, and any derived import/export split.

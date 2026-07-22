@@ -1,3 +1,0 @@
-# Line-to-line pairs of a three-phase point — the voltage BETWEEN legs.
-feature_type: ac-phase
-part_set_member: { ab: {}, bc: {}, ca: {} }

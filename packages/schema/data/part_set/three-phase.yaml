@@ -1,1 +1,3 @@
-{ feature_type: ac-phase, part_set_member: { a: {}, b: {}, c: {} } }
+# A three-phase point: three legs (a/b/c) plus the line-to-line pairs (ab/bc/ca).
+feature_type: ac-phase
+part_set_member: { a: {}, b: {}, c: {}, ab: {}, bc: {}, ca: {} }
