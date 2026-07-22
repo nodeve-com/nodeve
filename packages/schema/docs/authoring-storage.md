@@ -127,7 +127,7 @@ Authored part keys are **validated**, never generated — a model names its part
 | `1`, `2`, `3` — legal part slugs | integer | stringify at the trail boundary |
 | `on`, `off`, `y`, `n` — legal roles and slugs | boolean under YAML 1.1 loaders | stringify at the trail boundary |
 
-The normalizer stringifies every trail key as it reads it and validates against the slug pattern plus the two markers, rather than trusting the loader's scalar typing. Only `*` then needs authored quoting, and an alias node where a key belongs is a normalization error with source context.
+The normalizer stringifies every trail key as it reads it and validates against the slug pattern plus the two markers, rather than trusting the loader's scalar typing. A bare `*` is quoted for the author by format's pre-parse `quoteBareStars` ([pipeline.md](pipeline.md#format)), so the loader never errors on it; an alias node where a key belongs is a normalization error with source context.
 
 Storage keeps both segments — `Interval.slug` is non-null and full path arity is preserved, so position is never ambiguous and the PK still catches collisions. `_` elides only when rendering an address for a reader:
 

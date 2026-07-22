@@ -2,12 +2,13 @@
 // schema files sort (src/format-schema.ts), data files canonicalize
 // (src/format-data.ts) — then re-serializes through io.dumpYaml, which owns the
 // content-agnostic collection style (so a generated file gets it too). Load +
-// parse live in io.loadDocs; this file is just the harness: route, diff, write.
-// `--check` exits 1 on drift; default writes.
+// parse live in io.loadDocs, given quoteBareStars as its pre-parse source fix so
+// a bare `*` is quoted before the loader errors on it. This file is just the
+// harness: route, diff, write. `--check` exits 1 on drift; default writes.
 import { glob, loadDocs, write } from '../src/io.ts';
 import { dumpYaml } from '../src/yaml-style.ts';
 import { formatSchema } from '../src/format-schema.ts';
-import { formatData } from '../src/format-data.ts';
+import { formatData, quoteBareStars } from '../src/format-data.ts';
 import type { Document } from 'yaml';
 
 // linkml schema files take the sort passes; authored data yaml takes the
@@ -17,16 +18,16 @@ const passBy = new Map<string, (doc: Document) => void>([
 	...glob('data/**/*.yaml').map((f) => [f, formatData] as const),
 ]);
 
-const outputs: Array<[string, string, string]> = [...loadDocs([...passBy.keys()])].map(
-	([file, { source, doc }]) => {
-		if (doc.errors.length) {
-			console.error(doc.errors.map((e) => e.message).join('\n'));
-			process.exit(2);
-		}
-		passBy.get(file)!(doc);
-		return [file, source, dumpYaml(doc)];
-	},
-);
+const outputs: Array<[string, string, string]> = [
+	...loadDocs([...passBy.keys()], quoteBareStars),
+].map(([file, { source, doc }]) => {
+	if (doc.errors.length) {
+		console.error(doc.errors.map((e) => e.message).join('\n'));
+		process.exit(2);
+	}
+	passBy.get(file)!(doc);
+	return [file, source, dumpYaml(doc)];
+});
 
 const dirty = outputs.filter(([, before, after]) => before !== after);
 if (!dirty.length) process.exit(0);

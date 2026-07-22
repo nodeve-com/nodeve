@@ -1,12 +1,12 @@
 # Pipeline
 
-- prettier-like yaml formatting
-
 ## format
 
 Style authority for authored yaml (prettier ignores the tree). Comment-preserving; mutates authored source — the only stage that does. `--check` is the read-only twin: exit 1 on drift, what precommit runs.
 
-Schema files (`linkml/*.yaml`) get three passes: sort enums alpha (`permissible_values` stay authored — order is semantic), sort slots scalar-valued-then-object-valued alpha within each group, and inject the mechanical `camel:` annotation on snake_case slot names. Data files get the band-sugar desugar: `fraction_lower`/`fraction_upper` in a `valued_range` payload rewrite to `margin_lower`/`margin_upper` ([features.yaml](../linkml/features.yaml)), so the normalizer only sees canonical band columns. Both get the deterministic flow/block restyle: a collection is inline flow only if its one-line render fits the width budget and holds no block child or comment; bottom-up, so a block child forces its parent block.
+- **style** (both) — inline flow only if one-line render fits width and holds no block child/comment; bottom-up, so a block child forces its parent block.
+- **data fixes** — pre-parse: bare `*` (empty-anchor alias, a loader error) quoted to a literal, key/value/seq (`quoteBareStars`); `*name` left be. Post-parse: `valued_range` band sugar `fraction_lower`/`upper` → `margin_lower`/`upper`.
+- **schema sorts** (`linkml/*.yaml`) — enums alpha (`permissible_values` stay authored — semantic order), slots scalar-then-object alpha, `camel:` on snake_case slots.
 
 ## normalize
 
@@ -23,10 +23,6 @@ The stage that crosses categories: data in, schema out. LinkML cannot express "t
 ## Out of band
 
 **check-refs** (`check-refs.ts`) — do registry `iri_template`s resolve? One live request per registry. Network-dependent, so never in the gate or the pipeline; run when registry rows change.
-
-## Not a stage
-
-`*:` auto-quoting — superseded by design: `*` is authored quoted, and an alias node where a key belongs is a normalization error ([authoring-storage.md](authoring-storage.md#_-and--as-keys)).
 
 ## Script names vs stages
 

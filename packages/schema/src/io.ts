@@ -37,13 +37,18 @@ export const parseDoc = (source: string): Document => parseDocument(source);
 /** comment-preserving yaml Document of a ready path */
 export const readDoc = (path: string): Document => parseDoc(read(path));
 
-/** ready paths → source text + comment-preserving doc, keyed by path. The batch
- * load a format/rewrite gate opens with: source stays for drift diffing. */
-export const loadDocs = (paths: string[]): Map<string, { source: string; doc: Document }> =>
+/** ready paths → raw source text + comment-preserving doc, keyed by path. The
+ * batch load a format/rewrite gate opens with: source stays raw for drift
+ * diffing; `fix` is an optional pre-parse text repair (e.g. quoting a bare `*`
+ * the loader would otherwise error on) applied only on the way to the doc. */
+export const loadDocs = (
+	paths: string[],
+	fix: (source: string) => string = (s) => s,
+): Map<string, { source: string; doc: Document }> =>
 	new Map(
 		paths.map((path) => {
 			const source = read(path);
-			return [path, { source, doc: parseDoc(source) }];
+			return [path, { source, doc: parseDoc(fix(source)) }];
 		}),
 	);
 
