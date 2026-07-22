@@ -1,7 +1,8 @@
-id: https://nodeve.com/schema/taxonomy
-name: nodeve-taxonomy
+id: https://nodeve.com/schema/lib/taxonomy
+name: taxonomy
 default_prefix: nodeve
 default_range: string
+
 classes:
   # The definition registry AS DATA — grimoire's feature layer becomes rows.
   # One row per feature type. (Resolves the metaclass gap the honest way:
@@ -12,6 +13,7 @@ classes:
   # per row — never fed to gen-sqlddl, or each stencil becomes a table and
   # fragments the uniform ones.
   FeatureType:
+    title: Feature type
     annotations: { sql_table: feature_type }
     slots: [ node, slug, bound_as, quantity_bindings, contents ]
 
@@ -21,12 +23,14 @@ classes:
   # contract (which feature types are required, which roles exist) lands here
   # in a later pass — today it is still implied by the archetype's slot names.
   DeviceType:
+    title: Device type
     annotations: { sql_table: device_type }
     slots: [ node, slug, socket_bindings, contents ]
 
   # One row per device type × socket. Was implied by the projected role enums
   # and required-ness — now the data those are GENERATED from.
   SocketBinding:
+    title: Socket binding
     annotations:
       sql_table: socket_binding
       # authored form: a map keyed by this slot (socket_binding: {out: …})
@@ -40,6 +44,7 @@ classes:
   # so the master list is a table and every citation is an FK. Adding a kind is
   # an INSERT, exactly like feature type and device type.
   QuantityKind:
+    title: Quantity kind
     annotations: { sql_table: quantity_kind }
     slots:
       - node
@@ -57,11 +62,13 @@ classes:
   # l1/l2) — the set a feature's `part_set` names and its part keys validate
   # against. References the ONE feature type whose features may use it.
   PartSet:
+    title: Part set
     annotations: { sql_table: part_set }
     slots: [ node, slug, feature_type, part_set_members, contents ]
 
   # One row per member, ordered. ordinal from authored order, like Part.
   PartSetMember:
+    title: Part set member
     annotations: { sql_table: part_set_member, keyed_by: slug }
     slots: [ node, slug, ordinal ]
 
@@ -70,6 +77,7 @@ classes:
   # validated once on Interval. Membership is the whole contract: which facets
   # an interval carries is a fact of the model, not the type.
   QuantityBinding:
+    title: Quantity binding
     annotations:
       sql_table: quantity_binding
       # authored form: a map keyed by this slot's range (quantity_binding: {voltage: …})
@@ -78,24 +86,35 @@ classes:
 slots:
   accumulation:
     range: string
+    title: Accumulation
+    narrow_mappings: [ prometheus:gauge, prometheus:counter ]
     description: 'instantaneous | cumulative — upstream measurand fact, carried not re-derived'
   bound_as:
     range: string
+    title: Bound as
+    related_mappings: [ schema:category ]
     description: "which DeviceModel slot this type's feature rows land in (ac_ports, dc_ports, environments) — the authored feature: key routes here, never by class name"
     annotations: { camel: boundAs }
   deprecated:
     range: boolean
+    title: Deprecated
+    exact_mappings: [ owl:deprecated ]
     description: 'upstream retired this term. The row STAYS — existing refs still point at it and the URI still resolves; it is superseded, not absent'
   deprecated_in:
     range: string
+    title: Deprecated in
+    related_mappings: [ schema:version ]
     description: 'upstream version that retired it (QUDT "3.1.11")'
     annotations: { camel: deprecatedIn }
   required:
     range: boolean
+    title: Required
+    exact_mappings: [ schema:valueRequired ]
     description: 'socket binding — the device type must carry a feature row for this role'
   si_unit:
     range: string
     title: SI symbol
+    related_mappings: [ qudt:symbol ]
     description: 'SI unit of the kind; an interval overrides per-row via `unit`'
     annotations: { camel: siUnit }
   broader:
@@ -107,26 +126,60 @@ slots:
     range: PartSetMember
     multivalued: true
     inlined_as_list: true
+    title: Part set members
+    related_mappings: [ skos:member ]
     description: "the set's member rows, ordered"
     annotations: { camel: partSetMembers }
   quantity_bindings:
     range: QuantityBinding
     multivalued: true
     inlined_as_list: true
+    title: Quantity bindings
+    related_mappings: [ qudt:hasQuantityKind ]
     description: 'one row per feature type × quantity with aspect flags — replaces the two admissible-set slots'
     annotations: { camel: quantityBindings }
   refs:
     range: Ref
     multivalued: true
     inlined_as_list: true
+    title: References
+    related_mappings: [ skos:mappingRelation ]
     description: 'external-registry mappings for the row — the ONE way any row links out. Downstream (wikidata, HA) reads these'
   replaced_by:
     range: QuantityKind
+    title: Replaced by
+    exact_mappings: [ dcterms:isReplacedBy ]
     description: 'self-FK — the current kind upstream redirects to (Conductivity → ElectricConductivity)'
     annotations: { camel: replacedBy }
   socket_bindings:
     range: SocketBinding
     multivalued: true
     inlined_as_list: true
+    title: Socket bindings
+    related_mappings: [ schema:hasPart ]
     description: "the device type's socket contract AS ROWS — which feature type fills which role. Projects to the role enums and required-ness the projected schema validates"
     annotations: { camel: socketBindings }
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
+# tracker positions) are Part ROWS on the feature — per-model, so a new
+# subdivision is a new row, never a new column or a DDL migration.
+enums:
+  Accumulation:
+    title: Accumulation
+    description: measurand accumulation semantics — instantaneous vs cumulative; upstream fact, carried not re-derived.
+    permissible_values:
+      instantaneous:
+        title: Instantaneous
+        meaning: ha_state_class:measurement
+        exact_mappings: [ prometheus:gauge ]
+        annotations: { i18n: { value: { title: { pt: Instantâneo } } } }
+      cumulative:
+        title: Cumulative
+        meaning: ha_state_class:total
+        annotations: { i18n: { value: { title: { pt: Cumulativo } } } }
+      cumulative_monotonic:
+        title: Cumulative (monotonic)
+        meaning: ha_state_class:total_increasing
+        exact_mappings: [ prometheus:counter ]
+        annotations: { i18n: { value: { title: { pt: 'Cumulativo (monotónico)' } } } }

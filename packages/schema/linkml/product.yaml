@@ -1,14 +1,16 @@
-id: https://nodeve.com/schema/product
-name: nodeve-product
+id: https://nodeve.com/schema/lib/product
+name: product
 default_prefix: nodeve
 default_range: string
 classes:
   Manufacturer:
+    title: Manufacturer
     annotations: { sql_table: manufacturer }
     description: Own table — the relational analog of the _defaults cascade; every FoxESS product FKs one row.
     slots: [ node, slug, contents ]
 
   Product:
+    title: Product
     annotations: { sql_table: product }
     description: Product identity feature — what grimoire's `product:` block was.
     slots: [ node, model, series, manufacturer ]
@@ -21,6 +23,7 @@ classes:
   # ONLY in the projected schema, which gen-sqlddl never reads. Adding one
   # must leave gen-sqltables output byte-identical.
   DeviceModel:
+    title: Device model
     annotations:
       sql_table: device_model
       # permalink root = the device TYPE's slug, not this table's name — the
@@ -45,42 +48,61 @@ classes:
 slots:
   model:
     title: Model
+    exact_mappings: [ schema:model ]
     description: 'what the thing is called — the model designation on the nameplate'
-  series: {}
+  series: { title: Series, related_mappings: [ schema:ProductGroup ] }
   ac_ports:
     range: FeatureOfInterest
     multivalued: true
     inlined_as_list: true
+    title: AC ports
+    related_mappings: [ sosa:FeatureOfInterest ]
     description: "AC port ROWS — which socket each fills lives in its role, never a column name; phase count is the feature's part rows (a/b/c, l1/l2, or none), never the type"
     annotations: { camel: acPorts }
   dc_ports:
     range: FeatureOfInterest
     multivalued: true
     inlined_as_list: true
+    title: DC ports
+    related_mappings: [ sosa:FeatureOfInterest ]
     description: "DC port ROWS — one per socket (pv-tracker, battery); how MANY trackers or battery ports is that feature's part rows"
     annotations: { camel: dcPorts }
   device_type:
     range: DeviceType
+    title: Device type
+    related_mappings: [ schema:category ]
     description: 'FK — which device type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new device type is an INSERT, never a DDL migration. Permalink root = its slug'
     annotations: { camel: deviceType }
   environments:
     range: FeatureOfInterest
     multivalued: true
     inlined_as_list: true
+    title: Environments
+    related_mappings: [ sosa:FeatureOfInterest ]
     description: 'environment ROWS — the things a temperature/humidity reading attaches to; role says which (ambient = rated operating conditions, enclosure = internal sensor)'
   manufacturer:
     range: Manufacturer
     title: Manufacturer
+    exact_mappings: [ schema:manufacturer ]
     description: 'FK — the organization that made this thing'
   network_interfaces:
     range: NetworkInterface
     multivalued: true
     inlined_as_list: true
+    title: Network interfaces
+    related_mappings: [ wikidata:Q165233 ]
     annotations: { camel: networkInterfaces }
-  product: { range: Product, inlined: true }
+  product: { range: Product, inlined: true, title: Product, exact_mappings: [ schema:Product ] }
   register_map:
     range: RegisterMap
     inlined: true
+    title: Register map
+    related_mappings: [ wikidata:Q1135322 ]
     description: 'FK to the shared family map — inlined only for the single-file example'
     annotations: { camel: registerMap }
-  services: { range: ServiceBinding, multivalued: true, inlined_as_list: true }
+  services:
+    range: ServiceBinding
+    multivalued: true
+    inlined_as_list: true
+    title: Services
+    related_mappings: [ schema:Service ]

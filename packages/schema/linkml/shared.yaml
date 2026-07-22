@@ -1,98 +1,112 @@
-# Shared slot + enum layer. Imported once by nodeve.yaml.
+# Shared slot layer. Imported once by nodeve.yaml, beside enums.yaml.
 # Object-valued slots range over classes DEFINED IN THE IMPORTER; LinkML
 # resolves names over the merged import closure, so this file only stands
 # alone alongside it.
-id: https://nodeve.com/schema/slots
-name: nodeve-slots
+id: https://nodeve.com/schema/lib/shared
+name: shared
 # prefixes live ONCE, on the aggregate root (nodeve.yaml) — the legacy
 # SchemaLoader the SQL generators use resolves this file's CURIEs against the
 # root's namespaces, so a local block would be the duplicate, not this absence
 default_prefix: nodeve
 default_range: string
 
-# ─── ENUMS ────────────────────────────────────────────────────────────────────
-# CLOSED GRAMMAR vocabularies only (rating, severity, …) live here as
-# schema enums. Part vocabularies (phase a/b/c, l1/l2, tracker positions) are
-# Part ROWS on the feature — per-model, so a new subdivision is a new row,
-# never a new column or a DDL migration.
-enums:
-  FlowDirection: { permissible_values: { in: {}, out: {}, net: {} } }
-  InterfaceType: { permissible_values: { ethernet_csmacd: {}, ieee80211: {} } }
-  MatchStrength:
-    description: SKOS mapping strength — closed grammar, so an enum and not a table.
-    permissible_values:
-      exact: { meaning: skos:exactMatch }
-      close: { meaning: skos:closeMatch }
-      broad: { meaning: skos:broadMatch }
-      narrow: { meaning: skos:narrowMatch }
-      related: { meaning: skos:relatedMatch }
-  Parity: { permissible_values: { none: {}, even: {}, odd: {} } }
-  Period: { permissible_values: { daily: {} } }
-  PhysicalLayer: { permissible_values: { rs485: {}, rs232: {}, rs422: {} } }
-  Rating:
-    permissible_values:
-      continuous: {}
-      intermittent: {}
-      short_term: {}
-      startup: {}
-      shutdown: {}
-      survival: {}
-      protection_required: {}
-  RegisterDatatype:
-    permissible_values: { uint16: {}, int16: {}, uint32: {}, int32: {}, float32: {} }
-  RegisterType: { permissible_values: { holding: {}, input: {} } }
-  ServiceProtocol: { permissible_values: { modbus_tcp: {}, https: {}, http: {}, mqtt: {} } }
-  Severity:
-    permissible_values:
-      best: {}
-      better: {}
-      good: {}
-      nominal: {}
-      notice: {}
-      caution: {}
-      warning: {}
-      critical: {}
-      fatal: {}
-  TriggerOn: { permissible_values: { above: {}, below: {} } }
-  WordOrder: { permissible_values: { high_first: {}, low_first: {} } }
-  Zone:
-    permissible_values: { mppt: {}, mpp: {}, open_circuit: {}, off: {}, idle: {}, running: {} }
-
 # ─── SLOTS (grimoire properties) ─────────────────────────────────────────────
 # One definition per field name, schema-wide — the global-by-default invariant
 # grimoire hand-enforces is LinkML's native behaviour. Classes refine locally
 # via slot_usage without forking the definition.
 slots:
-  flow_direction: { range: FlowDirection, annotations: { camel: flowDirection } }
+  flow_direction:
+    range: FlowDirection
+    title: Flow direction
+    exact_mappings: [ cim:FlowDirectionKind ]
+    annotations: { camel: flowDirection }
   part:
     range: string
     title: Part
+    related_mappings: [ schema:hasPart ]
     pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$'
     description: "THE ONE part discriminator, and the path's part segment verbatim. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part."
-  period: { range: Period }
+  period: { range: Period, title: Period, exact_mappings: [ cim:MacroPeriodKind ] }
   role:
     range: string
+    title: Role
+    exact_mappings: [ schema:Role ]
     description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
   slug:
     range: string
     pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
     title: Slug
+    related_mappings: [ schema:identifier ]
     description: 'wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref'
   unit:
     range: string
     title: Unit
+    exact_mappings: [ qudt:unit ]
     description: "non-SI unit override of a stated value — only when the value isn't in the quantity kind's canonical SI unit (kW vs W, °C vs K); omit ⇒ SI unit"
-  contents: { range: Content, multivalued: true, inlined_as_list: true }
+  contents:
+    range: Content
+    multivalued: true
+    inlined_as_list: true
+    title: Contents
+    related_mappings: [ schema:text ]
   feature_type:
     range: FeatureType
+    title: Feature type
+    related_mappings: [ sosa:ObservableProperty ]
     description: FK — which feature definition this row instantiates
     annotations: { camel: featureType }
   node:
     identifier: true
     range: Node
+    title: Node
+    related_mappings: [ schema:identifier ]
     description: "PK + FK to Node — every row's identity IS its Node row; the one permalink space"
   quantity_kind:
     range: QuantityKind
     required: true
+    title: Quantity kind
+    exact_mappings: [ qudt:hasQuantityKind ]
     description: 'FK to the quantity_kind table — the bulk-loaded QUDT master list. Membership is the FK, not an enum: a new kind is an INSERT'
     annotations: { camel: quantityKind }
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
+# tracker positions) are Part ROWS on the feature — per-model, so a new
+# subdivision is a new row, never a new column or a DDL migration.
+enums:
+  FlowDirection:
+    title: Flow direction
+    permissible_values:
+      in:
+        title: Import
+        meaning: cim:FlowDirectionKind.forward
+        annotations: { i18n: { value: { title: { pt: Importar } } } }
+      out:
+        title: Export
+        meaning: cim:FlowDirectionKind.reverse
+        annotations: { i18n: { value: { title: { pt: Exportar } } } }
+      net:
+        title: Net
+        meaning: cim:FlowDirectionKind.net
+        annotations: { i18n: { value: { title: { pt: Líquido } } } }
+  Period:
+    title: Period
+    permissible_values:
+      daily:
+        title: Daily
+        meaning: cim:MacroPeriodKind.daily
+        close_mappings: [ iso_8601:P1D ]
+        annotations: { i18n: { value: { title: { pt: Diário } } } }
+      monthly:
+        title: Monthly
+        meaning: cim:MacroPeriodKind.monthly
+        close_mappings: [ iso_8601:P1M ]
+        annotations: { i18n: { value: { title: { pt: Mensal } } } }
+      yearly:
+        title: Yearly
+        close_mappings: [ iso_8601:P1Y ]
+        annotations: { i18n: { value: { title: { pt: Anual } } } }
+      lifetime:
+        title: Lifetime
+        related_mappings: [ wikidata:Q1675349 ]
+        annotations: { i18n: { value: { title: { pt: Vitalício } } } }

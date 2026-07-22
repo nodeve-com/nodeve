@@ -1,16 +1,20 @@
 id: https://nodeve.com/schema/core
-name: nodeve-core
+name: core
+
 default_prefix: nodeve
 default_range: string
 classes:
-  Node: { annotations: { sql_table: node }, slots: [ slug_qualified, code ] }
+  Node: { title: Node, annotations: { sql_table: node }, slots: [ slug_qualified, code ] }
 
   # Parts belong to the FEATURE, not its type: how a model subdivides a port is
   # a per-model fact (3 trackers vs 2 battery ports; split-phase l1/l2 vs
   # three-phase a/b/c). A part with no intervals still exists — it is a row.
   # Authoring stays terse via desugaring (`phases: split` → two rows); the
   # schema only ever sees the flat rows.
-  Part: { annotations: { sql_table: part }, slots: [ node, slug, ordinal, contents ] }
+  Part:
+    title: Part
+    annotations: { sql_table: part }
+    slots: [ node, slug, ordinal, contents ]
 
   # The ingest container — linkml-sqldb needs ONE root object per dump, so the
   # sharded data/ rows bundle under this. NOT a table: tree_root exists to be
@@ -19,6 +23,7 @@ classes:
   # container's own bundle slots, not domain fields, and a global slot named
   # `registries` would be meaningless on any other class.
   Catalog:
+    title: Catalog
     tree_root: true
     annotations: { sql_table: catalog }
     attributes:
@@ -39,6 +44,7 @@ classes:
   # wikidata, ha_device_class). A new registry is an INSERT; the iri_template
   # lives here so a term is stored exactly as that registry spells it.
   Registry:
+    title: Registry
     annotations: { sql_table: registry }
     slots: [ node, slug, url, iri_template, contents ]
 
@@ -46,6 +52,7 @@ classes:
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
   # elements; these are DATA rows, so the mapping is data too.
   Ref:
+    title: Reference
     annotations:
       sql_table: ref
       # authored form: a map keyed by this slot's range (ref: {wikidata: …});
@@ -58,11 +65,15 @@ classes:
   # translations, so the en Content is GENERATED from the slot title and other
   # languages are authored data about this node. Dev-facing `description:` stays
   # schema meta — it is not a Property column and is never localized.
-  Property: { annotations: { sql_table: property }, slots: [ node, slug, contents ] }
+  Property:
+    title: Property
+    annotations: { sql_table: property }
+    slots: [ node, slug, contents ]
 
   # Reusable localized content. Each row has its own node; `about` points to
   # the described node. No class-specific parent FK.
   Content:
+    title: Content
     annotations:
       sql_table: content
       # authored form: a map keyed by this slot (content: {en: …, pt: …});
@@ -70,54 +81,80 @@ classes:
       keyed_by: language
     slots: [ node, about, language, title, lede, body ]
 slots:
-  body: {}
+  body: { title: Body, exact_mappings: [ schema:articleBody ] }
   code:
     range: string
     title: Short code
+    related_mappings: [ schema:identifier ]
     description: "8-char Crockford human handle DERIVED from the permalink's hash tail (40 bits); minted with the row, never recomputed"
   iri_template:
     range: string
     title: IRI template
+    close_mappings: [ schema:urlTemplate ]
     description: 'resolves a term to its IRI — {id} is the term slot (http://qudt.org/property/quantitykind/{id}); absent when the registry has no resolvable form'
     annotations: { camel: iriTemplate }
   language:
     range: string
     required: true
+    title: Language
+    exact_mappings: [ schema:inLanguage ]
     slot_uri: schema:inLanguage
     description: 'BCP 47 language tag'
-  lede: { description: short description }
+  lede: { title: Lede, exact_mappings: [ schema:abstract ], description: short description }
+  match:
+    range: MatchStrength
+    required: true
+    title: Match
+    related_mappings: [ skos:mappingRelation ]
+    description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths'
   ordinal:
     range: integer
     minimum_value: 1
     title: Ordinal
+    exact_mappings: [ schema:position ]
     description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
   slug_qualified:
     identifier: true
     range: uriorcurie
     title: Qualified slug
+    related_mappings: [ schema:identifier ]
     description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
     annotations: { camel: slugQualified }
   term:
     range: string
     required: true
     title: Term
+    exact_mappings: [ skos:notation ]
     description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized'
-  title: {}
-  url: { range: uri, title: URL, description: registry homepage }
+  title: { title: Title, exact_mappings: [ dcterms:title ] }
+  url: { range: uri, title: URL, exact_mappings: [ schema:url ], description: registry homepage }
   # object-valued slots — FKs / owned row sets; global like everything else,
   # classes narrow via slot_usage only when the shared def is too loose
   about:
     range: Node
     required: true
+    title: About
+    exact_mappings: [ schema:about ]
     slot_uri: schema:about
     description: 'the node this content describes'
-  match:
-    range: MatchStrength
-    required: true
-    title: Match
-    description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths'
   registry:
     range: Registry
     required: true
     title: Registry
+    related_mappings: [ skos:ConceptScheme ]
     description: 'FK — which external registry the term belongs to'
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
+# tracker positions) are Part ROWS on the feature — per-model, so a new
+# subdivision is a new row, never a new column or a DDL migration.
+enums:
+  MatchStrength:
+    title: Match strength
+    description: SKOS mapping strength — closed grammar, so an enum and not a table.
+    permissible_values:
+      exact: { title: Exact match, meaning: skos:exactMatch }
+      close: { title: Close match, meaning: skos:closeMatch }
+      broad: { title: Broader match, meaning: skos:broadMatch }
+      narrow: { title: Narrower match, meaning: skos:narrowMatch }
+      related: { title: Related match, meaning: skos:relatedMatch }

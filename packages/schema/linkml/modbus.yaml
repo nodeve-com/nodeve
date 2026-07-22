@@ -1,11 +1,12 @@
-id: https://nodeve.com/schema/modbus
-name: nodeve-modbus
+id: https://nodeve.com/schema/lib/modbus
+name: modbus
 default_prefix: nodeve
 default_range: string
 classes:
   # ── comms layer: OUT of the device. Shared per manufacturer-family;
   # many products FK the same map. ──
   RegisterMap:
+    title: Register map
     annotations: { sql_table: register_map }
     slots:
       - node
@@ -23,12 +24,14 @@ classes:
       - constraint_ranges
 
   RegisterRange:
+    title: Register range
     annotations: { sql_table: register_range }
     description: Named invalid / individual-read range on a map.
     slots: [ node, range_type, start, end, note ]
     slot_usage: { start: { required: true }, end: { required: true } }
 
   ModbusRegister:
+    title: Modbus register
     annotations: { sql_table: modbus_register }
     description: >-
       One register → one measurand, quantitative OR categorical (exactly one of interval / channel, enforced at normalize). Quantitative: FK to the interval row it reads (the relational rewrite of grimoire's interval_item) + `part` naming WHICH instance when the interval is a `*` default — quantity, feature, and energy channel all derive from the interval, no discriminator columns. Categorical: FK to the Channel it feeds; its identified bits are RegisterFlag rows.
@@ -47,6 +50,7 @@ classes:
     slot_usage: { datatype: { required: true } }
 
   RegisterFlag:
+    title: Register flag
     annotations: { sql_table: register_flag }
     description: >-
       One identified bit of a flag word — bit position → the channel member it raises. Unmapped bits have no row; a word read as part of a group with no identified bits has a register row and zero flags.
@@ -57,10 +61,12 @@ slots:
     range: integer
     required: true
     title: Register address
+    exact_mappings: [ wikidata:Q835713 ]
     description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)'
   baud_rate:
     range: integer
     title: Baud rate
+    exact_mappings: [ wikidata:Q192027 ]
     description: 'serial line rate (9600, 19200, …); RTU only'
     annotations: { camel: baudRate }
   bit:
@@ -68,87 +74,216 @@ slots:
     minimum_value: 0
     maximum_value: 15
     title: Bit
+    exact_mappings: [ wikidata:Q8805 ]
     description: 'bit position within the 16-bit word, 0 = LSB'
   data_bits:
     range: integer
     title: Data bits
+    related_mappings: [ wikidata:Q3316326 ]
     description: 'bits per serial character (RTU = 8); RTU only'
     annotations: { camel: dataBits }
+  datatype:
+    range: RegisterDatatype
+    title: Value type
+    exact_mappings: [ wikidata:Q190087 ]
+    description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it'
   decimals:
     range: integer
     title: Resolved decimals
+    related_mappings: [ wikidata:Q1056761 ]
     description: 'decimal places the sensor actually resolves; the published value is rounded to it — decoding leaks precision the sensor never measured. Omit only when scale already lands on the real resolution'
-  end: { range: integer }
-  note: {}
+  end: { range: integer, title: Range end, related_mappings: [ schema:maxValue ] }
+  note: { title: Note, exact_mappings: [ skos:note ] }
+  parity:
+    range: Parity
+    title: Parity
+    related_mappings: [ wikidata:Q625502 ]
+    description: 'serial parity bit (none / even / odd); RTU only'
+  physical_layer:
+    range: PhysicalLayer
+    title: Physical layer
+    exact_mappings: [ wikidata:Q192727 ]
+    description: 'electrical layer the RTU frames ride (rs485, rs232, rs422); absent for Modbus-TCP'
+    annotations: { camel: physicalLayer }
   range_type:
     range: string
+    title: Range type
+    related_mappings: [ schema:category ]
     description: invalid | individual_read
     annotations: { camel: rangeType }
+  register_type:
+    range: RegisterType
+    title: Register type
+    narrow_mappings: [ modbus_org:HoldingRegister, modbus_org:InputRegister ]
+    description: 'which Modbus register space a read targets — holding = function 03, input = function 04'
+    annotations: { camel: registerType }
   scale:
     range: float
     title: Scale
+    related_mappings: [ wikidata:Q12121800 ]
     description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1'
   # ── serial (Modbus-RTU) framing — absent on a TCP map. Shared per family map
   # like unit_id; the device path is a deployment default, overridable downstream. ──
   serial_port:
     range: string
     title: Serial port
+    exact_mappings: [ wikidata:Q2919255 ]
     description: 'RTU device path (/dev/ttyUSB0) — a known default, overridable / auto-discovered downstream, like unit_id'
     annotations: { camel: serialPort }
-  start: { range: integer }
+  start: { range: integer, title: Range start, related_mappings: [ schema:minValue ] }
   stop_bits:
     range: integer
     title: Stop bits
+    related_mappings: [ wikidata:Q3316326 ]
     description: 'serial stop bits (1 or 2); RTU only'
     annotations: { camel: stopBits }
   unit_id:
     range: integer
     title: Unit id
+    related_mappings: [ schema:identifier ]
     description: 'Modbus slave/unit id — a known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)'
     annotations: { camel: unitId }
+  word_order:
+    range: WordOrder
+    title: Word order
+    exact_mappings: [ wikidata:Q339338 ]
+    description: 'for 32-bit values — high_first puts the high word at the lower address; 16-bit registers are always big-endian (Modbus standard)'
+    annotations: { camel: wordOrder }
   channel:
     range: Channel
     title: Channel
+    related_mappings: [ sosa:ObservableProperty ]
     description: "FK — the categorical channel this register feeds; the register's flag labels mint that channel's members"
   constraint_ranges:
     range: RegisterRange
     multivalued: true
     inlined_as_list: true
+    title: Constraint ranges
+    related_mappings: [ schema:valueReference ]
     annotations: { camel: constraintRanges }
-  datatype:
-    range: RegisterDatatype
-    title: Value type
-    description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it'
   flags:
     range: RegisterFlag
     multivalued: true
     inlined_as_list: true
+    title: Flags
+    related_mappings: [ wikidata:Q2374485 ]
     description: "this word's identified bits; authored as a `flag` label list where index = bit, null = unidentified"
   interval:
     range: Interval
+    title: Interval
     description: "FK — the interval row this points at: a register's read target (a `*`-part interval resolves per-instance via the register's own part) or a condition's anchoring band"
-    close_mappings: [ 'ssn-system:Condition' ]
+    close_mappings: [ 'ssn_system:Condition' ]
   member:
     range: DomainMember
     title: Member
+    related_mappings: [ skos:member ]
     description: 'FK — the channel member this bit raises when set'
-  parity:
-    range: Parity
+  registers:
+    range: ModbusRegister
+    multivalued: true
+    inlined_as_list: true
+    title: Registers
+    related_mappings: [ schema:hasPart ]
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
+# tracker positions) are Part ROWS on the feature — per-model, so a new
+# subdivision is a new row, never a new column or a DDL migration.
+enums:
+  Parity:
     title: Parity
-    description: 'serial parity bit (none / even / odd); RTU only'
-  physical_layer:
-    range: PhysicalLayer
+    permissible_values:
+      none:
+        title: No parity
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Sem paridade } } } }
+      even:
+        title: Even
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Par } } } }
+      odd:
+        title: Odd
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Ímpar } } } }
+  PhysicalLayer:
     title: Physical layer
-    description: 'electrical layer the RTU frames ride (rs485, rs232, rs422); absent for Modbus-TCP'
-    annotations: { camel: physicalLayer }
-  register_type:
-    range: RegisterType
+    permissible_values:
+      rs232:
+        title: RS-232
+        meaning: tia_standard:232-F
+        annotations: { i18n: { value: { title: { pt: RS-232 } } } }
+      rs485:
+        title: RS-485
+        meaning: tia_standard:485-A
+        annotations: { i18n: { value: { title: { pt: RS-485 } } } }
+      rs422:
+        title: RS-422
+        meaning: tia_standard:422-B
+        annotations: { i18n: { value: { title: { pt: RS-422 } } } }
+      ttl_3v3:
+        title: 3.3 V LVTTL serial (logic-level UART)
+        meaning: jedec_standard:JESD8C.01
+        annotations:
+          i18n: { value: { title: { pt: 'Serial LVTTL 3,3 V (UART em nível lógico)' } } }
+      ttl_5v:
+        title: 5 V TTL serial (logic-level UART)
+        meaning: jedec_standard:JESD8
+        annotations: { i18n: { value: { title: { pt: Serial TTL 5 V (UART em nível lógico) } } } }
+      can_hs:
+        title: CAN high-speed (differential)
+        meaning: iso_11898:11898-2
+        annotations: { i18n: { value: { title: { pt: CAN alta velocidade (diferencial) } } } }
+      current_loop_4_20ma:
+        title: 4-20 mA current loop
+        meaning: iec_60381:60381-1
+        annotations: { i18n: { value: { title: { pt: Laço de corrente 4-20 mA } } } }
+      voltage_0_10v:
+        title: 0-10 V analog
+        meaning: iec_60381:60381-2
+        annotations: { i18n: { value: { title: { pt: Tensão analógica 0-10 V } } } }
+  RegisterDatatype:
+    title: Register datatype
+    permissible_values:
+      uint16:
+        title: Unsigned 16-bit integer
+        meaning: xsd:unsignedShort
+        annotations: { i18n: { value: { title: { pt: Inteiro de 16 bits sem sinal } } } }
+      int16:
+        title: Signed 16-bit integer
+        meaning: xsd:short
+        annotations: { i18n: { value: { title: { pt: Inteiro de 16 bits com sinal } } } }
+      uint32:
+        title: Unsigned 32-bit integer
+        meaning: xsd:unsignedInt
+        annotations: { i18n: { value: { title: { pt: Inteiro de 32 bits sem sinal } } } }
+      int32:
+        title: Signed 32-bit integer
+        meaning: xsd:int
+        annotations: { i18n: { value: { title: { pt: Inteiro de 32 bits com sinal } } } }
+      float32:
+        title: 32-bit float
+        meaning: xsd:float
+        annotations: { i18n: { value: { title: { pt: Vírgula flutuante de 32 bits } } } }
+  RegisterType:
     title: Register type
-    description: 'which Modbus register space a read targets — holding = function 03, input = function 04'
-    annotations: { camel: registerType }
-  registers: { range: ModbusRegister, multivalued: true, inlined_as_list: true }
-  word_order:
-    range: WordOrder
+    permissible_values:
+      holding:
+        title: Holding register
+        meaning: modbus_org:HoldingRegister
+        annotations: { i18n: { value: { title: { pt: Registo de retenção } } } }
+      input:
+        title: Input register
+        meaning: modbus_org:InputRegister
+        annotations: { i18n: { value: { title: { pt: Registo de entrada } } } }
+  WordOrder:
     title: Word order
-    description: 'for 32-bit values — high_first puts the high word at the lower address; 16-bit registers are always big-endian (Modbus standard)'
-    annotations: { camel: wordOrder }
+    permissible_values:
+      high_first:
+        title: High word first (big-endian)
+        related_mappings: [ wikidata:Q23651349 ]
+        annotations: { i18n: { value: { title: { pt: Palavra alta primeiro (big-endian) } } } }
+      low_first:
+        title: Low word first (little-endian)
+        related_mappings: [ wikidata:Q12745768 ]
+        annotations:
+          i18n: { value: { title: { pt: Palavra baixa primeiro (little-endian) } } }

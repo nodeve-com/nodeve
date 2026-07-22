@@ -1,5 +1,6 @@
-id: https://nodeve.com/schema/features
-name: nodeve-features
+id: https://nodeve.com/schema/lib/features
+name: features
+
 default_prefix: nodeve
 default_range: string
 classes:
@@ -9,6 +10,7 @@ classes:
   # relative (margin) families, symmetric + asymmetric. A width facet of
   # Interval: its own table, sharing the interval's node.
   ValuedRange:
+    title: Valued range
     annotations: { sql_table: valued_range }
     description: >-
       A single point (value) plus the tolerated band around it (min/max OPTIONAL — value-only, one-sided, or full all legal; never fabricate a band). Quantity-agnostic: the owning row supplies the quantity; unit stays here with the numbers it scales.
@@ -31,6 +33,7 @@ classes:
   # node row (the Product-on-DeviceModel trick) — narrow tables, no repeated
   # core columns. Uniqueness: one row per (feature, quantity_kind, part, slug).
   Interval:
+    title: Interval
     annotations:
       sql_table: interval
       # authored form: three stacked map levels, one key per listed slot —
@@ -47,24 +50,28 @@ classes:
       part: { required: true }
 
   Specification:
+    title: Specification
     annotations: { sql_table: specification }
     description: >-
       BEHAVIOURAL payload — spec rating, operating zone, severity tier, or condition-gated derate. Shares its interval's node row.
     slots: [ node, conditions, rating, zone, severity, duration, trigger_on ]
 
   Measurement:
+    title: Measurement
     annotations: { sql_table: measurement }
     description: >-
       MEASURABLE-channel payload — what a sensor reports: resolution and the energy-channel discriminators. Shares its interval's node row.
     slots: [ node, flow_direction, period, resolution ]
 
   Condition:
+    title: Condition
     annotations: { sql_table: condition }
     description: >-
       One condition a specification holds under — either a commissioning-setting equality or a pointer at another interval (the derate anchor). All values are FKs assembled from authored coordinates; a typo dies at the database's FK gate.
     slots: [ node, setting, equals, interval ]
 
   FeatureOfInterest:
+    title: Feature of interest
     annotations:
       sql_table: feature_of_interest
       # authored form: feature_of_interest: {<type>: {<role>: …}} — two levels
@@ -89,45 +96,57 @@ slots:
   count:
     range: integer
     minimum_value: 1
+    title: Count
+    exact_mappings: [ schema:numberOfItems ]
     description: 'cardinality subdivision — n of the same thing; part keys must be 1…n. Exclusive with part_set; both absent = no parts'
   duration:
     range: integer
     title: Duration
     description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating)'
     close_mappings: [ cim:OperationalLimitType.acceptableDuration ]
-  margin: { range: float, title: Margin, description: symmetric RELATIVE band (±0.05 = ±5%) }
+  margin:
+    range: float
+    title: Margin
+    related_mappings: [ wikidata:Q950292 ]
+    description: symmetric RELATIVE band (±0.05 = ±5%)
   margin_lower:
     range: float
     title: Margin lower
+    related_mappings: [ wikidata:Q950292 ]
     description: 'asymmetric RELATIVE below; fraction_lower sugar desugars into this'
     annotations: { camel: marginLower }
   margin_upper:
     range: float
     title: Margin upper
+    related_mappings: [ wikidata:Q950292 ]
     description: 'asymmetric RELATIVE above; fraction_upper sugar desugars into this'
     annotations: { camel: marginUpper }
   max:
     range: float
     title: Maximum
+    exact_mappings: [ schema:maxValue ]
     description: "inclusive high end of a closed interval, in the enclosing row's unit"
-  min: { range: float, title: Minimum }
+  min: { range: float, title: Minimum, exact_mappings: [ schema:minValue ] }
   resolution:
     range: float
     title: Resolution
     description: "quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14); omit when the datasheet doesn't state it, never fabricate"
-    exact_mappings: [ 'vim:4.14', ssn-system:Resolution ]
+    exact_mappings: [ 'vim:4.14', ssn_system:Resolution ]
   tolerance:
     range: float
     title: Tolerance
+    related_mappings: [ wikidata:Q950292 ]
     description: 'symmetric ABSOLUTE band (±200, in unit)'
   tolerance_lower:
     range: float
     title: Tolerance lower
+    related_mappings: [ wikidata:Q950292 ]
     description: 'asymmetric ABSOLUTE below (low edge = value − tolerance_lower); pairs with tolerance_upper'
     annotations: { camel: toleranceLower }
   tolerance_upper:
     range: float
     title: Tolerance upper
+    related_mappings: [ wikidata:Q950292 ]
     description: 'asymmetric ABSOLUTE above (high edge = value + tolerance_upper); pairs with tolerance_lower'
     annotations: { camel: toleranceUpper }
   value:
@@ -141,45 +160,63 @@ slots:
     inlined_as_list: true
     title: Conditions
     description: 'the conditions under which this specification holds — ALL must hold (AND); each is one Condition row'
-    close_mappings: [ 'ssn-system:inCondition', 'vim:4.9' ]
+    close_mappings: [ 'ssn_system:inCondition', 'vim:4.9' ]
   equals:
     range: DomainMember
     title: Equals
+    related_mappings: [ wikidata:Q609647 ]
     description: 'FK — the member the gated setting must hold for the band to apply; one value per gate — a band valid for several values is several bands (OR = separate bands)'
-  intervals: { range: Interval, multivalued: true, inlined_as_list: true }
+  intervals:
+    range: Interval
+    multivalued: true
+    inlined_as_list: true
+    title: Intervals
+    related_mappings: [ wikidata:Q233991 ]
   measurements:
     range: Measurement
     multivalued: true
     inlined_as_list: true
+    title: Measurements
+    related_mappings: [ sosa:Observation ]
     description: "measurement width-extension rows — each shares its interval's node"
   part_set:
     range: PartSet
+    title: Part set
+    related_mappings: [ skos:Collection ]
     description: "FK — the named closed set this feature's part keys must belong to. Exclusive with count"
     annotations: { camel: partSet }
   parts:
     range: Part
     multivalued: true
     inlined_as_list: true
+    title: Parts
+    related_mappings: [ schema:hasPart ]
     description: 'how THIS feature subdivides — a, b, c for three-phase; l1, l2 for split; 1, 2, 3 for trackers. Zero rows = combined only. Per-model, because models differ'
-  rating: { range: Rating }
+  rating: { range: Rating, title: Rating, close_mappings: [ cim:OperationalLimitType ] }
   setting:
     range: Setting
     title: Setting
+    related_mappings: [ wikidata:Q1413083 ]
     description: 'FK — the commissioning knob this gate tests'
-  severity: { range: Severity }
+  severity: { range: Severity, title: Severity, related_mappings: [ isa_18_2:Priority ] }
   specifications:
     range: Specification
     multivalued: true
     inlined_as_list: true
+    title: Specifications
+    close_mappings: [ cim:OperationalLimitType ]
     description: "specification width-extension rows — each shares its interval's node"
   trigger_on:
     range: TriggerOn
     title: Trigger on
+    related_mappings: [ schema:greater ]
     description: 'which side turns a stateful zone ON — below ⇒ ON under min, OFF above max; above ⇒ the reverse; between the edges the state HOLDS (the [min,max] deadband is what makes it stateful)'
     annotations: { camel: triggerOn }
   valued_range:
     range: ValuedRange
     inlined: true
+    title: Valued range
+    related_mappings: [ schema:QuantitativeValue ]
     description: FK — the point + band this row states
     annotations: { camel: valuedRange }
-  zone: { range: Zone }
+  zone: { range: Zone, title: Zone, related_mappings: [ saref:State ] }

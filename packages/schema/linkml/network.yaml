@@ -1,27 +1,103 @@
-id: https://nodeve.com/schema/network
-name: nodeve-network
+id: https://nodeve.com/schema/lib/network
+name: network
 default_prefix: nodeve
 default_range: string
 classes:
   NetworkInterface:
+    title: Network interface
     annotations: { sql_table: network_interface, keyed_by: slug }
     slots: [ node, slug, interface_type, link_speed ]
     slot_usage: { interface_type: { required: true } }
 
   ServiceBinding:
+    title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
     slots: [ node, slug, port, service_protocol, network_interface ]
     slot_usage: { service_protocol: { required: true }, network_interface: { required: true } }
 slots:
+  interface_type:
+    range: InterfaceType
+    title: Interface type
+    related_mappings: [ wikidata:Q985806 ]
+    annotations: { camel: interfaceType }
   link_speed:
     range: integer
     title: Link speed
+    close_mappings: [ wikidata:Q194158 ]
     description: 'negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)'
     annotations: { camel: linkSpeed }
   port:
     range: integer
     title: Port
+    exact_mappings: [ wikidata:Q858321 ]
     description: "TCP/UDP port number; omit to fall back to the scheme's well-known default"
-  interface_type: { range: InterfaceType, annotations: { camel: interfaceType } }
-  network_interface: { range: NetworkInterface, annotations: { camel: networkInterface } }
-  service_protocol: { range: ServiceProtocol, annotations: { camel: serviceProtocol } }
+  service_protocol:
+    range: ServiceProtocol
+    title: Service protocol
+    close_mappings: [ wikidata:Q132364 ]
+    annotations: { camel: serviceProtocol }
+  network_interface:
+    range: NetworkInterface
+    title: Network interface
+    exact_mappings: [ wikidata:Q985806 ]
+    annotations: { camel: networkInterface }
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
+# tracker positions) are Part ROWS on the feature — per-model, so a new
+# subdivision is a new row, never a new column or a DDL migration.
+enums:
+  InterfaceType:
+    title: Interface type
+    permissible_values:
+      async_serial:
+        title: Asynchronous serial port
+        meaning: iana_iftype:rs232
+        annotations: { i18n: { value: { title: { pt: Porta serial assíncrona } } } }
+      can:
+        title: CAN bus
+        meaning: iso_11898:11898-1
+        annotations: { i18n: { value: { title: { pt: Barramento CAN } } } }
+      ethernet_csmacd:
+        title: Ethernet
+        meaning: iana_iftype:ethernetCsmacd
+        annotations: { i18n: { value: { title: { pt: Ethernet } } } }
+      ieee80211:
+        title: WiFi
+        meaning: iana_iftype:ieee80211
+        annotations: { i18n: { value: { title: { pt: WiFi } } } }
+      usb:
+        title: USB
+        meaning: iana_iftype:usb
+        annotations: { i18n: { value: { title: { pt: USB } } } }
+  ServiceProtocol:
+    title: Service protocol
+    permissible_values:
+      http:
+        title: HTTP
+        meaning: iana_uri_scheme:http
+        annotations: { i18n: { value: { title: { pt: HTTP } } } }
+      https:
+        title: HTTPS
+        meaning: iana_uri_scheme:https
+        annotations: { i18n: { value: { title: { pt: HTTPS } } } }
+      ws:
+        title: WebSocket
+        meaning: iana_uri_scheme:ws
+        annotations: { i18n: { value: { title: { pt: WebSocket } } } }
+      wss:
+        title: WebSocket (TLS)
+        meaning: iana_uri_scheme:wss
+        annotations: { i18n: { value: { title: { pt: WebSocket (TLS) } } } }
+      mqtt:
+        title: MQTT
+        meaning: iana_uri_scheme:mqtt
+        annotations: { i18n: { value: { title: { pt: MQTT } } } }
+      mqtts:
+        title: MQTT (TLS)
+        meaning: iana_uri_scheme:mqtts
+        annotations: { i18n: { value: { title: { pt: MQTT (TLS) } } } }
+      modbus_tcp:
+        title: Modbus TCP
+        meaning: modbus_org:Modbus-TCP
+        annotations: { i18n: { value: { title: { pt: Modbus TCP } } } }

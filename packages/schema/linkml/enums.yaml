@@ -1,0 +1,130 @@
+# Feature-domain closed-grammar enums (spec rating, operating zone, severity
+# tier, condition trigger). Split from features.yaml, which is at the file-size
+# budget. Imported once by nodeve.yaml. Object-valued slots elsewhere range over
+# classes DEFINED IN THE IMPORTER; LinkML resolves names over the merged import
+# closure, so this file only stands alone alongside it.
+# prefixes live ONCE, on the aggregate root (nodeve.yaml) — the legacy
+# SchemaLoader the SQL generators use resolves this file's CURIEs against the
+# root's namespaces, so a local block would be the duplicate, not this absence
+id: https://nodeve.com/schema/lib/enums
+name: enums
+default_prefix: nodeve
+default_range: string
+
+# CLOSED GRAMMAR vocabularies only.
+enums:
+  Rating:
+    title: Rating
+    permissible_values:
+      continuous:
+        title: Continuous
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Contínuo } } } }
+      intermittent:
+        title: Intermittent
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Intermitente } } } }
+      short_term:
+        title: Short-term
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Curto prazo } } } }
+      startup:
+        title: Startup
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Partida } } } }
+      shutdown:
+        title: Shutdown
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Desligamento } } } }
+      survival:
+        title: Survival
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Sobrevivência } } } }
+      protection_required:
+        title: Protection required
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Proteção necessária } } } }
+  Severity:
+    title: Severity
+    permissible_values:
+      best:
+        title: Best
+        close_mappings: [ iso_25012:Exemplary ]
+        annotations: { i18n: { value: { title: { pt: Ótimo } } } }
+      better:
+        title: Better
+        close_mappings: [ iso_25012:Managed ]
+        annotations: { i18n: { value: { title: { pt: Melhor } } } }
+      good:
+        title: Good
+        close_mappings: [ iso_25012:Acceptable ]
+        annotations: { i18n: { value: { title: { pt: Bom } } } }
+      nominal:
+        title: Nominal
+        close_mappings: [ vim:1.26 ]
+        annotations: { i18n: { value: { title: { pt: Nominal } } } }
+      notice:
+        title: Notice
+        meaning: rfc_5424:Notice
+        exact_mappings: [ isa_18_2:Low ]
+        annotations: { i18n: { value: { title: { pt: Aviso } } } }
+      caution:
+        title: Caution
+        meaning: isa_18_2:Medium
+        annotations: { i18n: { value: { title: { pt: Cautela } } } }
+      warning:
+        title: Warning
+        meaning: rfc_5424:Warning
+        exact_mappings: [ isa_18_2:High ]
+        annotations: { i18n: { value: { title: { pt: Alerta } } } }
+      critical:
+        title: Critical
+        meaning: rfc_5424:Critical
+        exact_mappings: [ isa_18_2:Critical ]
+        annotations: { i18n: { value: { title: { pt: Crítico } } } }
+      fatal:
+        title: Fatal
+        close_mappings: [ rfc_5424:Emergency ]
+        annotations: { i18n: { value: { title: { pt: Fatal } } } }
+  TriggerOn:
+    title: Trigger direction
+    permissible_values:
+      above:
+        title: Above threshold
+        meaning: schema:greater
+        annotations: { i18n: { value: { title: { pt: Acima do limite } } } }
+      below:
+        title: Below threshold
+        meaning: schema:lesser
+        annotations: { i18n: { value: { title: { pt: Abaixo do limite } } } }
+  Zone:
+    title: Zone
+    permissible_values:
+      mppt:
+        title: MPPT window
+        related_mappings: [ wikidata:Q1052007 ]
+        annotations: { i18n: { value: { title: { pt: Janela MPPT } } } }
+      mpp:
+        title: Maximum power point
+        related_mappings: [ wikidata:Q1052007 ]
+        annotations: { i18n: { value: { title: { pt: Ponto de potência máxima } } } }
+      open_circuit:
+        title: Open circuit
+        meaning: wikidata:Q2974109
+        annotations: { i18n: { value: { title: { pt: Circuito aberto } } } }
+      short_circuit:
+        title: Short circuit
+        meaning: wikidata:Q206907
+        annotations: { i18n: { value: { title: { pt: Curto-circuito } } } }
+      off:
+        title: Off
+        meaning: saref:OffState
+        annotations: { i18n: { value: { title: { pt: Desligado } } } }
+      idle:
+        title: Idle
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Ocioso } } } }
+      running:
+        title: Running
+        meaning: saref:OnState
+        annotations: { i18n: { value: { title: { pt: Em funcionamento } } } }
