@@ -12,6 +12,10 @@ The most common NodeType definition may have a facet table named after them. Org
 
 A `node_type` (`data/node_type/<slug>.yaml`) sits _on top of_ those tables and says how one node type assembles facets. It refines the shared core, authored once per node type, never a device-shaped table.
 
+## Content — the universal facet
+
+Content attaches to ANY node through its own `about` FK (→ `node`), so Content is one top-level `Catalog.contents` row-set — never a `contents` slot per class. A per-class `contents` slot makes the relmodel transformer mint one nullable backref column on `content` per parent; with none, `content` is `node/about/language/title/lede/body` + one `catalog_id`. Auto-composed into every node type, never authored in `facet:`. A new pointer target (registry, feature type, …) adds no column — `about` already reaches it.
+
 ## Why overlay instead of wider tables
 
 When a facet has the exact same ID as a SubjectNode the FK column would be the same as the ID column.

@@ -57,7 +57,7 @@ One rule gets one normative source. Generated LinkML and DDL are enforcement art
 
 `Node` is the identity boundary. Anything another row may point to must have one row in `Node`. Anything without a node is not independently addressable. Narrow tables are the facet/child split — see [facets.md](facets.md).
 
-Each localized `Content` row is a child, _projected_ from its parent's schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One parent may take more than one row, each addressable independently. Its relational shape is:
+Each localized `Content` row is about-attached (never nested under a parent), _projected_ from its schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One thing may take more than one row, each addressable independently. Its relational shape is:
 
 | column | means |
 | --- | --- |
