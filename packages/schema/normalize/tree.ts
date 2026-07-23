@@ -1,12 +1,9 @@
-// The nested device walk (docs/authoring-storage-handoff.md): descend slug
-// keys, lift `$`, expand facets, resolve structured refs.
-// Vocabularies come from data/ rows and the schema — never hardcoded:
-//   part keys      → the feature's part_set members (data/part_set) or count
-//   quantity keys  → the feature type's quantity_binding rows
-//   roles          → authored per feature (the node type composes facet tables,
-//                    not per-role sockets — coarser than the old socket_binding)
-//   facet keys     → classes by sql_table; columns validated against slots
-// Every trail key is stringified as read; every error carries its key trail.
+// The nested device walk (docs/authoring-storage.md): descend slug keys, lift
+// `$`, expand facets, resolve structured refs. Vocabularies come from data/ rows
+// and the schema, never hardcoded: part keys → the feature's part_set members or
+// count; quantity keys → its quantity_binding rows; roles → authored per feature
+// (the node type composes facet tables, coarser than the old socket_binding);
+// facet keys → classes by sql_table. Every error carries its key trail.
 import { basename, dirname } from 'node:path';
 import {
 	classByName,
@@ -58,6 +55,7 @@ class DeviceWalk implements WalkState {
 	readonly values: ValueContracts;
 	private readonly model: Doc;
 	private readonly rootSlot: string;
+	private registerMapDoc?: Doc; // the one non-owned ref — the shared family register map
 
 	constructor(file: string, addPath: (p: string) => void) {
 		this.addPath = addPath;
@@ -75,8 +73,9 @@ class DeviceWalk implements WalkState {
 		if (!nodeTypeBySlug[dt]) die(this.slug, `unknown node_type ${dt}`);
 		this.node = this.mint(`node:${dt}/${this.slug}`);
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
-		// node_type + slug are the node's own identity columns now, not subject_node facet columns
-		this.model = { node: this.node };
+		// facet rows keyed by sql_table (or `contents`); each scatters to its
+		// top-level row-set. Device identity lives on the node row, not a facet.
+		this.model = {};
 	}
 
 	mint(path: string): string {
@@ -84,7 +83,7 @@ class DeviceWalk implements WalkState {
 		return path;
 	}
 
-	walk(): Doc {
+	walk(): DeviceResult {
 		let featureBlock: Doc = {};
 		let registerBlock: unknown;
 		for (const [key, value] of Object.entries(this.doc)) {
@@ -98,31 +97,30 @@ class DeviceWalk implements WalkState {
 		for (const [ftSlug, roleMap] of Object.entries(featureBlock))
 			this.featureType(String(ftSlug), roleMap);
 		if (registerBlock !== undefined)
-			this.model.register_map = registerMap(this, registerBlock, `${this.slug}.register_map`);
+			this.registerMapDoc = registerMap(this, registerBlock, `${this.slug}.register_map`);
 		const channels = this.values.channelRows(`${this.slug}.channel`);
-		if (channels) this.model.channels = channels;
-		return this.model;
+		if (channels) this.model.channel = channels;
+		return { node: this.node, model: this.model, registerMap: this.registerMapDoc };
 	}
 
 	/** any other top-level key — a child table by sql_table (keyed rows, or a
-	 * keyless 1:1 co-row), never a name the walk knows */
+	 * keyless 1:1 co-row) */
 	private plainKey(key: string, value: unknown) {
 		const trail = `${this.slug}.${key}`;
-		if (key === this.rootSlot) return; // already lifted in the constructor
+		if (key === this.rootSlot) return; // node_type — identity on the node row
 		const cls = classByTable[key];
-		if (cls === 'Setting') this.model.settings = this.values.settingRows(value, trail);
+		if (cls === 'Setting') this.model.setting = this.values.settingRows(value, trail);
 		else if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
-			const owner = ownerSlotFor('SubjectNode', cls);
-			if (!owner) die(trail, `SubjectNode has no slot ranging ${cls}`);
-			this.model[owner!] = keysOf(cls).length
+			// Content (about-attached) buckets under its global slot; every other under its sql_table
+			const dest = ownerSlotFor('SubjectNode', cls) ?? key;
+			this.model[dest] = keysOf(cls).length
 				? this.childRows(cls, value, trail)
 				: { node: this.node, ...columns(cls, value, trail) };
 		} else die(trail, 'unrecognized authored key');
 	}
 
-	/** keyed child map → rows under this model's node; the key slot and the
-	 * `about` backref both come off the schema */
+	/** keyed child map → rows under this model's node; keySlot + `about` off the schema */
 	private childRows(cls: string, value: unknown, trail: string): Doc[] {
 		if (!isMap(value)) die(trail, 'expected a keyed map');
 		const [keySlot] = keysOf(cls) as [string, ...string[]];
@@ -136,14 +134,15 @@ class DeviceWalk implements WalkState {
 		}));
 	}
 
-	/** one feature type's role map — each role row lands in its bound_as slot */
+	/** one feature type's role map — every feature row lands in the ONE
+	 * feature_of_interest row-set; feature_type + role discriminate the kind */
 	private featureType(ftSlug: string, roleMap: unknown) {
-		if (!isMap(roleMap)) die(`${this.slug}.feature_of_interest.${ftSlug}`, 'expected role keys');
-		const boundAs = featureTypeBySlug[ftSlug]?.bound_as;
-		if (typeof boundAs !== 'string')
-			die(`${this.slug}.feature_of_interest.${ftSlug}`, 'feature_type has no bound_as');
+		const at = `${this.slug}.feature_of_interest.${ftSlug}`;
+		if (!isMap(roleMap)) die(at, 'expected role keys');
+		if (!featureTypeBySlug[ftSlug]) die(at, `unknown feature_type ${ftSlug}`);
+		const rows = (this.model.feature_of_interest ??= []) as Doc[];
 		for (const [role, body] of Object.entries(roleMap))
-			((this.model[boundAs] ??= []) as Doc[]).push(this.feature(ftSlug, String(role), body));
+			rows.push(this.feature(ftSlug, String(role), body));
 	}
 
 	private feature(ftSlug: string, role: string, body: unknown): Doc {
@@ -242,8 +241,7 @@ class DeviceWalk implements WalkState {
 		if (this.intervals.has(iNode)) die(trail, 'duplicate coordinate');
 		this.intervals.add(iNode);
 		this.mint(iNode);
-		// three stacked authored levels → part/quantity columns + the node leaf
-		// (the interval slug rides the node, not a column)
+		// three stacked authored levels → part/quantity columns; the interval slug rides the node
 		const [partSlot, qkSlot] = keysOf('Interval') as [string, string, string];
 		const row: Doc = {
 			node: iNode,
@@ -261,9 +259,7 @@ class DeviceWalk implements WalkState {
 		const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
 		const iNode = at.row.node as string;
 		if (at.facet === 'valued_range') {
-			const vr = isMap(cols)
-				? (cols as unknown as ValuedRange)
-				: die(at.trail, 'expected a map of columns');
+			const vr = isMap(cols) ? (cols as unknown as ValuedRange) : die(at.trail, 'expected columns');
 			at.row.valued_range = {
 				node: iNode,
 				...columns(cls, expandValuedRange(vr, at.trail), at.trail),
@@ -295,6 +291,10 @@ class DeviceWalk implements WalkState {
 	}
 }
 
-export function normalizeDevice(file: string, addPath: (p: string) => void): Doc {
+/** a walked device: node id, facet rows keyed by sql_table (+ `contents`), and
+ * the shared register map it references (undefined when it composes none) */
+export type DeviceResult = { node: string; model: Doc; registerMap?: Doc };
+
+export function normalizeDevice(file: string, addPath: (p: string) => void): DeviceResult {
 	return new DeviceWalk(file, addPath).walk();
 }

@@ -75,11 +75,20 @@ function mintNodes(): unknown[] {
 	return [...seen].sort().map((path) => {
 		const permalink = `node:${path}`;
 		const segs = path.split('/');
+		// parent = nearest ANCESTOR that is itself a node (the trail is not a clean
+		// prefix tree — a feature is device/<ft>/<role>, the <ft> level is no node).
+		// This self-FK carries device↔facet ancestry that the old subject_node hub did.
+		let parent: string | undefined;
+		for (let i = segs.length - 1; i > 0 && !parent; i--) {
+			const anc = segs.slice(0, i).join('/');
+			if (seen.has(anc)) parent = `node:${anc}`;
+		}
 		return {
 			permalink,
 			code: shortCode(permalink),
 			node_type: `node:node-type/${segs[0]}`,
 			slug: segs[segs.length - 1],
+			...(parent ? { parent } : {}),
 			...(nodeAttrMap.get(permalink) ?? {}),
 		};
 	});
@@ -98,24 +107,14 @@ function liftContent(o: unknown): void {
 	Object.values(row).forEach(liftContent);
 }
 
-/** one data dir → its catalog rows: authored files normalized, legacy passed through */
+/** one flat data dir → its catalog rows: authored files normalized, legacy
+ * passed through. Device dirs are NOT flat — they scatter via walkDevices. */
 function tableRows(dir: string): unknown[] {
 	const out: unknown[] = [];
 	// a Catalog collection with no authored docs yet (e.g. node_edge) → empty
 	if (!exists(abs(`data/${dir}`))) return out;
-	const nested = classByName[classByTable[dir] ?? '']?.annotations?.path_root;
-	// a tree-walked entry may be a DIRECTORY (its name the slug, its children
-	// merged at load); flat tables stay one file per row
-	const entries = dirents(abs(`data/${dir}`)).filter(
-		(e) => e.name.endsWith('.yaml') || (nested && e.isDirectory()),
-	);
+	const entries = dirents(abs(`data/${dir}`)).filter((e) => e.name.endsWith('.yaml'));
 	for (const e of entries.map((e) => e.name).sort()) {
-		if (nested) {
-			const model = normalizeDevice(abs(`data/${dir}/${e}`), (p) => paths.push(p));
-			liftContent(model); // pull nested Content out of the device tree, top-level
-			out.push(model);
-			continue;
-		}
 		const doc = (readYaml(abs(`data/${dir}/${e}`)) ?? {}) as Record<string, unknown>;
 		if (typeof doc.node === 'string') {
 			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]!]);
@@ -123,6 +122,41 @@ function tableRows(dir: string): unknown[] {
 		} else out.push(assemble(normalize(abs(`data/${dir}/${e}`))));
 	}
 	return out;
+}
+
+/** the device dir (data/subject_node) walked: each authored device fans out
+ * into facet row-sets keyed by sql_table, a thin subject_node marker row, and
+ * the shared register maps it references (deduped). Facets attach to the device
+ * node directly — no container nesting — tied back by the node.parent trail. */
+const DEVICE_DIR = 'subject_node';
+function walkDevices(): { rowsByTable: Record<string, unknown[]>; subjectNodes: unknown[] } {
+	const rowsByTable: Record<string, unknown[]> = {};
+	const subjectNodes: unknown[] = [];
+	const seenMap = new Set<string>();
+	if (!exists(abs(`data/${DEVICE_DIR}`))) return { rowsByTable, subjectNodes };
+	const bucket = (table: string) => (rowsByTable[table] ??= []);
+	const entries = dirents(abs(`data/${DEVICE_DIR}`)).filter(
+		(e) => e.isDirectory() || e.name.endsWith('.yaml'),
+	);
+	for (const e of entries.map((e) => e.name).sort()) {
+		const { node, model, registerMap } = normalizeDevice(abs(`data/${DEVICE_DIR}/${e}`), (p) =>
+			paths.push(p),
+		);
+		liftContent(model); // pull device + nested Content out, top-level (keyed by about)
+		for (const [table, rows] of Object.entries(model))
+			bucket(table).push(...(Array.isArray(rows) ? rows : [rows]));
+		const marker: Record<string, unknown> = { node };
+		if (registerMap) {
+			marker.register_map = registerMap.node;
+			const mapNode = registerMap.node as string;
+			if (!seenMap.has(mapNode)) {
+				seenMap.add(mapNode);
+				bucket('register_map').push(registerMap);
+			}
+		}
+		subjectNodes.push(marker);
+	}
+	return { rowsByTable, subjectNodes };
 }
 
 /** slots with a user-facing title project to Property rows, one Content row per
@@ -174,7 +208,13 @@ function projectProperties(): unknown[] {
  * dir so `paths` holds the full set of kinds. */
 function buildNodeTypes(): unknown[] {
 	const authored = tableRows('node_type'); // rich facet compositions (device kinds)
-	const authoredKinds = new Set(authored.map((r) => String((r as Row).node).split('/').pop()));
+	const authoredKinds = new Set(
+		authored.map((r) =>
+			String((r as Row).node)
+				.split('/')
+				.pop(),
+		),
+	);
 	const kinds = new Set(paths.map((p) => p.split('/')[0]!));
 	const derived = [...kinds]
 		.filter((kind) => !authoredKinds.has(kind))
@@ -194,6 +234,10 @@ function build() {
 		Record<string, { range: string }> | undefined;
 	if (!container) throw new Error('nodeve.yaml: no Catalog container class');
 
+	// devices fan out first — their facet row-sets and marker rows fill the
+	// slots that have no data dir of their own (product, feature_of_interest, …)
+	const devices = walkDevices();
+
 	const bundle: Record<string, unknown[]> = {};
 	for (const [slot, { range }] of Object.entries(container)) {
 		if (range === 'Node') continue; // derived below, no data dir
@@ -205,7 +249,11 @@ function build() {
 		} // schema, not data
 		const dir = classByName[range]?.annotations?.sql_table;
 		if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`);
-		bundle[slot] = tableRows(dir);
+		if (dir === DEVICE_DIR)
+			bundle[slot] = devices.subjectNodes; // thin markers
+		else if (devices.rowsByTable[dir])
+			bundle[slot] = devices.rowsByTable[dir]; // device-only facet
+		else bundle[slot] = tableRows(dir);
 	}
 
 	const nodeTypeSlot = Object.entries(container).find(([, a]) => a.range === 'NodeType')?.[0];

@@ -205,749 +205,125 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
 
 exports[`normalizes the FoxESS fixture deterministically 1`] = `
 {
-  "ac_ports": [
-    {
-      "feature_type": "node:feature-type/ac-phase",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 10000,
-            "min": -11000,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
+  "model": {
+    "channel": [
+      {
+        "empty": "node:inverter/foxess-h3-ps10sh/run-state/unknown",
+        "members": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/run-state/standby",
+            "ordinal": 1,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 11000,
-            "min": -12000,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/run-state/on-grid",
+            "ordinal": 2,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 9000,
-            "min": -10000,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/run-state/fault",
+            "ordinal": 3,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/run-state/off-grid",
+            "ordinal": 4,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/run-state/unknown",
+            "ordinal": 5,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
-            "unit": "kWh",
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/run-state",
+      },
+      {
+        "empty": "node:inverter/foxess-h3-ps10sh/fault-code/none",
+        "members": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-voltage-over",
+            "ordinal": 1,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-dc-arc",
+            "ordinal": 2,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/reactive-power",
-          "valued_range": {
-            "max": 11,
-            "min": -11,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
-            "unit": "kvar",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-string-connection-reverse",
+            "ordinal": 3,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
-            "value": 220,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-lost",
+            "ordinal": 4,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
-            "value": 230,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-voltage",
+            "ordinal": 5,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 250,
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-frequency",
+            "ordinal": 6,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/frequency",
-          "valued_range": {
-            "margin": 0.05,
-            "max": 63,
-            "min": 57,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
-            "value": 60,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-current-over",
+            "ordinal": 7,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/frequency",
-          "valued_range": {
-            "margin": 0.05,
-            "max": 52.5,
-            "min": 47.5,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
-            "value": 50,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-dc-current-over",
+            "ordinal": 8,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 15.2,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-residual-current-consistency",
+            "ordinal": 9,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 16.7,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-ground-connection",
+            "ordinal": 10,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 25,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-insulation-resistance-low",
+            "ordinal": 11,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/reactive-power",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/apparent-power",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 3666,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
-            "value": 3333,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-inverter-temperature-over",
+            "ordinal": 12,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 5,
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
-            "unit": "kW",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-equipment-abnormal",
+            "ordinal": 13,
           },
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
-          "resolution": 0.001,
-        },
-        {
-          "flow_direction": "out",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "out",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "in",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "in",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
-          "resolution": 0.001,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
-          "resolution": 0.1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/measured",
-          "resolution": 0.001,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
-          "resolution": 0.001,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
-          "resolution": 0.001,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
-          "resolution": 0.001,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out",
-      "part_set": "node:part-set/three-phase",
-      "role": "out",
-      "specifications": [
-        {
-          "conditions": [
-            {
-              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/condition/1",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
-          "rating": "continuous",
-        },
-        {
-          "duration": 30,
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
-          "rating": "short_term",
-        },
-        {
-          "conditions": [
-            {
-              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/condition/1",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
-          "rating": "continuous",
-        },
-        {
-          "conditions": [
-            {
-              "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/condition/1",
-              "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
-          "severity": "nominal",
-        },
-        {
-          "conditions": [
-            {
-              "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/condition/1",
-              "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
-          "severity": "nominal",
-        },
-        {
-          "conditions": [
-            {
-              "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/condition/1",
-              "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
-          "severity": "nominal",
-        },
-        {
-          "conditions": [
-            {
-              "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/condition/1",
-              "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
-          "severity": "nominal",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
-          "rating": "continuous",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
-          "rating": "survival",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
-          "rating": "protection_required",
-        },
-        {
-          "conditions": [
-            {
-              "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
-            },
-          ],
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
-          "rating": "continuous",
-          "severity": "nominal",
-        },
-      ],
-    },
-    {
-      "feature_type": "node:feature-type/ac-phase",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 15,
-            "min": -15,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
-            "unit": "kW",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-island-isolated",
+            "ordinal": 14,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-off-grid-output-overload",
+            "ordinal": 15,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-fan-external",
+            "ordinal": 16,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-connection-reverse",
+            "ordinal": 17,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
-            "unit": "kWh",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-meter-lost",
+            "ordinal": 18,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 8,
-            "min": -8,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
-            "unit": "kW",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-bms-lost",
+            "ordinal": 19,
           },
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
-          "resolution": 0.001,
-        },
-        {
-          "flow_direction": "out",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "out",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "in",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
-          "resolution": 0.01,
-        },
-        {
-          "flow_direction": "in",
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
-          "resolution": 0.001,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid",
-      "part_set": "node:part-set/three-phase",
-      "role": "grid",
-    },
-    {
-      "feature_type": "node:feature-type/ac-phase",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 10000,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/fault-code/none",
+            "ordinal": 20,
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 260,
-            "min": 200,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
-            "value": 230,
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 300,
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/frequency",
-          "valued_range": {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
-            "value": 50,
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 50,
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 3.3,
-            "min": -3.3,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
-            "unit": "kW",
-          },
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
-          "resolution": 0.1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
-          "resolution": 0.001,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps",
-      "part_set": "node:part-set/three-phase",
-      "role": "eps",
-      "specifications": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
-          "rating": "continuous",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
-          "rating": "continuous",
-          "severity": "nominal",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
-          "severity": "nominal",
-        },
-      ],
-    },
-    {
-      "feature_type": "node:feature-type/ac-phase",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 15,
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
-            "unit": "kW",
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
-            "unit": "kWh",
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
-            "unit": "kWh",
-          },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 15,
-            "min": -5,
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
-            "unit": "kW",
-          },
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
-          "resolution": 0.001,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
-          "resolution": 0.001,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load",
-      "part_set": "node:part-set/three-phase",
-      "role": "load",
-    },
-  ],
-  "channels": [
-    {
-      "empty": "node:inverter/foxess-h3-ps10sh/run-state/unknown",
-      "members": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/run-state/standby",
-          "ordinal": 1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/run-state/on-grid",
-          "ordinal": 2,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/run-state/fault",
-          "ordinal": 3,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/run-state/off-grid",
-          "ordinal": 4,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/run-state/unknown",
-          "ordinal": 5,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/run-state",
-    },
-    {
-      "empty": "node:inverter/foxess-h3-ps10sh/fault-code/none",
-      "members": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-voltage-over",
-          "ordinal": 1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-dc-arc",
-          "ordinal": 2,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-string-connection-reverse",
-          "ordinal": 3,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-lost",
-          "ordinal": 4,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-voltage",
-          "ordinal": 5,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-frequency",
-          "ordinal": 6,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-current-over",
-          "ordinal": 7,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-dc-current-over",
-          "ordinal": 8,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-residual-current-consistency",
-          "ordinal": 9,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-ground-connection",
-          "ordinal": 10,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-insulation-resistance-low",
-          "ordinal": 11,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-inverter-temperature-over",
-          "ordinal": 12,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-equipment-abnormal",
-          "ordinal": 13,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-island-isolated",
-          "ordinal": 14,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-off-grid-output-overload",
-          "ordinal": 15,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-fan-external",
-          "ordinal": 16,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-connection-reverse",
-          "ordinal": 17,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-meter-lost",
-          "ordinal": 18,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-bms-lost",
-          "ordinal": 19,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/fault-code/none",
-          "ordinal": 20,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/fault-code",
-    },
-  ],
-  "contents": [
-    {
-      "about": "node:inverter/foxess-h3-ps10sh",
-      "body": "FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the \`inverter\` node_type: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/fault-code",
+      },
+    ],
+    "contents": [
+      {
+        "about": "node:inverter/foxess-h3-ps10sh",
+        "body": "FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the \`inverter\` node_type: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
 
 Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its \`count\` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its \`intervals\` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
 
@@ -982,332 +358,984 @@ invalid_ranges: all in the 410xx block the upstream doc leaves unspecified. On t
 
 Channels — categorical/enumerated observables of the WHOLE box — their feature-of-interest is the inverter root itself (a run mode / fault set aggregates across PV, grid, BMS, temp; no sub-feature owns them). Enum-valued, not VIM-ranged: no quantity_kind, no interval. Each flag word is a register in the ONE map targeting its channel; the channel's members mint from the flag labels plus \`empty\`. Per-word bit identities live with the registers in decode.yaml.
 ",
-      "language": "en",
-      "lede": "Grid-tied 3-phase hybrid inverter",
-      "node": "node:inverter/foxess-h3-ps10sh/en",
-      "title": "FoxESS H3 Smart 10 kW",
-    },
-  ],
-  "dc_ports": [
-    {
-      "count": 3,
-      "feature_type": "node:feature-type/dc-port",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
-          "part": "3",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "min": 60,
+        "language": "en",
+        "lede": "Grid-tied 3-phase hybrid inverter",
+        "node": "node:inverter/foxess-h3-ps10sh/en",
+        "title": "FoxESS H3 Smart 10 kW",
+      },
+    ],
+    "feature_of_interest": [
+      {
+        "feature_type": "node:feature-type/ac-phase",
+        "intervals": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 10000,
+              "min": -11000,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 11000,
+              "min": -12000,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 9000,
+              "min": -10000,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/reactive-power",
+            "valued_range": {
+              "max": 11,
+              "min": -11,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
+              "unit": "kvar",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
+              "value": 220,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
+              "value": 230,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 250,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "margin": 0.05,
+              "max": 63,
+              "min": 57,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
+              "value": 60,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "margin": 0.05,
+              "max": 52.5,
+              "min": 47.5,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
+              "value": 50,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 15.2,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 16.7,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 25,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/reactive-power",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/apparent-power",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 3666,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
+              "value": 3333,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 5,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
+              "unit": "kW",
+            },
+          },
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
+            "resolution": 0.001,
+          },
+          {
+            "flow_direction": "out",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "out",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "in",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "in",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
+            "resolution": 0.001,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
+            "resolution": 0.1,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/measured",
+            "resolution": 0.001,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
+            "resolution": 0.001,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
+            "resolution": 0.001,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
+            "resolution": 0.001,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out",
+        "part_set": "node:part-set/three-phase",
+        "role": "out",
+        "specifications": [
+          {
+            "conditions": [
+              {
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/condition/1",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
+            "rating": "continuous",
+          },
+          {
+            "duration": 30,
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
+            "rating": "short_term",
+          },
+          {
+            "conditions": [
+              {
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated/condition/1",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
+            "rating": "continuous",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
+            "severity": "nominal",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
+            "severity": "nominal",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
+            "severity": "nominal",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
+            "severity": "nominal",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
+            "rating": "continuous",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
+            "rating": "protection_required",
+          },
+          {
+            "conditions": [
+              {
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
+            "rating": "continuous",
+            "severity": "nominal",
+          },
+        ],
+      },
+      {
+        "feature_type": "node:feature-type/ac-phase",
+        "intervals": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 15,
+              "min": -15,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
+              "unit": "kW",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 8,
+              "min": -8,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
+              "unit": "kW",
+            },
+          },
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
+            "resolution": 0.001,
+          },
+          {
+            "flow_direction": "out",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "out",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "in",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
+            "resolution": 0.01,
+          },
+          {
+            "flow_direction": "in",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
+            "resolution": 0.001,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid",
+        "part_set": "node:part-set/three-phase",
+        "role": "grid",
+      },
+      {
+        "feature_type": "node:feature-type/ac-phase",
+        "intervals": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 10000,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 260,
+              "min": 200,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
+              "value": 230,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 300,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
+              "value": 50,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 50,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 3.3,
+              "min": -3.3,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
+              "unit": "kW",
+            },
+          },
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
+            "resolution": 0.1,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
+            "resolution": 0.001,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps",
+        "part_set": "node:part-set/three-phase",
+        "role": "eps",
+        "specifications": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
+            "rating": "continuous",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
+            "rating": "continuous",
+            "severity": "nominal",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
+            "severity": "nominal",
+          },
+        ],
+      },
+      {
+        "feature_type": "node:feature-type/ac-phase",
+        "intervals": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 15,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
+              "unit": "kW",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
+              "unit": "kWh",
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 15,
+              "min": -5,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
+              "unit": "kW",
+            },
+          },
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
+            "resolution": 0.001,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
+            "resolution": 0.001,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load",
+        "part_set": "node:part-set/three-phase",
+        "role": "load",
+      },
+      {
+        "count": 3,
+        "feature_type": "node:feature-type/dc-port",
+        "intervals": [
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
-            "value": 480,
+            "part": "3",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "min": 60,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
+              "value": 480,
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 20000,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 20000,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 18000,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 18000,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
-            "unit": "kWh",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
+              "unit": "kWh",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/active-energy",
-          "valued_range": {
-            "min": 0,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
-            "unit": "kWh",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/active-energy",
+            "valued_range": {
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
+              "unit": "kWh",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 1000,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 1000,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 140,
-            "min": 90,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 140,
+              "min": 90,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 950,
-            "min": 120,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 950,
+              "min": 120,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 850,
-            "min": 175,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
-            "value": 620,
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 850,
+              "min": 175,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
+              "value": 620,
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/voltage",
-          "valued_range": {
-            "max": 1000,
-            "min": 0,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/voltage",
+            "valued_range": {
+              "max": 1000,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 25,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 25,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 20,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 20,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/electric-current",
-          "valued_range": {
-            "max": 30,
-            "min": 0,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/electric-current",
+            "valued_range": {
+              "max": 30,
+              "min": 0,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-          "valued_range": {
-            "max": 10000,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+            "valued_range": {
+              "max": 10000,
+              "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/measured",
-          "part": "*",
-          "quantity_kind": "node:quantity-kind/active-power",
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
-          "period": "daily",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
-          "resolution": 0.1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
-          "resolution": 0.01,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/measured",
-          "resolution": 0.001,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker",
-      "role": "pv-tracker",
-      "specifications": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
-          "rating": "continuous",
-          "severity": "nominal",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
-          "rating": "survival",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
-          "rating": "continuous",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
-          "rating": "survival",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
-          "trigger_on": "above",
-          "zone": "running",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
-          "rating": "continuous",
-          "severity": "notice",
-          "zone": "mppt",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
-          "rating": "continuous",
-          "severity": "nominal",
-          "zone": "mppt",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
-          "rating": "survival",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
-          "rating": "continuous",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
-          "rating": "continuous",
-        },
-      ],
-    },
-  ],
-  "environments": [
-    {
-      "feature_type": "node:feature-type/environment",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/temperature",
-          "valued_range": {
-            "max": 80,
-            "min": -40,
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/measured",
+            "part": "*",
+            "quantity_kind": "node:quantity-kind/active-power",
+          },
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
+            "period": "daily",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
+            "resolution": 0.1,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
+            "resolution": 0.01,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/measured",
+            "resolution": 0.001,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker",
+        "role": "pv-tracker",
+        "specifications": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
+            "rating": "continuous",
+            "severity": "nominal",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
+            "rating": "continuous",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
+            "trigger_on": "above",
+            "zone": "running",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
+            "rating": "continuous",
+            "severity": "notice",
+            "zone": "mppt",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
+            "rating": "continuous",
+            "severity": "nominal",
+            "zone": "mppt",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
+            "rating": "continuous",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
+            "rating": "continuous",
+          },
+        ],
+      },
+      {
+        "feature_type": "node:feature-type/environment",
+        "intervals": [
+          {
             "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
-            "unit": "°C",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/temperature",
+            "valued_range": {
+              "max": 80,
+              "min": -40,
+              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
+              "unit": "°C",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/temperature",
-          "valued_range": {
-            "max": 60,
-            "min": -25,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-            "unit": "°C",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/temperature",
+            "valued_range": {
+              "max": 60,
+              "min": -25,
+              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+              "unit": "°C",
+            },
           },
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/temperature",
-          "valued_range": {
-            "max": 45,
-            "min": -20,
+          {
             "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-            "unit": "°C",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/temperature",
+            "valued_range": {
+              "max": 45,
+              "min": -20,
+              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+              "unit": "°C",
+            },
           },
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/environment/ambient",
-      "role": "ambient",
-      "specifications": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
-          "rating": "survival",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-          "rating": "intermittent",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-          "rating": "continuous",
-        },
-      ],
-    },
-    {
-      "feature_type": "node:feature-type/environment",
-      "intervals": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
-          "part": "_",
-          "quantity_kind": "node:quantity-kind/temperature",
-          "valued_range": {
-            "max": 100,
-            "min": -40,
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/environment/ambient",
+        "role": "ambient",
+        "specifications": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+            "rating": "intermittent",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+            "rating": "continuous",
+          },
+        ],
+      },
+      {
+        "feature_type": "node:feature-type/environment",
+        "intervals": [
+          {
             "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
-            "unit": "°C",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/temperature",
+            "valued_range": {
+              "max": 100,
+              "min": -40,
+              "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
+              "unit": "°C",
+            },
           },
-        },
-      ],
-      "measurements": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
-          "resolution": 0.1,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure",
-      "role": "enclosure",
+        ],
+        "measurements": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
+            "resolution": 0.1,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure",
+        "role": "enclosure",
+      },
+    ],
+    "network_interface": [
+      {
+        "interface_type": "ieee80211",
+        "node": "node:inverter/foxess-h3-ps10sh/wlan0",
+      },
+      {
+        "interface_type": "ethernet_csmacd",
+        "link_speed": 100,
+        "node": "node:inverter/foxess-h3-ps10sh/eth0",
+      },
+    ],
+    "product": {
+      "model": "H3-10.0-Smart",
+      "node": "node:inverter/foxess-h3-ps10sh",
+      "organization": "node:organization/foxess",
+      "series": "H3",
     },
-  ],
-  "network_interfaces": [
-    {
-      "interface_type": "ieee80211",
-      "node": "node:inverter/foxess-h3-ps10sh/wlan0",
-    },
-    {
-      "interface_type": "ethernet_csmacd",
-      "link_speed": 100,
-      "node": "node:inverter/foxess-h3-ps10sh/eth0",
-    },
-  ],
-  "node": "node:inverter/foxess-h3-ps10sh",
-  "product": {
-    "model": "H3-10.0-Smart",
-    "node": "node:inverter/foxess-h3-ps10sh",
-    "organization": "node:organization/foxess",
-    "series": "H3",
+    "service_binding": [
+      {
+        "network_interface": "node:inverter/foxess-h3-ps10sh/eth0",
+        "node": "node:inverter/foxess-h3-ps10sh/modbus-tcp",
+        "port": 502,
+        "service_protocol": "modbus_tcp",
+      },
+      {
+        "network_interface": "node:inverter/foxess-h3-ps10sh/eth0",
+        "node": "node:inverter/foxess-h3-ps10sh/web-ui",
+        "port": 443,
+        "service_protocol": "https",
+      },
+    ],
+    "setting": [
+      {
+        "members": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
+            "ordinal": 1,
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
+            "ordinal": 2,
+          },
+        ],
+        "node": "node:inverter/foxess-h3-ps10sh/grid-region",
+        "required": true,
+      },
+    ],
   },
-  "register_map": {
+  "node": "node:inverter/foxess-h3-ps10sh",
+  "registerMap": {
     "constraint_ranges": [
       {
         "end": 41006,
@@ -2057,35 +2085,5 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
     "unit_id": 247,
     "word_order": "high_first",
   },
-  "services": [
-    {
-      "network_interface": "node:inverter/foxess-h3-ps10sh/eth0",
-      "node": "node:inverter/foxess-h3-ps10sh/modbus-tcp",
-      "port": 502,
-      "service_protocol": "modbus_tcp",
-    },
-    {
-      "network_interface": "node:inverter/foxess-h3-ps10sh/eth0",
-      "node": "node:inverter/foxess-h3-ps10sh/web-ui",
-      "port": 443,
-      "service_protocol": "https",
-    },
-  ],
-  "settings": [
-    {
-      "members": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-          "ordinal": 1,
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-          "ordinal": 2,
-        },
-      ],
-      "node": "node:inverter/foxess-h3-ps10sh/grid-region",
-      "required": true,
-    },
-  ],
 }
 `;

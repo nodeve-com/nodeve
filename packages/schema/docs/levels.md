@@ -13,21 +13,21 @@ A shared table holds every level. `NodeType` and `FeatureType` rows also declare
 
 | artifact | owns |
 | --- | --- |
-| `NodeType` row | allowed and required feature roles |
+| `NodeType` row | composed facets (`node_type.facets`), each single/child + required |
 | `FeatureType` row | allowed quantity kinds |
-| `SubjectNode` through `Interval` rows and interval facets | one model's facts |
+| `Node` (marked `SubjectNode`) through `Interval` rows and interval facets | one model's facts |
 | generated `Inverter` class | executable LinkML view of the policy rows |
 
 `Inverter` is validation syntax, not another stored entity or SQL table. Base DDL stays unchanged.
 
-| level        | table               | keyed by                 | example            |
-| ------------ | ------------------- | ------------------------ | ------------------ |
-| node type    | `NodeType`          | `slug`                   | `inverter`         |
-| model        | `SubjectNode`       | `slug`                   | `foxess-h3-ps10sh` |
-| feature type | `FeatureType`       | `slug`                   | `ac-phase`         |
-| feature      | `FeatureOfInterest` | `role`                   | `out`              |
-| part         | `Interval.part`     | key (no table)           | `a`                |
-| interval     | `Interval`          | `quantity_kind` + `slug` | `voltage/running`  |
+| level        | table                         | keyed by                 | example            |
+| ------------ | ----------------------------- | ------------------------ | ------------------ |
+| node type    | `NodeType`                    | `slug`                   | `inverter`         |
+| model        | `Node` + `SubjectNode` marker | `slug`                   | `foxess-h3-ps10sh` |
+| feature type | `FeatureType`                 | `slug`                   | `ac-phase`         |
+| feature      | `FeatureOfInterest`           | `role`                   | `out`              |
+| part         | `Interval.part`               | key (no table)           | `a`                |
+| interval     | `Interval`                    | `quantity_kind` + `slug` | `voltage/running`  |
 
 `Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level.
 
@@ -38,7 +38,7 @@ Rule ownership follows dependency, not importance:
 | rule | owner | reason |
 | --- | --- | --- |
 | interval `slug` required | base LinkML | fixed shape of every interval |
-| role is valid for an inverter | `SocketBinding` → validation schema | closed set varies by node type |
+| node type composes a facet | `node_type.facets` rows | composition varies by node type |
 | quantity is valid for an AC feature | `QuantityBinding` → validation schema | closed set varies by feature type |
 | referenced quantity exists | SQL FK | referential integrity |
 | node path unique | SQL PK | storage identity |
@@ -85,7 +85,7 @@ Segment rules:
 | segment | from | omitted when |
 | --- | --- | --- |
 | node-type | `NodeType.slug` | never (definition docs root at their own layer — `node:feature-type/ac-phase`) |
-| model | `SubjectNode.slug` | never, on catalog rows |
+| model | `Node.slug` (marked by a `SubjectNode` row) | never, on catalog rows |
 | feature-type | referenced `FeatureType.slug` | never |
 | feature-role | `FeatureOfInterest.role` | never |
 | part | `Interval.part` verbatim — a member slug, `_`, or `*` | never — the column is non-null, so the segment never dissolves |

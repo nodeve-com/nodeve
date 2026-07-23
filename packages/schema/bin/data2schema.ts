@@ -21,7 +21,6 @@ const loadRows = (d: string): Record<string, unknown>[] =>
 // slug lives on the node row now, so derive it from the node CURIE leaf
 type FeatureTypeRow = {
 	node: string;
-	bound_as?: string;
 	quantity_bindings?: { quantity_kind: string }[];
 };
 type NodeTypeRow = { node: string; facets?: { table: string }[] };
@@ -62,12 +61,13 @@ for (const ft of featureTypes) {
 }
 
 for (const dt of nodeTypes) {
-	// only device archetypes (they compose real facet tables) project a
-	// SubjectNode stencil; table-less kinds (registry, organization) compose
-	// only the universal content facet
+	// only device archetypes (they compose real facet tables) project a node
+	// stencil pinning node_type; table-less kinds (registry, organization)
+	// compose only the universal content facet. Facets attach to the node — the
+	// composition lives in node_type.facets, not a per-type slot list.
 	if (!dt.facets?.some((f) => f.table !== 'content')) continue;
 	projectedClass[pascal(dt.node)] = {
-		is_a: 'SubjectNode',
+		is_a: 'Node',
 		slot_usage: { node_type: { equals_string: dt.node } },
 	};
 }

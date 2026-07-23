@@ -73,7 +73,7 @@ export function siblingRefs(at: { slug: string; node: string }, model: Doc, doc:
 			die(`${at.slug}.product.organization`, 'expected a bare slug');
 		product.organization = `node:organization/${product.organization}`;
 	}
-	for (const svc of (model.services as Doc[]) ?? []) {
+	for (const svc of (model.service_binding as Doc[]) ?? []) {
 		const nic = svc.network_interface;
 		if (typeof nic !== 'string' || !isMap((doc.network_interface as Doc)?.[nic]))
 			die(

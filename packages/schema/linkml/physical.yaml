@@ -1,0 +1,34 @@
+id: https://nodeve.com/schema/lib/physical
+name: physical
+default_prefix: nodeve
+default_range: string
+classes:
+  # Mechanical facet — the datasheet's physical block. A keyless 1:1 co-row
+  # sharing the node id (like Product), attachable to ANY node: dimensions are
+  # fixed body facts, not measurands with operating bands.
+  Physical:
+    title: Physical
+    annotations: { sql_table: physical }
+    description: Mechanical dimensions and mass of the physical body — datasheet nameplate, one row per node.
+    slots: [ node, width, height, thickness, mass ]
+slots:
+  height:
+    range: float
+    title: Height
+    exact_mappings: [ schema:height ]
+    description: 'body height, millimetres'
+  mass:
+    range: float
+    title: Mass
+    exact_mappings: [ schema:weight ]
+    description: 'body mass, kilograms'
+  thickness:
+    range: float
+    title: Thickness
+    related_mappings: [ schema:depth ]
+    description: 'body thickness/depth, millimetres'
+  width:
+    range: float
+    title: Width
+    exact_mappings: [ schema:width ]
+    description: 'body width, millimetres'

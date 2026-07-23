@@ -15,7 +15,7 @@ classes:
   FeatureType:
     title: Feature type
     annotations: { sql_table: feature_type }
-    slots: [ node, bound_as, quantity_bindings ]
+    slots: [ node, quantity_bindings ]
 
   # The node-type registry — every NodeType is a row here, device archetypes
   # (inverter, ac-meter) AND the table-less kinds (registry, organization).
@@ -77,12 +77,6 @@ slots:
     title: Accumulation
     narrow_mappings: [ prometheus:gauge, prometheus:counter ]
     description: 'instantaneous | cumulative — upstream measurand fact, carried not re-derived'
-  bound_as:
-    range: string
-    title: Bound as
-    related_mappings: [ schema:category ]
-    description: "which SubjectNode slot this type's feature rows land in (ac_ports, dc_ports, environments) — the authored feature: key routes here, never by class name"
-    annotations: { camel: boundAs }
   cardinality:
     range: Cardinality
     required: true

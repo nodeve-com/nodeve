@@ -18,22 +18,27 @@ Content attaches to ANY node through its own `about` FK (→ `node`), so Content
 
 ## Why overlay instead of wider tables
 
-When a facet has the exact same ID as a SubjectNode the FK column would be the same as the ID column.
+A 1:1 facet shares its node PK, so its FK-to-`node` column IS the ID column — no separate id space. Child facets attach to the node directly and tie back through `node.parent`, retiring the old `subject_node` hub row (which stamped a backref FK on every child). `subject_node` survives only as a thin marker `{ node, register_map }` — a catalogued device plus the one non-owned reference, the shared family register map.
 
 ## What runs today
 
-`normalize/tree.ts` enforces the overlay at normalize time, against `data/subject_node/<slug>.yaml`:
+`normalize/tree.ts` walks each `data/subject_node/<slug>/` device and enforces:
 
-- unknown `node_type` → dies (`tree.ts:66`)
-- an authored feature whose role isn't a declared socket → dies (`tree.ts:144`)
-- a socket whose `feature_type` doesn't match the authored feature → dies (`tree.ts:145`)
+- unknown `node_type` → dies (constructor)
+- an authored feature whose `feature_type` isn't a known row → dies (`featureType`)
+- a part key outside the feature's `part_set` members or `count` → dies (`checkPart`)
+- a quantity the feature type disallows → dies (`part`)
 
-So role membership and feature-type agreement are live invariants, not aspiration.
+Each feature names its own role freely — the node type composes facet _tables_, coarser than the old per-role socket. Facet composition itself is data: `node_type.facets` rows.
+
+## Emitted as rows
+
+- **`node_type` + `facet` rows** — `normalize/catalog.ts` emits the `node_types` row-set (authored device kinds + derived stubs), each carrying its `facets`. Composition is live data, not a normalize-time lookup only.
+- **facet row-sets** — each device fans out into top-level row-sets (`products`, `feature_of_interests`, …) tied to its node by `node.parent` (children) or a shared PK (1:1). No container nesting.
 
 ## Declared but inert
 
-- **`required`** — authored on every binding, referenced nowhere in `normalize/`. No check yet fires when a required socket is missing.
-- **`NodeType` / `SocketBinding` as rows** — `normalize/catalog.ts` never emits them; the overlay files are a normalize-time lookup only. `node_type` reaches `catalog.json` merely as an FK string on `subject_node`. Row projection is the "later pass" the `NodeType` note in [taxonomy.yaml](../linkml/taxonomy.yaml) points at.
+- **`required`** — every `facet` binding carries it, yet `normalize/` reads it nowhere. No check yet fires when a required facet is missing.
 
 ## One-line model
 

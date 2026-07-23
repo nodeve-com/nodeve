@@ -27,7 +27,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/check-*.ts` | perform validation checks |
 | `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `linkml-sqldb` ingests; pass a data file to print rows |
 | `bin/ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no backref-column hook |
-| `data/subject_node/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
+| `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device); FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows. **Placeholder fixtures — not normative** |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
 | `gen/` | all build output — DDL, catalog bundle, SQLite db. Gitignored |

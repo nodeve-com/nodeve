@@ -10,7 +10,7 @@ classes:
   Node:
     title: Node
     annotations: { sql_table: node }
-    slots: [ permalink, code, node_type, slug, url ]
+    slots: [ permalink, code, node_type, slug, url, parent ]
     # the leaf segment: kebab, or `_` (the one unnamed interval)
     slot_usage: { slug: { pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' } }
 
@@ -19,6 +19,25 @@ classes:
     annotations: { sql_table: registry }
     slots: [ node, publisher ]
     slot_usage: { publisher: { required: true } }
+
+  # The org table — a facet attachable to ANY node (manufacturer, publisher).
+  # A keyless 1:1 co-row sharing the node id, never product-specific.
+  Organization:
+    title: Organization
+    annotations: { sql_table: organization }
+    description: An organization — the relational analog of the _defaults cascade; manufacturers and publishers FK a row here.
+    slots: [ node ]
+
+  # A catalogued subject node — a thin MARKER on the device node, NOT a facet
+  # bag. Which facets a device carries is driven by its node_type.facets rows;
+  # every facet attaches to the node directly (its own top-level row-set, tied
+  # back by node.parent). The one non-owned reference — the shared family
+  # register map — rides here, since it is not under the device's node trail.
+  SubjectNode:
+    title: Subject node
+    annotations: { sql_table: subject_node, path_root: node_type }
+    description: Marker row for a catalogued device node; its facets attach to the node, declared by node_type.
+    slots: [ node, register_map ]
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
@@ -125,12 +144,29 @@ slots:
     exact_mappings: [ schema:about ]
     slot_uri: schema:about
     description: 'the node this content describes'
+  node_type:
+    range: NodeType
+    title: Node type
+    related_mappings: [ schema:category ]
+    description: 'FK on the node — which kind of thing it is (inverter, ac-meter, registry, organization). A ROW, not a class CURIE: a new node type is an INSERT, never a DDL migration. Permalink root = its slug'
+    annotations: { camel: nodeType }
   object:
     range: Node
     required: true
     title: Object
     exact_mappings: [ rdf:object ]
     description: 'FK — the node the edge points to'
+  organization:
+    range: Organization
+    title: Organization
+    exact_mappings: [ schema:manufacturer ]
+    description: 'FK — the organization that made this thing'
+    annotations: { i18n: { value: { title: { pt: Organização } } } }
+  parent:
+    range: Node
+    title: Parent
+    exact_mappings: [ schema:isPartOf ]
+    description: 'self-FK — the nearest ancestor node in the permalink trail (a feature''s parent is its device, an interval''s its feature). Derived, never authored; null for a root'
   predicate:
     range: Node
     required: true

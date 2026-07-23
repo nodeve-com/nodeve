@@ -32,4 +32,4 @@ Undo the working tree's wrong turn (enum→data promotion, mappings-as-schema-ma
 
 ## Verify
 
-`pnpm generate`/`build`/`typecheck` green (ignore pre-existing `ac_ports/dc_ports/environments` SAWarning). pt in the source enum (`Content` projection separate). Completeness: no grimoire `refs`/`pt` left behind.
+`pnpm generate`/`build`/`typecheck` green. pt in the source enum (`Content` projection separate). Completeness: no grimoire `refs`/`pt` left behind.

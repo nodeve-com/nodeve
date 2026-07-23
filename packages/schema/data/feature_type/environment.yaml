@@ -1,1 +1,1 @@
-{ bound_as: environments, quantity_binding: { temperature: {} } }
+{ quantity_binding: { temperature: {} } }

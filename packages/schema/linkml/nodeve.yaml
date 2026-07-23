@@ -51,6 +51,7 @@ imports:
   - features
   - values
   - product
+  - physical
   - network
   - modbus
 
@@ -79,5 +80,17 @@ classes:
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
       node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
+      # device facets — each a top-level row-set, tied to its device node by the
+      # node.parent trail (owned children) or a node-PK-shared co-row (product,
+      # physical). Populated by the data/subject_node/ device walk, not a data dir.
+      register_maps: { range: RegisterMap, multivalued: true, inlined_as_list: true }
+      products: { range: Product, multivalued: true, inlined_as_list: true }
+      physicals: { range: Physical, multivalued: true, inlined_as_list: true }
+      feature_of_interests: { range: FeatureOfInterest, multivalued: true, inlined_as_list: true }
+      settings: { range: Setting, multivalued: true, inlined_as_list: true }
+      channels: { range: Channel, multivalued: true, inlined_as_list: true }
+      network_interfaces: { range: NetworkInterface, multivalued: true, inlined_as_list: true }
+      service_bindings: { range: ServiceBinding, multivalued: true, inlined_as_list: true }
+      # thin marker: a catalogued device node + its one non-owned ref (register map)
       subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
       node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }
