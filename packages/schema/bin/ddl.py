@@ -90,6 +90,16 @@ class Tables(RelationalModelTransformer):
             cls.name = new
             classes[new] = cls
 
+        # The tree-root container is load machinery, not a table — linkml would
+        # stamp a surrogate `Catalog` table plus a backref FK on every top-level
+        # row-set. The loader inserts each row-set into its table directly, so
+        # drop the container, its backref columns, and the ORM mappings to it.
+        classes.pop(TOP_CLASS, None)
+        for cls in classes.values():
+            for attr in [n for n, a in cls.attributes.items() if a.range == TOP_CLASS]:
+                del cls.attributes[attr]
+        result.mappings = [m for m in result.mappings if m.source_class != TOP_CLASS]
+
         return result
 
 
@@ -103,8 +113,15 @@ if "dump" in sys.argv[1:]:
     # Python, `NameError: RFC`. Normalize the reference identifiers (an uppercase
     # hyphenated token before a `[`) in the generated source before it compiles;
     # lowercase prefix strings stay untouched. Lets CURIE prefixes = kebab slugs.
+    import os
     import re
+    import sqlite3
+
     from linkml.generators import pythongen
+    from linkml.generators.pythongen import PythonGenerator
+    from linkml.utils.sqlutils import SQLStore
+    from linkml_runtime.loaders import json_loader
+    from sqlalchemy.orm import sessionmaker
 
     _orig_compile = pythongen.compile_python
     _ns_ref = re.compile(r"\b[A-Z][A-Z0-9_]*(?:-[A-Z0-9]+)+(?=\[)")
@@ -112,18 +129,35 @@ if "dump" in sys.argv[1:]:
         _ns_ref.sub(lambda m: m.group(0).replace("-", "_"), code), *a, **k
     )
 
-    from linkml.utils.sqlutils import main
+    # Own the load. linkml-sqldb roots its ORM dump at the container object, which
+    # is the ONLY reason a `catalog` table exists. gen/catalog.json is already one
+    # row-set per table, so build the tree_root, then insert each row-set straight
+    # into its table — the container is never materialized. Nested facets still
+    # ride linkml's to_sqla traversal, backref FKs and all.
+    DB = "../gen/catalog.db"
+    if os.path.exists(DB):
+        os.remove(DB)
 
-    sys.argv = ["linkml-sqldb", "dump", "-s", SCHEMA, "-C", TOP_CLASS,
-                "-D", "../gen/catalog.db", "../gen/catalog.json"]
-    main()
+    native = PythonGenerator(SCHEMA).compile_module()
+    bundle = json_loader.load("../gen/catalog.json", target_class=native.__dict__[TOP_CLASS])
+
+    store = SQLStore(SCHEMA, database_path=DB)
+    store.native_module = native
+    store.db_exists(force=True)  # DDL sans container (Tables drops it)
+    store.compile()  # ORM sans container
+
+    row_sets = SchemaView(SCHEMA).get_class(TOP_CLASS).attributes
+    with sessionmaker(bind=store.engine).begin() as session:
+        for slot in row_sets:
+            objs = getattr(bundle, slot, None)
+            if not objs:
+                continue
+            session.add_all(store.to_sqla(objs))
 
     # SQLite declares but does not enforce FKs by default — this is THE
     # integrity gate: every assembled path must land on a real row.
-    import sqlite3
-
-    bad = sqlite3.connect("../gen/catalog.db").execute("PRAGMA foreign_key_check").fetchall()
+    bad = sqlite3.connect(DB).execute("PRAGMA foreign_key_check").fetchall()
     if bad:
         sys.exit(f"foreign_key_check: {len(bad)} dangling FK rows, e.g. {bad[:5]}")
 else:
-    print(SQLTableGenerator(SchemaView(SCHEMA).schema).generate_ddl(top_class=TOP_CLASS))
+    print(SQLTableGenerator(SchemaView(SCHEMA).schema).generate_ddl())

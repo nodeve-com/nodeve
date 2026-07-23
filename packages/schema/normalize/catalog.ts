@@ -11,7 +11,7 @@
 import { shortCode } from '@nodeve/encoding/short-code';
 import { abs, dirents, dumpJson, exists, readYaml, write } from '../src/io.ts';
 import { classByName, classByTable, seg, type SlotDef, slotByName } from './model.ts';
-import { normalize, nodeAttrMap, type Row } from './normalize.ts';
+import { normalize, normalizeDoc, nodeAttrMap, type Row } from './normalize.ts';
 import { normalizeDevice } from './tree.ts';
 
 // ─── catalog build (only as the entrypoint — importers get normalize alone) ──
@@ -166,6 +166,29 @@ function projectProperties(): unknown[] {
 	return rows;
 }
 
+/** Every kind (root segment) in the id space needs a node_type row, or its
+ * nodes' node_type FK dangles. Rich kinds with a distinctive facet composition
+ * are authored in data/node_type/; the rest — kinds backed by a plain table
+ * class — derive one minimal row here (a content facet, titled from the class),
+ * so the two stub-only files don't have to be hand-kept. Runs after every other
+ * dir so `paths` holds the full set of kinds. */
+function buildNodeTypes(): unknown[] {
+	const authored = tableRows('node_type'); // rich facet compositions (device kinds)
+	const authoredKinds = new Set(authored.map((r) => String((r as Row).node).split('/').pop()));
+	const kinds = new Set(paths.map((p) => p.split('/')[0]!));
+	const derived = [...kinds]
+		.filter((kind) => !authoredKinds.has(kind))
+		.sort()
+		.map((kind) => {
+			const cls = classByName[classByTable[kind.replaceAll('-', '_')] ?? ''];
+			if (!cls?.annotations?.sql_table)
+				throw new Error(`node_type ${kind}: no authored file and no class with that sql_table`);
+			if (!cls.title) throw new Error(`node_type ${kind}: class has no title to label the kind`);
+			return assemble(normalizeDoc('node_type', kind, { content: { en: { title: cls.title } } }));
+		});
+	return [...authored, ...derived];
+}
+
 function build() {
 	const container = classByName.Catalog?.attributes as
 		Record<string, { range: string }> | undefined;
@@ -175,6 +198,7 @@ function build() {
 	for (const [slot, { range }] of Object.entries(container)) {
 		if (range === 'Node') continue; // derived below, no data dir
 		if (range === 'Content') continue; // accumulated during the pass, filled below
+		if (range === 'NodeType') continue; // authored + derived below, after all kinds known
 		if (range === 'Property') {
 			bundle[slot] = projectProperties();
 			continue;
@@ -183,6 +207,9 @@ function build() {
 		if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`);
 		bundle[slot] = tableRows(dir);
 	}
+
+	const nodeTypeSlot = Object.entries(container).find(([, a]) => a.range === 'NodeType')?.[0];
+	if (nodeTypeSlot) bundle[nodeTypeSlot] = buildNodeTypes();
 
 	bundle.nodes = mintNodes();
 	// content rows fell out of every doc + projectProperties into contentRows;

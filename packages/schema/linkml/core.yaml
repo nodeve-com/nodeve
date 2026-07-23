@@ -14,31 +14,6 @@ classes:
     # the leaf segment: kebab, or `_` (the one unnamed interval)
     slot_usage: { slug: { pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' } }
 
-  # The shape of gen/catalog.json — the root object linkml-sqldb loads per dump;
-  # each attribute is one table's row-set. NOT a table: emitted as an empty
-  # single-row `catalog` that nothing FKs. The ONE sanctioned `attributes:`.
-  Catalog:
-    title: Catalog
-    tree_root: true
-    annotations: { sql_table: catalog }
-    attributes:
-      # DERIVED, not a data dir — bundle.ts mints one row per authored thing from
-      # its path. Every other slot's range names a class whose sql_table is its dir.
-      nodes: { range: Node, multivalued: true, inlined_as_list: true }
-      # DERIVED — the universal Content facet, accumulated from every authored
-      # `content:` block plus generated Property labels. Keyed by `about`, a
-      # top-level row-set, NEVER nested under the row it describes.
-      contents: { range: Content, multivalued: true, inlined_as_list: true }
-      registries: { range: Registry, multivalued: true, inlined_as_list: true }
-      # GENERATED from schema slot titles, not a data dir — see build().
-      properties: { range: Property, multivalued: true, inlined_as_list: true }
-      organizations: { range: Organization, multivalued: true, inlined_as_list: true }
-      part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
-      quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
-      feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
-      node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
-      subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
-      node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }
   Registry:
     title: Registry
     annotations: { sql_table: registry }

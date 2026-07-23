@@ -96,17 +96,16 @@ function autoComposeContent(rows: Row[], node: string, slug: string): void {
 	});
 }
 
-/** one authored doc → flat storage rows: root first, children after */
-export function normalize(file: string): Row[] {
-	const table = basename(dirname(file));
+/** one doc → flat storage rows: root first, children after. `table` is the
+ * class's sql_table, `slug` the node's leaf id, `doc` the authored (or derived)
+ * map. normalize() reads these off a file; derived node_types synthesize them. */
+export function normalizeDoc(table: string, slug: string, doc: Record<string, unknown>): Row[] {
 	const className = classByTable[table];
-	if (!className) throw new Error(`${file}: no class has sql_table ${table}`);
+	if (!className) throw new Error(`${slug}: no class has sql_table ${table}`);
 	const ownSlots = classByName[className]?.slots ?? [];
 
-	const slug = basename(file, '.yaml');
-	if (!SLUG.test(slug)) throw new Error(`${file}: filename is not a slug`);
+	if (!SLUG.test(slug)) throw new Error(`${table}/${slug}: not a slug`);
 	const node = `node:${seg(table)}/${slug}`;
-	const doc = (readYaml(file) ?? {}) as Record<string, unknown>;
 
 	const row: Row = { node, $trail: slug };
 	const rows = [row];
@@ -132,4 +131,13 @@ export function normalize(file: string): Row[] {
 	}
 	if (className === 'NodeType') autoComposeContent(rows, node, slug);
 	return rows;
+}
+
+/** one authored data/ file → rows, via its dir (sql_table) and filename (slug) */
+export function normalize(file: string): Row[] {
+	return normalizeDoc(
+		basename(dirname(file)),
+		basename(file, '.yaml'),
+		(readYaml(file) ?? {}) as Record<string, unknown>,
+	);
 }

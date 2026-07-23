@@ -8,6 +8,7 @@ name: schema
 default_prefix: nodeve
 default_range: string
 
+# DERIVED from data/registry — do not edit; run `pnpm generate`
 prefixes:
   brick: https://brickschema.org/schema/Brick#
   cim: http://iec.ch/TC57/CIM100#
@@ -56,3 +57,31 @@ imports:
   - product
   - network
   - modbus
+
+classes:
+  # The bundle manifest: the shape of gen/catalog.json — each attribute one
+  # table's row-set — and the tree_root the load + linkml-validate hang off.
+  # NOT a table: the loader inserts each row-set straight into its table, so
+  # ddl.py drops this container and the backref FK it would stamp on every row.
+  # The ONE sanctioned `attributes:`.
+  Catalog:
+    title: Catalog
+    tree_root: true
+    attributes:
+      # DERIVED, not a data dir — bundle.ts mints one row per authored thing from
+      # its path. Every other slot's range names a class whose sql_table is its dir.
+      nodes: { range: Node, multivalued: true, inlined_as_list: true }
+      # DERIVED — the universal Content facet, accumulated from every authored
+      # `content:` block plus generated Property labels. Keyed by `about`, a
+      # top-level row-set, NEVER nested under the row it describes.
+      contents: { range: Content, multivalued: true, inlined_as_list: true }
+      registries: { range: Registry, multivalued: true, inlined_as_list: true }
+      # GENERATED from schema slot titles, not a data dir — see build().
+      properties: { range: Property, multivalued: true, inlined_as_list: true }
+      organizations: { range: Organization, multivalued: true, inlined_as_list: true }
+      part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
+      quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
+      feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
+      node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
+      subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
+      node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }

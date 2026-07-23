@@ -20,6 +20,7 @@
 		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/subject_node/foxess-h3-ps10sh.yaml",
 		"check": "node bin/format.ts --check",
 		"check:meta": "node bin/check-meta.ts",
+		"check:prefixes": "node bin/check-prefixes.ts",
 		"check:refs": "node bin/check-refs.ts",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"test": "vitest run"

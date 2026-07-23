@@ -3,6 +3,7 @@
 import { abs, readYaml } from '../src/io.ts';
 
 export type ClassDef = {
+	title?: string;
 	annotations?: Record<string, string>;
 	slots?: string[];
 	attributes?: Record<string, SlotDef>;

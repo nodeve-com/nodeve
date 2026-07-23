@@ -32,3 +32,10 @@ pre-commit:
     - name: build-schema
       glob: 'packages/schema/linkml/**'
       run: pnpm --filter @nodeve/schema build
+
+    # The nodeve.yaml prefixes block is DERIVED from data/registry rows; a stale
+    # or hand-edited block silently diverges. Re-derive and diff. Fires when a
+    # registry row OR the schema root is staged (either side can drift).
+    - name: check-prefixes
+      glob: 'packages/schema/{data/registry/**,linkml/nodeve.yaml}'
+      run: pnpm --filter @nodeve/schema check:prefixes
