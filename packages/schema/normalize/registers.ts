@@ -2,11 +2,11 @@
 // column validation against schema slots, and the structured measurand ref →
 // interval-node resolver both gates and registers use.
 import { basename } from 'node:path';
-import { abs, isDir, readYaml, yamlNames } from '../src/io.ts';
+import { abs, isDir, readYaml, yamlNames, type Doc } from '../src/io.ts';
 import { classByName, fkTable, seg, SLUG } from './model.ts';
 import type { ValueContracts } from './values.ts';
 
-export type Doc = Record<string, unknown>;
+export type { Doc };
 export const isMap = (v: unknown): v is Doc => !!v && typeof v === 'object' && !Array.isArray(v);
 // function declaration, NOT an arrow const: control-flow narrowing after
 // `if (!guard) die(...)` only fires for never-returning function declarations.
@@ -129,11 +129,11 @@ export function registerMap(walk: WalkState, body: unknown, trail: string): Doc 
 	const { slug, constraint_range, register, ...scalars } = body;
 	if (typeof slug !== 'string' || !SLUG.test(slug)) die(`${trail}.slug`, 'must be a slug');
 	const mNode = walk.mint(`node:register-map/${slug}`);
-	const map: Doc = { node: mNode, slug, ...columns('RegisterMap', scalars, trail) };
+	const map: Doc = { node: mNode, ...columns('RegisterMap', scalars, trail) };
 	if (constraint_range !== undefined)
 		map.constraint_ranges = list(constraint_range, `${trail}.constraint_range`).map((r, i) => {
 			const cols = columns('RegisterRange', r, `${trail}.constraint_range[${i}]`);
-			return { node: walk.mint(`${mNode}/${cols.range_type}-${cols.start}`), ...cols };
+			return { node: walk.mint(`${mNode}/${seg(String(cols.range_type))}-${cols.start}`), ...cols };
 		});
 	if (register !== undefined)
 		map.registers = list(register, `${trail}.register`).map((r, i) =>

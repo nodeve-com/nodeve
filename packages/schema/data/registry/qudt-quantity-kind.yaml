@@ -1,3 +1,2 @@
-url: http://qudt.org/
-iri_template: https://qudt.org/vocab/quantitykind/{id}
 content: { en: { title: QUDT QuantityKind }, pt: { title: QUDT QuantityKind } }
+node: { url: https://qudt.org/vocab/quantitykind/ }

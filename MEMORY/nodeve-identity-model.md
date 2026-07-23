@@ -1,21 +1,22 @@
 ---
 name: nodeve-identity-model
-description: 'LinkML schema identity — Node table with permalink PK (slot `permalink`, meaning wikidata:Q1048975), derived code, kebab slugs'
+description: 'LinkML schema identity — Node = [permalink, code, node_type, slug, url]; slug/node_type/url on the node, node_types compose facets by cardinality'
 metadata:
   node_type: memory
   type: project
   originSessionId: ec1ffa7f-0df0-4bb4-9e52-5e8495d3e74a
-  modified: 2026-07-23T15:16:34.157Z
+  modified: 2026-07-23T17:13:51.334Z
 ---
 
-Decided 2026-07-20 for `packages/schema/linkml` (supersedes the uuid-PK and authored-code models tried the same day):
+For `packages/schema/linkml`. Started 2026-07-20 (supersedes uuid-PK/authored-code); reshaped 2026-07-23:
 
-- **No `is_a: Node` inheritance** — every class carries a `node` slot (`identifier: true, range: Node`): PK that is FK to the Node table. Enforced one identity space, not convention.
-- **Node = `[permalink, code]`.** No uuid. `permalink` is the PK — a `uriorcurie` CURIE `node:<archetype-kebab>/<slug trail>` (prefix `node: https://nodeve.dev/node/`) captured at mint time; mint-once, NEVER re-derived on rename (append-only `data/nodes.yaml`, minted by `format.ts`). Slot `meaning: wikidata:Q1048975` (exact — "permalink"); NOT the generic `schema:identifier`.
-- **Permalink root** comes from the doc's `device_type` FK, last segment (`node:device-type/inverter` → `inverter`). Definition docs carry no `device_type` — their own `node` CURIE already names the layer. No `archetype` slot exists; that was an earlier design, and stale references to it survived in docs long after.
-- **`code`** = 8-char Crockford of `sha1(https://nodeve.dev/node/<path>)` last 5 bytes — a human handle DERIVED from the permalink, not authored.
-- **`slug` is kebab-case** (url idiom). Wire/HA snake form derives mechanically (`s/-/_/`), like the [[grimoire-ts-camel-only]] camel annotation: authored form one, derived forms mechanical.
+- **No `is_a: Node`** — every facet class carries a `node` slot (`identifier: true, range: Node`): PK that is FK to Node. One identity space.
+- **Node = `[permalink, code, node_type, slug, url]`.** `slug` (leaf, local id), `node_type` (root, the kind), `url` are IDENTITY — they live on the node, NOT repeated on facet tables. `slug` removed from all ~15 facet tables; the mint derives `node_type = node:node-type/<root-seg>`, `slug = <leaf-seg>` from the path.
+- **`permalink`** = PK, `uriorcurie` CURIE `node:<node_type>/<slug path>`, meaning `wikidata:Q1048975` (exact), mint-once, never re-derived on rename.
+- **`code`** = 8-char Crockford derived from the permalink hash; not authored.
+- **`slug` from the filename** (or the DIRECTORY name for `subject_node`), NEVER authored — the normalizer rejects an authored `slug`. kebab-case; path segments kebab-ified (snake table names → kebab leaves). Pattern allows `_` (the one unnamed interval).
+- **`node:` block** — node-level attrs (`url`) authored under a `node:` block, merged onto the minted node. Content is a child facet (own node ids, one per language), authored `content: {en:…}`, `about` → node.
+- **`node_type` is universal**
+- **Node types compose facets** — `NodeType` has `facets` (→ `Facet` rows keyed by `table`): each composed facet is `cardinality: single` (shares node id) or `child` (own node ids), plus `required`. Replaced the made-up `socket_binding`. A `content` facet (child) is AUTO-composed into every node_type at normalize (never authored). A table exists only for a type's exclusive columns; registry/organization compose only content → node_types, effectively table-less. See [[schema-is-the-source-not-data2schema]].
 
-**Why:** uuids added opacity without stability the frozen permalink didn't already give; authored codes contradicted code-derives-from-id.
-
-**How to apply:** never re-derive a minted `permalink` or `code`; formatter passes inject/mint, hand edits only delete.
+**How to apply:** never author `slug`/`code`; never re-derive a minted `permalink`.

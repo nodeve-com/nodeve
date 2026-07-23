@@ -41,12 +41,10 @@ classes:
       keyed_by: part quantity_kind slug
     description: >-
       One quantity band on one feature. part null = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
-    slots: [ node, quantity_kind, valued_range, part, slug ]
+    slots: [ node, quantity_kind, valued_range, part ]
     slot_usage:
-      # the discriminator, not decoration — (quantity_kind, part, slug) is the
-      # row's identity and its node path segment. Absent slug = no derivable node.
-      # `_` = the one unnamed interval — stored verbatim, elided only on render.
-      slug: { required: true, pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' }
+      # part is the discriminator that stays a column; the interval slug is the
+      # node's leaf (on the node row), not repeated here.
       part: { required: true }
 
   Specification:
@@ -80,16 +78,7 @@ classes:
     close_mappings: [ sosa:FeatureOfInterest ]
     description: >-
       The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. A part is a per-model discriminator on Interval (a/b/c, l1/l2, 1/2/3), validated against part_set or count — not its own table; part NULL on an interval = combined, the whole feature.
-    slots:
-      - node
-      - feature_type
-      - role
-      - part_set
-      - count
-      - intervals
-      - specifications
-      - measurements
-      - contents
+    slots: [ node, feature_type, role, part_set, count, intervals, specifications, measurements ]
     slot_usage: { role: { required: true }, feature_type: { required: true } }
 slots:
   count:

@@ -1,6 +1,6 @@
 # LinkML test-cut of the grimoire schema layer, relational-first.
 # Mapping: property → slot (global, reused), feature → class (reusable table),
-# archetype → class assembling feature classes (LinkML has no metaclass — see NOTES.md).
+# node_type → class assembling feature classes (LinkML has no metaclass — see NOTES.md).
 # gen-sqlddl / gen-pydantic / gen-json-schema all consume this one file.
 id: https://nodeve.com/schema
 name: schema
@@ -10,6 +10,7 @@ default_range: string
 
 prefixes:
   skos: http://www.w3.org/2004/02/skos/core#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
   linkml: https://w3id.org/linkml/
   nodeve: https://nodeve.com/schema/
   node: https://nodeve.com/node/

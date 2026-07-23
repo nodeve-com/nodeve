@@ -1,11 +1,12 @@
 // data2schema: registry ROWS → the projected validation schema.
 // feature_type.quantity_bindings → the admissible quantity set per feature type.
-// node_type.socket_bindings    → the role vocabulary + required-ness per socket.
+// node_type                      → a class pinning node_type (facet composition
+//                                  is coarser than the old per-socket contract).
 // Data is the source; the projected schema is derived. Never hand-edit it — a
-// new quantity or socket is an INSERT here, and the stencil follows.
+// new quantity is an INSERT here, and the stencil follows.
 import { abs, readYaml, write, yamlNames } from '../src/io.ts';
 import { dumpYaml } from '../src/yaml-style.ts';
-import { normalize } from '../normalize/catalog.ts';
+import { normalize } from '../normalize/normalize.ts';
 
 // authored docs enter as NORMALIZED rows — this projector sees only storage shape
 const loadRows = (d: string): Record<string, unknown>[] =>
@@ -16,21 +17,18 @@ const loadRows = (d: string): Record<string, unknown>[] =>
 		return doc;
 	});
 
-// the two projected row shapes this projector reads off the normalized rows
+// the two projected row shapes this projector reads off the normalized rows —
+// slug lives on the node row now, so derive it from the node CURIE leaf
 type FeatureTypeRow = {
-	slug: string;
 	node: string;
 	bound_as?: string;
 	quantity_bindings?: { quantity_kind: string }[];
 };
-type NodeTypeRow = {
-	slug: string;
-	node: string;
-	socket_bindings?: { feature_type: string; role: string; required?: boolean }[];
-};
+type NodeTypeRow = { node: string; facets?: { table: string }[] };
 
-const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
-const curieSlug = (curie: string) => curie.split('/').pop()!;
+const slugOf = (node: string) => node.split('/').pop()!;
+const pascal = (node: string) =>
+	slugOf(node).replace(/(^|-)([a-z0-9])/g, (_, __, c) => c.toUpperCase());
 
 const featureTypes = loadRows('data/feature_type/') as unknown as FeatureTypeRow[];
 const nodeTypes = loadRows('data/node_type/') as unknown as NodeTypeRow[];
@@ -40,7 +38,7 @@ const projectedEnum: Record<string, unknown> = {};
 const projectedClass: Record<string, unknown> = {};
 
 for (const ft of featureTypes) {
-	const name = pascal(ft.slug);
+	const name = pascal(ft.node);
 	// quantity_kind is an FK, not an enum — the admissible set is a closed
 	// any_of of the bound CURIEs. An unbound quantity fails; a typo fails twice
 	// (no matching row upstream, no matching branch here).
@@ -64,38 +62,14 @@ for (const ft of featureTypes) {
 }
 
 for (const dt of nodeTypes) {
-	const dtName = pascal(dt.slug);
-	const byFeature = new Map<string, { role: string; required?: boolean }[]>();
-	for (const b of dt.socket_bindings ?? []) {
-		const key = curieSlug(b.feature_type);
-		byFeature.set(key, [...(byFeature.get(key) ?? []), b]);
-	}
-
-	const slotUsage: Record<string, unknown> = {
-		node_type: { equals_string: dt.node },
+	// only device archetypes (they compose real facet tables) project a
+	// SubjectNode stencil; table-less kinds (registry, organization) compose
+	// only the universal content facet
+	if (!dt.facets?.some((f) => f.table !== 'content')) continue;
+	projectedClass[pascal(dt.node)] = {
+		is_a: 'SubjectNode',
+		slot_usage: { node_type: { equals_string: dt.node } },
 	};
-
-	for (const [ftSlug, bindings] of byFeature) {
-		const ftName = pascal(ftSlug);
-		const socketClass = `${dtName}${ftName}Feature`;
-		projectedEnum[`${dtName}${ftName}Role`] = {
-			permissible_values: Object.fromEntries(bindings.map((b) => [b.role, {}])),
-		};
-		projectedClass[socketClass] = {
-			is_a: `${ftName}Feature`,
-			slot_usage: { role: { range: `${dtName}${ftName}Role` } },
-		};
-		// the SubjectNode slot this feature type fills (its bound_as row fact), and
-		// whether any socket on it is mandatory — both binding data, no hand map
-		const slot = featureTypes.find((f) => f.slug === ftSlug)?.bound_as as string | undefined;
-		if (slot)
-			slotUsage[slot] = {
-				range: socketClass,
-				...(bindings.some((b) => b.required) && { required: true }),
-			};
-	}
-
-	projectedClass[dtName] = { is_a: 'SubjectNode', slot_usage: slotUsage };
 }
 
 const projected = {

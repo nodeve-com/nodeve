@@ -19,7 +19,7 @@ content:
     title: FoxESS H3 Smart 10 kW
     lede: Grid-tied 3-phase hybrid inverter
     body: >
-      FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the `inverter` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
+      FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the `inverter` node_type: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
 
 
       Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).

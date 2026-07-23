@@ -1,5 +1,4 @@
-url: https://cim.ucaiug.io/
-iri_template: http://iec.ch/TC57/CIM100#{id}
 content:
   en: { title: "IEC CIM (Common Information Model, IEC 61970/61968)" }
   pt: { title: "IEC CIM (Modelo de Informação Comum, IEC 61970/61968)" }
+node: { url: http://iec.ch/TC57/CIM100# }

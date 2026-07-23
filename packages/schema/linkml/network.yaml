@@ -6,13 +6,13 @@ classes:
   NetworkInterface:
     title: Network interface
     annotations: { sql_table: network_interface, keyed_by: slug }
-    slots: [ node, slug, interface_type, link_speed ]
+    slots: [ node, interface_type, link_speed ]
     slot_usage: { interface_type: { required: true } }
 
   ServiceBinding:
     title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
-    slots: [ node, slug, port, service_protocol, network_interface ]
+    slots: [ node, port, service_protocol, network_interface ]
     slot_usage: { service_protocol: { required: true }, network_interface: { required: true } }
 slots:
   interface_type:

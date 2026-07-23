@@ -3,11 +3,21 @@
 // Vocabularies come from data/ rows and the schema — never hardcoded:
 //   part keys      → the feature's part_set members (data/part_set) or count
 //   quantity keys  → the feature type's quantity_binding rows
-//   roles          → the node type's socket_binding rows
+//   roles          → authored per feature (the node type composes facet tables,
+//                    not per-role sockets — coarser than the old socket_binding)
 //   facet keys     → classes by sql_table; columns validated against slots
 // Every trail key is stringified as read; every error carries its key trail.
 import { basename, dirname } from 'node:path';
-import { classByName, classByTable, fkTable, keysOf, seg, slotByName, SLUG } from './model.ts';
+import {
+	classByName,
+	classByTable,
+	fkTable,
+	keysOf,
+	ownerSlotFor,
+	seg,
+	slotByName,
+	SLUG,
+} from './model.ts';
 import {
 	columns,
 	nodeTypeBySlug,
@@ -44,7 +54,6 @@ class DeviceWalk implements WalkState {
 	readonly intervals = new Set<string>();
 	readonly measurable = new Set<string>();
 	private readonly doc: Doc;
-	private readonly sockets: Record<string, Doc>;
 	private readonly addPath: (p: string) => void;
 	readonly values: ValueContracts;
 	private readonly model: Doc;
@@ -63,11 +72,11 @@ class DeviceWalk implements WalkState {
 		this.doc = loadDoc(file);
 		const dt = this.doc[rootSlot];
 		if (typeof dt !== 'string' || !SLUG.test(dt)) die(`${this.slug}.${rootSlot}`, 'must be a slug');
-		this.sockets = (nodeTypeBySlug[dt]?.socket_binding ??
-			die(this.slug, `unknown node_type ${dt}`)) as Record<string, Doc>;
+		if (!nodeTypeBySlug[dt]) die(this.slug, `unknown node_type ${dt}`);
 		this.node = this.mint(`node:${dt}/${this.slug}`);
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
-		this.model = { node: this.node, slug: this.slug, [rootSlot]: `node:node-type/${dt}` };
+		// node_type + slug are the node's own identity columns now, not subject_node facet columns
+		this.model = { node: this.node };
 	}
 
 	mint(path: string): string {
@@ -104,9 +113,7 @@ class DeviceWalk implements WalkState {
 		if (cls === 'Setting') this.model.settings = this.values.settingRows(value, trail);
 		else if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
-			const owner = (classByName.SubjectNode?.slots ?? []).find(
-				(s) => slotByName[s]?.range === cls,
-			);
+			const owner = ownerSlotFor('SubjectNode', cls);
 			if (!owner) die(trail, `SubjectNode has no slot ranging ${cls}`);
 			this.model[owner!] = keysOf(cls).length
 				? this.childRows(cls, value, trail)
@@ -120,10 +127,11 @@ class DeviceWalk implements WalkState {
 		if (!isMap(value)) die(trail, 'expected a keyed map');
 		const [keySlot] = keysOf(cls) as [string, ...string[]];
 		const about = classByName[cls]?.slots?.includes('about');
+		const hasKey = classByName[cls]?.slots?.includes(keySlot);
 		return Object.entries(value).map(([k, v]) => ({
 			node: this.mint(`${this.node}/${k}`),
 			...(about ? { about: this.node } : {}),
-			[keySlot]: expandKey(keySlot, String(k)),
+			...(hasKey ? { [keySlot]: expandKey(keySlot, String(k)) } : {}),
 			...columns(cls, v, `${trail}.${k}`),
 		}));
 	}
@@ -141,9 +149,6 @@ class DeviceWalk implements WalkState {
 	private feature(ftSlug: string, role: string, body: unknown): Doc {
 		const trail = `${this.slug}.feature_of_interest.${ftSlug}.${role}`;
 		const ft = featureTypeBySlug[ftSlug] ?? die(trail, `unknown feature_type ${ftSlug}`);
-		const socket = this.sockets[role] ?? die(trail, `role ${role} is not a socket`);
-		if (socket.feature_type !== ftSlug)
-			die(trail, `socket ${role} takes ${socket.feature_type}, not ${ftSlug}`);
 		if (!isMap(body)) die(trail, 'expected part keys');
 		const fNode = this.mint(`${this.node}/${ftSlug}/${role}`);
 		// the two authored levels bind the slots keyed_by lists, in order
@@ -237,13 +242,13 @@ class DeviceWalk implements WalkState {
 		if (this.intervals.has(iNode)) die(trail, 'duplicate coordinate');
 		this.intervals.add(iNode);
 		this.mint(iNode);
-		// three stacked levels → the three keyed_by slots, in order
-		const [partSlot, qkSlot, slugSlot] = keysOf('Interval') as [string, string, string];
+		// three stacked authored levels → part/quantity columns + the node leaf
+		// (the interval slug rides the node, not a column)
+		const [partSlot, qkSlot] = keysOf('Interval') as [string, string, string];
 		const row: Doc = {
 			node: iNode,
 			[partSlot]: at.part,
 			[qkSlot]: expandKey(qkSlot, at.quantity),
-			[slugSlot]: at.islug,
 		};
 		if (!isMap(payload)) die(trail, 'expected facet keys');
 		for (const [facet, cols] of Object.entries(payload))

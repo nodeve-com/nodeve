@@ -31,7 +31,7 @@ export class ValueContracts {
 			const members = member.map((m, i) =>
 				this.memberRow(m, { owner: sNode, ordinal: i + 1, trail: `${t}.member[${i}]` }),
 			);
-			return { node: sNode, slug, ...columns('Setting', cols, t), members };
+			return { node: sNode, ...columns('Setting', cols, t), members };
 		});
 	}
 
@@ -46,7 +46,7 @@ export class ValueContracts {
 			const { empty, ...cols } = body;
 			if (empty !== undefined && typeof empty !== 'string') die(`${t}.empty`, 'expected a slug');
 			this.channels.set(slug, {
-				row: { node: this.mint(`${this.node}/${slug}`), slug, ...columns('Channel', cols, t) },
+				row: { node: this.mint(`${this.node}/${slug}`), ...columns('Channel', cols, t) },
 				empty,
 				members: new Map(),
 			});
@@ -103,6 +103,6 @@ export class ValueContracts {
 
 	private memberRow(slug: unknown, at: { owner: string; ordinal: number; trail: string }): Doc {
 		if (typeof slug !== 'string' || !SLUG.test(slug)) die(at.trail, 'not a slug');
-		return { node: this.mint(`${at.owner}/${slug}`), slug, ordinal: at.ordinal };
+		return { node: this.mint(`${at.owner}/${slug}`), ordinal: at.ordinal };
 	}
 }

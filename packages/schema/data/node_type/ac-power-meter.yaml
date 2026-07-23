@@ -1,3 +1,5 @@
 # AC power meter — one AC point. The connection's phase count is the model's own
 # (part_set: three-phase / split-phase); the type stays phase-agnostic.
-socket_binding: { point: { feature_type: ac-phase, required: true } }
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }

@@ -7,7 +7,7 @@ classes:
     title: Organization
     annotations: { sql_table: organization }
     description: Own table — the relational analog of the _defaults cascade; every FoxESS product FKs one row.
-    slots: [ node, slug, contents ]
+    slots: [ node ]
 
   Product:
     title: Product
@@ -32,10 +32,7 @@ classes:
     description: A catalogued subject node — the assembly of feature-of-interest rows its type calls for.
     slots:
       - node
-      - node_type
-      - slug
       - product
-      - contents
       - network_interfaces
       - services
       - register_map
@@ -44,7 +41,7 @@ classes:
       - ac_ports
       - dc_ports
       - environments
-    slot_usage: { product: { required: true }, node_type: { required: true } }
+    slot_usage: { product: { required: true } }
 slots:
   model:
     title: Model
@@ -86,7 +83,7 @@ slots:
     range: NodeType
     title: Node type
     related_mappings: [ schema:category ]
-    description: 'FK — which node type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new node type is an INSERT, never a DDL migration. Permalink root = its slug'
+    description: 'FK on the node — which kind of thing it is (inverter, ac-meter, registry, organization). A ROW, not a class CURIE: a new node type is an INSERT, never a DDL migration. Permalink root = its slug'
     annotations: { camel: nodeType }
   organization:
     range: Organization

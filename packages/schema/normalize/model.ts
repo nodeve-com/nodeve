@@ -10,6 +10,7 @@ export type ClassDef = {
 export type SlotDef = {
 	range?: string;
 	pattern?: string;
+	multivalued?: boolean;
 	inlined_as_list?: boolean;
 	title?: string;
 	description?: string;
@@ -51,6 +52,24 @@ export const seg = (table: string) => table.replaceAll('_', '-');
  * = a keyed child map; several = stacked map levels assembling one row. */
 export const keysOf = (className: string): string[] =>
 	(classByName[className]?.annotations?.keyed_by ?? '').split(' ').filter(Boolean);
+
+/** which slot of `parentClass` owns rows of `childClass`. A declared owned slot
+ * ranging it wins; else a universal about-attached facet (Content) attaches to
+ * ANY node via its own `about` FK and buckets under the global multivalued slot
+ * ranging it — no per-parent slot needed. undefined ⇒ this parent can't own it. */
+export const ownerSlotFor = (parentClass: string, childClass: string): string | undefined => {
+	const owned = (classByName[parentClass]?.slots ?? []).find(
+		(s) => slotByName[s]?.range === childClass,
+	);
+	if (owned) return owned;
+	const aboutAttached = classByName[childClass]?.slots?.some(
+		(s) => s === 'about' && slotByName[s]?.range === 'Node',
+	);
+	if (!aboutAttached) return undefined;
+	return Object.keys(slotByName).find(
+		(s) => slotByName[s]?.range === childClass && slotByName[s]?.multivalued,
+	);
+};
 
 /** a slot's FK target table, when it ranges a table-backed class */
 export const fkTable = (slot: string): string | undefined => {

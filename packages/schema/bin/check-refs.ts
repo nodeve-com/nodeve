@@ -5,7 +5,7 @@
 // `--all` samples three terms per registry instead of one.
 // Authored docs enter as NORMALIZED rows, same as every other consumer.
 import { abs, yamlNames } from '../src/io.ts';
-import { normalize } from '../normalize/catalog.ts';
+import { normalize } from '../normalize/normalize.ts';
 
 const rowsOf = (table: string) =>
 	yamlNames(abs(`data/${table}`)).flatMap((f) => normalize(abs(`data/${table}/${f}`)));

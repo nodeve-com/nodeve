@@ -1,115 +1,30 @@
-// THE normalizer (docs/authoring-storage-handoff.md): destructure authored
-// data/ docs into gen/catalog.json, the one root object linkml-sqldb dumps.
+// Destructure authored data/ docs into gen/catalog.json — the root object
+// linkml-sqldb loads. The disk walk + bundle assembly half; the pure doc→rows
+// normalizer lives in normalize.ts.
 //
 //   node normalize/catalog.ts                        build the catalog
 //   node normalize/catalog.ts data/registry/x.yaml   print one doc's rows (debug)
 //
-// Everything is read from the schema, never hardcoded:
-//   Catalog slot        → class via its range, data dir via sql_table
-//   authored child key  → child class via sql_table (content: → Content)
-//   child map's keys    → the slot named by the child class's keyed_by
-// Filename is the slug; node paths derive from the trail; every row carries
-// its source trail until serialization. Two input shapes per file, decided by
-// the presence of a `node` key: authored (normalized) or legacy storage rows
-// (passthrough until that kind's authored form lands). A file the normalizer
-// rejects is SKIPPED LOUDLY, never silently dropped.
+// Everything is read from the schema, never hardcoded: each Catalog slot names a
+// class (range) whose data dir is its sql_table. A file the normalizer rejects
+// is SKIPPED LOUDLY, never silently dropped.
 import { shortCode } from '@nodeve/encoding/short-code';
-import { basename, dirname } from 'node:path';
-import { abs, dirents, dumpJson, readYaml, write } from '../src/io.ts';
-import {
-	classByName,
-	classByTable,
-	fkTable,
-	seg,
-	type SlotDef,
-	slotByName,
-	SLUG,
-} from './model.ts';
+import { abs, dirents, dumpJson, exists, readYaml, write } from '../src/io.ts';
+import { classByName, classByTable, seg, type SlotDef, slotByName } from './model.ts';
+import { normalize, nodeAttrMap, type Row } from './normalize.ts';
 import { normalizeDevice } from './tree.ts';
-
-/** authored FK values are bare slugs; a slot ranging a table-backed class
- * expands them to CURIEs (broader: linear-velocity → node:quantity-kind/…) */
-function expand(slot: string, value: unknown, trail: string): unknown {
-	const table = fkTable(slot);
-	if (!table) return value;
-	if (typeof value !== 'string' || !SLUG.test(value))
-		throw new Error(`${trail}: expected a bare ${table} slug`);
-	return `node:${seg(table)}/${value}`;
-}
-
-type Row = Record<string, unknown> & { $trail: string; $slot?: string };
-
-/** one keyed child map → its rows (content: {en: …} → Content rows) */
-function keyedChildren(
-	childClass: string,
-	value: unknown,
-	ctx: { node: string; trail: string },
-): Row[] {
-	const { node, trail } = ctx;
-	const child = classByName[childClass];
-	if (!child) throw new Error(`${trail}: no class ${childClass}`);
-	const keyedBy = child.annotations?.keyed_by;
-	if (!keyedBy) throw new Error(`${trail}: ${childClass} has no keyed_by annotation`);
-	if (!value || typeof value !== 'object' || Array.isArray(value))
-		throw new Error(`${trail}: expected a map keyed by ${keyedBy}`);
-	const ordered = child.slots?.includes('ordinal');
-	return Object.entries(value).map(([k, payload], i) => {
-		if (!payload || typeof payload !== 'object' || Array.isArray(payload))
-			throw new Error(`${trail}.${k}: expected a map of columns`);
-		const expanded = Object.fromEntries(
-			Object.entries(payload).map(([ck, cv]) => {
-				if (!child.slots?.includes(ck))
-					throw new Error(`${trail}.${k}.${ck}: not a ${childClass} slot`);
-				return [ck, expand(ck, cv, `${trail}.${k}.${ck}`)];
-			}),
-		);
-		return {
-			...expanded,
-			...(ordered ? { ordinal: i + 1 } : {}),
-			node: `${node}/${k}`,
-			...(child.slots?.includes('about') ? { about: node } : {}),
-			[keyedBy]: expand(keyedBy, k, `${trail}.${k}`),
-			$trail: `${trail}.${k}`,
-		};
-	});
-}
-
-/** one authored doc → flat storage rows: root first, children after */
-export function normalize(file: string): Row[] {
-	const table = basename(dirname(file));
-	const className = classByTable[table];
-	if (!className) throw new Error(`${file}: no class has sql_table ${table}`);
-	const ownSlots = classByName[className]?.slots ?? [];
-
-	const slug = basename(file, '.yaml');
-	if (!SLUG.test(slug)) throw new Error(`${file}: filename is not a slug`);
-	const node = `node:${seg(table)}/${slug}`;
-	const doc = readYaml(file) as Record<string, unknown>;
-
-	const row: Row = { node, slug, $trail: slug };
-	const rows = [row];
-	for (const [key, value] of Object.entries(doc)) {
-		const childClass = classByTable[key];
-		// an own slot wins over a same-named child table (feature_type the FK
-		// column vs feature_type the table)
-		if (childClass && !ownSlots.includes(key)) {
-			const ownerSlot = ownSlots.find((s) => slotByName[s]?.range === childClass);
-			if (!ownerSlot)
-				throw new Error(`${slug}.${key}: ${className} has no slot ranging ${childClass}`);
-			for (const childRow of keyedChildren(childClass, value, { node, trail: `${slug}.${key}` }))
-				rows.push({ ...childRow, $slot: ownerSlot });
-		} else if (ownSlots.includes(key)) {
-			row[key] = expand(key, value, `${slug}.${key}`);
-		} else {
-			throw new Error(`${slug}.${key}: not a ${className} slot and no class has sql_table ${key}`);
-		}
-	}
-	return rows;
-}
 
 // ─── catalog build (only as the entrypoint — importers get normalize alone) ──
 
 const paths: string[] = [];
+
+// the universal Content facet is one top-level row-set keyed by `about` — the
+// global multivalued slot ranging Content names the bucket; Catalog mirrors it.
+// Content rows accumulate here across the whole pass, never nest under a parent.
+const CONTENT_SLOT = Object.keys(slotByName).find(
+	(s) => slotByName[s]?.range === 'Content' && slotByName[s]?.multivalued,
+);
+const contentRows: Record<string, unknown>[] = [];
 
 /** drop the $-tags — they are source bookkeeping, never catalog columns */
 const strip = (row: Row): Record<string, unknown> =>
@@ -120,7 +35,12 @@ function assemble(rows: Row[]): Record<string, unknown> {
 	for (const row of rows) paths.push((row.node as string).replace(/^node:/, ''));
 	const [root, ...children] = rows as [Row, ...Row[]];
 	const nested = strip(root);
-	for (const child of children) ((nested[child.$slot!] ??= []) as unknown[]).push(strip(child));
+	for (const child of children) {
+		// the universal Content facet lifts to the top-level row-set (keyed by
+		// `about`), never nests under the row it describes
+		if (child.$slot === CONTENT_SLOT) contentRows.push(strip(child));
+		else ((nested[child.$slot!] ??= []) as unknown[]).push(strip(child));
+	}
 	return nested;
 }
 
@@ -139,17 +59,12 @@ function collectPaths(value: unknown, trail: string[]) {
 	for (const child of Object.values(row)) collectPaths(child, next);
 }
 
-if (import.meta.main && process.argv[2]) {
-	console.log(dumpJson(normalize(process.argv[2]), 2));
-} else if (import.meta.main) {
-	build();
-}
-
 // ─── node rows ───────────────────────────────────────────────────────────────
 // The id space, DERIVED — where a thing is authored already states its identity.
 // permalink = the ancestor trail (docs/levels.md); code = shortCode(trail),
 // a url shortener over the PK. The CURIE is hashed, never a url — domains are
-// a deployment fact.
+// a deployment fact. node_type = the root segment (the kind), slug = the leaf
+// (the local id) — both identity, derived from the same path, stored once here.
 
 function mintNodes(): unknown[] {
 	const seen = new Set<string>();
@@ -157,14 +72,37 @@ function mintNodes(): unknown[] {
 		if (seen.has(path)) throw new Error(`duplicate node path: node:${path}`);
 		seen.add(path);
 	}
-	return [...seen]
-		.sort()
-		.map((path) => ({ permalink: `node:${path}`, code: shortCode(`node:${path}`) }));
+	return [...seen].sort().map((path) => {
+		const permalink = `node:${path}`;
+		const segs = path.split('/');
+		return {
+			permalink,
+			code: shortCode(permalink),
+			node_type: `node:node-type/${segs[0]}`,
+			slug: segs[segs.length - 1],
+			...(nodeAttrMap.get(permalink) ?? {}),
+		};
+	});
+}
+
+/** the device walker nests Content wherever its parent sits; hoist every such
+ * row to the top-level accumulator (keyed by `about`), same as the flat path */
+function liftContent(o: unknown): void {
+	if (Array.isArray(o)) return o.forEach(liftContent);
+	if (!o || typeof o !== 'object') return;
+	const row = o as Record<string, unknown>;
+	if (CONTENT_SLOT && Array.isArray(row[CONTENT_SLOT])) {
+		contentRows.push(...(row[CONTENT_SLOT] as Record<string, unknown>[]));
+		delete row[CONTENT_SLOT];
+	}
+	Object.values(row).forEach(liftContent);
 }
 
 /** one data dir → its catalog rows: authored files normalized, legacy passed through */
 function tableRows(dir: string): unknown[] {
 	const out: unknown[] = [];
+	// a Catalog collection with no authored docs yet (e.g. node_edge) → empty
+	if (!exists(abs(`data/${dir}`))) return out;
 	const nested = classByName[classByTable[dir] ?? '']?.annotations?.path_root;
 	// a tree-walked entry may be a DIRECTORY (its name the slug, its children
 	// merged at load); flat tables stay one file per row
@@ -173,10 +111,12 @@ function tableRows(dir: string): unknown[] {
 	);
 	for (const e of entries.map((e) => e.name).sort()) {
 		if (nested) {
-			out.push(normalizeDevice(abs(`data/${dir}/${e}`), (p) => paths.push(p)));
+			const model = normalizeDevice(abs(`data/${dir}/${e}`), (p) => paths.push(p));
+			liftContent(model); // pull nested Content out of the device tree, top-level
+			out.push(model);
 			continue;
 		}
-		const doc = readYaml(abs(`data/${dir}/${e}`)) as Record<string, unknown>;
+		const doc = (readYaml(abs(`data/${dir}/${e}`)) ?? {}) as Record<string, unknown>;
 		if (typeof doc.node === 'string') {
 			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]!]);
 			out.push(doc);
@@ -220,7 +160,8 @@ function projectProperties(): unknown[] {
 			`property/${slug}`,
 			...contents.map((c) => (c.node as string).replace(/^node:/, '')),
 		);
-		rows.push({ node, slug, contents });
+		contentRows.push(...contents);
+		rows.push({ node });
 	}
 	return rows;
 }
@@ -233,6 +174,7 @@ function build() {
 	const bundle: Record<string, unknown[]> = {};
 	for (const [slot, { range }] of Object.entries(container)) {
 		if (range === 'Node') continue; // derived below, no data dir
+		if (range === 'Content') continue; // accumulated during the pass, filled below
 		if (range === 'Property') {
 			bundle[slot] = projectProperties();
 			continue;
@@ -243,6 +185,11 @@ function build() {
 	}
 
 	bundle.nodes = mintNodes();
+	// content rows fell out of every doc + projectProperties into contentRows;
+	// emit them under the Catalog slot ranging Content, sorted for determinism
+	const contentSlot = Object.entries(container).find(([, a]) => a.range === 'Content')?.[0];
+	if (contentSlot)
+		bundle[contentSlot] = contentRows.sort((a, b) => String(a.node).localeCompare(String(b.node)));
 
 	write(abs('gen/catalog.json'), dumpJson(bundle));
 	console.log(
@@ -250,4 +197,10 @@ function build() {
 			.map(([k, v]) => `${v.length} ${k}`)
 			.join(', ') + ' → gen/catalog.json',
 	);
+}
+
+if (import.meta.main && process.argv[2]) {
+	console.log(dumpJson(normalize(process.argv[2]), 2));
+} else if (import.meta.main) {
+	build();
 }

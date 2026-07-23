@@ -4,14 +4,19 @@ name: core
 default_prefix: nodeve
 default_range: string
 classes:
-  Node: { title: Node, annotations: { sql_table: node }, slots: [ permalink, code ] }
+  # The identity table — every addressable thing is ONE node row. node_type
+  # (which kind) and slug (the local id) are identity, so they live HERE, not
+  # repeated on every facet; permalink derives from node_type + the slug trail.
+  Node:
+    title: Node
+    annotations: { sql_table: node }
+    slots: [ permalink, code, node_type, slug, url ]
+    # the leaf segment: kebab, or `_` (the one unnamed interval)
+    slot_usage: { slug: { pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$' } }
 
-  # The ingest container — linkml-sqldb needs ONE root object per dump, so the
-  # sharded data/ rows bundle under this. NOT a table: tree_root exists to be
-  # unwrapped, and `gen-sqltables` emits it as an empty single-row table that
-  # nothing FKs. The ONE sanctioned `attributes:` in the repo — these are the
-  # container's own bundle slots, not domain fields, and a global slot named
-  # `registries` would be meaningless on any other class.
+  # The shape of gen/catalog.json — the root object linkml-sqldb loads per dump;
+  # each attribute is one table's row-set. NOT a table: emitted as an empty
+  # single-row `catalog` that nothing FKs. The ONE sanctioned `attributes:`.
   Catalog:
     title: Catalog
     tree_root: true
@@ -20,6 +25,10 @@ classes:
       # DERIVED, not a data dir — bundle.ts mints one row per authored thing from
       # its path. Every other slot's range names a class whose sql_table is its dir.
       nodes: { range: Node, multivalued: true, inlined_as_list: true }
+      # DERIVED — the universal Content facet, accumulated from every authored
+      # `content:` block plus generated Property labels. Keyed by `about`, a
+      # top-level row-set, NEVER nested under the row it describes.
+      contents: { range: Content, multivalued: true, inlined_as_list: true }
       registries: { range: Registry, multivalued: true, inlined_as_list: true }
       # GENERATED from schema slot titles, not a data dir — see build().
       properties: { range: Property, multivalued: true, inlined_as_list: true }
@@ -29,14 +38,8 @@ classes:
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
       node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
       subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
-
-  # The external-registry table — one row per registry we map into (qudt,
-  # wikidata, ha_device_class). A new registry is an INSERT; the iri_template
-  # lives here so a term is stored exactly as that registry spells it.
-  Registry:
-    title: Registry
-    annotations: { sql_table: registry }
-    slots: [ node, slug, url, iri_template, contents ]
+      node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }
+  Registry: { title: Registry, annotations: { sql_table: registry }, slots: [ node ] }
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
@@ -55,10 +58,14 @@ classes:
   # translations, so the en Content is GENERATED from the slot title and other
   # languages are authored data about this node. Dev-facing `description:` stays
   # schema meta — it is not a Property column and is never localized.
-  Property:
-    title: Property
-    annotations: { sql_table: property }
-    slots: [ node, slug, contents ]
+  Property: { title: Property, annotations: { sql_table: property }, slots: [ node ] }
+
+  # A directed triple — subject/predicate/object each FK the node table; position
+  # orders parallel edges off one subject. The graph layer over the node core.
+  NodeEdge:
+    title: Node edge
+    annotations: { sql_table: node_edge }
+    slots: [ subject, predicate, object, position ]
 
   # Reusable localized content. Each row has its own node; `about` points to
   # the described node. No class-specific parent FK.
@@ -110,7 +117,13 @@ slots:
     range: uriorcurie
     title: Permalink
     exact_mappings: [ wikidata:Q1048975 ]
-    description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
+    description: 'permalink PK — node:<node_type>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
+  position:
+    range: integer
+    minimum_value: 1
+    title: Position
+    exact_mappings: [ schema:position ]
+    description: 'sort key of parallel edges off one subject'
   term:
     range: string
     required: true
@@ -119,7 +132,11 @@ slots:
     description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized'
     annotations: { i18n: { value: { title: { pt: Termo } } } }
   title: { title: Title, exact_mappings: [ dcterms:title ] }
-  url: { range: uri, title: URL, exact_mappings: [ schema:url ], description: registry homepage }
+  url:
+    range: uri
+    title: URL
+    exact_mappings: [ schema:url ]
+    description: 'the thing''s own web address — a node attribute, authored under the `node:` block'
   # object-valued slots — FKs / owned row sets; global like everything else,
   # classes narrow via slot_usage only when the shared def is too loose
   about:
@@ -129,6 +146,18 @@ slots:
     exact_mappings: [ schema:about ]
     slot_uri: schema:about
     description: 'the node this content describes'
+  object:
+    range: Node
+    required: true
+    title: Object
+    exact_mappings: [ rdf:object ]
+    description: 'FK — the node the edge points to'
+  predicate:
+    range: Node
+    required: true
+    title: Predicate
+    exact_mappings: [ rdf:predicate ]
+    description: 'FK — the node naming the relation'
   registry:
     range: Registry
     required: true
@@ -136,6 +165,12 @@ slots:
     exact_mappings: [ skos:inScheme ]
     description: 'FK — which external registry the term belongs to'
     annotations: { i18n: { value: { title: { pt: Registro } } } }
+  subject:
+    range: Node
+    required: true
+    title: Subject
+    exact_mappings: [ rdf:subject ]
+    description: 'FK — the node the edge points from'
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
 # CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker

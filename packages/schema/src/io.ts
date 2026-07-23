@@ -22,6 +22,9 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { parse, parseDocument, stringify, Document, type Node } from 'yaml';
 
+/** an authored/parsed yaml document — a bag of string-keyed values */
+export type Doc = Record<string, unknown>;
+
 /** package-root-relative path → absolute (this file sits in src/, one dir down) */
 export const abs = (rel: string): string => fileURLToPath(new URL(`../${rel}`, import.meta.url));
 

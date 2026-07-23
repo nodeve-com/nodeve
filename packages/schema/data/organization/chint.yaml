@@ -1,4 +1,5 @@
 content:
   en:
     title: Chint
-    lede: "Chint Instrument & Meter Co. — energy meters and electrical instruments"
+    lede: Chint Instrument & Meter Co. — energy meters and electrical instruments
+node: { url: https://en.chint.com }

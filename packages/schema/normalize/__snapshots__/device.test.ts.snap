@@ -88,8 +88,8 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "register-map/foxess-h3-smart/invalid-41001",
   "register-map/foxess-h3-smart/invalid-41012",
   "register-map/foxess-h3-smart/invalid-41015",
-  "register-map/foxess-h3-smart/individual_read-37609",
-  "register-map/foxess-h3-smart/individual_read-37632",
+  "register-map/foxess-h3-smart/individual-read-37609",
+  "register-map/foxess-h3-smart/individual-read-37632",
   "register-map/foxess-h3-smart/39063",
   "register-map/foxess-h3-smart/39063/0",
   "inverter/foxess-h3-ps10sh/run-state/standby",
@@ -213,7 +213,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "continuous",
           "valued_range": {
             "max": 10000,
             "min": -11000,
@@ -224,7 +223,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/short-term",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "short-term",
           "valued_range": {
             "max": 11000,
             "min": -12000,
@@ -235,7 +233,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/derated",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "derated",
           "valued_range": {
             "max": 9000,
             "min": -10000,
@@ -246,13 +243,11 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/measured",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "measured",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "out",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out",
@@ -263,7 +258,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "out-daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/out-daily",
@@ -274,7 +268,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "in",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
@@ -285,7 +278,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "in-daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
@@ -296,7 +288,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
           "part": "_",
           "quantity_kind": "node:quantity-kind/reactive-power",
-          "slug": "_",
           "valued_range": {
             "max": 11,
             "min": -11,
@@ -308,7 +299,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "nominal-br-220v-60hz",
           "valued_range": {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-br-220v-60hz",
             "value": 220,
@@ -318,7 +308,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "nominal-eu-230v-50hz",
           "valued_range": {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/nominal-eu-230v-50hz",
             "value": 230,
@@ -328,7 +317,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/voltage/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "measured",
           "valued_range": {
             "max": 250,
             "min": 0,
@@ -339,7 +327,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-br-220v-60hz",
           "part": "*",
           "quantity_kind": "node:quantity-kind/frequency",
-          "slug": "nominal-br-220v-60hz",
           "valued_range": {
             "margin": 0.05,
             "max": 63,
@@ -352,7 +339,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/frequency/nominal-eu-230v-50hz",
           "part": "*",
           "quantity_kind": "node:quantity-kind/frequency",
-          "slug": "nominal-eu-230v-50hz",
           "valued_range": {
             "margin": 0.05,
             "max": 52.5,
@@ -365,7 +351,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "continuous",
           "valued_range": {
             "max": 15.2,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/continuous",
@@ -375,7 +360,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "survival",
           "valued_range": {
             "max": 16.7,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/survival",
@@ -385,7 +369,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "protection-required",
           "valued_range": {
             "max": 25,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/protection-required",
@@ -395,25 +378,21 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/electric-current/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "measured",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/reactive-power/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/reactive-power",
-          "slug": "_",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/apparent-power/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/apparent-power",
-          "slug": "_",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "continuous",
           "valued_range": {
             "max": 3666,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
@@ -424,7 +403,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "measured",
           "valued_range": {
             "max": 5,
             "min": 0,
@@ -590,7 +568,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "_",
           "valued_range": {
             "max": 15,
             "min": -15,
@@ -602,7 +579,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "out",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
@@ -613,7 +589,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "out-daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out-daily",
@@ -624,7 +599,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "in",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
@@ -635,7 +609,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "in-daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
@@ -646,7 +619,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "_",
           "valued_range": {
             "max": 8,
             "min": -8,
@@ -698,7 +670,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "continuous",
           "valued_range": {
             "max": 10000,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
@@ -708,7 +679,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "nominal",
           "valued_range": {
             "max": 260,
             "min": 200,
@@ -720,7 +690,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "measured",
           "valued_range": {
             "max": 300,
             "min": 0,
@@ -731,7 +700,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
           "part": "*",
           "quantity_kind": "node:quantity-kind/frequency",
-          "slug": "nominal",
           "valued_range": {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
             "value": 50,
@@ -741,7 +709,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "_",
           "valued_range": {
             "max": 50,
             "min": 0,
@@ -752,7 +719,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "_",
           "valued_range": {
             "max": 3.3,
             "min": -3.3,
@@ -801,7 +767,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "_",
           "valued_range": {
             "max": 15,
             "min": 0,
@@ -813,7 +778,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "lifetime",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
@@ -824,7 +788,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
@@ -835,7 +798,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
           "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "_",
           "valued_range": {
             "max": 15,
             "min": -5,
@@ -875,31 +837,25 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
         {
           "node": "node:inverter/foxess-h3-ps10sh/run-state/standby",
           "ordinal": 1,
-          "slug": "standby",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/run-state/on-grid",
           "ordinal": 2,
-          "slug": "on-grid",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/run-state/fault",
           "ordinal": 3,
-          "slug": "fault",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/run-state/off-grid",
           "ordinal": 4,
-          "slug": "off-grid",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/run-state/unknown",
           "ordinal": 5,
-          "slug": "unknown",
         },
       ],
       "node": "node:inverter/foxess-h3-ps10sh/run-state",
-      "slug": "run-state",
     },
     {
       "empty": "node:inverter/foxess-h3-ps10sh/fault-code/none",
@@ -907,112 +863,91 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-voltage-over",
           "ordinal": 1,
-          "slug": "fault-pv-voltage-over",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-dc-arc",
           "ordinal": 2,
-          "slug": "fault-dc-arc",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-pv-string-connection-reverse",
           "ordinal": 3,
-          "slug": "fault-pv-string-connection-reverse",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-lost",
           "ordinal": 4,
-          "slug": "fault-grid-lost",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-voltage",
           "ordinal": 5,
-          "slug": "fault-grid-voltage",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-grid-frequency",
           "ordinal": 6,
-          "slug": "fault-grid-frequency",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-current-over",
           "ordinal": 7,
-          "slug": "fault-output-current-over",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-output-dc-current-over",
           "ordinal": 8,
-          "slug": "fault-output-dc-current-over",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-residual-current-consistency",
           "ordinal": 9,
-          "slug": "fault-residual-current-consistency",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-ground-connection",
           "ordinal": 10,
-          "slug": "fault-ground-connection",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-insulation-resistance-low",
           "ordinal": 11,
-          "slug": "fault-insulation-resistance-low",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-inverter-temperature-over",
           "ordinal": 12,
-          "slug": "fault-inverter-temperature-over",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-equipment-abnormal",
           "ordinal": 13,
-          "slug": "fault-energy-storage-equipment-abnormal",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-island-isolated",
           "ordinal": 14,
-          "slug": "fault-island-isolated",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-off-grid-output-overload",
           "ordinal": 15,
-          "slug": "fault-off-grid-output-overload",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-fan-external",
           "ordinal": 16,
-          "slug": "fault-fan-external",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-energy-storage-connection-reverse",
           "ordinal": 17,
-          "slug": "fault-energy-storage-connection-reverse",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-meter-lost",
           "ordinal": 18,
-          "slug": "fault-meter-lost",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/fault-bms-lost",
           "ordinal": 19,
-          "slug": "fault-bms-lost",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/fault-code/none",
           "ordinal": 20,
-          "slug": "none",
         },
       ],
       "node": "node:inverter/foxess-h3-ps10sh/fault-code",
-      "slug": "fault-code",
     },
   ],
   "contents": [
     {
       "about": "node:inverter/foxess-h3-ps10sh",
-      "body": "FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the \`inverter\` archetype: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
+      "body": "FoxESS PS-10.0-SH (box label H3 SMART),— one catalog entry for the whole box: its electrical envelope (the \`inverter\` node_type: two ac-ports + pv-input) AND how it is talked to (its modbus slot). This single file replaces the former split between the inverter-model spec sheet and the modbus-device register map.
 
 Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its \`count\` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its \`intervals\` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
 
@@ -1062,7 +997,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
           "part": "3",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "mppt",
           "valued_range": {
             "min": 60,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
@@ -1073,7 +1007,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "survival",
           "valued_range": {
             "max": 20000,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
@@ -1083,7 +1016,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "continuous",
           "valued_range": {
             "max": 18000,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
@@ -1093,7 +1025,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "lifetime",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/lifetime",
@@ -1104,7 +1035,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
           "part": "_",
           "quantity_kind": "node:quantity-kind/active-energy",
-          "slug": "daily",
           "valued_range": {
             "min": 0,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-energy/daily",
@@ -1115,7 +1045,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "survival",
           "valued_range": {
             "max": 1000,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/survival",
@@ -1125,7 +1054,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/running",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "running",
           "valued_range": {
             "max": 140,
             "min": 90,
@@ -1136,7 +1064,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt-notice",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "mppt-notice",
           "valued_range": {
             "max": 950,
             "min": 120,
@@ -1147,7 +1074,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/mppt",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "mppt",
           "valued_range": {
             "max": 850,
             "min": 175,
@@ -1159,7 +1085,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/voltage/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/voltage",
-          "slug": "measured",
           "valued_range": {
             "max": 1000,
             "min": 0,
@@ -1170,7 +1095,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "survival",
           "valued_range": {
             "max": 25,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/survival",
@@ -1180,7 +1104,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "continuous",
           "valued_range": {
             "max": 20,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/continuous",
@@ -1190,7 +1113,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/electric-current",
-          "slug": "measured",
           "valued_range": {
             "max": 30,
             "min": 0,
@@ -1201,7 +1123,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "continuous",
           "valued_range": {
             "max": 10000,
             "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
@@ -1211,7 +1132,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/measured",
           "part": "*",
           "quantity_kind": "node:quantity-kind/active-power",
-          "slug": "measured",
         },
       ],
       "measurements": [
@@ -1297,7 +1217,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
           "part": "_",
           "quantity_kind": "node:quantity-kind/temperature",
-          "slug": "survival",
           "valued_range": {
             "max": 80,
             "min": -40,
@@ -1309,7 +1228,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
           "part": "_",
           "quantity_kind": "node:quantity-kind/temperature",
-          "slug": "intermittent",
           "valued_range": {
             "max": 60,
             "min": -25,
@@ -1321,7 +1239,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
           "part": "_",
           "quantity_kind": "node:quantity-kind/temperature",
-          "slug": "continuous",
           "valued_range": {
             "max": 45,
             "min": -20,
@@ -1354,7 +1271,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
           "part": "_",
           "quantity_kind": "node:quantity-kind/temperature",
-          "slug": "_",
           "valued_range": {
             "max": 100,
             "min": -40,
@@ -1377,17 +1293,14 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
     {
       "interface_type": "ieee80211",
       "node": "node:inverter/foxess-h3-ps10sh/wlan0",
-      "slug": "wlan0",
     },
     {
       "interface_type": "ethernet_csmacd",
       "link_speed": 100,
       "node": "node:inverter/foxess-h3-ps10sh/eth0",
-      "slug": "eth0",
     },
   ],
   "node": "node:inverter/foxess-h3-ps10sh",
-  "node_type": "node:node-type/inverter",
   "product": {
     "model": "H3-10.0-Smart",
     "node": "node:inverter/foxess-h3-ps10sh",
@@ -1419,14 +1332,14 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
       },
       {
         "end": 37620,
-        "node": "node:register-map/foxess-h3-smart/individual_read-37609",
+        "node": "node:register-map/foxess-h3-smart/individual-read-37609",
         "note": "battery + BMS telemetry (V, I, SoC, temp, cell temps/mV); unverified, not read today",
         "range_type": "individual_read",
         "start": 37609,
       },
       {
         "end": 37636,
-        "node": "node:register-map/foxess-h3-smart/individual_read-37632",
+        "node": "node:register-map/foxess-h3-smart/individual-read-37632",
         "note": "BMS energy registers (kWh remaining); unverified, not read today",
         "range_type": "individual_read",
         "start": 37632,
@@ -2141,7 +2054,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
         "unit": "kW",
       },
     ],
-    "slug": "foxess-h3-smart",
     "unit_id": 247,
     "word_order": "high_first",
   },
@@ -2151,14 +2063,12 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
       "node": "node:inverter/foxess-h3-ps10sh/modbus-tcp",
       "port": 502,
       "service_protocol": "modbus_tcp",
-      "slug": "modbus-tcp",
     },
     {
       "network_interface": "node:inverter/foxess-h3-ps10sh/eth0",
       "node": "node:inverter/foxess-h3-ps10sh/web-ui",
       "port": 443,
       "service_protocol": "https",
-      "slug": "web-ui",
     },
   ],
   "settings": [
@@ -2167,19 +2077,15 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
         {
           "node": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
           "ordinal": 1,
-          "slug": "eu-230v-50hz",
         },
         {
           "node": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
           "ordinal": 2,
-          "slug": "br-220v-60hz",
         },
       ],
       "node": "node:inverter/foxess-h3-ps10sh/grid-region",
       "required": true,
-      "slug": "grid-region",
     },
   ],
-  "slug": "foxess-h3-ps10sh",
 }
 `;

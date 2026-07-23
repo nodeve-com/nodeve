@@ -15,27 +15,23 @@ classes:
   FeatureType:
     title: Feature type
     annotations: { sql_table: feature_type }
-    slots: [ node, slug, bound_as, quantity_bindings, contents ]
+    slots: [ node, bound_as, quantity_bindings ]
 
-  # The node-type registry — the archetype layer as rows, exactly parallel to
-  # FeatureType. A new node type (dehumidifier, ac-meter) is an INSERT here
-  # plus its FeatureType rows; no table is added, no column changes. The socket
-  # contract (which feature types are required, which roles exist) lands here
-  # in a later pass — today it is still implied by the archetype's slot names.
-  NodeType:
-    title: Node type
-    annotations: { sql_table: node_type }
-    slots: [ node, slug, socket_bindings, contents ]
+  # The node-type registry — every NodeType is a row here, device archetypes
+  # (inverter, ac-meter) AND the table-less kinds (registry, organization).
+  # A new node type is an INSERT plus its Facet rows; no table is added. The
+  # Facet rows ARE the type's shape: which facet tables compose it and how.
+  NodeType: { title: Node type, annotations: { sql_table: node_type }, slots: [ node, facets ] }
 
-  # One row per node type × socket. Was implied by the projected role enums
-  # and required-ness — now the data those are GENERATED from.
-  SocketBinding:
-    title: Socket binding
+  # One row per node type × composed facet table — the type's shape AS DATA.
+  # A type that composes no exclusive table (registry, organization) has none.
+  Facet:
+    title: Facet
     annotations:
-      sql_table: socket_binding
-      # authored form: a map keyed by this slot (socket_binding: {out: …})
-      keyed_by: role
-    slots: [ node, feature_type, role, required ]
+      sql_table: facet
+      # authored form: a map keyed by the composed table (facets: {product: …})
+      keyed_by: table
+    slots: [ node, table, cardinality, required ]
 
   # The quantity master list AS ROWS — bulk-loaded from QUDT (grimoire's
   # concepts/enumeration/quantity_kind), never hand-extended. Was an enum; an
@@ -46,17 +42,7 @@ classes:
   QuantityKind:
     title: Quantity kind
     annotations: { sql_table: quantity_kind }
-    slots:
-      - node
-      - slug
-      - si_unit
-      - accumulation
-      - deprecated
-      - deprecated_in
-      - replaced_by
-      - broader
-      - refs
-      - contents
+    slots: [ node, si_unit, accumulation, deprecated, deprecated_in, replaced_by, broader, refs ]
 
   # A named closed part vocabulary AS DATA (three-phase = a/b/c, split-phase =
   # l1/l2) — the set a feature's `part_set` names and its part keys validate
@@ -64,7 +50,7 @@ classes:
   PartSet:
     title: Part set
     annotations: { sql_table: part_set }
-    slots: [ node, slug, feature_type, part_set_members, contents ]
+    slots: [ node, feature_type, part_set_members ]
 
   # One row per member, ordered — ordinal from authored order. THE part
   # ordering and the closed grammar part keys validate against; a part is never
@@ -72,7 +58,7 @@ classes:
   PartSetMember:
     title: Part set member
     annotations: { sql_table: part_set_member, keyed_by: slug }
-    slots: [ node, slug, ordinal ]
+    slots: [ node, ordinal ]
 
   # One row per feature type × quantity — the feature type's admissible set as
   # data. data2schema projects ONE enum per feature type from these rows,
@@ -97,6 +83,12 @@ slots:
     related_mappings: [ schema:category ]
     description: "which SubjectNode slot this type's feature rows land in (ac_ports, dc_ports, environments) — the authored feature: key routes here, never by class name"
     annotations: { camel: boundAs }
+  cardinality:
+    range: Cardinality
+    required: true
+    title: Cardinality
+    related_mappings: [ schema:multipleValues ]
+    description: 'single = facet shares the node id (1:1); child = facet has its own node ids (1:many)'
   deprecated:
     range: boolean
     title: Deprecated
@@ -112,19 +104,32 @@ slots:
     range: boolean
     title: Required
     exact_mappings: [ schema:valueRequired ]
-    description: 'socket binding — the node type must carry a feature row for this role'
+    description: 'facet composition — the node type must carry at least one row of this facet'
   si_unit:
     range: string
     title: SI symbol
     related_mappings: [ qudt:symbol ]
     description: 'SI unit of the kind; an interval overrides per-row via `unit`'
     annotations: { camel: siUnit }
+  table:
+    range: string
+    title: Table
+    related_mappings: [ schema:name ]
+    description: "the composed facet table's slug — a real sql_table this type's rows fan out into"
   broader:
     range: QuantityKind
     title: Broader
     exact_mappings: [ skos:broader ]
     description: 'self-FK — upstream hierarchy (active_power broader electric_power)'
     annotations: { i18n: { value: { title: { pt: Mais amplo } } } }
+  facets:
+    range: Facet
+    multivalued: true
+    inlined_as_list: true
+    title: Facets
+    related_mappings: [ schema:hasPart ]
+    description: "the facet tables this node type composes AS ROWS — each single (shares the node id) or child (own node ids)"
+    annotations: { camel: facets }
   part_set_members:
     range: PartSetMember
     multivalued: true
@@ -154,14 +159,6 @@ slots:
     exact_mappings: [ dcterms:isReplacedBy ]
     description: 'self-FK — the current kind upstream redirects to (Conductivity → ElectricConductivity)'
     annotations: { camel: replacedBy }
-  socket_bindings:
-    range: SocketBinding
-    multivalued: true
-    inlined_as_list: true
-    title: Socket bindings
-    related_mappings: [ schema:hasPart ]
-    description: "the node type's socket contract AS ROWS — which feature type fills which role. Projects to the role enums and required-ness the projected schema validates"
-    annotations: { camel: socketBindings }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
 # CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker
@@ -186,3 +183,9 @@ enums:
         meaning: ha_state_class:total_increasing
         exact_mappings: [ prometheus:counter ]
         annotations: { i18n: { value: { title: { pt: 'Cumulativo (monotónico)' } } } }
+  Cardinality:
+    title: Cardinality
+    description: how a composed facet relates to the node id — closed grammar, so an enum.
+    permissible_values:
+      single: { title: Single, description: 'shares the node id (1:1)' }
+      child: { title: Child, description: 'own node ids (1:many)' }

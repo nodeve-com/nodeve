@@ -10,7 +10,6 @@ classes:
     annotations: { sql_table: register_map }
     slots:
       - node
-      - slug
       - unit_id
       - register_type
       - word_order

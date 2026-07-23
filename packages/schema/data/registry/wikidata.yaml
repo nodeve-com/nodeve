@@ -1,3 +1,2 @@
-url: https://www.wikidata.org/
-iri_template: https://www.wikidata.org/wiki/{id}
 content: { en: { title: Wikidata }, pt: { title: Wikidata } }
+node: { url: https://www.wikidata.org/wiki/ }

@@ -1,4 +1,3 @@
-url: https://prometheus.io/docs/concepts/metric_types/
 content:
   en: { title: Prometheus / OpenMetrics metric type }
   pt: { title: Tipo de métrica Prometheus / OpenMetrics }

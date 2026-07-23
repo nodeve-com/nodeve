@@ -10,13 +10,11 @@ The most common NodeType definition may have a facet table named after them. Org
 
 ### Runtime Schema - (NodeTypes)
 
-A `node_type` (`data/node_type/<slug>.yaml`) sits _on top of_ those tables and says how one archetype assembles them: which sockets exist, which `feature_type` each takes, which is `required`. `ac-power-meter` is `{ point: { feature_type: ac-phase, required: true } }`. It refines the shared core, authored once per archetype, never a device-shaped table.
+A `node_type` (`data/node_type/<slug>.yaml`) sits _on top of_ those tables and says how one node type assembles facets. It refines the shared core, authored once per node type, never a device-shaped table.
 
 ## Why overlay instead of wider tables
 
 When a facet has the exact same ID as a SubjectNode the FK column would be the same as the ID column.
-
-A DB schema flattens to lowest-common-denominator nullability. The overlay carries the archetype shape the DB gives up.
 
 ## What runs today
 
