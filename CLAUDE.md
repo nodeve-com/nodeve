@@ -5,5 +5,6 @@
 - Prose: cut every word that isn't load-bearing. Be terse! Excess tokens fail execution.
 - Code or prose redundancy is absolute failure
 - Non-standard accretion is NOT convention, it's AI slop.
+- Verify claims before writing documents
 
 @README.md

@@ -149,8 +149,6 @@ Machine-facing, what the schema describes:
 
 The catalog is **JSON**, one giant file.
 
-`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval`. All use exactly the interval node. They add no identity segment.
-
 ## Identity
 
 Canonical interval trail:

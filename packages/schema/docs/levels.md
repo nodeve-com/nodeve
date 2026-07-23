@@ -29,7 +29,7 @@ A shared table holds every level. `DeviceType` and `FeatureType` rows also decla
 | part         | `Part`              | `slug`                   | `a`                |
 | interval     | `Interval`          | `quantity_kind` + `slug` | `voltage/running`  |
 
-`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval`. They share its `node`; none adds a path segment or identity.
+`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level.
 
 ## Validation across levels
 
@@ -55,16 +55,7 @@ One rule gets one normative source. Generated LinkML and DDL are enforcement art
 
 ## Node — addressable identity
 
-`Node` is the identity boundary. Anything another row may point to must have one row in `Node`. Anything without a node is not independently addressable.
-
-Narrow tables have two forms:
-
-| form  | identity                    | relation                                          |
-| ----- | --------------------------- | ------------------------------------------------- |
-| facet | same thing                  | shares the thing's node as its primary key        |
-| child | distinct, addressable thing | has its own node and references the parent's node |
-
-`Interval` identifies a quantity assertion. `Specification`, `Measurement`, and `ValuedRange` are facets of that assertion. They must share the interval's node; none mints another.
+`Node` is the identity boundary. Anything another row may point to must have one row in `Node`. Anything without a node is not independently addressable. Narrow tables are the facet/child split — see [facets.md](facets.md).
 
 Each localized `Content` row is a child, _projected_ from its parent's schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One parent may take more than one row, each addressable independently. Its relational shape is:
 

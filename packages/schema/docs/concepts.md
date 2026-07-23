@@ -14,7 +14,7 @@
 
 ## Enums stay native
 
-Closed vocabulary → LinkML **enum**, a slot's `range` points at it: native closed-set validation + drift protection, no projected `any_of`, no FK gate. Each permissible value carries the full facet set — **never promote an enum to data rows** for refs or translations. **Table only** when members carry a real column beyond the facet set: `quantity_kind` (`si_unit`, `accumulation`, `broader` hierarchy) qualifies; plain grammar (flow direction, severity, rating, zone, register type…) stays enum.
+Closed vocabulary → LinkML **enum**, a slot's `range` points at it: native closed-set validation + drift protection, no projected `any_of`, no FK gate. A member carries its full facet set inline ([facets.md](facets.md)), so never promote to rows for refs or translations. **Table only** when members carry a real column beyond the facet set: `quantity_kind` (`si_unit`, `accumulation`, `broader` hierarchy) qualifies; plain grammar (flow direction, severity, rating, zone, register type…) stays enum.
 
 ## Migration fixes
 
@@ -24,9 +24,6 @@ Undo the working tree's wrong turn (enum→data promotion, mappings-as-schema-ma
 
 **Revert:**
 
-- Delete `data/domain/` + `data/domain_member/`.
-- `values.yaml`: drop `Domain` class + `domain` slot; `DomainMember` → `{node, slug, ordinal, contents}`.
-- `core.yaml`: drop `domains` + `domain_members` from `Catalog`.
 - Restore enums in `shared.yaml` (`FlowDirection`, `Period`, `Zone`, `Severity`, `Rating`, `InterfaceType`, `ServiceProtocol`, `PhysicalLayer`) + `accumulation` in `taxonomy.yaml`; repoint each slot `range` off `DomainMember` (`flow_direction`, `period`, `severity`, `zone`, `rating`, `interface_type`, `service_protocol`, `physical_layer`, `accumulation`).
 - `data/quantity_kind/*.yaml`: `accumulation-instantaneous`→`instantaneous`, `accumulation-cumulative-monotonic`→`cumulative_monotonic`.
 - `check-meta.ts` → [The check](#the-check).

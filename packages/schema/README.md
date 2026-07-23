@@ -2,23 +2,18 @@
 
 Source of truth for **describing things**. [LinkML](https://linkml.io) schemas. Authored data normalized to rows; projections generate SQL DDL, validation schemas, program types, and databases. Replaces `@nodeve/grimoire`.
 
-Docs: [levels.md](docs/levels.md) (level grammar), [authoring-storage.md](docs/authoring-storage.md) (authored docs → schema-checked rows), [pipeline.md](docs/pipeline.md) (pipeline stages).
-
 ## Status
 
 Pre-1.0: break schema, data shape, and DDL freely — no deprecation, no migrations. Reshape, don't accrete.
 
-**`docs/` normative; `data/` and `gen/` not.** Rows are placeholder fixtures, often lagging or wrong; on conflict docs win — fix the rows. Never infer a rule from `data/`, never read a `gen/` artifact as intent. Hand-typed ids (`i1`, `vr-m2`) scaffold, not a scheme. `data/` holds authored input only.
+## [Facets](docs/facets.md)
 
-## Invariants
+We intend for the database schema to be flexible and able to contain any kind of Thing (NodeType). Narrow SQL tables are facets, composed to include required properties needed to define a named Thing. Singular facets share a PK with the `node` table.
 
 1. Every addressable thing → one `node` row; every pointer target has one.
-2. Facets and 1:1 extensions share the owner's `node` — no separate id space.
-3. Children own a `node`, reference the parent's.
-4. Every interval carries an authored slug; `quantity_kind` + `slug` keys it.
-5. A row that won't normalize lacks identity axes — author them, don't special-case.
-
-Answer identity questions from [levels.md](docs/levels.md) before inventing a scheme.
+2. Facets are 1:1 extensions of the `node` — no separate id space.
+3. Any many-to-one relationship requires a unique node rows.
+4. The database defines NodeType.
 
 ## Files
 
@@ -51,5 +46,8 @@ pnpm check:refs # registry iri_templates resolve? (network)
 
 ## Design
 
+- [levels.md](docs/levels.md) (identity path grammar)
+- [authoring-storage.md](docs/authoring-storage.md) (authored docs → schema-checked rows), [pipeline.md](docs/pipeline.md) (pipeline stages).
+- [overlay.md](docs/overlay.md) — device types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
 - [mapping.md](docs/mapping.md) — every grimoire construct → its LinkML landing, plus identity and PK/FK rules.
 - [open.md](docs/open.md) — known gaps and deliberate deferrals (no metaclass, overlapping backref FKs, untested registries, `code` collision risk, …).
