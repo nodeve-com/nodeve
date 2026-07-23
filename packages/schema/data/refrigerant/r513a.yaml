@@ -1,0 +1,5 @@
+safety_class: a1
+gwp: 573
+ref: { ashrae-34: { term: R-513A, match: exact } }
+content: { en: { title: R-513A } }
+blend_component: { r1234: { mass_fraction: 0.56 }, r134a: { mass_fraction: 0.44 } }

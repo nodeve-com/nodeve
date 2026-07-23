@@ -1,0 +1,10 @@
+# Moisture output as a volume flow (QUDT VolumeFlowRate); L/day is a non-SI
+# override (canonical m³/s). Partless — whole-unit rated extraction.
+feature_of_interest:
+  moisture-removal:
+    output:
+      _:
+        volume-flow-rate:
+          rated:
+            valued_range: { value: 20, unit: L/day }
+            specification: { severity: nominal }

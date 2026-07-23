@@ -3,11 +3,14 @@
 // interval-node resolver both gates and registers use.
 import { basename } from 'node:path';
 import { abs, isDir, readYaml, yamlNames, type Doc } from '../src/io.ts';
-import { classByName, fkTable, seg, SLUG } from './model.ts';
+import { classByName, expandFk, fkTable, seg, SLUG } from './model.ts';
 import type { ValueContracts } from './values.ts';
 
 export type { Doc };
 export const isMap = (v: unknown): v is Doc => !!v && typeof v === 'object' && !Array.isArray(v);
+// FK slots whose value is an IN-DOC sibling, not a global-vocab row: columns()
+// leaves them bare for siblingRefs to resolve against the device's own rows.
+const SIBLING_FK = new Set(['network_interface']);
 // function declaration, NOT an arrow const: control-flow narrowing after
 // `if (!guard) die(...)` only fires for never-returning function declarations.
 export function die(trail: string, msg: string): never {
@@ -53,7 +56,11 @@ export function columns(className: string, value: unknown, trail: string): Doc {
 	return Object.fromEntries(
 		Object.entries(value).map(([k, v]) => {
 			if (!allowed.includes(k)) die(`${trail}.${k}`, `not a ${className} slot`);
-			return [k, v];
+			// global-vocab FK slots expand a bare slug to a CURIE (product.organization,
+			// refrigeration.refrigerant); a plain scalar/enum passes through. IN-DOC
+			// sibling FKs (service_binding.network_interface → an authored NIC) stay
+			// bare — siblingRefs resolves them against the device's own rows.
+			return [k, SIBLING_FK.has(k) ? v : expandFk(k, v, `${trail}.${k}`)];
 		}),
 	);
 }
@@ -65,14 +72,9 @@ export const expandKey = (slot: string, v: string): string => {
 };
 
 /** in-doc references that resolve against SIBLING rows, not the catalog:
- * product.organization stays a bare slug; service NICs must exist above */
+ * service NICs must exist above. (FK columns like product.organization are
+ * expanded generically in columns(); only in-doc sibling links live here.) */
 export function siblingRefs(at: { slug: string; node: string }, model: Doc, doc: Doc) {
-	const product = model.product;
-	if (isMap(product) && typeof product.organization === 'string') {
-		if (!SLUG.test(product.organization))
-			die(`${at.slug}.product.organization`, 'expected a bare slug');
-		product.organization = `node:organization/${product.organization}`;
-	}
 	for (const svc of (model.service_binding as Doc[]) ?? []) {
 		const nic = svc.network_interface;
 		if (typeof nic !== 'string' || !isMap((doc.network_interface as Doc)?.[nic]))

@@ -1,0 +1,3 @@
+# Moisture removal — a dehumidifier's extraction output, rated as a water
+# volume flow (L/day nameplate; canonical m³/s).
+quantity_binding: { volume-flow-rate: {} }

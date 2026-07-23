@@ -1,0 +1,5 @@
+safety_class: a1
+formula: C3F8
+gwp: 8830
+ref: { ashrae-34: { term: R-218, match: exact }, wikidata: { term: Q412659, match: exact } }
+content: { en: { title: Octafluoropropane } }

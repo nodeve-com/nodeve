@@ -1,0 +1,4 @@
+formula: C2H2F4
+gwp: 1120
+ref: { ashrae-34: { term: R-134, match: exact } }
+content: { en: { title: '1,1,2,2-tetrafluoroethane' } }

@@ -1,0 +1,5 @@
+safety_class: b2
+formula: CH3Cl
+gwp: 13
+ref: { ashrae-34: { term: R-40, match: exact }, wikidata: { term: Q422709, match: exact } }
+content: { en: { title: Chloromethane } }

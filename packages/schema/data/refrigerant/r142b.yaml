@@ -1,0 +1,5 @@
+safety_class: a2
+formula: C2H3F2Cl
+gwp: 2310
+ref: { ashrae-34: { term: R-142b, match: exact }, wikidata: { term: Q161601, match: exact } }
+content: { en: { title: '1-chloro-1,1-difluoroethane' } }

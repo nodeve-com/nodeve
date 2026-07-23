@@ -1,0 +1,3 @@
+formula: C3H3F3Cl2
+ref: { ashrae-34: { term: R-243, match: exact } }
+content: { en: { title: Dichlorotrifluoropropane } }

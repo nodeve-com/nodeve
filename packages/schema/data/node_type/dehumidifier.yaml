@@ -1,0 +1,8 @@
+# Compressor dehumidifier — a vapor-compression appliance: an AC supply it
+# draws on, the moisture it extracts, and the refrigerant its circuit charges.
+# Pure spec, no register map (read through whatever meters its supply, not
+# directly).
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }
+  refrigeration: { cardinality: single }

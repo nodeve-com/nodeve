@@ -1,0 +1,8 @@
+safety_class: a1
+gwp: 1259
+ref: { ashrae-34: { term: R-401B, match: exact } }
+content: { en: { title: R-401B } }
+blend_component:
+  r22: { mass_fraction: 0.61 }
+  r152a: { mass_fraction: 0.11 }
+  r124a: { mass_fraction: 0.28 }

@@ -21,6 +21,8 @@ How each grimoire construct lands in the relational LinkML model. Reusable table
 | combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |
 | modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
 | settings_schema | `Setting` + `DomainMember` rows | commissioning knob; a gate FKs the setting AND the member, so a typo'd value dies at the DB FK gate |
+| refrigerant code | `Refrigerant` bulk vocab table + `Refrigeration` facet | a member set with refs/substance data → rows (typo dies at FK gate), never a schema enum. Whole ASHRAE-34 set bulk-loaded; device FKs one via a keyless 1:1 facet |
+| blend composition | `BlendComponent` rows keyed by constituent | a blend's components + mass fractions — keyed by the constituent refrigerant (self-FK), so it authors as a map and `keyedChildren` lowers it like a `ref:` block |
 | modbus decode | `Channel` + `RegisterFlag` rows | categorical sibling of `Interval` — enum-valued, no quantity_kind. Flag words are registers in the ONE map (`flag:` list, index = bit, null = unidentified); channel members mint from the labels + `empty`. Semantics on the model, wire mapping on the map |
 
 ## Identity

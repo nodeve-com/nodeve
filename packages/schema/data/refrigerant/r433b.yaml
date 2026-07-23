@@ -1,0 +1,5 @@
+safety_class: a3
+gwp: 3
+ref: { ashrae-34: { term: R-433B, match: exact } }
+content: { en: { title: R-433B } }
+blend_component: { r1270: { mass_fraction: 0.05 }, r290: { mass_fraction: 0.95 } }

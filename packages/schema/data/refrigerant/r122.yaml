@@ -1,0 +1,3 @@
+formula: C2HF2Cl3
+ref: { ashrae-34: { term: R-122, match: exact } }
+content: { en: { title: '1,1,2-trichloro-2,2-difluoroethane' } }

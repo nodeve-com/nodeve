@@ -1,0 +1,5 @@
+safety_class: a3
+formula: C3H8
+gwp: 3.3
+ref: { ashrae-34: { term: R-290, match: exact }, wikidata: { term: Q131189, match: exact } }
+content: { en: { title: Propane }, pt: { title: Propano } }

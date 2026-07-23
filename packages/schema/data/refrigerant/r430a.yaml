@@ -1,0 +1,5 @@
+safety_class: a3
+gwp: 106
+ref: { ashrae-34: { term: R-430A, match: exact } }
+content: { en: { title: R-430A } }
+blend_component: { r152a: { mass_fraction: 0.76 }, r600a: { mass_fraction: 0.24 } }

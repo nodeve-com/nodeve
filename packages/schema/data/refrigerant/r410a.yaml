@@ -1,0 +1,5 @@
+safety_class: a1
+gwp: 1924
+ref: { ashrae-34: { term: R-410A, match: exact } }
+content: { en: { title: R-410A } }
+blend_component: { r32: { mass_fraction: 0.5 }, r125: { mass_fraction: 0.5 } }

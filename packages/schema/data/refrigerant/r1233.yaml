@@ -1,0 +1,4 @@
+formula: C3H2ClF3
+gwp: 1
+ref: { ashrae-34: { term: R-1233, match: exact } }
+content: { en: { title: '''''trans''''-1-chloro-3,3,3-trifluoropropene' } }

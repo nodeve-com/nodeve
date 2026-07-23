@@ -1,0 +1,4 @@
+formula: C2F4Br2
+gwp: 1470
+ref: { ashrae-34: { term: R-114B2, match: exact } }
+content: { en: { title: Dibromotetrafluoroethane } }

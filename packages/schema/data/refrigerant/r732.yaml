@@ -1,0 +1,5 @@
+safety_class: a1
+formula: O2
+gwp: 0
+ref: { ashrae-34: { term: R-732, match: exact }, wikidata: { term: Q5203615, match: exact } }
+content: { en: { title: Oxygen } }

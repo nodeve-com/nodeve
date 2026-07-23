@@ -1,0 +1,5 @@
+safety_class: a1
+formula: CBrF3
+gwp: 6290
+ref: { ashrae-34: { term: R-13B1, match: exact }, wikidata: { term: Q413018, match: exact } }
+content: { en: { title: Bromotrifluoromethane } }

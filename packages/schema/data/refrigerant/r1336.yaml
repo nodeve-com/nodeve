@@ -1,0 +1,5 @@
+safety_class: a1
+formula: CF3CH=CHCF3(Z)
+gwp: 2
+ref: { ashrae-34: { term: R-1336, match: exact } }
+content: { en: { title: 'Cis-1,1,1,4,4,4-hexafluoro-2-butene' } }

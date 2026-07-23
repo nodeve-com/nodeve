@@ -1,0 +1,4 @@
+formula: C2H3FCl2
+gwp: 725
+ref: { ashrae-34: { term: R-141, match: exact } }
+content: { en: { title: '1,2-dichloro-1-fluoroethane' } }

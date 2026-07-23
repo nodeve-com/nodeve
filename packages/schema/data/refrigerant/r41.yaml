@@ -1,0 +1,4 @@
+formula: CH3F
+gwp: 116
+ref: { ashrae-34: { term: R-41, match: exact }, wikidata: { term: Q421738, match: exact } }
+content: { en: { title: Fluoromethane } }

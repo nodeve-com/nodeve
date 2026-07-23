@@ -1,0 +1,8 @@
+safety_class: a1
+gwp: 1425
+ref: { ashrae-34: { term: R-407E, match: exact } }
+content: { en: { title: R-407E } }
+blend_component:
+  r32: { mass_fraction: 0.25 }
+  r125: { mass_fraction: 0.15 }
+  r134a: { mass_fraction: 0.6 }

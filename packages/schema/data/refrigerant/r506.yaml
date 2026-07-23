@@ -1,0 +1,4 @@
+safety_class: b2
+ref: { ashrae-34: { term: R-506, match: exact } }
+content: { en: { title: R-506 } }
+blend_component: { r31: { mass_fraction: 0.551 }, r114a: { mass_fraction: 0.449 } }

@@ -1,0 +1,4 @@
+safety_class: a1
+formula: CF3I
+ref: { ashrae-34: { term: R-13I1, match: exact } }
+content: { en: { title: Trifluoroiodomethane } }

@@ -1,0 +1,4 @@
+formula: CHCl3
+gwp: 31
+ref: { ashrae-34: { term: R-20, match: exact } }
+content: { en: { title: Chloroform (trichloromethane) } }

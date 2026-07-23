@@ -1,0 +1,5 @@
+safety_class: a1
+formula: CCl2F2
+gwp: 10200
+ref: { ashrae-34: { term: R-12, match: exact }, wikidata: { term: Q423021, match: exact } }
+content: { en: { title: Dichlorodifluoromethane } }

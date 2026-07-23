@@ -1,0 +1,8 @@
+safety_class: a1
+gwp: 2742
+ref: { ashrae-34: { term: R-417B, match: exact } }
+content: { en: { title: R-417B } }
+blend_component:
+  r125: { mass_fraction: 0.79 }
+  r134a: { mass_fraction: 0.183 }
+  r600a: { mass_fraction: 0.027000000000000003 }

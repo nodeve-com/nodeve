@@ -1,0 +1,5 @@
+safety_class: b2l
+formula: NH3
+gwp: 0
+ref: { ashrae-34: { term: R-717, match: exact }, wikidata: { term: Q4087, match: exact } }
+content: { en: { title: Ammonia } }

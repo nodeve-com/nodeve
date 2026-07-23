@@ -1,0 +1,5 @@
+safety_class: a1
+formula: N2O
+gwp: 265
+ref: { ashrae-34: { term: R-744A, match: exact }, wikidata: { term: Q905750, match: exact } }
+content: { en: { title: Nitrous oxide } }

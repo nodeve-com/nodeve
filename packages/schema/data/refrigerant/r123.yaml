@@ -1,0 +1,5 @@
+safety_class: b1
+formula: C2HF3Cl2
+gwp: 79
+ref: { ashrae-34: { term: R-123, match: exact }, wikidata: { term: Q1869625, match: exact } }
+content: { en: { title: '2,2-dichloro-1,1,1-trifluoroethane' } }

@@ -1,0 +1,3 @@
+formula: C3H5F2Cl
+ref: { ashrae-34: { term: R-262, match: exact } }
+content: { en: { title: Chlorodifluoropropane } }

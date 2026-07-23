@@ -1,0 +1,85 @@
+id: https://nodeve.com/schema/lib/refrigerant
+name: refrigerant
+default_prefix: nodeve
+default_range: string
+classes:
+  # The refrigerant master list AS ROWS — bulk-loaded from ASHRAE-34 (grimoire's
+  # concepts/enumeration/refrigerant), never hand-extended. A vocabulary, not a
+  # closed grammar: each member carries refs (ASHRAE-34, wikidata) and substance
+  # facts (safety class, formula, GWP) as DATA, so it is rows and every citation
+  # an FK — a typo'd code dies at the FK gate, exactly like QuantityKind.
+  # A blend also carries its component fractions (BlendComponent rows).
+  Refrigerant:
+    title: Refrigerant
+    annotations: { sql_table: refrigerant }
+    description: A refrigerant designation (ASHRAE-34) — the working fluid a vapor-compression circuit charges, with its safety class, formula, and GWP. A blend also lists its component fractions.
+    slots: [ node, safety_class, formula, gwp, composition, refs ]
+
+  # One constituent of a blend — the component refrigerant plus its mass
+  # fraction. Keyed by the constituent (a blend never lists the same one twice),
+  # so it authors as a map and the flat normalizer's keyedChildren lowers it with
+  # zero code, exactly like a `ref:` block. Pure refrigerants carry none.
+  BlendComponent:
+    title: Blend component
+    annotations: { sql_table: blend_component, keyed_by: refrigerant }
+    description: One constituent of a refrigerant blend — a component refrigerant and its mass fraction. Ordered by authored position.
+    slots: [ node, refrigerant, mass_fraction, ordinal ]
+
+  # Refrigeration facet — the working-fluid block of a vapor-compression
+  # appliance. A keyless 1:1 co-row sharing the node id (like Product), one per
+  # node: an appliance charges one refrigerant.
+  Refrigeration:
+    title: Refrigeration
+    annotations: { sql_table: refrigeration }
+    description: Vapor-compression facet — which refrigerant the appliance's circuit charges. One row per node.
+    slots: [ node, refrigerant ]
+slots:
+  formula:
+    range: string
+    title: Chemical formula
+    exact_mappings: [ wikidata:P274 ]
+    description: 'molecular formula of a pure refrigerant (C3H8); absent for a blend'
+  gwp:
+    range: float
+    title: GWP
+    related_mappings: [ wikidata:Q901028 ]
+    description: '100-year global warming potential, CO₂ = 1'
+  mass_fraction:
+    range: float
+    title: Mass fraction
+    exact_mappings: [ wikidata:Q186434 ]
+    description: 'the constituent''s share of the blend by mass, 0…1'
+    annotations: { camel: massFraction }
+  safety_class:
+    range: SafetyClass
+    title: Safety class
+    related_mappings: [ wikidata:Q131189 ]
+    description: 'ASHRAE-34 safety group — toxicity (A/B) and flammability (1/2/2L/3)'
+    annotations: { camel: safetyClass }
+  composition:
+    range: BlendComponent
+    multivalued: true
+    inlined_as_list: true
+    title: Composition
+    related_mappings: [ wikidata:Q79529 ]
+    description: 'the blend''s constituents and their mass fractions — one BlendComponent row each; empty for a pure refrigerant'
+  refrigerant:
+    range: Refrigerant
+    title: Refrigerant
+    related_mappings: [ wikidata:Q177602 ]
+    description: 'FK — the refrigerant this circuit charges'
+    annotations: { i18n: { value: { title: { pt: Refrigerante } } } }
+
+enums:
+  SafetyClass:
+    title: Safety class
+    description: ASHRAE Standard 34 refrigerant safety group — toxicity letter × flammability rank; a closed grammar, so an enum.
+    permissible_values:
+      a1: { title: A1, description: 'lower toxicity, no flame propagation' }
+      a2l: { title: A2L, description: 'lower toxicity, lower flammability' }
+      a2: { title: A2, description: 'lower toxicity, flammable' }
+      a3: { title: A3, description: 'lower toxicity, higher flammability' }
+      b1: { title: B1, description: 'higher toxicity, no flame propagation' }
+      b2l: { title: B2L, description: 'higher toxicity, lower flammability' }
+      b2: { title: B2, description: 'higher toxicity, flammable' }
+      b3: { title: B3, description: 'higher toxicity, higher flammability' }

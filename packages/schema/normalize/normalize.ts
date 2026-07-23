@@ -9,19 +9,9 @@
 // source trail until serialization.
 import { basename, dirname } from 'node:path';
 import { readYaml } from '../src/io.ts';
-import { classByName, classByTable, fkTable, ownerSlotFor, seg, SLUG } from './model.ts';
+import { classByName, classByTable, expandFk as expand, ownerSlotFor, seg, SLUG } from './model.ts';
 
 export type Row = Record<string, unknown> & { $trail: string; $slot?: string };
-
-/** authored FK values are bare slugs; a slot ranging a table-backed class
- * expands them to CURIEs (broader: linear-velocity → node:quantity-kind/…) */
-function expand(slot: string, value: unknown, trail: string): unknown {
-	const table = fkTable(slot);
-	if (!table) return value;
-	if (typeof value !== 'string' || !SLUG.test(value))
-		throw new Error(`${trail}: expected a bare ${table} slug`);
-	return `node:${seg(table)}/${value}`;
-}
 
 // node-level attributes (url) are authored under a `node:` block and merged onto
 // the minted node row — NOT a facet column. permalink/code/node_type/slug are

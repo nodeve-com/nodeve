@@ -1,0 +1,14 @@
+# The single-phase AC supply the unit draws on — accepted voltage plus its
+# running and datasheet-peak draw (active_power). Combined (partless): a
+# single-phase connection, no per-leg split.
+feature_of_interest:
+  ac-phase:
+    supply:
+      _:
+        voltage:
+          # 220–240 V single phase; sole option
+          nominal: { valued_range: { value: 230 }, specification: { severity: nominal } }
+        active-power:
+          running: { valued_range: { value: 265 }, specification: { severity: nominal } }
+          # datasheet peak draw (W; canonical, no unit override)
+          survival: { valued_range: { max: 440 }, specification: { rating: survival } }

@@ -1,0 +1,5 @@
+safety_class: a2
+gwp: 544
+ref: { ashrae-34: { term: R-415B, match: exact } }
+content: { en: { title: R-415B } }
+blend_component: { r22: { mass_fraction: 0.25 }, r152a: { mass_fraction: 0.75 } }

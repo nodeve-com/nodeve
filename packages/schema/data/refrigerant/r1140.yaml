@@ -1,0 +1,4 @@
+safety_class: b3
+formula: C2H3Cl
+ref: { ashrae-34: { term: R-1140, match: exact } }
+content: { en: { title: Chloroethylene (vinyl chloride) } }

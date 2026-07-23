@@ -78,6 +78,17 @@ export const fkTable = (slot: string): string | undefined => {
 	return range ? classByName[range]?.annotations?.sql_table : undefined;
 };
 
+/** authored FK values are bare slugs; a slot ranging a table-backed class
+ * expands them to CURIEs (broader: linear-velocity → node:quantity-kind/…,
+ * refrigerant: r290 → node:refrigerant/r290). A non-FK slot passes through. */
+export function expandFk(slot: string, value: unknown, trail: string): unknown {
+	const table = fkTable(slot);
+	if (!table) return value;
+	if (typeof value !== 'string' || !SLUG.test(value))
+		throw new Error(`${trail}: expected a bare ${table} slug`);
+	return `node:${seg(table)}/${value}`;
+}
+
 // the slug grammar comes off the slug SLOT — the schema owns it, never a TS copy
 const slugPattern = slotByName.slug?.pattern;
 if (!slugPattern) throw new Error('nodeve schema: slug slot has no pattern');

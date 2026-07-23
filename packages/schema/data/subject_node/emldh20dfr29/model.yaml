@@ -1,0 +1,18 @@
+# Emelson EMLDH20DFR29 compressor dehumidifier — pure datasheet spec, no
+# register map (read through whatever meters its AC supply, not directly).
+# Ported from grimoire/concepts/catalog/emelson/dehumidifier/emldh20dfr29.yaml.
+# Filename is the slug. Deployment facts — a unit's fitted draw bands, the
+# chosen hygrostat setpoints — are SITE data, not here.
+node_type: dehumidifier
+
+product: { model: EMLDH20DFR29, organization: emelson }
+
+# Vapor-compression circuit — working gas only. r290 = Propane (A3, GWP ~3).
+refrigeration: { refrigerant: r290 }
+
+content:
+  en:
+    title: Emelson EMLDH20DFR29
+    lede: Compressor dehumidifier
+    body: >
+      Emelson EMLDH20DFR29 — R290 compressor dehumidifier. Its datasheet gives a rated water extraction (moisture-removal output, as a volume flow) and the single-phase AC supply it draws on: accepted voltage plus rated running and datasheet peak draw.

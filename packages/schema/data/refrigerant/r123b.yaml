@@ -1,0 +1,4 @@
+formula: C2HF3Cl2
+gwp: 77
+ref: { ashrae-34: { term: R-123b, match: exact } }
+content: { en: { title: '1,1-dichloro-1,2,2-trifluoroethane' } }

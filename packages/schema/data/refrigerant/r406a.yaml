@@ -1,0 +1,8 @@
+safety_class: a2
+gwp: 1915
+ref: { ashrae-34: { term: R-406A, match: exact } }
+content: { en: { title: R-406A } }
+blend_component:
+  r22: { mass_fraction: 0.55 }
+  r600a: { mass_fraction: 0.04 }
+  r142b: { mass_fraction: 0.41 }

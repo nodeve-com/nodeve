@@ -52,6 +52,7 @@ imports:
   - values
   - product
   - physical
+  - refrigerant
   - network
   - modbus
 
@@ -78,6 +79,7 @@ classes:
       organizations: { range: Organization, multivalued: true, inlined_as_list: true }
       part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
+      refrigerants: { range: Refrigerant, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
       node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
       # device facets — each a top-level row-set, tied to its device node by the
@@ -86,6 +88,7 @@ classes:
       register_maps: { range: RegisterMap, multivalued: true, inlined_as_list: true }
       products: { range: Product, multivalued: true, inlined_as_list: true }
       physicals: { range: Physical, multivalued: true, inlined_as_list: true }
+      refrigerations: { range: Refrigeration, multivalued: true, inlined_as_list: true }
       feature_of_interests: { range: FeatureOfInterest, multivalued: true, inlined_as_list: true }
       settings: { range: Setting, multivalued: true, inlined_as_list: true }
       channels: { range: Channel, multivalued: true, inlined_as_list: true }

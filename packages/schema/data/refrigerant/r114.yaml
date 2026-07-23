@@ -1,0 +1,5 @@
+safety_class: a1
+formula: C2F4Cl2
+gwp: 8590
+ref: { ashrae-34: { term: R-114, match: exact }, wikidata: { term: Q420380, match: exact } }
+content: { en: { title: '1,2-dichlorotetrafluoroethane' } }

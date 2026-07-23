@@ -1,0 +1,5 @@
+safety_class: a3
+formula: C5H12
+gwp: 4
+ref: { ashrae-34: { term: R-601, match: exact }, wikidata: { term: Q150429, match: exact } }
+content: { en: { title: Pentane } }

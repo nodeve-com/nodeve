@@ -1,0 +1,5 @@
+safety_class: a1
+formula: Kr
+gwp: 0
+ref: { ashrae-34: { term: R-784, match: exact } }
+content: { en: { title: Krypton } }

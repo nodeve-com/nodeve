@@ -1,0 +1,5 @@
+safety_class: a1
+formula: CO2
+gwp: 1
+ref: { ashrae-34: { term: R-744, match: exact }, wikidata: { term: Q1997, match: exact } }
+content: { en: { title: Carbon dioxide } }

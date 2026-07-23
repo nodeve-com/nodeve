@@ -1,0 +1,8 @@
+safety_class: a2
+gwp: 1693
+ref: { ashrae-34: { term: R-418A, match: exact } }
+content: { en: { title: R-418A } }
+blend_component:
+  r290: { mass_fraction: 0.015 }
+  r22: { mass_fraction: 0.96 }
+  r152a: { mass_fraction: 0.025 }

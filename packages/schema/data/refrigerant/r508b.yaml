@@ -1,0 +1,5 @@
+safety_class: a1
+gwp: 12292
+ref: { ashrae-34: { term: R-508B, match: exact } }
+content: { en: { title: R-508B } }
+blend_component: { r23: { mass_fraction: 0.46 }, r116: { mass_fraction: 0.54 } }

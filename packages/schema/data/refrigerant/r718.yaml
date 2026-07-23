@@ -1,0 +1,5 @@
+safety_class: a1
+formula: H2O
+gwp: 0.2
+ref: { ashrae-34: { term: R-718, match: exact }, wikidata: { term: Q283, match: exact } }
+content: { en: { title: Water/steam } }

@@ -1,0 +1,5 @@
+safety_class: a1
+gwp: 13299
+ref: { ashrae-34: { term: R-503, match: exact } }
+content: { en: { title: R-503 } }
+blend_component: { r23: { mass_fraction: 0.401 }, r13: { mass_fraction: 0.599 } }

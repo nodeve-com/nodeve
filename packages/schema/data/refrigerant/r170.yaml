@@ -1,0 +1,5 @@
+safety_class: a3
+formula: C2H6
+gwp: 5.5
+ref: { ashrae-34: { term: R-170, match: exact }, wikidata: { term: Q52858, match: exact } }
+content: { en: { title: Ethane } }
