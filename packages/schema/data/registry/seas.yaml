@@ -2,3 +2,4 @@ content:
   en: { title: SEAS ontology (Smart Energy Aware Systems) }
   pt: { title: Ontologia SEAS (Sistemas Inteligentes Conscientes de Energia) }
 node: { url: https://w3id.org/seas/ }
+publisher: w3c

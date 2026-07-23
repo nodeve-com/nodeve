@@ -39,7 +39,11 @@ classes:
       node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
       subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
       node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }
-  Registry: { title: Registry, annotations: { sql_table: registry }, slots: [ node ] }
+  Registry:
+    title: Registry
+    annotations: { sql_table: registry }
+    slots: [ node, publisher ]
+    slot_usage: { publisher: { required: true } }
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
@@ -158,6 +162,12 @@ slots:
     title: Predicate
     exact_mappings: [ rdf:predicate ]
     description: 'FK — the node naming the relation'
+  publisher:
+    range: Organization
+    title: Publisher
+    slot_uri: schema:publisher
+    description: 'FK — the organization that publishes this registry'
+    annotations: { i18n: { value: { title: { pt: Editora } } } }
   registry:
     range: Registry
     required: true

@@ -2,3 +2,4 @@ content:
   en: { title: SAREF4GRID (ETSI SAREF smart-grid extension) }
   pt: { title: SAREF4GRID (extensão de rede inteligente ETSI SAREF) }
 node: { url: https://saref.etsi.org/saref4grid/ }
+publisher: etsi

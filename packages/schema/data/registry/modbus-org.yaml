@@ -1,1 +1,2 @@
-{ content: { en: { title: Modbus Organization }, pt: { title: Modbus Organization } } }
+content: { en: { title: Modbus Organization }, pt: { title: Modbus Organization } }
+publisher: modbus-organization

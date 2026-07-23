@@ -2,3 +2,4 @@ content:
   en: { title: "W3C SOSA ontology (Sensor, Observation, Sample, Actuator)" }
   pt: { title: "Ontologia W3C SOSA (Sensor, Observation, Sample, Actuator)" }
 node: { url: http://www.w3.org/ns/sosa/ }
+publisher: w3c

@@ -1,2 +1,3 @@
 content: { en: { title: Wikidata }, pt: { title: Wikidata } }
 node: { url: https://www.wikidata.org/wiki/ }
+publisher: wikimedia

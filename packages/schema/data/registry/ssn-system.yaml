@@ -3,3 +3,4 @@ content:
   pt:
     title: Módulo de sistemas da W3C SSN (capacidades de sistema, faixas operacional e de sobrevivência)
 node: { url: http://www.w3.org/ns/ssn/systems/ }
+publisher: w3c

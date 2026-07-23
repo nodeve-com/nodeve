@@ -2,3 +2,4 @@ content:
   en: { title: W3C SKOS (Simple Knowledge Organization System) }
   pt: { title: W3C SKOS (Sistema Simples de Organização do Conhecimento) }
 node: { url: http://www.w3.org/2004/02/skos/core# }
+publisher: w3c

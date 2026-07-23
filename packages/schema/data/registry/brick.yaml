@@ -2,3 +2,4 @@ content:
   en: { title: Brick Schema (building/energy equipment ontology) }
   pt: { title: Brick Schema (ontologia de equipamentos de edifícios/energia) }
 node: { url: https://brickschema.org/schema/Brick# }
+publisher: brickschema

@@ -1,3 +1,4 @@
 content:
   en: { title: Home Assistant sensor state_class }
   pt: { title: state_class de sensor do Home Assistant }
+publisher: home-assistant

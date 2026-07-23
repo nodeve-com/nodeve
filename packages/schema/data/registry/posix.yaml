@@ -1,1 +1,2 @@
-{ content: { en: { title: POSIX (IEEE Std 1003.1) }, pt: { title: POSIX (IEEE Std 1003.1) } } }
+content: { en: { title: POSIX (IEEE Std 1003.1) }, pt: { title: POSIX (IEEE Std 1003.1) } }
+publisher: open-group

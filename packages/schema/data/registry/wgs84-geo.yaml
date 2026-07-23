@@ -2,3 +2,4 @@ content:
   en: { title: W3C Basic Geo (WGS84 lat/long) vocabulary }
   pt: { title: Vocabulário W3C Basic Geo (WGS84 lat/long) }
 node: { url: http://www.w3.org/2003/01/geo/wgs84_pos# }
+publisher: w3c

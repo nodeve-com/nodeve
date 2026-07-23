@@ -1,2 +1,3 @@
 content: { en: { title: QUDT QuantityKind }, pt: { title: QUDT QuantityKind } }
 node: { url: https://qudt.org/vocab/quantitykind/ }
+publisher: qudt
