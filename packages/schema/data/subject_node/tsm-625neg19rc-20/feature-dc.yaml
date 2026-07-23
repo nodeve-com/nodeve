@@ -1,0 +1,40 @@
+feature_of_interest:
+  dc-port:
+    # Single DC output; the datasheet gives combined (whole-panel) values only.
+    # STC bands are bare; bifacial rear-gain bands gate on a test_condition.
+    output:
+      _:
+        voltage:
+          mpp: { valued_range: { value: 40.46 }, specification: { zone: mpp } } # Vmp
+          open-circuit:
+            valued_range: { value: 48.7 }
+            specification: { zone: open_circuit }
+            # Voc
+        electric-current:
+          mpp: { valued_range: { value: 15.45 }, specification: { zone: mpp } } # Imp (STC)
+          short-circuit:
+            valued_range: { value: 16.32 }
+            specification: { zone: short_circuit }
+            # Isc (STC)
+          mpp-bnpi:
+            # Imp at BNPI (rear 135 W/m²)
+            valued_range: { value: 17.12 }
+            specification: { zone: mpp, conditions: [ { test_condition: bnpi } ] }
+          short-circuit-bnpi:
+            # Isc at BNPI (rear 135 W/m²)
+            valued_range: { value: 18.08 }
+            specification: { zone: short_circuit, conditions: [ { test_condition: bnpi } ] }
+          short-circuit-bsi:
+            # Isc at BSI (rear 300 W/m²) — worst case
+            valued_range: { value: 20.24 }
+            specification: { zone: short_circuit, conditions: [ { test_condition: bsi } ] }
+          fuse:
+            valued_range: { max: 35 }
+            specification: { rating: protection_required }
+            # max series fuse (A)
+        active-power:
+          mpp: { valued_range: { value: 625 }, specification: { zone: mpp } } # Pmax (STC)
+          mpp-bnpi:
+            # Pmax at BNPI (rear 135 W/m²)
+            valued_range: { value: 692 }
+            specification: { zone: mpp, conditions: [ { test_condition: bnpi } ] }

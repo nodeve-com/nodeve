@@ -1,0 +1,13 @@
+feature_of_interest:
+  dc-port:
+    # Single DC output; the datasheet gives combined (whole-panel) values only.
+    output:
+      _:
+        voltage:
+          mpp: { valued_range: { value: 40.46 }, specification: { zone: mpp } } # Vmp
+          open-circuit:
+            valued_range: { value: 48.7 }
+            specification: { zone: open_circuit }
+            # Voc
+        active-power:
+          mpp: { valued_range: { value: 625 }, specification: { zone: mpp } } # Pmax at STC

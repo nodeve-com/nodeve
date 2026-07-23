@@ -66,7 +66,7 @@ classes:
     annotations: { sql_table: condition }
     description: >-
       One condition a specification holds under — either a commissioning-setting equality or a pointer at another interval (the derate anchor). All values are FKs assembled from authored coordinates; a typo dies at the database's FK gate.
-    slots: [ node, setting, equals, interval ]
+    slots: [ node, setting, equals, interval, test_condition ]
 
   FeatureOfInterest:
     title: Feature of interest
@@ -195,6 +195,12 @@ slots:
     title: Specifications
     close_mappings: [ cim:OperationalLimitType ]
     description: "specification width-extension rows — each shares its interval's node"
+  test_condition:
+    range: TestCondition
+    title: Test condition
+    related_mappings: [ 'vim:2.7' ]
+    description: 'datasheet condition axis — the band applies only when measured under this test condition (bifacial rear-irradiance gains); a plain enum value, not an FK'
+    annotations: { camel: testCondition }
   trigger_on:
     range: TriggerOn
     title: Trigger on

@@ -1,0 +1,12 @@
+# DMEGC TWMNH-66HD640 PV module — pure datasheet spec, no register map.
+# Ported from grimoire/concepts/catalog/dmegc/twmnh-66hd640.yaml. Filename is the slug.
+node_type: pv-module
+
+product: { model: TWMNH-66HD640, organization: dmegc }
+
+content:
+  en:
+    title: DMEGC TWMNH-66HD640
+    lede: Monocrystalline PV module
+    body: >
+      DMEGC TWMNH-66HD640 photovoltaic module — one catalog entry, spec only (no register map: a panel is read through whatever it feeds, not directly). Its DC output carries the datasheet nameplate: Vmp/Voc at the maximum-power and open-circuit zones, and Pmax at the maximum-power point (values at STC).

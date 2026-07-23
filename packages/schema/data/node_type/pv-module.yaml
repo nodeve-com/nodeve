@@ -1,0 +1,5 @@
+# PV module (solar panel) — pure spec, no register map. One DC output feature.
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }
+  physical: { cardinality: single }

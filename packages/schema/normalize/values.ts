@@ -76,18 +76,23 @@ export class ValueContracts {
 	gate(at: { node: string; trail: string }, ref: unknown): Doc {
 		if (!isMap(ref)) die(at.trail, 'expected a condition map');
 		const gate: Doc = { node: at.node };
+		// Only the FK-path forms need code: they assemble a node path from
+		// decomposed coordinates, which the schema can't express. Every other
+		// authored key is a plain Condition column — routed through columns(),
+		// validated against the class's slots. A new scalar axis needs NO branch.
 		if ('setting' in ref) {
 			const { setting, equals, ...rest } = ref;
-			if (Object.keys(rest).length) die(at.trail, `unexpected keys ${Object.keys(rest)}`);
 			gate.setting = `${this.node}/${setting}`;
 			gate.equals = `${gate.setting}/${equals}`;
-		} else {
+			return Object.assign(gate, columns('Condition', rest, at.trail));
+		}
+		if ('feature' in ref) {
 			const { feature, part, quantity, interval, ...rest } = ref;
-			if (Object.keys(rest).length) die(at.trail, `unexpected keys ${Object.keys(rest)}`);
 			if (!isMap(feature)) die(at.trail, 'feature must be { type, role }');
 			gate.interval = `${this.node}/${feature.type}/${feature.role}/${part ?? '_'}/${quantity}/${interval}`;
+			return Object.assign(gate, columns('Condition', rest, at.trail));
 		}
-		return gate;
+		return Object.assign(gate, columns('Condition', ref, at.trail));
 	}
 
 	/** members accrete while registers lower — the empty member joins last */

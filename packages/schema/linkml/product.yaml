@@ -16,6 +16,15 @@ classes:
     slots: [ node, model, series, organization ]
     slot_usage: { organization: { required: true } }
 
+  # Mechanical facet — the datasheet's physical block. A keyless 1:1 co-row on
+  # the node (like Product), NOT a feature/interval: dimensions are fixed body
+  # facts, not measurands with operating bands.
+  Physical:
+    title: Physical
+    annotations: { sql_table: physical }
+    description: Mechanical dimensions and mass of the physical body — datasheet nameplate, one row per node.
+    slots: [ node, width, height, thickness, mass ]
+
   # ── device layer: ONE table ──
   # Rows are MODELS (organization + model number); node_type says which kind
   # of device the model is. NO type-specific class lives here — that is the
@@ -41,14 +50,35 @@ classes:
       - ac_ports
       - dc_ports
       - environments
+      - physical
     slot_usage: { product: { required: true } }
 slots:
+  height:
+    range: float
+    title: Height
+    exact_mappings: [ schema:height ]
+    description: 'body height, millimetres'
+  mass:
+    range: float
+    title: Mass
+    exact_mappings: [ schema:weight ]
+    description: 'body mass, kilograms'
   model:
     title: Model
     exact_mappings: [ schema:model ]
     description: 'what the thing is called — the model designation on the nameplate'
     annotations: { i18n: { value: { title: { pt: Modelo } } } }
   series: { title: Series, related_mappings: [ schema:ProductGroup ] }
+  thickness:
+    range: float
+    title: Thickness
+    related_mappings: [ schema:depth ]
+    description: 'body thickness/depth, millimetres'
+  width:
+    range: float
+    title: Width
+    exact_mappings: [ schema:width ]
+    description: 'body width, millimetres'
   ac_ports:
     range: FeatureOfInterest
     multivalued: true
@@ -91,6 +121,11 @@ slots:
     exact_mappings: [ schema:manufacturer ]
     description: 'FK — the organization that made this thing'
     annotations: { i18n: { value: { title: { pt: Organização } } } }
+  physical:
+    range: Physical
+    inlined: true
+    title: Physical
+    related_mappings: [ schema:depth ]
   product: { range: Product, inlined: true, title: Product, exact_mappings: [ schema:Product ] }
   register_map:
     range: RegisterMap

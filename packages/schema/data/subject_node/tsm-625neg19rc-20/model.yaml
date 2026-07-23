@@ -1,0 +1,19 @@
+# Trinasolar Vertex N TSM-625NEG19RC.20 — bifacial PV module, datasheet spec only.
+# Ported from grimoire/concepts/catalog/trina/tsm-625neg19rc-20.yaml. Filename is the slug.
+node_type: pv-module
+
+product: { model: TSM-625NEG19RC.20, organization: trina }
+
+# Mechanical block, datasheet values (mm; mass kg). Inch/lb figures are unit
+# conversions, not stored.
+physical: { width: 1134, height: 2382, thickness: 30, mass: 33.0 }
+
+content:
+  en:
+    title: Vertex N
+    lede: N-Type i-TOPCon Bifacial dual glass monocrystalline module
+    body: >
+      Trinasolar Vertex N BIFACIAL panel — datasheet, per panel. How the array is wired and oriented lives in the solar-array SITE config, which references this entry by its slug. Temp coefficients left out rather than fabricated (not on this sheet).
+
+
+      The DC output's nameplate ratings are intervals tagged with the I-V-curve point they characterise (`zone:` — a named region). Bare bands are the implicit STC reference (front 1000 W/m², AM1.5G, 25 °C). Being bifacial, the sheet also states rear-gain bands at BNPI (rear 135 W/m²) and BSI (rear 300 W/m²) — those carry a `test_condition` condition; the measured value stays in the band. Identical-across-conditions bands (Vmp/Voc are the same at STC and BNPI) are stated ONCE, at STC — no redundant gated duplicate.
