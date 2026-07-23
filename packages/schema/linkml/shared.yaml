@@ -107,16 +107,16 @@ enums:
       daily:
         title: Daily
         meaning: cim:MacroPeriodKind.daily
-        close_mappings: [ iso_8601:P1D ]
+        close_mappings: [ iso-8601:P1D ]
         annotations: { i18n: { value: { title: { pt: Diário } } } }
       monthly:
         title: Monthly
         meaning: cim:MacroPeriodKind.monthly
-        close_mappings: [ iso_8601:P1M ]
+        close_mappings: [ iso-8601:P1M ]
         annotations: { i18n: { value: { title: { pt: Mensal } } } }
       yearly:
         title: Yearly
-        close_mappings: [ iso_8601:P1Y ]
+        close_mappings: [ iso-8601:P1Y ]
         annotations: { i18n: { value: { title: { pt: Anual } } } }
       lifetime:
         title: Lifetime

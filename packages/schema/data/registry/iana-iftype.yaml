@@ -2,3 +2,4 @@ content:
   en: { title: IANA Interface Types (IANAifType-MIB) }
   pt: { title: Tipos de Interface IANA (IANAifType-MIB) }
 publisher: iana
+node: { url: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib }

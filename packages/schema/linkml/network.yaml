@@ -52,52 +52,52 @@ enums:
     permissible_values:
       async_serial:
         title: Asynchronous serial port
-        meaning: iana_iftype:rs232
+        meaning: iana-iftype:rs232
         annotations: { i18n: { value: { title: { pt: Porta serial assíncrona } } } }
       can:
         title: CAN bus
-        meaning: iso_11898:11898-1
+        meaning: iso-11898:11898-1
         annotations: { i18n: { value: { title: { pt: Barramento CAN } } } }
       ethernet_csmacd:
         title: Ethernet
-        meaning: iana_iftype:ethernetCsmacd
+        meaning: iana-iftype:ethernetCsmacd
         annotations: { i18n: { value: { title: { pt: Ethernet } } } }
       ieee80211:
         title: WiFi
-        meaning: iana_iftype:ieee80211
+        meaning: iana-iftype:ieee80211
         annotations: { i18n: { value: { title: { pt: WiFi } } } }
       usb:
         title: USB
-        meaning: iana_iftype:usb
+        meaning: iana-iftype:usb
         annotations: { i18n: { value: { title: { pt: USB } } } }
   ServiceProtocol:
     title: Service protocol
     permissible_values:
       http:
         title: HTTP
-        meaning: iana_uri_scheme:http
+        meaning: iana-uri-scheme:http
         annotations: { i18n: { value: { title: { pt: HTTP } } } }
       https:
         title: HTTPS
-        meaning: iana_uri_scheme:https
+        meaning: iana-uri-scheme:https
         annotations: { i18n: { value: { title: { pt: HTTPS } } } }
       ws:
         title: WebSocket
-        meaning: iana_uri_scheme:ws
+        meaning: iana-uri-scheme:ws
         annotations: { i18n: { value: { title: { pt: WebSocket } } } }
       wss:
         title: WebSocket (TLS)
-        meaning: iana_uri_scheme:wss
+        meaning: iana-uri-scheme:wss
         annotations: { i18n: { value: { title: { pt: WebSocket (TLS) } } } }
       mqtt:
         title: MQTT
-        meaning: iana_uri_scheme:mqtt
+        meaning: iana-uri-scheme:mqtt
         annotations: { i18n: { value: { title: { pt: MQTT } } } }
       mqtts:
         title: MQTT (TLS)
-        meaning: iana_uri_scheme:mqtts
+        meaning: iana-uri-scheme:mqtts
         annotations: { i18n: { value: { title: { pt: MQTT (TLS) } } } }
       modbus_tcp:
         title: Modbus TCP
-        meaning: modbus_org:Modbus-TCP
+        meaning: modbus-org:Modbus-TCP
         annotations: { i18n: { value: { title: { pt: Modbus TCP } } } }

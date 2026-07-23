@@ -114,7 +114,7 @@ slots:
   register_type:
     range: RegisterType
     title: Register type
-    narrow_mappings: [ modbus_org:HoldingRegister, modbus_org:InputRegister ]
+    narrow_mappings: [ modbus-org:HoldingRegister, modbus-org:InputRegister ]
     description: 'which Modbus register space a read targets — holding = function 03, input = function 04'
     annotations: { camel: registerType }
   scale:
@@ -173,7 +173,7 @@ slots:
     range: Interval
     title: Interval
     description: "FK — the interval row this points at: a register's read target (a `*`-part interval resolves per-instance via the register's own part) or a condition's anchoring band"
-    close_mappings: [ 'ssn_system:Condition' ]
+    close_mappings: [ 'ssn-system:Condition' ]
   member:
     range: DomainMember
     title: Member
@@ -211,36 +211,36 @@ enums:
     permissible_values:
       rs232:
         title: RS-232
-        meaning: tia_standard:232-F
+        meaning: tia-standard:232-F
         annotations: { i18n: { value: { title: { pt: RS-232 } } } }
       rs485:
         title: RS-485
-        meaning: tia_standard:485-A
+        meaning: tia-standard:485-A
         annotations: { i18n: { value: { title: { pt: RS-485 } } } }
       rs422:
         title: RS-422
-        meaning: tia_standard:422-B
+        meaning: tia-standard:422-B
         annotations: { i18n: { value: { title: { pt: RS-422 } } } }
       ttl_3v3:
         title: 3.3 V LVTTL serial (logic-level UART)
-        meaning: jedec_standard:JESD8C.01
+        meaning: jedec-standard:JESD8C.01
         annotations:
           i18n: { value: { title: { pt: 'Serial LVTTL 3,3 V (UART em nível lógico)' } } }
       ttl_5v:
         title: 5 V TTL serial (logic-level UART)
-        meaning: jedec_standard:JESD8
+        meaning: jedec-standard:JESD8
         annotations: { i18n: { value: { title: { pt: Serial TTL 5 V (UART em nível lógico) } } } }
       can_hs:
         title: CAN high-speed (differential)
-        meaning: iso_11898:11898-2
+        meaning: iso-11898:11898-2
         annotations: { i18n: { value: { title: { pt: CAN alta velocidade (diferencial) } } } }
       current_loop_4_20ma:
         title: 4-20 mA current loop
-        meaning: iec_60381:60381-1
+        meaning: iec-60381:60381-1
         annotations: { i18n: { value: { title: { pt: Laço de corrente 4-20 mA } } } }
       voltage_0_10v:
         title: 0-10 V analog
-        meaning: iec_60381:60381-2
+        meaning: iec-60381:60381-2
         annotations: { i18n: { value: { title: { pt: Tensão analógica 0-10 V } } } }
   RegisterDatatype:
     title: Register datatype
@@ -270,11 +270,11 @@ enums:
     permissible_values:
       holding:
         title: Holding register
-        meaning: modbus_org:HoldingRegister
+        meaning: modbus-org:HoldingRegister
         annotations: { i18n: { value: { title: { pt: Registo de retenção } } } }
       input:
         title: Input register
-        meaning: modbus_org:InputRegister
+        meaning: modbus-org:InputRegister
         annotations: { i18n: { value: { title: { pt: Registo de entrada } } } }
   WordOrder:
     title: Word order

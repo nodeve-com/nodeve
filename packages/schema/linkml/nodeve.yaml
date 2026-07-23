@@ -9,37 +9,41 @@ default_prefix: nodeve
 default_range: string
 
 prefixes:
-  skos: http://www.w3.org/2004/02/skos/core#
-  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  linkml: https://w3id.org/linkml/
-  nodeve: https://nodeve.com/schema/
-  node: https://nodeve.com/node/
-  qudt: http://qudt.org/schema/qudt/
-  # mapping targets (grimoire property refs → *_mappings)
-  sosa: http://www.w3.org/ns/sosa/
-  cim: 'http://iec.ch/TC57/CIM100#'
-  ssn_system: http://www.w3.org/ns/ssn/systems/
-  vim: https://jcgm.bipm.org/vim/en/
-  schema: http://schema.org/ # linkml:types defines it http-form; a mismatch fails the merge
-  # enum-value meaning/mapping targets — namespace is the registry row's own url
-  ha_state_class: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
-  prometheus: https://prometheus.io/docs/concepts/metric_types/
-  iana_iftype: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib
-  iana_uri_scheme: https://www.iana.org/assignments/uri-schemes/
-  iso_11898: https://www.iso.org/standard/63648.html
-  iso_8601: https://www.iso.org/iso-8601-date-and-time-format.html
-  tia_standard: https://tiaonline.org/
-  jedec_standard: https://www.jedec.org/standards-documents/docs/jesd8
-  iec_60381: https://webstore.iec.ch/publication/2050
-  isa_18_2: https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa18
-  rfc_5424: https://www.rfc-editor.org/rfc/rfc5424
-  modbus_org: https://www.modbus.org/specs.php
-  xsd: http://www.w3.org/2001/XMLSchema#
-  wikidata: http://www.wikidata.org/entity/
-  saref: https://saref.etsi.org/core/
-  iso_25012: https://www.iso.org/standard/35736.html # data-quality model — desirable-band tiers
+  brick: https://brickschema.org/schema/Brick#
+  cim: http://iec.ch/TC57/CIM100#
   dcterms: http://purl.org/dc/terms/
+  ha-state-class: https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes
+  iana-iftype: https://www.iana.org/assignments/ianaiftype-mib/ianaiftype-mib
+  iana-uri-scheme: https://www.iana.org/assignments/uri-schemes/
+  iec-60381: https://webstore.iec.ch/publication/2050
+  isa-18-2: https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa18
+  iso-11898: https://www.iso.org/standard/63648.html
+  iso-25012: https://www.iso.org/standard/35736.html
+  iso-8601: https://www.iso.org/iso-8601-date-and-time-format.html
+  jedec-standard: https://www.jedec.org/standards-documents/docs/jesd8
+  linkml: https://w3id.org/linkml/
+  modbus-org: https://www.modbus.org/specs.php
+  node: https://nodeve.com/node/
+  nodeve: https://nodeve.com/schema/
   owl: http://www.w3.org/2002/07/owl#
+  prometheus: https://prometheus.io/docs/concepts/metric_types/
+  qudt: http://qudt.org/schema/qudt/
+  qudt-quantity-kind: https://qudt.org/vocab/quantitykind/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rfc-5424: https://www.rfc-editor.org/rfc/rfc5424
+  saref: https://saref.etsi.org/core/
+  saref4grid: https://saref.etsi.org/saref4grid/
+  schema: http://schema.org/
+  seas: https://w3id.org/seas/
+  skos: http://www.w3.org/2004/02/skos/core#
+  sosa: http://www.w3.org/ns/sosa/
+  ssn: http://www.w3.org/ns/ssn/
+  ssn-system: http://www.w3.org/ns/ssn/systems/
+  tia-standard: https://tiaonline.org/
+  vim: https://jcgm.bipm.org/vim/en/
+  wgs84-geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  wikidata: http://www.wikidata.org/entity/
+  xsd: http://www.w3.org/2001/XMLSchema#
 
 imports:
   - linkml:types

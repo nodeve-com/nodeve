@@ -1,2 +1,3 @@
 content: { en: { title: Modbus Organization }, pt: { title: Modbus Organization } }
 publisher: modbus-organization
+node: { url: https://www.modbus.org/specs.php }

@@ -97,6 +97,21 @@ sqltablegen.RelationalModelTransformer = Tables
 sqlalchemygen.RelationalModelTransformer = Tables
 
 if "dump" in sys.argv[1:]:
+    # LinkML's PythonGenerator bug: it DEFINES a hyphenated CURIE prefix's
+    # namespace as `RFC_5424 = CurieNamespace('rfc-5424', …)` (- → _) but emits
+    # the enum-meaning REFERENCE unnormalized as `RFC-5424["Notice"]` — invalid
+    # Python, `NameError: RFC`. Normalize the reference identifiers (an uppercase
+    # hyphenated token before a `[`) in the generated source before it compiles;
+    # lowercase prefix strings stay untouched. Lets CURIE prefixes = kebab slugs.
+    import re
+    from linkml.generators import pythongen
+
+    _orig_compile = pythongen.compile_python
+    _ns_ref = re.compile(r"\b[A-Z][A-Z0-9_]*(?:-[A-Z0-9]+)+(?=\[)")
+    pythongen.compile_python = lambda code, *a, **k: _orig_compile(
+        _ns_ref.sub(lambda m: m.group(0).replace("-", "_"), code), *a, **k
+    )
+
     from linkml.utils.sqlutils import main
 
     sys.argv = ["linkml-sqldb", "dump", "-s", SCHEMA, "-C", TOP_CLASS,

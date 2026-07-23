@@ -126,7 +126,7 @@ slots:
     range: float
     title: Resolution
     description: "quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14); omit when the datasheet doesn't state it, never fabricate"
-    exact_mappings: [ 'vim:4.14', ssn_system:Resolution ]
+    exact_mappings: [ 'vim:4.14', ssn-system:Resolution ]
   tolerance:
     range: float
     title: Tolerance
@@ -156,7 +156,7 @@ slots:
     inlined_as_list: true
     title: Conditions
     description: 'the conditions under which this specification holds — ALL must hold (AND); each is one Condition row'
-    close_mappings: [ 'ssn_system:inCondition', 'vim:4.9' ]
+    close_mappings: [ 'ssn-system:inCondition', 'vim:4.9' ]
   equals:
     range: DomainMember
     title: Equals
@@ -187,7 +187,7 @@ slots:
     title: Setting
     related_mappings: [ wikidata:Q1413083 ]
     description: 'FK — the commissioning knob this gate tests'
-  severity: { range: Severity, title: Severity, related_mappings: [ isa_18_2:Priority ] }
+  severity: { range: Severity, title: Severity, related_mappings: [ isa-18-2:Priority ] }
   specifications:
     range: Specification
     multivalued: true

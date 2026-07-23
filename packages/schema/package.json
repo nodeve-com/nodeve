@@ -11,7 +11,7 @@
 	},
 	"type": "module",
 	"scripts": {
-		"generate": "node bin/format.ts && node normalize/catalog.ts && node bin/data2schema.ts",
+		"generate": "node bin/prefixes.ts && node bin/format.ts && node normalize/catalog.ts && node bin/data2schema.ts",
 		"build": "pnpm generate && pnpm build:types && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
 		"build:types": "cd linkml && uvx --from linkml gen-typescript nodeve.yaml > ../gen/schema.ts",
 		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",

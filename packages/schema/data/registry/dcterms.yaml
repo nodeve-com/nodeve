@@ -1,0 +1,3 @@
+content: { en: { title: DCMI Metadata Terms (Dublin Core) } }
+node: { url: http://purl.org/dc/terms/ }
+publisher: dcmi

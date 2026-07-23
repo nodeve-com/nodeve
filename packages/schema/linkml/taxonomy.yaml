@@ -171,16 +171,16 @@ enums:
     permissible_values:
       instantaneous:
         title: Instantaneous
-        meaning: ha_state_class:measurement
+        meaning: ha-state-class:measurement
         exact_mappings: [ prometheus:gauge ]
         annotations: { i18n: { value: { title: { pt: Instantâneo } } } }
       cumulative:
         title: Cumulative
-        meaning: ha_state_class:total
+        meaning: ha-state-class:total
         annotations: { i18n: { value: { title: { pt: Cumulativo } } } }
       cumulative_monotonic:
         title: Cumulative (monotonic)
-        meaning: ha_state_class:total_increasing
+        meaning: ha-state-class:total_increasing
         exact_mappings: [ prometheus:counter ]
         annotations: { i18n: { value: { title: { pt: 'Cumulativo (monotónico)' } } } }
   Cardinality:

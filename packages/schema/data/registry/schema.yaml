@@ -1,0 +1,3 @@
+content: { en: { title: Schema.org vocabulary } }
+node: { url: http://schema.org/ }
+publisher: schema-org

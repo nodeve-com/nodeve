@@ -2,3 +2,4 @@ content:
   en: { title: Syslog severity (RFC 5424) }
   pt: { title: Severidade Syslog (RFC 5424) }
 publisher: ietf
+node: { url: https://www.rfc-editor.org/rfc/rfc5424 }

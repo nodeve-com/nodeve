@@ -49,15 +49,15 @@ enums:
     permissible_values:
       best:
         title: Best
-        close_mappings: [ iso_25012:Exemplary ]
+        close_mappings: [ iso-25012:Exemplary ]
         annotations: { i18n: { value: { title: { pt: Ótimo } } } }
       better:
         title: Better
-        close_mappings: [ iso_25012:Managed ]
+        close_mappings: [ iso-25012:Managed ]
         annotations: { i18n: { value: { title: { pt: Melhor } } } }
       good:
         title: Good
-        close_mappings: [ iso_25012:Acceptable ]
+        close_mappings: [ iso-25012:Acceptable ]
         annotations: { i18n: { value: { title: { pt: Bom } } } }
       nominal:
         title: Nominal
@@ -65,26 +65,26 @@ enums:
         annotations: { i18n: { value: { title: { pt: Nominal } } } }
       notice:
         title: Notice
-        meaning: rfc_5424:Notice
-        exact_mappings: [ isa_18_2:Low ]
+        meaning: rfc-5424:Notice
+        exact_mappings: [ isa-18-2:Low ]
         annotations: { i18n: { value: { title: { pt: Aviso } } } }
       caution:
         title: Caution
-        meaning: isa_18_2:Medium
+        meaning: isa-18-2:Medium
         annotations: { i18n: { value: { title: { pt: Cautela } } } }
       warning:
         title: Warning
-        meaning: rfc_5424:Warning
-        exact_mappings: [ isa_18_2:High ]
+        meaning: rfc-5424:Warning
+        exact_mappings: [ isa-18-2:High ]
         annotations: { i18n: { value: { title: { pt: Alerta } } } }
       critical:
         title: Critical
-        meaning: rfc_5424:Critical
-        exact_mappings: [ isa_18_2:Critical ]
+        meaning: rfc-5424:Critical
+        exact_mappings: [ isa-18-2:Critical ]
         annotations: { i18n: { value: { title: { pt: Crítico } } } }
       fatal:
         title: Fatal
-        close_mappings: [ rfc_5424:Emergency ]
+        close_mappings: [ rfc-5424:Emergency ]
         annotations: { i18n: { value: { title: { pt: Fatal } } } }
   TriggerOn:
     title: Trigger direction

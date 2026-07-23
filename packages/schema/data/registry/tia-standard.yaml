@@ -2,3 +2,4 @@ content:
   en: { title: "TIA standards (ANSI/TIA, formerly EIA)" }
   pt: { title: "Normas TIA (ANSI/TIA, antes EIA)" }
 publisher: tia
+node: { url: https://tiaonline.org/ }

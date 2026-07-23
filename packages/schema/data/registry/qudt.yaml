@@ -1,0 +1,3 @@
+content: { en: { title: "QUDT schema (Quantities, Units, Dimensions, Types)" } }
+node: { url: http://qudt.org/schema/qudt/ }
+publisher: qudt
