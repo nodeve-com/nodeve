@@ -1,0 +1,19 @@
+# The single-phase AC supply the unit draws on — accepted voltage and
+# frequency plus its rated input draw in each running mode. Combined
+# (partless): a single-phase connection, no per-leg split. The cooling and
+# heating draw figures are the unit's own operating modes, each a named band.
+feature_of_interest:
+  ac-phase:
+    supply:
+      _:
+        voltage:
+          # 220–240 V single phase, continuous
+          continuous:
+            valued_range: { min: 220, max: 240 }
+            specification: { rating: continuous }
+        frequency:
+          nominal: { valued_range: { value: 50 }, specification: { severity: nominal } }
+        active-power:
+          # rated input power per running mode (W; canonical, no unit override)
+          cooling: { valued_range: { value: 1391 }, specification: { severity: nominal } }
+          heating: { valued_range: { value: 1346 }, specification: { severity: nominal } }

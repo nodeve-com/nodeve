@@ -11,7 +11,56 @@ Grimoire (`packages/grimoire`) is dying; `@nodeve/schema` (LinkML, relational) r
 
 A migration MUST carry EVERY authored field across. You do NOT know the downstream consumers, so "nothing consumes it" is NEVER a reason to drop a field. If the schema lacks a home for a grimoire field (a blend's `composition`, a formula, a rating condition), **ADD schema to hold it** — a slot, a facet, a child table. Schema is pre-1.0; reshape freely. Do NOT drop, "defer", or silently flatten. Model complexity is not a reason to lose data. Before finishing, diff source against emitted and account for every key. If you truly cannot model something, STOP and ask — never discard. Dropping data is an irreversible failure, on par with duplication.
 
-**Read first:** `packages/schema/README.md`, `packages/schema/docs/mapping.md` (grimoire→LinkML table), and `packages/schema/docs/levels.md`. Reference fixtures: `data/subject_node/foxess-h3-ps10sh/` (full: features + register map + network) and `data/subject_node/chint-dtsu666-4wire/` (meter). For a pure-spec device (PV module, no registers) `data/subject_node/twmnh-66hd640/` is the minimal example.
+## Triage FIRST — read the ONE fixture that matches, nothing else
+
+Classify the source, then read only its matching fixture. Do NOT read README/mapping/levels/features.yaml/enum dumps up front — they're reference for when a step below fails, not preflight. Budget: one fixture read, author, one verify.
+
+| source shape | read ONLY | template below |
+| --- | --- | --- |
+| spec-only appliance (draw + rating bands, no registers) | `data/subject_node/emldh20dfr29/` | **§ Spec appliance template** — copy it |
+| spec-only PV / battery module | `data/subject_node/twmnh-66hd640/` | adapt fixture |
+| meter (register map, no features tree beyond ports) | `data/subject_node/chint-dtsu666-4wire/` | adapt fixture |
+| full device (features + registers + network) | `data/subject_node/foxess-h3-ps10sh/` | adapt fixture |
+
+Reach for `mapping.md` / `features.yaml` / `enums.yaml` ONLY when a specific field has no home in the fixture you copied. The mapping table below covers the common cases without opening them.
+
+## Spec appliance template (copy, rename, fill)
+
+For a draw-and-ratings appliance (AC, dehumidifier, heater). Node type + feature type carry shared shape — reuse an existing file if one fits; only add a new one when the class/quantity genuinely doesn't exist yet.
+
+`data/node_type/<type>.yaml` (only if new):
+
+```yaml
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }
+  refrigeration: { cardinality: single } # only if it has a refrigerant circuit
+```
+
+`data/feature_type/<feature>.yaml` (only if new): `quantity_binding: { <quantity-kind>: {} }`
+
+`data/subject_node/<slug>/model.yaml`:
+
+```yaml
+node_type: <type>
+product: { model: <MODEL>, organization: <org-slug> }
+refrigeration: { refrigerant: <slug> }   # facet, if any; bare slug FK
+content: { en: { title: <Title>, lede: <one line>, body: > <prose> } }
+```
+
+`data/subject_node/<slug>/feature-<x>.yaml` — one interval per band. Facets: `valued_range` (numbers) + `specification` (rating/severity). Interval slug is the identifier; a grimoire `title` that's just its titlecase is NOT data loss.
+
+```yaml
+feature_of_interest:
+  <feature-type>:
+    <role>: # socket name (supply, output); NOT enumerated on node_type
+      _: # _ = combined/partless
+        <quantity-kind>:
+          <islug>: { valued_range: { value: N }, specification: { severity: nominal } }
+          # range band: valued_range: { min: A, max: B }, specification: { rating: continuous }
+```
+
+Common values: severity `nominal`; rating `continuous`/`survival`. Bare-slug FKs (`organization`, `refrigerant`) expand generically — zero normalize code. Quantity-kind slug must exist in `data/quantity_kind/` (kebab, e.g. `heat-flow-rate`, `active-power`, `voltage`, `frequency`); grep it if unsure.
 
 ## The mapping (grimoire → schema)
 
@@ -79,14 +128,20 @@ pnpm generate   # format → normalize → data2schema; register resolution runs
 pnpm build      # generate + types + linkml-validate catalog + DDL + sqlite
 ```
 
-`pnpm build` runs `linkml-validate -C Catalog gen/catalog.json` — the real end-to-end gate ("No issues found"). Register mis-links throw during `generate`. Then spot-check:
+`pnpm build` runs `linkml-validate -C Catalog gen/catalog.json` — the real end-to-end gate ("No issues found"). Register mis-links throw during `generate`. That message IS the pass. Run ONE spot-check to confirm the intervals landed, then STOP. Do not run four probing queries hunting for the row shape: facets are their OWN top-level tables keyed by `node`, not fields on the `subject_nodes` row (which carries only `{node}`).
 
 ```sh
-node -e 'const d=require("./gen/catalog.json").subject_nodes.find(m=>/<slug>/.test(m.node));
-  console.log(d.node, d.dc_ports?.map(f=>f.role))'
+node -e 'const c=require("./gen/catalog.json"); const s="<slug>";
+  for (const f of c.feature_of_interests.filter(r=>r.node.includes(s))) {
+    console.log(f.node);
+    for (const i of f.intervals||[]) console.log("  ", i.node.split("/").slice(-2).join("/"), i.quantity_kind, JSON.stringify(i.valued_range));
+    for (const p of f.specifications||[]) console.log("  spec", p.node.split("/").slice(-2).join("/"), p.rating||p.severity);
+  }
+  console.log("product", JSON.stringify(c.products.find(r=>r.node.includes(s))));
+  console.log("refrig", JSON.stringify(c.refrigerations.find(r=>r.node.includes(s))));'
 ```
 
-(entries key off `node` — `node:<node-type>/<slug>` — not a bare `slug` field; `ac_ports`/`dc_ports`/`environments` may be absent, so optional-chain them.)
+(Facet tables: `products`, `refrigerations`, `physicals`, `feature_of_interests`, … — each a top-level array keyed by `node:<node-type>/<slug>`. Intervals/specifications inline under their `feature_of_interests` row.)
 
 - `pnpm validate` hardcodes a single FILE path and breaks on directory models — ignore it; `pnpm build` is the gate.
 - SAWarnings about overlapping backref FKs (`ac_ports`/`dc_ports`/`environments`) are pre-existing (README "Open") — not your change.

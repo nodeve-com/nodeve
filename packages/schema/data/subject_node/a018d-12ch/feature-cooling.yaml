@@ -1,0 +1,9 @@
+# Rated cooling output as a thermal power (heat flow rate). Nameplate 9000
+# BTU/h converted to canonical W (× 0.293071 ≈ 2638 W; no unit override).
+# Partless — whole-unit rated capacity.
+feature_of_interest:
+  cooling:
+    output:
+      _:
+        heat-flow-rate:
+          rated: { valued_range: { value: 2638 }, specification: { severity: nominal } }

@@ -1,0 +1,8 @@
+# Air conditioner — a vapor-compression appliance whose defining feature is
+# rated cooling output: an AC supply it draws on, the thermal power it moves,
+# and the refrigerant its circuit charges. Pure spec, no register map (read
+# through whatever meters its supply, not directly).
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }
+  refrigeration: { cardinality: single }

@@ -1,0 +1,4 @@
+# Cooling — an air conditioner's defining output, rated as a thermal power
+# (heat flow rate; W canonical, BTU/h on the nameplate). Partless whole-unit
+# rated cooling capacity.
+quantity_binding: { heat-flow-rate: {} }

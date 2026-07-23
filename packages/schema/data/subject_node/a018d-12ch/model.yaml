@@ -1,0 +1,18 @@
+# Equation A018D-12CH — 12k-class reversible (cooling + heating) split air
+# conditioner, datasheet spec only, no register map. Ported from
+# grimoire/concepts/catalog/equation/air-conditioner/a018d-12ch.yaml. Filename
+# is the slug. A fitted unit's per-mode draw bands are SITE data, not here.
+# Equation is the Leroy Merlin / Adeo own-brand.
+node_type: air-conditioner
+
+product: { model: A018D-12CH, organization: equation }
+
+# Vapor-compression circuit — working gas only. r290 = Propane (A3, GWP ~3).
+refrigeration: { refrigerant: r290 }
+
+content:
+  en:
+    title: Equation A018D-12CH
+    lede: Reversible split air conditioner
+    body: >
+      Equation A018D-12CH — R290 reversible (cooling + heating) split air conditioner. Its datasheet gives a rated cooling output (thermal power, 9000 BTU/h ≈ 2638 W) and the single-phase AC supply it draws on: accepted 220–240 V / 50 Hz plus its rated input draw in each running mode — cooling 1391 W, heating 1346 W. The AC connection is the appliance's, not the compressor's.
