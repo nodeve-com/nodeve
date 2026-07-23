@@ -1,21 +1,21 @@
 ---
 name: nodeve-identity-model
-description: "LinkML schema identity — Node table with permalink PK (slug_qualified), derived code, kebab slugs"
-metadata: 
+description: 'LinkML schema identity — Node table with permalink PK (slot `permalink`, meaning wikidata:Q1048975), derived code, kebab slugs'
+metadata:
   node_type: memory
   type: project
   originSessionId: ec1ffa7f-0df0-4bb4-9e52-5e8495d3e74a
-  modified: 2026-07-21T12:04:32.307Z
+  modified: 2026-07-23T15:16:34.157Z
 ---
 
 Decided 2026-07-20 for `packages/schema/linkml` (supersedes the uuid-PK and authored-code models tried the same day):
 
 - **No `is_a: Node` inheritance** — every class carries a `node` slot (`identifier: true, range: Node`): PK that is FK to the Node table. Enforced one identity space, not convention.
-- **Node = `[slug_qualified, code]`.** No uuid. `slug_qualified` is the permalink PK — a `uriorcurie` CURIE `node:<archetype-kebab>/<slug trail>` (prefix `node: https://nodeve.dev/node/`) captured at mint time; mint-once, NEVER re-derived on rename (append-only `data/nodes.yaml`, minted by `format.ts`).
-- **Permalink root** comes from the doc's `device_type` FK, last segment (`node:device-type/inverter` → `inverter`). Definition docs carry no `device_type` — their own `node` CURIE already names the layer. There is no `archetype` slot; that was an earlier design, and stale references to it survived in docs long after.
+- **Node = `[permalink, code]`.** No uuid. `permalink` is the PK — a `uriorcurie` CURIE `node:<archetype-kebab>/<slug trail>` (prefix `node: https://nodeve.dev/node/`) captured at mint time; mint-once, NEVER re-derived on rename (append-only `data/nodes.yaml`, minted by `format.ts`). Slot `meaning: wikidata:Q1048975` (exact — "permalink"); NOT the generic `schema:identifier`.
+- **Permalink root** comes from the doc's `device_type` FK, last segment (`node:device-type/inverter` → `inverter`). Definition docs carry no `device_type` — their own `node` CURIE already names the layer. No `archetype` slot exists; that was an earlier design, and stale references to it survived in docs long after.
 - **`code`** = 8-char Crockford of `sha1(https://nodeve.dev/node/<path>)` last 5 bytes — a human handle DERIVED from the permalink, not authored.
 - **`slug` is kebab-case** (url idiom). Wire/HA snake form derives mechanically (`s/-/_/`), like the [[grimoire-ts-camel-only]] camel annotation: authored form one, derived forms mechanical.
 
 **Why:** uuids added opacity without stability the frozen permalink didn't already give; authored codes contradicted code-derives-from-id.
 
-**How to apply:** never re-derive a minted `slug_qualified` or `code`; formatter passes inject/mint, hand edits only delete.
+**How to apply:** never re-derive a minted `permalink` or `code`; formatter passes inject/mint, hand edits only delete.
