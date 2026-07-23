@@ -1,3 +1,14 @@
 {
-	"autoMemoryDirectory": "~/dev/nodeve/MEMORY"
+	"autoMemoryDirectory": "~/dev/nodeve/MEMORY",
+	"permissions": {
+		"deny": [
+			"Bash(rm *)",
+			"Bash(rm -r *)",
+			"Bash(rm -rf *)",
+			"Bash(rmdir *)",
+			"Bash(git rm *)",
+			"Bash(find * -delete *)",
+			"Bash(find * -exec rm *)"
+		]
+	}
 }
