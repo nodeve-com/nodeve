@@ -147,7 +147,7 @@ if (import.meta.main && process.argv[2]) {
 
 // ─── node rows ───────────────────────────────────────────────────────────────
 // The id space, DERIVED — where a thing is authored already states its identity.
-// slug_qualified = the ancestor trail (docs/levels.md); code = shortCode(trail),
+// permalink = the ancestor trail (docs/levels.md); code = shortCode(trail),
 // a url shortener over the PK. The CURIE is hashed, never a url — domains are
 // a deployment fact.
 
@@ -159,7 +159,7 @@ function mintNodes(): unknown[] {
 	}
 	return [...seen]
 		.sort()
-		.map((path) => ({ slug_qualified: `node:${path}`, code: shortCode(`node:${path}`) }));
+		.map((path) => ({ permalink: `node:${path}`, code: shortCode(`node:${path}`) }));
 }
 
 /** one data dir → its catalog rows: authored files normalized, legacy passed through */

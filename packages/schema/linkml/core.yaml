@@ -4,7 +4,7 @@ name: core
 default_prefix: nodeve
 default_range: string
 classes:
-  Node: { title: Node, annotations: { sql_table: node }, slots: [ slug_qualified, code ] }
+  Node: { title: Node, annotations: { sql_table: node }, slots: [ permalink, code ] }
 
   # The ingest container — linkml-sqldb needs ONE root object per dump, so the
   # sharded data/ rows bundle under this. NOT a table: tree_root exists to be
@@ -105,13 +105,12 @@ slots:
     exact_mappings: [ schema:position ]
     description: "sort/join key of a part-set member. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
     annotations: { i18n: { value: { title: { pt: Ordinal } } } }
-  slug_qualified:
+  permalink:
     identifier: true
     range: uriorcurie
-    title: Qualified slug
-    related_mappings: [ schema:identifier ]
+    title: Permalink
+    meaning: wikidata:Q1048975
     description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
-    annotations: { camel: slugQualified }
   term:
     range: string
     required: true
@@ -134,7 +133,7 @@ slots:
     range: Registry
     required: true
     title: Registry
-    related_mappings: [ skos:ConceptScheme ]
+    exact_mappings: [ skos:inScheme ]
     description: 'FK — which external registry the term belongs to'
     annotations: { i18n: { value: { title: { pt: Registro } } } }
 

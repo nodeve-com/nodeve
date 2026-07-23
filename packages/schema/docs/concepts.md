@@ -20,7 +20,7 @@ Closed vocabulary → LinkML **enum**, a slot's `range` points at it: native clo
 
 Undo the working tree's wrong turn (enum→data promotion, mappings-as-schema-mandate, pt sidecar).
 
-**Keep:** `slug_qualified`→`permalink` (`core.yaml`, `normalize/catalog.ts`); `title:` on slots/enums/classes.
+**Keep:** `permalink` PK (`core.yaml`, `normalize/catalog.ts`); `title:` on slots/enums/classes.
 
 **Revert:**
 
