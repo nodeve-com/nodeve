@@ -1,0 +1,9 @@
+# Electric water heater (termoacumulador) — an appliance whose heat source is a
+# resistive element: the AC phase the element runs on carries its nameplate draw
+# (active_power rated at supply voltage) plus the element resistance, so a
+# consumer computes true output off-nominal (P = V²/R). Internal thermostat is
+# the unit's own; HA only switches the element and reads its draw. Pure spec, no
+# register map.
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }

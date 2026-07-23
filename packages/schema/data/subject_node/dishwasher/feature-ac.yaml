@@ -1,0 +1,19 @@
+# The AC supply the unit draws from — rated active_power in its two program
+# states. Combined (partless): single-phase draw, no per-leg split. Each band is
+# identified (slug names the state) so a control loop references it by
+# {feature, quantity, interval}; tolerance is the symmetric absolute envelope.
+feature_of_interest:
+  ac-phase:
+    supply:
+      _:
+        active-power:
+          # a program is in progress — the whole-unit draw envelope (38 ± 33 W)
+          running:
+            valued_range: { value: 38, tolerance: 33 }
+            specification: { severity: nominal }
+            content: { en: { title: Program running } }
+          # the heating element engaged (1500 ± 200 W)
+          heating:
+            valued_range: { value: 1500, tolerance: 200 }
+            specification: { severity: nominal }
+            content: { en: { title: Heating element engaged } }

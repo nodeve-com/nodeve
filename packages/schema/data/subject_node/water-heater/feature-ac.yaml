@@ -1,0 +1,20 @@
+# The AC phase the element runs on — voltage plus its nameplate DRAW
+# (active_power rated at that voltage) and the element resistance (Ω); the
+# connection is the appliance's, not a separate element slot. Combined
+# (partless): single-phase, no per-leg split.
+feature_of_interest:
+  ac-phase:
+    supply:
+      _:
+        voltage:
+          # Portugal single phase
+          nominal: { valued_range: { value: 230 }, specification: { severity: nominal } }
+        frequency:
+          nominal: { valued_range: { value: 50 }, specification: { severity: nominal } }
+        active-power:
+          # nameplate draw, rated at supply voltage
+          rated: { valued_range: { value: 1500 }, specification: { severity: nominal } }
+        resistance:
+          # element resistance (Ω) — P = V²/R ⇒ 230²/1500; lets a consumer
+          # compute true output off-nominal
+          nominal: { valued_range: { value: 35.3 }, specification: { severity: nominal } }

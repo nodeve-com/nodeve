@@ -1,9 +1,8 @@
 // The nested device walk (docs/authoring-storage.md): descend slug keys, lift
 // `$`, expand facets, resolve structured refs. Vocabularies come from data/ rows
 // and the schema, never hardcoded: part keys → the feature's part_set members or
-// count; quantity keys → its quantity_binding rows; roles → authored per feature
-// (the node type composes facet tables, coarser than the old socket_binding);
-// facet keys → classes by sql_table. Every error carries its key trail.
+// count; quantity keys → its quantity_binding rows; facet keys → classes by
+// sql_table. Every error carries its key trail.
 import { basename, dirname } from 'node:path';
 import {
 	classByName,
@@ -73,8 +72,7 @@ class DeviceWalk implements WalkState {
 		if (!nodeTypeBySlug[dt]) die(this.slug, `unknown node_type ${dt}`);
 		this.node = this.mint(`node:${dt}/${this.slug}`);
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
-		// facet rows keyed by sql_table (or `contents`); each scatters to its
-		// top-level row-set. Device identity lives on the node row, not a facet.
+		// facet rows keyed by sql_table (or `contents`), scattered to top-level row-sets; identity on the node row
 		this.model = {};
 	}
 
@@ -103,8 +101,7 @@ class DeviceWalk implements WalkState {
 		return { node: this.node, model: this.model, registerMap: this.registerMapDoc };
 	}
 
-	/** any other top-level key — a child table by sql_table (keyed rows, or a
-	 * keyless 1:1 co-row) */
+	/** any other top-level key — a child table by sql_table (keyed rows, or keyless 1:1 co-row) */
 	private plainKey(key: string, value: unknown) {
 		const trail = `${this.slug}.${key}`;
 		if (key === this.rootSlot) return; // node_type — identity on the node row
@@ -115,27 +112,27 @@ class DeviceWalk implements WalkState {
 			// Content (about-attached) buckets under its global slot; every other under its sql_table
 			const dest = ownerSlotFor('SubjectNode', cls) ?? key;
 			this.model[dest] = keysOf(cls).length
-				? this.childRows(cls, value, trail)
+				? this.childRows(cls, value, { trail })
 				: { node: this.node, ...columns(cls, value, trail) };
 		} else die(trail, 'unrecognized authored key');
 	}
 
-	/** keyed child map → rows under this model's node; keySlot + `about` off the schema */
-	private childRows(cls: string, value: unknown, trail: string): Doc[] {
-		if (!isMap(value)) die(trail, 'expected a keyed map');
+	/** keyed child map → rows under `parent` (default this node); keySlot + `about` off the schema */
+	private childRows(cls: string, value: unknown, at: { trail: string; parent?: string }): Doc[] {
+		if (!isMap(value)) die(at.trail, 'expected a keyed map');
+		const parent = at.parent ?? this.node;
 		const [keySlot] = keysOf(cls) as [string, ...string[]];
 		const about = classByName[cls]?.slots?.includes('about');
 		const hasKey = classByName[cls]?.slots?.includes(keySlot);
 		return Object.entries(value).map(([k, v]) => ({
-			node: this.mint(`${this.node}/${k}`),
-			...(about ? { about: this.node } : {}),
+			node: this.mint(`${parent}/${k}`),
+			...(about ? { about: parent } : {}),
 			...(hasKey ? { [keySlot]: expandKey(keySlot, String(k)) } : {}),
-			...columns(cls, v, `${trail}.${k}`),
+			...columns(cls, v, `${at.trail}.${k}`),
 		}));
 	}
 
-	/** one feature type's role map — every feature row lands in the ONE
-	 * feature_of_interest row-set; feature_type + role discriminate the kind */
+	/** one feature type's role map → rows in the ONE feature_of_interest set; feature_type + role discriminate */
 	private featureType(ftSlug: string, roleMap: unknown) {
 		const at = `${this.slug}.feature_of_interest.${ftSlug}`;
 		if (!isMap(roleMap)) die(at, 'expected role keys');
@@ -269,6 +266,9 @@ class DeviceWalk implements WalkState {
 			this.measurable.add(iNode);
 		} else if (at.facet === 'specification')
 			ctx.list.specifications.push(this.specification({ node: iNode, cls, trail: at.trail }, cols));
+		else if (at.facet === 'content')
+			// an identified band names a device state → its own prose, hoisted by liftContent
+			at.row.contents = this.childRows(cls, cols, { trail: at.trail, parent: iNode });
 		else die(at.trail, `${cls} is not an interval facet`);
 	}
 

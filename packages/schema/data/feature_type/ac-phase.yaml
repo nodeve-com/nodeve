@@ -3,6 +3,8 @@ quantity_binding:
   electric-current: {}
   frequency: {}
   active-power: {}
+  # element resistance (Ω) on the phase — P = V²/R lets a consumer compute true output off-nominal
+  resistance: {}
   apparent-power: {}
   reactive-power: {}
   power-factor: {}

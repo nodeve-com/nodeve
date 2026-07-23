@@ -1,0 +1,6 @@
+# Generic appliance — a nominal class stand-in: an AC supply it draws on, its
+# draw stated as rated active_power bands (program states). Pure spec, no
+# register map (read through whatever meters its supply, not directly).
+facet:
+  product: { cardinality: single, required: true }
+  feature_of_interest: { cardinality: child, required: true }

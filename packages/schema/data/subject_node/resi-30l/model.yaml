@@ -1,0 +1,16 @@
+# Generic ~30 L/day residential dehumidifier — a nominal class stand-in, no
+# real make/model (organization `generic`). A deployment references it for the
+# rough capacity class, then supplies the fitted Fan/Compressor draw bands and
+# hygrostat config as SITE data. Compressor / refrigeration / humidity_control
+# stay unmodeled until a real unit — never fabricate. Filename is the slug.
+# Ported from grimoire/concepts/catalog/generic/dehumidifier/resi-30l.yaml.
+node_type: dehumidifier
+
+product: { model: resi-30l, organization: generic }
+
+content:
+  en:
+    title: Generic 30 L/day Dehumidifier
+    lede: Nominal residential dehumidifier class
+    body: >
+      Generic ~30 L/day residential dehumidifier — a nominal class stand-in (no real make/model). A deployment references it for the rough capacity class, then supplies the unit's fitted Fan/Compressor draw bands and hygrostat config as SITE data. Fill compressor / refrigeration / humidity_control only when modeling a real unit — never fabricate.

@@ -1,0 +1,19 @@
+# Generic electric water heater (termoacumulador) — a nominal `water-heater`
+# class stand-in, no real make/model (organization `generic`). The AC phase the
+# resistive element runs on carries the voltage, frequency, nameplate draw
+# (active_power rated at that voltage) and element resistance — with resistance a
+# consumer computes true output at the actual voltage. NO thermostat field (the
+# unit's own is internal); surplus-loop cycle tuning + priority are control-loop
+# SITE data, not catalog facts. A deployment refits the fitted draw bands from
+# measured draw. Filename is the slug.
+# Ported from grimoire/concepts/catalog/generic/water-heater.yaml.
+node_type: water-heater
+
+product: { model: water-heater, organization: generic }
+
+content:
+  en:
+    title: Generic Water Heater
+    lede: Nominal electric water-heater class stand-in
+    body: >
+      Generic electric water heater (termoacumulador) — a nominal class stand-in (no real make/model), an appliance whose heat source is a resistive element. The AC phase gives the voltage, frequency, nameplate draw (active_power rated at the supply voltage) and the element resistance, so a consumer computes true output off-nominal (P = V²/R). The unit's thermostat is internal; HA only switches the element and reads its draw.

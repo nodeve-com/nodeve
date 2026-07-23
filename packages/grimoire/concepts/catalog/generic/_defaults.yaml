@@ -1,3 +1,0 @@
-# Brand-agnostic NOMINAL class shapes (not a datasheet); each file declares its own archetype.
-product:
-  manufacturer_id: generic

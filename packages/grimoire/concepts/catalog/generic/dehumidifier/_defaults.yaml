@@ -1,3 +1,0 @@
-# Generic, brand-agnostic dehumidifier class entries (nominal capacity stand-ins, manufacturer
-# inherited as `generic` from ../_defaults.yaml). Declares the archetype for this subtree.
-archetype_id: dehumidifier

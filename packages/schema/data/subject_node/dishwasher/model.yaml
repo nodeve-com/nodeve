@@ -1,0 +1,18 @@
+# Generic dishwasher — a nominal `appliance` class stand-in, no real make/model
+# (organization `generic`). Its draw is stated as rated active_power bands on the
+# AC supply; the two regimes are the unit's own program states, each an
+# IDENTIFIED interval (slug + title) a control loop references by {feature,
+# quantity, interval}. A deployment binds its own power + per-band binary
+# sensors and refits the envelopes from measured history (SITE data) — these are
+# the nominal class figures. Filename is the slug.
+# Ported from grimoire/concepts/catalog/generic/dishwasher.yaml.
+node_type: appliance
+
+product: { model: dishwasher, organization: generic }
+
+content:
+  en:
+    title: Generic Dishwasher
+    lede: Nominal appliance class stand-in
+    body: >
+      Generic dishwasher — a nominal appliance class stand-in (no real make/model). Its active-power draw is stated as rated active_power bands on the AC supply: a whole-unit running envelope and the heating-element regime, each an identified program state a control loop can reference by band. A deployment binds its own power sensor plus per-band binary sensors and refits the envelopes from that unit's measured history (SITE data).
