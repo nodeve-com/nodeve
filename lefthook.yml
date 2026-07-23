@@ -25,3 +25,10 @@ pre-commit:
   jobs:
     - name: build-checks
       run: pnpm --filter @nodeve/checks build
+
+    # Schema source (LinkML) edits must prove they still project cleanly.
+    # Fires only when linkml/ files are staged; runs the full build (generate +
+    # gen-typescript + linkml-validate catalog + DDL + db dump). Needs uvx/linkml.
+    - name: build-schema
+      glob: 'packages/schema/linkml/**'
+      run: pnpm --filter @nodeve/schema build

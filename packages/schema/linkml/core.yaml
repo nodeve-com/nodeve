@@ -109,7 +109,7 @@ slots:
     identifier: true
     range: uriorcurie
     title: Permalink
-    meaning: wikidata:Q1048975
+    exact_mappings: [ wikidata:Q1048975 ]
     description: 'permalink PK — node:<archetype>/<slug path> CURIE minted from the qualified slug trail. A creation-time fact: renames/re-filing do NOT re-derive it'
   term:
     range: string
