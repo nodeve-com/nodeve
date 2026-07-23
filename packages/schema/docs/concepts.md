@@ -2,27 +2,19 @@
 
 ## Facet → field
 
-`title` / `description` = en label / prose, admin-facing app content (**the en pair**) · `meaning` = semantic identity (one CURIE) · `exact_/close_/broad_/narrow_/related_mappings` = external refs (>1, any element incl. permissible values) · `annotations.i18n.value.<field>.<lang>` (field ∈ `{title,lede,body}`) · `#` = dev aside — **the sole home for developer-only prose, kept as terse as possible**. `description:` is always admin-facing (→ `lede`); never park a dev note there. Plumbing-slot `description:` explaining mechanics to a developer belongs in a `#` comment — move it and trim.
+- `title` / `description` = english `title` and `lede`. LinkML `description:` becomes `lede` in data
+- `meaning` = semantic identity (one CURIE)
+- `exact_/close_/broad_/narrow_/related_mappings` = external refs
+- `annotations.i18n.value.<field>.<lang>` (field ∈ `{title,lede,body}`)
+- `#` = inline comments **kept as terse as possible**
 
-### `description` **is** `lede` — one field, two names
+### Translations
 
-The Content model has three prose fields: `title` (label), `lede` (short prose), `body` (full markdown). LinkML's metamodel gives a slot exactly two: `title` and `description`. We bind them intentionally: **LinkML `description` == Content `lede`** — the same short admin prose, named `description` here only because that is LinkML's fixed slot name and named `lede` everywhere else in the ecosystem. So the native en pair `title`/`description` projects to Content `title`/`lede`. `body` has no native LinkML slot; en and all translations ride `annotations.i18n.value.body.<lang>`. Never invent a `lede:` slot key — LinkML would drop it; author the short prose in `description:`.
-
-## Translations
-
-**Direction: schema → data, never data → schema.** Every translation lives on its schema element — the slot or the permissible value — as `annotations.i18n.value.<field>.<lang>` (`{ i18n: { value: { title: { pt: … } } } }`). The en pair (`title`/`description`) is native; translations nest beside it. `Content` rows are a _projection_ of these annotations, never an authoring surface — never write a translation into `data/`. Field order is `value.<field>.<lang>` (title/lede/body, then language), mirroring `Content` (`{title,lede,body}`) so extraction is a loop. **Not `structured_aliases`**: one `literal_form`, can't pair a title with its description.
+**schema → data** Every translation lives on its schema element. Use `annotations.i18n.value.<field>.<lang>` (`{ i18n: { value: { title: { pt: … } } } }`). The Content model has three prose fields: `title` (label), `lede` (short prose), `body` (full markdown). Native `en` pair `title`/`description` projects to Content `title`/`lede`. English `body` and all translations ride `annotations.i18n.value.body.<lang>`.
 
 ## Enums stay native
 
 Closed vocabulary → LinkML **enum**, a slot's `range` points at it: native closed-set validation + drift protection, no projected `any_of`, no FK gate. Each permissible value carries the full facet set — **never promote an enum to data rows** for refs or translations. **Table only** when members carry a real column beyond the facet set: `quantity_kind` (`si_unit`, `accumulation`, `broader` hierarchy) qualifies; plain grammar (flow direction, severity, rating, zone, register type…) stays enum.
-
-## Projection
-
-`annotations.i18n.value.<field>.<lang>` → `Content(language)`. en `Content` from the pair — `title`→`title`, `description`→`lede` (the rename above) — plus `annotations.i18n.value.body.en` for en `body`. `meaning`/`*_mappings` → `Ref` rows only once a consumer stores them. Enums already do this (`enums.yaml` carries `value.title.pt`); slots must too — a `data/property/*.yaml` translation is the wrong turn, migrate it onto the slot.
-
-## The check
-
-Replaces `check-meta.ts`'s wrong mappings-on-every-slot rule. Same source, flags migration drops: a grimoire concept that carried `refs`/`pt` must keep the same `*_mappings` + `annotations.i18n`. Structural plumbing (`node`, `permalink`, FKs) is exempt.
 
 ## Migration fixes
 

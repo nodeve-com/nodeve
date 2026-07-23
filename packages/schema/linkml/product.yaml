@@ -50,6 +50,7 @@ slots:
     title: Model
     exact_mappings: [ schema:model ]
     description: 'what the thing is called — the model designation on the nameplate'
+    annotations: { i18n: { value: { title: { pt: Modelo } } } }
   series: { title: Series, related_mappings: [ schema:ProductGroup ] }
   ac_ports:
     range: FeatureOfInterest
@@ -85,6 +86,7 @@ slots:
     title: Manufacturer
     exact_mappings: [ schema:manufacturer ]
     description: 'FK — the organization that made this thing'
+    annotations: { i18n: { value: { title: { pt: Fabricante } } } }
   network_interfaces:
     range: NetworkInterface
     multivalued: true

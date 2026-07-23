@@ -92,6 +92,7 @@ slots:
     title: Resolved decimals
     related_mappings: [ wikidata:Q1056761 ]
     description: 'decimal places the sensor actually resolves; the published value is rounded to it — decoding leaks precision the sensor never measured. Omit only when scale already lands on the real resolution'
+    annotations: { i18n: { value: { title: { pt: Casas decimais resolvidas } } } }
   end: { range: integer, title: Range end, related_mappings: [ schema:maxValue ] }
   note: { title: Note, exact_mappings: [ skos:note ] }
   parity:
@@ -122,6 +123,7 @@ slots:
     title: Scale
     related_mappings: [ wikidata:Q12121800 ]
     description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1'
+    annotations: { i18n: { value: { title: { pt: Escala } } } }
   # ── serial (Modbus-RTU) framing — absent on a TCP map. Shared per family map
   # like unit_id; the device path is a deployment default, overridable downstream. ──
   serial_port:

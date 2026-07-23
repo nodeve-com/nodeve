@@ -1,5 +1,0 @@
-content:
-  en:
-    lede: >-
-      Which part of the feature this row applies to — a member slug names one part (a phase leg, a circuit, a tracker position). `_` is the whole feature (some quantities are only ever combined, like frequency); `*` is the default, applied to each part that doesn't state its own.
-  pt: { title: Parte }

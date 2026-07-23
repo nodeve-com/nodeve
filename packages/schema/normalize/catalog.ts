@@ -15,8 +15,16 @@
 // rejects is SKIPPED LOUDLY, never silently dropped.
 import { shortCode } from '@nodeve/encoding/short-code';
 import { basename, dirname } from 'node:path';
-import { abs, dirents, dumpJson, exists, readYaml, write, yamlNames } from '../src/io.ts';
-import { classByName, classByTable, fkTable, seg, slotByName, SLUG } from './model.ts';
+import { abs, dirents, dumpJson, readYaml, write } from '../src/io.ts';
+import {
+	classByName,
+	classByTable,
+	fkTable,
+	seg,
+	type SlotDef,
+	slotByName,
+	SLUG,
+} from './model.ts';
 import { normalizeDevice } from './tree.ts';
 
 /** authored FK values are bare slugs; a slot ranging a table-backed class
@@ -177,54 +185,43 @@ function tableRows(dir: string): unknown[] {
 	return out;
 }
 
-/** slots with a user-facing title project to Property rows. ONLY the en title is
- * GENERATED from the schema (LinkML has no i18n). Content-author prose — the
- * `lede` (short description) and `body` (full markdown), every language including
- * en — is AUTHORED in data/property/<slug>.yaml and merged here about the same
- * node. Schema `description:` is developer prose and never enters Content. A
- * title-less slot is structural and gets no row. */
-/** Content rows for one titled slot: the generated en (title only) plus authored
- * prose — en's lede/body merged in, other languages appended as their own rows */
-function propertyContents(en: Record<string, unknown>, authored: Row[], slug: string) {
-	const contents: Record<string, unknown>[] = [en];
-	for (const child of authored.slice(1)) {
-		const row = strip(child) as Record<string, unknown>;
-		if (row.language !== 'en') {
-			paths.push(child.node as string);
-			contents.push(row);
-			continue;
+/** slots with a user-facing title project to Property rows, one Content row per
+ * language. EVERYTHING is read from the schema — no data/ sidecar. en Content:
+ * `title` ← slot `title`, `lede` ← slot `description`. Every translation and any
+ * en `body` rides `annotations.i18n.value.<field ∈ {title,lede,body}>.<lang>`
+ * on the slot. A title-less slot is structural and gets no row. */
+function propertyContents(node: string, def: SlotDef): Record<string, unknown>[] {
+	const i18n = def.annotations?.i18n?.value ?? {};
+	const langs = new Set<string>(['en']); // en first, deterministic
+	for (const byLang of Object.values(i18n)) for (const lang of Object.keys(byLang)) langs.add(lang);
+
+	return [...langs].map((lang) => {
+		const row: Record<string, unknown> = { node: `${node}/${lang}`, about: node, language: lang };
+		if (lang === 'en') {
+			row.title = def.title;
+			if (def.description !== undefined) row.lede = def.description;
+		} else {
+			if (i18n.title?.[lang] !== undefined) row.title = i18n.title[lang];
+			if (i18n.lede?.[lang] !== undefined) row.lede = i18n.lede[lang];
 		}
-		// authored en carries lede/body only — the title is generated
-		if (row.title) throw new Error(`data/property/${slug}.yaml: en title is GENERATED — drop it`);
-		if (row.lede !== undefined) en.lede = row.lede;
-		if (row.body !== undefined) en.body = row.body;
-	}
-	return contents;
+		if (i18n.body?.[lang] !== undefined) row.body = i18n.body[lang];
+		return row;
+	});
 }
 
 function projectProperties(): unknown[] {
-	const dir = abs('data/property');
-	const authored = new Map<string, Row[]>(
-		exists(dir) ? yamlNames(dir).map((f) => [basename(f, '.yaml'), normalize(`${dir}/${f}`)]) : [],
-	);
-
 	const rows: unknown[] = [];
 	for (const [name, def] of Object.entries(slotByName)) {
 		if (!def.title) continue;
 		const slug = seg(name);
 		const node = `node:property/${slug}`;
-		paths.push(`property/${slug}`, `property/${slug}/en`);
-		const en: Record<string, unknown> = {
-			node: `${node}/en`,
-			about: node,
-			language: 'en',
-			title: def.title,
-		};
-		rows.push({ node, slug, contents: propertyContents(en, authored.get(slug) ?? [], slug) });
-		authored.delete(slug);
+		const contents = propertyContents(node, def);
+		paths.push(
+			`property/${slug}`,
+			...contents.map((c) => (c.node as string).replace(/^node:/, '')),
+		);
+		rows.push({ node, slug, contents });
 	}
-	if (authored.size)
-		throw new Error(`data/property/: no titled slot for ${[...authored.keys()].join(', ')}`);
 	return rows;
 }
 

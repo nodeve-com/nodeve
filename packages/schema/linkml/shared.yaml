@@ -20,29 +20,41 @@ slots:
     title: Flow direction
     exact_mappings: [ cim:FlowDirectionKind ]
     annotations: { camel: flowDirection }
+  # THE ONE part discriminator, and the path's part segment verbatim. A `*` row
+  # is stored as-is and resolved against the OWNING feature's part rows at query
+  # time. The slug pattern produces neither marker, so neither can collide with an
+  # authored part.
   part:
     range: string
     title: Part
     related_mappings: [ schema:hasPart ]
     pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$'
-    description: "THE ONE part discriminator, and the path's part segment verbatim. A `*` row is stored as-is and resolved against the OWNING feature's part rows at query time. The slug pattern produces neither marker, so neither can collide with an authored part."
+    description: "Which part of the feature this row applies to — a member slug names one part (a phase leg, a circuit, a tracker position). `_` is the whole feature (some quantities are only ever combined, like frequency); `*` is the default, applied to each part that doesn't state its own."
+    annotations: { i18n: { value: { title: { pt: Parte } } } }
   period: { range: Period, title: Period, exact_mappings: [ cim:MacroPeriodKind ] }
   role:
     range: string
     title: Role
     exact_mappings: [ schema:Role ]
     description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
+  # wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref
   slug:
     range: string
     pattern: '^[a-z0-9]+(-[a-z0-9]+)*$'
     title: Slug
     related_mappings: [ schema:identifier ]
-    description: 'wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref'
+    description: 'Hand-authored machine key and URL segment, in kebab-case.'
+    annotations:
+      i18n:
+        value:
+          title: { pt: Slug }
+          lede: { pt: 'Identificador de máquina e segmento de URL, escrito à mão em kebab-case.' }
   unit:
     range: string
     title: Unit
     exact_mappings: [ qudt:unit ]
     description: "non-SI unit override of a stated value — only when the value isn't in the quantity kind's canonical SI unit (kW vs W, °C vs K); omit ⇒ SI unit"
+    annotations: { i18n: { value: { title: { pt: Unidade } } } }
   contents:
     range: Content
     multivalued: true

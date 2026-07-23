@@ -107,12 +107,14 @@ slots:
     title: Match
     related_mappings: [ skos:mappingRelation ]
     description: 'how closely the ref maps its row to the external term — the SKOS mapping strengths'
+    annotations: { i18n: { value: { title: { pt: Correspondência } } } }
   ordinal:
     range: integer
     minimum_value: 1
     title: Ordinal
     exact_mappings: [ schema:position ]
     description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
+    annotations: { i18n: { value: { title: { pt: Ordinal } } } }
   slug_qualified:
     identifier: true
     range: uriorcurie
@@ -126,6 +128,7 @@ slots:
     title: Term
     exact_mappings: [ skos:notation ]
     description: 'the identifier AS the registry spells it (Q25428, ActivePower, voltage) — never normalized'
+    annotations: { i18n: { value: { title: { pt: Termo } } } }
   title: { title: Title, exact_mappings: [ dcterms:title ] }
   url: { range: uri, title: URL, exact_mappings: [ schema:url ], description: registry homepage }
   # object-valued slots — FKs / owned row sets; global like everything else,
@@ -143,6 +146,7 @@ slots:
     title: Registry
     related_mappings: [ skos:ConceptScheme ]
     description: 'FK — which external registry the term belongs to'
+    annotations: { i18n: { value: { title: { pt: Registro } } } }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
 # CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,

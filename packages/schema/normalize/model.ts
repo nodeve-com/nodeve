@@ -13,6 +13,8 @@ export type SlotDef = {
 	inlined_as_list?: boolean;
 	title?: string;
 	description?: string;
+	// translations ride the slot: value.<field ∈ {title,lede,body}>.<lang> → Content
+	annotations?: { camel?: string; i18n?: { value?: Record<string, Record<string, string>> } };
 };
 
 type Schema = {

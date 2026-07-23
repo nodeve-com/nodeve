@@ -104,6 +104,7 @@ slots:
     title: Duration
     description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating)'
     close_mappings: [ cim:OperationalLimitType.acceptableDuration ]
+    annotations: { i18n: { value: { title: { pt: Duração } } } }
   margin:
     range: float
     title: Margin
@@ -126,7 +127,13 @@ slots:
     title: Maximum
     exact_mappings: [ schema:maxValue ]
     description: "inclusive high end of a closed interval, in the enclosing row's unit"
-  min: { range: float, title: Minimum, exact_mappings: [ schema:minValue ] }
+    annotations: { i18n: { value: { title: { pt: Máximo } } } }
+  min:
+    range: float
+    title: Minimum
+    exact_mappings: [ schema:minValue ]
+    description: "inclusive low end of a closed interval, in the enclosing row's unit"
+    annotations: { i18n: { value: { title: { pt: Mínimo } } } }
   resolution:
     range: float
     title: Resolution
@@ -154,6 +161,7 @@ slots:
     title: Value
     description: 'the magnitude of a valued quantity, in the stated unit — alone an exact point; with a band (tolerance/margin/min/max) the designated centre that band sits around'
     close_mappings: [ qudt:Quantity ]
+    annotations: { i18n: { value: { title: { pt: Valor } } } }
   conditions:
     range: Condition
     multivalued: true
@@ -211,7 +219,7 @@ slots:
     title: Trigger on
     related_mappings: [ schema:greater ]
     description: 'which side turns a stateful zone ON — below ⇒ ON under min, OFF above max; above ⇒ the reverse; between the edges the state HOLDS (the [min,max] deadband is what makes it stateful)'
-    annotations: { camel: triggerOn }
+    annotations: { camel: triggerOn, i18n: { value: { title: { pt: Aciona em } } } }
   valued_range:
     range: ValuedRange
     inlined: true

@@ -122,6 +122,7 @@ slots:
     title: Broader
     exact_mappings: [ skos:broader ]
     description: 'self-FK — upstream hierarchy (active_power broader electric_power)'
+    annotations: { i18n: { value: { title: { pt: Mais amplo } } } }
   part_set_members:
     range: PartSetMember
     multivalued: true
