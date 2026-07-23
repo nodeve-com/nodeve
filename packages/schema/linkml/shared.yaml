@@ -21,9 +21,9 @@ slots:
     exact_mappings: [ cim:FlowDirectionKind ]
     annotations: { camel: flowDirection }
   # THE ONE part discriminator, and the path's part segment verbatim. A `*` row
-  # is stored as-is and resolved against the OWNING feature's part rows at query
-  # time. The slug pattern produces neither marker, so neither can collide with an
-  # authored part.
+  # is stored as-is and resolved against the OWNING feature's part_set members
+  # (or count) at query time. The slug pattern produces neither marker, so
+  # neither can collide with an authored part.
   part:
     range: string
     title: Part
@@ -36,7 +36,7 @@ slots:
     range: string
     title: Role
     exact_mappings: [ schema:Role ]
-    description: 'which SOCKET of the node type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the node type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
+    description: 'which SOCKET of the node type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the node type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3.'
   # wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref
   slug:
     range: string
@@ -82,9 +82,9 @@ slots:
     annotations: { camel: quantityKind }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
-# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
-# tracker positions) are Part ROWS on the feature — per-model, so a new
-# subdivision is a new row, never a new column or a DDL migration.
+# CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker
+# positions) are per-model discriminators on Interval, validated against a
+# feature's part_set or count — never a new column or a DDL migration.
 enums:
   FlowDirection:
     title: Flow direction

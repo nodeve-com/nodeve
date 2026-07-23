@@ -1,5 +1,5 @@
 // The nested device walk (docs/authoring-storage-handoff.md): descend slug
-// keys, lift `$`, expand facets, assign ordinal, resolve structured refs.
+// keys, lift `$`, expand facets, resolve structured refs.
 // Vocabularies come from data/ rows and the schema — never hardcoded:
 //   part keys      → the feature's part_set members (data/part_set) or count
 //   quantity keys  → the feature type's quantity_binding rows
@@ -35,7 +35,7 @@ type FeatureCtx = {
 	members?: string[];
 	count?: number;
 	feature: Doc;
-	list: { parts: Doc[]; intervals: Doc[]; specifications: Doc[]; measurements: Doc[] };
+	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[] };
 };
 
 class DeviceWalk implements WalkState {
@@ -154,7 +154,7 @@ class DeviceWalk implements WalkState {
 			fNode,
 			kinds: new Set(Object.keys((ft.quantity_binding as Doc) ?? {})),
 			feature: { node: fNode, [ftSlot]: expandKey(ftSlot, ftSlug), [roleSlot]: role },
-			list: { parts: [], intervals: [], specifications: [], measurements: [] },
+			list: { intervals: [], specifications: [], measurements: [] },
 		};
 		if (body.$ !== undefined) this.featureOwn(ctx, body.$);
 		for (const [raw, value] of Object.entries(body))
@@ -194,7 +194,7 @@ class DeviceWalk implements WalkState {
 
 	/** one part key — `_`, `*`, a member slug, or 1…count */
 	private part(ctx: FeatureCtx, part: string, value: unknown) {
-		if (part !== '_' && part !== '*') this.partRow(ctx, part);
+		if (part !== '_' && part !== '*') this.checkPart(ctx, part);
 		else if (part === '*' && !ctx.members && ctx.count === undefined)
 			die(`${ctx.trail}.*`, 'a default needs parts to apply to');
 		if (!isMap(value)) die(`${ctx.trail}.${part}`, 'expected quantity keys');
@@ -206,7 +206,9 @@ class DeviceWalk implements WalkState {
 		}
 	}
 
-	private partRow(ctx: FeatureCtx, part: string) {
+	// a part key is a pure discriminator on Interval — validated against the
+	// feature's part_set members or count, never materialized as its own row
+	private checkPart(ctx: FeatureCtx, part: string) {
 		if (!SLUG.test(part)) die(`${ctx.trail}.${part}`, 'not a slug or marker');
 		if (ctx.members) {
 			if (!ctx.members.includes(part))
@@ -216,11 +218,6 @@ class DeviceWalk implements WalkState {
 			if (!Number.isInteger(n) || n < 1 || n > ctx.count)
 				die(`${ctx.trail}.${part}`, `outside count 1…${ctx.count}`);
 		} else die(`${ctx.trail}.${part}`, 'feature has no part_set or count');
-		ctx.list.parts.push({
-			node: this.mint(`${ctx.fNode}/${part}`),
-			slug: part,
-			ordinal: ctx.list.parts.length + 1,
-		});
 	}
 
 	private quantity(ctx: FeatureCtx, at: { part: string; quantity: string }, bandMap: unknown) {

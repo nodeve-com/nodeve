@@ -43,9 +43,9 @@ slots:
     annotations: { camel: networkInterface }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
-# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
-# tracker positions) are Part ROWS on the feature — per-model, so a new
-# subdivision is a new row, never a new column or a DDL migration.
+# CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker
+# positions) are per-model discriminators on Interval, validated against a
+# feature's part_set or count — never a new column or a DDL migration.
 enums:
   InterfaceType:
     title: Interface type

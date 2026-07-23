@@ -6,16 +6,6 @@ default_range: string
 classes:
   Node: { title: Node, annotations: { sql_table: node }, slots: [ slug_qualified, code ] }
 
-  # Parts belong to the FEATURE, not its type: how a model subdivides a port is
-  # a per-model fact (3 trackers vs 2 battery ports; split-phase l1/l2 vs
-  # three-phase a/b/c). A part with no intervals still exists — it is a row.
-  # Authoring stays terse via desugaring (`phases: split` → two rows); the
-  # schema only ever sees the flat rows.
-  Part:
-    title: Part
-    annotations: { sql_table: part }
-    slots: [ node, slug, ordinal, contents ]
-
   # The ingest container — linkml-sqldb needs ONE root object per dump, so the
   # sharded data/ rows bundle under this. NOT a table: tree_root exists to be
   # unwrapped, and `gen-sqltables` emits it as an empty single-row table that
@@ -113,7 +103,7 @@ slots:
     minimum_value: 1
     title: Ordinal
     exact_mappings: [ schema:position ]
-    description: "sort/join key of a part row. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
+    description: "sort/join key of a part-set member. Derived from authored position, never hand-typed — SQL rows carry no order, so the document's order is materialized here."
     annotations: { i18n: { value: { title: { pt: Ordinal } } } }
   slug_qualified:
     identifier: true
@@ -149,9 +139,9 @@ slots:
     annotations: { i18n: { value: { title: { pt: Registro } } } }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
-# CLOSED GRAMMAR vocabularies only. Part vocabularies (phase a/b/c, l1/l2,
-# tracker positions) are Part ROWS on the feature — per-model, so a new
-# subdivision is a new row, never a new column or a DDL migration.
+# CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker
+# positions) are per-model discriminators on Interval, validated against a
+# feature's part_set or count — never a new column or a DDL migration.
 enums:
   MatchStrength:
     title: Match strength

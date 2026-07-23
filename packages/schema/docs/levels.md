@@ -26,7 +26,7 @@ A shared table holds every level. `NodeType` and `FeatureType` rows also declare
 | model        | `SubjectNode`       | `slug`                   | `foxess-h3-ps10sh` |
 | feature type | `FeatureType`       | `slug`                   | `ac-phase`         |
 | feature      | `FeatureOfInterest` | `role`                   | `out`              |
-| part         | `Part`              | `slug`                   | `a`                |
+| part         | `Interval.part`     | key (no table)           | `a`                |
 | interval     | `Interval`          | `quantity_kind` + `slug` | `voltage/running`  |
 
 `Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level.
@@ -170,9 +170,9 @@ No separate "slug unique per part" constraint needs writing. Two rows that would
 
 ## Part keys
 
-Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. `ordinal` on the part row carries sort/join order, derived from authored position rather than typed.
+Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. A part is a discriminator key on `Interval`, not its own row; sort/join order comes from the feature's `part_set` (`PartSetMember.ordinal`).
 
-Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Three trackers or two battery ports; split-phase `l1, l2` or three-phase `a, b, c`. A `Part` row is that fact; a part with no intervals still exists as a row.
+Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Three trackers or two battery ports; split-phase `l1, l2` or three-phase `a, b, c`. A part exists only as an `Interval.part` value validated against the feature's `part_set` members or `count`; a subdivision with no interval is simply not asserted.
 
 | feature type | one model's parts | another's |
 | ------------ | ----------------- | --------- |
@@ -199,7 +199,7 @@ Every interval has a part, always — the column is non-null and holds the path'
 
 A measurement channel is always concrete, so `*` is in practice a specification move: one band stated once instead of repeated per leg. Nothing forbids it elsewhere, and no rule has to.
 
-`*` persists as-is and resolves at query time against the feature's own `Part` rows. A part's own value wins; `*` supplies the rest:
+`*` persists as-is and resolves at query time against the feature's `part_set` members (or `count`). A part's own value wins; `*` supplies the rest:
 
 ```sql
 select distinct on (i.quantity_kind, i.slug) i.*
@@ -208,4 +208,4 @@ where i.feature = $1 and i.part in ($2, '*')
 order by i.quantity_kind, i.slug, (i.part = '*')
 ```
 
-`part` is not an FK — two of its values name no row. Member validity is an owned check against the feature's `Part` rows.
+`part` is not an FK — two of its values name no row. Member validity is an owned check against the feature's `part_set` members (or `count`).

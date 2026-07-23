@@ -34,7 +34,7 @@ classes:
     title: Domain member
     annotations: { sql_table: domain_member, keyed_by: slug }
     description: >-
-      One member of a categorical vocabulary — a Setting option or a Channel state/fault. Ordered by authored position, like Part.
+      One member of a categorical vocabulary — a Setting option or a Channel state/fault. Ordered by authored position, like PartSetMember.
     slots: [ node, slug, ordinal, contents ]
     slot_usage: { slug: { required: true } }
 slots:

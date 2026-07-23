@@ -43,9 +43,6 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/measured",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/a",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/b",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/c",
   "inverter/foxess-h3-ps10sh/ac-phase/grid",
   "inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/out",
@@ -53,9 +50,6 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in",
   "inverter/foxess-h3-ps10sh/ac-phase/grid/_/active-energy/in-daily",
   "inverter/foxess-h3-ps10sh/ac-phase/grid/*/active-power/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/grid/a",
-  "inverter/foxess-h3-ps10sh/ac-phase/grid/b",
-  "inverter/foxess-h3-ps10sh/ac-phase/grid/c",
   "inverter/foxess-h3-ps10sh/ac-phase/eps",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/*/voltage/nominal",
@@ -63,21 +57,12 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/eps/*/frequency/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/*/electric-current/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/*/active-power/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/a",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/b",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/c",
   "inverter/foxess-h3-ps10sh/ac-phase/load",
   "inverter/foxess-h3-ps10sh/ac-phase/load/_/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/lifetime",
   "inverter/foxess-h3-ps10sh/ac-phase/load/_/active-energy/daily",
   "inverter/foxess-h3-ps10sh/ac-phase/load/*/active-power/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/load/a",
-  "inverter/foxess-h3-ps10sh/ac-phase/load/b",
-  "inverter/foxess-h3-ps10sh/ac-phase/load/c",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker",
-  "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1",
-  "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2",
-  "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3/voltage/mppt",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/survival",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/_/active-power/continuous",
@@ -502,23 +487,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
       ],
       "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out",
       "part_set": "node:part-set/three-phase",
-      "parts": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a",
-          "ordinal": 1,
-          "slug": "a",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b",
-          "ordinal": 2,
-          "slug": "b",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c",
-          "ordinal": 3,
-          "slug": "c",
-        },
-      ],
       "role": "out",
       "specifications": [
         {
@@ -721,23 +689,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
       ],
       "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid",
       "part_set": "node:part-set/three-phase",
-      "parts": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/a",
-          "ordinal": 1,
-          "slug": "a",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/b",
-          "ordinal": 2,
-          "slug": "b",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/grid/c",
-          "ordinal": 3,
-          "slug": "c",
-        },
-      ],
       "role": "grid",
     },
     {
@@ -826,23 +777,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
       ],
       "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps",
       "part_set": "node:part-set/three-phase",
-      "parts": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a",
-          "ordinal": 1,
-          "slug": "a",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/b",
-          "ordinal": 2,
-          "slug": "b",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c",
-          "ordinal": 3,
-          "slug": "c",
-        },
-      ],
       "role": "eps",
       "specifications": [
         {
@@ -931,23 +865,6 @@ exports[`normalizes the FoxESS fixture deterministically 1`] = `
       ],
       "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load",
       "part_set": "node:part-set/three-phase",
-      "parts": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/a",
-          "ordinal": 1,
-          "slug": "a",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/b",
-          "ordinal": 2,
-          "slug": "b",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/ac-phase/load/c",
-          "ordinal": 3,
-          "slug": "c",
-        },
-      ],
       "role": "load",
     },
   ],
@@ -1321,23 +1238,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
         },
       ],
       "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker",
-      "parts": [
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/1",
-          "ordinal": 1,
-          "slug": "1",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/2",
-          "ordinal": 2,
-          "slug": "2",
-        },
-        {
-          "node": "node:inverter/foxess-h3-ps10sh/dc-port/pv-tracker/3",
-          "ordinal": 3,
-          "slug": "3",
-        },
-      ],
       "role": "pv-tracker",
       "specifications": [
         {
