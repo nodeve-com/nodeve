@@ -1,6 +1,6 @@
 # @nodeve/schema
 
-Source of truth for **describing things**. [LinkML](https://linkml.io) schemas. Authored data normalized to rows; projections generate SQL DDL, validation schemas, program types, and databases. Replaces `@nodeve/grimoire`.
+Source of truth for **describing things** within a relational database. [LinkML](https://linkml.io) schemas. Authored data normalized to rows; projections generate SQL DDL, validation schemas, program types, and databases. Replaces `@nodeve/grimoire`.
 
 ## Status
 
@@ -24,10 +24,10 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `linkml/shared.yaml` | shared slots |
 | `linkml/enums.yaml` | shared closed-grammar enums |
 | `bin/format.ts` | yaml formatting gate (`--check` for precommit) |
-| `bin/check-refs.ts` | resolves one sample IRI per registry — network, so ungated (`pnpm check:refs`) |
+| `bin/check-*.ts` | perform validation checks |
 | `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `linkml-sqldb` ingests; pass a data file to print rows |
 | `bin/ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no backref-column hook |
-| `data/device_model/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
+| `data/subject_node/<slug>.yaml` | authored nested device descriptions; FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows. **Placeholder fixtures — not normative** |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
 | `gen/` | all build output — DDL, catalog bundle, SQLite db. Gitignored |
@@ -37,7 +37,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 ```sh
 pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
 pnpm generate   # format → normalize, no python
-pnpm validate   # device model against the schema
+pnpm validate   # subject node against the schema
 pnpm check      # format gate (--check), what precommit runs
 pnpm check:refs # registry iri_templates resolve? (network)
 ```
@@ -48,6 +48,6 @@ pnpm check:refs # registry iri_templates resolve? (network)
 
 - [levels.md](docs/levels.md) (identity path grammar)
 - [authoring-storage.md](docs/authoring-storage.md) (authored docs → schema-checked rows), [pipeline.md](docs/pipeline.md) (pipeline stages).
-- [overlay.md](docs/overlay.md) — device types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
+- [overlay.md](docs/overlay.md) — node types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
 - [mapping.md](docs/mapping.md) — every grimoire construct → its LinkML landing, plus identity and PK/FK rules.
 - [open.md](docs/open.md) — known gaps and deliberate deferrals (no metaclass, overlapping backref FKs, untested registries, `code` collision risk, …).

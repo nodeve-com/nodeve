@@ -44,7 +44,7 @@ function mergeDoc(into: Doc, add: Doc, trail: string) {
 
 export const featureTypeBySlug = loadDir('feature_type');
 export const partSetBySlug = loadDir('part_set');
-export const deviceTypeBySlug = loadDir('device_type');
+export const nodeTypeBySlug = loadDir('node_type');
 
 /** columns of one authored map, validated against the class's slots */
 export function columns(className: string, value: unknown, trail: string): Doc {
@@ -65,13 +65,13 @@ export const expandKey = (slot: string, v: string): string => {
 };
 
 /** in-doc references that resolve against SIBLING rows, not the catalog:
- * product.manufacturer stays a bare slug; service NICs must exist above */
+ * product.organization stays a bare slug; service NICs must exist above */
 export function siblingRefs(at: { slug: string; node: string }, model: Doc, doc: Doc) {
 	const product = model.product;
-	if (isMap(product) && typeof product.manufacturer === 'string') {
-		if (!SLUG.test(product.manufacturer))
-			die(`${at.slug}.product.manufacturer`, 'expected a bare slug');
-		product.manufacturer = `node:manufacturer/${product.manufacturer}`;
+	if (isMap(product) && typeof product.organization === 'string') {
+		if (!SLUG.test(product.organization))
+			die(`${at.slug}.product.organization`, 'expected a bare slug');
+		product.organization = `node:organization/${product.organization}`;
 	}
 	for (const svc of (model.services as Doc[]) ?? []) {
 		const nic = svc.network_interface;

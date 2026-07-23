@@ -36,7 +36,7 @@ slots:
     range: string
     title: Role
     exact_mappings: [ schema:Role ]
-    description: 'which SOCKET of the device type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the device type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
+    description: 'which SOCKET of the node type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the node type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature with three part rows.'
   # wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref
   slug:
     range: string

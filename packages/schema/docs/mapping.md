@@ -1,6 +1,6 @@
 # grimoire → LinkML
 
-How each grimoire construct lands in the relational LinkML model. Reusable tables that device types assemble — not wide tables repeating column names.
+How each grimoire construct lands in the relational LinkML model. Reusable tables that node types assemble — not wide tables repeating column names.
 
 | grimoire | LinkML | note |
 | --- | --- | --- |
@@ -11,8 +11,8 @@ How each grimoire construct lands in the relational LinkML model. Reusable table
 | quantity_kind enum | `QuantityKind` table + `Ref` rows | `is_a` on an enum neither constrains nor inherits, so a typo'd projected value silently mints a new permissible value. Master list is rows; every citation an FK |
 | `refs:` block | `Ref` → `Registry` tables | the ONE outward link. LinkML's `exact_mappings:` annotates SCHEMA elements; these are DATA, so mappings are data. `match` stays an enum — closed SKOS grammar |
 | socket contract | `SocketBinding` rows | role vocabularies + required-ness project from these, not hand-written |
-| archetype | `DeviceType` + binding rows | projects to a validation class, never a type-specific table |
-| `product:` + mfr cascade | `Product` → `Manufacturer` tables | cascade = shared FK row |
+| archetype | `NodeType` + binding rows | projects to a validation class, never a type-specific table |
+| `product:` + mfr cascade | `Product` → `Organization` tables | cascade = shared FK row |
 | `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |
 | part (l1/l2/l3) | `Part` row | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
 | i18n keys (en/pt) | schema `annotations.i18n` → projected `Content(language)` rows | translations authored on the slot/permissible value, never in `data/`; rows are the projection. See [concepts.md](concepts.md#translations) |

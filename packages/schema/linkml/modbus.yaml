@@ -3,7 +3,7 @@ name: modbus
 default_prefix: nodeve
 default_range: string
 classes:
-  # ── comms layer: OUT of the device. Shared per manufacturer-family;
+  # ── comms layer: OUT of the device. Shared per organization-family;
   # many products FK the same map. ──
   RegisterMap:
     title: Register map

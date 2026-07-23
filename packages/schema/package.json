@@ -17,7 +17,7 @@
 		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",
 		"build:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py > ../gen/nodeve.sql",
 		"build:db": "cd linkml && uvx --from linkml python ../bin/ddl.py dump",
-		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/device_model/foxess-h3-ps10sh.yaml",
+		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/subject_node/foxess-h3-ps10sh.yaml",
 		"check": "node bin/format.ts --check",
 		"check:meta": "node bin/check-meta.ts",
 		"check:refs": "node bin/check-refs.ts",

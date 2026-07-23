@@ -1,6 +1,6 @@
 // data2schema: registry ROWS → the projected validation schema.
 // feature_type.quantity_bindings → the admissible quantity set per feature type.
-// device_type.socket_bindings    → the role vocabulary + required-ness per socket.
+// node_type.socket_bindings    → the role vocabulary + required-ness per socket.
 // Data is the source; the projected schema is derived. Never hand-edit it — a
 // new quantity or socket is an INSERT here, and the stencil follows.
 import { abs, readYaml, write, yamlNames } from '../src/io.ts';
@@ -23,7 +23,7 @@ type FeatureTypeRow = {
 	bound_as?: string;
 	quantity_bindings?: { quantity_kind: string }[];
 };
-type DeviceTypeRow = {
+type NodeTypeRow = {
 	slug: string;
 	node: string;
 	socket_bindings?: { feature_type: string; role: string; required?: boolean }[];
@@ -33,7 +33,7 @@ const pascal = (slug: string) => slug.replace(/(^|-)([a-z0-9])/g, (_, __, c) => 
 const curieSlug = (curie: string) => curie.split('/').pop()!;
 
 const featureTypes = loadRows('data/feature_type/') as unknown as FeatureTypeRow[];
-const deviceTypes = loadRows('data/device_type/') as unknown as DeviceTypeRow[];
+const nodeTypes = loadRows('data/node_type/') as unknown as NodeTypeRow[];
 const { prefixes } = readYaml<{ prefixes: unknown }>(abs('linkml/nodeve.yaml'));
 
 const projectedEnum: Record<string, unknown> = {};
@@ -63,7 +63,7 @@ for (const ft of featureTypes) {
 	};
 }
 
-for (const dt of deviceTypes) {
+for (const dt of nodeTypes) {
 	const dtName = pascal(dt.slug);
 	const byFeature = new Map<string, { role: string; required?: boolean }[]>();
 	for (const b of dt.socket_bindings ?? []) {
@@ -72,7 +72,7 @@ for (const dt of deviceTypes) {
 	}
 
 	const slotUsage: Record<string, unknown> = {
-		device_type: { equals_string: dt.node },
+		node_type: { equals_string: dt.node },
 	};
 
 	for (const [ftSlug, bindings] of byFeature) {
@@ -85,7 +85,7 @@ for (const dt of deviceTypes) {
 			is_a: `${ftName}Feature`,
 			slot_usage: { role: { range: `${dtName}${ftName}Role` } },
 		};
-		// the DeviceModel slot this feature type fills (its bound_as row fact), and
+		// the SubjectNode slot this feature type fills (its bound_as row fact), and
 		// whether any socket on it is mandatory — both binding data, no hand map
 		const slot = featureTypes.find((f) => f.slug === ftSlug)?.bound_as as string | undefined;
 		if (slot)
@@ -95,7 +95,7 @@ for (const dt of deviceTypes) {
 			};
 	}
 
-	projectedClass[dtName] = { is_a: 'DeviceModel', slot_usage: slotUsage };
+	projectedClass[dtName] = { is_a: 'SubjectNode', slot_usage: slotUsage };
 }
 
 const projected = {

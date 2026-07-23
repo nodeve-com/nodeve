@@ -3,14 +3,14 @@
 // Vocabularies come from data/ rows and the schema — never hardcoded:
 //   part keys      → the feature's part_set members (data/part_set) or count
 //   quantity keys  → the feature type's quantity_binding rows
-//   roles          → the device type's socket_binding rows
+//   roles          → the node type's socket_binding rows
 //   facet keys     → classes by sql_table; columns validated against slots
 // Every trail key is stringified as read; every error carries its key trail.
 import { basename, dirname } from 'node:path';
 import { classByName, classByTable, fkTable, keysOf, seg, slotByName, SLUG } from './model.ts';
 import {
 	columns,
-	deviceTypeBySlug,
+	nodeTypeBySlug,
 	die,
 	expandKey,
 	featureTypeBySlug,
@@ -63,11 +63,11 @@ class DeviceWalk implements WalkState {
 		this.doc = loadDoc(file);
 		const dt = this.doc[rootSlot];
 		if (typeof dt !== 'string' || !SLUG.test(dt)) die(`${this.slug}.${rootSlot}`, 'must be a slug');
-		this.sockets = (deviceTypeBySlug[dt]?.socket_binding ??
-			die(this.slug, `unknown device_type ${dt}`)) as Record<string, Doc>;
+		this.sockets = (nodeTypeBySlug[dt]?.socket_binding ??
+			die(this.slug, `unknown node_type ${dt}`)) as Record<string, Doc>;
 		this.node = this.mint(`node:${dt}/${this.slug}`);
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
-		this.model = { node: this.node, slug: this.slug, [rootSlot]: `node:device-type/${dt}` };
+		this.model = { node: this.node, slug: this.slug, [rootSlot]: `node:node-type/${dt}` };
 	}
 
 	mint(path: string): string {
@@ -104,10 +104,10 @@ class DeviceWalk implements WalkState {
 		if (cls === 'Setting') this.model.settings = this.values.settingRows(value, trail);
 		else if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
-			const owner = (classByName.DeviceModel?.slots ?? []).find(
+			const owner = (classByName.SubjectNode?.slots ?? []).find(
 				(s) => slotByName[s]?.range === cls,
 			);
-			if (!owner) die(trail, `DeviceModel has no slot ranging ${cls}`);
+			if (!owner) die(trail, `SubjectNode has no slot ranging ${cls}`);
 			this.model[owner!] = keysOf(cls).length
 				? this.childRows(cls, value, trail)
 				: { node: this.node, ...columns(cls, value, trail) };

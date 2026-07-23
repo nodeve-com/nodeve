@@ -3,9 +3,9 @@ name: product
 default_prefix: nodeve
 default_range: string
 classes:
-  Manufacturer:
-    title: Manufacturer
-    annotations: { sql_table: manufacturer }
+  Organization:
+    title: Organization
+    annotations: { sql_table: organization }
     description: Own table — the relational analog of the _defaults cascade; every FoxESS product FKs one row.
     slots: [ node, slug, contents ]
 
@@ -13,26 +13,26 @@ classes:
     title: Product
     annotations: { sql_table: product }
     description: Product identity feature — what grimoire's `product:` block was.
-    slots: [ node, model, series, manufacturer ]
-    slot_usage: { manufacturer: { required: true } }
+    slots: [ node, model, series, organization ]
+    slot_usage: { organization: { required: true } }
 
   # ── device layer: ONE table ──
-  # Rows are MODELS (manufacturer + model number); device_type says which kind
+  # Rows are MODELS (organization + model number); node_type says which kind
   # of device the model is. NO type-specific class lives here — that is the
-  # invariant that keeps a new device type an INSERT: per-type classes exist
+  # invariant that keeps a new node type an INSERT: per-type classes exist
   # ONLY in the projected schema, which gen-sqlddl never reads. Adding one
   # must leave gen-sqltables output byte-identical.
-  DeviceModel:
-    title: Device model
+  SubjectNode:
+    title: Subject node
     annotations:
-      sql_table: device_model
-      # permalink root = the device TYPE's slug, not this table's name — the
+      sql_table: subject_node
+      # permalink root = the node TYPE's slug, not this table's name — the
       # normalizer reads the named slot's value as the path root
-      path_root: device_type
-    description: A catalogued device model — the assembly of feature-of-interest rows its type calls for.
+      path_root: node_type
+    description: A catalogued subject node — the assembly of feature-of-interest rows its type calls for.
     slots:
       - node
-      - device_type
+      - node_type
       - slug
       - product
       - contents
@@ -44,7 +44,7 @@ classes:
       - ac_ports
       - dc_ports
       - environments
-    slot_usage: { product: { required: true }, device_type: { required: true } }
+    slot_usage: { product: { required: true }, node_type: { required: true } }
 slots:
   model:
     title: Model
@@ -68,12 +68,6 @@ slots:
     related_mappings: [ sosa:FeatureOfInterest ]
     description: "DC port ROWS — one per socket (pv-tracker, battery); how MANY trackers or battery ports is that feature's part rows"
     annotations: { camel: dcPorts }
-  device_type:
-    range: DeviceType
-    title: Device type
-    related_mappings: [ schema:category ]
-    description: 'FK — which device type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new device type is an INSERT, never a DDL migration. Permalink root = its slug'
-    annotations: { camel: deviceType }
   environments:
     range: FeatureOfInterest
     multivalued: true
@@ -81,12 +75,6 @@ slots:
     title: Environments
     related_mappings: [ sosa:FeatureOfInterest ]
     description: 'environment ROWS — the things a temperature/humidity reading attaches to; role says which (ambient = rated operating conditions, enclosure = internal sensor)'
-  manufacturer:
-    range: Manufacturer
-    title: Manufacturer
-    exact_mappings: [ schema:manufacturer ]
-    description: 'FK — the organization that made this thing'
-    annotations: { i18n: { value: { title: { pt: Fabricante } } } }
   network_interfaces:
     range: NetworkInterface
     multivalued: true
@@ -94,6 +82,18 @@ slots:
     title: Network interfaces
     related_mappings: [ wikidata:Q165233 ]
     annotations: { camel: networkInterfaces }
+  node_type:
+    range: NodeType
+    title: Node type
+    related_mappings: [ schema:category ]
+    description: 'FK — which node type this model is (inverter, dehumidifier, ac-meter). A ROW, not a class CURIE: a new node type is an INSERT, never a DDL migration. Permalink root = its slug'
+    annotations: { camel: nodeType }
+  organization:
+    range: Organization
+    title: Organization
+    exact_mappings: [ schema:manufacturer ]
+    description: 'FK — the organization that made this thing'
+    annotations: { i18n: { value: { title: { pt: Organização } } } }
   product: { range: Product, inlined: true, title: Product, exact_mappings: [ schema:Product ] }
   register_map:
     range: RegisterMap

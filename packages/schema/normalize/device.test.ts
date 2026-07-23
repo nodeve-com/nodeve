@@ -10,7 +10,7 @@ import { normalizeDevice } from './tree.ts';
 it('normalizes the FoxESS fixture deterministically', () => {
 	const paths: string[] = [];
 	// a DIRECTORY entry — its children merge at load, its name is the slug
-	const model = normalizeDevice(abs('data/device_model/foxess-h3-ps10sh'), (p) => paths.push(p));
+	const model = normalizeDevice(abs('data/subject_node/foxess-h3-ps10sh'), (p) => paths.push(p));
 	expect(model).toMatchSnapshot();
 	expect(paths).toMatchSnapshot('minted paths');
 	expect(new Set(paths).size).toBe(paths.length); // no duplicate coordinates

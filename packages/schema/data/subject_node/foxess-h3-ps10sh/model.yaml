@@ -3,12 +3,12 @@
 #
 # One entry for the whole box: its electrical envelope AND how it is talked to.
 # Replaces the old split between spec sheet and modbus register map.
-device_type: inverter
+node_type: inverter
 
 product:
   model: H3-10.0-Smart # box reports Inv.H3_SMART
   series: H3
-  manufacturer: foxess # grimoire took this from fox-ess/_defaults.yaml
+  organization: foxess # grimoire took this from fox-ess/_defaults.yaml
 
 # Commissioning knob — the grid region the box is wired for. The site fixes it
 # once at install; the nominal voltage/frequency bands below gate on it.

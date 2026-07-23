@@ -33,12 +33,12 @@ classes:
       registries: { range: Registry, multivalued: true, inlined_as_list: true }
       # GENERATED from schema slot titles, not a data dir — see build().
       properties: { range: Property, multivalued: true, inlined_as_list: true }
-      manufacturers: { range: Manufacturer, multivalued: true, inlined_as_list: true }
+      organizations: { range: Organization, multivalued: true, inlined_as_list: true }
       part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
-      device_types: { range: DeviceType, multivalued: true, inlined_as_list: true }
-      device_models: { range: DeviceModel, multivalued: true, inlined_as_list: true }
+      node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
+      subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
 
   # The external-registry table — one row per registry we map into (qudt,
   # wikidata, ha_device_class). A new registry is an INSERT; the iri_template

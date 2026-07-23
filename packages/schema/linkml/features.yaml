@@ -30,7 +30,7 @@ classes:
   # Interval is the ONE quantity-band table — every quantity assertion on a
   # feature is an Interval row; quantity admissibility is validated HERE, once.
   # Specification / Measurement are 1:1 WIDTH EXTENSIONS sharing the interval's
-  # node row (the Product-on-DeviceModel trick) — narrow tables, no repeated
+  # node row (the Product-on-SubjectNode trick) — narrow tables, no repeated
   # core columns. Uniqueness: one row per (feature, quantity_kind, part, slug).
   Interval:
     title: Interval

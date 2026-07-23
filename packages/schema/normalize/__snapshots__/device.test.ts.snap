@@ -1389,7 +1389,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
       ],
     },
   ],
-  "device_type": "node:device-type/inverter",
   "environments": [
     {
       "feature_type": "node:feature-type/environment",
@@ -1488,10 +1487,11 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
     },
   ],
   "node": "node:inverter/foxess-h3-ps10sh",
+  "node_type": "node:node-type/inverter",
   "product": {
-    "manufacturer": "node:manufacturer/foxess",
     "model": "H3-10.0-Smart",
     "node": "node:inverter/foxess-h3-ps10sh",
+    "organization": "node:organization/foxess",
     "series": "H3",
   },
   "register_map": {

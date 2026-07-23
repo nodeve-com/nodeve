@@ -1,5 +1,5 @@
 # AcPowerMeter — hand-cut mirror of what data2schema projects from
-# data/device_type/ac-power-meter.yaml + data/feature_type/ac-phase.yaml.
+# data/node_type/ac-power-meter.yaml + data/feature_type/ac-phase.yaml.
 # One ac-phase socket (role `point`, required). Phase count is the model's
 # part rows, not this type. Authored form is the rows; this is the derived
 # validation cut — never the source.
@@ -46,14 +46,14 @@ classes:
       intervals: { range: AcPhaseIntervalRow }
       feature_type: { equals_string: node:feature-type/ac-phase }
 
-  # device-type socket: which roles this feature fills on AcPowerMeter
+  # node-type socket: which roles this feature fills on AcPowerMeter
   AcPowerMeterAcPhaseFeature:
     is_a: AcPhaseFeature
     slot_usage:
       role: { range: AcPowerMeterAcPhaseRole }
 
   AcPowerMeter:
-    is_a: DeviceModel
+    is_a: SubjectNode
     slot_usage:
-      device_type: { equals_string: node:device-type/ac-power-meter }
+      node_type: { equals_string: node:node-type/ac-power-meter }
       ac_ports: { range: AcPowerMeterAcPhaseFeature, required: true }

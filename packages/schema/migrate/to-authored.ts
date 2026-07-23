@@ -4,7 +4,7 @@
 // that slot (bare slugs for class-ranged keys and FK columns), and refuses
 // any key it does not recognize.
 //
-//   node migrate/to-authored.ts <table> [<table>…]   # e.g. device_type
+//   node migrate/to-authored.ts <table> [<table>…]   # e.g. node_type
 import { abs, readYaml, write, yamlNames } from '../src/io.ts';
 import { dumpYaml } from '../src/yaml-style.ts';
 import { classByName, classByTable, fkTable, seg, slotByName } from '../normalize/model.ts';

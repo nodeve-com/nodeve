@@ -1,7 +1,7 @@
 # Levels
 
 ```
-device type → model → feature type → feature → part? → interval
+node type → model → feature type → feature → part? → interval
                                                         ├─ specification facet
                                                         ├─ measurement facet
                                                         └─ valued range facet
@@ -9,21 +9,21 @@ device type → model → feature type → feature → part? → interval
 
 ## Storage and policy
 
-A shared table holds every level. `DeviceType` and `FeatureType` rows also declare policy for later levels:
+A shared table holds every level. `NodeType` and `FeatureType` rows also declare policy for later levels:
 
 | artifact | owns |
 | --- | --- |
-| `DeviceType` row | allowed and required feature roles |
+| `NodeType` row | allowed and required feature roles |
 | `FeatureType` row | allowed quantity kinds |
-| `DeviceModel` through `Interval` rows and interval facets | one model's facts |
+| `SubjectNode` through `Interval` rows and interval facets | one model's facts |
 | generated `Inverter` class | executable LinkML view of the policy rows |
 
 `Inverter` is validation syntax, not another stored entity or SQL table. Base DDL stays unchanged.
 
 | level        | table               | keyed by                 | example            |
 | ------------ | ------------------- | ------------------------ | ------------------ |
-| device type  | `DeviceType`        | `slug`                   | `inverter`         |
-| model        | `DeviceModel`       | `slug`                   | `foxess-h3-ps10sh` |
+| node type    | `NodeType`          | `slug`                   | `inverter`         |
+| model        | `SubjectNode`       | `slug`                   | `foxess-h3-ps10sh` |
 | feature type | `FeatureType`       | `slug`                   | `ac-phase`         |
 | feature      | `FeatureOfInterest` | `role`                   | `out`              |
 | part         | `Part`              | `slug`                   | `a`                |
@@ -38,7 +38,7 @@ Rule ownership follows dependency, not importance:
 | rule | owner | reason |
 | --- | --- | --- |
 | interval `slug` required | base LinkML | fixed shape of every interval |
-| role is valid for an inverter | `SocketBinding` → validation schema | closed set varies by device type |
+| role is valid for an inverter | `SocketBinding` → validation schema | closed set varies by node type |
 | quantity is valid for an AC feature | `QuantityBinding` → validation schema | closed set varies by feature type |
 | referenced quantity exists | SQL FK | referential integrity |
 | node path unique | SQL PK | storage identity |
@@ -75,7 +75,7 @@ Thus content needs two node references, but no parent-class reference. `Content.
 The path is the **level trail**, one segment per level, in level order:
 
 ```
-node:<device-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
+node:<node-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
 node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/running
 node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/_
 ```
@@ -84,8 +84,8 @@ Segment rules:
 
 | segment | from | omitted when |
 | --- | --- | --- |
-| device-type | `DeviceType.slug` | never (definition docs root at their own layer — `node:feature-type/ac-phase`) |
-| model | `DeviceModel.slug` | never, on catalog rows |
+| node-type | `NodeType.slug` | never (definition docs root at their own layer — `node:feature-type/ac-phase`) |
+| model | `SubjectNode.slug` | never, on catalog rows |
 | feature-type | referenced `FeatureType.slug` | never |
 | feature-role | `FeatureOfInterest.role` | never |
 | part | `Interval.part` verbatim — a member slug, `_`, or `*` | never — the column is non-null, so the segment never dissolves |

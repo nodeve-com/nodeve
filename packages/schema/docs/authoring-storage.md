@@ -45,7 +45,7 @@ Three key forms, three meanings:
 
 ```yaml
 # foxess-h3-ps10sh.yaml — the filename is the slug
-device_type: inverter
+node_type: inverter
 
 # every block key is a sql_table name; the nested key levels are the class's
 # keyed_by slots, in order (feature_of_interest: feature_type, role)
@@ -145,7 +145,7 @@ Machine-facing, what the schema describes:
 - explicit node PKs and FKs
 - one table-oriented class per stored row
 - suitable for LinkML SQL generation
-- generated device-model rows; never hand-authored
+- generated subject-node rows; never hand-authored
 
 The catalog is **JSON**, one giant file.
 
@@ -154,7 +154,7 @@ The catalog is **JSON**, one giant file.
 Canonical interval trail:
 
 ```text
-node:<device-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
+node:<node-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
 ```
 
 Example:
@@ -166,7 +166,7 @@ node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/_
 Ordered levels:
 
 ```text
-device type → model → feature type → feature → part? → interval
+node type → model → feature type → feature → part? → interval
                                                         ├─ specification facet
                                                         ├─ measurement facet
                                                         └─ valued range facet
@@ -190,7 +190,7 @@ It must not infer domain meaning from payload shape.
 
 ## Schema layout
 
-The schema must scale to hundreds of kinds of modeled things. Device models are the first case, not the organizing boundary for the whole schema. Establish a uniform module pattern here that later kinds can follow without copying schema structure or normalizer plumbing.
+The schema must scale to hundreds of kinds of modeled things. Subject nodes are the first case, not the organizing boundary for the whole schema. Establish a uniform module pattern here that later kinds can follow without copying schema structure or normalizer plumbing.
 
 Do not assume one LinkML file. Split into composable modules as domains grow; expose one root entrypoint for validation and generation.
 
@@ -218,7 +218,7 @@ Exact modules should emerge from repeated structure, not speculative taxonomy.
 
 Every stage is kind-agnostic: read a key trail, check a key against its level's vocabulary, emit a row. Kind-specific knowledge lives in the schema, never in normalizer branches.
 
-The reference input is [`grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml`](../../grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml) — register map and prose included. `data/device_model/foxess-h3-ps10sh.yaml` is a fixture derived from it, not the source. Port what it inherits from grimoire's `_defaults.yaml` explicitly; the cascade does not come along, `Manufacturer` replaces it.
+The reference input is [`grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml`](../../grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml) — register map and prose included. `data/subject_node/foxess-h3-ps10sh.yaml` is a fixture derived from it, not the source. Port what it inherits from grimoire's `_defaults.yaml` explicitly; the cascade does not come along, `Organization` replaces it.
 
 Build order:
 
@@ -227,7 +227,7 @@ Build order:
 3. Resolve structured references against normalized coordinates.
 4. Emit the catalog; check against the schema; build the database.
 
-Registry, quantity-kind, feature-type, and device-type files are already table-like: they enter the catalog as rows. The trail walk handles them as a one-level case, not a special one.
+Registry, quantity-kind, feature-type, and node-type files are already table-like: they enter the catalog as rows. The trail walk handles them as a one-level case, not a special one.
 
 ## Acceptance
 
