@@ -179,6 +179,7 @@ slots:
     range: Organization
     title: Publisher
     slot_uri: schema:publisher
+    exact_mappings: [ schema:publisher ]
     description: 'FK — the organization that publishes this registry'
     annotations: { i18n: { value: { title: { pt: Editora } } } }
   registry:

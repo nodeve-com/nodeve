@@ -1,0 +1,42 @@
+# The VE.Direct decode contract — one row per wire field, keyed by its
+# case-sensitive VE.Direct label. LINKED rows carry a `target` measurand ref
+# (interval resolved from feature/part/quantity, like a register); UNLINKED
+# discovery rows carry only key + type, the value name riding `note` until its
+# feature lands (then add a target + drop the note). Owned by this product — no
+# brand cascade merges into it.
+vedirect_field:
+  # --- VE.Direct common header (every VE.Direct device emits these) ---
+  PID: { type: hex, note: 'product_id — Victron product id (e.g. 0xA07D)' }
+  'SER#': { type: string, note: 'serial — unit serial number' }
+  FW: { type: string, note: 'firmware — firmware version' }
+  V:
+    scale: 0.001
+    decimals: 3
+    target: { feature: { type: dc-port, role: battery }, quantity: voltage } # mV → V
+  I:
+    scale: 0.001
+    decimals: 3
+    target: { feature: { type: dc-port, role: battery }, quantity: electric-current } # mA → A
+  # --- SmartSolar MPPT fields ---
+  VPV:
+    scale: 0.001
+    decimals: 3
+    target: { feature: { type: dc-port, role: pv-tracker }, part: 1, quantity: voltage } # mV → V
+  PPV:
+    target:
+      feature: { type: dc-port, role: pv-tracker }
+      part: 1
+      quantity: active-power
+      # already W
+  IL: { scale: 0.001, decimals: 3, note: 'load_current — load output current, mA → A' }
+  CS: { note: 'charge_state — operation state code (0 off, 3 bulk, 4 absorption, 5 float…)' }
+  MPPT: { note: 'tracker_state — tracker state code (0 off, 1 limited, 2 active)' }
+  ERR: { note: 'error_code — error code (0 = no error)' }
+  OR: { type: hex, note: 'off_reason — off-reason bitmask' }
+  LOAD: { type: bool, note: 'load_on — load output ON/OFF' }
+  H19: { scale: 0.01, decimals: 2, note: 'yield_total — total yield, 0.01 kWh' }
+  H20: { scale: 0.01, decimals: 2, note: "yield_today — today's yield, 0.01 kWh" }
+  H21: { note: 'max_power_today — max power today, W' }
+  H22: { scale: 0.01, decimals: 2, note: 'yield_yesterday — yesterday yield, 0.01 kWh' }
+  H23: { note: 'max_power_yesterday — max power yesterday, W' }
+  HSDS: { note: 'day_sequence — day sequence number (0…364)' }

@@ -1,0 +1,11 @@
+# Site adapter — one physical decoder peer of the bus topology (a gateway
+# daemon, a passive-tap board, a generated ESPHome device): it INGESTS a metered
+# catalogued device and EMITS the decoded points to MQTT. Not a catalogued
+# device itself — its instances live in a deploying repo (sites/<name>), so the
+# base catalog carries only this shape. `modbus_tap_window` rows exist only when
+# ingest_kind is modbus_tap (the passive-tap mode); a modbus_poll adapter has
+# none — an invariant enforced downstream, not in the relational facet decl.
+facet:
+  ingest: { cardinality: single, required: true }
+  emit: { cardinality: single, required: true }
+  modbus_tap_window: { cardinality: child }

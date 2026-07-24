@@ -1,0 +1,19 @@
+# The two DC ports the VE.Direct stream reads. No datasheet bands are authored
+# here — the charge controller carries only telemetry, so each quantity is a
+# lone measurable `measured` interval (a bare `measurement` facet marks it
+# measurable; resolution stays on the decode side, not fabricated here). The
+# VE.Direct fields (vedirect.yaml) link to these: V/I → battery, VPV/PPV →
+# pv-tracker part 1.
+feature_of_interest:
+  dc-port:
+    # Battery DC-output port — V → voltage, I → electric-current.
+    battery:
+      _:
+        voltage: { measured: { measurement: {} } }
+        electric-current: { measured: { measurement: {} } }
+    # Single MPPT input — VPV → voltage, PPV → active-power.
+    pv-tracker:
+      $: { count: 1 }
+      '1':
+        voltage: { measured: { measurement: {} } }
+        active-power: { measured: { measurement: {} } }

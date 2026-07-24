@@ -8,7 +8,7 @@ Pre-1.0: break schema, data shape, and DDL freely — no deprecation, no migrati
 
 ## [Facets](docs/facets.md)
 
-We intend for the database schema to be flexible and able to contain any kind of Thing (NodeType). Narrow SQL tables are facets, composed to include required properties needed to define a named Thing. Singular facets share a PK with the `node` table.
+We intend for the database schema to be flexible and able to contain any kind of Thing (NodeType). Narrow SQL tables are facets, composed to include required properties needed to define a named Thing. Singular facets share a PK with the `node` (identity) table.
 
 1. Every addressable thing → one `node` row; every pointer target has one.
 2. Facets are 1:1 extensions of the `node` — no separate id space.

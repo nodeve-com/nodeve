@@ -1,0 +1,94 @@
+id: https://nodeve.com/schema/lib/adapter
+name: adapter
+default_prefix: nodeve
+default_range: string
+classes:
+  # A site adapter's INGEST facet — how one physical decoder peer (a gateway
+  # daemon, an ESPHome board) reaches and reads the metered device. A keyless
+  # 1:1 co-row sharing the adapter node's id. The decoded output is the shared
+  # `emit` facet; WHAT it reads is `device` (FK to the catalogued subject node);
+  # HOW it reads is `ingest_kind` (polling master vs passive tap) on `platform`.
+  Ingest:
+    title: Ingest
+    annotations: { sql_table: ingest }
+    description: How a site adapter ingests the metered device — its decoder platform, read mode, target device, and host.
+    slots: [ node, platform, ingest_kind, device, host ]
+    slot_usage:
+      platform: { required: true }
+      ingest_kind: { required: true }
+      device: { required: true }
+
+  # One Modbus tap window — a master-polled register window a passive tap
+  # recognizes and republishes as one grouped MQTT cycle. Child rows of an
+  # adapter (own node ids), present only when `ingest_kind` is modbus_tap. The
+  # window slug is its clean topic segment; `address` is the master's read start.
+  ModbusTapWindow:
+    title: Modbus tap window
+    annotations: { sql_table: modbus_tap_window, keyed_by: slug }
+    description: A master-polled register window a passive Modbus tap republishes as one grouped MQTT cycle.
+    slots: [ node, address, register_type, retain, observed_interval_ms ]
+    slot_usage: { address: { required: true } }
+slots:
+  host:
+    range: string
+    title: Host
+    exact_mappings: [ schema:serverStatus ]
+    description: 'host the decoder reaches the device at (IP or name); a deployment fact, not a catalog default'
+  ingest_kind:
+    range: IngestKind
+    title: Ingest kind
+    related_mappings: [ schema:category ]
+    description: 'read mode — polling master (dial the device directly) or passive tap (sniff an existing master and republish its windows)'
+    annotations: { camel: ingestKind }
+  observed_interval_ms:
+    range: integer
+    minimum_value: 1
+    title: Observed interval (ms)
+    related_mappings: [ schema:Duration ]
+    description: 'measured cadence the master polls this window at, integer milliseconds'
+    annotations: { camel: observedIntervalMs }
+  platform:
+    range: Platform
+    title: Platform
+    related_mappings: [ schema:SoftwareApplication ]
+    description: 'which decoder platform runs the adapter — a generated ESPHome device, the gateway daemon, or a Telegraf modbus input'
+  retain:
+    range: boolean
+    title: Retain
+    related_mappings: [ schema:Boolean ]
+    description: 'retain the window''s grouped MQTT message — set for slow accumulating windows, clear for fast instantaneous ones'
+
+enums:
+  IngestKind:
+    title: Ingest kind
+    description: How an adapter ingests the metered device — closed grammar, so an enum.
+    permissible_values:
+      modbus_poll:
+        title: Modbus-TCP poll
+        related_mappings: [ schema:ReadAction ]
+        description: 'the adapter is the polling master, dialing the device''s Modbus-TCP surface directly (no tap windows)'
+        annotations: { i18n: { value: { title: { pt: Sondagem Modbus-TCP } } } }
+      modbus_tap:
+        title: Modbus passive tap
+        related_mappings: [ schema:ReadAction ]
+        description: 'passive sniff of an existing master''s traffic; the adapter republishes windows of the observed poll cycle'
+        annotations: { i18n: { value: { title: { pt: Escuta passiva Modbus } } } }
+  Platform:
+    title: Platform
+    description: The decoder platform an adapter runs on — closed grammar, so an enum.
+    permissible_values:
+      esphome:
+        title: ESPHome
+        related_mappings: [ schema:SoftwareApplication ]
+        description: 'the adapter runs as a generated ESPHome device rather than the site gateway daemon'
+        annotations: { i18n: { value: { title: { pt: ESPHome } } } }
+      farana:
+        title: Farana
+        related_mappings: [ schema:SoftwareApplication ]
+        description: 'the adapter runs as the site gateway daemon, reaching the device across a network proxy'
+        annotations: { i18n: { value: { title: { pt: Farana } } } }
+      telegraf:
+        title: Telegraf
+        related_mappings: [ schema:SoftwareApplication ]
+        description: 'the adapter runs as a generated Telegraf modbus input, polling the device and republishing to MQTT'
+        annotations: { i18n: { value: { title: { pt: Telegraf } } } }

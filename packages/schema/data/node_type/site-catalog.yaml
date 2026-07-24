@@ -1,0 +1,8 @@
+# Site catalog entry — a site's OWNED instance of a catalogued device: its
+# site-local identity plus the inventory reference to the device it is. Not a
+# catalogued device itself — instances live in a deploying repo (sites/<name>),
+# so the base catalog carries only this shape. Site-specific overrides (a real
+# MAC, on-bus sensor slugs) are the site node's OWN facet rows, merged with the
+# referenced device's facets by query — grimoire's free-form catalog_patch is
+# replaced by relational facets, not a blob.
+facet: { inventory: { cardinality: single, required: true } }

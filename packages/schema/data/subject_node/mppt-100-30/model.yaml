@@ -1,0 +1,17 @@
+# Victron SmartSolar MPPT 100/30 — one catalog entry: identity (the
+# charge-controller node_type) AND how it's READ (its full VE.Direct field list,
+# in vedirect.yaml). Organization (Victron) is the only brand cascade; every
+# DECODE fact lives on this one product — no brand merge.
+node_type: charge-controller
+
+product: { model: SmartSolar MPPT 100/30, organization: victron }
+
+content:
+  en:
+    title: Victron SmartSolar MPPT 100/30
+    lede: DC solar MPPT charge controller (VE.Direct)
+    body: >
+      Victron SmartSolar MPPT 100/30 — a single-tracker DC solar MPPT charge controller, read over VE.Direct. Identity plus its full VE.Direct field list (vedirect.yaml): the LINKED rows carry a measurand target (V/I → the battery DC-output port, VPV/PPV → the single pv-tracker input, ordinal 1); the UNLINKED discovery rows carry only the wire key + type, their future measurand name riding `note` until a feature lands. CS/MPPT/ERR codes stay integers, left undecoded; H19–H23 yields are 0.01 kWh counters.
+
+
+      The reported product id is 0xA07D (captured live, serial HQ2241V4RXC) — per Victron's PID list, the SmartSolar MPPT 100/30 rev2; a driver may use the PID field to verify a stream's identity.

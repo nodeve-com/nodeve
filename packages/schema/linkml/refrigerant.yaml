@@ -75,11 +75,35 @@ enums:
     title: Safety class
     description: ASHRAE Standard 34 refrigerant safety group — toxicity letter × flammability rank; a closed grammar, so an enum.
     permissible_values:
-      a1: { title: A1, description: 'lower toxicity, no flame propagation' }
-      a2l: { title: A2L, description: 'lower toxicity, lower flammability' }
-      a2: { title: A2, description: 'lower toxicity, flammable' }
-      a3: { title: A3, description: 'lower toxicity, higher flammability' }
-      b1: { title: B1, description: 'higher toxicity, no flame propagation' }
-      b2l: { title: B2L, description: 'higher toxicity, lower flammability' }
-      b2: { title: B2, description: 'higher toxicity, flammable' }
-      b3: { title: B3, description: 'higher toxicity, higher flammability' }
+      a1:
+        title: A1
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'lower toxicity, no flame propagation'
+      a2l:
+        title: A2L
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'lower toxicity, lower flammability'
+      a2:
+        title: A2
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'lower toxicity, flammable'
+      a3:
+        title: A3
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'lower toxicity, higher flammability'
+      b1:
+        title: B1
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'higher toxicity, no flame propagation'
+      b2l:
+        title: B2L
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'higher toxicity, lower flammability'
+      b2:
+        title: B2
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'higher toxicity, flammable'
+      b3:
+        title: B3
+        related_mappings: [ wikidata:Q131189 ]
+        description: 'higher toxicity, higher flammability'

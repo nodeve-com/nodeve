@@ -1,0 +1,18 @@
+id: https://nodeve.com/schema/lib/inventory
+name: inventory
+default_prefix: nodeve
+default_range: string
+classes:
+  # A site inventory item's facet — a site's OWNED instance of a catalogued
+  # device: the pointer to the device it IS (`device` FK → the SubjectNode) plus
+  # the physical unit's per-site identity (`serial_number`). A keyless 1:1 co-row
+  # sharing the site-catalog node's id. Grimoire's `catalog_patch` (a free-form
+  # sparse overlay deep-merged onto the loaded device) is GONE: relationally, a
+  # site's extra facets are their own rows on the site node, merged with the
+  # referenced device's facets by query — no blob, no materialised patch.
+  Inventory:
+    title: Inventory item
+    annotations: { sql_table: inventory }
+    description: A site's owned instance of a catalogued device — the device it points at and the unit's per-site serial.
+    slots: [ node, device, serial_number ]
+    slot_usage: { device: { required: true } }

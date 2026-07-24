@@ -96,9 +96,11 @@ enums:
         annotations: { i18n: { value: { title: { pt: Condições de teste padrão } } } }
       bnpi:
         title: Bifacial nameplate irradiance
+        related_mappings: [ wikidata:Q7597188 ]
         annotations: { i18n: { value: { title: { pt: Irradiância nominal bifacial } } } }
       bsi:
         title: Bifacial stress irradiance
+        related_mappings: [ wikidata:Q7597188 ]
         annotations: { i18n: { value: { title: { pt: Irradiância de estresse bifacial } } } }
   TriggerOn:
     title: Trigger direction

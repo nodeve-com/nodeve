@@ -194,10 +194,15 @@ enums:
     title: Cardinality
     description: how a composed facet relates to the node id — closed grammar, so an enum.
     permissible_values:
-      single: { title: Single, description: 'shares the node id (1:1)' }
+      single:
+        title: Single
+        related_mappings: [ owl:cardinality ]
+        description: 'shares the node id (1:1)'
       child:
         title: Child
+        related_mappings: [ owl:cardinality ]
         description: "own node ids, OWNED under this node's trail (node.parent)"
       reference:
         title: Reference
+        related_mappings: [ owl:cardinality ]
         description: 'own node ids, INDEPENDENT — linked by a NodeEdge whose predicate is this relation, not owned under the trail (the shared family register map)'

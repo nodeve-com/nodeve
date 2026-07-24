@@ -1,0 +1,66 @@
+id: https://nodeve.com/schema/lib/emit
+name: emit
+default_prefix: nodeve
+default_range: string
+classes:
+  # The publish contract — MEDIUM-NEUTRAL, owned by no single medium. Every
+  # decoder→MQTT medium (modbus, VE.Direct, USB-HID) publishes at some cadence,
+  # so this is a facet of the READ node, not of any one medium. A keyless 1:1
+  # co-row sharing the node id (like Product/Physical). The catalog entry carries
+  # the DEFAULT contract (update_interval required); a downstream decoder peer (a
+  # future site-adapter node) composes the SAME class and overrides — ONE
+  # definition, no per-medium copy. The topic ROOT is NOT here: it DERIVES from
+  # the node's identity trail downstream (like site_adapter's <pathname>/<slug>),
+  # never authored — root and identity can't drift.
+  Emit:
+    title: Emit
+    annotations: { sql_table: emit }
+    description: Publish contract — how often a fresh point is expected, and when/how to publish.
+    slots: [ node, update_interval_ms, publish, format ]
+    slot_usage: { update_interval_ms: { required: true } }
+slots:
+  format:
+    range: EmitFormat
+    title: Wire format
+    related_mappings: [ schema:encodingFormat ]
+    description: 'wire layout for decoded points — grouped JSON object per group, or one bare-value topic per point'
+  publish:
+    range: PublishPolicy
+    title: Publish policy
+    related_mappings: [ schema:publishingPrinciples ]
+    description: 'when to publish — on change only, or every sample'
+  update_interval_ms:
+    range: integer
+    minimum_value: 1
+    title: Update interval (ms)
+    related_mappings: [ schema:Duration ]
+    description: 'cadence at which a fresh point is expected/emitted, integer milliseconds — named for the RATE, not a fetch strategy; required in the catalog contract, overridable downstream'
+    annotations: { camel: updateIntervalMs }
+
+enums:
+  EmitFormat:
+    title: Wire format
+    description: Wire layout a decoder→MQTT medium publishes — closed grammar, so an enum.
+    permissible_values:
+      grouped:
+        title: Grouped JSON
+        related_mappings: [ schema:encodingFormat ]
+        description: 'one retained JSON object per group at <topic_prefix>/<group> = {ts, mono, seq, …values}'
+        annotations: { i18n: { value: { title: { pt: JSON agrupado } } } }
+      per_value:
+        title: Per value
+        related_mappings: [ schema:encodingFormat ]
+        description: 'one retained bare-value topic per point at <topic_prefix>/<group>/<key>, no envelope'
+        annotations: { i18n: { value: { title: { pt: Por valor } } } }
+  PublishPolicy:
+    title: Publish policy
+    description: When a decoder republishes a decoded point — closed grammar, so an enum.
+    permissible_values:
+      changed:
+        title: On change
+        related_mappings: [ schema:publishingPrinciples ]
+        annotations: { i18n: { value: { title: { pt: Ao alterar } } } }
+      always:
+        title: Every sample
+        related_mappings: [ schema:publishingPrinciples ]
+        annotations: { i18n: { value: { title: { pt: Cada amostra } } } }

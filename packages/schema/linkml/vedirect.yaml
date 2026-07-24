@@ -1,0 +1,49 @@
+id: https://nodeve.com/schema/lib/vedirect
+name: vedirect
+default_prefix: nodeve
+default_range: string
+classes:
+  # ── comms layer, OWNED by the device (unlike the family-shared RegisterMap):
+  # VE.Direct decode is per-model data — nothing to deep-merge, so nothing can
+  # leak product identity into a shared brand cascade. A bare list of decode
+  # rows, no envelope (VE.Direct has no unit_id / register_type / framing). ──
+  VedirectField:
+    title: VE.Direct field
+    annotations: { sql_table: vedirect_field, keyed_by: key }
+    description: >-
+      One VE.Direct decode row — a wire key + how to map it, the VE.Direct analogue of a Modbus register. Numeric-decode core (type/scale/decimals/unit) + an optional measurand link: FK to the interval it reads + `part` naming WHICH instance for a `*` default (same shape as ModbusRegister's quantitative target). An UNLINKED discovery row carries no interval — its future measurand name rides `note` until its feature lands.
+    slots: [ node, key, type, part, interval, scale, decimals, unit, note ]
+    slot_usage: { key: { required: true } }
+slots:
+  key:
+    range: string
+    required: true
+    title: VE.Direct key
+    exact_mappings: [ schema:name ]
+    description: 'case-sensitive VE.Direct wire LABEL (V, VPV, SER#) — the analogue of a register address'
+  type:
+    range: VedirectType
+    title: VE.Direct type
+    exact_mappings: [ wikidata:Q190087 ]
+    description: "on-the-wire encoding of the raw field; numeric fields omit it (default int). Codes (CS/MPPT/ERR) stay int, left undecoded"
+enums:
+  VedirectType:
+    title: VE.Direct type
+    description: VE.Direct's field encodings — closed grammar, so an enum.
+    permissible_values:
+      int:
+        title: Integer
+        meaning: xsd:integer
+        annotations: { i18n: { value: { title: { pt: Inteiro } } } }
+      hex:
+        title: Hexadecimal
+        meaning: xsd:hexBinary
+        annotations: { i18n: { value: { title: { pt: Hexadecimal } } } }
+      bool:
+        title: Boolean
+        meaning: xsd:boolean
+        annotations: { i18n: { value: { title: { pt: Booleano } } } }
+      string:
+        title: String
+        meaning: xsd:string
+        annotations: { i18n: { value: { title: { pt: Cadeia de caracteres } } } }

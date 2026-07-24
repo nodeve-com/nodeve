@@ -37,6 +37,12 @@ slots:
     title: Role
     exact_mappings: [ schema:Role ]
     description: 'which SOCKET of the node type this feature row fills — one vocabulary member per feature (out, grid, pv-tracker, battery, ambient, …), at-most-one row each; classes narrow to the node type × feature type role enum. Doubles as the feature slug. Repetition WITHIN a socket is parts, not roles: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3.'
+  serial_number:
+    range: string
+    title: Serial number
+    exact_mappings: [ schema:serialNumber ]
+    description: "the manufacturer's per-unit serial — the physical unit's identity at a site, distinct from the model's catalog slug/code"
+    annotations: { camel: serialNumber }
   # wire/HA form (snake) derives mechanically (s/-/_/); renamable — code is the stable ref
   slug:
     range: string
@@ -61,6 +67,14 @@ slots:
     inlined_as_list: true
     title: Contents
     related_mappings: [ schema:text ]
+  # FK to a catalogued device node — the pointer a site adapter (what it reads)
+  # and a site inventory item (what it is) both use. Grimoire's catalog_item
+  # {archetype_id, slug} composite collapses to one Node FK here.
+  device:
+    range: SubjectNode
+    title: Device
+    exact_mappings: [ sosa:hasFeatureOfInterest ]
+    description: 'FK — the metered catalogued subject node this row points at'
   feature_type:
     range: FeatureType
     title: Feature type
