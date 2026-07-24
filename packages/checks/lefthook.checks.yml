@@ -141,6 +141,18 @@ pre-commit:
             glob: '*.{ts,tsx,js,jsx,mjs,cjs,svelte}'
             run: node_modules/.bin/eslint {staged_files}
 
+    # Recursive per-package gate — the org requirement that a commit can't land a
+    # package whose own `check` fails. Each package aggregates ITS checks
+    # (typecheck, tests, package-specific gates) under a `check` script; this runs
+    # them all. A package OPTS OUT by defining no `check` script (`--if-present`
+    # skips it). Sibling of the `checks` group, NOT inside it: those are
+    # staged-file static analyses, but a typecheck needs the whole package program
+    # — it can't be narrowed to staged files — so this runs the full recursion as
+    # its own (heavier) job. pnpm-based; a bun-workspace repo overrides this job's
+    # `run` with `bun run --filter '*' check`.
+    - name: package-check
+      run: pnpm -r --if-present check
+
 # The commit-msg hook fires after pre-commit, once a message exists. lefthook
 # passes the message file path as `{1}`. The gate gives it Conventional-Commits
 # structure and requires a body once the staged diff grows past the configured

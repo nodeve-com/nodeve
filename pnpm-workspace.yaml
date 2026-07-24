@@ -39,3 +39,21 @@ catalog:
   typescript-eslint: ^8.63.0
   vitest: ^3.0.0
   yaml: ^2.9.0
+
+# TS 7 (native) drives the `check`/typecheck path per package — ~10x faster, and
+# a package's `tsc --noEmit` needs no eslint. The default `catalog.typescript`
+# stays 6.x because typescript-eslint's parser (root eslint) still peer-caps
+# `<6.1.0`. Packages that are ONLY type-checked reference `catalog:ts7`.
+# A package that IMPORTS the `typescript`/`ts-morph` compiler API at runtime
+# (e.g. @nodeve/checks) MUST stay on `catalog:` (6.x): TS 7's native package does
+# not ship that JS API surface — same wall ts-eslint hits. eslint/root stays 6.x.
+catalogs:
+  ts7:
+    typescript: 7.0.2
+
+# A TS7-on-check package leaves @nodeve/config's `typescript: ^6.0.3` peer
+# unsatisfied — cosmetic (the peer feeds ts-eslint's parser, which the package
+# doesn't run). Silence the warning rather than let it bury real ones.
+peerDependencyRules:
+  allowedVersions:
+    typescript: '7'

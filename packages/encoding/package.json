@@ -1,43 +1,44 @@
 {
-  "name": "@nodeve/encoding",
-  "version": "0.2.0",
-  "description": "Cross-runtime encoding and hashing helpers shared across nodeve tooling: stable short-codes and more.",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodeve-com/nodeve.git",
-    "directory": "packages/encoding"
-  },
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist"
-  ],
-  "bin": {
-    "short-code": "./dist/cli.js"
-  },
-  "exports": {
-    "./short-code": {
-      "types": "./dist/short-code.d.ts",
-      "default": "./dist/short-code.js"
-    }
-  },
-  "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
-  },
-  "dependencies": {
-    "@noble/hashes": "catalog:",
-    "@scure/base": "catalog:"
-  },
-  "devDependencies": {
-    "@nodeve/config": "workspace:*",
-    "@types/node": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
-  }
+	"name": "@nodeve/encoding",
+	"version": "0.2.0",
+	"description": "Cross-runtime encoding and hashing helpers shared across nodeve tooling: stable short-codes and more.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/encoding"
+	},
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist"
+	],
+	"bin": {
+		"short-code": "./dist/cli.js"
+	},
+	"exports": {
+		"./short-code": {
+			"types": "./dist/short-code.d.ts",
+			"default": "./dist/short-code.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"clean": "rm -rf dist",
+		"check": "pnpm typecheck && pnpm test",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@noble/hashes": "catalog:",
+		"@scure/base": "catalog:"
+	},
+	"devDependencies": {
+		"@nodeve/config": "workspace:*",
+		"@types/node": "catalog:",
+		"typescript": "catalog:ts7",
+		"vitest": "catalog:"
+	}
 }

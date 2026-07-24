@@ -15,7 +15,8 @@
 		"typecheck": "pnpm -r --if-present typecheck",
 		"clean": "pnpm -r --if-present clean",
 		"release": "pnpm build && changeset publish",
-		"check": "nodeve-check && eslint .",
+		"check": "pnpm -r --if-present check",
+		"check:smells": "nodeve-check && eslint .",
 		"check:gate": "lefthook run pre-commit"
 	},
 	"devDependencies": {

@@ -65,7 +65,7 @@
 		"clean": "rm -rf dist artifacts",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"test": "vitest run",
-		"check": "pnpm run generate && pnpm run guards && pnpm run typecheck && pnpm run test",
+		"check:frozen": "pnpm run generate && pnpm run guards && pnpm run typecheck && pnpm run test",
 		"scribe": "node src/scribe/cli.ts concepts artifacts/database --concept-rules && node src/scribe/cli.ts display-policy artifacts/database/display-policy",
 		"generate": "node scripts/format-concept-bodies.ts && node kit/generate.ts",
 		"guards": "node scripts/guard-concept-dupes.ts && node scripts/guard-feature-dupes.ts && node scripts/guard-feature-props.ts && node scripts/guard-refs.ts && node scripts/guard-vocab-collision.ts && node scripts/guard-register-links.ts && node scripts/guard-generated-camel.ts && node scripts/guard-authored-shapes.ts && node scripts/guard-artifacts-baked.ts"

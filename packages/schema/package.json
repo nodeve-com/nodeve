@@ -18,7 +18,8 @@
 		"build:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py > ../gen/nodeve.sql",
 		"build:db": "cd linkml && uvx --from linkml python ../bin/ddl.py dump",
 		"validate": "cd linkml && uvx --from linkml linkml-validate -s ../gen/nodeve-projected.yaml -C Inverter ../data/subject_node/foxess-h3-ps10sh.yaml",
-		"check": "node bin/format.ts --check",
+		"check": "pnpm check:format && pnpm check:prefixes && pnpm typecheck && pnpm test",
+		"check:format": "node bin/format.ts --check",
 		"check:meta": "node bin/check-meta.ts",
 		"check:prefixes": "node bin/check-prefixes.ts",
 		"check:refs": "node bin/check-refs.ts",
@@ -27,6 +28,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",
+		"typescript": "catalog:ts7",
 		"@nodeve/config": "workspace:*",
 		"@nodeve/encoding": "workspace:*",
 		"@nodeve/text": "workspace:*",
