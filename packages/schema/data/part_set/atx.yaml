@@ -1,0 +1,6 @@
+# An ATX output point: the standard rails as role-parts of ONE connector. The
+# rails share one wattage budget (the feature's `_` whole) — component/integral,
+# NOT sibling sockets. Members are the full ATX rail grammar; a model asserts
+# intervals only for the rails it exposes.
+feature_type: dc-port
+part_set_member: { 3v3: {}, 5v: {}, 12v: {}, neg12v: {}, 5vsb: {} }

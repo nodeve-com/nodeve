@@ -15,21 +15,28 @@ feature_of_interest:
         voltage:
           measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
 
-    # OUTPUT RAILS — the standard ATX rails. Each carries its fixed nominal
-    # (nameplate spec) + what its sensor reads. Per-rail specs genuinely differ
-    # (12 vs 5 vs 3.3 V nominal) ⇒ separate roles, no shared '*' template.
-    rail-12v:
+    # OUTPUT — ONE ATX connector (part_set: atx). The rails are its role-parts
+    # 3v3/5v/12v, NOT sibling sockets: they share one wattage budget, so the
+    # `_` whole carries a rating no per-rail row could derive. Each rail differs
+    # only in its own nominal + reading, so there's no shared '*' template.
+    out:
+      $: { part_set: atx }
       _:
+        # The shared output envelope: 250 W continuous, 300 W peak across ALL
+        # rails together (mini-box.com). NOT Σ per-rail max — this is exactly the
+        # emergent whole that makes the rails parts of one connector, not sockets.
+        active-power:
+          continuous: { valued_range: { max: 250 }, specification: { rating: continuous } }
+          peak: { valued_range: { max: 300 }, specification: { rating: short_term } }
+      12v:
         voltage:
           nominal: { valued_range: { value: 12 }, specification: { severity: nominal } }
           measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
-    rail-5v:
-      _:
+      5v:
         voltage:
           nominal: { valued_range: { value: 5 }, specification: { severity: nominal } }
           measured: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
-    rail-3v3:
-      _:
+      3v3:
         voltage:
           nominal: { valued_range: { value: 3.3 }, specification: { severity: nominal } }
           measured: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }

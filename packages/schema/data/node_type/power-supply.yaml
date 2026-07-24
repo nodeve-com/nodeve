@@ -7,7 +7,7 @@ facet:
   setting: { cardinality: child }
   input: { facet: feature_of_interest, cardinality: child, feature_type: dc-port, required: true }
   ignition: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
-  rail-3v3: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
-  rail-5v: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
-  rail-12v: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
+  # ONE output connector; the rails are its role-parts (part_set: atx), not
+  # sibling sockets — they share one wattage budget the whole (`_`) carries.
+  out: { facet: feature_of_interest, cardinality: child, feature_type: dc-port, required: true }
   enclosure: { facet: feature_of_interest, cardinality: child, feature_type: environment }

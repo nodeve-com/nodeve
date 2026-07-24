@@ -172,13 +172,18 @@ No separate "slug unique per part" constraint needs writing. Two rows that would
 
 Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. A part is a discriminator key on `Interval`, not its own row; sort/join order comes from the feature's `part_set` (`PartSetMember.ordinal`).
 
-Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Three trackers or two battery ports; split-phase `l1, l2` or three-phase `a, b, c`. A part exists only as an `Interval.part` value validated against the feature's `part_set` members or `count`; a subdivision with no interval is simply not asserted.
+Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Two subdivision kinds, picked by the marker in `$`:
 
-| feature type | one model's parts | another's |
-| ------------ | ----------------- | --------- |
-| ac-phase     | a, b, c           | l1, l2    |
-| dc-port      | 1, 2, 3           | 1         |
-| environment  | —                 | —         |
+- `count: N` — **members of a collection**: N interchangeable replica sockets authored once (three MPPT trackers). Keys are ordinal `1…n`; the `_` whole is a roll-up (Σ of independent members).
+- `part_set: X` — **components of one integral socket**: a fixed named part vocabulary (three-phase `a/b/c`, split-phase `l1/l2`, ATX rails `3v3/5v/12v`). Keys are roles; the `_` whole is emergent — a rating no part row derives (the ATX rails share one 250 W budget; the 3-phase total isn't 3×a leg). Heterogeneous parts (different rail nominals) are still one socket.
+
+Test: remove one part — still a working connection of the same kind? Yes ⇒ `count`. No ⇒ `part_set`. A part exists only as an `Interval.part` value validated against the feature's `part_set` members or `count`; a subdivision with no interval is simply not asserted.
+
+| feature type | one model's parts  | another's                    |
+| ------------ | ------------------ | ---------------------------- |
+| ac-phase     | a, b, c (part_set) | l1, l2 (part_set)            |
+| dc-port      | 1, 2, 3 (count)    | 3v3, 5v, 12v (part_set: atx) |
+| environment  | —                  | —                            |
 
 ## The part column
 
