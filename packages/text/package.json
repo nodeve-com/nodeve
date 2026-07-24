@@ -48,7 +48,7 @@
 	"scripts": {
 		"build": "tsc -p tsconfig.json && cp src/charmap.json dist/charmap.json",
 		"clean": "rm -rf dist",
-		"check": "pnpm typecheck && pnpm test",
+		"check": "pnpm typecheck",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"test": "vitest run"
 	},

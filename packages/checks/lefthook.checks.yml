@@ -142,9 +142,10 @@ pre-commit:
             run: node_modules/.bin/eslint {staged_files}
 
     # Recursive per-package gate — the org requirement that a commit can't land a
-    # package whose own `check` fails. Each package aggregates ITS checks
-    # (typecheck, tests, package-specific gates) under a `check` script; this runs
-    # them all. A package OPTS OUT by defining no `check` script (both PMs skip a
+    # package whose own `check` fails. `check` is the STATIC-verification cluster
+    # (types, schema validation, authoring/semantic gates) — NOT tests or build;
+    # those are the separate `test`/`build` verbs, run in CI. Contract + rationale:
+    # docs/package-scripts.md. A package OPTS OUT by defining no `check` script (both PMs skip a
     # missing script). Sibling of the `checks` group, NOT inside it: those are
     # staged-file static analyses, but a typecheck needs the whole package program
     # — it can't be narrowed to staged files — so this runs the full recursion as
