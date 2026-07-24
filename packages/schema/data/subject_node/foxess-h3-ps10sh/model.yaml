@@ -25,7 +25,7 @@ content:
       Mirrors the inverter FEATURE tree (concepts/archetypes/inverter.yaml): each feature carries that feature's spec values; a 'per-entry' part (phase, string) supplies its `count` and is filled ONCE, applying to every expanded instance. Each quantity_kind's spec value is its `intervals` list — behavioural bands (interval_kind: behavioural, carrying rating/zone axes) and measurable sensor spans (interval_kind: measurable, concrete VIM ranges) in one list — validated against the projected tree (offered kinds only, bounds within envelope).
 
 
-      AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; derate = continuous gated by `intermittent`.
+      AC output (ac_phase_three_out) active_power tiers: power is throughput, not a setpoint — no `nominal`; only the limits it's rated to carry. With no nominal the symmetric export/import rows collapse to one signed range per tier. Tiers classify by AXES: continuous = full capacity gated by the enclosure's `continuous` thermal band; short_term "peak" = a duration; the derate = the same continuous rating graded `notice`, gated by `intermittent`. Severity is what tells graded siblings apart (as mppt / mppt-notice does on the PV side); the gate says why, not which.
 
 
       AC output per-phase voltage: 220/230 are a commissioning choice, not two simultaneous limits: each is gated on the single-valued grid-region setting, so the site sets it once and one interval resolves. A lone `nominal` (no min/max) IS the nameplate rating — a behavioural band (interval_kind derives behavioural), slug auto-derives from the gate (nominal_br_220v_60hz / nominal_eu_230v_50hz).
@@ -40,7 +40,7 @@ content:
       NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
 
 
-      Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' auto-slugs (interval: continuous / intermittent) directly — no custom zone. measurable is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
+      Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' slugs (interval: continuous / intermittent) directly — no custom zone. The `_` band is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
 
 
       Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).

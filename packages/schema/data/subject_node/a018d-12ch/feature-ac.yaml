@@ -14,6 +14,11 @@ feature_of_interest:
         frequency:
           nominal: { valued_range: { value: 50 }, specification: { severity: nominal } }
         active-power:
-          # rated input power per running mode (W; canonical, no unit override)
-          cooling: { valued_range: { value: 1391 }, specification: { severity: nominal } }
-          heating: { valued_range: { value: 1346 }, specification: { severity: nominal } }
+          # rated input power per running mode (W; canonical, no unit override) —
+          # the mode is `zone:`, the operating region the band holds in
+          cooling:
+            valued_range: { value: 1391 }
+            specification: { zone: cooling, severity: nominal }
+          heating:
+            valued_range: { value: 1346 }
+            specification: { zone: heating, severity: nominal }

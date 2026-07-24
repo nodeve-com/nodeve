@@ -28,7 +28,7 @@ feature_of_interest:
             # Isc at BSI (rear 300 W/m²) — worst case
             valued_range: { value: 20.24 }
             specification: { zone: short_circuit, conditions: [ { test_condition: bsi } ] }
-          fuse:
+          protection-required:
             valued_range: { max: 35 }
             specification: { rating: protection_required }
             # max series fuse (A)

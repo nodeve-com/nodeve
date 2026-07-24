@@ -49,10 +49,18 @@ export const classByTable: Record<string, string> = Object.fromEntries(
 /** node path segments are kebab; sql_table is snake (quantity_kind → quantity-kind) */
 export const seg = (table: string) => table.replaceAll('_', '-');
 
+/** an ordered name list off a class annotation, space-separated */
+const wordsOf = (className: string, annotation: string): string[] =>
+	(classByName[className]?.annotations?.[annotation] ?? '').split(' ').filter(Boolean);
+
 /** a class's authored key trail — keyed_by as an ordered slot list. One entry
  * = a keyed child map; several = stacked map levels assembling one row. */
-export const keysOf = (className: string): string[] =>
-	(classByName[className]?.annotations?.keyed_by ?? '').split(' ').filter(Boolean);
+export const keysOf = (className: string): string[] => wordsOf(className, 'keyed_by');
+
+/** the identity-bearing components an interval slug may draw on, in slug order
+ * — facet tables on Interval, slots on a facet ([docs/intervals.md]) */
+export const discriminatorsOf = (className: string): string[] =>
+	wordsOf(className, 'discriminates');
 
 /** which slot of `parentClass` owns rows of `childClass`. A declared owned slot
  * ranging it wins; else a universal about-attached facet (Content) attaches to

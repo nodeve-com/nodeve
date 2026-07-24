@@ -37,7 +37,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 ```sh
 pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
 pnpm generate   # format → normalize, no python
-pnpm check      # format gate (--check), what precommit runs
+pnpm check      # what precommit runs: format/prefix/meta gates, normalize, typecheck
 pnpm check:refs # registry iri_templates resolve? (network)
 ```
 

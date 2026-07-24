@@ -3,7 +3,7 @@ feature_of_interest:
     # ONE three-phase point. `_` carries the whole-point totals; the legs
     # (a/b/c) and the line-to-line pairs (ab/bc/ca) are its parts. Both banks
     # feed this point — bank A and bank B map the same measurands, so two
-    # registers share one `measured` interval (differing only in scale/decimals).
+    # registers share one `_` interval (differing only in scale/decimals).
     point:
       $: { part_set: three-phase }
       # Whole-point totals — frequency, the power totals, and the energy
@@ -13,13 +13,15 @@ feature_of_interest:
         # Rated band + the readable span, told apart by whether it carries a
         # specification (behavioural) or a measurement (measurable channel).
         frequency:
-          rated: { valued_range: { min: 45, max: 65 }, specification: { rating: continuous } }
-          measured: { valued_range: { min: 45, max: 65 }, measurement: { resolution: 0.01 } }
+          continuous:
+            valued_range: { min: 45, max: 65 }
+            specification: { rating: continuous }
+          _: { valued_range: { min: 45, max: 65 }, measurement: { resolution: 0.01 } }
         # Whole-point totals — no rated band stated; just the measurable link.
-        active-power: { measured: { measurement: {} } }
-        reactive-power: { measured: { measurement: {} } }
-        apparent-power: { measured: { measurement: {} } }
-        power-factor: { measured: { measurement: {} } }
+        active-power: { _: { measurement: {} } }
+        reactive-power: { _: { measurement: {} } }
+        apparent-power: { _: { measurement: {} } }
+        power-factor: { _: { measurement: {} } }
         # Slow-window accumulators (0x1000) — three distinct quantity kinds, one
         # combined channel each. scale 1.0 + decimals provisional (uncalibrated).
         active-energy: { _: { measurement: {} } }
@@ -41,14 +43,14 @@ feature_of_interest:
             specification:
               severity: nominal
               conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
-          measured: { valued_range: { min: 150, max: 280 }, measurement: {} }
-        electric-current: { measured: { measurement: {} } }
-        active-power: { measured: { measurement: {} } }
-        reactive-power: { measured: { measurement: {} } }
-        apparent-power: { measured: { measurement: {} } }
-        power-factor: { measured: { measurement: {} } }
+          _: { valued_range: { min: 150, max: 280 }, measurement: {} }
+        electric-current: { _: { measurement: {} } }
+        active-power: { _: { measurement: {} } }
+        reactive-power: { _: { measurement: {} } }
+        apparent-power: { _: { measurement: {} } }
+        power-factor: { _: { measurement: {} } }
         # Fundamental displacement angle φ (bank B), degrees — resolves ~0.1°.
-        phase-difference: { measured: { measurement: { resolution: 0.1 } } }
+        phase-difference: { _: { measurement: { resolution: 0.1 } } }
       b: *leg
       c: *leg
       # Line-to-line voltages (ab/bc/ca). Nominal = √3 × the leg nominal —
@@ -65,6 +67,6 @@ feature_of_interest:
             specification:
               severity: nominal
               conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
-          measured: { valued_range: { min: 260, max: 480 }, measurement: {} }
+          _: { valued_range: { min: 260, max: 480 }, measurement: {} }
       bc: *line
       ca: *line

@@ -83,16 +83,16 @@ Segment rules:
 | feature-role | `FeatureOfInterest.role` | never |
 | part | `Interval.part` verbatim — a member slug or marker ([parts.md](parts.md)) | never — the column is non-null, so the segment never dissolves |
 | quantity-kind | `Interval.quantity_kind` | never on an interval |
-| interval-slug | authored interval key — path only, no column | never — `_` when the quantity carries one unnamed interval |
+| interval-slug | authored interval key — path only, no column | never — `_` when the interval sets nothing to name |
 
 `quantity_kind` is a **segment**, not the leaf. The leaf is the interval slug — the sibling discriminator ([intervals.md](intervals.md#slug--the-discriminator)):
 
-| path                               | is                                                  |
-| ---------------------------------- | --------------------------------------------------- |
-| `…/ac-phase/out/a/voltage/running` | phase A running-voltage band                        |
-| `…/ac-phase/out/a/voltage/_`       | phase A voltage, one unnamed interval               |
-| `…/ac-phase/out/_/voltage/_`       | the output's combined voltage, one unnamed interval |
-| `…/ac-phase/out/_/frequency/_`     | frequency — never per-phase, one unnamed interval   |
+| path                               | is                                             |
+| ---------------------------------- | ---------------------------------------------- |
+| `…/ac-phase/out/a/voltage/running` | phase A running-voltage band                   |
+| `…/ac-phase/out/a/voltage/_`       | phase A voltage, nothing to name               |
+| `…/ac-phase/out/_/voltage/_`       | the output's combined voltage, nothing to name |
+| `…/ac-phase/out/_/frequency/_`     | frequency — never per-phase, nothing to name   |
 
 Every level holds one segment, always. No segment dissolves, so position is never ambiguous and a part slug can never alias a quantity kind.
 

@@ -5,15 +5,13 @@ feature_of_interest:
     # (setting, ported later), NOT fixed bands here.
     input:
       _:
-        voltage:
-          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+        voltage: { _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } } }
 
     # IGNITION sense — the ignition wire the box watches to sequence power.
     # Same wire class as input, its own reading.
     ignition:
       _:
-        voltage:
-          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+        voltage: { _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } } }
 
     # OUTPUT — ONE ATX connector (part_set: atx). The rails are its role-parts
     # 3v3/5v/12v, NOT sibling sockets: they share one wattage budget, so the
@@ -27,19 +25,19 @@ feature_of_interest:
         # emergent whole that makes the rails parts of one connector, not sockets.
         active-power:
           continuous: { valued_range: { max: 250 }, specification: { rating: continuous } }
-          peak: { valued_range: { max: 300 }, specification: { rating: short_term } }
+          short-term: { valued_range: { max: 300 }, specification: { rating: short_term } }
       12v:
         voltage:
           nominal: { valued_range: { value: 12 }, specification: { severity: nominal } }
-          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
+          _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
       5v:
         voltage:
           nominal: { valued_range: { value: 5 }, specification: { severity: nominal } }
-          measured: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
+          _: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
       3v3:
         voltage:
           nominal: { valued_range: { value: 3.3 }, specification: { severity: nominal } }
-          measured: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
+          _: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
 
   # Board thermal sensor (signed °C). temp_max/temp_min are settable limits ⇒
   # config plane, not fixed bands.
@@ -47,6 +45,4 @@ feature_of_interest:
     enclosure:
       _:
         temperature:
-          measured:
-            valued_range: { min: -40, max: 100, unit: °C }
-            measurement: { resolution: 1 }
+          _: { valued_range: { min: -40, max: 100, unit: °C }, measurement: { resolution: 1 } }

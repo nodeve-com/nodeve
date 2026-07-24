@@ -1,7 +1,7 @@
 # === BANK B — 0x1510 fast / 0x1000 slow (what the inverter polls; passive-tap). ===
 # Floats ALREADY in engineering units (scale 1.0 ⇒ omitted). Power is native
 # kW/kvar/kVA (unit kept — non-SI). Same (feature, part, quantity) link as bank A,
-# so these registers resolve to the SAME `measured` intervals.
+# so these registers resolve to the SAME `_` intervals.
 register_map:
   register:
     # Phase-neutral voltages (sniff idx 0-2, 0x1510/12/14)

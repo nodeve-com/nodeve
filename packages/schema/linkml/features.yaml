@@ -39,6 +39,9 @@ classes:
       # authored form: three stacked map levels, one key per listed slot —
       # part → quantity → interval slug assemble ONE row
       keyed_by: part quantity_kind slug
+      # the slug is authored but EARNED: a `-`-joined ordered subsequence of the
+      # values these facets actually set. None set ⇒ `_` (docs/intervals.md)
+      discriminates: specification measurement
     description: >-
       One quantity band on one feature. part `_` = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
     slots: [ node, quantity_kind, valued_range, part ]
@@ -49,21 +52,26 @@ classes:
 
   Specification:
     title: Specification
-    annotations: { sql_table: specification }
+    # duration/trigger_on shape the band, they don't say WHICH band — no slug claim
+    annotations: { sql_table: specification, discriminates: zone rating severity conditions }
     description: >-
       BEHAVIOURAL payload — spec rating, operating zone, severity tier, or condition-gated derate. Shares its interval's node row.
     slots: [ node, conditions, rating, zone, severity, duration, trigger_on ]
 
   Measurement:
     title: Measurement
-    annotations: { sql_table: measurement }
+    # resolution is precision, not identity — no slug claim
+    annotations: { sql_table: measurement, discriminates: flow_direction period }
     description: >-
       MEASURABLE-channel payload — what a sensor reports: resolution and the energy-channel discriminators. Shares its interval's node row.
     slots: [ node, flow_direction, period, resolution ]
 
   Condition:
     title: Condition
-    annotations: { sql_table: condition }
+    # a gate's OWN value can name the band it gates (nominal-br-220v-60hz). The
+    # `interval` anchor cannot: it is another band's slug, and borrowing it reads
+    # as a local axis (`continuous-intermittent` looks like two ratings).
+    annotations: { sql_table: condition, discriminates: equals test_condition }
     description: >-
       One condition a specification holds under — either a commissioning-setting equality or a pointer at another interval (the derate anchor). All values are FKs assembled from authored coordinates; a typo dies at the database's FK gate.
     slots: [ node, setting, equals, interval, test_condition ]

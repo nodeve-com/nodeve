@@ -6,4 +6,4 @@ feature_of_interest:
     output:
       _:
         heat-flow-rate:
-          rated: { valued_range: { value: 2638 }, specification: { severity: nominal } }
+          nominal: { valued_range: { value: 2638 }, specification: { severity: nominal } }

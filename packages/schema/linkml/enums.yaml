@@ -144,3 +144,11 @@ enums:
         title: Running
         meaning: saref:OnState
         annotations: { i18n: { value: { title: { pt: Em funcionamento } } } }
+      cooling:
+        title: Cooling
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Refrigeração } } } }
+      heating:
+        title: Heating
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Aquecimento } } } }

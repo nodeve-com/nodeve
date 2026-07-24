@@ -13,7 +13,7 @@ feature_of_interest:
           nominal: { valued_range: { value: 50 }, specification: { severity: nominal } }
         active-power:
           # nameplate draw, rated at supply voltage
-          rated: { valued_range: { value: 1500 }, specification: { severity: nominal } }
+          nominal: { valued_range: { value: 1500 }, specification: { severity: nominal } }
         resistance:
           # element resistance (Ω) — P = V²/R ⇒ 230²/1500; lets a consumer
           # compute true output off-nominal

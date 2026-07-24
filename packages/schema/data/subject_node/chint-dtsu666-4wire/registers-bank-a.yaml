@@ -2,7 +2,7 @@
 # `scale` is the plugin.py divisor (V ÷10, A ÷1000, power ÷10, PF ÷1000, Hz ÷100).
 # Power is native W/var here (SI ⇒ no unit override). Divisors provisional until
 # a front-panel calibration. Registers link to the interval the feature offers;
-# no explicit interval slug ⇒ the one `measured` channel of (feature, part, kind).
+# no explicit interval slug ⇒ the one measurable channel of (feature, part, kind).
 register_map:
   register:
     # Line-to-line voltages (plugin Volts_AB/BC/CA, 0x2000/02/04)

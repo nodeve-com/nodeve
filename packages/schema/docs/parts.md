@@ -27,12 +27,12 @@ The vocabulary is data: `PartSet` / `PartSetMember` ([taxonomy.yaml](../linkml/t
 
 Two levels reserve `_`. Both readings are the same move: the column has no value, and every candidate word would supply one.
 
-| position      | means                                                    |
-| ------------- | -------------------------------------------------------- |
-| part          | the quantity attaches to the feature itself              |
-| interval slug | this quantity carries one interval, and it needs no name |
+| position      | means                                              |
+| ------------- | -------------------------------------------------- |
+| part          | the quantity attaches to the feature itself        |
+| interval slug | this interval sets no discriminating value to name |
 
-At the leaf, any word would be a claim about content, not identity. The interval stays unnamed because nothing needs discriminating; `_` says exactly that.
+At the leaf, any word would be a claim about content, not identity — and an unearned one at that ([intervals.md](intervals.md#earning-every-word)). A bare `measurement` is the usual case: it says nothing `_` doesn't.
 
 As a part, `_` makes no claim about why no part carries a name. Three unrelated situations produce it:
 

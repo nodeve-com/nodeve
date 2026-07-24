@@ -85,7 +85,7 @@ register_map:
         feature: { type: ac-phase, role: load }
         part: _
         quantity: active-energy
-        interval: lifetime
+        interval: _
     - address: 39631
       datatype: uint32
       scale: 0.01

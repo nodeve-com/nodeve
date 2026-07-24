@@ -2,7 +2,8 @@
 // measurement, specification, content). Split from tree.ts; operates on the
 // DeviceWalk through the IntervalHost interface. Vocabularies come from the
 // schema/data rows, never hardcoded — facet keys resolve to classes by sql_table.
-import { classByTable, fkTable, keysOf, seg, slotByName, SLUG } from './model.ts';
+import { classByTable, fkTable, keysOf, seg, slotByName } from './model.ts';
+import { components, earns } from './slug.ts';
 import { columns, die, expandKey, isMap, type Doc } from './registers.ts';
 import { expandValuedRange } from '../src/valued-range-expand.ts';
 import type { ValuedRange } from '../gen/schema.ts';
@@ -46,7 +47,6 @@ function intervalRow(
 ) {
 	const { host, ctx } = w;
 	const trail = `${ctx.trail}.${at.part}.${at.quantity}.${at.islug}`;
-	if (at.islug !== '_' && !SLUG.test(at.islug)) die(trail, 'not a slug or _');
 	const iNode = `${ctx.fNode}/${at.part}/${at.quantity}/${at.islug}`;
 	if (host.intervals.has(iNode)) die(trail, 'duplicate coordinate');
 	host.intervals.add(iNode);
@@ -55,13 +55,22 @@ function intervalRow(
 	const [partSlot, qkSlot] = keysOf('Interval') as [string, string, string];
 	const row: Doc = { node: iNode, [partSlot]: at.part, [qkSlot]: expandKey(qkSlot, at.quantity) };
 	if (!isMap(payload)) die(trail, 'expected facet keys');
+	const facetByTable: Record<string, Doc> = {};
 	for (const [facet, cols] of Object.entries(payload))
-		facetCol(w, { row, facet, trail: `${trail}.${facet}` }, cols);
+		facetCol(w, { row, facet, facetByTable, trail: `${trail}.${facet}` }, cols);
+	// the slug names what the facets set — no invented words, no restating the facet
+	const words = components(facetByTable);
+	if (!earns(at.islug, words))
+		die(trail, `slug must join these in order: [${words.join(', ') || 'nothing — use `_`'}]`);
 	ctx.list.intervals.push(row);
 }
 
 /** a named facet key — a co-row sharing the interval's node */
-function facetCol(w: Walk, at: { row: Doc; facet: string; trail: string }, cols: unknown) {
+function facetCol(
+	w: Walk,
+	at: { row: Doc; facet: string; facetByTable: Record<string, Doc>; trail: string },
+	cols: unknown,
+) {
 	const { host, ctx } = w;
 	const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
 	const iNode = at.row.node as string;
@@ -72,11 +81,15 @@ function facetCol(w: Walk, at: { row: Doc; facet: string; trail: string }, cols:
 			...columns(cls, expandValuedRange(vr, at.trail), at.trail),
 		};
 	} else if (at.facet === 'measurement') {
-		ctx.list.measurements.push({ node: iNode, ...columns(cls, cols, at.trail) });
+		const measurement = { node: iNode, ...columns(cls, cols, at.trail) };
+		at.facetByTable[at.facet] = measurement;
+		ctx.list.measurements.push(measurement);
 		host.measurable.add(iNode);
-	} else if (at.facet === 'specification')
-		ctx.list.specifications.push(specification(host, { node: iNode, cls, trail: at.trail }, cols));
-	else if (at.facet === 'content')
+	} else if (at.facet === 'specification') {
+		const spec = specification(host, { node: iNode, cls, trail: at.trail }, cols);
+		at.facetByTable[at.facet] = spec;
+		ctx.list.specifications.push(spec);
+	} else if (at.facet === 'content')
 		// an identified band names a device state → its own prose, hoisted by liftContent
 		at.row.contents = host.childRows(cls, cols, { trail: at.trail, parent: iNode });
 	else die(at.trail, `${cls} is not an interval facet`);

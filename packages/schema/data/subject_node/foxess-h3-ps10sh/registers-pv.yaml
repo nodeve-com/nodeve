@@ -10,7 +10,7 @@ register_map:
         feature: { type: dc-port, role: pv-tracker }
         part: _
         quantity: active-energy
-        interval: lifetime
+        interval: _
     # --- PV: daily generation (foxess solar_energy_today) ---
     - address: 39603
       datatype: uint32

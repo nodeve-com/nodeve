@@ -26,16 +26,21 @@ feature_of_interest:
           short-term:
             valued_range: { min: -12000, max: 11000 }
             specification: { rating: short_term, duration: 30 } # box self-protects beyond 30 s
-          derated:
+          # The derate: same continuous rating, graded down. `severity` says it's
+          # the degraded tier; `conditions` says why. The slug names the GRADE —
+          # the cause is already a pointer, and a second derate axis (altitude,
+          # below) would grade the same.
+          continuous-notice:
             valued_range: { min: -10000, max: 9000 }
             specification:
               rating: continuous
+              severity: notice
               conditions:
                 - feature: { type: environment, role: ambient }
                   quantity: temperature
                   interval: intermittent
           # whole-port reading (foxess inv_power, 39134) — no rated band stated
-          measured: { measurement: { resolution: 0.001 } }
+          _: { measurement: { resolution: 0.001 } }
         # Lifetime + daily throughput (foxess total_yield / input_energy). ONE
         # quantity; the four channels are intervals keyed by flow_direction
         # (out = yield, in = input) + period (absent = lifetime).
@@ -71,7 +76,7 @@ feature_of_interest:
             specification:
               severity: nominal
               conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
-          measured: { valued_range: { min: 0, max: 250 }, measurement: { resolution: 0.1 } }
+          _: { valued_range: { min: 0, max: 250 }, measurement: { resolution: 0.1 } }
         frequency:
           # nominal + margin is still a nominal — a spread AROUND the value,
           # not a min/max envelope.
@@ -92,7 +97,7 @@ feature_of_interest:
             valued_range: { max: 25 }
             specification: { rating: protection_required }
           # per-leg reading (foxess inv_current R/S/T) — signed, no band stated
-          measured: { measurement: { resolution: 0.001 } }
+          _: { measurement: { resolution: 0.001 } }
         # per-leg readings the registers link (foxess inv_power_Q / rpower_S R/S/T)
         reactive-power: { _: { measurement: { resolution: 0.001 } } }
         apparent-power: { _: { measurement: { resolution: 0.001 } } }
@@ -108,9 +113,7 @@ feature_of_interest:
                   interval: continuous
               # TODO(altitude-derate): per-phase full power only below 2000 m —
               # same deferred altitude band as the combined total above.
-          measured:
-            valued_range: { min: 0, max: 5, unit: kW }
-            measurement: { resolution: 0.001 }
+          _: { valued_range: { min: 0, max: 5, unit: kW }, measurement: { resolution: 0.001 } }
       a: {}
       b: {}
       c: {}
@@ -160,7 +163,7 @@ feature_of_interest:
           nominal:
             valued_range: { value: 230, min: 200, max: 260 }
             specification: { rating: continuous, severity: nominal }
-          measured: { valued_range: { min: 0, max: 300 }, measurement: { resolution: 0.1 } }
+          _: { valued_range: { min: 0, max: 300 }, measurement: { resolution: 0.1 } }
         frequency:
           nominal:
             valued_range: { value: 50 } # lone nominal — nameplate reference
@@ -183,7 +186,7 @@ feature_of_interest:
         active-power:
           _: { valued_range: { min: 0, max: 15, unit: kW }, measurement: { resolution: 0.001 } }
         active-energy:
-          lifetime: { valued_range: { min: 0, unit: kWh }, measurement: { resolution: 0.01 } }
+          _: { valued_range: { min: 0, unit: kWh }, measurement: { resolution: 0.01 } }
           daily:
             valued_range: { min: 0, unit: kWh }
             measurement: { period: daily, resolution: 0.01 }
