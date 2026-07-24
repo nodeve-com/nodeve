@@ -1,0 +1,45 @@
+feature_of_interest:
+  dc-port:
+    # DC INPUT — the vehicle battery feed. Its accepted-voltage envelope is a
+    # fixed spec; the settable start/on/max thresholds are the config plane
+    # (setting, ported later), NOT fixed bands here.
+    input:
+      _:
+        voltage:
+          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+
+    # IGNITION sense — the ignition wire the box watches to sequence power.
+    # Same wire class as input, its own reading.
+    ignition:
+      _:
+        voltage:
+          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+
+    # OUTPUT RAILS — the standard ATX rails. Each carries its fixed nominal
+    # (nameplate spec) + what its sensor reads. Per-rail specs genuinely differ
+    # (12 vs 5 vs 3.3 V nominal) ⇒ separate roles, no shared '*' template.
+    rail-12v:
+      _:
+        voltage:
+          nominal: { valued_range: { value: 12 }, specification: { severity: nominal } }
+          measured: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
+    rail-5v:
+      _:
+        voltage:
+          nominal: { valued_range: { value: 5 }, specification: { severity: nominal } }
+          measured: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
+    rail-3v3:
+      _:
+        voltage:
+          nominal: { valued_range: { value: 3.3 }, specification: { severity: nominal } }
+          measured: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
+
+  # Board thermal sensor (signed °C). temp_max/temp_min are settable limits ⇒
+  # config plane, not fixed bands.
+  environment:
+    enclosure:
+      _:
+        temperature:
+          measured:
+            valued_range: { min: -40, max: 100, unit: °C }
+            measurement: { resolution: 1 }

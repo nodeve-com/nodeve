@@ -1,0 +1,13 @@
+# DC-DC ATX power supply (Mini-Box M4-ATX family) — a DC input converted to
+# the ATX output rails, plus a board thermal sensor. How it is READ/WRITTEN
+# (usbhid diag + config plane) is device-owned data, ported later; this class
+# is its electrical FEATURE tree only.
+facet:
+  product: { cardinality: single, required: true }
+  setting: { cardinality: child }
+  input: { facet: feature_of_interest, cardinality: child, feature_type: dc-port, required: true }
+  ignition: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
+  rail-3v3: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
+  rail-5v: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
+  rail-12v: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }
+  enclosure: { facet: feature_of_interest, cardinality: child, feature_type: environment }

@@ -1,0 +1,16 @@
+# Mini-Box M4-ATX — intelligent DC-DC ATX power supply. PARTIAL port from
+# grimoire/concepts/catalog/mini-box/m4_atx.yaml: the electrical FEATURE tree
+# only (DC input + ignition sense + the 12/5/3.3 V ATX output rails + board
+# temperature). How it is READ/WRITTEN — the usbhid diag poll and the 47-param
+# config plane — is device-owned data ported LATER; the settable thresholds/
+# timers do NOT fit schema's enum-only `setting:` yet (see below).
+node_type: power-supply
+
+product: { model: M4-ATX, organization: mini-box }
+
+content:
+  en:
+    title: Mini-Box M4-ATX
+    lede: Intelligent DC-DC ATX power supply
+    body: >
+      Mini-Box M4-ATX — a wide-input DC-DC ATX supply: one DC input (vehicle battery, ~6-30 V), an ignition sense line, and the three ATX output rails (+12 V, +5 V, +3.3 V), plus a board thermal sensor. Each rail carries its fixed nominal and a measurable reading; input and ignition carry the measurable voltage the box polls (~1 Hz over usbhid). The device's 47 settable config parameters — voltage start/on/max thresholds, per-rail over/under limits, temperature limits, and the power-sequencing timers — are its CONTROL PLANE, ported later once schema `setting:` can hold a numeric/quantity-valued knob (today it holds enum members only).
