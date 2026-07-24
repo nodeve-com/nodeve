@@ -88,35 +88,18 @@ Facets stay named keys, not `$` entries — `Specification`, `Measurement`, and 
 
 ### How a feature subdivides
 
-Two kinds of subdivision, two columns, one per feature at most:
-
-| column     | means                                  | part keys must be |
-| ---------- | -------------------------------------- | ----------------- |
-| `part_set` | a named closed set on the feature type | its members       |
-| `count`    | a cardinality — n of the same thing    | `1`…`n`           |
+A feature carries at most one subdivision marker in `$` — `part_set` (named closed set) or `count` (cardinality). The distinction and its semantics live in [levels.md](levels.md#part-keys):
 
 ```yaml
 $: { part_set: split-phase } # keys must be l1, l2
 $: { count: 3 } # keys must be 1, 2, 3
 ```
 
-Phases are a vocabulary: `split-phase` is `l1, l2`, `three-phase` is `a, b, c`, and no model invents a fourth leg. Trackers are a number: three today, four next model, and nothing breaks. Naming both makes the normalizer read a key rather than sniff a value's type.
-
-Neither appears when a feature has no parts — every interval is then `_`.
-
-The set or count **validates** authored part keys, never generates them — a model names its parts, so it rejects a mistyped or invented one. `ordinal` still comes from authored order.
-
-`part_set` members live on `FeatureType` as binding rows beside `QuantityBinding`. `count` needs no vocabulary.
+The marker **validates** authored part keys, never generates them — a model names its parts, so it rejects a mistyped or invented one. `ordinal` still comes from authored order. Neither appears when a feature has no parts — every interval is then `_`. `part_set` members live on `FeatureType` as binding rows beside `QuantityBinding`; `count` needs no vocabulary.
 
 ### `_` and `*` as keys
 
-`_` is the reserved key at two levels, and `*` is a third part form. The slug pattern `^[a-z0-9]+(-[a-z0-9]+)*$` produces neither, so no authored key collides with them.
-
-| position | means |
-| --- | --- |
-| part `_` | the quantity attaches to the feature itself ([levels.md](levels.md#_--the-segment-that-asserts-nothing)) |
-| part `*` | the default — applies to each part that doesn't state its own |
-| interval slug `_` | this quantity carries one unnamed interval |
+The slug pattern `^[a-z0-9]+(-[a-z0-9]+)*$` produces neither `_` nor `*`, so no authored key collides with these reserved markers ([levels.md](levels.md#_--the-segment-that-asserts-nothing)).
 
 **Keys are strings; the loader must not decide that.** Three key forms are not what a YAML loader returns for them:
 
@@ -127,16 +110,7 @@ The set or count **validates** authored part keys, never generates them — a mo
 | `1`, `2`, `3` — legal part slugs | integer | stringify at the trail boundary |
 | `on`, `off`, `y`, `n` — legal roles and slugs | boolean under YAML 1.1 loaders | stringify at the trail boundary |
 
-The normalizer stringifies every trail key as it reads it and validates against the slug pattern plus the two markers, rather than trusting the loader's scalar typing. Format's pre-parse `quoteBareStars` quotes a bare `*` for the author ([pipeline.md](pipeline.md#format)), so the loader never errors on it. An alias node where a key belongs raises a normalization error with source context.
-
-Storage keeps both segments — `Interval.slug` stays non-null and keeps full path arity, so position is never ambiguous and the PK still catches collisions. `_` elides only when rendering an address for a reader:
-
-```text
-stored     node:dehumidifier/generic/ac-phase/switch/0/power/_
-rendered   dehumidifier/generic/ac-phase/switch/0/power
-```
-
-A second interval on the same `(feature, part, quantity)` forces both to take names — `_` never silently promotes to a band. No interval carries an invented discriminator like `range`: that claims content, not identity.
+The normalizer stringifies every trail key as it reads it and validates against the slug pattern plus the two markers, rather than trusting the loader's scalar typing. Format's pre-parse `quoteBareStars` quotes a bare `*` for the author ([pipeline.md](pipeline.md#format)), so the loader never errors on it. An alias node where a key belongs raises a normalization error with source context. `_` stays stored and full-arity — it elides only on render ([levels.md](levels.md#_--the-segment-that-asserts-nothing)).
 
 ## Normalized rows
 
@@ -151,28 +125,7 @@ The catalog is **JSON**, one giant file.
 
 ## Identity
 
-Canonical interval trail:
-
-```text
-node:<node-type>/<model>/<feature-type>/<feature-role>/<part|_>/<quantity-kind>/<interval-slug>
-```
-
-Example:
-
-```text
-node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/_
-```
-
-Ordered levels:
-
-```text
-node type → model → feature type → feature → part? → interval
-                                                        ├─ specification facet
-                                                        ├─ measurement facet
-                                                        └─ valued range facet
-```
-
-One typed path constructor must own this grammar. No generic recursive slug/role traversal. No string replacement as reference resolution.
+[levels.md](levels.md#the-path-is-the-identity) owns the canonical interval trail and its ordered levels. One typed path constructor owns that grammar — no generic recursive slug/role traversal, no string replacement as reference resolution.
 
 ## Normalizer responsibilities
 
