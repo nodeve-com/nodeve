@@ -132,7 +132,7 @@ Any word would pick one of the three. `_` picks none.
 
 A lone part that could have siblings — one MPPT tracker, one battery port — IS part `1`. Frequency on a three-phase port is not: calling it part 1 invents a part and implies a `2` and `3` that would carry frequency too.
 
-Structure reserves both markers, **not a rule**: slugs match `^[a-z0-9]+(-[a-z0-9]+)*$`, which cannot produce a bare `_` or `*`. No part can ever collide with them and no lint has to say so.
+Structure reserves both markers, **not a rule**: the slug grammar `^[a-z0-9]+(-[a-z0-9]+)*$` admits no bare `_` or `*`, so the marker set and the slug set are disjoint. No part can ever collide with a marker and no lint has to say so.
 
 Position carries the meaning: slot four is always the part.
 

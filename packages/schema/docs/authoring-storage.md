@@ -99,7 +99,7 @@ The marker **validates** authored part keys, never generates them — a model na
 
 ### `_` and `*` as keys
 
-The slug pattern `^[a-z0-9]+(-[a-z0-9]+)*$` produces neither `_` nor `*`, so no authored key collides with these reserved markers ([levels.md](levels.md#_--the-segment-that-asserts-nothing)).
+The normalizer reserves `_` and `*` as markers, never slugs — the grammar `^[a-z0-9]+(-[a-z0-9]+)*$` admits neither, so the marker set and the slug set are disjoint and reserving the markers steals no coordinate key. The normalizer matches a marker first, then applies `SLUG` to every other key ([levels.md](levels.md#_--the-segment-that-asserts-nothing)).
 
 **Keys are strings; the loader must not decide that.** Three key forms are not what a YAML loader returns for them:
 
