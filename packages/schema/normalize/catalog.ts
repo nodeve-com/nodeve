@@ -145,16 +145,25 @@ function walkDevices(): { rowsByTable: Record<string, unknown[]>; subjectNodes: 
 		liftContent(model); // pull device + nested Content out, top-level (keyed by about)
 		for (const [table, rows] of Object.entries(model))
 			bucket(table).push(...(Array.isArray(rows) ? rows : [rows]));
-		const marker: Record<string, unknown> = { node };
 		if (registerMap) {
-			marker.register_map = registerMap.node;
 			const mapNode = registerMap.node as string;
 			if (!seenMap.has(mapNode)) {
 				seenMap.add(mapNode);
 				bucket('register_map').push(registerMap);
 			}
+			// the shared family map is a `reference` relation — paint it as a
+			// NodeEdge (subject = device, predicate = the node_type's register_map
+			// relation, object = the shared map), not a bespoke marker column.
+			const nt = node.replace(/^node:/, '').split('/')[0];
+			bucket('node_edge').push({
+				subject: node,
+				// the Facet relation node — the relation slug is kebabed in node paths
+				predicate: `node:node-type/${nt}/${seg('register_map')}`,
+				object: mapNode,
+				position: 1,
+			});
 		}
-		subjectNodes.push(marker);
+		subjectNodes.push({ node });
 	}
 	return { rowsByTable, subjectNodes };
 }

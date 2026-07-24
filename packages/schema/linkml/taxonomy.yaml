@@ -23,15 +23,23 @@ classes:
   # Facet rows ARE the type's shape: which facet tables compose it and how.
   NodeType: { title: Node type, annotations: { sql_table: node_type }, slots: [ node, facets ] }
 
-  # One row per node type × composed facet table — the type's shape AS DATA.
-  # A type that composes no exclusive table (registry, organization) has none.
+  # One row per node type × RELATION — a named edge from the type to a composed
+  # facet table. The type's shape AS DATA. The relation NAME is the role/socket
+  # for a feature facet (out, ambient, rail-12v), else the facet table itself
+  # (product, network_interface). `facet` is the target table; it defaults to
+  # the relation name, so only a role that renames its target states it.
+  # `feature_type` is the sub-discriminator a feature_of_interest relation binds
+  # (which feature definition fills the socket). A type that composes no
+  # exclusive table (registry, organization) has none.
   Facet:
     title: Facet
     annotations:
       sql_table: facet
-      # authored form: a map keyed by the composed table (facets: {product: …})
-      keyed_by: table
-    slots: [ node, table, cardinality, required ]
+      # authored form: a map keyed by RELATION NAME (facet: {out: {facet: feature_of_interest, feature_type: ac-phase}})
+      keyed_by: relation
+      # unauthored `facet` (the target table) defaults to the relation name
+      key_default: facet
+    slots: [ node, relation, facet, cardinality, required, feature_type ]
 
   # The quantity master list AS ROWS — bulk-loaded from QUDT (grimoire's
   # concepts/enumeration/quantity_kind), never hand-extended. Was an enum; an
@@ -82,7 +90,7 @@ slots:
     required: true
     title: Cardinality
     related_mappings: [ schema:multipleValues ]
-    description: 'single = facet shares the node id (1:1); child = facet has its own node ids (1:many)'
+    description: 'single = shares the node id (1:1); child = own node ids owned under the trail; reference = own node ids, independent, linked by a NodeEdge'
   deprecated:
     range: boolean
     title: Deprecated
@@ -94,6 +102,16 @@ slots:
     related_mappings: [ schema:version ]
     description: 'upstream version that retired it (QUDT "3.1.11")'
     annotations: { camel: deprecatedIn }
+  facet:
+    range: string
+    title: Facet
+    related_mappings: [ schema:hasPart ]
+    description: "the target facet table this relation composes — a real sql_table this type's rows fan out into. Defaults to the relation name; stated only when several relations rename the same table (out/in/ambient → feature_of_interest)"
+  relation:
+    range: string
+    title: Relation
+    related_mappings: [ schema:name ]
+    description: "the relation's name — the role/socket a feature facet fills (out, ambient, rail-12v), else the composed facet table itself (product, network_interface). Doubles as the node leaf and, for a feature, the row's role"
   required:
     range: boolean
     title: Required
@@ -105,11 +123,6 @@ slots:
     related_mappings: [ qudt:symbol ]
     description: 'SI unit of the kind; an interval overrides per-row via `unit`'
     annotations: { camel: siUnit }
-  table:
-    range: string
-    title: Table
-    related_mappings: [ schema:name ]
-    description: "the composed facet table's slug — a real sql_table this type's rows fan out into"
   broader:
     range: QuantityKind
     title: Broader
@@ -122,7 +135,7 @@ slots:
     inlined_as_list: true
     title: Facets
     related_mappings: [ schema:hasPart ]
-    description: "the facet tables this node type composes AS ROWS — each single (shares the node id) or child (own node ids)"
+    description: "the relations this node type composes AS ROWS — each a named edge to a facet table, single (shares the node id) or child (own node ids)"
     annotations: { camel: facets }
   part_set_members:
     range: PartSetMember
@@ -182,4 +195,9 @@ enums:
     description: how a composed facet relates to the node id — closed grammar, so an enum.
     permissible_values:
       single: { title: Single, description: 'shares the node id (1:1)' }
-      child: { title: Child, description: 'own node ids (1:many)' }
+      child:
+        title: Child
+        description: "own node ids, OWNED under this node's trail (node.parent)"
+      reference:
+        title: Reference
+        description: 'own node ids, INDEPENDENT — linked by a NodeEdge whose predicate is this relation, not owned under the trail (the shared family register map)'

@@ -32,12 +32,14 @@ classes:
   # bag. Which facets a device carries is driven by its node_type.facets rows;
   # every facet attaches to the node directly (its own top-level row-set, tied
   # back by node.parent). The one non-owned reference — the shared family
-  # register map — rides here, since it is not under the device's node trail.
+  # register map — is a `reference` relation, painted as a NodeEdge (subject =
+  # device, predicate = the register_map relation, object = the shared map), so
+  # it needs no bespoke column here.
   SubjectNode:
     title: Subject node
     annotations: { sql_table: subject_node, path_root: node_type }
     description: Marker row for a catalogued device node; its facets attach to the node, declared by node_type.
-    slots: [ node, register_map ]
+    slots: [ node ]
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA

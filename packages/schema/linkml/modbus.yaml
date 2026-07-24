@@ -179,12 +179,6 @@ slots:
     title: Member
     related_mappings: [ skos:member ]
     description: 'FK — the channel member this bit raises when set'
-  register_map:
-    range: RegisterMap
-    title: Register map
-    related_mappings: [ wikidata:Q1135322 ]
-    description: 'FK to the shared family map — the ONE non-owned device reference, rides the subject_node marker as a by-node reference'
-    annotations: { camel: registerMap }
   registers:
     range: ModbusRegister
     multivalued: true

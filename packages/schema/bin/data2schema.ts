@@ -23,7 +23,7 @@ type FeatureTypeRow = {
 	node: string;
 	quantity_bindings?: { quantity_kind: string }[];
 };
-type NodeTypeRow = { node: string; facets?: { table: string }[] };
+type NodeTypeRow = { node: string; facets?: { facet: string }[] };
 
 const slugOf = (node: string) => node.split('/').pop()!;
 const pascal = (node: string) =>
@@ -65,7 +65,7 @@ for (const dt of nodeTypes) {
 	// stencil pinning node_type; table-less kinds (registry, organization)
 	// compose only the universal content facet. Facets attach to the node — the
 	// composition lives in node_type.facets, not a per-type slot list.
-	if (!dt.facets?.some((f) => f.table !== 'content')) continue;
+	if (!dt.facets?.some((f) => f.facet !== 'content')) continue;
 	projectedClass[pascal(dt.node)] = {
 		is_a: 'Node',
 		slot_usage: { node_type: { equals_string: dt.node } },

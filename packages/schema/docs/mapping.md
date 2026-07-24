@@ -10,7 +10,7 @@ How each grimoire construct lands in the relational LinkML model. Reusable table
 | feature | class → table | `AcPort` is ONE table; out/grid/eps/load are four FKs to it |
 | quantity_kind enum | `QuantityKind` table + `Ref` rows | `is_a` on an enum neither constrains nor inherits, so a typo'd projected value silently mints a new permissible value. Master list is rows; every citation an FK |
 | `refs:` block | `Ref` → `Registry` tables | the ONE outward link. LinkML's `exact_mappings:` annotates SCHEMA elements; these are DATA, so mappings are data. `match` stays an enum — closed SKOS grammar |
-| socket contract | `SocketBinding` rows | role vocabularies + required-ness project from these, not hand-written |
+| socket contract | `Facet` rows (`node_type.facet:` keyed by relation) | each relation names a role → target facet (+ `feature_type`); a feature socket's roles are the enumerated `feature_of_interest` relations, enforced at normalize |
 | archetype | `NodeType` + binding rows | projects to a validation class, never a type-specific table |
 | `product:` + mfr cascade | `Product` → `Organization` tables | cascade = shared FK row |
 | `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |

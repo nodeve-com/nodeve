@@ -1,0 +1,14 @@
+# DC solar MPPT charge controller (Victron SmartSolar / BlueSolar family).
+# Identity + how it's READ (VE.Direct decode, owned per-model — a charge
+# controller we catalog is one we read) + its DC feature blocks (pv-tracker
+# input, battery output). No shared register map: VE.Direct decode is device-
+# owned data, not a family cascade.
+facet:
+  product: { cardinality: single, required: true }
+  vedirect_field: { cardinality: child }
+  pv-tracker:
+    facet: feature_of_interest
+    cardinality: child
+    feature_type: dc-port
+    required: true
+  battery: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }

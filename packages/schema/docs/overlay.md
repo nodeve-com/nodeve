@@ -18,7 +18,7 @@ Content attaches to ANY node through its own `about` FK (→ `node`), so Content
 
 ## Why overlay instead of wider tables
 
-A 1:1 facet shares its node PK, so its FK-to-`node` column IS the ID column — no separate id space. Child facets attach to the node directly and tie back through `node.parent`, retiring the old `subject_node` hub row (which stamped a backref FK on every child). `subject_node` survives only as a thin marker `{ node, register_map }` — a catalogued device plus the one non-owned reference, the shared family register map.
+A 1:1 facet shares its node PK, so its FK-to-`node` column IS the ID column — no separate id space. Child facets attach to the node directly and tie back through `node.parent`, retiring the old `subject_node` hub row (which stamped a backref FK on every child). `subject_node` survives only as a thin marker `{ node }` — a catalogued device. The one non-owned reference, the shared family register map, is a `reference` relation painted as a `NodeEdge` (subject = device, predicate = the `register_map` relation node, object = the shared map), not a bespoke column.
 
 ## What runs today
 
@@ -26,10 +26,11 @@ A 1:1 facet shares its node PK, so its FK-to-`node` column IS the ID column — 
 
 - unknown `node_type` → dies (constructor)
 - an authored feature whose `feature_type` isn't a known row → dies (`featureType`)
+- a feature role the node type doesn't declare, or one bound to a different `feature_type` → dies (`featureType`, the socket contract)
 - a part key outside the feature's `part_set` members or `count` → dies (`checkPart`)
 - a quantity the feature type disallows → dies (`part`)
 
-Each feature names its own role freely — the node type composes facet _tables_, coarser than the old per-role socket. Facet composition itself is data: `node_type.facets` rows.
+A node type declares its **relations** as data: `node_type.facet:` keyed by relation name, each a named edge to a facet table (`single` / `child` / `reference`). A feature socket's legal roles are the enumerated `feature_of_interest` relations, each binding a `feature_type`; normalize `die`s on an undeclared role or a role bound to the wrong feature type.
 
 ## Emitted as rows
 

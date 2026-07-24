@@ -4,45 +4,27 @@
 // count; quantity keys → its quantity_binding rows; facet keys → classes by
 // sql_table. Every error carries its key trail.
 import { basename, dirname } from 'node:path';
-import {
-	classByName,
-	classByTable,
-	fkTable,
-	keysOf,
-	ownerSlotFor,
-	seg,
-	slotByName,
-	SLUG,
-} from './model.ts';
+import { slugify } from '@nodeve/text/slugify';
+import { classByName, classByTable, keysOf, ownerSlotFor, SLUG } from './model.ts';
 import {
 	columns,
 	nodeTypeBySlug,
+	checkRole,
 	die,
 	expandKey,
+	featureRolesOf,
 	featureTypeBySlug,
 	isMap,
 	loadDoc,
 	partSetBySlug,
+	measurandLink,
 	registerMap,
 	siblingRefs,
 	type Doc,
 	type WalkState,
 } from './registers.ts';
-import { expandValuedRange } from '../src/valued-range-expand.ts';
-import type { ValuedRange } from '../gen/schema.ts';
 import { ValueContracts } from './values.ts';
-
-/** one authored feature in flight — trail, vocabularies, accumulated rows */
-type FeatureCtx = {
-	trail: string;
-	ftSlug: string;
-	fNode: string;
-	kinds: Set<string>;
-	members?: string[];
-	count?: number;
-	feature: Doc;
-	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[] };
-};
+import { quantity, type FeatureCtx } from './intervals.ts';
 
 class DeviceWalk implements WalkState {
 	readonly node: string;
@@ -54,6 +36,8 @@ class DeviceWalk implements WalkState {
 	readonly values: ValueContracts;
 	private readonly model: Doc;
 	private readonly rootSlot: string;
+	private readonly nodeTypeSlug: string;
+	private readonly featureRoles: Map<string, string>; // socket contract: role → feature_type
 	private registerMapDoc?: Doc; // the one non-owned ref — the shared family register map
 
 	constructor(file: string, addPath: (p: string) => void) {
@@ -70,6 +54,8 @@ class DeviceWalk implements WalkState {
 		const dt = this.doc[rootSlot];
 		if (typeof dt !== 'string' || !SLUG.test(dt)) die(`${this.slug}.${rootSlot}`, 'must be a slug');
 		if (!nodeTypeBySlug[dt]) die(this.slug, `unknown node_type ${dt}`);
+		this.nodeTypeSlug = dt;
+		this.featureRoles = featureRolesOf(dt); // the socket contract, off facet:
 		this.node = this.mint(`node:${dt}/${this.slug}`);
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
 		// facet rows keyed by sql_table (or `contents`), scattered to top-level row-sets; identity on the node row
@@ -84,11 +70,16 @@ class DeviceWalk implements WalkState {
 	walk(): DeviceResult {
 		let featureBlock: Doc = {};
 		let registerBlock: unknown;
+		// facets whose class carries an `interval` slot read a measurand — their
+		// `target:` sugar resolves against the intervals the feature walk populates,
+		// so they wait for it. Schema-driven, not a per-class branch.
+		const deferred: [string, unknown][] = [];
 		for (const [key, value] of Object.entries(this.doc)) {
 			const cls = classByTable[key];
 			if (cls === 'FeatureOfInterest')
 				featureBlock = isMap(value) ? value : die(`${this.slug}.${key}`, 'expected feature types');
 			else if (cls === 'RegisterMap') registerBlock = value;
+			else if (cls && classByName[cls]?.slots?.includes('interval')) deferred.push([key, value]);
 			else this.plainKey(key, value);
 		}
 		siblingRefs({ slug: this.slug, node: this.node }, this.model, this.doc);
@@ -96,6 +87,7 @@ class DeviceWalk implements WalkState {
 			this.featureType(String(ftSlug), roleMap);
 		if (registerBlock !== undefined)
 			this.registerMapDoc = registerMap(this, registerBlock, `${this.slug}.register_map`);
+		for (const [key, value] of deferred) this.plainKey(key, value);
 		const channels = this.values.channelRows(`${this.slug}.channel`);
 		if (channels) this.model.channel = channels;
 		return { node: this.node, model: this.model, registerMap: this.registerMapDoc };
@@ -117,19 +109,31 @@ class DeviceWalk implements WalkState {
 		} else die(trail, 'unrecognized authored key');
 	}
 
-	/** keyed child map → rows under `parent` (default this node); keySlot + `about` off the schema */
-	private childRows(cls: string, value: unknown, at: { trail: string; parent?: string }): Doc[] {
+	/** keyed child map → rows under `parent` (default this node); keySlot + `about`
+	 * off the schema. The map key is the raw id column; its node segment is
+	 * slugified (idempotent for keys already slugs, kebabs a wire label like V /
+	 * SER#). A measurand-reading child (its class carries an `interval` slot)
+	 * expands the shared `target:` sugar to interval + part. */
+	childRows(cls: string, value: unknown, at: { trail: string; parent?: string }): Doc[] {
 		if (!isMap(value)) die(at.trail, 'expected a keyed map');
 		const parent = at.parent ?? this.node;
 		const [keySlot] = keysOf(cls) as [string, ...string[]];
 		const about = classByName[cls]?.slots?.includes('about');
 		const hasKey = classByName[cls]?.slots?.includes(keySlot);
-		return Object.entries(value).map(([k, v]) => ({
-			node: this.mint(`${parent}/${k}`),
-			...(about ? { about: parent } : {}),
-			...(hasKey ? { [keySlot]: expandKey(keySlot, String(k)) } : {}),
-			...columns(cls, v, `${at.trail}.${k}`),
-		}));
+		const reads = classByName[cls]?.slots?.includes('interval');
+		return Object.entries(value).map(([k, raw]) => {
+			const trail = `${at.trail}.${k}`;
+			if (!isMap(raw)) die(trail, 'expected a map of columns');
+			const { target, ...cols } = raw;
+			if (target !== undefined && !reads) die(`${trail}.target`, `${cls} reads no measurand`);
+			return {
+				node: this.mint(`${parent}/${slugify(k)}`),
+				...(about ? { about: parent } : {}),
+				...(hasKey ? { [keySlot]: expandKey(keySlot, String(k)) } : {}),
+				...columns(cls, cols, trail),
+				...(target !== undefined ? measurandLink(this, target, `${trail}.target`) : {}),
+			};
+		});
 	}
 
 	/** one feature type's role map → rows in the ONE feature_of_interest set; feature_type + role discriminate */
@@ -138,8 +142,16 @@ class DeviceWalk implements WalkState {
 		if (!isMap(roleMap)) die(at, 'expected role keys');
 		if (!featureTypeBySlug[ftSlug]) die(at, `unknown feature_type ${ftSlug}`);
 		const rows = (this.model.feature_of_interest ??= []) as Doc[];
-		for (const [role, body] of Object.entries(roleMap))
+		for (const [role, body] of Object.entries(roleMap)) {
+			checkRole({
+				roleMap: this.featureRoles,
+				dt: this.nodeTypeSlug,
+				role: String(role),
+				ftSlug,
+				at: `${at}.${role}`,
+			});
 			rows.push(this.feature(ftSlug, String(role), body));
+		}
 	}
 
 	private feature(ftSlug: string, role: string, body: unknown): Doc {
@@ -200,10 +212,10 @@ class DeviceWalk implements WalkState {
 			die(`${ctx.trail}.*`, 'a default needs parts to apply to');
 		if (!isMap(value)) die(`${ctx.trail}.${part}`, 'expected quantity keys');
 		for (const [qk, bandMap] of Object.entries(value)) {
-			const quantity = String(qk);
-			if (!ctx.kinds.has(quantity))
-				die(`${ctx.trail}.${part}.${quantity}`, `not an admissible quantity of ${ctx.ftSlug}`);
-			this.quantity(ctx, { part, quantity }, bandMap);
+			const kind = String(qk);
+			if (!ctx.kinds.has(kind))
+				die(`${ctx.trail}.${part}.${kind}`, `not an admissible quantity of ${ctx.ftSlug}`);
+			quantity({ host: this, ctx }, { part, quantity: kind }, bandMap);
 		}
 	}
 
@@ -219,75 +231,6 @@ class DeviceWalk implements WalkState {
 			if (!Number.isInteger(n) || n < 1 || n > ctx.count)
 				die(`${ctx.trail}.${part}`, `outside count 1…${ctx.count}`);
 		} else die(`${ctx.trail}.${part}`, 'feature has no part_set or count');
-	}
-
-	private quantity(ctx: FeatureCtx, at: { part: string; quantity: string }, bandMap: unknown) {
-		if (!isMap(bandMap)) die(`${ctx.trail}.${at.part}.${at.quantity}`, 'expected interval slugs');
-		for (const [raw, payload] of Object.entries(bandMap))
-			this.interval(ctx, { ...at, islug: String(raw) }, payload);
-	}
-
-	private interval(
-		ctx: FeatureCtx,
-		at: { part: string; quantity: string; islug: string },
-		payload: unknown,
-	) {
-		const trail = `${ctx.trail}.${at.part}.${at.quantity}.${at.islug}`;
-		if (at.islug !== '_' && !SLUG.test(at.islug)) die(trail, 'not a slug or _');
-		const iNode = `${ctx.fNode}/${at.part}/${at.quantity}/${at.islug}`;
-		if (this.intervals.has(iNode)) die(trail, 'duplicate coordinate');
-		this.intervals.add(iNode);
-		this.mint(iNode);
-		// three stacked authored levels → part/quantity columns; the interval slug rides the node
-		const [partSlot, qkSlot] = keysOf('Interval') as [string, string, string];
-		const row: Doc = {
-			node: iNode,
-			[partSlot]: at.part,
-			[qkSlot]: expandKey(qkSlot, at.quantity),
-		};
-		if (!isMap(payload)) die(trail, 'expected facet keys');
-		for (const [facet, cols] of Object.entries(payload))
-			this.facet(ctx, { row, facet, trail: `${trail}.${facet}` }, cols);
-		ctx.list.intervals.push(row);
-	}
-
-	/** a named facet key — a co-row sharing the interval's node */
-	private facet(ctx: FeatureCtx, at: { row: Doc; facet: string; trail: string }, cols: unknown) {
-		const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
-		const iNode = at.row.node as string;
-		if (at.facet === 'valued_range') {
-			const vr = isMap(cols) ? (cols as unknown as ValuedRange) : die(at.trail, 'expected columns');
-			at.row.valued_range = {
-				node: iNode,
-				...columns(cls, expandValuedRange(vr, at.trail), at.trail),
-			};
-		} else if (at.facet === 'measurement') {
-			ctx.list.measurements.push({ node: iNode, ...columns(cls, cols, at.trail) });
-			this.measurable.add(iNode);
-		} else if (at.facet === 'specification')
-			ctx.list.specifications.push(this.specification({ node: iNode, cls, trail: at.trail }, cols));
-		else if (at.facet === 'content')
-			// an identified band names a device state → its own prose, hoisted by liftContent
-			at.row.contents = this.childRows(cls, cols, { trail: at.trail, parent: iNode });
-		else die(at.trail, `${cls} is not an interval facet`);
-	}
-
-	/** specification facet — an inlined_as_list slot (schema fact) lowers each entry to a child row (list = AND) */
-	private specification(at: { node: string; cls: string; trail: string }, payload: unknown): Doc {
-		if (!isMap(payload)) die(at.trail, 'expected a map of columns');
-		const row: Doc = { node: at.node };
-		const cols: Doc = {};
-		for (const [k, v] of Object.entries(payload)) {
-			const table = slotByName[k]?.inlined_as_list ? fkTable(k) : undefined;
-			if (!table) cols[k] = v;
-			else if (!Array.isArray(v) || !v.length) die(`${at.trail}.${k}`, 'expected a non-empty list');
-			else
-				row[k] = v.map((g, i) => {
-					const node = this.mint(`${at.node}/${seg(table)}/${i + 1}`);
-					return this.values.gate({ node, trail: `${at.trail}.${k}[${i}]` }, g);
-				});
-		}
-		return Object.assign(row, columns(at.cls, cols, at.trail));
 	}
 }
 

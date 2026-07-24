@@ -3,4 +3,8 @@
 # register map (read through whatever meters its supply, not directly).
 facet:
   product: { cardinality: single, required: true }
-  feature_of_interest: { cardinality: child, required: true }
+  supply:
+    facet: feature_of_interest
+    cardinality: child
+    feature_type: ac-phase
+    required: true

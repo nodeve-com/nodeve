@@ -10,6 +10,7 @@
 import { basename, dirname } from 'node:path';
 import { readYaml } from '../src/io.ts';
 import { classByName, classByTable, expandFk as expand, ownerSlotFor, seg, SLUG } from './model.ts';
+import { isMap } from './registers.ts';
 
 export type Row = Record<string, unknown> & { $trail: string; $slot?: string };
 
@@ -33,9 +34,9 @@ function keyedChildren(
 	if (!child) throw new Error(`${trail}: no class ${childClass}`);
 	const keyedBy = child.annotations?.keyed_by;
 	if (!keyedBy) throw new Error(`${trail}: ${childClass} has no keyed_by annotation`);
-	if (!value || typeof value !== 'object' || Array.isArray(value))
-		throw new Error(`${trail}: expected a map keyed by ${keyedBy}`);
+	if (!isMap(value)) throw new Error(`${trail}: expected a map keyed by ${keyedBy}`);
 	const ordered = child.slots?.includes('ordinal');
+	const keyDefault = child.annotations?.key_default as string | undefined; // slot ← key when unauthored
 	return Object.entries(value).map(([k, payload], i) => {
 		if (!payload || typeof payload !== 'object' || Array.isArray(payload))
 			throw new Error(`${trail}.${k}: expected a map of columns`);
@@ -46,13 +47,13 @@ function keyedChildren(
 				return [ck, expand(ck, cv, `${trail}.${k}.${ck}`)];
 			}),
 		);
+		if (keyDefault && !(keyDefault in expanded))
+			expanded[keyDefault] = expand(keyDefault, k, trail);
 		return {
 			...expanded,
 			...(ordered ? { ordinal: i + 1 } : {}),
 			node: `${node}/${seg(k)}`,
 			...(child.slots?.includes('about') ? { about: node } : {}),
-			// the key stays a column only when the child class still has it — slug
-			// is the node leaf now (on the node row), never a facet column
 			...(child.slots?.includes(keyedBy) ? { [keyedBy]: expand(keyedBy, k, `${trail}.${k}`) } : {}),
 			$trail: `${trail}.${k}`,
 		};
@@ -76,10 +77,11 @@ function nodeBlock(node: string, value: unknown, slug: string): void {
 /** content is a universal child facet — auto-composed into every node_type,
  * never authored in the facet: map */
 function autoComposeContent(rows: Row[], node: string, slug: string): void {
-	if (rows.some((r) => r.$slot === 'facets' && r.table === 'content')) return;
+	if (rows.some((r) => r.$slot === 'facets' && r.facet === 'content')) return;
 	rows.push({
 		node: `${node}/content`,
-		table: 'content',
+		relation: 'content',
+		facet: 'content',
 		cardinality: 'child',
 		$slot: 'facets',
 		$trail: `${slug}.content`,

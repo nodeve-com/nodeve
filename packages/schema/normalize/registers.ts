@@ -49,6 +49,36 @@ export const featureTypeBySlug = loadDir('feature_type');
 export const partSetBySlug = loadDir('part_set');
 export const nodeTypeBySlug = loadDir('node_type');
 
+/** a node_type's socket contract: role → the feature_type slug each
+ * feature_of_interest relation binds, read off its facet: map. */
+export function featureRolesOf(dt: string): Map<string, string> {
+	const roleMap = new Map<string, string>();
+	const facetMap = (nodeTypeBySlug[dt] as Doc)?.facet;
+	if (isMap(facetMap))
+		for (const [relation, spec] of Object.entries(facetMap)) {
+			const s = isMap(spec) ? spec : {};
+			if (((s.facet as string) ?? relation) === 'feature_of_interest')
+				roleMap.set(relation, String(s.feature_type ?? ''));
+		}
+	return roleMap;
+}
+
+/** enforce an authored feature role against the socket contract (when declared) */
+export function checkRole(o: {
+	roleMap: Map<string, string>;
+	dt: string;
+	role: string;
+	ftSlug: string;
+	at: string;
+}) {
+	const { roleMap, dt, role, ftSlug, at } = o;
+	if (!roleMap.size) return;
+	if (!roleMap.has(role))
+		die(at, `undeclared role ${role} on ${dt}; declared: [${[...roleMap.keys()]}]`);
+	const want = roleMap.get(role);
+	if (want && want !== ftSlug) die(at, `role ${role} binds feature_type ${want}, not ${ftSlug}`);
+}
+
 /** columns of one authored map, validated against the class's slots */
 export function columns(className: string, value: unknown, trail: string): Doc {
 	if (!isMap(value)) die(trail, 'expected a map of columns');
@@ -115,6 +145,17 @@ export function intervalRef(walk: WalkState, ref: Doc, trail: string): string {
 	return hit[0]!;
 }
 
+/** the `target:` sugar every measurand-reading facet shares (register, VE.Direct
+ * field): decomposed feature/part/quantity coordinates → the derived interval FK
+ * + the instance-picking part. The one seam that assembles an FK from axes. */
+export function measurandLink(walk: WalkState, target: unknown, trail: string): Doc {
+	if (!isMap(target)) die(trail, 'expected a measurand ref');
+	return {
+		part: target.part === undefined ? '_' : String(target.part),
+		interval: intervalRef(walk, target, trail),
+	};
+}
+
 /** exact part first, then the `*` default row */
 function named(stem: string, interval: unknown, ctx: { walk: WalkState; trail: string }): string {
 	if (typeof interval !== 'string') die(ctx.trail, 'interval must be a slug');
@@ -161,8 +202,7 @@ function registerRow(at: { walk: WalkState; mNode: string }, row: unknown, trail
 	};
 	if ('channel' in target) return channelRow(at.walk, { base, target, flag }, trail);
 	if (flag !== undefined) die(`${trail}.flag`, 'flags need a channel target');
-	base.part = target.part === undefined ? '_' : String(target.part);
-	base.interval = intervalRef(at.walk, target, `${trail}.target`);
+	Object.assign(base, measurandLink(at.walk, target, `${trail}.target`));
 	return base;
 }
 
