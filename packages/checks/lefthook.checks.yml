@@ -144,14 +144,24 @@ pre-commit:
     # Recursive per-package gate — the org requirement that a commit can't land a
     # package whose own `check` fails. Each package aggregates ITS checks
     # (typecheck, tests, package-specific gates) under a `check` script; this runs
-    # them all. A package OPTS OUT by defining no `check` script (`--if-present`
-    # skips it). Sibling of the `checks` group, NOT inside it: those are
+    # them all. A package OPTS OUT by defining no `check` script (both PMs skip a
+    # missing script). Sibling of the `checks` group, NOT inside it: those are
     # staged-file static analyses, but a typecheck needs the whole package program
     # — it can't be narrowed to staged files — so this runs the full recursion as
-    # its own (heavier) job. pnpm-based; a bun-workspace repo overrides this job's
-    # `run` with `bun run --filter '*' check`.
+    # its own (heavier) job.
+    #
+    # PM-agnostic by lockfile, since org repos run on pnpm OR bun and both must
+    # inherit this from the single `extends` line — no per-repo override. bun's
+    # `--filter '*'` is its recursive-run form; pnpm's `-r --if-present` is its
+    # own. A repo wanting turbo's caching overrides this job's `run` with
+    # `turbo run check`.
     - name: package-check
-      run: pnpm -r --if-present check
+      run: |
+        if [ -f bun.lock ] || [ -f bun.lockb ]; then
+          bun run --filter '*' check
+        else
+          pnpm -r --if-present check
+        fi
 
 # The commit-msg hook fires after pre-commit, once a message exists. lefthook
 # passes the message file path as `{1}`. The gate gives it Conventional-Commits
