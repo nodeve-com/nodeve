@@ -1,4 +1,4 @@
-// The nested device walk (docs/authoring-storage.md): descend slug keys, lift
+// The nested device walk (docs/authoring.md#the-normalizer): descend slug keys, lift
 // `$`, expand facets, resolve structured refs. Vocabularies come from data/ rows
 // and the schema, never hardcoded: part keys → the feature's part_set members or
 // count; quantity keys → its quantity_binding rows; facet keys → classes by

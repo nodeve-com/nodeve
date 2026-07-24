@@ -46,8 +46,9 @@ pnpm check:refs # registry iri_templates resolve? (network)
 
 ## Design
 
-- [levels.md](docs/levels.md) (identity path grammar)
-- [authoring-storage.md](docs/authoring-storage.md) (authored docs → schema-checked rows), [pipeline.md](docs/pipeline.md) (pipeline stages).
+- [levels.md](docs/levels.md) — identity path grammar
+- [authoring.md](docs/authoring.md) — authored nested docs → schema-checked rows
+- [pipeline.md](docs/pipeline.md) — pipeline stages
 - [overlay.md](docs/overlay.md) — node types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
 - [mapping.md](docs/mapping.md) — every grimoire construct → its LinkML landing, plus identity and PK/FK rules.
 - [open.md](docs/open.md) — known gaps and deliberate deferrals (no metaclass, overlapping backref FKs, untested registries, `code` collision risk, …).

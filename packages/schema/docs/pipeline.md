@@ -14,7 +14,7 @@ Style authority for authored yaml (prettier ignores the tree). Comment-preservin
 
 ### normalize
 
-THE trail walk ([authoring-storage.md](authoring-storage.md)): nested docs → flat source-tagged rows → `gen/catalog.json`, the root object downstream ingests. Structural errors (bad slug, part outside its set, duplicate coordinate) die here with the key trail.
+THE trail walk ([authoring.md](authoring.md#the-normalizer)): nested docs → flat source-tagged rows → `gen/catalog.json`, the root object downstream ingests. Structural errors (bad slug, part outside its set, duplicate coordinate) die here with the key trail.
 
 ## `validate` / build
 

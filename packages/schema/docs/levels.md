@@ -112,7 +112,16 @@ Two levels reserve `_`. Both readings are the same move: the column has no value
 | part          | the quantity attaches to the feature itself              |
 | interval slug | this quantity carries one interval, and it needs no name |
 
-`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
+`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding. It persists as-is and resolves at query time against the feature's members, a part's own value winning:
+
+```sql
+select distinct on (i.quantity_kind, i.slug) i.*
+from Interval i
+where i.feature = $1 and i.part in ($2, '*')
+order by i.quantity_kind, i.slug, (i.part = '*')
+```
+
+A measurement channel is always concrete, so `*` is in practice a specification move — one band stated once instead of repeated per leg.
 
 At the leaf, any word would be a claim about content, not identity. The interval stays unnamed because nothing needs discriminating; `_` says exactly that.
 
@@ -140,20 +149,13 @@ Position carries the meaning: slot four is always the part.
 
 No separate "slug unique per part" constraint needs writing. Two rows that would collide on `(feature, part, quantity_kind, slug)` derive the _same_ path, and the path is the PK — the mint hits a duplicate.
 
-| feature_type | feature    | part | interval                |
-| ------------ | ---------- | ---- | ----------------------- |
-| ac-phase     | out        | a    | `{voltage, continuous}` |
-| ac-phase     | out        | b    | `{voltage, continuous}` |
-| ac-phase     | out        | c    | `{voltage, continuous}` |
-| ac-phase     | grid       | a    | `{frequency}`           |
-| dc-port      | pv-tracker | 1    | `{voltage}`             |
-| dc-port      | pv-tracker | 2    | `{voltage}`             |
-| dc-port      | pv-tracker | 3    | `{voltage}`             |
-| dc-port      | battery    | 1    | `{voltage}`             |
-| ac-phase     | grid       | `_`  | `{frequency}`           |
-| ac-phase     | load       | a    | `{voltage, continuous}` |
-| environment  | enclosure  | `_`  | `{temperature}`         |
-| environment  | ambient    | `_`  | `{temperature}`         |
+The same interval on a different part is a different path — the part segment discriminates, no constraint needed:
+
+| feature | part | interval                |
+| ------- | ---- | ----------------------- |
+| out     | a    | `{voltage, continuous}` |
+| out     | b    | `{voltage, continuous}` |
+| out     | `_`  | `{frequency}`           |
 
 ## Many intervals per (feature, part, quantity)
 
@@ -185,32 +187,6 @@ Test: remove one part — still a working connection of the same kind? Yes ⇒ `
 | dc-port      | 1, 2, 3 (count)    | 3v3, 5v, 12v (part_set: atx) |
 | environment  | —                  | —                            |
 
-## The part column
+`part` is not an FK — `_` and `*` name no row. Member validity is an owned check against the feature's `part_set` members (or `count`).
 
-Every interval has a part, always — the column is non-null and holds the path's part segment verbatim. No separate scope enum exists: the segment already says which of the three things it names, and a second column could only repeat or contradict it.
-
-| part | means                                                         |
-| ---- | ------------------------------------------------------------- |
-| `a`  | phase A                                                       |
-| `_`  | the whole feature                                             |
-| `*`  | the default — applies to each part that doesn't state its own |
-
-| row                              | means                                                |
-| -------------------------------- | ---------------------------------------------------- |
-| `ac-phase / out / a / voltage`   | phase A voltage                                      |
-| `ac-phase / out / _ / voltage`   | the output's combined voltage                        |
-| `ac-phase / out / _ / frequency` | frequency — never per-phase                          |
-| `ac-phase / out / * / voltage`   | the voltage each phase gets unless it states its own |
-
-A measurement channel is always concrete, so `*` is in practice a specification move: one band stated once instead of repeated per leg. Nothing forbids it elsewhere, and no rule has to.
-
-`*` persists as-is and resolves at query time against the feature's `part_set` members (or `count`). A part's own value wins; `*` supplies the rest:
-
-```sql
-select distinct on (i.quantity_kind, i.slug) i.*
-from Interval i
-where i.feature = $1 and i.part in ($2, '*')
-order by i.quantity_kind, i.slug, (i.part = '*')
-```
-
-`part` is not an FK — two of its values name no row. Member validity is an owned check against the feature's `part_set` members (or `count`).
+Authoring the nested front-end that flattens into these rows: [authoring.md](authoring.md).
