@@ -77,6 +77,7 @@ classes:
       # the normalizer reads it here, never hardcodes it
       keyed_by: language
     slots: [ node, about, language, title, lede, body ]
+    unique_keys: { about_language: { unique_key_slots: [ about, language ] } }
 slots:
   body: { title: Body, exact_mappings: [ schema:articleBody ] }
   code:

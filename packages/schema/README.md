@@ -37,7 +37,6 @@ We intend for the database schema to be flexible and able to contain any kind of
 ```sh
 pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
 pnpm generate   # format → normalize, no python
-pnpm validate   # subject node against the schema
 pnpm check      # format gate (--check), what precommit runs
 pnpm check:refs # registry iri_templates resolve? (network)
 ```
@@ -47,6 +46,8 @@ pnpm check:refs # registry iri_templates resolve? (network)
 ## Design
 
 - [levels.md](docs/levels.md) — identity path grammar
+- [parts.md](docs/parts.md) — feature subdivision (`count`/`part_set`) and the `_`/`*` markers
+- [intervals.md](docs/intervals.md) — what an interval is: one quantity band, slug-discriminated, facts as width facets
 - [authoring.md](docs/authoring.md) — authored nested docs → schema-checked rows
 - [pipeline.md](docs/pipeline.md) — pipeline stages
 - [overlay.md](docs/overlay.md) — node types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.

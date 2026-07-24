@@ -29,7 +29,7 @@ A shared table holds every level. `NodeType` and `FeatureType` rows also declare
 | part         | `Interval.part`               | key (no table)           | `a`                |
 | interval     | `Interval`                    | `quantity_kind` + `slug` | `voltage/running`  |
 
-`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level.
+`Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level. Two levels have their own docs: [parts.md](parts.md) (subdivision kinds, the `_`/`*` markers) and [intervals.md](intervals.md) (the band rows facts live on).
 
 ## Validation across levels
 
@@ -57,16 +57,9 @@ One rule gets one normative source. Generated LinkML and DDL are enforcement art
 
 `Node` is the identity boundary. Anything another row may point to must have one row in `Node`. Anything without a node is not independently addressable. Narrow tables are the facet/child split — see [facets.md](facets.md).
 
-Each localized `Content` row is about-attached (never nested under a parent), _projected_ from its schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One thing may take more than one row, each addressable independently. Its relational shape is:
+Each localized `Content` row is about-attached (never nested under a parent), _projected_ from its schema `title`/`description` (en) + `annotations.i18n` (other languages) — never hand-authored in `data/` ([concepts.md](concepts.md#translations)). One thing may take more than one row, each addressable independently. Shape and constraints: `Content` in [core.yaml](../linkml/core.yaml) — its own `node` plus `about`, the described thing, unique per `(about, language)`.
 
-| column | means |
-| --- | --- |
-| `node` | this content row's identity; PK and FK to `Node` |
-| `about` | described thing; FK to `Node`; maps to `schema:about` |
-| `language` | BCP 47 language tag; maps to `schema:inLanguage` |
-| `title`, `lede`, `body` | payload (`lede` = the slot's LinkML `description` — same field, LinkML's name; see [concepts.md](concepts.md#description-is-lede--one-field-two-names)) |
-
-Thus content needs two node references, but no parent-class reference. `Content.about` can target a `Registry`, `QuantityKind`, model, or any future node without adding columns. Constraint: `UNIQUE (about, language)`.
+Thus content needs two node references, but no parent-class reference. `Content.about` can target a `Registry`, `QuantityKind`, model, or any future node without adding columns.
 
 ### The path is the identity
 
@@ -88,11 +81,11 @@ Segment rules:
 | model | `Node.slug` (marked by a `SubjectNode` row) | never, on catalog rows |
 | feature-type | referenced `FeatureType.slug` | never |
 | feature-role | `FeatureOfInterest.role` | never |
-| part | `Interval.part` verbatim — a member slug, `_`, or `*` | never — the column is non-null, so the segment never dissolves |
+| part | `Interval.part` verbatim — a member slug or marker ([parts.md](parts.md)) | never — the column is non-null, so the segment never dissolves |
 | quantity-kind | `Interval.quantity_kind` | never on an interval |
-| interval-slug | `Interval.slug` | never — `_` when the quantity carries one unnamed interval |
+| interval-slug | authored interval key — path only, no column | never — `_` when the quantity carries one unnamed interval |
 
-`quantity_kind` is a **segment**, not the leaf. The leaf is the interval slug, and it exists only to discriminate siblings:
+`quantity_kind` is a **segment**, not the leaf. The leaf is the interval slug — the sibling discriminator ([intervals.md](intervals.md#slug--the-discriminator)):
 
 | path                               | is                                                  |
 | ---------------------------------- | --------------------------------------------------- |
@@ -103,47 +96,7 @@ Segment rules:
 
 Every level holds one segment, always. No segment dissolves, so position is never ambiguous and a part slug can never alias a quantity kind.
 
-### `_` — the segment that asserts nothing
-
-Two levels reserve `_`. Both readings are the same move: the column has no value, and every candidate word would supply one.
-
-| position      | means                                                    |
-| ------------- | -------------------------------------------------------- |
-| part          | the quantity attaches to the feature itself              |
-| interval slug | this quantity carries one interval, and it needs no name |
-
-`*` is the third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding. It persists as-is and resolves at query time against the feature's members, a part's own value winning:
-
-```sql
-select distinct on (i.quantity_kind, i.slug) i.*
-from Interval i
-where i.feature = $1 and i.part in ($2, '*')
-order by i.quantity_kind, i.slug, (i.part = '*')
-```
-
-A measurement channel is always concrete, so `*` is in practice a specification move — one band stated once instead of repeated per leg.
-
-At the leaf, any word would be a claim about content, not identity. The interval stays unnamed because nothing needs discriminating; `_` says exactly that.
-
-The path stores `_`, never omits it. `Interval.slug` stays non-null and keeps full arity, so position never shifts. It elides only when rendering an address for a reader — `…/switch/0/power/_` displays as `…/switch/0/power`. A six-segment address parses back as `slug = _`; seven reads its leaf literally.
-
-A second interval on the same `(feature, part, quantity_kind)` forces both to take names. `_` never quietly becomes one band among others.
-
-As a part, `_` makes no claim about why no part carries a name. Three unrelated situations produce it:
-
-| situation                               | example                           |
-| --------------------------------------- | --------------------------------- |
-| the quantity is never per-part          | frequency on an ac port           |
-| it aggregates over the parts            | the port's voltage across a, b, c |
-| this model never subdivided the feature | enclosure temperature             |
-
-Any word would pick one of the three. `_` picks none.
-
-A lone part that could have siblings — one MPPT tracker, one battery port — IS part `1`. Frequency on a three-phase port is not: calling it part 1 invents a part and implies a `2` and `3` that would carry frequency too.
-
-Structure reserves both markers, **not a rule**: the slug grammar `^[a-z0-9]+(-[a-z0-9]+)*$` admits no bare `_` or `*`, so the marker set and the slug set are disjoint. No part can ever collide with a marker and no lint has to say so.
-
-Position carries the meaning: slot four is always the part.
+The path stores `_`, never omits it ([parts.md](parts.md#_--the-segment-that-asserts-nothing) owns its meaning). The leaf lives only in the path — `interval` has no slug column — and keeps full arity, so position never shifts. It elides only when rendering an address for a reader — `…/switch/0/power/_` displays as `…/switch/0/power`. A six-segment address parses back as `slug = _`; seven reads its leaf literally.
 
 ### Uniqueness falls out
 
@@ -156,37 +109,5 @@ The same interval on a different part is a different path — the part segment d
 | out     | a    | `{voltage, continuous}` |
 | out     | b    | `{voltage, continuous}` |
 | out     | `_`  | `{frequency}`           |
-
-## Many intervals per (feature, part, quantity)
-
-`slug` is the discriminator. One band is never enough — a quantity carries specs, channels, or both.
-
-| feature / part / quantity | slug | payload |
-| --- | --- | --- |
-| pv-tracker / 1 / voltage | `survival` | spec: `rating: survival`, max 1000 |
-| pv-tracker / 1 / voltage | `running` | spec: `zone: running`, 90–140 |
-| pv-tracker / 1 / voltage | `continuous` | spec: `rating: continuous, severity: nominal` |
-| out / _ / active_energy | `lifetime` | measurement: `flow_direction: out` |
-| out / _ / active_energy | `daily` | measurement: `flow_direction: out, period: daily` |
-| grid / a / voltage | `_` | measurement: resolution 0.1 — no sibling to name against |
-
-## Part keys
-
-Integer strings are slugs — `1`, `2`, `3` pass `^[a-z0-9]+(-[a-z0-9]+)*$` unchanged. A part is a discriminator key on `Interval`, not its own row; sort/join order comes from the feature's `part_set` (`PartSetMember.ordinal`).
-
-Parts belong to the **feature**, not its type — how a model subdivides a port is a per-model fact. Two subdivision kinds, picked by the marker in `$`:
-
-- `count: N` — **members of a collection**: N interchangeable replica sockets authored once (three MPPT trackers). Keys are ordinal `1…n`; the `_` whole is a roll-up (Σ of independent members).
-- `part_set: X` — **components of one integral socket**: a fixed named part vocabulary (three-phase `a/b/c`, split-phase `l1/l2`, ATX rails `3v3/5v/12v`). Keys are roles; the `_` whole is emergent — a rating no part row derives (the ATX rails share one 250 W budget; the 3-phase total isn't 3×a leg). Heterogeneous parts (different rail nominals) are still one socket.
-
-Test: remove one part — still a working connection of the same kind? Yes ⇒ `count`. No ⇒ `part_set`. A part exists only as an `Interval.part` value validated against the feature's `part_set` members or `count`; a subdivision with no interval is simply not asserted.
-
-| feature type | one model's parts  | another's                    |
-| ------------ | ------------------ | ---------------------------- |
-| ac-phase     | a, b, c (part_set) | l1, l2 (part_set)            |
-| dc-port      | 1, 2, 3 (count)    | 3v3, 5v, 12v (part_set: atx) |
-| environment  | —                  | —                            |
-
-`part` is not an FK — `_` and `*` name no row. Member validity is an owned check against the feature's `part_set` members (or `count`).
 
 Authoring the nested front-end that flattens into these rows: [authoring.md](authoring.md).

@@ -40,7 +40,7 @@ classes:
       # part → quantity → interval slug assemble ONE row
       keyed_by: part quantity_kind slug
     description: >-
-      One quantity band on one feature. part null = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
+      One quantity band on one feature. part `_` = combined; slug discriminates multiple rows per (quantity_kind, part). Aspect payloads hang off as width extensions — THEY point here (shared node), never back.
     slots: [ node, quantity_kind, valued_range, part ]
     slot_usage:
       # part is the discriminator that stays a column; the interval slug is the
@@ -77,7 +77,7 @@ classes:
     abstract: true
     close_mappings: [ sosa:FeatureOfInterest ]
     description: >-
-      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. A part is a per-model discriminator on Interval (a/b/c, l1/l2, 1/2/3), validated against part_set or count — not its own table; part NULL on an interval = combined, the whole feature.
+      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. A part is a per-model discriminator on Interval (a/b/c, l1/l2, 1/2/3), validated against part_set or count — not its own table; part `_` on an interval = combined, the whole feature.
     slots: [ node, feature_type, role, part_set, count, intervals, specifications, measurements ]
     slot_usage: { role: { required: true }, feature_type: { required: true } }
 slots:

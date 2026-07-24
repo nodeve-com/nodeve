@@ -16,7 +16,7 @@ Style authority for authored yaml (prettier ignores the tree). Comment-preservin
 
 THE trail walk ([authoring.md](authoring.md#the-normalizer)): nested docs → flat source-tagged rows → `gen/catalog.json`, the root object downstream ingests. Structural errors (bad slug, part outside its set, duplicate coordinate) die here with the key trail.
 
-## `validate` / build
+## build
 
 `linkml-validate` checks catalog against schema (shape only; owned checks cover cross-row rules). `ddl.py` emits DDL and loads the db; a failed FK there is the last gate.
 

@@ -75,18 +75,18 @@ Facets stay named keys, not `$` entries — `Specification`, `Measurement`, `Val
 
 ### How a feature subdivides
 
-A feature carries at most one subdivision marker in `$` — `part_set` (named closed set) or `count` (cardinality); [Part keys](levels.md#part-keys) owns the distinction.
+A feature carries at most one subdivision marker in `$` — `part_set` or `count`; [parts.md](parts.md) owns the distinction and storage.
 
 ```yaml
 $: { part_set: split-phase } # keys must be l1, l2
 $: { count: 3 } # keys must be 1, 2, 3
 ```
 
-The marker **validates** authored part keys, never generates them — a model names its parts, so it rejects a mistyped or invented one. `ordinal` comes from authored order. Neither appears when a feature has no parts — every interval is then `_`. `part_set` members live on `FeatureType` as binding rows beside `QuantityBinding`; `count` needs no vocabulary.
+The marker **validates** authored part keys, never generates them — a model names its parts, so it rejects a mistyped or invented one. Neither appears when a feature has no parts — every interval is then `_`.
 
 ### `_` and `*` as keys
 
-`_` and `*` stay reserved keys, disjoint from the slug grammar ([`_`](levels.md#_--the-segment-that-asserts-nothing) owns why). **Keys are strings; the loader must not decide that** — three key forms are not what a YAML loader returns:
+`_` and `*` stay reserved keys, disjoint from the slug grammar ([parts.md](parts.md#markers-collide-with-nothing) owns why). **Keys are strings; the loader must not decide that** — three key forms are not what a YAML loader returns:
 
 | authored key | loader gives | needs |
 | --- | --- | --- |
@@ -108,7 +108,7 @@ One typed path constructor owns the [trail grammar](levels.md#the-path-is-the-id
 **Destructure nested, author-friendly documents into one catalog ready for further processing.** Devices are the first input kind. Every stage is kind-agnostic: read a key trail, check a key against its level's vocabulary, emit a row. Kind-specific knowledge lives in the schema, never in normalizer branches. It does only:
 
 1. Build canonical coordinates and node paths.
-2. Assign part `ordinal` from authored order.
+2. Assign member `ordinal` from authored order.
 3. Expand inline facets into normalized rows sharing the interval node.
 4. Lift `$` entries onto their level's row.
 5. Resolve structured references against normalized coordinates.

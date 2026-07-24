@@ -14,11 +14,11 @@ How each grimoire construct lands in the relational LinkML model. Reusable table
 | archetype | `NodeType` + binding rows | projects to a validation class, never a type-specific table |
 | `product:` + mfr cascade | `Product` → `Organization` tables | cascade = shared FK row |
 | `compose` | `is_a` / `mixins` | single inheritance + mixins cover current uses |
-| part (l1/l2/l3) | `Part` row | new part kind = new ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
+| part (l1/l2/l3) | `Interval.part` key + `PartSetMember` row ([parts.md](parts.md)) | new part = new member ROW, never a column. Schema enums stay only for closed grammar (rating, severity) |
 | i18n keys (en/pt) | schema `annotations.i18n` → projected `Content(language)` rows | translations authored on the slot/permissible value, never in `data/`; rows are the projection. See [concepts.md](concepts.md#translations) |
-| repeated + instances | `Part` rows + `ordinal` | one row per instance; `ordinal` sorts, drawn from authored position, never hand-typed |
+| repeated + instances | `count` subdivision, part keys `1…n` ([parts.md](parts.md)) | no row per instance — a part is a discriminator key on `Interval` |
 | energy channels | `flow_direction` + `period` columns | four rows on one kind |
-| combined vs per-leg | `part` column, non-null | member slug, `_` = the whole, `*` = the per-part default; the slug pattern produces neither marker |
+| combined vs per-leg | `part` column, non-null | member slug or marker ([parts.md](parts.md)) |
 | modbus block | `RegisterMap`, own table | many products FK one family map — comms out of the device |
 | settings_schema | `Setting` + `DomainMember` rows | commissioning knob; a gate FKs the setting AND the member, so a typo'd value dies at the DB FK gate |
 | refrigerant code | `Refrigerant` bulk vocab table + `Refrigeration` facet | a member set with refs/substance data → rows (typo dies at FK gate), never a schema enum. Whole ASHRAE-34 set bulk-loaded; device FKs one via a keyless 1:1 facet |
