@@ -6,5 +6,6 @@
 - Code or prose redundancy is absolute failure
 - Non-standard accretion is NOT convention, it's AI slop.
 - Verify claims before writing documents
+- `jq` and `yq` are available for reading/writing JSON/YAML
 
 @README.md
