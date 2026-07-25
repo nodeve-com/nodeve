@@ -15,8 +15,8 @@ classes:
       # authored form: a map keyed by this slot (setting: {grid-region: …})
       keyed_by: slug
     description: >-
-      Commissioning knob — single-valued, fixed at install. Its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching.
-    slots: [ node, required, members ]
+      Commissioning knob — single-valued, fixed at install. CATEGORICAL: its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching. QUANTITATIVE: it moves ONE bound of ONE band — `interval` + `bound` — so a band stays named for its function (a `running` zone) and the knobs address its edges, never the reverse. `valued_range` here is what the KNOB accepts; the shipped value is the band's own, stated once on the interval.
+    slots: [ node, required, members, part, interval, bound, valued_range, note ]
 
   Channel:
     title: Channel
@@ -35,6 +35,11 @@ classes:
       One member of a categorical vocabulary — a Setting option or a Channel state/fault. Ordered by authored position, like PartSetMember.
     slots: [ node, ordinal ]
 slots:
+  bound:
+    range: Bound
+    title: Bound
+    related_mappings: [ schema:minValue, schema:maxValue ]
+    description: 'which slot of the target band a quantitative knob writes — a ValuedRange edge or the specification dwell time; two knobs on one band (a high and a low threshold) are two bounds of ONE interval, never two intervals'
   channels:
     range: Channel
     multivalued: true
@@ -59,3 +64,25 @@ slots:
     inlined_as_list: true
     title: Settings
     related_mappings: [ schema:PropertyValueSpecification ]
+enums:
+  # the addressable slots of a band — an interval's own ValuedRange edges plus
+  # the dwell time on its Specification. A knob names one; the band names none.
+  Bound:
+    title: Bound
+    permissible_values:
+      min:
+        title: Minimum
+        exact_mappings: [ schema:minValue ]
+        annotations: { i18n: { value: { title: { pt: Mínimo } } } }
+      max:
+        title: Maximum
+        exact_mappings: [ schema:maxValue ]
+        annotations: { i18n: { value: { title: { pt: Máximo } } } }
+      value:
+        title: Value
+        close_mappings: [ qudt:Quantity ]
+        annotations: { i18n: { value: { title: { pt: Valor } } } }
+      duration:
+        title: Duration
+        close_mappings: [ cim:OperationalLimitType.acceptableDuration ]
+        annotations: { i18n: { value: { title: { pt: Duração } } } }

@@ -3,6 +3,8 @@
 // interval-node resolver both gates and registers use.
 import { basename } from 'node:path';
 import { abs, isDir, readYaml, yamlNames, type Doc } from '../src/io.ts';
+import { expandValuedRange } from '../src/valued-range-expand.ts';
+import type { ValuedRange } from '../gen/schema.ts';
 import { classByName, expandFk, fkTable, seg, SLUG } from './model.ts';
 import type { ValueContracts } from './values.ts';
 
@@ -93,6 +95,27 @@ export function columns(className: string, value: unknown, trail: string): Doc {
 			return [k, SIBLING_FK.has(k) ? v : expandFk(k, v, `${trail}.${k}`)];
 		}),
 	);
+}
+
+/** an `inlined` FK's co-row — a width facet sharing its owner's node (the
+ * Product-on-SubjectNode trick). Class-agnostic: the only named class is
+ * ValuedRange, which owns the margin/tolerance sugar its columns expand from. */
+export function coRow(cls: string, at: { node: string; trail: string }, cols: unknown): Doc {
+	if (!isMap(cols)) die(at.trail, 'expected a map of columns');
+	const expanded =
+		cls === 'ValuedRange' ? expandValuedRange(cols as unknown as ValuedRange, at.trail) : cols;
+	return { node: at.node, ...columns(cls, expanded, at.trail) };
+}
+
+/** one vocabulary row — a slug-keyed child whose whole content is its identity
+ * and its authored position (DomainMember, PartSetMember) */
+export function vocabRow(
+	mint: (p: string) => string,
+	at: { owner: string; ordinal: number; trail: string },
+	slug: unknown,
+): Doc {
+	if (typeof slug !== 'string' || !SLUG.test(slug)) die(at.trail, 'not a slug');
+	return { node: mint(`${at.owner}/${slug}`), ordinal: at.ordinal };
 }
 
 /** a keyed level's value: FK slots expand their bare-slug key to a CURIE */

@@ -5,9 +5,11 @@
 // sql_table. Every error carries its key trail.
 import { basename, dirname } from 'node:path';
 import { slugify } from '@nodeve/text/slugify';
-import { classByName, classByTable, keysOf, ownerSlotFor, SLUG } from './model.ts';
+import { classByName, classByTable, keysOf, ownerSlotFor, slotByName, SLUG } from './model.ts';
 import {
+	coRow,
 	columns,
+	vocabRow,
 	nodeTypeBySlug,
 	checkRole,
 	die,
@@ -98,8 +100,7 @@ class DeviceWalk implements WalkState {
 		const trail = `${this.slug}.${key}`;
 		if (key === this.rootSlot) return; // node_type — identity on the node row
 		const cls = classByTable[key];
-		if (cls === 'Setting') this.model.setting = this.values.settingRows(value, trail);
-		else if (cls === 'Channel') this.values.channelBlock(value, trail);
+		if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
 			// Content (about-attached) buckets under its global slot; every other under its sql_table
 			const dest = ownerSlotFor('SubjectNode', cls) ?? key;
@@ -126,14 +127,44 @@ class DeviceWalk implements WalkState {
 			if (!isMap(raw)) die(trail, 'expected a map of columns');
 			const { target, ...cols } = raw;
 			if (target !== undefined && !reads) die(`${trail}.target`, `${cls} reads no measurand`);
+			const node = this.mint(`${parent}/${slugify(k)}`);
 			return {
-				node: this.mint(`${parent}/${slugify(k)}`),
+				node,
 				...(about ? { about: parent } : {}),
 				...(hasKey ? { [keySlot]: expandKey(keySlot, String(k)) } : {}),
-				...columns(cls, cols, trail),
+				...this.nested(cls, { node, trail }, cols),
 				...(target !== undefined ? measurandLink(this, target, `${trail}.target`) : {}),
 			};
 		});
+	}
+
+	/** the authored shapes a column can't hold, both read off the SLOT — never a
+	 * per-class branch: an `inlined` FK is a co-row sharing this node (a width
+	 * facet like valued_range); an `inlined_as_list` FK to a slug-keyed class is
+	 * a vocabulary, minted from the authored list, ordinal from position. */
+	private nested(cls: string, row: { node: string; trail: string }, cols: Doc): Doc {
+		const allowed = classByName[cls]?.slots ?? [];
+		const out: Doc = {};
+		const plain: Doc = {};
+		for (const [k, v] of Object.entries(cols)) {
+			const slot = slotByName[k];
+			const range = slot?.range ?? '';
+			const trail = `${row.trail}.${k}`;
+			if (!slot?.inlined && !slot?.inlined_as_list) plain[k] = v;
+			else if (!allowed.includes(k)) die(trail, `not a ${cls} slot`);
+			else if (!slot.inlined_as_list) out[k] = coRow(range, { node: row.node, trail }, v);
+			else if (!keysOf(range).length) die(trail, `${range} rows are not authored here`);
+			else if (!Array.isArray(v) || !v.length) die(trail, 'expected a list of slugs');
+			else
+				out[k] = v.map((slug, i) =>
+					vocabRow(
+						(p) => this.mint(p),
+						{ owner: row.node, ordinal: i + 1, trail: `${trail}[${i}]` },
+						slug,
+					),
+				);
+		}
+		return { ...out, ...columns(cls, plain, row.trail) };
 	}
 
 	/** one feature type's role map → rows in the ONE feature_of_interest set; feature_type + role discriminate */

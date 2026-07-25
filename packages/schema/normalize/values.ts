@@ -3,7 +3,7 @@
 // members accrete from register flag labels, so channel rows finalize after
 // the register map lowers. Gates FK both halves — typos die here.
 import { SLUG } from './model.ts';
-import { columns, die, isMap, type Doc } from './registers.ts';
+import { columns, die, isMap, vocabRow, type Doc } from './registers.ts';
 
 type ChannelState = { row: Doc; empty?: string; members: Map<string, Doc> };
 
@@ -16,23 +16,6 @@ export class ValueContracts {
 	constructor(node: string, mint: (path: string) => string) {
 		this.node = node;
 		this.mint = mint;
-	}
-
-	/** `setting:` — commissioning knobs; `member` list mints the vocabulary rows */
-	settingRows(value: unknown, trail: string): Doc[] {
-		if (!isMap(value)) die(trail, 'expected setting slugs');
-		return Object.entries(value).map(([slug, body]) => {
-			const t = `${trail}.${slug}`;
-			if (!SLUG.test(slug)) die(t, 'not a slug');
-			if (!isMap(body)) die(t, 'expected a map of columns');
-			const { member, ...cols } = body;
-			if (!Array.isArray(member) || !member.length) die(`${t}.member`, 'expected member slugs');
-			const sNode = this.mint(`${this.node}/${slug}`);
-			const members = member.map((m, i) =>
-				this.memberRow(m, { owner: sNode, ordinal: i + 1, trail: `${t}.member[${i}]` }),
-			);
-			return { node: sNode, ...columns('Setting', cols, t), members };
-		});
 	}
 
 	/** `channel:` — categorical observables of the device root; members arrive
@@ -61,11 +44,11 @@ export class ValueContracts {
 		const c = this.channels.get(channel) ?? die(trail, `unknown channel ${channel}`);
 		let m = c.members.get(label);
 		if (!m) {
-			m = this.memberRow(label, {
-				owner: c.row.node as string,
-				ordinal: c.members.size + 1,
-				trail,
-			});
+			m = vocabRow(
+				(p) => this.mint(p),
+				{ owner: c.row.node as string, ordinal: c.members.size + 1, trail },
+				label,
+			);
 			c.members.set(label, m);
 		}
 		return m.node as string;
@@ -104,10 +87,5 @@ export class ValueContracts {
 			c.row.members = [...c.members.values()];
 			return c.row;
 		});
-	}
-
-	private memberRow(slug: unknown, at: { owner: string; ordinal: number; trail: string }): Doc {
-		if (typeof slug !== 'string' || !SLUG.test(slug)) die(at.trail, 'not a slug');
-		return { node: this.mint(`${at.owner}/${slug}`), ordinal: at.ordinal };
 	}
 }

@@ -4,9 +4,7 @@
 // schema/data rows, never hardcoded — facet keys resolve to classes by sql_table.
 import { classByTable, fkTable, keysOf, seg, slotByName } from './model.ts';
 import { components, earns } from './slug.ts';
-import { columns, die, expandKey, isMap, type Doc } from './registers.ts';
-import { expandValuedRange } from '../src/valued-range-expand.ts';
-import type { ValuedRange } from '../gen/schema.ts';
+import { coRow, columns, die, expandKey, isMap, type Doc } from './registers.ts';
 import type { ValueContracts } from './values.ts';
 
 /** one authored feature in flight — trail, vocabularies, accumulated rows */
@@ -75,11 +73,7 @@ function facetCol(
 	const cls = classByTable[at.facet] ?? die(at.trail, 'not a facet');
 	const iNode = at.row.node as string;
 	if (at.facet === 'valued_range') {
-		const vr = isMap(cols) ? (cols as unknown as ValuedRange) : die(at.trail, 'expected columns');
-		at.row.valued_range = {
-			node: iNode,
-			...columns(cls, expandValuedRange(vr, at.trail), at.trail),
-		};
+		at.row.valued_range = coRow(cls, { node: iNode, trail: at.trail }, cols);
 	} else if (at.facet === 'measurement') {
 		const measurement = { node: iNode, ...columns(cls, cols, at.trail) };
 		at.facetByTable[at.facet] = measurement;

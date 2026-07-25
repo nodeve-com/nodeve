@@ -1,16 +1,223 @@
-# Mini-Box M4-ATX — intelligent DC-DC ATX power supply. PARTIAL port from
+# Mini-Box M4-ATX — intelligent DC-DC ATX power supply. Ported from
 # grimoire/concepts/catalog/mini-box/m4_atx.yaml: the electrical FEATURE tree
-# only (DC input + ignition sense + the 12/5/3.3 V ATX output rails + board
-# temperature). How it is READ/WRITTEN — the usbhid diag poll and the 47-param
-# config plane — is device-owned data ported LATER; the settable thresholds/
-# timers do NOT fit schema's enum-only `setting:` yet (see below).
+# plus the config plane below. HOW it is read/written (the usbhid diag poll and
+# each parameter's field index / type / scale) stays in grimoire until a usbhid
+# transport lands — it is wire encoding, not device description.
 node_type: power-supply
 
 product: { model: M4-ATX, organization: mini-box }
+
+# The 47-parameter control plane (m4ConfigFields), slugged from the device's own
+# field names. A quantitative knob moves ONE bound of ONE band: the band is
+# named for its function in feature-dc.yaml and states the shipped value; the
+# knob names the edge. So ign-high/ign-low/ign-dbc are three knobs on one
+# `running` zone, not three bands.
+setting:
+  # dip-switch position (manual, mode chart) — gates every per-mode shutdown band
+  mode: { required: true, members: [ p0, p1, p2, p3, p4, p5, p6, p7 ] }
+
+  # ── input thresholds ──
+  vin-min-start:
+    bound: min
+    target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: startup }
+  vin-min-on:
+    bound: min
+    target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: running }
+  vin-max:
+    bound: max
+    target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: running }
+  vin-min-5v:
+    bound: min
+    target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: critical }
+  emg-time-5vsb:
+    bound: duration
+    target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: critical }
+
+  # ── ignition sense ──
+  ign-high:
+    bound: max
+    target: { feature: { type: dc-port, role: ignition }, quantity: voltage, interval: running }
+  ign-low:
+    bound: min
+    target: { feature: { type: dc-port, role: ignition }, quantity: voltage, interval: running }
+  ign-dbc:
+    bound: duration
+    target: { feature: { type: dc-port, role: ignition }, quantity: voltage, interval: running }
+
+  # ── per-rail trip points + turn-on delays ──
+  v12-max:
+    bound: max
+    target:
+      feature: { type: dc-port, role: out }
+      part: 12v
+      quantity: voltage
+      interval: critical
+  v12-min:
+    bound: min
+    target:
+      feature: { type: dc-port, role: out }
+      part: 12v
+      quantity: voltage
+      interval: critical
+  v5-max:
+    bound: max
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5v
+      quantity: voltage
+      interval: critical
+  v5-min:
+    bound: min
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5v
+      quantity: voltage
+      interval: critical
+  v33-max:
+    bound: max
+    target:
+      feature: { type: dc-port, role: out }
+      part: 3v3
+      quantity: voltage
+      interval: critical
+  v33-min:
+    bound: min
+    target:
+      feature: { type: dc-port, role: out }
+      part: 3v3
+      quantity: voltage
+      interval: critical
+  v12-time:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 12v
+      quantity: time
+      interval: startup
+  v33-time:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 3v3
+      quantity: time
+      interval: startup
+
+  # ── board temperature trip points ──
+  temp-max:
+    bound: max
+    target:
+      feature: { type: environment, role: enclosure }
+      quantity: temperature
+      interval: critical
+  temp-min:
+    bound: min
+    target:
+      feature: { type: environment, role: enclosure }
+      quantity: temperature
+      interval: critical
+
+  # ── per-mode shutdown timers: off-delay-N = all rails, off-hard-N = 5VSB ──
+  off-delay-0:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p0 }
+  off-delay-1:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p1 }
+  off-delay-2:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p2 }
+  off-delay-3:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p3 }
+  off-delay-4:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p4 }
+  off-delay-5:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p5 }
+  off-delay-6:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p6 }
+  off-delay-7:
+    bound: value
+    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p7 }
+  off-hard-0:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p0
+  off-hard-1:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p1
+  off-hard-2:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p2
+  off-hard-3:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p3
+  off-hard-4:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p4
+  off-hard-5:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p5
+  off-hard-6:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p6
+  off-hard-7:
+    bound: value
+    target:
+      feature: { type: dc-port, role: out }
+      part: 5vsb
+      quantity: time
+      interval: shutdown-p7
+
+  # ── UNPLACED — the power-sequencing state machine over the J6/J8 harness
+  # (motherboard ON/OFF pulse, amplifier thump, 5VSB standby). Every one is a
+  # knob; none has a feature to hang a band off yet, and the manual documents
+  # none of them. They wait on a control-signal feature type, not on this file.
+  psu-delay: { note: 'PSU turn-on delay, s' }
+  on-delay: { note: 'ON-pulse delay after ignition on, s' }
+  off-delay: { note: 'OFF-pulse delay after ignition off, s' }
+  psu-on-time: { note: 'ON-pulse retry count' }
+  psu-off-time: { note: 'OFF-pulse retry count' }
+  pwrsw: { note: 'motherboard ON/OFF pulse width, ms' }
+  ps-on-0: { note: 'PS_ON assert threshold, ms' }
+  ps-on-1: { note: 'PS_ON de-assert threshold, ms' }
+  thump: { note: 'anti-thump hold on the amplifier remote line, ms' }
+  v5-sby-dly: { note: '5VSB turn-on delay, ms' }
+  emg-timer: { note: 'emergency shutdown timer, s' }
+  emg-off-mode: { note: 'emergency-off mode selector — member vocabulary undocumented' }
 
 content:
   en:
     title: Mini-Box M4-ATX
     lede: Intelligent DC-DC ATX power supply
     body: >
-      Mini-Box M4-ATX — a wide-input DC-DC ATX supply: one DC input (vehicle battery, ~6-30 V), an ignition sense line, and the three ATX output rails (+12 V, +5 V, +3.3 V), plus a board thermal sensor. Each rail carries its fixed nominal and a measurable reading; input and ignition carry the measurable voltage the box polls (~1 Hz over usbhid). The device's 47 settable config parameters — voltage start/on/max thresholds, per-rail over/under limits, temperature limits, and the power-sequencing timers — are its CONTROL PLANE, ported later once schema `setting:` can hold a numeric/quantity-valued knob (today it holds enum members only).
+      Mini-Box M4-ATX — a wide-input DC-DC ATX supply: one DC input (vehicle battery, 6-30 V), an ignition sense line, and the ATX output rails (+12 V, +5 V, +3.3 V, +5 VSB), plus a board thermal sensor. Each rail carries its fixed nominal and a measurable reading; input and ignition carry the measurable voltage the box polls (~1 Hz over usbhid). Its config plane is a set of knobs over those same bands: input start/on/deep-discharge thresholds, per-rail trip points, an 85 °C thermal cutoff, and the per-mode shutdown timers the dip switches select.

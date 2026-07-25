@@ -96,9 +96,9 @@ slots:
     exact_mappings: [ schema:numberOfItems ]
     description: 'cardinality subdivision — n of the same thing; part keys must be 1…n. Exclusive with part_set; both absent = no parts'
   duration:
-    range: integer
+    range: float
     title: Duration
-    description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating)'
+    description: 'how long the quantity may sit inside this band, seconds — absent means unbounded in time (a continuous rating); float, because debounce windows are milliseconds'
     close_mappings: [ cim:OperationalLimitType.acceptableDuration ]
     annotations: { i18n: { value: { title: { pt: Duração } } } }
   margin:

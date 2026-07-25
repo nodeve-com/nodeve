@@ -1,22 +1,42 @@
 feature_of_interest:
   dc-port:
-    # DC INPUT — the vehicle battery feed. Its accepted-voltage envelope is a
-    # fixed spec; the settable start/on/max thresholds are the config plane
-    # (setting, ported later), NOT fixed bands here.
+    # DC INPUT — the vehicle battery feed. Each band is named for its FUNCTION;
+    # the settable thresholds are its EDGES, addressed by the knobs in
+    # model.yaml (`bound: min|max|duration`), never bands of their own.
     input:
       _:
-        voltage: { _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } } }
+        voltage:
+          _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+          # 6-30 V operating envelope (manual, "M4-ATX Characteristics"); hard
+          # clamping at 34 V. Edges: vin_min_on / vin_max.
+          running:
+            valued_range: { min: 6, max: 30 }
+            specification: { zone: running, trigger_on: above }
+          # cold start — the box re-activates only above 12 V (manual, "Power
+          # challenges in a vehicle PC"). Edge: vin_min_start.
+          startup: { valued_range: { min: 12 }, specification: { rating: startup } }
+          # deep-discharge cutoff: under 11.2 V for a minute, the box shuts down
+          # and drops 5VSB. Edges: vin_min_5v (min), emg_time_5vsb (duration).
+          critical:
+            valued_range: { min: 11.2 }
+            specification: { severity: critical, trigger_on: below, duration: 60 }
 
     # IGNITION sense — the ignition wire the box watches to sequence power.
     # Same wire class as input, its own reading.
     ignition:
       _:
-        voltage: { _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } } }
+        voltage:
+          _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.16 } }
+          # ON above the high edge, OFF below the low one, holding between —
+          # exactly what trigger_on states. Edges: ign_high (max), ign_low
+          # (min), ign_dbc (duration). No band values published.
+          running: { specification: { zone: running, trigger_on: above } }
 
     # OUTPUT — ONE ATX connector (part_set: atx). The rails are its role-parts
-    # 3v3/5v/12v, NOT sibling sockets: they share one wattage budget, so the
-    # `_` whole carries a rating no per-rail row could derive. Each rail differs
-    # only in its own nominal + reading, so there's no shared '*' template.
+    # 3v3/5v/12v/5vsb, NOT sibling sockets: they share one wattage budget, so
+    # the `_` whole carries a rating no per-rail row could derive. Each rail
+    # differs only in its own nominal + reading, so there's no shared '*'
+    # template.
     out:
       $: { part_set: atx }
       _:
@@ -26,23 +46,87 @@ feature_of_interest:
         active-power:
           continuous: { valued_range: { max: 250 }, specification: { rating: continuous } }
           short-term: { valued_range: { max: 300 }, specification: { rating: short_term } }
+        # OFF-DELAY — how long every rail stays up after ignition drops, per
+        # dip-switch mode (manual mode chart). The mode is the `mode` setting,
+        # so each band is one gated row and the gate's value earns the slug.
+        # Edges: off_delay_0…7 (value). P0 is standard-PSU mode: the band exists
+        # (the knob addresses it) and states no time.
+        time:
+          shutdown-p0:
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p0 } ] }
+          shutdown-p1:
+            valued_range: { value: 5 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p1 } ] }
+          shutdown-p2:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p2 } ] }
+          shutdown-p3:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p3 } ] }
+          shutdown-p4:
+            valued_range: { value: 900 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p4 } ] }
+          shutdown-p5:
+            valued_range: { value: 900 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p5 } ] }
+          shutdown-p6:
+            valued_range: { value: 1800 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p6 } ] }
+          shutdown-p7:
+            valued_range: { value: 7200 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p7 } ] }
       12v:
         voltage:
           nominal: { valued_range: { value: 12 }, specification: { severity: nominal } }
           _: { valued_range: { min: 0, max: 30 }, measurement: { resolution: 0.01 } }
+          # over/under-voltage trip pair — edges v12_max / v12_min
+          critical: { specification: { severity: critical } }
+        # rail turn-on delay — edge v12_time (value)
+        time: { startup: { specification: { rating: startup } } }
       5v:
         voltage:
           nominal: { valued_range: { value: 5 }, specification: { severity: nominal } }
           _: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
+          critical: { specification: { severity: critical } } # edges v5_max / v5_min
       3v3:
         voltage:
           nominal: { valued_range: { value: 3.3 }, specification: { severity: nominal } }
           _: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
+          critical: { specification: { severity: critical } } # edges v33_max / v33_min
+        time: { startup: { specification: { rating: startup } } } # edge v33_time
+      # STANDBY rail — outlives the others by the HARD-OFF time, which is what
+      # makes it a part of its own here: same mode axis, different rail.
+      # Edges: off_hard_0…7 (value). NEVER (p2/p5/p7) = the band states no time.
+      5vsb:
+        voltage: { nominal: { valued_range: { value: 5 }, specification: { severity: nominal } } }
+        time:
+          shutdown-p0:
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p0 } ] }
+          shutdown-p1:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p1 } ] }
+          shutdown-p2:
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p2 } ] }
+          shutdown-p3:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p3 } ] }
+          shutdown-p4:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p4 } ] }
+          shutdown-p5:
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p5 } ] }
+          shutdown-p6:
+            valued_range: { value: 60 }
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p6 } ] }
+          shutdown-p7:
+            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p7 } ] }
 
-  # Board thermal sensor (signed °C). temp_max/temp_min are settable limits ⇒
-  # config plane, not fixed bands.
+  # Board thermal sensor (signed °C).
   environment:
     enclosure:
       _:
         temperature:
           _: { valued_range: { min: -40, max: 100, unit: °C }, measurement: { resolution: 1 } }
+          # shutdown above 85 °C, "changed with software" (manual) — the two
+          # trip points are the edges: temp_max (max), temp_min (min).
+          critical: { valued_range: { max: 85, unit: °C }, specification: { severity: critical } }

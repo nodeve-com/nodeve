@@ -12,7 +12,7 @@ product:
 
 # Commissioning knob — the grid region the box is wired for. The site fixes it
 # once at install; the nominal voltage/frequency bands below gate on it.
-setting: { grid-region: { required: true, member: [ eu-230v-50hz, br-220v-60hz ] } }
+setting: { grid-region: { required: true, members: [ eu-230v-50hz, br-220v-60hz ] } }
 
 content:
   en:

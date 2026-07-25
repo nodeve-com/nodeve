@@ -4,6 +4,12 @@ One quantity band on one feature — the level facts live on. Everything above i
 
 Identity is the path leaf: keyed by `part` → `quantity_kind` → `slug` under its feature (`Interval` in [features.yaml](../linkml/features.yaml); path in [levels.md](levels.md#the-path-is-the-identity)). The part key is [parts.md](parts.md). Uniqueness needs no constraint — colliding rows derive the same path, and the path is the PK ([levels.md](levels.md#uniqueness-falls-out)).
 
+## Settable bands
+
+A commissioning knob is not a band. A band names its FUNCTION and states it once; a `Setting` ([values.yaml](../linkml/values.yaml)) names the one bound it moves — `min`, `max`, `value`, or the specification's `duration` — through the same `target:` sugar a register uses. So an ignition threshold pair plus its debounce is three knobs on one `running` zone, not three bands; `trigger_on` is what makes the pair one.
+
+The numbers split by owner: the interval carries the band as shipped, the setting carries what the knob ACCEPTS. Neither states the other's, and the live value is runtime state, in neither.
+
 ## `slug` — the discriminator
 
 One band is never enough — a quantity carries specs, channels, or both. The slug tells them apart.

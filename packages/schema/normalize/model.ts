@@ -12,6 +12,7 @@ export type SlotDef = {
 	range?: string;
 	pattern?: string;
 	multivalued?: boolean;
+	inlined?: boolean;
 	inlined_as_list?: boolean;
 	title?: string;
 	description?: string;
