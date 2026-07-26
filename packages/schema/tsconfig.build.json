@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": false,
+		"outDir": "dist"
+	},
+	"include": ["src/index.ts", "src/cli.ts", "gen/schema.ts"],
+	"exclude": ["**/*.test.ts"]
+}

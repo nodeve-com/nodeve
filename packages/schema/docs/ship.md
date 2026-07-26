@@ -1,17 +1,14 @@
-1. normalize(dir, out) parameterized; CLI entry.
-2. Unprivate the package — exports, files, publishConfig. Wire schema-case for the camel projection.
-3. Port the catalog (the actual gate — 11 devices in data/subject_node/, thousands to come).
-4. familiar migration.
-
-Continue shipping @nodeve/schema as the @nodeve/grimoire replacement. Read packages/schema/README.md and docs/pipeline.md first. Last commit: 9787234.
+Continue shipping @nodeve/schema as the @nodeve/grimoire replacement. Read packages/schema/README.md and docs/pipeline.md first, then the Next list below. Last commit: 9787234.
 
 ## How it ships
 
-One public npm package, `@nodeve/schema`. CI publishes it — release.yml drives Changesets over OIDC Trusted Publishing, so no token and no local `npm login`. `pnpm release` = `pnpm build && changeset publish`, and the root `build` recurses into schema's own (`fix && check`). The release run projects `gen/` from source and packs it in the same job.
+One public npm package, `@nodeve/schema`. CI publishes it — release.yml drives Changesets over OIDC Trusted Publishing, so no token and no local `npm login`. `pnpm release` = `pnpm build && changeset publish`, and the root `build` recurses into schema's own (`fix && check && tsc -p tsconfig.build.json`). The release run projects `gen/`, emits `dist/`, and packs both in the same job.
 
 gen/ stays gitignored the whole time. npm's `files` allowlist overrides .gitignore, so the artifacts reach the tarball without ever landing in git — confirmed with `npm pack --dry-run`. Nothing about publishing needs a committed artifact, same as the gate.
 
-A downstream consumer then: `normalize()` its own authored tree → rows, concatenate with `gen/catalog.json`, `load()` the union into its own SQLite. FKs resolve across both row-sets because the load defers enforcement to a closing `foreign_key_check`.
+A downstream consumer then: `buildCatalog()` over its own authored tree → rows, concatenate with `gen/catalog.json`, `load()` the union into its own SQLite. FKs resolve across both row-sets because the load defers enforcement to a closing `foreign_key_check`.
+
+The schema-projected row-sets (Property, the derived node_type stubs) stay OFF by default. They are identical in every tree, so only this package emits them. A downstream kind with no shipped node_type row authors one.
 
 Production runs postgres, so the DDL ships in both dialects off the one schema — `bin/ddl.py <dialect>`. The postgres side is the richer target: 23 closed grammars become `CREATE TYPE … AS ENUM`, and every LinkML description becomes a `COMMENT ON`, so the database carries its own introspection surface. Both dialects declare the same 86 foreign keys. `load()` stays SQLite and dependency-free; a postgres consumer takes the DDL plus `gen/catalog.json` and uses its own migration tooling.
 
@@ -21,17 +18,20 @@ Ship a LIBRARY, not a data drop. Downstream (~/dev/familiar) appends its own row
 
 Ship list:
 
-| artifact                  | is                                          |
-| ------------------------- | ------------------------------------------- |
-| `normalize()` + `load()`  | the product — library + CLI                 |
-| `gen/catalog.schema.json` | pre-database shape gate AND introspection   |
-| `gen/catalog.json`        | catalog rows                                |
-| `gen/nodeve.sqlite.sql`   | DDL — the gate + downstream build product   |
-| `gen/nodeve.postgres.sql` | DDL — production; enum types + `COMMENT ON` |
-| `gen/schema.ts`           | types                                       |
-| `linkml/`                 | reference source (nothing runtime reads it) |
+| artifact                                 | is                                                   |
+| ---------------------------------------- | ---------------------------------------------------- |
+| `dist/`                                  | the product — `normalize()` + `load()` + types + CLI |
+| `gen/catalog.schema.json`                | pre-database shape gate AND introspection            |
+| `gen/catalog.json`                       | catalog rows                                         |
+| `gen/nodeve.sqlite.sql`                  | DDL — the gate + downstream build product            |
+| `gen/nodeve.postgres.sql`                | DDL — production; enum types + `COMMENT ON`          |
+| `linkml/`                                | RUNTIME input — `model.ts` parses it per lookup      |
+| `data/{feature_type,node_type,part_set}` | RUNTIME input — `registers.ts` loads it per import   |
+| `docs/`                                  | the design record the README links into              |
 
-NOT shipped: gen/catalog.db. Downstream runs a load pass for its own rows anyway. A prebuilt db would mean a copy PLUS a partial load — two mechanisms where one suffices. The db is a downstream build product, like familiar's site.generated.json today.
+NOT shipped: the authored vocabularies. data/quantity_kind (182K) and data/refrigerant (50K) already ride gen/catalog.json as rows, so the yaml would ship the same facts twice. Only the three dirs `registers.ts` reads at import travel as yaml. Tarball: 303K.
+
+NOT shipped: gen/catalog.db. Downstream runs a load pass for its own rows anyway. A prebuilt db would mean a copy PLUS a partial load — two mechanisms where one suffices. The db is a downstream build product, like familiar's site.generated.json today. If a consumer ever wants the prebuilt db, it rides the GitHub release, not the tarball — release.yml already attaches grimoire's JSON tree to its tag that way.
 
 Name minting is NOT a shippable step. The identity path IS the name, minted in the trail walk and stored as Node.permalink — `node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/running`. grimoire's intervalSensorId/measurandKey/sensor-id.ts have no landing here — deleted, not ported. Rust reads `SELECT permalink FROM node`.
 
@@ -47,18 +47,19 @@ Name minting is NOT a shippable step. The identity path IS the name, minted in t
 
 5. The gate covers authored rows, and lives in the package. `check` = drift gates → `project` → `check:catalog` (ajv) → `check:db` (SQLite) → `check:db:pg` (postgres) → typecheck, 6.1s. Root lefthook holds no schema job; `package-check` recursion finds the script, so the gate travels when the package moves repos. gen/ stays gitignored — `check` projects into the working tree, nothing needs committing. `fix` owns the source rewrites `check` must not do.
 
+6. The package publishes. `tsconfig.build.json` emits the closure of `src/index.ts` — 12 modules, 312K, no gate machinery rides along. `abs()` walks up to the package.json instead of hopping one dir, so one code path resolves linkml/ and data/ from `src/` and from `dist/src/`. package.json goes public at 0.1.0: `files` names dist, linkml, the three runtime data dirs, and four gen/ artifacts, never a bare `gen` (that entry packed the 3.8MB catalog.db, the nodeve-projected.yaml intermediate, and the whole gen/pg cluster). `exports` gives `.`, `./types`, and one path per artifact. yaml + @nodeve/text + @nodeve/encoding became dependencies — dist imports them; ajv stays dev, bin/ alone uses it. Proven off a 303K tarball in a bare project: `normalize()` on a foreign tree, `buildDatabase()` over the shipped rows and DDL.
+
+7. The walk takes its root as an argument, and a CLI drives it. `buildCatalog(root)` replaces the hardcoded data/ walk and the hardcoded gen/catalog.json write; it returns the bundle, so a consumer concatenates in memory with no temp file. `src/cli.ts` ships as the `nodeve-schema` bin — `catalog <dir> [out]`, `rows <file>`, and a no-arg help that states what the package does for a consumer with no checkout. Proving the concatenate story caught the defect behind the `schemaRows` switch: the walk re-emitted the 128 schema-projected Property rows and the derived node_type stubs on EVERY tree, so a downstream union died on `UNIQUE constraint failed: property.node`. Off by default now — a foreign tree unions clean (6453 + 2 nodes), and data/ still builds byte-identical to the pre-refactor catalog.json.
+
 ## Next
 
-4. normalize(dir, out) — parameterize. normalize/catalog.ts hardcodes the data/ walk and abs('gen/catalog.json'). Everything else is already schema-driven (reads Catalog slot ranges + sql_table), so it works on a downstream tree unchanged. Ship as library AND CLI — familiar's CLAUDE.md relies on grimoire's self-documenting CLI for discovery without a checkout; the debug mode already exists (`node normalize/catalog.ts data/registry/x.yaml` prints one doc's rows).
-5. Unprivate: `private: false`, exports, files, publishConfig — see the two open decisions below first (per-file `files`, and dist vs raw TS). Wire @nodeve/schema-case for the camel projection (it exists for exactly this and would otherwise die with grimoire). Unresolved: schema-case emits draft-07; the artifact is 2019-09 ($defs vs definitions).
-6. Port the catalog. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds. Use the grimoire-to-schema skill. (grimoire's own concepts/catalog/ holds only fox-ess and mini-box — the remaining volume comes from new authoring, not porting.)
-7. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
+1. Wire @nodeve/schema-case for the camel projection (it exists for exactly this and would otherwise die with grimoire). It walks `$defs` and passes `$schema` through, so the 2019-09 artifact costs nothing; the camel sibling then joins `files` and `exports`.
+2. Port the catalog. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds. Use the grimoire-to-schema skill. (grimoire's own concepts/catalog/ holds only fox-ess and mini-box — the remaining volume comes from new authoring, not porting.)
+3. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
 
-## Open decisions for the user
+## Needs you
 
-- `files: ["gen"]` overships. A `npm pack --dry-run` with that entry put `gen/catalog.db` (3.8MB) in the tarball — the one artifact this doc withholds on purpose — plus the `gen/nodeve-projected.yaml` intermediate, and now the whole `gen/pg` cluster. Name the five shipped files individually, not the directory.
-- No `dist/`. Every sibling (text, encoding, schema-case) compiles `src` → `dist` via a build tsconfig and points `exports` there. schema has one `--noEmit` tsconfig, and its sources import each other with `.ts` extensions. So step 5 needs a prior call: add a build tsconfig and emit, or ship raw TS and state why. Raw TS narrows consumers to Node with type-stripping.
-- Node-type stencils are near-vacuous: the 11 node_type classes pin the discriminator and add nothing. Nothing projects node_type.facets, so "an inverter must carry a product facet" goes unenforced. Worth fixing BEFORE GraphQL — it's the part a schema consumer most needs. See docs/open.md.
+One act, once: npm Trusted Publishing registers per package, on a settings page that exists only after the package does. You registered every sibling by hand that way (see release.yml). So `@nodeve/schema` wants its first version published from your npm account, then its trusted publisher registered — after which release.yml owns every version. Nothing else here waits on a decision.
 
 ## Gotchas
 

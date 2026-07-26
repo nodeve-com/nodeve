@@ -1,7 +1,6 @@
 {
 	"name": "@nodeve/schema",
-	"version": "0.0.0",
-	"private": true,
+	"version": "0.1.0",
 	"description": "Central schema source for describing things, authored as a relational LinkML model and projected for storage, validation, and code.",
 	"license": "MIT",
 	"repository": {
@@ -10,15 +9,52 @@
 		"directory": "packages/schema"
 	},
 	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=24.2"
+	},
+	"files": [
+		"dist",
+		"linkml",
+		"!linkml/CLAUDE.md",
+		"docs",
+		"data/feature_type",
+		"data/node_type",
+		"data/part_set",
+		"gen/catalog.json",
+		"gen/catalog.schema.json",
+		"gen/nodeve.sqlite.sql",
+		"gen/nodeve.postgres.sql"
+	],
+	"bin": {
+		"nodeve-schema": "./dist/src/cli.js"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/src/index.d.ts",
+			"default": "./dist/src/index.js"
+		},
+		"./types": {
+			"types": "./dist/gen/schema.d.ts",
+			"default": "./dist/gen/schema.js"
+		},
+		"./catalog.json": "./gen/catalog.json",
+		"./catalog.schema.json": "./gen/catalog.schema.json",
+		"./sqlite.sql": "./gen/nodeve.sqlite.sql",
+		"./postgres.sql": "./gen/nodeve.postgres.sql"
+	},
 	"scripts": {
 		"fix": "node bin/prefixes.ts && node bin/format.ts",
-		"project": "node normalize/catalog.ts && node bin/data2schema.ts && pnpm project:types && pnpm project:jsonschema && pnpm project:ddl && pnpm project:ddl:pg",
+		"project": "node src/cli.ts catalog data gen/catalog.json --schema-rows && node bin/data2schema.ts && pnpm project:types && pnpm project:jsonschema && pnpm project:ddl && pnpm project:ddl:pg",
 		"project:types": "cd linkml && uvx --from linkml gen-typescript nodeve.yaml > ../gen/schema.ts",
 		"project:jsonschema": "cd gen && uvx --from linkml gen-json-schema -t Catalog --closed nodeve-projected.yaml > catalog.schema.json && node ../bin/stencil-link.ts",
 		"project:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py sqlite > ../gen/nodeve.sqlite.sql",
 		"project:ddl:pg": "cd linkml && uvx --from linkml python ../bin/ddl.py postgresql > ../gen/nodeve.postgres.sql",
 		"generate": "pnpm fix && pnpm project",
-		"build": "pnpm fix && pnpm check",
+		"build": "pnpm fix && pnpm check && tsc -p tsconfig.build.json",
+		"clean": "rm -rf dist",
 		"check": "pnpm check:format && pnpm check:prefixes && pnpm check:meta && pnpm project && pnpm check:catalog && pnpm check:db && pnpm check:db:pg && pnpm typecheck",
 		"check:catalog": "node bin/check-catalog.ts",
 		"check:db": "node src/load.ts",
@@ -32,15 +68,15 @@
 	},
 	"devDependencies": {
 		"@nodeve/config": "workspace:*",
-		"@nodeve/encoding": "workspace:*",
-		"@nodeve/text": "workspace:*",
 		"@types/node": "catalog:",
+		"ajv": "catalog:",
+		"ajv-formats": "catalog:",
 		"typescript": "catalog:ts7",
-		"vitest": "catalog:",
-		"yaml": "catalog:"
+		"vitest": "catalog:"
 	},
 	"dependencies": {
-		"ajv": "catalog:",
-		"ajv-formats": "catalog:"
+		"@nodeve/encoding": "workspace:*",
+		"@nodeve/text": "workspace:*",
+		"yaml": "catalog:"
 	}
 }

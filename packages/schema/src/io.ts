@@ -2,7 +2,8 @@
 // listing, path resolution, AND every yaml/json parse or stringify goes through
 // here — no other module imports node:fs or reaches for parse/stringify. `abs`
 // resolves a package-root-relative path (data/x, linkml/y.yaml) against the
-// package root — this file lives one dir down, in src/. Read helpers parse on
+// package root, found by walking up to the package.json — the source tree and
+// the emitted dist/ nest this file at different depths. Read helpers parse on
 // the way in, serialize helpers stringify on the way out, so callers never pair
 // readFileSync with parse or hand-roll an indent. yaml-style.ts owns the
 // deterministic collection restyle; it builds on `serializeYaml` here rather
@@ -20,14 +21,25 @@ import {
 	type Dirent,
 } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { parse, parseDocument, stringify, Document, type Node } from 'yaml';
 
 /** an authored/parsed yaml document — a bag of string-keyed values */
 export type Doc = Record<string, unknown>;
 
-/** package-root-relative path → absolute (this file sits in src/, one dir down) */
-export const abs = (rel: string): string => fileURLToPath(new URL(`../${rel}`, import.meta.url));
+/** nearest ancestor of this file holding a package.json. A walk, not a fixed
+ * hop: this file sits one dir under the root in source, two under dist/. */
+const PACKAGE_ROOT = ((dir: string): string => {
+	while (!existsSync(join(dir, 'package.json'))) {
+		const up = dirname(dir);
+		if (up === dir) throw new Error(`no package.json above ${import.meta.url}`);
+		dir = up;
+	}
+	return dir;
+})(dirname(fileURLToPath(import.meta.url)));
+
+/** package-root-relative path → absolute */
+export const abs = (rel: string): string => join(PACKAGE_ROOT, rel);
 
 /** raw utf8 text of a ready path */
 export const read = (path: string): string => readFileSync(path, 'utf8');

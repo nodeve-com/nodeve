@@ -1,20 +1,22 @@
-// Destructure authored data/ docs into gen/catalog.json — the root object
-// linkml-sqldb loads. The disk walk + bundle assembly half; the pure doc→rows
-// normalizer lives in normalize.ts.
+// Destructure an authored tree into the catalog bundle — the root object
+// src/load.ts ingests. The disk walk + bundle assembly half; the pure doc→rows
+// normalizer lives in normalize.ts. src/cli.ts is the command line over it.
 //
-//   node normalize/catalog.ts                        build the catalog
-//   node normalize/catalog.ts data/registry/x.yaml   print one doc's rows (debug)
-//
-// Everything is read from the schema, never hardcoded: each Catalog slot names a
-// class (range) whose data dir is its sql_table. A file the normalizer rejects
-// is SKIPPED LOUDLY, never silently dropped.
+// The tree root is a PARAMETER: this package walks its own data/, a downstream
+// consumer walks sites/<name>/catalog/ and concatenates the two bundles. Inside
+// the root, everything is read from the schema, never hardcoded: each Catalog
+// slot names a class (range) whose dir is its sql_table. A file the normalizer
+// rejects is SKIPPED LOUDLY, never silently dropped.
+import { join } from 'node:path';
 import { shortCode } from '@nodeve/encoding/short-code';
-import { abs, dirents, dumpJson, exists, readYaml, write } from '../src/io.ts';
+import { dirents, exists, readYaml } from '../src/io.ts';
+import type { Bundle, TableRow } from '../src/load.ts';
 import { classByName, classByTable, seg, type SlotDef, slotByName } from './model.ts';
 import { normalize, normalizeDoc, nodeAttrMap, type Row } from './normalize.ts';
 import { normalizeDevice } from './tree.ts';
 
-// ─── catalog build (only as the entrypoint — importers get normalize alone) ──
+// ─── pass accumulators — buildCatalog() clears them, so a second walk in the
+// same process (downstream tree after this one) starts empty ────────────────
 
 const paths: string[] = [];
 
@@ -66,7 +68,7 @@ function collectPaths(value: unknown, trail: string[]) {
 // a deployment fact. node_type = the root segment (the kind), slug = the leaf
 // (the local id) — both identity, derived from the same path, stored once here.
 
-function mintNodes(): unknown[] {
+function mintNodes(): TableRow[] {
 	const seen = new Set<string>();
 	for (const path of paths) {
 		if (seen.has(path)) throw new Error(`duplicate node path: node:${path}`);
@@ -109,17 +111,18 @@ function liftContent(o: unknown): void {
 
 /** one flat data dir → its catalog rows: authored files normalized, legacy
  * passed through. Device dirs are NOT flat — they scatter via walkDevices. */
-function tableRows(dir: string): unknown[] {
-	const out: unknown[] = [];
+function tableRows(root: string, dir: string): TableRow[] {
+	const out: TableRow[] = [];
 	// a Catalog collection with no authored docs yet (e.g. node_edge) → empty
-	if (!exists(abs(`data/${dir}`))) return out;
-	const entries = dirents(abs(`data/${dir}`)).filter((e) => e.name.endsWith('.yaml'));
+	if (!exists(join(root, dir))) return out;
+	const entries = dirents(join(root, dir)).filter((e) => e.name.endsWith('.yaml'));
 	for (const e of entries.map((e) => e.name).sort()) {
-		const doc = (readYaml(abs(`data/${dir}/${e}`)) ?? {}) as Record<string, unknown>;
+		const file = join(root, dir, e);
+		const doc = (readYaml(file) ?? {}) as Record<string, unknown>;
 		if (typeof doc.node === 'string') {
 			collectPaths(doc, [doc.node.replace(/^node:/, '').split('/')[0]!]);
 			out.push(doc);
-		} else out.push(assemble(normalize(abs(`data/${dir}/${e}`))));
+		} else out.push(assemble(normalize(file)));
 	}
 	return out;
 }
@@ -129,22 +132,23 @@ function tableRows(dir: string): unknown[] {
  * the shared register maps it references (deduped). Facets attach to the device
  * node directly — no container nesting — tied back by the node.parent trail. */
 const DEVICE_DIR = 'subject_node';
-function walkDevices(): { rowsByTable: Record<string, unknown[]>; subjectNodes: unknown[] } {
-	const rowsByTable: Record<string, unknown[]> = {};
-	const subjectNodes: unknown[] = [];
+type DeviceRows = { rowsByTable: Record<string, TableRow[]>; subjectNodes: TableRow[] };
+function walkDevices(root: string): DeviceRows {
+	const rowsByTable: Record<string, TableRow[]> = {};
+	const subjectNodes: TableRow[] = [];
 	const seenMap = new Set<string>();
-	if (!exists(abs(`data/${DEVICE_DIR}`))) return { rowsByTable, subjectNodes };
+	if (!exists(join(root, DEVICE_DIR))) return { rowsByTable, subjectNodes };
 	const bucket = (table: string) => (rowsByTable[table] ??= []);
-	const entries = dirents(abs(`data/${DEVICE_DIR}`)).filter(
+	const entries = dirents(join(root, DEVICE_DIR)).filter(
 		(e) => e.isDirectory() || e.name.endsWith('.yaml'),
 	);
 	for (const e of entries.map((e) => e.name).sort()) {
-		const { node, model, registerMap } = normalizeDevice(abs(`data/${DEVICE_DIR}/${e}`), (p) =>
+		const { node, model, registerMap } = normalizeDevice(join(root, DEVICE_DIR, e), (p) =>
 			paths.push(p),
 		);
 		liftContent(model); // pull device + nested Content out, top-level (keyed by about)
 		for (const [table, rows] of Object.entries(model))
-			bucket(table).push(...(Array.isArray(rows) ? rows : [rows]));
+			bucket(table).push(...((Array.isArray(rows) ? rows : [rows]) as TableRow[]));
 		if (registerMap) {
 			const mapNode = registerMap.node as string;
 			if (!seenMap.has(mapNode)) {
@@ -192,8 +196,8 @@ function propertyContents(node: string, def: SlotDef): Record<string, unknown>[]
 	});
 }
 
-function projectProperties(): unknown[] {
-	const rows: unknown[] = [];
+function projectProperties(): TableRow[] {
+	const rows: TableRow[] = [];
 	for (const [name, def] of Object.entries(slotByName)) {
 		if (!def.title) continue;
 		const slug = seg(name);
@@ -215,8 +219,9 @@ function projectProperties(): unknown[] {
  * class — derive one minimal row here (a content facet, titled from the class),
  * so the two stub-only files don't have to be hand-kept. Runs after every other
  * dir so `paths` holds the full set of kinds. */
-function buildNodeTypes(): unknown[] {
-	const authored = tableRows('node_type'); // rich facet compositions (device kinds)
+function buildNodeTypes(root: string, schemaRows: boolean): TableRow[] {
+	const authored = tableRows(root, 'node_type'); // rich facet compositions (device kinds)
+	if (!schemaRows) return authored; // the stubs are the schema's, and the seed carries them
 	const authoredKinds = new Set(
 		authored.map((r) =>
 			String((r as Row).node)
@@ -238,35 +243,49 @@ function buildNodeTypes(): unknown[] {
 	return [...authored, ...derived];
 }
 
-function build() {
+/** an authored tree → the catalog bundle: one row-set per Catalog slot, plus
+ * the node rows the trail mints. `root` holds a dir per sql_table (data/ here,
+ * sites/<name>/catalog/ downstream).
+ *
+ * `schemaRows` adds the row-sets projected from the SCHEMA rather than the tree
+ * — Property rows and the derived node_type stubs. They are identical in every
+ * tree, so ONLY the package owning the schema emits them; a downstream bundle
+ * that re-emitted them would collide on the PK the moment it concatenated with
+ * the shipped catalog. A downstream kind with no shipped node_type row authors
+ * one in its own node_type/ dir; foreign_key_check names it if it forgets. */
+export function buildCatalog(root: string, { schemaRows = false } = {}): Bundle {
+	paths.length = 0;
+	contentRows.length = 0;
+	nodeAttrMap.clear();
+
 	const container = classByName.Catalog?.attributes as
 		Record<string, { range: string }> | undefined;
 	if (!container) throw new Error('nodeve.yaml: no Catalog container class');
 
 	// devices fan out first — their facet row-sets and marker rows fill the
-	// slots that have no data dir of their own (product, feature_of_interest, …)
-	const devices = walkDevices();
+	// slots that have no dir of their own (product, feature_of_interest, …)
+	const devices = walkDevices(root);
 
-	const bundle: Record<string, unknown[]> = {};
+	const bundle: Bundle = {};
 	for (const [slot, { range }] of Object.entries(container)) {
 		if (range === 'Node') continue; // derived below, no data dir
 		if (range === 'Content') continue; // accumulated during the pass, filled below
 		if (range === 'NodeType') continue; // authored + derived below, after all kinds known
 		if (range === 'Property') {
-			bundle[slot] = projectProperties();
+			bundle[slot] = schemaRows ? projectProperties() : [];
 			continue;
-		} // schema, not data
+		} // schema, not tree
 		const dir = classByName[range]?.annotations?.sql_table;
 		if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`);
 		if (dir === DEVICE_DIR)
 			bundle[slot] = devices.subjectNodes; // thin markers
 		else if (devices.rowsByTable[dir])
 			bundle[slot] = devices.rowsByTable[dir]; // device-only facet
-		else bundle[slot] = tableRows(dir);
+		else bundle[slot] = tableRows(root, dir);
 	}
 
 	const nodeTypeSlot = Object.entries(container).find(([, a]) => a.range === 'NodeType')?.[0];
-	if (nodeTypeSlot) bundle[nodeTypeSlot] = buildNodeTypes();
+	if (nodeTypeSlot) bundle[nodeTypeSlot] = buildNodeTypes(root, schemaRows);
 
 	bundle.nodes = mintNodes();
 	// content rows fell out of every doc + projectProperties into contentRows;
@@ -275,16 +294,5 @@ function build() {
 	if (contentSlot)
 		bundle[contentSlot] = contentRows.sort((a, b) => String(a.node).localeCompare(String(b.node)));
 
-	write(abs('gen/catalog.json'), dumpJson(bundle));
-	console.log(
-		Object.entries(bundle)
-			.map(([k, v]) => `${v.length} ${k}`)
-			.join(', ') + ' → gen/catalog.json',
-	);
-}
-
-if (import.meta.main && process.argv[2]) {
-	console.log(dumpJson(normalize(process.argv[2]), 2));
-} else if (import.meta.main) {
-	build();
+	return bundle;
 }

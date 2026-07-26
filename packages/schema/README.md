@@ -27,8 +27,10 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/check-*.ts` | perform validation checks — `check-catalog.ts` is the shape gate, ajv over `gen/catalog.schema.json` |
 | `bin/data2schema.ts` | policy rows → `gen/nodeve-projected.yaml`, the closed stencil |
 | `bin/stencil-link.ts` | stamps `x-stencil-of` on the projected JSON Schema — gen-json-schema drops `is_a` |
-| `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `src/load.ts` ingests; pass a data file to print rows |
+| `normalize/catalog.ts` | THE normalizer — `buildCatalog(root)` walks an authored tree into the bundle `src/load.ts` ingests; the root is a parameter, so a downstream tree uses the same walk |
+| `src/cli.ts` | the `nodeve-schema` bin over both — `catalog <dir> [out]`, `rows <file>`; no args prints what the package does |
 | `bin/ddl.py` | DDL, `sqlite` or `postgresql` — replaces `gen-sqltables`, which exposes no backref-column hook |
+| `src/index.ts` | the published surface — `tsconfig.build.json` emits its import closure to `dist/`, nothing else |
 | `src/load.ts` | rows → SQLite — flattens nested facets into their tables, `foreign_key_check` as the gate |
 | `bin/check-db-pg.ts` | the postgres twin of that gate — throwaway cluster, deferred FKs, one COMMIT |
 | `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device) — real devices, seeds for downstream databases; grows to thousands |
@@ -41,9 +43,10 @@ We intend for the database schema to be flexible and able to contain any kind of
 
 ```sh
 pnpm check      # THE gate: drift gates → project → shape gate → SQLite FK → postgres FK → typecheck (6.1s)
-pnpm build      # pnpm fix && pnpm check — rewrite derived sources first, then the same gate
+pnpm build      # fix && check, then emit dist/ — the published closure of src/index.ts
 pnpm fix        # rewrite what's derived: nodeve.yaml prefixes block, yaml formatting
 pnpm project    # rows + stencil + types/JSON Schema/DDL. No validation
+node src/cli.ts # the CLI consumers get as `nodeve-schema` — same walk, any tree
 pnpm check:refs # registry iri_templates resolve? (network)
 ```
 

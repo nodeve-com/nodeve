@@ -291,34 +291,34 @@ importers:
 
   packages/schema:
     dependencies:
-      ajv:
-        specifier: 'catalog:'
-        version: 8.20.0
-      ajv-formats:
-        specifier: 'catalog:'
-        version: 3.0.1(ajv@8.20.0)
-    devDependencies:
-      '@nodeve/config':
-        specifier: workspace:*
-        version: link:../config
       '@nodeve/encoding':
         specifier: workspace:*
         version: link:../encoding
       '@nodeve/text':
         specifier: workspace:*
         version: link:../text
+      yaml:
+        specifier: 'catalog:'
+        version: 2.9.0
+    devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.3
+      ajv:
+        specifier: 'catalog:'
+        version: 8.20.0
+      ajv-formats:
+        specifier: 'catalog:'
+        version: 3.0.1(ajv@8.20.0)
       typescript:
         specifier: catalog:ts7
         version: 7.0.2
       vitest:
         specifier: 'catalog:'
         version: 3.2.6(@types/node@24.13.3)(yaml@2.9.0)
-      yaml:
-        specifier: 'catalog:'
-        version: 2.9.0
 
   packages/schema-case:
     dependencies:
