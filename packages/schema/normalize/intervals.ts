@@ -15,6 +15,12 @@ export type FeatureCtx = {
 	kinds: Set<string>;
 	members?: string[];
 	count?: number;
+	/** the roster — every subdivision this feature HAS, in authored order. `count`
+	 * fills it 1…n; a part_set feature earns it by naming parts. `*` expands over
+	 * THIS, never over the part_set vocabulary. */
+	roster: Set<string>;
+	/** a `*` key was authored — checked against the roster once the walk ends */
+	starred?: boolean;
 	feature: Doc;
 	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[]; filters: Doc[] };
 };

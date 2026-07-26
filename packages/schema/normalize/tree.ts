@@ -203,11 +203,20 @@ class DeviceWalk implements WalkState {
 			fNode,
 			kinds: new Set(Object.keys((ft.quantity_binding as Doc) ?? {})),
 			feature: { node: fNode, [ftSlot]: expandKey(ftSlot, ftSlug), [roleSlot]: role },
+			roster: new Set(),
 			list: { intervals: [], specifications: [], measurements: [], filters: [] },
 		};
 		if (body.$ !== undefined) this.featureOwn(ctx, body.$);
 		for (const [raw, value] of Object.entries(body))
 			if (raw !== '$') this.part(ctx, String(raw), value);
+		// `*` may precede the parts it applies to, so the roster is only known once
+		// every key is walked. A part_set states which slugs are LEGAL; only the
+		// roster states which exist, and expanding over the vocabulary instead
+		// invents parts — line-to-line pairs carrying a leg's current.
+		if (ctx.starred && !ctx.roster.size)
+			die(`${trail}.*`, 'a default needs parts to apply to — name them, `a: {}` is enough');
+		if (ctx.roster.size)
+			ctx.feature.parts = [...ctx.roster].map((part) => ({ node: this.mint(`${fNode}/${part}`) }));
 		for (const [k, v] of Object.entries(ctx.list)) if (v.length) ctx.feature[k] = v;
 		return ctx.feature;
 	}
@@ -239,13 +248,17 @@ class DeviceWalk implements WalkState {
 			die(`${ctx.trail}.$.count`, 'expected a positive integer');
 		ctx.count = v as number;
 		ctx.feature.count = v;
+		// n interchangeable sockets — the count IS the roster, nothing to name
+		for (let n = 1; n <= ctx.count; n++) ctx.roster.add(String(n));
 	}
 
 	/** one part key — `_`, `*`, a member slug, or 1…count */
 	private part(ctx: FeatureCtx, part: string, value: unknown) {
-		if (part !== '_' && part !== '*') this.checkPart(ctx, part);
-		else if (part === '*' && !ctx.members && ctx.count === undefined)
-			die(`${ctx.trail}.*`, 'a default needs parts to apply to');
+		if (part === '*') ctx.starred = true;
+		else if (part !== '_') {
+			this.checkPart(ctx, part);
+			ctx.roster.add(part);
+		}
 		if (!isMap(value)) die(`${ctx.trail}.${part}`, 'expected quantity keys');
 		for (const [qk, bandMap] of Object.entries(value)) {
 			const kind = String(qk);

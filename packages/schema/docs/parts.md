@@ -1,6 +1,6 @@
 # Parts and markers
 
-A part subdivides a feature: a discriminator key on `Interval`, never its own row. Path segment four ([levels.md](levels.md#the-path-is-the-identity)); authored as the map level under a feature ([authoring.md](authoring.md#authored-form)).
+A part subdivides a feature. Path segment four ([levels.md](levels.md#the-path-is-the-identity)); authored as the map level under a feature ([authoring.md](authoring.md#authored-form)). Which parts a feature HAS is its roster, one `Part` row each; which one an interval speaks about is a discriminator key on `Interval`.
 
 ## Two subdivision kinds
 
@@ -21,7 +21,20 @@ Integer strings are slugs — `1`, `2`, `3` pass the `slug` pattern ([shared.yam
 
 ## Storage
 
-The vocabulary is data: `PartSet` / `PartSetMember` ([taxonomy.yaml](../linkml/taxonomy.yaml)); `count` needs none. The `part` slot ([shared.yaml](../linkml/shared.yaml)) is not an FK — `_` and `*` name no row. Member validity is an owned check against the feature's `part_set` members (or `count`); a subdivision with no interval is simply not asserted.
+Two tables, two different questions.
+
+| table                                             | answers                                  |
+| ------------------------------------------------- | ---------------------------------------- |
+| `PartSet` / `PartSetMember`                       | which slugs are LEGAL — the vocabulary   |
+| `Part` ([features.yaml](../linkml/features.yaml)) | which ones this feature HAS — the roster |
+
+A vocabulary spans models and stays generous: `three-phase` carries the line-to-line pairs because some models measure them. A roster is per-feature and exact. Expanding `*` over the vocabulary instead of the roster invents parts — an inverter that meters three legs grows `ab`/`bc`/`ca` rows carrying a leg's current.
+
+So a `part_set` feature must NAME its parts. `a: {}` is enough: an empty block claims the subdivision without asserting a band. `count: n` names nothing — the count IS the roster, and mints `1…n`.
+
+A `Part` row is `<feature>/<slug>`, the part level of the path ([levels.md](levels.md#the-path-is-the-identity)), with no columns of its own — the slug is its node's leaf, the feature its backref. It gives per-part facts somewhere correct to hang, and `*` something exact to expand over.
+
+The `part` slot ([shared.yaml](../linkml/shared.yaml)) stays a discriminator, not an FK — `_` and `*` name no row.
 
 ## `_` — the segment that asserts nothing
 
@@ -48,9 +61,9 @@ A lone part that could have siblings — one MPPT tracker, one battery port — 
 
 ## `*` — every member
 
-The third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
+The third part form: the quantity attaches to every part in the roster with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
 
-A `*` row persists as-is: a TEMPLATE, not an addressable thing. The **`coordinate` view** resolves it against the feature's `part_set` members or `count`, rewriting the part segment of the path — one row per addressable coordinate, plus every non-`*` interval verbatim. A part's own value wins: the view drops an expansion that lands on a real interval's path, never doubling onto it.
+A `*` row persists as-is: a TEMPLATE, not an addressable thing. The **`coordinate` view** resolves it against the feature's `Part` rows, rewriting the part segment of the path — one row per addressable coordinate, plus every non-`*` interval verbatim. A part's own value wins: the view drops an expansion that lands on a real interval's path, never doubling onto it. A `*` with an empty roster expands to nothing, so the walk refuses it rather than losing the bands silently.
 
 | column     | is                                         |
 | ---------- | ------------------------------------------ |

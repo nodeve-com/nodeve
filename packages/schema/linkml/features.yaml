@@ -50,6 +50,13 @@ classes:
       # node's leaf (on the node row), not repeated here.
       part: { required: true }
 
+  Part:
+    title: Part
+    annotations: { sql_table: part }
+    description: >-
+      ONE subdivision this feature actually has — the roster. `part_set` names a vocabulary (which slugs are legal); these rows say which of them this model instantiates, and a three-phase point that measures only its legs never grows line-to-line rows. `count: n` mints 1…n itself. No own columns: the slug is the node's leaf, the feature is the backref. `Interval.part` stays a discriminator string, so the `_` and `*` markers still name no row.
+    slots: [ node ]
+
   Specification:
     title: Specification
     # duration/trigger_on shape the band, they don't say WHICH band — no slug claim
@@ -95,13 +102,14 @@ classes:
     abstract: true
     close_mappings: [ sosa:FeatureOfInterest ]
     description: >-
-      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. A part is a per-model discriminator on Interval (a/b/c, l1/l2, 1/2/3), validated against part_set or count — not its own table; part `_` on an interval = combined, the whole feature.
+      The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. Which subdivisions the socket HAS is its `parts` roster (part_set says which slugs are legal; count mints 1…n); which one an interval speaks about is the `part` discriminator on that row, where `_` = the whole feature and `*` = every part in the roster.
     slots:
       - node
       - feature_type
       - role
       - part_set
       - count
+      - parts
       - intervals
       - specifications
       - measurements
@@ -222,6 +230,13 @@ slots:
     related_mappings: [ skos:Collection ]
     description: "FK — the named closed set this feature's part keys must belong to. Exclusive with count"
     annotations: { camel: partSet }
+  parts:
+    range: Part
+    multivalued: true
+    inlined_as_list: true
+    title: Parts
+    related_mappings: [ skos:member ]
+    description: "the subdivisions this feature has — its roster, and what a `*` interval expands over"
   rating: { range: Rating, title: Rating, close_mappings: [ cim:OperationalLimitType ] }
   setting:
     range: Setting

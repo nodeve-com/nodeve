@@ -26,7 +26,7 @@ A shared table holds every level. `NodeType` and `FeatureType` rows also declare
 | model        | `Node` + `SubjectNode` marker | `slug`                   | `foxess-h3-ps10sh` |
 | feature type | `FeatureType`                 | `slug`                   | `ac-phase`         |
 | feature      | `FeatureOfInterest`           | `role`                   | `out`              |
-| part         | `Interval.part`               | key (no table)           | `a`                |
+| part         | `Part` + `Interval.part`      | `slug`                   | `a`                |
 | interval     | `Interval`                    | `quantity_kind` + `slug` | `voltage/running`  |
 
 `Specification`, `Measurement`, and `ValuedRange` are width facets of `Interval` ([facets.md](facets.md)) — no extra level. Two levels have their own docs: [parts.md](parts.md) (subdivision kinds, the `_`/`*` markers) and [intervals.md](intervals.md) (the band rows facts live on).

@@ -50,25 +50,21 @@ DIALECT = sys.argv[1] if len(sys.argv) > 1 else "sqlite"
 # The view mints NO name. It rewrites the part segment of an existing permalink;
 # the identity path stays the only name (docs/ship.md).
 #
-# One body, both dialects. `count` expands through a recursive CTE, which
-# postgres runs verbatim — generate_series would only fork the text. An explicit
-# part outranks the default, so an expansion that lands on a real interval's path
-# is dropped rather than colliding with it.
+# `*` expands over the feature's ROSTER — its `part` rows — never over the
+# part_set, which only says which slugs are legal. Expanding over the vocabulary
+# invents parts: a three-phase point that measures three legs would grow
+# line-to-line rows carrying a leg's current.
+#
+# One body, both dialects, no recursion — the roster is a table. An explicit part
+# outranks the default, so an expansion that lands on a real interval's path is
+# dropped rather than colliding with it.
 VIEW = """
 
 CREATE VIEW coordinate AS
-WITH RECURSIVE ordinal(feature, n, total) AS (
-\tSELECT node, 1, count FROM feature_of_interest WHERE count IS NOT NULL
-\tUNION ALL
-\tSELECT feature, n + 1, total FROM ordinal WHERE n < total
-),
-member(feature, part) AS (
-\tSELECT f.node, n.slug
-\tFROM feature_of_interest f
-\tJOIN part_set_member m ON m.part_set_node = f.part_set
-\tJOIN node n ON n.permalink = m.node
-\tUNION ALL
-\tSELECT feature, CAST(n AS TEXT) FROM ordinal
+WITH member(feature, part) AS (
+\tSELECT p.feature_of_interest_node, n.slug
+\tFROM part p
+\tJOIN node n ON n.permalink = p.node
 ),
 expanded(node, interval, part) AS (
 \tSELECT f.node || '/' || m.part || substr(i.node, length(f.node) + length(i.part) + 2),
