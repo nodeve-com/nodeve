@@ -60,5 +60,6 @@ Name minting is NOT a shippable step. The identity path IS the name, minted in t
 
 ## Next
 
-1. Grow the catalog — NEW authoring, not porting. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds, and that volume is datasheet work. Every one of the 11 already came over, each migration commit deleting its grimoire source, so the grimoire-to-schema skill has nothing left to chew on. Two source dirs survive there and neither is a pending port: item 10 retired fox-ess, verifying it register-for-register, and mini-box waits on usbhid — m4-atx's electrical tree and control plane landed, but its decode map (poll shape, per-parameter field index/type/scale) needs a usbhid transport whose definition is still moving.
-2. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
+1. Grow the catalog — datasheet authoring, THE long pole. data/subject_node/ holds 11 devices and scales to thousands as downstream seeds.
+2. m4-atx's usbhid decode map: poll shape, per-parameter field index/type/scale. Blocked until usbhid transport lands.
+3. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
