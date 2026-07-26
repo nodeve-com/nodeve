@@ -49,8 +49,10 @@ feature_of_interest:
   environment:
     # The thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor
     # set — the active-power derates above point at these intervals directly, no
-    # custom zone. Numbers in °C (unit override — canonical is K).
-    ambient:
+    # custom zone. They are ENCLOSURE bands, on the same feature the sensor reads
+    # (foxess invtemp, 39141): the box has no ambient probe, so a derate gated on
+    # anything else could never be evaluated. Numbers in °C (canonical is K).
+    enclosure:
       _:
         temperature:
           survival:
@@ -62,10 +64,7 @@ feature_of_interest:
           continuous:
             valued_range: { min: -20, max: 45, unit: °C }
             specification: { rating: continuous }
-    # What the sensor actually reads.
-    enclosure:
-      _:
-        temperature:
+          # what the sensor actually reads
           _: { valued_range: { min: -40, max: 100, unit: °C }, measurement: { resolution: 0.1 } }
 
 # Each NIC is one row; the box ships a WiFi radio and a 100 Mb Ethernet port.

@@ -16,7 +16,7 @@ feature_of_interest:
             specification:
               rating: continuous
               conditions:
-                - feature: { type: environment, role: ambient }
+                - feature: { type: environment, role: enclosure }
                   quantity: temperature
                   interval: continuous
               # TODO(altitude-derate): full 10 kW export only below 2000 m. Needs a
@@ -36,7 +36,7 @@ feature_of_interest:
               rating: continuous
               severity: notice
               conditions:
-                - feature: { type: environment, role: ambient }
+                - feature: { type: environment, role: enclosure }
                   quantity: temperature
                   interval: intermittent
           # whole-port reading (foxess inv_power, 39134) — no rated band stated
@@ -108,7 +108,7 @@ feature_of_interest:
               rating: continuous
               severity: nominal
               conditions:
-                - feature: { type: environment, role: ambient }
+                - feature: { type: environment, role: enclosure }
                   quantity: temperature
                   interval: continuous
               # TODO(altitude-derate): per-phase full power only below 2000 m —

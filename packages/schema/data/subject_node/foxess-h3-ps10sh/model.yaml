@@ -40,7 +40,7 @@ content:
       NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
 
 
-      Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' slugs (interval: continuous / intermittent) directly — no custom zone. The `_` band is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
+      Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' slugs (interval: continuous / intermittent) directly — no custom zone. Bands and sensor share ONE feature: the box exposes no ambient probe, only its own internal temperature (foxess invtemp, 39141), so a derate anchored anywhere else could never be evaluated. The `_` band is what that sensor reads. Numbers in °C (unit override — canonical is K) per interval.
 
 
       Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).
