@@ -12,6 +12,12 @@ feature_of_interest:
           running:
             valued_range: { min: 6, max: 30 }
             specification: { zone: running, trigger_on: above }
+          # severity-graded sub-zones of the running envelope — each gates the
+          # 12V rail's continuous-current band below (out/12v/electric-current).
+          caution: { valued_range: { min: 6, max: 8 }, specification: { severity: caution } }
+          notice: { valued_range: { min: 8, max: 11 }, specification: { severity: notice } }
+          better: { valued_range: { min: 11, max: 16 }, specification: { severity: better } }
+          good: { valued_range: { min: 16, max: 30 }, specification: { severity: good } }
           # cold start — the box re-activates only above 12 V (manual, "Power
           # challenges in a vehicle PC"). Edge: vin_min_start.
           startup: { valued_range: { min: 12 }, specification: { rating: startup } }
@@ -54,17 +60,54 @@ feature_of_interest:
           critical: { specification: { severity: critical } }
         # rail turn-on delay — edge v12_time (value)
         time: { startup: { specification: { rating: startup } } }
+        # continuous current envelope, graded by the input voltage zone it runs
+        # under (dc-port/input/voltage) — each row's max is the ceiling for its zone.
+        electric-current:
+          caution:
+            valued_range: { value: 8 }
+            specification:
+              rating: continuous
+              severity: caution
+              conditions:
+                - feature: { type: dc-port, role: input }
+                  quantity: voltage
+                  interval: caution
+          notice:
+            valued_range: { value: 10, max: 12 }
+            specification:
+              rating: continuous
+              severity: notice
+              conditions:
+                - { feature: { type: dc-port, role: input }, quantity: voltage, interval: notice }
+          better:
+            valued_range: { value: 12, max: 16 }
+            specification:
+              rating: continuous
+              severity: better
+              conditions:
+                - { feature: { type: dc-port, role: input }, quantity: voltage, interval: better }
+          good:
+            valued_range: { value: 12, max: 14 }
+            specification:
+              rating: continuous
+              severity: good
+              conditions:
+                - { feature: { type: dc-port, role: input }, quantity: voltage, interval: good }
       5v:
         voltage:
           nominal: { valued_range: { value: 5 }, specification: { severity: nominal } }
           _: { valued_range: { min: 0, max: 10 }, measurement: { resolution: 0.01 } }
           critical: { specification: { severity: critical } } # edges v5_max / v5_min
+        electric-current:
+          nominal: { valued_range: { value: 15, max: 20 }, specification: { severity: nominal } }
       3v3:
         voltage:
           nominal: { valued_range: { value: 3.3 }, specification: { severity: nominal } }
           _: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
           critical: { specification: { severity: critical } } # edges v33_max / v33_min
         time: { startup: { specification: { rating: startup } } } # edge v33_time
+        electric-current:
+          nominal: { valued_range: { value: 15, max: 20 }, specification: { severity: nominal } }
       # STANDBY rail — its own part for its own nominal, sharing the connector's
       # wattage budget under a different rating than the switched rails. Its
       # mode-dependent hold time past the other rails' cutoff is firmware
@@ -72,6 +115,13 @@ feature_of_interest:
       # before the fact — see model.yaml UNPLACED off-hard-N.
       5vsb:
         voltage: { nominal: { valued_range: { value: 5 }, specification: { severity: nominal } } }
+        electric-current:
+          nominal: { valued_range: { value: 1.5, max: 2 }, specification: { severity: nominal } }
+      neg12v:
+        electric-current:
+          nominal:
+            valued_range: { value: 0.15, max: 0.2 }
+            specification: { severity: nominal }
 
   # Board thermal sensor (signed °C).
   environment:
