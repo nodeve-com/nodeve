@@ -64,5 +64,6 @@ familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows 
 
 Then, in no order:
 
+- **Derived measurements have no slot.** familiar's eKuiper publishes points off the inverter the site cannot author, so they carry no coordinate and no `code`: per PV string a 23-min sliding max, a 10-min conditional mean, and a 15-day decaying max of hourly maxima. Two band-membership signals ride along and need no slot — a band IS an interval (`…/active-power/idle`), so those want a query. `Measurement` carries `flow_direction`/`period`/`resolution`; `Period` is daily/monthly/yearly/lifetime (`cim:MacroPeriodKind`) — accumulation, never a statistic over a window. `cim:ReadingType` splits those two: an `AggregateKind` beside `measuringPeriod`. Two traps. The window must discriminate (23-min max ≠ 15-day max) while [intervals.md](intervals.md#earning-every-word) excludes `duration` as band SHAPE, so one rule bends. And a decaying max of hourly maxima is a compound no `statistic + window` pair spells — check all three statistics against a proposal, not the easy one.
 - Grow the catalog — datasheet authoring. data/subject_node/ holds 11 devices and scales to thousands as downstream seeds.
 - m4-atx's usbhid decode map: poll shape, per-parameter field index/type/scale. Blocked until usbhid transport lands.
