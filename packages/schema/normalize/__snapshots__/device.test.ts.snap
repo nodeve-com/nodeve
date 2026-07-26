@@ -22,6 +22,10 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/active-energy/in-daily",
   "inverter/foxess-h3-ps10sh/ac-phase/out/_/reactive-power/_",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz/condition/1",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz",
+  "inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c",
@@ -30,10 +34,6 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal-eu-230v-50hz",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz/condition/1",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/electric-current/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/electric-current/survival",
   "inverter/foxess-h3-ps10sh/ac-phase/out/a/electric-current/protection-required",
@@ -48,10 +48,6 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/voltage/nominal-eu-230v-50hz",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/voltage/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz/condition/1",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/electric-current/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/electric-current/survival",
   "inverter/foxess-h3-ps10sh/ac-phase/out/b/electric-current/protection-required",
@@ -66,10 +62,6 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/voltage/nominal-eu-230v-50hz",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/voltage/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz/condition/1",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz",
-  "inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz/condition/1",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/electric-current/continuous",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/electric-current/survival",
   "inverter/foxess-h3-ps10sh/ac-phase/out/c/electric-current/protection-required",
@@ -93,22 +85,20 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/ac-phase/grid/c/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/_/active-power/continuous",
+  "inverter/foxess-h3-ps10sh/ac-phase/eps/_/frequency/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/a",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/b",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/c",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/a/frequency/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/a/electric-current/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/a/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/b/voltage/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/b/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/b/frequency/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/b/electric-current/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/b/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/c/voltage/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/c/voltage/_",
-  "inverter/foxess-h3-ps10sh/ac-phase/eps/c/frequency/nominal",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/c/electric-current/_",
   "inverter/foxess-h3-ps10sh/ac-phase/eps/c/active-power/_",
   "inverter/foxess-h3-ps10sh/ac-phase/load",
@@ -538,6 +528,30 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             },
           },
           {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "margin": 0.05,
+              "max": 63,
+              "min": 57,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz",
+              "value": 60,
+            },
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "margin": 0.05,
+              "max": 52.5,
+              "min": 47.5,
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz",
+              "value": 50,
+            },
+          },
+          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal-br-220v-60hz",
             "part": "a",
             "quantity_kind": "node:quantity-kind/voltage",
@@ -563,30 +577,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               "max": 250,
               "min": 0,
               "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/_",
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz",
-            "part": "a",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 63,
-              "min": 57,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz",
-              "value": 60,
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz",
-            "part": "a",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 52.5,
-              "min": 47.5,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz",
-              "value": 50,
             },
           },
           {
@@ -681,30 +671,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             },
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz",
-            "part": "b",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 63,
-              "min": 57,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz",
-              "value": 60,
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz",
-            "part": "b",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 52.5,
-              "min": 47.5,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz",
-              "value": 50,
-            },
-          },
-          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/electric-current/continuous",
             "part": "b",
             "quantity_kind": "node:quantity-kind/electric-current",
@@ -793,30 +759,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               "max": 250,
               "min": 0,
               "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/voltage/_",
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz",
-            "part": "c",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 63,
-              "min": 57,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz",
-              "value": 60,
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz",
-            "part": "c",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "margin": 0.05,
-              "max": 52.5,
-              "min": 47.5,
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz",
-              "value": 50,
             },
           },
           {
@@ -1020,6 +962,28 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             "conditions": [
               {
                 "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-br-220v-60hz",
+            "severity": "nominal",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
+                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz/condition/1",
+                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
+              },
+            ],
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/frequency/nominal-eu-230v-50hz",
+            "severity": "nominal",
+          },
+          {
+            "conditions": [
+              {
+                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
                 "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal-br-220v-60hz/condition/1",
                 "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
               },
@@ -1036,28 +1000,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               },
             ],
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/voltage/nominal-eu-230v-50hz",
-            "severity": "nominal",
-          },
-          {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-br-220v-60hz",
-            "severity": "nominal",
-          },
-          {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/a/frequency/nominal-eu-230v-50hz",
             "severity": "nominal",
           },
           {
@@ -1106,28 +1048,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             "severity": "nominal",
           },
           {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-br-220v-60hz",
-            "severity": "nominal",
-          },
-          {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/frequency/nominal-eu-230v-50hz",
-            "severity": "nominal",
-          },
-          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/b/electric-current/continuous",
             "rating": "continuous",
           },
@@ -1170,28 +1090,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               },
             ],
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/voltage/nominal-eu-230v-50hz",
-            "severity": "nominal",
-          },
-          {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/br-220v-60hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-br-220v-60hz",
-            "severity": "nominal",
-          },
-          {
-            "conditions": [
-              {
-                "equals": "node:inverter/foxess-h3-ps10sh/grid-region/eu-230v-50hz",
-                "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz/condition/1",
-                "setting": "node:inverter/foxess-h3-ps10sh/grid-region",
-              },
-            ],
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/c/frequency/nominal-eu-230v-50hz",
             "severity": "nominal",
           },
           {
@@ -1375,6 +1273,15 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             },
           },
           {
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/frequency/nominal",
+            "part": "_",
+            "quantity_kind": "node:quantity-kind/frequency",
+            "valued_range": {
+              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/frequency/nominal",
+              "value": 50,
+            },
+          },
+          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/nominal",
             "part": "a",
             "quantity_kind": "node:quantity-kind/voltage",
@@ -1393,15 +1300,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               "max": 300,
               "min": 0,
               "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/_",
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/frequency/nominal",
-            "part": "a",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/frequency/nominal",
-              "value": 50,
             },
           },
           {
@@ -1447,15 +1345,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             },
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/b/frequency/nominal",
-            "part": "b",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/b/frequency/nominal",
-              "value": 50,
-            },
-          },
-          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/b/electric-current/_",
             "part": "b",
             "quantity_kind": "node:quantity-kind/electric-current",
@@ -1495,15 +1384,6 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
               "max": 300,
               "min": 0,
               "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c/voltage/_",
-            },
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c/frequency/nominal",
-            "part": "c",
-            "quantity_kind": "node:quantity-kind/frequency",
-            "valued_range": {
-              "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c/frequency/nominal",
-              "value": 50,
             },
           },
           {
@@ -1586,12 +1466,12 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             "rating": "continuous",
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/nominal",
-            "rating": "continuous",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/_/frequency/nominal",
             "severity": "nominal",
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/frequency/nominal",
+            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/a/voltage/nominal",
+            "rating": "continuous",
             "severity": "nominal",
           },
           {
@@ -1600,16 +1480,8 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
             "severity": "nominal",
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/b/frequency/nominal",
-            "severity": "nominal",
-          },
-          {
             "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c/voltage/nominal",
             "rating": "continuous",
-            "severity": "nominal",
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/ac-phase/eps/c/frequency/nominal",
             "severity": "nominal",
           },
         ],

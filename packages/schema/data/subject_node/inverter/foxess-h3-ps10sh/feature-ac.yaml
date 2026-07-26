@@ -61,6 +61,20 @@ feature_of_interest:
           _:
             valued_range: { min: -11, max: 11, unit: kvar }
             measurement: { resolution: 0.001 }
+        # Port-wide, not per-leg — three legs cannot hold different frequencies,
+        # so `_` states it once and `*` would invent three. nominal + margin is
+        # still a nominal: a spread AROUND the value, not a min/max envelope.
+        frequency:
+          nominal-br-220v-60hz:
+            valued_range: { value: 60, margin: 0.05 }
+            specification:
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
+          nominal-eu-230v-50hz:
+            valued_range: { value: 50, margin: 0.05 }
+            specification:
+              severity: nominal
+              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
       '*':
         voltage:
           # 220/230 are a commissioning choice, not two simultaneous limits:
@@ -77,19 +91,6 @@ feature_of_interest:
               severity: nominal
               conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
           _: { valued_range: { min: 0, max: 250 }, measurement: { resolution: 0.1 } }
-        frequency:
-          # nominal + margin is still a nominal — a spread AROUND the value,
-          # not a min/max envelope.
-          nominal-br-220v-60hz:
-            valued_range: { value: 60, margin: 0.05 }
-            specification:
-              severity: nominal
-              conditions: [ { setting: grid-region, equals: br-220v-60hz } ]
-          nominal-eu-230v-50hz:
-            valued_range: { value: 50, margin: 0.05 }
-            specification:
-              severity: nominal
-              conditions: [ { setting: grid-region, equals: eu-230v-50hz } ]
         electric-current:
           continuous: { valued_range: { max: 15.2 }, specification: { rating: continuous } }
           survival: { valued_range: { max: 16.7 }, specification: { rating: survival } }
@@ -158,16 +159,17 @@ feature_of_interest:
           continuous:
             valued_range: { max: 10000 } # rated EPS export, all legs together
             specification: { rating: continuous }
+        # Port-wide, not per-leg — see the `out` port above
+        frequency:
+          nominal:
+            valued_range: { value: 50 } # lone nominal — nameplate reference
+            specification: { severity: nominal }
       '*':
         voltage:
           nominal:
             valued_range: { value: 230, min: 200, max: 260 }
             specification: { rating: continuous, severity: nominal }
           _: { valued_range: { min: 0, max: 300 }, measurement: { resolution: 0.1 } }
-        frequency:
-          nominal:
-            valued_range: { value: 50 } # lone nominal — nameplate reference
-            specification: { severity: nominal }
         electric-current:
           _: { valued_range: { min: 0, max: 50 }, measurement: { resolution: 0.01 } }
         active-power:
