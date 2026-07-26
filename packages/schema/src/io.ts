@@ -16,6 +16,7 @@ import {
 	existsSync,
 	statSync,
 	globSync,
+	rmSync,
 	type Dirent,
 } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -67,6 +68,9 @@ export const dumpJson = (value: unknown, indent: string | number = '\t'): string
 	JSON.stringify(value, null, indent);
 
 export const exists = (path: string): boolean => existsSync(path);
+
+/** delete a path if it is there — a rebuilt artifact replaces, never appends */
+export const remove = (path: string): void => rmSync(path, { force: true });
 export const isDir = (path: string): boolean => statSync(path).isDirectory();
 export const dirents = (path: string): Dirent[] => readdirSync(path, { withFileTypes: true });
 

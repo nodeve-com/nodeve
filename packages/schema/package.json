@@ -12,11 +12,12 @@
 	"type": "module",
 	"scripts": {
 		"generate": "node bin/prefixes.ts && node bin/format.ts && node normalize/catalog.ts && node bin/data2schema.ts",
-		"build": "pnpm generate && pnpm build:types && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
+		"build": "pnpm generate && pnpm build:types && pnpm build:jsonschema && pnpm check:catalog && pnpm build:ddl && pnpm build:db",
 		"build:types": "cd linkml && uvx --from linkml gen-typescript nodeve.yaml > ../gen/schema.ts",
-		"check:catalog": "cd linkml && uvx --from linkml linkml-validate -s nodeve.yaml -C Catalog ../gen/catalog.json",
+		"build:jsonschema": "cd gen && uvx --from linkml gen-json-schema -t Catalog --closed nodeve-projected.yaml > catalog.schema.json && node ../bin/stencil-link.ts",
+		"check:catalog": "node bin/check-catalog.ts",
 		"build:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py > ../gen/nodeve.sql",
-		"build:db": "cd linkml && uvx --from linkml python ../bin/ddl.py dump",
+		"build:db": "node src/load.ts",
 		"check": "pnpm check:format && pnpm check:prefixes && pnpm check:meta && pnpm check:data && pnpm typecheck",
 		"check:data": "node normalize/catalog.ts",
 		"check:format": "node bin/format.ts --check",
@@ -27,12 +28,16 @@
 		"test": "vitest run"
 	},
 	"devDependencies": {
-		"@types/node": "catalog:",
-		"typescript": "catalog:ts7",
 		"@nodeve/config": "workspace:*",
 		"@nodeve/encoding": "workspace:*",
 		"@nodeve/text": "workspace:*",
+		"@types/node": "catalog:",
+		"typescript": "catalog:ts7",
 		"vitest": "catalog:",
 		"yaml": "catalog:"
+	},
+	"dependencies": {
+		"ajv": "catalog:",
+		"ajv-formats": "catalog:"
 	}
 }

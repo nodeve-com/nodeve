@@ -24,18 +24,22 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `linkml/shared.yaml` | shared slots |
 | `linkml/enums.yaml` | shared closed-grammar enums |
 | `bin/format.ts` | yaml formatting gate (`--check` for precommit) |
-| `bin/check-*.ts` | perform validation checks |
-| `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `linkml-sqldb` ingests; pass a data file to print rows |
-| `bin/ddl.py` | DDL **and** database — replaces `gen-sqltables` + `linkml-sqldb`, which expose no backref-column hook |
+| `bin/check-*.ts` | perform validation checks — `check-catalog.ts` is the shape gate, ajv over `gen/catalog.schema.json` |
+| `bin/data2schema.ts` | policy rows → `gen/nodeve-projected.yaml`, the closed stencil |
+| `bin/stencil-link.ts` | stamps `x-stencil-of` on the projected JSON Schema — gen-json-schema drops `is_a` |
+| `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `src/load.ts` ingests; pass a data file to print rows |
+| `bin/ddl.py` | DDL — replaces `gen-sqltables`, which exposes no backref-column hook |
+| `src/load.ts` | rows → SQLite — flattens nested facets into their tables, `foreign_key_check` as the gate |
 | `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device); FoxESS is the migration fixture |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows. **Placeholder fixtures — not normative** |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
-| `gen/` | all build output — DDL, catalog bundle, SQLite db. Gitignored |
+| `gen/` | all build output — DDL, catalog bundle, JSON Schema, TS types, SQLite db. Gitignored |
+| `gen/catalog.schema.json` | the pre-database contract **and** the introspection surface: base classes + stencil, imports resolved, stands alone |
 
 ## Commands
 
 ```sh
-pnpm build      # generate → DDL → SQLite (1.3s, 1.2 MB db)
+pnpm build      # generate → types/JSON Schema/DDL → shape gate → SQLite (3.9s; the load itself is 0.16s)
 pnpm generate   # format → normalize, no python
 pnpm check      # what precommit runs: format/prefix/meta gates, normalize, typecheck
 pnpm check:refs # registry iri_templates resolve? (network)
