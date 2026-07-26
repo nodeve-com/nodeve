@@ -34,7 +34,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `src/index.ts` | the published surface — `tsconfig.build.json` emits its import closure to `dist/`, nothing else |
 | `src/load.ts` | rows → SQLite — flattens nested facets into their tables, `foreign_key_check` as the gate |
 | `bin/check-db-pg.ts` | the postgres twin of that gate — throwaway cluster, deferred FKs, one COMMIT |
-| `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device) — real devices, seeds for downstream databases; grows to thousands |
+| `data/subject_node/<node_type>/<slug>/` | authored nested device descriptions (a dir per device, filed under its kind) — real devices, seeds for downstream databases; grows to thousands |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows — normative. `feature_type` + `node_type` are the stencil source (`data2schema`) |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
 | `gen/` | all build output — both DDL dialects, catalog bundle, JSON Schema, TS types, SQLite db, the postgres check cluster. Gitignored |

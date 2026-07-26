@@ -11,9 +11,18 @@ import { join } from 'node:path';
 import { shortCode } from '@nodeve/encoding/short-code';
 import { dirents, exists, readYaml } from '../src/io.ts';
 import type { Bundle, TableRow } from '../src/load.ts';
-import { classByName, classByTable, seg, type SlotDef, slotByName } from './model.ts';
+import { classByName, classByTable, seg, slotByName } from './model.ts';
 import { normalize, normalizeDoc, nodeAttrMap, type Row } from './normalize.ts';
+import { projectProperties } from './properties.ts';
 import { normalizeDevice } from './tree.ts';
+
+/** the schema-projected Property row-set, feeding this pass's accumulators */
+function properties(): TableRow[] {
+	const { rows, contents, paths: minted } = projectProperties();
+	paths.push(...minted);
+	contentRows.push(...contents);
+	return rows;
+}
 
 // ─── pass accumulators — buildCatalog() clears them, so a second walk in the
 // same process (downstream tree after this one) starts empty ────────────────
@@ -130,22 +139,37 @@ function tableRows(root: string, dir: string): TableRow[] {
 /** the device dir (data/subject_node) walked: each authored device fans out
  * into facet row-sets keyed by sql_table, a thin subject_node marker row, and
  * the shared register maps it references (deduped). Facets attach to the device
- * node directly — no container nesting — tied back by the node.parent trail. */
+ * node directly — no container nesting — tied back by the node.parent trail.
+ *
+ * Two levels, mirroring the permalink: `<node_type>/<slug>`. The kind is the
+ * directory, so nothing inside an entry restates its own position and one slug
+ * may appear under two kinds (a site's inventory item and the adapter reading
+ * it). Each leaf is one entry — a `<slug>.yaml` file, or a `<slug>/` dir whose
+ * children merge. */
 const DEVICE_DIR = 'subject_node';
 type DeviceRows = { rowsByTable: Record<string, TableRow[]>; subjectNodes: TableRow[] };
+function deviceFiles(root: string): string[] {
+	const base = join(root, DEVICE_DIR);
+	if (!exists(base)) return [];
+	return dirents(base)
+		.filter((e) => e.isDirectory())
+		.map((e) => e.name)
+		.sort()
+		.flatMap((kind) =>
+			dirents(join(base, kind))
+				.filter((e) => e.isDirectory() || e.name.endsWith('.yaml'))
+				.map((e) => e.name)
+				.sort()
+				.map((entry) => join(base, kind, entry)),
+		);
+}
 function walkDevices(root: string): DeviceRows {
 	const rowsByTable: Record<string, TableRow[]> = {};
 	const subjectNodes: TableRow[] = [];
 	const seenMap = new Set<string>();
-	if (!exists(join(root, DEVICE_DIR))) return { rowsByTable, subjectNodes };
 	const bucket = (table: string) => (rowsByTable[table] ??= []);
-	const entries = dirents(join(root, DEVICE_DIR)).filter(
-		(e) => e.isDirectory() || e.name.endsWith('.yaml'),
-	);
-	for (const e of entries.map((e) => e.name).sort()) {
-		const { node, model, registerMap } = normalizeDevice(join(root, DEVICE_DIR, e), (p) =>
-			paths.push(p),
-		);
+	for (const file of deviceFiles(root)) {
+		const { node, model, registerMap } = normalizeDevice(file, (p) => paths.push(p));
 		liftContent(model); // pull device + nested Content out, top-level (keyed by about)
 		for (const [table, rows] of Object.entries(model))
 			bucket(table).push(...((Array.isArray(rows) ? rows : [rows]) as TableRow[]));
@@ -170,47 +194,6 @@ function walkDevices(root: string): DeviceRows {
 		subjectNodes.push({ node });
 	}
 	return { rowsByTable, subjectNodes };
-}
-
-/** slots with a user-facing title project to Property rows, one Content row per
- * language. EVERYTHING is read from the schema — no data/ sidecar. en Content:
- * `title` ← slot `title`, `lede` ← slot `description`. Every translation and any
- * en `body` rides `annotations.i18n.value.<field ∈ {title,lede,body}>.<lang>`
- * on the slot. A title-less slot is structural and gets no row. */
-function propertyContents(node: string, def: SlotDef): Record<string, unknown>[] {
-	const i18n = def.annotations?.i18n?.value ?? {};
-	const langs = new Set<string>(['en']); // en first, deterministic
-	for (const byLang of Object.values(i18n)) for (const lang of Object.keys(byLang)) langs.add(lang);
-
-	return [...langs].map((lang) => {
-		const row: Record<string, unknown> = { node: `${node}/${lang}`, about: node, language: lang };
-		if (lang === 'en') {
-			row.title = def.title;
-			if (def.description !== undefined) row.lede = def.description;
-		} else {
-			if (i18n.title?.[lang] !== undefined) row.title = i18n.title[lang];
-			if (i18n.lede?.[lang] !== undefined) row.lede = i18n.lede[lang];
-		}
-		if (i18n.body?.[lang] !== undefined) row.body = i18n.body[lang];
-		return row;
-	});
-}
-
-function projectProperties(): TableRow[] {
-	const rows: TableRow[] = [];
-	for (const [name, def] of Object.entries(slotByName)) {
-		if (!def.title) continue;
-		const slug = seg(name);
-		const node = `node:property/${slug}`;
-		const contents = propertyContents(node, def);
-		paths.push(
-			`property/${slug}`,
-			...contents.map((c) => (c.node as string).replace(/^node:/, '')),
-		);
-		contentRows.push(...contents);
-		rows.push({ node });
-	}
-	return rows;
 }
 
 /** Every kind (root segment) in the id space needs a node_type row, or its
@@ -272,7 +255,7 @@ export function buildCatalog(root: string, { schemaRows = false } = {}): Bundle 
 		if (range === 'Content') continue; // accumulated during the pass, filled below
 		if (range === 'NodeType') continue; // authored + derived below, after all kinds known
 		if (range === 'Property') {
-			bundle[slot] = schemaRows ? projectProperties() : [];
+			bundle[slot] = schemaRows ? properties() : [];
 			continue;
 		} // schema, not tree
 		const dir = classByName[range]?.annotations?.sql_table;

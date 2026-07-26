@@ -11,12 +11,37 @@ classes:
     annotations: { sql_table: physical }
     description: Mechanical dimensions and mass of the physical body — datasheet nameplate, one row per node.
     slots: [ node, width, height, thickness, mass ]
+
+  # Where the body IS — the geodetic sibling of Physical, same keyless 1:1 co-row
+  # on any node. A deployment fact (a building's point, an array's plane), not a
+  # measurand: it has no band and no sensor, so it is columns, not intervals. A
+  # co-located thing inherits its host's point rather than restating it.
+  Location:
+    title: Location
+    annotations: { sql_table: location }
+    description: Geodetic point of the physical body — WGS 84 decimal degrees plus orthometric height.
+    slots: [ node, latitude, longitude, altitude ]
 slots:
+  altitude:
+    range: float
+    title: Altitude
+    exact_mappings: [ schema:elevation, wgs84-geo:alt ]
+    description: 'height above the geoid (mean sea level), metres — the elevation solar-position and air-mass models consume, NOT height above ground'
   height:
     range: float
     title: Height
     exact_mappings: [ schema:height ]
     description: 'body height, millimetres'
+  latitude:
+    range: float
+    title: Latitude
+    exact_mappings: [ schema:latitude, wgs84-geo:lat ]
+    description: 'WGS 84 latitude, decimal degrees, north positive'
+  longitude:
+    range: float
+    title: Longitude
+    exact_mappings: [ schema:longitude, wgs84-geo:long ]
+    description: 'WGS 84 longitude, decimal degrees, east positive'
   mass:
     range: float
     title: Mass

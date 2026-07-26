@@ -2,8 +2,6 @@
 # charge-controller node_type) AND how it's READ (its full VE.Direct field list,
 # in vedirect.yaml). Organization (Victron) is the only brand cascade; every
 # DECODE fact lives on this one product — no brand merge.
-node_type: charge-controller
-
 product: { model: SmartSolar MPPT 100/30, organization: victron }
 
 content:

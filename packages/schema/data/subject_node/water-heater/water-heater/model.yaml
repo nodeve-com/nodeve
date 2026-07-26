@@ -7,8 +7,6 @@
 # SITE data, not catalog facts. A deployment refits the fitted draw bands from
 # measured draw. Filename is the slug.
 # Ported from grimoire/concepts/catalog/generic/water-heater.yaml.
-node_type: water-heater
-
 product: { model: water-heater, organization: generic }
 
 content:

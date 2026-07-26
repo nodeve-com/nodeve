@@ -1,7 +1,5 @@
 # DMEGC TWMNH-66HD640 PV module — pure datasheet spec, no register map.
 # Ported from grimoire/concepts/catalog/dmegc/twmnh-66hd640.yaml. Filename is the slug.
-node_type: pv-module
-
 product: { model: TWMNH-66HD640, organization: dmegc }
 
 content:

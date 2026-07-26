@@ -1,0 +1,7 @@
+# A network peer a site REACHES rather than owns — a broker, a stream engine's
+# REST API, a controller. It offers services and is authenticated against; it
+# has no NICs here, because the addresses are its own business, not the site's.
+# Instances live in a deploying repo (sites/<name>).
+facet:
+  service_binding: { cardinality: child, required: true }
+  authentication: { cardinality: single }

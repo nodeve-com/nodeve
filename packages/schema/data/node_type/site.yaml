@@ -1,0 +1,11 @@
+# A deployment's root — the node every site-local thing is authored beside. Not
+# a catalogued device: instances live in a deploying repo (sites/<name>), so the
+# base catalog carries only this shape. `site` holds the publish root; the rest
+# are ordinary facets, so a site's own measurable envelope (its service entrance,
+# its thermal store) is intervals on features, exactly like a device's.
+facet:
+  site: { cardinality: single, required: true }
+  location: { cardinality: single }
+  service: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase }
+  tank: { facet: feature_of_interest, cardinality: child, feature_type: environment }
+  ground: { facet: feature_of_interest, cardinality: child, feature_type: environment }

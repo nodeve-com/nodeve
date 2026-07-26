@@ -1,7 +1,5 @@
 # Trinasolar Vertex N TSM-625NEG19RC.20 — bifacial PV module, datasheet spec only.
 # Ported from grimoire/concepts/catalog/trina/tsm-625neg19rc-20.yaml. Filename is the slug.
-node_type: pv-module
-
 product: { model: TSM-625NEG19RC.20, organization: trina }
 
 # Mechanical block, datasheet values (mm; mass kg). Inch/lb figures are unit

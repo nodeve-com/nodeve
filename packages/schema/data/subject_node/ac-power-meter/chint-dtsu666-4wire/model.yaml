@@ -1,8 +1,6 @@
 # Chint DTSU666 4-wire three-phase power meter (FP32 over Modbus RTU) — one
 # catalog entry: its identity AND how it is talked to (the serial modbus map).
 # Ported from grimoire/concepts/catalog/chint/dtsu666.yaml. Filename is the slug.
-node_type: ac-power-meter
-
 product:
   model: DTSU666 # plain DTSU666 — NOT DDSU666 or DTSU666-H (different maps)
   organization: chint

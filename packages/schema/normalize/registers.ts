@@ -124,19 +124,25 @@ export const expandKey = (slot: string, v: string): string => {
 	return table ? `node:${seg(table)}/${v}` : v;
 };
 
-/** in-doc references that resolve against SIBLING rows, not the catalog:
- * service NICs must exist above. (FK columns like product.organization are
- * expanded generically in columns(); only in-doc sibling links live here.) */
+/** in-doc references that resolve against SIBLING rows, not the catalog: a NIC
+ * name is local to the node that owns the interface. Any row-set may carry one
+ * (a service binding, an address binding, an adapter's ingest) — the owner is
+ * the row's `device` when it names one (an adapter dials the METERED node's
+ * interfaces, not its own), else this doc. A local name must exist above; a
+ * device's is another document's, so the FK gate at load is what checks it.
+ * (FK columns like product.organization expand generically in columns(); only
+ * in-doc sibling links live here.) */
 export function siblingRefs(at: { slug: string; node: string }, model: Doc, doc: Doc) {
-	for (const svc of (model.service_binding as Doc[]) ?? []) {
-		const nic = svc.network_interface;
-		if (typeof nic !== 'string' || !isMap((doc.network_interface as Doc)?.[nic]))
-			die(
-				`${at.slug}.service_binding.${svc.slug}.network_interface`,
-				`no network_interface ${nic}`,
-			);
-		svc.network_interface = `${at.node}/${nic}`;
-	}
+	for (const [table, rows] of Object.entries(model))
+		for (const row of Array.isArray(rows) ? rows : [rows]) {
+			if (!isMap(row)) continue;
+			const nic = row.network_interface;
+			if (typeof nic !== 'string') continue;
+			const owner = typeof row.device === 'string' ? row.device : at.node;
+			if (owner === at.node && !isMap((doc.network_interface as Doc)?.[nic]))
+				die(`${at.slug}.${table}.${nic}`, `no network_interface ${nic}`);
+			row.network_interface = `${owner}/${nic}`;
+		}
 }
 
 /** what the resolver needs from the walk in flight */

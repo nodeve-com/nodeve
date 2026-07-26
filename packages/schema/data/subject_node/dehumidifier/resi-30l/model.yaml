@@ -4,8 +4,6 @@
 # hygrostat config as SITE data. Compressor / refrigeration / humidity_control
 # stay unmodeled until a real unit — never fabricate. Filename is the slug.
 # Ported from grimoire/concepts/catalog/generic/dehumidifier/resi-30l.yaml.
-node_type: dehumidifier
-
 product: { model: resi-30l, organization: generic }
 
 content:

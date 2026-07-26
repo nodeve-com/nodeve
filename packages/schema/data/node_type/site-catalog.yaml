@@ -2,7 +2,14 @@
 # site-local identity plus the inventory reference to the device it is. Not a
 # catalogued device itself — instances live in a deploying repo (sites/<name>),
 # so the base catalog carries only this shape. Site-specific overrides (a real
-# MAC, on-bus sensor slugs) are the site node's OWN facet rows, merged with the
-# referenced device's facets by query — grimoire's free-form catalog_patch is
-# replaced by relational facets, not a blob.
-facet: { inventory: { cardinality: single, required: true } }
+# MAC and its addresses, a band the site draws on a catalogued quantity) are the
+# site node's OWN facet rows, merged with the referenced device's facets by
+# query — grimoire's free-form catalog_patch is replaced by relational facets,
+# not a blob. Feature sockets are the roles a site may draw its own bands on;
+# they repeat the referenced device's roles until the overlay resolves through
+# `inventory.device` (docs/open.md).
+facet:
+  inventory: { cardinality: single, required: true }
+  network_interface: { cardinality: child }
+  ip_binding: { cardinality: child }
+  point: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase }

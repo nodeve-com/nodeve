@@ -6,26 +6,57 @@ classes:
   NetworkInterface:
     title: Network interface
     annotations: { sql_table: network_interface, keyed_by: slug }
-    slots: [ node, interface_type, link_speed ]
+    slots: [ node, interface_type, link_speed, mac_address ]
     slot_usage: { interface_type: { required: true } }
 
+  # One address the NIC answers on — its own row, not a NIC column: a interface
+  # carries several (v4 + v6, a service alias). The address IS the key, so the
+  # node segment is its slugified form; `fqdn` is the name that resolves to it.
+  IpBinding:
+    title: IP binding
+    annotations: { sql_table: ip_binding, keyed_by: ip_address }
+    description: One address bound to a network interface, with the name that resolves to it.
+    slots: [ node, ip_address, network_interface, fqdn ]
+    slot_usage: { ip_address: { required: true }, network_interface: { required: true } }
+
+  # A service surface. A LOCAL one binds a NIC of the node offering it (the
+  # inverter's modbus-tcp on eth0); a REMOTE one (a broker, an eKuiper REST API)
+  # names its `host` instead — the peer is reached, not owned, so it has no NIC
+  # here. Exactly one of the two, which no relational constraint states.
   ServiceBinding:
     title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
-    slots: [ node, port, service_protocol, network_interface ]
-    slot_usage: { service_protocol: { required: true }, network_interface: { required: true } }
+    slots: [ node, port, service_protocol, network_interface, host ]
+    slot_usage: { service_protocol: { required: true } }
 slots:
+  fqdn:
+    range: string
+    title: Fully-qualified domain name
+    related_mappings: [ schema:alternateName ]
+    description: 'the DNS name that resolves to this address'
   interface_type:
     range: InterfaceType
     title: Interface type
     related_mappings: [ wikidata:Q985806 ]
     annotations: { camel: interfaceType }
+  ip_address:
+    range: string
+    title: IP address
+    related_mappings: [ schema:identifier ]
+    description: 'the bound address, v4 or v6, as dotted-quad / colon-hex text'
+    annotations: { camel: ipAddress }
   link_speed:
     range: integer
     title: Link speed
     close_mappings: [ wikidata:Q194158 ]
     description: 'negotiated line rate of the interface, in megabits per second (10 / 100 / 1000 / …)'
     annotations: { camel: linkSpeed }
+  mac_address:
+    range: string
+    title: MAC address
+    related_mappings: [ schema:identifier ]
+    description: "the interface's hardware address — lowercase colon-separated octets"
+    annotations: { camel: macAddress }
   port:
     range: integer
     title: Port

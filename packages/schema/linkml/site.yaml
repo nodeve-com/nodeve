@@ -1,0 +1,72 @@
+id: https://nodeve.com/schema/lib/site
+name: site
+default_prefix: nodeve
+default_range: string
+classes:
+  # The site marker — a deployment's root node. Its only column is the publish
+  # root every adapter path hangs under: NOT derivable from any device's identity
+  # (it names the consuming gateway, a deployment choice), which is exactly why
+  # Emit refuses to carry it. Everything else a site knows is a facet on this
+  # node — `location` for the point, feature rows for the service entrance and
+  # the thermal envelope. A keyless 1:1 co-row sharing the site node's id.
+  Site:
+    title: Site
+    annotations: { sql_table: site }
+    description: A deployment's root node — the one publish root every adapter's topic path hangs under.
+    slots: [ node, topic_prefix ]
+
+  # WHO a peer is reached as. The secret is never here: a password/token is a
+  # deployment env fact, and a row that held one would travel with the catalog.
+  # A keyless 1:1 co-row, so a peer with no credential simply has no row.
+  Authentication:
+    title: Authentication
+    annotations: { sql_table: authentication }
+    description: The identity a service peer is reached as — the name only; secrets stay in the deployment env.
+    slots: [ node, username ]
+
+  # One series string of an array — the installed unit of PV wiring. `device`
+  # points at the catalogued MODULE; per-string electrical truth DERIVES from
+  # that datasheet × series_count and is never restated. Orientation is columns,
+  # not intervals, for Physical's reason: a plane's aspect is a fixed body fact
+  # with no band and no sensor. A FITTED value (a measured effective Voc) IS a
+  # band, so it is an interval on the array's dc-port feature, part = this key.
+  PvString:
+    title: PV string
+    annotations: { sql_table: pv_string, keyed_by: slug }
+    description: One series string of a PV array — the module it repeats, how many in series, and the plane it faces.
+    slots: [ node, device, series_count, azimuth, tilt, active ]
+    slot_usage: { device: { required: true }, series_count: { required: true } }
+slots:
+  active:
+    range: boolean
+    title: Active
+    related_mappings: [ schema:Boolean ]
+    description: 'whether the thing is in service — a commissioning state, cleared for a string taken offline rather than deleted'
+  azimuth:
+    range: float
+    title: Azimuth
+    exact_mappings: [ qudt-quantity-kind:Azimuth ]
+    description: 'compass bearing the plane faces, degrees clockwise from true north'
+  series_count:
+    range: integer
+    minimum_value: 1
+    title: Series count
+    close_mappings: [ schema:numberOfItems ]
+    description: 'how many modules are wired in series — the multiplier the string voltage derives by'
+    annotations: { camel: seriesCount }
+  tilt:
+    range: float
+    title: Tilt
+    exact_mappings: [ qudt-quantity-kind:Tilt ]
+    description: 'angle of the plane from horizontal, degrees'
+  topic_prefix:
+    range: string
+    title: Topic prefix
+    related_mappings: [ schema:identifier ]
+    description: 'the publish root every adapter topic hangs under — one flat segment naming the consuming gateway'
+    annotations: { camel: topicPrefix }
+  username:
+    range: string
+    title: Username
+    related_mappings: [ schema:identifier ]
+    description: 'the account name a peer is reached as; the matching secret is a deployment env fact and is never stored'

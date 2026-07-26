@@ -20,6 +20,13 @@ slots:
     title: Flow direction
     exact_mappings: [ cim:FlowDirectionKind ]
     annotations: { camel: flowDirection }
+  # a peer reached rather than owned — an adapter's metered device, a remote
+  # service binding. Shared, so neither file owns the other's spelling.
+  host:
+    range: string
+    title: Host
+    exact_mappings: [ schema:serverStatus ]
+    description: 'host the peer is reached at (IP or name); a deployment fact, not a catalog default'
   # THE ONE part discriminator, and the path's part segment verbatim. A `*` row
   # is stored as-is and resolved against the OWNING feature's part_set members
   # (or count) at query time. The slug pattern produces neither marker, so

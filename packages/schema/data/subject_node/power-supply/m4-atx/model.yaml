@@ -3,8 +3,6 @@
 # plus the config plane below. HOW it is read/written (the usbhid diag poll and
 # each parameter's field index / type / scale) stays in grimoire until a usbhid
 # transport lands — it is wire encoding, not device description.
-node_type: power-supply
-
 product: { model: M4-ATX, organization: mini-box }
 
 # The 47-parameter control plane (m4ConfigFields), slugged from the device's own

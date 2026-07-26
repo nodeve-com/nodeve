@@ -3,8 +3,6 @@
 #
 # One entry for the whole box: its electrical envelope AND how it is talked to.
 # Replaces the old split between spec sheet and modbus register map.
-node_type: inverter
-
 product:
   model: H3-10.0-Smart # box reports Inv.H3_SMART
   series: H3

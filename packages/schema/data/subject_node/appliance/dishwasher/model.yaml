@@ -6,8 +6,6 @@
 # sensors and refits the envelopes from measured history (SITE data) — these are
 # the nominal class figures. Filename is the slug.
 # Ported from grimoire/concepts/catalog/generic/dishwasher.yaml.
-node_type: appliance
-
 product: { model: dishwasher, organization: generic }
 
 content:

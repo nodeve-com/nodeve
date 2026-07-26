@@ -16,7 +16,7 @@ export type FeatureCtx = {
 	members?: string[];
 	count?: number;
 	feature: Doc;
-	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[] };
+	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[]; filters: Doc[] };
 };
 
 /** the DeviceWalk primitives the interval lowering reaches back for */
@@ -79,6 +79,10 @@ function facetCol(
 		at.facetByTable[at.facet] = measurement;
 		ctx.list.measurements.push(measurement);
 		host.measurable.add(iNode);
+	} else if (at.facet === 'filter') {
+		// conditioning, not identity — it never reaches facetByTable, so it earns
+		// the band no slug word (Filter declares no `discriminates`)
+		ctx.list.filters.push({ node: iNode, ...columns(cls, cols, at.trail) });
 	} else if (at.facet === 'specification') {
 		const spec = specification(host, { node: iNode, cls, trail: at.trail }, cols);
 		at.facetByTable[at.facet] = spec;

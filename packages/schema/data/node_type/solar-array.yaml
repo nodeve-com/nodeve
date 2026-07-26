@@ -1,0 +1,9 @@
+# A PV array — the installed grouping of series strings. Each `pv_string` child
+# names the catalogued module it repeats and the plane it faces; the `string`
+# socket carries the array's DC bands, whose PART key is the string's ordinal,
+# so a fitted per-string value (a measured effective Voc) lands as an interval on
+# that part and a string with none falls back to module spec × series_count.
+facet:
+  pv_string: { cardinality: child, required: true }
+  location: { cardinality: single }
+  string: { facet: feature_of_interest, cardinality: child, feature_type: dc-port }

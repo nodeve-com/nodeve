@@ -60,6 +60,9 @@ Name minting is NOT a shippable step. The identity path IS the name, minted in t
 
 ## Next
 
-1. Grow the catalog — datasheet authoring, THE long pole. data/subject_node/ holds 11 devices and scales to thousands as downstream seeds.
-2. m4-atx's usbhid decode map: poll shape, per-parameter field index/type/scale. Blocked until usbhid transport lands.
-3. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
+familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
+
+Then, in no order:
+
+- Grow the catalog — datasheet authoring. data/subject_node/ holds 11 devices and scales to thousands as downstream seeds.
+- m4-atx's usbhid decode map: poll shape, per-parameter field index/type/scale. Blocked until usbhid transport lands.

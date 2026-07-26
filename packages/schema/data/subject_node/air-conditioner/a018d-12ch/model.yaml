@@ -3,8 +3,6 @@
 # grimoire/concepts/catalog/equation/air-conditioner/a018d-12ch.yaml. Filename
 # is the slug. A fitted unit's per-mode draw bands are SITE data, not here.
 # Equation is the Leroy Merlin / Adeo own-brand.
-node_type: air-conditioner
-
 product: { model: A018D-12CH, organization: equation }
 
 # Vapor-compression circuit — working gas only. r290 = Propane (A3, GWP ~3).

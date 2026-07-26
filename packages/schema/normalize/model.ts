@@ -89,13 +89,28 @@ export const fkTable = (slot: string): string | undefined => {
 
 /** authored FK values are bare slugs; a slot ranging a table-backed class
  * expands them to CURIEs (broader: linear-velocity → node:quantity-kind/…,
- * refrigerant: r290 → node:refrigerant/r290). A non-FK slot passes through. */
+ * refrigerant: r290 → node:refrigerant/r290). A non-FK slot passes through.
+ *
+ * A target whose class declares `path_root` is the exception: its nodes root at
+ * that root's value, not the table (a device is node:inverter/foxess-…, never
+ * node:subject-node/…), so the reference is authored as the trail that names it
+ * — `inverter/foxess-h3-ps10sh`. Two segments, both slugs, and the FK gate at
+ * load is what says whether the thing exists. */
 export function expandFk(slot: string, value: unknown, trail: string): unknown {
-	const table = fkTable(slot);
+	const range = slotByName[slot]?.range;
+	const table = range ? classByName[range]?.annotations?.sql_table : undefined;
 	if (!table) return value;
-	if (typeof value !== 'string' || !SLUG.test(value))
-		throw new Error(`${trail}: expected a bare ${table} slug`);
-	return `node:${seg(table)}/${value}`;
+	const rooted = range ? classByName[range]?.annotations?.path_root : undefined;
+	if (typeof value !== 'string')
+		throw new Error(`${trail}: expected a ${rooted ? `${table} trail` : `bare ${table} slug`}`);
+	if (!rooted) {
+		if (!SLUG.test(value)) throw new Error(`${trail}: expected a bare ${table} slug`);
+		return `node:${seg(table)}/${value}`;
+	}
+	const segs = value.split('/');
+	if (segs.length !== 2 || !segs.every((s) => SLUG.test(s)))
+		throw new Error(`${trail}: expected a ${table} trail <${rooted}>/<slug>, got ${value}`);
+	return `node:${value}`;
 }
 
 // the slug grammar comes off the slug SLOT — the schema owns it, never a TS copy

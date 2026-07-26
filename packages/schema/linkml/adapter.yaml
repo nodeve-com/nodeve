@@ -12,11 +12,17 @@ classes:
     title: Ingest
     annotations: { sql_table: ingest }
     description: How a site adapter ingests the metered device — its decoder platform, read mode, target device, and host.
-    slots: [ node, platform, ingest_kind, device, host ]
+    slots: [ node, platform, ingest_kind, device, host, service_protocol, network_interface ]
     slot_usage:
       platform: { required: true }
       ingest_kind: { required: true }
       device: { required: true }
+      # WHICH surface of the metered device the adapter dials. The protocol names
+      # the device's offered service_binding (a device offers one binding per
+      # protocol); the NIC pins which of that device's interfaces to reach it on,
+      # overriding the binding's own — a deployment fact, so it lives here.
+      network_interface:
+        description: 'FK — the metered device''s interface this adapter dials, overriding the service binding''s own'
 
   # One Modbus tap window — a master-polled register window a passive tap
   # recognizes and republishes as one grouped MQTT cycle. Child rows of an
@@ -29,11 +35,6 @@ classes:
     slots: [ node, address, register_type, retain, observed_interval_ms ]
     slot_usage: { address: { required: true } }
 slots:
-  host:
-    range: string
-    title: Host
-    exact_mappings: [ schema:serverStatus ]
-    description: 'host the decoder reaches the device at (IP or name); a deployment fact, not a catalog default'
   ingest_kind:
     range: IngestKind
     title: Ingest kind

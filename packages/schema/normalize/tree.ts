@@ -42,9 +42,15 @@ class DeviceWalk implements WalkState {
 	private readonly featureRoles: Map<string, string>; // socket contract: role → feature_type
 	private registerMapDoc?: Doc; // the one non-owned ref — the shared family register map
 
+	// The path IS the identity: `<table>/<path_root value>/<slug>` mirrors the
+	// permalink the walk mints. So the root — which kind of thing this is — is the
+	// DIRECTORY above the entry, never a key inside it; two node types may then
+	// carry the same slug (a site's inventory item and the adapter that reads it)
+	// without colliding in the tree, and nothing restates its own position.
 	constructor(file: string, addPath: (p: string) => void) {
 		this.addPath = addPath;
-		const table = basename(dirname(file));
+		const dt = basename(dirname(file));
+		const table = basename(dirname(dirname(file)));
 		const className = classByTable[table] ?? die(file, `no class has sql_table ${table}`);
 		const rootSlot = (classByName[className] ?? die(file, `no class ${className}`)).annotations
 			?.path_root;
@@ -52,10 +58,9 @@ class DeviceWalk implements WalkState {
 		this.rootSlot = rootSlot;
 		this.slug = basename(file, '.yaml');
 		if (!SLUG.test(this.slug)) die(file, 'filename is not a slug');
+		if (!SLUG.test(dt)) die(file, `parent directory ${dt} is not a slug`);
+		if (!nodeTypeBySlug[dt]) die(`${dt}/${this.slug}`, `unknown ${rootSlot} ${dt}`);
 		this.doc = loadDoc(file);
-		const dt = this.doc[rootSlot];
-		if (typeof dt !== 'string' || !SLUG.test(dt)) die(`${this.slug}.${rootSlot}`, 'must be a slug');
-		if (!nodeTypeBySlug[dt]) die(this.slug, `unknown node_type ${dt}`);
 		this.nodeTypeSlug = dt;
 		this.featureRoles = featureRolesOf(dt); // the socket contract, off facet:
 		this.node = this.mint(`node:${dt}/${this.slug}`);
@@ -98,7 +103,7 @@ class DeviceWalk implements WalkState {
 	/** any other top-level key — a child table by sql_table (keyed rows, or keyless 1:1 co-row) */
 	private plainKey(key: string, value: unknown) {
 		const trail = `${this.slug}.${key}`;
-		if (key === this.rootSlot) return; // node_type — identity on the node row
+		if (key === this.rootSlot) die(trail, `${key} is the parent directory, not a key`);
 		const cls = classByTable[key];
 		if (cls === 'Channel') this.values.channelBlock(value, trail);
 		else if (cls) {
@@ -198,7 +203,7 @@ class DeviceWalk implements WalkState {
 			fNode,
 			kinds: new Set(Object.keys((ft.quantity_binding as Doc) ?? {})),
 			feature: { node: fNode, [ftSlot]: expandKey(ftSlot, ftSlug), [roleSlot]: role },
-			list: { intervals: [], specifications: [], measurements: [] },
+			list: { intervals: [], specifications: [], measurements: [], filters: [] },
 		};
 		if (body.$ !== undefined) this.featureOwn(ctx, body.$);
 		for (const [raw, value] of Object.entries(body))

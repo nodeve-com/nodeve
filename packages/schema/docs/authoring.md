@@ -24,7 +24,7 @@ Every emitted row carries its source trail, so a post-normalization LinkML failu
 
 Human-facing nested device description: no `node` values, explicit identity axes, facets inline on their interval, structured references never authored node paths.
 
-**Nesting is the identity.** Each level is a map keyed by that level's slug, in level order (the [path](levels.md#the-path-is-the-identity) shape), so no authored row repeats a coordinate its position already states. The filename is the root slug.
+**Nesting is the identity.** Each level is a map keyed by that level's slug, in level order (the [path](levels.md#the-path-is-the-identity) shape), so no authored row repeats a coordinate its position already states. That starts ABOVE the file: an entry sits at `<table>/<path_root value>/<slug>`, so its kind is the directory and its slug the filename — neither is ever a key inside. Two kinds may then carry one slug (a site inventory item and the adapter reading it) without colliding.
 
 | key form          | is                                              |
 | ----------------- | ----------------------------------------------- |
@@ -33,8 +33,7 @@ Human-facing nested device description: no `node` values, explicit identity axes
 | a named facet key | a co-row sharing this row's node, no segment    |
 
 ```yaml
-# foxess-h3-ps10sh.yaml — the filename is the slug
-node_type: inverter
+# subject_node/inverter/foxess-h3-ps10sh.yaml — the dir is the node type, the filename the slug
 
 # every block key is a sql_table name; nested key levels are the class's
 # keyed_by slots, in order (feature_of_interest: feature_type, role)
@@ -117,4 +116,4 @@ One typed path constructor owns the [trail grammar](levels.md#the-path-is-the-id
 
 It must not infer domain meaning from payload shape. Registry, quantity-kind, feature-type, and node-type files are already table-like — the trail walk handles them as a one-level case, not a special one.
 
-The reference input is [`grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml`](../../grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml) — register map and prose included. `data/subject_node/foxess-h3-ps10sh.yaml` is a fixture derived from it, not the source; port what it inherits from grimoire's `_defaults.yaml` explicitly — the cascade does not come along, `Organization` replaces it.
+The reference input is [`grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml`](../../grimoire/concepts/catalog/fox-ess/h3/ps10sh.yaml) — register map and prose included. `data/subject_node/inverter/foxess-h3-ps10sh/` is a fixture derived from it, not the source; port what it inherits from grimoire's `_defaults.yaml` explicitly — the cascade does not come along, `Organization` replaces it.

@@ -66,6 +66,16 @@ classes:
       MEASURABLE-channel payload — what a sensor reports: resolution and the energy-channel discriminators. Shares its interval's node row.
     slots: [ node, flow_direction, period, resolution ]
 
+  # No `discriminates`: conditioning is not identity. A band named for its filter
+  # would be named for its plumbing, and the same band conditioned two ways is
+  # one band — so Filter earns no slug word, exactly like ValuedRange.
+  Filter:
+    title: Filter
+    annotations: { sql_table: filter }
+    description: >-
+      INPUT CONDITIONING the band claims over — the band asserts the conditioned signal, not raw samples (a 1 s mean holds inside a margin that 5 Hz samples spike out of). Shares its interval's node row. Absent ⇒ the band claims the raw stream.
+    slots: [ node, throttle_average_ms ]
+
   Condition:
     title: Condition
     # a gate's OWN value can name the band it gates (nominal-br-220v-60hz). The
@@ -86,7 +96,16 @@ classes:
     close_mappings: [ sosa:FeatureOfInterest ]
     description: >-
       The ONE feature table (SOSA feature-of-interest): a named attachment point that refines all possible measurands to a known admissible set — a temperature attaches to an environment row exactly as a voltage attaches to a port row. role IS the socket name (out, grid, pv-tracker, battery, ambient) — one row per socket. Repetition within a socket is PARTS, not rows: three trackers = one pv-tracker feature whose intervals carry part keys 1/2/3. A part is a per-model discriminator on Interval (a/b/c, l1/l2, 1/2/3), validated against part_set or count — not its own table; part `_` on an interval = combined, the whole feature.
-    slots: [ node, feature_type, role, part_set, count, intervals, specifications, measurements ]
+    slots:
+      - node
+      - feature_type
+      - role
+      - part_set
+      - count
+      - intervals
+      - specifications
+      - measurements
+      - filters
     slot_usage: { role: { required: true }, feature_type: { required: true } }
 slots:
   count:
@@ -135,6 +154,13 @@ slots:
     title: Resolution
     description: "quantization step, in the measurement's unit — smallest distinguishable change (VIM 4.14); omit when the datasheet doesn't state it, never fabricate"
     exact_mappings: [ 'vim:4.14', ssn-system:Resolution ]
+  throttle_average_ms:
+    range: integer
+    minimum_value: 1
+    title: Throttle average (ms)
+    related_mappings: [ schema:Duration ]
+    description: 'window the input is averaged over before the band is tested, integer milliseconds — a claim about the conditioned signal, not a sampling rate'
+    annotations: { camel: throttleAverageMs }
   tolerance:
     range: float
     title: Tolerance
@@ -170,6 +196,13 @@ slots:
     title: Equals
     related_mappings: [ wikidata:Q609647 ]
     description: 'FK — the member the gated setting must hold for the band to apply; one value per gate — a band valid for several values is several bands (OR = separate bands)'
+  filters:
+    range: Filter
+    multivalued: true
+    inlined_as_list: true
+    title: Filters
+    related_mappings: [ ssn-system:Condition ]
+    description: "filter width-extension rows — each shares its interval's node"
   intervals:
     range: Interval
     multivalued: true

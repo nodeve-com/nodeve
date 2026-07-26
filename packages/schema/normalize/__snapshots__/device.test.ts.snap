@@ -75,11 +75,10 @@ exports[`normalizes the FoxESS fixture deterministically > minted paths 1`] = `
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/electric-current/_",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/continuous",
   "inverter/foxess-h3-ps10sh/dc-port/pv-tracker/*/active-power/_",
-  "inverter/foxess-h3-ps10sh/environment/ambient",
-  "inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
-  "inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-  "inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
   "inverter/foxess-h3-ps10sh/environment/enclosure",
+  "inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/survival",
+  "inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/intermittent",
+  "inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
   "inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
   "register-map/foxess-h3-smart",
   "register-map/foxess-h3-smart/invalid-41001",
@@ -337,7 +336,7 @@ PV tracker bands: \`rating:\` is the capability ENVELOPE tier (continuous/interm
 
 NB export/import at the utility point is the SIGN of ac_phase_three_grid.combined.active_power (the grid CT: feed-in +, grid consumption −); the directional lifetime/daily ENERGY is the active_energy column's flow_direction/period measurable intervals. The inverter's own throughput lives on ac_phase_three_out (active_power tiers + active_energy out/in channels), not duplicated.
 
-Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' slugs (interval: continuous / intermittent) directly — no custom zone. The \`_\` band is what the sensor reads. Numbers in °C (unit override — canonical is K) per interval.
+Enclosure temperature ladder: the thermal ladder continuous ⊂ intermittent ⊂ survival IS the derate anchor set: the grid-power derate points at these tiers' slugs (interval: continuous / intermittent) directly — no custom zone. Bands and sensor share ONE feature: the box exposes no ambient probe, only its own internal temperature (foxess invtemp, 39141), so a derate anchored anywhere else could never be evaluated. The \`_\` band is what that sensor reads. Numbers in °C (unit override — canonical is K) per interval.
 
 Services this box OFFERS — the network surfaces a consumer reaches (this device-declaration IS the registry). Each binds to a NIC above; the site overlay fills that NIC's address, so the host resolves through it. The Modbus-TCP server a polling master reads (modbus_tcp on 502) and the built-in web UI (https on 443).
 
@@ -629,7 +628,7 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           {
             "conditions": [
               {
-                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
                 "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous/condition/1",
               },
             ],
@@ -644,7 +643,7 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           {
             "conditions": [
               {
-                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/intermittent",
                 "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/_/active-power/continuous-notice/condition/1",
               },
             ],
@@ -711,7 +710,7 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
           {
             "conditions": [
               {
-                "interval": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+                "interval": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
                 "node": "node:inverter/foxess-h3-ps10sh/ac-phase/out/*/active-power/continuous/condition/1",
               },
             ],
@@ -1213,59 +1212,38 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
         "feature_type": "node:feature-type/environment",
         "intervals": [
           {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/survival",
             "part": "_",
             "quantity_kind": "node:quantity-kind/temperature",
             "valued_range": {
               "max": 80,
               "min": -40,
-              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
+              "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/survival",
               "unit": "°C",
             },
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/intermittent",
             "part": "_",
             "quantity_kind": "node:quantity-kind/temperature",
             "valued_range": {
               "max": 60,
               "min": -25,
-              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
+              "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/intermittent",
               "unit": "°C",
             },
           },
           {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
             "part": "_",
             "quantity_kind": "node:quantity-kind/temperature",
             "valued_range": {
               "max": 45,
               "min": -20,
-              "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
+              "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
               "unit": "°C",
             },
           },
-        ],
-        "node": "node:inverter/foxess-h3-ps10sh/environment/ambient",
-        "role": "ambient",
-        "specifications": [
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/survival",
-            "rating": "survival",
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/intermittent",
-            "rating": "intermittent",
-          },
-          {
-            "node": "node:inverter/foxess-h3-ps10sh/environment/ambient/_/temperature/continuous",
-            "rating": "continuous",
-          },
-        ],
-      },
-      {
-        "feature_type": "node:feature-type/environment",
-        "intervals": [
           {
             "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/_",
             "part": "_",
@@ -1286,6 +1264,20 @@ Channels — categorical/enumerated observables of the WHOLE box — their featu
         ],
         "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure",
         "role": "enclosure",
+        "specifications": [
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/survival",
+            "rating": "survival",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/intermittent",
+            "rating": "intermittent",
+          },
+          {
+            "node": "node:inverter/foxess-h3-ps10sh/environment/enclosure/_/temperature/continuous",
+            "rating": "continuous",
+          },
+        ],
       },
     ],
     "network_interface": [

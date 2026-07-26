@@ -22,7 +22,7 @@ A 1:1 facet shares its node PK, so its FK-to-`node` column IS the ID column — 
 
 ## What runs today
 
-`normalize/tree.ts` walks each `data/subject_node/<slug>/` device and enforces:
+`normalize/tree.ts` walks each `data/subject_node/<node_type>/<slug>/` device and enforces:
 
 - unknown `node_type` → dies (constructor)
 - an authored feature whose `feature_type` isn't a known row → dies (`featureType`)
