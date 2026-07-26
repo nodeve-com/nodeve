@@ -3,11 +3,15 @@ name: network
 default_prefix: nodeve
 default_range: string
 classes:
+  # One interface. A CATALOGUED node declares what its ports ARE (type, rated
+  # line rate); a site's OWN row for the same port carries only what is true of
+  # that unit (its hardware address, the names it answers to). Both are rows on
+  # their own node, merged by query — so nothing here is required: a site row
+  # restating the model's `interface_type` would be the duplicate.
   NetworkInterface:
     title: Network interface
     annotations: { sql_table: network_interface, keyed_by: slug }
     slots: [ node, interface_type, link_speed, mac_address ]
-    slot_usage: { interface_type: { required: true } }
 
   # One address the NIC answers on — its own row, not a NIC column: a interface
   # carries several (v4 + v6, a service alias). The address IS the key, so the
@@ -19,14 +23,25 @@ classes:
     slots: [ node, ip_address, network_interface, fqdn ]
     slot_usage: { ip_address: { required: true }, network_interface: { required: true } }
 
-  # A service surface. A LOCAL one binds a NIC of the node offering it (the
-  # inverter's modbus-tcp on eth0); a REMOTE one (a broker, an eKuiper REST API)
-  # names its `host` instead — the peer is reached, not owned, so it has no NIC
-  # here. Exactly one of the two, which no relational constraint states.
+  # WHERE a node is reached, once per node — a keyless 1:1 co-row. A peer the
+  # site does not own (a broker, a stream engine) has a name and no NIC, and its
+  # transports share that name, so the host sits HERE and never repeats on each
+  # binding. A node that owns its interfaces needs no row: its bindings resolve
+  # through the NIC's own addresses.
+  Endpoint:
+    title: Endpoint
+    annotations: { sql_table: endpoint }
+    description: Where a node is reached — the name its service bindings share, and the protocol version they speak.
+    slots: [ node, host, protocol_version ]
+    slot_usage: { host: { required: true } }
+
+  # One service surface a node OFFERS. It binds a NIC of that node (the
+  # inverter's modbus-tcp on eth0), or none — a peer reached by name resolves
+  # through its Endpoint instead. The host is never here: one name, one row.
   ServiceBinding:
     title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
-    slots: [ node, port, service_protocol, network_interface, host ]
+    slots: [ node, port, service_protocol, network_interface ]
     slot_usage: { service_protocol: { required: true } }
 slots:
   fqdn:
@@ -62,6 +77,12 @@ slots:
     title: Port
     exact_mappings: [ wikidata:Q858321 ]
     description: "TCP/UDP port number; omit to fall back to the scheme's well-known default"
+  protocol_version:
+    range: string
+    title: Protocol version
+    related_mappings: [ schema:version ]
+    description: "version of the protocol the node's bindings speak (MQTT 5.0); omit when the deployment doesn't pin one"
+    annotations: { camel: protocolVersion }
   service_protocol:
     range: ServiceProtocol
     title: Service protocol

@@ -1,7 +1,10 @@
 # A network peer a site REACHES rather than owns — a broker, a stream engine's
 # REST API, a controller. It offers services and is authenticated against; it
-# has no NICs here, because the addresses are its own business, not the site's.
+# has no NICs here, because the addresses are its own business, not the site's:
+# `endpoint` is the one name every binding of it shares. A peer whose scheme was
+# never recorded is an endpoint with no binding — never an invented protocol.
 # Instances live in a deploying repo (sites/<name>).
 facet:
-  service_binding: { cardinality: child, required: true }
+  endpoint: { cardinality: single, required: true }
+  service_binding: { cardinality: child }
   authentication: { cardinality: single }

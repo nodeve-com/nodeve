@@ -101,8 +101,8 @@ classes:
       channels: { range: Channel, multivalued: true, inlined_as_list: true }
       network_interfaces: { range: NetworkInterface, multivalued: true, inlined_as_list: true }
       ip_bindings: { range: IpBinding, multivalued: true, inlined_as_list: true }
+      endpoints: { range: Endpoint, multivalued: true, inlined_as_list: true }
       service_bindings: { range: ServiceBinding, multivalued: true, inlined_as_list: true }
-      filters: { range: Filter, multivalued: true, inlined_as_list: true }
       # site facets — the deployment shape; instances live in deploying repos
       # (sites/<name>), so these row-sets are empty in the base catalog.
       emits: { range: Emit, multivalued: true, inlined_as_list: true }
