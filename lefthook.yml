@@ -26,16 +26,8 @@ pre-commit:
     - name: build-checks
       run: pnpm --filter @nodeve/checks build
 
-    # Schema source (LinkML) edits must prove they still project cleanly.
-    # Fires only when linkml/ files are staged; runs the full build (generate +
-    # gen-typescript + linkml-validate catalog + DDL + db dump). Needs uvx/linkml.
-    - name: build-schema
-      glob: 'packages/schema/linkml/**'
-      run: pnpm --filter @nodeve/schema build
-
-    # The nodeve.yaml prefixes block is DERIVED from data/registry rows; a stale
-    # or hand-edited block silently diverges. Re-derive and diff. Fires when a
-    # registry row OR the schema root is staged (either side can drift).
-    - name: check-prefixes
-      glob: 'packages/schema/{data/registry/**,linkml/nodeve.yaml}'
-      run: pnpm --filter @nodeve/schema check:prefixes
+    # NO per-package jobs live here. A package owns its own gate in its `check`
+    # script; the shared `package-check` job recurses into every one of them, so
+    # a package carries its checks with it when it moves repos. @nodeve/schema's
+    # row/shape/FK validation lives in packages/schema/package.json for exactly
+    # that reason.

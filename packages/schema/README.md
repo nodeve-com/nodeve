@@ -28,22 +28,28 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/data2schema.ts` | policy rows → `gen/nodeve-projected.yaml`, the closed stencil |
 | `bin/stencil-link.ts` | stamps `x-stencil-of` on the projected JSON Schema — gen-json-schema drops `is_a` |
 | `normalize/catalog.ts` | THE normalizer — authored docs → rows → `gen/catalog.json`, the root object `src/load.ts` ingests; pass a data file to print rows |
-| `bin/ddl.py` | DDL — replaces `gen-sqltables`, which exposes no backref-column hook |
+| `bin/ddl.py` | DDL, `sqlite` or `postgresql` — replaces `gen-sqltables`, which exposes no backref-column hook |
 | `src/load.ts` | rows → SQLite — flattens nested facets into their tables, `foreign_key_check` as the gate |
-| `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device); FoxESS is the migration fixture |
-| `data/<table>/<slug>.yaml` | authored vocabulary + policy rows. **Placeholder fixtures — not normative** |
+| `bin/check-db-pg.ts` | the postgres twin of that gate — throwaway cluster, deferred FKs, one COMMIT |
+| `data/subject_node/<slug>/` | authored nested device descriptions (a dir per device) — real devices, seeds for downstream databases; grows to thousands |
+| `data/<table>/<slug>.yaml` | authored vocabulary + policy rows — normative. `feature_type` + `node_type` are the stencil source (`data2schema`) |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
-| `gen/` | all build output — DDL, catalog bundle, JSON Schema, TS types, SQLite db. Gitignored |
+| `gen/` | all build output — both DDL dialects, catalog bundle, JSON Schema, TS types, SQLite db, the postgres check cluster. Gitignored |
 | `gen/catalog.schema.json` | the pre-database contract **and** the introspection surface: base classes + stencil, imports resolved, stands alone |
 
 ## Commands
 
 ```sh
-pnpm build      # generate → types/JSON Schema/DDL → shape gate → SQLite (3.9s; the load itself is 0.16s)
-pnpm generate   # format → normalize, no python
-pnpm check      # what precommit runs: format/prefix/meta gates, normalize, typecheck
+pnpm check      # THE gate: drift gates → project → shape gate → SQLite FK → postgres FK → typecheck (6.1s)
+pnpm build      # pnpm fix && pnpm check — rewrite derived sources first, then the same gate
+pnpm fix        # rewrite what's derived: nodeve.yaml prefixes block, yaml formatting
+pnpm project    # rows + stencil + types/JSON Schema/DDL. No validation
 pnpm check:refs # registry iri_templates resolve? (network)
 ```
+
+`check` asserts; `fix` rewrites. Nothing inside `check` touches an authored file, so `check:format` and `check:prefixes` see the tree as committed — a drift gate that ran after its own generator would always pass.
+
+The gate is the package's `check` script, not a root lefthook job: the shared `package-check` recursion finds it wherever the package lives, so it survives a move to another repo. `gen/` stays gitignored — `check` projects into the working tree; nothing needs committing. Needs `uvx`/linkml on PATH (`nix develop`).
 
 `linkml-*` resolve imports relative to **CWD**, not the schema file — every python step runs from `linkml/` (the `cd` in each script). LinkML skips nixpkgs; `uv` sits in the flake, `uvx` fetches it.
 

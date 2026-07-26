@@ -132,8 +132,8 @@ enums:
         title: Short circuit
         meaning: wikidata:Q206907
         annotations: { i18n: { value: { title: { pt: Curto-circuito } } } }
-      off:
-        title: Off
+      'off':
+        title: 'Off'
         meaning: saref:OffState
         annotations: { i18n: { value: { title: { pt: Desligado } } } }
       idle:

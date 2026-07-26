@@ -1,7 +1,9 @@
 // Rows → SQLite. The TS twin of what `ddl.py dump` did through linkml's ORM,
 // so a downstream runtime can load its own normalized rows without python.
 //
-//   node src/load.ts    gen/nodeve.sql + gen/catalog.json → gen/catalog.db
+//   node src/load.ts    gen/nodeve.sqlite.sql + gen/catalog.json → gen/catalog.db
+//
+// The postgres twin of this gate is bin/check-db-pg.ts, which reuses `inserts`.
 //
 // The `Catalog` container is load machinery, never a table: each top-level
 // row-set inserts straight into its class's `sql_table`. Nested facets flatten
@@ -142,7 +144,7 @@ if (import.meta.main) {
 	const path = abs('gen/catalog.db');
 	remove(path);
 	const bundle = JSON.parse(read(abs('gen/catalog.json'))) as Bundle;
-	const db = buildDatabase(path, read(abs('gen/nodeve.sql')), bundle);
+	const db = buildDatabase(path, read(abs('gen/nodeve.sqlite.sql')), bundle);
 	const rows = db.prepare('SELECT count(*) n FROM node').get() as { n: number };
 	db.close();
 	console.log(`${rows.n} nodes → gen/catalog.db`);

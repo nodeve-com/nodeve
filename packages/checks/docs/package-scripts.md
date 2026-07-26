@@ -6,8 +6,8 @@ Three verbs, three jobs. Every workspace package names its scripts by what they 
 
 | Verb | Confirms | Runs | Cargo analog |
 | --- | --- | --- | --- |
-| `check` | the source is valid **as written** — types, schema validation, authoring/semantic gates, baseline rules. No codegen, no execution. | commit gate | `cargo check` |
-| `build` | everything **generates + compiles cleanly** — codegen, schema projections, `tsc` emit. Produces artifacts. | CI / release | `cargo build` |
+| `check` | the source is valid **as written** — types, schema validation, authoring/semantic gates, baseline rules. Never rewrites an authored file. | commit gate | `cargo check` |
+| `build` | everything **generates + compiles cleanly** — rewrites derived sources, then produces the shipped artifacts. | CI / release | `cargo build` |
 | `test` | the built output **produces the expected result** — executable tests. | CI | `cargo test` |
 
 ## Ordering
@@ -29,7 +29,17 @@ A leaf package's cluster is often just the typecheck; a source-of-truth package 
 | --- | --- | --- | --- |
 | encoding / text / schema-case | `tsc --noEmit` | `tsc` emit | `vitest run` |
 | checks | `tsc --noEmit` | `tsc` emit | — |
-| schema | `check:format && check:prefixes && … && tsc --noEmit` | `generate` + projections | `vitest run` |
+| schema | drift gates → `project` → shape gate → SQLite FK → `tsc --noEmit` | `fix && check` | `vitest run` |
+
+### Projecting inside `check`
+
+A `check` may write **derived** files when validation reads them — @nodeve/schema projects its JSON Schema, DDL, and TS types into gitignored `gen/`, then validates rows against them. That keeps `check` standalone — it needs no committed artifact, and a fresh clone gates correctly.
+
+The line it must not cross is **rewriting an authored file**. Put those rewrites in `fix` and have `build` run `fix` before `check`. A drift gate that ran after its own generator would assert against fresh output and never fail.
+
+### Keep the gate in the package
+
+A package's gate belongs in its `check` script, not a job in the consuming repo's `lefthook.yml`. The `package-check` recursion finds it wherever the package sits, so it travels intact when the package moves to another repo or spins out into its own. Root `lefthook.yml` is for facts about the _repo_ — nothing per-package.
 
 ## How the gate uses them
 

@@ -1,5 +1,14 @@
 """Schema-to-SQL, replacing the `gen-sqltables` CLI. DDL to stdout.
 
+    python ddl.py [dialect]     dialect defaults to sqlite
+
+One schema, two shipped dialects. The generator is SQLAlchemy-backed, so
+`postgresql` costs a keyword and buys what SQLite cannot express: the closed
+enums become real `CREATE TYPE … AS ENUM`, and every LinkML description becomes
+a `COMMENT ON`, making the database its own introspection surface. Both dialects
+carry the same 86 foreign keys; postgres hoists the circular ones into
+`ALTER TABLE … ADD CONSTRAINT`.
+
 Loading the rows is `src/load.ts` — this stays the DDL half so nothing in the
 build path needs python beyond emitting the schema.
 
@@ -18,6 +27,8 @@ pass the generators already run.
    per referencing class and fills exactly one, so those stay nullable.
 """
 
+import sys
+
 from linkml.generators import sqltablegen
 from linkml.generators.sqltablegen import SQLTableGenerator
 from linkml.transformers.relmodel_transformer import RelationalModelTransformer
@@ -26,6 +37,7 @@ from linkml_runtime.utils.schemaview import SchemaView
 
 SCHEMA = "nodeve.yaml"
 TOP_CLASS = "Catalog"
+DIALECT = sys.argv[1] if len(sys.argv) > 1 else "sqlite"
 
 
 def annotation(element, tag):
@@ -88,4 +100,4 @@ class Tables(RelationalModelTransformer):
 
 sqltablegen.RelationalModelTransformer = Tables
 
-print(SQLTableGenerator(SchemaView(SCHEMA).schema).generate_ddl())
+print(SQLTableGenerator(SchemaView(SCHEMA).schema, dialect=DIALECT).generate_ddl())
