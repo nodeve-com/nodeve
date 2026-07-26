@@ -10,6 +10,29 @@ A commissioning knob is not a band. A band names its FUNCTION and states it once
 
 The numbers split by owner: the interval carries the band as shipped, the setting carries what the knob ACCEPTS. Neither states the other's, and the live value is runtime state, in neither.
 
+## Condition-gated derates
+
+A `Specification` holds only under its `conditions:` — datasheet qualifiers, ALL required (AND), each one `Condition` row ([features.yaml](../linkml/features.yaml)). Two authored forms, same list:
+
+- **setting equality** — `{ setting: <slug>, equals: <member> }`: a commissioning knob (grid region, dip-switch mode) must hold that value.
+- **derate anchor** — `{ feature: { type, role }, part?, quantity, interval }`: ANOTHER interval, elsewhere on the device, must currently sit in the named band. Same coordinate shape as a `Setting`'s `target:` ([values.yaml](../linkml/values.yaml)) — feature type + role, optional part (`_` if omitted), quantity_kind, interval slug. [normalize/values.ts](../normalize/values.ts) assembles the FK path from these verbatim; a typo dies at the database's FK gate, not at authoring time.
+
+A derate TABLE — one applicable band per anchor zone — is one interval per zone, each gated to its matching anchor:
+
+```yaml
+# dc-port/input/voltage carries severity zones (caution 6-8V, notice 8-11V, …);
+# dc-port/out/12v/electric-current derates against them, one row per zone:
+electric-current:
+  caution:
+    valued_range: { value: 8 }
+    specification:
+      severity: caution
+      conditions:
+        - { feature: { type: dc-port, role: input }, quantity: voltage, interval: caution }
+```
+
+The anchor's own slug (`caution`) never joins the gated band's slug — it names another band, not an axis of this one ([Earning every word](#earning-every-word)). The gated band earns its slug from its own facets only.
+
 ## `slug` — the discriminator
 
 One band is never enough — a quantity carries specs, channels, or both. The slug tells them apart.
@@ -27,7 +50,7 @@ The eligible values and their order are schema facts, `discriminates` on each cl
 | `Measurement`   | `flow_direction`, `period`                          |
 | `Condition`     | `equals` (the FK's leaf segment), `test_condition`  |
 
-Two exclusions. Band _shape_ — `duration`, `trigger_on`, `resolution` — says how wide or how sharp, never **which** band. A `Condition`'s `interval` anchor names another band, and borrowing that name reads as a local axis: `continuous-intermittent` looks like two ratings on one row. So a thermal derate takes `continuous-notice`, graded by `severity`.
+Two exclusions. Band _shape_ — `duration`, `trigger_on`, `resolution` — says how wide or how sharp, never **which** band. A [`Condition`'s `interval` anchor](#condition-gated-derates) names another band, and borrowing that name reads as a local axis: `continuous-intermittent` looks like two ratings on one row. So a thermal derate takes `continuous-notice`, graded by `severity`.
 
 So `rating: continuous, severity: nominal` earns `continuous`, `nominal`, or `continuous-nominal` — pick what discriminates against the siblings. It never earns `rated`, `peak`, or `derated` — the row sets no such value.
 
