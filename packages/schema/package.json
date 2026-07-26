@@ -1,6 +1,6 @@
 {
 	"name": "@nodeve/schema",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"description": "Central schema source for describing things, authored as a relational LinkML model and projected for storage, validation, and code.",
 	"license": "MIT",
 	"repository": {
