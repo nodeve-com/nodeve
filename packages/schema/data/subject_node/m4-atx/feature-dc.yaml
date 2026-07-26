@@ -46,35 +46,6 @@ feature_of_interest:
         active-power:
           continuous: { valued_range: { max: 250 }, specification: { rating: continuous } }
           short-term: { valued_range: { max: 300 }, specification: { rating: short_term } }
-        # OFF-DELAY — how long every rail stays up after ignition drops, per
-        # dip-switch mode (manual mode chart). The mode is the `mode` setting,
-        # so each band is one gated row and the gate's value earns the slug.
-        # Edges: off_delay_0…7 (value). P0 is standard-PSU mode: the band exists
-        # (the knob addresses it) and states no time.
-        time:
-          shutdown-p0:
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p0 } ] }
-          shutdown-p1:
-            valued_range: { value: 5 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p1 } ] }
-          shutdown-p2:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p2 } ] }
-          shutdown-p3:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p3 } ] }
-          shutdown-p4:
-            valued_range: { value: 900 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p4 } ] }
-          shutdown-p5:
-            valued_range: { value: 900 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p5 } ] }
-          shutdown-p6:
-            valued_range: { value: 1800 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p6 } ] }
-          shutdown-p7:
-            valued_range: { value: 7200 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p7 } ] }
       12v:
         voltage:
           nominal: { valued_range: { value: 12 }, specification: { severity: nominal } }
@@ -94,32 +65,13 @@ feature_of_interest:
           _: { valued_range: { min: 0, max: 5 }, measurement: { resolution: 0.01 } }
           critical: { specification: { severity: critical } } # edges v33_max / v33_min
         time: { startup: { specification: { rating: startup } } } # edge v33_time
-      # STANDBY rail — outlives the others by the HARD-OFF time, which is what
-      # makes it a part of its own here: same mode axis, different rail.
-      # Edges: off_hard_0…7 (value). NEVER (p2/p5/p7) = the band states no time.
+      # STANDBY rail — its own part for its own nominal, sharing the connector's
+      # wattage budget under a different rating than the switched rails. Its
+      # mode-dependent hold time past the other rails' cutoff is firmware
+      # shutdown sequencing, not a zone a downstream automation could act on
+      # before the fact — see model.yaml UNPLACED off-hard-N.
       5vsb:
         voltage: { nominal: { valued_range: { value: 5 }, specification: { severity: nominal } } }
-        time:
-          shutdown-p0:
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p0 } ] }
-          shutdown-p1:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p1 } ] }
-          shutdown-p2:
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p2 } ] }
-          shutdown-p3:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p3 } ] }
-          shutdown-p4:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p4 } ] }
-          shutdown-p5:
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p5 } ] }
-          shutdown-p6:
-            valued_range: { value: 60 }
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p6 } ] }
-          shutdown-p7:
-            specification: { rating: shutdown, conditions: [ { setting: mode, equals: p7 } ] }
 
   # Board thermal sensor (signed °C).
   environment:

@@ -15,7 +15,7 @@ classes:
       # authored form: a map keyed by this slot (setting: {grid-region: …})
       keyed_by: slug
     description: >-
-      Commissioning knob — single-valued, fixed at install. CATEGORICAL: its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching. QUANTITATIVE: it moves ONE bound of ONE band — `interval` + `bound` — so a band stays named for its function (a `running` zone) and the knobs address its edges, never the reverse. `valued_range` here is what the KNOB accepts; the shipped value is the band's own, stated once on the interval.
+      Commissioning knob — single-valued, fixed at install. CATEGORICAL: its value vocabulary is its member rows; a Condition FKs the setting AND one member, so a typo'd gate value dies at the database's FK gate instead of silently never matching. QUANTITATIVE: it moves ONE bound of ONE band — `interval` + `bound` — so a band stays named for its function (a `running` zone) and the knobs address its edges, never the reverse. `valued_range` here is what the KNOB accepts: min/max the legal envelope, value the factory default — authored only where the manual documents it, never fabricated.
     slots: [ node, required, members, part, interval, bound, valued_range, note ]
 
   Channel:

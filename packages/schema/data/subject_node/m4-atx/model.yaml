@@ -19,18 +19,23 @@ setting:
   # ── input thresholds ──
   vin-min-start:
     bound: min
+    valued_range: { value: 12 }
     target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: startup }
   vin-min-on:
     bound: min
+    valued_range: { value: 6 }
     target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: running }
   vin-max:
     bound: max
+    valued_range: { value: 30, max: 34 } # 34 V hard clamp (manual, "M4-ATX Characteristics")
     target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: running }
   vin-min-5v:
     bound: min
+    valued_range: { value: 11.2 }
     target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: critical }
   emg-time-5vsb:
     bound: duration
+    valued_range: { value: 60 }
     target: { feature: { type: dc-port, role: input }, quantity: voltage, interval: critical }
 
   # ── ignition sense ──
@@ -105,6 +110,7 @@ setting:
   # ── board temperature trip points ──
   temp-max:
     bound: max
+    valued_range: { value: 85 }
     target:
       feature: { type: environment, role: enclosure }
       quantity: temperature
@@ -115,88 +121,6 @@ setting:
       feature: { type: environment, role: enclosure }
       quantity: temperature
       interval: critical
-
-  # ── per-mode shutdown timers: off-delay-N = all rails, off-hard-N = 5VSB ──
-  off-delay-0:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p0 }
-  off-delay-1:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p1 }
-  off-delay-2:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p2 }
-  off-delay-3:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p3 }
-  off-delay-4:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p4 }
-  off-delay-5:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p5 }
-  off-delay-6:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p6 }
-  off-delay-7:
-    bound: value
-    target: { feature: { type: dc-port, role: out }, quantity: time, interval: shutdown-p7 }
-  off-hard-0:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p0
-  off-hard-1:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p1
-  off-hard-2:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p2
-  off-hard-3:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p3
-  off-hard-4:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p4
-  off-hard-5:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p5
-  off-hard-6:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p6
-  off-hard-7:
-    bound: value
-    target:
-      feature: { type: dc-port, role: out }
-      part: 5vsb
-      quantity: time
-      interval: shutdown-p7
 
   # ── UNPLACED — the power-sequencing state machine over the J6/J8 harness
   # (motherboard ON/OFF pulse, amplifier thump, 5VSB standby). Every one is a
@@ -214,6 +138,26 @@ setting:
   v5-sby-dly: { note: '5VSB turn-on delay, ms' }
   emg-timer: { note: 'emergency shutdown timer, s' }
   emg-off-mode: { note: 'emergency-off mode selector — member vocabulary undocumented' }
+
+  # per-mode shutdown timers (manual mode chart): firmware's post-ignition-drop
+  # sequencing, not a zone — the real automation triggers are ignition/running
+  # and input/critical above. off-delay-N = all rails, off-hard-N = 5VSB.
+  off-delay-0: { note: 'off-delay, mode 0 (standard PSU): none' }
+  off-delay-1: { note: 'off-delay, mode 1: 5s' }
+  off-delay-2: { note: 'off-delay, mode 2: 60s' }
+  off-delay-3: { note: 'off-delay, mode 3: 60s' }
+  off-delay-4: { note: 'off-delay, mode 4: 900s' }
+  off-delay-5: { note: 'off-delay, mode 5: 900s' }
+  off-delay-6: { note: 'off-delay, mode 6: 1800s' }
+  off-delay-7: { note: 'off-delay, mode 7: 7200s' }
+  off-hard-0: { note: '5VSB off-hard, mode 0 (standard PSU): none' }
+  off-hard-1: { note: '5VSB off-hard, mode 1: 60s' }
+  off-hard-2: { note: '5VSB off-hard, mode 2: never' }
+  off-hard-3: { note: '5VSB off-hard, mode 3: 60s' }
+  off-hard-4: { note: '5VSB off-hard, mode 4: 60s' }
+  off-hard-5: { note: '5VSB off-hard, mode 5: never' }
+  off-hard-6: { note: '5VSB off-hard, mode 6: 60s' }
+  off-hard-7: { note: '5VSB off-hard, mode 7: never' }
 
 content:
   en:
