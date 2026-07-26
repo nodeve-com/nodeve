@@ -1,7 +1,9 @@
-// A `*` over an empty roster is SILENT data loss — it expands to nothing, so the
-// bands vanish instead of landing wrong. The walk has to refuse it. Written
-// against a throwaway tree because the check fires on authored shape, and the
-// real catalog (rightly) contains no document that trips it.
+// A `*` is a TEMPLATE: it lowers to one row per roster member, and never
+// persists. Two ways it goes wrong. Over an EMPTY roster it expands to nothing,
+// so the bands vanish silently — the walk refuses it. Over the PART_SET it
+// invents parts the feature has not got. Written against a throwaway tree
+// because both fire on authored shape, and the real catalog (rightly) contains
+// no document that trips them.
 import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -18,7 +20,9 @@ const walk = (feature: string) => {
 	return () => normalizeDevice(file, () => {});
 };
 
+const OUT = 'node:inverter/probe/ac-phase/out';
 const STAR = `      '*': { voltage: { _: { measurement: {} } } }\n`;
+const band = (part: string) => ({ node: `${OUT}/${part}/voltage/_` });
 
 it('refuses a `*` whose feature names no parts', () => {
 	expect(walk(`      $: { part_set: three-phase }\n${STAR}`)).toThrow(
@@ -26,26 +30,47 @@ it('refuses a `*` whose feature names no parts', () => {
 	);
 });
 
-it('accepts the same `*` once the roster is named, empty blocks and all', () => {
-	const rows = walk(`      $: { part_set: three-phase }\n${STAR}      a: {}\n      b: {}\n`)();
-	expect(rows.model.feature_of_interest).toMatchObject([
-		{
-			parts: [
-				{ node: 'node:inverter/probe/ac-phase/out/a' },
-				{ node: 'node:inverter/probe/ac-phase/out/b' },
-			],
-		},
-	]);
+// three-phase admits the line-to-line pairs; this feature claims two legs, so
+// the `ab` the vocabulary allows mints nothing
+it('lowers `*` over the ROSTER, not the part_set', () => {
+	const [feature] = walk(`      $: { part_set: three-phase }\n${STAR}      a: {}\n      b: {}\n`)()
+		.model.feature_of_interest as Record<string, unknown>[];
+	expect(feature).toMatchObject({
+		parts: [{ node: `${OUT}/a` }, { node: `${OUT}/b` }],
+		intervals: [band('a'), band('b')],
+	});
 });
 
 it('takes `count` as its own roster — nothing to name', () => {
-	const rows = walk(`      $: { count: 2 }\n${STAR}`)();
-	expect(rows.model.feature_of_interest).toMatchObject([
-		{
-			parts: [
-				{ node: 'node:inverter/probe/ac-phase/out/1' },
-				{ node: 'node:inverter/probe/ac-phase/out/2' },
-			],
-		},
-	]);
+	const [feature] = walk(`      $: { count: 2 }\n${STAR}`)().model.feature_of_interest as Record<
+		string,
+		unknown
+	>[];
+	expect(feature).toMatchObject({
+		parts: [{ node: `${OUT}/1` }, { node: `${OUT}/2` }],
+		intervals: [band('1'), band('2')],
+	});
+});
+
+// the default states a bare band; `a` states a measured one. One row survives at
+// `a/voltage/_`, and it is the authored one — a doubled path would be a duplicate
+// coordinate, and a replaced one would lose the measurement.
+it('yields where an explicit part already holds the path', () => {
+	const [feature] = walk(
+		`      $: { part_set: three-phase }\n      '*': { voltage: { _: {} } }\n` +
+			`      a: { voltage: { _: { measurement: {} } } }\n      b: {}\n`,
+	)().model.feature_of_interest as Record<string, unknown>[];
+	expect(feature).toMatchObject({
+		intervals: [band('a'), band('b')],
+		measurements: [band('a')],
+	});
+});
+
+// `_` names no part, so it never expands and a combined band cannot collide
+// with a per-part one
+it('leaves `_` beside the expansion', () => {
+	const [feature] = walk(
+		`      $: { part_set: three-phase }\n${STAR}      _: { voltage: { _: {} } }\n      a: {}\n`,
+	)().model.feature_of_interest as Record<string, unknown>[];
+	expect(feature).toMatchObject({ intervals: [band('_'), band('a')] });
 });

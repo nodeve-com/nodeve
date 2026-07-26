@@ -26,7 +26,6 @@ pass the generators already run.
    Exception: a class reached from several parents (Content) carries one backref
    per referencing class and fills exactly one, so those stay nullable.
 
-Plus the `coordinate` view, appended verbatim — see VIEW.
 """
 
 import sys
@@ -40,46 +39,6 @@ from linkml_runtime.utils.schemaview import SchemaView
 SCHEMA = "nodeve.yaml"
 TOP_CLASS = "Catalog"
 DIALECT = sys.argv[1] if len(sys.argv) > 1 else "sqlite"
-
-# `*` resolved — one row per addressable coordinate (docs/parts.md#-every-member).
-# A `*` interval is a TEMPLATE: it states one band for every member of its
-# feature's subdivision. Resolving it is a join no LinkML construct reaches —
-# `part` is a discriminator column, not an FK, and `*` names no row — so it ships
-# as DDL, which every loader already execs.
-#
-# The view mints NO name. It rewrites the part segment of an existing permalink;
-# the identity path stays the only name (docs/ship.md).
-#
-# `*` expands over the feature's ROSTER — its `part` rows — never over the
-# part_set, which only says which slugs are legal. Expanding over the vocabulary
-# invents parts: a three-phase point that measures three legs would grow
-# line-to-line rows carrying a leg's current.
-#
-# One body, both dialects, no recursion — the roster is a table. An explicit part
-# outranks the default, so an expansion that lands on a real interval's path is
-# dropped rather than colliding with it.
-VIEW = """
-
-CREATE VIEW coordinate AS
-WITH member(feature, part) AS (
-\tSELECT p.feature_of_interest_node, n.slug
-\tFROM part p
-\tJOIN node n ON n.permalink = p.node
-),
-expanded(node, interval, part) AS (
-\tSELECT f.node || '/' || m.part || substr(i.node, length(f.node) + length(i.part) + 2),
-\t       i.node,
-\t       m.part
-\tFROM interval i
-\tJOIN feature_of_interest f ON f.node = i.feature_of_interest_node
-\tJOIN member m ON m.feature = f.node
-\tWHERE i.part = '*'
-)
-SELECT node, node AS interval, part FROM interval WHERE part <> '*'
-UNION ALL
-SELECT e.node, e.interval, e.part FROM expanded e
-WHERE NOT EXISTS (SELECT 1 FROM interval i WHERE i.node = e.node);
-"""
 
 
 def annotation(element, tag):
@@ -142,4 +101,4 @@ class Tables(RelationalModelTransformer):
 
 sqltablegen.RelationalModelTransformer = Tables
 
-print(SQLTableGenerator(SchemaView(SCHEMA).schema, dialect=DIALECT).generate_ddl() + VIEW)
+print(SQLTableGenerator(SchemaView(SCHEMA).schema, dialect=DIALECT).generate_ddl())

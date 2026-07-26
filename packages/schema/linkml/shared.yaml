@@ -27,16 +27,16 @@ slots:
     title: Host
     exact_mappings: [ schema:serverStatus ]
     description: 'host the peer is reached at (IP or name); a deployment fact, not a catalog default'
-  # THE ONE part discriminator, and the path's part segment verbatim. A `*` row
-  # is stored as-is and resolved against the OWNING feature's part_set members
-  # (or count) at query time. The slug pattern produces neither marker, so
-  # neither can collide with an authored part.
+  # THE ONE part discriminator, and the path's part segment verbatim. `*` is
+  # authoring shorthand only — the walk lowers it to one row per roster member,
+  # so no stored row wears it. The slug pattern produces no `_`, so the marker
+  # cannot collide with an authored part.
   part:
     range: string
     title: Part
     related_mappings: [ schema:hasPart ]
-    pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_|\*)$'
-    description: "Which part of the feature this row applies to — a member slug names one part (a phase leg, a circuit, a tracker position). `_` is the whole feature (some quantities are only ever combined, like frequency); `*` is the default, applied to each part that doesn't state its own."
+    pattern: '^([a-z0-9]+(-[a-z0-9]+)*|_)$'
+    description: "Which part of the feature this row applies to — a member slug names one part (a phase leg, a circuit, a tracker position). `_` is the whole feature (some quantities are only ever combined, like frequency)."
     annotations: { i18n: { value: { title: { pt: Parte } } } }
   period: { range: Period, title: Period, exact_mappings: [ cim:MacroPeriodKind ] }
   role:

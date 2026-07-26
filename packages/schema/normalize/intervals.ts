@@ -19,8 +19,9 @@ export type FeatureCtx = {
 	 * fills it 1…n; a part_set feature earns it by naming parts. `*` expands over
 	 * THIS, never over the part_set vocabulary. */
 	roster: Set<string>;
-	/** a `*` key was authored — checked against the roster once the walk ends */
-	starred?: boolean;
+	/** the `*` body — a TEMPLATE, not a row. Held until the roster is whole, then
+	 * replayed once per member; `*` never reaches the database. */
+	starred?: Doc;
 	feature: Doc;
 	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[]; filters: Doc[] };
 };
@@ -37,8 +38,23 @@ export interface IntervalHost {
 /** host + feature-in-flight — the pair every step threads */
 type Walk = { host: IntervalHost; ctx: FeatureCtx };
 
+/** one part's quantity keys → its interval rows. `expanded` marks a `*` template
+ * lowering onto a member, which yields to an explicit part holding the path. */
+export function bands(w: Walk, at: { part: string; expanded?: boolean }, value: Doc) {
+	for (const [qk, bandMap] of Object.entries(value)) {
+		const kind = String(qk);
+		if (!w.ctx.kinds.has(kind))
+			die(`${w.ctx.trail}.${at.part}.${kind}`, `not an admissible quantity of ${w.ctx.ftSlug}`);
+		quantity(w, { ...at, quantity: kind }, bandMap);
+	}
+}
+
 /** one quantity's band map → its interval rows */
-export function quantity(w: Walk, at: { part: string; quantity: string }, bandMap: unknown) {
+export function quantity(
+	w: Walk,
+	at: { part: string; quantity: string; expanded?: boolean },
+	bandMap: unknown,
+) {
 	if (!isMap(bandMap)) die(`${w.ctx.trail}.${at.part}.${at.quantity}`, 'expected interval slugs');
 	for (const [raw, payload] of Object.entries(bandMap))
 		intervalRow(w, { ...at, islug: String(raw) }, payload);
@@ -46,13 +62,18 @@ export function quantity(w: Walk, at: { part: string; quantity: string }, bandMa
 
 function intervalRow(
 	w: Walk,
-	at: { part: string; quantity: string; islug: string },
+	at: { part: string; quantity: string; islug: string; expanded?: boolean },
 	payload: unknown,
 ) {
 	const { host, ctx } = w;
 	const trail = `${ctx.trail}.${at.part}.${at.quantity}.${at.islug}`;
 	const iNode = `${ctx.fNode}/${at.part}/${at.quantity}/${at.islug}`;
-	if (host.intervals.has(iNode)) die(trail, 'duplicate coordinate');
+	// an explicit part outranks the `*` default: an expansion landing on a real
+	// interval's path yields to it. Authored twice is still a duplicate.
+	if (host.intervals.has(iNode)) {
+		if (at.expanded) return;
+		die(trail, 'duplicate coordinate');
+	}
 	host.intervals.add(iNode);
 	host.mint(iNode);
 	// three stacked authored levels → part/quantity columns; the interval slug rides the node

@@ -26,7 +26,7 @@ import {
 	type WalkState,
 } from './registers.ts';
 import { ValueContracts } from './values.ts';
-import { quantity, type FeatureCtx } from './intervals.ts';
+import { bands, type FeatureCtx } from './intervals.ts';
 
 class DeviceWalk implements WalkState {
 	readonly node: string;
@@ -217,6 +217,11 @@ class DeviceWalk implements WalkState {
 			die(`${trail}.*`, 'a default needs parts to apply to — name them, `a: {}` is enough');
 		if (ctx.roster.size)
 			ctx.feature.parts = [...ctx.roster].map((part) => ({ node: this.mint(`${fNode}/${part}`) }));
+		// the template lowers LAST, so every explicit part already holds its path
+		// and outranks the default landing on it
+		if (ctx.starred)
+			for (const part of ctx.roster)
+				bands({ host: this, ctx }, { part, expanded: true }, ctx.starred);
 		for (const [k, v] of Object.entries(ctx.list)) if (v.length) ctx.feature[k] = v;
 		return ctx.feature;
 	}
@@ -254,18 +259,15 @@ class DeviceWalk implements WalkState {
 
 	/** one part key — `_`, `*`, a member slug, or 1…count */
 	private part(ctx: FeatureCtx, part: string, value: unknown) {
-		if (part === '*') ctx.starred = true;
-		else if (part !== '_') {
+		if (!isMap(value)) die(`${ctx.trail}.${part}`, 'expected quantity keys');
+		// a `*` body states one band per member, so it cannot lower until the
+		// roster is whole — `feature` replays it there
+		if (part === '*') return void (ctx.starred = value);
+		if (part !== '_') {
 			this.checkPart(ctx, part);
 			ctx.roster.add(part);
 		}
-		if (!isMap(value)) die(`${ctx.trail}.${part}`, 'expected quantity keys');
-		for (const [qk, bandMap] of Object.entries(value)) {
-			const kind = String(qk);
-			if (!ctx.kinds.has(kind))
-				die(`${ctx.trail}.${part}.${kind}`, `not an admissible quantity of ${ctx.ftSlug}`);
-			quantity({ host: this, ctx }, { part, quantity: kind }, bandMap);
-		}
+		bands({ host: this, ctx }, { part }, value);
 	}
 
 	// a part key is a pure discriminator on Interval — validated against the

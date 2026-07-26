@@ -30,9 +30,9 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/camel-schema.ts` | the camelCase sibling of that artifact — `@nodeve/schema-case` over the linked document |
 | `normalize/catalog.ts` | THE normalizer — `buildCatalog(root)` walks an authored tree into the bundle `src/load.ts` ingests; the root is a parameter, so a downstream tree uses the same walk |
 | `src/cli.ts` | the `nodeve-schema` bin over both — `catalog <dir> [out]`, `rows <file>`; no args prints what the package does |
-| `bin/ddl.py` | DDL, `sqlite` or `postgresql` — replaces `gen-sqltables`, which exposes no backref-column hook. Owns the `coordinate` view ([parts.md](docs/parts.md#-every-member)), which no LinkML construct reaches |
+| `bin/ddl.py` | DDL, `sqlite` or `postgresql` — replaces `gen-sqltables`, which exposes no backref-column hook |
 | `src/index.ts` | the published surface — `tsconfig.build.json` emits its import closure to `dist/`, nothing else |
-| `src/load.ts` | rows → SQLite — flattens nested facets into their tables; `foreign_key_check` + `coordinate` uniqueness as the gates |
+| `src/load.ts` | rows → SQLite — flattens nested facets into their tables; `foreign_key_check` as the gate |
 | `bin/check-db-pg.ts` | the postgres twin of that gate — throwaway cluster, deferred FKs, one COMMIT |
 | `data/subject_node/<node_type>/<slug>/` | authored nested device descriptions (a dir per device, filed under its kind) — real devices, seeds for downstream databases; grows to thousands |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows — normative. `feature_type` + `node_type` are the stencil source (`data2schema`) |

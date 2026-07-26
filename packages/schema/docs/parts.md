@@ -63,18 +63,12 @@ A lone part that could have siblings — one MPPT tracker, one battery port — 
 
 The third part form: the quantity attaches to every part in the roster with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
 
-A `*` row persists as-is: a TEMPLATE, not an addressable thing. The **`coordinate` view** resolves it against the feature's `Part` rows, rewriting the part segment of the path — one row per addressable coordinate, plus every non-`*` interval verbatim. A part's own value wins: the view drops an expansion that lands on a real interval's path, never doubling onto it. A `*` with an empty roster expands to nothing, so the walk refuses it rather than losing the bands silently.
+`*` is authoring shorthand, never a stored row. A TEMPLATE states one band; the walk lowers it to one interval per roster member. Every stored row then names a concrete part, and every addressable point carries a `node`. The lowering runs once the feature's keys are all walked — a `*` may precede the parts it applies to, and the roster is only whole at the end. A part's own value wins: an expansion landing on a real interval's path yields to it, never doubles onto it. A `*` with an empty roster expands to nothing, so the walk refuses it rather than losing the bands silently.
 
-| column     | is                                         |
-| ---------- | ------------------------------------------ |
-| `node`     | the resolved path — no `*` survives        |
-| `interval` | FK to the row it resolved, template or not |
-| `part`     | the member it resolved to                  |
-
-The view ships in both DDL dialects ([bin/ddl.py](../bin/ddl.py)), so any loader that execs the schema has it. It mints no name — it only rewrites a segment of one the path already carried.
+Rows are the projection; the YAML holds the authoring intent. Nothing records that one `*` produced three legs — the same as the anchor form (`a: &leg` / `b: *leg`) landing three identical bands as three rows.
 
 A measurement channel is always concrete, so `*` is in practice a specification move — one band stated once instead of repeated per leg.
 
 ## Markers collide with nothing
 
-`interval.part` stores markers verbatim — the `part` slot's pattern is slug-or-marker ([shared.yaml](../linkml/shared.yaml)). Member **names** stay pure slugs, and the slug pattern produces neither marker. The two sets are disjoint by structure — no member can ever alias a marker, and no lint has to say so. Position carries the rest: slot four is always the part.
+`interval.part` stores `_` verbatim — the `part` slot's pattern is slug-or-`_` ([shared.yaml](../linkml/shared.yaml)), and the walk consumes `*` before any row exists. Member **names** stay pure slugs, and the slug pattern produces no `_`. The two sets are disjoint by structure — no member can ever alias the marker, and no lint has to say so. Position carries the rest: slot four is always the part.
