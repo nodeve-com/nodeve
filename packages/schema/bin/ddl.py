@@ -25,6 +25,8 @@ pass the generators already run.
    inlined_as_list child, but an inlined row only exists under its parent.
    Exception: a class reached from several parents (Content) carries one backref
    per referencing class and fills exactly one, so those stay nullable.
+
+Plus the `coordinate` view, appended verbatim — see VIEW.
 """
 
 import sys
@@ -38,6 +40,50 @@ from linkml_runtime.utils.schemaview import SchemaView
 SCHEMA = "nodeve.yaml"
 TOP_CLASS = "Catalog"
 DIALECT = sys.argv[1] if len(sys.argv) > 1 else "sqlite"
+
+# `*` resolved — one row per addressable coordinate (docs/parts.md#-every-member).
+# A `*` interval is a TEMPLATE: it states one band for every member of its
+# feature's subdivision. Resolving it is a join no LinkML construct reaches —
+# `part` is a discriminator column, not an FK, and `*` names no row — so it ships
+# as DDL, which every loader already execs.
+#
+# The view mints NO name. It rewrites the part segment of an existing permalink;
+# the identity path stays the only name (docs/ship.md).
+#
+# One body, both dialects. `count` expands through a recursive CTE, which
+# postgres runs verbatim — generate_series would only fork the text. An explicit
+# part outranks the default, so an expansion that lands on a real interval's path
+# is dropped rather than colliding with it.
+VIEW = """
+
+CREATE VIEW coordinate AS
+WITH RECURSIVE ordinal(feature, n, total) AS (
+\tSELECT node, 1, count FROM feature_of_interest WHERE count IS NOT NULL
+\tUNION ALL
+\tSELECT feature, n + 1, total FROM ordinal WHERE n < total
+),
+member(feature, part) AS (
+\tSELECT f.node, n.slug
+\tFROM feature_of_interest f
+\tJOIN part_set_member m ON m.part_set_node = f.part_set
+\tJOIN node n ON n.permalink = m.node
+\tUNION ALL
+\tSELECT feature, CAST(n AS TEXT) FROM ordinal
+),
+expanded(node, interval, part) AS (
+\tSELECT f.node || '/' || m.part || substr(i.node, length(f.node) + length(i.part) + 2),
+\t       i.node,
+\t       m.part
+\tFROM interval i
+\tJOIN feature_of_interest f ON f.node = i.feature_of_interest_node
+\tJOIN member m ON m.feature = f.node
+\tWHERE i.part = '*'
+)
+SELECT node, node AS interval, part FROM interval WHERE part <> '*'
+UNION ALL
+SELECT e.node, e.interval, e.part FROM expanded e
+WHERE NOT EXISTS (SELECT 1 FROM interval i WHERE i.node = e.node);
+"""
 
 
 def annotation(element, tag):
@@ -100,4 +146,4 @@ class Tables(RelationalModelTransformer):
 
 sqltablegen.RelationalModelTransformer = Tables
 
-print(SQLTableGenerator(SchemaView(SCHEMA).schema, dialect=DIALECT).generate_ddl())
+print(SQLTableGenerator(SchemaView(SCHEMA).schema, dialect=DIALECT).generate_ddl() + VIEW)

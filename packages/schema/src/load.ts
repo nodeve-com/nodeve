@@ -127,16 +127,27 @@ export function foreignKeyCheck(db: DatabaseSync): TableRow[] {
 	return db.prepare('PRAGMA foreign_key_check').all() as TableRow[];
 }
 
+/** The `coordinate` gate: every `*` resolves, and no two rows claim one path.
+ * The view mints paths the PK never saw, so nothing else proves this. */
+export function coordinateCheck(db: DatabaseSync): TableRow[] {
+	return db
+		.prepare(
+			`SELECT node, count(*) n FROM coordinate GROUP BY node HAVING n > 1 OR node LIKE '%/*/%'`,
+		)
+		.all() as TableRow[];
+}
+
 /** DDL text + rows → a fresh database at `path`, replacing any existing one. */
 export function buildDatabase(path: string, ddl: string, bundle: Bundle): DatabaseSync {
 	const db = new DatabaseSync(path);
 	db.exec(ddl);
 	load(db, bundle);
-	const bad = foreignKeyCheck(db);
-	if (bad.length)
-		throw new Error(
-			`foreign_key_check: ${bad.length} dangling FK rows, e.g. ${JSON.stringify(bad.slice(0, 5))}`,
-		);
+	for (const [gate, bad] of [
+		['foreign_key_check', foreignKeyCheck(db)],
+		['coordinate', coordinateCheck(db)],
+	] as const)
+		if (bad.length)
+			throw new Error(`${gate}: ${bad.length} bad rows, e.g. ${JSON.stringify(bad.slice(0, 5))}`);
 	return db;
 }
 
@@ -145,7 +156,9 @@ if (import.meta.main) {
 	remove(path);
 	const bundle = JSON.parse(read(abs('gen/catalog.json'))) as Bundle;
 	const db = buildDatabase(path, read(abs('gen/nodeve.sqlite.sql')), bundle);
-	const rows = db.prepare('SELECT count(*) n FROM node').get() as { n: number };
+	const one = (sql: string) => (db.prepare(sql).get() as { n: number }).n;
+	const nodes = one('SELECT count(*) n FROM node');
+	const coordinates = one('SELECT count(*) n FROM coordinate');
 	db.close();
-	console.log(`${rows.n} nodes → gen/catalog.db`);
+	console.log(`${nodes} nodes, ${coordinates} coordinates → gen/catalog.db`);
 }

@@ -48,14 +48,17 @@ A lone part that could have siblings — one MPPT tracker, one battery port — 
 
 ## `*` — every member
 
-The third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding. It persists as-is and resolves at query time against the feature's members, a part's own value winning:
+The third part form: the quantity attaches to every member with no own row. It asserts something `_` does not, so it forms a distinct segment and a distinct path — a combined band and a default band coexist without colliding.
 
-```sql
-select distinct on (i.quantity_kind, i.slug) i.*
-from Interval i
-where i.feature = $1 and i.part in ($2, '*')
-order by i.quantity_kind, i.slug, (i.part = '*')
-```
+A `*` row persists as-is: a TEMPLATE, not an addressable thing. The **`coordinate` view** resolves it against the feature's `part_set` members or `count`, rewriting the part segment of the path — one row per addressable coordinate, plus every non-`*` interval verbatim. A part's own value wins: the view drops an expansion that lands on a real interval's path, never doubling onto it.
+
+| column     | is                                         |
+| ---------- | ------------------------------------------ |
+| `node`     | the resolved path — no `*` survives        |
+| `interval` | FK to the row it resolved, template or not |
+| `part`     | the member it resolved to                  |
+
+The view ships in both DDL dialects ([bin/ddl.py](../bin/ddl.py)), so any loader that execs the schema has it. It mints no name — it only rewrites a segment of one the path already carried.
 
 A measurement channel is always concrete, so `*` is in practice a specification move — one band stated once instead of repeated per leg.
 

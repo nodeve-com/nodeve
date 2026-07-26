@@ -128,9 +128,22 @@ try {
 	write(SQL, [defer, 'BEGIN;', 'SET CONSTRAINTS ALL DEFERRED;', ...rows, 'COMMIT;'].join('\n'));
 	psql(['-f', SQL]);
 
-	const count = psql(['-t', '-A', '-c', 'SELECT count(*) FROM node']).trim();
+	// `coordinate` is the one shipped object postgres would accept unparsed and
+	// never run — select from it, and compare the total to what `load.ts` reports.
+	const [nodes, coordinates] = psql([
+		'-t',
+		'-A',
+		'-c',
+		'SELECT count(*) FROM node',
+		'-c',
+		'SELECT count(*) FROM coordinate',
+	])
+		.trim()
+		.split('\n');
 	const fks = defer.split('\n').filter(Boolean).length;
-	console.log(`ok postgres: ${count} nodes loaded, ${fks} foreign keys validated at COMMIT`);
+	console.log(
+		`ok postgres: ${nodes} nodes loaded, ${coordinates} coordinates, ${fks} foreign keys validated at COMMIT`,
+	);
 } catch (error) {
 	const detail = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error);
 	console.error(detail.trim().split('\n').slice(0, 20).join('\n'));
