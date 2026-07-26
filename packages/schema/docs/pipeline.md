@@ -24,6 +24,8 @@ Python projects the model three ways — `gen-typescript` (types), `gen-json-sch
 
 `AcPhaseInterval.quantity_kind` is an `anyOf` of consts — the answer to "what may an ac-phase feature carry", readable without a database. `stencil-link.ts` stamps `x-stencil-of` back on: gen-json-schema flattens `is_a` away, and a `feature_type` pin alone is ambiguous, since PartSet carries one too.
 
+`camel-schema.ts` runs last, projecting that linked document into `gen/catalog.camel.schema.json` — snake_case stays the wire contract, TS consumers check against the sibling. `@nodeve/schema-case` owns which positions hold property **names** and stamps `x-key-map` per renamed node, so an instance renames by the map, never by a runtime string transform. 49 names move; `enum`/`const` values, `$defs` keys, and `$ref` targets do not, so both siblings dispatch on the same class names.
+
 `check-catalog.ts` is the shape gate over that artifact, replacing `linkml-validate`. Two passes: the bundle against the base classes, then each row against the class its own discriminator selects. Dispatch reads the pins and the base off the artifact, never restating them.
 
 The gate runs the SHIPPED document, not a private path, so a downstream repo validating its own rows exercises what passed here. `format` needs `ajv-formats` — ajv ships none, and a schema must not declare a constraint its validator drops.

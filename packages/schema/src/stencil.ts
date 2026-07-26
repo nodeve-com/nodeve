@@ -11,6 +11,10 @@ import { abs, dumpJson, read, write } from './io.ts';
 /** the shipped document: base classes + stencil, imports resolved, stands alone */
 export const STENCIL_SCHEMA = abs('gen/catalog.schema.json');
 
+/** its camelCase sibling for TS consumers — same document, declared property
+ * names camelized, `x-key-map` stamped per renamed node. bin/camel-schema.ts */
+export const CAMEL_SCHEMA = abs('gen/catalog.camel.schema.json');
+
 const STENCIL_OF = 'x-stencil-of';
 
 /** one class in the artifact — pinned slots select it, `x-stencil-of` scopes it */
@@ -24,8 +28,8 @@ export type StencilSchema = {
 
 export const readStencil = (): StencilSchema => JSON.parse(read(STENCIL_SCHEMA)) as StencilSchema;
 
-export const writeStencil = (schema: StencilSchema): void =>
-	write(STENCIL_SCHEMA, dumpJson(schema, 2));
+export const writeStencil = (schema: unknown, path = STENCIL_SCHEMA): void =>
+	write(path, dumpJson(schema, 2));
 
 /** which base class this stencil specializes, or undefined for a base class */
 export const stencilBase = (def: StencilDef): string | undefined =>

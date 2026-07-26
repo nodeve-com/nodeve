@@ -27,6 +27,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/check-*.ts` | perform validation checks — `check-catalog.ts` is the shape gate, ajv over `gen/catalog.schema.json` |
 | `bin/data2schema.ts` | policy rows → `gen/nodeve-projected.yaml`, the closed stencil |
 | `bin/stencil-link.ts` | stamps `x-stencil-of` on the projected JSON Schema — gen-json-schema drops `is_a` |
+| `bin/camel-schema.ts` | the camelCase sibling of that artifact — `@nodeve/schema-case` over the linked document |
 | `normalize/catalog.ts` | THE normalizer — `buildCatalog(root)` walks an authored tree into the bundle `src/load.ts` ingests; the root is a parameter, so a downstream tree uses the same walk |
 | `src/cli.ts` | the `nodeve-schema` bin over both — `catalog <dir> [out]`, `rows <file>`; no args prints what the package does |
 | `bin/ddl.py` | DDL, `sqlite` or `postgresql` — replaces `gen-sqltables`, which exposes no backref-column hook |
@@ -38,6 +39,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
 | `gen/` | all build output — both DDL dialects, catalog bundle, JSON Schema, TS types, SQLite db, the postgres check cluster. Gitignored |
 | `gen/catalog.schema.json` | the pre-database contract **and** the introspection surface: base classes + stencil, imports resolved, stands alone |
+| `gen/catalog.camel.schema.json` | its camelCase sibling for TS consumers — declared names renamed, `x-key-map` stamped per node, values and `$ref` targets untouched |
 
 ## Commands
 

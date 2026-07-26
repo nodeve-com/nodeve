@@ -304,6 +304,9 @@ importers:
       '@nodeve/config':
         specifier: workspace:*
         version: link:../config
+      '@nodeve/schema-case':
+        specifier: workspace:*
+        version: link:../schema-case
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.3

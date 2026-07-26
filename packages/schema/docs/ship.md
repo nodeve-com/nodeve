@@ -1,4 +1,4 @@
-Continue shipping @nodeve/schema as the @nodeve/grimoire replacement. Read packages/schema/README.md and docs/pipeline.md first, then the Next list below. Last commit: 9787234.
+Continue shipping @nodeve/schema as the @nodeve/grimoire replacement. Read packages/schema/README.md and docs/pipeline.md first, then the Next list below. Last commit: 7ff6657.
 
 ## How it ships
 
@@ -22,6 +22,7 @@ Ship list:
 | ---------------------------------------- | ---------------------------------------------------- |
 | `dist/`                                  | the product — `normalize()` + `load()` + types + CLI |
 | `gen/catalog.schema.json`                | pre-database shape gate AND introspection            |
+| `gen/catalog.camel.schema.json`          | its camelCase sibling for TS consumers               |
 | `gen/catalog.json`                       | catalog rows                                         |
 | `gen/nodeve.sqlite.sql`                  | DDL — the gate + downstream build product            |
 | `gen/nodeve.postgres.sql`                | DDL — production; enum types + `COMMENT ON`          |
@@ -53,8 +54,9 @@ Name minting is NOT a shippable step. The identity path IS the name, minted in t
 
 8. Published. `@nodeve/schema@0.1.0` reached npm 2026-07-26 by hand — a new name has nothing for CI's OIDC to publish against until the trusted publisher exists. It does now, so every later version rides release.yml. Two changesets wait for that first CI run: schema → 0.2.0 with its first CHANGELOG, text → 2.2.0. Getting there took one unrelated fix — grimoire's `kit/generate.ts` had failed since before `8b539a6`, and the root `build` recursion carried that failure into `pnpm release`, so nothing in the repo could publish. grimoire left the recursion.
 
+9. The camel sibling ships. `bin/camel-schema.ts` closes `project:jsonschema` — after stencil-link, so `x-stencil-of` rides across — and @nodeve/schema-case (draft-07 grammar, but it walks `$defs` and passes `$schema` through, so the 2019-09 artifact cost nothing) projects `gen/catalog.camel.schema.json`, 114.5K into the tarball's `files` and `exports`. 49 names move; `enum`/`const` values, `$defs` keys and `$ref` targets do not, so both siblings dispatch on the same class names. It stays a devDependency — dist never imports it. One gate fix rode along: `check:db:pg` reused gen/pg unconditionally, so a postgres major bump bricked it with `control file appears to be corrupt`; it now compares the cluster's PG_VERSION against `pg_ctl --version` and re-initdbs, both majors read off the tools.
+
 ## Next
 
-1. Wire @nodeve/schema-case for the camel projection (it exists for exactly this and would otherwise die with grimoire). It walks `$defs` and passes `$schema` through, so the 2019-09 artifact costs nothing; the camel sibling then joins `files` and `exports`.
-2. Port the catalog. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds. Use the grimoire-to-schema skill. (grimoire's own concepts/catalog/ holds only fox-ess and mini-box — the remaining volume comes from new authoring, not porting.)
-3. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
+1. Port the catalog. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds. Use the grimoire-to-schema skill. (grimoire's own concepts/catalog/ holds only fox-ess and mini-box — the remaining volume comes from new authoring, not porting.)
+2. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).

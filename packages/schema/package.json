@@ -25,6 +25,7 @@
 		"data/part_set",
 		"gen/catalog.json",
 		"gen/catalog.schema.json",
+		"gen/catalog.camel.schema.json",
 		"gen/nodeve.sqlite.sql",
 		"gen/nodeve.postgres.sql"
 	],
@@ -42,6 +43,7 @@
 		},
 		"./catalog.json": "./gen/catalog.json",
 		"./catalog.schema.json": "./gen/catalog.schema.json",
+		"./catalog.camel.schema.json": "./gen/catalog.camel.schema.json",
 		"./sqlite.sql": "./gen/nodeve.sqlite.sql",
 		"./postgres.sql": "./gen/nodeve.postgres.sql"
 	},
@@ -49,7 +51,7 @@
 		"fix": "node bin/prefixes.ts && node bin/format.ts",
 		"project": "node src/cli.ts catalog data gen/catalog.json --schema-rows && node bin/data2schema.ts && pnpm project:types && pnpm project:jsonschema && pnpm project:ddl && pnpm project:ddl:pg",
 		"project:types": "cd linkml && uvx --from linkml gen-typescript nodeve.yaml > ../gen/schema.ts",
-		"project:jsonschema": "cd gen && uvx --from linkml gen-json-schema -t Catalog --closed nodeve-projected.yaml > catalog.schema.json && node ../bin/stencil-link.ts",
+		"project:jsonschema": "cd gen && uvx --from linkml gen-json-schema -t Catalog --closed nodeve-projected.yaml > catalog.schema.json && node ../bin/stencil-link.ts && node ../bin/camel-schema.ts",
 		"project:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py sqlite > ../gen/nodeve.sqlite.sql",
 		"project:ddl:pg": "cd linkml && uvx --from linkml python ../bin/ddl.py postgresql > ../gen/nodeve.postgres.sql",
 		"generate": "pnpm fix && pnpm project",
@@ -68,6 +70,7 @@
 	},
 	"devDependencies": {
 		"@nodeve/config": "workspace:*",
+		"@nodeve/schema-case": "workspace:*",
 		"@types/node": "catalog:",
 		"ajv": "catalog:",
 		"ajv-formats": "catalog:",
