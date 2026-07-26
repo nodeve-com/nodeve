@@ -9,7 +9,7 @@
 	"packageManager": "pnpm@11.5.3",
 	"scripts": {
 		"prepare": "lefthook install || true",
-		"build": "pnpm -r --if-present build",
+		"build": "pnpm -r --if-present --filter '!@nodeve/grimoire' build",
 		"test": "pnpm -r --if-present test",
 		"lint": "eslint .",
 		"typecheck": "pnpm -r --if-present typecheck",
