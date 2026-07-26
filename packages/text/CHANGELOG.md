@@ -1,5 +1,11 @@
 # @nodeve/text
 
+## 2.2.0
+
+### Minor Changes
+
+- 5c575aa: Add `isSlug` guard and `SLUG_PATTERN` to `@nodeve/text/slugify` — exactly the non-empty fixed points of `slugify`.
+
 ## 2.1.0
 
 ### Minor Changes
