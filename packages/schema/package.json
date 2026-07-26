@@ -53,7 +53,7 @@
 		"project:ddl": "cd linkml && uvx --from linkml python ../bin/ddl.py sqlite > ../gen/nodeve.sqlite.sql",
 		"project:ddl:pg": "cd linkml && uvx --from linkml python ../bin/ddl.py postgresql > ../gen/nodeve.postgres.sql",
 		"generate": "pnpm fix && pnpm project",
-		"build": "pnpm fix && pnpm check && tsc -p tsconfig.build.json",
+		"build": "pnpm fix && pnpm project && tsc -p tsconfig.build.json",
 		"clean": "rm -rf dist",
 		"check": "pnpm check:format && pnpm check:prefixes && pnpm check:meta && pnpm project && pnpm check:catalog && pnpm check:db && pnpm check:db:pg && pnpm typecheck",
 		"check:catalog": "node bin/check-catalog.ts",

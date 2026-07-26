@@ -43,6 +43,10 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+      # @nodeve/schema projects its gen/ artifacts through linkml, which it runs
+      # as `uvx --from linkml …`. uv comes from the nix devShell locally and from
+      # nowhere on a runner, so the release build died at `uvx: not found`.
+      - uses: astral-sh/setup-uv@v6
       - run: pnpm install --frozen-lockfile
 
       # NB: do NOT upgrade global npm here. pnpm@11 performs the OIDC token exchange

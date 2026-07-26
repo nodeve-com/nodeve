@@ -2,7 +2,7 @@ Continue shipping @nodeve/schema as the @nodeve/grimoire replacement. Read packa
 
 ## How it ships
 
-One public npm package, `@nodeve/schema`. CI publishes it — release.yml drives Changesets over OIDC Trusted Publishing, so no token and no local `npm login`. `pnpm release` = `pnpm build && changeset publish`, and the root `build` recurses into schema's own (`fix && check && tsc -p tsconfig.build.json`). The release run projects `gen/`, emits `dist/`, and packs both in the same job.
+One public npm package, `@nodeve/schema`. CI publishes it — release.yml drives Changesets over OIDC Trusted Publishing, so no token and no local `npm login`. `pnpm release` = `pnpm build && changeset publish`, and the root `build` recurses into schema's own (`fix && project && tsc -p tsconfig.build.json`) — the artifacts a release needs, not the gate, which the commit hook already ran. The release run projects `gen/`, emits `dist/`, and packs both in the same job.
 
 gen/ stays gitignored the whole time. npm's `files` allowlist overrides .gitignore, so the artifacts reach the tarball without ever landing in git — confirmed with `npm pack --dry-run`. Nothing about publishing needs a committed artifact, same as the gate.
 
@@ -51,24 +51,10 @@ Name minting is NOT a shippable step. The identity path IS the name, minted in t
 
 7. The walk takes its root as an argument, and a CLI drives it. `buildCatalog(root)` replaces the hardcoded data/ walk and the hardcoded gen/catalog.json write; it returns the bundle, so a consumer concatenates in memory with no temp file. `src/cli.ts` ships as the `nodeve-schema` bin — `catalog <dir> [out]`, `rows <file>`, and a no-arg help that states what the package does for a consumer with no checkout. Proving the concatenate story caught the defect behind the `schemaRows` switch: the walk re-emitted the 128 schema-projected Property rows and the derived node_type stubs on EVERY tree, so a downstream union died on `UNIQUE constraint failed: property.node`. Off by default now — a foreign tree unions clean (6453 + 2 nodes), and data/ still builds byte-identical to the pre-refactor catalog.json.
 
+8. Published. `@nodeve/schema@0.1.0` reached npm 2026-07-26 by hand — a new name has nothing for CI's OIDC to publish against until the trusted publisher exists. It does now, so every later version rides release.yml. Two changesets wait for that first CI run: schema → 0.2.0 with its first CHANGELOG, text → 2.2.0. Getting there took one unrelated fix — grimoire's `kit/generate.ts` had failed since before `8b539a6`, and the root `build` recursion carried that failure into `pnpm release`, so nothing in the repo could publish. grimoire left the recursion.
+
 ## Next
 
 1. Wire @nodeve/schema-case for the camel projection (it exists for exactly this and would otherwise die with grimoire). It walks `$defs` and passes `$schema` through, so the 2019-09 artifact costs nothing; the camel sibling then joins `files` and `exports`.
 2. Port the catalog. THE long pole: data/subject_node/ holds 11 real devices and scales to thousands as downstream seeds. Use the grimoire-to-schema skill. (grimoire's own concepts/catalog/ holds only fox-ess and mini-box — the remaining volume comes from new authoring, not porting.)
 3. familiar migration: sites/<name>/ → normalize() → rows; catalog + site rows → site.db. site.generated.json and the ajv `validate-site` layer die (FKs do that work).
-
-## Needs you
-
-One act, once: npm Trusted Publishing registers per package, on a settings page that exists only after the package does. You registered every sibling by hand that way (see release.yml). So `@nodeve/schema` wants its first version published from your npm account, then its trusted publisher registered — after which release.yml owns every version. Nothing else here waits on a decision.
-
-## Gotchas
-
-- Verify with pnpm scripts: `pnpm build`, `pnpm check` (workspace), `pnpm test`. Never bun. Node >= 24 (node:sqlite is builtin, zero-dep).
-- Bash cwd drifts after a `cd` in a compound command — use absolute paths or re-cd. I invalidated a whole comparison run this way.
-- The pre-commit gate (pnpm check:gate) is strict and reads the STAGED index, so re-stage after fixing. It will reject: vale prose (>30-word sentences, passives, wordiness — you own ALL errors in any doc you touch), inline-dupes (a top-level name in 2+ files anywhere in the repo — check `grep -rE "^(const|type|function|export ...) <name>\b" packages` BEFORE picking a name), plural-arrays (plural name bound to a Map), helper-collisions (local fn fuzzy-matching a dep export, e.g. flatten≈remeda.flat).
-- NEVER add allowlist entries yourself — surface the finding to the user.
-- postgres reserves `end`; SQLite does not. SQLAlchemy quotes it in both DDLs; anything hand-writing SQL against these tables must quote identifiers too.
-- python still runs the 4 `project:*` steps (gen-typescript, gen-json-schema, ddl.py ×2) via uvx. They all run from a `cd` into linkml/ or gen/ because linkml resolves imports relative to CWD. `uv` and `vale` come from the flake devShell (`nix develop`).
-- node:sqlite enables foreign_keys by default, unlike the sqlite CLI.
-- pnpm 11.5.3 reformats resolution: blocks across pnpm-lock.yaml on any `pnpm add` — a large diff, NOT a dependency prune. Check package-entry counts before alarm.
-- grimoire is dying: skip it in verification sweeps, never flag its pre-existing failures.

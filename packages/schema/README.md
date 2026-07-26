@@ -43,7 +43,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 
 ```sh
 pnpm check      # THE gate: drift gates → project → shape gate → SQLite FK → postgres FK → typecheck (6.1s)
-pnpm build      # fix && check, then emit dist/ — the published closure of src/index.ts
+pnpm build      # what a release needs: fix, project gen/, emit dist/. The gate is `check`
 pnpm fix        # rewrite what's derived: nodeve.yaml prefixes block, yaml formatting
 pnpm project    # rows + stencil + types/JSON Schema/DDL. No validation
 node src/cli.ts # the CLI consumers get as `nodeve-schema` — same walk, any tree
