@@ -90,6 +90,17 @@ for (const path of [abs('gen/nodeve.postgres.sql'), abs('gen/catalog.json')])
 		process.exit(1);
 	}
 
+// Reuse survives only while the cluster matches the server on PATH. A postgres
+// major bump leaves a PG_VERSION the new binary reads as a corrupt control file
+// — throwaway state, so re-initdb rather than report it. Both majors are read
+// from the tools themselves; neither is spelled here.
+const serverMajor = run('pg_ctl', ['--version']).trim().split(' ').at(-1)?.split('.')[0];
+const clusterMajor = existsSync(CLUSTER) ? read(`${CLUSTER}/PG_VERSION`).trim() : serverMajor;
+if (clusterMajor !== serverMajor) {
+	console.log(`gen/pg is postgres ${clusterMajor}, server is ${serverMajor} — reinitializing`);
+	rmSync(CLUSTER, { recursive: true, force: true });
+}
+
 if (!existsSync(CLUSTER))
 	run('initdb', ['-D', CLUSTER, '-U', USER, '--auth=trust', '-E', 'UTF8', '--no-sync']);
 
