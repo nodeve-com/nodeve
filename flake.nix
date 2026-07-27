@@ -21,7 +21,7 @@
             lefthook # runs the gate
             vale # prose gate — @nodeve/checks runs it UNGUARDED: absent = commit fails
             uv # linkml runner: uvx --from linkml gen-json-schema / gen-typescript / python ddl.py
-            postgresql # check:db:pg — throwaway cluster proving the shipped postgres DDL
+            postgresql_18 # check:db:pg — throwaway cluster proving the shipped postgres DDL. Explicit major: we run 18, and the bare alias drifts with the nixpkgs default
             jq
             yq-go # `yq` — reading/writing the LinkML + data YAML
           ];
