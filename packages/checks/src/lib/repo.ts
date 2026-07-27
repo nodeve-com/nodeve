@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, lstatSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
 
@@ -19,12 +19,22 @@ export function repoRoot(): string {
  * `git ls-files` still lists index-tracked paths deleted from the working tree
  * (an unstaged delete — e.g. a regen dropped a generated file); those are gone
  * on disk, so a working-tree scan skips them rather than crashing on the read.
+ *
+ * Symlinks are dropped, matching the format fixer. A link owns no content — its
+ * target is tracked and in scope on its own — so keeping it would measure the
+ * same bytes twice and report a path whose author can't fix it: `CLAUDE.md` →
+ * `README.md` is one doc over budget, not two.
  */
 export function gitFiles(root: string, globs: string[], ignore: string[] = []): string[] {
 	if (globs.length === 0) return [];
 	const out = execFileSync('git', ['ls-files', ...globs], { cwd: root, encoding: 'utf8' });
 	const drop = globMatcher(ignore);
-	return out.split('\n').filter((f) => f && !drop(f) && existsSync(join(root, f)));
+	return out
+		.split('\n')
+		.filter(
+			(f) =>
+				f && !drop(f) && existsSync(join(root, f)) && !lstatSync(join(root, f)).isSymbolicLink(),
+		);
 }
 
 /**

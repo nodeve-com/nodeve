@@ -71,10 +71,15 @@ const mergeBudget = (base: Budget | undefined, over: Budget | undefined): Budget
  * survivors. The target set is `globs` ∪ every override glob, so a file matched
  * only by an override (page-size's `*+page.svelte`) is still measured. Each
  * override's match set is globbed once, not per file.
+ *
+ * `ignore` filters the override globs too, so it means OUT OF SCOPE rather than
+ * merely out of the default globs. Without that, a broad override (`*README.md`)
+ * silently readmits a tree the repo ignored — the ignore reads as honored and
+ * isn't.
  */
 function resolveTargets(root: string, config: LengthConfig): { path: string; tiers: Tiers }[] {
 	const overrides = (config.overrides ?? []).map((o) => ({
-		match: new Set(gitFiles(root, [o.glob])),
+		match: new Set(gitFiles(root, [o.glob], config.ignore)),
 		tiers: o.tiers,
 	}));
 
@@ -93,7 +98,10 @@ function resolveTargets(root: string, config: LengthConfig): { path: string; tie
 				continue;
 			}
 			const cur: Tiers = tiers ?? {};
-			tiers = { warn: mergeBudget(cur.warn, o.tiers.warn), fail: mergeBudget(cur.fail, o.tiers.fail) };
+			tiers = {
+				warn: mergeBudget(cur.warn, o.tiers.warn),
+				fail: mergeBudget(cur.fail, o.tiers.fail),
+			};
 		}
 		if (tiers) out.push({ path, tiers });
 	}
@@ -120,7 +128,11 @@ function breachesOf(lines: number, tokens: () => number, budget: Budget | undefi
  * takes precedence over `warn`. `only` (lefthook `{staged_files}`) narrows the
  * scan to staged paths when non-empty. Offenders come back sorted worst-first.
  */
-export function measureBudgets(root: string, config: LengthConfig, only: string[] = []): Offender[] {
+export function measureBudgets(
+	root: string,
+	config: LengthConfig,
+	only: string[] = [],
+): Offender[] {
 	const onlySet = only.length > 0 ? new Set(only) : null;
 	const targets = resolveTargets(root, config).filter((t) => !onlySet || onlySet.has(t.path));
 

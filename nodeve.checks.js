@@ -1,5 +1,6 @@
 // nodeve's own check config — dogfoods @nodeve/checks. We have no apps/, so the
-// doc budget guards the READMEs and the source gates scan packages/.
+// source gates scan packages/. The doc budget takes the org default scope (every
+// tracked .md, matching the prose gate) — only the grimoire ignore is ours.
 // helper-collisions runs against the committed `.nodeve/lib-names.json` (remeda +
 // date-fns exports) — regen with `nodeve-build-lib-names` after a bump so a local
 // fn can't quietly reinvent a blessed-lib function.
@@ -9,8 +10,10 @@ const GRIMOIRE = 'packages/grimoire/**';
 
 export default {
 	docTokens: {
-		globs: ['README.md', 'packages/*/README.md'],
-		ignore: [GRIMOIRE],
+		// `ignore` REPLACES the default array, so the org's machine-written entries are
+		// restated here — dropping them would put every CHANGELOG back under a budget
+		// changesets rewrites past on the next release.
+		ignore: [GRIMOIRE, '**/CHANGELOG.md', 'CHANGELOG.md'],
 	},
 	reshape: {
 		ignore: [GRIMOIRE],

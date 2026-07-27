@@ -1,9 +1,10 @@
 /**
  * Commit gate: guarded markdown over its line or token budget.
  *
- * WHY: always-loaded / frequently-linked docs cost tokens and attention, so both
- * dimensions are bounded. Tokenizer is js-tiktoken `o200k_base` — Claude's is
- * unpublished and differs, so this is a stable *proxy* for budgeting, not an
+ * WHY: docs cost tokens and attention, so both dimensions are bounded — over the
+ * SAME scope as the prose gate (every tracked `.md`), so staging a doc means it
+ * conforms. Tokenizer is js-tiktoken `o200k_base` — Claude's is unpublished and
+ * differs, so this is a stable *proxy* for budgeting, not an
  * exact count: good enough to catch bloat, consistent run-to-run. Measure and
  * classify are shared with file-size and page-size in `lib/length.ts`; this check
  * owns the markdown scope, the two-axis default, and `--report` backlog mode.
@@ -14,11 +15,13 @@ import { gradeOffenders, lengthRow, measureBudgets } from '../lib/length.js';
 export const docTokens: Check<'docTokens'> = {
 	name: 'doc-tokens',
 	section: 'docTokens',
-	explain: `Guarded markdown (CLAUDE.md, READMEs, guide/, docs/) has line and token
-budgets so always-loaded docs stay terse. Past the budget, don't trim to the
-edge — split the doc into a directory with an index page plus detail pages, then
-repoint inbound links at the new locations. --report lists the whole backlog
-without failing, so you can work it down over time rather than at commit time.`,
+	explain: `Every tracked markdown file has line and token budgets, so a doc stays
+terse whatever it's named or wherever it sits. CUT FIRST: delete what isn't
+load-bearing, then compress what survives. The goal is fewer tokens overall, and
+splitting adds them — a new file, a link table, and re-stated context — so it
+only pays for an INDEX that grew: move each section out to the page that owns it
+and leave one line per link. Trading a fat doc for a fat doc plus an index is a
+loss. --report lists the whole backlog without failing.`,
 
 	run({ root, cfg, paths, report }) {
 		const offenders = measureBudgets(root, cfg, paths);
@@ -34,7 +37,7 @@ without failing, so you can work it down over time rather than at commit time.`,
 		}
 
 		return gradeOffenders(offenders, {
-			fail: (n) => `${n} markdown file(s) over budget — split into a dir with an index`,
+			fail: (n) => `${n} markdown file(s) over budget — cut words (split only a grown index)`,
 			warn: (n) => `${n} markdown file(s) approaching budget`,
 			pass: 'all docs within budget',
 		});

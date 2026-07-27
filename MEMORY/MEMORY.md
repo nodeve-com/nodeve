@@ -6,6 +6,7 @@
 - [Why pnpm](why-pnpm.md) — pnpm owns everything, Node runs the scripts; NO Bun in this repo (user removed it)
 - [nodeve ecosystem](nodeve-ecosystem.md) — nodeve(pnpm/publish) vs familiar(bun) vs platform(pnpm); @nodeve/config is the shared config source of truth
 - [nodeve checks](nodeve-checks.md) — @nodeve/checks + @nodeve/text: shared lefthook commit-gate checks, config file, and adoption gotchas
+- [doc budget cut don't split](doc-budget-cut-dont-split.md) — over budget = CUT; splitting raises total tokens, so split only a grown index (1500-token target)
 - [nodeve release flow](nodeve-release-flow.md) — CI-driven via release.yml (Changesets + OIDC); a broken package build blocks ALL publishes; new-name bootstrap + npm's 404-lag gotcha
 - [run via pnpm scripts](run-via-pnpm-scripts.md) — verify with `pnpm test`/`pnpm typecheck`/`pnpm generate`, never `bun test`/`bunx tsc` directly
 - [db table naming](db-table-naming.md) — DB tables (and in-memory Maps/dicts) are singular, not plural; confirmed in platform's schema
