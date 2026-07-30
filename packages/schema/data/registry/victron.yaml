@@ -1,0 +1,5 @@
+content:
+  en: { title: Victron Energy documentation }
+  pt: { title: Documentação Victron Energy }
+node: { url: 'https://www.victronenergy.com/' }
+publisher: victron

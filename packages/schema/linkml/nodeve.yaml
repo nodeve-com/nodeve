@@ -37,6 +37,7 @@ prefixes:
   ssn: http://www.w3.org/ns/ssn/
   ssn-system: http://www.w3.org/ns/ssn/systems/
   tia-standard: https://tiaonline.org/
+  victron: https://www.victronenergy.com/
   vim: https://jcgm.bipm.org/vim/en/
   wgs84-geo: http://www.w3.org/2003/01/geo/wgs84_pos#
   wikidata: http://www.wikidata.org/entity/
