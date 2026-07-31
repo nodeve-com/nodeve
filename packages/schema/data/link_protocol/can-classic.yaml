@@ -1,0 +1,8 @@
+# The CAN data link — arbitrated frames, 11-bit (2.0A) or 29-bit (2.0B)
+# identifiers, bit-stuffed NRZ, CRC-15. No `bit_rate`: the standard fixes none,
+# so the rate is the bus's — NMEA 2000 runs 250 kbit/s, a fact of NMEA 2000 and
+# not of CAN, and it rides the binding of every box on that bus.
+signalling: [ can-hs ]
+ref: { iso-11898: { term: 11898-1, match: exact }, wikidata: { term: Q728183, match: broad } }
+content: { en: { title: Classical CAN }, pt: { title: CAN clássico } }
+publisher: iso

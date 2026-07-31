@@ -35,13 +35,24 @@ classes:
     slots: [ node, host, protocol_version ]
     slot_usage: { host: { required: true } }
 
-  # One service surface a node OFFERS. It binds a NIC of that node (the
-  # inverter's modbus-tcp on eth0), or none — a peer reached by name resolves
-  # through its Endpoint instead. The host is never here: one name, one row.
+  # One service surface a node OFFERS — a surface something DIALS at an address:
+  # IP, or a unix socket beside it. That is the whole test, and modbus_tcp passes
+  # it for the same reason http does. A surface with no address, opened on a wire
+  # instead (Modbus-RTU, VE.Direct), is a LinkBinding — link.yaml.
+  #
+  # It binds a NIC of that node (the inverter's modbus-tcp on eth0), or none — a
+  # peer reached by name resolves through its Endpoint instead. The host is never
+  # here: one name, one row.
+  #
+  # A surface that carries DATA names the decode dictionary it speaks
+  # (`pdu_catalog`) and binds that dictionary's keys to this device's intervals
+  # (`mappings`). The protocol and the dictionary are two columns because they
+  # vary apart: every FoxESS and Chint box speaks modbus_tcp over its own
+  # catalog, while one VE.Direct catalog serves every Victron device.
   ServiceBinding:
     title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
-    slots: [ node, port, service_protocol, network_interface ]
+    slots: [ node, port, service_protocol, network_interface, pdu_catalog, mappings ]
     slot_usage: { service_protocol: { required: true } }
 slots:
   fqdn:

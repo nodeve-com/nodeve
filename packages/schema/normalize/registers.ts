@@ -19,7 +19,7 @@ export function die(trail: string, msg: string): never {
 	throw new Error(`${trail}: ${msg}`);
 }
 
-const loadDir = (dir: string): Record<string, Doc> =>
+export const loadDir = (dir: string): Record<string, Doc> =>
 	Object.fromEntries(
 		yamlNames(abs(`data/${dir}`)).map((f) => [
 			basename(f, '.yaml'),

@@ -2,6 +2,7 @@
 # (part_set: three-phase / split-phase); the type stays phase-agnostic.
 facet:
   product: { cardinality: single, required: true }
+  link_binding: { cardinality: child } # read over a wire, not dialed
   register_map: { cardinality: reference } # shared family map → NodeEdge
   point:
     facet: feature_of_interest

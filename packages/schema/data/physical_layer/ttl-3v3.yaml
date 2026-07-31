@@ -1,0 +1,4 @@
+ref: { jedec-standard: { term: JESD8C.01, match: exact } }
+content:
+  en: { title: 3.3 V LVTTL serial (logic-level UART) }
+  pt: { title: 'Serial LVTTL 3,3 V (UART em nível lógico)' }

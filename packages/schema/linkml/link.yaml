@@ -1,0 +1,118 @@
+id: https://nodeve.com/schema/lib/link
+name: link
+default_prefix: nodeve
+default_range: string
+classes:
+  # ── the wire, BELOW any service. A link is OPENED, not dialed: no address, no
+  # port, no request, so nothing here binds a NIC or resolves a host. Modbus-RTU
+  # and VE.Direct land here; modbus_tcp and http stay service bindings. ──
+
+  # A signalling standard as a ROW, not an enum value: termination, bias, node
+  # count and segment length are facts of RS-485 itself, identical on every box
+  # that speaks it, so they attach here once — never a column per device.
+  PhysicalLayer:
+    title: Physical layer
+    annotations: { sql_table: physical_layer }
+    description: One electrical signalling standard a link rides — the level, the pair, the drive.
+    slots: [ node, refs ]
+
+  # The framing over that layer. It is a row for the same reason: the layer set
+  # it permits is many-to-many (VE.Direct auto-adapts across 3v3 and 5v), and a
+  # mandated rate is the protocol's fact, not each box's.
+  LinkProtocol:
+    title: Link protocol
+    annotations: { sql_table: link_protocol }
+    description: How bytes delimit into frames on a link — the publisher's framing, the layers it may ride, and the rate it fixes if it fixes one.
+    slots: [ node, publisher, signallings, bit_rate, refs ]
+    slot_usage: { publisher: { required: true } }
+
+  # One layer a protocol MAY ride. Its own row because the relation is
+  # many-to-many both ways: RS-485 carries RTU and PROFIBUS, RTU runs on three
+  # layers, and a device that auto-adapts pins none of them.
+  Signalling:
+    title: Signalling
+    annotations: { sql_table: signalling, keyed_by: physical_layer }
+    description: One physical layer a link protocol is defined over.
+    slots: [ node, physical_layer ]
+    slot_usage: { physical_layer: { required: true } }
+
+  # What a box OFFERS on a wire — the link twin of ServiceBinding. `physical_layer`
+  # is absent when the protocol permits several and the box adapts; `bit_rate` and
+  # the character frame are absent when the protocol fixes them.
+  LinkBinding:
+    title: Link binding
+    annotations: { sql_table: link_binding, keyed_by: slug }
+    description: A link surface a node offers — its framing, the layer and line settings it pins, and the dictionary its frames carry.
+    slots:
+      - node
+      - link_protocol
+      - physical_layer
+      - bit_rate
+      - data_bits
+      - parity
+      - stop_bits
+      - pdu_catalog
+      - mappings
+    slot_usage: { link_protocol: { required: true } }
+slots:
+  bit_rate:
+    range: integer
+    title: Bit rate
+    exact_mappings: [ wikidata:Q194158 ]
+    close_mappings: [ wikidata:Q192027 ]
+    description: 'line rate in bits per second — on a protocol the ONE value it mandates (VE.Direct 19200), on a binding the value this box is set to (9600)'
+    annotations: { camel: bitRate }
+  data_bits:
+    range: integer
+    title: Data bits
+    related_mappings: [ wikidata:Q3316326 ]
+    description: 'bits per character of the UART frame (8 for RTU and VE.Direct)'
+    annotations: { camel: dataBits }
+  parity:
+    range: Parity
+    title: Parity
+    related_mappings: [ wikidata:Q625502 ]
+    description: 'parity bit of the UART frame (none / even / odd)'
+  stop_bits:
+    range: integer
+    title: Stop bits
+    related_mappings: [ wikidata:Q3316326 ]
+    description: 'stop bits of the UART frame (1 or 2)'
+    annotations: { camel: stopBits }
+  link_protocol:
+    range: LinkProtocol
+    title: Link protocol
+    related_mappings: [ dcterms:conformsTo ]
+    description: 'FK — the framing this link speaks'
+    annotations: { camel: linkProtocol }
+  physical_layer:
+    range: PhysicalLayer
+    title: Physical layer
+    exact_mappings: [ wikidata:Q192727 ]
+    description: 'FK — the ONE layer this link pins; absent when its protocol permits several and the box adapts to whichever it is wired to'
+    annotations: { camel: physicalLayer }
+  signallings:
+    range: Signalling
+    multivalued: true
+    inlined_as_list: true
+    title: Signalling
+    related_mappings: [ schema:hasPart ]
+    description: 'the physical layers this protocol is defined over — several when it adapts, one when the standard names one'
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
+enums:
+  Parity:
+    title: Parity
+    permissible_values:
+      none:
+        title: No parity
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Sem paridade } } } }
+      even:
+        title: Even
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Par } } } }
+      odd:
+        title: Odd
+        related_mappings: [ wikidata:Q625502 ]
+        annotations: { i18n: { value: { title: { pt: Ímpar } } } }

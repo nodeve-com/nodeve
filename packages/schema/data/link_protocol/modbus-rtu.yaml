@@ -1,0 +1,7 @@
+# Modbus over a serial line — binary frames, 3.5-character silence between them.
+# No `bit_rate`: the standard fixes none, so the rate is the installed box's and
+# rides its binding.
+signalling: [ rs485, rs422, rs232 ]
+ref: { modbus-org: { term: Modbus-RTU, match: exact } }
+content: { en: { title: Modbus RTU }, pt: { title: Modbus RTU } }
+publisher: modbus-organization

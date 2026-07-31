@@ -1,0 +1,4 @@
+ref: { iso-11898: { term: 11898-2, match: exact } }
+content:
+  en: { title: CAN high-speed (differential) }
+  pt: { title: CAN alta velocidade (diferencial) }

@@ -1,0 +1,2 @@
+ref: { tia-standard: { term: 232-F, match: exact } }
+content: { en: { title: RS-232 }, pt: { title: RS-232 } }

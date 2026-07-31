@@ -1,0 +1,2 @@
+ref: { tia-standard: { term: 422-B, match: exact } }
+content: { en: { title: RS-422 }, pt: { title: RS-422 } }

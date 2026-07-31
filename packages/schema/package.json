@@ -23,6 +23,7 @@
 		"data/feature_type",
 		"data/node_type",
 		"data/part_set",
+		"data/pdu_catalog",
 		"gen/catalog.json",
 		"gen/catalog.schema.json",
 		"gen/catalog.camel.schema.json",

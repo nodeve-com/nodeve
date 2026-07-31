@@ -1,0 +1,9 @@
+# Marine talker sentences — `$`…`*hh` CRLF ASCII, one talker to many listeners,
+# transmitted on the talker's own schedule. EIA-422 by the standard; listeners
+# take RS-232 levels and receiver modules emit bare TTL, so the layer is the
+# installation's, not the protocol's.
+signalling: [ rs422, rs232 ]
+bit_rate: 4800
+ref: { wikidata: { term: Q536775, match: exact } }
+content: { en: { title: NMEA 0183 }, pt: { title: NMEA 0183 } }
+publisher: nmea

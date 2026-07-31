@@ -1,0 +1,2 @@
+ref: { tia-standard: { term: 485-A, match: exact } }
+content: { en: { title: RS-485 }, pt: { title: RS-485 } }

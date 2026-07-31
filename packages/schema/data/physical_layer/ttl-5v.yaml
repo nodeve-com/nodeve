@@ -1,0 +1,4 @@
+ref: { jedec-standard: { term: JESD8, match: exact } }
+content:
+  en: { title: 5 V TTL serial (logic-level UART) }
+  pt: { title: Serial TTL 5 V (UART em nível lógico) }

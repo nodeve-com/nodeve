@@ -2,8 +2,8 @@
 # here — the charge controller carries only telemetry, so each quantity is a
 # lone unnamed `_` interval (a bare `measurement` facet marks it
 # measurable; resolution stays on the decode side, not fabricated here). The
-# VE.Direct fields (vedirect.yaml) link to these: V/I → battery, VPV/PPV →
-# pv-tracker part 1.
+# The mappings in service.yaml land here: V/I → battery, VPV/PPV → pv-tracker
+# part 1.
 feature_of_interest:
   dc-port:
     # Battery DC-output port — V → voltage, I → electric-current.

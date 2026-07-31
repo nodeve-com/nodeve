@@ -25,6 +25,7 @@ import {
 	type Doc,
 	type WalkState,
 } from './registers.ts';
+import { bindings as bindingRows } from './decode.ts';
 import { ValueContracts } from './values.ts';
 import { bands, type FeatureCtx } from './intervals.ts';
 
@@ -77,24 +78,29 @@ class DeviceWalk implements WalkState {
 	walk(): DeviceResult {
 		let featureBlock: Doc = {};
 		let registerBlock: unknown;
-		// facets whose class carries an `interval` slot read a measurand — their
-		// `target:` sugar resolves against the intervals the feature walk populates,
-		// so they wait for it. Schema-driven, not a per-class branch.
+		// Both wait for the feature walk, which populates the intervals their
+		// `mapping:`/`target:` sugar resolves against. Which keys they are is the
+		// schema's: a class carrying `mappings` binds a dictionary (dialed as a
+		// service, opened as a link), one carrying `interval` reads a measurand.
+		const bindings: { table: string; cls: string; block: unknown; trail: string }[] = [];
 		const deferred: [string, unknown][] = [];
 		for (const [key, value] of Object.entries(this.doc)) {
 			const cls = classByTable[key];
 			if (cls === 'FeatureOfInterest')
 				featureBlock = isMap(value) ? value : die(`${this.slug}.${key}`, 'expected feature types');
 			else if (cls === 'RegisterMap') registerBlock = value;
+			else if (cls && classByName[cls]?.slots?.includes('mappings'))
+				bindings.push({ table: key, cls, block: value, trail: `${this.slug}.${key}` });
 			else if (cls && classByName[cls]?.slots?.includes('interval')) deferred.push([key, value]);
 			else this.plainKey(key, value);
 		}
-		siblingRefs({ slug: this.slug, node: this.node }, this.model, this.doc);
 		for (const [ftSlug, roleMap] of Object.entries(featureBlock))
 			this.featureType(String(ftSlug), roleMap);
 		if (registerBlock !== undefined)
 			this.registerMapDoc = registerMap(this, registerBlock, `${this.slug}.register_map`);
+		for (const b of bindings) this.model[b.table] = bindingRows(this, b.cls, b);
 		for (const [key, value] of deferred) this.plainKey(key, value);
+		siblingRefs({ slug: this.slug, node: this.node }, this.model, this.doc);
 		const channels = this.values.channelRows(`${this.slug}.channel`);
 		if (channels) this.model.channel = channels;
 		return { node: this.node, model: this.model, registerMap: this.registerMapDoc };

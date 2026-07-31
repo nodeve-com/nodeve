@@ -1,0 +1,2 @@
+ref: { iec-60381: { term: 60381-2, match: exact } }
+content: { en: { title: 0-10 V analog }, pt: { title: Tensão analógica 0-10 V } }

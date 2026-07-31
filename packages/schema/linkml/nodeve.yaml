@@ -55,8 +55,10 @@ imports:
   - physical
   - refrigerant
   - network
+  - link
+  - transform
   - modbus
-  - vedirect
+  - decode
   - emit
   - adapter
   - inventory
@@ -86,13 +88,20 @@ classes:
       part_sets: { range: PartSet, multivalued: true, inlined_as_list: true }
       quantity_kinds: { range: QuantityKind, multivalued: true, inlined_as_list: true }
       refrigerants: { range: Refrigerant, multivalued: true, inlined_as_list: true }
+      # the wire vocabularies — a signalling standard and a framing over it, rows
+      # because their attributes are the standard's, not each device's
+      physical_layers: { range: PhysicalLayer, multivalued: true, inlined_as_list: true }
+      link_protocols: { range: LinkProtocol, multivalued: true, inlined_as_list: true }
       feature_types: { range: FeatureType, multivalued: true, inlined_as_list: true }
       node_types: { range: NodeType, multivalued: true, inlined_as_list: true }
       # device facets — each a top-level row-set, tied to its device node by the
       # node.parent trail (owned children) or a node-PK-shared co-row (product,
       # physical). Populated by the data/subject_node/ device walk, not a data dir.
+      transforms: { range: Transform, multivalued: true, inlined_as_list: true }
       register_maps: { range: RegisterMap, multivalued: true, inlined_as_list: true }
-      vedirect_fields: { range: VedirectField, multivalued: true, inlined_as_list: true }
+      # the decode dictionaries devices reference — a publisher's rows, no device
+      # in them, so a top-level row-set with its own data dir (unlike a facet)
+      pdu_catalogs: { range: PduCatalog, multivalued: true, inlined_as_list: true }
       products: { range: Product, multivalued: true, inlined_as_list: true }
       physicals: { range: Physical, multivalued: true, inlined_as_list: true }
       locations: { range: Location, multivalued: true, inlined_as_list: true }
@@ -104,6 +113,7 @@ classes:
       ip_bindings: { range: IpBinding, multivalued: true, inlined_as_list: true }
       endpoints: { range: Endpoint, multivalued: true, inlined_as_list: true }
       service_bindings: { range: ServiceBinding, multivalued: true, inlined_as_list: true }
+      link_bindings: { range: LinkBinding, multivalued: true, inlined_as_list: true }
       # site facets — the deployment shape; instances live in deploying repos
       # (sites/<name>), so these row-sets are empty in the base catalog.
       emits: { range: Emit, multivalued: true, inlined_as_list: true }

@@ -1,0 +1,2 @@
+ref: { iec-60381: { term: 60381-1, match: exact } }
+content: { en: { title: 4-20 mA current loop }, pt: { title: Laço de corrente 4-20 mA } }

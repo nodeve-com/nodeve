@@ -1,0 +1,9 @@
+# Victron's serial text protocol: unsolicited blocks, no request, no address.
+# The rate is the protocol's — every VE.Direct port runs 19200 8N1 — but the
+# level is NOT: a port drives 3v3 or 5v depending on what it is wired to, and
+# the box adapts, so both layers are permitted and no binding pins one.
+signalling: [ ttl-3v3, ttl-5v ]
+bit_rate: 19200
+ref: { victron: { term: 'live/vedirect_protocol:faq', match: exact } }
+content: { en: { title: VE.Direct }, pt: { title: VE.Direct } }
+publisher: victron

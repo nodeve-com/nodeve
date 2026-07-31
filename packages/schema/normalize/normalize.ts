@@ -8,9 +8,10 @@
 // Filename is the slug; node paths derive from the trail; every row carries its
 // source trail until serialization.
 import { basename, dirname } from 'node:path';
+import { slugify } from '@nodeve/text/slugify';
 import { readYaml } from '../src/io.ts';
 import { classByName, classByTable, expandFk as expand, ownerSlotFor, seg, SLUG } from './model.ts';
-import { isMap } from './registers.ts';
+import { die, isMap, type Doc } from './registers.ts';
 
 export type Row = Record<string, unknown> & { $trail: string; $slot?: string };
 
@@ -23,6 +24,19 @@ const nodeAttrSlots = new Set(
 );
 export const nodeAttrMap = new Map<string, Record<string, unknown>>();
 
+/** a child whose whole content IS its key (signalling: [ttl-3v3, ttl-5v]) may be
+ * authored as the bare list — the rows the map form with empty bodies mints */
+function authoredKeyed(value: unknown, keyedBy: string, trail: string): Doc {
+	const map = Array.isArray(value)
+		? Object.fromEntries(
+				value.map((k) =>
+					typeof k === 'string' ? [k, {}] : die(trail, `expected a list of ${keyedBy} slugs`),
+				),
+			)
+		: value;
+	return isMap(map) ? map : die(trail, `expected a map keyed by ${keyedBy}`);
+}
+
 /** one keyed child map → its rows (content: {en: …} → Content rows) */
 function keyedChildren(
 	childClass: string,
@@ -34,10 +48,10 @@ function keyedChildren(
 	if (!child) throw new Error(`${trail}: no class ${childClass}`);
 	const keyedBy = child.annotations?.keyed_by;
 	if (!keyedBy) throw new Error(`${trail}: ${childClass} has no keyed_by annotation`);
-	if (!isMap(value)) throw new Error(`${trail}: expected a map keyed by ${keyedBy}`);
+	const keyed = authoredKeyed(value, keyedBy, trail);
 	const ordered = child.slots?.includes('ordinal');
 	const keyDefault = child.annotations?.key_default as string | undefined; // slot ← key when unauthored
-	return Object.entries(value).map(([k, payload], i) => {
+	return Object.entries(keyed).map(([k, payload], i) => {
 		if (!payload || typeof payload !== 'object' || Array.isArray(payload))
 			throw new Error(`${trail}.${k}: expected a map of columns`);
 		const expanded = Object.fromEntries(
@@ -52,7 +66,10 @@ function keyedChildren(
 		return {
 			...expanded,
 			...(ordered ? { ordinal: i + 1 } : {}),
-			node: `${node}/${seg(k)}`,
+			// the map key is the raw id column; its node segment is slugified —
+			// idempotent on a key that already is a slug, kebabs a wire label
+			// (V, SER#), which no permalink survives verbatim
+			node: `${node}/${slugify(k)}`,
 			...(child.slots?.includes('about') ? { about: node } : {}),
 			...(child.slots?.includes(keyedBy) ? { [keyedBy]: expand(keyedBy, k, `${trail}.${k}`) } : {}),
 			$trail: `${trail}.${k}`,

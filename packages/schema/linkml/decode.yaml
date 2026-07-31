@@ -1,0 +1,95 @@
+id: https://nodeve.com/schema/lib/decode
+name: decode
+default_prefix: nodeve
+default_range: string
+classes:
+  # ── the DEFINITION half of decode, out of every device. What a publisher fixes
+  # for a protocol — the key, its encoding, the quantity it reads — is authored
+  # here once and referenced by a service binding (network.yaml). ──
+  PduCatalog:
+    title: PDU catalog
+    annotations: { sql_table: pdu_catalog }
+    description: >-
+      One publisher's decode dictionary — every field it fixes, keyed by the name the wire carries. A device references it and adds nothing to it: `V` reads a voltage on every VE.Direct box Victron ships, so the key, its type and its quantity kind are the publisher's fact, stored once.
+    slots: [ node, publisher, fields ]
+    slot_usage: { publisher: { required: true } }
+
+  PduField:
+    title: Field
+    annotations: { sql_table: pdu_field, keyed_by: key }
+    description: >-
+      One decode row of a catalog — the wire key, how to read the raw scalar (`type`), and what the number means (`transform` arithmetic, `quantity_kind`). Carries NO feature: which port a key reads varies per box, so the attachment rides that device's PointMapping. A key the publisher ships with no measurand behind it yet carries type alone, its name riding `note`.
+    slots: [ node, key, type, transform, quantity_kind, note ]
+    slot_usage: { key: { required: true }, quantity_kind: { required: false } }
+
+  # ── the INSTANCE half: one device, one catalog field, one interval of ITS
+  # feature tree. A key the box lands somewhere gets a row; every other key of
+  # the catalog is still read, and published under its key alone. ──
+  PointMapping:
+    title: Mapping
+    annotations: { sql_table: point_mapping }
+    description: >-
+      One catalog field → the interval of THIS device it reads, plus the `part` naming which instance when the interval is a `*` default. The device half of decode: it says where a measurand lands, never what it means — quantity, feature type and unit all derive from the field and the interval it points at.
+    slots: [ node, field, part, interval ]
+    slot_usage: { field: { required: true }, interval: { required: true } }
+slots:
+  key:
+    range: string
+    required: true
+    title: Wire key
+    exact_mappings: [ schema:name ]
+    description: 'the name a keyed field is addressed by, case-sensitive as the wire spells it (V, VPV, SER#) — the analogue of a register address'
+  type:
+    range: ScalarType
+    title: Field type
+    exact_mappings: [ wikidata:Q190087 ]
+    description: 'what the raw field decodes to; a plain number omits it (default int). A code word (CS/MPPT/ERR) stays int, left undecoded'
+  field:
+    range: PduField
+    title: Field
+    related_mappings: [ schema:isBasedOn ]
+    description: 'FK — the catalog field this mapping lands; the field names the wire, this row names the port'
+  fields:
+    range: PduField
+    multivalued: true
+    inlined_as_list: true
+    title: Fields
+    related_mappings: [ schema:hasPart ]
+  mappings:
+    range: PointMapping
+    multivalued: true
+    inlined_as_list: true
+    title: Mappings
+    related_mappings: [ schema:hasPart ]
+  pdu_catalog:
+    range: PduCatalog
+    title: PDU catalog
+    related_mappings: [ dcterms:conformsTo ]
+    description: 'FK — the decode dictionary this service speaks; its fields are the keys the stream carries'
+    annotations: { camel: pduCatalog }
+  transform:
+    range: Transform
+    title: Transform
+    related_mappings: [ qudt:conversionMultiplier ]
+    description: 'FK — the arithmetic from raw scalar to engineering value; absent ⇒ the raw scalar already is one'
+enums:
+  ScalarType:
+    title: Scalar type
+    description: What a decoded field IS, before any arithmetic — closed grammar, so an enum.
+    permissible_values:
+      int:
+        title: Integer
+        meaning: xsd:integer
+        annotations: { i18n: { value: { title: { pt: Inteiro } } } }
+      hex:
+        title: Hexadecimal
+        meaning: xsd:hexBinary
+        annotations: { i18n: { value: { title: { pt: Hexadecimal } } } }
+      bool:
+        title: Boolean
+        meaning: xsd:boolean
+        annotations: { i18n: { value: { title: { pt: Booleano } } } }
+      string:
+        title: String
+        meaning: xsd:string
+        annotations: { i18n: { value: { title: { pt: Cadeia de caracteres } } } }

@@ -20,7 +20,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | file | is |
 | --- | --- |
 | `linkml/nodeve.yaml` | schema root — prefixes, defaults, import assembly |
-| `linkml/{core,taxonomy,features,product,network,modbus}.yaml` | domain classes with owned slots |
+| `linkml/{core,taxonomy,features,product,network,link,modbus,decode}.yaml` | domain classes with owned slots |
 | `linkml/shared.yaml` | shared slots |
 | `linkml/enums.yaml` | shared closed-grammar enums |
 | `bin/format.ts` | yaml formatting gate (`--check` for precommit) |
@@ -37,6 +37,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `data/subject_node/<node_type>/<slug>/` | authored nested device descriptions (a dir per device, filed under its kind) — real devices, seeds for downstream databases; grows to thousands |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows — normative. `feature_type` + `node_type` are the stencil source (`data2schema`) |
 | `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
+| `data/pdu_catalog/` | a publisher's decode dictionary — the keys every device on that protocol shares |
 | `gen/` | all build output — both DDL dialects, catalog bundle, JSON Schema, TS types, SQLite db, the postgres check cluster. Gitignored |
 | `gen/catalog.schema.json` | the pre-database contract **and** the introspection surface: base classes + stencil, imports resolved, stands alone |
 | `gen/catalog.camel.schema.json` | its camelCase sibling for TS consumers — declared names renamed, `x-key-map` stamped per node, values and `$ref` targets untouched |
@@ -67,4 +68,5 @@ The gate is the package's `check` script, not a root lefthook job: the shared `p
 - [pipeline.md](docs/pipeline.md) — pipeline stages
 - [overlay.md](docs/overlay.md) — node types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
 - [mapping.md](docs/mapping.md) — every grimoire construct → its LinkML landing, plus identity and PK/FK rules.
+- [decode-model.md](docs/decode-model.md) — target shape for reading and writing devices: one Model-of-Points over an ordered parse pipeline.
 - [open.md](docs/open.md) — known gaps and deliberate deferrals (no metaclass, overlapping backref FKs, untested registries, `code` collision risk, …).

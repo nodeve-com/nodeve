@@ -1,0 +1,8 @@
+# The high-speed designation, carrying the same sentences eight times faster —
+# what AIS transponders and multiplexed feeds run. Its own row because the rate
+# is what the designation fixes; wikidata has no separate item for it.
+signalling: [ rs422 ]
+bit_rate: 38400
+ref: { wikidata: { term: Q536775, match: broad } }
+content: { en: { title: NMEA 0183-HS }, pt: { title: NMEA 0183-HS } }
+publisher: nmea

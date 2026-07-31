@@ -12,7 +12,15 @@ classes:
     title: Ingest
     annotations: { sql_table: ingest }
     description: How a site adapter ingests the metered device — its decoder platform, read mode, target device, and host.
-    slots: [ node, platform, ingest_kind, device, host, service_protocol, network_interface ]
+    slots:
+      - node
+      - platform
+      - ingest_kind
+      - device
+      - host
+      - serial_port
+      - service_protocol
+      - network_interface
     slot_usage:
       platform: { required: true }
       ingest_kind: { required: true }
@@ -58,6 +66,12 @@ slots:
     title: Retain
     related_mappings: [ schema:Boolean ]
     description: 'retain the window''s grouped MQTT message — set for slow accumulating windows, clear for fast instantaneous ones'
+  serial_port:
+    range: string
+    title: Serial port
+    exact_mappings: [ wikidata:Q2919255 ]
+    description: 'device path this adapter opens (/dev/ttyUSB0) — the adapter host''s port, not the metered device''s; the RTU analogue of `host`'
+    annotations: { camel: serialPort }
 
 enums:
   IngestKind:
