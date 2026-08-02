@@ -1,0 +1,31 @@
+pdu:
+  - slug: foxess-10016
+    content: { en: { title: Firmware versions } }
+    register_type: input
+    condition: [ h1 ]
+    start: 10016
+    end: 10018
+    field:
+      - { address: 10016, datatype: uint16, note: 'Version: Master' }
+      - { address: 10017, datatype: uint16, note: 'Version: Slave' }
+      - { address: 10018, datatype: uint16, note: 'Version: Manager' }
+  - slug: foxess-30000
+    content: { en: { title: Identity } }
+    start: 30000
+    end: 30018
+    field:
+      - address: 30000
+        type: string
+        length: 16
+        note: Model — ASCII, two chars per register
+      - { address: 30016, datatype: uint16, type: hex, note: 'Version: Master' }
+      - { address: 30017, datatype: uint16, type: hex, note: 'Version: Slave' }
+      - { address: 30018, datatype: uint16, type: hex, note: 'Version: Manager' }
+  - slug: foxess-36001
+    content: { en: { title: Firmware versions } }
+    start: 36001
+    end: 36003
+    field:
+      - { address: 36001, datatype: uint16, type: hex, note: 'Version: Master' }
+      - { address: 36002, datatype: uint16, type: hex, note: 'Version: Slave' }
+      - { address: 36003, datatype: uint16, type: hex, note: 'Version: Manager' }
