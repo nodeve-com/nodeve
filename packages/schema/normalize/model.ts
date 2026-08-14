@@ -17,7 +17,12 @@ export type SlotDef = {
 	title?: string;
 	description?: string;
 	// translations ride the slot: value.<field ∈ {title,lede,body}>.<lang> → Content
-	annotations?: { camel?: string; i18n?: { value?: Record<string, Record<string, string>> } };
+	// in_doc: the FK names a row of the SAME document, resolved against its root
+	annotations?: {
+		camel?: string;
+		in_doc?: boolean;
+		i18n?: { value?: Record<string, Record<string, string>> };
+	};
 };
 
 type Schema = {

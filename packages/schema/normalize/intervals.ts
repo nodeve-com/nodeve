@@ -22,6 +22,8 @@ export type FeatureCtx = {
 	/** the `*` body — a TEMPLATE, not a row. Held until the roster is whole, then
 	 * replayed once per member; `*` never reaches the database. */
 	starred?: Doc;
+	/** each part's own columns, from its `$` — merged onto the roster row */
+	own?: Map<string, Doc>;
 	feature: Doc;
 	list: { intervals: Doc[]; specifications: Doc[]; measurements: Doc[]; filters: Doc[] };
 };

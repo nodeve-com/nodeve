@@ -1,0 +1,12 @@
+# Forks on START: the legacy map places the sequence at 30016, the current one at
+# the catalog's 36001. All three parts are BCD on both branches, which the
+# catalog already says.
+#
+# OPEN — firmware cannot be register-filled here. 30018 carries the manager
+# version on the legacy branch only; from 1.33 it moved to 36003, so the
+# discriminator is unreadable on the branch it selects. foxess_modbus asks the
+# operator for it.
+archetype: foxess-inverter
+variable: { product-family: kh }
+pdu:
+  firmware: { start: [ { when: [ { variable: firmware-legacy, is: true } ], value: 30016 } ] }

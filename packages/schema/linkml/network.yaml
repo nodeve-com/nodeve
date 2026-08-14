@@ -45,14 +45,16 @@ classes:
   # here: one name, one row.
   #
   # A surface that carries DATA names the decode dictionary it speaks
-  # (`pdu_catalog`) and binds that dictionary's keys to this device's intervals
-  # (`mappings`). The protocol and the dictionary are two columns because they
-  # vary apart: every FoxESS and Chint box speaks modbus_tcp over its own
-  # catalog, while one VE.Direct catalog serves every Victron device.
+  # (`pdu_catalog`). Where that port puts the fields is the port's own fact and
+  # rides the binding — a FoxESS H1 reads input registers on its serial port and
+  # holding registers on this one, same fields, two addresses. The protocol and
+  # the dictionary are two columns because they vary apart: every FoxESS and
+  # Chint box speaks modbus_tcp over its own catalog, while one VE.Direct catalog
+  # serves every Victron device.
   ServiceBinding:
     title: Service binding
     annotations: { sql_table: service_binding, keyed_by: slug }
-    slots: [ node, port, service_protocol, network_interface, pdu_catalog, mappings ]
+    slots: [ node, port, service_protocol, network_interface, pdu_catalog, unit_id ]
     slot_usage: { service_protocol: { required: true } }
 slots:
   fqdn:

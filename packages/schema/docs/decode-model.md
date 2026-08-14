@@ -1,8 +1,32 @@
-# Decode model — one Model-of-Points, framing-parameterized
+# Decode model — one Model-of-Points
 
 Think CCSDS SOIS Electronic Data Sheets (SEDS), but easier to author.
 
-Target shape for _reading_ devices. Supersedes the per-device `RegisterMap`/`ModbusRegister` shape and the device-owned `VedirectField` sketch — both make a register captive to one device. A register belongs to no device — whoever publishes the measurand defines it once, and many devices read it.
+Directions for _reading_ and _writing_ to devices. One table set, every protocol. Whoever publishes the measurand defines it once, and many devices reference it.
+
+## Replacing
+
+Eleven classes across three protocols — `ModbusRegister`, `RegisterFlag`, `RegisterRange`, `RegisterMap`, `VedirectField`, and grimoire's six `usbhid_*`
+
+## Replacement
+
+**Adapter** — (injest) - How to connect to device.
+
+**serialization** — How messages are serialized (if any). framing, encoding, error_detection, application_protocol
+
+**Model** — framing, encoding, wire config, declared once. `RegisterMap`; `usbhid_link`'s endpoints, transfer and timeout; `usbhid_numeric.byte_order`.
+
+**Message** — one bounded run of octets carrying data points.
+
+**Point Definition** — bytes in, scalar out. `ModbusRegister`, `VedirectField`, `usbhid_field` / `usbhid_fields`, `usbhid_params`. `RegisterFlag` too: `extract` cuts a flag word into one point per bit, at bit-range addresses, so the child table has nothing left to hold.
+
+**Transform** — the scale / decimals half of every one of those, plus `usbhid_numeric.scale_overrides` (scale by reference) and `usbhid_params.sentinel`.
+
+**Binding** — the interval / channel half of `ModbusRegister`, `VedirectField` and `usbhid_field`.
+
+They were already copies, by their authors' own account: `usbhid_field` calls itself "the USB-HID analogue of modbus_registers", and the `usbhid` archetype "mirrors the modbus medium".
+
+Two of them settle a question the old shape left open. `usbhid_config` + `usbhid_params` are a **write** plane — get and set a named parameter by index, its own magic byte, riding the same endpoints as the diag read. So [Encode](#encode) is not a separate mechanism: it is a second message whose points carry a write access mode.
 
 ## Stages
 
@@ -25,61 +49,81 @@ A **point** is one reading — one value pulled from one message. A **point defi
 
 ## Model
 
-A **Model** is a named, versioned block of point definitions published by an organization: `sunspec:160`, a FoxESS Modbus block, Victron's VE.Direct field set. Same shape — they differ only in publisher and address type. Standard vs proprietary is just who published it; SunSpec's own 64xxx vendor range sits beside its standard models.
+A **Model** is a named data_dictionary, versioned block of point definitions published by an organization: `sunspec:160`, a FoxESS Modbus block, Victron's VE.Direct field set.
 
-**Framing** is an attribute of the model, and a parameter — never a structural fork. It fixes how to read a wire key and which parse steps a message runs by default. Both are data. No table, column or class varies by framing.
-
-| framing   | wire key looks like | default steps                             |
-| --------- | ------------------- | ----------------------------------------- |
-| modbus    | `39248`             | frame, extract                            |
-| vedirect  | `V`, `SER#`         | frame, extract                            |
-| nmea0183  | `3` (field ordinal) | frame, extract                            |
-| ais       | `38-45` (bit range) | reassemble, codec, discriminate, extract  |
-| nmea2000  | `16-23` (bit range) | reassemble, header, discriminate, extract |
-| can       | `0x1F2:8-15`        | frame, discriminate, extract              |
-| hid       | `0x05:0x30`         | frame, extract                            |
-| json/mqtt | `battery.voltage`   | frame, extract                            |
-
-Wire-level config rides the **model**, declared once: register type, word order, endianness. `RegisterMap` already carries `register_type` and `word_order` exactly there. A point never restates them.
+Wire-level config rides the **model**, declared once: register type, word order, endianness, serial line settings, USB endpoints and timeouts. `RegisterMap` already carries `register_type` and `word_order` exactly there. A point never restates them.
 
 ## Message
 
-A **Message** groups points carried together, plus the parse pipeline that turns its bytes into keyed scalars. Also the query unit: one request reads one message.
+A **Message** is one bounded run of octets carrying a set of points, plus the parse pipeline that turns those octets into keyed scalars. What bounds it is the `frame` step. Nothing more is definitional.
 
+- node, model FK, slug
 - ordered parse steps
 - ordered point positions
 
+**Most messages are never requested.** CAN nodes, NMEA 0183 talkers, AIS transponders and VE.Direct devices all transmit on their own schedule; nobody asks. Modbus and USB-HID are the exceptions, not the pattern — treating "one request reads one message" as the definition builds a master/slave assumption into the core construct, which is the protocol-shaped assumption this model exists to refuse.
+
+So solicitation is an **attribute** of a message, not its nature:
+
+|  | reader | message identity comes from |
+| --- | --- | --- |
+| **solicited** | picks the message and sends a request | the request — you know what you asked for |
+| **unsolicited** | takes what arrives | the octets themselves — `header` / `discriminate` |
+
+A solicited message carries its request on the `frame` step: modbus's function + start + quantity, HID's poll command + response length. An unsolicited one carries no request, and the burden moves to identification — a CAN frame id, an NMEA 0183 formatter tag, an AIS message type in the first 6 bits. Both steps already exist in the table below; this is what they are for.
+
+Three witnesses, three protocols, one construct:
+
+| protocol | one message is           | bounded by                               | solicited |
+| -------- | ------------------------ | ---------------------------------------- | --------- |
+| modbus   | one 0x03/0x04 range read | the request's start + quantity (≤125)    | yes       |
+| usbhid   | one poll response        | response length, leading magic byte      | yes       |
+| vedirect | one text block           | the block's terminating `Checksum` field | no        |
+
+VE.Direct proves the split. Its message is the **block**, not the line — the newline delimits a field inside it, and the block is what arrives as a unit and what the checksum covers. It arrives unbidden roughly once a second, so it has a frame rule and no request whatsoever. Treating the line as the message loses the only frame check the protocol has; treating the block as a query unit invents a request that was never sent.
+
+A model whose messages are all unsolicited never issues a read. Its device binding declares a listener, not a poll cadence.
+
+A modbus point's address becomes **message-relative** — base plus offset. `ModbusRegister.address` is absolute today, so this is a real change, and every downstream address derives from it.
+
+### Where `individual_read` and `invalid` go
+
+Nowhere. They exist only because no message row exists.
+
+Modbus is solicited, so its message boundary is a decision someone must make — and today it is made downstream: familiar's `scripts/generate-telegraf.ts:159` greedily packs registers into spans under a hand-set `MAX_SPAN`, with `RegisterRange` correcting it from the side —
+
+- `individual_read` says _do not pack these_. Under Message it is just a message of one point.
+- `invalid` says _do not bridge this gap_. Under Message nothing bridges: a message covers a region or it does not. The reason rides `note`.
+
+`invalid` is authored on the foxess map and read by **nothing** — `packages/site/registers.ts:74` filters `individual_read` alone. A fact with no consumer is what a missing construct looks like.
+
+Cost, stated: authored messages replace a derived grouping, so a reverse-engineered map gains real authoring work — foxess's 113 registers become explicit spans. A published model ships its own messages and gains none.
+
 ### Parse steps
 
-A message declares which steps it runs, in order. Only `extract` is mandatory.
+A message declares which steps it runs, in order. Only `extract` is mandatory. Each step is a row carrying its own parameters.
 
 | step | does | cases |
 | --- | --- | --- |
-| frame | find message boundaries | VE.Direct newline, NMEA 0183 `$`…`*hh` CRLF, Modbus span, CAN frame |
+| frame | find message boundaries; carry the request when there is one | modbus span, HID poll exchange, VE.Direct block, NMEA 0183 `$`…`*hh` CRLF |
 | reassemble | join fragments into one byte source | AIS multi-fragment, NMEA 2000 fast-packet |
 | codec | substitute bytes — not positions | AIS 6-bit de-armor, base64, zlib, COBS |
 | header | pull routing and identity ahead of the fields | NMEA 2000 29-bit CAN ID → priority, source, destination, PGN |
 | discriminate | select which layout applies | PGN, AIS message type, CAN mux |
-| extract | positioned and bit-sized fields → scalars | every framing |
+| extract | positioned and bit-sized fields → scalars | every protocol |
 | recurse | a field's bytes re-enter as a nested message | AIS payload inside an `!AIVDM` field |
 
 NMEA 2000 runs four steps before a single field resolves. Its 29-bit identifier splits into priority (3 bits), reserved + data page (2), PDU format (8), PDU specific (8) and source address (8). A PDU format under 240 makes PDU specific a destination address; at 240 and above it folds into the PGN instead. The PGN then picks the layout, and fast-packet payloads reassemble first.
 
 ### Where Kaitai draws the line
 
-No dependency — Kaitai Struct serves as the reference for what belongs at the binary layer. It covers `extract`, `discriminate` and `recurse` natively: `bN` bit-sized integers for bitfields, `size` + `process` + `type` to parse a codec'd substream as a nested type. It reaches neither `frame` nor `reassemble`, which act on the byte stream before a Kaitai stream exists. AIS de-armoring needs a custom processor too, since `process` ships only simple built-ins like `xor`.
+Kaitai Struct serves as the reference for what belongs at the binary layer. It covers `extract`, `discriminate` and `recurse` natively: `bN` bit-sized integers for bitfields, `size` + `process` + `type` to parse a codec'd substream as a nested type. It reaches neither `frame` nor `reassemble`, which act on the byte stream before a Kaitai stream exists. AIS de-armoring needs a custom processor too, since `process` ships only simple built-ins like `xor`.
 
-The split earns its keep — whatever Kaitai cannot express, our pipeline must own.
+Kaitai has no scale, no offset, no unit: it extracts scalars and stops. Common SunSpec practice applies the scale factor in the same pass as the read; we split them. Extraction emits a raw integer, and Transform applies SF afterwards, once every sibling has landed.
 
-Its real value is what it **refuses**. Kaitai has no scale, no offset, no unit: it extracts scalars and stops. Common SunSpec practice applies the scale factor in the same pass as the read; we split them on purpose. Extraction emits a raw integer, and Transform applies SF afterwards, once every sibling has landed.
+**Message group** — sibling messages linked by a shared transaction, a reassembly rule, or a semantic grouping.
 
-### ASCII line framings
-
-They share this shape and differ only in boundary rule and address type. VE.Direct delimits on newline and keys points by label. NMEA 0183 runs `$` or `!` to a `*hh` checksum and CRLF, addressing points by field ordinal after the talker + formatter tag. Neither earns a special case.
-
-**Message group** — sibling messages linked by a shared read transaction, a reassembly rule, or a semantic grouping.
-
-Two-level address falls out: locate the message (PGN / sentence / model base), then the point within it. Nesting adds a level per hop.
+Two-level address falls out: locate the message (PGN / sentence / span), then the point within it. Nesting adds a level per hop.
 
 ### Nested message — the `recurse` step
 
@@ -99,8 +143,8 @@ AIS then addresses the de-armored bitstream by bit offset and length, and packs 
 The binary layer. Bytes in, decoded scalar out.
 
 - PK
-- key — the exact wire key (below)
-- message FK + offset
+- message FK
+- **address** — positional or named, exactly one (below)
 - role — value, length, count, discriminator
 - datatype
 - length — fixed bits, or a reference resolved at runtime or by discovery
@@ -109,11 +153,22 @@ The binary layer. Bytes in, decoded scalar out.
 
 Positional composite assembly is extraction — hi/lo across two registers, a length-bounded string. Composite needing arithmetic — value + exponent — is Transform.
 
+### Two addressing modes
+
+A point is addressed one of two ways:
+
+- **positional** — `offset` + `length` into the message. Modbus register offset, HID byte offset, AIS and NMEA 2000 bit ranges, NMEA 0183 field ordinal.
+- **named** — a `key` the message carries inline. VE.Direct label (`V`, `SER#`), JSON path (`battery.voltage`), HID Report Descriptor usage (`0x05:0x30`).
+
+The axis cuts **across** protocols, not along them. JSON has both — object key and array index. HID has both — a standards-compliant device names its fields through a Report Descriptor, while the M4-ATX's vendor diagnostics protocol is bare byte offsets. So a protocol cannot own the choice, and a point definition carries `offset`+`length` **or** `key`, exactly one, enforced at normalize — the same either/or shape as interval/channel.
+
 ### A point definition is a node
 
 Settled: every point definition gets a `node` row. `ModbusRegister` already carries one, minted at `node:register-map/<map>/<address>` — model-scoped, never device-scoped.
 
-Its **slug** and its **wire key** are two columns, not one. The slug grammar is `^[a-z0-9]+(-[a-z0-9]+)*$`, so `39248` passes while `V`, `VPV` and `SER#` fail — and `#` terminates a URL path, which no permalink survives. So the node keys on a slugified segment, and `key` holds the wire key verbatim, unique per `(model, key)`. Extraction addresses `key`; identity addresses the slug.
+Slug and wire key are two columns only for a **named** point. The slug grammar is `^[a-z0-9]+(-[a-z0-9]+)*$`, and `V`, `VPV` and `SER#` all fail it — `#` terminates a URL path, which no permalink survives. So a named point keys its node on a slugified segment while `key` holds the wire key verbatim, unique per `(model, key)`; extraction addresses `key`, identity the slug.
+
+A positional point needs no such split. Its offset is already slug-safe, so the offset _is_ the segment.
 
 ## Transform
 
@@ -144,6 +199,8 @@ A point's resolution can need another point's value. That happens at both layers
 - validity / status gate
 - exponent of a value+exponent pair
 
+Two protocols reach this independently, which is why it is a construct and not a SunSpec accommodation. grimoire's `usbhid_link.firmware` reads a firmware version at an offset **plus a nibble**, selects a scale profile, and each field then picks its scale via `scale_overrides[<profile>]` — scale-by-reference, arrived at from USB-HID with no knowledge of SunSpec. The nibble is a sub-byte extract, Kaitai `bN`.
+
 Dependency row: subject point FK, modifier point FK, layer.
 
 ## Binding — interval or channel
@@ -167,6 +224,8 @@ flag: [standby, null, on-grid] # index = bit, null = unidentified
 
 Those labels mint the channel's members — authored once, at the wire. A channel hangs off the device root rather than a sub-feature, because a run mode aggregates across PV, grid, BMS and temperature; no one feature owns it.
 
+`RegisterFlag` does not survive this. A flag word's bits become their own point definitions at bit-range addresses, per `extract` — a child table only modbus has is the per-protocol fork this model exists to refuse.
+
 ## Mapping
 
 The semantic layer already exists — the feature-type / interval tree ([facets.md](facets.md)). Mapping **points into** it and never redefines it. SunSpec model 160 ≈ our `pv-tracker` feature type; that is what the `sunspec: 160` crosswalk ref was gesturing at.
@@ -180,25 +239,32 @@ The semantic layer already exists — the feature-type / interval tree ([facets.
 
 A device authors no point definitions. It:
 
-1. declares the framing(s) it speaks and its transport coordinates (unit id, serial port, CAN interface),
+1. declares the protocol(s) it speaks and its transport coordinates (unit id, serial port, CAN interface, USB endpoints),
 2. references the models it implements at their base (Modbus base address, HID report id; VE.Direct and JSON need none — the key is absolute),
 3. binds each model instance → a feature of its interval tree. Multi-instance models (three MPPTs) bind per instance,
 4. **expands** each reference into one point instance per model point — FK to the definition, at a determined id.
 
 Step 4 generates rather than authors. Referencing `sunspec:160` at a base mints the whole slot set at `<device>/<model-ref>/<point-slug>`, so a consumer knows the id before the device ever answers. Same mechanic the feature roster already uses: `count: 3` mints parts 1…3, and `*` expands over the roster. A device states what it offers; the slots follow.
 
-Step 4 is also what makes a model shareable. Today `registerRow` mints the register node under the map (`register-map/<map>/<address>`) while `measurandLink` resolves its interval against the **device** walk, so a nominally shared map carries one device's interval FKs. Latent, not active: each map has exactly one device today, so `walkDevices` dedup has never fired across two. A second device on an existing map slug triggers it, and the dedup keeps whichever device walked first. ### What rides the definition, what rides the instance
+Step 4 is also what makes a model shareable, and today nothing does. `registerRow` mints the register node under the map (`register-map/<map>/<address>`) while `measurandLink` resolves its interval against the **device** walk, so a nominally shared map carries one device's interval FKs. `walkDevices` dedups on the map node and keeps whichever device walked first (`normalize/catalog.ts:172`). Latent, not active: each map has exactly one device today. A second device on an existing map slug fires it.
+
+Downstream already depends on that captivity — `packages/site/registers.ts:43` derives a register's owning device by joining `modbus_register.interval → interval.parent`, because nothing points device → map. Step 4 is the replacement for that join, not an optimization of it.
+
+### What rides the definition, what rides the instance
 
 Scope drives the split, not presence. Spec-fixed semantics ride the **definition**: every VE.Direct `V` reads a voltage and every `I` a current, because Victron fixes that for the protocol. So the model carries the quantity kind, and the generated slot arrives already typed.
 
 What varies per box is the **attachment** — this `V` reads the battery, this `VPV` reads tracker 1. Feature, part and channel ride the instance. A device supplies where a measurand lands, never what it means.
 
-A proprietary model's points bind to standard feature types, or to feature types / quantity kinds we extend the schema to hold. Same "extend, don't drop" rule as the appliance migrations.
+This is where `ModbusRegister.part` goes. It restates segment five of the interval FK it already carries, so it is not dropped so much as relocated: the definition never had a part, and the instance names one.
+
+A model's points bind to the feature types we already carry, or to feature types / quantity kinds we extend the schema to hold. Same "extend, don't drop" rule as the appliance migrations.
 
 ### How today's devices land
 
 - **FoxESS H3** — a FoxESS-published Modbus model, points at the current 39xxx/38xxx offsets. The captive `registers-*.yaml` rows become that model's point definitions, authored once; the device references model + unit id + feature bindings.
 - **Victron MPPT 100/30** — references the Victron VE.Direct model, binding `V`/`I` → battery, `VPV`/`PPV` → tracker 1. The 15 discovery labels are point definitions of that shared model with no binding yet, not per-device rows.
+- **Mini-Box M4-ATX** — one HID poll message, points at byte offsets, `firmware` selecting the scale profile. Its map has never left grimoire; it lands here first, with no migration to undo.
 - **SunSpec inverter** — references stock `sunspec:103` + `160` at their bases; authors nothing.
 
 ## Discovery
@@ -207,7 +273,11 @@ Resolve which model and instance sits on the wire — SunSpec base-walk, CAN PGN
 
 ## Encode
 
-The inverse, for settings and commands: transformed value → scalar → bytes. Access mode per point definition (r / rw / wo).
+The inverse, for settings and commands: transformed value → scalar → bytes. Access mode per point definition (r / rw / wo) — **new**; no slot carries it today.
+
+No second mechanism. A write plane is a **message** whose points are writable, and grimoire's M4-ATX shape is the witness: `usbhid_config` describes a get/set exchange over the same endpoints as the diag poll, differing only in command framing and magic byte (`0x31` vs `0x21`), and `usbhid_params` are its points — addressed by index rather than offset, carrying the same scale and firmware-profile model as a read field, plus a `sentinel` mapping a reserved raw value to a categorical meaning.
+
+That last one places `sentinel` too: it is Transform, on a written point, exactly as on a read one.
 
 ## Loading a published model
 

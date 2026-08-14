@@ -1,11 +1,11 @@
 # Grid-tied inverter — AC output plus optional grid/EPS/load taps, PV trackers,
-# and thermal. Talked to over a shared-family register map; offers network
-# services. Feature sockets are the ac-phase/dc-port/environment roles below.
+# and thermal. Offers its data on a wire, over IP, or both. Feature sockets are
+# the ac-phase/dc-port/environment roles below.
 facet:
   product: { cardinality: single, required: true }
-  register_map: { cardinality: reference } # shared family map → NodeEdge
   network_interface: { cardinality: child }
   service_binding: { cardinality: child }
+  link_binding: { cardinality: child } # the same dictionary, opened on a wire
   out: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase, required: true }
   grid: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase }
   eps: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase }

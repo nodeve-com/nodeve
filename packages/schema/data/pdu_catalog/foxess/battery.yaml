@@ -1,0 +1,172 @@
+pdu:
+  # Pack-level SoH, one word at two coordinates. The per-string SoH is a
+  # different measurand and stays at battery-string's offset 15.
+  - slug: battery-soh
+    content: { en: { title: Battery SoH } }
+    placement: [ { start: 31090 }, { start: 39423 } ]
+    field: [ { offset: 0, datatype: uint16, unit: '%', note: Battery SoH } ]
+
+  - slug: bms
+    content: { en: { title: BMS } }
+    start: 31102
+    field:
+      - offset: 0
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp High
+      - offset: 1
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp Low
+      - offset: 21
+        datatype: uint16
+        transform: { scale: 0.01 }
+        unit: kWh
+        target: { quantity_kind: active-energy }
+        note: BMS kWh Remaining
+      - offset: 32
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV High
+      - offset: 33
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV Low
+  # Two battery strings, the same ten measurands in the same order at two
+  # coordinates. The offsets are NOT a contiguous run — the publisher left holes
+  # at 4-7, 12-14 and 16-22 — so each field states its own; only the base moves.
+  # Which string a placement reads is a target coordinate, so `part` rides the
+  # placement beside `start`.
+  - slug: battery-string
+    content: { en: { title: Battery string } }
+    placement: [ { start: 37609, part: 1 }, { start: 38307, part: 2 } ]
+    field:
+      - offset: 0
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Voltage
+      - offset: 1
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Current
+      - offset: 2
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Temp
+      - offset: 3
+        datatype: uint16
+        unit: '%'
+        target: { quantity_kind: state-of-charge }
+        note: SoC
+      - offset: 8
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp High
+      - offset: 9
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp Low
+      - offset: 10
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV High
+      - offset: 11
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV Low
+      - { offset: 15, datatype: uint16, unit: '%', note: SoH }
+      - offset: 23
+        datatype: uint16
+        transform: { scale: 0.01 }
+        unit: kWh
+        target: { quantity_kind: active-energy }
+        note: BMS kWh Remaining
+  # Battery and BMS detail. A THIRD layout: the offsets and field order match
+  # neither bms nor battery-string, so nothing merges.
+  - slug: battery-detail
+    content: { en: { title: Battery detail } }
+    register_type: input
+    condition: [ h1 ]
+    start: 11034
+    field:
+      - offset: 0
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Battery Voltage
+      - offset: 1
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Battery Current
+      - offset: 2
+        datatype: uint16
+        unit: '%'
+        target: { quantity_kind: state-of-charge }
+        note: Battery SoC
+      - offset: 3
+        datatype: uint16
+        transform: { scale: 0.01 }
+        unit: kWh
+        target: { quantity_kind: active-energy }
+        note: BMS kWh Remaining
+      - offset: 4
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Battery Temp
+      - offset: 7
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: BMS Charge Rate
+      - offset: 8
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: BMS Discharge Rate
+      - offset: 9
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp High
+      - offset: 10
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: BMS Cell Temp Low
+      - offset: 11
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV High
+      - offset: 12
+        datatype: uint16
+        unit: mV
+        target: { quantity_kind: voltage }
+        note: BMS Cell mV Low
+      - { offset: 14, datatype: uint16, note: BMS Cycle Count }
+      - offset: 15
+        datatype: uint16
+        unit: Wh
+        target: { quantity_kind: active-energy }
+        note: BMS Energy Throughput

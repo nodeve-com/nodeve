@@ -1,0 +1,322 @@
+pdu:
+  - slug: sensors
+    content: { en: { title: Sensors } }
+    start: 39123
+    field:
+      - offset: 0
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: voltage }
+        note: Grid Voltage R
+      - offset: 1
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: voltage }
+        note: Grid Voltage S
+      - offset: 2
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: voltage }
+        note: Grid Voltage T
+      - offset: 3
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: electric-current }
+        note: Inverter Current R
+      - offset: 5
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: electric-current }
+        note: Inverter Current S
+      - offset: 7
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: electric-current }
+        note: Inverter Current T
+      - offset: 11
+        datatype: int32
+        unit: W
+        target: { feature_type: ac-phase, role: out, part: _, quantity_kind: active-power }
+        note: Inverter Power
+      - offset: 13
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: _, quantity_kind: reactive-power }
+        note: Inverter Power (Reactive)
+      - offset: 16
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: Grid Frequency
+      - offset: 18
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target:
+          feature_type: environment
+          role: enclosure
+          part: _
+          quantity_kind: temperature
+        note: Inverter Temp
+      - offset: 19
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Ambient Temp
+      - offset: 45
+        datatype: int32
+        target: { feature_type: ac-phase, role: grid, part: _, quantity_kind: active-power }
+        note: Grid CT
+      - offset: 78
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: eps, part: a, quantity_kind: voltage }
+        note: EPS Voltage_R
+      - offset: 79
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: eps, part: b, quantity_kind: voltage }
+        note: EPS Voltage_S
+      - offset: 80
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: eps, part: c, quantity_kind: voltage }
+        note: EPS Voltage_T
+      - offset: 81
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: eps, part: a, quantity_kind: electric-current }
+        note: EPS Current R
+      - offset: 83
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: eps, part: b, quantity_kind: electric-current }
+        note: EPS Current S
+      - offset: 85
+        datatype: int32
+        unit: mA
+        target: { feature_type: ac-phase, role: eps, part: c, quantity_kind: electric-current }
+        note: EPS Current T
+      - offset: 89
+        datatype: int32
+        target: { feature_type: ac-phase, role: eps, part: a, quantity_kind: active-power }
+        note: EPS Power R
+      - offset: 91
+        datatype: int32
+        target: { feature_type: ac-phase, role: eps, part: b, quantity_kind: active-power }
+        note: EPS Power S
+      - offset: 93
+        datatype: int32
+        target: { feature_type: ac-phase, role: eps, part: c, quantity_kind: active-power }
+        note: EPS Power T
+      - offset: 95
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: EPS Frequency
+      - offset: 96
+        datatype: int32
+        target: { feature_type: ac-phase, role: load, part: a, quantity_kind: active-power }
+        note: Load Power R
+      - offset: 98
+        datatype: int32
+        target: { feature_type: ac-phase, role: load, part: b, quantity_kind: active-power }
+        note: Load Power S
+      - offset: 100
+        datatype: int32
+        target: { feature_type: ac-phase, role: load, part: c, quantity_kind: active-power }
+        note: Load Power T
+      - offset: 102
+        datatype: int32
+        target: { feature_type: ac-phase, role: load, part: _, quantity_kind: active-power }
+        note: Load Power
+      - offset: 104
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Inverter Battery 1 Voltage
+      - offset: 105
+        datatype: int32
+        unit: mA
+        target: { quantity_kind: electric-current }
+        note: Inverter Battery 1 Current
+      - offset: 107
+        datatype: int32
+        target: { quantity_kind: active-power }
+        note: Inverter Battery 1 Power
+      - offset: 109
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Inverter Battery 2 Voltage
+      - offset: 110
+        datatype: int32
+        unit: mA
+        target: { quantity_kind: electric-current }
+        note: Inverter Battery 2 Current
+      - offset: 112
+        datatype: int32
+        target: { quantity_kind: active-power }
+        note: Inverter Battery 2 Power
+      - offset: 114
+        datatype: int32
+        target: { quantity_kind: active-power }
+        note: Inverter Battery Power
+      - offset: 125
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: active-power }
+        note: Inverter Power R
+      - offset: 127
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: active-power }
+        note: Inverter Power S
+      - offset: 129
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: active-power }
+        note: Inverter Power T
+      - offset: 133
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: reactive-power }
+        note: Inverter Power (Reactive) R
+      - offset: 135
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: reactive-power }
+        note: Inverter Power (Reactive) S
+      - offset: 137
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: reactive-power }
+        note: Inverter Power (Reactive) T
+      - offset: 141
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: apparent-power }
+        note: Inverter Power (Apparent) R
+      - offset: 143
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: apparent-power }
+        note: Inverter Power (Apparent) S
+      - offset: 145
+        datatype: int32
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: apparent-power }
+        note: Inverter Power (Apparent) T
+      - offset: 156
+        datatype: int32
+        target: { feature_type: dc-port, role: pv-tracker, part: 1, quantity_kind: active-power }
+        note: PV1 Power
+      - offset: 157
+        datatype: int16
+        target: { feature_type: dc-port, role: pv-tracker, part: 1, quantity_kind: active-power }
+        note: PV1 Power
+      - offset: 158
+        datatype: int32
+        target: { feature_type: dc-port, role: pv-tracker, part: 2, quantity_kind: active-power }
+        note: PV2 Power
+      - offset: 159
+        datatype: int16
+        target: { feature_type: dc-port, role: pv-tracker, part: 2, quantity_kind: active-power }
+        note: PV2 Power
+      - offset: 160
+        datatype: int32
+        target: { feature_type: dc-port, role: pv-tracker, part: 3, quantity_kind: active-power }
+        note: PV3 Power
+      - { offset: 162, datatype: int32, target: { quantity_kind: active-power }, note: PV4 Power }
+      - { offset: 164, datatype: int32, target: { quantity_kind: active-power }, note: PV5 Power }
+      - { offset: 166, datatype: int32, target: { quantity_kind: active-power }, note: PV6 Power }
+
+  # A fourth layout of the same measurands: its own field order, and the only
+  # one carrying reactive and apparent power for both the inverter and EPS.
+  - slug: sensors-ac-eps
+    content: { en: { title: Sensors } }
+    register_type: input
+    condition: [ h1 ]
+    start: 11006
+    field:
+      - offset: 0
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Inverter Battery Voltage
+      - offset: 1
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Inverter Battery Current
+      - offset: 2
+        datatype: int16
+        target: { quantity_kind: active-power }
+        note: Inverter Battery Power
+      - offset: 3
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Grid Voltage
+      - offset: 4
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Inverter Current
+      - offset: 5
+        datatype: int16
+        target: { quantity_kind: active-power }
+        note: Inverter Power
+      - offset: 6
+        datatype: int16
+        target: { quantity_kind: reactive-power }
+        note: Inverter Power (Reactive)
+      - offset: 7
+        datatype: int16
+        target: { quantity_kind: apparent-power }
+        note: Inverter Power (Apparent)
+      - offset: 8
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: Grid Frequency
+      - offset: 9
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: EPS Voltage
+      - offset: 10
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: EPS Current
+      - { offset: 11, datatype: int16, target: { quantity_kind: active-power }, note: EPS Power }
+      - offset: 12
+        datatype: int16
+        target: { quantity_kind: reactive-power }
+        note: EPS Power (Reactive)
+      - offset: 13
+        datatype: int16
+        target: { quantity_kind: apparent-power }
+        note: EPS Power (Apparent)
+      - offset: 14
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: EPS Frequency
+      - offset: 15
+        datatype: int16
+        target: { feature_type: ac-phase, role: grid, part: _, quantity_kind: active-power }
+        note: Grid CT
+      - { offset: 16, datatype: int16, target: { quantity_kind: active-power }, note: CT2 Meter }
+      - offset: 17
+        datatype: int16
+        target: { feature_type: ac-phase, role: load, part: _, quantity_kind: active-power }
+        note: Load Power
+      - offset: 18
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target:
+          feature_type: environment
+          role: enclosure
+          part: _
+          quantity_kind: temperature
+        note: Inverter Temp
+      - offset: 19
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Ambient Temp

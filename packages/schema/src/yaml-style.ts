@@ -11,8 +11,8 @@ import {
 	isPair,
 	isCollection,
 	Document,
+	Scalar,
 	type Node,
-	type Scalar,
 	type YAMLMap,
 	type YAMLSeq,
 } from 'yaml';
@@ -24,6 +24,17 @@ type Coll = YAMLMap | YAMLSeq;
 const hasComment = (n: unknown): boolean => {
 	const c = n as { comment?: unknown; commentBefore?: unknown } | null;
 	return Boolean(c?.comment || c?.commentBefore);
+};
+
+/** collection → a throwaway clone whose aliases are plain scalars of the SAME
+ * rendered width (`*d3` → `xxx`). Width is measured on a detached subtree, where
+ * an alias has no anchor in scope and serializing one throws; the anchor is a
+ * document-level fact and the measurement is not. Substituting by width keeps
+ * the number exact without one. */
+const widthSafe = (node: Coll): Coll => {
+	const copy = node.clone() as Coll;
+	visit(copy, { Alias: (_key, alias) => new Scalar('x'.repeat(1 + alias.source.length)) });
+	return copy;
 };
 
 function restyle(doc: Document): void {
@@ -51,7 +62,7 @@ function restyle(doc: Document): void {
 			continue;
 		}
 		node.flow = true;
-		const width = depth * 2 + prefix + serializeYaml(node).trimEnd().length;
+		const width = depth * 2 + prefix + serializeYaml(widthSafe(node)).trimEnd().length;
 		node.flow = width <= WIDTH;
 	}
 }

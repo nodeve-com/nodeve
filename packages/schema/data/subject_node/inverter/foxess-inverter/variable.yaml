@@ -1,0 +1,89 @@
+# ARCHETYPE — what every FoxESS inverter shares. Family nodes inherit it; no box
+# is described here.
+#
+# A computed variable is an ORDERED list of rules. A rule holds `when`, every
+# condition of which must hold, and the `value` the first matching rule gives.
+# Conditions name the variables they read, so a rule can require more than one
+# and nothing has to declare its inputs separately.
+#
+# Order resolves overlapping patterns (`^H1-([\d\.]+)` also matches
+# `AC1-5.0-E-G2`): h1-g2 before h1, h3-smart before both h3 and h3-oem.
+variable:
+  product-family:
+    - value: h1-g2 # before h1 — else an H1-…-E-G2 lands on the G1 map
+      when:
+        - { variable: model-string, matches: [ '^H1-([\d\.]+)-E\d?-G2', '^AC1-([\d\.]+)-E-G2' ] }
+    - value: h1
+      when:
+        - variable: model-string
+          matches:
+            - '^H1-([\d\.]+)'
+            - '^AC1-([\d\.]+)'
+            - '^AIO-H1-([\d\.]+)'
+            - '^AIO-AC1-([\d\.]+)'
+    - { value: kh, when: [ { variable: model-string, matches: [ '^KH([\d\.]+)' ] } ] }
+    - value: h3-smart # before h3 and h3-oem — it shares their two stems
+      when:
+        - variable: model-string
+          matches:
+            - '^H3-([\d\.]+)-Smart'
+            - '^P3-([\d\.]+)-SH' # PS-10.0-SH answers this, read 2026-08-12
+            - '^SK-HWR-([\d\.]+) SMART'
+            - '^I-X([\d\.]+)'
+            - '^1K5-HI-(\d+)-V1'
+    - value: h3
+      when: [ { variable: model-string, matches: [ '^H3-([\d\.]+)', '^AC3-([\d\.]+)' ] } ]
+    - value: h3-oem
+      # rebadges pinned to the pre-1.80 map — foxess_modbus gates none on version
+      when:
+        - variable: model-string
+          matches:
+            - '^SK-HWR-([\d\.]+)'
+            - '^STAR-H3-([\d\.]+)'
+            - '^AX ([\d\.]+)kW-3ph'
+            - '^SP R(\d+)KH3'
+    - { value: aio-h3, when: [ { variable: model-string, matches: [ '^AIO-H3-([\d\.]+)' ] } ] }
+    - value: kuara-h3
+      when: [ { variable: model-string, matches: [ '^Kuara ([\d\.]+)-3-H$' ] } ]
+    - { value: h3-pro, when: [ { variable: model-string, matches: [ '^H3-Pro-([\d\.]+)' ] } ] }
+    - { value: evo, when: [ { variable: model-string, matches: [ '^EVO \d+-([\d\.]+)-H$' ] } ] }
+
+  # INPUT, declared for its PARTS: a FoxESS box answers three firmwares, and
+  # these are the names identity.yaml's three fields pin to. Only manager is
+  # gated on — master and slave are read and nothing branches on them, which is
+  # a fact about the box, not a reason to drop them.
+  firmware: { part: [ master, slave, manager ] }
+
+  # Which family, and where that family's firmware forks. A family absent here
+  # never forks — no rule matches and the flag stays false.
+  #
+  # OPEN — the KH threshold was read from field 30018, which only a pre-1.33 KH
+  # answers: from 1.33 the manager version moved to 36003. The discriminator is
+  # unreadable on the branch it selects, so `firmware` has to come from the
+  # overlay — which is where foxess_modbus gets it. The H3-Pro one is sound:
+  # 36003 answers on both sides of 1.22.
+  firmware-legacy:
+    - value: true
+      when:
+        - { variable: product-family, is: h1-g2 }
+        - { variable: firmware, part: manager, below: '1.44' }
+    - value: true
+      when:
+        - { variable: product-family, is: kh } # CT2 wired backwards from 1.33
+        - { variable: firmware, part: manager, below: '1.33' }
+    - value: true
+      when:
+        - { variable: product-family, is: h3 }
+        - { variable: firmware, part: manager, below: '1.80' }
+    - value: true
+      when:
+        - { variable: product-family, is: aio-h3 }
+        - { variable: firmware, part: manager, below: '1.01' }
+    - value: true
+      when:
+        - { variable: product-family, is: h3-pro } # scales the 39601 block by ten
+        - { variable: firmware, part: manager, below: '1.22' }
+    # No firmware condition: the rebadges are pinned to the pre-1.80 map whatever
+    # they answer. One rule, one variable — which is why `when` is a list.
+    - value: true
+      when: [ { variable: product-family, is: h3-oem } ]

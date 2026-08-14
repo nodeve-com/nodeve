@@ -15,6 +15,8 @@
 - [grimoire TS camel-only](grimoire-ts-camel-only.md) — TS emits camel wall-to-wall incl. data default export; snake in .ts is a generator bug, never style
 - [typescript major upgrade](typescript-major-upgrade.md) — TS7 (native, GA) drives per-package typecheck via catalog:ts7; API-consumers (checks, ts-eslint/root) stay TS6
 - [org recursive package check](org-recursive-package-check.md) — shared lefthook runs `pnpm -r --if-present check`; each package aggregates its checks under a `check` script; opt-out = no `check`
+- [no invented keys](no-invented-keys.md) — no slot fits a fact? say the slot is missing; never mint a key/slug/enum member to hold it
+- [no invented context](no-invented-context.md) — no install, no owner, no "we poll"; the repo describes device models, and a 3rd-party lib's config is that lib's claim
 - [no inline string vocab](no-inline-string-vocab.md) — inline string-array/Set vocabularies in code are a total failure; derive from the authoritative source
 - [bulk-load vocabularies](bulk-load-vocabularies.md) — bounded enums (refrigerant, quantity_kind) load the WHOLE upstream set at once; never add-when-needed
 - [grimoire no TS spec grammar](grimoire-no-ts-spec-grammar.md) — hand-written TS interfaces for the spec/measurand grammar forbidden; YAML concepts the only source

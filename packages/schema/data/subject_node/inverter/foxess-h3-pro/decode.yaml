@@ -1,0 +1,15 @@
+# Forks on ENCODING at the catalog's start: below 1.22 master and slave ride the
+# wire as plain numbers while manager is BCD; from 1.22 all three are BCD.
+#
+# Reads the energy accumulators at 39601, and below 1.22 scales that whole block
+# by ten — one fork on the placement's arithmetic, not sixteen on its fields.
+archetype: foxess-inverter
+variable: { product-family: h3-pro }
+pdu:
+  firmware:
+    field:
+      - when: [ { variable: firmware-legacy, is: true } ]
+        value: { master: { transform: { bcd: false } }, slave: { transform: { bcd: false } } }
+  energy:
+    start: 39601
+    transform: [ { when: [ { variable: firmware-legacy, is: true } ], value: { scale: 0.1 } } ]

@@ -1,4 +1,0 @@
-# Raw milli-units → the SI unit, at the resolution the raw integer carries:
-# 1 mV is 0.001 V, so three decimals is the real precision, not a rounding taste.
-scale: 0.001
-decimals: 3

@@ -1,0 +1,12 @@
+# ARCHETYPE — the pdus every FoxESS box includes. A family INHERITS this list and
+# adds its own; nothing outside a family's list is ever queried, so a downstream
+# packer cannot wander into an address the box does not answer.
+#
+# Only two qualify. Every FoxESS box answers the model probe and reports three
+# firmwares; every other block belongs to one map or the other (31xxx/32xxx
+# against 38xxx/39xxx) and is the family's to name.
+#
+# The model probe is read before any variable is filled — nothing has identified
+# the box yet — so it answers holding on a port that otherwise reads input. That
+# space is the only one stated anywhere outside a binding, and this is why.
+pdu: { model-string: { register_type: holding }, firmware: }

@@ -1,31 +1,35 @@
+# The keys and every coordinate they are known to sit at. FoxESS publishes no
+# register document, so a placement is reverse-engineered, not published — but it
+# is a fact of the DICTIONARY, stated once. WHICH placement a box reads is the
+# family's fact; nothing here selects.
+#
+# A pdu is keyed by the VARIABLE it fills (data/variable): the sequence is named
+# by what it means, so no slug is minted to say it again.
+#
+# The common case rides the pdu, so a family reading it states NOTHING —
+# h1-g2, h3-smart and evo carry no line at all. What is left in subject_node is
+# exactly the set of departures.
+#
+# Each part is ONE uint16 carrying the whole x.yy version. Splitting it is what
+# `datatype: version` on data/variable/firmware.yaml means (major = n // 100,
+# minor = n % 100) and it runs the same on every box. What forks is only whether
+# that uint16 is packed BCD first: 1.20 rides the wire as 0x0120 on most boxes
+# and as plain 120 on the H1 and the H3 set. So the fork is a transform STEP,
+# not a type — foxess_modbus carries it as `is_hex`, which names its own trick
+# (printing a byte as hex digits decodes BCD when every nibble is 0-9).
+#
+# Register space is absent by design: 10016 exists only in input, and which space
+# a port reads is the binding's.
 pdu:
-  - slug: foxess-10016
-    content: { en: { title: Firmware versions } }
-    register_type: input
-    condition: [ h1 ]
-    start: 10016
-    end: 10018
+  firmware:
+    datatype: uint16
+    start: 36001 # H1-G2, H3-Smart, EVO, KH from 1.33, H3-Pro. The H3 set reads 30016
+    transform: { bcd: true }
     field:
-      - { address: 10016, datatype: uint16, note: 'Version: Master' }
-      - { address: 10017, datatype: uint16, note: 'Version: Slave' }
-      - { address: 10018, datatype: uint16, note: 'Version: Manager' }
-  - slug: foxess-30000
-    content: { en: { title: Identity } }
-    start: 30000
-    end: 30018
-    field:
-      - address: 30000
-        type: string
-        length: 16
-        note: Model — ASCII, two chars per register
-      - { address: 30016, datatype: uint16, type: hex, note: 'Version: Master' }
-      - { address: 30017, datatype: uint16, type: hex, note: 'Version: Slave' }
-      - { address: 30018, datatype: uint16, type: hex, note: 'Version: Manager' }
-  - slug: foxess-36001
-    content: { en: { title: Firmware versions } }
-    start: 36001
-    end: 36003
-    field:
-      - { address: 36001, datatype: uint16, type: hex, note: 'Version: Master' }
-      - { address: 36002, datatype: uint16, type: hex, note: 'Version: Slave' }
-      - { address: 36003, datatype: uint16, type: hex, note: 'Version: Manager' }
+      - { offset: 0, part: master }
+      - { offset: 1, part: slave }
+      - { offset: 2, part: manager }
+
+  # Read before any variable is filled — nothing has identified the box yet — so
+  # the archetype states the space it answers on (foxess-inverter/decode.yaml).
+  model-string: { start: 30000, field: [ { offset: 0, type: string, length: 15 } ] }

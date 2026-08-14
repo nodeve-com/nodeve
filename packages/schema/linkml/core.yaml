@@ -39,7 +39,7 @@ classes:
     title: Subject node
     annotations: { sql_table: subject_node, path_root: node_type }
     description: Marker row for a catalogued device node; its facets attach to the node, declared by node_type.
-    slots: [ node ]
+    slots: [ node, archetype ]
 
   # The ONE external-mapping table — every row that links out uses these, not a
   # per-registry scalar column. LinkML's native exact_mappings: annotates SCHEMA
@@ -147,6 +147,11 @@ slots:
     exact_mappings: [ schema:about ]
     slot_uri: schema:about
     description: 'the node this content describes'
+  archetype:
+    range: SubjectNode
+    title: Archetype
+    related_mappings: [ skos:broader ]
+    description: 'self-FK — the node this one inherits from, authored. A family stands in the same dir as a real box and carries what its members share; resolving the chain is the consumer''s, at query time. Distinct from `parent`, which is the permalink trail and derived'
   node_type:
     range: NodeType
     title: Node type

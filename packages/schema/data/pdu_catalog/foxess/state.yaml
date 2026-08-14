@@ -1,0 +1,51 @@
+# Three ways FoxESS reports what the box is doing, and they are three different
+# reads, not one sequence at three coordinates:
+#
+# - run-state is ONE word carrying a mutually exclusive state, decoded through
+#   an enum. The enum forks: a KH answers Self Test at 0 and shifts the rest by
+#   one.
+# - state-flags is TWO words of concurrent conditions, decoded as bitfields.
+# - state-code is a bare number with no map at all.
+#
+# foxess_modbus splits them the same way, by entity class and key
+# (inverter_state through two state tables, its G2 two-word class, state_code).
+pdu:
+  - slug: run-state
+    content: { en: { title: Inverter state } }
+    datatype: uint16
+    channel: run-state
+    placement: [ { start: 11056, register_type: input }, { start: 31027 } ]
+    field:
+      - offset: 0
+        note: Inverter State
+        options:
+          - when: [ { variable: product-family, is: kh } ]
+            value:
+              0: Self Test
+              1: Waiting
+              2: Checking
+              3: On Grid
+              4: Off Grid / EPS
+              5: Recoverable Fault
+              6: Unrecoverable Fault
+          - value:
+              0: Waiting
+              1: Checking
+              2: On Grid
+              3: Off Grid / EPS
+              4: Recoverable Fault
+              5: Unrecoverable Fault
+
+  - slug: state-flags
+    content: { en: { title: Inverter state flags } }
+    datatype: uint16
+    channel: run-state
+    start: 39063
+    field:
+      - { offset: 0, note: Inverter State 1, flags: { 0: Standby, 2: On Grid, 6: Fault } }
+      - { offset: 2, note: Inverter State 3, flags: { 0: Off Grid } }
+
+  - slug: state-code
+    content: { en: { title: Inverter state code } }
+    start: 31041
+    field: [ { offset: 0, datatype: int16, note: Inverter State Code } ]

@@ -1,0 +1,137 @@
+pdu:
+  - slug: sensors-three-phase
+    content: { en: { title: Sensors } }
+    # NOT every three-phase box: h3-pro, h3-smart and evo are three-phase and read
+    # 39123 instead. The old `three-phase` gate claimed them.
+    condition: [ h3, h3-oem, aio-h3, kuara-h3 ]
+    start: 31006
+    field:
+      - offset: 0
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: voltage }
+        note: Grid Voltage R
+      - offset: 1
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: voltage }
+        note: Grid Voltage S
+      - offset: 2
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: voltage }
+        note: Grid Voltage T
+      - offset: 3
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: electric-current }
+        note: Inverter Current R
+      - offset: 4
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: electric-current }
+        note: Inverter Current S
+      - offset: 5
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: electric-current }
+        note: Inverter Current T
+      - offset: 6
+        datatype: int16
+        target: { feature_type: ac-phase, role: out, part: a, quantity_kind: active-power }
+        note: Inverter Power R
+      - offset: 7
+        datatype: int16
+        target: { feature_type: ac-phase, role: out, part: b, quantity_kind: active-power }
+        note: Inverter Power S
+      - offset: 8
+        datatype: int16
+        target: { feature_type: ac-phase, role: out, part: c, quantity_kind: active-power }
+        note: Inverter Power T
+      - offset: 9
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: Grid Frequency
+      - offset: 16
+        datatype: int16
+        target: { feature_type: ac-phase, role: eps, part: a, quantity_kind: active-power }
+        note: EPS Power R
+      - offset: 17
+        datatype: int16
+        target: { feature_type: ac-phase, role: eps, part: b, quantity_kind: active-power }
+        note: EPS Power S
+      - offset: 18
+        datatype: int16
+        target: { feature_type: ac-phase, role: eps, part: c, quantity_kind: active-power }
+        note: EPS Power T
+      - offset: 19
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: EPS Frequency
+      - offset: 20
+        datatype: int16
+        target: { feature_type: ac-phase, role: grid, part: a, quantity_kind: active-power }
+        note: Grid CT R
+      - offset: 21
+        datatype: int16
+        target: { feature_type: ac-phase, role: grid, part: b, quantity_kind: active-power }
+        note: Grid CT S
+      - offset: 22
+        datatype: int16
+        target: { feature_type: ac-phase, role: grid, part: c, quantity_kind: active-power }
+        note: Grid CT T
+      - offset: 23
+        datatype: int16
+        target: { feature_type: ac-phase, role: load, part: a, quantity_kind: active-power }
+        note: Load Power R
+      - offset: 24
+        datatype: int16
+        target: { feature_type: ac-phase, role: load, part: b, quantity_kind: active-power }
+        note: Load Power S
+      - offset: 25
+        datatype: int16
+        target: { feature_type: ac-phase, role: load, part: c, quantity_kind: active-power }
+        note: Load Power T
+      - offset: 26
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target:
+          feature_type: environment
+          role: enclosure
+          part: _
+          quantity_kind: temperature
+        note: Inverter Temp
+      - offset: 27
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Ambient Temp
+      - offset: 28
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Battery Voltage
+      - offset: 29
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Battery Current
+      - offset: 30
+        datatype: int16
+        target: { quantity_kind: active-power }
+        note: Inverter Battery Power
+      - offset: 31
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Battery Temp
+      - offset: 32
+        datatype: uint16
+        unit: '%'
+        target: { quantity_kind: state-of-charge }
+        note: Battery SoC

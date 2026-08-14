@@ -4,11 +4,11 @@ Five in schema classes fold into new constructs. Nothing maps protocol to protoc
 
 | replaced | lands on | note |
 | --- | --- | --- |
-| `RegisterMap` | Model | wire config was already there — `register_type`, `word_order` |
+| `RegisterMap` | PduCatalog · PduVariant | LANDED — `register_type` per variant, `word_order` per catalog; the map itself was per-device and is not |
 | `RegisterRange` | Message | a span is a message |
-| `ModbusRegister` | Point · Transform · Binding | address and datatype → Point; scale and decimals → Transform; the interval → Binding |
-| `RegisterFlag` | Point rows | `extract` cuts a flag word into one point per bit, at bit-range addresses — nothing left for a child table |
-| `VedirectField` | Point · Transform · Binding | LANDED — `PduField` on a shared `PduCatalog`, `Transform` rows, `PointMapping` on the device's service binding |
+| `ModbusRegister` | PduField · PduPlacement · PointMapping | LANDED — key and quantity → field; address, datatype, scale, decimals, unit → placement; the interval → mapping, on the device |
+| `RegisterFlag` | PduFlag | LANDED — bit → the publisher's label, on the placement; the device's channel members mint from those labels |
+| `VedirectField` | PduField · PduPlacement · PointMapping | LANDED — a field on the shared `PduCatalog`, its one placement keyed `_`, the mapping on the device |
 | `usbhid_link` | Model · Message | endpoints, transfer and timeout → Model; the diag poll → Message |
 | `usbhid_numeric` | Model · Transform | `byte_order` → Model; `scale_overrides` → Transform by reference |
 | `usbhid_field` / `usbhid_fields` | Point · Transform · Binding |  |

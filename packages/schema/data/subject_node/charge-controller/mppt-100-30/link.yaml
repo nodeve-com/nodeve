@@ -1,17 +1,7 @@
 # What this box OFFERS: a VE.Direct header. Nothing dials it — it pushes. Neither
 # the level nor the rate is here: the protocol permits 3v3 and 5v and the port
 # adapts to whichever it is wired to, and 19200 8N1 is VE.Direct's, in
-# data/link_protocol. The decode contract is Victron's too (data/pdu_catalog/
-# ve-direct), so this file carries only what varies per box: which of THIS
-# device's intervals each key lands on. Quantity comes with the field; a mapping
-# names the feature, never the measurand.
-link_binding:
-  ve-direct:
-    link_protocol: ve-direct
-    pdu_catalog: ve-direct
-    # V/I → the battery output port; VPV/PPV → the single MPPT input, ordinal 1.
-    mapping:
-      V: { feature: { type: dc-port, role: battery } }
-      I: { feature: { type: dc-port, role: battery } }
-      VPV: { feature: { type: dc-port, role: pv-tracker }, part: 1 }
-      PPV: { feature: { type: dc-port, role: pv-tracker }, part: 1 }
+# data/link_protocol. The decode contract is Victron's too, named here and
+# authored in data/pdu_catalog/ve-direct; where its keys land is the device's,
+# in decode.yaml.
+link_binding: { ve-direct: { link_protocol: ve-direct, pdu_catalog: ve-direct } }

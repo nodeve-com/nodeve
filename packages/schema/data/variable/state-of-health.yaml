@@ -1,0 +1,8 @@
+# A named measurand, not a quantity kind. QUDT answers what kind of number this
+# is — dimensionless-ratio, in percent or fraction — and stops there: it carries
+# StateOfCharge but no StateOfHealth, and no standards body defines one. IEC
+# 62620 and IEEE 1188 both use the concept without fixing a formula, so
+# capacity-based and impedance-based readings both call themselves SoH.
+quantity_kind: dimensionless-ratio
+ref: { wikidata: { term: Q4050070, match: exact } }
+content: { en: { title: State of Health } }

@@ -1,6 +1,6 @@
 # The wire this meter is read over. Line settings are the INSTALLED box's, not
 # the family's — identical meters on one bus may each be set differently — so
-# they ride the binding, never the shared register map. Which port an adapter
+# they ride the binding, never the shared dictionary. Which port an adapter
 # opens is the adapter's (`ingest.serial_port`), and neither is here.
 link_binding:
   modbus-rtu:
@@ -10,3 +10,5 @@ link_binding:
     data_bits: 8
     parity: none
     stop_bits: 1
+    pdu_catalog: chint
+    unit_id: 1 # Modbus slave id, confirmed on the meter's front panel

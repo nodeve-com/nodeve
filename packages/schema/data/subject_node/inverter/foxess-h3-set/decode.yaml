@@ -1,0 +1,10 @@
+# GROUP archetype — the four families foxess_modbus reads as one map (Inv.H3_SET).
+# They share the whole register map, not this one coordinate, which is what makes
+# the group kinship rather than an address that happens to agree.
+#
+# Manager is BCD like everything else; master and slave are plain.
+archetype: foxess-inverter
+pdu:
+  firmware:
+    start: 30016
+    field: { master: { transform: { bcd: false } }, slave: { transform: { bcd: false } } }

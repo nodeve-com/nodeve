@@ -2,33 +2,58 @@
 # is authored ONCE and every VE.Direct device references this catalog: the wire
 # label, what it decodes to, and the quantity it reads never vary per box. What
 # does vary is which port a key reads — that rides the device's mapping rows
-# (data/subject_node/charge-controller/mppt-100-30/service.yaml).
+# (data/subject_node/charge-controller/mppt-100-30/decode.yaml).
 #
 # A field with a `quantity_kind` is bindable: a device mapping points it at one
 # of its intervals. A field without one is read and published under its key, its
 # name riding `note` until a feature type lands to hold it.
+#
+# Victron never moved a key, so this catalog declares no variant and every field
+# has ONE placement, keyed `_` — the segment that asserts nothing (docs/parts.md).
 publisher: victron
 
 pdu_field:
   # --- common header: every VE.Direct device emits these ---
-  PID: { type: hex, note: 'product_id — Victron product id (e.g. 0xA07D)' }
-  'SER#': { type: string, note: 'serial — unit serial number' }
-  FW: { type: string, note: 'firmware — firmware version' }
-  V: { quantity_kind: voltage, transform: milli } # mV → V
-  I: { quantity_kind: electric-current, transform: milli } # mA → A
+  PID:
+    note: 'product_id — Victron product id (e.g. 0xA07D)'
+    pdu_placement: { _: { type: hex } }
+  'SER#': { note: 'serial — unit serial number', pdu_placement: { _: { type: string } } }
+  FW: { note: 'firmware — firmware version', pdu_placement: { _: { type: string } } }
+  V:
+    # mV → V
+    target: { feature_type: dc-port, role: battery, quantity_kind: voltage }
+    pdu_placement: { _: { transform: { scale: 0.001, decimals: 3 } } }
+  I:
+    # mA → A
+    target: { feature_type: dc-port, role: battery, quantity_kind: electric-current }
+    pdu_placement: { _: { transform: { scale: 0.001, decimals: 3 } } }
 
   # --- MPPT solar charger ---
-  VPV: { quantity_kind: voltage, transform: milli } # mV → V
-  PPV: { quantity_kind: active-power } # already W
-  IL: { transform: milli, note: 'load_current — load output current, mA → A' }
-  LOAD: { type: bool, note: 'load_on — load output ON/OFF' }
+  # One tracker: VE.Direct has no second-tracker key, so the ordinal is fixed.
+  VPV:
+    # mV → V
+    target: { feature_type: dc-port, role: pv-tracker, part: 1, quantity_kind: voltage }
+    pdu_placement: { _: { transform: { scale: 0.001, decimals: 3 } } }
+  # already W — nothing to place
+  PPV:
+    target: { feature_type: dc-port, role: pv-tracker, part: 1, quantity_kind: active-power }
+  IL:
+    note: 'load_current — load output current, mA → A'
+    pdu_placement: { _: { transform: { scale: 0.001, decimals: 3 } } }
+  LOAD: { note: 'load_on — load output ON/OFF', pdu_placement: { _: { type: bool } } }
   CS: { note: 'charge_state — operation state code (0 off, 3 bulk, 4 absorption, 5 float…)' }
   MPPT: { note: 'tracker_state — tracker state code (0 off, 1 limited, 2 active)' }
   ERR: { note: 'error_code — error code (0 = no error)' }
-  OR: { type: hex, note: 'off_reason — off-reason bitmask' }
-  H19: { transform: centi, note: 'yield_total — total yield, 0.01 kWh' }
-  H20: { transform: centi, note: "yield_today — today's yield, 0.01 kWh" }
+  OR: { note: 'off_reason — off-reason bitmask', pdu_placement: { _: { type: hex } } }
+  H19:
+    note: 'yield_total — total yield, 0.01 kWh'
+    pdu_placement: { _: { transform: { scale: 0.01, decimals: 2, unit: kWh } } }
+  H20:
+    note: "yield_today — today's yield, 0.01 kWh"
+    pdu_placement: { _: { transform: { scale: 0.01, decimals: 2, unit: kWh } } }
   H21: { note: 'max_power_today — max power today, W' }
-  H22: { transform: centi, note: 'yield_yesterday — yesterday yield, 0.01 kWh' }
+  H22:
+    note: 'yield_yesterday — yesterday yield, 0.01 kWh'
+    pdu_placement: { _: { transform: { scale: 0.01, decimals: 2, unit: kWh } } }
   H23: { note: 'max_power_yesterday — max power yesterday, W' }
   HSDS: { note: 'day_sequence — day sequence number (0…364)' }

@@ -20,12 +20,10 @@ import {
 	loadDoc,
 	partSetBySlug,
 	measurandLink,
-	registerMap,
 	siblingRefs,
 	type Doc,
 	type WalkState,
 } from './registers.ts';
-import { bindings as bindingRows } from './decode.ts';
 import { ValueContracts } from './values.ts';
 import { bands, type FeatureCtx } from './intervals.ts';
 
@@ -38,10 +36,10 @@ class DeviceWalk implements WalkState {
 	private readonly addPath: (p: string) => void;
 	readonly values: ValueContracts;
 	private readonly model: Doc;
+	private readonly subject: Doc; // columns of the marker row itself
 	private readonly rootSlot: string;
 	private readonly nodeTypeSlug: string;
 	private readonly featureRoles: Map<string, string>; // socket contract: role → feature_type
-	private registerMapDoc?: Doc; // the one non-owned ref — the shared family register map
 
 	// The path IS the identity: `<table>/<path_root value>/<slug>` mirrors the
 	// permalink the walk mints. So the root — which kind of thing this is — is the
@@ -68,6 +66,16 @@ class DeviceWalk implements WalkState {
 		this.values = new ValueContracts(this.node, (p) => this.mint(p));
 		// facet rows keyed by sql_table (or `contents`), scattered to top-level row-sets; identity on the node row
 		this.model = {};
+		this.subject = {};
+	}
+
+	/** an archetype slug → its node ref. A family sits in the same node_type dir
+	 * as the boxes that name it, so the kind segment is this device's own. */
+	private archetypeRef(value: unknown): string {
+		const trail = `${this.slug}.archetype`;
+		if (typeof value !== 'string' || !SLUG.test(value)) die(trail, 'expected a device slug');
+		if (value === this.slug) die(trail, 'a device cannot be its own archetype');
+		return `node:${this.nodeTypeSlug}/${value}`;
 	}
 
 	mint(path: string): string {
@@ -77,33 +85,26 @@ class DeviceWalk implements WalkState {
 
 	walk(): DeviceResult {
 		let featureBlock: Doc = {};
-		let registerBlock: unknown;
-		// Both wait for the feature walk, which populates the intervals their
-		// `mapping:`/`target:` sugar resolves against. Which keys they are is the
-		// schema's: a class carrying `mappings` binds a dictionary (dialed as a
-		// service, opened as a link), one carrying `interval` reads a measurand.
-		const bindings: { table: string; cls: string; block: unknown; trail: string }[] = [];
+		// Waits for the feature walk, which populates the intervals its `target:`
+		// sugar resolves against. Which keys those are is the schema's: a class
+		// carrying `interval` reads a measurand.
 		const deferred: [string, unknown][] = [];
 		for (const [key, value] of Object.entries(this.doc)) {
 			const cls = classByTable[key];
-			if (cls === 'FeatureOfInterest')
+			// a column of the marker row itself — stored as authored, resolved downstream
+			if (key === 'archetype') this.subject[key] = this.archetypeRef(value);
+			else if (cls === 'FeatureOfInterest')
 				featureBlock = isMap(value) ? value : die(`${this.slug}.${key}`, 'expected feature types');
-			else if (cls === 'RegisterMap') registerBlock = value;
-			else if (cls && classByName[cls]?.slots?.includes('mappings'))
-				bindings.push({ table: key, cls, block: value, trail: `${this.slug}.${key}` });
 			else if (cls && classByName[cls]?.slots?.includes('interval')) deferred.push([key, value]);
 			else this.plainKey(key, value);
 		}
 		for (const [ftSlug, roleMap] of Object.entries(featureBlock))
 			this.featureType(String(ftSlug), roleMap);
-		if (registerBlock !== undefined)
-			this.registerMapDoc = registerMap(this, registerBlock, `${this.slug}.register_map`);
-		for (const b of bindings) this.model[b.table] = bindingRows(this, b.cls, b);
 		for (const [key, value] of deferred) this.plainKey(key, value);
 		siblingRefs({ slug: this.slug, node: this.node }, this.model, this.doc);
 		const channels = this.values.channelRows(`${this.slug}.channel`);
 		if (channels) this.model.channel = channels;
-		return { node: this.node, model: this.model, registerMap: this.registerMapDoc };
+		return { node: this.node, model: this.model, subject: this.subject };
 	}
 
 	/** any other top-level key — a child table by sql_table (keyed rows, or keyless 1:1 co-row) */
@@ -222,7 +223,10 @@ class DeviceWalk implements WalkState {
 		if (ctx.starred && !ctx.roster.size)
 			die(`${trail}.*`, 'a default needs parts to apply to — name them, `a: {}` is enough');
 		if (ctx.roster.size)
-			ctx.feature.parts = [...ctx.roster].map((part) => ({ node: this.mint(`${fNode}/${part}`) }));
+			ctx.feature.parts = [...ctx.roster].map((part) => ({
+				node: this.mint(`${fNode}/${part}`),
+				...ctx.own?.get(part),
+			}));
 		// the template lowers LAST, so every explicit part already holds its path
 		// and outranks the default landing on it
 		if (ctx.starred)
@@ -273,7 +277,15 @@ class DeviceWalk implements WalkState {
 			this.checkPart(ctx, part);
 			ctx.roster.add(part);
 		}
-		bands({ host: this, ctx }, { part }, value);
+		// `$` is the part row's OWN columns — what the subdivision IS (the module a
+		// PV string repeats, whether it is in service), not a band it carries. The
+		// markers name no row, so neither may state them.
+		const { $: own, ...rest } = value;
+		if (own !== undefined) {
+			if (part === '_') die(`${ctx.trail}._.$`, 'the combined marker is no part row');
+			(ctx.own ??= new Map()).set(part, columns('Part', own, `${ctx.trail}.${part}.$`));
+		}
+		bands({ host: this, ctx }, { part }, rest);
 	}
 
 	// a part key is a pure discriminator on Interval — validated against the
@@ -293,7 +305,7 @@ class DeviceWalk implements WalkState {
 
 /** a walked device: node id, facet rows keyed by sql_table (+ `contents`), and
  * the shared register map it references (undefined when it composes none) */
-export type DeviceResult = { node: string; model: Doc; registerMap?: Doc };
+export type DeviceResult = { node: string; model: Doc; subject: Doc; registerMap?: Doc };
 
 export function normalizeDevice(file: string, addPath: (p: string) => void): DeviceResult {
 	return new DeviceWalk(file, addPath).walk();

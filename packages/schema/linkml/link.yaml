@@ -52,7 +52,7 @@ classes:
       - parity
       - stop_bits
       - pdu_catalog
-      - mappings
+      - unit_id
     slot_usage: { link_protocol: { required: true } }
 slots:
   bit_rate:

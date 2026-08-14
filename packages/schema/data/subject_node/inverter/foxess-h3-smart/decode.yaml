@@ -1,0 +1,28 @@
+# Reads the 38xxx/39xxx map. INCLUDE LIST — these plus the archetype's
+# model-string and firmware are every pdu queried; nothing else is addressed, so
+# a packer cannot reach the 3xxxx map or the 41xxx block.
+#
+# PROVENANCE: probed over modbus-tcp on a P3-10.0-SH (the model string 30000
+# answers) — every pdu below returned; 31000, 31006, 31090, 32000 and 41000 did
+# not answer at all, which is why they are absent rather than listed. One unit,
+# one firmware: a second box could widen this.
+#
+# battery-string appears once and covers BOTH placements — two strings, and this
+# box answered at 37609 and 38307 alike. energy names a start because its two
+# placements are alternatives, not siblings.
+#
+# 39423 (pack SoH) did not answer. Unresolved: over Modbus, a block a family
+# does not implement and one with nothing behind it look identical, so it is
+# left out rather than recorded as absent.
+archetype: foxess-inverter
+variable: { product-family: h3-smart }
+pdu:
+  foxess-39063: # PV trackers, state and fault codes
+  sensors:
+  energy: { start: 39601 }
+  battery-string:
+  grid-ct:
+  ct2-meter:
+  import-power-limit:
+  foxess-46607:
+  work-mode:

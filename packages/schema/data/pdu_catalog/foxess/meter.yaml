@@ -1,0 +1,102 @@
+pdu:
+  - slug: grid-ct
+    content: { en: { title: Grid CT } }
+    start: 38814
+    field:
+      - offset: 0
+        datatype: int32
+        unit: W
+        target: { feature_type: ac-phase, role: grid, part: _, quantity_kind: active-power }
+        note: Grid CT
+      - offset: 2
+        datatype: int32
+        unit: W
+        target: { feature_type: ac-phase, role: grid, part: a, quantity_kind: active-power }
+        note: Grid CT R
+      - offset: 4
+        datatype: int32
+        unit: W
+        target: { feature_type: ac-phase, role: grid, part: b, quantity_kind: active-power }
+        note: Grid CT S
+      - offset: 6
+        datatype: int32
+        unit: W
+        target: { feature_type: ac-phase, role: grid, part: c, quantity_kind: active-power }
+        note: Grid CT T
+      - offset: 8
+        datatype: int32
+        unit: var
+        target: { quantity_kind: reactive-power }
+        note: Grid CT (Reactive)
+      - offset: 10
+        datatype: int32
+        unit: var
+        target: { quantity_kind: reactive-power }
+        note: Grid CT (Reactive) R
+      - offset: 12
+        datatype: int32
+        unit: var
+        target: { quantity_kind: reactive-power }
+        note: Grid CT (Reactive) S
+      - offset: 14
+        datatype: int32
+        unit: var
+        target: { quantity_kind: reactive-power }
+        note: Grid CT (Reactive) T
+      - offset: 16
+        datatype: int32
+        unit: VA
+        target: { quantity_kind: apparent-power }
+        note: Grid CT (Apparent)
+      - offset: 18
+        datatype: int32
+        unit: VA
+        target: { quantity_kind: apparent-power }
+        note: Grid CT (Apparent) R
+      - offset: 20
+        datatype: int32
+        unit: VA
+        target: { quantity_kind: apparent-power }
+        note: Grid CT (Apparent) S
+      - offset: 22
+        datatype: int32
+        unit: VA
+        target: { quantity_kind: apparent-power }
+        note: Grid CT (Apparent) T
+      - offset: 24
+        datatype: int32
+        transform: { scale: 1e-5 }
+        target: { quantity_kind: power-factor }
+        note: Grid CT Power Factor
+      - { offset: 26, datatype: int32, transform: { scale: 1e-5 }, note: Grid CT Power Factor R }
+      - { offset: 28, datatype: int32, transform: { scale: 1e-5 }, note: Grid CT Power Factor S }
+      - { offset: 30, datatype: int32, transform: { scale: 1e-5 }, note: Grid CT Power Factor T }
+      - offset: 32
+        datatype: uint32
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: Grid Frequency
+  - slug: ct2-meter
+    content: { en: { title: CT2 meter } }
+    start: 38914
+    field:
+      - offset: 0
+        datatype: int32
+        unit: W
+        target: { quantity_kind: active-power }
+        note: CT2 Meter
+      - offset: 2
+        datatype: int32
+        unit: W
+        target: { quantity_kind: active-power }
+        note: CT2 Meter R
+      - offset: 4
+        datatype: int32
+        unit: W
+        target: { quantity_kind: active-power }
+        note: CT2 Meter S
+      - offset: 6
+        datatype: int32
+        unit: W
+        target: { quantity_kind: active-power }
+        note: CT2 Meter T

@@ -11,7 +11,7 @@ import { join } from 'node:path';
 import { shortCode } from '@nodeve/encoding/short-code';
 import { dirents, exists, readYaml } from '../src/io.ts';
 import type { Bundle, TableRow } from '../src/load.ts';
-import { classByName, classByTable, seg, slotByName } from './model.ts';
+import { classByName, classByTable, slotByName } from './model.ts';
 import { normalize, normalizeDoc, nodeAttrMap, type Row } from './normalize.ts';
 import { projectProperties } from './properties.ts';
 import { normalizeDevice } from './tree.ts';
@@ -38,8 +38,23 @@ const CONTENT_SLOT = Object.keys(slotByName).find(
 const contentRows: Record<string, unknown>[] = [];
 
 /** drop the $-tags — they are source bookkeeping, never catalog columns */
+// `$`-prefixed keys are the walk's own bookkeeping (source trail, owner slot) —
+// dropped at every depth, since a nested list holds rows too. Every node met on
+// the way down feeds the id space: a nested row is addressable like any other.
 const strip = (row: Row): Record<string, unknown> =>
-	Object.fromEntries(Object.entries(row).filter(([k]) => !k.startsWith('$')));
+	Object.fromEntries(
+		Object.entries(row)
+			.filter(([k]) => !k.startsWith('$'))
+			.map(([k, v]) => [
+				k,
+				Array.isArray(v) && v.every((e) => e && typeof e === 'object' && !Array.isArray(e))
+					? v.map((e) => {
+							paths.push(String((e as Row).node).replace(/^node:/, ''));
+							return strip(e as Row);
+						})
+					: v,
+			]),
+	);
 
 /** flat rows → one nested storage row; every node feeds the id space */
 function assemble(rows: Row[]): Record<string, unknown> {
@@ -137,9 +152,10 @@ function tableRows(root: string, dir: string): TableRow[] {
 }
 
 /** the device dir (data/subject_node) walked: each authored device fans out
- * into facet row-sets keyed by sql_table, a thin subject_node marker row, and
- * the shared register maps it references (deduped). Facets attach to the device
- * node directly — no container nesting — tied back by the node.parent trail.
+ * into facet row-sets keyed by sql_table plus a thin subject_node marker row.
+ * Facets attach to the device node directly — no container nesting — tied back
+ * by the node.parent trail. What a device references rather than owns (a decode
+ * dictionary) is an FK column on the binding that names it.
  *
  * Two levels, mirroring the permalink: `<node_type>/<slug>`. The kind is the
  * directory, so nothing inside an entry restates its own position and one slug
@@ -166,32 +182,13 @@ function deviceFiles(root: string): string[] {
 function walkDevices(root: string): DeviceRows {
 	const rowsByTable: Record<string, TableRow[]> = {};
 	const subjectNodes: TableRow[] = [];
-	const seenMap = new Set<string>();
 	const bucket = (table: string) => (rowsByTable[table] ??= []);
 	for (const file of deviceFiles(root)) {
-		const { node, model, registerMap } = normalizeDevice(file, (p) => paths.push(p));
+		const { node, model, subject } = normalizeDevice(file, (p) => paths.push(p));
 		liftContent(model); // pull device + nested Content out, top-level (keyed by about)
 		for (const [table, rows] of Object.entries(model))
 			bucket(table).push(...((Array.isArray(rows) ? rows : [rows]) as TableRow[]));
-		if (registerMap) {
-			const mapNode = registerMap.node as string;
-			if (!seenMap.has(mapNode)) {
-				seenMap.add(mapNode);
-				bucket('register_map').push(registerMap);
-			}
-			// the shared family map is a `reference` relation — paint it as a
-			// NodeEdge (subject = device, predicate = the node_type's register_map
-			// relation, object = the shared map), not a bespoke marker column.
-			const nt = node.replace(/^node:/, '').split('/')[0];
-			bucket('node_edge').push({
-				subject: node,
-				// the Facet relation node — the relation slug is kebabed in node paths
-				predicate: `node:node-type/${nt}/${seg('register_map')}`,
-				object: mapNode,
-				position: 1,
-			});
-		}
-		subjectNodes.push({ node });
+		subjectNodes.push({ node, ...subject });
 	}
 	return { rowsByTable, subjectNodes };
 }

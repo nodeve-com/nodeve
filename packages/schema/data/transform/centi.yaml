@@ -1,3 +1,0 @@
-# Raw centi-units → the stated unit, two decimals — a 0.01 kWh yield counter.
-scale: 0.01
-decimals: 2

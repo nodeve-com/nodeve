@@ -1,0 +1,154 @@
+pdu:
+  - slug: sensors-single-phase
+    content: { en: { title: Sensors } }
+    condition: [ h1, h1-g2, kh ]
+    start: 31006
+    field:
+      - offset: 0
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Grid Voltage
+      - offset: 1
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Inverter Current
+      - offset: 2
+        datatype: int16
+        target: { quantity_kind: active-power }
+        note: Inverter Power
+      - offset: 3
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: Grid Frequency
+      - offset: 4
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: EPS Voltage
+      - offset: 5
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: EPS Current
+      - { offset: 6, datatype: int16, target: { quantity_kind: active-power }, note: EPS Power }
+      - offset: 7
+        datatype: uint16
+        transform: { scale: 0.01 }
+        target: { quantity_kind: frequency }
+        note: EPS Frequency
+      - offset: 8
+        datatype: int16
+        target: { feature_type: ac-phase, role: grid, part: _, quantity_kind: active-power }
+        note: Grid CT
+      - offset: 9
+        datatype: int16
+        transform:
+          kh-133: { scale: -1 } # kh-pre133 reads CT2 at 31052 instead, not here
+        target: { quantity_kind: active-power }
+        note: CT2 Meter
+      - offset: 10
+        datatype: int16
+        target: { feature_type: ac-phase, role: load, part: _, quantity_kind: active-power }
+        note: Load Power
+      - offset: 12
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target:
+          feature_type: environment
+          role: enclosure
+          part: _
+          quantity_kind: temperature
+        note: Inverter Temp
+      - offset: 13
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Ambient Temp
+      - offset: 14
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: Inverter Battery Voltage
+      - offset: 15
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Inverter Battery Current
+      - offset: 16
+        datatype: int16
+        target: { quantity_kind: active-power }
+        note: Inverter Battery Power
+      - offset: 17
+        datatype: int16
+        transform: { scale: 0.1 }
+        unit: °C
+        target: { quantity_kind: temperature }
+        note: Battery Temp
+      - offset: 18
+        datatype: uint16
+        unit: '%'
+        target: { quantity_kind: state-of-charge }
+        note: Battery SoC
+      - offset: 19
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: BMS Charge Rate
+      - offset: 20
+        datatype: uint16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: BMS Discharge Rate
+      - offset: 33
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { feature_type: dc-port, role: pv-tracker, part: 3, quantity_kind: voltage }
+        note: PV3 Voltage
+      - offset: 34
+        datatype: int16
+        transform: { scale: 0.1 }
+        target:
+          feature_type: dc-port
+          role: pv-tracker
+          part: 3
+          quantity_kind: electric-current
+        note: PV3 Current
+      - offset: 35
+        datatype: int16
+        target: { feature_type: dc-port, role: pv-tracker, part: 3, quantity_kind: active-power }
+        note: PV3 Power
+      - offset: 36
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: voltage }
+        note: PV4 Voltage
+      - offset: 37
+        datatype: int16
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: PV4 Current
+      - { offset: 38, datatype: int16, target: { quantity_kind: active-power }, note: PV4 Power }
+      - offset: 39
+        datatype: int32
+        target: { quantity_kind: active-power }
+        note: Inverter Power
+      - { offset: 41, datatype: int32, target: { quantity_kind: active-power }, note: EPS Power }
+      - offset: 43
+        datatype: int32
+        transform: { scale: -1 }
+        target: { feature_type: ac-phase, role: grid, part: _, quantity_kind: active-power }
+        note: Grid CT
+      - offset: 45
+        datatype: int32
+        transform: { scale: -1 }
+        target: { quantity_kind: active-power }
+        note: CT2 Meter
+      - offset: 47
+        datatype: int32
+        target: { feature_type: ac-phase, role: load, part: _, quantity_kind: active-power }
+        note: Load Power

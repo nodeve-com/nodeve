@@ -1,0 +1,5 @@
+# A firmware-bearing unit as a feature of interest. How many a box answers and
+# what they are called is the publisher's decomposition, so the parts ride the
+# archetype (foxess-inverter names master, slave and manager). What a unit
+# reports beyond firmware — a per-unit temperature, a fault word — attaches here.
+variable_binding: { firmware: {} }

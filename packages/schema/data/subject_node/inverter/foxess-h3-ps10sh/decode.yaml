@@ -1,80 +1,22 @@
+# The one SKU here — a box, not a family. Its family answers Inv.H3_SMART
+# (model.yaml), so it inherits through foxess-h3-smart → foxess-inverter and
+# states no coordinate of its own: the H3 Smart reads the catalog's 36001 and
+# decodes all three parts BCD, which is the bare case.
+archetype: foxess-h3-smart
+
 # Categorical channels of the WHOLE box — a run mode / fault set aggregates
 # across PV, grid, BMS, temp; no sub-feature owns them. Enum-valued, not
-# VIM-ranged: no quantity_kind, no interval. Each flag word is a register in
-# the ONE map (address planning sees the whole read set); its `flag` list maps
-# bit → member (index = bit, null = unidentified). Channel members derive from
-# those labels — authored once, at the wire.
+# VIM-ranged: no quantity_kind, no interval. Their members mint from the flag
+# labels the catalog carries, verbatim as FoxESS spells them.
 channel:
-  # foxess inverter_state — the status GROUP, words 1/2/3 at 39063–39065,
-  # reported as a SET: EVERY set bit across the group. Bits stay in the word
-  # the device puts them in — the word1-bit6 fault flag lives HERE, not
-  # relocated onto fault-code. `empty: unknown` when no bit is set.
+  # inverter_state words 1 and 3 — standby / on-grid / fault, off-grid
   run-state: { empty: unknown }
-  # foxess fault_code — words 1/2/3 at 39067–39069.
+  # inverter_fault_code words 1–3
   fault-code: { empty: none }
-register_map:
-  register:
-    - address: 39063
-      datatype: uint16
-      target: { channel: run-state }
-      flag: [ standby, null, on-grid, null, null, null, fault ]
-    - address: 39064
-      datatype: uint16
-      target: { channel: run-state }
-      flag: [] # read as part of the group; its bits aren't identified yet
-    - { address: 39065, datatype: uint16, target: { channel: run-state }, flag: [ off-grid ] }
-    - address: 39067
-      datatype: uint16
-      target: { channel: fault-code }
-      flag:
-        - fault-pv-voltage-over
-        - fault-dc-arc
-        - fault-pv-string-connection-reverse
-        - null
-        - null
-        - null
-        - null
-        - fault-grid-lost
-        - fault-grid-voltage
-        - null
-        - null
-        - fault-grid-frequency
-        - null
-        - null
-        - fault-output-current-over
-        - fault-output-dc-current-over
-    - address: 39068
-      datatype: uint16
-      target: { channel: fault-code }
-      flag:
-        - fault-residual-current-consistency
-        - fault-ground-connection
-        - fault-insulation-resistance-low
-        - fault-inverter-temperature-over
-        - null
-        - null
-        - null
-        - null
-        - null
-        - fault-energy-storage-equipment-abnormal
-        - fault-island-isolated
-        - null
-        - null
-        - null
-        - fault-off-grid-output-overload
-        - null
-    - address: 39069
-      datatype: uint16
-      target: { channel: fault-code }
-      flag:
-        - null
-        - null
-        - null
-        - fault-fan-external
-        - fault-energy-storage-connection-reverse
-        - null
-        - null
-        - null
-        - null
-        - fault-meter-lost
-        - fault-bms-lost
+
+# Where a register lands is the register's own `target`, on data/pdu_catalog/foxess:
+# a FoxESS address reads the same port on every box carrying it, so it is the
+# publisher's fact, stated once.
+#
+# NOT read: 39064 (inverter_state word 2) — the upstream state sensor reads words
+# 1 and 3 only, so no row of the catalog sits at that address.

@@ -1,0 +1,16 @@
+# The LAN port. Same box, same dictionary, same sequence — read from holding at
+# 30016 rather than input at 10016. The H1 is why the coordinate rides the
+# binding and not the catalog.
+#
+# Both ports decode decimal (major = value / 100). The families that answer hex
+# say so on their own bindings.
+network_interface: { eth0: { interface_type: ethernet_csmacd } }
+
+service_binding:
+  modbus-tcp:
+    service_protocol: modbus_tcp
+    network_interface: eth0
+    port: 502
+    pdu_catalog: foxess
+    register_type: holding
+    pdu: { firmware: { start: 30016 } }

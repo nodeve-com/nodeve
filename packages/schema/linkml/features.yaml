@@ -54,8 +54,8 @@ classes:
     title: Part
     annotations: { sql_table: part }
     description: >-
-      ONE subdivision this feature actually has — the roster. `part_set` names a vocabulary (which slugs are legal); these rows say which of them this model instantiates, and a three-phase point that measures only its legs never grows line-to-line rows. `count: n` mints 1…n itself. No own columns: the slug is the node's leaf, the feature is the backref. `Interval.part` stays a discriminator string, so the `_` and `*` markers still name no row.
-    slots: [ node ]
+      ONE subdivision this feature actually has — the roster. `part_set` names a vocabulary (which slugs are legal); these rows say which of them this model instantiates, and a three-phase point that measures only its legs never grows line-to-line rows. `count: n` mints 1…n itself. The slug is the node's leaf, the feature is the backref; `device` is the catalogued node this one subdivision IS (a PV string's module), whose spec every band on the part derives from. `Interval.part` stays a discriminator string, so the `_` and `*` markers still name no row.
+    slots: [ node, device, active ]
 
   Specification:
     title: Specification
@@ -116,6 +116,11 @@ classes:
       - filters
     slot_usage: { role: { required: true }, feature_type: { required: true } }
 slots:
+  active:
+    range: boolean
+    title: Active
+    related_mappings: [ schema:Boolean ]
+    description: 'whether the part is in service — a commissioning state, cleared for a string taken offline rather than deleted'
   count:
     range: integer
     minimum_value: 1

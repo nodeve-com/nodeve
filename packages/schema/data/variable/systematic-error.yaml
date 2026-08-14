@@ -1,0 +1,8 @@
+# The component of a measurement error that stays constant or varies
+# predictably — a fitted offset a consumer subtracts from a track to reach
+# absolute truth. Fitted from paired calibration runs, not a datasheet number:
+# absent until measured. Takes the quantity kind of whatever it corrects (a PV
+# string's import-anchor voc track reads high by so many volts), so it fixes
+# none of its own.
+ref: { wikidata: { term: Q2257880, match: exact } }
+content: { en: { title: Systematic error } }

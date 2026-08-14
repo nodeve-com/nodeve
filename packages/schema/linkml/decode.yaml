@@ -3,79 +3,277 @@ name: decode
 default_prefix: nodeve
 default_range: string
 classes:
-  # ── the DEFINITION half of decode, out of every device. What a publisher fixes
-  # for a protocol — the key, its encoding, the quantity it reads — is authored
-  # here once and referenced by a service binding (network.yaml). ──
+  # ── decode is out of every device. What a publisher fixes for a protocol — where
+  # a value sits, what it decodes to, what it reads — is authored here once, and a
+  # device references it from a binding (network.yaml, link.yaml). ──
   PduCatalog:
     title: PDU catalog
     annotations: { sql_table: pdu_catalog }
     description: >-
-      One publisher's decode dictionary — every field it fixes, keyed by the name the wire carries. A device references it and adds nothing to it: `V` reads a voltage on every VE.Direct box Victron ships, so the key, its type and its quantity kind are the publisher's fact, stored once.
-    slots: [ node, publisher, fields ]
+      One publisher's decode dictionary, plus the wire facts its fields share — `register_type`, `word_order`, `datatype`, and the `target` socket when every field of the map reads one. A field overrides any of them; narrowest wins.
+    slots: [ node, publisher, register_type, word_order, datatype, target, fields ]
     slot_usage: { publisher: { required: true } }
 
+  # Raw scalar → engineering value. Its own row, never columns on the thing it
+  # converts: a decode row says where the bits are, a conversion says what the
+  # number means, and the two are not one facet. Keyless — it shares the node of
+  # the field it converts, so there is nothing to invent and nothing to reference
+  # it by.
+  Transform:
+    title: Transform
+    annotations: { sql_table: transform }
+    description: >-
+      One raw scalar in, one engineering value out — the digit decode that has to run first, then scale, the decimals that scale resolves, and the unit when it is not the quantity kind's SI one. Never reads bytes; never names a point; never maps a value to a symbol (that is a lookup — see Channel/DomainMember).
+
+      The steps run in a FIXED order — `bcd`, then the arithmetic — because no case exists where two of them commute to different answers. An authored order buys freedom nothing has asked for.
+    slots: [ node, bcd, scale, decimals, unit ]
+
+  # WHERE a decoded value lands, as coordinates rather than a row pointer: the
+  # feature type and role name a socket any device of the kind offers, and part +
+  # quantity_kind pick the band on it. No device in it, so it rides the catalog —
+  # a device's own interval is the join on these four.
+  PointTarget:
+    title: Target
+    annotations: { sql_table: point_target }
+    description: >-
+      The measurand a field reads — the socket (`feature_type` + `role`), the part of it, and the quantity kind. Keyless: it shares the node of the field it targets.
+    slots: [ node, feature_type, role, part, quantity_kind ]
+
+  # One value on the wire. Addressed by ADDRESS where the protocol numbers its
+  # slots (Modbus) and by KEY where it names them (VE.Direct) — whichever the
+  # publisher published; neither is minted here. Rows are a list, never a keyed
+  # map: a map would demand a name for a value that has none.
   PduField:
     title: Field
-    annotations: { sql_table: pdu_field, keyed_by: key }
+    annotations: { sql_table: pdu_field, identified_by: address key }
     description: >-
-      One decode row of a catalog — the wire key, how to read the raw scalar (`type`), and what the number means (`transform` arithmetic, `quantity_kind`). Carries NO feature: which port a key reads varies per box, so the attachment rides that device's PointMapping. A key the publisher ships with no measurand behind it yet carries type alone, its name riding `note`.
-    slots: [ node, key, type, transform, quantity_kind, note ]
-    slot_usage: { key: { required: true }, quantity_kind: { required: false } }
+      One decode row of a catalog — where the value sits, what it decodes to, the arithmetic that makes it an engineering value, and the measurand it reads. A row the publisher ships with no measurand behind it carries no target, its name riding `note`.
+    slots:
+      - node
+      - address
+      - key
+      - type
+      - datatype
+      - transform
+      - target
+      - channel
+      - access
+      - minimum
+      - maximum
+      - step
+      - flags
+      - options
+      - note
 
-  # ── the INSTANCE half: one device, one catalog field, one interval of ITS
-  # feature tree. A key the box lands somewhere gets a row; every other key of
-  # the catalog is still read, and published under its key alone. ──
-  PointMapping:
-    title: Mapping
-    annotations: { sql_table: point_mapping }
-    description: >-
-      One catalog field → the interval of THIS device it reads, plus the `part` naming which instance when the interval is a `*` default. The device half of decode: it says where a measurand lands, never what it means — quantity, feature type and unit all derive from the field and the interval it points at.
-    slots: [ node, field, part, interval ]
-    slot_usage: { field: { required: true }, interval: { required: true } }
+  # An identified bit of a flag word, and a value of a code word. Both are the
+  # publisher's symbol table.
+  PduFlag:
+    title: Flag
+    annotations: { sql_table: pdu_flag, keyed_by: bit }
+    description: One identified bit of a flag word — bit position → the label the publisher gives it.
+    slots: [ node, bit, label ]
+    slot_usage: { bit: { required: true }, label: { required: true } }
+
+  PduOption:
+    title: Option
+    annotations: { sql_table: pdu_option, keyed_by: raw }
+    description: One value of a code word → the label the publisher gives it.
+    slots: [ node, raw, label ]
+    slot_usage: { raw: { required: true }, label: { required: true } }
 slots:
+  access:
+    range: AccessMode
+    title: Access mode
+    narrow_mappings: [ schema:ReadAction, schema:UpdateAction ]
+    description: 'whether the point can be written as well as read; absent ⇒ read-only'
+  address:
+    range: integer
+    title: Register address
+    exact_mappings: [ wikidata:Q835713 ]
+    description: 'holding/input register address, 16-bit (0–65535); for 32-bit types the LOWER of the two addresses (see word_order)'
+  bcd:
+    range: boolean
+    title: BCD
+    exact_mappings: [ wikidata:Q276582 ]
+    description: 'the scalar is packed BCD — each nibble is one decimal digit, so 0x0120 reads 120, not 288. Runs before any arithmetic; absent ⇒ the scalar is already the number it looks like'
+  bit:
+    range: integer
+    minimum_value: 0
+    maximum_value: 15
+    title: Bit
+    exact_mappings: [ wikidata:Q8805 ]
+    description: 'bit position within the 16-bit word, 0 = LSB'
+  datatype:
+    range: RegisterDatatype
+    title: Value type
+    exact_mappings: [ wikidata:Q190087 ]
+    description: 'on-the-wire encoding — determines how many 16-bit registers to read (16-bit types = 1, 32-bit = 2) and how to decode; display concerns (rounding) are not part of it'
+  decimals:
+    range: integer
+    title: Resolved decimals
+    related_mappings: [ wikidata:Q1056761 ]
+    description: 'decimal places the sensor actually resolves; the published value is rounded to it — decoding leaks precision the sensor never measured. Omit only when scale already lands on the real resolution'
+    annotations: { i18n: { value: { title: { pt: Casas decimais resolvidas } } } }
   key:
     range: string
-    required: true
     title: Wire key
     exact_mappings: [ schema:name ]
-    description: 'the name a keyed field is addressed by, case-sensitive as the wire spells it (V, VPV, SER#) — the analogue of a register address'
+    description: 'the name a field is addressed by where the protocol names its slots, case-sensitive as the wire spells it (V, SER#); a numbered protocol uses `address` instead'
+  label:
+    range: string
+    title: Label
+    exact_mappings: [ skos:prefLabel ]
+    description: "the publisher's own name for a bit or a code value, verbatim"
+  maximum:
+    range: float
+    title: Maximum
+    related_mappings: [ schema:maxValue ]
+    description: 'highest value a writable point accepts, in engineering units'
+  minimum:
+    range: float
+    title: Minimum
+    related_mappings: [ schema:minValue ]
+    description: 'lowest value a writable point accepts, in engineering units'
+  note: { title: Note, exact_mappings: [ skos:note ] }
+  raw:
+    range: integer
+    title: Raw value
+    exact_mappings: [ schema:value ]
+    description: 'the raw scalar a symbol stands for, before any arithmetic'
+  register_type:
+    range: RegisterType
+    title: Register type
+    narrow_mappings: [ modbus-org:HoldingRegister, modbus-org:InputRegister ]
+    description: 'which Modbus register space a read targets — holding = function 03, input = function 04'
+    annotations: { camel: registerType }
+  scale:
+    range: float
+    title: Scale
+    related_mappings: [ wikidata:Q12121800 ]
+    description: 'published value = raw × scale (raw → engineering units); omit ⇒ 1'
+    annotations: { i18n: { value: { title: { pt: Escala } } } }
+  step:
+    range: float
+    title: Step
+    related_mappings: [ schema:stepValue ]
+    description: 'granularity a writable point accepts, in engineering units'
   type:
     range: ScalarType
     title: Field type
     exact_mappings: [ wikidata:Q190087 ]
-    description: 'what the raw field decodes to; a plain number omits it (default int). A code word (CS/MPPT/ERR) stays int, left undecoded'
-  field:
-    range: PduField
-    title: Field
-    related_mappings: [ schema:isBasedOn ]
-    description: 'FK — the catalog field this mapping lands; the field names the wire, this row names the port'
+    description: 'what a keyed field decodes to; a plain number omits it (default int). A code word (CS/MPPT/ERR) stays int, left undecoded'
+  unit_id:
+    range: integer
+    title: Unit id
+    related_mappings: [ schema:identifier ]
+    description: 'Modbus slave/unit id this binding answers on — a known per-unit default, overridable downstream (identical units multi-dropped on one bus each set their own)'
+    annotations: { camel: unitId }
+  word_order:
+    range: WordOrder
+    title: Word order
+    exact_mappings: [ wikidata:Q339338 ]
+    description: 'for 32-bit values — high_first puts the high word at the lower address; 16-bit registers are always big-endian (Modbus standard)'
+    annotations: { camel: wordOrder }
+  channel:
+    range: Channel
+    title: Channel
+    related_mappings: [ sosa:ObservableProperty ]
+    description: "FK — the categorical channel this field feeds; its own flag labels mint that channel's members"
   fields:
     range: PduField
     multivalued: true
     inlined_as_list: true
     title: Fields
     related_mappings: [ schema:hasPart ]
-  mappings:
-    range: PointMapping
+  flags:
+    range: PduFlag
     multivalued: true
     inlined_as_list: true
-    title: Mappings
-    related_mappings: [ schema:hasPart ]
+    title: Flags
+    related_mappings: [ wikidata:Q2374485 ]
+    description: "this word's identified bits, keyed by bit position; an unidentified bit has no row"
+  interval:
+    range: Interval
+    title: Interval
+    description: "FK — the interval row this points at: a mapping's read target (a `*`-part interval resolves per-instance via the mapping's own part) or a condition's anchoring band"
+    close_mappings: [ 'ssn-system:Condition' ]
+  options:
+    range: PduOption
+    multivalued: true
+    inlined_as_list: true
+    title: Options
+    related_mappings: [ schema:valueReference ]
+    description: "this code word's identified values; authored as a value → label map"
   pdu_catalog:
     range: PduCatalog
     title: PDU catalog
     related_mappings: [ dcterms:conformsTo ]
-    description: 'FK — the decode dictionary this service speaks; its fields are the keys the stream carries'
+    description: 'FK — the decode dictionary this binding speaks; its fields are the keys the stream carries'
     annotations: { camel: pduCatalog }
+  target:
+    range: PointTarget
+    inlined: true
+    title: Target
+    related_mappings: [ sosa:hasFeatureOfInterest ]
+    description: 'the measurand this field reads — its own facet, on this field’s node. On a catalog it is the socket every field of the map shares; a field narrows it with `part` and `quantity_kind`'
   transform:
     range: Transform
+    inlined: true
     title: Transform
     related_mappings: [ qudt:conversionMultiplier ]
-    description: 'FK — the arithmetic from raw scalar to engineering value; absent ⇒ the raw scalar already is one'
+    description: 'the conversion from raw scalar to engineering value — its own facet, on this field’s node; absent ⇒ the raw scalar already is one'
+
+# ─── ENUMS ────────────────────────────────────────────────────────────────────
 enums:
+  AccessMode:
+    title: Access mode
+    description: What a point permits. Absent is read-only, so only the writable modes are named.
+    permissible_values:
+      read_write:
+        title: Read and write
+        narrow_mappings: [ schema:ReadAction, schema:UpdateAction ]
+        annotations: { i18n: { value: { title: { pt: Leitura e escrita } } } }
+      write:
+        title: Write only
+        related_mappings: [ schema:UpdateAction ]
+        annotations: { i18n: { value: { title: { pt: Apenas escrita } } } }
+  RegisterDatatype:
+    title: Register datatype
+    permissible_values:
+      uint16:
+        title: Unsigned 16-bit integer
+        meaning: xsd:unsignedShort
+        annotations: { i18n: { value: { title: { pt: Inteiro de 16 bits sem sinal } } } }
+      int16:
+        title: Signed 16-bit integer
+        meaning: xsd:short
+        annotations: { i18n: { value: { title: { pt: Inteiro de 16 bits com sinal } } } }
+      uint32:
+        title: Unsigned 32-bit integer
+        meaning: xsd:unsignedInt
+        annotations: { i18n: { value: { title: { pt: Inteiro de 32 bits sem sinal } } } }
+      int32:
+        title: Signed 32-bit integer
+        meaning: xsd:int
+        annotations: { i18n: { value: { title: { pt: Inteiro de 32 bits com sinal } } } }
+      float32:
+        title: 32-bit float
+        meaning: xsd:float
+        annotations: { i18n: { value: { title: { pt: Vírgula flutuante de 32 bits } } } }
+  RegisterType:
+    title: Register type
+    permissible_values:
+      holding:
+        title: Holding register
+        meaning: modbus-org:HoldingRegister
+        annotations: { i18n: { value: { title: { pt: Registo de retenção } } } }
+      input:
+        title: Input register
+        meaning: modbus-org:InputRegister
+        annotations: { i18n: { value: { title: { pt: Registo de entrada } } } }
   ScalarType:
     title: Scalar type
-    description: What a decoded field IS, before any arithmetic — closed grammar, so an enum.
+    description: What a keyed field IS, before any arithmetic — closed grammar, so an enum.
     permissible_values:
       int:
         title: Integer
@@ -93,3 +291,20 @@ enums:
         title: String
         meaning: xsd:string
         annotations: { i18n: { value: { title: { pt: Cadeia de caracteres } } } }
+      version:
+        title: Version
+        meaning: wikidata:Q114469879
+        description: 'a release number, ordered by the packed integer it came from (major = n // 100, minor = n % 100) — `below:` compares it, so neither string nor decimal ordering holds'
+        annotations: { i18n: { value: { title: { pt: Versão } } } }
+  WordOrder:
+    title: Word order
+    permissible_values:
+      high_first:
+        title: High word first (big-endian)
+        related_mappings: [ wikidata:Q23651349 ]
+        annotations: { i18n: { value: { title: { pt: Palavra alta primeiro (big-endian) } } } }
+      low_first:
+        title: Low word first (little-endian)
+        related_mappings: [ wikidata:Q12745768 ]
+        annotations:
+          i18n: { value: { title: { pt: Palavra baixa primeiro (little-endian) } } }

@@ -1,0 +1,25 @@
+# FAMILY stub — every H1 G1 SKU, not one box. Capacity and ratings belong to the
+# SKU node; what is here is the same on all of them.
+#
+# The AUX RS-485 port reads INPUT registers, and puts the version sequence at
+# 10016. network.yaml's LAN port reads the same sequence from holding at 30016 —
+# one box, one dictionary, two coordinates. Both are facts of the PORT, so both
+# ride the binding.
+#
+# Write is holding either way: Modbus function 6/16 has no input space.
+#
+# PROVENANCE: 9600 is what foxess_modbus opens any serial client at
+# (__init__.py:111); it sets nothing else, so 8N1 is pymodbus's default, not a
+# FoxESS fact.
+link_binding:
+  modbus-rtu:
+    link_protocol: modbus-rtu
+    physical_layer: rs485
+    bit_rate: 9600
+    data_bits: 8
+    parity: none
+    stop_bits: 1
+    pdu_catalog: foxess
+    register_type: input
+    pdu: { firmware: { start: 10016 } }
+    # unit_id: unknown — the H3 default (247) is not evidence for this box

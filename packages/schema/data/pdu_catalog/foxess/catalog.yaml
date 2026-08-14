@@ -1,0 +1,45 @@
+# FoxESS's Modbus register map — one row per address, no device in it.
+#
+# SOURCE: nathanmarlor/foxess_modbus, the whole entity layer. FoxESS publishes no
+# register document, so this is that project's reverse engineering.
+#
+# A row is identified by its ADDRESS. FoxESS publishes no key names — the
+# foxess_modbus entity ids (pv1_voltage, ambtemp) are that project's, not the
+# wire's, so they ride `note` and identify nothing.
+#
+# PDU. A read block: contiguous addresses, one register space. 31006–31053 is the
+# one range two sets of boxes read differently — three-phase R/S/T against
+# single-phase scalars — so it is two PDUs, each naming the conditions under
+# which it is read. A PDU naming none is read by every box: one without the
+# hardware does not answer, and absence is not a decode fact.
+#
+# Where the register is the same and only the CONVERSION moves, a `transform` or
+# `options` table keys by condition instead — 31015 (KH from 1.33 wires CT2
+# backwards), 31027 (KH's state enum is shifted by one), 39601–39631 (H3-Pro
+# below 1.22 scales by ten). `_` is the unconditioned case.
+#
+# ABSENT, all derivations rather than decode rows: others's sign-splits of one
+# register (Battery Charge / Battery Discharge over Inverter Battery Power;
+# Feed-in / Grid Consumption over Grid CT), its lambda sensors, the force-charge
+# switch, and 73 entity/variant pairs carrying no address at all.
+#
+# ABSENT, name only: other calls 37609–37632 "Battery …" on a single-string
+# box and "Battery 1 …" on a box that has two. Same register, same conversion —
+# one row, numbered.
+#
+# ABSENT, dead other: the KH_PRE119 register set, which no model profile can
+# select — it needs input registers on a connection that reads holding
+# (inverter_profiles.py:333).
+#
+# NOT CARRIED: other's `scale=0.001` with `native_unit_of_measurement="kW"` —
+# the register is watts and the arithmetic is display formatting.
+# Same for kvar and kVA. Its `round_to` likewise: a filter, not a
+# resolution the sensor claims.
+#
+# OPEN — a version condition asserts that the Version: Manager register answers
+# the same number other's setup dialog asks the operator for. Other never
+# reads it, so nothing confirms the two agree.
+publisher: foxess
+word_order: high_first # every 32-bit value puts its high word at the lower address
+register_type: holding # the 10xxx/11xxx block reads input; it says so
+datatype: uint16 # default

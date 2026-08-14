@@ -4,3 +4,4 @@ quantity_binding:
   active-power: {}
   active-energy: {}
   time: {}
+variable_binding: { systematic-error: {} }

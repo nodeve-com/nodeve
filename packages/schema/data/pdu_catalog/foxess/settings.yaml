@@ -1,0 +1,70 @@
+# The writable keys. Two coordinates carry the SAME five battery limits in the
+# SAME order — 41007 and 46607 — so that is one sequence with two placements.
+# The rest of each old block is a different sequence and stays its own pdu:
+# 41000 is a work mode, 41001-41006 two charge periods, 46616 an export limit.
+#
+# Register space is absent by design: 41007 answers in input on some boxes and
+# in holding on others, and which space a port reads is the binding's.
+pdu:
+  - slug: work-mode
+    content: { en: { title: Work mode } }
+    datatype: uint16
+    access: read_write
+    # Same measurand, and only the ENUM moves, so the map rides the placement.
+    # A box that cannot peak-shave never answers 4; that is a settable range,
+    # not a second decode.
+    placement:
+      - { start: 41000, options: { 0: Self Use, 1: Feed-in First, 2: Back-up, 4: Peak Shaving } }
+      - { start: 49203, options: { 1: Self Use, 2: Feed-in First, 3: Back-up, 4: Peak Shaving } }
+    field: [ { offset: 0, note: Work Mode } ]
+
+  # Two periods, the same three keys in the same order at two coordinates.
+  - slug: charge-period
+    content: { en: { title: Charge period } }
+    access: read_write
+    placement: [ { start: 41001, part: 1 }, { start: 41004, part: 2 } ]
+    field:
+      - { offset: 0, datatype: uint16, type: bool, note: Enable Charge from Grid }
+      - { offset: 1, datatype: int16, note: Start }
+      - { offset: 2, datatype: int16, note: End }
+
+  - slug: charge-limit
+    content: { en: { title: Charge limits } }
+    datatype: int16
+    access: read_write
+    placement: [ { start: 41007 }, { start: 46607 } ]
+    field:
+      - offset: 0
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Max Charge Current
+      - offset: 1
+        transform: { scale: 0.1 }
+        target: { quantity_kind: electric-current }
+        note: Max Discharge Current
+      - { offset: 2, unit: '%', target: { quantity_kind: state-of-charge }, note: Min SoC }
+      - { offset: 3, unit: '%', target: { quantity_kind: state-of-charge }, note: Max SoC }
+      - offset: 4
+        unit: '%'
+        target: { quantity_kind: state-of-charge }
+        note: Min SoC (On Grid)
+
+  - slug: import-power-limit
+    content: { en: { title: Import power limit } }
+    start: 46501
+    field:
+      - offset: 0
+        datatype: int32
+        access: read_write
+        target: { quantity_kind: active-power }
+        note: Import Power Limit
+
+  - slug: export-power-limit
+    content: { en: { title: Export power limit } }
+    start: 46616
+    field:
+      - offset: 0
+        datatype: int32
+        access: read_write
+        target: { quantity_kind: active-power }
+        note: Export Power Limit

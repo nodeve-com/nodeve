@@ -1,0 +1,147 @@
+# Two fault vocabularies, disjoint rather than one a subset of the other: seven
+# words at 11061/31031/31044, three at 39067. No content word separates them, so
+# the three-word set is named by its width until a better word turns up
+# (docs/reshape.md).
+pdu:
+  - slug: fault-code
+    content: { en: { title: Inverter fault codes } }
+    datatype: uint16
+    channel: fault-code
+    placement: [ { start: 11061, register_type: input }, { start: 31031 }, { start: 31044 } ]
+    field:
+      - offset: 0
+        note: Inverter Fault Code 1
+        flags:
+          0: Grid Lost Fault
+          1: Grid Voltage Fault
+          2: Grid Frequency Fault
+          3: Grid 10min Voltage Fault
+          4: EPS Voltage Fault
+          5: Software Inverter Over-current Fault
+          6: DCI Fault
+          8: Hardware Inverter Over-current Fault
+          9: Software Bus Voltage Fault
+          10: Battery Voltage Fault
+          11: Software Battery Over-current Fault
+          12: Isolation Fault
+          13: Residual Over-current Fault
+          14: PV Voltage Fault
+          15: Software PV Over-current Fault
+      - offset: 1
+        note: Inverter Fault Code 2
+        flags:
+          0: Inverter Temperature Fault
+          1: Ground Connection Fault
+          2: Inverter Overload Fault
+          3: EPS Overload Fault
+          4: Battery Power Low Fault
+          5: Hardware Bus Voltage Fault
+          6: Hardware PV Over-current Fault
+          7: Hardware Battery Over-current Fault
+          8: SCI Fault
+          9: Master SPI Fault
+          10: BMS Lost Fault
+      - offset: 3
+        note: Inverter Fault Code 3
+        flags:
+          0: Master Sample Detection Fault
+          1: Residual Current Detection Fault
+          2: Inverter EEPROM Fault
+          3: PV Connection Direction Fault
+          4: Battery Relay Open
+          5: Battery Relay Short Circuit
+          6: Battery Buck Fault
+          7: Battery Boost Fault
+          8: EPS Relay Fault
+          9: Short EPS Load Fault
+          10: Battery Connection Direction Fault
+          11: Main Relay Open
+          12: S1 Close Fault
+          13: S2 Close Fault
+          14: M1 Close Fault
+          15: M2 Close Fault
+      - offset: 4
+        note: Inverter Fault Code 4
+        flags:
+          0: Grid Voltage Consistency Fault
+          1: Grid Frequency Consistency Fault
+          2: DCI Consistency Fault
+          3: Residual Current Consistency Fault
+          6: Slave SPI Fault
+          7: Slave Sample Fault
+          8: RDSP SPI Fault
+          9: RDSP Sample Fault
+      - offset: 5
+        note: Inverter Fault Code 5
+        flags: { 0: ARM EEPROM Fault, 1: Meter Lost Fault }
+      - offset: 6
+        note: Inverter Fault Code 6
+        flags:
+          0: BMS External Fault
+          1: BMS Internal Fault
+          2: Battery Over-voltage
+          3: Battery under-voltage
+          4: BMS Charge Over-current
+          5: BMS Discharge Over-current
+          6: BMS Over-temperature
+          7: BMS Under-temperature
+          8: BMS Cell Imbalance
+          9: BMS Hardware Protection Fault
+          10: BMS Circuit Fault
+          11: BMS Insulation Fault
+          12: BMS Voltage Sensor Fault
+          13: BMS Temperature Sensor Fault
+          14: BMS Current Sensor Fault
+          15: BMS Relay Fault
+      - offset: 7
+        note: Inverter Fault Code 7
+        flags:
+          0: BMS Type Mismatch
+          1: BMS Version Mismatch
+          2: BMS Manufacturer Mismatch
+          3: BMS Software/Hardware Mismatch
+          4: BMS Master/Slave Mismatch
+          5: BMS Charge Request Not Acknowledged
+          6: BMS Supply Fault
+          8: BMS Self Check Fault
+          9: BMS Cell Temperature Difference Fault
+          10: BMS Cell Voltage Break Line Fault
+          11: BMS Self Check Voltage Mismatch Fault
+          12: BMS Precharge Fault
+          13: BMS Self Check HVB Fault
+          14: BMS Self Check Pack Current Fault
+          15: BMS Self Check Sys Mismatch Fault
+  - slug: fault-code-3word
+    content: { en: { title: Inverter fault codes } }
+    datatype: uint16
+    channel: fault-code
+    start: 39067
+    field:
+      - offset: 0
+        note: Inverter Fault Code 1
+        flags:
+          0: PV Over-voltage
+          1: DC arc fault
+          2: String reverse connection
+          7: Grid Lost Fault
+          8: Grid Voltage Fault
+          11: Grid Frequency Fault
+          14: Output Over-current Fault
+          15: Output DC Over-current Fault
+      - offset: 1
+        note: Inverter Fault Code 2
+        flags:
+          0: Residual Current Consistency Fault
+          1: Ground Connection Fault
+          2: Low Insulation Resistante Fault
+          3: Inverter Over-temperature Fault
+          9: Energy Storage Equipment Abnormal Fault
+          10: Isolated Island Fault
+          14: Off-grid Output Overload Fault
+      - offset: 2
+        note: Inverter Fault Code 3
+        flags:
+          3: External Fan Fault
+          4: Energy Storage Reverse Connection Fault
+          9: Meter Lost Fault
+          10: BMS Lost Fault

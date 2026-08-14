@@ -1,0 +1,7 @@
+# Coordinates ride the two bindings: the AUX port reads the sequence at 10016,
+# the LAN port at 30016.
+#
+# Alone in reading all three parts as plain numbers — no BCD anywhere on an H1.
+archetype: foxess-inverter
+variable: { product-family: h1 }
+pdu: { firmware: { transform: { bcd: false } } }

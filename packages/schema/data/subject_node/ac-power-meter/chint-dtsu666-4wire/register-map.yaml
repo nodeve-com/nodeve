@@ -1,9 +1,0 @@
-# The decode contract — the register banks, shared per family. How the frames get
-# here is the wire's, in link.yaml. unit_id is a per-unit default, overridable
-# downstream. The two banks (register-bank-a / register-bank-b files) merge into
-# this ONE map.
-register_map:
-  slug: chint-dtsu666
-  unit_id: 1 # Modbus slave id, confirmed on the meter's front panel
-  register_type: holding # all values read via FC03
-  word_order: high_first # FP32 high word at the lower address (mbpoll -B, 2026-06-04)

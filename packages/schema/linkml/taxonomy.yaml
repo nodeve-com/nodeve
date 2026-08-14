@@ -15,7 +15,29 @@ classes:
   FeatureType:
     title: Feature type
     annotations: { sql_table: feature_type }
-    slots: [ node, quantity_bindings ]
+    slots: [ node, quantity_bindings, variable_bindings, refs ]
+
+  # A named state slot — what a thing reports that is not a quantity kind.
+  # QUDT answers what kind of number a value is and in what units; it does not
+  # enumerate named measurands, so state of health and cycle count have no row
+  # there while their kinds (dimensionless-ratio, count) do. Both facts live
+  # here: `type` for a value with no quantity (a version string, a flag),
+  # `quantity_kind` for one that carries units.
+  Variable:
+    title: Variable
+    annotations: { sql_table: variable }
+    slots: [ node, type, quantity_kind, refs ]
+    slot_usage: { quantity_kind: { required: false } }
+
+  # One row per feature type × variable — the sibling of QuantityBinding, and
+  # the same shape: which named states a feature of this type may carry.
+  VariableBinding:
+    title: Variable binding
+    annotations:
+      sql_table: variable_binding
+      # authored form: a map keyed by this slot (variable_binding: {firmware: …})
+      keyed_by: variable
+    slots: [ node, variable ]
 
   # The node-type registry — every NodeType is a row here, device archetypes
   # (inverter, ac-meter) AND the table-less kinds (registry, organization).
@@ -166,6 +188,19 @@ slots:
     exact_mappings: [ dcterms:isReplacedBy ]
     description: 'self-FK — the current kind upstream redirects to (Conductivity → ElectricConductivity)'
     annotations: { camel: replacedBy }
+  variable:
+    range: Variable
+    title: Variable
+    related_mappings: [ sosa:observedProperty ]
+    description: 'FK to the variable table — the named state a binding or a field points at'
+  variable_bindings:
+    range: VariableBinding
+    multivalued: true
+    inlined_as_list: true
+    title: Variable bindings
+    related_mappings: [ ssn:forProperty ]
+    description: 'one row per feature type × variable — the named states a feature of this type may carry'
+    annotations: { camel: variableBindings }
 
 # ─── ENUMS ────────────────────────────────────────────────────────────────────
 # CLOSED GRAMMAR vocabularies only. Part keys (phase a/b/c, l1/l2, tracker

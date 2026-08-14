@@ -10,8 +10,16 @@
 import { basename, dirname } from 'node:path';
 import { slugify } from '@nodeve/text/slugify';
 import { readYaml } from '../src/io.ts';
-import { classByName, classByTable, expandFk as expand, ownerSlotFor, seg, SLUG } from './model.ts';
-import { die, isMap, type Doc } from './registers.ts';
+import {
+	classByName,
+	classByTable,
+	expandFk as expand,
+	ownerSlotFor,
+	seg,
+	slotByName,
+	SLUG,
+} from './model.ts';
+import { coRow, die, isMap, type Doc } from './registers.ts';
 
 export type Row = Record<string, unknown> & { $trail: string; $slot?: string };
 
@@ -37,15 +45,114 @@ function authoredKeyed(value: unknown, keyedBy: string, trail: string): Doc {
 	return isMap(map) ? map : die(trail, `expected a map keyed by ${keyedBy}`);
 }
 
-/** one keyed child map → its rows (content: {en: …} → Content rows) */
+/** a map key IS a column value, and YAML hands every key back as text — an
+ * integer-ranged slot takes the number. Read off the slot's range, so a new
+ * numeric key needs no rule of its own. */
+function keyValue(slot: string, key: string, trail: string): unknown {
+	const range = slotByName[slot]?.range;
+	if (range !== 'integer' && range !== 'float') return expand(slot, key, trail);
+	const n = Number(key);
+	if (!Number.isFinite(n)) throw new Error(`${trail}: ${slot} takes a number, not ${key}`);
+	return n;
+}
+
+/** an FK naming a row of THIS document (a placement's variant is one of its own
+ * catalog's) resolves against the document root, not a data dir. Declared on the
+ * slot — `annotations: { in_doc: true }` — never a table list in here. */
+const inDoc = (slot: string) => slotByName[slot]?.annotations?.in_doc === true;
+
+/** one child row's columns → its stored columns. Recurses: a payload key naming
+ * another table is that child's own block, so a catalog nests field → flag
+ * without a lowering per level. */
+function childColumns(
+	childClass: string,
+	payload: Record<string, unknown>,
+	ctx: { node: string; trail: string; root: string },
+): Record<string, unknown> {
+	const child = classByName[childClass]!;
+	const expanded: Record<string, unknown> = {};
+	for (const [ck, cv] of Object.entries(payload)) {
+		const grandClass = classByTable[ck];
+		const ownerSlot =
+			grandClass && !child.slots?.includes(ck) ? ownerSlotFor(childClass, grandClass) : undefined;
+		if (ownerSlot && grandClass) {
+			expanded[ownerSlot] = children(grandClass, cv, {
+				node: ctx.node,
+				trail: `${ctx.trail}.${ck}`,
+				root: ctx.root,
+			});
+		} else if (!child.slots?.includes(ck)) {
+			throw new Error(`${ctx.trail}.${ck}: not a ${childClass} slot`);
+		} else if (slotByName[ck]?.inlined) {
+			// a 1:1 facet of this row — its own table, this row's node
+			expanded[ck] = coRow(slotByName[ck]!.range!, { node: ctx.node, trail: `${ctx.trail}.${ck}` }, cv);
+		} else {
+			expanded[ck] = inDoc(ck) ? `${ctx.root}/${cv}` : expand(ck, cv, `${ctx.trail}.${ck}`);
+		}
+	}
+	return expanded;
+}
+
+/** a child block → its rows. Two authored forms, and the SCHEMA picks which: a
+ * class annotated `keyed_by` is a map whose key IS a column value; one annotated
+ * `identified_by` is a LIST, each row identified by the first of those slots it
+ * carries. The list form exists because a protocol that numbers its slots
+ * publishes no name for them — a map would demand one, and the only way to
+ * satisfy it is to invent one. */
+function children(
+	childClass: string,
+	value: unknown,
+	ctx: { node: string; trail: string; root: string },
+): Row[] {
+	const child = classByName[childClass];
+	if (!child) throw new Error(`${ctx.trail}: no class ${childClass}`);
+	const identifiedBy = child.annotations?.identified_by;
+	return identifiedBy
+		? listChildren(childClass, identifiedBy.split(' ').filter(Boolean), value, ctx)
+		: keyedChildren(childClass, value, ctx);
+}
+
+/** the list form — rows carrying their own identity as a column */
+function listChildren(
+	childClass: string,
+	idSlots: string[],
+	value: unknown,
+	ctx: { node: string; trail: string; root: string },
+): Row[] {
+	const { node, trail, root } = ctx;
+	if (!Array.isArray(value)) throw new Error(`${trail}: expected a list of ${childClass} rows`);
+	const child = classByName[childClass]!;
+	const ordered = child.slots?.includes('ordinal');
+	const seen = new Set<string>();
+	return value.map((payload, i) => {
+		if (!payload || typeof payload !== 'object' || Array.isArray(payload))
+			throw new Error(`${trail}[${i}]: expected a map of columns`);
+		const row = payload as Record<string, unknown>;
+		const idSlot = idSlots.find((s) => row[s] !== undefined);
+		if (!idSlot)
+			throw new Error(`${trail}[${i}]: no identity — one of [${idSlots}] must be authored`);
+		const id = slugify(String(row[idSlot]));
+		if (seen.has(id)) throw new Error(`${trail}[${i}]: ${idSlot} ${row[idSlot]} authored twice`);
+		seen.add(id);
+		const childNode = `${node}/${id}`;
+		return {
+			...childColumns(childClass, row, { node: childNode, trail: `${trail}[${i}]`, root }),
+			...(ordered ? { ordinal: i + 1 } : {}),
+			node: childNode,
+			...(child.slots?.includes('about') ? { about: node } : {}),
+			$trail: `${trail}[${i}]`,
+		};
+	});
+}
+
+/** the map form — the key IS a column value (content: {en: …} → Content rows) */
 function keyedChildren(
 	childClass: string,
 	value: unknown,
-	ctx: { node: string; trail: string },
+	ctx: { node: string; trail: string; root: string },
 ): Row[] {
-	const { node, trail } = ctx;
-	const child = classByName[childClass];
-	if (!child) throw new Error(`${trail}: no class ${childClass}`);
+	const { node, trail, root } = ctx;
+	const child = classByName[childClass]!;
 	const keyedBy = child.annotations?.keyed_by;
 	if (!keyedBy) throw new Error(`${trail}: ${childClass} has no keyed_by annotation`);
 	const keyed = authoredKeyed(value, keyedBy, trail);
@@ -54,24 +161,27 @@ function keyedChildren(
 	return Object.entries(keyed).map(([k, payload], i) => {
 		if (!payload || typeof payload !== 'object' || Array.isArray(payload))
 			throw new Error(`${trail}.${k}: expected a map of columns`);
-		const expanded = Object.fromEntries(
-			Object.entries(payload).map(([ck, cv]) => {
-				if (!child.slots?.includes(ck))
-					throw new Error(`${trail}.${k}.${ck}: not a ${childClass} slot`);
-				return [ck, expand(ck, cv, `${trail}.${k}.${ck}`)];
-			}),
-		);
+		// `_` is a node segment in its own right (docs/parts.md) — slugify would
+		// eat it, leaving an empty leaf
+		const childNode = `${node}/${k === '_' ? '_' : slugify(k)}`;
+		const expanded = childColumns(childClass, payload as Record<string, unknown>, {
+			node: childNode,
+			trail: `${trail}.${k}`,
+			root,
+		});
 		if (keyDefault && !(keyDefault in expanded))
-			expanded[keyDefault] = expand(keyDefault, k, trail);
+			expanded[keyDefault] = keyValue(keyDefault, k, trail);
 		return {
 			...expanded,
 			...(ordered ? { ordinal: i + 1 } : {}),
 			// the map key is the raw id column; its node segment is slugified —
 			// idempotent on a key that already is a slug, kebabs a wire label
 			// (V, SER#), which no permalink survives verbatim
-			node: `${node}/${slugify(k)}`,
+			node: childNode,
 			...(child.slots?.includes('about') ? { about: node } : {}),
-			...(child.slots?.includes(keyedBy) ? { [keyedBy]: expand(keyedBy, k, `${trail}.${k}`) } : {}),
+			...(child.slots?.includes(keyedBy)
+				? { [keyedBy]: inDoc(keyedBy) ? `${root}/${k}` : keyValue(keyedBy, k, `${trail}.${k}`) }
+				: {}),
 			$trail: `${trail}.${k}`,
 		};
 	});
@@ -130,7 +240,11 @@ export function normalizeDoc(table: string, slug: string, doc: Record<string, un
 			const ownerSlot = ownerSlotFor(className, childClass);
 			if (!ownerSlot)
 				throw new Error(`${slug}.${key}: ${className} has no slot ranging ${childClass}`);
-			for (const childRow of keyedChildren(childClass, value, { node, trail: `${slug}.${key}` }))
+			for (const childRow of keyedChildren(childClass, value, {
+				node,
+				trail: `${slug}.${key}`,
+				root: node,
+			}))
 				rows.push({ ...childRow, $slot: ownerSlot });
 		} else if (ownSlots.includes(key)) {
 			row[key] = expand(key, value, `${slug}.${key}`);

@@ -11,10 +11,32 @@ classes:
     description: Product identity facet — model + series + the organization that makes it.
     slots: [ node, model, series, organization ]
     slot_usage: { organization: { required: true } }
+
+  # One programmable unit inside a product. A product holds several — a FoxESS
+  # box answers master, slave and manager; a WiFi dongle is another. A child
+  # facet: its own node per row, the map key as the leaf slug, tied back by the
+  # permalink trail (node.parent), so a unit with a nameplate of its own composes
+  # Product on that node.
+  Controller:
+    title: Controller
+    annotations:
+      sql_table: controller
+      # authored form: a map keyed by the unit's name (controller: {manager: …})
+      keyed_by: slug
+    description: >-
+      A programmable unit within a product — what runs firmware and what a version answers for. One row per unit, so a box reporting three versions carries three rows rather than three columns.
+    slots: [ node, firmware, firmware_legacy ]
 slots:
+  firmware:
+    title: Firmware version
+    exact_mappings: [ schema:softwareVersion ]
+    description: 'the release this unit runs — ordered by the packed integer it decodes from (major = n // 100, minor = n % 100), so neither string nor decimal ordering holds'
   model:
     title: Model
     exact_mappings: [ schema:model ]
     description: 'what the thing is called — the model designation on the nameplate'
     annotations: { i18n: { value: { title: { pt: Modelo } } } }
-  series: { title: Series, related_mappings: [ schema:ProductGroup ] }
+  series:
+    title: Series
+    related_mappings: [ schema:ProductGroup ]
+    description: 'Nameplate grouping the model sits in — H3 over H3-PS10SH'

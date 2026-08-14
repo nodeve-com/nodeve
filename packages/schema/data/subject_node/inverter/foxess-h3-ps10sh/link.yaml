@@ -1,0 +1,19 @@
+# The second surface the box offers: Modbus-RTU on its RS-485 COM port, reading
+# the same fields at the same addresses as the modbus-tcp binding, which is what
+# makes the two interchangeable. An H1 states a start on each of its bindings
+# instead; this box states none, so both ports read the catalog's.
+#
+# PROVENANCE: 9600 is what foxess_modbus opens a serial client at
+# (__init__.py:111); it sets nothing else, so 8N1 is pymodbus's default, not a
+# FoxESS fact. Line settings ride the binding because they are the INSTALLED
+# box's.
+link_binding:
+  modbus-rtu:
+    link_protocol: modbus-rtu
+    physical_layer: rs485
+    bit_rate: 9600
+    data_bits: 8
+    parity: none
+    stop_bits: 1
+    pdu_catalog: foxess
+    unit_id: 247

@@ -1,0 +1,141 @@
+# The lifetime and daily accumulators. FoxESS put the SAME sixteen measurands in
+# the SAME order at two coordinates, so this is one sequence with two
+# placements, not two blocks (packages/schema/CLAUDE.md).
+#
+# No offset is authored: the run is contiguous, so each field sits at the sum of
+# the widths before it. No `end` either — it is the last field's address, which
+# the sequence already gives.
+#
+# Each field carries its own datatype. What moves between the coordinates is
+# WIDTH and nothing else: 39601 is 32-bit throughout, which widens uint16 to
+# uint32 and int16 to int32 while a lifetime accumulator (already 32-bit) stays
+# put. Sign never moves, so no field restates it.
+#
+# Which coordinate a box reads is the family's fact (foxess-h3-pro,
+# foxess-h3-smart, foxess-evo read 39601); the ten-fold scale a pre-1.22 H3-Pro
+# applies is that family's too.
+pdu:
+  - slug: energy
+    content: { en: { title: Energy accumulators } }
+    unit: kWh
+    placement:
+      - { start: 11069, transform: { scale: 0.1 }, register_type: input }
+      - { start: 32000, transform: { scale: 0.1 } }
+      - { start: 39601, transform: { scale: 0.01 }, width: 32 }
+    field:
+      - datatype: uint32
+        target:
+          feature_type: dc-port
+          role: pv-tracker
+          part: _
+          quantity_kind: active-energy
+          period: lifetime
+        note: Solar Generation Total
+      - datatype: uint16
+        target:
+          feature_type: dc-port
+          role: pv-tracker
+          part: _
+          quantity_kind: active-energy
+          period: daily
+        note: Solar Generation Today
+      - datatype: uint32
+        target: { quantity_kind: active-energy, period: lifetime }
+        note: Battery Charge Total
+      - datatype: int16
+        target: { quantity_kind: active-energy, period: daily }
+        note: Battery Charge Today
+      - datatype: uint32
+        target: { quantity_kind: active-energy, period: lifetime }
+        note: Battery Discharge Total
+      - datatype: int16
+        target: { quantity_kind: active-energy, period: daily }
+        note: Battery Discharge Today
+      - datatype: uint32
+        target:
+          feature_type: ac-phase
+          role: grid
+          part: _
+          quantity_kind: active-energy
+          flow_direction: out
+          period: lifetime
+        note: Feed-in Total
+      - datatype: int16
+        target:
+          feature_type: ac-phase
+          role: grid
+          part: _
+          quantity_kind: active-energy
+          flow_direction: out
+          period: daily
+        note: Feed-in Today
+      - datatype: uint32
+        target:
+          feature_type: ac-phase
+          role: grid
+          part: _
+          quantity_kind: active-energy
+          flow_direction: in
+          period: lifetime
+        note: Grid Consumption Total
+      - datatype: int16
+        target:
+          feature_type: ac-phase
+          role: grid
+          part: _
+          quantity_kind: active-energy
+          flow_direction: in
+          period: daily
+        note: Grid Consumption Today
+      - datatype: uint32
+        target:
+          feature_type: ac-phase
+          role: out
+          part: _
+          quantity_kind: active-energy
+          flow_direction: out
+          period: lifetime
+        note: Yield Total
+      - datatype: int16
+        target:
+          feature_type: ac-phase
+          role: out
+          part: _
+          quantity_kind: active-energy
+          flow_direction: out
+          period: daily
+        note: Yield Today
+      - datatype: uint32
+        target:
+          feature_type: ac-phase
+          role: out
+          part: _
+          quantity_kind: active-energy
+          flow_direction: in
+          period: lifetime
+        note: Input Energy Total
+      - datatype: int16
+        target:
+          feature_type: ac-phase
+          role: out
+          part: _
+          quantity_kind: active-energy
+          flow_direction: in
+          period: daily
+        note: Input Energy Today
+      - datatype: uint32
+        target:
+          feature_type: ac-phase
+          role: load
+          part: _
+          quantity_kind: active-energy
+          period: lifetime
+        note: Load Energy Total
+      - datatype: int16
+        target:
+          feature_type: ac-phase
+          role: load
+          part: _
+          quantity_kind: active-energy
+          period: daily
+        note: Load Energy Today

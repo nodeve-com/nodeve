@@ -36,7 +36,7 @@ point              quantity kind, feature slot
 Three jobs, strictly separated:
 
 - **decode** answers _what bits are there_ — byte layout, nothing else.
-- **transform** answers _what the number means_ — arithmetic and units, never bytes.
+- **transform** answers _what the number means_ — arithmetic, never bytes.
 - **map** answers _which point it names_ — identity, no arithmetic.
 
 Scale, offset, decimals and sentinel→null are transform. A decode step that scales has broken the model.
