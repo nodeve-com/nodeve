@@ -15,7 +15,6 @@
 # does not implement and one with nothing behind it look identical, so it is
 # left out rather than recorded as absent.
 archetype: foxess-inverter
-variable: { product-family: h3-smart }
 pdu:
   foxess-39063: # PV trackers, state and fault codes
   sensors:

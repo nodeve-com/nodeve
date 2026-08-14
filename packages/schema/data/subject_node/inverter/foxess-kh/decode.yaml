@@ -7,6 +7,5 @@
 # discriminator is unreadable on the branch it selects. foxess_modbus asks the
 # operator for it.
 archetype: foxess-inverter
-variable: { product-family: kh }
 pdu:
   firmware: { start: [ { when: [ { variable: firmware-legacy, is: true } ], value: 30016 } ] }

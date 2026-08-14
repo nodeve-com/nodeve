@@ -1,3 +1,1 @@
-archetype: foxess-inverter
-variable: { product-family: evo }
-pdu: { energy: { start: 39601 } }
+{ archetype: foxess-inverter, pdu: { energy: { start: 39601 } } }

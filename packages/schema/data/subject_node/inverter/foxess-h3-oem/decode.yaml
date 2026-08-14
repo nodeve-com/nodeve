@@ -1,4 +1,3 @@
 # Rebadges pinned to the pre-1.80 map — firmware-legacy is true whatever they
 # answer, which the archetype states.
 archetype: foxess-h3-set
-variable: { product-family: h3-oem }

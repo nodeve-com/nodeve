@@ -9,7 +9,7 @@
 # Order resolves overlapping patterns (`^H1-([\d\.]+)` also matches
 # `AC1-5.0-E-G2`): h1-g2 before h1, h3-smart before both h3 and h3-oem.
 variable:
-  product-family:
+  decode-variant:
     - value: h1-g2 # before h1 — else an H1-…-E-G2 lands on the G1 map
       when:
         - { variable: model-string, matches: [ '^H1-([\d\.]+)-E\d?-G2', '^AC1-([\d\.]+)-E-G2' ] }
@@ -65,25 +65,25 @@ variable:
   firmware-legacy:
     - value: true
       when:
-        - { variable: product-family, is: h1-g2 }
+        - { variable: decode-variant, is: h1-g2 }
         - { variable: firmware, part: manager, below: '1.44' }
     - value: true
       when:
-        - { variable: product-family, is: kh } # CT2 wired backwards from 1.33
+        - { variable: decode-variant, is: kh } # CT2 wired backwards from 1.33
         - { variable: firmware, part: manager, below: '1.33' }
     - value: true
       when:
-        - { variable: product-family, is: h3 }
+        - { variable: decode-variant, is: h3 }
         - { variable: firmware, part: manager, below: '1.80' }
     - value: true
       when:
-        - { variable: product-family, is: aio-h3 }
+        - { variable: decode-variant, is: aio-h3 }
         - { variable: firmware, part: manager, below: '1.01' }
     - value: true
       when:
-        - { variable: product-family, is: h3-pro } # scales the 39601 block by ten
+        - { variable: decode-variant, is: h3-pro } # scales the 39601 block by ten
         - { variable: firmware, part: manager, below: '1.22' }
     # No firmware condition: the rebadges are pinned to the pre-1.80 map whatever
     # they answer. One rule, one variable — which is why `when` is a list.
     - value: true
-      when: [ { variable: product-family, is: h3-oem } ]
+      when: [ { variable: decode-variant, is: h3-oem } ]

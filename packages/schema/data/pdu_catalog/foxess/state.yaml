@@ -19,7 +19,7 @@ pdu:
       - offset: 0
         note: Inverter State
         options:
-          - when: [ { variable: product-family, is: kh } ]
+          - when: [ { variable: decode-variant, is: kh } ]
             value:
               0: Self Test
               1: Waiting
