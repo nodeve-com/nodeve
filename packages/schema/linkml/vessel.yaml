@@ -1,0 +1,72 @@
+id: https://nodeve.com/schema/lib/vessel
+name: vessel
+default_prefix: nodeve
+default_range: string
+
+classes:
+  # What makes a tracked body a SHIP, and nothing else. A keyless 1:1 co-row
+  # sharing the node id, like Product and Physical: the vessel's name is its
+  # Content, its identity is its Node, its track is track.yaml. Only the
+  # registrations no other kind of body carries live here — a car facet would
+  # hold a VIN and a plate in exactly this shape.
+  Vessel:
+    title: Vessel
+    annotations: { sql_table: vessel }
+    description: Maritime registrations of a tracked body — the identifiers a ship is addressed by.
+    slots: [ node, mmsi, imo, call_sign, ship_type, cargo_type ]
+    slot_usage: { mmsi: { required: true } }
+    unique_keys: { mmsi_key: { unique_key_slots: [ mmsi ] } }
+
+  # The hull's loaded state, as of one instant — PositionReference's shape
+  # (subject + time, no FK but the node) because it answers the same kind of
+  # question about the same body. It is NOT a column on Trip: how deep a hull
+  # sits is a fact only hulls have, and a generic declaration record carrying it
+  # would be null for every truck ever tracked. One broadcast writing two rows
+  # is the honest cost.
+  Loading:
+    title: Loading
+    annotations: { sql_table: loading }
+    description: How deep a hull is sitting, as of one instant — a fact that moves with every load and ballast change.
+    slots: [ subject, time, draught ]
+    slot_usage: { time: { required: true }, draught: { required: true } }
+    unique_keys: { loading_pk: { unique_key_slots: [ subject, time ] } }
+
+slots:
+  call_sign:
+    range: string
+    title: Call sign
+    related_mappings: [ schema:identifier ]
+    description: 'radio call sign, up to seven characters'
+    annotations: { camel: callSign }
+  draught:
+    range: float
+    minimum_value: 0
+    title: Draught
+    related_mappings: [ schema:depth ]
+    description: 'how deep the hull sits, metres — moves with every load and ballast change, so it is stated per declaration and never as a body fact'
+  imo:
+    range: integer
+    minimum_value: 1000000
+    maximum_value: 9999999
+    title: IMO number
+    related_mappings: [ schema:identifier ]
+    description: 'IMO ship identification number — seven digits, fixed to the hull for its life across renames, reflaggings, and owners'
+  mmsi:
+    range: integer
+    minimum_value: 100000000
+    maximum_value: 999999999
+    title: MMSI
+    related_mappings: [ schema:identifier ]
+    description: 'Maritime Mobile Service Identity — nine digits, the radio installation''s identity and therefore reassignable with the radio, not the hull'
+  cargo_type:
+    range: CargoType
+    title: Cargo type
+    related_mappings: [ schema:category ]
+    description: 'what the hull carries — the second digit of the ship-and-cargo-type code, null for the 3x and 5x types that spend that digit on the type itself'
+    annotations: { camel: cargoType }
+  ship_type:
+    range: ShipType
+    title: Ship type
+    related_mappings: [ schema:category ]
+    description: 'what kind of hull it is — the type half of the ship-and-cargo-type code the decoder split'
+    annotations: { camel: shipType }

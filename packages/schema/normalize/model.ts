@@ -25,10 +25,32 @@ export type SlotDef = {
 	};
 };
 
+export type EnumDef = {
+	title?: string;
+	description?: string;
+	annotations?: {
+		state_set?: boolean;
+		i18n?: { value?: Record<string, Record<string, string>> };
+	};
+	permissible_values?: Record<string, ValueDef | null>;
+};
+export type ValueDef = {
+	title?: string;
+	description?: string;
+	meaning?: string;
+	exact_mappings?: string[];
+	close_mappings?: string[];
+	related_mappings?: string[];
+	narrow_mappings?: string[];
+	broad_mappings?: string[];
+	annotations?: { i18n?: { value?: Record<string, Record<string, string>> } };
+};
+
 type Schema = {
 	imports?: string[];
 	classes?: Record<string, ClassDef>;
 	slots?: Record<string, SlotDef>;
+	enums?: Record<string, EnumDef>;
 };
 
 const loadSchema = (name: string, seen = new Set<string>()): Schema => {
@@ -40,12 +62,14 @@ const loadSchema = (name: string, seen = new Set<string>()): Schema => {
 		...source,
 		classes: Object.assign({}, ...imports.map(({ classes }) => classes), source.classes),
 		slots: Object.assign({}, ...imports.map(({ slots }) => slots), source.slots),
+		enums: Object.assign({}, ...imports.map(({ enums }) => enums), source.enums),
 	};
 };
 
 export const schema = loadSchema('nodeve');
 export const slotByName: Record<string, SlotDef> = schema.slots ?? {};
 export const classByName: Record<string, ClassDef> = schema.classes ?? {};
+export const enumByName: Record<string, EnumDef> = schema.enums ?? {};
 export const classByTable: Record<string, string> = Object.fromEntries(
 	Object.entries(classByName).flatMap(([name, c]) =>
 		c.annotations?.sql_table ? [[c.annotations.sql_table, name]] : [],
@@ -105,6 +129,12 @@ export function expandFk(slot: string, value: unknown, trail: string): unknown {
 	const range = slotByName[slot]?.range;
 	const table = range ? classByName[range]?.annotations?.sql_table : undefined;
 	if (!table) return value;
+	// a multivalued FK is authored as a list of the same bare slugs
+	if (Array.isArray(value)) {
+		if (!slotByName[slot]?.multivalued)
+			throw new Error(`${trail}: ${slot} takes one ${table}, not a list`);
+		return value.map((v, i) => expandFk(slot, v, `${trail}[${i}]`));
+	}
 	const rooted = range ? classByName[range]?.annotations?.path_root : undefined;
 	if (typeof value !== 'string')
 		throw new Error(`${trail}: expected a ${rooted ? `${table} trail` : `bare ${table} slug`}`);

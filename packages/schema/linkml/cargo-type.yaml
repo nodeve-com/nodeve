@@ -1,0 +1,65 @@
+id: https://nodeve.com/schema/lib/cargo-type
+name: cargo-type
+default_prefix: nodeve
+default_range: string
+
+enums:
+  # The SECOND digit of ITU-R M.1371 ship and cargo type, where the first is
+  # 2, 4, 6, 7, 8, or 9 — what the hull is carrying, by IMO hazard or pollutant
+  # category. A 3x or 5x code spends its second digit on the type itself and
+  # carries none of these. `x` in the ref is that unconstrained first digit.
+  CargoType:
+    title: Cargo type
+    permissible_values:
+      all_ships:
+        title: All ships of this type
+        meaning: itu-r-m1371:ship-and-cargo-type-x0
+        annotations: { i18n: { value: { title: { pt: Todos os navios deste tipo } } } }
+      hazard_a:
+        title: Carrying DG, HS or MP, IMO hazard or pollutant category A
+        meaning: itu-r-m1371:ship-and-cargo-type-x1
+        annotations:
+          i18n:
+            value:
+              title: { pt: 'Transporta DG, HS ou MP, categoria A de perigo ou poluente da IMO' }
+      hazard_b:
+        title: Carrying DG, HS or MP, IMO hazard or pollutant category B
+        meaning: itu-r-m1371:ship-and-cargo-type-x2
+        annotations:
+          i18n:
+            value:
+              title: { pt: 'Transporta DG, HS ou MP, categoria B de perigo ou poluente da IMO' }
+      hazard_c:
+        title: Carrying DG, HS or MP, IMO hazard or pollutant category C
+        meaning: itu-r-m1371:ship-and-cargo-type-x3
+        annotations:
+          i18n:
+            value:
+              title: { pt: 'Transporta DG, HS ou MP, categoria C de perigo ou poluente da IMO' }
+      hazard_d:
+        title: Carrying DG, HS or MP, IMO hazard or pollutant category D
+        meaning: itu-r-m1371:ship-and-cargo-type-x4
+        annotations:
+          i18n:
+            value:
+              title: { pt: 'Transporta DG, HS ou MP, categoria D de perigo ou poluente da IMO' }
+      reserved_5:
+        title: Reserved for future use (5)
+        meaning: itu-r-m1371:ship-and-cargo-type-x5
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (5)' } } } }
+      reserved_6:
+        title: Reserved for future use (6)
+        meaning: itu-r-m1371:ship-and-cargo-type-x6
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (6)' } } } }
+      reserved_7:
+        title: Reserved for future use (7)
+        meaning: itu-r-m1371:ship-and-cargo-type-x7
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (7)' } } } }
+      reserved_8:
+        title: Reserved for future use (8)
+        meaning: itu-r-m1371:ship-and-cargo-type-x8
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (8)' } } } }
+      no_additional_information:
+        title: No additional information
+        meaning: itu-r-m1371:ship-and-cargo-type-x9
+        annotations: { i18n: { value: { title: { pt: Sem informação adicional } } } }

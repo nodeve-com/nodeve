@@ -1,0 +1,73 @@
+id: https://nodeve.com/schema/lib/state
+name: state
+default_prefix: nodeve
+default_range: string
+
+# What a subject IS DOING NOW, for any kind of subject. A named state set and
+# its options are nodes, so a new kind — AIS navigational status, SunSpec
+# operating state — is rows, never a slot, a class, and a table apiece.
+classes:
+  # A named state vocabulary, PROJECTED from the enum that declares it
+  # (`annotations: { state_set: true }`) — the enum is the one place the values,
+  # their labels, and their refs are written, and these rows are its storage
+  # form. So the enum keeps validating a decode before the insert, and the
+  # database still holds every admissible value as a row a State can FK.
+  StateSet:
+    title: State set
+    annotations: { sql_table: state_set }
+    description: A named vocabulary of the states a subject can be in — its options are its children.
+    slots: [ node, state_options ]
+
+  # One admissible value of one state set. The set is this node's parent, so
+  # the option's own node id identifies it globally: a state row FKs it in one
+  # column and cannot name a value from the wrong set.
+  StateOption:
+    title: State option
+    annotations: { sql_table: state_option, keyed_by: slug }
+    description: One admissible value of a state set — its set is its parent node, its wire code its ref.
+    slots: [ node, ordinal, refs ]
+
+  # Current value only — one row per subject per set, overwritten in place.
+  # History is an append-only hypertable, split off by write rate, retention,
+  # and compression key; it is NOT this table with more rows. `state_set` is
+  # derivable from the option's parent and carried anyway: it is what makes
+  # one-state-per-set enforceable as a unique key.
+  State:
+    title: State
+    annotations: { sql_table: state }
+    description: The state a subject is in now — one row per subject per state set, replaced on change.
+    slots: [ subject, state_set, state_option, time ]
+    slot_usage:
+      state_set: { required: true }
+      state_option: { required: true }
+      time: { required: true }
+    unique_keys: { state_pk: { unique_key_slots: [ subject, state_set ] } }
+
+slots:
+  state_option:
+    range: StateOption
+    title: State option
+    exact_mappings: [ skos:member ]
+    description: 'FK — the value the subject is in, one option node of that set'
+    annotations: { camel: stateOption }
+  state_options:
+    range: StateOption
+    multivalued: true
+    inlined_as_list: true
+    title: State options
+    exact_mappings: [ skos:hasTopConcept ]
+    description: 'the vocabulary — one row per admissible state, ordinal from the enum''s declared order'
+    annotations: { camel: stateOptions }
+  state_set:
+    range: StateSet
+    title: State set
+    exact_mappings: [ skos:ConceptScheme ]
+    description: 'FK — the named vocabulary this row states a value from; the option''s parent, carried so one-state-per-set is a key the database enforces'
+    annotations: { camel: stateSet }
+  state_sets:
+    range: StateSet
+    multivalued: true
+    title: State sets
+    exact_mappings: [ skos:inScheme ]
+    description: 'FK — the state vocabularies a node type may hold a value from; the socket contract for a `state` facet, the way `feature_type` is one for a feature'
+    annotations: { camel: stateSets }

@@ -1,0 +1,5 @@
+content:
+  en: { title: 'ITU-R M.1371 (AIS technical characteristics)' }
+  pt: { title: 'ITU-R M.1371 (características técnicas do AIS)' }
+publisher: itu
+node: { url: https://www.itu.int/rec/R-REC-M.1371/en }

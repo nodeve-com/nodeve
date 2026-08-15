@@ -1,0 +1,14 @@
+# A tracked hull. `vessel` carries the registrations; everything that moves is
+# history — subject + time rows an ingest path writes, never authored, never
+# addressable. Which fences it has been inside is `geofence_visit`; the fences
+# themselves belong to no vessel.
+facet:
+  vessel: { cardinality: single, required: true }
+  location: { cardinality: single }
+  position: { cardinality: many }
+  position_reference: { cardinality: many }
+  trip: { cardinality: many }
+  loading: { cardinality: many }
+  geofence_visit: { cardinality: many }
+  # what it is doing now — one row per set it declares
+  state: { cardinality: many, state_sets: [ nav-status ] }

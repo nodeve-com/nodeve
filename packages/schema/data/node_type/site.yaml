@@ -6,6 +6,7 @@
 facet:
   site: { cardinality: single, required: true }
   location: { cardinality: single }
+  # This probably needs to be moved elsewhere
   service: { facet: feature_of_interest, cardinality: child, feature_type: ac-phase }
   tank: { facet: feature_of_interest, cardinality: child, feature_type: environment }
   ground: { facet: feature_of_interest, cardinality: child, feature_type: environment }

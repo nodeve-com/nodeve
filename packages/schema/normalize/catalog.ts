@@ -14,7 +14,13 @@ import type { Bundle, TableRow } from '../src/load.ts';
 import { classByName, classByTable, slotByName } from './model.ts';
 import { normalize, normalizeDoc, nodeAttrMap, type Row } from './normalize.ts';
 import { projectProperties } from './properties.ts';
+import { stateSetDocs } from './state-sets.ts';
 import { normalizeDevice } from './tree.ts';
+
+/** the schema-projected state-set row-set — the marked enums, each taking the
+ * authored path so its nodes, ordinals, Content, and refs mint the one way */
+const stateSets = (): TableRow[] =>
+	stateSetDocs().map(({ slug, doc }) => assemble(normalizeDoc('state_set', slug, doc)) as TableRow);
 
 /** the schema-projected Property row-set, feeding this pass's accumulators */
 function properties(): TableRow[] {
@@ -251,10 +257,12 @@ export function buildCatalog(root: string, { schemaRows = false } = {}): Bundle 
 		if (range === 'Node') continue; // derived below, no data dir
 		if (range === 'Content') continue; // accumulated during the pass, filled below
 		if (range === 'NodeType') continue; // authored + derived below, after all kinds known
-		if (range === 'Property') {
-			bundle[slot] = schemaRows ? properties() : [];
+		// projected from the SCHEMA, not the tree — the marked enums ARE the
+		// vocabularies, and every titled slot is a Property
+		if (range === 'StateSet' || range === 'Property') {
+			bundle[slot] = !schemaRows ? [] : range === 'StateSet' ? stateSets() : properties();
 			continue;
-		} // schema, not tree
+		}
 		const dir = classByName[range]?.annotations?.sql_table;
 		if (!dir) throw new Error(`Catalog.${slot}: range ${range} has no sql_table annotation`);
 		if (dir === DEVICE_DIR)

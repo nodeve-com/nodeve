@@ -1,0 +1,226 @@
+id: https://nodeve.com/schema/lib/track
+name: track
+default_prefix: nodeve
+default_range: string
+
+# Where a MOVING body has been. Location (physical.yaml) is the geodetic fact
+# of a body that stays put — one row, no time. These are the same coordinates
+# with a `time`, many rows per node, written by an ingest process rather than
+# authored: a node FK, never the node PK, because a report is not addressable.
+# Nothing here is AIS-shaped — the wire's framing (sentence text, message id,
+# repeat indicator, RAIM) is the decoder's business and stops at the decoder.
+classes:
+  Position:
+    title: Position
+    annotations:
+      sql_table: position
+      timescale_hypertable: time
+      timescale_partition_column: subject
+      timescale_chunk_interval: 7 days
+      # one body over time is the PK; "who was near here, when" is spatial-first.
+      # The point is an EXPRESSION index over the two columns — a stored geography
+      # column would be the same fix written twice.
+      index_history: (subject, time DESC)
+      index_spatiotemporal: GIST (ST_MakePoint(longitude, latitude), time)
+    description: >-
+      One fix of a moving body — where, how fast, which way, at one instant. `reference` names the offset record the fix was taken at, so a body that moves its antenna does not silently reinterpret its own history.
+    slots:
+      - subject
+      - time
+      - received_at
+      - latitude
+      - longitude
+      - altitude
+      - speed
+      - course
+      - heading
+      - rate_of_turn
+      - accuracy
+      - reference
+    slot_usage:
+      time: { required: true }
+      latitude: { required: true }
+      longitude: { required: true }
+    unique_keys: { position_pk: { unique_key_slots: [ subject, time ] } }
+
+  PositionReference:
+    title: Position reference
+    annotations: { sql_table: position_reference }
+    description: >-
+      WHERE ON THE BODY a fix is taken — the four offsets from the positioning antenna to the body's extremities, in metres, in body frame. A historical record, not a facet: the offsets are re-broadcast with every static report and a refit moves them, so each Position points at the record in force when it was fixed. The body's own extent is the sums (front + back, left + right) and is never stored.
+    slots:
+      - subject
+      - time
+      - offset_front
+      - offset_back
+      - offset_left
+      - offset_right
+      - position_fix_type
+    slot_usage: { time: { required: true } }
+    unique_keys: { position_reference_pk: { unique_key_slots: [ subject, time ] } }
+
+  Trip:
+    title: Trip
+    annotations: { sql_table: trip }
+    description: >-
+      What a body DECLARES about the leg it is on, as of one instant — where it is going and when it expects to arrive. Both change underway, so history rather than an in-place overwrite.
+    slots: [ subject, time, destination, eta ]
+    slot_usage: { time: { required: true } }
+    unique_keys: { trip_pk: { unique_key_slots: [ subject, time ] } }
+
+  # A named area of interest — an addressable thing, so a node and a 1:1 facet
+  # on it. Its name is Content, like every other node's. Deliberately
+  # geometry-only: which bodies are inside is a query against Position, never
+  # stored membership.
+  Geofence:
+    title: Geofence
+    annotations: { sql_table: geofence, postgis_index: GIST (area) }
+    description: An area of interest — the authoritative polygon, plus the centre point and radius a circular fence was defined by so it can be re-edited.
+    slots: [ node, area, latitude, longitude, radius, active ]
+    slot_usage: { area: { required: true } }
+
+  GeofenceVisit:
+    title: Geofence visit
+    annotations: { sql_table: geofence_visit }
+    description: >-
+      One continuous interval a body spent inside a geofence, collapsed from consecutive Position rows by a rollup job — not written by ingest. `exited_at` is null while the body is still inside.
+    slots: [ subject, geofence, entered_at, exited_at, closest_approach, position_count ]
+    slot_usage: { geofence: { required: true }, entered_at: { required: true } }
+    unique_keys: { geofence_visit_pk: { unique_key_slots: [ subject, geofence, entered_at ] } }
+
+slots:
+  accuracy:
+    range: float
+    minimum_value: 0
+    title: Accuracy
+    close_mappings: [ 'vim:2.13' ]
+    description: 'stated horizontal uncertainty of the fix, metres'
+  area:
+    range: string
+    title: Area
+    exact_mappings: [ schema:geo ]
+    description: 'WGS 84 areal geometry — closed rings, a one-part fence a one-part multipolygon, so the type rejects a line or a point at write time; a circular fence is stored as its buffered polygon so containment is one covers test'
+    annotations: { sql_type: geography(MultiPolygon, 4326) }
+  closest_approach:
+    related_mappings: [ schema:distance ]
+    range: float
+    minimum_value: 0
+    title: Closest approach
+    description: 'minimum distance from the fence centre during the visit, metres'
+    annotations: { camel: closestApproach }
+  course:
+    range: float
+    minimum_value: 0
+    maximum_value: 360
+    title: Course
+    related_mappings: [ schema:direction ]
+    description: 'course over ground, degrees true — where the body is actually going'
+  destination:
+    range: string
+    title: Destination
+    related_mappings: [ schema:toLocation ]
+    description: 'free text as broadcast — a claim, not a resolved place'
+  entered_at:
+    exact_mappings: [ schema:startTime ]
+    range: datetime
+    title: Entered at
+    description: 'first fix inside the fence'
+    annotations: { camel: enteredAt }
+  eta:
+    range: datetime
+    title: ETA
+    exact_mappings: [ schema:arrivalTime ]
+    description: 'estimated arrival, UTC — resolved on decode where the wire carries no year'
+  exited_at:
+    exact_mappings: [ schema:endTime ]
+    range: datetime
+    title: Exited at
+    description: 'first fix outside again; null while still inside'
+    annotations: { camel: exitedAt }
+  heading:
+    range: float
+    minimum_value: 0
+    maximum_value: 360
+    title: Heading
+    related_mappings: [ schema:direction ]
+    description: 'where the body is pointing, degrees true — differs from course under set and drift; null when unreported'
+  offset_back:
+    related_mappings: [ schema:distance ]
+    range: float
+    minimum_value: 0
+    title: Offset back
+    description: 'antenna to the back extremity (a stern), metres'
+    annotations: { camel: offsetBack }
+  offset_front:
+    related_mappings: [ schema:distance ]
+    range: float
+    minimum_value: 0
+    title: Offset front
+    description: 'antenna to the front extremity (a bow), metres'
+    annotations: { camel: offsetFront }
+  offset_left:
+    related_mappings: [ schema:distance ]
+    range: float
+    minimum_value: 0
+    title: Offset left
+    description: 'antenna to the left extremity (a port side), metres'
+    annotations: { camel: offsetLeft }
+  offset_right:
+    related_mappings: [ schema:distance ]
+    range: float
+    minimum_value: 0
+    title: Offset right
+    description: 'antenna to the right extremity (a starboard side), metres'
+    annotations: { camel: offsetRight }
+  position_count:
+    range: integer
+    minimum_value: 1
+    title: Position count
+    exact_mappings: [ schema:numberOfItems ]
+    description: 'Position rows the visit was collapsed from'
+    annotations: { camel: positionCount }
+  radius:
+    exact_mappings: [ schema:geoRadius ]
+    range: float
+    minimum_value: 0
+    title: Radius
+    description: 'circle radius, metres, when the fence was defined as one'
+  rate_of_turn:
+    related_mappings: [ schema:direction ]
+    range: float
+    title: Rate of turn
+    description: 'degrees per minute, negative to the left'
+    annotations: { camel: rateOfTurn }
+  received_at:
+    range: datetime
+    title: Received at
+    close_mappings: [ sosa:resultTime ]
+    description: 'when the ingest path took the report — its lag against `time` is the only latency fact worth keeping'
+    annotations: { camel: receivedAt }
+  speed:
+    range: float
+    minimum_value: 0
+    title: Speed
+    exact_mappings: [ schema:speed ]
+    description: 'speed over ground, metres per second'
+  time:
+    range: datetime
+    title: Time
+    exact_mappings: [ sosa:resultTime ]
+    description: 'when the reported fact was true, UTC'
+  geofence:
+    related_mappings: [ schema:containedInPlace ]
+    range: Geofence
+    title: Geofence
+    description: 'FK — the fence the visit was inside'
+  position_fix_type:
+    range: DomainMember
+    title: Position fix type
+    related_mappings: [ sosa:madeBySensor ]
+    description: 'FK — which positioning system produced the fixes taken at this reference (GPS, GLONASS, Galileo, Loran-C, surveyed); one member of the position-fix-type vocabulary'
+    annotations: { camel: positionFixType }
+  reference:
+    related_mappings: [ ssn:deployedOnPlatform ]
+    range: PositionReference
+    title: Position reference
+    description: 'FK — the antenna-offset record in force when this fix was taken'

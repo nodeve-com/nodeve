@@ -1,0 +1,37 @@
+id: https://nodeve.com/schema/lib/rating
+name: rating
+default_prefix: nodeve
+default_range: string
+
+enums:
+  Rating:
+    title: Rating
+    permissible_values:
+      continuous:
+        title: Continuous
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Contínuo } } } }
+      intermittent:
+        title: Intermittent
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Intermitente } } } }
+      short_term:
+        title: Short-term
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Curto prazo } } } }
+      startup:
+        title: Startup
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Partida } } } }
+      shutdown:
+        title: Shutdown
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Desligamento } } } }
+      survival:
+        title: Survival
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Sobrevivência } } } }
+      protection_required:
+        title: Protection required
+        close_mappings: [ cim:OperationalLimitType ]
+        annotations: { i18n: { value: { title: { pt: Proteção necessária } } } }

@@ -1,0 +1,45 @@
+id: https://nodeve.com/schema/lib/zone
+name: zone
+default_prefix: nodeve
+default_range: string
+
+enums:
+  Zone:
+    title: Zone
+    permissible_values:
+      mppt:
+        title: MPPT window
+        related_mappings: [ wikidata:Q1052007 ]
+        annotations: { i18n: { value: { title: { pt: Janela MPPT } } } }
+      mpp:
+        title: Maximum power point
+        related_mappings: [ wikidata:Q1052007 ]
+        annotations: { i18n: { value: { title: { pt: Ponto de potência máxima } } } }
+      open_circuit:
+        title: Open circuit
+        meaning: wikidata:Q2974109
+        annotations: { i18n: { value: { title: { pt: Circuito aberto } } } }
+      short_circuit:
+        title: Short circuit
+        meaning: wikidata:Q206907
+        annotations: { i18n: { value: { title: { pt: Curto-circuito } } } }
+      'off':
+        title: 'Off'
+        meaning: saref:OffState
+        annotations: { i18n: { value: { title: { pt: Desligado } } } }
+      idle:
+        title: Idle
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Ocioso } } } }
+      running:
+        title: Running
+        meaning: saref:OnState
+        annotations: { i18n: { value: { title: { pt: Em funcionamento } } } }
+      cooling:
+        title: Cooling
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Refrigeração } } } }
+      heating:
+        title: Heating
+        related_mappings: [ saref:State ]
+        annotations: { i18n: { value: { title: { pt: Aquecimento } } } }

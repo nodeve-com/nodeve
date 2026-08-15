@@ -1,0 +1,22 @@
+id: https://nodeve.com/schema/lib/test-condition
+name: test-condition
+default_prefix: nodeve
+default_range: string
+
+enums:
+  TestCondition:
+    title: Test condition
+    description: 'datasheet measurement condition a rated band is quoted under — STC is the implicit reference; bifacial modules also quote rear-irradiance gains (BNPI/BSI)'
+    permissible_values:
+      stc:
+        title: Standard test conditions
+        meaning: wikidata:Q7597188
+        annotations: { i18n: { value: { title: { pt: Condições de teste padrão } } } }
+      bnpi:
+        title: Bifacial nameplate irradiance
+        related_mappings: [ wikidata:Q7597188 ]
+        annotations: { i18n: { value: { title: { pt: Irradiância nominal bifacial } } } }
+      bsi:
+        title: Bifacial stress irradiance
+        related_mappings: [ wikidata:Q7597188 ]
+        annotations: { i18n: { value: { title: { pt: Irradiância de estresse bifacial } } } }

@@ -17,6 +17,7 @@ prefixes:
   iso-11898: https://www.iso.org/standard/63648.html
   iso-25012: https://www.iso.org/standard/35736.html
   iso-8601: https://www.iso.org/iso-8601-date-and-time-format.html
+  itu-r-m1371: https://www.itu.int/rec/R-REC-M.1371/en
   jedec-standard: https://www.jedec.org/standards-documents/docs/jesd8
   linkml: https://w3id.org/linkml/
   modbus-org: https://www.modbus.org/specs.php
@@ -46,7 +47,15 @@ prefixes:
 imports:
   - linkml:types
   - shared
-  - enums
+  - cargo-type
+  - nav-status
+  - rating
+  - ship-type
+  - severity
+  - state
+  - test-condition
+  - trigger-on
+  - zone
   - core
   - taxonomy
   - features
@@ -61,6 +70,8 @@ imports:
   - adapter
   - inventory
   - site
+  - track
+  - vessel
 
 classes:
   # The bundle manifest: the shape of gen/catalog.json — each attribute one
@@ -107,6 +118,10 @@ classes:
       feature_of_interests: { range: FeatureOfInterest, multivalued: true, inlined_as_list: true }
       settings: { range: Setting, multivalued: true, inlined_as_list: true }
       channels: { range: Channel, multivalued: true, inlined_as_list: true }
+      # PROJECTED from the enums marked `state_set` — the options nest inside,
+      # so there is no data dir and no second place the values are written
+      state_sets: { range: StateSet, multivalued: true, inlined_as_list: true }
+      states: { range: State, multivalued: true, inlined_as_list: true }
       network_interfaces: { range: NetworkInterface, multivalued: true, inlined_as_list: true }
       ip_bindings: { range: IpBinding, multivalued: true, inlined_as_list: true }
       endpoints: { range: Endpoint, multivalued: true, inlined_as_list: true }
@@ -121,5 +136,9 @@ classes:
       sites: { range: Site, multivalued: true, inlined_as_list: true }
       authentications: { range: Authentication, multivalued: true, inlined_as_list: true }
       # thin marker: a catalogued device node + its one non-owned ref (register map)
+      # tracked-body facet — authored like any other facet on a device node
+      vessels: { range: Vessel, multivalued: true, inlined_as_list: true }
+      # the areas a track is queried against — nodes, so authored rows
+      geofences: { range: Geofence, multivalued: true, inlined_as_list: true }
       subject_nodes: { range: SubjectNode, multivalued: true, inlined_as_list: true }
       node_edges: { range: NodeEdge, multivalued: true, inlined_as_list: true }

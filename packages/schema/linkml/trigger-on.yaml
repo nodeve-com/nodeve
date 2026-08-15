@@ -1,0 +1,17 @@
+id: https://nodeve.com/schema/lib/trigger-on
+name: trigger-on
+default_prefix: nodeve
+default_range: string
+
+enums:
+  TriggerOn:
+    title: Trigger direction
+    permissible_values:
+      above:
+        title: Above threshold
+        meaning: schema:greater
+        annotations: { i18n: { value: { title: { pt: Acima do limite } } } }
+      below:
+        title: Below threshold
+        meaning: schema:lesser
+        annotations: { i18n: { value: { title: { pt: Abaixo do limite } } } }

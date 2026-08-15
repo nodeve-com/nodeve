@@ -51,8 +51,10 @@ classes:
   # (product, network_interface). `facet` is the target table; it defaults to
   # the relation name, so only a role that renames its target states it.
   # `feature_type` is the sub-discriminator a feature_of_interest relation binds
-  # (which feature definition fills the socket). A type that composes no
-  # exclusive table (registry, organization) has none.
+  # (which feature definition fills the socket); `state_sets` is the same
+  # contract for a `state` relation, a list because one node holds one value
+  # from EACH set it declares. A type that composes no exclusive table
+  # (registry, organization) has none.
   Facet:
     title: Facet
     annotations:
@@ -61,7 +63,7 @@ classes:
       keyed_by: relation
       # unauthored `facet` (the target table) defaults to the relation name
       key_default: facet
-    slots: [ node, relation, facet, cardinality, required, feature_type ]
+    slots: [ node, relation, facet, cardinality, required, feature_type, state_sets ]
 
   # The quantity master list AS ROWS — bulk-loaded from QUDT (grimoire's
   # concepts/enumeration/quantity_kind), never hand-extended. Was an enum; an
@@ -112,7 +114,7 @@ slots:
     required: true
     title: Cardinality
     related_mappings: [ schema:multipleValues ]
-    description: 'single = shares the node id (1:1); child = own node ids owned under the trail; reference = own node ids, independent, linked by a NodeEdge'
+    description: 'single = shares the node id (1:1); child = own node ids owned under the trail; reference = own node ids, independent, linked by a NodeEdge; many = no node id, keyed by subject plus a discriminator'
   deprecated:
     range: boolean
     title: Deprecated
@@ -241,3 +243,7 @@ enums:
         title: Reference
         related_mappings: [ owl:cardinality ]
         description: 'own node ids, INDEPENDENT — linked by a NodeEdge whose predicate is this relation, not owned under the trail (the shared family register map)'
+      many:
+        title: Many
+        related_mappings: [ owl:cardinality ]
+        description: 'NO node id — many rows per node, keyed by subject plus a discriminator (a time for a position, a state set for a state) and written by ingest, so a row is not addressable'

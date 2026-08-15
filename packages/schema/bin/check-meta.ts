@@ -16,10 +16,9 @@ const EXACT_KEYS = ['exact_mappings', 'close_mappings', 'related_mappings'] as c
 const WIDE_KEYS = ['narrow_mappings', 'broad_mappings'] as const;
 
 type Def = Record<string, unknown>;
-type EnumDef = Def & { permissible_values?: Record<string, Def | null> };
 type SchemaDoc = {
 	slots?: Record<string, Def>;
-	enums?: Record<string, EnumDef>;
+	enums?: Record<string, Def & { permissible_values?: Record<string, Def | null> }>;
 	classes?: Record<string, Def>;
 };
 
@@ -47,7 +46,7 @@ const scanDefs = (rel: string, kind: 'slot' | 'class', defs: Record<string, Def>
 	});
 
 // enums: container needs a title; every permissible_value is checked like a slot
-const scanEnums = (rel: string, enums: Record<string, EnumDef> | undefined) =>
+const scanEnums = (rel: string, enums: SchemaDoc['enums']) =>
 	Object.entries(enums ?? {}).flatMap(([name, def]) => {
 		const out = hasTitle(def) ? [] : [`${rel}\tenum ${name} — missing title`];
 		for (const [value, vdef] of Object.entries(def.permissible_values ?? {})) {

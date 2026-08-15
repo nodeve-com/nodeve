@@ -1,0 +1,82 @@
+id: https://nodeve.com/schema/lib/nav-status
+name: nav-status
+default_prefix: nodeve
+default_range: string
+
+enums:
+  # ITU-R M.1371 navigational status, as published on the USCG Class A page —
+  # all sixteen codes, reserved and undefined included: a code that never
+  # appears and a code that was never defined are not the same broadcast.
+  # The wire's integer stops at the decoder; the slug is what is stored.
+  NavStatus:
+    title: Navigational status
+    annotations: { state_set: true, i18n: { value: { title: { pt: Estado de navegação } } } }
+    permissible_values:
+      under_way_using_engine:
+        title: Under way using engine
+        meaning: itu-r-m1371:navigational-status-0
+        annotations: { i18n: { value: { title: { pt: Em navegação a motor } } } }
+      at_anchor:
+        title: At anchor
+        meaning: itu-r-m1371:navigational-status-1
+        annotations: { i18n: { value: { title: { pt: Fundeado } } } }
+      not_under_command:
+        title: Not under command
+        meaning: itu-r-m1371:navigational-status-2
+        annotations: { i18n: { value: { title: { pt: Sem governo } } } }
+      restricted_manoeuvrability:
+        title: Restricted manoeuvrability
+        meaning: itu-r-m1371:navigational-status-3
+        annotations: { i18n: { value: { title: { pt: Manobra restrita } } } }
+      constrained_by_draught:
+        title: Constrained by her draught
+        meaning: itu-r-m1371:navigational-status-4
+        annotations: { i18n: { value: { title: { pt: Restrito pelo calado } } } }
+      moored:
+        title: Moored
+        meaning: itu-r-m1371:navigational-status-5
+        annotations: { i18n: { value: { title: { pt: Amarrado } } } }
+      aground:
+        title: Aground
+        meaning: itu-r-m1371:navigational-status-6
+        annotations: { i18n: { value: { title: { pt: Encalhado } } } }
+      engaged_in_fishing:
+        title: Engaged in fishing
+        meaning: itu-r-m1371:navigational-status-7
+        annotations: { i18n: { value: { title: { pt: Em pesca } } } }
+      under_way_sailing:
+        title: Under way sailing
+        meaning: itu-r-m1371:navigational-status-8
+        annotations: { i18n: { value: { title: { pt: Em navegação à vela } } } }
+      reserved_hsc:
+        title: Reserved (HSC / DG-HS-MP category C)
+        meaning: itu-r-m1371:navigational-status-9
+        annotations:
+          i18n: { value: { title: { pt: Reservado (HSC / DG-HS-MP categoria C) } } }
+      reserved_wig:
+        title: Reserved (WIG / DG-HS-MP category A)
+        meaning: itu-r-m1371:navigational-status-10
+        annotations:
+          i18n: { value: { title: { pt: Reservado (WIG / DG-HS-MP categoria A) } } }
+      towing_astern:
+        title: Power-driven vessel towing astern
+        meaning: itu-r-m1371:navigational-status-11
+        annotations: { i18n: { value: { title: { pt: Embarcação a motor rebocando a ré } } } }
+      pushing_ahead:
+        title: Power-driven vessel pushing ahead or towing alongside
+        meaning: itu-r-m1371:navigational-status-12
+        annotations:
+          i18n:
+            value: { title: { pt: Embarcação a motor empurrando à frente ou rebocando ao lado } }
+      reserved:
+        title: Reserved
+        meaning: itu-r-m1371:navigational-status-13
+        annotations: { i18n: { value: { title: { pt: Reservado } } } }
+      distress_beacon:
+        title: AIS-SART / MOB-AIS / EPIRB-AIS
+        meaning: itu-r-m1371:navigational-status-14
+        annotations: { i18n: { value: { title: { pt: AIS-SART / MOB-AIS / EPIRB-AIS } } } }
+      undefined:
+        title: Undefined
+        meaning: itu-r-m1371:navigational-status-15
+        annotations: { i18n: { value: { title: { pt: Indefinido } } } }

@@ -1,0 +1,129 @@
+id: https://nodeve.com/schema/lib/ship-type
+name: ship-type
+default_prefix: nodeve
+default_range: string
+
+enums:
+  # The FIRST digit of ITU-R M.1371 ship and cargo type, and where the standard
+  # gives the second digit a type meaning (3x, 5x), the pair. Every code, spare
+  # and reserved included. The second digit of 2x/4x/6x/7x/8x/9x is a cargo
+  # category, stated once in cargo-type.yaml rather than restated under each of
+  # the six families that carry it — the wire's one field decodes to two.
+  ShipType:
+    title: Ship type
+    permissible_values:
+      not_available:
+        title: Not available or no ship
+        meaning: itu-r-m1371:ship-and-cargo-type-0
+        annotations: { i18n: { value: { title: { pt: Indisponível ou sem navio } } } }
+      reserved:
+        title: Reserved for future use
+        meaning: itu-r-m1371:ship-and-cargo-type-1
+        annotations: { i18n: { value: { title: { pt: Reservado para uso futuro } } } }
+      wig:
+        title: Wing in ground
+        meaning: itu-r-m1371:ship-and-cargo-type-2
+        annotations: { i18n: { value: { title: { pt: Veículo de efeito de solo } } } }
+      fishing:
+        title: Fishing
+        meaning: itu-r-m1371:ship-and-cargo-type-30
+        annotations: { i18n: { value: { title: { pt: Pesca } } } }
+      towing:
+        title: Towing
+        meaning: itu-r-m1371:ship-and-cargo-type-31
+        annotations: { i18n: { value: { title: { pt: Reboque } } } }
+      towing_large:
+        title: Towing, tow over 200 m or over 25 m breadth
+        meaning: itu-r-m1371:ship-and-cargo-type-32
+        annotations:
+          i18n:
+            value: { title: { pt: 'Reboque, com mais de 200 m de comprimento ou 25 m de boca' } }
+      dredging:
+        title: Dredging or underwater operations
+        meaning: itu-r-m1371:ship-and-cargo-type-33
+        annotations: { i18n: { value: { title: { pt: Dragagem ou operações subaquáticas } } } }
+      diving:
+        title: Diving operations
+        meaning: itu-r-m1371:ship-and-cargo-type-34
+        annotations: { i18n: { value: { title: { pt: Operações de mergulho } } } }
+      military:
+        title: Military operations
+        meaning: itu-r-m1371:ship-and-cargo-type-35
+        annotations: { i18n: { value: { title: { pt: Operações militares } } } }
+      sailing:
+        title: Sailing
+        meaning: itu-r-m1371:ship-and-cargo-type-36
+        annotations: { i18n: { value: { title: { pt: Vela } } } }
+      pleasure_craft:
+        title: Pleasure craft
+        meaning: itu-r-m1371:ship-and-cargo-type-37
+        annotations: { i18n: { value: { title: { pt: Embarcação de recreio } } } }
+      reserved_38:
+        title: Reserved for future use (38)
+        meaning: itu-r-m1371:ship-and-cargo-type-38
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (38)' } } } }
+      reserved_39:
+        title: Reserved for future use (39)
+        meaning: itu-r-m1371:ship-and-cargo-type-39
+        annotations: { i18n: { value: { title: { pt: 'Reservado para uso futuro (39)' } } } }
+      hsc:
+        title: High speed craft
+        meaning: itu-r-m1371:ship-and-cargo-type-4
+        annotations: { i18n: { value: { title: { pt: Embarcação de alta velocidade } } } }
+      pilot:
+        title: Pilot vessel
+        meaning: itu-r-m1371:ship-and-cargo-type-50
+        annotations: { i18n: { value: { title: { pt: Embarcação de pilotagem } } } }
+      search_and_rescue:
+        title: Search and rescue vessel
+        meaning: itu-r-m1371:ship-and-cargo-type-51
+        annotations: { i18n: { value: { title: { pt: Embarcação de busca e salvamento } } } }
+      tug:
+        title: Tug
+        meaning: itu-r-m1371:ship-and-cargo-type-52
+        annotations: { i18n: { value: { title: { pt: Rebocador } } } }
+      port_tender:
+        title: Port tender
+        meaning: itu-r-m1371:ship-and-cargo-type-53
+        annotations: { i18n: { value: { title: { pt: Embarcação de apoio portuário } } } }
+      anti_pollution:
+        title: Anti-pollution equipment
+        meaning: itu-r-m1371:ship-and-cargo-type-54
+        annotations: { i18n: { value: { title: { pt: Equipamento antipoluição } } } }
+      law_enforcement:
+        title: Law enforcement
+        meaning: itu-r-m1371:ship-and-cargo-type-55
+        annotations: { i18n: { value: { title: { pt: Autoridade policial } } } }
+      spare_local_56:
+        title: Spare — local vessel (56)
+        meaning: itu-r-m1371:ship-and-cargo-type-56
+        annotations: { i18n: { value: { title: { pt: 'Reserva — embarcação local (56)' } } } }
+      spare_local_57:
+        title: Spare — local vessel (57)
+        meaning: itu-r-m1371:ship-and-cargo-type-57
+        annotations: { i18n: { value: { title: { pt: 'Reserva — embarcação local (57)' } } } }
+      medical_transport:
+        title: Medical transport
+        meaning: itu-r-m1371:ship-and-cargo-type-58
+        annotations: { i18n: { value: { title: { pt: Transporte médico } } } }
+      noncombatant:
+        title: Noncombatant ship (RR Resolution No. 18)
+        meaning: itu-r-m1371:ship-and-cargo-type-59
+        annotations:
+          i18n: { value: { title: { pt: 'Navio não combatente (Resolução RR n.º 18)' } } }
+      passenger:
+        title: Passenger
+        meaning: itu-r-m1371:ship-and-cargo-type-6
+        annotations: { i18n: { value: { title: { pt: Passageiros } } } }
+      cargo:
+        title: Cargo
+        meaning: itu-r-m1371:ship-and-cargo-type-7
+        annotations: { i18n: { value: { title: { pt: Carga } } } }
+      tanker:
+        title: Tanker
+        meaning: itu-r-m1371:ship-and-cargo-type-8
+        annotations: { i18n: { value: { title: { pt: Navio-tanque } } } }
+      other:
+        title: Other type
+        meaning: itu-r-m1371:ship-and-cargo-type-9
+        annotations: { i18n: { value: { title: { pt: Outro tipo } } } }

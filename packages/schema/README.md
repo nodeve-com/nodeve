@@ -22,7 +22,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `linkml/nodeve.yaml` | schema root — prefixes, defaults, import assembly |
 | `linkml/{core,taxonomy,features,product,network,link,decode}.yaml` | domain classes with owned slots |
 | `linkml/shared.yaml` | shared slots |
-| `linkml/enums.yaml` | shared closed-grammar enums |
+| `linkml/<enum-name>.yaml` | one closed-grammar enum apiece |
 | `bin/format.ts` | yaml formatting gate (`--check` for precommit) |
 | `bin/check-*.ts` | perform validation checks — `check-catalog.ts` is the shape gate, ajv over `gen/catalog.schema.json` |
 | `bin/data2schema.ts` | policy rows → `gen/nodeve-projected.yaml`, the closed stencil |
@@ -36,7 +36,7 @@ We intend for the database schema to be flexible and able to contain any kind of
 | `bin/check-db-pg.ts` | the postgres twin of that gate — throwaway cluster, deferred FKs, one COMMIT |
 | `data/subject_node/<node_type>/<slug>/` | authored nested device descriptions (a dir per device, filed under its kind) — real devices, seeds for downstream databases; grows to thousands |
 | `data/<table>/<slug>.yaml` | authored vocabulary + policy rows — normative. `feature_type` + `node_type` are the stencil source (`data2schema`) |
-| `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies, seeded once from grimoire |
+| `data/registry/`, `data/quantity_kind/` | bulk QUDT-derived vocabularies |
 | `data/pdu_catalog/` | a publisher's decode dictionary — the keys every device on that protocol shares, and where each revision of the wire puts them |
 | `gen/` | all build output — both DDL dialects, catalog bundle, JSON Schema, TS types, SQLite db, the postgres check cluster. Gitignored |
 | `gen/catalog.schema.json` | the pre-database contract **and** the introspection surface: base classes + stencil, imports resolved, stands alone |
