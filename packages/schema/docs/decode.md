@@ -1,8 +1,10 @@
 # Decode
 
+Think CCSDS SOIS Electronic Data Sheets (SEDS), but easier to author.
+
 One PDU catalog of points over an ordered pipeline. Reading and writing devices, every protocol, one table set. Whoever publishes a measurand defines it once; many devices reference it.
 
-Terms: [glossary.md](glossary.md).
+Terms: [glossary.md](glossary.md). Still to replace: grimoire's `usbhid_*` — the M4-ATX diag poll and config plane.
 
 ## Constructs
 
@@ -56,9 +58,11 @@ A PDU declares which of the octet-side steps it runs, in order. Only `decode` is
 | `admit` | take octets off the link | modbus poll, serial listen, CAN tap |
 | `frame` | find PDU boundaries; carry the request when there is one | modbus span, HID poll, VE.Direct block, NMEA `$`…`*hh` |
 | `verify` | check the declared checksum | NMEA XOR, CRC-16, Fletcher |
-| `decapsulate` | hand a range on as its own PDU, addressed from zero | NMEA 2000 29-bit CAN id → PGN; AIS 6-bit de-armor; AIS payload inside `!AIVDM` |
+| `decapsulate` | hand a range on as its own PDU, addressed from zero, through a codec when one wraps it | NMEA 2000 29-bit CAN id → PGN; AIS 6-bit de-armor; AIS payload inside `!AIVDM` |
 | `reassemble` | join fragments into one byte source | AIS multi-fragment, NMEA 2000 fast-packet |
 | `decode` | positional or keyed fields → raw scalars | every protocol |
+
+Kaitai Struct is the reference for this layer. It covers `decode` and `decapsulate` natively, and reaches neither `frame` nor `reassemble`, which act on the byte stream before a Kaitai stream exists. It has no scale and no unit: `transform` starts where Kaitai stops.
 
 ## Adapter
 

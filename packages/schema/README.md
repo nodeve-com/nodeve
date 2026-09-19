@@ -68,5 +68,5 @@ The gate is the package's `check` script, not a root lefthook job: the shared `p
 - [pipeline.md](docs/pipeline.md) — pipeline stages
 - [overlay.md](docs/overlay.md) — node types as an overlay over the reusable table core: socket constraints enforced at normalize today, `required` and row-projection still inert, load path still intent.
 - [mapping.md](docs/mapping.md) — every grimoire construct → its LinkML landing, plus identity and PK/FK rules.
-- [decode-model.md](docs/decode-model.md) — target shape for reading and writing devices: one Model-of-Points over an ordered parse pipeline.
+- [decode.md](docs/decode.md) — reading and writing devices: PDU catalogs over an ordered parse pipeline.
 - [open.md](docs/open.md) — known gaps and deliberate deferrals (no metaclass, overlapping backref FKs, untested registries, `code` collision risk, …).
