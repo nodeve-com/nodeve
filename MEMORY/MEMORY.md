@@ -27,3 +27,4 @@
 - [schema urgency](schema-urgency.md) — LinkML schema is an urgent grimoire replacement; pre-1.0, break freely, propose reshapes not compatible patches
 - [never drop data](never-drop-data.md) — migrations must carry EVERY source field; add schema to hold it, never drop/defer — downstream consumers unknown
 - [nodeve identity model](nodeve-identity-model.md) — Node table permalink PK (slot `permalink`, meaning wikidata:Q1048975, mint-once), derived code, kebab slugs; no uuid
+- [edit docs, glossary first](edit-docs-glossary-first.md) — schema docs: edit the existing doc, never add one; terms defined in docs/glossary.md first; one step per review

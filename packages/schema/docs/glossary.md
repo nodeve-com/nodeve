@@ -16,15 +16,15 @@ A term qualifies when some published protocol or standard already uses it for th
 | **Field** | one PDU reading chunk — scalar, array, composite. May include key naming it | Point Definition; field. Addressed **positionally** (`at` + `width`, bit offset + length) or by **name** (`key`) | SunSpec, DNP3 _point_; VE.Direct, NMEA 0183 _field_; DBC _signal_; BACnet _object_; J1939 _suspect parameter_; IEC 61850 _data attribute_; OPC UA _variable_ |
 | **Discriminator** | one field's value choosing which definition follows it, as a case map value → PDU. Positional addressing or a `key` names the field, in this PDU or an earlier one | selection; discriminate | OpenAPI, JSON Schema `discriminator`; ASN.1 `CHOICE`; Kaitai Struct `switch-on`; DBC _multiplexor_; Protobuf `oneof` |
 | **Common initial sequence** | the leading run of fields every case shares — same order, same widths. Readable before the case resolves, so a reader routes, filters or counts on it without parsing the body | — | C11 §6.5.2.3; OpenAPI `discriminator` base schema; DBC _non-multiplexed signals_ |
-| **Point** | one reusable logical measurement or control a device exposes — the addressable slot a mapping targets. One or more fields produce it, through an expression or version handling | datapoint; tag; channel | Project Haystack _point_; building automation _point_; BACnet _object_ (its `present-value`) |
+| **Point** | one reusable logical measurement or control a device exposes — the addressable slot a field observes. One or more fields produce it, through an expression or version handling | datapoint; tag; channel | Project Haystack _point_; building automation _point_; BACnet _object_ (its `present-value`) |
 | **Transform** | one scalar in, one engineering value out — scale, offset, decimals, sentinel, enum lookup | A **conversion** is the unit-to-unit case; `calibrate` is the numeric half of one. Its input is a **raw scalar** (keyed scalar, decoded scalar); its output an **engineering value** (transformed value, semantic value) | ASAM MCD-2 MC (A2L) _computation method_; _scaling_; _engineering unit conversion_; SunSpec _scale factor_ applies here |
 | **Expression** | one calculation over one or more inputs, evaluated wherever a step needs a value — `present_if` and `count` while extracting, a checksum at `verify`, scale by reference at `transform`, many fields producing one point. Its inputs resolve as **References** does | Formula; computed value | Kaitai Struct _expression_ — `if`, `size`, `repeat-expr`, `value` instance; ASAM MCD-2 MC (A2L) _formula_; XPath, SHACL _expression_ |
-| **Mapping** | which fields produce a point, and where that point lands — an interval of the feature tree, a setting, or a status | Binding; point map | _crosswalk_; IEC 61850 / SunSpec cross-reference tables |
+| **Observes** | the measurand a field reads — a feature of interest (`feature_type` + `role`), its part, and the quantity kind; resolves to an interval. The publisher's fact, on the catalog field | target; mapping; binding; `PointTarget`; `PointMapping` | SOSA `observes` an _observable property_ of a _feature of interest_ |
 | **Adapter** | one node reading another node's service, and publishing what it decodes | ingest. `admit` is its device side and `link` the transport under it; `emit` is its downstream side, naming sinks | _gateway_; _protocol converter_; _data concentrator_; Modbus _master_ / _client_ names only the polling case |
 | **Link** | one adapter's transport to a device — whatever that interface type takes: serial baud, parity, stop bits; TCP port and unit id, over the address its site holds | Connection; endpoint. `line settings` is the serial case | ISO/IEC 7498-1 _data link_; Modbus _serial line_ and _TCP/IP_; OPC UA _endpoint_ |
 | **Device** | one catalogued thing: its interfaces, services and points. No deployment in it | node | — |
 | **Interface** | the port a device declares — type, rated rate, and the protocol a service binds | — | — |
-| **Service** | what a device offers on an interface: one pipeline plus its mapping | — | OPC UA _service_ |
+| **Service** | what a device offers on an interface: one pipeline | — | OPC UA _service_ |
 | **Site** | a building or installation — the units it owns (inventory), serial numbers, and the address, MAC and name each answers to | — | — |
 
 **Attributes.** A PDU is **solicited** or **unsolicited** — whether reading it takes a request; unsolicited identity comes from the octets. An adapter has a **read mode**: polling master, passive tap, duplex. A point has a **kind** (`measurement`, `setting`, `state`) and an **access mode** (`r` / `rw` / `wo`). A field has a **sentinel**, the raw value meaning absent, tested before scaling. **Discovery** resolves which catalog sits on the wire before reading a point.
@@ -35,6 +35,7 @@ A term qualifies when some published protocol or standard already uses it for th
 
 - **node**, **permalink**, **slug** ([levels.md](levels.md))
 - **facet**, **feature**, **NodeType** ([facets.md](facets.md))
+- **feature of interest** ([features.yaml](../linkml/features.yaml))
 - **interval**, **quantity kind**, **measurement channel** ([intervals.md](intervals.md))
 - **part**, `count`, `part_set` ([parts.md](parts.md))
 - **Channel**, **DomainMember** ([values.yaml](../linkml/values.yaml))
