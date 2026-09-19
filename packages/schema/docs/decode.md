@@ -2,7 +2,7 @@
 
 One PDU catalog of points over an ordered pipeline. Reading and writing devices, every protocol, one table set. Whoever publishes a measurand defines it once; many devices reference it.
 
-Terms: [glossary.md](glossary.md). Classes this replaces: [decode-replaces.md](decode-replaces.md).
+Terms: [glossary.md](glossary.md).
 
 ## Constructs
 
@@ -12,14 +12,18 @@ Terms: [glossary.md](glossary.md). Classes this replaces: [decode-replaces.md](d
 | **PDU** | ordered steps, ordered fields | — |
 | **Field** | address, datatype, width, role | `PduField` |
 | **Transform** | scale, offset, decimals, sentinel, enum lookup | `Transform` |
-| **Mapping** | one field → one interval of one device, and its `part` | `PointMapping` |
+| **Observes** | feature of interest, part, quantity kind — on the field | `PointTarget` (slot `target`) |
 | **Adapter** | `admit`, `emit`, read mode | `Ingest` |
 
-A device authors none of them. It references catalogs at a base, binds each to a feature, and the points expand.
+A device references a catalog on its `link_binding`, or names PDUs under `pdu:`.
 
-VE.Direct runs on these today. One `ve-direct` catalog published by Victron holds all 19 keys; `Transform` rows hold the arithmetic; the MPPT 100/30 authors four mappings on a `link_binding` naming that catalog. The PDU level lands with modbus spans — VE.Direct's block is one PDU, and one row with no steps on it decides nothing.
+Three catalogs, three shapes:
 
-Modbus is next onto these tables: map → catalog, spans → PDUs, `RegisterDatatype`'s `uint16` → `uint` + a width, and the interval FKs → the device's mappings. That last move is what makes a shared map shared — today a family-wide map carries one device's interval FKs, and `walkDevices` keeps whichever device walked first.
+- `ve-direct` — 19 keys as a `pdu_field` map, each with a `pdu_placement` keyed `_`.
+- `chint` — a `pdu` list, one `start` per PDU; the catalog declares the feature of interest once.
+- `foxess` — a `pdu` list, a `placement` list per PDU; a device picks one by `start` and overrides fields under `when`.
+
+The model holds `PduCatalog`, `PduField` and `link_binding.pdu_catalog`. It holds no PDU, no placement, and no device reference to a PDU.
 
 ## Layers
 
