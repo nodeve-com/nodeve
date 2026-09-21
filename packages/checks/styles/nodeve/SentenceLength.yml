@@ -1,10 +1,26 @@
 # Flag over-long sentences — a telegraphic style keeps them short. Fires when a
 # sentence exceeds `max` words. RAISE `max` if this is too aggressive on design
 # prose, or lower it to tighten. Set level to suggestion to make it advisory.
+#
+# `token` counts WORDS, so a figure has to count as one. A bare `\b(\w+)\b` reads
+# `$14,903.16` as three (`14`, `903`, `16`) and `2.2.0` as three more, so prose
+# carrying money, versions or measurements trips the cap while reading short — the
+# rule bending the prose rather than the prose bending to the rule. Hence the inner
+# `.`/`,` group: a digit or letter run, plus any run joined to it by the separators
+# a number or a filename uses. `05-15` and `device-group` still count as two, which
+# keeps ordinary hyphenated prose honest.
+#
+# NOT fixed here: Vale's own tokenizer sometimes refuses to end a sentence on a
+# figure, so `…sierra $5,616.00. Alpha…` reaches the rule as ONE sentence and two
+# short sentences fail together. It is rare — a whole corpus turned up none — and
+# every workaround inside a style file costs more than it saves, since re-splitting
+# by regex drops every word after the first `e.g.` and hides real offenders. Split
+# the sentence by hand if it ever fires; the fix belongs upstream in Vale.
 extends: occurrence
 message: 'Sentence is long (over 30 words) — split it or cut fat.'
 level: error
-# Match a run of non-terminal chars ending in sentence punctuation.
 scope: sentence
-token: '\b(\w+)\b'
+# A word: an alphanumeric run, `.`/`,`-joined runs after it ($14,903.16, config.ts),
+# then a possessive or contraction (homeowner's).
+token: "\\b([A-Za-z0-9_]+(?:[.,][A-Za-z0-9_]+)*(?:['\u2019][A-Za-z_]+)*)"
 max: 30
