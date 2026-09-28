@@ -41,8 +41,6 @@ function missingCatalogFailure() {
 			'catalog. Add a `catalog:` block to pnpm-workspace.yaml (or',
 			'`workspaces.catalog` in package.json for Bun), move your versions into',
 			'it, and reference them with "catalog:".',
-			'',
-			'To deliberately opt out, set `catalog: { enforce: false }` in nodeve.checks.js.',
 		],
 	};
 }

@@ -100,10 +100,11 @@ export is a likely reinvention of a lib function. Routing a hit is a JUDGEMENT
 call — resolve per case:
   • delete the local and import the dependency export;
   • wrap the lib (keep a project-specific name, delegate the body);
-  • rename the local for specificity if it genuinely does something different;
-  • or allowlist it as \`relPath::local→lib\`.
+  • or rename the local for specificity if it genuinely does something different.
+If the check is wrong here, stop and say so: an exemption is the user's call,
+never a config edit that makes the failure go away.
 Matching is against the committed lib-names index (helperCollisions.libNamesPath);
-regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
+regen with \`nodeve-build-lib-names\`.`,
 
 	run(gate) {
 		const { root, cfg } = gate;
@@ -117,7 +118,6 @@ regen with \`nodeve-build-lib-names\`. --warn downgrades this to report-only.`,
 				rows: [
 					`libs configured: ${cfg.libs.join(', ')}`,
 					`regenerate and commit it: nodeve-build-lib-names`,
-					`or opt out by setting helperCollisions.libs: [] in nodeve.checks.js`,
 				],
 			};
 

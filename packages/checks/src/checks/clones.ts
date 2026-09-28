@@ -116,8 +116,7 @@ export const clones: Check<'clones'> = {
 	name: 'clones',
 	section: 'clones',
 	explain: `Structural copy-paste (jscpd) flags duplicated blocks the name-based gates
-can't see. Extract the shared logic, or narrow scope with clones.ignore globs.
---warn downgrades the gate to report-only.`,
+can't see. Extract the shared logic.`,
 
 	run({ root, cfg, explain }) {
 		const launcher = jscpdLauncher();

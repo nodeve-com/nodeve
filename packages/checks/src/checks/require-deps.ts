@@ -22,9 +22,7 @@ export const requireDeps: Check<'requireDeps'> = {
 	section: 'requireDeps',
 	explain: `The org standardizes deps in a workspace catalog so the blessed version is
 single-sourced. Add them with e.g. \`pnpm add -w <dep>\` (pnpm-workspace.yaml or
-package.json#workspaces) so packages can adopt them with "catalog:". Set
-\`requireDeps: { deps: [] }\` in nodeve.checks.js to opt out. --warn downgrades
-this to report-only.`,
+package.json#workspaces) so packages can adopt them with "catalog:".`,
 
 	run({ root, cfg }) {
 		if (cfg.deps.length === 0)

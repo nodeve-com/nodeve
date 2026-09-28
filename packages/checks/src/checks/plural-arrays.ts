@@ -121,9 +121,9 @@ export const pluralArrays: Check<'pluralArrays'> = {
 map/object makes every reader guess the shape. Rename to say what it holds —
 \`usersById\`, \`userMap\`, \`nameToId\`, \`userCount\` — or, if it really is a list, hold an
 array. \`pluralize\` decides what counts as plural: add a domain word it misreads to
-\`pluralArrays.plural\` (force plural) or \`pluralArrays.singular\` (never plural). A
-confirmed intentional binding goes in \`pluralArrays.allowlist\` as \`relPath::name\`.
---warn downgrades this to report-only.`,
+\`pluralArrays.plural\` (force plural) or \`pluralArrays.singular\` (never plural).
+If the check is wrong here, stop and say so: an exemption is the user's call,
+never a config edit that makes the failure go away.`,
 
 	run(gate) {
 		const findings = collectFindings(gate);

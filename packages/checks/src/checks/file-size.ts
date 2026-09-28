@@ -22,9 +22,8 @@ export const fileSize: Check<'fileSize'> = {
   • Group the related files in a directory, but only if the split doesn't add
     friction at the call sites.
 If it's genuinely one responsibility that just runs long (a schema, a lookup
-table, a table-driven test), give it a bigger budget or 'exempt' via
-fileSize.overrides in nodeve.checks.js with a WHY comment. --warn downgrades
-this to report-only.`,
+table, a table-driven test), stop and say so: a bigger budget is the user's
+call, never a config edit that makes the failure go away.`,
 
 	run({ root, cfg, paths }) {
 		const offenders = measureBudgets(root, cfg, paths);

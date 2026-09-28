@@ -126,9 +126,9 @@ export const reshape: Check<'reshape'> = {
 	section: 'reshape',
 	explain: `These callbacks rebuild their input unchanged — a reshape that isn't the
 point. Pass the value as-is, or use a pick/clone helper if narrowing is
-genuinely the point. If a confirmed boundary needs the shape, allowlist it in
-reshape.allowlist as \`relPath::kind::keys\`. A rename that only dodges the
-match keeps the smell. --warn downgrades this to report-only.`,
+genuinely the point. A rename that only dodges the match keeps the smell.
+If the check is wrong here, stop and say so: an exemption is the user's call,
+never a config edit that makes the failure go away.`,
 
 	run(gate) {
 		const { allowlist } = gate;

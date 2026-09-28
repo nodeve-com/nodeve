@@ -18,7 +18,7 @@ export const pageSize: Check<'pageSize'> = {
 	section: 'pageSize',
 	explain: `An oversized template/module — most often a SvelteKit \`+page.svelte\` with
 components defined inline — should rip those components out into their own
-files. Configure the line budgets via \`pageSize.overrides\` in nodeve.checks.js.`,
+files.`,
 
 	run({ root, cfg, paths }) {
 		if (cfg.globs.length === 0 && (cfg.overrides?.length ?? 0) === 0)

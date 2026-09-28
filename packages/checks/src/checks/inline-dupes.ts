@@ -57,10 +57,10 @@ and be imported instead. Clear it by:
   • a uniform SET of names recurring together (a shared prologue, the same
     handful of locals) → extract them into one shared module and give the
     bundle a TS type/interface, then import it (see lib/bin.ts#Gate);
-  • a single helper duplicated → move it to a shared package and import;
-  • a confirmed false positive → add the bare name to inlineDupes.allowlist
-    with a WHY comment.
---warn downgrades this to report-only.`,
+  • a single helper duplicated → move it to a shared package and import.
+Renaming one copy only hides the duplicate. If the check is wrong here, stop
+and say so: an exemption is the user's call, never a config edit that makes
+the failure go away.`,
 
 	run(gate) {
 		const { root, allowlist, explain, cfg } = gate;
