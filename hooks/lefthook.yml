@@ -1,0 +1,23 @@
+# Shared commit gate for repos outside the JS toolchain (Python, Nix, docs).
+# Pull it in from the consumer's lefthook.yml:
+#
+#   remotes:
+#     - git_url: https://github.com/nodeve-com/nodeve
+#       ref: main
+#       configs:
+#         - hooks/lefthook.yml
+#
+# Refresh after nodeve changes with `lefthook install` (it refetches remotes).
+pre-commit:
+  jobs:
+    # Staged markdown under the org doc budget — see .lefthook/pre-commit/doc-size.sh.
+    - script: doc-size.sh
+      runner: bash
+
+    # No block of code repeated across files. jscpd v5 is the Rust build, fetched
+    # once by pnpx. What it scans (formats, paths, ignores) is the repo's own
+    # .jscpd.json; a repo without one fails rather than going unchecked.
+    - name: clones
+      run: |
+        [ -f .jscpd.json ] || { echo "✖ clones: add a .jscpd.json (formats, path, ignore) — see victron's"; exit 1; }
+        pnpx jscpd@5.3.3 --config .jscpd.json --silent || { pnpx jscpd@5.3.3 --config .jscpd.json --reporters console 2>&1 | grep -v '^Progress'; exit 1; }
