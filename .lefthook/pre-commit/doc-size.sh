@@ -15,7 +15,10 @@ MAX_LINES=150
 MAX_TOKENS=3000
 INDEX_TOKENS=1500
 
-command -v token-count >/dev/null || { echo "✖ doc-size: token-count not on PATH (nix-config infra.dev installs it)"; exit 1; }
+command -v token-count >/dev/null || {
+  echo "✖ doc-size: token-count not on PATH (nix-config infra.dev installs it)"
+  exit 1
+}
 
 fail=0
 while IFS= read -r f; do

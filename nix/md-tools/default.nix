@@ -2,18 +2,30 @@
 #   md-fmt FILE...       rumdl's safe fixes, then dprint's layout, in place
 #   md-fmt --stdin PATH  the same, stdin to stdout (editors; PATH names the file)
 #   md-lint FILE...      rumdl check: structure and broken relative links
-# Both bake the configs beside this file in by store path, so a repo needs no
-# config of its own. Symlinked docs (CLAUDE.md -> README.md) are skipped; their
+#   md-prose FILE...     vale: the org prose rules
+# All bake their configs in by store path, so a repo needs no config of its
+# own. md-prose reads @nodeve/checks' .vale.ini and the styles beside it. Symlinked docs (CLAUDE.md -> README.md) are skipped; their
 # target is handled through its own path.
 {
   dprint,
   fetchurl,
+  lib,
   rumdl,
   symlinkJoin,
+  vale,
   writeShellApplication,
 }:
 
 let
+  checks = ../../packages/checks;
+  valeConfig = lib.fileset.toSource {
+    root = checks;
+    fileset = lib.fileset.unions [
+      (checks + "/.vale.ini")
+      (checks + "/styles")
+    ];
+  };
+
   # nixpkgs ships 0.20, which predates the table.* and codeBlock.* options.
   markdownPlugin = fetchurl {
     url = "https://github.com/dprint/dprint-plugin-markdown/releases/download/0.24.0/plugin.wasm";
@@ -62,11 +74,21 @@ let
       rumdl check ${rumdlArgs} --quiet -- "''${files[@]}"
     '';
   };
+
+  md-prose = writeShellApplication {
+    name = "md-prose";
+    runtimeInputs = [ vale ];
+    text = ''
+      ${collectFiles}
+      vale --config=${valeConfig}/.vale.ini -- "''${files[@]}"
+    '';
+  };
 in
 symlinkJoin {
   name = "md-tools";
   paths = [
     md-fmt
     md-lint
+    md-prose
   ];
 }

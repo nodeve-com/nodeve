@@ -57,7 +57,7 @@ Per-check semantics, tuning, and examples: **[docs/checks.md](docs/checks.md)**.
 
 ## Prose gate (Vale)
 
-A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `Filler`, `SentenceLength`), an unguarded `vale` job in `lefthook.checks.yml`. ALWAYS ON: it runs the package's own `.vale.ini` with vendored styles — extending the shared config is the whole opt-in, no per-repo `.vale.ini`, no `vale sync`. Fails the commit if `vale` isn't installed. Rules: **[PROSE.md](PROSE.md)**.
+A second engine gates markdown _wording_ — [Vale](https://vale.sh) against the org house rules in `styles/nodeve/` (`Narration`, `Ephemeral`, `Hedging`, `Filler`, `SentenceLength`), an unguarded `md-prose` job (`packages.md-tools`) in `lefthook.checks.yml`. ALWAYS ON: it runs the package's own `.vale.ini` with vendored styles — no per-repo `.vale.ini`, no `vale sync`. Fails the commit if `md-prose` is missing. Rules: **[PROSE.md](PROSE.md)**.
 
 It covers every staged `.md` — the scope `doc-tokens` budgets. One contract: stage a doc, it answers to both.
 

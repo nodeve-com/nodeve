@@ -25,6 +25,24 @@ pre-commit:
       glob: '*.md'
       run: md-lint {staged_files}
 
+    # Prose: vale with the org rules from @nodeve/checks; an error alert fails.
+    - name: md-prose
+      glob: '*.md'
+      run: md-prose {staged_files}
+
+    # Format staged shell scripts and re-stage them; sh-fmt and sh-lint ship in
+    # nodeve's flake (packages.sh-tools).
+    - name: sh-fmt
+      glob: '*.{sh,bash}'
+      run: |
+        command -v sh-fmt >/dev/null || { echo "✖ sh-fmt: not on PATH (nodeve flake packages.sh-tools)"; exit 1; }
+        sh-fmt {staged_files}
+      stage_fixed: true
+
+    - name: sh-lint
+      glob: '*.{sh,bash}'
+      run: sh-lint {staged_files}
+
     # Staged markdown under the org doc budget — see .lefthook/pre-commit/doc-size.sh.
     - script: doc-size.sh
       runner: bash

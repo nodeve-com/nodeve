@@ -10,10 +10,11 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        # Org markdown toolchain (md-fmt, md-lint); nix-config installs it on dev machines.
+        # Org markdown and shell toolchains; nix-config installs them on dev machines.
         md-tools = pkgs.callPackage ./nix/md-tools { };
+        sh-tools = pkgs.callPackage ./nix/sh-tools { };
       in {
-        packages = { inherit md-tools; };
+        packages = { inherit md-tools sh-tools; };
 
         devShells.default = pkgs.mkShell {
           # Everything the commit gate shells out to. Node deps (jscpd, prettier,
@@ -23,8 +24,9 @@
             nodejs_26
             pnpm
             lefthook # runs the gate
-            vale # prose gate — @nodeve/checks runs it UNGUARDED: absent = commit fails
-            md-tools # md-fmt + md-lint — the markdown jobs in both shared hook configs
+            vale # nodeve-prose (ad-hoc prose runs)
+            md-tools # md-fmt + md-lint + md-prose — the markdown jobs in both shared hook configs
+            sh-tools # sh-fmt + sh-lint — the shell jobs in hooks/lefthook.yml
             uv # linkml runner: uvx --from linkml gen-json-schema / gen-typescript / python ddl.py
             postgresql_17 # check:db:pg — throwaway cluster proving the shipped postgres DDL. Pinned to the major the hosts run; bump when they move off 17
             jq

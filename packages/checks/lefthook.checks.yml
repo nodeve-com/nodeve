@@ -80,19 +80,15 @@ pre-commit:
             glob: '*.md'
             run: md-lint {staged_files}
 
-          # Prose gate — the OTHER engine. Not a `nodeve-check` bin: it's the `vale`
-          # binary reading the org house rules straight from the package's OWN
-          # config (`--config=node_modules/@nodeve/checks/.vale.ini`), whose styles
-          # are vendored beside it. ALWAYS ON: extending this file turns it on, no
-          # per-repo `.vale.ini`, no `vale sync`, no opt-in to forget. UNGUARDED —
-          # if `vale` isn't on PATH the commit FAILS (install it: it's in the nix
-          # devShell). vale exits nonzero on `error` alerts; warning/suggestion are
-          # advisory.
-          - name: vale
+          # Prose gate: md-prose (md-tools) runs vale with this package's
+          # `.vale.ini` and styles, baked in by store path. ALWAYS ON: no per-repo
+          # `.vale.ini`, no `vale sync`. UNGUARDED like md-fmt. vale exits nonzero
+          # on `error` alerts; warning/suggestion are advisory.
+          - name: md-prose
             glob: '*.md'
             run: |
-              command -v vale >/dev/null 2>&1 || { echo "✖ vale is not installed — the org prose gate is mandatory. Install vale (it ships in the nix devShell: 'nix develop')."; exit 1; }
-              vale --config=node_modules/@nodeve/checks/.vale.ini {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit)."; echo "  Re-run on one file for jump-to-line detail:  pnpm exec nodeve-prose <file.md>"; exit 1; }
+              command -v md-prose >/dev/null || { echo "✖ md-prose is not installed — it ships in the nix devShell ('nix develop') as nodeve's packages.md-tools."; exit 1; }
+              md-prose {staged_files} || { echo "↑ You touched these docs, so you own their prose errors — clear ALL of them (not just your edit)."; echo "  Re-run on one file for jump-to-line detail:  pnpm exec nodeve-prose <file.md>"; exit 1; }
 
           - name: reshape
             glob: '*.ts'
