@@ -1,5 +1,32 @@
 # @nodeve/checks
 
+## 3.0.0
+
+### Major Changes
+
+- 9fecaaf: `nodeve-format` skips `*.md`. A new `md-fmt` fixer formats staged markdown (rumdl's safe fixes, then dprint's layout) and an `md-lint` job in the `checks` group fails on broken relative links and heading structure. Both are native binaries from nodeve's flake (`packages.md-tools`), not node deps: a consumer needs them on PATH, as it already needs `vale`. Add `inputs.nodeve.packages.${system}.md-tools` to the repo's devShell.
+
+  `package-check` runs `check` only in the packages a commit touches (each staged path's nearest `package.json`); an untouched package never blocks a commit.
+
+### Patch Changes
+
+- bfb5d2a: Failure messages say to fix the code, or to stop and report a wrong check. They don't offer a way around the gate. An exemption is the user's call, and an agent takes whatever route the failure text hands it.
+
+  The trigger: `inline-dupes` flagged a one-line prologue repeated across commands. Its message ended with how to allowlist a name, so the agent did that, with a comment arguing there was nothing to share. The gate went quiet on the exact duplication it had caught.
+
+  What goes from the messages:
+
+  - the allowlist advice in `inline-dupes`, `plural-arrays`, `reshape` and `helper-collisions`;
+  - the opt-out advice in `catalog`, `require-deps` and `helper-collisions`;
+  - the budget and scope advice in `file-size`, `page-size` and `clones`;
+  - the `--warn` line, from every check.
+
+  The config options and the `--warn` flag stay.
+
+- 91e5be4: `SentenceLength` counts a figure as one word. Its token was `\b(\w+)\b`, which reads `$14,903.16` as three words and `sensors.yaml` as two, so a sentence carrying money, versions or filenames tripped the 30-word cap while reading short. Prose about a mortgage or a release hit it constantly. The only escape was rewording until no sentence held a number — the rule bending the prose, not the prose bending to the rule.
+
+  The token now joins runs across `.` and `,`, then takes a trailing possessive. `05-15` and `device-group` still count as two, so ordinary hyphenated prose stays honest. Across the nodeve corpus the change clears three false positives and adds none.
+
 ## 2.2.0
 
 ### Minor Changes
