@@ -1,5 +1,11 @@
 # @nodeve/checks
 
+## 4.0.1
+
+### Patch Changes
+
+- 0dc64ef: `package-check`: Bun branch passes `--if-present`, so a commit touching only packages without a `check` script passes.
+
 ## 4.0.0
 
 ### Major Changes
