@@ -39,13 +39,18 @@ let
     ];
     text = ''
       if [[ ''${1-} == --stdin ]]; then
+        # dprint resolves a path given to --stdin, which fails for an unsaved
+        # buffer; the file name alone picks the plugin.
         rumdl fmt ${rumdlArgs} --quiet --stdin-filename "$2" - 2>/dev/null |
-          ${dprintFmt} --stdin "$2"
+          ${dprintFmt} --stdin "$(basename "$2")"
         exit
       fi
       ${collectFiles}
       rumdl fmt ${rumdlArgs} --quiet -- "''${files[@]}" >/dev/null
-      ${dprintFmt} -- "''${files[@]}"
+      # dprint formats only files under its cwd; from / that is any absolute path.
+      abs=()
+      for f in "''${files[@]}"; do abs+=("$(cd "$(dirname "$f")" && pwd)/$(basename "$f")"); done
+      cd / && ${dprintFmt} -- "''${abs[@]}"
     '';
   };
 
