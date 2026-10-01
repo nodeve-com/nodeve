@@ -1,0 +1,14 @@
+# Org markdown lint rules (md-lint, and the safe fixes md-fmt applies first).
+# Layout is dprint's job (dprint.json); these rules check structure and links.
+[global]
+disable = [
+  "MD013", # line length: dprint never wraps prose
+  "MD033", # inline html: docs use it on purpose
+  "MD036", # emphasis as heading: a bold line used as a label is fine
+  "MD041", # first line a heading: frontmatter docs and index files open otherwise
+]
+# Reported, never auto-fixed: the fix rewrites heading levels.
+unfixable = ["MD001", "MD025"]
+
+[MD024]
+siblings-only = true

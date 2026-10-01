@@ -48,9 +48,22 @@ pre-commit:
     # judged code formatting at all. It must only name types prettier has a parser
     # for — prettier errors on a path it can't infer one for. Repos exclude paths
     # via `.prettierignore` (machine output, vendored code), not by narrowing this.
+    # Markdown is not prettier's: md-fmt below owns it, the same formatter every
+    # org repo and editor runs.
     - name: format
-      glob: '*.{md,ts,tsx,js,jsx,mjs,cjs,mts,cts,svelte,json,jsonc,css,html,yml,yaml}'
+      glob: '*.{ts,tsx,js,jsx,mjs,cjs,mts,cts,svelte,json,jsonc,css,html,yml,yaml}'
       run: node_modules/.bin/nodeve-format {staged_files}
+      stage_fixed: true
+
+    # Markdown fixer: rumdl's safe fixes, then dprint's layout, re-staged. A native
+    # binary from nodeve's flake (packages.md-tools, in the devShell), not a node
+    # dep, so JS and non-JS repos format docs identically. UNGUARDED like vale —
+    # absent from PATH, the commit fails.
+    - name: md-fmt
+      glob: '*.md'
+      run: |
+        command -v md-fmt >/dev/null || { echo "✖ md-fmt is not installed — it ships in the nix devShell ('nix develop') as nodeve's packages.md-tools."; exit 1; }
+        md-fmt {staged_files}
       stage_fixed: true
 
     - name: checks
@@ -60,6 +73,12 @@ pre-commit:
           - name: doc-tokens
             glob: '*.md'
             run: node_modules/.bin/nodeve-check doc-tokens {staged_files}
+
+          # Markdown lint (rumdl via md-lint): broken relative links and anchors,
+          # heading structure. Layout is md-fmt's, already applied above.
+          - name: md-lint
+            glob: '*.md'
+            run: md-lint {staged_files}
 
           # Prose gate — the OTHER engine. Not a `nodeve-check` bin: it's the `vale`
           # binary reading the org house rules straight from the package's OWN
@@ -141,27 +160,33 @@ pre-commit:
             glob: '*.{ts,tsx,js,jsx,mjs,cjs,svelte}'
             run: node_modules/.bin/eslint {staged_files}
 
-    # Recursive per-package gate — the org requirement that a commit can't land a
-    # package whose own `check` fails. `check` is the STATIC-verification cluster
-    # (types, schema validation, authoring/semantic gates) — NOT tests or build;
-    # those are the separate `test`/`build` verbs, run in CI. Contract + rationale:
-    # docs/package-scripts.md. A package OPTS OUT by defining no `check` script (both PMs skip a
-    # missing script). Sibling of the `checks` group, NOT inside it: those are
-    # staged-file static analyses, but a typecheck needs the whole package program
-    # — it can't be narrowed to staged files — so this runs the full recursion as
-    # its own (heavier) job.
+    # Per-package gate — a commit can't land a package whose own `check` fails.
+    # `check` is the STATIC-verification cluster (types, schema validation,
+    # authoring/semantic gates) — NOT tests or build; those are the separate
+    # `test`/`build` verbs, run in CI. Contract + rationale:
+    # docs/package-scripts.md. A package OPTS OUT by defining no `check` script
+    # (both PMs skip a missing script).
     #
-    # PM-agnostic by lockfile, since org repos run on pnpm OR bun and both must
-    # inherit this from the single `extends` line — no per-repo override. bun's
-    # `--filter '*'` is its recursive-run form; pnpm's `-r --if-present` is its
-    # own. A repo wanting turbo's caching overrides this job's `run` with
-    # `turbo run check`.
+    # Scoped to the packages the commit touches: each staged path's nearest
+    # package.json below the root. A typecheck needs the whole package program, so
+    # a touched package runs its full `check`; an untouched one never blocks.
+    # Dependents of a touched package are not re-checked; `pnpm -r check` covers
+    # the whole tree.
+    #
+    # PM-agnostic by lockfile: org repos run on pnpm OR bun and both inherit this
+    # from the single `extends` line. Both take path `--filter`s.
     - name: package-check
       run: |
+        filters=$(for f in {staged_files}; do
+          d=$(dirname "$f")
+          while [ "$d" != . ] && [ ! -f "$d/package.json" ]; do d=$(dirname "$d"); done
+          [ "$d" = . ] || printf -- '--filter=./%s\n' "$d"
+        done | sort -u)
+        [ -n "$filters" ] || exit 0
         if [ -f bun.lock ] || [ -f bun.lockb ]; then
-          bun run --filter '*' check
+          bun run $filters check
         else
-          pnpm -r --if-present check
+          pnpm -r --if-present $filters check
         fi
 
 # The commit-msg hook fires after pre-commit, once a message exists. lefthook

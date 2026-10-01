@@ -10,6 +10,21 @@
 # Refresh after nodeve changes with `lefthook install` (it refetches remotes).
 pre-commit:
   jobs:
+    # Format staged markdown and re-stage it, before anything measures it. md-fmt
+    # and md-lint ship in nodeve's flake (packages.md-tools); nix-config installs
+    # them on dev machines.
+    - name: md-fmt
+      glob: '*.md'
+      run: |
+        command -v md-fmt >/dev/null || { echo "✖ md-fmt: not on PATH (nodeve flake packages.md-tools; nix-config infra.dev installs it)"; exit 1; }
+        md-fmt {staged_files}
+      stage_fixed: true
+
+    # Lint staged markdown: broken relative links and headings, structure.
+    - name: md-lint
+      glob: '*.md'
+      run: md-lint {staged_files}
+
     # Staged markdown under the org doc budget — see .lefthook/pre-commit/doc-size.sh.
     - script: doc-size.sh
       runner: bash

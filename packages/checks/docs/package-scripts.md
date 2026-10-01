@@ -5,7 +5,7 @@ Three verbs, three jobs. Every workspace package names its scripts by what they 
 ## The verbs
 
 | Verb | Confirms | Runs | Cargo analog |
-| --- | --- | --- | --- |
+| - | - | - | - |
 | `check` | the source is valid **as written** — types, schema validation, authoring/semantic gates, baseline rules. Never rewrites an authored file. | commit gate | `cargo check` |
 | `build` | everything **generates + compiles cleanly** — rewrites derived sources, then produces the shipped artifacts. | CI / release | `cargo build` |
 | `test` | the built output **produces the expected result** — executable tests. | CI | `cargo test` |
@@ -26,7 +26,7 @@ Three verbs, three jobs. Every workspace package names its scripts by what they 
 A leaf package's cluster is often just the typecheck; a source-of-truth package layers in more. Examples:
 
 | Package | `check` | `build` | `test` |
-| --- | --- | --- | --- |
+| - | - | - | - |
 | encoding / text / schema-case | `tsc --noEmit` | `tsc` emit | `vitest run` |
 | checks | `tsc --noEmit` | `tsc` emit | — |
 | schema | drift gates → `project` → shape gate → SQLite FK → `tsc --noEmit` | `fix && check` | `vitest run` |
@@ -43,6 +43,6 @@ A package's gate belongs in its `check` script, not a job in the consuming repo'
 
 ## How the gate uses them
 
-The shared `lefthook.checks.yml` runs one recursive `package-check` job → each package's `check`. PM-agnostic (lockfile-detected) and staged-file-blind: a typecheck needs the whole package program, so staged paths can't narrow it. `build` and `test` are heavier and belong in CI, not the per-commit gate.
+The shared `lefthook.checks.yml` runs one `package-check` job → the `check` of each package the commit touches (a staged path's nearest `package.json`). PM-agnostic (lockfile-detected). A touched package runs its whole `check`: a typecheck needs the whole package program. An untouched package never blocks a commit; `pnpm -r check` covers the whole tree. `build` and `test` are heavier and belong in CI, not the per-commit gate.
 
 Opt-out is by omission — no `check` script, no run. A frozen/legacy package (e.g. grimoire) parks its script under a non-verb name (`check:frozen`) so the recursion skips it.

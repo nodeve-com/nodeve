@@ -39,7 +39,7 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 ## Checks
 
 | Check | What it gates | Default |
-| --- | --- | --- |
+| - | - | - |
 | `doc-tokens` | markdown over a line/token budget | on (every tracked `.md`; an index gets half the tokens) |
 | `reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (`apps/`, `packages/`) |
 | `plural-arrays` | count-plural names bound to a map/object instead of an array | on (`apps/`, `packages/`) |
@@ -71,7 +71,8 @@ pnpm exec nodeve-prose docs/levels.md   # Bun: bunx nodeve-prose …
 
 Unlike the gates above, fixers mutate staged files and let lefthook re-stage them (`stage_fixed: true`). They run before the `checks` group so the gates see the fixed content.
 
-- `nodeve-format` — prettier-formats staged docs, code, and config in place, so they land formatted without a manual `prettier --write`. Bundles its own prettier (nothing on PATH, portable across pnpm and bun) yet honors the repo's prettier config, `.prettierignore`, and plugins. Skips symlinks (`CLAUDE.md` → `README.md`), which their target's own staged entry covers. Exclude machine output and vendored code with `.prettierignore` — the lefthook glob stays wide.
+- `nodeve-format` — prettier-formats staged code and config in place. Bundles its own prettier (nothing on PATH) yet honors the repo's prettier config, `.prettierignore`, and plugins. Skips symlinks. Exclude machine output and vendored code with `.prettierignore` — the lefthook glob stays wide.
+- `md-fmt` — formats staged markdown; `md-lint` in `checks` fails on broken links. Both from nodeve's flake `packages.md-tools`, on PATH.
 
 ## Generators
 

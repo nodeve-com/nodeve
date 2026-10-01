@@ -27,7 +27,7 @@ pre-commit:
       run: pnpm --filter @nodeve/checks build
 
     # NO per-package jobs live here. A package owns its own gate in its `check`
-    # script; the shared `package-check` job recurses into every one of them, so
+    # script; the shared `package-check` job runs it for each package a commit touches, so
     # a package carries its checks with it when it moves repos. @nodeve/schema's
     # row/shape/FK validation lives in packages/schema/package.json for exactly
     # that reason.

@@ -7,3 +7,6 @@ nodeve.checks.defaults.js
 # flow-when-short, block-when-long). prettier would re-explode long flow maps
 # into lone `{` / `}` lines; the two fought. format.ts is the sole authority.
 packages/schema/**/*.yaml
+
+# Markdown is md-fmt's (nodeve flake packages.md-tools), not prettier's.
+*.md

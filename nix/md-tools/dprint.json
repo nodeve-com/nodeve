@@ -1,0 +1,7 @@
+{
+	"markdown": {
+		"textWrap": "never",
+		"table.cellPadding": "space",
+		"codeBlock.preserveIndentation": true
+	}
+}
