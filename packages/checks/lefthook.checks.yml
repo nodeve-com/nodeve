@@ -180,7 +180,7 @@ pre-commit:
         done | sort -u)
         [ -n "$filters" ] || exit 0
         if [ -f bun.lock ] || [ -f bun.lockb ]; then
-          bun run $filters check
+          bun run --if-present $filters check
         else
           pnpm -r --if-present $filters check
         fi
