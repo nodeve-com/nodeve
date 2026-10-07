@@ -64,8 +64,11 @@ export default {
 		maxSubjectLength: 72,
 		bodyRequiredOverLines: 50,
 	},
+	// The four AST checks below parse with the TypeScript compiler, so their scope
+	// is TS tree-wide — not per-layout. Declarations are machine output.
 	reshape: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
+		globs: ['*.ts'],
+		ignore: ['**/*.d.ts'],
 		allowlist: [],
 	},
 	// On by default: a count-plural name must hold an array, not a map/object (a
@@ -74,20 +77,23 @@ export default {
 	// `singular` is seeded with `-s` nouns pluralize over-counts that are almost
 	// never arrays (payloads/values, not lists).
 	pluralArrays: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
+		globs: ['*.ts'],
+		ignore: ['**/*.d.ts'],
 		plural: [],
 		singular: ['data', 'metadata', 'series', 'news'],
 		allowlist: [],
 	},
 	inlineDupes: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
+		globs: ['*.ts'],
+		ignore: ['**/*.d.ts'],
 		allowlist: [],
 		// Off by default: an app repo legitimately repeats exported route handlers per route.
 		// A library-only repo (no route files) sets this true to catch exported dupes too.
 		includeExported: false,
 	},
 	helperCollisions: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
+		globs: ['*.ts'],
+		ignore: ['**/*.d.ts'],
 		libs: ['remeda'],
 		libKeywords: {},
 		// Seeded with the lodash→remeda renames (keyed by the remeda export). The org
@@ -111,12 +117,23 @@ export default {
 		threshold: 0.8,
 		allowlist: [],
 	},
-	// On by default: structural copy-paste detection (jscpd v5). No-ops if the
-	// jscpd binary isn't installed. `apps/` is skipped when absent.
+	// On by default: structural copy-paste detection (jscpd v5) over the whole
+	// tree in every org language; `ignore` keeps build output and vendored trees out.
 	clones: {
-		paths: ['apps', 'packages'],
-		formats: ['typescript', 'javascript'],
-		ignore: ['**/node_modules/**', '**/dist/**', '**/*.d.ts', '**/*.test.ts', '**/*.spec.ts'],
+		paths: ['.'],
+		formats: ['typescript', 'javascript', 'rust', 'python'],
+		ignore: [
+			'**/node_modules/**',
+			'**/dist/**',
+			'**/build/**',
+			'**/.svelte-kit/**',
+			'**/target/**',
+			'**/.venv/**',
+			'**/__pycache__/**',
+			'**/*.d.ts',
+			'**/*.test.ts',
+			'**/*.spec.ts',
+		],
 		minTokens: 50,
 		minLines: 5,
 		mode: 'mild',
@@ -130,10 +147,13 @@ export default {
 		globs: [],
 		overrides: [{ glob: '*+page.svelte', tiers: { fail: { maxLines: 280 } } }],
 	},
-	// On by default: warn past 225 lines, block past 300. Give a long-but-cohesive
-	// file a bigger budget (or `tiers: 'exempt'`) via `overrides`, per repo.
+	// On by default: warn past 225 lines, block past 300. Whole tree, every source
+	// language the org writes — a repo's layout (`src/`, `apps/`, `packages/`) never
+	// decides whether the budget applies. Give a long-but-cohesive file a bigger
+	// budget (or `tiers: 'exempt'`) via `overrides`, per repo.
 	fileSize: {
-		globs: ['apps/*.ts', 'packages/*.ts'],
+		globs: ['*.ts', '*.js', '*.mjs', '*.svelte', '*.rs', '*.py'],
+		ignore: ['**/*.d.ts'],
 		warn: { maxLines: 225 },
 		fail: { maxLines: 300 },
 		overrides: [],

@@ -47,6 +47,11 @@ pre-commit:
     - script: doc-size.sh
       runner: bash
 
+    # Staged source files under the org line budget (300 fail, 225 warn) — see
+    # .lefthook/pre-commit/file-size.sh.
+    - script: file-size.sh
+      runner: bash
+
     # No block of code repeated across files. jscpd v5 is the Rust build, fetched
     # once by pnpx. What it scans (formats, paths, ignores) is the repo's own
     # .jscpd.json; a repo without one fails rather than going unchecked.

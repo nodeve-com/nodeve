@@ -41,19 +41,19 @@ Copy `node_modules/@nodeve/checks/nodeve.checks.defaults.js` to your repo root a
 | Check | What it gates | Default |
 | - | - | - |
 | `doc-tokens` | markdown over a line/token budget | on (every tracked `.md`; an index gets half the tokens) |
-| `reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (`apps/`, `packages/`) |
-| `plural-arrays` | count-plural names bound to a map/object instead of an array | on (`apps/`, `packages/`) |
-| `inline-dupes` | non-exported top-level names declared in 2+ files | on (`apps/`, `packages/`) |
+| `reshape` | callbacks that reproduce their input shape (no-op / pick / clone) | on (tree-wide `.ts`) |
+| `plural-arrays` | count-plural names bound to a map/object instead of an array | on (tree-wide `.ts`) |
+| `inline-dupes` | non-exported top-level names declared in 2+ files | on (tree-wide `.ts`) |
 | `helper-collisions` | local helpers that fuzzily match a dependency export | on (needs lib-names index) |
-| `clones` | structural copy-paste (duplicated code blocks) via jscpd v5 | on (`apps/`, `packages/`; no-op without the jscpd binary) |
+| `clones` | structural copy-paste (duplicated code blocks) via jscpd v5 | on (tree-wide ts/js/rs/py) |
 | `page-size` | files over a per-glob line budget | on (`*+page.svelte` >280; no-op where nothing matches) |
-| `file-size` | TS sources over a line budget (warn >225, fail >300) | on (`apps/`, `packages/`) |
+| `file-size` | source over a line budget (warn >225, fail >300) | on (tree-wide `.ts .js .mjs .svelte .rs .py`) |
 | `catalog` | dependency versions not single-sourced from a workspace catalog | on (a workspace must declare a catalog) |
 | `require-deps` | org-required deps missing from the workspace catalog | on (`remeda`; set `deps: []` to opt out) |
 | `require-eslint` | repo ships no root eslint flat config (eslint is org-mandatory) | on (`requireEslint: { enforce: false }` opts out) |
 | `commit-msg` | commit message off Conventional Commits, or a sizeable change lacking a body | on (`commit-msg` hook; body required past 50 changed lines) |
 
-Per-check semantics, tuning, and examples: **[docs/checks.md](docs/checks.md)**. Run any as `nodeve-check <name>`; each also has a standalone `nodeve-check-<name>` bin (identical behavior) for direct invocation.
+Per-check semantics, tuning, and examples: **[docs/checks.md](docs/checks.md)**. Each check also has a standalone `nodeve-check-<name>` bin.
 
 ## Prose gate (Vale)
 
