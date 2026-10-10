@@ -59,10 +59,14 @@ let
       fi
       ${collectFiles}
       rumdl fmt ${rumdlArgs} --quiet -- "''${files[@]}" >/dev/null
-      # dprint formats only files under its cwd; from / that is any absolute path.
-      abs=()
-      for f in "''${files[@]}"; do abs+=("$(cd "$(dirname "$f")" && pwd)/$(basename "$f")"); done
-      cd / && ${dprintFmt} -- "''${abs[@]}"
+      # Through stdin: dprint skips a path its repo's .gitignore names, such as a worktree's.
+      out=$(mktemp)
+      trap 'rm -f "$out"' EXIT
+      for f in "''${files[@]}"; do
+        # shellcheck disable=SC2094 # reads $f, writes the temp $out
+        ${dprintFmt} --stdin "$(basename "$f")" <"$f" >"$out"
+        cmp -s "$out" "$f" || cat "$out" >"$f"
+      done
     '';
   };
 
