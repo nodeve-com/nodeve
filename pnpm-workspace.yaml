@@ -40,6 +40,7 @@ catalog:
   typescript-eslint: ^8.63.0
   vitest: ^3.0.0
   yaml: ^2.9.0
+  zod: ^4.6.5
 
 # TS 7 (native) drives the `check`/typecheck path per package — ~10x faster, and
 # a package's `tsc --noEmit` needs no eslint. The default `catalog.typescript`

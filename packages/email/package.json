@@ -1,0 +1,81 @@
+{
+	"name": "@nodeve/email",
+	"version": "0.1.0",
+	"description": "Email address quality and sending: normalize, shape check, blocked TLDs and typo-squats, disposable providers, placeholders, typo suggestions, and a ZeptoMail sender. Client-safe except the sender.",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nodeve-com/nodeve.git",
+		"directory": "packages/email"
+	},
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"./apple-relay": {
+			"types": "./dist/apple-relay.d.ts",
+			"default": "./dist/apple-relay.js"
+		},
+		"./blocklist": {
+			"types": "./dist/blocklist.d.ts",
+			"default": "./dist/blocklist.js"
+		},
+		"./disposable": {
+			"types": "./dist/disposable.d.ts",
+			"default": "./dist/disposable.js"
+		},
+		"./format": {
+			"types": "./dist/format.d.ts",
+			"default": "./dist/format.js"
+		},
+		"./normalize": {
+			"types": "./dist/normalize.d.ts",
+			"default": "./dist/normalize.js"
+		},
+		"./placeholder": {
+			"types": "./dist/placeholder.d.ts",
+			"default": "./dist/placeholder.js"
+		},
+		"./public-mailbox-providers": {
+			"types": "./dist/public-mailbox-providers.d.ts",
+			"default": "./dist/public-mailbox-providers.js"
+		},
+		"./suggest-domain": {
+			"types": "./dist/suggest-domain.d.ts",
+			"default": "./dist/suggest-domain.js"
+		},
+		"./typo-corrections": {
+			"types": "./dist/typo-corrections.d.ts",
+			"default": "./dist/typo-corrections.js"
+		},
+		"./validate-email": {
+			"types": "./dist/validate-email.d.ts",
+			"default": "./dist/validate-email.js"
+		},
+		"./zeptomail": {
+			"types": "./dist/zeptomail.d.ts",
+			"default": "./dist/zeptomail.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.json && cp src/*.json dist/",
+		"clean": "rm -rf dist",
+		"check": "pnpm typecheck",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"test": "vitest run",
+		"update:disposable": "node scripts/update-disposable.ts"
+	},
+	"dependencies": {
+		"@nodeve/text": "workspace:*",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@nodeve/config": "workspace:*",
+		"typescript": "catalog:ts7",
+		"vitest": "catalog:"
+	}
+}

@@ -96,6 +96,9 @@ catalogs:
     yaml:
       specifier: ^2.9.0
       version: 2.9.0
+    zod:
+      specifier: ^4.6.5
+      version: 4.6.7
   ts7:
     typescript:
       specifier: 7.0.2
@@ -230,6 +233,25 @@ importers:
         specifier: 'catalog:'
         version: 3.19.0(eslint@10.7.0)(svelte@5.56.3(@typescript-eslint/types@8.63.0))
 
+  packages/email:
+    dependencies:
+      '@nodeve/text':
+        specifier: workspace:*
+        version: link:../text
+      zod:
+        specifier: 'catalog:'
+        version: 4.6.7
+    devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
+      typescript:
+        specifier: catalog:ts7
+        version: 7.0.2
+      vitest:
+        specifier: 'catalog:'
+        version: 3.2.6(@types/node@24.13.3)(yaml@2.9.0)
+
   packages/encoding:
     dependencies:
       '@noble/hashes':
@@ -347,6 +369,18 @@ importers:
       remeda:
         specifier: 'catalog:'
         version: 2.39.0
+    devDependencies:
+      '@nodeve/config':
+        specifier: workspace:*
+        version: link:../config
+      typescript:
+        specifier: catalog:ts7
+        version: 7.0.2
+      vitest:
+        specifier: 'catalog:'
+        version: 3.2.6(@types/node@24.13.3)(yaml@2.9.0)
+
+  packages/web-form:
     devDependencies:
       '@nodeve/config':
         specifier: workspace:*
@@ -3458,6 +3492,12 @@ packages:
         integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==,
       }
 
+  zod@4.6.7:
+    resolution:
+      {
+        integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==,
+      }
+
 snapshots:
   '@ast-grep/napi-darwin-arm64@0.44.1':
     optional: true
@@ -5171,3 +5211,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zimmerframe@1.1.4: {}
+
+  zod@4.6.7: {}
